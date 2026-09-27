@@ -1,0 +1,99 @@
+{
+ "id": "ai-landing-labels-2026-09-27",
+ "committed": "2026-09-27",
+ "purpose": "Page-shape labels for fleet-ai-landing-shape-1026, written before its window opens (2026-09-28). Settlement reads these labels and never relabels.",
+ "classes": {
+  "H": [
+   "list_or_comparison",
+   "practical_fix"
+  ],
+  "J": [
+   "definition_or_judgement"
+  ],
+  "reported_not_scored": [
+   "home_or_about",
+   "other"
+  ]
+ },
+ "rubric": {
+  "list_or_comparison": "primary content is a table or list of several named options the reader browses, or a side-by-side comparison of named options",
+  "practical_fix": "a concrete how-to or problem about a physical product or setup, with steps the reader carries out",
+  "definition_or_judgement": "defines a concept, summarises a text, gives a verdict/prediction/opinion, profiles a person, or is a buying verdict",
+  "home_or_about": "site home or about page",
+  "other": "anything else; on bpj this is the single-tool free-tier card"
+ },
+ "labels": {
+  "agiscorecard": {
+   "/": "home_or_about",
+   "/about": "home_or_about",
+   "/when-will-agi-arrive": "list_or_comparison",
+   "/situational-awareness-summary": "definition_or_judgement",
+   "/ai-progress-2026-so-far": "definition_or_judgement",
+   "/prediction-receipts": "list_or_comparison",
+   "/situational-awareness-predictions": "definition_or_judgement",
+   "/agi-vs-superintelligence": "definition_or_judgement",
+   "/ai-2027-scenario-explained": "definition_or_judgement",
+   "/ai-tools": "list_or_comparison",
+   "/forecaster-leaderboard": "list_or_comparison",
+   "/how-close-is-agi": "definition_or_judgement",
+   "/how-fast-is-ai-improving": "definition_or_judgement",
+   "/situational-awareness-vs-ai-2027": "list_or_comparison",
+   "/what-jobs-are-safe-from-ai": "definition_or_judgement",
+   "/who-is-leopold-aschenbrenner": "definition_or_judgement",
+   "/will-there-be-superintelligence": "definition_or_judgement"
+  },
+  "baipiaoji": {
+   "/": "home_or_about",
+   "/c/api": "list_or_comparison",
+   "/en/c/image": "list_or_comparison",
+   "/en/c/video": "list_or_comparison",
+   "/en/c/coding": "list_or_comparison",
+   "/en/vs/dify-vs-n8n": "list_or_comparison",
+   "/en/vs/bailian-vs-cerebras": "list_or_comparison",
+   "/en/vs/cerebras-vs-openrouter": "list_or_comparison",
+   "/en/vs/cloudflare-workers-ai-vs-google-ai-studio": "list_or_comparison",
+   "/en/vs/google-ai-studio-vs-openrouter": "list_or_comparison",
+   "/en/vs/openrouter-vs-zhipu-glm": "list_or_comparison",
+   "/vs/comate-vs-github-copilot": "list_or_comparison",
+   "/vs/github-copilot-vs-tongyi-lingma": "list_or_comparison",
+   "/tools/comate": "other",
+   "/tools/feishu-miaoji": "other",
+   "/en/is-google-flow-still-free": "definition_or_judgement",
+   "/en/tools/claude": "other",
+   "/en/tools/groq": "other",
+   "/en/tools/guojia-fanzha": "other",
+   "/en/tools/ms-copilot": "other",
+   "/en/tools/openrouter": "other",
+   "/en/tools/perplexity": "other",
+   "/en/tools/zhiying": "other",
+   "/tools/qingying": "other",
+   "/tools/trae": "other"
+  },
+  "getecoback": {
+   "/en/guide/portable-ac-tilt-and-turn-windows.html": "practical_fix",
+   "/guide/klimaanlage-kippfenster.html": "practical_fix",
+   "/en/guide/best-portable-air-conditioner-europe-heatwave.html": "definition_or_judgement",
+   "/guide/balkonkraftwerk-ohne-bohren.html": "practical_fix",
+   "/guide/mobile-klimaanlage-ueberwintern.html": "practical_fix",
+   "/guide/mobile-klimaanlage-stinkt-schimmel.html": "practical_fix",
+   "/guide/unterschied-klimaanlage-lueftungsanlage.html": "definition_or_judgement",
+   "/en/guide/vent-portable-ac-without-window.html": "practical_fix",
+   "/en/guide/window-seal-portable-ac.html": "practical_fix",
+   "/guide/klimaanlage-25-qm.html": "definition_or_judgement",
+   "/guide/split-klimaanlage-ohne-kernbohrung.html": "definition_or_judgement",
+   "/guide/was-bedeutet-btu.html": "definition_or_judgement"
+  }
+ },
+ "rules": [
+  "bpj template rules for paths not in labels: ^(/en)?/(c|vs)/ = list_or_comparison; ^(/en)?/tools/ = other (tool card, reported not scored); ^(/en)?/is-.+ = definition_or_judgement.",
+  "Home pages (/ and every language root such as /en/, /de/) = home_or_about, reported not scored.",
+  "A language mirror inherits the label of its English path (agi /de/<p>, /es/<p> … take /<p>; eco /en/guide/<p> and its German twin keep their own labels only when listed).",
+  "Any other agi or eco path, and any page first published after 2026-09-27, is unlabelled: reported, not scored."
+ ],
+ "excluded_drivers": [
+  "baipiaoji /c/api",
+  "getecoback /en/guide/portable-ac-tilt-and-turn-windows.html",
+  "getecoback /guide/klimaanlage-kippfenster.html"
+ ],
+ "source": "census-classify agent, 2026-09-27, read page sources in the repo; ambiguity notes are in docs/ai-era-site-2026-09-27.md"
+}

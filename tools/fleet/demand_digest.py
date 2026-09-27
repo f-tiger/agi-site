@@ -345,11 +345,26 @@ def main():
         stale = " **STALE**" if (aa is None or aa > 3) else ""
         base = (ar.get("baseline_2026_09_12") or {}).get("fleet_ai_ref")
         out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')},剔除已标记噪音站 {ar.get('fleet_human_pv_excl_flagged', '?')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+        if ar.get("fleet_ai_ref_claude_ai") is not None:
+            out.append(f"- 其中 claude.ai **{ar['fleet_ai_ref_claude_ai']}** 次(可能含舰队自己在 claude.ai/code 里的点击,分不开所以不剔除;"
+                       f"不含它是 {ar.get('fleet_ai_ref_excl_claude_ai')} 次。判定线照旧读合计)")
         for s_ in sorted(ar.get("sites", []), key=lambda x: -x.get("ai_ref", 0)):
             hosts = ", ".join(f"{h} {n}" for h, n in sorted(s_.get("by_host", {}).items(), key=lambda kv: -kv[1])) or "—"
             out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}" + (f" · ⚠ pv 不是读者数:{s_['pv_caveat']}" if s_.get('pv_caveat') else ''))
         if ar.get("errors"):
             out.append("- 未读到:" + " | ".join(ar["errors"]))
+    # AI 占外部到达(2026-09-27 AI 时代站点第五轮):AI 引荐按页面形状看不出差别,三个有 AI 引荐的站
+    # 都在外部到达的个位数百分比(D1 JS 口径 agi 8.6% / bpj 7.8% / eco 8.4%)。所以这里看的是份额,
+    # 不是绝对数——绝对数跟着总发现面走。分母 = search+ai+fleet+social+other(不含 direct/self)。
+    ts_ = load(os.path.join(ROOT, "data/fleet-traffic-sources.json"))
+    shares = []
+    for s_ in (ts_.get("sites") or []) if "__error__" not in ts_ else []:
+        b = s_.get("by_source") or {}
+        ext = sum(b.get(k, 0) for k in ("search", "ai", "fleet", "social", "other"))
+        if ext >= 20 and b.get("ai", 0) > 0:
+            shares.append(f"{s_['site']} {b.get('ai', 0)}/{ext} = {100 * b.get('ai', 0) / ext:.1f}%")
+    if shares:
+        out.append(f"- AI 占外部到达(渠道构成快照 {str(ts_.get('generated', '?'))[:10]};只列外部到达 ≥20 且 AI>0 的站):" + " · ".join(shares))
     out.append("")
 
     # 渠道构成(2026-09-15):每个站的读者从哪来。在这之前只有 eco 被手查过,而同日手查 bpj

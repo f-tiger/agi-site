@@ -460,7 +460,22 @@
    "lose": "AI 读者面只维护不扩建",
    "source": "CLAUDE.md:437",
    "status": "open",
-   "baseline_instrument_2026_09_13": 78
+   "baseline_instrument_2026_09_13": 78,
+   "reading_2026-09-27": "预读(不结算,≥156 不动)。最近两份完整快照:59(09-23T16:04Z,agi 21 / bpj 22 / eco 15 / gamesledger 1)、58(09-24T13:03Z);09-25、09-26 两份 ok:false(D1 读额度用完后 13 个 /api/pulse 500),不能当舰队合计读。三站周序列(D1):8 月下旬约 22–23 次/周,9 月中约 12 次/周;但 78(09-13)与 59(09-23)的窗口重叠 18 天,差值 z≈1.6,「在掉」未确立,季节解释也未检验(eco 端点 09-24 与 09-27 都是 16)。按 2026-09-27 的份额读数(AI 约占三站外部到达的 5–9%,D1 JS 口径 agi 8.6% / bpj 7.8% / eco 8.4%),156 意味着三站外部到达约 2.5 倍于现在;照现速几乎必输。其中 claude.ai:agi 21 次里 7 次,可能含舰队自己在 claude.ai/code 的点击,分不开,判定照读合计(快照另列 fleet_ai_ref_claude_ai)。",
+   "clarification_2026-09-27": "在任何站达标之前收紧第二个条件,原文保留(先例:fleet-machine-demand-1014 09-24、goldrush 09-22)。「0 站转正」= 该站 28 天窗内 ≥3 个 AI 访问日(去重 path×day×country;referrer 属 ai_referrals.py AI_HOSTS,kagi.com 与 claude.ai 不计)且分布在 ≥2 个不同日期。t0:gamesledger 1 次(copilot.microsoft.com),未转正;原口径下再来一次偶然点击就会把整条线判赢并触发扩建分支。读数路径:heartbeat 快照 ok:true 优先;快照残缺时由会话在 00:05–06:00 UTC 用 ai_referrals.py 的 sql_for() 直查 D1,并标注窗口内 09-24/25/26 的 D1 写入缺口。"
+  },
+  {
+   "id": "fleet-ai-landing-shape-1026",
+   "site": "fleet",
+   "due": "2026-10-26",
+   "metric": "AI 访问日按页面形状计分(tools/fleet/ai_landing_shape.py,固定窗 2026-09-28..2026-10-25,agi+bpj+eco):单位 = 去重的 (site, path, day, country),referrer 为 AI 助手,kagi.com 不计;claude.ai 单列不计分;H = list_or_comparison + practical_fix,J = definition_or_judgement,标签取 data/ai-landing-labels-2026-09-27.json(窗口开始前写定,结算时不改标);首页、bpj 工具卡、三个样本内驱动页(bpj /c/api、eco 翻窗页 EN+DE)、未标注页只报告不计分",
+   "threshold": "赢:H ≥ 10 且 H ≥ 2·J;输:H ≤ J 且 H+J ≥ 12;其余(含 H+J < 12、未标注 ≥ 25%、D1 读不到)为 insufficient",
+   "win": "「交接型页面」规则成立(读者下一步必须在站外完成的页面拿 AI 点击,判定页拿引用):写进 citation-growth 技能与 agi rung ⓪;任何在 fleet-ai-referrals-1024 之后存活的 AI 读者面工作优先交接型页面",
+   "lose": "撤回页面形状结论:AI 点击按引用量 × 行业约 0.3% 看待,任何 CLAUDE.md 与技能不得再写「某种页型是 AI 点击面」(bpj 第 18 条 ② 一并撤回);两个驱动页当作单页资产维护",
+   "source": "docs/ai-era-site-2026-09-27.md",
+   "status": "open",
+   "t0": "2026-08-31..09-27 同口径(D1 2026-09-27 读,评分工具现算):H 7 · J 7 · claude.ai 5 · 驱动页 15 · 首页 3 · 工具卡 4 · 未标注 0 → t0 落在输区(H ≤ J 且 H+J = 14)。维持现状判负,只有样本外出现交接型效应才判赢",
+   "reading_source": "结算日 2026-10-26 00:05–06:00 UTC,会话用 Cloudflare D1 查询工具跑 `python3 tools/fleet/ai_landing_shape.py --sql` 打印的三条 SQL(今天实测 22.9k + 0.4k + 1.8k rows_read),存成 {site: rows} 喂给评分工具;不新增仪表、不加 cron"
   },
   {
    "id": "eco-it-pilot-1027",
