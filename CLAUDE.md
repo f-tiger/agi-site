@@ -264,6 +264,11 @@ Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire
 3. **合并优先于删除**：`update_trigger` 改 prompt + `enabled=false` 停用，
    **永不 `delete_trigger`**——预登记判定线与历史必须留痕。
 
+**每日总任务(2026-09-27 重建,全文 `docs/fleet-master-routine.md`、map 第十一节)**:`trig_01PXhZ3uG6CcJqiCviAVXAGF`,`51 3 * * *` UTC,
+**每次触发开新会话,不绑定任何会话**——v1 自绑定的常驻会话 09-15 被归档后,十二天没有任何每日循环且无人发现。每轮先确认能读写 agi-site
+(add_repo HTTPS → push dry-run → GitHub MCP 兜底),并在同一次 push 里写 `data/fleet-master-run.json`;heartbeat 的 `check_master_run.py`
+在 50 小时无记录或连续两轮拿不到仓库时打红。**以后别再把长期 Routine 自绑定到一个会话上。**
+
 第①层的兜底现在是 `fleet-heartbeat.yml`（每日 08:00 UTC）：八站探活、超 7 天未成功
 部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。
 **GitHub 的 workflow 失败邮件是整条链上唯一不经过任何 AI 会话的告警通道**——

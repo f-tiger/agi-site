@@ -345,3 +345,19 @@ Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audi
 ## 2026-09-19 独立站点会员确认
 
 沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。
+
+## 十一、2026-09-27:owner 令「重建每天的定时任务」——执行结果
+
+- **现状查明**:账号里只剩一次性提醒,**没有任何周期性 Routine**。09-14 的总任务 `trig_012kK8KVg4WYD4g6Y6wEiXet` 与存档的 10 条旧 Routine
+  `get_trigger` 均 not found;总任务自绑定的常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc` 于 09-15 13:50 UTC 被归档。
+  **即 09-15 → 09-27 十二天没有每日循环,且没有任何告警**——唯一在看它的就是它自己。这是第四种计划路径故障形态(前三种见第一、八节):
+  **绑定会话被归档 → 自绑定 Routine 随之失效**。
+- **重建**:`trig_01PXhZ3uG6CcJqiCviAVXAGF`「舰队总任务 · 每日 v2」,`51 3 * * *` UTC,**每次触发开新会话**(不再绑定任何会话),
+  prompt 全文 `docs/fleet-master-routine.md`。职责路由与 v1 相同(每日 A–H、周一附加、每月附加),按 09-14 以后的变化更新:
+  18 个 worker、赌注台账、钱线/预测记录线/D1 读预算/机器面快照、bpj 厂商认领队列、四个新 worker 只报数。
+- **owner 的补充要求「避免每天任务无法读取 agi-site 仓库,从而执行发布」的落地**:prompt 第 0 节固定获取顺序与兜底发布通道(GitHub MCP push_files、
+  分支 + PR 合入);第 8 节每轮必写 `data/fleet-master-run.json`;heartbeat 新增 `check_master_run.py`(`masterrun` 步,进红色汇总门),
+  50 小时无记录或连续两轮 `repo_ok=false` 即红。首跑前(至 09-30)只 warning。
+- **算账**:零新 GitHub cron;heartbeat 增加一个秒级读文件步骤。Routine 每天一次。
+- **已知限制**:该 Routine 不带 connector,触发出的会话没有 Cloudflare MCP(见 prompt 文件头);after35 审核与 10 万实验复核在补上 connector 之前会如实报「未做」。
+

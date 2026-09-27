@@ -377,6 +377,18 @@ jobs:
         continue-on-error: true
         run: python3 tools/fleet/backlinks.py
 
+      # 每日总任务看门狗(2026-09-27,owner:「重建每天的定时任务」+「你要避免每天任务无法读取agi-site仓库，从而执行发布」)。
+      # v1 总任务自绑定在一个会话上,那个会话 09-15 被归档,此后 12 天没有任何每日循环,而且没有任何东西发现——
+      # 唯一在看它的就是它自己。v2 每次触发开新会话,每轮在同一次 push 里给 data/fleet-master-run.json 追加一行;
+      # 这里零 AI 地检查:50 小时内没有新记录,或连续两轮 repo_ok=false(拿不到 agi-site)→ 红 → GitHub 邮件。
+      # 秒级、零外部副作用、零新 cron。首跑前(至 09-30)只 warning。
+      - name: Assert the daily master Routine reported from inside the repo
+        id: masterrun
+        continue-on-error: true
+        run: |
+          python3 tools/fleet/check_master_run.py --selftest
+          python3 tools/fleet/check_master_run.py
+
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
       # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
@@ -388,7 +400,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.masterrun.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} master-routine=${{ steps.masterrun.outcome }}"
           exit 1
