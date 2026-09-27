@@ -58,7 +58,8 @@ owner:「读它们的访问和订单数据，把投资线的使用情况补全�
 | Compass(compass.) | 弹窗出现 459 次,其中 **423 次是爬虫**;真人 36 次(26 次来自同一新加坡地址),28 天 107 次里真人更少 | 真人关闭 0、订阅提交 0;订阅库 `count` = **1** | agi D1 `events` 里 `location='compass_popup'`、线上 `/api/subscribe` |
 | Gushen(gushen-4g2.pages.dev) | 无计数 | —— | 前端在线,**后端从未部署**:线上 `/api/*` 全部返回网页 HTML,组合推荐/选股器/凯利等功能都用不了 |
 
-**整条投资线的真实状态:四个产品合计,付费 0 笔、询价 1 次、订阅 2 个(SunWatch 1 + Compass 1)。**
+**整条投资线的真实状态:四个产品合计,付费 0 笔、真实询价 0 次、订阅 2 个(SunWatch 1 + Compass 1)。**
+(同日 owner 确认:SunWatch 的那 1 次询价是 owner 自己的测试,不算买家。)
 
 ### 本轮做的
 1. **SunWatch 计数改为分真人口径**(sunPredition `ec1ac14`,分支 `claude/sun-yuchen-investment-research-yzz9mx`,推送即部署):
@@ -71,4 +72,4 @@ owner:「读它们的访问和订单数据，把投资线的使用情况补全�
 
 ### 仍需 owner 决定
 - Gushen:要么部署后端(README / DEPLOY.md 写了步骤,需要能跑 Python 的主机与 `VITE_API_BASE_URL`),要么当作已停产品。
-- SunWatch 那 1 次询价后续如何,只有 owner 的 Telegram 私信里看得到。
+- ~~SunWatch 那 1 次询价后续如何~~ —— owner 确认是自己的测试,真实询价 0。
