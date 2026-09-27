@@ -80,10 +80,6 @@ Du bist den Winter über weg, oder der Speicher soll komplett pausieren? Dann so
 
 **Bringt ein Balkonspeicher im Winter überhaupt etwas?**Der Solarertrag von November bis Februar ist ehrlicherweise gering — kurze Tage, tiefe Sonne und trübes Wetter lassen oft nur einen Bruchteil des Sommerertrags übrig. Der Speicher verschiebt dann eben kleinere Mengen vom Mittag in den Abend. Interessant wird der Winter, wenn dein Modell auch aus dem Netz laden kann und du einen dynamischen Stromtarif hast: Dann lädt der Speicher in günstigen Nachtstunden und gibt den Strom in teuren Morgen- und Abendstunden ab — das funktioniert unabhängig von der Sonne.
 
-**Speicher mit Heizfunktion & IP65 vergleichen — winterfest von Anfang an:**
-
-Balkonkraftwerk-Speicher ansehen →
-
 Hinweis: Wir haben diese Geräte nicht selbst getestet, sondern fassen öffentlich dokumentierte Herstellerangaben und Nutzererfahrungen zusammen.
 
 **Weitere Ratgeber**

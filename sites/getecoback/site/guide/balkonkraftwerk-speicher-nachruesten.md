@@ -82,10 +82,6 @@ Bevor du bestellst, lohnt ein Blick in den Fördertopf deiner Stadt: Einige Län
 
 **Muss ich den nachgerüsteten Speicher anmelden?**Ja. Auch Speicher an Balkonkraftwerken werden im Marktstammdatenregister (MaStR) der Bundesnetzagentur eingetragen. Die Ergänzung deiner bestehenden Anlagen-Registrierung dauert online nur wenige Minuten und ist kostenlos. Eine separate Anmeldung beim Netzbetreiber ist für steckerfertige Anlagen seit dem Solarpaket I nicht mehr nötig.
 
-**Mittags-Überschuss in den Abend retten — aktuelle Speicherpreise vergleichen:**
-
-Marstek Venus E ansehen →
-
 **Weitere Ratgeber**
 [Lohnt sich das Ganze? Der Lohnt-sich-Rechner →](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html)
 [Klimaanlage mit Balkonkraftwerk betreiben →](https://getecoback.com/guide/klimaanlage-balkonkraftwerk.html)

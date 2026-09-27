@@ -1,0 +1,36 @@
+# Energy-storage products this site no longer sells (owner, 2026-09-27:
+# 「eco站点下架所有储能产品」). One token per line, case-insensitive, matched as
+# a substring of an Amazon search query or product name after URL-decoding
+# ('+' and %20 become spaces, %C3%A4 becomes ä).
+#
+# This is a shelf veto, not a topic veto: the storage guides stay online and may
+# name these devices in their text (a Growatt NOAH troubleshooting page has to).
+# What may not exist is a link or a card that sells one. check_storage_veto.py
+# asserts that on the built site; the rising rail and the shelf builder read the
+# same list, so there is one place to change it.
+#
+# Lines starting with "!" are exceptions: substrings that contain a token but
+# are not a battery. A Nachtspeicherofen is a heater that stores heat; a
+# Warmwasserspeicher is a boiler. Neither is 储能 in the owner's sense.
+speicher
+solarbank
+solix
+solarflow
+zendure
+marstek
+growatt noah
+noah 2000
+jackery
+# EcoFlow's range is power stations and balcony storage (STREAM). The brand is
+# also on brand_veto.txt since 2026-08-28; listing it here as well lets the
+# digest hide "ecoflow stream …" rising rows as storage topics.
+ecoflow
+bluetti
+powerstation
+power station
+!nachtspeicher
+!wärmespeicher
+!waermespeicher
+!warmwasserspeicher
+!speicherheizung
+!speicherofen

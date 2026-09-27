@@ -100,10 +100,6 @@ Genau deshalb rechnet diese Seite nur mit Eigenverbrauch: Jede Kilowattstunde, d
 
 Die Rechnung lässt sich an einer Stelle abkürzen: Einige Bundesländer und rund zwanzig Kommunen bezuschussen Steckersolar mit 100–500 €, oft mit Extra-Bonus für den Speicher — wer den Zuschuss bekommt, verkürzt die Amortisation direkt um Jahre. Wichtig ist nur die Reihenfolge: [erst Antrag stellen, dann kaufen](https://getecoback.com/guide/balkonspeicher-foerderung.html).
 
-**Direkt stöbern statt rechnen?** Balkonkraftwerk-Speicher auf Amazon.de — nach Kapazität filterbar:
-
-Balkonspeicher ansehen →
-
 🛒 **Wo kaufen — Amazon oder Fachhändler?** Beide Wege haben klare Stärken, je nach Balkon und Speicherplänen: [der ehrliche Vergleich](https://getecoback.com/guide/balkonkraftwerk-wo-kaufen.html) (inklusive: was tun, wenn du ein eigenes Dach statt Balkon hast).
 
 **Weiter im Ratgeber**

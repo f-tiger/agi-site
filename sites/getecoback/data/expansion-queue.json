@@ -89,7 +89,7 @@
    "monetisation": "diagnosis-first shelf nach dem gewonnenen Growatt-Muster (eco-growatt-diagnosis-0925): Energiekostenmessgerät zuerst, die Solarbank selbst nur als Tausch-Slot",
    "status": "built",
    "blocked_by": "",
-   "next_action": "Published 2026-09-25 with model-specific official update guidance, a support checklist and purchase options after diagnosis. The unpublished slug gained the existing storage prefix so category discovery remains correct. Near-term evaluation is documented in docs/revenue-actions-2026-09-25.md; the storage-cluster parent experiment remains eco-storage-spring-0415.",
+   "next_action": "Published 2026-09-25 with model-specific official update guidance, a support checklist and purchase options after diagnosis. The unpublished slug gained the existing storage prefix so category discovery remains correct. Near-term evaluation is documented in docs/revenue-actions-2026-09-25.md; the storage-cluster parent experiment remains eco-storage-spring-0415. — 2026-09-27: storage category taken off the site (owner). The page stays as a support/diagnosis page; its Solarbank Amazon link was removed, only the plug meter remains. No follow-up storage pages.",
    "built": "2026-09-25",
    "bet": "eco-storage-spring-0415"
   },
@@ -110,9 +110,14 @@
    },
    "cannibalization": "keine Marstek-Seite; growatt-noah-2000-probleme und anker-solarbank-probleme verlinken",
    "monetisation": "diagnosis-first shelf (Energiekostenmessgerät, Smart-Meter-Lesekopf nur wenn die Herstellerdoku ihn nennt), Venus selbst nur als Tausch-Slot",
-   "status": "queued",
+   "status": "withdrawn",
    "blocked_by": "",
-   "next_action": "Erst bauen, wenn balkonspeicher-anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Versionen), nicht als Tatsache übernehmen."
+   "next_action": "Withdrawn 2026-09-27 (owner). Do not rebuild or requeue; see sites/getecoback/CLAUDE.md「储能品类下架」.",
+   "withdrawn": {
+    "date": "2026-09-27",
+    "by": "owner",
+    "reason": "「eco站点下架所有储能产品」+「后续记得不做储能品类」— storage category taken off the site; no storage page is built from this queue again."
+   }
   },
   {
    "slug": "heizluefter-riecht-verbrannt",
@@ -301,9 +306,14 @@
    },
    "cannibalization": "12 existing Balkonkraftwerk/Balkonspeicher pages",
    "monetisation": "storage shelf (no EcoFlow)",
-   "status": "seasonal-hold",
-   "blocked_by": "season:2027-02-01",
-   "next_action": "In February, read eco-storage-spring-0415 context and decide whether the cluster needs a page or only refreshed dates."
+   "status": "withdrawn",
+   "blocked_by": "",
+   "next_action": "Withdrawn 2026-09-27 (owner). Do not rebuild or requeue; see sites/getecoback/CLAUDE.md「储能品类下架」.",
+   "withdrawn": {
+    "date": "2026-09-27",
+    "by": "owner",
+    "reason": "「eco站点下架所有储能产品」+「后续记得不做储能品类」— storage category taken off the site; no storage page is built from this queue again."
+   }
   },
   {
    "slug": "oelradiator-stromverbrauch",

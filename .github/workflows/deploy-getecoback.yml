@@ -252,6 +252,15 @@ jobs:
       - name: Check no vetoed brand reached the published site
         run: python3 tools/check_brand_veto.py
 
+      # Storage shelf taken down 2026-09-27 (owner: 「eco站点下架所有储能产品」,
+      # 「后续记得不做储能品类」). The builder refuses a storage row in its tables;
+      # this asserts the output: no Amazon URL and no runtime-built search term
+      # for a storage product on any published page. List: tools/storage_veto.txt.
+      - name: Check no energy-storage product is sold anywhere (gate)
+        run: |
+          python3 tools/check_storage_veto.py --selftest
+          python3 tools/check_storage_veto.py
+
       - name: Check the lateral link blocks are suggestions, not walls
         run: python3 tools/check_related.py
 
@@ -537,6 +546,22 @@ jobs:
           n=$(curl -sL --max-time 20 "https://getecoback.com/guide/fenster-beschlagen-aussen.html" \
                | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
           if [ "$n" != "0" ]; then echo "::error::fenster-beschlagen-aussen carries $n amazon link(s) — the page sells nothing by design"; fail=1; else echo "OK fenster-beschlagen-aussen sells nothing"; fi
+          # Storage products are off the site (2026-09-27). Checked on what the edge
+          # serves, with the deploy gate's own scanner, on the pages that sold the
+          # most of them. A page that does not come back as a full document is ERR,
+          # never OK — an empty body would otherwise scan as zero links. Retried
+          # because the edge can answer with the previous build for a few seconds.
+          for pg in guide/balkonspeicher-rechner.html guide/balkonkraftwerk-speicher-nachruesten.html \
+                    guide/growatt-noah-2000-probleme.html kategorie/energie-sparen.html ""; do
+            sn=ERR
+            for i in 1 2 3 4; do
+              sn=$(curl -sL --max-time 20 -A "getecoback-ci" "https://getecoback.com/$pg" \
+                   | python3 -c "import sys;sys.path.insert(0,'tools');import check_storage_veto as c,storage_veto as v;b=sys.stdin.read();print(len(c.scan(b,v.load())) if '</html>' in b else 'ERR')" 2>/dev/null || echo ERR)
+              [ "$sn" = "0" ] && break
+              sleep 10
+            done
+            if [ "$sn" != "0" ]; then echo "::error::/$pg still sells a storage product ($sn)"; fail=1; else echo "OK /$pg sells no storage product"; fi
+          done
           # Deal band (2026-09-24). The expectation is computed from the calendar
           # for today's Berlin date, never typed: the accident is a band that is
           # missing while an event is live, or still on the page after it ended.

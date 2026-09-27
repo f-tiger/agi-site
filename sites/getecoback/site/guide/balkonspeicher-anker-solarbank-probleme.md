@@ -57,9 +57,7 @@ Anzeige · Amazon-Partnerlink
 Verbrauchsmessgeräte auf Amazon.de vergleichen
 
 ### Du brauchst nach bestätigtem Defekt einen Ersatz
-Prüfe zuerst Support, Gewährleistung und Reparatur. Vergleiche erst danach Ersatzmodelle anhand von Wechselrichter, Modulen, Messsystem und Aufstellort. Eine ähnliche Produktbezeichnung reicht für die Kompatibilität nicht aus.
-Anzeige · Amazon-Partnerlink
-Solarbank-Modelle auf Amazon.de vergleichen
+Prüfe zuerst Support, Gewährleistung und Reparatur. Vergleiche erst danach Ersatzmodelle anhand von Wechselrichter, Modulen, Messsystem und Aufstellort. Eine ähnliche Produktbezeichnung reicht für die Kompatibilität nicht aus. Speicher selbst empfehlen und verlinken wir nicht.
 
 Keine Live-Preise, Verfügbarkeits- oder Kompatibilitätszusage. Als Amazon-Partner verdient EcoBack an qualifizierten Käufen.
 

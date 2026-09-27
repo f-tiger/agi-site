@@ -72,10 +72,6 @@ Der Vollständigkeit halber: Die meistgenannten Alternativen im Balkonspeicher-S
 
 **Welche Alternativen zum NOAH 2000 gibt es?**Die beiden meistgenannten Alternativen im Balkonspeicher-Segment sind die Anker Solix Solarbank-Serie und Zendure SolarFlow. Beide sind in der Regel teurer als der NOAH 2000, gelten in Nutzerberichten aber als ausgereifter bei App und Software. Wer den niedrigen Preis pro Kilowattstunde priorisiert und mit gelegentlichen App-Eigenheiten leben kann, fährt mit dem NOAH 2000 günstiger; wer maximale Software-Reife will, zahlt bei den Alternativen dafür.
 
-**Aktuellen Preis & Nutzerbewertungen selbst prüfen:**
-
-Growatt NOAH 2000 auf Amazon →
-
 **Weitere Ratgeber**
 [Balkonkraftwerk-Speicher nachrüsten — lohnt sich das? →](https://getecoback.com/guide/balkonkraftwerk-speicher-nachruesten.html)
 [Balkonspeicher im Winter: Frost, Ladestopp & richtiger Umgang →](https://getecoback.com/guide/balkonspeicher-winter-frost.html)

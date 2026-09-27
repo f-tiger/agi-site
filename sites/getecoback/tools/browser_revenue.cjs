@@ -62,7 +62,9 @@ const http=require('node:http');
     await page.setViewportSize({width,height:900});await page.goto(base+guide+'?__probe=1');
     assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.eb-nav').count(),1);assert.equal(await page.locator('.eb-footer').count(),1);checks+=3;
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);checks++;
-    assert.equal(await page.locator('[data-revenue-link]').count(),2);checks++;
+    assert.equal(await page.locator('[data-revenue-link]').count(),1);checks++;
+    // Storage products are off the site (owner, 2026-09-27): the meter link stays, no Solarbank link.
+    assert.equal(await page.locator('a[href*="amazon."][href*="Solarbank" i]').count(),0);checks++;
     assert.equal(await page.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(247, 250, 252)');checks++;
     assert.equal(await page.locator('.hero').evaluate(e=>getComputedStyle(e).backgroundImage),'linear-gradient(135deg, rgb(15, 107, 168), rgb(10, 77, 122))');checks++;
     if(width!==320){await page.screenshot({path:`${dir}/solarbank-${name}-${width}.png`,fullPage:true});}
