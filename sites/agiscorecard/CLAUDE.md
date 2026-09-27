@@ -919,6 +919,9 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - **同日第二轮(owner「基于流量,市场营销技能优化投资板块」,`docs/agi-invest-marketing-2026-09-27.md`)**:`seo-audit` 逐项查,
   技术与页面层无问题;缺的是权威与**需求读数**。agi 趋势种子加 `13f filings`、`ai stocks`,词表加 `13f`(零新 cron),
   判定线 `agi-invest-demand-1115`。没有需求读数之前不改投资页标题。
+- **同日第三轮(四个投资仓接入会话后)**:整条投资线合计付费 0、询价 1、订阅 2(SunWatch 1、Compass 1)。SunWatch 的 pv/点击计数
+  含爬虫与部署自检,已在 sunPredition 改为另记真人口径(`/api/growth` 的 `human` 块);Compass 弹窗 459 次里 423 次是爬虫;
+  **Gushen 后端从未部署、线上功能不可用,/invest 中英两页已拿掉它的卡片**(终身 0 点击)。详见 `docs/agi-invest-usage-2026-09-27.md` §六。
 
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 

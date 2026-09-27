@@ -47,3 +47,28 @@ Compass 成绩单数字(+187.2% / +59.6% / +37.3%)与主域 invest 页一致;价
 - 10-29:`/zh/does-copying-13f-work` 28 天 ≥5 次,否则停 zh 投资新页。
 - 11-15:三条合并结算;同时是 Q3 13F 申报季,**六处写死数字的季度同步义务照常**
   (invest.html、zh/invest.html、index.html、cn.html、does-copying-13f-work 两页)。
+
+## 六、补全:SunWatch / Compass / Gushen 的使用与订单(同日,四个仓库接入会话后)
+
+owner:「读它们的访问和订单数据，把投资线的使用情况补全；直接在 SunWatch 或 Compass 上做优化」
+
+| 部分 | 访问 | 转化 / 订单 | 读数来源 |
+|---|---|---|---|
+| SunWatch(invest.) | 累计 pv 5 794、TG 按钮 123、购买按钮 71 —— **三者都含爬虫与部署自检**,不可当读者数 | 询价 **1**、付款回执 **0**、已发码 → Pro 绑定 **0**、免费订户 **1**、TG 篮子 **0** | 线上 `/api/growth`(Telegram 侧计数是真的) |
+| Compass(compass.) | 弹窗出现 459 次,其中 **423 次是爬虫**;真人 36 次(26 次来自同一新加坡地址),28 天 107 次里真人更少 | 真人关闭 0、订阅提交 0;订阅库 `count` = **1** | agi D1 `events` 里 `location='compass_popup'`、线上 `/api/subscribe` |
+| Gushen(gushen-4g2.pages.dev) | 无计数 | —— | 前端在线,**后端从未部署**:线上 `/api/*` 全部返回网页 HTML,组合推荐/选股器/凯利等功能都用不了 |
+
+**整条投资线的真实状态:四个产品合计,付费 0 笔、询价 1 次、订阅 2 个(SunWatch 1 + Compass 1)。**
+
+### 本轮做的
+1. **SunWatch 计数改为分真人口径**(sunPredition `ec1ac14`,分支 `claude/sun-yuchen-investment-research-yzz9mx`,推送即部署):
+   原键继续累加保证历史连续,新增 `h_pv / h_tgClicks / h_buyClicks / h_proClicks` 只计非机器 UA(词表同 `tools/fleet/bot_ua.txt`);
+   `/api/growth` 多出 `human` 块;TG 简报的增长行改报真人数;robots.txt `Disallow: /go/`;页面 5 处 /go/ 链接加 nofollow;
+   离线测试 12 条 + 部署后断言。**原因**:`/go/buy` 是普通链接,爬虫顺链就算一次购买点击,部署自检每次也 curl 它 ——
+   「购买 71 → 询价 1」读起来像漏斗断了,实际大半是机器。
+2. **agi `/invest`(中英)拿掉 Gushen 卡片**:它把读者送进一个功能用不了的原型;该卡片终身点击 0。
+3. **Compass 不改代码**:弹窗计数已经在 agi 这边按 UA 分类,读数本身没被污染;真人太少,没有可优化的转化面。
+
+### 仍需 owner 决定
+- Gushen:要么部署后端(README / DEPLOY.md 写了步骤,需要能跑 Python 的主机与 `VITE_API_BASE_URL`),要么当作已停产品。
+- SunWatch 那 1 次询价后续如何,只有 owner 的 Telegram 私信里看得到。
