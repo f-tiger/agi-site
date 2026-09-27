@@ -910,6 +910,13 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - 第二阶段(每周自动判定的短周期题 + 浏览器内匿名记分)**只在上一条判赢后才做**。永不:真钱、奖品、积分兑换、
   实名排行、券商或预测市场链接。
 
+## 2026-09-27 投资线使用检查(owner:「agi股票投资子站点检查使用情况，优化」;全文 `docs/agi-invest-usage-2026-09-27.md`)
+
+- 主域 invest 页群 28 天浏览器端真人 **24 次、外部来源 0**;付费桥点击与 TG 绑定终身都是 0。服务端 664 次「真人」与
+  33 次 Google 引荐无浏览器端对应(已回放确认统计代码正常),以浏览器端为准。SunWatch / Compass 不在本账号 D1,读不到。
+- 修两处错链接:exposure 页「公开战绩」按钮原指 SunWatch 首页(生成器 `gen_agi_exposure.py` 已改);英文 /invest 的
+  Compass 链接原被 302 到中文版。补登 `agi-invest-survival-1115`、`agi-invest-zh-p4-1029`。不加新页、不改被测对象。
+
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
 - **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，
