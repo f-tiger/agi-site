@@ -48,4 +48,16 @@ Nine new localized tool pages; total 57 generated pages, 54 document-sitemap URL
 - https://docs.typesafe.ai/api — assessed, not integrated; no account credential or service assumption
 - https://huggingface.co/briaai/RMBG-1.4 — not selected because its commercial use requires a separate agreement
 
-Deployment verification is recorded below after publication.
+## Production release
+
+- Feature commit: `0c4a47abcd63e7609c1528877f4cf8d551eeb255`.
+- Deployment propagation fix: `a8ee1e15997436a90d51c47c2e13c7cd551802c6`. The first run read the previous 48-page manifest immediately after deployment and correctly failed the 57-page assertion. The live gate now retries the entire strict check four times, eight seconds apart; assertions are unchanged.
+- Final successful workflow: https://github.com/f-tiger/agi-site/actions/runs/36329301209 (job `108648050625`). All build, historical-site, structured-data, 57-page production, membership, workbench and isolated telemetry checks passed. Live build stamp matched the propagation-fix commit.
+- Actual inference through `https://thedollscout.com` passed for all three tools. Downloads: summary TXT, speech TXT/SRT, portrait transparent PNG. The production homepage has 12 tools. No processing POSTs or page errors were observed. Four existing Cloudflare `/cdn-cgi/rum` performance beacons were inspected separately: timing/navigation metadata, no supplied sample text, transcript or input filename. The test did not treat these performance requests as file uploads or promise zero network traffic.
+- Google Search Console accepted both published sitemaps at 2026-09-27 15:24 UTC (23:24 Asia/Shanghai), pending download. Document sitemap contains 54 URLs; full sitemap contains 109 URLs. Acceptance is not indexing.
+- The successful retry's workflow-only change had no new public-content diff, so its changed-only document IndexNow step correctly skipped. A bounded recovery submission covered the 54 changed document URLs from the verified feature release; the public verification key was checked first. See the result below. The independent eight legacy workbench URLs were also accepted by their existing workflow step; they are not the new AI pages.
+
+The page/model behavior is verified. Organic traffic, ranking changes, real task adoption and AI citations are not yet established by this release.
+
+
+IndexNow recovery: 54 URLs, HTTP 200, accepted=true; indexing unknown.
