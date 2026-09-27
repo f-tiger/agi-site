@@ -2006,6 +2006,127 @@
    "source": "docs/ai-consensus-faith-2026-09-26.md §八(第二轮,09-27)",
    "status": "open",
    "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。"
+  },
+  {
+   "id": "fleet-d1-budget-1026",
+   "site": "fleet",
+   "due": "2026-10-26",
+   "metric": "Cloudflare 账号 D1 每日 rows_read(全部数据库之和,GraphQL d1AnalyticsAdaptiveGroups,由 tools/fleet/d1_budget.py 随 heartbeat 写 data/fleet-d1-budget.json)",
+   "threshold": "10-26 前连续 14 天每日 rows_read ≤ 2,000,000(免费档上限 5,000,000 的 40%),且 0 天出现 D1 7500 读超限错误",
+   "win": "代码侧修复(聚合端点 Cache API 缓存 + 单次扫描 + 读侧去重)足以让舰队留在免费档;Workers Paid 只作可选",
+   "lose": "仍靠近上限 → 向 owner 提 Workers Paid($5/月,含 250 亿行读/月)作为默认建议,并把 D1 读预算写进每站上线检查项",
+   "source": "docs/ai-era-founder-2026-09-25.md §七",
+   "status": "open",
+   "t0_2026-09-25": "事故日:约 09:00–10:30 UTC 起账号超出 5,000,000 行/日读上限(Cloudflare 2026-09-01 起强制),D1 读全部失败到 00:00 UTC。13 个 /api/pulse 500、bpj 广告位 selling:false、依赖先读后写的表单(bpj 投稿/订阅/watch、agi /api/sub、eco /api/sub2、after35、verify 反馈)在该窗口内丢失写入;page_view/affiliate_click 等分析写入是否被拒未从代码证实。**该窗口内所有站的 28 天读数存在缺口,10-13 至 10-24 到期的判定线结算时按天读要标注 09-25 缺口。** 直接原因:PR #2 合并让每个 pulse 多跑 1–2 次窗口扫描(by_source / money / mcp),合并触发 18 条部署自检 + 合并后 45 秒一轮的 13 端点验证轮询 + eco/bpj/tds 当日各 ~10 次 push 部署里的跨站读取(household_live / st_reach / audit.py);而所有聚合端点的 `public, max-age=3600` 只对浏览器有效,Cloudflare 不据此缓存 Worker 响应,每次轮询都是全量扫描。09-26 实测每次调用:bpj /api/reach ≈150k 行(6 次窗口扫描 × 25,439 行),agi /api/pulse ≈90k 行(4 次 × 22,832 行)。",
+   "reading_2026-09-26": "读取 00:00 UTC 恢复;修复(Cache API 按部署版本键缓存、错误永不入缓存、单次 GROUP BY 扫描、读侧 memo、部署自检不再跨站活读、重试纪律、d1_budget 护栏)当日提交,等合并 main 后生效;首个可信读数要等护栏跑过一天。"
+  },
+  {
+   "id": "bpj-claim-first-1026",
+   "site": "baipiaoji",
+   "due": "2026-10-26",
+   "metric": "/api/reach money.claims_verified(已验证厂商认领数,域名控制权核验:官方主机或主域 /.well-known/baipiaoji-claim.txt 或主域 DNS TXT)+ data/claims.json 里 host 去重;读数源 data/fleet-money.json(bpj money)",
+   "threshold": "≥1 条已验证认领(t0=0),且认领的 host 不是本仓自检或舰队域",
+   "win": "楔子有第一位真实成员 → 按 docs/ai-era-founder-2026-09-25.md §三 的第二阶段做:已认领记录的更正走 limits-edit 两步并在页面把出处标为厂商官方页;开始数「认领 → 更正 → 上站」的完整回路",
+   "lose": "认领页与工具页入口保留(维护成本零),不再为认领层加任何功能;楔子的下一步改看 agent-watch 的 MCP 发布者校园(§三候选 #2),结论写进 §五",
+   "source": "docs/ai-era-founder-2026-09-25.md §五",
+   "status": "open",
+   "t0_2026-09-26": "claims 表尚不存在(首次认领时自举);submissions 8 条(3 个提交者)全部 new;工具页认领入口、/claim 页、/api/claim 本日提交,合并 main 前不在线上。"
+  },
+  {
+   "id": "bpj-claim-layer-1125",
+   "site": "baipiaoji",
+   "due": "2026-11-25",
+   "metric": "已验证认领数(去重 host)、排队更正数(money.attestations_queued)、经 limits-edit 核对后上站的更正数(limits-history 里由 attestation 触发、source 为厂商官方页的条目)",
+   "threshold": "≥5 个不同 host 的已验证认领 且 ≥1 条厂商更正经核对上站(t0 = 0 / 0 / 0)",
+   "win": "第一校园(219 条记录 / 212 个官方域名)有密度信号 → 开第二校园:agent-watch 1,092 条 MCP 发布者记录用同一套认领(well-known 或注册表 websiteUrl 域名),并把「厂商已认领」写进 /api/limits 与 MCP 输出",
+   "lose": "认领层记「供给侧不来」——与 09-16「厂商投稿 3 个提交者」同一读数;保留入口不扩,创业楔子转向 §二 排名里的下一候选,不再在 bpj 上建任何厂商面",
+   "source": "docs/ai-era-founder-2026-09-25.md §五",
+   "status": "open",
+   "t0_2026-09-26": "0 认领 / 0 更正 / 0 上站;认领层代码本日提交(functions/api/claim.js、/claim 页 zh/en、219 张工具页入口、reach money 两个新键、每日 claims.json 导出、部署自检)。"
+  },
+  {
+   "id": "fe-bot-live-1012",
+   "site": "fleet",
+   "due": "2026-10-12",
+   "metric": "Metaculus bot 已提交(非 dry run)的预测条数与运行成功率,读 data/fleet-forecast-record.json(tools/fleet/metaculus_record.py,随 heartbeat) 的 ledger.forecast_lines 与 runs.run_success_14d",
+   "threshold": "≥30 条已提交 且 运行成功率 ≥80%;owner 到 2026-10-05 仍未开启 → 记 insufficient(owner 杠杆未拉),不记 lost",
+   "win": "楔子第 0 阶段成立,进入第 2 阶段(整季深耕);同日把 metaculus-enable-plus28 的 due 改为开启日 +28",
+   "lose": "开了但跑不稳:先修 bot 再谈任何网络层",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "0 条已提交(有史以来);METACULUS_BOT_ENABLED=0 自 09-07;#14/#15 均 400 no allowance;09-14 dry run 触达 33121 的 1 题且 $3/次上限生效。本条是 metaculus-enable-plus28(同阈值、占位 due 2099-01-01)的日历版。"
+  },
+  {
+   "id": "fe-coverage-1005",
+   "site": "fleet",
+   "due": "2026-10-05",
+   "metric": "data/futureeval-coverage.json 的 coverage_share(抽样开放题中,结算文本点名舰队定时存档来源 tools/fleet/archived_sources.txt 的比例;未知=未覆盖)",
+   "threshold": "抽样 ≥50 题 且 coverage_share ≥0.10",
+   "win": "「赛后结算台」可以进入候选(仍须 fe-bot-live-1012 won 才动手)",
+   "lose": "本季杀掉结算台,不再提",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "从未测量;沙箱对 metaculus.com 403,首个读数等 runner。对抗验证预期偏低:MiniBench 按 FRED / Google Trends / Metaculus / 股价结算,舰队只存档其中 Google Trends 与股价两类。"
+  },
+  {
+   "id": "fe-commons-intent-1130",
+   "site": "fleet",
+   "due": "2026-11-30",
+   "metric": "公开承诺参与「赛后复盘公地」的非舰队 bot 作者数(owner 手工核对公开帖;机器不外联)",
+   "threshold": "≥3 个不同的非舰队作者,且仅在 fe-bot-live-1012 won 并且 runner 抓到的规则页允许赛后共享时才计",
+   "win": "建公地 v0(静态页 + 片段标记 `# futureeval-postmortem v1`)",
+   "lose": "公地永不建;网络层本季结束",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "0(无公地、无帖)。"
+  },
+  {
+   "id": "fe-fall-record-0215",
+   "site": "fleet",
+   "due": "2027-02-15",
+   "metric": "Fall 2026 结算时:主赛题目的已预测比例与 bot 在官方排行榜的百分位",
+   "threshold": "≥80% 题目已预测 且 位列 bot 前三分之一(≥67 百分位)",
+   "win": "下季续赛;记录作为 agi「被打分」的证据写进父页",
+   "lose": "照 09-07 规矩:仍发布 house-prior 复盘,下季不续",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "未入场:0% / 无百分位。due 为占位,runner 读到赛季关闭日后改为关闭日 +45。"
+  },
+  {
+   "id": "fe-house-prior-edge-0215",
+   "site": "fleet",
+   "due": "2027-02-15",
+   "metric": "house prior 消融:已结算二元 AI 题上「提交的预测(带 house prior)− 不带 prior 的影子预测」的平均 Brier 差,读 data/fleet-forecast-record.json(tools/fleet/metaculus_record.py,随 heartbeat) 的 house_prior",
+   "threshold": "≥20 道已结算 AI 类二元题 且 平均 Brier 差 ≤0",
+   "win": "agi 从「被引用」变成「可证明不差于无先验」,写进 /do-ai-trading-agents-work 同类的父页与复盘文",
+   "lose": "house prior 变差或样本不足:如实写进复盘(样本不够就说样本不够),并把 prior 降为只在研究步出现一次",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "0 道已结算;差值无定义。影子预测只做 1 次采样而提交值是 5 次聚合,差值偏向提交值——复盘时要写明。"
+  },
+  {
+   "id": "fe-prize-net-0228",
+   "site": "fleet",
+   "due": "2027-02-28",
+   "metric": "Fall 季奖金(owner 亲报,写 data/fleet-money-owner.json 的 metaculus_prize_usd_30d / 季度数)减去 LLM 花费(runs.jsonl)",
+   "threshold": "净美元 >0",
+   "win": "舰队第一笔非 Amazon 收入;按 fleet-decoupling-1205 口径记账",
+   "lose": "净负:下调 BOT_MAX_USD_PER_DAY 或停跑,结论写进复盘",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "奖金 $0、花费 $0;舰队非 Amazon 收入累计 €0。"
+  },
+  {
+   "id": "fleet-cash-received-1031",
+   "site": "fleet",
+   "due": "2026-10-31",
+   "metric": "舰队实际到账金额(owner 亲报;PartnerNet DE/US 付款记录)",
+   "threshold": "≥ €11,20 到账",
+   "win": "钱线从「累计」变「到手」",
+   "lose": "付款/税务表仍未填:在每次报告里继续放第一位",
+   "source": "docs/ai-era-founder-2026-09-25.md §三",
+   "status": "open",
+   "t0_2026-09-27": "到账 €0;PartnerNet DE 佣金 €11,20 累计中(窗至 2026-09-14),被未完成的付款/税务表挡住。"
   }
  ]
 }

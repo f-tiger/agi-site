@@ -1,0 +1,38 @@
+{
+ "generated": "2026-09-27T02:06:18+00:00",
+ "note": "point-in-time ledger read from data/metaculus/*.jsonl; resolutions from the public Metaculus API; prize is owner-reported only",
+ "enabled_state": "never",
+ "ledger": {
+  "forecast_lines": 0,
+  "distinct_posts": 0,
+  "house_prior_used": 0,
+  "shadows_logged": 0,
+  "first": null,
+  "last": null
+ },
+ "runs": {
+  "state": "never",
+  "published_runs": 0,
+  "last_run_at": null,
+  "run_success_14d": null,
+  "spend_usd_7d": 0,
+  "spend_usd_30d": 0,
+  "skipped_daily_cap": 0
+ },
+ "north_star_resolved_prelogged": 0,
+ "house_prior": {
+  "n": 0,
+  "mean_brier_delta": null,
+  "definition": "mean(Brier submitted with house prior − Brier of the no-prior shadow) on resolved binary AI questions; ≤0 means the prior did not hurt",
+  "rows": [],
+  "sealed_unopened": 0
+ },
+ "money": {
+  "prize_usd_30d": null,
+  "spend_usd_30d": 0,
+  "net_usd_30d": null,
+  "definition": "prize is entered by the owner from the Metaculus payout; never inferred from rank"
+ },
+ "resolutions": {},
+ "errors": []
+}

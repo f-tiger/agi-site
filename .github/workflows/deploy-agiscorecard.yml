@@ -233,13 +233,13 @@ jobs:
           t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
           case "$t" in
             *'"ok":true'*) echo "OK /api/trends" ;;
-            *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
+            *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
           esac
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
           p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")
           case "$p" in
             *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
-            *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
+            *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
           esac
           # Server-side cache in place (2026-09-26): without it every caller recomputes the aggregates in
           # D1, which is how the account's daily read budget ran out. A partial or failed result says

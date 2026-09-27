@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "name": "io.github.f-tiger/hvac-btu-heat-klimaanlage",
-  "description": "BTU sizing, window-seal length, heatwave outlook, running costs, balcony solar subsidies (DE/EU). Served by getecoback.com — same formulas as the site's calculators; every answer carries source URLs.",
+  "description": "getecoback.com: BTU sizing, window seals, heatwave outlook, running costs, balcony solar (DE/EU).",
   "status": "active",
   "websiteUrl": "https://getecoback.com/mcp.html",
   "version": "1.2.0",

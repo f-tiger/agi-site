@@ -66,6 +66,8 @@ from forecasting_tools import (  # noqa: E402
 )
 from forecasting_tools.data_models.forecast_report import ForecastReport  # noqa: E402
 
+import ledger  # noqa: E402  (point-in-time forecast ledger, 2026-09-27)
+
 logger = logging.getLogger(__name__)
 
 # ----------------------------------------------------------------------------
@@ -134,6 +136,8 @@ def house_prior_block(question_text: str) -> str:
 
 
 class FleetForecastBot(ForecastBot):
+    _research_no_prior: dict = {}
+    _prior_used: dict = {}
     _max_concurrent_questions = 1
     _concurrency_limiter = asyncio.Semaphore(_max_concurrent_questions)
     _structure_output_validation_samples = 2
@@ -185,11 +189,24 @@ class FleetForecastBot(ForecastBot):
             else:
                 research = await self.get_llm("researcher", "llm").invoke(prompt)
 
-            research = (research or "") + house_prior_block(
-                f"{question.question_text}\n{question.background_info or ''}"
-            )
+            # 2026-09-27: keep the research as it was before the house prior was appended, so a shadow
+            # forecast without the prior can be logged (never submitted) for the house-prior ablation.
+            block = house_prior_block(f"{question.question_text}\n{question.background_info or ''}")
+            key = getattr(question, "id_of_question", None) or question.page_url
+            self._research_no_prior[key] = research or ""
+            self._prior_used[key] = bool(block)
+            research = (research or "") + block
             logger.info("Research for %s:\n%s", question.page_url, research)
             return research
+
+    async def shadow_binary(self, question: BinaryQuestion) -> float | None:
+        """One forecast on the research WITHOUT the house prior. Logged, never submitted."""
+        key = getattr(question, "id_of_question", None) or question.page_url
+        research = self._research_no_prior.get(key)
+        if research is None:
+            return None
+        pred = await self._run_forecast_on_binary(question, research)
+        return float(pred.prediction_value)
 
     # ----------------------------------------------------------------- binary
     async def _run_forecast_on_binary(
@@ -747,13 +764,29 @@ def main() -> int:
     # variable change, not a code change; MiniBench keeps the library constant unless overridden.
     main_id = _tournament_id("BOT_TOURNAMENT_ID", 33121)
     mini_id = _tournament_id("BOT_MINIBENCH_ID", client.CURRENT_MINIBENCH_ID)
-    cap = float(os.getenv("BOT_MAX_USD_PER_RUN") or "3")
-    logger.info("tournaments: main=%s minibench=%s; spend cap per run: $%.2f", main_id, mini_id, cap)
+    per_run = float(os.getenv("BOT_MAX_USD_PER_RUN") or "3")
+    # 2026-09-27: a daily ceiling on top of the per-run one (6-hourly cron × $3 could still reach $12/day;
+    # the cash lens of the founder review made net USD a guard metric). Spend is read from the committed
+    # run log, so the cap survives across stateless runners. Dry runs never count and are never capped.
+    per_day = float(os.getenv("BOT_MAX_USD_PER_DAY") or "4")
+    runs_log = ledger.read_runs()
+    today = ledger.utc_now().date().isoformat()
+    cap = ledger.budget_for_run(per_run, per_day, runs_log, today) if publish else per_run
+    logger.info("tournaments: main=%s minibench=%s; spend cap this run: $%.2f (per run $%.2f, per day $%.2f, spent today $%.2f)",
+                main_id, mini_id, cap, per_run, per_day, ledger.spent_on(today, runs_log))
+    n_main = 0
+    cm = None
+    if run_mode == "tournament" and cap <= 0:
+        print("::notice::daily spend ceiling reached ($%.2f); skipping this run" % per_day)
+        ledger.append_run(ledger.run_line(run_id=_run_id(), mode=run_mode, published=publish, spend_usd=0,
+                                          touched_main=0, touched_mini=0, ok=0, failed=0, skipped="daily_cap"))
+        return 0
     if run_mode == "tournament":
         with _spend_cap(cap) as cm:
             reports = asyncio.run(bot.forecast_on_tournament(main_id, return_exceptions=True))
             n_main = len(reports)
             reports += asyncio.run(bot.forecast_on_tournament(mini_id, return_exceptions=True))
+            shadows = asyncio.run(_shadows(bot, reports))
         logger.info("questions touched: main=%d minibench=%d; spend this run: %s", n_main, len(reports) - n_main, _spend_str(cm))
         if n_main == 0:
             print("::warning::0 questions came back for the main tournament id %s — either nothing new (skip_previously_forecasted) or the season id is stale; check BOT_TOURNAMENT_ID" % main_id)
@@ -768,7 +801,86 @@ def main() -> int:
         # forecasting-tools 在有任何失败时会 raise,于是我们自己的诊断和退出码永远轮不到跑
         # —— 首跑看到的就是一屏 traceback 而不是一行「问题在这」。它只是打印器,不该决定命运。
         logger.warning("log_report_summary raised (%s); continuing to our own summary", type(e).__name__)
-    return summarize(reports, publish, run_mode)
+    code = summarize(reports, publish, run_mode)
+    if run_mode == "tournament":
+        code = _record(bot, reports, shadows if "shadows" in locals() else {}, publish, run_mode, n_main, cm, main_id, mini_id, code, runs_log, today)
+    return code
+
+
+def _run_id() -> str:
+    return os.getenv("GITHUB_RUN_ID") or "local-" + ledger.utc_now().strftime("%Y%m%dT%H%M%S")
+
+
+def _model_name() -> str:
+    try:
+        llm = _llm_config().get("default")
+        return str(getattr(llm, "model", llm))[:80]
+    except Exception:
+        return "unknown"
+
+
+async def _shadows(bot: "FleetForecastBot", reports: list) -> dict:
+    """Shadow (no-house-prior) forecasts for binary AI questions where the prior was used.
+    Bounded by BOT_SHADOW_MAX per run and by the same spend cap; a failure only loses the shadow."""
+    limit = int(os.getenv("BOT_SHADOW_MAX") or "5")
+    out: dict = {}
+    for r in reports:
+        if len(out) >= limit:
+            break
+        if not isinstance(r, ForecastReport) or not isinstance(r.question, BinaryQuestion):
+            continue
+        key = getattr(r.question, "id_of_question", None) or r.question.page_url
+        if not bot._prior_used.get(key):
+            continue
+        try:
+            out[key] = await bot.shadow_binary(r.question)
+        except Exception as e:  # spend cap reached, model error — the submitted forecast is unaffected
+            logger.warning("shadow forecast skipped for %s (%s)", key, type(e).__name__)
+            break
+    return out
+
+
+def _record(bot, reports, shadows, publish, mode, n_main, cm, main_id, mini_id, code, runs_log, today) -> int:
+    """Append the ledger lines. Only published runs are recorded — a dry run proves plumbing, not a record."""
+    ok = [r for r in reports if isinstance(r, ForecastReport)]
+    bad = [r for r in reports if not isinstance(r, ForecastReport)]
+    signature = ""
+    if code != 0 and bad:
+        signature = ledger.failure_signature(bad[0])
+    try:
+        spend = float(cm.current_usage) if cm is not None and cm.current_usage is not None else None
+    except Exception:
+        spend = None
+    if not publish:
+        logger.info("dry run: %d forecast line(s) would be logged, %d with a shadow", len(ok), len(shadows))
+        return code
+    key = ledger.derive_key(os.getenv("METACULUS_TOKEN", ""))
+    if not key:
+        logger.warning("no METACULUS_TOKEN: forecasts are logged without a sealed payload (ablation impossible)")
+    model = _model_name()
+    rows = []
+    for idx, r in enumerate(reports):
+        if not isinstance(r, ForecastReport):
+            continue
+        q = r.question
+        qkey = getattr(q, "id_of_question", None) or q.page_url
+        rows.append(ledger.forecast_line(
+            question_id=getattr(q, "id_of_question", None), post_id=getattr(q, "id_of_post", None),
+            tournament=main_id if idx < n_main else mini_id,
+            kind=type(q).__name__, prediction=ledger.summarize_prediction(r.prediction),
+            shadow=shadows.get(qkey), house_prior_used=bot._prior_used.get(qkey, False),
+            model=model, run_id=_run_id(), commit=(os.getenv("GITHUB_SHA") or "")[:12], key=key,
+            page_url=getattr(q, "page_url", "") or ""))
+    ledger.append_forecasts(rows)
+    already = bool(signature) and ledger.failure_already_reported(runs_log, today, signature)
+    ledger.append_run(ledger.run_line(run_id=_run_id(), mode=mode, published=True, spend_usd=spend,
+                                      touched_main=n_main, touched_mini=len(reports) - n_main,
+                                      ok=len(ok), failed=len(bad), failure_signature=signature))
+    logger.info("ledger: %d forecast line(s), %d shadow(s), spend %s", len(rows), sum(1 for v in shadows.values() if v is not None), spend)
+    if already:
+        print("::warning::same failure as an earlier run today (%s); not turning this run red again" % signature[:80])
+        return 0
+    return code
 
 
 if __name__ == "__main__":

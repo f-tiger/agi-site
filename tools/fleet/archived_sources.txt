@@ -1,0 +1,15 @@
+# Official or primary sources the fleet fetches on a schedule (2026-09-27, read from the fetch scripts, not guessed).
+# Used by tools/fleet/futureeval_coverage.py: a Metaculus question counts as "covered" only if its resolution
+# text names one of these hosts. Add a host here only together with the scheduled fetcher that archives it.
+hts.usitc.gov              # sites/buysomething/tools/fetch_s301_ladder.py
+federalregister.gov        # sites/buysomething/tools (import rule changes)
+ustr.gov                   # sites/buysomething/tools
+cpsc.gov                   # SR recall_check
+saferproducts.gov          # SR recall_check
+query1.finance.yahoo.com   # sites/agiscorecard/tools/paper_ledger.py (daily closes)
+stooq.com                  # sites/agiscorecard/tools/paper_ledger.py (fallback)
+finance.yahoo.com          # same data family as query1.finance.yahoo.com
+trends.google.com          # tools/fleet_trends_rising.py
+polymarket.com             # sites/agiscorecard/tools/fetch_market_board.mjs
+kalshi.com                 # sites/agiscorecard/tools/fetch_market_board.mjs
+api.open-meteo.com         # getecoback weather-driven pages

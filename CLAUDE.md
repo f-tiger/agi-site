@@ -819,6 +819,11 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   搜 `getecoback` 只出那两条废弃的;搜 `agiscorecard` 命中是因为**名字里自带品牌**)。
   已把品牌写进两站 manifest 的 `description`(eco v1.2.0、bpj v1.11.0),内容属实、**不改名**
   ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
+  **⚠ 2026-09-25 纠正**:eco 那条加品牌后是 199 字符,超过注册表 100 字符硬限制,**1.2.0 从未发布**
+  (注册表 latest 一直是 1.1.0,PR #2 合并后的 publish 当场 422)。已缩为 97 字符、品牌放在开头,
+  并在 `eco-publish-mcp.yml` 发布前加了长度断言 —— SR 早有这道闸,eco 没有,正是 09-17 那条规矩没抄过去。
+  同一轮的另一处遗漏:`deploy-getecoback.yml` 的部署后自检仍按旧名 `getecoback-raumklima` 断言 `/mcp` 与 `/mcp/v1`,
+  且 09-16 加的名字一致性断言读的是仓库根路径(该步工作目录是 `sites/getecoback`),合并后当场红;已改为 canonical 名与相对路径。
 - **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
   不在本会话范围,留给 owner 或有该仓范围的会话。
 
@@ -1132,3 +1137,32 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   09-27:bpj 迁移已执行(48 589 行写入,一次 reach 从约 18 万行降到约 7 000 行);agi 索引(20 964 条)因此顺延到 09-28 00:05 UTC。
 - **仓库里的建表语句不等于线上**:bpj hits 与 agi pageviews 在线上都有仓库里没有记录的索引。写 EXPLAIN 断言前先读线上 `sqlite_master`,
   让测试夹具照抄它,否则断言测的是一个不存在的数据库。
+
+## D1 免费档读预算事故 + AI 时代创业楔子(2026-09-25/26;全文 `docs/ai-era-founder-2026-09-25.md`)
+
+> **2026-09-27 楔子已选定(工作流 34 个代理全部返回,三位策略师独立一致)**:**预测记录线**——舰队的 Metaculus bot 作为 0 号成员进 FutureEval Fall 2026,
+> 每条预测在关闭前进 `data/metaculus/forecasts.jsonl`(封存 + 摘要),AI 题另记不带 house prior 的影子预测,heartbeat 写
+> `data/fleet-forecast-record.json`(北极星 = 赛前已记录且已结算的题数)。**六个候选没有一个在三个反驳者面前幸存**,它排第一只因为
+> 第一笔钱不靠访客;网络层(结算台 / 复盘公地)全部锁在判定线后面(`fe-coverage-1005`、`fe-commons-intent-1130`)。
+> 09-26 建的 bpj 认领层三票 refuted(免费徽章挂了 55 天零回链),降级为零成本探针。**每次报告带出:bot 状态、账本条数、北极星、
+> 净美元;在 owner 打开 bot 之前,第一行就是「差 owner 的 key + `METACULUS_BOT_ENABLED=1`,且先合并本分支」。**
+> 全文与异议 `docs/ai-era-founder-2026-09-25.md` §二–§六。
+
+> **2026-09-27 对账**:事故以上一节(main 侧 `docs/d1-read-budget-2026-09-26.md`)为准——09-24、09-25、09-26 三天都用完,bpj `/api/reach` 每次约 18 万行是主因。下面的「规矩①–⑥」仍适用;bpj / agi / tds 的缓存实现以 main 的 `reach-cache.js` / `aggregate-cache.js` 为准。
+
+- **事故**:09-25 约 09:00–10:30 UTC 起账号超出 Workers Free 档 D1 **5,000,000 行读取/日**(全库之和,Cloudflare 2026-09-01 起强制,
+  00:00 UTC 重置),读全部失败到午夜:13 个 `/api/pulse` 500、bpj 广告位 `selling:false`、四站会员轨 `ready:false`、
+  先读后写的表单(bpj 投稿/订阅/watch、agi `/api/sub`、eco `/api/sub2`、after35、verify 反馈)丢失写入。**09-25 09:00–24:00 UTC
+  是全舰队数据缺口**,10 月到期的判定线按天读要标注。
+- **根因不是流量,是没有缓存**:所有聚合端点只发 `cache-control: public, max-age=3600`,注释写着「edge 缓存一小时」,
+  但 **Cloudflare 不会仅凭这个头缓存 Worker/Pages Function 响应**,每次轮询都全量扫描,500 也带 max-age。PR #2 让每个 pulse
+  多 1–2 次窗口扫描,合并触发 18 条部署自检(内容断言失败重抓 4 次)+ 我 45 秒一轮的 13 端点验证轮询 + eco 每次部署活读
+  bpj reach(**6 次扫描 ≈150k 行/次**,09-26 实测)与 agi pulse(4 次 ≈90k 行/次)。
+- **规矩(全舰队)**:①聚合端点必须显式用 Cache API(键含部署版本),**错误响应永不入缓存**;②任何轮询/监视生产聚合端点之前,
+  先查该端点每次调用的 `rows_read`;③部署自检只对非 2xx 重试、最多 3 次,不对内容断言失败重抓;④部署不活读别的站,读已提交快照;
+  ⑤新站上线检查项加「D1 读预算」;⑥`tools/fleet/d1_budget.py` 搭 heartbeat 读账号每日 rows_read(>40% 警告、>60% 红),
+  判定线 `fleet-d1-budget-1026`。**owner 决策卡**:Workers Paid $5/月(250 亿行读/月),护栏跑一天后再定。
+- **创业楔子任务**(owner:「你是一个创业者…类似扎克伯格的成长路径…成为 ai 时代的巅峰企业…可以自主扩张」):三轮 prompt 在文档 §〇。
+  第 2 轮的核心纠正:能抄的是扎克伯格的**机制**(密集的第一个校园、每多一个用户别人多一分价值、用它就把它带给没用过的人、
+  一个校园饱和再去下一个),不是规模;舰队 18 个站全是单机内容/工具站,**再加站是他那条路的反面**。owner 本条授权自主扩张
+  (新站/子域可开)覆盖旧的「不开新子域」顺序,**不覆盖**法律/隐私/零编造红线与「机器不外联」。结论与 v0 见文档 §三–§六。

@@ -35,7 +35,9 @@ import datetime as dt
 import json
 import os
 import sys
-import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from endpoint_cache import fetch_url  # noqa: E402  2026-09-26:同一 run 内每个端点只出网一次(D1 读预算)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-mcp-usage.json")
@@ -47,15 +49,15 @@ SITES = [
      "endpoint": "/api/mcp"},
     {"site": "getecoback", "url": "https://getecoback.com/api/trend", "shape": "trend_mcp",
      "endpoint": "/mcp/v1"},
-    {"site": "baipiaoji", "url": "https://baipiaoji.com/api/reach", "shape": "none",
+    {"site": "baipiaoji", "url": "https://baipiaoji.com/api/reach?days=28", "shape": "none",
      "endpoint": "/api/mcp",
      "note": "no machine-face aggregate exposed yet; D1 has the rows (hits.ev='api', path /api/mcp*) but no arguments and no CI exclusion"},
 ]
 
 
 def fetch(url):
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=25) as r:
-        return json.loads(r.read().decode("utf-8", "replace"))
+    _, body = fetch_url(url, timeout=25, ua=UA["User-Agent"])
+    return json.loads(body)
 
 
 def normalise(cfg, payload):

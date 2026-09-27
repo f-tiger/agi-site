@@ -76,7 +76,7 @@ export async function computeReach(env, days) {
   const today = new Date().toISOString().slice(0, 10);
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, claimRows, attRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC, path LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC, ref LIMIT 30`, since),
@@ -99,6 +99,10 @@ export async function computeReach(env, days) {
       q('SELECT count(*) n FROM watches').catch(() => [{ n: null }]),
       q('SELECT state, count(*) n FROM wb_orders GROUP BY state').catch(() => []),
       q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-video-variants' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
+      // 厂商认领层(2026-09-26,functions/api/claim.js):已验证认领数与排队中的厂商更正数,判定线 bpj-claim-* 的读数源。
+      // 两张表首次认领时才建,按 slug 一行,极小;表不存在按 null 计。
+      q("SELECT count(*) n FROM claims WHERE last_result = 'ok'").catch(() => [{ n: null }]),
+      q("SELECT count(*) n FROM attestations WHERE status = 'queued'").catch(() => [{ n: null }]),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -130,6 +134,8 @@ export async function computeReach(env, days) {
         submissions_total: subsAll[0] ? subsAll[0].n : null,
         go_28d: (events.find((r) => r.ev === 'go') || {}).n || 0,
         biz_28d: (events.find((r) => r.ev === 'biz') || {}).n || 0,
+        claims_verified: claimRows[0] ? claimRows[0].n : null,
+        attestations_queued: attRows[0] ? attRows[0].n : null,
       },
       countries: foldSmallCountries(countryRows),
       country_floor: K_COUNTRY,
