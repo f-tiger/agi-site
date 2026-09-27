@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {setTimeout as delay} from 'node:timers/promises';
 import {searchExperiment as plan} from './search-experiment.mjs';
 const base='https://baipiaoji.com';
 async function get(path) {
@@ -6,6 +7,7 @@ async function get(path) {
   const r=await fetch(url,{headers:{'User-Agent':'bpj-ci-selftest search-experiment'},signal:AbortSignal.timeout(25000)});
   assert.equal(r.status,200,path+' status');return r;
 }
+async function verify() {
 const home=await (await get('/en/')).text();
 assert.ok(home.includes('data-home-block="limit-check"'),'English limit navigation is deployed');
 for(const p of plan.pages) {
@@ -25,3 +27,15 @@ for(const n of [...Object.values(s.events),...Object.values(s.accounts)])assert.
 assert.ok(s.accounts.new_accounts_currently_email_verified<=s.accounts.created);
 console.log('PASS live: English homepage, two snippets, two controls, canonical URLs and complete-day conversion stages.');
 console.log(JSON.stringify(s));
+}
+
+// Pages deployment completion can precede custom-domain propagation. Retry the
+// same assertions briefly; a persistent mismatch must still fail the release.
+for (let attempt=1;attempt<=5;attempt++) {
+  try { await verify(); break; }
+  catch (error) {
+    if (attempt===5) throw error;
+    console.warn(`Live check ${attempt}/5: ${error.message}; retrying in 10s.`);
+    await delay(10000);
+  }
+}
