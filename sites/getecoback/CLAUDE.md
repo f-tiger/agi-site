@@ -3329,3 +3329,17 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 **没做的**:删首页夏季内容(夏天它们是主角,顺序由季节决定而不是删除)、改 Beliebteste Ratgeber(按真实读数生成)、给首页新立判定线(4 个真人读不出任何东西)——
 在 `eco-home-table-geo-1112` 与 `eco-eu-evidence-1023` 上记了 09-27 的结构变化,结算时别把变化全归到原来那一个动作上。
+
+## 增长轮:瓶颈是 Bing 不抓新页,不是内容少(2026-09-27,owner:「对比同类型热门站点…实现更快的流量增长」;全文 `docs/growth-benchmark-2026-09-27.md`)
+
+- **同类站流量测不到**(无 Similarweb 级数据,沙箱被多数同行 403),不编数。已知差距仍是 08-28 的结论:**域龄与外链**,不是方法;
+  发文节奏 eco 已持平(09-15→09-27 共 15 张,klimaanlagen-guru 每月 11–19 篇)。
+- **真瓶颈(D1 爬虫日志)**:09-15 起的 15 张冬季页 bingbot **只抓过 2 张各 1 次**,同期它把同一批老页每两天抓一次;IndexNow 当天 200;
+  überwintern 页上指向 4 张冬季页的桥被抓 18 次、链接一次没被跟。本站搜索流量 100 % 来自 Bing 家族 → 冬季内容对搜索是隐形的。
+- **已上线**:①`tools/build_catnew.py` —— 在各类 bingbot 抓得最勤的 10 张页(按爬虫日志选,话题相符)列出本类最新 8 篇;只在该类新发文时变、只动这 10 页,
+  不会重新制造 09-22 修掉的 IndexNow 噪音。②6 张冬季页补 YouTube 点击加载视频,**每个 ID 当天经 oEmbed 核对标题与频道**(不核对不上页)。
+  ③owner 清单 `docs/bing-url-submission-2026-09-27.md`(15 个 URL,Bing Webmaster → URL-Übermittlung,约 2 分钟)——这是 Bing 唯一有文档的直接抓取请求。
+- **实时热点**:冷天分支、Prime Deal Days 横幅(09-29 自动出现)、每日热搜都已在跑;今天热搜 niche 命中 0;rising 五个候选量完两个是 0,0;
+  爆款 Faktencheck 页(epicooler、air zuma)历史读数 ≈0,`voltomat heating` 不追。
+- **判定线**:`eco-bing-newpage-1027`(≥8/15 被抓)、`eco-winter-growth-1108`(28 天非美国真人 pv 439 → ≥660)、`eco-winter-videos-1108`(6 页 ≥6 次播放)。
+- **别做**:假新鲜度(temperaturheld 那种全站 lastmod 同月)、量产页、重复 ping 老 URL。

@@ -2339,6 +2339,39 @@
    "source": "docs/agi-invest-share-2026-09-27.md",
    "status": "open",
    "t0": "2026-09-27(28d):两页外部来源 0;站内链接 4 → 8;兄弟站 → 这两页的链接 0 → 3(Compass 战绩页 en/zh、Gushen 页脚)"
+  },
+  {
+   "id": "eco-bing-newpage-1027",
+   "site": "getecoback",
+   "due": "2026-10-27",
+   "metric": "09-15→09-27 发布的 15 张冬季页 = 14 张德语指南(schimmel-am-fenster、richtig-lueften-im-winter、luftbefeuchter-ratgeber、luftentfeuchter-zieht-kein-wasser、infrarotheizung-gegen-schimmel、luftfeuchtigkeit-senken、luftentfeuchter-stinkt、heizluefter-schaltet-sich-aus、luftbefeuchter-weisser-staub、klimaanlage-mietwohnung-oesterreich、beheizter-waeschestaender、infrarotheizung-thermostat、fenster-beschlagen-aussen、akku-heizluefter)+ EN tilt-and-turn-windows-winter-condensation里被 bingbot 抓过至少 1 次的页数(D1 crawl,09-28 起算)+ 这些页的搜索引荐合计。t0(2026-09-27):2/15 页、0 次搜索引荐",
+   "threshold": "≥8/15 页被抓 且 ≥1 次搜索引荐",
+   "win": "「在 bingbot 高频页上列本类最新文章」(build_catnew.py)+ owner 的 Bing Webmaster URL 提交能把新页送进索引 → 新页发布后立即进 hub 列表成为常规,hub 名单按爬虫日志季度重选",
+   "lose": "<4/15 → Bing 对本域新 URL 的抓取优先级是权威/年龄问题,站内链接与 IndexNow 都推不动:停止为发现面加组件,新页节奏降为每周 2 张,把力气放在已被抓取、已有排名的页的加深上",
+   "source": "sites/getecoback/docs/growth-benchmark-2026-09-27.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-winter-growth-1108",
+   "site": "getecoback",
+   "due": "2026-11-08",
+   "metric": "28 天窗 10-12→11-08 非美国(剔 US/SG/CA)真人 page_view,以及其中带外部来源的部分(剔本站来源),D1 ev。t0(28 天至 2026-09-27):439 pv / 204 外部来源",
+   "threshold": "pv ≥660(1,5×)且外部来源 ≥300",
+   "win": "冬季簇在 Bing 家族接到了季节需求 → 冬季按同法继续(队列每日 1 页 + hub 列表 + 视频),并把 hub 名单扩到 EN 冬季页",
+   "lose": "pv <439(不增长)→ 季节与新内容都没带来量,绑定约束确认为域权威;记录并停止以「流量增长」为目标的新组件,转为只维护钱线页。介于两者 → insufficient,顺延到 12-06 冬季峰值窗再读",
+   "source": "sites/getecoback/docs/growth-benchmark-2026-09-27.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-winter-videos-1108",
+   "site": "getecoback",
+   "due": "2026-11-08",
+   "metric": "09-27 新加视频的 6 张冬季页(mobile-klimaanlage-ueberwintern、schimmel-am-fenster、richtig-lueften-im-winter、luftfeuchtigkeit-senken、heizluefter-stromverbrauch、luftentfeuchter-30-qm)28 天 video_play 合计。参照:tilt-and-turn EN 页 56 天 14 次,全站 28 天 8 次",
+   "threshold": "≥6 次 video_play",
+   "win": "冬季读者会播视频 → 给下一批有搜索访问的冬季页补核实视频",
+   "lose": "0–1 次 → 视频只在夏季高流量页有人看,冬季页不再加视频(保留不撤,零维护)",
+   "source": "sites/getecoback/docs/growth-benchmark-2026-09-27.md",
+   "status": "open"
   }
  ]
 }

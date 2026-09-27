@@ -162,6 +162,11 @@ jobs:
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
 
+      # Newest guides of a category, listed on the pages bingbot crawls most in
+      # that category (2026-09-27: bingbot had fetched 2 of 14 new guides).
+      - name: List newest category guides on crawl hubs
+        run: python3 tools/build_catnew.py
+
       - name: Lateral related-guide links (season-weighted; idempotent)
         run: python3 tools/build_related.py
 

@@ -14,13 +14,13 @@
  "families": {
   "heizung-N-qm": {
    "pages": 7,
-   "avg_similarity": 0.1995,
+   "avg_similarity": 0.1971,
    "worst_similarity": 0.2162,
    "worst_pair": [
     "heizung-40-qm",
     "heizung-50-qm"
    ],
-   "median_unique_shingles": 1377,
+   "median_unique_shingles": 1394,
    "lang": "de",
    "pages_in_corpus": 141
   },
@@ -38,13 +38,13 @@
   },
   "luftentfeuchter-N-qm": {
    "pages": 6,
-   "avg_similarity": 0.5228,
-   "worst_similarity": 0.56,
+   "avg_similarity": 0.4788,
+   "worst_similarity": 0.599,
    "worst_pair": [
     "luftentfeuchter-10-qm",
-    "luftentfeuchter-20-qm"
+    "luftentfeuchter-15-qm"
    ],
-   "median_unique_shingles": 705,
+   "median_unique_shingles": 790,
    "lang": "de",
    "pages_in_corpus": 141
   },

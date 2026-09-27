@@ -4179,6 +4179,17 @@ VIDEOS = {
  # shelf in video form. Removed with the storage shelf; inject_video strips it.
  "luftentfeuchter-keller": ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)", "Unabhängiger Test im Video"),
  "keller-lueften-sommer": ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)", "Video-Anleitung"),
+ # Winter pages, 2026-09-27 (owner: 「补充热门视频」). Chosen for pages that
+ # already get search visits or are among bingbot's most-crawled; every ID
+ # checked through YouTube oEmbed the same day (title and channel below), so a
+ # dead or swapped video cannot ship: 24-7-TopTipp · Fugentechnik Ott ·
+ # Stadtwerke Düsseldorf · ImmobilienAzubi · TV Solution · TOP VERGLEICH.
+ "mobile-klimaanlage-ueberwintern": ("eKjjYfkHqcQ", "Mobile Klimaanlage winterfertig machen: reinigen und einlagern (Video)", "Video-Anleitung"),
+ "schimmel-am-fenster": ("8wZSCEmofk4", "Schimmelige Glasversiegelung am Fenster fachgerecht erneuern (Video)", "Video-Anleitung"),
+ "richtig-lueften-im-winter": ("MQmgpIMYlbg", "Richtig heizen und lüften beugt Schimmel vor — Stadtwerke Düsseldorf (Video)", "Video-Anleitung"),
+ "luftfeuchtigkeit-senken": ("L_dET2x0j9c", "Schimmel vorbeugen: richtig heizen und lüften (Video)", "Video-Anleitung"),
+ "heizluefter-stromverbrauch": ("WiIypCvSijM", "Was kostet eine Stunde Heizen mit einem 2.000-Watt-Heizlüfter? Messung im Video", "Unabhängiger Test im Video"),
+ "luftentfeuchter-30-qm": ("mBSS57P_rl4", "Comfee MDDF-20DEN7 Luftentfeuchter im Video-Test", "Unabhängiger Test im Video"),
 }
 
 # English money pages hold the site's strongest real traffic (GA4: tilt-turn is
