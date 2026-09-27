@@ -220,7 +220,7 @@ house prior 在 AI 题上可测地不差 → 对手作者自愿采用一个共�
 > 「Forecasted <url>: <值>」打进**公开仓库的 Actions 日志**,`log_report_summary` 还逐题打印预测。
 > 修法:`commit_v: 2`(明文里放 256 位随机 nonce、Fernet 明文补齐到 512 字节块、开封时核对 question_id/submitted_at)、
 > 公开模式下研究/推理/预测一律 `[sealed: N chars]`,forecasting_tools / LiteLLM / asyncio / Python warnings 的记录只留级别;
-> 账本每个版本在**写账本的同一个 job 里**锚进比特币(`ots_anchor.py --group ledger`,清单在 `data/metaculus/ots/`),
+> 账本每个版本在**写账本的同一个 job 里**提交给 OpenTimestamps 日历(`ots_anchor.py --group ledger`,清单在 `data/metaculus/ots/`;比特币区块证明在其后数小时,只有区块时间有证明背书),
 > 题目关闭后 heartbeat 把精确明文写进 `revealed.jsonl`,`tools/fleet/verify_commitments.py` 让任何人核「只追加 + 揭示绑定 + 关题前已锚」。
 > 零网络闸门从 23 条增至 **96 条**(隐藏性:v2 暴力搜不出、同一行去掉 nonce 必须搜得出;AST 闸门;真库日志捕获),均做过变异检查。
 > **这些修复只在合并进 main 之后生效**——定时任务跑的是 main 上的工作流;在那之前打开 bot,跑的仍是 v0。

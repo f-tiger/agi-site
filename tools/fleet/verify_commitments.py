@@ -271,7 +271,7 @@ def check_reveal(rev: dict, by_digest: dict) -> list[str]:
 
 # ------------------------------------------------------------------ (c) anchoring
 def anchor_for(end: int, anchored: list) -> dict | None:
-    """Earliest stamped version (by stamp day, then size) that contains every byte of the line."""
+    """Earliest stamped version (by stamped_at, else stamp day; then size) that contains every byte of the line."""
     cover = [e for e in anchored if e["size"] >= end]
     return min(cover, key=lambda e: (str(e.get("stamped_at") or e.get("stamped") or ""), e["size"])) if cover else None
 
@@ -438,17 +438,20 @@ def verify(root: str, now: dt.datetime, use_ots: bool = False) -> dict:
                 if e is not None and e.get("proof") in results:
                     r["ots"] = results[e.get("proof")]
 
-    latest = max(anchored, key=lambda e: (str(e.get("stamped")), e["size"])) if anchored else None
+    latest = max(anchored, key=lambda e: (str(e.get("stamped_at") or e.get("stamped")), e["size"])) if anchored else None
     report = {
         "generated": now.isoformat(timespec="seconds"),
         "definition": "append-only ledger (every stamped prefix still matches), reveals bind to committed digests, "
-                      "and each revealed line's earliest Bitcoin-anchored version; stamped_before_close compares "
-                      "the manifest's stamp day with the close time (null = unknown or same UTC day; the block time decides)",
+                      "and each revealed line's earliest anchored version. stamped_before_close is SELF-REPORTED: our runner's "
+                      "stamped_at (to the second; entries without it: UTC day, same day = null) against the close time. The "
+                      "proof-backed bound is the Bitcoin block that attests the version (at or after the stamp, usually within hours); "
+                      "a line is anchored before close on the proof only when that block's time is before the close — check the "
+                      "block height the proof names (ots info / --ots output) against any block explorer",
         "ledger_lines": len(index),
         "ledger_bytes": 0 if data is None else len(data),
         "anchored_versions": sum(1 for e in (entries or []) if "size" in e),
         "ledger_lines_anchored": sum(1 for ln in index if ln["end"] <= top),
-        "latest_anchor": None if latest is None else {k: latest.get(k) for k in ("stamped", "confirmed", "status", "size")},
+        "latest_anchor": None if latest is None else {k: latest.get(k) for k in ("stamped", "stamped_at", "confirmed", "status", "size")},
         "prefix_consistent": prefix_ok,
         "revealed": len(reveals),
         "binding_ok": binding_ok,
@@ -512,7 +515,9 @@ def selftest() -> int:
     try:
         mdir = Path(base) / "data" / "metaculus"
         ledger.append_forecasts([L1, L2], root=mdir)
-        ots_anchor.anchor([(LEDGER, OTS_DIR)], "2026-10-01", root=base)       # version 1: L1 + L2
+        # the clock is fixed: stamped_at from the wall clock made this fixture fail once the real date passed its
+        # synthetic close (2026-09-27 review: red every day from 2026-10-10)
+        ots_anchor.anchor([(LEDGER, OTS_DIR)], "2026-10-01", root=base, now="2026-10-01T09:00:00+00:00")  # version 1: L1 + L2
         ledger.append_forecasts([L3], root=mdir)                               # written after the last stamp
         metaculus_record.reveal(ledger.read_forecasts(mdir), res, key, now, os.path.join(base, REVEALED))
     finally:
@@ -616,7 +621,7 @@ def selftest() -> int:
             ots_anchor.stamp, ots_anchor.upgrade = fake_stamp, (lambda p, d: "pending")
             try:
                 with contextlib.redirect_stdout(io.StringIO()):  # its ::error:: lines are expected here
-                    ots_anchor.anchor([(LEDGER, OTS_DIR)], "2026-10-15", root=td)
+                    ots_anchor.anchor([(LEDGER, OTS_DIR)], "2026-10-15", root=td, now="2026-10-15T09:00:00+00:00")
             finally:
                 ots_anchor.stamp, ots_anchor.upgrade = real_now
             seen["kept"] = read_bytes(mp) == seen["manifest"]

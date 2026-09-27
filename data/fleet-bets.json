@@ -2009,7 +2009,7 @@
    "status": "won",
    "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。",
    "settled": "2026-09-27",
-   "reading": "② 评分者 2 → 4(阈值 ≥3),由第三轮的定向检索达成:Daniel Reeves(AGI Friday,2025-10-04,Beeminder 联合创始人,读书会一年后专为评估预测而写)与 Philipp D. Dubach(个人站,2026-05-21,两年期计分卡)。两者都早于本线存在——第二轮的「面板薄」一半是本站检索窄,不全是世界上没人评。收录标准未改:每句引语由对抗核验代理重新抓取原文逐字核对,本会话 09-27 再用 curl 抓取两页逐字复核一遍,全部命中;同轮被驳回两位:Redwood capital(化名、投资推广、含个股价格)与 Leo(@runes_leo,自述 LLM 起草、推荐链接);另排除 EA Forum「Edison」的 Two-Year Scorecard——那是 owner 本人的帖子,不算独立。新读数 16 次比较:10 完全一致、5 同向、1 真分歧(Reeves 认为 knowledge-work 仍 unresolved,本站 On track)——页面与 FAQ 的「无分歧」措辞原为手写,已改为从数据生成。① 外部来源访问仍为 0(页面刚上线)。按预登记 win 分支执行:计数作为活数字进 /situational-awareness-predictions(由 gen_grader_consensus.py 生成、--check 守门),MCP get_verdicts 输出带 independent_grades。"
+   "reading": "② 评分者 2 → 4(阈值 ≥3),由第三轮的定向检索达成:Daniel Reeves(AGI Friday,2025-10-04,Beeminder 联合创始人,读书会一年后专为评估预测而写)与 Philipp D. Dubach(个人站,2026-05-21,两年期计分卡)。两者都早于本线存在——第二轮的「面板薄」一半是本站检索窄,不全是世界上没人评。收录标准未改:每句引语由对抗核验代理重新抓取原文逐字核对,本会话 09-27 再用 curl 抓取两页逐字复核一遍,全部命中;同轮被驳回两位:Redwood capital(化名、投资推广、含个股价格)与 Leo(@runes_leo,自述 LLM 起草、推荐链接);另排除 EA Forum「Edison」的 Two-Year Scorecard——那是 owner 本人的帖子,不算独立。新读数 16 次比较:9 完全一致、6 同向、1 真分歧(Reeves 认为 knowledge-work 仍 unresolved,本站 On track;Reeves 的 agi-2027 取保守映射 behind)——页面与 FAQ 的「无分歧」措辞原为手写,已改为从数据生成。① 外部来源访问仍为 0(页面刚上线)。按预登记 win 分支执行:计数作为活数字进 /situational-awareness-predictions(由 gen_grader_consensus.py 生成、--check 守门),MCP get_verdicts 输出带 independent_grades。 【自评注意,终审提出】② 是本会话自己检索达成的,不是外部信号——两位评分者早已存在,是第二轮漏检。以后凡「评分者数」类判定线,要求新增评分者由外部发现/投稿,或发布于登记之后,否则登记当日就能被自己的检索满足。"
   },
   {
    "id": "fleet-d1-budget-1026",
@@ -2136,8 +2136,8 @@
    "id": "fe-commitments-preclose-0215",
    "site": "fleet",
    "due": "2027-02-15",
-   "metric": "data/fleet-commitments.json(tools/fleet/verify_commitments.py,heartbeat 每日):revealed 行数、tamper 列表、每条已揭示行的 stamped_before_close(按 stamped_at 到秒)",
-   "threshold": "≥20 条已揭示的账本行 且 赛季内每次 heartbeat 的 tamper 均为空 且 ≥90% 的已揭示行 stamped_before_close=true",
+   "metric": "data/fleet-commitments.json(tools/fleet/verify_commitments.py,heartbeat 每日):revealed 行数、tamper 列表、每条已揭示行的 stamped_before_close(runner 时钟,自报)与覆盖它的证明所指比特币区块高度(--ots 输出)",
+   "threshold": "≥20 条已揭示的账本行 且 赛季内每次 heartbeat 的 tamper 均为空 且 ≥90% 的已揭示行同时满足:runner 的 stamped_at 早于关题、**并且**覆盖它的证明所指的比特币区块时间早于关题(结算时用区块高度在任意区块浏览器查;只有区块时间有证明背书)",
    "win": "预测记录可被第三方逐字节核验:在 /calibration 与赛季复盘里把它当证据引用(说明只证明时间与内容,不证明预测好)",
    "lose": "<90% 关题前锚定 → 查锚定缺口(日历不通/工作流没跑)并修;任何 TAMPER → 事故复盘;bot 从未上线或揭示 <20 → insufficient",
    "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",

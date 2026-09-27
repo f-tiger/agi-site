@@ -32,7 +32,7 @@
    "url": "https://agifriday.substack.com/p/aschenbrenner",
    "published": "2025-10-04",
    "read": "2026-09-27",
-   "scope": "Retrospective by the Beeminder co-founder after a group re-read that started a year after publication 'with the goal of assessing its predictions'. Verdicts are explicitly hedged. Grades knowledge work, the trillion-dollar cluster and the drop-in remote worker on the 2027 timescale; his base-model/unhobbling remark is about capability returns, not the ~0.5 OOM/yr pace, so it is not mapped."
+   "scope": "Retrospective by the Beeminder co-founder after a group re-read that started a year after publication 'with the goal of assessing its predictions'. Verdicts are explicitly hedged. Grades knowledge work, the trillion-dollar cluster and the drop-in remote worker on the 2027 timescale; his base-model/unhobbling remark is about capability returns, not the ~0.5 OOM/yr pace, so it is not mapped. His agi-2027 sentence ('my gut says no', hedged) could be read as unresolved or behind; it is mapped to behind, the reading that credits this site with less agreement."
   },
   {
    "id": "dubach-2026",
@@ -42,13 +42,13 @@
    "url": "https://philippdubach.com/posts/aschenbrenners-receipts/",
    "published": "2026-05-21",
    "read": "2026-09-27",
-   "scope": "Personal-site scorecard dated 21 May 2026 (page shows 'Updated 16 August 2026'). Grades the counting-OOMs framework, nationalisation, open-source diffusion and the 2027-28 window; its GPQA and power sentences address claims this site does not track, so they are listed separately."
+   "scope": "Personal-site scorecard dated 21 May 2026 (page shows 'Updated 16 August 2026'). Grades the counting-OOMs framework, nationalisation, open-source diffusion and the 2027-28 window; its GPQA and power sentences address claims this site does not track, so they are listed separately. The same post also says 'Compute scaling was alive but contested.'; the compute-scaling row quotes his verdict on the counting-OOMs framework instead."
   }
  ],
  "rule": "Two labels agree exactly when they are the same. They agree in direction when both are supportive (ahead or on track) or both say 'not delivered yet' (behind or unresolved). Anything else — including any pairing with 'wrong' that is not 'wrong' on both sides — is a disagreement.",
  "counts": {
-  "exact": 10,
-  "direction": 5,
+  "exact": 9,
+  "direction": 6,
   "disagree": 1
  },
  "predictions_with_external_grade": 6,
@@ -169,8 +169,8 @@
     },
     {
      "grader": "reeves-2025",
-     "label": "unresolved",
-     "relation": "exact",
+     "label": "behind",
+     "relation": "direction",
      "quote": "As for full-fledged AI agents and drop-in remote workers on that timescale, my gut says no, but my gut has said no to a lot of things the past few years that have proceeded to happen."
     },
     {

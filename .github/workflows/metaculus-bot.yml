@@ -94,9 +94,11 @@ jobs:
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; fi
           python main.py --mode "$MODE" $DRY
 
-      # 账本锚进比特币(2026-09-27 第三轮):写账本的同一个 job 里 stamp,预测提交后几分钟就有日历证明,
-      # 数小时内升级为比特币区块证明(此前只有次日 heartbeat 才 stamp,当天开当天关的题永远拿不到赛前锚)。
-      # 证明与清单在 data/metaculus/ots/,只有本 workflow 写(heartbeat 只读核验),两边不会 rebase 冲突。
+      # 账本锚进比特币(2026-09-27 第三轮):写账本的同一个 job 里 stamp,预测提交后几分钟就拿到日历回执
+      # (此前只有次日 heartbeat 才 stamp,当天开当天关的题永远拿不到赛前锚)。
+      # 证明与清单在 data/metaculus/ots/,bot 开着时只有本 workflow 写(heartbeat 只在 bot 关着时做 --upgrade-only),
+      # 任何时刻只有一个写入者,两边不会 rebase 冲突。日历回执是这一步拿到的;比特币区块证明在其后数小时,
+      # 由下一次运行(或 bot 关着时由 heartbeat)升级进仓——只有区块时间是证明背书的「关题前」。
       # 然后用纯 stdlib 的 verify_commitments.py 核一遍只追加性与揭示绑定——账本被改写就直接红
       # (下一步照样提交:证据留在 git 里,heartbeat 每天再红一次,直到有人把字节修回来)。
       # fail-open:日历不通或客户端装不上只 warning;dry run 不写账本,也不锚定。账:~0.3 分钟/次。
@@ -105,7 +107,9 @@ jobs:
         run: |
           if [ -f data/metaculus/forecasts.jsonl ]; then
             if pip install -q opentimestamps-client 2>/dev/null; then
-              python3 tools/fleet/ots_anchor.py --group ledger || { echo "::error::ledger anchoring refused its manifest (see above)"; exit 1; }
+              rc=0; python3 tools/fleet/ots_anchor.py --group ledger || rc=$?
+              if [ "$rc" = 2 ]; then echo "::error::ledger anchoring refused its manifest (see the ::error above; restore it from git)"; exit 1; fi
+              if [ "$rc" != 0 ]; then echo "::error::ots_anchor crashed (rc=$rc); the lines are committed but not anchored this run"; exit 1; fi
             else
               echo "::warning::ots client install failed; ledger not anchored this run (the next run stamps the new lines)"
             fi

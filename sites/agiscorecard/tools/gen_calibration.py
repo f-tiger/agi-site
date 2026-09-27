@@ -71,15 +71,17 @@ def ledger_block(rec):
 <p>The one place this network states probabilities that someone else scores is its bot in Metaculus's
 FutureEval bot tournament. Metaculus keeps what the bot submits;
 it does not keep what the bot would have said <em>without</em> this site's own research as a prior, and that counterfactual is the only
-test of whether the site's judgement helps. So each forecast, and a shadow forecast made without the prior, is committed in public before
-the question closes: a line in <a href="{GH}data/metaculus">data/metaculus/forecasts.jsonl</a> carries the SHA-256 of the sealed forecast
-plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered from its hash in milliseconds — we measured
-it on the first version and fixed it before the bot ever ran). The ledger only grows; each version is stamped into Bitcoin with
-OpenTimestamps in the same run that writes it, and its byte length is recorded, so every earlier version must remain an exact prefix of
-today's file. After a question closes, the exact sealed text is published in <code>revealed.jsonl</code>; anyone can hash it, find the
-matching line, and check the proof that the line existed before the close. The whole check is one standard-library script:
-<a href="{GH}tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's heartbeat,
-which turns red on any rewritten line or mismatched reveal.</p>
+test of whether the site's judgement helps. So every submitted forecast is committed in public — and, for binary AI questions where the
+prior was used (up to five a run), so is a shadow forecast made without it: a line in <a href="{GH}data/metaculus">data/metaculus/forecasts.jsonl</a>
+carries the SHA-256 of the sealed forecast plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered
+from its hash in milliseconds — we measured it on the first version and fixed it before the bot ever ran). The ledger only grows. In the run
+that writes a new version, that version is submitted to the public OpenTimestamps calendars and its byte length and our runner's clock time
+are recorded; a Bitcoin block attests it later, usually within hours, and <strong>only that block's time is proof-backed</strong>. Every
+earlier version must remain an exact prefix of today's file. After a question closes, the exact sealed text is published in
+<code>revealed.jsonl</code>: anyone can hash it, find the matching line, and see which proof covers it — the line provably existed before the
+close only if that proof's block came before the close; the runner's own stamp time is shown too, labelled as self-reported. The whole check is
+one standard-library script, <a href="{GH}tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's
+heartbeat, which turns red on any rewritten line or mismatched reveal.</p>
 <p><strong>State as of {asof}:</strong> the bot {state}; <strong>{led.get("forecast_lines", 0)}</strong> forecast line(s) committed,
 <strong>{led.get("shadows_logged", 0)}</strong> with a shadow; house-prior comparison on resolved questions: n = <strong>{hp.get("n", 0)}</strong>.
 A Brier comparison appears here only once questions resolve; until then this section says exactly this.</p>"""
@@ -349,7 +351,7 @@ nothing about whether a verdict is right, and versions before 2026-09-26 rest on
 <tr><td><a href="/situational-awareness-predictions">{s['n_pred']} Situational Awareness verdicts</a></td><td>Categorical verdicts; {s['with_flip']} of {s['n_pred']} carry a written flip condition, {s['with_resolves']} a resolution date, {s['with_watch']} a watch item, {s['with_pending']} a stated blocker (all in <a href="/data.json">data.json</a>)</td><td>{tally} → <a href="/progress-index">Thesis Tracker {s['tracker']}/100</a> as of {s['tracker_asof']}</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/track-record">SunWatch market-call ledger</a></td><td>Dated, falsifiable market calls</td><td>{s['n_scored']} scored, {s['n_hit']} hits ({s['hit_rate']}%), {s['n_pending']} pending, ledger as of {s['ledger_asof']}. n={s['n_scored']} is small: the Wilson 95% interval is roughly {wl}–{wh}%, so this is a work-in-progress sample, not proof of skill.</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/red-team">Red-team survival odds</a></td><td>Editorial probabilities on open calls</td><td>{s['open_odds']} open calls carry a stated probability{f' ({rng[0]}–{rng[1]}%)' if rng else ''}; confidence cuts are published the day counter-evidence lands.</td></tr>
-{("<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each sealed and Bitcoin-timestamped before close</td><td>" + str((rec.get("ledger") or {}).get("forecast_lines", 0)) + " forecast(s) committed, as of " + str(rec.get("generated") or "")[:10] + "</td></tr>") if rec else ""}
+{("<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each committed in public (hashed and sealed) when submitted, then timestamped in Bitcoin</td><td>" + str((rec.get("ledger") or {}).get("forecast_lines", 0)) + " forecast(s) committed, as of " + str(rec.get("generated") or "")[:10] + "</td></tr>") if rec else ""}
 <tr><td><a href="/agi-prediction-markets">AGI consensus board</a></td><td>Third-party forecasts, not ours</td><td>Cross-venue median and spread, recomputable from the published snapshot; it is a reference we quote, not a call we are scored on.</td></tr>
 </tbody></table>
 <h2>The number nobody wants to print: Brier-eligible n = {s['brier_eligible']}</h2>
@@ -413,9 +415,9 @@ def main():
     html = g.build(
         slug="calibration",
         title="Calibration: We Score Our Own Predictions in Public",
-        desc=(f"Every probability the AGI Scorecard network states, inventoried: {s['n_pred']} graded verdicts, a {s['n_scored']}-call "
-              f"market ledger ({s['n_hit']} hits, n small), Brier-eligible n={s['brier_eligible']}, OpenTimestamps proofs listed per version. "
-              "Brier score published at n≥20."),
+        # ≤155 characters (site rule; this read 218 until 2026-09-27)
+        desc=(f"How we score our own calls: {s['n_pred']} graded verdicts, {s['n_scored']} scored market calls ({s['n_hit']} hits), "
+              f"Brier-eligible n={s['brier_eligible']}, timestamp proofs you can check here."),
         og_title="Calibration — the evidence layer's own report card",
         eyebrow="Accountability",
         h1="Calibration: we score our own predictions in public",

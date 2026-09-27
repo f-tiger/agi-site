@@ -275,9 +275,9 @@ jobs:
       #      账本里有这一行、明文的 question_id/submitted_at 与公开行一致(把别题的密封块挂到这一题 → TAMPER);
       #   ③ 每条已揭示行最早被哪一版锚定、锚定日是否早于关题;--ots 用 ots 客户端实核证明(runner 无比特币节点 →
       #      --no-bitcoin,仍核哈希链并给出区块高度 + merkle root 供人工对照;客户端或节点缺失永不致红)。
-      # 放在锚定步之前(2026-09-27 对抗评审):核的是仓库里已提交的清单与证明。ots_anchor 对不可读或被删的
-      # 清单一律 fail closed(不重建、不覆盖已有证明、::error、退出码 2 → 下面锚定步变红进汇总),
-      # 所以「清单被重建成只有今天一版、改写过的账本随后核过」那条路径两头都堵上了。
+      # 核的是仓库里已提交的清单与证明。账本清单坏了或被删而证明还在 → 这一步报 TAMPER(进汇总,run 变红);
+      # 账本清单的唯一写入者 ots_anchor --group ledger 对这两种清单一律 fail closed(不重建、不覆盖已有证明、
+      # 退出码 2,在 bot job 里变红),所以「清单被重建成只有今天一版、改写过的账本随后核过」那条路径两头都堵上了。
       # continue-on-error + 末尾汇总步(与本 workflow 其余读数同一模式):TAMPER 会一直红到有人把字节修回来,
       # 若这一步直接挂掉 job,后面每一道独立断言(autopilot、UA 一致、过期判定线、召回雷达…)都会被跳过,
       # 「GitHub 失败邮件」这根保险丝就只剩这一个原因。run 照样红、照样发邮件。
@@ -317,6 +317,20 @@ jobs:
           python3 tools/fleet/ots_anchor.py
 
 
+      # 账本证明的升级(2026-09-27 终审):账本清单只有 bot job 写(--group ledger),但 bot 关着时
+      # (METACULUS_BOT_ENABLED≠1,owner 曾主动关过)最后几版会永远停在 pending(只有日历回执)。
+      # 所以只在 bot 关着时由这里做 --upgrade-only:只把已登记的 pending 证明升级为比特币区块证明,
+      # 绝不 stamp 新版本、不碰 forecasts.jsonl;bot 开着时它自己每 6 小时升级,这一步跳过——任何时刻只有一个写入者。
+      # fail-open:日历不通只 warning(ots_anchor 的网络调用不再抛异常);清单坏了退出 2 → 进汇总。账:~0.1 分钟/天。
+      - name: Upgrade pending forecast-ledger proofs while the bot is off (never stamps)
+        id: ledger_upgrade
+        if: ${{ vars.METACULUS_BOT_ENABLED != '1' }}
+        continue-on-error: true
+        run: |
+          if [ ! -f data/metaculus/ots/manifest.json ]; then echo "no ledger proofs yet"; exit 0; fi
+          pip install -q opentimestamps-client 2>/dev/null || { echo "::warning::ots client install failed; ledger proofs not upgraded today"; exit 0; }
+          python3 tools/fleet/ots_anchor.py --group ledger --upgrade-only
+
       - name: Commit health snapshot
         run: |
           cd "$GITHUB_WORKSPACE"
@@ -325,6 +339,7 @@ jobs:
           git add data/fleet-health.json
           git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json data/fleet-d1-budget.json data/fleet-forecast-record.json data/futureeval-coverage.json 2>/dev/null || true
           git add data/ots sites/agiscorecard/ots 2>/dev/null || true
+          git add data/metaculus/ots 2>/dev/null || true   # 只在 bot 关着时由上面的 --upgrade-only 改动
           # 各占一行:revealed.jsonl 在第一道题关闭前不存在,而一条 git add 里只要一个路径不存在,整条就一个也不加。
           git add data/fleet-commitments.json 2>/dev/null || true
           git add data/metaculus/revealed.jsonl 2>/dev/null || true
@@ -433,7 +448,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, a traffic read is stale, the forecast ledger fails verification, or anchoring refused a manifest
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure' || steps.ledger_upgrade.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }} ledger-upgrade=${{ steps.ledger_upgrade.outcome }}"
           exit 1

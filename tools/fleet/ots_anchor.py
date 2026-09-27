@@ -43,7 +43,7 @@ directory is skipped with ::error until a human restores the manifest from git. 
 an existing proof file is never overwritten: under a name with no manifest entry it may be the
 Bitcoin-confirmed proof of that very version.
 
-Usage: python3 tools/fleet/ots_anchor.py [--selftest] [--dry-run] [--group default|ledger]
+Usage: python3 tools/fleet/ots_anchor.py [--selftest] [--dry-run] [--group default|ledger] [--upgrade-only]
 Exit 2 when any manifest was refused (so the calling step turns red instead of only annotating).
 """
 import contextlib
@@ -95,7 +95,16 @@ def sha256(path):
 
 
 def run(cmd, timeout=120):
-    p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    """(returncode, output). Never raises on a hung or missing client (2026-09-27 review): `ots upgrade`
+    calls the calendars with no network timeout, so a stalled calendar used to raise TimeoutExpired out of
+    anchor() after a new proof was already on disk and before any manifest was written — a proof with no
+    manifest entry, which every later run then (correctly) refuses to build on."""
+    try:
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return 124, "ots did not finish within %ds (calendar or network stalled)" % timeout
+    except OSError as e:
+        return 127, "ots could not run: %s" % e
     return p.returncode, (p.stdout or "") + (p.stderr or "")
 
 
@@ -195,88 +204,101 @@ def upgrade(proof_path, dry_run):
 
 
 def utc_now_iso():
-    """The stamp time recorded next to a new entry. Our clock, not the proof's: the Bitcoin block that
-    later attests the digest is at or after it, so it is the lower bound a pre-close claim needs."""
+    """The stamp time recorded next to a new entry: our runner's clock, self-reported. The Bitcoin block
+    that later attests the digest is at or after it, and only that block's time is proof-backed; a
+    "before close" claim holds on the proof only when the block came before the close."""
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
 
 
-def anchor(targets, today, dry_run=False, root=None):
+def anchor(targets, today, dry_run=False, root=None, now=None, stamp_new=True):
     """Returns (summary dict, warnings list). Pure apart from the filesystem and `ots`.
     Manifests are rewritten only when an entry changed, so a quiet day commits nothing.
     A manifest that is unreadable, or missing while its directory holds proofs, is never rewritten:
     its targets are skipped ("refused") with ::error, every day, until a human restores it.
-    `root` defaults to the repo (the selftest points it at a temp dir)."""
+    `root` defaults to the repo (the selftest points it at a temp dir); `now` fixes the recorded stamped_at
+    (tests; defaults to the clock); stamp_new=False only upgrades pending proofs already listed (the
+    heartbeat's --upgrade-only pass over the ledger while the bot, its only stamper, is switched off).
+    A proof stamped in this call is not upgraded in the same call: seconds old, it cannot have a Bitcoin
+    attestation yet, and the upgrade is the network call that can hang."""
     root = root or ROOT
     warnings = []
     summary = {"stamped": 0, "upgraded": 0, "pending": 0, "bitcoin": 0, "missing": 0, "skipped": 0, "refused": 0}
+    fresh = set()
     manifests, before, append_only = {}, {}, {}
-    for rel, ots_dir in targets:
-        fp = os.path.join(root, rel)
-        mpath = os.path.join(root, ots_dir, "manifest.json")
-        if mpath not in manifests:
-            man = load_manifest(mpath)
-            mrel = os.path.join(ots_dir, "manifest.json")
+    # the manifests are written in `finally`: a proof moved into place is never left without its entry,
+    # whatever raises later in the loop (2026-09-27 review)
+    try:
+        for rel, ots_dir in targets:
+            fp = os.path.join(root, rel)
+            mpath = os.path.join(root, ots_dir, "manifest.json")
+            if mpath not in manifests:
+                man = load_manifest(mpath)
+                mrel = os.path.join(ots_dir, "manifest.json")
+                if man is None:
+                    print("::error::ots_anchor: %s exists but is not a readable manifest; left as is and its targets not "
+                          "stamped (starting fresh would erase every earlier stamped version). Restore it from git." % mrel)
+                elif not os.path.exists(mpath) and os.path.isdir(os.path.dirname(mpath)) and any(
+                        f.endswith(".ots") for f in os.listdir(os.path.dirname(mpath))):
+                    print("::error::ots_anchor: %s is missing but %s still holds proofs; not rebuilt and its targets not "
+                          "stamped (a rebuilt manifest would list only today's versions). Restore it from git." % (mrel, ots_dir))
+                    man = None
+                manifests[mpath] = man
+                before[mpath] = None if man is None else json.dumps(man.get("files", {}), sort_keys=True)
+            man = manifests[mpath]
             if man is None:
-                print("::error::ots_anchor: %s exists but is not a readable manifest; left as is and its targets not "
-                      "stamped (starting fresh would erase every earlier stamped version). Restore it from git." % mrel)
-            elif not os.path.exists(mpath) and os.path.isdir(os.path.dirname(mpath)) and any(
-                    f.endswith(".ots") for f in os.listdir(os.path.dirname(mpath))):
-                print("::error::ots_anchor: %s is missing but %s still holds proofs; not rebuilt and its targets not "
-                      "stamped (a rebuilt manifest would list only today's versions). Restore it from git." % (mrel, ots_dir))
-                man = None
-            manifests[mpath] = man
-            before[mpath] = None if man is None else json.dumps(man.get("files", {}), sort_keys=True)
-        man = manifests[mpath]
-        if man is None:
-            summary["refused"] += 1
-            continue
-        if not os.path.exists(fp):
-            summary["skipped"] += 1
-            continue
-        if rel in APPEND_ONLY:
-            append_only.setdefault(mpath, {})[os.path.basename(rel)] = APPEND_ONLY[rel]
-        with open(fp, "rb") as fh:
-            data = fh.read()  # hashed, measured and stamped from these same bytes
-        digest = hashlib.sha256(data).hexdigest()
-        entries = man["files"].setdefault(os.path.basename(rel), [])
-        have = next((e for e in entries if e.get("sha256") == digest), None)
-        # a version whose proof file went missing is re-stamped (the old entry is dropped, never left as a dead pointer)
-        if have is not None and not os.path.exists(os.path.join(root, ots_dir, have.get("proof", ""))):
-            entries.remove(have)
-            have = None
-        if have is None:
-            proof_rel = "%s.%s.ots" % (os.path.basename(rel), digest[:12])
-            proof_path = os.path.join(root, ots_dir, proof_rel)
-            if stamp(fp, proof_path, dry_run, data=data):
-                entries.append({"sha256": digest, "proof": proof_rel, "stamped": today, "status": "pending",
-                                "size": len(data), "stamped_at": utc_now_iso()})
-                summary["stamped"] += 1
-            else:
-                warnings.append("could not stamp %s (calendars unreachable, or see the warning above)" % rel)
-        for e in entries:
-            pp = os.path.join(root, ots_dir, e.get("proof", ""))
-            if not os.path.exists(pp):
-                e["status"] = "missing"
-                warnings.append("proof file missing: %s" % pp)
-            elif e.get("status") == "pending":
-                st = upgrade(pp, dry_run)
-                if st == "bitcoin":
-                    e["status"] = "bitcoin"
-                    e["confirmed"] = today
-                    summary["upgraded"] += 1
-            summary[e.get("status", "pending")] = summary.get(e.get("status", "pending"), 0) + 1
-    if not dry_run:
-        for mpath, man in manifests.items():
-            if man is None:  # refused above: its bytes stay exactly as found
+                summary["refused"] += 1
                 continue
-            if json.dumps(man.get("files", {}), sort_keys=True) == before[mpath] and os.path.exists(mpath):
+            if not os.path.exists(fp):
+                summary["skipped"] += 1
                 continue
-            if mpath in append_only:  # only on a rewrite an entry forced; other manifests never gain the key
-                man.setdefault("append_only", {}).update(append_only[mpath])
-            man["updated"] = today
-            os.makedirs(os.path.dirname(mpath), exist_ok=True)
-            with open(mpath, "w", encoding="utf-8") as f:
-                f.write(json.dumps(man, ensure_ascii=False, indent=1) + "\n")
+            if rel in APPEND_ONLY:
+                append_only.setdefault(mpath, {})[os.path.basename(rel)] = APPEND_ONLY[rel]
+            with open(fp, "rb") as fh:
+                data = fh.read()  # hashed, measured and stamped from these same bytes
+            digest = hashlib.sha256(data).hexdigest()
+            entries = man["files"].setdefault(os.path.basename(rel), [])
+            have = next((e for e in entries if e.get("sha256") == digest), None)
+            # a version whose proof file went missing is re-stamped (the old entry is dropped, never left as a dead pointer)
+            if have is not None and not os.path.exists(os.path.join(root, ots_dir, have.get("proof", ""))):
+                entries.remove(have)
+                have = None
+            if have is None and not stamp_new:
+                pass  # --upgrade-only: a new version waits for its stamper
+            elif have is None:
+                proof_rel = "%s.%s.ots" % (os.path.basename(rel), digest[:12])
+                proof_path = os.path.join(root, ots_dir, proof_rel)
+                if stamp(fp, proof_path, dry_run, data=data):
+                    entries.append({"sha256": digest, "proof": proof_rel, "stamped": today, "status": "pending",
+                                    "size": len(data), "stamped_at": now or utc_now_iso()})
+                    fresh.add(proof_rel)
+                    summary["stamped"] += 1
+                else:
+                    warnings.append("could not stamp %s (calendars unreachable, or see the warning above)" % rel)
+            for e in entries:
+                pp = os.path.join(root, ots_dir, e.get("proof", ""))
+                if not os.path.exists(pp):
+                    e["status"] = "missing"
+                    warnings.append("proof file missing: %s" % pp)
+                elif e.get("status") == "pending" and e.get("proof") not in fresh:
+                    st = upgrade(pp, dry_run)
+                    if st == "bitcoin":
+                        e["status"] = "bitcoin"
+                        e["confirmed"] = today
+                        summary["upgraded"] += 1
+                summary[e.get("status", "pending")] = summary.get(e.get("status", "pending"), 0) + 1
+    finally:
+        if not dry_run:
+            for mpath, man in manifests.items():
+                if man is None:  # refused above: its bytes stay exactly as found
+                    continue
+                if json.dumps(man.get("files", {}), sort_keys=True) == before[mpath] and os.path.exists(mpath):
+                    continue
+                if mpath in append_only:  # only on a rewrite an entry forced; other manifests never gain the key
+                    man.setdefault("append_only", {}).update(append_only[mpath])
+                man["updated"] = today
+                os.makedirs(os.path.dirname(mpath), exist_ok=True)
+                with open(mpath, "w", encoding="utf-8") as f:
+                    f.write(json.dumps(man, ensure_ascii=False, indent=1) + "\n")
     return summary, warnings
 
 
@@ -316,6 +338,40 @@ def selftest():
     assert not dirs("default") & dirs("ledger"), "the two groups share no proof directory"
     assert [r for r, _ in GROUPS["ledger"]] == ["data/metaculus/forecasts.jsonl"], "the ledger group is the ledger only"
     assert all(r in dict(GROUPS["ledger"]) for r in APPEND_ONLY), "every append-only target is in the ledger group"
+    # 2026-09-27 review: a hung client never raises out of run(), and --upgrade-only never stamps
+    real_run = subprocess.run
+    def hang(*a, **k):
+        raise subprocess.TimeoutExpired(a[0] if a else "ots", k.get("timeout", 1))
+    subprocess.run = hang
+    try:
+        rc, out = run(["ots", "-q", "upgrade", "x.ots"], timeout=1)
+    finally:
+        subprocess.run = real_run
+    assert rc == 124 and "did not finish" in out, "a hung ots call returns an rc, it does not raise"
+    with tempfile.TemporaryDirectory() as td:
+        os.makedirs(os.path.join(td, "o"))
+        open(os.path.join(td, "f.jsonl"), "wb").write(b"a\n")
+        open(os.path.join(td, "o", "f.jsonl.old.ots"), "wb").write(b"proof")
+        json.dump({"files": {"f.jsonl": [{"sha256": "0" * 64, "proof": "f.jsonl.old.ots", "stamped": "2026-01-01",
+                                          "status": "pending", "size": 1}]}}, open(os.path.join(td, "o", "manifest.json"), "w"))
+        g = globals()
+        saved = (g["stamp"], g["upgrade"])
+        calls = []
+        g["stamp"] = lambda *a, **k: calls.append("stamp") or True
+        g["upgrade"] = lambda *a, **k: calls.append("upgrade") or "bitcoin"
+        try:
+            summ, _ = anchor([("f.jsonl", "o")], "2026-10-02", root=td, stamp_new=False)
+            man = json.load(open(os.path.join(td, "o", "manifest.json")))
+            assert calls == ["upgrade"] and summ["stamped"] == 0 and len(man["files"]["f.jsonl"]) == 1 \
+                and man["files"]["f.jsonl"][0]["status"] == "bitcoin", "--upgrade-only upgrades, never stamps"
+            calls.clear()
+            summ, _ = anchor([("f.jsonl", "o")], "2026-10-02", root=td, now="2026-10-02T09:00:00+00:00")
+            man = json.load(open(os.path.join(td, "o", "manifest.json")))
+            new = man["files"]["f.jsonl"][-1]
+            assert calls == ["stamp"] and new["stamped_at"] == "2026-10-02T09:00:00+00:00", \
+                "a version stamped in this call is not upgraded in it, and `now` fixes stamped_at"
+        finally:
+            g["stamp"], g["upgrade"] = saved
     iso = utc_now_iso()
     assert iso.endswith("+00:00") and dt.datetime.fromisoformat(iso).tzinfo is not None, "stamped_at is UTC, to the second"
     print("ots_anchor selftest: ok")
@@ -477,15 +533,19 @@ def main(argv):
         selftest()
         return 0
     dry = "--dry-run" in argv
+    only_upgrade = "--upgrade-only" in argv
+    group = "default"
+    if "--group" in argv:
+        i = argv.index("--group")
+        group = argv[i + 1] if i + 1 < len(argv) else ""
+    if group not in GROUPS:  # checked before the client, so a typo is an error even where ots is missing
+        print("::error::ots_anchor: unknown or missing --group %r (known: %s)" % (group, ", ".join(sorted(GROUPS))))
+        return 2
     if shutil.which("ots") is None:
         print("::warning::ots client not installed (pip install opentimestamps-client); skipping anchoring")
         return 0
-    group = argv[argv.index("--group") + 1] if "--group" in argv else "default"
-    if group not in GROUPS:
-        print("::error::ots_anchor: unknown --group %r (known: %s)" % (group, ", ".join(sorted(GROUPS))))
-        return 2
     today = dt.datetime.now(dt.timezone.utc).date().isoformat()
-    summary, warnings = anchor(GROUPS[group], today, dry_run=dry)
+    summary, warnings = anchor(GROUPS[group], today, dry_run=dry, stamp_new=not only_upgrade)
     for w in warnings:
         print("::warning::ots_anchor: " + w)
     print("ots_anchor[%s]: %s" % (group, json.dumps(summary)))

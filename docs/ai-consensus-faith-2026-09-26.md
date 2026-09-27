@@ -192,7 +192,7 @@ Knuth 的 $2.56 支票多半被裱起来(Wikipedia「Knuth reward check」,引 2
 |---|---|---|
 | 承诺 v2 | `tools/metaculus-bot/ledger.py` | 封存明文里放 256 位随机 nonce;Fernet 明文补齐到 512 字节块(密文长度不泄露位数);`unseal_text()` 核摘要且核对 question_id/submitted_at 与公开行一致;`commit_v: 2` |
 | 公开日志封存 | `tools/metaculus-bot/main.py` | 研究/推理/预测一律 `[sealed: N chars]`(二元值定宽);forecasting_tools、LiteLLM(含其自有处理器)、asyncio、`py.warnings`(captureWarnings)的记录只留级别与异常类名;失败只报 URL + 异常类型 + HTTP 状态;`BOT_LOG_PLAINTEXT=1` 仅私有 runner |
-| 锚定 | `tools/fleet/ots_anchor.py --group ledger` + `metaculus-bot.yml` | 写账本的**同一个 job** 里 stamp,清单在 `data/metaculus/ots/`(一份清单一个写入者,heartbeat 只读);每个新版本记 `size` 与 `stamped_at`;坏清单 fail closed 且退出 2 |
+| 锚定 | `tools/fleet/ots_anchor.py --group ledger` + `metaculus-bot.yml` | 写账本的**同一个 job** 里提交日历(拿到回执;比特币区块证明在其后数小时,只有区块时间有证明背书),清单在 `data/metaculus/ots/`(bot 开着时只有它写;bot 关着时 heartbeat 只做 `--upgrade-only`,任何时刻一个写入者);每个新版本记 `size` 与 `stamped_at`;坏清单 fail closed 且退出 2 |
 | 揭示 | `tools/fleet/metaculus_record.py` → `data/metaculus/revealed.jsonl` | Metaculus 报 closed/resolved **且**关题时间已过才揭示;精确明文(含 nonce);只追加、按摘要幂等;打不开的行不揭示也不崩 |
 | 验证器 | `tools/fleet/verify_commitments.py`(纯 stdlib) | 只追加(每个已锚版本仍是今天文件的精确前缀)、揭示绑定、孤儿证明、每条揭示行最早被哪版锚定及是否早于关题(到秒);`--ots` 调客户端(单次 30 s、总预算 180 s、每日轮换);TAMPER 退出 1 |
 | heartbeat | `fleet-heartbeat.yml` | 每日跑验证器(进汇总步,TAMPER 即红,后面的断言照跑);站点锚定步加 id 进汇总(拒绝坏清单不再只留注释) |
@@ -205,13 +205,13 @@ warnings),验证器 29 条、读取器 17 条;每道新闸门都做过变异检�
 
 **评分者面板 2 → 4,出现第一条真分歧**。定向检索 + 每个候选三方对抗核验(默认驳回),本会话再 curl 两页逐字复核:
 - **收录**:Daniel Reeves(AGI Friday,2025-10-04;读书会一年后「with the goal of assessing its predictions」)——knowledge-work
-  *unresolved*、capex *on track*、agi-2027 *unresolved*(他对算力的那句讲的是能力回报不是 ~0.5 OOM/年,不映射);Philipp D. Dubach
+  *unresolved*、capex *on track*、agi-2027 *behind*(「my gut says no」,取保守一读;他对算力的那句讲的是能力回报不是 ~0.5 OOM/年,不映射);Philipp D. Dubach
   (个人站,2026-05-21,页面标 2026-08-16 更新)——compute-scaling *on track*、the-project *behind*、open-source *wrong*、agi-2027 *unresolved*
   (GPQA 与电力两句进「不是我们八条」)。
 - **驳回**:Redwood capital(化名、投资推广、含个股价格;且其一句被映射为 behind 实为 unresolved)、Leo @runes_leo(自述 LLM 起草、
   推荐链接)、Medium/Stockalarm(抓不到原文,不能逐字)、若干只评基金爆仓或只做摘要的帖子;**EA Forum「Edison」的 Two-Year Scorecard
   是 owner 本人的帖子,不算独立**。
-- **读数**:16 次比较,10 完全一致、5 同向、**1 分歧**——Reeves 认为 knowledge-work 仍 unresolved,本站 On track。页面与 FAQ 原先
+- **读数**:16 次比较,9 完全一致、6 同向、**1 分歧**——Reeves 认为 knowledge-work 仍 unresolved,本站 On track。(终审后 Reeves 的 agi-2027 从 unresolved 改映射为 behind:「my gut says no」两读皆可,取让本站少算一次一致的那一读。)页面与 FAQ 原先
   手写「没有真分歧」「两位评分者」,本轮改为全部从数据生成(selftest 断言),否则加人当天就撒谎。
 - **纠正第二轮**:「面板很薄」一半是本站检索窄——这两位早于第二轮就存在。
 - `agi-grader-consensus-1127` 按 ② 结算 **won**,执行预登记 win 分支:计数作为活数字进 `/situational-awareness-predictions`

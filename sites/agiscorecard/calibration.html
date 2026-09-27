@@ -13,17 +13,17 @@
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
 <title>Calibration: We Score Our Own Predictions in Public</title>
-<meta name="description" content="Every probability the AGI Scorecard network states, inventoried: 8 graded verdicts, a 8-call market ledger (5 hits, n small), Brier-eligible n=0, OpenTimestamps proofs listed per version. Brier score published at n≥20.">
+<meta name="description" content="How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here.">
 <link rel="canonical" href="https://agiscorecard.com/calibration">
 <meta property="og:site_name" content="The AGI Scorecard">
 <meta property="og:title" content="Calibration — the evidence layer's own report card">
-<meta property="og:description" content="Every probability the AGI Scorecard network states, inventoried: 8 graded verdicts, a 8-call market ledger (5 hits, n small), Brier-eligible n=0, OpenTimestamps proofs listed per version. Brier score published at n≥20.">
+<meta property="og:description" content="How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://agiscorecard.com/calibration">
 <meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Calibration — the evidence layer's own report card", "datePublished": "2026-08-08", "dateModified": "2026-09-27", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Every probability the AGI Scorecard network states, inventoried: 8 graded verdicts, a 8-call market ledger (5 hits, n small), Brier-eligible n=0, OpenTimestamps proofs listed per version. Brier score published at n≥20."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Calibration — the evidence layer's own report card", "datePublished": "2026-08-08", "dateModified": "2026-09-27", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Brier score?", "acceptedAnswer": {"@type": "Answer", "text": "A measure of probability-forecast accuracy: the mean squared difference between stated probabilities and outcomes (0 = perfect, 0.25 = coin-flip guessing on binary events). We publish ours once scored probability calls reach n≥20."}}, {"@type": "Question", "name": "Why not publish a calibration curve now?", "acceptedAnswer": {"@type": "Answer", "text": "Because the Brier-eligible sample is 0: the 8 scored calls were graded hit/miss without a structured probability, and the 6 probability-bearing calls have not resolved. Publishing a curve from that would be theater. The raw ledger is public and timestamped, so nothing is hidden in the meantime."}}, {"@type": "Question", "name": "Who grades the calls?", "acceptedAnswer": {"@type": "Answer", "text": "Outcomes are graded against pre-registered falsification conditions written before the outcome, with dated multi-source verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, including the red-team layer."}}, {"@type": "Question", "name": "How do I check that a record was not backdated?", "acceptedAnswer": {"@type": "Answer", "text": "Versions of agi-consensus.json, data.json, independent-grades.json, index-history.json, market-board.json, odds-history.json stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). The “Verify these records in your browser” button on this page downloads each listed file, hashes it locally and checks the hash against the manifest and the proof file; to follow a proof to its Bitcoin block, run the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,7 @@
 <tr><td><a href="/situational-awareness-predictions">8 Situational Awareness verdicts</a></td><td>Categorical verdicts; 3 of 8 carry a written flip condition, 2 a resolution date, 1 a watch item, 2 a stated blocker (all in <a href="/data.json">data.json</a>)</td><td>2 on track · 2 open · 2 pending · 1 exceeded · 1 wrong → <a href="/progress-index">Thesis Tracker 62.5/100</a> as of 2026-09-06</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/track-record">SunWatch market-call ledger</a></td><td>Dated, falsifiable market calls</td><td>8 scored, 5 hits (63%), 7 pending, ledger as of 2026-09-26. n=8 is small: the Wilson 95% interval is roughly 31–86%, so this is a work-in-progress sample, not proof of skill.</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/red-team">Red-team survival odds</a></td><td>Editorial probabilities on open calls</td><td>6 open calls carry a stated probability (52–65%); confidence cuts are published the day counter-evidence lands.</td></tr>
-<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each sealed and Bitcoin-timestamped before close</td><td>0 forecast(s) committed, as of 2026-09-27</td></tr>
+<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each committed in public (hashed and sealed) when submitted, then timestamped in Bitcoin</td><td>0 forecast(s) committed, as of 2026-09-27</td></tr>
 <tr><td><a href="/agi-prediction-markets">AGI consensus board</a></td><td>Third-party forecasts, not ours</td><td>Cross-venue median and spread, recomputable from the published snapshot; it is a reference we quote, not a call we are scored on.</td></tr>
 </tbody></table>
 <h2>The number nobody wants to print: Brier-eligible n = 0</h2>
@@ -246,15 +246,17 @@ btn.addEventListener('click',async function(){
 <p>The one place this network states probabilities that someone else scores is its bot in Metaculus's
 FutureEval bot tournament. Metaculus keeps what the bot submits;
 it does not keep what the bot would have said <em>without</em> this site's own research as a prior, and that counterfactual is the only
-test of whether the site's judgement helps. So each forecast, and a shadow forecast made without the prior, is committed in public before
-the question closes: a line in <a href="https://github.com/f-tiger/agi-site/blob/main/data/metaculus">data/metaculus/forecasts.jsonl</a> carries the SHA-256 of the sealed forecast
-plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered from its hash in milliseconds — we measured
-it on the first version and fixed it before the bot ever ran). The ledger only grows; each version is stamped into Bitcoin with
-OpenTimestamps in the same run that writes it, and its byte length is recorded, so every earlier version must remain an exact prefix of
-today's file. After a question closes, the exact sealed text is published in <code>revealed.jsonl</code>; anyone can hash it, find the
-matching line, and check the proof that the line existed before the close. The whole check is one standard-library script:
-<a href="https://github.com/f-tiger/agi-site/blob/main/tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's heartbeat,
-which turns red on any rewritten line or mismatched reveal.</p>
+test of whether the site's judgement helps. So every submitted forecast is committed in public — and, for binary AI questions where the
+prior was used (up to five a run), so is a shadow forecast made without it: a line in <a href="https://github.com/f-tiger/agi-site/blob/main/data/metaculus">data/metaculus/forecasts.jsonl</a>
+carries the SHA-256 of the sealed forecast plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered
+from its hash in milliseconds — we measured it on the first version and fixed it before the bot ever ran). The ledger only grows. In the run
+that writes a new version, that version is submitted to the public OpenTimestamps calendars and its byte length and our runner's clock time
+are recorded; a Bitcoin block attests it later, usually within hours, and <strong>only that block's time is proof-backed</strong>. Every
+earlier version must remain an exact prefix of today's file. After a question closes, the exact sealed text is published in
+<code>revealed.jsonl</code>: anyone can hash it, find the matching line, and see which proof covers it — the line provably existed before the
+close only if that proof's block came before the close; the runner's own stamp time is shown too, labelled as self-reported. The whole check is
+one standard-library script, <a href="https://github.com/f-tiger/agi-site/blob/main/tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's
+heartbeat, which turns red on any rewritten line or mismatched reveal.</p>
 <p><strong>State as of 2026-09-27:</strong> the bot has not submitted a forecast yet; <strong>0</strong> forecast line(s) committed,
 <strong>0</strong> with a shadow; house-prior comparison on resolved questions: n = <strong>0</strong>.
 A Brier comparison appears here only once questions resolve; until then this section says exactly this.</p>

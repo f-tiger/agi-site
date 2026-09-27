@@ -476,9 +476,12 @@ def configured(env_plain: bool):
         logging.getLogger("forecasting_tools.data_models.binary_report").warning(
             "Prediction is greater than 0.999, adjusting to 0.999. Value: %s", 1.0)
         logging.getLogger("main").info("questions touched: main=%d", 2)
+        import warnings as _w
+        configured.warnings_captured = _w.showwarning is getattr(logging, "_showwarning", object())
         return buf.getvalue(), ftl.level, any(isinstance(f, main._SealLibraryText) for f in h.filters)
     finally:
         os.environ.pop("BOT_LOG_PLAINTEXT", None)
+        logging.captureWarnings(False)  # _configure_logging turns it on in public mode; never leak it into later checks
         root.handlers[:] = saved[0]
         root.setLevel(saved[1])
         ftl.setLevel(saved[2])
@@ -518,6 +521,9 @@ ck("0.83" not in out and "ZQX" not in out and "0.999" not in out and "binary_rep
 out, lvl, filtered = configured(True)
 ck(not filtered and lvl == logging.NOTSET and "0.83" in out and "0.999" in out,
    "BOT_LOG_PLAINTEXT=1: setup leaves the library output alone")
+ck(not configured.warnings_captured, "BOT_LOG_PLAINTEXT=1: Python warnings are not routed through the seal")
+_ = configured(False)
+ck(configured.warnings_captured, "public mode: Python warnings are captured into logging (so they get sealed)")
 
 print("public logs: summarize() / diagnose() on failures")
 import contextlib  # noqa: E402

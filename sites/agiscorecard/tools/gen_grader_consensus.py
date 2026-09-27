@@ -68,7 +68,7 @@ def disagreement_sentence(c, html=True):
 def thin_text(c):
     n0 = sum(1 for r in c["rows"] if not r["external"])
     n1 = sum(1 for r in c["rows"] if len(r["external"]) == 1)
-    bits = ([f"{n0} of our {len(c['rows'])} predictions have no independent grade"] if n0 else []) + \
+    bits = ([f"{n0} of our {len(c['rows'])} predictions {'has' if n0 == 1 else 'have'} no independent grade"] if n0 else []) + \
            ([f"{n1} {'has' if n1 == 1 else 'have'} only one"] if n1 else [])
     return " and ".join(bits)
 
@@ -145,7 +145,7 @@ def render(c):
 grader's own post; the label beside it is our mapping of that sentence, which you can check against the quote.
 Tally over {total} comparisons: <strong>{k['exact']}</strong> exact agreements, <strong>{k['direction']}</strong> same
 direction, <strong>{k['disagree']}</strong> {'disagreement' if k['disagree'] == 1 else 'disagreements'}. {len(c['predictions_without_external_grade'])} of our
-{len(c['rows'])} predictions have no independent grade at all.</p>
+{len(c['rows'])} predictions {'has' if len(c['predictions_without_external_grade']) == 1 else 'have'} no independent grade at all.</p>
 <table><thead><tr><th>Prediction</th><th>Our verdict</th><th>Independent grader (verbatim)</th><th>Their grade · vs ours</th></tr></thead>
 <tbody>{body_rows}</tbody></table>
 <h2>How agreement is counted</h2>
@@ -180,6 +180,24 @@ def predictions_block(c):
             f'point the same direction, <strong>{plural(k["disagree"], "outright disagreement")}</strong>. '
             f'<a href="/grader-consensus" onclick="gtag(\'event\',\'index_click\',{{location:\'predictions_graders_live\'}});">'
             f'Every quote, side by side →</a></p>{PRED_END}')
+
+
+def bump_predictions_dates(page, day):
+    """When the live counts change, the page changed: move its Article dateModified, the visible date and the
+    sitemap lastmod to the grades file's date if that is later (never backwards)."""
+    m = re.search(r'"headline": "Situational Awareness predictions, tracked", "datePublished": "([0-9-]+)", "dateModified": "([0-9-]+)"', page)
+    if not m or m.group(2) >= day:
+        return page
+    old_vis = dt.date.fromisoformat(m.group(2)).strftime("%B %-d, %Y")
+    page = page.replace(m.group(0), m.group(0).replace(f'"dateModified": "{m.group(2)}"', f'"dateModified": "{day}"'), 1)
+    page = page.replace(f"Last updated: {old_vis}", "Last updated: " + dt.date.fromisoformat(day).strftime("%B %-d, %Y"), 1)
+    sm = os.path.join(ROOT, "sitemap.xml")
+    t = open(sm, encoding="utf-8").read()
+    t2 = re.sub(r"(<loc>https://agiscorecard\.com/situational-awareness-predictions</loc><lastmod>)([0-9-]+)(</lastmod>)",
+                lambda mm: mm.group(1) + max(mm.group(2), day) + mm.group(3), t, count=1)
+    if t2 != t:
+        open(sm, "w", encoding="utf-8").write(t2)
+    return page
 
 
 def patched_predictions_page(c, page):
@@ -240,7 +258,7 @@ def selftest():
         ("prose counts graders from the data", "One grader is still a small panel" in html and "Agreement with one grader who" in html),
         ("an outright disagreement is named, not denied", "one outright disagreement" in html and "no outright disagreement" not in html
          and "on <em>C</em>" in html),
-        ("thin panel text from the data", thin_text(c) == "1 of our 4 predictions have no independent grade and 3 have only one"),
+        ("thin panel text from the data", thin_text(c) == "1 of our 4 predictions has no independent grade and 3 have only one"),
         ("singular disagreement in the tally", "</strong> disagreement." in html),
         ("live counts block: inserted once at the anchor, then replaced in place",
          (lambda p1: p1.count(PRED_START) == 1 and patched_predictions_page(c, p1) == p1 and PRED_ANCHOR in p1)(
@@ -258,40 +276,17 @@ def selftest():
     return 0 if all(ok for _, ok in checks) else 1
 
 
-def main(argv):
-    if "--selftest" in argv:
-        return selftest()
-    data = json.load(open(os.path.join(ROOT, "data.json"), encoding="utf-8"))
-    ig = json.load(open(os.path.join(ROOT, "independent-grades.json"), encoding="utf-8"))
-    c = compute(data, ig)
-    out = json.dumps(c, ensure_ascii=False, indent=1) + "\n"
-    if "--check" in argv:
-        have = open(OUT_JSON, encoding="utf-8").read() if os.path.exists(OUT_JSON) else ""
-        if have != out:
-            sys.exit("grader-consensus.json is stale — rerun tools/gen_grader_consensus.py")
-        page = open(PRED_PAGE, encoding="utf-8").read()
-        if patched_predictions_page(c, page) != page:
-            sys.exit("situational-awareness-predictions.html shows other grader counts than grader-consensus.json — rerun tools/gen_grader_consensus.py")
-        lt = open(LLMS, encoding="utf-8").read()
-        if patched_llms(c, lt) != lt:
-            sys.exit("llms.txt shows other grader counts than grader-consensus.json — rerun tools/gen_grader_consensus.py")
-        print("grader-consensus.json recompute matches (and the live counts on /situational-awareness-predictions)")
-        return 0
-    open(OUT_JSON, "w", encoding="utf-8").write(out)
-    page = open(PRED_PAGE, encoding="utf-8").read()
-    new_page = patched_predictions_page(c, page)
-    if new_page != page:
-        open(PRED_PAGE, "w", encoding="utf-8").write(new_page)
-    lt = open(LLMS, encoding="utf-8").read()
-    if patched_llms(c, lt) != lt:
-        open(LLMS, "w", encoding="utf-8").write(patched_llms(c, lt))
+def build_html(c, ig, data):
+    """The whole page, deterministic from the two inputs, so --check can byte-compare it (2026-09-27 review:
+    --check covered only the JSON, and a hand-written sentence going stale on the page passed the deploy gate)."""
     k = c["counts"]
     day = max(ig["dateModified"], data.get("dateModified") or PUBLISHED)
     faqs = [
         ("Does anyone else grade Situational Awareness the same way as the AGI Scorecard?",
          f"Across {sum(k.values())} comparisons with {words(len(c['graders']))} independent, dated public gradings, {k['exact']} agree exactly, "
-         f"{k['direction']} agree in direction and {k['disagree']} disagree. {len(c['predictions_without_external_grade'])} of our "
-         f"{len(c['rows'])} predictions have no independent grade yet."),
+         f"{k['direction']} agree in direction and {k['disagree']} disagree{'s' if k['disagree'] == 1 else ''}. "
+         f"{len(c['predictions_without_external_grade'])} of our {len(c['rows'])} predictions "
+         f"{'has' if len(c['predictions_without_external_grade']) == 1 else 'have'} no independent grade yet."),
         ("Who are the independent graders?",
          "; ".join(f"{x['author']} ({x['venue']}, {x['published']})" for x in c["graders"]) +
          ". Each grade on this page is a verbatim sentence from their own post, linked."),
@@ -321,8 +316,43 @@ def main(argv):
     html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                         f'"datePublished": "{PUBLISHED}", "dateModified": "{day}"')
     html = html.replace("Last updated: June 30, 2026", "Last updated: " + dt.date.fromisoformat(day).strftime("%B %-d, %Y"))
+    return html
+
+
+def main(argv):
+    if "--selftest" in argv:
+        return selftest()
+    data = json.load(open(os.path.join(ROOT, "data.json"), encoding="utf-8"))
+    ig = json.load(open(os.path.join(ROOT, "independent-grades.json"), encoding="utf-8"))
+    c = compute(data, ig)
+    out = json.dumps(c, ensure_ascii=False, indent=1) + "\n"
+    if "--check" in argv:
+        have = open(OUT_JSON, encoding="utf-8").read() if os.path.exists(OUT_JSON) else ""
+        if have != out:
+            sys.exit("grader-consensus.json is stale — rerun tools/gen_grader_consensus.py")
+        page = open(PRED_PAGE, encoding="utf-8").read()
+        if patched_predictions_page(c, page) != page:
+            sys.exit("situational-awareness-predictions.html shows other grader counts than grader-consensus.json — rerun tools/gen_grader_consensus.py")
+        lt = open(LLMS, encoding="utf-8").read()
+        if patched_llms(c, lt) != lt:
+            sys.exit("llms.txt shows other grader counts than grader-consensus.json — rerun tools/gen_grader_consensus.py")
+        have_html = open(OUT_HTML, encoding="utf-8").read() if os.path.exists(OUT_HTML) else ""
+        if have_html != build_html(c, ig, data):
+            sys.exit("grader-consensus.html differs from what the data generates — rerun tools/gen_grader_consensus.py")
+        print("grader-consensus.json + .html recompute match (and the live counts on /situational-awareness-predictions, llms.txt)")
+        return 0
+    open(OUT_JSON, "w", encoding="utf-8").write(out)
+    page = open(PRED_PAGE, encoding="utf-8").read()
+    new_page = patched_predictions_page(c, page)
+    if new_page != page:
+        new_page = bump_predictions_dates(new_page, ig["dateModified"])
+        open(PRED_PAGE, "w", encoding="utf-8").write(new_page)
+    lt = open(LLMS, encoding="utf-8").read()
+    if patched_llms(c, lt) != lt:
+        open(LLMS, "w", encoding="utf-8").write(patched_llms(c, lt))
+    html = build_html(c, ig, data)
     open(OUT_HTML, "w", encoding="utf-8").write(html)
-    print(f"{SLUG}.html + .json written · {k}")
+    print(f"{SLUG}.html + .json written · {c['counts']}")
     return 0
 
 
