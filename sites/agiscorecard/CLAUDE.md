@@ -887,6 +887,18 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
 
 
+## 2026-09-27 点击分析 → 商业下一步(owner:「先分析点击,再看如何优化」;全文 `docs/agi-click-analysis-2026-09-27.md`)
+
+- **读数(28d,JS 真人)**:外部来源约 200 次(≈7 人/天);唯一有量的动作是「站队」(vote_cast 90);
+  **priced click = 0**(affiliate_click 历史 0 行,已证是真 0);28 天 0 新订阅(历史 2)。
+  `/progress-index`、`/amodei-…bloodbath`、`/about` 的 US 集中 pv 零外部来源 = 运维噪音,判定一律不计。
+- **09-26 `opinion_*_exposure` 判 lost(3 <8)**:8 页观点→持股篮子块已按输分支删除(sasummary 保留)。
+- **agi-test 锁定按钮原是空承诺**(只写 localStorage)。现改为锁定后在按钮下方出站内邮箱表单
+  (`location=agi_test_lock`),**代码日期门 2026-10-01 00:00 UTC 前休眠**,不污染 09-30 `sub_ok` 线。
+  判定线 `agi-lock-sub-1029`。09-26/09-30/10-31 三条线已补进 `data/fleet-bets.json`。
+- **结论**:agi 在 7 人/天的量级上,点击优化最多是 €0–5/月;唯一能在一个月内改变营收 = 0 的仍是
+  Metaculus FutureEval(owner 的 key + `METACULUS_BOT_ENABLED=1`)。
+
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
 - **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，

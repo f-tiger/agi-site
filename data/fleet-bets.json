@@ -2211,6 +2211,55 @@
    "status": "open"
   },
   {
+   "id": "agi-opinion-exposure-0926",
+   "site": "agiscorecard",
+   "due": "2026-09-26",
+   "metric": "tool_click{location LIKE 'opinion_%_exposure'} 新铺家族 8 页(7 页 + when 页),08-29→09-26 累计,真人",
+   "threshold": "≥8",
+   "win": "观点→持股篮子钩子模式成立,可继续横铺",
+   "lose": "sasummary 属内容特例,停止横铺并回收 8 页的块",
+   "source": "sites/agiscorecard/CLAUDE.md「2026-08-29 复盘站规」+ docs/agi-click-analysis-2026-09-27.md",
+   "status": "lost",
+   "settled": "2026-09-27",
+   "reading": "3 次(ai2027 2 · will2027 1 · when 0 · 其余 5 页 0)<8 → lost。按输分支删除 8 页块(sasummary 与 did-open-source-ai-fade 不属该家族,保留)。登记时只写在 CLAUDE.md,未进台账,本日补登即结算。"
+  },
+  {
+   "id": "agi-sub-ok-0930",
+   "site": "agiscorecard",
+   "due": "2026-09-30",
+   "metric": "sub_ok 累计(JS)与 subscribers 表行数(服务端)",
+   "threshold": "≥5",
+   "win": "订阅→Boosts 假设存活",
+   "lose": "假设判死,每日 run 降频为每周;flip-day 邮件义务不变",
+   "source": "sites/agiscorecard/CLAUDE.md 证伪线 09-30",
+   "status": "open",
+   "t0": "2026-09-27:sub_ok 2 / subscribers 2(最后一条 08-19),28 天 0 新增"
+  },
+  {
+   "id": "agi-books-1031",
+   "site": "agiscorecard",
+   "due": "2026-10-31",
+   "metric": "affiliate_click{label LIKE 'book_%'} 全站,真人",
+   "threshold": "≥5",
+   "win": "保留 Associates 书单",
+   "lose": "关 Associates,当天拆除书单",
+   "source": "sites/agiscorecard/CLAUDE.md 10-31 书单组合线",
+   "status": "open",
+   "t0": "2026-09-27:历史 0 行(事件名已在白名单,同页 tool_click 有记录 = 真 0)"
+  },
+  {
+   "id": "agi-lock-sub-1029",
+   "site": "agiscorecard",
+   "due": "2026-10-29",
+   "metric": "/agi-test 锁定→站内邮箱表单,10-01→10-28 真人:① prediction_lock ② sub_ok{location='agi_test_lock'} ③ vote_cast{path='/agi-test'}(分母)",
+   "threshold": "① ≥5 且 ② ≥2",
+   "win": "「站队后被打分」是 agi 唯一的留存钩子 → 同一表单接到首页年份投票(43 次/28d)",
+   "lose": "③ ≥30 而 ② =0 → agi 放弃邮件名单线,只保留 flip-day 义务;③ <30 → insufficient(量不够,不改页)",
+   "source": "docs/agi-click-analysis-2026-09-27.md",
+   "status": "open",
+   "t0": "2026-09-27(28d):prediction_lock 1 · sub_ok 0 · agi-test vote_cast 47;表单 10-01 00:00 UTC 前休眠"
+  },
+  {
    "id": "gridlings-playgama-loadfix-1024",
    "site": "gridlings",
    "due": "2026-10-24",
