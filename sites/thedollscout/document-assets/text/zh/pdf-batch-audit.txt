@@ -2,7 +2,7 @@
 
 https://thedollscout.com/zh/pdf-batch-audit
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 团队需要把多份待交付 PDF 汇总成一张处理清单时。
 
@@ -24,17 +24,37 @@ https://thedollscout.com/zh/pdf-batch-audit
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+一次能检查多少份 PDF？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+最多 10 份，每份不超过 20 MB，总计不超过 100 MB。每份最多检查 200 页，每批最多 600 页。部分结果和无法读取的文件会在交接中保留。
 
-没有发现问题就代表无障碍合格吗？
+某一份 PDF 无法读取时会怎样？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+可读取文件的结果会保留，失败文件单独显示，整批视为部分完成。取得可读副本并重新检查后，再完成交接。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+这批样本包含缺少元数据的文本 PDF、修订后的文本 PDF，以及只有绘制图形的页面。全部页面已处理，不代表所有无障碍要求均已通过。
+
+文档 | 页数 | 全部页面已处理 | 检查项
+
+原版讲义 | 2 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2)
+
+修订版讲义 | 3 | 是 | 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2); 未找到页面结构树 (3)
+
+无文本层示例 | 1 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 没有可提取文本 (1)
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-batch-audit#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

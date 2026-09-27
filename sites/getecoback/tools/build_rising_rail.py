@@ -69,6 +69,9 @@ NICHE = re.compile(r"klima|kühl|kuehl|luft|entfeucht|feucht|schimmel|heiz|infra
                    r"kaffeevollautomat|matratze|taupunkt|lüft|lueft|radiator|heizstrahler", re.I)
 
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import storage_veto  # noqa: E402  (tools/storage_veto.txt, shared with the deploy gate)
+
 VETO_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "brand_veto.txt")
 
 
@@ -104,6 +107,7 @@ def main():
                   if v.get("fetched")]
     stand = min(seed_dates) if seed_dates else data.get("fetched", "")
     VETO = vetoed_brands()
+    STORAGE = storage_veto.load()
     rows = []
     for seed, v in data.get("seeds", {}).items():
         if v.get("polluted"):
@@ -117,6 +121,12 @@ def main():
             if any(b in q.lower() for b in VETO):
                 # Owner brand veto. Dropped silently rather than routed to a
                 # guide: there is no guide, and the alternative is a shelf chip.
+                continue
+            if storage_veto.is_storage(q, STORAGE):
+                # Storage products are off this site (owner, 2026-09-27). The
+                # balkonkraftwerk seed returns "anker solix solarbank 4 …" rows
+                # above MIN_V; each one would become a tagged Amazon chip on the
+                # homepage. Dropped, same as the brand veto.
                 continue
             rows.append((val, q))
     rows.sort(reverse=True)

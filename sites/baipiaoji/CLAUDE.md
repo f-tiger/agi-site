@@ -834,6 +834,23 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
    本次推送带上当前清单作为新基线。判定线 `bpj-manifest-commit-0927`。**通用教训:`continue-on-error` 的步骤必须有别的东西看它的 outcome,否则它就是一个静默失败的开关。**
    **明确不做**:单位换算(字符 → 分钟、credits → 份数,官方没给口径)、给未确认的工具估一个「大概能用」、为分享做短链服务、为每个岗位建 SEO 页。
 
+
+28. **🧑‍💻 AI agents 创业机会点:哈佛 = 编程智能体开发者 2026-09-25**(owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…bpj 是你的武器」;
+   全文 `docs/agents-venture-2026-09-25.md`)。
+   **先建后撤的一个**:MCP 服务器信任层(每日只读普查注册表远程端点 + 工具列表哈希变更)管线与页面都写好了,外部扫描随后查到 **mcpcensus.com 自 09-04
+   起做同一件事、连名字都叫 MCP Census**,另有三家同月入场、付费证据为零,本站 MCP 的第三方调用方就是这些普查者 → 按三门撤回,一行没上线。
+   **别再提**:MCP 普查 / 变更流做成产品、"免 key 就能连的 MCP 服务器"清单(推荐未审查的第三方服务器 = tool poisoning 的投放渠道)。
+   **选中的楔子**:本站 28 天 395 个带来源真人里 agent 类目 5、**coding 61(第二大,/c/coding 是 Google 第二大页)**——编程智能体开发者是本站在 agents 赛道唯一有密度的网络,
+   他们问的正是本站资产能答的「还免费吗、免费多少、这周变了没有」。**第 0 阶段(已做)**:补 **Kiro**(永久免费 50 credits/月,付费四档与加购价全写、不结转)与
+   **OpenAI Codex**(Free 含 Codex 但官方用量表没有 Free 列 → 数字未公布、本站不估)两个编程智能体,官方页当日直抓、中英两份、带付费档 → 判定页与升级页自动生成;
+   Qwen Code 官方 README 当日找不到免费档文字 → 不收。按官方页当日原文重核漂移探针标红的 **Cursor**(免费档只列「有限 Agent 请求、可用 Composer」,
+   08-03 的 Chat/Tab 补全不在清单里——照录不推断)。舰队 rising 种子 suno/midjourney → cursor/claude code(池子仍 11、Google 次数不变)。
+   **顺手修的发现面缺陷(影响比补录大)**:导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳让**任何一次额度编辑**都把 1 700/1 700 页判为变化、IndexNow 整站重推。
+   `scripts/lastmod-hash.mjs` 现在忽略这三处(`test-lastmod-hash.mjs` 两个方向断言、5 个变异全红,已挂 push 与 --dist);清单一次性迁移:1 454 页保留原日期,真改动 246 页。
+   verify-dist 的写死计数门把「编程类 30 个工具」误判为过期全站数(类目第一次涨到 30)——类目计数现计入合法集合。
+   **判定线** `bpj-coding-harvard-1025`:coding 28 天 ≥92 且 Kiro/Codex 页族带来源真人 ≥3 → 第 1 阶段(30 天内重核编程类全部 30 条、补齐仍缺的主力、编程子集变更流);
+   coding <70 且新页 0 → 只维护、agents 方向不再投新面;其余 insufficient,11-22 再读。**第 2 阶段(MCP `coding_agent_quotas`)与第 3 阶段(定价变更告警、厂商赞助)都要等前一阶段的读数。**
+
 ## 机器面:三个缺口(2026-09-24 舰队复盘,全文 `docs/tool-direction-review-2026-09-24.md`)
 
 `tools/fleet/mcp_usage.py`(挂 heartbeat)现在把舰队三个 MCP 站读成一份 `data/fleet-mcp-usage.json`。
@@ -847,3 +864,94 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
   eco 的 `node` 调用方 180 次全带参数但只有 9 种组合,正是靠参数才认出来的。
 - 判定线 `fleet-mcp-instrument-1022`(10-22):三站里 ≥2 个能被舰队脚本读出 `demand_callers`,否则「机器面」
   以后只按 SR 一个站读,不再声称是舰队级读数。
+
+27. **🧰 自研工具板块 `/studio` 审计:不扩展,先修与补登 2026-09-25**(owner:「在其他会话上线了自研工具板块。检查。看是否扩展」)。
+   另一会话 09-25 04:12–05:33 UTC(00:12–01:33 EDT)上线:`/studio/`(自研工具枢纽)、`/studio/quote-compare`(供应商报价比较)、`/studio/video-variants`
+   (商品素材 → 三开场 × 三画幅,本机编码)、`/video/`(视频工作室入口)与视频云项目会员(复用 9 USDT / 30 天工作区)。PRD
+   `docs/PRD-studio-2026-09-25.md`、`docs/RESEARCH-video-studio-2026-09-25.md`、`docs/VIDEO-commerce-2026-09-25.md`。
+   **审计方法**:5 个审计员(门禁 + 40 个变异、报价算术、视频/会员安全、线上/发现面/数据、扩展三门)→ 每条发现由独立复核员复现 →
+   三个视角的评审。**28 条发现被复现,三位评审一致判「hold_and_measure」**。
+   **扩展结论:不扩展**。依据:台账里 Studio 0 行(= 没预登记)、上线后带来源真人 0、自有任务事件 0、全站会员有史以来 0 单;视频读者
+   找的是「还免费的生成模型」(haiper 一页占视频面 33%),不是「复用商品素材」;报价比较在 bpj 上没有对口宿主页,舰队里做同一件事的
+   RFQ Desk 28 天 0 事件;按舰队循环「扩张只从 won 行长出来」,bpj 唯一的 won 是修仪器的线。
+   **本轮修的(都有能红的测试)**:
+   ①**付费路径高危 V1**:从视频页第二次保存(带云端上下文)时,会员页首次登录会把交来的修订稿与保存目标一起清空——付费会员保存不了第 2 版。
+   已在 `tools/member-studio/app.mjs` 的 `adoptKey()` 里保留「首次登录」前的草稿与目标;原浏览器测试漏掉它是因为往每个标签页预灌了密钥,
+   现加了一轮手工登录。②**V2**:视频页会把会员页任何一次保存当成「本项目已保存」,甚至把别的客户项目当成保存目标。改为一次性 nonce:
+   视频页只认带自己 nonce 的确认,会员页只在「保存的正是交来的那份」时回确认——两层各有一条单独的断言,各自的变异都会红。
+   ③**报价 QC-1/QC-3/QC-2**:CSV/备份里的大小写或越界菜单值会让表单显示一个值、计算用另一个(现逐列规范化或按列名拒绝);「保存草稿」对恢复时
+   会被拒的数据(>20 行阶梯价、超长字段)也报成功(现限额单一来源 `fieldMax`/`MAX_TIERS`,保存前先做一次 restore 演练);评审报告里的来源名
+   与原文可伪造标题/HTML(现 `mdText`/`mdBlock` 转义并做成真代码块)。④**门禁缺口**:`test-studio.mjs` 38 → 53 项,把审计里 13 个存活变异
+   逐一钉死(排序方向、被排除的报价不入榜、未确认汇率、单独缺来源、含税空税率、零价、1 分容差、有效期/交期边界、BAD_SOURCE、上限),另 15 个变异全红。
+   **修复本身又被复核出 4 个回归(MV-1..MV-4,同轮修掉;教训:修付费路径的补丁要按「买家的每一种走法」复测,不只是复现原 bug 的那一条)**:
+   ①新买家在会员页「创建密钥」、老会员「轮换密钥」都会丢掉交接,首次付费保存工具收不到确认,下一次保存另建一个重复项目;②只在「内容逐字相同」时回确认,
+   会员页上改一个字再保存,工具就停在旧修订号,之后每次保存都是 revision_conflict,按提示操作也出不来;③第二次点「登录」、或先输错别站的密钥再输对的,
+   交来的修订稿照样被清空;④换另一个付费账号登录会继承前一个账号的保存目标,保存报「另一台设备改过」。现在交接记 {nonce, 原文, 项目 id}:
+   只确认存进交来的项目(或为它新建的项目)的保存,确认里带 `same` 标记——工具始终跟上修订号,只在内容未改时才显示「已保存」;
+   同一密钥再登录不做任何事;账号拥有不了的目标(别的账号、已删除)改为新项目。报价侧另 4 条:.1 版存下的草稿/备份若含 CSV 里的非菜单值
+   (如币种留空、RMB、pcs)不再整份拒收,恢复为空白由表单「—」与计算标出;CSV 空白单元格不再让整份文件失败(RMB 视作 CNY);CSV 报错写文件里的
+   英文列名;报告标题转义 `#`。`test-video-business-browser.mjs` 的手工登录段覆盖以上全部走法,**12 个变异全红**(含「从列表打开的别的项目不跨账号带走」),且**已挂进部署 CI**(只在 push 部署时跑)
+   (此前它只在本地跑,等于付费路径的修复没有门禁;每次 push 部署约多 1 分钟,定时部署不跑)。
+   ⑤**仪器 V4**:视频入口/导航点击原来记在 `calc`(本站「自建工具真被用了」的核心度量)——改记新事件 `video`(已进 hit.js 白名单),
+   `test-agent-watch` 的白名单扫描扩到 `assets/studio/*.mjs` 并断言 video-business 不再发 calc。`bpj-tool-gate-0926` 与 `fleet-tool-use-1014`
+   加了口径注:读 calc 时剔 `/video/%` 与 `%/demo`。⑥**发现面 F2/V5**:d1a02d6f 的两个空模板槽给 424 个非视频页各加了一行空白 → 下次定时 run 会
+   把它们当「变了」推 IndexNow;折回上一行后本地构建由 **474 → 52 页**(40 个视频工具页 + 首页 + /c/video + studio + /video/ 的真改动)。
+   lastmod 哈希另剥掉 `/studio-assets/…?v=` 版本号,以后 EDITION 升级不再让 ~50 页改日期。
+   **补登判定线(上线时 0 行)**:`bpj-studio-video-own-1023`、`bpj-studio-entry-1023`、`bpj-studio-quote-own-1106`、`bpj-studio-video-paid-1124`
+   (读数口径只认 `/own` 后缀与带来源 pv,入口点击读 `ev='video'`;t0 全 0,CI/QA 带 `__ci` 不发事件,所以都不能被 t0 满足)。
+   **`bpj-manifest-commit-0927` 中间读数**:①③已满足(CI 首次回写清单 59e64217);09-25 推了 1 670 条,已查实是 PR #2 + Studio 的真实全站改动
+   (本地与 CI 构建哈希逐页一致),不是基线造假;本地与清单相差的 52 页里 48 页来自 d1a02d6f 视频上线(清单早于它 3 分钟),本轮审计单独只动了 quote-compare 2 页;09-26 按设计还会推 ~1 672 条,只按 09-27 日志结算 ②。
+   **明确不做**(评审一致):第三个 Studio 工具;报价的 OCR / 模型抽取 / 多物料;视频模型生成层或媒体云存储(fal Kling 3 镜 × 5 秒 × 每镜 2 次付费尝试 ≈ $2,10,
+   会员 9 USDT/月);往 grok/kimi/coding 这类不对口页面加入口;删 quote-compare(owner 09-25 要的,只在 1106 判负时撤首页卡);换收款方式。
+   **留给之后的(已知、未修)**:①`/style.css` 与 `/bpj.js` 无版本号,部署后边缘/浏览器可能给新 HTML 配旧 CSS 至 4h+SWR(F3)——等 0927 结算后再加
+   内容哈希版本号,免得这期间再动 lastmod 归一化链;②`test-video-browser.mjs` 的 H.264 夹具在 Playwright 自带 Chromium 上解不了(不在 CI 里);
+   ③`verify-dist` 看不到 revenue-studio / member-studio 稍后写进 dist 的 workbench/members 页(那几页有 4 处 zh 泄漏、1 处空页、8 处 hreflang);
+   ④`deploy-baipiaoji.yml` 的「Notify verified localized tool URLs to IndexNow」挂在 push 上且每次整推 8 个 URL(09-19 另一次上线引入),违反
+   「外部副作用只挂 schedule」,改法要连「只推真变化」一起想,不在本轮扩大改动面。
+
+## 2026-09-26 收费应用验收需求实验（Owner 当前指令）
+
+沿用现有 /studio 与 /c/coding，中英 `/studio/release-check` 提供准备清单、虚构报告和拟议$299范围，只收申请不收款。协议见根仓 `docs/bpj-release-pilot-2026-09-26.md`。`release_pilot_*` 表独立，QA剔除、邮箱/会话去重、回执撤回、暂停和到期关闭。新增页可索引，但不声称软件已经执行验收。每日既有部署任务仅保存汇总；客户邮箱、回执和原始申请绝不进入公开仓/日志。
+
+## 2026-09-26 商业触发优化
+
+Owner要求调用技能改善商业触发。协议见根仓 `docs/bpj-commercial-triggers-2026-09-26.md`。投稿成功后提供免费等候/独立赞助选择；广告页补买家适配、实时付款方式和可跳过拒绝原因。commercial-trigger.js仅记固定biz事件、QA跨页保留；/api/reach.commercial_triggers是事件计数不是客户漏斗。复用每日reach快照，无新增schedule，不外发营销、不改变价格/订单/收录规则。
+
+29. **🗄️ hits 表的读法重做:D1 免费额度连续三天用完 2026-09-26**(owner:「为什么一直报错…哪些查询导致每天都消耗完了?」→「1-2-3 全部执行」;
+   全文 `docs/d1-read-budget-2026-09-26.md`)。**D1 免费额度是全账号每天读 500 万行,09-01 起超了即拒读写到 UTC 零点**;09-24/25/26 分别在
+   13/08/10 点用完。Cloudflare 逐条查询统计(`tools/fleet/d1_usage.mjs`,workflow `d1-usage.yml`,只读)显示 09-25 全账号读取的 **58% 是本站
+   `/api/reach`**(6 条查询各把 hits 整表读一遍、每次约 18 万行、一天被调三四十次)。**三处改动,后续会话照此读写 hits:**
+   ①**`/api/reach` 有服务端缓存**(`lib/reach-cache.js`,Cache API,键 = 版本号 + days,1 小时;响应形状一改就把 `REACH_CACHE_VERSION` 加一),
+   响应头 `x-bpj-reach-cache: miss|hit|bypass`,部署自检断言它在。**`Cache-Control` 头对 Pages Functions 不起作用**,别再写「缓存一小时挡住重复取数」。
+   ②**两个部分索引**:`hits_referred ON hits(d) WHERE ev='' AND ref IS NOT NULL AND ref != ''`、`hits_events ON hits(d, ev) WHERE ev != ''`。
+   SQLite 只在查询里**出现同样的条件**时才用部分索引——真人线谓词只从 `lib/hits-schema.js` 的 `HUMAN` 取,事件查询必须带 `EVENT_ROWS`
+   (`ev != ''`);`scripts/test-hits-schema.mjs` 对 reach 实际发出的每条 hits 查询跑 EXPLAIN,出现整表扫描即红。
+   ③**爬虫抓取记在 `bot_daily(d, bot, path, country, n)`,不再进 hits**。次数用 `SUM(n)`,`bot` 列即原 `hits.ref`;语言由路径判断(`/en/` 前缀)。
+   历史 `ev='bot'` 行由迁移汇总搬入(计数守恒)后从 hits 删除;`bot_spoofed` / `bot_maybe_probe` 是 8 月旧标签,仍在 hits。
+   `scripts/traffic-truth.mjs bot` 已改读 bot_daily;`bpj-md-mirror-1028`、`bpj-cn-crawlers-1015` 两条判定线加了口径注(阈值不变)。
+   **写新的 hits 查询前先想它走哪个索引**;要全表的一次性分析也行,但别放进会被反复调用的端点。判定线 `bpj-d1-reads-1004`
+   (09-28→10-03 每天 baipiaoji-hits 读取 ≤50 万行;t0 09-25 466 万)。
+   **09-27 00:10 UTC 已在线上执行**(按日期两批,写入 48 589 行;爬虫计数守恒 23 815 + 中间件已记 795;两个索引建好,
+   线上 EXPLAIN 真人线走 `hits_referred`、事件走 `hits_events`、商业触发走 `idx_hits_path`;一次 reach 约 7 000 行)。
+   **线上 hits 早就有 `idx_hits_d` / `idx_hits_path`**(08-03 手工建,本仓没有记录)——它们挡不住读取,因为 28 天窗口就是整张表;
+   测试夹具已照抄线上 sqlite_master,**断言任何 hits 统计退回 `idx_hits_d` 即红**。reach 的五条 `ORDER BY n DESC` 补了次序键
+   (同票数时 `LIMIT 30` 的来源榜此前是随机的)。
+
+## 厂商认领层(2026-09-26,owner「你是一个创业者…自主扩张」;全文 `docs/ai-era-founder-2026-09-25.md` §三)
+
+- **这是保活模式的第二个例外**,依据 owner 09-25 的明确指令(白名单条款里的「owner 明确指令」)。形态:`functions/api/claim.js` +
+  `/claim`(zh/en)+ 每个工具页底部一行认领入口 + `scripts/claims-export.mjs` → `data/claims.json`(schedule 落库)+ `/api/reach`
+  money 多两个键 `claims_verified` / `attestations_queued`。
+- **为什么是它**:submissions 8 条(3 个提交者)全部停在 new,而站上 219 条记录**没有一条能证明说话的是厂商本人**——投稿框里谁都能填任何名字。
+  认领 = 域名控制权(官方主机或主域的 `/.well-known/baipiaoji-claim.txt` 任一行逐字等于 `baipiaoji-claim=<slug>`,或主域 DNS TXT
+  `_baipiaoji.<主域>`),令牌公开、绑记录不绑人,零账号零 PII。这是舰队第一个「用了它就把它带给没用过的人」的机制:已认领的记录把
+  「厂商已认领 · 域名验证 <日期>」写在页上,厂商自己的读者看见,下一家厂商才知道有这回事——机器一个帖都不发。
+- **三条不变的纪律**:①认领不改任何数字;②厂商更正只进 `attestations`(status=queued),**永不自动上站**,每条必须带一个在认领域名上的
+  https 官方页面——处理时仍走 limits-edit 两步,厂商 value 永远不直接进 tools.json;③不卖任何东西(徽章仍免费,付费只有老轨「加急核实」)。
+- **读数口径**:`claims_verified` 只数 `last_result='ok'`(证明撤掉、下次核验就回到未认领);部署自检只 GET 状态 / 404 / 未认领 403,
+  **不打 verify**(那会真的去读厂商站点),UA `bpj-ci-selfcheck`。事件名 `claim`(`/claim/from-tool/<slug>`、`/claim/verified/<slug>`、
+  `/claim/attested/<slug>`)已进 hit.js 白名单;认领真值在 claims 表,事件只量漏斗从哪来。
+- **一次性事件**:认领入口在每张工具页上,本次部署 438 张工具页 lastmod 刷新——与 09-15 canonical 修复同类,别误读成翻炒。
+- **判定线**:`bpj-claim-first-1026`(≥1 真实认领)、`bpj-claim-layer-1125`(≥5 host 且 ≥1 更正上站)。t0 全 0。
+- **处理排队更正的规矩**:读 `data/claims.json`(或 `/api/claim?export=1`)的 `attestations`,逐条打开 `official_url` 核对;对的走 limits-edit,
+  错的不理;处理完把 D1 里对应行 status 改成 `applied` / `rejected`(会话带 Cloudflare MCP 时做)。

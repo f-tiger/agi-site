@@ -22,7 +22,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 
 - MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): https://getecoback.com/mcp
   Tools: geraet_wahl (welches Gerät löst mein Problem), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,
-  taupunkt_lueften, balkonspeicher_foerderung sowie ratgeber_suche + ratgeber_lesen (Volltextsuche und Volltext-Abruf aller Ratgeber).
+  taupunkt_lueften sowie ratgeber_suche + ratgeber_lesen (Volltextsuche und Volltext-Abruf aller Ratgeber).
   Formeln identisch mit den Rechnern dieser Website; jede Antwort enthält Quell-URL und Affiliate-Disclosure.
   Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).
   Doku & Client-Konfiguration: https://getecoback.com/mcp.html — Discovery: https://getecoback.com/.well-known/mcp.json
@@ -38,9 +38,9 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 
 ## EU product evidence checks / 欧盟产品证据检查
 
-- [CBAM supplier data missing? Check the O3CI handoff | EcoBack](https://getecoback.com/en/agents/cbam-supplier-data.html): A free CBAM supplier handoff check for EU importers and non-EU aluminium and steel producers. Find open questions and download a request checklist.
+- [CBAM supplier data missing? Check the O3CI handoff | EcoBack](https://getecoback.com/en/agents/cbam-supplier-data.html): CBAM data shared but not verified? Check the supplier handoff, separate verification status and download a free supplier request template.
 - [EUDR geolocation evidence: supplier readiness check | EcoBack](https://getecoback.com/en/agents/eudr-geolocation-evidence.html): A free EUDR supplier-evidence pre-check for geolocation, batch linkage and Information System readiness before the applicable date.
-- [进口商看不到供应商的 CBAM 数据？先排查 O3CI 交接 | EcoBack](https://getecoback.com/zh/agents/cbam-supplier-data.html): 面向欧盟进口商和非欧盟钢铝生产企业的免费 CBAM 数据交接检查器：区分账号、设施、EORI 与共享问题，下载补件清单。
+- [进口商看不到供应商的 CBAM 数据？先排查 O3CI 交接 | EcoBack](https://getecoback.com/zh/agents/cbam-supplier-data.html): CBAM 数据已共享就算完成核查吗？免费排查供应商资料交接，区分记录可见、独立核查和报告状态，并下载可编辑的供应商补件模板。
 - [EUDR 地块坐标资料：供应商证据预检 | EcoBack](https://getecoback.com/zh/agents/eudr-geolocation-evidence.html): 免费的 EUDR 供应商证据预检：检查地块坐标、批次关联和欧盟信息系统准备度，并下载待补清单。
 
 These checks prepare local supplier questions. They do not verify evidence or submit official declarations. Paid evidence-service checkout is not available.
@@ -50,18 +50,9 @@ These checks prepare local supplier questions. They do not verify evidence or su
 - [Abluftschlauch verlängern: Geht das? Anleitung 2026](https://getecoback.com/guide/abluftschlauch-verlaengern.html): Abluftschlauch der mobilen Klimaanlage verlängern: max. ca. 2 m ohne großen Leistungsverlust — welches Zubehör du brauchst und wann du es besser lässt.
 - [AEG ChillFlex Pro: Was sagen die Tests?](https://getecoback.com/guide/aeg-chillflex-pro-test.html): AEG ChillFlex Pro im Test-Überblick: 64 dB normal, ~52 dB im Schlafmodus, 9.000–12.000 BTU je Variante — was öffentliche Tests messen, plus Alternativen.
 - [Air Zuma Klimaanlage: Erfahrungen und Fakten](https://getecoback.com/guide/air-zuma-erfahrungen.html): Air Zuma im Faktencheck: Warum 2–7 Watt keinen Raum kühlen können, woran du die Werbe-Testseiten erkennst — und die ehrliche Alternative.
+- [Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)](https://getecoback.com/guide/akku-heizluefter.html): Ein 18-V-Akku mit 5 Ah hat 90 Wh: Das reicht einem 2.000-W-Heizlüfter für 2,7 Minuten. Rechner, Tabelle und was ohne Steckdose wirklich wärmt.
 - [Auto bei Hitze kühlen: 9 Tricks gegen den Backofen-Effekt (2026)](https://getecoback.com/guide/auto-bei-hitze-kuehlen.html): Auto bei Hitze kühlen: So bleibt dein Wagen im Sommer 2026 erträglich — Sonnenschutz, richtig lüften, schnell abkühlen und günstige Helfer, die sofort wirken.
 - [Balkon & Terrasse beschatten gegen Hitze (Hitzewelle 2026)](https://getecoback.com/guide/balkon-terrasse-beschatten.html): Balkon und Terrasse beschatten: Sonnensegel, Ampelschirm und Markise im Vergleich — windstabil, ohne Bohren für Mieter und kühlend auch fürs Zimmer.
-- [Balkonkraftwerk: Lohnt es sich? Rechner 2026](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html): Lohnt sich ein Balkonkraftwerk? Rechner für Ertrag, Ersparnis und Amortisation — mit und ohne Speicher, nach Ausrichtung und Strompreis. In 30 Sekunden zum Ergebnis.
-- [Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf](https://getecoback.com/guide/balkonkraftwerk-mieter-recht.html): Steckersolargeräte stehen seit 2024 in § 554 BGB. Du hast einen Anspruch auf Erlaubnis — aber nicht das Recht, einfach loszulegen. Der Unterschied, im Gesetzestext.
-- [Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber](https://getecoback.com/guide/balkonkraftwerk-oesterreich.html): Österreich rechnet nach dem ElWG: 0,8 kW an der Übergabestelle, kein Zählpunkt, kein Marktstammdatenregister. Der Wortlaut und die Unterschiede zu Deutschland.
-- [Balkonkraftwerk ohne Bohren befestigen: Alle Halterungen (2026)](https://getecoback.com/guide/balkonkraftwerk-ohne-bohren.html): Balkonkraftwerk ohne Bohren befestigen: Gitterhaken, Klemmhalterung und Ballast im Vergleich — plus Windlast, Gewicht und was das Mietrecht dazu sagt.
-- [Balkonkraftwerk: Speicher nachrüsten — so geht's (2026)](https://getecoback.com/guide/balkonkraftwerk-speicher-nachruesten.html): Speicher ans bestehende Balkonkraftwerk nachrüsten: AC- oder DC-Kopplung, Schritt-für-Schritt-Anleitung, Kosten ab ca. 600 € und ehrliche Lohnt-sich-Rechnung.
-- [Balkon-Check: Lohnt sich Solar an deinem Balkon?](https://getecoback.com/guide/balkonkraftwerk-standort-check.html): Nordbalkon oder Schatten vom Nachbarhaus? Der Standort-Check sagt in 30 Sekunden, wie viel kWh dein Balkon realistisch bringt — und wann es sich nicht lohnt.
-- [Balkonkraftwerk kaufen: Amazon oder Fachhändler?](https://getecoback.com/guide/balkonkraftwerk-wo-kaufen.html): Balkonkraftwerk bei Amazon oder beim Solar-Fachhändler kaufen? Preis, Beratung, Garantie und Rückgabe im ehrlichen Vergleich — inklusive Entscheidungsregel.
-- [Balkonkraftwerk-Speicher: Förderung 2026 im Überblick](https://getecoback.com/guide/balkonspeicher-foerderung.html): Förderung für Balkonkraftwerk-Speicher 2026: Bundesländer, rund 20 kommunale Programme, Speicher-Bonus — und was ein Zuschuss wirklich bringt.
-- [Balkonkraftwerk-Speicher: Welche Größe lohnt sich?](https://getecoback.com/guide/balkonspeicher-rechner.html): Speicher fürs Balkonkraftwerk: Leistung, Tagesverbrauch und Tagesprofil eingeben — sofort die passende Speichergröße in kWh plus ehrliche Lohnt-sich-Einschätzung.
-- [Balkonkraftwerk-Speicher im Winter: Frost & Aufstellort](https://getecoback.com/guide/balkonspeicher-winter-frost.html): Verträgt ein Balkonkraftwerk-Speicher Frost? LiFePO4 lädt unter 0 °C nicht — moderne Geräte heizen vor oder stoppen automatisch.
 - [Beheizter Wäscheständer: Kosten und wohin das Wasser geht](https://getecoback.com/guide/beheizter-waeschestaender.html): Ein beheizter Wäscheständer mit 200 W kostet in 6 Stunden 0,36 €. Doch ein 12-m²-Zimmer nimmt nur gut 200 g Wasser auf — der Rest landet an der Wand.
 - [Bei Hitze schlafen: 12 Tricks ohne Klimaanlage (2026)](https://getecoback.com/guide/bei-hitze-schlafen.html): Du kannst bei der Hitze nicht schlafen? 12 bewährte Tricks für kühle Nächte in der Hitzewelle 2026 ohne Klimaanlage — plus die günstigen Geräte, die wirklich helfen.
 - [Beste tragbare Klimaanlage für die Hitzewelle 2026 (ohne Installation)](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html): Tragbare Klimaanlage kaufen in der Hitzewelle 2026: BTU nach Raumgröße, Fensterabdichtung, Preisklassen und die schnellsten Optionen ohne Installation auf Amazon.de.
@@ -79,7 +70,6 @@ These checks prepare local supplier questions. They do not verify evidence or su
 - [Fenster beschlagen von innen: 3 Ursachen, 1 Diagnose](https://getecoback.com/guide/fenster-beschlagen-innen.html): Morgens nasse Scheiben? Nicht immer ist Lüften die Lösung. Der 3-Ursachen-Check zeigt, ob es an Feuchte, Lüftung oder kalter Scheibe liegt.
 - [Fensterabdichtung für Klimaanlagen: Welche passt? (2026)](https://getecoback.com/guide/fensterabdichtung-klimaanlage.html): Klett-Stoff, starre Platte oder Dachfenster-Version? Welche Fensterabdichtung an dein Fenster passt, welche Länge du brauchst — und was meist versagt.
 - [Fensterabdichtung selber bauen: Platte statt Stoff (2026)](https://getecoback.com/guide/fensterabdichtung-selber-bauen.html): Kippfenster-Abdichtung selber bauen: Material für 10–40 €, zwei erprobte Methoden aus Hohlkammerplatte oder Plexiglas — und wann Kaufen schlauer ist.
-- [Growatt NOAH 2000: Probleme & Lösungen im Überblick](https://getecoback.com/guide/growatt-noah-2000-probleme.html): Growatt NOAH 2000 Probleme: App- & WLAN-Abbrüche, Firmware & Ausgangsleistung, Winter-Ladestopp, Wechselrichter-Kompatibilität — was Nutzer berichten & was hilft.
 - [Günstige Klimaanlage unter 300 €: Top-Geräte 2026](https://getecoback.com/guide/guenstige-klimaanlage-unter-300-euro.html): Günstige Klimaanlage unter 300 €: die besten mobilen Klimageräte und Alternativen — worauf du beim Sparen achten musst und wo Billig zur Falle wird.
 - [Hund & Katze bei Hitze kühlen: sicher durch die Hitzewelle 2026](https://getecoback.com/guide/haustier-hitze-kuehlen.html): Hund und Katze bei Hitze kühlen: Schatten, Wasser, Kühlmatte, Trinkbrunnen, Ventilator und die wichtige Auto-Warnung — der Ratgeber für die Hitzewelle 2026.
 - [Heizdecke Stromverbrauch: Was kostet eine Nacht? (2026)](https://getecoback.com/guide/heizdecke-stromverbrauch.html): Was eine Heizdecke wirklich kostet: 2–5 Cent pro Stunde, rund 0,24 € pro Nacht — und warum sie mit Nachtabsenkung zum Sparhebel wird. Zahlen nachrechenbar.
@@ -118,7 +108,6 @@ These checks prepare local supplier questions. They do not verify evidence or su
 - [Klimaanlage für 30 m²: BTU, Modell-Tipps & Stromkosten 2026](https://getecoback.com/guide/klimaanlage-30-qm.html): Welche Klimaanlage für 30 m²? Empfohlen: 12.000–13.000 BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste für dein Wohnzimmer oder offener Wohnbereich (2026).
 - [Klimaanlage für 40 m²: BTU, Modell-Tipps & Stromkosten 2026](https://getecoback.com/guide/klimaanlage-40-qm.html): Welche Klimaanlage für 40 m²? Empfohlen: 14.000+ BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste (Ratgeber 2026).
 - [Klimaanlage für 50 m²: BTU, Modell-Tipps & Stromkosten 2026](https://getecoback.com/guide/klimaanlage-50-qm.html): Welche Klimaanlage für 50 m²? Empfohlen: 16.000+ (oder zwei Zonen) BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste (Ratgeber 2026).
-- [Klimaanlage mit Balkonkraftwerk: Was geht? (2026)](https://getecoback.com/guide/klimaanlage-balkonkraftwerk.html): Klimaanlage mit Balkonkraftwerk betreiben: Ein 800-W-Balkonkraftwerk deckt mittags einen großen Teil des Verbrauchs — die ehrliche Rechnung mit Beispiel.
 - [Mobile Klimaanlage am Dachfenster: so abdichten (2026)](https://getecoback.com/guide/klimaanlage-dachfenster.html): Mobile Klimaanlage am Dachfenster (Velux & Co.): welche Abdichtung am Schrägfenster hält — Stoff-Kit ab ca. 20 €, Acrylglas nach Maß oder Klemm-Platte.
 - [Klimaanlage am Kippfenster: einbruchsicher machen](https://getecoback.com/guide/klimaanlage-fenster-einbruchschutz.html): Klimaanlage nachts am gekippten Fenster? So sicherst du es ab: ABUS FKS208 (VdS-geprüft) für die Kippstellung — und die Lösung ganz ohne offenes Fenster.
 - [Klimaanlage am Kippfenster: Abdichten ohne Kleben (2026)](https://getecoback.com/guide/klimaanlage-kippfenster.html): Kippfenster abdichten für die tragbare Klimaanlage: Stoff-Kit mit Klett, Kunststoffplatte oder ganz ohne Kleben — rückstandsfrei, auch für die Mietwohnung.
@@ -181,7 +170,6 @@ These checks prepare local supplier questions. They do not verify evidence or su
 - [Schmidbauer Infrarotheizung: Was sagen die Tests?](https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html): Schmidbauer Infrarotheizung im Überblick: Serien von 300 bis 1.400 W, Faustregel 60–100 W pro m², Betrieb ab 0,18 €/h — was sich wirklich belegen lässt.
 - [Split-Klimaanlage ohne Kernbohrung: So geht es (2026)](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html): Split-Klimaanlage ohne Kernbohrung: Wie Quick-Connect-Systeme leise Split-Kühlung ohne Installateur liefern und rund 1.000 € Montagekosten sparen.
 - [Strom sparen im Haushalt: 14 Maßnahmen, die wirken](https://getecoback.com/guide/strom-sparen-haushalt.html): Strom sparen im Haushalt: 14 Maßnahmen mit echten Euro-Ersparnissen — Standby abschalten, Stromfresser finden, LED, Kühlschrank, Klima einstellen.
-- [Stromausfall: Was eine Powerstation wirklich schafft — und was nicht](https://getecoback.com/guide/stromausfall-heizen.html): Ein 2000-Watt-Heizlüfter leert eine 1-kWh-Powerstation in 30 Minuten. Dieselbe Batterie hält den Router 4 Tage. Die Rechnung, und was stattdessen hilft.
 - [Stromkosten-Rechner: Klimaanlage & Ventilator 2026](https://getecoback.com/guide/stromkosten-rechner.html): Stromkosten-Rechner für Klimaanlage, Luftkühler, Ventilator und Heizung: Laufzeit und Strompreis eingeben — sofort Kosten pro Stunde, Tag und Monat sehen.
 - [Börsenstrompreis-Radar: Preis jetzt & negative Stunden](https://getecoback.com/guide/strompreis-radar.html): Börsenstrompreis heute im Live-Radar: aktueller Stundenpreis, günstigste Stunde und negative Strompreise.
 - [Stromverbrauch-Check: Zahlst du zu viel? Vergleich 2026](https://getecoback.com/guide/stromvergleich-check.html): Vergleiche deinen Stromverbrauch in 10 Sekunden mit dem Stromspiegel-Durchschnitt für deine Haushaltsgröße — und sieh.
@@ -266,16 +254,18 @@ These checks prepare local supplier questions. They do not verify evidence or su
 ## Calculateur (Français)
 
 - [Climatisation et chauffage : comparer les coûts en France | EcoBack](https://getecoback.com/fr/calculateur.html): Comparez deux solutions de climatisation, chauffage, déshumidification ou solaire avec votre tarif français, vos devis et des hypothèses explicites.
+- [Comparateur de tarifs d’électricité | EcoBack](https://getecoback.com/fr/comparateur-electricite.html): Comparez deux offres d’électricité avec vos chiffres : prime, abonnement, seuil heures creuses et coûts annuels. Enregistrez et partagez le calcul.
 - [EcoBack Creator Kit : partager et intégrer les calculateurs](https://getecoback.com/fr/creator-kit.html): Kit pour YouTube, Reddit, forums et blogs : calculateurs, code iframe, liens UTM et textes prêts à publier.
 
 ## Calculadora (Español)
 
-- [Calculadora de climatización y ahorro en España | EcoBack](https://getecoback.com/es/calculadora.html): Compara climatización, deshumidificación, calefacción eléctrica y autoconsumo con tu tarifa, presupuesto y gastos de mantenimiento en España.
+- [Calculadora de climatización y ahorro en España | EcoBack](https://getecoback.com/es/calculadora.html): Compara climatización, deshumidificación y calefacción eléctrica con tu tarifa, presupuesto y gastos de mantenimiento en España.
+- [Comparador de tarifas de luz | EcoBack](https://getecoback.com/es/comparar-tarifas-luz.html): Compara tarifas de luz con tus datos: consumo por periodos, potencia, costes fijos y bonificaciones. Guarda, exporta y comparte tus cálculos.
 - [EcoBack Creator Kit: compartir e insertar calculadoras](https://getecoback.com/es/creator-kit.html): Kit para YouTube, Reddit, foros y blogs: calculadoras, código iframe, enlaces UTM y textos listos para publicar.
 
 ## Kategorien
 
-- [Energie sparen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/energie-sparen.html): Stromkosten senken mit Balkonkraftwerk & Speicher, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt.
+- [Energie sparen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/energie-sparen.html): Stromkosten senken: Verbrauch messen, Börsenpreise und Tarife verstehen, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt.
 - [Heizen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/heizen.html): Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung.
 - [Klimaanlagen & Kühlen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/klimaanlagen.html): Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Bohren — für Mietwohnung und Altbau: nach Fenstertyp, Raumgröße und Budget.
 - [Luftqualität: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/luftqualitaet.html): Luftentfeuchter gegen Schimmel, Luftreiniger gegen Pollen und Staub sowie die richtige Gerätepflege.
@@ -292,3 +282,11 @@ These checks prepare local supplier questions. They do not verify evidence or su
 - [Trockner oder Entfeuchter? Stromkosten vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html): Vergleiche Trockner und Luftentfeuchter mit eigenen Verbrauchswerten: Kosten pro Ladung und Jahr, Grenzen des Vergleichs und Anleitung zum Messen.
 - [Stromverbrauch messen: Protokoll und Jahreskosten](https://getecoback.com/strommess-protokoll.html): Gemessene Kilowattstunden statt Typenschild-Watt: Verbrauch auf Betriebstage hochrechnen, Messprotokoll herunterladen und Stromfresser prüfen.
 - [Altes Gerät behalten oder ersetzen? Kostenrechner](https://getecoback.com/geraete-austausch-rechner.html): Berechne, wann geringere Stromkosten einen Gerätekauf ausgleichen. Mit Kaufpreis, eigenem Tarif, Jahresverbrauch und offenem Rechenweg.
+
+## European electricity tariff workbench
+
+- [Electricity tariff workbench](https://getecoback.com/en/energy-tariff-workbench.html): Compare electricity offers with your own figures: first-year bonuses, recurring costs, time-of-use rates and power fees. Save, export and share.
+- [Stromtarif-Werkstatt](https://getecoback.com/stromtarif-werkstatt.html): Stromtarife mit eigenen Zahlen vergleichen: Erstjahr, Folgejahr, Bonus, Grundpreis und Zeitfenster prüfen. Lokal speichern, exportieren und teilen.
+- [Comparateur de tarifs d’électricité](https://getecoback.com/fr/comparateur-electricite.html): Comparez deux offres d’électricité avec vos chiffres : prime, abonnement, seuil heures creuses et coûts annuels. Enregistrez et partagez le calcul.
+- [Comparador de tarifas de luz](https://getecoback.com/es/comparar-tarifas-luz.html): Compara tarifas de luz con tus datos: consumo por periodos, potencia, costes fijos y bonificaciones. Guarda, exporta y comparte tus cálculos.
+- [Confronto delle tariffe luce](https://getecoback.com/it/confronto-tariffe-luce.html): Confronta due tariffe luce con i tuoi consumi: fasce orarie, potenza, costi fissi e bonus iniziali. Salva, esporta e condividi il tuo calcolo.

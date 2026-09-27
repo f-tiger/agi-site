@@ -22,6 +22,10 @@ Mechanics:
     been failing for more than 3 days (no snapshot newer than that), so a token that lacks
     D1 read scope shows up as one red heartbeat, not twelve, and never silently.
   * Never prints a token, an account id, or any row-level data (public repo, public logs).
+  * 2026-09-26: endpoint GETs go through tools/fleet/endpoint_cache.py (on-disk memo, 6 h TTL,
+    2xx only). The five readers used to fetch the same pulse/reach URLs independently — about
+    36 requests per heartbeat, each one re-running the worker's full D1 scans — which was part
+    of the 2026-09-25 free-plan read-quota outage. Now each endpoint is fetched once per run.
 
 Usage: python3 tools/fleet/ai_referrals.py [--selftest]
 """
@@ -31,6 +35,9 @@ import os
 import sys
 import urllib.error
 import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from endpoint_cache import fetch_url  # noqa: E402  同一 run 内每个端点只出网一次
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-ai-referrals.json")
@@ -106,9 +113,8 @@ def parse_endpoint(site, body):
 
 
 def fetch_endpoint(site):
-    req = urllib.request.Request(ENDPOINTS[site], headers={"User-Agent": "fleet-heartbeat/ai_referrals (+https://github.com/f-tiger/agi-site)", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return parse_endpoint(site, json.load(r))
+    _, body = fetch_url(ENDPOINTS[site], timeout=20, ua="fleet-heartbeat/ai_referrals (+https://github.com/f-tiger/agi-site)")
+    return parse_endpoint(site, json.loads(body))
 
 
 def ai_pred(col):
@@ -214,6 +220,8 @@ def selftest():
         ("partial read keeps the sum under its own name", _snap_totals(errors=["x: 500"], want="partial") == 7),
         ("clean read still totals", _snap_totals(errors=[]) == (7, 100, 100)),
         ("endpoint map covers every site", set(ENDPOINTS) == {s[0] for s in SITES}),
+        ("sites: names unique, every row has a db id and a table", len({s[0] for s in SITES}) == len(SITES) and all(s[1] and s[2] for s in SITES)),
+        ("bpj reach URL is the fleet-wide canonical spelling (memo key)", ENDPOINTS["baipiaoji"] == "https://baipiaoji.com/api/reach?days=28"),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)

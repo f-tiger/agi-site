@@ -62,6 +62,43 @@ function logRow(env, ctx, row) {
 
 const JSONH = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "access-control-allow-origin": "*" };
 const json = (o, status = 200, extra = {}) => new Response(JSON.stringify(o), { status, headers: { ...JSONH, ...extra } });
+// AI 助手引荐主机(与原 /api/pulse SQL 里的 15 个 LIKE 子串逐字相同,改在 JS 里匹配同一结果集)。
+const AI_REF = /chatgpt|chat\.openai|perplexity|claude\.ai|copilot|gemini\.google|you\.com|kagi|poe\.com|mistral|deepseek|kimi|doubao|yiyan|metaso/i;
+// D1 读预算(2026-09-25 事故:免费档每日 500 万行读取被打满,全舰队 D1 读失败到午夜)。
+// 聚合端点从 Cache API 出,按 URL + 部署版本做键,TTL 秒;错误响应永不入缓存。
+// 此前的 `cache-control: public, max-age=…` 只对浏览器有效——Cloudflare 不会仅凭它缓存 Worker 响应,
+// 每次轮询都重跑全部扫描。本地单测没有 caches 全局,直接算。
+function cacheKey(u, env, params = []) {
+  const version = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || env.CF_PAGES_COMMIT_SHA || "dev";
+  const qs = params.map((p) => p + "=" + encodeURIComponent(u.searchParams.get(p) || "")).join("&");
+  return new Request(u.origin + u.pathname + "?v=" + encodeURIComponent(version) + (qs ? "&" + qs : ""), { method: "GET" });
+}
+async function cachedJson(request, env, ctx, ttl, compute, params = []) {
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  if (!cache) return compute();
+  const key = cacheKey(new URL(request.url), env, params);
+  const hit = await cache.match(key);
+  if (hit) return hit;
+  const res = await compute();
+  if (res.ok && res.headers.get("cache-control") !== "no-store") {
+    const stored = new Response(res.clone().body, res);
+    stored.headers.set("cache-control", "public, max-age=" + ttl);
+    stored.headers.set("x-fleet-cache", "store");
+    if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(key, stored)); else await cache.put(key, stored);
+  }
+  return res;
+}
+// 发卡/撤卡之后把本 PoP 里的列表与计数缓存删掉:发卡人点「去看我的卡」要立刻看到自己那张。
+// 只删页面实际用到的三种参数组合(index limit=6 / cards limit=200 / team kind=team&limit=200)+ /api/stats;
+// 别的 PoP 最多再陈旧一个 TTL(cards 60 s)。Cache API 的 delete 只作用于当前数据中心,这是平台语义,不是漏洞。
+function purgeCards(request, env, ctx) {
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  if (!cache) return;
+  const o = new URL(request.url).origin;
+  const keys = ["/api/cards?limit=6", "/api/cards?limit=200", "/api/cards?kind=team&limit=200", "/api/cards"].map((p) => cacheKey(new URL(o + p), env, ["kind", "limit"]))
+    .concat([cacheKey(new URL(o + "/api/stats"), env)]);
+  ctx.waitUntil(Promise.all(keys.map((k) => cache.delete(k).catch(() => {}))));
+}
 
 // 只保留文字:去控制字符与尖括号、压缩空白。中文原样保留(舰队 09-12 的教训:别把 CJK 洗掉)。
 function clean(s, max) {
@@ -211,6 +248,7 @@ async function handlePost(request, env, ctx) {
   const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created, industry, intro, stage, commitment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
     .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created, industry, intro, stage, commit).first();
   logRow(env, ctx, { name: "post_ok", label: kind + ":" + status, path: "/api/card", ua_class: "api", country });
+  if (status === "live") purgeCards(request, env, ctx);
   // 语义向量后台算,失败静默;下一次 /api/match 会补算。
   ctx.waitUntil((async () => { try { const e = await embed(env, cardText({ headline, body, field, industry, offers: offers.join("|") })); if (e) await db.prepare("UPDATE cards SET emb=? WHERE id=?").bind(JSON.stringify(e), r.id).run(); } catch (x) { /* never */ } })());
   return json({ ok: true, code: "ok", id: r.id, status, secret: code });
@@ -277,22 +315,30 @@ export default {
         if (!env.EV) return json({ ok: false, code: "no_db" }, 503);
         await ensureSchema(env.EV);
 
+        // /api/cards 缓存 60 s(与此前浏览器侧 max-age=60 相同的陈旧上限,不再更宽):发卡人的下一步是
+        // 「去看我的卡」,发卡/撤卡时 purgeCards 会把本 PoP 的这几个键删掉。键只认 kind/limit 两个参数。
         if (p === "/api/cards" && request.method === "GET") {
-          const kind = KINDS.has(url.searchParams.get("kind")) ? url.searchParams.get("kind") : "";
-          const limit = Math.min(200, Math.max(1, parseInt(url.searchParams.get("limit"), 10) || 60));
-          const q = kind
-            ? env.EV.prepare("SELECT * FROM cards WHERE status='live' AND kind=? ORDER BY id DESC LIMIT ?").bind(kind, limit)
-            : env.EV.prepare("SELECT * FROM cards WHERE status='live' ORDER BY id DESC LIMIT ?").bind(limit);
-          const rows = (await q.all()).results || [];
-          return json({ ok: true, cards: rows.map(publicCard), generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
+          return await cachedJson(request, env, ctx, 60, async () => {
+            const kind = KINDS.has(url.searchParams.get("kind")) ? url.searchParams.get("kind") : "";
+            const limit = Math.min(200, Math.max(1, parseInt(url.searchParams.get("limit"), 10) || 60));
+            const q = kind
+              ? env.EV.prepare("SELECT * FROM cards WHERE status='live' AND kind=? ORDER BY id DESC LIMIT ?").bind(kind, limit)
+              : env.EV.prepare("SELECT * FROM cards WHERE status='live' ORDER BY id DESC LIMIT ?").bind(limit);
+            const rows = (await q.all()).results || [];
+            return json({ ok: true, cards: rows.map(publicCard), generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
+          }, ["kind", "limit"]);
         }
+        // /api/stats 缓存 300 s:首页/文章页的计数条,没有即时性要求;两条查询(cards 全表 GROUP BY + ev 28 天
+        // contact_reveal)语义不同,不合并,只缓存。
         if (p === "/api/stats" && request.method === "GET") {
-          const rows = (await env.EV.prepare("SELECT kind, status, COUNT(*) n FROM cards GROUP BY kind, status").all()).results || [];
-          const s = { offer: 0, need: 0, team: 0, pending: 0, done: 0, reveals28: 0 };
-          for (const r of rows) { if (r.status === "live") s[r.kind] = r.n; else if (r.status === "pending") s.pending += r.n; else if (r.status === "done") s.done += r.n; }
-          const rv = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE name='contact_reveal' AND day >= date('now','-28 days')").first();
-          s.reveals28 = (rv && rv.n) | 0;
-          return json({ ok: true, ...s, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
+          return await cachedJson(request, env, ctx, 300, async () => {
+            const rows = (await env.EV.prepare("SELECT kind, status, COUNT(*) n FROM cards GROUP BY kind, status").all()).results || [];
+            const s = { offer: 0, need: 0, team: 0, pending: 0, done: 0, reveals28: 0 };
+            for (const r of rows) { if (r.status === "live") s[r.kind] = r.n; else if (r.status === "pending") s.pending += r.n; else if (r.status === "done") s.done += r.n; }
+            const rv = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE name='contact_reveal' AND day >= date('now','-28 days')").first();
+            s.reveals28 = (rv && rv.n) | 0;
+            return json({ ok: true, ...s, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=300" });
+          });
         }
         const m = p.match(/^\/api\/card\/(\d+)\/contact$/);
         if (m && request.method === "GET") {
@@ -371,43 +417,46 @@ export default {
           const r = await env.EV.prepare("UPDATE cards SET status=?, reviewed=date('now') WHERE id=? AND code=? AND status IN ('live','pending') RETURNING id, kind").bind(done ? "done" : "withdrawn", id, code).first();
           if (!r) return json({ ok: false, code: "notfound" }, 404);
           logRow(env, ctx, { name: done ? "done_ok" : "withdraw_ok", label: r.kind + ":" + id, path: "/api/withdraw", ua_class: "api" });
+          purgeCards(request, env, ctx);
           return json({ ok: true, status: done ? "done" : "withdrawn" });
         }
         // 信标真值测试(2026-09-16 补,SR 09-13 同款):CI 先 POST 一条 label=__ci 的事件,再从这里读回来。
         // 没有这条,「工具一次都没被用过」和「/e → D1 这根管子断了」在读数上一模一样——本站上线以来
         // 客户端事件恒为 0,必须能证明是前者。只回计数,不回任何行级数据。
+        // D1 读预算(2026-09-26):只扫最近 500 行(rowid 区间),CI 只需看见自己刚写的那一行;此前按 day 过滤但 ev 无索引 = 全表扫。
         if (p === "/api/selftest" && request.method === "GET") {
           const label = (url.searchParams.get("label") || "").slice(0, 40);
           // 只认 __ 开头的自检标签:这个端点是 CI 探针,不是给外人读站内统计的窗口。
           if (!label || !label.startsWith("__")) return json({ ok: false, error: "ci label required" }, 400);
-          const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+          const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE label = ? AND rowid > (SELECT MAX(rowid) FROM ev) - 500 AND day >= date('now','-2 days')").bind(label).first();
           return json({ ok: true, label, n: (r && r.n) | 0 });
         }
+        // /api/pulse:舰队 heartbeat 读侧(同 goldrush):28 天真人 pv + AI 助手引荐 + 渠道构成,只给聚合数。
+        // D1 读预算(2026-09-26):此前同一个 28 天窗口扫三遍(`_total` + AI 主机 UNION,再 GROUP BY ref 一遍),
+        // 现在只跑一次 GROUP BY ref,三组数从同一结果集派生:human_pv = 各组 n 之和,AI 主机按 AI_REF 匹配,
+        // 渠道构成按 tools/fleet/ref_sources.txt 分桶——每个数字与原来逐个相同。响应经 cachedJson 缓存 1 小时。
+        // sum(by_source) 应等于 human_pv —— 对不上就是有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
         if (p === "/api/pulse" && request.method === "GET") {
-          // 舰队 heartbeat 读侧(同 goldrush):28 天真人 pv + AI 助手引荐,只给聚合数。
-          const q = await env.EV.prepare("SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC").all();
-          let human_pv = 0; const by_host = {};
-          for (const r of (q.results || [])) { if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0; }
-          const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-          // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
-          // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
-          // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
-          const q2 = await env.EV.prepare(
-            "SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC LIMIT 1000"
-          ).all();
-          const self_host = srcHost(url.hostname);
-          const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
-          const by_search = {}; const by_fleet = {}; const by_other = {};
-          for (const r of (q2.results || [])) {
-            const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
-            by_source[b] += n;
-            if (b === "search") by_search[h] = (by_search[h] || 0) + n;
-            else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
-            // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
-            // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
-            else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
-          }
-          return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=3600" });
+          return await cachedJson(request, env, ctx, 3600, async () => {
+            const q = await env.EV.prepare("SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC").all();
+            const self_host = srcHost(url.hostname);
+            let human_pv = 0; const by_host = {};
+            const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+            const by_search = {}; const by_fleet = {}; const by_other = {};
+            for (const r of (q.results || [])) {
+              const n = r.n | 0; human_pv += n;
+              if (r.host && AI_REF.test(String(r.host))) by_host[r.host] = n;
+              const h = srcHost(r.host); const b = srcBucket(h, self_host);
+              by_source[b] += n;
+              if (b === "search") by_search[h] = (by_search[h] || 0) + n;
+              else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+              // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+              // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+              else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
+            }
+            const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+            return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=3600" });
+          });
         }
         return json({ ok: false, code: "notfound" }, 404);
       } catch (e) {

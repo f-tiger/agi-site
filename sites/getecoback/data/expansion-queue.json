@@ -1,6 +1,6 @@
 {
  "note": "eco's standing expansion queue (owner 2026-09-24: 「站点应该持续扩展」). The daily fleet task (block C) takes the first item with status 'queued' and an empty 'blocked_by', builds it through the kgr-page checklist, flips it to 'built' with the page date and a bet id, and never builds more than one page a day. When fewer than three items are 'queued', the same run restocks from the season calendar in data/autopilot/demand-digest.md and records every SERP verdict here, rejections included, so no term is researched twice. Gate: tools/check_expansion_queue.py.",
- "updated": "2026-09-24",
+ "updated": "2026-09-27",
  "items": [
   {
    "slug": "beheizter-waeschestaender",
@@ -70,7 +70,7 @@
    "next_action": ""
   },
   {
-   "slug": "anker-solarbank-probleme",
+   "slug": "balkonspeicher-anker-solarbank-probleme",
    "working_title": "Anker Solarbank lädt nicht oder speist nicht ein: die Ursachen in der Reihenfolge",
    "cluster": "energie-sparen",
    "evidence": [
@@ -87,9 +87,16 @@
    },
    "cannibalization": "growatt-noah-2000-probleme (anderes Gerät) und balkonspeicher-winter-frost (Frost, nicht Fehlersuche) — beide verlinken",
    "monetisation": "diagnosis-first shelf nach dem gewonnenen Growatt-Muster (eco-growatt-diagnosis-0925): Energiekostenmessgerät zuerst, die Solarbank selbst nur als Tausch-Slot",
-   "status": "queued",
+   "status": "removed",
    "blocked_by": "",
-   "next_action": "Jede gerätespezifische Aussage (Neustart per Tastenkombination, Winter-Kalibrierung, Einspeise-Stopp bei niedrigem Ladestand) nur aus Ankers eigenen Support-Seiten, mit Abrufdatum zitiert. Fehlercodes nicht aus Foren übernehmen. Symptome nach Reihenfolge: erst messen (0 W? Ladestand? App/WLAN?), dann Firmware, dann Wechselrichter-Kopplung. Keine EcoFlow-Erwähnung."
+   "next_action": "Removed 2026-09-27 (owner). Do not rebuild; see sites/getecoback/CLAUDE.md「储能与阳台光伏页全部下线」.",
+   "built": "2026-09-25",
+   "bet": "eco-storage-spring-0415",
+   "removed": {
+    "date": "2026-09-27",
+    "by": "owner",
+    "reason": "「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」— page deleted, worker answers 410 (tools/gone_pages.txt)."
+   }
   },
   {
    "slug": "marstek-venus-probleme",
@@ -108,9 +115,14 @@
    },
    "cannibalization": "keine Marstek-Seite; growatt-noah-2000-probleme und anker-solarbank-probleme verlinken",
    "monetisation": "diagnosis-first shelf (Energiekostenmessgerät, Smart-Meter-Lesekopf nur wenn die Herstellerdoku ihn nennt), Venus selbst nur als Tausch-Slot",
-   "status": "queued",
+   "status": "withdrawn",
    "blocked_by": "",
-   "next_action": "Erst bauen, wenn anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Versionen), nicht als Tatsache übernehmen."
+   "next_action": "Withdrawn 2026-09-27 (owner). Do not rebuild or requeue; see sites/getecoback/CLAUDE.md「储能品类下架」.",
+   "withdrawn": {
+    "date": "2026-09-27",
+    "by": "owner",
+    "reason": "「eco站点下架所有储能产品」+「后续记得不做储能品类」— storage category taken off the site; no storage page is built from this queue again."
+   }
   },
   {
    "slug": "heizluefter-riecht-verbrannt",
@@ -145,15 +157,15 @@
     "seasonality-de-queue 2026-09-24 (anchor heizlüfter, same scale as seasonality-de): luftfeuchtigkeit messen 1,0, peak November, winter/Sep 1,59 — same size as infrarotheizung thermostat (1,1), which was built"
    ],
    "serp": {
-    "date": "2026-09-24",
-    "verdict": "writable",
-    "seen": "talu, hygrometer-test.de (3 pages), aero-check, helpster, ambientweather, daddario (checked for 'hygrometer kalibrieren', not yet for 'luftfeuchtigkeit messen')"
+    "date": "2026-09-27",
+    "verdict": "writable (angle)",
+    "seen": "for 'luftfeuchtigkeit messen': stuttgarter-nachrichten, tfa-dostmann (maker), selbst.de, kaufland, velux, dein-heizungsbauer, two small humidity sites, brune (maker). No test media, but every one says 'middle of the room, away from windows' — none measures at the coldest wall, which is where this site's 60 % line applies"
    },
    "cannibalization": "none: no page on the site explains checking the instrument its advice depends on",
    "monetisation": "hygrometer (Min/Max) — already the first card on fenster-beschlagen-innen, waesche-trocknen-wohnung, luftentfeuchter-keller",
    "status": "queued",
    "blocked_by": "",
-   "next_action": "Retarget before building: the question readers type is 'luftfeuchtigkeit messen' (and the head word hygrometer), not 'kalibrieren'. Run the SERP check on 'luftfeuchtigkeit messen' first — if big test/retail sites own it, reject and record; if writable, the salt test becomes one section. Cite the 75 % figure from a primary or manufacturer source; no brand claims. Grep first: schimmel-wand-kommt-wieder already mentions measuring."
+   "next_action": "SERP done 2026-09-27 on 'luftfeuchtigkeit messen' (writable with the coldest-wall angle). Remaining gap: cite the ~75 % saturated-salt figure from a primary or manufacturer source before the salt section goes in; if none is found, build without the salt test."
   },
   {
    "slug": "heizkoerper-entlueften",
@@ -299,9 +311,14 @@
    },
    "cannibalization": "12 existing Balkonkraftwerk/Balkonspeicher pages",
    "monetisation": "storage shelf (no EcoFlow)",
-   "status": "seasonal-hold",
-   "blocked_by": "season:2027-02-01",
-   "next_action": "In February, read eco-storage-spring-0415 context and decide whether the cluster needs a page or only refreshed dates."
+   "status": "withdrawn",
+   "blocked_by": "",
+   "next_action": "Withdrawn 2026-09-27 (owner). Do not rebuild or requeue; see sites/getecoback/CLAUDE.md「储能品类下架」.",
+   "withdrawn": {
+    "date": "2026-09-27",
+    "by": "owner",
+    "reason": "「eco站点下架所有储能产品」+「后续记得不做储能品类」— storage category taken off the site; no storage page is built from this queue again."
+   }
   },
   {
    "slug": "oelradiator-stromverbrauch",
@@ -320,6 +337,88 @@
    "status": "rejected",
    "blocked_by": "",
    "next_action": "None as a page; an Ölradiator row can go into heizluefter-stromverbrauch's table if that page's heater section draws clicks."
+  },
+  {
+   "slug": "akku-heizluefter",
+   "working_title": "Akku-Heizlüfter: Wie lange heizt er wirklich? (Rechner)",
+   "cluster": "heizen",
+   "evidence": [
+    "trends-rising heizlüfter 2026-09-22: 'akku heizlüfter makita' 38.500 (rising %, not volume)",
+    "seasonality-de-queue 2026-09-27 (anchor heizlüfter): akku heizlüfter 0,5 (Sep) → peak 1,7 in November, winter/Sep 2,32 — same size class as infrarotheizung thermostat (1,1), which was built",
+    "SERP disagrees with itself: comparison sites quote 3–4 h runtime, a shop blog says 2–3 min; nobody shows that both are the same division at different wattages"
+   ],
+   "serp": {
+    "date": "2026-09-27",
+    "verdict": "writable",
+    "seen": "pixelwerker, heizluefter.org, elternkompass, luftking, auto-lifestyle (comparison/affiliate sites), allegra24 (shop blog), gutefrage, a brand blog. No test media"
+   },
+   "cannibalization": "none: no page title or body on the site covers battery heaters; routes to heizdecke-stromverbrauch (body heat) and infrarotheizung-garage (mains)",
+   "monetisation": "CONTEXT shelf, no named models: heated vest, heated seat pad, mains heater with thermostat (only 'if there is a socket')",
+   "status": "built",
+   "built": "2026-09-27",
+   "bet": "eco-akku-heizluefter-1225",
+   "blocked_by": "",
+   "next_action": ""
+  },
+  {
+   "slug": "heizluefter-auto",
+   "working_title": "Heizlüfter fürs Auto (12 V)",
+   "cluster": "heizen",
+   "evidence": [
+    "trends-rising heizlüfter 2026-09-22: 'heizlüfter fürs auto' 20.850",
+    "seasonality-de-queue 2026-09-27: heizlüfter auto peak 1,6 in November, winter/Sep 5,57 — the largest winter lift measured"
+   ],
+   "serp": {
+    "date": "2026-09-27",
+    "verdict": "red ocean",
+    "seen": "autozeitung, pcwelt, vergleich.org, conrad, heizluefter.org, elektroheizung.org, test-vergleiche, ebay — Auto Zeitung already writes the honest 100–200 W answer"
+   },
+   "cannibalization": "n/a",
+   "monetisation": "n/a",
+   "status": "rejected",
+   "rejected": "2026-09-27",
+   "blocked_by": "",
+   "next_action": "None."
+  },
+  {
+   "slug": "mobile-heizung",
+   "working_title": "Mobile Heizung für die Wohnung",
+   "cluster": "heizen",
+   "evidence": [
+    "trends-rising infrarotheizung 2026-09-26: 'mobile heizung' 28.700",
+    "seasonality-de-queue 2026-09-27: mobile heizung peak 1,6 November, winter/Sep 1,04"
+   ],
+   "serp": {
+    "date": "2026-09-27",
+    "verdict": "red ocean",
+    "seen": "ADAC, vergleich.org, immowelt, oekoloco, joybuy, heatness, elektroheizung-direkt, ebay"
+   },
+   "cannibalization": "heizluefter-stromsparend and heizluefter-stromverbrauch already answer 'which is cheapest'",
+   "monetisation": "n/a",
+   "status": "rejected",
+   "rejected": "2026-09-27",
+   "blocked_by": "",
+   "next_action": "None."
+  },
+  {
+   "slug": "heizluefter-grosse-raeume",
+   "working_title": "(measurement only) heizlüfter große räume / infrarotheizung 20 qm",
+   "cluster": "heizen",
+   "evidence": [
+    "trends-rising 2026-09-22/26: 'heizlüfter große räume' 27.750, 'infrarotheizung für 20 qm' 42.350",
+    "seasonality-de-queue 2026-09-27: both 0,0 absolute over five years — rising percentages on near-zero volume"
+   ],
+   "serp": {
+    "date": "2026-09-27",
+    "verdict": "not checked",
+    "seen": "not needed: no demand"
+   },
+   "cannibalization": "heizung-20-qm and heizung-40/50-qm already answer both",
+   "monetisation": "n/a",
+   "status": "rejected",
+   "rejected": "2026-09-27",
+   "blocked_by": "",
+   "next_action": "None. Recorded so the rising panel does not send the next session here again."
   }
  ]
 }

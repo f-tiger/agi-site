@@ -32,10 +32,33 @@ def age_days(today, iso):
         return None
 
 
+def _veto_load(path):
+    """Tokens and '!'-exceptions of a site's category veto list, or None."""
+    if not os.path.exists(path):
+        return None
+    tokens, allow = [], []
+    for line in open(path, encoding="utf-8"):
+        line = line.split("#", 1)[0].strip().lower()
+        if line:
+            (allow if line.startswith("!") else tokens).append(line.lstrip("!"))
+    return tokens, allow
+
+
+def _veto_hit(q, veto):
+    s = " ".join(q.lower().replace("+", " ").split())
+    for a in veto[1]:
+        s = s.replace(a, " ")
+    return any(t in s for t in veto[0])
+
+
 def rising_for(site, today):
     """每个 seed 自带 fetched 时取它自己的;否则退到文件顶层。超过 10 天标 STALE。"""
     files = [f for f in glob.glob(os.path.join(ROOT, "sites", site, "**", "*rising*.json"), recursive=True)
              if "/node_modules/" not in f and "/dist/" not in f]
+    # A site that has taken a category off its shelves keeps its veto list in
+    # tools/storage_veto.txt (eco, 2026-09-27: 「后续记得不做储能品类」). Rows
+    # matching it are hidden here so the digest does not present them as topics.
+    veto = _veto_load(os.path.join(ROOT, "sites", site, "tools", "storage_veto.txt"))
     rows = []
     for f in files:
         d = load(f)
@@ -49,7 +72,13 @@ def rising_for(site, today):
                 a = age_days(today, when)
                 tag = "STALE" if (a is None or a > MAX_AGE) else f"{a}d"
                 rs = v.get("rising") if isinstance(v, dict) else None
+                hidden = 0
+                if isinstance(rs, list) and veto:
+                    kept = [r for r in rs if not _veto_hit(str(r.get("q", "")), veto)]
+                    hidden, rs = len(rs) - len(kept), kept
                 items = ", ".join(f"{r.get('q')} ({r.get('v')})" for r in rs[:4]) if isinstance(rs, list) and rs else "(空)"
+                if hidden:
+                    items += f" · 另 {hidden} 条储能词已隐藏(品类已下架,不作选题)"
                 rows.append(f"- [{tag}] **{seed}** → {items}")
         elif isinstance(seeds, list):
             rows.append(f"- 文件 {os.path.relpath(f, ROOT)}:列表形 {len(seeds)} 条(未细读)")
@@ -384,6 +413,20 @@ def main():
             out.append(f"- owner 亲报 PartnerNet DE(30 天窗至 {own.get('window_end')}):佣金 €{own.get('commission_eur')} · {own.get('clicks')} 点击 · 待办 {own.get('payout_blocked')}")
         if mo.get("errors"):
             out.append("- 未读到:" + " | ".join(mo["errors"]))
+    # 预测记录线(2026-09-27 创业复盘楔子):不靠访客的那条钱线,读 heartbeat 写的 data/fleet-forecast-record.json。
+    fr = load(os.path.join(ROOT, "data/fleet-forecast-record.json"))
+    fc = load(os.path.join(ROOT, "data/futureeval-coverage.json"))
+    if "__error__" not in fr:
+        fa = age_days(today, fr.get("generated", ""))
+        m_ = fr.get("money") or {}
+        hp = fr.get("house_prior") or {}
+        out.append(f"- 预测记录线(Metaculus bot,快照 {fr.get('generated','?')[:10]}{' **STALE**' if (fa is None or fa > 3) else ''}):"
+                   f"状态 {fr.get('enabled_state')} · 账本 {(fr.get('ledger') or {}).get('forecast_lines')} 条 · "
+                   f"北极星(赛前记录且已结算){fr.get('north_star_resolved_prelogged')} · house prior Brier 差 {hp.get('mean_brier_delta')}(n={hp.get('n')}) · "
+                   f"30 天花费 ${m_.get('spend_usd_30d')} · 奖金 {m_.get('prize_usd_30d') if m_.get('prize_usd_30d') is not None else '未报'} · 净 {m_.get('net_usd_30d') if m_.get('net_usd_30d') is not None else '—'}")
+    if "__error__" not in fc:
+        out.append(f"- FutureEval 覆盖探针:抽样 {fc.get('sampled')} 题,舰队已存档来源覆盖 {fc.get('covered')}(占比 {fc.get('coverage_share')})"
+                   + (" · **规则页有变化**" if fc.get("rules_changed") else "") + ("(沿用上次)" if fc.get("stale") else ""))
     out.append("")
 
     out.append("---")

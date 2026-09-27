@@ -1,52 +1,52 @@
 {
- "checked": "2026-09-25",
- "pages": 209,
+ "checked": "2026-09-27",
+ "pages": 197,
  "control_by_lang": {
-  "de": 0.0076,
+  "de": 0.0055,
   "en": 0.0023,
   "it": 0.0
  },
  "note": "剔除全站样板后的兄弟页 8-gram Jaccard 相似度。对照组是随机的不同主题两页；兄弟页远高于对照组 = Google 眼中的门页形态。本文件只报数，不改内容。",
  "shingle_n": 8,
- "boilerplate_shingles": 2269,
- "control_similarity": 0.0076,
+ "boilerplate_shingles": 2275,
+ "control_similarity": 0.0055,
  "threshold_pct": 40.0,
  "families": {
   "heizung-N-qm": {
    "pages": 7,
-   "avg_similarity": 0.1992,
-   "worst_similarity": 0.2159,
+   "avg_similarity": 0.1995,
+   "worst_similarity": 0.2162,
    "worst_pair": [
     "heizung-40-qm",
     "heizung-50-qm"
    ],
-   "median_unique_shingles": 1376,
+   "median_unique_shingles": 1377,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 141
   },
   "klimaanlage-N-qm": {
    "pages": 7,
-   "avg_similarity": 0.3256,
-   "worst_similarity": 0.4314,
+   "avg_similarity": 0.3249,
+   "worst_similarity": 0.4305,
    "worst_pair": [
     "klimaanlage-10-qm",
     "klimaanlage-15-qm"
    ],
-   "median_unique_shingles": 914,
+   "median_unique_shingles": 912,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 141
   },
   "luftentfeuchter-N-qm": {
    "pages": 6,
-   "avg_similarity": 0.5233,
-   "worst_similarity": 0.5605,
+   "avg_similarity": 0.5238,
+   "worst_similarity": 0.561,
    "worst_pair": [
     "luftentfeuchter-10-qm",
     "luftentfeuchter-20-qm"
    ],
-   "median_unique_shingles": 706,
+   "median_unique_shingles": 707,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 141
   },
   "en:dehumidifier-N-sqm": {
    "pages": 6,

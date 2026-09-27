@@ -223,6 +223,10 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   `sites/agiscorecard/`,gen_odds.py 原路径读取。
 - 站点互相学习(owner 长期指令):跨站移植已验证的模式记进各站自己的日志文档;
   niche 隔离规则不变,跨站链接只在对读者真实相关时加。
+- **合并授权(2026-09-27,owner 原话:「后续不需要问我，你自动合并」)**:会话分支上的工作在本地闸门全绿
+  (各站 validate / 自检 / 单测、workflow YAML、隐私关键词审计)之后,**直接合并进 `main` 并推送,不再请示**;
+  合并后看一眼被触发的部署 run 是否全绿,红了当轮修。授权只覆盖「合并」这一步,不覆盖杀单清单、隐私红线、
+  零编造、机器不外联,也不覆盖 owner 的钱与账号操作(密钥、付款表、Cloudflare 开关仍是 owner 卡)。
 
 ## Routine 计划路径故障与手动补跑（2026-09-04 舰队体检发现，后续会话必读）
 
@@ -529,6 +533,17 @@ owner 决策卡、事实表)。
   同样有这个缺陷而检查看不见** —— 覆盖漏洞读起来与「全绿」一模一样。
   **规矩(与 09-04「自检要能红」同级,是它的加强版)**:**新写的自检,必须逐个故意改坏它声称能抓的
   每一种形状,看它真的红。** 一次「改坏一处仍然绿」就说明它抓的是想象里的代码,不是仓里的代码。
+  **⚠ 2026-09-27 合并时的两条修正(main 侧另一个会话同一天独立发现同一个缺陷,命名 `errH`)**:
+  ①**机制说窄了**:`cache-control: public` 单独**并不会让 Cloudflare 缓存一个 Worker 响应** —— 它只对浏览器与
+  中间代理有效,所以那次读到的 stale 200 来自出网代理,不是 Cloudflare 边缘。真正的读预算修复是 main 侧建的
+  **Cache API 层**(`cachedJson`,按 URL + 部署版本做键、错误永不入缓存),它才解决「每次轮询重跑全表扫描」。
+  两侧合并后取 main 的实现,本侧保留 `check_pulse_cache.py` 这把尺子。
+  ②**尺子当场证明了自己有用**:合并后跑一遍,main 的修复漏了 **agi `pulseResponse`**(`/api/pulse` 与 `/api/trends`
+  09-26 抽出成函数时,那一个 `headers` 又被 503/200/500 共用),已补 `errH`。同时修掉尺子自己的一个**误报**:
+  SR `/api/pop` 用行内 `{ ...headers, "cache-control": "no-store" }` 是对的,而尺子只看见行上有 `headers` 就报红
+  ——**误报和漏报一样有害**,它教人相信这盏红灯会撒谎。两个方向各有一个红测钉住。
+  ③**过程事实**:同一个缺陷被两个会话在同一天各查一遍、各修一遍。合并时按「取更彻底的实现 + 保留对方的尺子」
+  收敛,没有任何一侧的工作被丢掉;但这是**重复劳动**,下次开工前先 `git fetch` 看一眼 main 的当日提交。
 
 ## 固定循环:持续优化 · 探索 · 扩张(2026-09-13,owner:「目标是持续优化,探索,扩张。成长为这类型」)
 
@@ -858,6 +873,11 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   搜 `getecoback` 只出那两条废弃的;搜 `agiscorecard` 命中是因为**名字里自带品牌**)。
   已把品牌写进两站 manifest 的 `description`(eco v1.2.0、bpj v1.11.0),内容属实、**不改名**
   ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
+  **⚠ 2026-09-25 纠正**:eco 那条加品牌后是 199 字符,超过注册表 100 字符硬限制,**1.2.0 从未发布**
+  (注册表 latest 一直是 1.1.0,PR #2 合并后的 publish 当场 422)。已缩为 97 字符、品牌放在开头,
+  并在 `eco-publish-mcp.yml` 发布前加了长度断言 —— SR 早有这道闸,eco 没有,正是 09-17 那条规矩没抄过去。
+  同一轮的另一处遗漏:`deploy-getecoback.yml` 的部署后自检仍按旧名 `getecoback-raumklima` 断言 `/mcp` 与 `/mcp/v1`,
+  且 09-16 加的名字一致性断言读的是仓库根路径(该步工作目录是 `sites/getecoback`),合并后当场红;已改为 canonical 名与相对路径。
 - **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
   不在本会话范围,留给 owner 或有该仓范围的会话。
 
@@ -1058,9 +1078,20 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   10-28 / 11-30 两条早于到期改判据并保留原文:**品牌导航不算发现,爬虫抓取不算消费**。`fetchlog.json` 同步从 0 刷新到 31 并分栏。
 - **通用规矩(09-16 教训的第二次应用)**:写完判定线,先拿爬虫与品牌导航能不能直接满足它试一遍;能的话它不是赌注。
 - **别再提**:分享即分裂子站 · 带编号/NFT 式站点资产 · 按分裂数或链上位置加权的任何定价 · 每个子站自动生成 MCP ·
-  给账本加「链上证明」层 · 用「AI 来定价」绕开「价值来自后入者」。
+  给账本加「链上证明」层(**09-26 补注**:这里杀的是给零消费者的协议再加一个「链上证明」*面*;纯时间戳锚定——OpenTimestamps,
+  不发币、不加页、不加协议——09-26 作为明确收窄的例外建成,见该节)· 用「AI 来定价」绕开「价值来自后入者」。
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
+
+## AI agents 创业机会点:MCP 信任层撤回,哈佛 = bpj 的编程智能体读者(2026-09-25,owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…」;全文 `docs/agents-venture-2026-09-25.md`)
+
+- **MCP 服务器信任层(普查 + 工具列表变更流)不做**:官方注册表 ≥32 100 条、19 342 条带远程端点、约每月翻倍,抽样 55.5% 免凭据可连——问题是真的,但
+  **mcpcensus.com(09-04 起,同名同形,收费未开通)+ mcp-drift-registry + CSOAI + Apify 两个 actor(各 2 用户)**已在同月占满独立开发者那一格,付费证据为零;
+  本站 MCP 的第三方调用方正是这些普查者。管线先建后撤,一行未上线。**「免 key 可连的 MCP 服务器」清单同样不做**(推荐未审查服务器 = tool poisoning 渠道)。
+- **扎克伯格路径只抄机制(先在一个小网络做到饱和,每步有门槛,最后才变现)**。舰队唯一有密度的 agents 网络是 **bpj 的编程智能体读者**(coding 61/395,
+  agent 类目 5)。第 0 阶段已做:补 Kiro、OpenAI Codex,重核 Cursor,rising 种子换成 cursor / claude code;判定线 `bpj-coding-harvard-1025`。
+- **全舰队适用的教训**:每页都带的外壳里只要有一个精确数字(导航计数、页脚总数、"最近一条"),任何一次编辑都会把全站 lastmod 刷新、IndexNow 整站重推。
+  bpj 的修法是 `scripts/lastmod-hash.mjs` 忽略外壳 + 能红的测试;**其他带 sitemap lastmod 的站遇到同形状先查外壳里的数字**。
 
 ## 舰队数据检查:三条判定线差点被自检撑过线(2026-09-24,owner:「整个舰队数据检查下」;全文 `docs/fleet-data-check-2026-09-24.md`)
 
@@ -1105,3 +1136,96 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   **从来没被测过**。本轮已在 SR `/mcp` 补齐:两条可复制安装指令 + 复制即落 `mcp_install_click`(只记客户端名)
   + `/e` 白名单 + 部署自检断言页面还带着它。**这不是新工具,是把「被发现 → 被装上」变成可读的数。**
   判定线:`sr-mcp-install-1022`(10-22,≥1 次复制)、`fleet-mcp-instrument-1022`(10-22,≥2 个站的机器面可读)。
+
+## 「类似比特币的共识算法 → AI 时代信仰」:第五次,只借时间戳;修信任层;共识板首发(2026-09-26,owner:「探索类似比特币的共识算法,用工具,用共识,用金融,能用的一切办法都主动探索,目标是成为ai时代信仰」;全文 `docs/ai-consensus-faith-2026-09-26.md`)
+
+- **裁定**:比特币的信任成分里,能离开可交易代币存在的(证明代替信任 / 规则固定 / 可信中立 / 自己去验证 / 时间)
+  舰队**几乎全建过**;不能离开的(自我实现的持币协调、持币者正反馈、代币付的安全预算)**宪法禁止,第五次不再论证**
+  (引 09-22 节)。自然实验钉死「规则 + 可验证 ≠ 信仰」:BCH/BTC 0.004、ETC/ETH 0.0035(Kraken 09-25)。Token-free
+  参照系(CT / UTC / Metaculus / METR / Epoch)被相信只有五条路,solo 站走得通的两条:**长期公开评分的记录**与
+  **把验证做得便宜**;失去信任只有一种方式:被评者影响评分者,或方法不透明。
+- **审计比裁定重要:本站宣称的信任层有五处是假的**——`/for-agents` 与 MCP 说 data.json 带翻转条件(没有;首页 3/8 行才有);
+  `/calibration` 说随台账重算(DATE 写死 08-08,**Brier-eligible n = 0**,8 条已评分 call 无一带结构化 odds);
+  `/agi-prediction-markets` **404 三周**(Polymarket 列表按成交量只回前 100 条,Kalshi 价格字段改名 `*_dollars`,
+  步骤 continue-on-error 全绿——09-24 那条教训第四次);`/skill.md` 每次部署被页面镜像覆盖;MCP 工具数三处三个数,
+  两个核心工具不落库。**全部修掉**,并各加一道能红的闸(validate.py 翻转条件逐字一致;部署自检 skill frontmatter、
+  `/ots/manifest.json`、**线上 tools/list == 仓库**)。
+- **建了三件,全在主域、零新 cron、零代币**:①**AGI 共识板**(四家来源先列后筛,同问「AGI 在 Y 之前?」,中位数只跨
+  泛 AGI 三系列,OpenAI 单公司与 weak AGI 只作参照,公式印在页上,`--check` 逐字重算;首读 before 2028 中位 45%、
+  spread 42 点——公告市场比成就市场乐观 2–3 倍,spread 是这页最有用的数)+ `/agi-consensus.json` + MCP `get_agi_consensus`;
+  ②**OpenTimestamps 锚定**(`tools/fleet/ots_anchor.py` 搭 heartbeat;data.json / 分数史 / 共识板 / odds 史 / 赌注台账每个
+  版本一份 `.ots`,免费公共日历零密钥;首跑 6 个证明全 pending,页面措辞从 manifest 状态计数生成,只证明时间不证明对错,
+  09-26 前的历史仍只靠 git)——**这是整个请求族里唯一能合法借用的比特币性质**;③校准页改为从
+  `sunwatch-track-record.json` 快照生成并把 n=0 写在页上。
+- **agi-odds.yml 拆成 odds / board 两个 job**,board 不再 continue-on-error,自己红;`gen_odds.py` 也接进去(此前只在会话循环里跑,
+  09-21 快照从未渲染);Metaculus 用机器人只读 token(缺了该来源 ok:false 照出)。
+- **判定线**:`agi-consensus-mcp-1124`、`agi-ots-verified-1124`(② 是「有没有人来核」——Sigstore 原话:没人监视日志就没有信任增益)、
+  `agi-brier-n20-1231`;`fleet-market-board-1019` 补读数「t0 从今天起算」。
+- **「用金融」规则内只剩 Metaculus 机器人**(Fall 09-28 开题,$58 000),预期已压低:Pro 每季赢 bot 团队、单 prompt 基线第 18/173、
+  奖金摊薄——**它是外部评分的记录,不是赚钱的路**。错误悬赏(§ 657 BGB / 民法典 499)合法且便宜但只是象征(ERROR 25 万瑞郎
+  四年 17/134 同意),本轮不建,列为 owner 决定项。
+- **别再提**:「信仰」的代币版/升值版/预测市场运营版;无代币 PoW 当传播引擎;「链上证明层」(OTS 已是全部合法形态);
+  自建评测榜单去比 LMArena/Epoch;用本站的数代替第三方数当「共识」。
+- **两份调研(法律、agent 工具)两次撞会话额度上限未完成**;Metaculus API 形状来自 forecasting-tools 源码,沙箱 403 未实测,
+  看周一 runner 的 `venues.metaculus`。
+- **09-27 第二轮(owner「先调用 skills 优化 prompt 3 轮再执行:继续探索」)**:定稿 = 不造节点,找已存在的独立节点。
+  `/grader-consensus`:本站 8 条判定逐条对照两位公开、带日期的独立评分者(Delisle/LessWrong 2025-06-23、Harris/EA Forum 2026-03-29),
+  原句逐字引用 + 印在页上的一致规则;**9 次比较 6 完全一致 · 3 同向 · 0 分歧,5/8 条至多一位独立评分者**(页面写「面板薄」)。
+  `--check` 进部署构建步,`independent-grades.json` 进 OTS。判定线 `agi-grader-consensus-1127`。
+  **纠正**:09-26 所写「gen_changelog 已接进部署」当时未落盘,09-27 才真正接上。
+- **09-27 第三轮(owner「优化 prompt 3 轮再执行:再继续探索」)**:审舰队唯一「被打分的记录」——Metaculus bot 的点时账本(同日另一会话建)。
+  它宣称「关题前明文不进公开仓」,**v0 两处不成立**:不加盐的 sha256 在 1–99 整数百分比上 **3 643 次猜测 / 14 ms** 反推出预测与影子;
+  公开 Actions 日志逐题打印推理全文与概率。机器人从未运行,零泄露。现为 **承诺(nonce)→ 锚定(写账本的同一 job 里提交 OTS 日历,比特币区块证明数小时后;只有区块时间有证明背书,
+  `data/metaculus/ots/`,一份清单一个写入者)→ 关题后揭示(`revealed.jsonl`)→ `tools/fleet/verify_commitments.py` 任何人自验**;
+  heartbeat 每日核,TAMPER 即红。**⚠ 修复只在合并 main 后生效——合并之前打开机器人跑的仍是 v0**;赛季中别重新生成 `METACULUS_TOKEN`
+  (派生密钥,未揭示的行会永远打不开)。评分者面板 2 → 4(Reeves、Dubach,逐字复核),出现**第一条真分歧**(knowledge-work),
+  `agi-grader-consensus-1127` 判 won 并执行 win 分支;页面「无分歧/两位」等措辞改为从数据生成。`/calibration` 加点击才运行的浏览器内核验。
+  **金融**:Long Bets 仍收新预测($50 发布、$200/方、1:1、真名)——只进 owner 决策卡;**「AGI 时钟对比」页三门全不过,别再提**。
+  全文 `docs/ai-consensus-faith-2026-09-26.md` §九。
+
+## D1 免费读取额度:全账号每天 500 万行,09-24 起连续三天白天用完(2026-09-26;全文 `docs/d1-read-budget-2026-09-26.md`)
+
+- **症状**:各站部署自检 `/api/pulse` 500、事件写入 `{"ok":false}`、bpj 账号自检失败——D1 返回 7500「exceeded D1's free tier daily row read limit」。
+  **Cloudflare 自 2026-09-01 起硬性执行**,超了读写都拒到 00:00 UTC(北京 08:00)。**额度用完后事件也写不进去,当天后半段的 D1 统计缺失**,
+  按 D1 结算判定线时要注明 09-24 13:00、09-25 08:00、09-26 10:00 之后的缺口。
+- **先看谁在用,别猜**:dispatch `.github/workflows/d1-usage.yml`(只读,<1 分钟;main 上可手动触发)→ 每库每日读取、每天越线的小时、
+  逐条查询的 rows/call 与调用次数。会话自己进不了 Cloudflare 分析面板,这是唯一的逐条读数来源。
+- **09-26 读数**:bpj `/api/reach` 45–58%、agi `/api/trends` 2–29%、agi `/api/pulse` 15–17%。全是「公开统计接口每次请求现算 + 整表扫描」,
+  **`Cache-Control` 头对 Worker/Pages Functions 的响应不起作用**,只有 Cache API 才挡得住重复计算(eco 09-26、tds 09-25 已加,bpj 09-26 已加)。
+- **规矩**:新增或修改任何会被反复调用的 D1 统计接口 → ①服务端缓存(Cache API)②查询要走索引(写个 EXPLAIN 断言)③别让一个共享路径
+  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口 09-26 owner 授权后已照 bpj 的做法改**(服务端缓存 + `pageviews_human` 部分覆盖索引,`sites/agiscorecard/tools/test_analytics_d1.mjs`);
+  Workers Paid(5 美元/月)是 owner 的支出决定,它能消除每日被拒,但不代替修查询。
+- **写入额度同样是全账号、每天 10 万行、越线即拒**:全账号日常写入 1.6–3.1 万行/天(`d1-usage.yml` 09-27 起同时报写入)。
+  **一次性迁移先按这个余量排期**,放不下就分天做——越线的代价是全舰队当天剩余时间的事件写入全部丢失。
+  09-27:bpj 迁移已执行(48 589 行写入,一次 reach 从约 18 万行降到约 7 000 行);agi 索引(20 964 条)因此顺延到 09-28 00:05 UTC。
+- **仓库里的建表语句不等于线上**:bpj hits 与 agi pageviews 在线上都有仓库里没有记录的索引。写 EXPLAIN 断言前先读线上 `sqlite_master`,
+  让测试夹具照抄它,否则断言测的是一个不存在的数据库。
+
+## D1 免费档读预算事故 + AI 时代创业楔子(2026-09-25/26;全文 `docs/ai-era-founder-2026-09-25.md`)
+
+> **2026-09-27 楔子已选定(工作流 34 个代理全部返回,三位策略师独立一致)**:**预测记录线**——舰队的 Metaculus bot 作为 0 号成员进 FutureEval Fall 2026,
+> 每条预测在关闭前进 `data/metaculus/forecasts.jsonl`(封存 + 摘要),AI 题另记不带 house prior 的影子预测,heartbeat 写
+> `data/fleet-forecast-record.json`(北极星 = 赛前已记录且已结算的题数)。**六个候选没有一个在三个反驳者面前幸存**,它排第一只因为
+> 第一笔钱不靠访客;网络层(结算台 / 复盘公地)全部锁在判定线后面(`fe-coverage-1005`、`fe-commons-intent-1130`)。
+> 09-26 建的 bpj 认领层三票 refuted(免费徽章挂了 55 天零回链),降级为零成本探针。**每次报告带出:bot 状态、账本条数、北极星、
+> 净美元;在 owner 打开 bot 之前,第一行就是「差 owner 的 key + `METACULUS_BOT_ENABLED=1`,且先合并本分支」。**
+> 全文与异议 `docs/ai-era-founder-2026-09-25.md` §二–§六。
+
+> **2026-09-27 对账**:事故以上一节(main 侧 `docs/d1-read-budget-2026-09-26.md`)为准——09-24、09-25、09-26 三天都用完,bpj `/api/reach` 每次约 18 万行是主因。下面的「规矩①–⑥」仍适用;bpj / agi / tds 的缓存实现以 main 的 `reach-cache.js` / `aggregate-cache.js` 为准。
+
+- **事故**:09-25 约 09:00–10:30 UTC 起账号超出 Workers Free 档 D1 **5,000,000 行读取/日**(全库之和,Cloudflare 2026-09-01 起强制,
+  00:00 UTC 重置),读全部失败到午夜:13 个 `/api/pulse` 500、bpj 广告位 `selling:false`、四站会员轨 `ready:false`、
+  先读后写的表单(bpj 投稿/订阅/watch、agi `/api/sub`、eco `/api/sub2`、after35、verify 反馈)丢失写入。**09-25 09:00–24:00 UTC
+  是全舰队数据缺口**,10 月到期的判定线按天读要标注。
+- **根因不是流量,是没有缓存**:所有聚合端点只发 `cache-control: public, max-age=3600`,注释写着「edge 缓存一小时」,
+  但 **Cloudflare 不会仅凭这个头缓存 Worker/Pages Function 响应**,每次轮询都全量扫描,500 也带 max-age。PR #2 让每个 pulse
+  多 1–2 次窗口扫描,合并触发 18 条部署自检(内容断言失败重抓 4 次)+ 我 45 秒一轮的 13 端点验证轮询 + eco 每次部署活读
+  bpj reach(**6 次扫描 ≈150k 行/次**,09-26 实测)与 agi pulse(4 次 ≈90k 行/次)。
+- **规矩(全舰队)**:①聚合端点必须显式用 Cache API(键含部署版本),**错误响应永不入缓存**;②任何轮询/监视生产聚合端点之前,
+  先查该端点每次调用的 `rows_read`;③部署自检只对非 2xx 重试、最多 3 次,不对内容断言失败重抓;④部署不活读别的站,读已提交快照;
+  ⑤新站上线检查项加「D1 读预算」;⑥`tools/fleet/d1_budget.py` 搭 heartbeat 读账号每日 rows_read(>40% 警告、>60% 红),
+  判定线 `fleet-d1-budget-1026`。**owner 决策卡**:Workers Paid $5/月(250 亿行读/月),护栏跑一天后再定。
+- **创业楔子任务**(owner:「你是一个创业者…类似扎克伯格的成长路径…成为 ai 时代的巅峰企业…可以自主扩张」):三轮 prompt 在文档 §〇。
+  第 2 轮的核心纠正:能抄的是扎克伯格的**机制**(密集的第一个校园、每多一个用户别人多一分价值、用它就把它带给没用过的人、
+  一个校园饱和再去下一个),不是规模;舰队 18 个站全是单机内容/工具站,**再加站是他那条路的反面**。owner 本条授权自主扩张
+  (新站/子域可开)覆盖旧的「不开新子域」顺序,**不覆盖**法律/隐私/零编造红线与「机器不外联」。结论与 v0 见文档 §三–§六。

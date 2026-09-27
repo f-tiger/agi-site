@@ -7,13 +7,42 @@ import { fixture } from './fixtures.mjs';
 import { readPdf } from '../../document-assets/pdf-reader.mjs';
 import { auditDocument, compareDocuments, structureFacts, validateFiles, csvCell, auditExport, LIMITS } from '../../document-assets/core.mjs';
 import { onRequestPost, safeRef, databaseFailure } from '../../functions/api/doc-events.js';
-import { onRequestGet, aggregateDocuments, DOCUMENT_QUERY } from '../../functions/api/document-stats.js';
+import { onRequestGet, aggregateDocuments, DOCUMENT_QUERY, referralSource } from '../../functions/api/document-stats.js';
+import { changedUrls } from '../indexnow.mjs';
 import { cachedAggregate } from '../../lib/aggregate-cache.js';
 import { copy } from './copy.mjs';
 import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
 import { fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, validateDeliveryFiles } from '../../document-assets/delivery-core.mjs';
 import { deliveryCopy } from './delivery-copy.mjs';
+import { parseReference, referenceURL, referenceEmbed, compareReference } from '../../document-assets/verify-core.mjs';
+import { verifyCopy } from './verify-copy.mjs';
+import { HUB_TASKS, hubEvent } from '../../document-assets/hub-core.mjs';
+import { spawnSync } from 'node:child_process';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 const parse = async (kind, options = {}) => readPdf(await fixture(kind), { library:pdfjs, ...options });
+test('search and AI attribution remains per event, excludes samples and does not trust lookalike hosts', () => {
+ assert.equal(referralSource('chatgpt.com'),'ai_referral');
+ assert.equal(referralSource('gemini.google.com'),'ai_referral');
+ assert.equal(referralSource('www.google.com'),'search_referral');
+ assert.equal(referralSource('chatgpt.com.evil.example'),'other_referral');
+ assert.equal(referralSource('notchatgpt.com'),'other_referral');
+ assert.equal(referralSource(''),'direct_or_unknown');
+ const d=aggregateDocuments([
+  {d:'2026-09-27',ev:'doc_complete',path:'/pdf-accessibility-checker',ref:'chatgpt.com',n:2},
+  {d:'2026-09-27',ev:'doc_sample',path:'/pdf-accessibility-checker',ref:'chatgpt.com',n:10},
+  {d:'2026-09-27',ev:'bot',path:'/pdf-accessibility-checker',ref:'OAI-SearchBot',n:3}
+ ]);
+ assert.deepEqual(d.source_events,[{source:'ai_referral',events:{doc_complete:2}}]);
+ assert.deepEqual(d.crawler_agents,[{claimed_agent:'OAI-SearchBot',n:3}]);
+ assert.equal(d.excluded.doc_sample,10);
+});
+test('IndexNow maps only changed publishable TDS content to canonical URLs', () => {
+ assert.deepEqual(changedUrls(['sites/thedollscout/index.html','sites/thedollscout/de/index.html','sites/thedollscout/zh/pdf-to-text.html','sites/thedollscout/zh/pdf-to-text.html','sites/thedollscout/document-assets/sample-results.json','sites/thedollscout/content/traffic.json','sites/thedollscout/scripts/draft.html','sites/getecoback/index.html']),[
+  'https://thedollscout.com/','https://thedollscout.com/de/','https://thedollscout.com/zh/pdf-to-text','https://thedollscout.com/document-assets/sample-results.json'
+ ]);
+});
 test('compressed real PDF: text, title and /Lang are actually parsed', async () => {
   const report = await parse('after');
   assert.equal(report.pageCount, 3); assert.equal(report.language, 'en-US');
@@ -119,6 +148,20 @@ test('events store only bounded metadata and strip referrer paths', async () => 
     assert.equal((await event({ p:'/zh/pdf-batch-audit', e, summary:'private' })).bound.length,0);
   }
 });
+test('homepage choices accept only six fixed tasks on localized home paths and remain separate from completions', async () => {
+  for (const task of Object.keys(HUB_TASKS)) for (const p of ['/','/de/','/zh/']) {
+    const e=hubEvent(task);
+    assert.equal((await event({p,e})).bound.length,1);
+    for (const invalid of [{p:p+HUB_TASKS[task],e},{p,e:e+'_private'},{p,e,filename:'private.pdf'},{p:p+'?name=private',e}]) {
+      assert.equal((await event(invalid)).bound.length,0);
+    }
+  }
+  const rows=[['doc_view','/',3],['doc_view','/zh/',2],['doc_view','/compare-pdf-text',4],['doc_view','/methodology',7],['doc_hub_open_compare','/',2],['doc_hub_open_verify','/zh/',1]].map(([ev,path,n])=>({d:'2026-09-27',ev,path,n,ref:''}));
+  const d=aggregateDocuments(rows);
+  assert.equal(d.homepage_views,5); assert.equal(d.dedicated_tool_views,4); assert.equal(d.tool_views,9);
+  assert.deepEqual(d.homepage_selections,{audit:0,batch:0,text:0,compare:2,verify:1,delivery:0});
+  assert.equal(d.events.doc_complete,undefined);
+});
 test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real completion', async () => {
   const body = { p:'/', e:'doc_complete' };
   for (const headers of [{ origin:'https://elsewhere.example' }, { 'user-agent':'HeadlessChrome' }, { dnt:'1' }, { 'x-probe':'1' }]) assert.equal((await event(body, headers)).bound.length,0);
@@ -185,4 +228,49 @@ test('delivery demand stays categorical and samples stay separate; storage failu
   assert.equal(databaseFailure(Error('daily read quota exceeded')),'daily_limit');
   assert.equal(databaseFailure(Error('internal error; reference=PRIVATE')),'internal');
   assert.equal(databaseFailure(Error('no such column: PRIVATE')),'schema');
+});
+test('portable reference ignores names and notes, matches renamed bytes and rejects altered bytes',async()=>{
+ const original=await fingerprint(new File(['abc'],'PRIVATE-CONTRACT.txt'));
+ const url=referenceURL({...original,project:'SECRET'},'zh');
+ assert.ok(!url.includes('PRIVATE')&&!url.includes('SECRET'));
+ assert.equal(new URL(url).search,'?via=recipient');
+ assert.equal(shareUrl(url),'https://thedollscout.com/zh/verify-file?via=share');
+ const expected=parseReference(url);
+ assert.equal(compareReference(expected,await fingerprint(new File(['abc'],'renamed.txt'))),true);
+ assert.equal(compareReference(expected,await fingerprint(new File(['abc\n'],'PRIVATE-CONTRACT.txt'))),false);
+ assert.equal(compareReference(expected,{...expected,bytes:4}),false);
+ assert.ok(referenceEmbed(original).includes('Check this file with TDS'));
+ assert.ok(recordHTML(deliveryRecord([original],{})).includes(referenceURL(original)));
+});
+test('reference parser rejects hostile origins, malformed hashes, versions and size overflow',()=>{
+ const r={sha256:'a'.repeat(64),bytes:3},url=referenceURL(r);
+ assert.deepEqual(parseReference(url),r);
+ assert.deepEqual(parseReference(new URL(url).hash),r);
+ for(const bad of [url.replace('thedollscout.com','evil.example'),url.replace('/verify-file','/not-a-tool'),url.replace('https:','javascript:'),url.replace('v1=','v2='),url.replace('.3','.03'),url.replace('.3','.20971521'),url.replace('.3','.-1'),url.replace('a'.repeat(64),'A'.repeat(64)),url+'%22><script>',url.replace('https://','https://user@')])assert.throws(()=>parseReference(bad));
+ assert.throws(()=>referenceURL({sha256:'a'.repeat(64),bytes:NaN}));
+ assert.throws(()=>referenceURL({sha256:'<script>',bytes:3}));
+ assert.throws(()=>parseReference('x'.repeat(513)));
+ assert.equal(parseReference(referenceURL({sha256:'a'.repeat(64),bytes:0})).bytes,0);
+});
+test('independent offline CLI agrees on match, mismatch and invalid reference',()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'tds-verify-')),file=path.join(dir,'example.txt');
+ try{
+  const cli=fileURLToPath(new URL('../../document-assets/verify-file-cli.mjs',import.meta.url));
+  const url=referenceURL({sha256:'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',bytes:3});
+  fs.writeFileSync(file,'abc');let out=spawnSync(process.execPath,[cli,file,url],{encoding:'utf8'});
+  assert.equal(out.status,0,out.stderr);assert.equal(JSON.parse(out.stdout).result,'match');
+  fs.writeFileSync(file,'abd');out=spawnSync(process.execPath,[cli,file,url],{encoding:'utf8'});
+  assert.equal(out.status,1);assert.equal(JSON.parse(out.stdout).result,'different');
+  assert.equal(spawnSync(process.execPath,[cli,file,url.replace('v1','v2')]).status,2);
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
+});
+test('recipient counters stay anonymous and never promote samples into completed checks',async()=>{
+ for(const e of ['doc_verify_recipient','doc_verify_match','doc_verify_share','doc_verify_embed']){
+  assert.equal((await event({p:'/verify-file',e})).bound.length,1);
+  assert.equal((await event({p:'/verify-file',e,hash:'private'})).bound.length,0);
+  assert.equal((await event({p:'/verify-file#private',e})).bound.length,0);
+ }
+ const result=aggregateDocuments([{d:'2026-09-25',ev:'doc_verify_sample',path:'/verify-file',ref:'',n:7},{d:'2026-09-25',ev:'doc_view',path:'/verify-file',ref:'',n:2}]);
+ assert.equal(result.excluded.doc_verify_sample,7);assert.equal(result.events.doc_verify_sample,undefined);assert.equal(result.tool_views,2);
+ for(const lang of ['de','zh'])assert.deepEqual(Object.keys(verifyCopy[lang]).sort(),Object.keys(verifyCopy.en).sort());
 });

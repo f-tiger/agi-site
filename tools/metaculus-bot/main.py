@@ -14,8 +14,18 @@ which Metaculus publishes for bot makers to copy. Fleet changes:
                    forecasts succeeded, so a broken key or a broken dependency
                    turns the GitHub run red instead of silently doing nothing.
   * --dry-run    — never publishes; used for local/CI smoke tests.
+  * public logs  — (2026-09-27) Actions logs of this public repo are world-readable
+                   while questions are still open, so research, reasoning and
+                   forecast values are logged only as ledger.redact(...) (length,
+                   no content), forecasting_tools' own INFO output is silenced,
+                   its value validators' lines (data_models) are dropped and every
+                   other library line keeps only its level, the library's report
+                   summary (which prints every prediction) is skipped, and a failed
+                   question is reported by exception type + HTTP status, never by
+                   message. BOT_LOG_PLAINTEXT=1 restores all of it on a private runner.
 
-Secrets: METACULUS_TOKEN is required. Nothing here writes to the repo.
+Secrets: METACULUS_TOKEN is required. The only repo writes are the sealed ledger
+lines (ledger.py), committed by the workflow.
 
 Models are pinned explicitly (see _llm_config). The 2026-09-07 first run proved
 why: left to its defaults, forecasting-tools picks `openai/gpt-4o-search-preview`
@@ -65,6 +75,8 @@ from forecasting_tools import (  # noqa: E402
     structure_output,
 )
 from forecasting_tools.data_models.forecast_report import ForecastReport  # noqa: E402
+
+import ledger  # noqa: E402  (point-in-time forecast ledger, 2026-09-27)
 
 logger = logging.getLogger(__name__)
 
@@ -134,6 +146,8 @@ def house_prior_block(question_text: str) -> str:
 
 
 class FleetForecastBot(ForecastBot):
+    _research_no_prior: dict = {}
+    _prior_used: dict = {}
     _max_concurrent_questions = 1
     _concurrency_limiter = asyncio.Semaphore(_max_concurrent_questions)
     _structure_output_validation_samples = 2
@@ -185,11 +199,24 @@ class FleetForecastBot(ForecastBot):
             else:
                 research = await self.get_llm("researcher", "llm").invoke(prompt)
 
-            research = (research or "") + house_prior_block(
-                f"{question.question_text}\n{question.background_info or ''}"
-            )
-            logger.info("Research for %s:\n%s", question.page_url, research)
+            # 2026-09-27: keep the research as it was before the house prior was appended, so a shadow
+            # forecast without the prior can be logged (never submitted) for the house-prior ablation.
+            block = house_prior_block(f"{question.question_text}\n{question.background_info or ''}")
+            key = getattr(question, "id_of_question", None) or question.page_url
+            self._research_no_prior[key] = research or ""
+            self._prior_used[key] = bool(block)
+            research = (research or "") + block
+            logger.info("Research for %s:\n%s", question.page_url, ledger.redact(research))
             return research
+
+    async def shadow_binary(self, question: BinaryQuestion) -> float | None:
+        """One forecast on the research WITHOUT the house prior. Logged, never submitted."""
+        key = getattr(question, "id_of_question", None) or question.page_url
+        research = self._research_no_prior.get(key)
+        if research is None:
+            return None
+        pred = await self._run_forecast_on_binary(question, research)
+        return float(pred.prediction_value)
 
     # ----------------------------------------------------------------- binary
     async def _run_forecast_on_binary(
@@ -229,7 +256,7 @@ class FleetForecastBot(ForecastBot):
             """
         )
         reasoning = await self.get_llm("default", "llm").invoke(prompt)
-        logger.info("Reasoning for %s: %s", question.page_url, reasoning)
+        logger.info("Reasoning for %s: %s", question.page_url, ledger.redact(reasoning))
         binary_prediction: BinaryPrediction = await structure_output(
             reasoning,
             BinaryPrediction,
@@ -237,7 +264,8 @@ class FleetForecastBot(ForecastBot):
             num_validation_samples=self._structure_output_validation_samples,
         )
         decimal_pred = max(0.01, min(0.99, binary_prediction.prediction_in_decimal))
-        logger.info("Forecasted %s: %s", question.page_url, decimal_pred)
+        # fixed width, so the length that redact() keeps says nothing about the value
+        logger.info("Forecasted %s: %s", question.page_url, ledger.redact("%.4f" % decimal_pred))
         return ReasonedPrediction(prediction_value=decimal_pred, reasoning=reasoning)
 
     # -------------------------------------------------------- multiple choice
@@ -290,7 +318,7 @@ class FleetForecastBot(ForecastBot):
             """
         )
         reasoning = await self.get_llm("default", "llm").invoke(prompt)
-        logger.info("Reasoning for %s: %s", question.page_url, reasoning)
+        logger.info("Reasoning for %s: %s", question.page_url, ledger.redact(reasoning))
         predicted_option_list: PredictedOptionList = await structure_output(
             text_to_structure=reasoning,
             output_type=PredictedOptionList,
@@ -298,7 +326,7 @@ class FleetForecastBot(ForecastBot):
             num_validation_samples=self._structure_output_validation_samples,
             additional_instructions=parsing_instructions,
         )
-        logger.info("Forecasted %s: %s", question.page_url, predicted_option_list)
+        logger.info("Forecasted %s: %s", question.page_url, ledger.redact(predicted_option_list))
         return ReasonedPrediction(prediction_value=predicted_option_list, reasoning=reasoning)
 
     # ---------------------------------------------------------------- numeric
@@ -358,7 +386,7 @@ class FleetForecastBot(ForecastBot):
             """
         )
         reasoning = await self.get_llm("default", "llm").invoke(prompt)
-        logger.info("Reasoning for %s: %s", question.page_url, reasoning)
+        logger.info("Reasoning for %s: %s", question.page_url, ledger.redact(reasoning))
         parsing_instructions = clean_indents(
             f"""
             The text given to you is trying to give a forecast distribution for a numeric question.
@@ -380,7 +408,7 @@ class FleetForecastBot(ForecastBot):
             num_validation_samples=self._structure_output_validation_samples,
         )
         prediction = NumericDistribution.from_question(percentile_list, question)
-        logger.info("Forecasted %s: %s", question.page_url, prediction.declared_percentiles)
+        logger.info("Forecasted %s: %s", question.page_url, ledger.redact(prediction.declared_percentiles))
         return ReasonedPrediction(prediction_value=prediction, reasoning=reasoning)
 
     # ------------------------------------------------------------------- date
@@ -439,7 +467,7 @@ class FleetForecastBot(ForecastBot):
             """
         )
         reasoning = await self.get_llm("default", "llm").invoke(prompt)
-        logger.info("Reasoning for %s: %s", question.page_url, reasoning)
+        logger.info("Reasoning for %s: %s", question.page_url, ledger.redact(reasoning))
         parsing_instructions = clean_indents(
             f"""
             The text given to you is trying to give a forecast distribution for a date question.
@@ -460,7 +488,7 @@ class FleetForecastBot(ForecastBot):
             Percentile(percentile=p.percentile, value=p.value.timestamp()) for p in date_percentile_list
         ]
         prediction = NumericDistribution.from_question(percentile_list, question)
-        logger.info("Forecasted %s: %s", question.page_url, prediction.declared_percentiles)
+        logger.info("Forecasted %s: %s", question.page_url, ledger.redact(prediction.declared_percentiles))
         return ReasonedPrediction(prediction_value=prediction, reasoning=reasoning)
 
     def _create_upper_and_lower_bound_messages(
@@ -641,10 +669,17 @@ def diagnose(bad: list) -> None:
 
     一屏 tenacity/litellm 的 traceback 里,真正有用的只有一行。首跑那次是
     「no allowance for model」,而它离「去申请额度或换模型」还隔着二十层调用栈。
+
+    2026-09-27: the message text is read here but never printed (only the canned hints below are), and
+    status codes come from exception attributes and type names, not from digits in the text: a "401" or
+    "429" inside a quoted numeric sample would otherwise pick which hint prints.
     """
     blob = " ".join(str(e) for e in bad).lower()
     if not blob:
         return
+    leaves = [leaf for e in bad for leaf in ledger.exception_leaves(e)]
+    statuses = {ledger.http_status(leaf) for leaf in leaves}
+    names = " ".join(ledger.exception_label(leaf) for leaf in leaves).lower()
     if "allowance" in blob or "insufficient_quota" in blob or "quota" in blob:
         print("\n诊断:Metaculus 代理的赞助额度是**按模型名**发的,当前用的模型没有额度。")
         print("  三条出路,任选其一:")
@@ -652,11 +687,88 @@ def diagnose(bad: list) -> None:
         print("  2) 按 Metaculus 说明发邮件给 ben@metaculus.com 申请额度(说明 bot 用途与所需模型);")
         print("  3) 设 Secret OPENROUTER_API_KEY(免费额度表单在 tools/metaculus-bot/README.md),")
         print("     设了之后本脚本自动改走 openrouter/openai/gpt-4o。")
-    elif "unauthorized" in blob or "401" in blob or "invalid token" in blob:
+    elif 401 in statuses or "authenticationerror" in names or "unauthorized" in blob or "invalid token" in blob:
         print("\n诊断:METACULUS_TOKEN 无效或已过期 —— 去 Settings → My Forecasting Bots 重新 Reveal API Key。")
-    elif "rate limit" in blob or "429" in blob:
+    elif 429 in statuses or "ratelimiterror" in names or "rate limit" in blob or "too many requests" in blob:
         print("\n诊断:被限流。这一轮不用管,下一次 cron 会重试;连续多轮如此再调低并发。")
 
+
+
+class _SealLibraryText(logging.Filter):
+    """Public-log filter for forecasting_tools records. Installed on the root handlers because a logger's
+    own filters never see records from its child loggers.
+
+    forecasting_tools.data_models.* records are dropped outright: they are the validators that clamp or
+    normalise a value, so where they fire is the value. BinaryPrediction warns from binary_report:29 for
+    a sample below 0.001 and from :34 above 0.999, and the message length told 0.0 from 0.0005 (2026-09-27
+    review). Every other library record keeps only its level: logger name, module, line, function, path,
+    text, length and traceback all become constants, so two records from different places look alike.
+    Why a question failed is printed by summarize() from exception types and HTTP status instead."""
+
+    SEALED = "[library log sealed]"
+    # 2026-09-27 integration review: three more channels carry model text while a question is open.
+    # LiteLLM's loggers ("LiteLLM", "LiteLLM Router", "LiteLLM Proxy") have their OWN stderr handlers, so
+    # a filter on the root handlers never sees what they print; asyncio prints "Task exception was never
+    # retrieved" with the exception's repr; and Python warnings (pydantic serializer warnings raised
+    # inside LiteLLM quote the model's reply, "Probability: ZZ%" included) bypass logging unless
+    # captured (_configure_logging turns captureWarnings on). These keep their level, their tree name
+    # and, for a record with a traceback, the exception class — never text, location or length.
+    OTHER_TREES = ("LiteLLM", "litellm", "asyncio", "py.warnings")
+
+    @staticmethod
+    def _in_tree(name: str, root: str) -> bool:
+        return name == root or name.startswith(root + ".") or name.startswith(root + " ")
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        if record.name == "forecasting_tools" or record.name.startswith("forecasting_tools."):
+            if record.name.startswith("forecasting_tools.data_models"):
+                return False
+            record.name = "forecasting_tools"
+            record.msg, record.args = self.SEALED, ()
+            record.module = record.filename = record.funcName = record.pathname = "forecasting_tools"
+            record.lineno = 0
+            record.exc_info = record.exc_text = record.stack_info = None
+            return True
+        tree = next((t for t in self.OTHER_TREES if self._in_tree(record.name, t)), None)
+        if tree is None:
+            return True
+        exc = record.exc_info[0] if record.exc_info and record.exc_info[0] else None
+        record.name = tree
+        record.msg, record.args = self.SEALED + (" (%s)" % exc.__name__ if exc else ""), ()
+        record.module = record.filename = record.funcName = record.pathname = tree
+        record.lineno = 0
+        record.exc_info = record.exc_text = record.stack_info = None
+        return True
+
+
+def _configure_logging() -> None:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    for noisy in ("LiteLLM", "httpx", "httpcore", "urllib3"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
+    if not ledger.log_plaintext():
+        # 2026-09-27: the library logs research, rationales and the aggregated prediction at INFO, and
+        # some of its WARNING/ERROR lines quote parsed samples (structure_output's "outputs are not the
+        # same … First Sample: …") or fire only for extreme values (binary_report). This log is public
+        # while the question is open.
+        logging.getLogger("forecasting_tools").setLevel(logging.WARNING)
+        logging.captureWarnings(True)  # warnings.warn → logger "py.warnings" → sealed below
+        seal = _SealLibraryText()
+        for handler in logging.getLogger().handlers:
+            handler.addFilter(seal)
+        # loggers that print through their own handlers (LiteLLM installs one per logger at import,
+        # which has happened by now: forecasting_tools imports litellm)
+        for name, lg in list(logging.Logger.manager.loggerDict.items()):
+            if isinstance(lg, logging.Logger) and any(_SealLibraryText._in_tree(name, t) for t in
+                                                       ("forecasting_tools",) + _SealLibraryText.OTHER_TREES):
+                for handler in lg.handlers:
+                    handler.addFilter(seal)
+
+
+_FAILED_URL = re.compile(r"question url: '(https://www\.metaculus\.com/[A-Za-z0-9/_\-]+)'")
 
 
 def summarize(reports: list, publish: bool, mode: str) -> int:
@@ -670,7 +782,12 @@ def summarize(reports: list, publish: bool, mode: str) -> int:
         except Exception:
             print("  ✓ (report without url)")
     for e in bad:
-        print(f"  ✗ {type(e).__name__}: {str(e)[:200]}")
+        # 2026-09-27: type + HTTP status of every leaf, never the message (it can quote a parsed sample,
+        # and the library's own prefix used up the first 200 characters anyway). The url is public.
+        url = _FAILED_URL.search(str(e))
+        print(f"  ✗ {url.group(1) + ' ' if url else ''}{type(e).__name__} → {ledger.failure_leaves(e)}")
+        if ledger.log_plaintext():
+            print(f"    {str(e)[:2000]}")
     diagnose(bad)
     print("=" * 72)
     # Red-on-empty: questions existed, every one failed → make the run fail.
@@ -719,14 +836,7 @@ def main() -> int:
     run_mode: RunMode = args.mode
     publish = not args.dry_run and os.getenv("METACULUS_BOT_PUBLISH", "1") != "0"
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-    for noisy in ("LiteLLM", "httpx", "httpcore", "urllib3"):
-        logging.getLogger(noisy).setLevel(logging.WARNING)
-
+    _configure_logging()
     check_environment()
 
     bot = FleetForecastBot(
@@ -747,13 +857,29 @@ def main() -> int:
     # variable change, not a code change; MiniBench keeps the library constant unless overridden.
     main_id = _tournament_id("BOT_TOURNAMENT_ID", 33121)
     mini_id = _tournament_id("BOT_MINIBENCH_ID", client.CURRENT_MINIBENCH_ID)
-    cap = float(os.getenv("BOT_MAX_USD_PER_RUN") or "3")
-    logger.info("tournaments: main=%s minibench=%s; spend cap per run: $%.2f", main_id, mini_id, cap)
+    per_run = float(os.getenv("BOT_MAX_USD_PER_RUN") or "3")
+    # 2026-09-27: a daily ceiling on top of the per-run one (6-hourly cron × $3 could still reach $12/day;
+    # the cash lens of the founder review made net USD a guard metric). Spend is read from the committed
+    # run log, so the cap survives across stateless runners. Dry runs never count and are never capped.
+    per_day = float(os.getenv("BOT_MAX_USD_PER_DAY") or "4")
+    runs_log = ledger.read_runs()
+    today = ledger.utc_now().date().isoformat()
+    cap = ledger.budget_for_run(per_run, per_day, runs_log, today) if publish else per_run
+    logger.info("tournaments: main=%s minibench=%s; spend cap this run: $%.2f (per run $%.2f, per day $%.2f, spent today $%.2f)",
+                main_id, mini_id, cap, per_run, per_day, ledger.spent_on(today, runs_log))
+    n_main = 0
+    cm = None
+    if run_mode == "tournament" and cap <= 0:
+        print("::notice::daily spend ceiling reached ($%.2f); skipping this run" % per_day)
+        ledger.append_run(ledger.run_line(run_id=_run_id(), mode=run_mode, published=publish, spend_usd=0,
+                                          touched_main=0, touched_mini=0, ok=0, failed=0, skipped="daily_cap"))
+        return 0
     if run_mode == "tournament":
         with _spend_cap(cap) as cm:
             reports = asyncio.run(bot.forecast_on_tournament(main_id, return_exceptions=True))
             n_main = len(reports)
             reports += asyncio.run(bot.forecast_on_tournament(mini_id, return_exceptions=True))
+            shadows = asyncio.run(_shadows(bot, reports))
         logger.info("questions touched: main=%d minibench=%d; spend this run: %s", n_main, len(reports) - n_main, _spend_str(cm))
         if n_main == 0:
             print("::warning::0 questions came back for the main tournament id %s — either nothing new (skip_previously_forecasted) or the season id is stale; check BOT_TOURNAMENT_ID" % main_id)
@@ -762,13 +888,96 @@ def main() -> int:
     else:
         reports = asyncio.run(bot.forecast_on_tournament("bot-testing-area", return_exceptions=True))
 
+    if ledger.log_plaintext():
+        try:
+            bot.log_report_summary(reports)
+        except Exception as e:
+            # forecasting-tools 在有任何失败时会 raise,于是我们自己的诊断和退出码永远轮不到跑
+            # —— 首跑看到的就是一屏 traceback 而不是一行「问题在这」。它只是打印器,不该决定命运。
+            logger.warning("log_report_summary raised (%s); continuing to our own summary", type(e).__name__)
+    else:
+        # 2026-09-27: it prints every rationale and prediction; summarize() below prints URLs and counts only.
+        logger.info("library report summary skipped: this Actions log is public (BOT_LOG_PLAINTEXT=1 shows it on a private runner)")
+    code = summarize(reports, publish, run_mode)
+    if run_mode == "tournament":
+        code = _record(bot, reports, shadows if "shadows" in locals() else {}, publish, run_mode, n_main, cm, main_id, mini_id, code, runs_log, today)
+    return code
+
+
+def _run_id() -> str:
+    return os.getenv("GITHUB_RUN_ID") or "local-" + ledger.utc_now().strftime("%Y%m%dT%H%M%S")
+
+
+def _model_name() -> str:
     try:
-        bot.log_report_summary(reports)
-    except Exception as e:
-        # forecasting-tools 在有任何失败时会 raise,于是我们自己的诊断和退出码永远轮不到跑
-        # —— 首跑看到的就是一屏 traceback 而不是一行「问题在这」。它只是打印器,不该决定命运。
-        logger.warning("log_report_summary raised (%s); continuing to our own summary", type(e).__name__)
-    return summarize(reports, publish, run_mode)
+        llm = _llm_config().get("default")
+        return str(getattr(llm, "model", llm))[:80]
+    except Exception:
+        return "unknown"
+
+
+async def _shadows(bot: "FleetForecastBot", reports: list) -> dict:
+    """Shadow (no-house-prior) forecasts for binary AI questions where the prior was used.
+    Bounded by BOT_SHADOW_MAX per run and by the same spend cap; a failure only loses the shadow."""
+    limit = int(os.getenv("BOT_SHADOW_MAX") or "5")
+    out: dict = {}
+    for r in reports:
+        if len(out) >= limit:
+            break
+        if not isinstance(r, ForecastReport) or not isinstance(r.question, BinaryQuestion):
+            continue
+        key = getattr(r.question, "id_of_question", None) or r.question.page_url
+        if not bot._prior_used.get(key):
+            continue
+        try:
+            out[key] = await bot.shadow_binary(r.question)
+        except Exception as e:  # spend cap reached, model error — the submitted forecast is unaffected
+            logger.warning("shadow forecast skipped for %s (%s)", key, type(e).__name__)
+            break
+    return out
+
+
+def _record(bot, reports, shadows, publish, mode, n_main, cm, main_id, mini_id, code, runs_log, today) -> int:
+    """Append the ledger lines. Only published runs are recorded — a dry run proves plumbing, not a record."""
+    ok = [r for r in reports if isinstance(r, ForecastReport)]
+    bad = [r for r in reports if not isinstance(r, ForecastReport)]
+    signature = ""
+    if code != 0 and bad:
+        signature = ledger.failure_signature(bad[0])
+    try:
+        spend = float(cm.current_usage) if cm is not None and cm.current_usage is not None else None
+    except Exception:
+        spend = None
+    if not publish:
+        logger.info("dry run: %d forecast line(s) would be logged, %d with a shadow", len(ok), len(shadows))
+        return code
+    key = ledger.derive_key(os.getenv("METACULUS_TOKEN", ""))
+    if not key:
+        logger.warning("no METACULUS_TOKEN: forecasts are logged without a sealed payload (ablation impossible)")
+    model = _model_name()
+    rows = []
+    for idx, r in enumerate(reports):
+        if not isinstance(r, ForecastReport):
+            continue
+        q = r.question
+        qkey = getattr(q, "id_of_question", None) or q.page_url
+        rows.append(ledger.forecast_line(
+            question_id=getattr(q, "id_of_question", None), post_id=getattr(q, "id_of_post", None),
+            tournament=main_id if idx < n_main else mini_id,
+            kind=type(q).__name__, prediction=ledger.summarize_prediction(r.prediction),
+            shadow=shadows.get(qkey), house_prior_used=bot._prior_used.get(qkey, False),
+            model=model, run_id=_run_id(), commit=(os.getenv("GITHUB_SHA") or "")[:12], key=key,
+            page_url=getattr(q, "page_url", "") or ""))
+    ledger.append_forecasts(rows)
+    already = bool(signature) and ledger.failure_already_reported(runs_log, today, signature)
+    ledger.append_run(ledger.run_line(run_id=_run_id(), mode=mode, published=True, spend_usd=spend,
+                                      touched_main=n_main, touched_mini=len(reports) - n_main,
+                                      ok=len(ok), failed=len(bad), failure_signature=signature))
+    logger.info("ledger: %d forecast line(s), %d shadow(s), spend %s", len(rows), sum(1 for v in shadows.values() if v is not None), spend)
+    if already:
+        print("::warning::same failure as an earlier run today (%s); not turning this run red again" % signature[:80])
+        return 0
+    return code
 
 
 if __name__ == "__main__":

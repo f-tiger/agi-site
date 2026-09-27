@@ -11,5 +11,7 @@
   // every EN game page, /bench, /download and all GEO pages. With "none" the
   // worker's rewrites are the single source of routing truth.
   "routes": [{ "pattern": "play.agiscorecard.com", "custom_domain": true }],
-  "d1_databases": [{ "binding": "EV", "database_name": "gridlings-events", "database_id": "bd3b1ca9-e9cb-4b71-9834-df3d67b39504" }]
+  "d1_databases": [{ "binding": "EV", "database_name": "gridlings-events", "database_id": "bd3b1ca9-e9cb-4b71-9834-df3d67b39504" }],
+  // 部署版本 id 做 Cache API 键的一部分(2026-09-26 D1 读预算):每次部署自然失效,不必手动清缓存。
+  "version_metadata": { "binding": "CF_VERSION_METADATA" }
 }

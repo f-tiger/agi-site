@@ -1,3 +1,14 @@
+## 储能与阳台光伏:产品、页面、工具已全部下线,永久不做(2026-09-27,owner:「eco站点下架所有储能产品」+「后续记得不做储能品类」+「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」;全文 `docs/storage-takedown-2026-09-27.md`)
+
+**这一条优先于本文件任何提到储能的旧规则、旧队列项与旧判定线(包括下文 09-17「储能:类目确实大」与 09-24「阳台储能爆发」两节)。**
+
+1. **不卖**:全站不得出现任何储能产品的 Amazon 链接或卡片——阳台储能(Anker Solarbank/SOLIX、Zendure SolarFlow、Marstek Venus、Growatt NOAH、EcoFlow STREAM)、便携电站(Jackery、Bluetti、EcoFlow)、`balkonkraftwerk speicher` 类搜索链接。名单在 `tools/storage_veto.txt`(唯一来源)。
+2. **不做**:不新建储能页、不把储能词放进扩展队列(queued/gated/blocked/seasonal-hold 一律不行,只能是 built 的历史、rejected 或 withdrawn)、不为储能做季节性测量、不按储能 rising 词选题。
+3. **机器执行,不靠记忆**(第一步,产品):`build_structure.py` 的 `storage_guard()` 在货架表里见到储能行就拒绝构建;首页上升词栏丢弃储能词;`check_storage_veto.py`(部署闸门)扫构建产物里的 Amazon URL 和脚本里拼搜索词的字面量;`check_expansion_queue.py` 见到等待中的储能项就红;每日摘要的 rising 节把储能词隐藏并注明条数;部署后自检在线上再扫四张原储能页 + 首页。
+4. **页面也下线了(同日第二步)**:储能与阳台光伏的 **14 张页**全部删除,worker 对页面与 `.md` 镜像回 **410 Gone**(名单 `tools/gone_pages.txt` 唯一来源):7 张储能页(speicher-nachruesten、balkonspeicher-rechner/-foerderung/-winter-frost、Anker Solarbank 排障、Growatt NOAH 排障、stromausfall-heizen)+ 7 张阳台光伏页(lohnt-sich-rechner、mieter-recht、oesterreich、ohne-bohren、standort-check、wo-kaufen、klimaanlage-balkonkraftwerk)。同时撤掉:MCP 工具 `balkonspeicher_foerderung`(注册表描述去掉 balcony solar,版本 1.3.0)、五国成本计算器的「Solar-Eigenverbrauch」模式及其 PV 段落/来源、首页储能卡与三条链接、首页秋季视频栏里的储能「Top 5」视频、季节导语里的光伏位、`build_revenue_guide.py`(它每次部署都会重建 Anker 页)。**阳台光伏(Balkonkraftwerk)从此也按这条规则处理:不建页、不入队、不做工具**;Balkon-Beschattung(遮阳)与 Nachtspeicher/Warmwasserspeicher 不在内。
+   **闸门**:`check_gone.py`(页面文件不得复现、任何发布文件不得再链这 14 页)+ `test_gone.mjs`(worker 名单 == 文件、只对这 14 页回 410)+ 部署后逐页断言线上 410、sitemap 不含它们。
+5. **代价是实测过的**:90 天 180 次真人联盟点击里 4 次(2,2 %)点向储能产品。
+
 ## 当前生效的扩展规则(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
 
 **这一节优先于下文任何「不建新页 / 只深化」的旧规则。**
@@ -8,6 +19,7 @@
 4. **建之前看 `data/seasonality-de-queue.json`**:词在地板上(峰值 0,0)不自动否决(故障长尾词本来就在地板下),但页面按英国或别国读数选题、德国自己测出来是 0 的,不建。教训见文档 §六(加热晾衣架)。
 5. **新页的发现面**:首页 `EB_NEWEST`(`build_structure.py`,最新 12 张德语指南)随部署自动更新,不用手动加链接。它有没有用看 `eco-newest-block-1008`。
 6. **闸门**:`tools/check_expansion_queue.py`(部署链里)。队列和站点对不上(`built` 没有页、有页却不是 `built`、`built` 没有判定线)就是部署事故。
+7. **储能不入队**(2026-09-27,见文件顶部):队列里储能项只能是 `built`(历史)、`rejected` 或 `withdrawn`(带 date/by/reason);同一个闸门会让等待中的储能项变红。
 
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/getecoback/`。**
@@ -1843,6 +1855,8 @@ ersatzteileshop.de、sos-zubehoer.de)、厂商(Bosch)、论坛(HaustechnikDialog
 
 ## 能源板块降级(2026-08-26,owner:「eco站点去掉能源板块,看看有没有更加合适板块」)
 
+> **2026-09-27 补记**:「2027 春复评」只剩 Balkonkraftwerk(光伏)那一半;储能部分已按 owner 指示下架且不再复评(见文件顶部)。
+
 执行为**降级而非删页**(证据:能源簇 28 天仅 2 次联盟点击却占首页最大版位;但它有
 全站唯一高客单点击实证 Anker Solarbank ×2 + 10+ 页一手内容,物理删除=白丢期权):
 - 首页能源大块(EB_HOMESTORAGE)→ **秋冬「Feuchte, Schimmel & Heizen」块(EB_HERBST)**
@@ -2562,6 +2576,8 @@ NULL 是 JS 信标行(跑了 JS,更像真人),昨天报的 5 是严格口径,两
 
 ## 储能:类目确实大,但峰值在 4 月不是现在(2026-09-17,owner:「近期储能火爆,加大储能品类」+「不能包含ecoflow」+「阳台储能赛道法规立案支持,租户可以在阳台装光伏板,即插即用更符合德语区需求」)
 
+> **⚠ 2026-09-27 作废**:owner 下架全部储能产品并要求后续不做储能品类(见文件顶部)。本节的扩品类方向、货架与 `eco-storage-spring-0415` 均已撤回;下面保留为历史记录。
+
 ### 第一次把储能放到本站自己的标尺上量
 
 站内有 **12 张** balkonkraftwerk/balkonspeicher 页,而 `seasonality-de.json` 的 30 个词里
@@ -3211,6 +3227,8 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 ## 阳台储能爆发:红利在存量,不在再卖一台(2026-09-24,owner:「欧洲阳台储能爆发有什么机会点」;全文 `docs/balcony-storage-opportunities-2026-09-24.md`)
 
+> **⚠ 2026-09-27 作废**:储能品类已下架并永久不做(见文件顶部)。`marstek-venus-probleme` 已 withdrawn,DE-QUEUE 的储能批次已删;下面保留为历史记录。
+
 - **事实**:德国在运行插电光伏约 133 万台(2026-05,MaStR 汇总);2024 年随插电光伏装的电池 22,2 万台(+97 %,EUPD × Anker,**厂商共同发布**);2025 年阳台储能占家用储能台数 30,6 %,品牌份额 **Anker ~55 %**、Growatt 12 %、Marstek 10,3 %、EcoFlow 5,6 %(pv magazine 2026-06-26,基于 MaStR)。回本之争:厂商研究「4 年」假设 **0,58 €/kWh**,HTW Berlin 计算器 **10 年以上**。DIN VDE V 0126-95 不涵盖储能,储能部分「预计 2026」(二手)。荷兰净计量 2027-01-01 一次性取消(Rijksoverheid)。
 - **第一方**:90 天里储能板块只有 `growatt-noah-2000-probleme` 有人来(41 pv、35 搜索、3 点击,其中 2 次点的是本机),其余 11 张合计 <30 pv。Growatt 只占 12 %,**Anker 的存量约是它的 4,6 倍而 eco 没有 Anker 问题页**。DE-QUEUE:anker solarbank 9,7(4 月峰,9 月 5,8)、marstek venus 3,2、zendure solarflow 3,1。
 - **已做**:`anker-solarbank-probleme`、`marstek-venus-probleme` 进扩展队列最前(SERP 判定可写:论坛 + 店铺博客 + 厂商支持页),每日任务按队列一天一张;三个品牌词进 DE-QUEUE 月度篮子。**设备相关说法只取厂商支持页,论坛错误码不当事实。**
@@ -3238,3 +3256,47 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **复核结果**:Commission 原页逐条对过,日期与 O3CI/EORI 说法全部准确;浏览器 390 px 四页全通。**唯一缺陷:四页零网络请求 = 完全没有计数**,已补 `page_view / evidence_check / evidence_download`,只带 `{tool, lang}`,测试断言答案永不出页(两向变异验过),隐私文案同步改。
 - **扩不扩:现在不扩**。没有读数、收款未接、舰队只从 won 的线扩张。判定线 `eco-eu-evidence-1023`。
 - **读数纪律**:这四页的 `page_view` 来自它们自己的信标(没有 EB_TRACK,不会双计);读工具使用看 `evidence_check`,**不要拿 page_view 当使用量**。「o3ci」Trends 为 0,CBAM 页的流量只可能来自头部词或站内入口。
+
+## 储能下架执行记录(2026-09-27,owner:「eco站点下架所有储能产品」,执行中追加「后续记得不做储能品类」;全文 `docs/storage-takedown-2026-09-27.md`)
+
+- **下架前**:14 张页 108 个储能 Amazon 链接(新闸门在旧构建上读出 112 处,多出的是计算器脚本里拼出来的搜索词)。来源:共享储能货架(网格 + 顶部条 + 退出弹层,10 张页)、`klimaanlage-balkonkraftwerk` 与 `strompreis-radar` 的 CONTEXT 储能卡、growatt 页的 Anker 换机位、`energie-sparen` 分类页的储能卡、五处正文链接(nachruesten 的 Anker 链 + Marstek 按钮、rechner 与 winter-frost 的「Speicher ansehen」按钮、growatt 的 Anker/Zendure 链 + NOAH 按钮、anker 排障页的 Solarbank 链)、以及**储能计算器**(结果按容量点名 Zendure/Anker 并生成 Amazon 按钮)。
+- **在源头改的**:`DEVICE_MODELS["storage"] = []`;新 `shelf_skipped()`——储能族页面没有自己的 CONTEXT 集就**不出**网格/顶部条/弹层(否则空列表会回落到空调货架,阳台电池页开始卖移动空调);growatt 保留两个计量插座(不是储能)、`balkonkraftwerk-ohne-bohren` 保留支架;`EB_ENERGY`(五张电费页上把读者引向「Balkonkraftwerk mit Speicher」的跨簇盒)退役为只删;`balkonkraftwerk-speicher-nachruesten` 的「Top 5 im Test」储能视频撤掉;分类页储能卡换成已在四张能源页货架上的「Strommessgerät」;首页一行「Balkonspeicher & Solar … alle Ratgeber & Modelle」改为「Balkonkraftwerk & Strom sparen … alle Ratgeber」;`MODEL_ASIN` 与优缺点表的四条储能行删除;储能计算器只给容量区间不再点名设备;lohnt-sich 计算器的套装标签去掉「Anker Solix」(搜索词本来就是通用套装)。
+- **正文**:型号名只去链接不删句(信息保留);纯购买按钮整块删除。
+- **刻意没动**:`EB_STROMNOW`(交易所电价带,纯信息)、储能指南页本身、Förderung 页与 MCP 的补贴工具(信息)、北美 AC 桥(`EB_USMARKET`,只对 America/* 渲染,不是储能;它的撤块早由 `eco-us-market-0925` 判定、另行执行)。
+- **判定线**:`eco-storage-spring-0415` **withdrawn**(处理与赢的动作都已不存在);`eco-balkon-mieter-recht-1115`、`eco-at-balkon-1116`、`eco-storage-retitle-1112` 照常(不依赖储能点击),各加 `note_2026-09-27`:赢的动作不得扩到储能题。
+- **待 owner 决定**:储能指南页要不要也下线(删页要加 410/重定向并撤 sitemap,是一次独立的变更)。
+
+## 储能与阳台光伏页全部下线(2026-09-27 第二步,owner:「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」;全文 `docs/storage-takedown-2026-09-27.md` 后半)
+
+- **范围怎么定的**:我上一轮把 7 张阳台光伏页也写成了「储能页」(口径错误),下线前用一个问题向 owner 确认,答复是 **14 张全部下线**;随后 owner 追加「只要是相关的都下架」,于是范围扩到页面以外的一切相关面(见文件顶部第 4 条)。按标题 + 正文全站扫描,专门讲储能/光伏的页**就是这 14 张**,没有漏的第 15 张;其余页面里的单句提及(§14a 里的 Heimspeicher、MRG 法条里的例子、「speichern」动词)不是相关页,没动。
+- **下线前的最终读数(D1 28 天,真人,剔 CI)**:14 页合计 **43 pv / 595(7,2 %)**、**3 次联盟点击 / 78(3,8 %,全部在 Growatt 排障页)**、外部引荐 28(25 次在 Growatt 页)。**代价主要就是 Growatt 那一页**(28 pv、25 次搜索、3 次点击);其余 13 页 28 天合计 15 pv。
+- **410 而不是 404 或跳转**:内容是有意删除且不回来;跳转到不相关页在 Google 眼里是软 404。410 页 `noindex`,只给首页与「Energie sparen」两个出口。
+- **顺手抓到的上一步漏洞**:第一步的储能闸门只扫 Amazon 链接,于是首页秋季视频栏里那条储能「Top 5 im Test」视频、首页那张不带 Amazon 链接的「Balkonkraftwerk-Speicher」卡都没被拦住——**储能促销不一定是联盟链接**。这一步的 `check_gone.py` 按「链向被删页」检查,把它们都抓出来了。
+- **判定线**:`eco-balkon-mieter-recht-1115`、`eco-at-balkon-1116`、`eco-storage-retitle-1112`、`eco-stromausfall-0116` **withdrawn**(读数写进台账);`eco-newest-block-1008`(处理组 9→7,阈值等比 ≥4/7)、`eco-tools-hub-1020`(剔除四个已删计算器的事件)、`eco-at-mrg-1116` 与 `eco-dach-troubleshoot-1116`(赢的动作里光伏那一半不再执行)、`eco-wallbox-demand-1015`(建 wallbox 页前先问 owner)、`eco-troubleshoot-shape-1112` 各加 `note_2026-09-27_pages`。队列里 Anker 那一项改为新状态 `removed`(闸门:页面必须不存在)。
+- **别再做**:为这 14 个 URL 做重定向「挽回流量」、把 Growatt 页换个名字重发、在其他页里补一段阳台光伏内容、把计算器的 solar 模式加回来。
+
+## 按谷歌趋势补冬季品类:rising 五个候选,量完只剩一个(2026-09-27,owner:「针对谷歌趋势，上线更好的热门品类」)
+
+- **先量再建**:rising 面(heizlüfter 09-22、infrarotheizung 09-26)五个候选全部进 `DE-QUEUE` 做 5 年绝对值(锚 heizlüfter):
+  `akku heizlüfter` **1,7(11 月,冬/九月 2,32)** · `heizlüfter auto` 1,6(11 月,**5,57**)· `mobile heizung` 1,6 · `heizlüfter bad` 1,4(9 月峰)·
+  **`heizlüfter große räume` 0,0**(rising 27.750)· **`infrarotheizung 20 qm` 0,0**(rising 42.350)。rising 第五次骗人:两个最大的 rising 行绝对量为零。
+- **SERP 门**:auto = 红海(Auto Zeitung / PC-WELT / vergleich.org,且 Auto Zeitung 已经写了诚实答案)· mobile heizung = 红海(ADAC / vergleich.org / immowelt)且与 stromsparend 蚕食 ·
+  **akku = 可写**(小比价站 + 店铺博客 + gutefrage,无评测媒体;而且 SERP 自相矛盾:比价站写 3–4 小时,店铺博客写 2–3 分钟)。全部判定写进队列。
+- **建了 `/guide/akku-heizluefter.html`**:整页就是一个除法——Wh ÷ W。18 V × 5 Ah = 90 Wh → 2.000 W **2,7 分钟**、25 W **3 h 36 min**;
+  「3–4 小时」对应平均 22–30 W = 加热垫级别,所以宣传和批评**都对,说的是不同档位**。10 m² 按本站 60–100 W/m² → 5–9 分钟。
+  货架是**身体取暖**(加热背心 / 坐垫)+ 只在「有插座时」的市电暖风机,不点名型号。计算器发已白名单的 `watt_calc{source:"akku"}`,浏览器实测三组与表逐位一致。
+- **顺手修**:工具枢纽的家族正则里 `lueft` 会命中 `heizluefter`,任何暖风机工具页都会被归到「💧 Feuchte」;改为 `(?<!heiz)lueft`。
+- **队列**:可建项仍只有 2 个(riecht-verbrannt、hygrometer;后者今天补了 SERP,剩「75 % 盐测」要一手来源),闸门会继续 warning——这是实情,五个候选里只有一个过门。
+- **判定线 `eco-akku-heizluefter-1225`**(已进台账)。**别再从 rising 面挑 `große räume` / `20 qm` / `auto` / `mobile heizung`**,读数与判定都在队列里。
+
+## EX105 核验结案:amazon.de 有 listing、没有可买的新品(2026-09-27,owner 截图)
+
+- **方法**:无痕/登录均可,配送地设 Berlin 10115,用 EAN **8004399026445** 搜 amazon.de(比搜型号名准)。结果只有 1 条:PACEX105 listing(3,8 星 / 277 评),
+  **「No featured offers available」**,只有 2 个二手/新品报价,约 USD 1.146(账号以美元显示)。
+- **结论**:没有 Buy Box,`/dp/` 直链只会把读者送到加不了购物车的页 → **永不烘焙 EX105 的 ASIN,也不再向 owner 要**。搜索链接是正确形态(显示当天真能买到的)。
+  09-23 写的「核验通过就是 31 % /dp/」作废,`eco-dp-share-0928` 按现有读数结算。
+- **同日改掉的不实数字**:货架徽章「€€€ · ca. 400–550 €」(约 70 页)改为「Preis vor Ort prüfen」;五张页正文里的「kostet mit ca. 400–550 €」去掉数字,
+  EX105 测评页与 Pinguino 对比页写明「bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026)」;FAQ 与 JSON-LD 同步改,parity 闸门验过。
+- **同日 owner 定:「降到后面」**。生成层全部执行:共享货架(德/英)顺序改为 **N90 → Comfee → AEG → Klarstein → EX105**(前三张同时喂顶部条与移动端 sticky,所以全站第一个购买按钮从 EX105 搜索页变成 N90 的 `/dp/`);qm 顶部条 ≤25 m² 为 N90/Comfee/EX105、≤30 m² 为 Klarstein/N90/EX105;四个 BTU 工具(首页工具、注入式 sizer、`btu-rechner`、EN `btu-calculator`)的 9.000–11.000 BTU 档换成 **PAC N90 ECO Silent**(9.800 BTU/h,本站对比页原话「dieselbe Leistungsklasse」,ASIN 已核验)。实测:176 张带顶部条的页里 EX105 排第一的 0 张。
+- **刻意没改的**:10 张手写正文(beste-tragbare、pinguino-vergleich、EN 国家页等)里 EX105 仍是正文第一条链接——那是文章论证的一部分,不是货架;移动端 sticky 取的是页面第一个 Amazon 链接,而顶部条在正文之前,所以购买入口已经是 N90。两个 EX105 视频门面也保留。
+- **读数**:10 月看 `/dp/` 占比与 N90 点击;EX105 点击若从 14/28d 掉到个位数而总点击不降,说明读者跟着顺序走,调整成立。

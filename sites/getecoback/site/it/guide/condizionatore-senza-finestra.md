@@ -71,7 +71,7 @@ Questi sono i portatili che questo sito consiglia con costanza — la via di sca
 
 Modello | Ruolo | Punto di forza | Punto debole | Fascia di prezzo |
 
-**De'Longhi Pinguino PAC EX105** | Tuttofare | Raffreddamento potente, buona efficienza; spesso nella linea dei vincitori dei test | Grande e pesante | €€€ · ca. 400–550 € |
+**De'Longhi Pinguino PAC EX105** | Tuttofare | Raffreddamento potente, buona efficienza; spesso nella linea dei vincitori dei test | Grande e pesante | Prezzo da verificare |
 
 **Comfee MPPH-09CRN7** | Miglior prezzo | Economico e compatto, per camere e studi piccoli | Chiaramente udibile (~63 dB) | €€ · ca. 250–320 € |
 

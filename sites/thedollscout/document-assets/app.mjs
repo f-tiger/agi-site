@@ -1,5 +1,6 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.7';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.7';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.8';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.8';
+import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-09-27.1';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -25,6 +26,13 @@ export function track(event) {
   try { if (navigator.sendBeacon) navigator.sendBeacon('/api/doc-events', body); else fetch('/api/doc-events', { method: 'POST', body, keepalive: true }).catch(() => {}); } catch {}
 }
 track('doc_view');
+if (mode === 'hub' && isHubPath(location.pathname)) document.addEventListener('click', event => {
+  const link = event.target.closest('a[data-hub-task]');
+  if (!link) return;
+  const task = link.dataset.hubTask, name = hubEvent(task);
+  const target = new URL(link.href);
+  if (name && target.origin === location.origin && target.pathname === location.pathname + HUB_TASKS[task]) track(name);
+});
 if (new URLSearchParams(location.search).get('via') === 'share') track('doc_share_visit');
 function status(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
 function setBusy(value) {
@@ -55,7 +63,7 @@ function selectFiles(next, slot) {
   if (mode === 'compare') files[slot] = next[0]; else files = [...next];
   renderFiles(); status(c.ready);
 }
-for (const input of document.querySelectorAll('input[type=file]')) input.addEventListener('change', () => selectFiles(input.files, Number(input.dataset.slot || 0)));
+for (const input of document.querySelectorAll('#workspace input[type=file]')) input.addEventListener('change', () => selectFiles(input.files, Number(input.dataset.slot || 0)));
 $('file-list')?.addEventListener('click', event => {
   const button = event.target.closest('[data-remove]');
   if (!button || busy) return;
@@ -67,7 +75,7 @@ drop?.addEventListener('dragleave', () => drop.classList.remove('dragging'));
 drop?.addEventListener('drop', event => { event.preventDefault(); drop.classList.remove('dragging'); if (!busy) selectFiles(event.dataTransfer.files, 0); });
 $('clear')?.addEventListener('click', () => {
   epoch++; controller?.abort(); files = []; sample = false; resetResults();
-  for (const input of document.querySelectorAll('input[type=file]')) input.value = '';
+  for (const input of document.querySelectorAll('#workspace input[type=file]')) input.value = '';
   setBusy(false); renderFiles(); status(c.ready);
 });
 $('cancel')?.addEventListener('click', () => { epoch++; controller?.abort(); resetResults(); setBusy(false); renderFiles(); status(c.cancelled); });
@@ -82,7 +90,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.7'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.8'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;

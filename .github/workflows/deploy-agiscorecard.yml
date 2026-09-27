@@ -61,6 +61,13 @@ jobs:
         run: |
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
+          # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
+          python3 tools/gen_changelog.py
+          # the installable skill must survive the mirror pass with its frontmatter intact
+          head -1 skill.md | grep -q '^---$' || { echo "::error::skill.md lost its frontmatter (mirror generator overwrote it?)"; exit 1; }
+          # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
+          python3 tools/gen_grader_consensus.py --selftest
+          python3 tools/gen_grader_consensus.py --check
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
@@ -87,6 +94,15 @@ jobs:
       - name: Test analytics field sanitisers
         working-directory: sites/agiscorecard
         run: node tools/test_analytics_sanitiser.mjs
+
+      # D1 read budget (2026-09-26): the account-wide free tier (5M rows read/day) ran out three days
+      # running; /api/pulse + /api/trends were ~46% of 09-26. This pins the fix: every pageviews query
+      # the two handlers issue must use the human covering index (EXPLAIN on the real SQL), numbers are
+      # identical with and without it, and the server-side cache computes once per TTL and never stores
+      # failures or partial results. 8 mutations verified red.
+      - name: Test pulse/trends D1 read budget (index + server-side cache)
+        working-directory: sites/agiscorecard
+        run: node tools/test_analytics_d1.mjs
 
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
@@ -198,18 +214,41 @@ jobs:
           check "https://agiscorecard.com/for-agents" "for_agents_delivery_lab"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
           check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
+          # 2026-09-26 trust-layer surfaces. The board only exists once the weekly fetch has succeeded,
+          # so assert it live only when the repo carries it (never a hardcoded expectation).
+          if [ -f sites/agiscorecard/agi-consensus.json ]; then
+            check "https://agiscorecard.com/agi-consensus.json" '"median"'
+            check "https://agiscorecard.com/agi-prediction-markets" "Consensus table"
+          fi
+          check "https://agiscorecard.com/skill.md" "^name: agi-scorecard"
+          check "https://agiscorecard.com/ots/manifest.json" "proof"
+          # MCP tools/list must equal the repo's list (live == repo, never a hardcoded count).
+          want=$(grep -o "name: '\(get_\|search_\)[a-z_]*'" sites/agiscorecard/tools/analytics-worker/index.js | sed "s/name: '//;s/'//" | sort -u | tr '\n' ' ')
+          got=$(curl -s --max-time 20 -X POST -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+                -A 'agi-site-deploy-selfcheck/1.0 (+https://github.com/f-tiger/agi-site)' \
+                -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' "https://agiscorecard.com/mcp" \
+                | grep -o '"name":"[a-z_]*"' | sed 's/"name":"//;s/"//' | sort -u | tr '\n' ' ')
+          if [ "$want" != "$got" ]; then echo "::error::MCP tools/list drift — repo: [$want] live: [$got]"; fail=1; else echo "OK /mcp tools/list == repo"; fi
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
-          t=$(curl -s --max-time 20 "https://agiscorecard.com/api/trends" || echo "")
+          t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
           case "$t" in
             *'"ok":true'*) echo "OK /api/trends" ;;
-            *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
+            *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
           esac
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
-          p=$(curl -s --max-time 20 "https://agiscorecard.com/api/pulse" || echo "")
+          p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")
           case "$p" in
             *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
-            *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
+            *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
           esac
+          # Server-side cache in place (2026-09-26): without it every caller recomputes the aggregates in
+          # D1, which is how the account's daily read budget ran out. A partial or failed result says
+          # "bypass" and already fails the ok:true checks above.
+          for h in trends-headers.txt pulse-headers.txt; do
+            grep -qiE '^x-agi-aggregate-cache: (hit|miss)' "$h" \
+              && grep -i '^x-agi-aggregate-cache' "$h" \
+              || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
+          done
           exit $fail
 
 

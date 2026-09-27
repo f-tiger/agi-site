@@ -36,4 +36,21 @@ ok(p2.by_source.other===1, "netflix.com 计 other —— 裸 includes 会把它�
 ok(p2.by_other && p2.by_other["netflix.com"] === 1, "by_other 记下是哪个域链过来的 —— 舰队第一方外链监测靠它");
 ok(p2.by_source.direct===before, "无 referer 的旧行仍在 direct");
 ok(Object.values(p2.by_source).reduce((a,b)=>a+b,0)===p2.human_pv, "分桶之和 = human_pv");
+// D1 读预算(2026-09-26):/api/pulse 经 cachedJson 从 Cache API 出。装一个假 caches 全局断言三件事:
+// ①第一次算完会 put(经 ctx.waitUntil);②第二次直接命中,不再打 D1;③错误响应不入缓存且带 no-store。
+{
+  const store = new Map(); let puts = 0;
+  globalThis.caches = { default: { async match(k) { return store.get(k.url); }, async put(k, r) { puts++; store.set(k.url, r); } } };
+  const origExec = db.exec.bind(db); let scans = 0;
+  db.exec = (sql, a) => { if (sql.startsWith("SELECT ref AS host")) scans++; return origExec(sql, a); };
+  const r1 = await call("/api/pulse"); await Promise.all(waits);
+  ok(r1.status === 200 && r1.headers.get("cache-control") === "public, max-age=3600" && scans === 1 && puts === 1, "pulse 首次:打一次 D1 并写入 Cache API");
+  const r2 = await call("/api/pulse"); const j2 = await r2.json();
+  ok(r2.headers.get("x-fleet-cache") === "store" && scans === 1 && j2.ok === true && j2.human_pv === p2.human_pv, "pulse 二次:直接命中缓存,D1 扫描次数不变,数字相同");
+  store.clear();
+  db.exec = (sql, a) => { if (sql.startsWith("SELECT ref AS host")) throw new Error("d1 down"); return origExec(sql, a); };
+  const r3 = await call("/api/pulse"); await Promise.all(waits);
+  ok(r3.status === 500 && r3.headers.get("cache-control") === "no-store" && store.size === 0, "pulse 出错:500 带 no-store,不入缓存");
+  db.exec = origExec; delete globalThis.caches;
+}
 console.log("\nall "+n+" assertions pass");

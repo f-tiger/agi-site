@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-25",
+ "fetched": "2026-09-27",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -67,58 +67,51 @@
    "fetched": "2026-09-25"
   },
   "infrarotheizung": {
-   "auto": [
-    "infrarotheizung",
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung bild",
-    "infrarotheizung standgerät",
-    "infrarotheizung test",
-    "infrarotheizungen",
-    "infrarotheizung stromverbrauch",
-    "infrarotheizung decke mit licht"
-   ],
    "rising": [
     {
-     "q": "infrarotheizung wand",
-     "v": "new"
+     "q": "infrarotheizung für 20 qm",
+     "v": 42350
     },
     {
-     "q": "infrarotheizung decke",
-     "v": "new"
+     "q": "infrarotheizung test stiftung warentest",
+     "v": 41250
     },
     {
-     "q": "infrarotheizung badezimmer",
-     "v": "new"
+     "q": "infrarotheizung bauhaus",
+     "v": 35900
     },
     {
-     "q": "infrarotheizung bild",
-     "v": "new"
+     "q": "welltherm infrarotheizung",
+     "v": 33450
     },
     {
-     "q": "infrarotheizung standgerät",
-     "v": "new"
+     "q": "mobile heizung",
+     "v": 28700
     },
     {
-     "q": "infrarotheizung test",
-     "v": "new"
+     "q": "redwell infrarotheizung preisliste",
+     "v": 28600
     },
     {
-     "q": "infrarotheizungen",
-     "v": "new"
+     "q": "trotec",
+     "v": 27950
     },
     {
-     "q": "infrarotheizung stromverbrauch",
-     "v": "new"
+     "q": "infrarotheizung wieviel watt für 20 qm",
+     "v": 24650
     },
     {
-     "q": "infrarotheizung decke mit licht",
-     "v": "new"
+     "q": "stand infrarotheizung",
+     "v": 21750
+    },
+    {
+     "q": "schmidbauer infrarotheizung",
+     "v": 21600
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-25"
+   "source": "related-queries",
+   "fetched": "2026-09-26",
+   "polluted": false
   },
   "luftentfeuchter": {
    "auto": [
@@ -221,112 +214,69 @@
    "fetched": "2026-09-22",
    "polluted": false
   },
-  "balkonkraftwerk": {
-   "rising": [
-    {
-     "q": "ecoflow stream 5000",
-     "v": 11300
-    },
-    {
-     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
-     "v": 7000
-    },
-    {
-     "q": "anker solix solarbank 4 e5000 pro",
-     "v": 300
-    },
-    {
-     "q": "anker solarbank 4 pro",
-     "v": 250
-    },
-    {
-     "q": "anker solix 4 pro",
-     "v": 250
-    },
-    {
-     "q": "anker solix 4",
-     "v": 200
-    },
-    {
-     "q": "split klimaanlage",
-     "v": 200
-    },
-    {
-     "q": "ecoflow stream",
-     "v": 80
-    },
-    {
-     "q": "ecoflow stream ultra",
-     "v": 70
-    },
-    {
-     "q": "ecoflow balkonkraftwerk mit speicher",
-     "v": 60
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-09-23",
-   "polluted": true
-  },
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "krups kaffeevollautomat intensity milk",
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
      "v": 16500
     },
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 13950
+     "q": "krups kaffeevollautomat intensity milk",
+     "v": 16100
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 10750
+    },
+    {
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
      "v": 10550
     },
     {
      "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 9600
+     "v": 10550
     },
     {
-     "q": "de'longhi kaffeevollautomat",
-     "v": 120
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 450
     },
     {
      "q": "samsung kaffeevollautomat",
      "v": 100
+    },
+    {
+     "q": "mini kaffeevollautomat",
+     "v": 80
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-17",
+   "fetched": "2026-09-27",
    "polluted": false
   },
   "akku staubsauger": {
    "rising": [
     {
-     "q": "belstaff jacke herren",
-     "v": 26850
-    },
-    {
-     "q": "sky scanner",
-     "v": 14100
-    },
-    {
      "q": "ford",
      "v": 550
     },
     {
-     "q": "lululemon shorts",
-     "v": 350
+     "q": "dyson tp09",
+     "v": 550
     },
     {
-     "q": "dyson tp09",
-     "v": 350
+     "q": "belstaff jacke herren",
+     "v": 500
     },
     {
      "q": "ventilator dyson",
-     "v": 350
+     "v": 400
     },
     {
-     "q": "lululemon rucksack",
+     "q": "sky scanner",
+     "v": 400
+    },
+    {
+     "q": "lululemon shorts",
      "v": 350
     },
     {
@@ -334,16 +284,20 @@
      "v": 300
     },
     {
-     "q": "belstaff weste",
-     "v": 300
-    },
-    {
      "q": "belstaff",
      "v": 250
+    },
+    {
+     "q": "dyson filter reinigen",
+     "v": 250
+    },
+    {
+     "q": "lululemon align",
+     "v": 140
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-18",
+   "fetched": "2026-09-27",
    "polluted": true
   },
   "matratze": {

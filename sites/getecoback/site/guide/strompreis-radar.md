@@ -8,7 +8,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 Der Strompreis an der Börse ändert sich stündlich — mittags mit viel Sonne ist er oft spottbillig oder sogar **negativ**, abends teuer. Dieses Radar zeigt dir die heutigen Stundenpreise live, markiert die günstigste Stunde und zählt die negativen Stunden.
 
-**Kurz gesagt:** Der deutsche Börsenstrompreis (EPEX Day-Ahead) lag 2026 im Schnitt grob bei **10–15 Cent pro kWh** — dein Haushaltspreis von ~37 Cent besteht zu etwa zwei Dritteln aus Netzentgelten, Steuern und Umlagen. **Negative Strompreise** boomen: allein im April 2026 gab es **123 negative Stunden**, im Jahresverlauf bereits über **400** (Tiefstwert −500 €/MWh, Übersicht: stromauskunft.de). Profitieren kannst du direkt mit einem dynamischen Tarif — oder indirekt mit Balkonkraftwerk + Speicher.
+**Kurz gesagt:** Der deutsche Börsenstrompreis (EPEX Day-Ahead) lag 2026 im Schnitt grob bei **10–15 Cent pro kWh** — dein Haushaltspreis von ~37 Cent besteht zu etwa zwei Dritteln aus Netzentgelten, Steuern und Umlagen. **Negative Strompreise** boomen: allein im April 2026 gab es **123 negative Stunden**, im Jahresverlauf bereits über **400** (Tiefstwert −500 €/MWh, Übersicht: stromauskunft.de). Profitieren kannst du nur mit einem dynamischen Tarif.
 
 **–**Lade Börsenpreise …
 
@@ -22,7 +22,7 @@ Negative Preise entstehen, wenn das Stromangebot die Nachfrage deutlich überste
 
 ## Profitiere ich als Haushalt davon?
 
-**Direkt** nur mit einem dynamischen Stromtarif (Tibber, aWATTar, Ostrom & Co.), der den Börsenpreis stündlich durchreicht — dann lohnt es sich, Spülmaschine, Wäsche oder das Laden des E-Autos in die billigen Stunden zu legen. Ehrlich dazu: Netzentgelte, Steuern und Umlagen kommen immer oben drauf, dein Endpreis wird nur in Extremfällen wirklich negativ. **Indirekt** profitierst du mit einem [Balkonkraftwerk](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html) samt [Speicher](https://getecoback.com/guide/balkonspeicher-rechner.html): Der lädt mittags (wenn Börsenstrom ohnehin billig ist, weil die Sonne scheint) mit deinem eigenen Solarstrom und entlädt abends zur teuersten Zeit — Preisprofil ausgehebelt, ganz ohne Tarifwechsel.
+**Profitieren** kannst du nur mit einem dynamischen Stromtarif (Tibber, aWATTar, Ostrom & Co.), der den Börsenpreis stündlich durchreicht — dann lohnt es sich, Spülmaschine, Wäsche oder das Laden des E-Autos in die billigen Stunden zu legen. Ehrlich dazu: Netzentgelte, Steuern und Umlagen kommen immer oben drauf, dein Endpreis wird nur in Extremfällen wirklich negativ.
 
 **Dynamische Tarife, die den Börsenpreis durchreichen**
 Die bekanntesten Anbieter in Deutschland — Voraussetzung ist ein
@@ -47,7 +47,7 @@ Der Haken ist nicht das Angebot, sondern der Zähler: Der Anspruch setzt ein **i
 
 Neben dem Börsenpreis wird ein zweiter Baustein deines Strompreises zeitabhängig: die **Netzentgelte**. Seit dem **1. April 2025** müssen Verteilnetzbetreiber Haushalten mit steuerbaren Geräten nach § 14a EnWG — Wärmepumpe, Wallbox oder Heimspeicher mit mehr als 4,2 kW — zeitvariable Netzentgelte als Option anbieten („Modul 3“): günstiger, wenn das Netz leer ist, teurer zur Spitzenlast. In der Praxis kommt das erst langsam an: Über ein Jahr nach dem Stichtag boten laut einer Auswertung der Fachzeitung ZfK erst **14 von 169 untersuchten Netzbetreibern** Modul 3 tatsächlich an (ZfK-Recherche).
 
-Ehrlich eingeordnet für diese Seite: Eine mobile Klimaanlage (~1 kW) ist keine steuerbare Verbrauchseinrichtung — von § 14a-Rabatten profitierst du mit ihr nicht direkt. Die Logik dahinter ist trotzdem dieselbe wie beim Börsenpreis, und sie funktioniert auch ohne Sondertarif: [mittags vorkühlen, abends gleiten lassen](https://getecoback.com/guide/klimaanlage-balkonkraftwerk.html) — dann liegst du automatisch in den Stunden, die beide Preissignale belohnen.
+Ehrlich eingeordnet für diese Seite: Eine mobile Klimaanlage (~1 kW) ist keine steuerbare Verbrauchseinrichtung — von § 14a-Rabatten profitierst du mit ihr nicht direkt. Die Logik dahinter ist trotzdem dieselbe wie beim Börsenpreis, und sie funktioniert auch ohne Sondertarif: mittags vorkühlen, abends gleiten lassen — dann liegst du automatisch in den Stunden, die beide Preissignale belohnen.
 
 ## Börsenpreis vs. dein Haushaltspreis
 
@@ -71,23 +71,18 @@ Richtwerte Stand Juli 2026 — genaue Anteile variieren nach Region und Tarif.
 
 **Warum ist der Börsenpreis so viel niedriger als mein Strompreis?**Der Börsenpreis (2026 im Schnitt grob 10–15 Cent pro kWh) ist nur die Beschaffungskomponente. Dein Haushaltspreis von rund 37 Cent enthält zusätzlich Netzentgelte, Steuern, Umlagen und die Marge des Versorgers — zusammen etwa zwei Drittel des Endpreises.
 
-**Wie nutze ich günstige Börsenstunden ohne dynamischen Tarif?**Indirekt: Ein Balkonkraftwerk mit Speicher macht dich von teuren Abendstunden unabhängiger — der Speicher lädt mittags (wenn Strom an der Börse ohnehin billig oder negativ ist, weil die Sonne scheint) mit eigenem Solarstrom und gibt ihn abends ab. So koppelst du dich vom Preisprofil ab, ganz ohne Tarifwechsel.
-
 **Muss mein Stromanbieter einen dynamischen Tarif anbieten?**Ja. Seit dem 1. Januar 2025 ist jeder Stromlieferant nach § 41a EnWG verpflichtet, einen dynamischen Stromtarif anzubieten — die frühere Grenze von 100.000 Kunden ist gefallen. Voraussetzung auf deiner Seite ist ein intelligentes Messsystem (Smart Meter); damit waren Ende 2025 erst knapp 4 Prozent aller Messstellen ausgestattet. Der Zähler ist also meist der eigentliche Engpass, nicht das Tarifangebot.
 
 **Was sind zeitvariable Netzentgelte (§ 14a Modul 3)?**Seit dem 1. April 2025 müssen Netzbetreiber Haushalten mit steuerbaren Geräten nach § 14a EnWG (z. B. Wärmepumpe, Wallbox oder Heimspeicher über 4,2 kW) zeitvariable Netzentgelte anbieten: In Schwachlastzeiten sinkt der Netzentgelt-Anteil, zur Spitzenlast steigt er. Zusammen mit einem dynamischen Tarif werden damit zwei Bausteine des Strompreises zeitabhängig. Eine mobile Klimaanlage zählt nicht als steuerbare Einrichtung — sie profitiert nur indirekt über den Börsenpreis.
 
 ## Dieses Radar einbetten
 
-Du schreibst über Strompreise oder Balkonkraftwerke? Bette das Radar kostenlos ein:
+Du schreibst über Strompreise? Bette das Radar kostenlos ein:
 
 <iframe src="https://getecoback.com/guide/strompreis-radar.html" width="100%" height="800" style="border:0;border-radius:12px;" loading="lazy" title="Börsenstrompreis-Radar"></iframe><p>Quelle: <a href="https://getecoback.com/guide/strompreis-radar.html">EcoBack Strompreis-Radar</a></p>
 Code kopieren
 
 **Weiter im Thema**
-[Balkonkraftwerk: Lohnt es sich? Der Rechner →](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html)
-[Balkonspeicher: Welche Größe lohnt sich? →](https://getecoback.com/guide/balkonspeicher-rechner.html)
-[Speicher nachrüsten: so geht's →](https://getecoback.com/guide/balkonkraftwerk-speicher-nachruesten.html)
 [Stromkosten-Rechner für deine Geräte →](https://getecoback.com/guide/stromkosten-rechner.html)
 
 ---

@@ -1,51 +1,97 @@
 {
- "generated": "2026-09-21T14:25:26+00:00",
+ "generated": "2026-09-27T13:26:45+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
   {
    "site": "getecoback",
-   "via": "no-money-key",
-   "money": null,
+   "via": "endpoint",
+   "money": {
+    "days": 28,
+    "affiliate_click_28d": 79,
+    "affiliate_click_us_market_28d": 1,
+    "affiliate_click_amazon_com_28d": 1,
+    "subs_total": 1,
+    "member_orders_by_state": {}
+   },
    "summary": {
-    "affiliate_click_28d": null,
-    "paid_orders": null,
-    "subscribers": null
+    "affiliate_click_28d": 79,
+    "paid_orders": 0,
+    "subscribers": 1
    }
   },
   {
    "site": "agiscorecard",
-   "via": "no-money-key",
-   "money": null,
+   "via": "endpoint",
+   "money": {
+    "days": 28,
+    "subscribers": 2,
+    "ev_calc_use_28d": 20,
+    "ev_invest_tool_click_28d": 10,
+    "ev_pick_ledger_28d": 4,
+    "ev_subscribe_click_28d": 2,
+    "ev_tool_click_28d": 24,
+    "pv_advertise_28d": 158,
+    "pv_audits_28d": 101,
+    "pv_members_28d": 2,
+    "pv_workbench_28d": 62,
+    "member_orders_by_state": {},
+    "discuss_profiles": 0
+   },
    "summary": {
     "affiliate_click_28d": null,
-    "paid_orders": null,
-    "subscribers": null
+    "paid_orders": 0,
+    "subscribers": 2
    }
   },
   {
    "site": "baipiaoji",
-   "via": "no-money-key",
-   "money": null,
+   "via": "endpoint",
+   "money": {
+    "days": 28,
+    "subs_by_status": {
+     "pending": 4,
+     "unsub": 1
+    },
+    "ads_by_status": {},
+    "ad_checkout_by_state": {},
+    "ad_web3_orders": 0,
+    "watches": 0,
+    "member_orders_by_state": {},
+    "video_orders_by_state": {},
+    "video_order_definition": "Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.",
+    "submissions_total": 9,
+    "go_28d": 121,
+    "biz_28d": 12,
+    "claims_verified": 0,
+    "attestations_queued": 0
+   },
    "summary": {
     "affiliate_click_28d": null,
-    "paid_orders": null,
-    "subscribers": null
+    "paid_orders": 0,
+    "subscribers": 0
    }
   },
   {
    "site": "thedollscout",
-   "via": "no-money-key",
-   "money": null,
+   "via": "endpoint",
+   "money": {
+    "days": 28,
+    "affiliate_click_28d": 3,
+    "member_orders_by_state": {}
+   },
    "summary": {
-    "affiliate_click_28d": null,
-    "paid_orders": null,
+    "affiliate_click_28d": 3,
+    "paid_orders": 0,
     "subscribers": null
    }
   },
   {
    "site": "buysomething",
-   "via": "no-money-key",
-   "money": null,
+   "via": "endpoint",
+   "money": {
+    "days": 28,
+    "mcp_call_28d": 90
+   },
    "summary": {
     "affiliate_click_28d": null,
     "paid_orders": null,
@@ -78,5 +124,13 @@
   "fleet_verified_revenue_to_date_eur": 11.2,
   "fleet_non_amazon_revenue_to_date": 0
  },
- "errors": []
+ "errors": [],
+ "forecast": {
+  "enabled_state": "never",
+  "prize_usd_30d": null,
+  "spend_usd_30d": 0,
+  "net_usd_30d": null,
+  "north_star_resolved_prelogged": 0,
+  "generated": "2026-09-27T13:26:45+00:00"
+ }
 }

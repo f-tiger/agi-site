@@ -181,15 +181,21 @@ jobs:
           check_body / 'SourceRadar'
           check_body /16507d8e1997c4be371f5fbaf7ac1985.txt ''
           # 3) JSON feeds
+          # 2026-09-26(D1 读预算事故):只在网络错误/非 2xx 时重试,最多 3 次;2xx 而断言不过**不再重抓**——
+          # /api/pulse、/api/pop 现在从 Cache API 出,重抓拿到的是同一份缓存,此前每次重抓都是一轮全窗 D1 扫描。
+          # 断言原样保留。
           check_json() { # path, python-assert-expr
-            p="$1"; expr="$2"; ok=0
-            for try in 1 2 3 4 5; do
-              if curl -s -L --max-redirs 5 -A "$UA" "$BASE$p" -o body.json && \
-                 python3 -c "import json,sys; j=json.load(open('body.json')); assert $expr, 'assert failed'" 2>/dev/null; then ok=1; break; fi
-              sleep 5
+            p="$1"; expr="$2"; ok=0; code=000
+            for try in 1 2 3; do
+              code=$(curl -s -L --max-redirs 5 -A "$UA" -w '%{http_code}' "$BASE$p" -o body.json || echo 000)
+              case "$code" in 2*) break ;; esac
+              [ "$try" -lt 3 ] && sleep 5
             done
+            case "$code" in 2*)
+              python3 -c "import json,sys; j=json.load(open('body.json')); assert $expr, 'assert failed'" 2>/dev/null && ok=1 ;;
+            esac
             if [ "$ok" = "1" ]; then echo "OK    $p JSON: $expr"
-            else echo "::error::$p not valid JSON or failed: $expr"; fail=1; fi
+            else echo "::error::$p HTTP $code, not valid JSON or failed: $expr"; fail=1; fi
           }
           check_json /trends.json 'True'
           check_json /api/pop '"picks" in j and "degraded" not in j'

@@ -42,8 +42,11 @@ DE_SEASONS = {
             ("🌡️", "Hitze-Check: Wie heiß wird dein Zimmer?", "/guide/hitze-check.html"),
             ("🧮", "BTU-Rechner: Kühlleistung in 30 Sekunden", "/guide/btu-rechner.html"),
             ("❄️", "Beste tragbare Klimaanlage 2026", "/guide/beste-tragbare-klimaanlage-hitzewelle.html"),
-            ("☀️", "Balkon-Check: Lohnt sich Solar bei dir?", "/guide/balkonkraftwerk-standort-check.html"),
-            ("💶", "Balkonspeicher-Förderung: Wer zahlt was dazu?", "/guide/balkonspeicher-foerderung.html"),
+            # Two balcony-PV slots (Balkon-Check, Balkonspeicher-Förderung) until
+            # 2026-09-27, when the owner took every storage and balcony-PV page off
+            # the site. Replaced by two existing cooling pages.
+            ("🪟", "Klimaanlage am Kippfenster abdichten", "/guide/klimaanlage-kippfenster.html"),
+            ("💶", "Was kostet eine Klimaanlage im Betrieb?", "/guide/klimaanlage-stromkosten.html"),
             ("🛒", "Alle Kühlgeräte", "/kategorie/klimaanlagen.html"),
         ],
     },
@@ -103,7 +106,7 @@ DE_SEASONS = {
         "teaser": [
             ("🌬️", "Luftreiniger gegen Pollen & Staub", "/guide/luftreiniger-ratgeber.html"),
             ("🪟", "Hitzeschutz fürs Fenster", "/guide/hitzeschutz-fenster.html"),
-            ("☀️", "Balkon-Check: Lohnt sich Solar bei dir?", "/guide/balkonkraftwerk-standort-check.html"),
+            ("⚡", "Börsenstrompreis-Radar", "/guide/strompreis-radar.html"),
             ("🧮", "BTU-Rechner: jetzt in Ruhe planen", "/guide/btu-rechner.html"),
             ("🛒", "Energie sparen", "/kategorie/energie-sparen.html"),
         ],
@@ -133,8 +136,11 @@ DE_SEASON_VIDEOS = {
          "/guide/luftentfeuchter-40-qm.html", "Ratgeber: Luftentfeuchter für 40 m² →"),
         ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)",
          "/guide/luftentfeuchter-gegen-schimmel.html", "Ratgeber: Luftentfeuchter gegen Schimmel →"),
-        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
-         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+        # Third slot was a storage "Top 5 im Test" video until 2026-09-27 (storage
+        # and balcony-PV pages taken down); the cellar video is from the same
+        # verified pool.
+        ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)",
+         "/guide/keller-lueften-sommer.html", "Ratgeber: Keller richtig lüften →"),
     ],
     "winter": [
         ("x1S_Y7b9bvc", "Infrarotheizung im Härtetest: Reichen 400 W für 8 m² im Winter?",
@@ -145,8 +151,8 @@ DE_SEASON_VIDEOS = {
          "/guide/keller-lueften-sommer.html", "Ratgeber: Keller richtig lüften →"),
     ],
     "fruehjahr": [
-        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
-         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+        ("DqjrdUiaftc", "Fensterabdichtung für die mobile Klimaanlage anbringen (Anleitung)",
+         "/guide/klimaanlage-kippfenster.html", "Ratgeber: Klimaanlage am Kippfenster →"),
         ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
          "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Ratgeber: Beste tragbare Klimaanlage →"),
         ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich",

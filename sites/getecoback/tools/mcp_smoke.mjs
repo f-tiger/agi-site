@@ -52,9 +52,8 @@ const CASES = [
   ["klimaanlage_stromkosten", { watt: 1000, stunden_pro_tag: 8, strompreis_euro_kwh: 0.3, tage: 30, auslastung: 0.65 }, ["46,80"]],
   ["heizleistung_watt", { qm: 20, daemmung: "mittel", strompreis_euro_kwh: 0.3 }, ["1.600", "Watt"]],
   ["taupunkt_lueften", { aussen_temp_c: 18, aussen_luftfeuchte_prozent: 60, innen_temp_c: 16 }, ["Taupunkt", "10,1"]],
-  ["balkonspeicher_foerderung", { bundesland: "Sachsen", preis_eur: 800, zuschuss_eur: 300 }, ["Sachsen", "5,0 Jahre", "ERST Antrag"]],
   ["ratgeber_suche", { frage: "Klimaanlage Kippfenster abdichten", max: 3 }, ["getecoback.com", "kippfenster"]],
-  ["ratgeber_lesen", { pfad: "/guide/balkonspeicher-foerderung.html" }, ["Förder", "Quelle: https://getecoback.com"]],
+  ["ratgeber_lesen", { pfad: "/guide/luftentfeuchter-ratgeber.html" }, ["Luftentfeuchter", "Quelle: https://getecoback.com"]],
 ];
 
 const fails = [];

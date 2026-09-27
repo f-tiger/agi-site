@@ -50,7 +50,7 @@ Und wo nicht gespart wird: an der Kernfunktion. Das Klimagerät kühlt seine 15�
 
 Situation | Bessere Wahl | Warum |
 
-Nachts bei laufendem Gerät schlafen, Effizienz wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) · [alle Pinguino-Modelle im Vergleich](https://getecoback.com/guide/delonghi-pinguino-vergleich.html) | A+++ statt A, in Messungen leiser als das Feld — kostet mit ca. 400–550 € aber deutlich mehr |
+Nachts bei laufendem Gerät schlafen, Effizienz wichtig | [De'Longhi Pinguino PAC EX105](https://getecoback.com/guide/pinguino-pac-ex105-test.html) · [alle Pinguino-Modelle im Vergleich](https://getecoback.com/guide/delonghi-pinguino-vergleich.html) | A+++ statt A, in Messungen leiser als das Feld — kostet aber deutlich mehr |
 
 Räume über 25–30 m² | Klarstein Kraftwerk Smart 12K · [Test-Überblick](https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html) | 12.000 BTU Reserve — den 9.000 BTU des Comfee geht dort die Puste aus |
 
@@ -73,7 +73,7 @@ Das Comfee MPPH-09CRN7 steht mit 63 dB(A) im Datenblatt — und die Lautstärke 
 Auf diesem Portal empfehlen wir zwei: das mobile Klimagerät MPPH-09CRN7 (9.000 BTU für 15–20 m², ca. 250–320 €, meistgekauftes Klimagerät bei Amazon) als Preis-Leistungs-Einstieg und den Luftentfeuchter MDDF-20DEN7 (20 Liter/Tag, ca. 150–200 €) als Preis-Leistungs-Wahl fürs Entfeuchten und Wäschetrocknen. Beide erfüllen die Kernfunktion zum niedrigen Preis; beide sind hörbar und keine Ausstattungswunder.
 
 **Wann sollte man lieber eine andere Marke wählen?**
-In drei Fällen: Wer nachts bei laufendem Gerät schlafen will oder Wert auf Effizienz legt, ist mit dem De'Longhi Pinguino PAC EX105 (A+++, in Messungen leiser als das Feld) besser bedient — er kostet mit ca. 400–550 € aber deutlich mehr. Bei Räumen über 25–30 m² fehlt Comfees 9.000-BTU-Gerät die Reserve; dort ist ein 12.000-BTU-Gerät wie das Klarstein Kraftwerk Smart 12K die passendere Klasse. Und wer auf einen schnell erreichbaren Kundendienst angewiesen ist, sollte die wiederkehrende Kritik an der Service-Erreichbarkeit auf Beschwerdeportalen einkalkulieren.
+In drei Fällen: Wer nachts bei laufendem Gerät schlafen will oder Wert auf Effizienz legt, ist mit dem De'Longhi Pinguino PAC EX105 (A+++, in Messungen leiser als das Feld) besser bedient — er kostet aber deutlich mehr. Bei Räumen über 25–30 m² fehlt Comfees 9.000-BTU-Gerät die Reserve; dort ist ein 12.000-BTU-Gerät wie das Klarstein Kraftwerk Smart 12K die passendere Klasse. Und wer auf einen schnell erreichbaren Kundendienst angewiesen ist, sollte die wiederkehrende Kritik an der Service-Erreichbarkeit auf Beschwerdeportalen einkalkulieren.
 
 **Aktuelle Preise prüfen** — beide Geräte sind in Hitze- bzw. Feuchteperioden schnell vergriffen:
 

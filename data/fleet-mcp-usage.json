@@ -1,39 +1,53 @@
 {
- "generated": "2026-09-25T13:08:45Z",
+ "generated": "2026-09-27T13:26:46Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
   {
    "site": "buysomething",
    "endpoint": "/api/mcp",
-   "exposed": false,
-   "missing": [
-    "fetch failed: HTTP Error 500: Internal Server Error"
-   ],
+   "exposed": true,
+   "missing": [],
    "days": 28,
-   "calls": 82,
+   "calls": 90,
    "ci": 45,
    "operator": 15,
-   "indexer": 17,
-   "other": 5,
+   "indexer": 24,
+   "other": 6,
    "with_args": 0,
-   "callers": 3,
+   "callers": 4,
    "demand_callers": 0,
    "variety": "shape_only",
    "best_caller": {
     "calls": 3,
     "days": 3,
     "shapes": 1
-   },
-   "stale_days": 1
+   }
   },
   {
    "site": "getecoback",
    "endpoint": "/mcp/v1",
-   "exposed": false,
+   "exposed": true,
    "missing": [
-    "mcp block absent from /api/trend"
-   ]
+    "caller classes",
+    "argument variety",
+    "demand_callers"
+   ],
+   "days": 28,
+   "calls": 366,
+   "by_tool": {
+    "hitzewelle_vorschau": 64,
+    "btu_empfehlung": 58,
+    "fensterabdichtung_laenge": 57,
+    "balkonspeicher_foerderung": 56,
+    "geraet_wahl": 46,
+    "klimaanlage_stromkosten": 29,
+    "taupunkt_lueften": 28,
+    "heizleistung_watt": 28
+   },
+   "ci": 0,
+   "ci_note": "the worker already refuses to log its own smoke UA, so these are non-CI calls",
+   "demand_callers": null
   },
   {
    "site": "baipiaoji",
@@ -45,11 +59,12 @@
   }
  ],
  "fleet": {
-  "calls_28d": 0,
+  "calls_28d": 456,
   "demand_callers": 0,
-  "demand_measurable_on": [],
+  "demand_measurable_on": [
+   "buysomething"
+  ],
   "demand_unmeasurable_on": [
-   "buysomething",
    "getecoback",
    "baipiaoji"
   ],

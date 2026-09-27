@@ -21,7 +21,7 @@ for (const lang of ['en', 'zh']) for (const slug of slugs) {
     assert.ok(html.includes(`href="${canonical}"`));
     assert.ok(!html.includes('thomasedisonfault.chatgpt.site'));
     assert.equal((html.match(/<h1>/g)||[]).length,1);
-    const visible = html.replace(/<script\b.*?<\/script>/gs,'').replace(/<style\b.*?<\/style>/gs,'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');
+    const visible = html.replace(/<script\b.*?<\/script>/gs,'').replace(/<style\b.*?<\/style>/gs,'').replace(/<[^>]*>/g,' ').replace(/&#x27;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ');
     assert.deepEqual(graph.find(x=>x['@type']==='FAQPage').mainEntity.map(x=>[x.name,x.acceptedAnswer.text]), t.faqs);
     for(const [q,a] of t.faqs){assert.ok(visible.includes(q));assert.ok(visible.includes(a));}
     for(const l of ['en','zh']) assert.ok(html.includes(`/${l}/agents/${slug}.html`));
@@ -32,11 +32,22 @@ for (const lang of ['en', 'zh']) for (const slug of slugs) {
     const nodes={};
     for(const id of ['checker-data','evidence-check','summary','gaps','result','limit','download','share','share-status','deadline','product-scope','size','commodity',...t.items.map(x=>x[0])])nodes[id]=element();
     nodes['checker-data'].textContent=JSON.stringify(t);
+    if(t.request)nodes['supplier-template']=element();
     let exported;
     const beacons=[];
     const document={getElementById:id=>nodes[id],createElement:element,body:element(),querySelector:()=>({href:canonical}),referrer:''};
     const context={document,Blob,location:{pathname:`/${lang}/agents/${slug}.html`},URL:{createObjectURL(blob){exported=blob;return 'blob:test';},revokeObjectURL(){}},navigator:{clipboard:{async writeText(v){assert.equal(v,canonical);}},sendBeacon(url,blob){assert.equal(url,'/api/ev');beacons.push(blob);return true;}},setTimeout:f=>f(),fetch:()=>{throw Error('Checklist must not submit answers');}};
     vm.runInNewContext(source,context);
+    if(t.request){
+      const file=path.join(site,'downloads',`cbam-supplier-request-${lang}.txt`);
+      const text=fs.readFileSync(file,'utf8');
+      assert.ok(text.includes(canonical));
+      for(const line of t.request.template)assert.ok(text.includes(line));
+      assert.ok(html.includes('id="supplier-request"'));
+      assert.ok(html.includes(`href="/downloads/cbam-supplier-request-${lang}.txt" download`));
+      nodes['supplier-template'].handlers.click();
+      assert.equal(JSON.parse(await beacons.at(-1).text()).n,'evidence_download');
+    }
     const submit=()=>nodes['evidence-check'].handlers.submit({preventDefault(){}});
     assert.equal(nodes.download.hidden,true);
     submit();assert.equal(nodes.gaps.children.length,t.items.length);

@@ -96,6 +96,12 @@ def main():
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)
         md_name = (slug[:-5] if slug.endswith('.html') else slug) + '.md'
+        # /skill.md is the installable SKILL file the /skill page tells agents to curl
+        # (hand-maintained, with frontmatter). Until 2026-09-26 this loop overwrote it
+        # with the page's Markdown mirror on every deploy, so the advertised one-command
+        # install delivered a mirror with no frontmatter and no instructions.
+        if md_name == 'skill.md':
+            continue
         open(os.path.join(ROOT, md_name), 'w', encoding='utf-8').write(md)
         n_md += 1
         full += ['## ' + title, '', 'URL: ' + url]

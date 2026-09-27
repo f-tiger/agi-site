@@ -996,3 +996,45 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
 
 ## 钱线仪器(2026-09-21)
 `/api/pulse` 多返回 `money`(subscribers / ev_tool_click|invest_tool_click|subscribe_click|calc_use_28d / pv_advertise|audits|members|workbench_28d / member_orders_by_state / discuss_profiles),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。/advertise 09-21 读数:223 pv(服务端口径)、0 询单。
+
+## 信任层审计与共识板(2026-09-26;全文根仓 `docs/ai-consensus-faith-2026-09-26.md`)
+
+- **data.json 每条预测现在带 `flip` / `watch` / `resolves` / `pending_reason` 之一,逐字来自首页判定行**;`validate.py` 断言两处
+  永远一致——改首页的 Flips if 就必须同一次改 data.json,反之亦然。`/for-agents` 与 MCP 描述从 7 月起宣称的东西到今天才是真的。
+- **`/calibration` 由 `gen_calibration.py` 从 `sunwatch-track-record.json`(runner 周一快照,会话不手改)+ data.json + `ots/manifest.json`
+  生成**,一个数字都不写死;页面如实写 Brier-eligible n(今天 0)。承诺线 `agi-brier-n20-1231`。
+- **`/agi-prediction-markets` = AGI 共识板**(`fetch_market_board.mjs` 四家来源 → `market-board.json` → `gen_market_board.py` →
+  页 + `agi-consensus.json`;`--check` 逐字重算;`--selftest` 15 条)。锚点行永远保留不被成交量上限截掉;系列判据是对问题文本的
+  正则,不是编辑挑选;**中位数只跨泛 AGI 三系列**。红线同 `/ai-trading-ledger`。MCP `get_agi_consensus` 读 `/agi-consensus.json`。
+- **`/skill.md` 是手维护的 SKILL 文件(带 frontmatter),`gen_agent_surfaces.py` 跳过它**;部署自检断言首行 `---`。
+- **`/ots/` 是 OpenTimestamps 证明目录**(heartbeat 每日 stamp 新版本、upgrade pending;manifest 列状态)。会话不要手改;
+  证明只证明时间,页面文案永远不许写成「区块链验证的真相」。
+- **MCP 每个工具调用都落库 `tool:<name>`**(09-26 补齐 thesis_tracker / verdicts);部署自检断言线上 tools/list 与 worker 源码一致。
+- `gen_changelog.py` 已接进部署构建步;`gen_index.py` 遇到 WEIGHT 外的判定标签直接退出(不再静默按 0.5)。
+- **09-27 第三轮**:`/grader-consensus` 评分者 2 → 4(+Reeves AGI Friday 2025-10-04、+Dubach 2026-05-21),16 次比较 9/6/**1 分歧**
+  (knowledge-work);页面、FAQ、描述、`llms.txt` 那一行与 `/situational-awareness-predictions` 首屏的活数字**全部由 `gen_grader_consensus.py`
+  从数据生成,`--check` 守门**(`<!-- grader-consensus:start/end -->` 之间别手改)。新增评分者只按原规则:公开、带日期、署名、逐字引语、
+  映射可争;owner 本人的帖子(EA Forum「Edison」)永不算独立。MCP `get_verdicts` 输出带 `independent_grades`。
+  `/calibration` 有点击才运行的浏览器核验(请求带 `utm_source=verify`,worker 不写 pageviews;事件 `verify_run`)与「预测账本」一节;
+  `/ots/*.ots` 按二进制下载返回。
+
+## D1 读取额度:/api/pulse 与 /api/trends 的服务端缓存 + human 部分索引(2026-09-26,owner「agi的也改了」;全文根仓 `docs/d1-read-budget-2026-09-26.md`)
+
+- **为什么**:D1 免费额度是**全账号**每天读 500 万行,09-24/25/26 连续用完,之后全舰队的统计与事件写入被拒到 UTC 零点
+  (**本站 `events`/`pageviews` 当天后半段也没记上**)。Cloudflare 逐条查询统计:09-26 本站 `/api/trends` 一天 53 次调用
+  (仓库内调用方最多 6 次)、每次约 3.5 万行,`/api/pulse` 每次约 9 万行,合计占全账号 46%。两个接口原来只设 `cache-control`
+  头——**Cloudflare 不缓存 Worker 自己返回的响应**,每个请求都把 pageviews 整表读一遍。
+- **改了什么**:①`tools/analytics-worker/aggregate-cache.js`(Cache API,pulse 1 小时、trends 30 分钟;键只含接口名与版本号;
+  失败与 `partial:true` 不缓存;响应头 `x-agi-aggregate-cache: miss|hit|bypass`,部署自检断言它在)。计算本体抽成
+  `pulseResponse()` / `trendsResponse()`;pulse 的 money 主查询失败时标 `partial:true`。**响应形状一改就把 `AGG_CACHE_VERSION` 加一。**
+  ②`tools/analytics-worker/migrations/0001_pageviews_human_index.sql`:`pageviews_human ON pageviews(day, path, ref_host, hits)
+  WHERE ua_class = 'human'`——覆盖两个接口要读的全部列,只读 human 行、不回表。**查询里必须原样带 `ua_class='human'`**,
+  否则 SQLite 不用这个索引;`tools/test_analytics_d1.mjs` 对两个接口实际发出的每条 pageviews 查询跑 EXPLAIN,要求
+  「SEARCH … USING COVERING INDEX pageviews_human (day…)」,出现整表扫描即红(8 个变异全红)。
+- **写新的 pageviews 统计查询前先想它走哪个索引**;要放进会被反复调用的端点,就先加缓存。判定线 `agi-d1-reads-1004`
+  (09-28→10-03 每天 agiscorecard-events 读取 ≤30 万行;t0 09-26 181 万)。
+- **09-27 进度**:缓存已上线并验证(线上 miss→hit,部署 run 36281663006 全绿);**索引顺延到 09-28 00:05 UTC**——同一个零点 bpj 迁移
+  已用掉 48 589 行写入,全账号日常写入 1.6–3.1 万行/天,再加 20 964 条索引条目会贴 10 万行写入上限,越线 = 全舰队当天事件写入被拒。
+  线上 pageviews 早有 `idx_pv_day` / `idx_pv_path` / `idx_pv_ref`,测试夹具已照抄;点名路径的查询(pulse 的 money 块)按路径等值查
+  `idx_pv_path` 是允许的,**退回 `idx_pv_day` 即红**。建索引后每次 human 页面浏览的 upsert 多一次索引写入(约 1 400 行/天)。
+

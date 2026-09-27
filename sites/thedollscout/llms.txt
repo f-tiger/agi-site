@@ -1,10 +1,12 @@
 # TDS Document Scout
 
-Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Six free browser tools for PDF preflight, batch review, text extraction, text-version comparison, SHA-256 file verification and delivery records. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
+- [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+  Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+- [Free document tools: PDF, file verification & delivery](https://thedollscout.com/) (en): Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -26,9 +28,11 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
   Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [Empfangene Datei prüfen](https://thedollscout.com/de/verify-file) (de): Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
+  Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+- [Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe](https://thedollscout.com/de/) (de): Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -50,9 +54,11 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
   Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [核对收到的文件](https://thedollscout.com/zh/verify-file) (zh): 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+  Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+- [免费文档工具：PDF 处理、文件核验与交付记录](https://thedollscout.com/zh/) (zh): 按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt

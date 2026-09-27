@@ -1,5 +1,6 @@
-import { DELIVERY_LIMITS, validateDeliveryFiles, fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, esc } from './delivery-core.mjs?v=2026-09-25.7';
-import { track } from './app.mjs?v=2026-09-25.7';
+import { DELIVERY_LIMITS, validateDeliveryFiles, fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, esc } from './delivery-core.mjs?v=2026-09-25.8';
+import { referenceURL } from './verify-core.mjs?v=2026-09-25.8';
+import { track } from './app.mjs?v=2026-09-25.8';
 const c=JSON.parse(document.getElementById('delivery-copy').textContent), $=id=>document.getElementById('delivery-'+id);
 let record=null, epoch=0, isSample=false, interestSent=false;
 const downloads=new Set();
@@ -11,7 +12,7 @@ $('files').addEventListener('change',()=>{$('selected').textContent=Array.from($
 function busy(value){for(const el of document.querySelectorAll('#delivery-form input,#delivery-form textarea,#delivery-build,#delivery-sample,#delivery-check,#delivery-manifest'))el.disabled=value;$('form').setAttribute('aria-busy',String(value));}
 const errorText=e=>c[({files:'filesError',size:'sizeError',total:'totalError',names:'namesError',manifest:'manifestError'})[e.message]]||c.readError;
 async function fingerprints(files){validateDeliveryFiles(files);const out=[];for(const f of files)out.push(await fingerprint(f));return out;}
-function render(){const r=record;$('result').innerHTML=`<h2>${esc(c.result)}</h2>${isSample?`<p class="notice">${esc(c.sampleLabel)}</p>`:''}<h3>${esc(r.project)}</h3><p>${esc(c.scopeBody)}</p><div class="table-scroll"><table><thead><tr><th>${esc(c.file)}</th><th>${esc(c.bytes)}</th><th>${esc(c.hash)}</th></tr></thead><tbody>${r.files.map(f=>`<tr><td>${esc(f.name)}</td><td>${f.bytes}</td><td class="delivery-digest">${f.sha256}</td></tr>`).join('')}</tbody></table></div><h3>${esc(c.notes)}</h3>${['scope','delivery','acceptance'].map(k=>`<p><strong>${esc(c[k])}</strong></p><pre>${esc(r.notes[k]||c.missingNote)}</pre>`).join('')}<p>${esc(c.private)}</p><div class="actions"><button data-delivery-export="json">${esc(c.downloadJSON)}</button><button data-delivery-export="html">${esc(c.downloadHTML)}</button></div><p id="delivery-download-status" role="status"></p>`;$('result').hidden=false;$('result').focus();}
+function render(){const r=record;$('result').innerHTML=`<h2>${esc(c.result)}</h2>${isSample?`<p class="notice">${esc(c.sampleLabel)}</p>`:''}<h3>${esc(r.project)}</h3><p>${esc(c.scopeBody)}</p><div class="table-scroll"><table><thead><tr><th>${esc(c.file)}</th><th>${esc(c.bytes)}</th><th>${esc(c.hash)}</th></tr></thead><tbody>${r.files.map((f,i)=>`<tr><td>${esc(f.name)}</td><td>${f.bytes}</td><td class="delivery-digest">${f.sha256}<button class="delivery-recipient-link" data-recipient-copy="${i}">${esc(c.recipientCopy)}</button></td></tr>`).join('')}</tbody></table></div><p class="small">${esc(c.linkPrivacy)}</p><p id="delivery-recipient-status" role="status"></p><h3>${esc(c.notes)}</h3>${['scope','delivery','acceptance'].map(k=>`<p><strong>${esc(c[k])}</strong></p><pre>${esc(r.notes[k]||c.missingNote)}</pre>`).join('')}<p>${esc(c.private)}</p><div class="actions"><button data-delivery-export="json">${esc(c.downloadJSON)}</button><button data-delivery-export="html">${esc(c.downloadHTML)}</button></div><p id="delivery-download-status" role="status"></p>`;$('result').hidden=false;$('result').focus();}
 async function create(files,sample=false,notes){reset();const current=epoch;isSample=sample;busy(true);$('status').textContent=c.working;
  try{const fs=await fingerprints(files);if(current!==epoch)return;record=deliveryRecord(fs,notes||Object.fromEntries(['project','scope','delivery','acceptance'].map(k=>[k,$(k).value])));render();$('status').textContent=c.ready;track(sample?'doc_delivery_sample':'doc_delivery_complete');}
  catch(e){if(current===epoch)$('status').textContent=errorText(e);}finally{busy(false);}
@@ -32,4 +33,11 @@ document.addEventListener('click',async event=>{const button=event.target.closes
  const buttons=document.querySelectorAll('[data-delivery-interest]');buttons.forEach(b=>b.disabled=true);
  try{if(!probe){const response=await fetch('/api/doc-events',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({p:location.pathname,e:`doc_delivery_interest_${frequency}_${button.dataset.deliveryInterest}`}),signal:AbortSignal.timeout(10000)});if(response.status!==204)throw Error('not recorded');}interestSent=true;$('interest-status').textContent=probe?c.thanks.replace('Answer recorded.','Preview only.'):c.thanks;}
  catch{$('interest-status').textContent=c.queued;buttons.forEach(b=>b.disabled=false);}
+});
+
+$('result').addEventListener('click',async event=>{const button=event.target.closest('[data-recipient-copy]');if(!button||!record)return;
+ const lang=document.documentElement.lang.startsWith('zh')?'zh':document.documentElement.lang;
+ const url=referenceURL(record.files[Number(button.dataset.recipientCopy)],lang),output=$('recipient-status');
+ try{await navigator.clipboard.writeText(url);output.textContent=c.recipientCopied;if(!isSample)track('doc_delivery_recipient_share');}
+ catch{const input=document.createElement('input');input.readOnly=true;input.value=url;input.setAttribute('aria-label',c.recipientCopy);output.replaceChildren(input);input.focus();input.select();}
 });

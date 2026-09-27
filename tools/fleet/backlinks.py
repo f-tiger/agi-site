@@ -26,10 +26,10 @@ import json
 import os
 import re
 import sys
-import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ai_referrals import ENDPOINTS  # noqa: E402  端点表只维护一份
+from endpoint_cache import fetch_url  # noqa: E402  2026-09-26:同一 run 内每个端点只出网一次(D1 读预算)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-backlinks.json")
@@ -41,9 +41,7 @@ FLEET_RE = re.compile(r"(?<![\w-])(?:[\w-]+\.)*(?:agiscorecard|baipiaoji|getecob
 
 
 def fetch(url, timeout=25):
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.status, r.read().decode("utf-8", "replace")
+    return fetch_url(url, timeout=timeout, ua=UA, accept="*/*")
 
 
 def earned():

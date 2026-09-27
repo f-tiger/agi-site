@@ -1,6 +1,6 @@
 {
   "title": "CBAM supplier data missing? Check the O3CI handoff",
-  "description": "A free CBAM supplier handoff check for EU importers and non-EU aluminium and steel producers. Find open questions and download a request checklist.",
+  "description": "CBAM data shared but not verified? Check the supplier handoff, separate verification status and download a free supplier request template.",
   "intro": "Your supplier says the data was shared, but the importer cannot find it. Start by separating portal access, installation identity and data-sharing issues. This tool checks your answers, not the official registry.",
   "privacy": "No login, uploads or personal information. Your answers stay in this page and are never sent. We only count page views, checklist runs and downloads, without cookies.",
   "unknown": "Not checked",
@@ -50,7 +50,15 @@
     ],
     [
       "Is shared data automatically verified?",
-      "No. Data sharing and independent emissions verification are different steps. Consult the official verification guidance."
+      "No. Registry sharing is not independent verification. If using actual emissions, consult the Commission's rules for accredited independent verifiers; this checker cannot verify emissions."
+    ],
+    [
+      "Does a missing verification report in September 2026 prove a failure?",
+      "No. The Commission's published timeline places the first verification reports in January 2027. Ask for the status and expected availability, rather than assuming a report must already exist."
+    ],
+    [
+      "What should I ask my supplier to send next?",
+      "Start with one installation and reporting period. Ask for the sharing recipient, retrieval status and, where actual emissions are planned, the verification owner and report status. Use the free request template and an agreed secure channel."
     ],
     [
       "Can I buy the €299 evidence pack here?",
@@ -58,7 +66,33 @@
     ]
   ],
   "offerTitle": "Before paying for help",
-  "offer": "Use the free checklist first. A proposed evidence-pack pilot covers one product family, a bilingual document index and supplier-request templates. Scope, tax treatment and delivery terms must be agreed before any charge; checkout is not connected.",
+  "offer": "The checklist and supplier request template are free. A proposed €299 evidence-pack pilot would organise one product family's bilingual document index and tailored follow-up list. It is not verification or a declaration service. Scope, tax treatment and delivery terms must be agreed before any charge; checkout is not connected.",
+  "scopeContact": "Ask about the scope — not an order",
+  "scopeContactNote": "The contact page is in German. Do not send sensitive files in an initial enquiry. No payment is collected here.",
+  "request": {
+    "title": "CBAM data shared but not verified: what to request",
+    "intro": "Treat this as a coordination question, not a failed-compliance verdict. The next step depends on where the handoff stopped.",
+    "steps": [
+      ["Record not visible", "Confirm the installation, reporting period and intended recipient together. A resent spreadsheet does not show that the right registry record is visible."],
+      ["Record visible, verification unclear", "If actual emissions are planned, identify the verification owner and report status. Sharing a record does not replace an accredited independent verifier."],
+      ["Report not yet available", "Record the planned next step and expected availability. The Commission's timeline puts first reports in January 2027; do not mark an absent report in September 2026 as an automatic failure."]
+    ],
+    "download": "Download the free supplier request (.txt)",
+    "note": "Editable text with blank placeholders. Complete it locally and review it before sending. EcoBack does not send messages or upload your files.",
+    "template": [
+      "Subject: CBAM information handoff — [installation] / [reporting period]",
+      "Hello [supplier contact],",
+      "We are coordinating information for [product family] from [installation reference], for [reporting period]. Please help us confirm the following items through our agreed business channel.",
+      "1. Installation: confirm the reference, country and person responsible for this record.",
+      "2. Sharing: confirm which record and period were shared, the intended declarant and the date. Confirm EORI directly through the trusted business contact; do not post it publicly.",
+      "3. Retrieval: [declarant contact] to confirm whether that exact record is visible. If not, please describe the unresolved step without sharing account credentials.",
+      "4. If actual emissions are planned: identify the verification contact and current report status. If a report is not yet available, please state the next step and expected availability. This request does not assume the report is already due.",
+      "5. Agree one owner and next action for each unresolved item. Please reply by [business coordination date — not a legal deadline].",
+      "Please do not send passwords or personal identification documents with this initial reply. Agree a secure channel before transferring sensitive evidence.",
+      "Thank you, [name / organisation]",
+      "Preparation template only. Not an EU form, legal advice, verification or proof of compliance. Do not submit this template as a CBAM declaration."
+    ]
+  },
   "sourcesTitle": "Official references",
   "home": "All tools",
   "disclaimer": "Independent preparation aid. Not an EU service, legal advice, certification, verification or a compliance decision.",
@@ -83,6 +117,10 @@
     [
       "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-legislation-and-guidance_en",
       "Commission: legislation and verification guidance"
+    ],
+    [
+      "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en",
+      "Commission: verification roles and timeline"
     ]
   ]
 }

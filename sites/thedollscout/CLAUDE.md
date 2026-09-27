@@ -1,5 +1,19 @@
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
+## 2026-09-27 首页改为文档与交付工具总览
+
+Owner 要求借鉴 BPJ/ECO 多入口，避免首页押注单一工具。本节替代 09-25「保持现有首页」要求：EN `/`、DE `/de/`、ZH `/zh/` 均按检查文档、提取与比较、核验与交付三组展示现有六个工具；首页没有上传工作区。品牌与首页链接仍返回默认英文 `/`。保持独立工具 URL 和处理逻辑。
+
+- 首页文案源 `scripts/documents/home-hub.mjs`，固定六个路径共用 `document-assets/hub-core.mjs`；`build.mjs` 同步生成 HTML、CollectionPage/ItemList、可见 FAQ、纯文本及 llms 索引。不是新增六项功能或通用 AI 工具目录。
+- 首页入口事件只有六种 `doc_hub_open_*`，仅首页允许，不记录文件、关键词或标识。`homepage_views`、`dedicated_tool_views`、`homepage_selections` 分开报告；旧 `tool_views` 为兼容继续含首页。首页浏览包含窗口内旧版首页，点击不是完成、人数、引用或成交。
+- 保留 39 页 / 36 URL 文档 sitemap、真实样例与既有处理器版本。27 项 Node 测试；浏览器 QA 用 `?ci=1`。发布与本轮验证追加在根目录 `docs/tds-search-recovery-2026-09-27.md`。
+
+
+## 2026-09-25 收件人核验迭代
+
+版本2026-09-25.8，39个生成页面，24项测试。`/verify-file`及DE/ZH提供SHA-256+字节数参考链接、本地比较、网站嵌入链接和独立离线CLI；不依赖D1。交付记录每个文件可复制收件人链接，HTML导出附核验入口。URL片段不含名称或备注，统计不得接收指纹；不得称为身份、收件、验收或Bitcoin证明。共享PDF脚本只绑定`#workspace`下文件输入，避免干扰其他工具。新增匿名事件不是用户、留存或营收。第二轮路线与传播门槛见根目录`docs/tds-consensus-growth-2026-09-25.md`。
+
+
 ## 2026-09-25 月收入目标与交付实验
 
 Owner 明确要求主动探索工具、共识和金融机制，目标月营收1万以上。未指定币种：当前模型按人民币，另列美元情景。见根目录 `docs/tds-consensus-revenue-2026-09-25.md`、站内 `.agents/product-marketing.md` 和 `docs/delivery-experiment-2026-09-25.md`。

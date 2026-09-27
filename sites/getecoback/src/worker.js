@@ -780,37 +780,30 @@ async function handleEvent(request, env, ctx) {
 // hardcoded at build time. Aggregate only — paths and counts, nothing personal.
 // Same defensive contract as /api/heat: every step guarded, failure degrades to
 // an empty list (never an empty body), failures are never cached.
+// 2026-09-26:走 cachedJson(6 小时,键含部署版本);兜底/空结果带 no-store,永不入缓存。
 const TOP_EMPTY = { pages: [] };
+const TOP_HEADERS = { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" };
 
-async function handleTop(env) {
-  const headers = {
-    "content-type": "application/json; charset=utf-8",
-    "cache-control": "public, max-age=21600",
-    "access-control-allow-origin": "*",
-  };
-  let cache = null;
-  const key = "https://getecoback.com/__top-cache-v1";
-  try {
-    cache = caches.default;
-    const hit = await cache.match(key);
-    if (hit) return hit;
-  } catch (e) { /* cache is optional, not a dependency */ }
-  if (!env.EVENTS) return new Response(JSON.stringify(TOP_EMPTY), { headers });
-  try {
-    const rs = await env.EVENTS.prepare(
-      "SELECT page, COUNT(*) AS n FROM ev WHERE name='page_view' " +
-      "AND day >= date('now','-28 day') AND page LIKE '/guide/%' " +
-      "AND page NOT LIKE '/__ci%' GROUP BY page ORDER BY n DESC LIMIT 8"
-    ).all();
-    const pages = (rs.results || [])
-      .filter((r) => typeof r.page === "string" && /^\/guide\/[a-z0-9-]+\.html$/.test(r.page))
-      .map((r) => ({ page: r.page, n: r.n }));
-    const resp = new Response(JSON.stringify({ pages }), { headers });
-    try { if (cache) await cache.put(key, resp.clone()); } catch (e) { /* optional */ }
-    return resp;
-  } catch (e) {
-    return new Response(JSON.stringify(TOP_EMPTY), { headers });
-  }
+async function handleTop(request, env, ctx) {
+  return cachedJson(request, env, ctx, 21600, async () => {
+    const noStore = { ...TOP_HEADERS, "cache-control": "no-store" };
+    if (!env.EVENTS) return new Response(JSON.stringify(TOP_EMPTY), { headers: noStore });
+    try {
+      const rs = await env.EVENTS.prepare(
+        "SELECT page, COUNT(*) AS n FROM ev WHERE name='page_view' " +
+        "AND day >= date('now','-28 day') AND page LIKE '/guide/%' " +
+        "AND page NOT LIKE '/__ci%' GROUP BY page ORDER BY n DESC LIMIT 8"
+      ).all();
+      const pages = (rs.results || [])
+        .filter((r) => typeof r.page === "string" && /^\/guide\/[a-z0-9-]+\.html$/.test(r.page))
+        .map((r) => ({ page: r.page, n: r.n }));
+      // 空榜与兜底同形,分不开 → 一律不缓存(eco 28 天里 /guide/ 阅读从没为 0,空就是可疑)。
+      const headers = pages.length ? { ...TOP_HEADERS, "cache-control": "public, max-age=21600" } : noStore;
+      return new Response(JSON.stringify({ pages }), { headers });
+    } catch (e) {
+      return new Response(JSON.stringify(TOP_EMPTY), { headers: noStore });
+    }
+  });
 }
 
 // Condensation feed for the trend radar: week-over-week event totals, page
@@ -818,15 +811,20 @@ async function handleTop(env) {
 // is what the daily radar script reads to write docs/trend-radar.md — the
 // standing source material the hourly agent routine judges from. Aggregate
 // only, same defensive contract as /api/heat and /api/top.
-const TREND_EMPTY = { events: [], pages: [], zero_hits: [] };
+// 2026-09-26:D1 失败不再静默回空数组 200(读侧 measure.py 曾专门写「空 = 疑似故障」来猜),
+// 改回 503 {ok:false} + no-store;成功形状不变(events/pages/zero_hits/refs/mcp),走 cachedJson 1 小时。
+async function handleTrend(request, env, ctx) {
+  return cachedJson(request, env, ctx, 3600, () => trendCompute(env));
+}
 
-async function handleTrend(env) {
+async function trendCompute(env) {
   const headers = {
     "content-type": "application/json; charset=utf-8",
     "cache-control": "public, max-age=3600",
     "access-control-allow-origin": "*",
   };
-  if (!env.EVENTS) return new Response(JSON.stringify(TREND_EMPTY), { headers });
+  const noStore = { ...headers, "cache-control": "no-store" };
+  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: noStore });
   try {
     const ev = await env.EVENTS.prepare(
       "SELECT name, " +
@@ -874,7 +872,7 @@ async function handleTrend(env) {
       refs: refs.results || [], mcp: mcp.results || [],
     }), { headers });
   } catch (e) {
-    return new Response(JSON.stringify(TREND_EMPTY), { headers });
+    return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 503, headers: noStore });
   }
 }
 
@@ -978,19 +976,9 @@ const MCP_TOOLS = [
       required: ["aussen_temp_c", "aussen_luftfeuchte_prozent", "innen_temp_c"],
     },
   },
-  {
-    name: "balkonspeicher_foerderung",
-    description: "Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026) und wie ein Zuschuss die Amortisation verkürzt. — German subsidies for plug-in balcony solar and storage: which state programmes exist, the ~100 € storage bonus, the apply-BEFORE-buying rule most programmes enforce, and the payback arithmetic with and without a grant. No federal purchase premium — only the VAT exemption.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        bundesland: { type: "string", description: "Bundesland, z. B. 'Sachsen' oder 'Berlin' — German federal state (optional; ohne Angabe wird die Gesamtlage beschrieben)" },
-        preis_eur: { type: "number", description: "Kaufpreis des Speichers/Sets in € für die Amortisationsrechnung (optional)" },
-        zuschuss_eur: { type: "number", description: "Erwarteter Zuschuss in € (optional, Default 0)" },
-        ersparnis_eur_jahr: { type: "number", description: "Jährliche Stromersparnis in € (optional, Default 100 — typisch 60–120 € bei 1–1,5 kWh/Tag Verschiebung)" },
-      },
-    },
-  },
+  // balkonspeicher_foerderung (balcony solar / storage subsidies) was removed on
+  // 2026-09-27 together with the storage and balcony-PV pages it pointed at
+  // (owner: 「全部下线储能页」). A tools/call for it now gets the unknown-tool error.
   // Retrieval, not arithmetic. The six tools above hand back a number; an
   // assistant answering "welche Klimaanlage bei Kippfenster im Dachgeschoss?"
   // needs the site's actual guides — and a URL it can cite. These two make the
@@ -1185,42 +1173,6 @@ async function mcpCallTool(name, args, env) {
       `\nGerechnet wird mit Wänden 2 °C unter Raumtemperatur. Im Sommer sind das oft die frühen Morgenstunden.\n` +
       `Hintergrund & Check im Browser: https://getecoback.com/guide/keller-lueften-sommer.html\n${MCP_DISCLOSURE}`);
   }
-  if (name === "balkonspeicher_foerderung") {
-    // Mirrors the table on /guide/balkonspeicher-foerderung.html — same data,
-    // same caveats. Programme pots empty mid-year, so the answer names the
-    // magnitude and the rule, never a guaranteed amount.
-    const LAND = {
-      "mecklenburg-vorpommern": "Mecklenburg-Vorpommern hat ein Landesprogramm (Größenordnung 300–500 €).",
-      "sachsen": "Sachsen fördert speziell Mietende — befristetes Programm, Größenordnung 300–500 €.",
-      "hamburg": "Hamburg hat ein Landesprogramm (Größenordnung 300–500 €).",
-      "berlin": "Berlin fördert an den Bezug von Sozialleistungen geknüpft (Größenordnung 300–500 €).",
-    };
-    const raw = String(a.bundesland || "").trim().toLowerCase()
-      .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
-      .replace(/\s+/g, "-");
-    const key = raw === "mv" ? "mecklenburg-vorpommern" : raw;
-    const landLine = key
-      ? (LAND[key] || `Für ${a.bundesland}: kein landesweites Programm bekannt (Stand 08/2026).`)
-      : "Landesprogramme gibt es u. a. in Mecklenburg-Vorpommern, Sachsen (Mietende, befristet), Hamburg und Berlin (an Sozialleistungen geknüpft) — Größenordnung 300–500 €.";
-    let calc = "";
-    const preis = Number(a.preis_eur);
-    if (isFinite(preis) && preis > 0) {
-      const zuschuss = Math.max(0, Math.min(preis, Number(a.zuschuss_eur) || 0));
-      const sparen = Math.max(10, Number(a.ersparnis_eur_jahr) || 100);
-      const ohne = preis / sparen;
-      const mit = (preis - zuschuss) / sparen;
-      calc = `\nAmortisation bei ${sparen.toFixed(0)} € Ersparnis/Jahr: ohne Zuschuss ca. ${ohne.toFixed(1).replace(".", ",")} Jahre` +
-        (zuschuss > 0 ? `, mit ${zuschuss.toFixed(0)} € Zuschuss ca. ${mit.toFixed(1).replace(".", ",")} Jahre. Der Zuschuss ändert nichts am Nutzen pro Jahr — er verkürzt nur die Zeit bis zur schwarzen Null.` : ".");
-    }
-    return mcpToolResult(
-      `Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026):\n` +
-      `Bundesweit gibt es KEINE Kaufprämie — nur die Mehrwertsteuer-Befreiung, die im Preis bereits enthalten ist.\n` +
-      `${landLine}\n` +
-      `Dazu rund 20 kommunale Programme (u. a. Leipzig, Dresden, Chemnitz) mit 100–500 €; einige zahlen ca. +100 € extra, wenn ein Speicher dazukommt.\n` +
-      `Wichtigste Regel: ERST Antrag stellen, DANN kaufen — eine Rechnung von vor der Bewilligung kippt den Zuschuss in fast allen Programmen.${calc}\n` +
-      `Fördertöpfe sind begrenzt und ändern sich unterjährig — verbindlich ist nur die Richtlinie des eigenen Programms (Kommune/Stadtwerke prüfen).\n` +
-      `Details & Rechenweg: https://getecoback.com/guide/balkonspeicher-foerderung.html\n${MCP_DISCLOSURE}`);
-  }
   if (name === "ratgeber_suche") {
     if (!env || !env.ASSETS) {
       return { content: [{ type: "text", text: "Suchindex derzeit nicht erreichbar." }], isError: true };
@@ -1353,7 +1305,7 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.2.0" },
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.0" },
       instructions: "Raumklima-Tools von getecoback.com: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau (DE), Stromkosten. Formeln identisch mit den Rechnern der Website; Antworten enthalten Quell-URLs.",
     });
   }
@@ -1448,6 +1400,137 @@ const srcBucket = (host, self) => {
   return "other";
 };
 
+// D1 读预算(2026-09-25 事故:免费档每日 500 万行读取被打满,全舰队 D1 读失败到午夜)。
+// 聚合端点从 Cache API 出,按 URL + 部署版本做键,TTL 秒;错误响应永不入缓存。
+// 此前的 `cache-control: public, max-age=3600` 只对浏览器有效——Cloudflare 不会仅凭它缓存 Worker 响应,
+// 每次轮询都重跑全部扫描。
+async function cachedJson(request, env, ctx, ttl, compute, params = []) {
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  if (!cache) return compute();
+  const u = new URL(request.url);
+  const version = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || env.CF_PAGES_COMMIT_SHA || "dev";
+  const qs = params.map((p) => p + "=" + encodeURIComponent(u.searchParams.get(p) || "")).join("&");
+  const key = new Request(u.origin + u.pathname + "?v=" + encodeURIComponent(version) + (qs ? "&" + qs : ""), { method: "GET" });
+  const hit = await cache.match(key);
+  if (hit) return hit;
+  const res = await compute();
+  if (res.ok && res.headers.get("cache-control") !== "no-store") {
+    const stored = new Response(res.clone().body, res);
+    stored.headers.set("cache-control", "public, max-age=" + ttl);
+    stored.headers.set("x-fleet-cache", "store");
+    if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(key, stored)); else await cache.put(key, stored);
+  }
+  return res;
+}
+
+// /api/pulse 的 AI 引荐主机判定。2026-09-26 之前是 SQL 里 15 个 `ref LIKE '%x%'`(SQLite LIKE 对 ASCII
+// 不分大小写),现在同一份 GROUP BY ref 结果在 worker 里判,省掉一次全窗扫描;子串表逐字照抄,口径不变。
+// 与 tools/fleet/ai_referrals.py 的主机表同源;by_source 的 ai 桶另按 REF_SRC 分,两者故意不合并。
+const AI_HOST_LIKE = ["chatgpt", "chat.openai", "perplexity", "claude.ai", "copilot", "gemini.google", "you.com", "kagi", "poe.com", "mistral", "deepseek", "kimi", "doubao", "yiyan", "metaso"];
+const aiHostHit = (ref) => { const r = String(ref).toLowerCase(); return AI_HOST_LIKE.some((t) => r.includes(t)); };
+
+// /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page
+// views and how many arrived from an AI assistant, by referrer host. Aggregate counts
+// only — no paths, no countries, no UA, no row-level data. Worker reads its own D1
+// binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
+// Same host list as tools/fleet/ai_referrals.py.
+// 2026-09-26:human_pv / by_host / by_source 三者此前是三次全窗扫描(UNION 两段 + q2),
+// 现在只跑一次 GROUP BY ref,其余在 worker 里算;去掉了 q2 的 LIMIT 1000,sum(by_source) == human_pv 恒成立。
+async function pulseCompute(url, env) {
+  const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
+  const noStore = { ...headers, "cache-control": "no-store" };
+  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: noStore });
+  try {
+    const q = await env.EVENTS.prepare(
+      "SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC"
+    ).all();
+    let human_pv = 0; const by_host = {};
+    const self_host = srcHost(url.hostname);
+    const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+    const by_search = {}; const by_fleet = {}; const by_other = {};
+    for (const r of (q.results || [])) {
+      const n = r.n | 0;
+      human_pv += n;
+      if (r.host && aiHostHit(r.host)) by_host[r.host] = (by_host[r.host] || 0) + n;
+      // 渠道构成(2026-09-15):同一个 human 谓词按 tools/fleet/ref_sources.txt 分桶。
+      // sum(by_source) 应等于 human_pv —— 对不上就是有站把 ref 存成了整条 URL 或分类器漂了,
+      // 读侧 traffic_sources.py 会把差额打出来。
+      const h = srcHost(r.host); const b = srcBucket(h, self_host);
+      by_source[b] += n;
+      if (b === "search") by_search[h] = (by_search[h] || 0) + n;
+      else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+      // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+      // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+      else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
+    }
+    const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+    // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
+    // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
+    // 三段 affiliate_click 都已限 28 天窗(idx_ev_name 只扫该事件的行);subs / wb_orders 是小表全量计数。
+    let money = null;
+    try {
+      const m = await env.EVENTS.prepare(
+        "SELECT 'affiliate_click_28d' AS k, COUNT(*) AS n FROM ev WHERE name='affiliate_click' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT 'affiliate_click_us_market_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%us-market%' UNION ALL SELECT 'affiliate_click_amazon_com_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%amazon.com%' UNION ALL SELECT 'subs_total', COUNT(*) FROM subs"
+      ).all();
+      money = { days: 28 };
+      for (const r of (m.results || [])) money[r.k] = r.n | 0;
+      try {
+        const o = await env.EVENTS.prepare("SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state").all();
+        money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+      } catch (e) { money.member_orders_by_state = null; }
+    } catch (e) { money = null; }
+    return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: noStore });
+  }
+}
+
+// --- GONE PAGES (2026-09-27) ------------------------------------------------
+// Owner: 「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」. Every
+// energy-storage and balcony-PV page is gone for good: 410 for the page and its
+// .md mirror. The list must equal tools/gone_pages.txt (check_gone.py asserts
+// it); the block between these markers is self-contained so tools/test_gone.mjs
+// can import it without the rest of the worker.
+const GONE_PAGES = new Set([
+  "balkonkraftwerk-speicher-nachruesten",
+  "balkonspeicher-anker-solarbank-probleme",
+  "balkonspeicher-foerderung",
+  "balkonspeicher-rechner",
+  "balkonspeicher-winter-frost",
+  "growatt-noah-2000-probleme",
+  "stromausfall-heizen",
+  "balkonkraftwerk-lohnt-sich-rechner",
+  "balkonkraftwerk-mieter-recht",
+  "balkonkraftwerk-oesterreich",
+  "balkonkraftwerk-ohne-bohren",
+  "balkonkraftwerk-standort-check",
+  "balkonkraftwerk-wo-kaufen",
+  "klimaanlage-balkonkraftwerk"
+]);
+
+function goneResponse(pathname) {
+  const m = /^\/guide\/([a-z0-9-]+)\.(html|md)$/.exec(pathname);
+  if (!m || !GONE_PAGES.has(m[1])) return null;
+  const body = '<!doctype html><html lang="de"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<meta name="robots" content="noindex"><title>Seite entfernt | EcoBack</title></head>' +
+    '<body style="font-family:system-ui,sans-serif;max-width:640px;margin:48px auto;padding:0 20px;color:#1a2733;">' +
+    '<h1>Diese Seite gibt es nicht mehr</h1>' +
+    '<p>Wir haben unsere Ratgeber zu Balkonkraftwerken und Stromspeichern eingestellt. ' +
+    'Die Seite wurde dauerhaft entfernt.</p>' +
+    '<p><a href="/">Zur Startseite</a> · <a href="/kategorie/energie-sparen.html">Energie sparen</a></p>' +
+    '</body></html>';
+  return new Response(body, {
+    status: 410,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "public, max-age=3600",
+      "x-robots-tag": "noindex",
+    },
+  });
+}
+// --- /GONE PAGES ---------------------------------------------------------------
+
 export default {
   async fetch(request, env, ctx) {
     const memberResponse=await memberRoute(request,env,'eco');if(memberResponse)return memberResponse;
@@ -1472,69 +1555,15 @@ export default {
       return handleSub2(request, env, ctx);
     }
     if (url.pathname === "/api/top") {
-      return handleTop(env);
+      return handleTop(request, env, ctx);
     }
-    // /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page
-    // views and how many arrived from an AI assistant, by referrer host. Aggregate counts
-    // only — no paths, no countries, no UA, no row-level data. Worker reads its own D1
-    // binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
-    // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
+    // /api/pulse:见 pulseCompute;从 Cache API 出(1 小时,键含部署版本),错误永不入缓存。
     if (url.pathname === "/api/pulse" && request.method === "GET") {
-      const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
-      // 2026-09-25: 失败绝不带 max-age。`public, max-age=3600` 原先同时贴在成功与失败上,
-      // 于是一次 D1 报错会被任何中间缓存冻住一小时,把瞬时故障放大成一小时的仪器停摆
-      // ——本站的 handleHeat/handleDew 早写过这条规则,这两个读端点漏了。
-      const eheaders = { ...headers, "cache-control": "no-store" };
-      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: eheaders });
-      try {
-        const q = await env.EVENTS.prepare(
-          "SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC"
-        ).all();
-        let human_pv = 0; const by_host = {};
-        for (const r of (q.results || [])) {
-          if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
-        }
-        const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
-        // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
-        // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
-        const q2 = await env.EVENTS.prepare(
-          "SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC LIMIT 1000"
-        ).all();
-        const self_host = srcHost(url.hostname);
-        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
-        const by_search = {}; const by_fleet = {}; const by_other = {};
-        for (const r of (q2.results || [])) {
-          const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
-          by_source[b] += n;
-          if (b === "search") by_search[h] = (by_search[h] || 0) + n;
-          else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
-          // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
-          // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
-          else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
-        }
-        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
-        // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
-        let money = null;
-        try {
-          const m = await env.EVENTS.prepare(
-            "SELECT 'affiliate_click_28d' AS k, COUNT(*) AS n FROM ev WHERE name='affiliate_click' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT 'affiliate_click_us_market_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%us-market%' UNION ALL SELECT 'affiliate_click_amazon_com_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%amazon.com%' UNION ALL SELECT 'subs_total', COUNT(*) FROM subs"
-          ).all();
-          money = { days: 28 };
-          for (const r of (m.results || [])) money[r.k] = r.n | 0;
-          try {
-            const o = await env.EVENTS.prepare("SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state").all();
-            money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
-          } catch (e) { money.member_orders_by_state = null; }
-        } catch (e) { money = null; }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
-      } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: eheaders });
-      }
+      return cachedJson(request, env, ctx, 3600, () => pulseCompute(url, env));
     }
 
     if (url.pathname === "/api/trend") {
-      return handleTrend(env);
+      return handleTrend(request, env, ctx);
     }
     if (url.pathname === "/api/heat") {
       return handleHeat();
@@ -1582,6 +1611,10 @@ export default {
     if (changed) {
       return Response.redirect(url.toString(), 301);
     }
+
+    // Removed pages answer 410 before any asset or markdown lookup (see GONE PAGES).
+    const gone = goneResponse(url.pathname);
+    if (gone) return gone;
 
     if (wantsMarkdown(request, url.pathname)) {
       const assetPath = url.pathname === "/" ? "/index.html"

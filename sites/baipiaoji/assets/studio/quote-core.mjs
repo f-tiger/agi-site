@@ -1,13 +1,28 @@
 // First-party quotation arithmetic. No network, OCR, model calls, or purchase actions.
-export const EDITION = '2026-09-25.1';
+export const EDITION = '2026-09-25.2';
 export const PRODUCT = 'bpj-quote-compare';
 export const MAX_QUOTES = 10;
+export const MAX_TIERS = 20;
 export const CURRENCIES = ['CNY','USD','EUR','GBP','HKD','AUD','CAD','SGD','CHF'];
 const SCALE = 1000000n;
 const priorities = ['BLOCKED', 'EXCLUDED', 'NEEDS_INPUT', 'NEEDS_APPROVAL'];
 const requiredEvidence = ['sku', 'price', 'unit', 'currency', 'quantity_terms', 'tax', 'shipping', 'validity', 'delivery', 'version'];
 const empty = v => v === '' || v === null || v === undefined;
 const text = (v, max = 200) => typeof v === 'string' && v.trim().length > 0 && v.length <= max;
+// One place for every length limit: form, CSV import, backup restore and the calculation all read it (2026-09-25 audit: they disagreed).
+export const fieldMax = k => k === 'source_text' ? 8000 : k === 'source_name' ? 400 : 200;
+const fieldError = (code, field) => { const e = Error(code); e.field = field; return e; };
+// Menu values arrive as free text from CSV and backups. Normalise case (RMB is CNY) and keep a blank as "not stated": the form shows it
+// as "—" and the calculation flags it, so one quote that did not print its currency does not block the whole file. A non-blank value
+// outside the menu is refused by CSV import with its column named. A backup restores it as blank instead (edition .1 kept CSV cells
+// verbatim, and saved work must never be locked out). Either way the form never shows a value the model does not hold (audit QC-1, Q1, Q2).
+const ENUMS = { quoted_unit: [['piece', 'box'], v => v.toLowerCase()], tax_mode: [['included', 'excluded', 'unknown'], v => v.toLowerCase()], currency: [CURRENCIES, v => v.toUpperCase().replace(/^RMB$/, 'CNY')] };
+function normalizeQuote(q, code) {
+  for (const k of Object.keys(q)) if (typeof q[k] === 'string' && k !== 'source_text' && k !== 'id') q[k] = q[k].trim();
+  for (const [k, [allowed, norm]] of Object.entries(ENUMS)) { if (q[k] === '') continue; const v = norm(String(q[k])); if (allowed.includes(v)) q[k] = v; else if (code === 'BACKUP') q[k] = ''; else throw fieldError(code, k); }
+  if (q.tax_mode === '') q.tax_mode = 'unknown';
+  return q;
+}
 function decimal(v, positive = false) {
   if (typeof v !== 'string' && typeof v !== 'number') throw Error('NUMBER');
   const s = String(v).trim();
@@ -94,7 +109,8 @@ export function evaluate(q, p) {
       r.extra_units=r.ordered_units-req;
       if (r.extra_units && q.overbuy_approved!==true) issue('OVERBUY_APPROVAL','NEEDS_APPROVAL');
     }
-    if (!Array.isArray(q.tiers) || q.tiers.length>20) throw Error('TIERS');
+    if (!Array.isArray(q.tiers)) throw Error('TIERS');
+    if (q.tiers.length>MAX_TIERS) throw Error('TIER_COUNT');
     let threshold=0; const seen=new Set();
     for (const tier of q.tiers) {
       const min=integer(tier.min_units), value=decimal(tier.price_per_quoted_unit,true);
@@ -130,7 +146,7 @@ export function evaluate(q, p) {
     r.subtotal=money(subtotal);r.goods_gross=money(gross);r.freight=money(freight);r.fx=decimalText(fx);
     if (!r.issues.some(i=>['BLOCKED','NEEDS_INPUT'].includes(i.level))) r.total=money(roundDiv((gross+freight)*fx,SCALE));
     return finish();
-  } catch (e) { issue(['NUMBER','INTEGER','TIERS','TAX_RATE'].includes(e.message)?e.message:'INVALID_INPUT');r.total=null;return finish(); }
+  } catch (e) { issue(['NUMBER','INTEGER','TIERS','TIER_COUNT','TAX_RATE'].includes(e.message)?e.message:'INVALID_INPUT');r.total=null;return finish(); }
 }
 export function compare(quotes,p) {
   if (!Array.isArray(quotes)||quotes.length>MAX_QUOTES) throw Error('QUOTE_LIMIT');
@@ -142,11 +158,17 @@ export function compare(quotes,p) {
 }
 export function parseTiers(s) {
   if (!s.trim()) return [];
-  return s.split(/\r?\n/).filter(x=>x.trim()).map(line=>{const a=line.split(':').map(x=>x.trim());if(a.length!==2)throw Error('TIERS');integer(a[0]);decimal(a[1],true);return {min_units:a[0],price_per_quoted_unit:a[1]};});
+  const lines=s.split(/\r?\n/).filter(x=>x.trim());
+  if (lines.length>MAX_TIERS) throw Error('TIER_COUNT');
+  return lines.map(line=>{const a=line.split(':').map(x=>x.trim());if(a.length!==2)throw Error('TIERS');integer(a[0]);decimal(a[1],true);return {min_units:a[0],price_per_quoted_unit:a[1]};});
 }
 export const CSV_FIELDS=['supplier','sku','price_per_quoted_unit','quoted_unit','units_per_box','moq_units','order_multiple_units','currency','tax_mode','tax_rate','shipping_gross_quote_currency','valid_until','lead_days','source_name','source_text'];
 export const safeCell=v=>{let s=String(v??'');if(/^[\s]*[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};
 export const csv=rows=>'\uFEFF'+rows.map(row=>row.map(safeCell).join(',')).join('\r\n');
+// Review-report Markdown: reader text outside the source block is one line and escaped; the source block is a real indented code block
+// (blank line first, every CommonMark line ending split) so pasted text cannot forge headings, lists or HTML in the report.
+export const mdText=v=>String(v??'').replace(/[\r\n]+/g,' ').replace(/[\\`*_[\]<>&~|#]/g,'\\$&');
+export const mdBlock=t=>['',...String(t??'').split(/\r\n|\r|\n/).map(line=>'    '+line),''];
 export function parseCSV(input) {
   if (typeof input!=='string'||input.length>150000) throw Error('CSV_SIZE');
   const s=input.replace(/^\uFEFF/,''), rows=[];let row=[],value='',quoted=false,closed=false;
@@ -158,24 +180,25 @@ export function parseCSV(input) {
   if(rows.length<2||rows.length>MAX_QUOTES+1)throw Error('QUOTE_LIMIT');
   const headers=rows.shift().map(x=>x.trim());
   if(new Set(headers).size!==headers.length||headers.some(h=>!CSV_FIELDS.includes(h))||!['supplier','sku','price_per_quoted_unit'].every(h=>headers.includes(h)))throw Error('CSV_HEADERS');
-  return rows.map((r,i)=>{if(r.length!==headers.length)throw Error('CSV_FORMAT');const q=newQuote('q'+(i+1));headers.forEach((h,j)=>q[h]=r[j]);return q;});
+  return rows.map((r,i)=>{if(r.length!==headers.length)throw Error('CSV_FORMAT');const q=newQuote('q'+(i+1));headers.forEach((h,j)=>{if(r[j].length>fieldMax(h))throw fieldError('CSV_LENGTH',h);q[h]=r[j];});return normalizeQuote(q,'CSV_VALUE');});
 }
 export function snapshot(policy,quotes,demo=false) { return {version:1,product:PRODUCT,edition:EDITION,example_data:demo,policy,quotes}; }
 export function restore(data) {
   if (!data||data.version!==1||data.product!==PRODUCT||!data.policy||!Array.isArray(data.quotes)||data.quotes.length>MAX_QUOTES||data.quotes.length<1)throw Error('BACKUP');
   if (data.example_data!==undefined&&typeof data.example_data!=='boolean')throw Error('BACKUP');
   const policy=newPolicy();
-  for(const k of Object.keys(policy)){const v=data.policy[k];if(typeof v!=='string'||v.length>200)throw Error('BACKUP');policy[k]=v;}
+  for(const k of Object.keys(policy)){const v=data.policy[k];if(typeof v!=='string'||v.length>200)throw fieldError('BACKUP',k);policy[k]=v.trim();}
+  policy.base_currency=policy.base_currency.toUpperCase();if(!CURRENCIES.includes(policy.base_currency))throw fieldError('BACKUP','base_currency');
   const quotes=data.quotes.map((old,i)=>{
     if(!old||typeof old!=='object')throw Error('BACKUP');const q=newQuote('q'+(i+1));
     for(const [k,def] of Object.entries(q)){
       if(k==='id')continue;const v=old[k];
-      if(Array.isArray(def)) {if(!Array.isArray(v)||v.length>20)throw Error('BACKUP');q[k]=parseTiers(v.map(t=>`${t.min_units}:${t.price_per_quoted_unit}`).join('\n'));}
+      if(Array.isArray(def)) {if(!Array.isArray(v)||v.length>MAX_TIERS)throw fieldError('BACKUP',k);q[k]=parseTiers(v.map(t=>`${t.min_units}:${t.price_per_quoted_unit}`).join('\n'));}
       else if(typeof def==='boolean'){if(typeof v!=='boolean')throw Error('BACKUP');q[k]=false;}
-      else {if(typeof v!=='string'||v.length>(k==='source_text'?8000:k==='source_name'?400:200))throw Error('BACKUP');q[k]=v;}
+      else {if(typeof v!=='string'||v.length>fieldMax(k))throw fieldError('BACKUP',k);q[k]=v;}
     }
     // A restored quote needs a fresh review. Never trust imported approval flags or hidden metadata.
-    return q;
+    return normalizeQuote(q,'BACKUP');
   });return {policy,quotes,demo:data.example_data===true};
 }
 export function example(lang='zh',asOf=today()) {

@@ -6,7 +6,8 @@ const numberFields=['requested_units','max_lead_days','price_per_quoted_unit','u
 function field(key,value,L,group,options={}) {
   if (key==='currency'||key==='base_currency')options={...options,choices:CURRENCIES.map(c=>[c,c])};
   const id=`qc-${group}-${key}`, attr=`id="${id}" data-${group}="${key}"`,label=options.label||L[key];
-  const control=options.choices?`<select ${attr}>${options.choices.map(([v,s])=>`<option value="${esc(v)}"${value===v?' selected':''}>${esc(s)}</option>`).join('')}</select>`
+  // A value outside the menu is shown as blank, never as the first option: the form must not display a value the model does not hold.
+  const control=options.choices?`<select ${attr}>${options.choices.some(([v])=>v===value)?'':'<option value="" selected disabled>—</option>'}${options.choices.map(([v,s])=>`<option value="${esc(v)}"${value===v?' selected':''}>${esc(s)}</option>`).join('')}</select>`
     :options.area?`<textarea ${attr} rows="${options.rows||4}" maxlength="${key==='source_text'?8000:2000}">${esc(value)}</textarea>`
     :`<input ${attr} type="${dateFields.includes(key)?'date':'text'}" ${numberFields.includes(key)?'inputmode="decimal"':''} maxlength="${key==='source_name'?400:200}" value="${esc(value)}" autocomplete="off">`;
   return `<label${options.full?' class="span-full"':''} for="${id}"><span>${esc(label)}</span>${control}</label>`;

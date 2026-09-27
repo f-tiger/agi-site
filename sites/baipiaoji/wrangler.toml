@@ -1,6 +1,8 @@
 # Cloudflare Pages 配置：CI 从仓库根目录执行 `wrangler pages deploy dist`，
 # 本文件为部署挂上 D1 绑定，functions/ 目录随之生效（文件路由，静态站不受影响）。
 name = "aiyangmao"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
 # 第一方访问统计（零外部账号）：functions/api/hit.js 写入，会话内经 MCP 直接查询。

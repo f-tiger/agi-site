@@ -14,11 +14,12 @@
   * `money` 尚未部署的站(端点存在但没有 money 键)记 `via:"no-money-key"`,不红——
     heartbeat 在分支合并前就会先跑到。
 """
-import datetime as dt, json, os, sys, urllib.request
+import datetime as dt, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "fleet"))
 from ai_referrals import ENDPOINTS  # noqa: E402  端点表只维护一份
+from endpoint_cache import fetch_url  # noqa: E402  2026-09-26:同一 run 内每个端点只出网一次(D1 读预算)
 
 OUT = os.path.join(ROOT, "data", "fleet-money.json")
 OWNER = os.path.join(ROOT, "data", "fleet-money-owner.json")
@@ -29,9 +30,8 @@ UA = "fleet-heartbeat/money_line (+https://github.com/f-tiger/agi-site)"
 
 
 def fetch(site):
-    req = urllib.request.Request(ENDPOINTS[site], headers={"User-Agent": UA, "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return json.load(r)
+    _, body = fetch_url(ENDPOINTS[site], timeout=20, ua=UA)
+    return json.loads(body)
 
 
 def summarise(site, money):
@@ -96,6 +96,17 @@ def selftest():
     return 0 if ok else 1
 
 
+def forecast_line():
+    """Money view of data/fleet-forecast-record.json (written earlier in the same heartbeat). None if absent."""
+    rec = load(os.path.join(ROOT, "data", "fleet-forecast-record.json"))
+    if not isinstance(rec, dict):
+        return None
+    m = rec.get("money") or {}
+    return {"enabled_state": rec.get("enabled_state"), "prize_usd_30d": m.get("prize_usd_30d"),
+            "spend_usd_30d": m.get("spend_usd_30d"), "net_usd_30d": m.get("net_usd_30d"),
+            "north_star_resolved_prelogged": rec.get("north_star_resolved_prelogged"), "generated": rec.get("generated")}
+
+
 def main(argv):
     if "--selftest" in argv:
         return selftest()
@@ -133,6 +144,8 @@ def main(argv):
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
         "sites": sites, "owner_reported": owner, "errors": errors,
+        # 2026-09-27: the first money source that is not a D1 counter (Metaculus bot; zero visitors needed).
+        "forecast": forecast_line(),
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(snap, f, ensure_ascii=False, indent=1); f.write("\n")

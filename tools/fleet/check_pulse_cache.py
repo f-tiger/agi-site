@@ -90,6 +90,14 @@ def check_file(path):
         if "Response" not in line and not HELPER_CALL.search(line):
             continue
         failures += 1
+        # An inline `{ ...headers, "cache-control": "no-store" }` on the response line
+        # overrides whatever the spread source said, so the source must not be blamed.
+        # SR's /api/pop writes it that way and the first version of this check reported
+        # it as public — a false positive is as corrosive as a miss, because it teaches
+        # people that this red light lies.
+        inline = CC.search(line)
+        if inline and "public" not in inline.group(1):
+            continue
         seen = set(USES_NAMED.findall(line))
         if USES_SHORT.search(line):
             seen.add("headers")
