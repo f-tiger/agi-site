@@ -1,5 +1,6 @@
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
+import {aggregateCache} from './aggregate-cache.js';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -407,83 +408,12 @@ export default {
     // binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
     // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
     if (url.pathname === '/api/pulse' && request.method === 'GET') {
-      const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
-      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers });
-      try {
-        const q = await env.EVENTS.prepare(
-          `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
-        ).all();
-        let human_pv = 0; const by_host = {};
-        for (const r of (q.results || [])) {
-          if (r.host === '_total') human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
-        }
-        const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
-        // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
-        // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
-        const q2 = await env.EVENTS.prepare(
-          `SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') GROUP BY ref_host ORDER BY n DESC LIMIT 1000`
-        ).all();
-        const self_host = srcHost(url.hostname);
-        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
-        const by_search = {}; const by_fleet = {}; const by_other = {};
-        for (const r of (q2.results || [])) {
-          const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
-          by_source[b] += n;
-          if (b === 'search') by_search[h] = (by_search[h] || 0) + n;
-          else if (b === 'fleet') by_fleet[h] = (by_fleet[h] || 0) + n;
-          // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
-          // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
-          else if (b === 'other') by_other[h] = (by_other[h] || 0) + n;
-        }
-        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
-        // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
-        let money = null;
-        try {
-          const m = await env.EVENTS.prepare(
-            `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
-          ).all();
-          money = { days: 28 };
-          for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
-          try {
-            const o = await env.EVENTS.prepare('SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state').all();
-            money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
-          } catch (e) { money.member_orders_by_state = null; }
-          try {
-            const d = await env.EVENTS.prepare('SELECT COUNT(*) AS n FROM discuss_profiles').all();
-            money.discuss_profiles = ((d.results || [])[0] || {}).n | 0;
-          } catch (e) { money.discuss_profiles = null; }
-        } catch (e) { money = null; }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
-      } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
-      }
+      return aggregateCache(request, ctx, 'pulse', 3600, () => pulseResponse(env, url));
     }
 
+    // /api/trends 同样有服务端缓存:SunWatch、autopilot、部署自检与外部调用方(09-26 一天 53 次)共用一份结果。
     if (url.pathname === '/api/trends') {
-      try {
-        const [searches, zero, cur, prev] = await Promise.all([
-          env.EVENTS.prepare(
-            "SELECT label, COUNT(*) n FROM events WHERE name='site_search' AND day > date('now','-7 days') GROUP BY label ORDER BY n DESC LIMIT 10").all(),
-          env.EVENTS.prepare(
-            "SELECT label, COUNT(*) n FROM events WHERE name='search_no_result' AND day > date('now','-7 days') GROUP BY label HAVING n >= 2 ORDER BY n DESC LIMIT 10").all(),
-          env.EVENTS.prepare(
-            "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-7 days') GROUP BY path ORDER BY h DESC LIMIT 40").all(),
-          env.EVENTS.prepare(
-            "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-14 days') AND day <= date('now','-7 days') GROUP BY path").all(),
-        ]);
-        const prevMap = Object.fromEntries((prev.results || []).map(function (r) { return [r.path, r.h]; }));
-        const rising = (cur.results || [])
-          .map(function (r) { return { path: r.path, h: r.h, prev: prevMap[r.path] || 0 }; })
-          .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
-          .slice(0, 5);
-        return new Response(JSON.stringify({
-          ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
-        }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
-      } catch (e) {
-        return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
-          { headers: { 'content-type': 'application/json' } });
-      }
+      return aggregateCache(request, ctx, 'trends', 1800, () => trendsResponse(env));
     }
 
     // Owner alert feed — the "major information only" channel (owner request 2026-08-16:
@@ -1160,6 +1090,89 @@ const SLIDEIN = '<script>(function(){try{' +
     'if(left<=0){clearInterval(iv);show("timer");}' +
   '},1000);' +
 '}catch(e){}})();</script>';
+
+// /api/pulse 与 /api/trends 的计算本体(2026-09-26 从 fetch 里抽出来,外面包 aggregate-cache.js)。
+// 两者都读 pageviews 的 human 行;D1 上的部分索引 pageviews_human 让它们只读这部分行(tools/analytics-worker/migrations/)。
+export async function pulseResponse(env, url) {
+  const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
+  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers });
+  try {
+    const q = await env.EVENTS.prepare(
+      `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
+    ).all();
+    let human_pv = 0; const by_host = {};
+    for (const r of (q.results || [])) {
+      if (r.host === '_total') human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
+    }
+    const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+    // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
+    // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
+    // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
+    const q2 = await env.EVENTS.prepare(
+      `SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') GROUP BY ref_host ORDER BY n DESC LIMIT 1000`
+    ).all();
+    const self_host = srcHost(url.hostname);
+    const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+    const by_search = {}; const by_fleet = {}; const by_other = {};
+    for (const r of (q2.results || [])) {
+      const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
+      by_source[b] += n;
+      if (b === 'search') by_search[h] = (by_search[h] || 0) + n;
+      else if (b === 'fleet') by_fleet[h] = (by_fleet[h] || 0) + n;
+      // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+      // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+      else if (b === 'other') by_other[h] = (by_other[h] || 0) + n;
+    }
+    // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
+    // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
+    let money = null;
+    try {
+      const m = await env.EVENTS.prepare(
+        `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
+      ).all();
+      money = { days: 28 };
+      for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+      try {
+        const o = await env.EVENTS.prepare('SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state').all();
+        money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+      } catch (e) { money.member_orders_by_state = null; }
+      try {
+        const d = await env.EVENTS.prepare('SELECT COUNT(*) AS n FROM discuss_profiles').all();
+        money.discuss_profiles = ((d.results || [])[0] || {}).n | 0;
+      } catch (e) { money.discuss_profiles = null; }
+    } catch (e) { money = null; }
+    // money 的主查询失败时标 partial:缓存层(aggregate-cache.js)不收缺一块的结果,否则它会被原样挂一小时。
+    return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, ...(money === null ? { partial: true } : {}), generated: new Date().toISOString() }), { headers });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
+  }
+}
+
+export async function trendsResponse(env) {
+  try {
+    const [searches, zero, cur, prev] = await Promise.all([
+      env.EVENTS.prepare(
+        "SELECT label, COUNT(*) n FROM events WHERE name='site_search' AND day > date('now','-7 days') GROUP BY label ORDER BY n DESC LIMIT 10").all(),
+      env.EVENTS.prepare(
+        "SELECT label, COUNT(*) n FROM events WHERE name='search_no_result' AND day > date('now','-7 days') GROUP BY label HAVING n >= 2 ORDER BY n DESC LIMIT 10").all(),
+      env.EVENTS.prepare(
+        "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-7 days') GROUP BY path ORDER BY h DESC LIMIT 40").all(),
+      env.EVENTS.prepare(
+        "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-14 days') AND day <= date('now','-7 days') GROUP BY path").all(),
+    ]);
+    const prevMap = Object.fromEntries((prev.results || []).map(function (r) { return [r.path, r.h]; }));
+    const rising = (cur.results || [])
+      .map(function (r) { return { path: r.path, h: r.h, prev: prevMap[r.path] || 0 }; })
+      .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
+      .slice(0, 5);
+    return new Response(JSON.stringify({
+      ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising, generated: new Date().toISOString(),
+    }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
+      { headers: { 'content-type': 'application/json' } });
+  }
+}
 
 // Exported for tools/test_analytics_sanitiser.mjs only. The Workers runtime ignores
 // extra named exports; `export default` above stays the worker entrypoint. These two

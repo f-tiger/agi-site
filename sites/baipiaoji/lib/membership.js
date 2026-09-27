@@ -30,7 +30,15 @@ export async function memberReady(env){const w=await web3Health(env);let health=
 export async function rate(db,key,max,ttl=3600){const now=seconds();await db.prepare('INSERT INTO wb_limits(key,n,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET n=CASE WHEN expires<=? THEN 1 ELSE n+1 END,expires=CASE WHEN expires<=? THEN excluded.expires ELSE expires END').bind(key,now+ttl,now,now).run();if((await db.prepare('SELECT n FROM wb_limits WHERE key=?').bind(key).first()).n>max)throw Error('rate_limited');}
 export function orderStatus(row){return {id:row.id,state:row.state==='pending'&&row.expires<seconds()?'expired':row.state,days:row.days,payment:{chain:row.chain,token:'USDT',address:row.recipient,contract:row.contract,amount:formatUnits(row.amount_units),expires:row.expires,tx:row.tx}};}
 export async function createOrder(env,token,nonce,ip,source=''){
- if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const plan=memberPlan(env),db=env.HITS,hash=await digest(token),now=seconds();let member=await memberByToken(db,token);const id=await digest('membership:'+memberSite(env)+':'+hash+':'+nonce);
+ return createOrderWithIdentity(env,await memberByToken(env.HITS,token),await digest(token),nonce,ip,source);
+}
+// Internal authenticated-principal entry point. Never accept a member ID from request JSON.
+export async function createOrderForMember(env,member,nonce,ip,source=''){
+ if(!member?.id||!member.token_hash)throw Error('bad_key');
+ return createOrderWithIdentity(env,member,member.token_hash,nonce,ip,source);
+}
+async function createOrderWithIdentity(env,member,hash,nonce,ip,source){
+ if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const plan=memberPlan(env),db=env.HITS,now=seconds();const id=await digest('membership:'+memberSite(env)+':'+hash+':'+nonce);
  if(source&&!allowedProduct(memberSite(env),source))throw Error('bad_source');
  const old=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();if(old)return orderStatus(old);
  if(member?.suspended)throw Error('suspended');if(!await memberReady(env))throw Error('not_ready');

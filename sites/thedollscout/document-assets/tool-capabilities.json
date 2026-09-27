@@ -1,6 +1,6 @@
 {
   "name": "TDS Document Scout",
-  "edition": "2026-09-25.7",
+  "edition": "2026-09-25.8",
   "updated": "2026-09-25",
   "execution": "User-operated browser only. No hosted PDF processing API.",
   "uploads": false,
@@ -132,5 +132,17 @@
     "output": "Local JSON and HTML file inventory with SHA-256 fingerprints and user notes",
     "verification": "File equality only; no identity, delivery, consent or trusted time attestation",
     "teamPlan": "Research only; not available to purchase"
+  },
+  "fileVerification": {
+    "urls": [
+      "https://thedollscout.com/verify-file",
+      "https://thedollscout.com/de/verify-file",
+      "https://thedollscout.com/zh/verify-file"
+    ],
+    "format": "https://thedollscout.com/document-assets/verify-format.txt",
+    "offlineVerifier": "https://thedollscout.com/document-assets/verify-file-cli.mjs",
+    "limitBytes": 20971520,
+    "output": "Sender-generated links and local SHA-256 plus byte-length comparisons",
+    "limitations": "No identity, receipt, consent, malware safety or Bitcoin timestamp verification. No hosted processing API."
   }
 }

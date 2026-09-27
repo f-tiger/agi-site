@@ -1115,3 +1115,20 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   `--check` 进部署构建步,`independent-grades.json` 进 OTS。判定线 `agi-grader-consensus-1127`。
   **纠正**:09-26 所写「gen_changelog 已接进部署」当时未落盘,09-27 才真正接上。
 
+## D1 免费读取额度:全账号每天 500 万行,09-24 起连续三天白天用完(2026-09-26;全文 `docs/d1-read-budget-2026-09-26.md`)
+
+- **症状**:各站部署自检 `/api/pulse` 500、事件写入 `{"ok":false}`、bpj 账号自检失败——D1 返回 7500「exceeded D1's free tier daily row read limit」。
+  **Cloudflare 自 2026-09-01 起硬性执行**,超了读写都拒到 00:00 UTC(北京 08:00)。**额度用完后事件也写不进去,当天后半段的 D1 统计缺失**,
+  按 D1 结算判定线时要注明 09-24 13:00、09-25 08:00、09-26 10:00 之后的缺口。
+- **先看谁在用,别猜**:dispatch `.github/workflows/d1-usage.yml`(只读,<1 分钟;main 上可手动触发)→ 每库每日读取、每天越线的小时、
+  逐条查询的 rows/call 与调用次数。会话自己进不了 Cloudflare 分析面板,这是唯一的逐条读数来源。
+- **09-26 读数**:bpj `/api/reach` 45–58%、agi `/api/trends` 2–29%、agi `/api/pulse` 15–17%。全是「公开统计接口每次请求现算 + 整表扫描」,
+  **`Cache-Control` 头对 Worker/Pages Functions 的响应不起作用**,只有 Cache API 才挡得住重复计算(eco 09-26、tds 09-25 已加,bpj 09-26 已加)。
+- **规矩**:新增或修改任何会被反复调用的 D1 统计接口 → ①服务端缓存(Cache API)②查询要走索引(写个 EXPLAIN 断言)③别让一个共享路径
+  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口 09-26 owner 授权后已照 bpj 的做法改**(服务端缓存 + `pageviews_human` 部分覆盖索引,`sites/agiscorecard/tools/test_analytics_d1.mjs`);
+  Workers Paid(5 美元/月)是 owner 的支出决定,它能消除每日被拒,但不代替修查询。
+- **写入额度同样是全账号、每天 10 万行、越线即拒**:全账号日常写入 1.6–3.1 万行/天(`d1-usage.yml` 09-27 起同时报写入)。
+  **一次性迁移先按这个余量排期**,放不下就分天做——越线的代价是全舰队当天剩余时间的事件写入全部丢失。
+  09-27:bpj 迁移已执行(48 589 行写入,一次 reach 从约 18 万行降到约 7 000 行);agi 索引(20 964 条)因此顺延到 09-28 00:05 UTC。
+- **仓库里的建表语句不等于线上**:bpj hits 与 agi pageviews 在线上都有仓库里没有记录的索引。写 EXPLAIN 断言前先读线上 `sqlite_master`,
+  让测试夹具照抄它,否则断言测的是一个不存在的数据库。

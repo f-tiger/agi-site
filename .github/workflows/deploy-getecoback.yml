@@ -137,6 +137,7 @@ jobs:
       - name: Build European electricity decision workbenches
         run: |
           node --test tools/test_energy_tariffs.mjs
+          node --test tools/test_pulse_cache.mjs
           python3 tools/build_energy_workbench.py
           python3 tools/build_revenue_guide.py
       # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is

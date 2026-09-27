@@ -196,7 +196,7 @@ let hreflangErr = 0;
   }
   for (const [p, { canon, tags }] of sets) {
     for (const { lang } of tags) {
-      if (!['zh-Hans', 'en', 'x-default'].includes(lang)) { console.log(`HREFLANG 非法语言码 ${lang}：${p}`); hreflangErr++; }
+      if (!(p.endsWith('/members.html') ? ['zh-Hans','en','de','it','x-default'] : ['zh-Hans','en','x-default']).includes(lang)) { console.log(`HREFLANG 非法语言码 ${lang}：${p}`); hreflangErr++; }
     }
     if (tags.filter((t) => t.lang === 'x-default').length !== 1) { console.log(`HREFLANG x-default 数量≠1：${p}`); hreflangErr++; }
     if (canon && !tags.some((t) => t.href === canon)) { console.log(`HREFLANG 缺自引用（无 alternate 等于 canonical）：${p}`); hreflangErr++; }

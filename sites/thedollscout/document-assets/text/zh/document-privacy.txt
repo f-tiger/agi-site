@@ -16,6 +16,8 @@ https://thedollscout.com/zh/document-privacy
 
 交付记录在本地处理，下载包含文件名和填写的备注。可选团队方案调研只记录固定的交付次数档位和方案偏好，不收集邮箱、账户、文件指纹或来源备注。回答不是订单。
 
+文件核验链接会主动在网址片段中分享SHA-256指纹和字节数，不包含文件名、内容或备注。持有链接的人可以比对候选文件；分享应用和浏览器历史可能保存链接。TDS不会将指纹发送到统计系统。收件人的核对仅在本地进行，不通知发送者，也不证明已收件。
+
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

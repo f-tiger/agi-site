@@ -25,7 +25,7 @@ let bad = 0;
 const ck = (c, m) => { if (!c) { console.error(`❌ ${m}`); bad++; } };
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const CJK = /[一-鿿]/;
-const enText = (s) => s.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<nav class="lang">[\s\S]*?<\/nav>/, '');   // 语言切换里的「中文」是刻意保留的（同 verify-dist ZH_ALLOW）
+const enText = (s) => s.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<nav class="(?:lang|bpj-languages)"[^>]*>[\s\S]*?<\/nav>/, '');   // 语言切换里的「中文」是刻意保留的（同 verify-dist ZH_ALLOW）
 const today = new Date().toISOString().slice(0, 10);
 const reg = JSON.parse(readFileSync(join(ROOT, 'data', 'agent-watch.json'), 'utf8'));
 const vocab = JSON.parse(readFileSync(join(ROOT, 'data', 'agent-watch-vocab.json'), 'utf8'));
@@ -45,7 +45,7 @@ if (process.argv.includes('--dist')) {
     ck(s.includes("bpjEv('home'"), `${p}: block-level click beacon missing — homepage clicks would stay unmeasured`);
     const sec = s.match(/<section class="group" data-cat="agent"[\s\S]*?<\/section>/);
     ck(!!sec && sec[0].includes('agent-watch'), `${p}: strip must live inside the 智能体 section`);
-    ck(!/<nav class="lang">[^]*?\/agents\/[^]*?<\/nav>/.test(s.match(/<nav class="lang">[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch (the 2026-09-22 复列 bug)`);
+    ck(!/\/agents\//.test(s.match(/<nav class="(?:lang|bpj-languages)"[^>]*>[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch (the 2026-09-22 复列 bug)`);
     ck(/rail-jump[\s\S]*?\/agents\/"/.test(s), `${p}: rail-jump lacks the agents entry`);
     // The rail is on every page; an exact count there rewrites ~1 600 pages (and their lastmod) on
     // every admission. It must be a hundreds floor like "900+" (fleet rule 2026-09-22: 发现面只提真变化).
@@ -54,10 +54,10 @@ if (process.argv.includes('--dist')) {
     for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${p}: strip lacks the ${k} door`);
     // Third round (owner: 首页不够凸显 / 没有搜索): a top block right under the hero with its own search box.
     const top = s.match(/<section class="agents-home"[\s\S]*?<\/section>/);
-    ck(!!top && s.indexOf('<section class="agents-home"') < s.indexOf('<section class="dirs"'), `${p}: agents-home block must sit right after the hero, before the directions block`);
+    ck(!!top && s.indexOf('<section class="agents-home"') < s.indexOf('<details class="bpj-home-detail"'), `${p}: agents-home must remain visible before the expandable complete directory`);
     ck(!!top && top[0].includes('data-home-block="agents"') && top[0].includes('agents-index.json') && top[0].includes('data-tag="agents"'), `${p}: agents-home block needs its beacon id and the agents search box`);
     ck(!!top && AUDIENCES.every((k) => top[0].includes(`/agents/for/${k}"`)), `${p}: agents-home block lacks a door`);
-    ck(/class="stats"[\s\S]*?\/agents\/"/.test(s), `${p}: hero stats lack the agents count`);
+    ck(top?.[0].includes(`<span>${agents.length}</span>`), `${p}: visible agents block lacks the live record count`);
   }
   const seen = new Set();
   for (const lang of ['', 'en/']) {
@@ -69,7 +69,7 @@ if (process.argv.includes('--dist')) {
       ck(s.includes(`<link rel="canonical" href="${pre}/agents/">`), `${hub}: canonical`);
       ck(s.includes('hreflang="zh-Hans"') && s.includes('hreflang="en"') && s.includes('hreflang="x-default"'), `${hub}: hreflang trio`);
       ck(!s.includes('name="robots" content="noindex'), `${hub}: hub must be indexable`);
-      ck(s.includes('<nav class="lang">'), `${hub}: language switch missing`);
+      ck(s.includes('<nav class="bpj-languages"'), `${hub}: language switch missing`);
       ck(s.includes(`${site.base_url}/style.css`), `${hub}: site stylesheet missing (own-CSS regression)`);
       ck(s.includes('/api/hit'), `${hub}: page-view beacon missing`);
       for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${hub}: door ${k} missing`);
@@ -132,7 +132,7 @@ if (process.argv.includes('--dist')) {
       ck(s.includes('<meta name="robots" content="noindex,follow">'), `${p}: record page must be noindex,follow`);
       ck(!s.includes('hreflang='), `${p}: noindex page must not carry hreflang (verify-dist rule ⑤)`);
       ck(s.includes(`data-tool="agents/${a.slug}/source"`), `${p}: outbound official link lacks the go beacon`);
-      ck(s.includes('<nav class="lang">'), `${p}: language switch missing`);
+      ck(s.includes('<nav class="bpj-languages"'), `${p}: language switch missing`);
       if (lang) ck(!CJK.test(enText(s)), `${p}: CJK on an English record page`);
     }
     for (const a of agents.filter((x) => x.origin === 'mcp-registry')) ck(!has(`${lang}agents/${a.slug}.html`), `registry record ${a.slug} must not get a page`);

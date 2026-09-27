@@ -1,5 +1,10 @@
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
+## 2026-09-25 收件人核验迭代
+
+版本2026-09-25.8，39个生成页面，24项测试。`/verify-file`及DE/ZH提供SHA-256+字节数参考链接、本地比较、网站嵌入链接和独立离线CLI；不依赖D1。交付记录每个文件可复制收件人链接，HTML导出附核验入口。URL片段不含名称或备注，统计不得接收指纹；不得称为身份、收件、验收或Bitcoin证明。共享PDF脚本只绑定`#workspace`下文件输入，避免干扰其他工具。新增匿名事件不是用户、留存或营收。第二轮路线与传播门槛见根目录`docs/tds-consensus-growth-2026-09-25.md`。
+
+
 ## 2026-09-25 月收入目标与交付实验
 
 Owner 明确要求主动探索工具、共识和金融机制，目标月营收1万以上。未指定币种：当前模型按人民币，另列美元情景。见根目录 `docs/tds-consensus-revenue-2026-09-25.md`、站内 `.agents/product-marketing.md` 和 `docs/delivery-experiment-2026-09-25.md`。
