@@ -2,7 +2,7 @@
 
 https://thedollscout.com/verify-file
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
 
@@ -21,6 +21,42 @@ The link contains a fingerprint and file size, but no file name, notes or conten
 The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
 
 OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
+
+How to verify a file checksum independently
+
+A SHA-256 checksum describes file contents. In TDS, a match requires both the same SHA-256 digest and the same byte count as the sender’s reference. Compare the exact downloaded file, not a screenshot or an exported copy.
+
+Why do two PDFs that look the same have different hashes?
+
+A saved PDF can contain changed metadata, compression or other bytes even when the visible pages look unchanged. For wording changes use Compare PDF text; use a checksum for exact-byte comparison.
+
+Does a matching checksum prove a file is safe?
+
+No. A malicious file can match its own checksum. Obtain the reference through a trusted channel; this tool does not scan for malware, verify identity or certify delivery.
+
+Can I paste any published SHA-256 digest here?
+
+This interface accepts a complete TDS reference link, which also includes the byte count. For a raw digest, use the commands below and compare it manually.
+
+A reproducible three-byte example
+
+Create a plain file containing exactly abc with no newline. It has 3 bytes and this SHA-256 digest. Renaming it leaves the digest unchanged; changing its contents or adding a newline changes it. The built-in known example uses these same bytes.
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+Replace document.pdf with your own file path. These commands read the file locally. Compare the digest and byte count with the TDS reference; uppercase and lowercase hexadecimal letters represent the same digest.
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

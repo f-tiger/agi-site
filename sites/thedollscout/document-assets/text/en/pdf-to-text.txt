@@ -2,7 +2,7 @@
 
 https://thedollscout.com/pdf-to-text
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: When you need to reuse existing PDF text or check whether text extraction works.
 
@@ -24,17 +24,38 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+Why does my scanned PDF produce no text?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+A scan may contain page images without a text layer. This tool extracts existing text only. Use OCR separately, check its accuracy, then extract the resulting text again.
 
-Does a clean result prove accessibility?
+Will PDF to text preserve tables and reading order?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+It returns text separated by page. It does not reconstruct table cells or guarantee visual or assistive-technology reading order. Inspect columns, tables and special characters in the original.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The original handout produces the page text below. The image-only sample produces zero text characters; OCR is outside this tool. Check the text against the source before reusing it.
+
+Pages | Extracted text
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-to-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

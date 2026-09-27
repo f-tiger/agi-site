@@ -2,7 +2,7 @@
 
 https://thedollscout.com/zh/pdf-to-text
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 需要复用 PDF 已有文字，或先判断能否提取文本时。
 
@@ -24,17 +24,38 @@ https://thedollscout.com/zh/pdf-to-text
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+扫描 PDF 为什么提取不出文字？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+扫描件可能只有页面图片，没有文本层。此工具只提取已有文字。请另行进行 OCR，检查识别准确性后，再提取新文件的文本。
 
-没有发现问题就代表无障碍合格吗？
+提取文本能保留表格和阅读顺序吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+输出按页分隔的文字，不重建表格单元格，也不保证视觉或辅助技术的阅读顺序。分栏、表格和特殊字符需要对照原件检查。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+原版讲义会产生下面按页分开的文本。无文本层示例的文本字符数为零；这个工具不做 OCR，复用前请对照原件核对。
+
+页数 | 提取的文本
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-to-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

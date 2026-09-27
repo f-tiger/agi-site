@@ -2,7 +2,7 @@
 
 https://thedollscout.com/compare-pdf-text
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: When a revised PDF arrives and you need to find text changes.
 
@@ -24,17 +24,37 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+Can I compare PDF versions after a page is inserted?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+The tool aligns pages using normalized text and proposes pairings around insertions. Review added, removed and changed pages; pairings are suggestions and can be ambiguous for repeated content.
 
-Does a clean result prove accessibility?
+Does identical extracted text mean two PDF files are identical?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+No. Images, tags, layout and other bytes can differ. Use file verification for a SHA-256 and byte-count comparison, and review visual changes in the original PDFs.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The revision changes the workshop time, inserts a page and changes the materials list. Suggested text pairings do not compare visual layout, images or PDF tags.
+
+Text changes | Original page | Revised page
+
+Changed | 1 | 1
+
+Added | — | 2
+
+Changed | 2 | 3
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/compare-pdf-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

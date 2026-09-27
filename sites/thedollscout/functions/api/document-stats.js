@@ -5,23 +5,38 @@ const START='2026-09-25';
 export const DOCUMENT_QUERY=`SELECT d,ev,path,ref,COUNT(*) AS n FROM hits
  WHERE d >= date('now','-27 days') AND d >= '${START}'
  AND (substr(ev,1,4)='doc_' OR (ev='bot' AND
- (path IN ('/','/de/','/zh/') OR path LIKE '%/pdf-%' OR path LIKE '%/compare-pdf-text%' OR path LIKE '%/learn/pdf-%' OR path LIKE '%/learn/scanned-pdf%' OR path LIKE '%/delivery-evidence%' OR path LIKE '%/verify-file%')))
+ (path IN ('/','/de/','/zh/','/llms.txt','/llms-full.txt','/document-sitemap.xml','/document-assets/manifest.json','/document-assets/tool-capabilities.json','/document-assets/sample-results.json') OR path LIKE '%/methodology' OR path LIKE '%/pdf-%' OR path LIKE '%/compare-pdf-text%' OR path LIKE '%/learn/pdf-%' OR path LIKE '%/learn/scanned-pdf%' OR path LIKE '%/delivery-evidence%' OR path LIKE '%/verify-file%')))
  GROUP BY d,ev,path,ref LIMIT 10001`;
 const EXCLUDED=new Set(['doc_ci','doc_sample','doc_delivery_sample','doc_verify_sample']);
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
+export function referralSource(host='') {
+ host=String(host).toLowerCase().replace(/\.$/,'');
+ const matches=domain=>host===domain||host.endsWith('.'+domain);
+ if(!host)return 'direct_or_unknown';
+ if(matches('thedollscout.com'))return 'internal';
+ if(['chatgpt.com','chat.openai.com','perplexity.ai','claude.ai','gemini.google.com','copilot.microsoft.com','you.com','chat.mistral.ai'].some(matches))return 'ai_referral';
+ if(['google.com','google.de','google.co.uk','google.fr','bing.com','duckduckgo.com','search.yahoo.com','search.brave.com','baidu.com'].some(matches))return 'search_referral';
+ return 'other_referral';
+}
 export function aggregateDocuments(rows) {
- const events={},excluded={},days=new Map(),pages=new Map(),refs=new Map(),bots=new Map();
+ const events={},excluded={},days=new Map(),pages=new Map(),refs=new Map(),bots=new Map(),botAgents=new Map(),sources=new Map();
  const add=(map,key,n)=>map.set(key,(map.get(key)||0)+n);
  for(const r of rows){const n=Number(r.n);if(!Number.isSafeInteger(n)||n<0)throw Error('Invalid aggregate');
-  if(r.ev==='bot'){add(bots,r.path,n);continue;}
+  if(r.ev==='bot'){add(bots,r.path,n);add(botAgents,r.ref||'unknown',n);continue;}
   if(EXCLUDED.has(r.ev)){excluded[r.ev]=(excluded[r.ev]||0)+n;continue;}
   if(!r.ev.startsWith('doc_')||r.path.startsWith('/__ci'))continue;
   events[r.ev]=(events[r.ev]||0)+n;add(days,JSON.stringify([r.d,r.ev]),n);
+  const source=referralSource(r.ref);if(!sources.has(source))sources.set(source,{});
+  const counts=sources.get(source);counts[r.ev]=(counts[r.ev]||0)+n;
   if(r.ev==='doc_view'){add(pages,r.path,n);add(refs,r.ref||'',n);}
  }
  const ranked=(map,key)=>Array.from(map,([v,n])=>({[key]:v,n})).sort((a,b)=>b.n-a.n||String(a[key]).localeCompare(String(b[key])));
  const pageRows=ranked(pages,'path');
- return {events,excluded,daily:Array.from(days,([k,n])=>{const[d,ev]=JSON.parse(k);return {d,ev,n};}).sort((a,b)=>b.d.localeCompare(a.d)||a.ev.localeCompare(b.ev)),pages:pageRows,referrers:ranked(refs,'ref').slice(0,100),crawler_fetches:ranked(bots,'path'),tool_views:pageRows.filter(r=>/^\/(?:(de|zh)\/)?(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)?$/.test(r.path)).reduce((n,r)=>n+r.n,0)};
+ return {events,excluded,daily:Array.from(days,([k,n])=>{const[d,ev]=JSON.parse(k);return {d,ev,n};}).sort((a,b)=>b.d.localeCompare(a.d)||a.ev.localeCompare(b.ev)),pages:pageRows,referrers:ranked(refs,'ref').slice(0,100),crawler_fetches:ranked(bots,'path'),
+  crawler_agents:ranked(botAgents,'claimed_agent'),
+  source_events:Array.from(sources,([source,events])=>({source,events})).sort((a,b)=>a.source.localeCompare(b.source)),
+  attribution_scope:'Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.',
+  tool_views:pageRows.filter(r=>/^\/(?:(de|zh)\/)?(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)?$/.test(r.path)).reduce((n,r)=>n+r.n,0)};
 }
 export async function onRequestGet(ctx) {
  if(!ctx.env.HITS)return json({ok:false,error:'no_db'},503);

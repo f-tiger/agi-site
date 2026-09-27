@@ -12,3 +12,11 @@ h1,h2,h3{text-wrap:balance;overflow-wrap:break-word}.hero h1{max-width:none;font
 @media(max-width:900px){.hero h1{font-size:40px}.tool-facts dl{gap:20px}.share-section{gap:28px;padding:26px}.header-inner{column-gap:16px}}
 @media(max-width:660px){.hero h1{font-size:clamp(32px,8.6vw,42px);line-height:1.15}.eyebrow{margin-bottom:14px}.benefits{gap:8px 16px;margin:18px 0}.tool-heading p.eyebrow{font-size:11px}.tool-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tool-tabs a{padding:10px;font-size:12px;overflow-wrap:break-word}.tool-facts dl{grid-template-columns:1fr;gap:22px}.share-section{grid-template-columns:1fr;padding:23px 18px;gap:22px;margin-bottom:32px}.share-section h2{font-size:23px}.share-controls .actions{gap:8px}.summary-share{padding:18px 14px}.summary-share .actions button{flex:1 1 140px}.main-nav{gap:4px 16px;justify-content:flex-start}.main-nav a{font-size:12px}.prose h1{font-size:34px}.citation-note{padding:20px}.tool-heading h1{font-size:34px}}
 @media print{.share-section,.summary-share,.tool-tabs{display:none!important}}
+
+/* Public worked examples share the tool's type and colour system. */
+.worked-example .table-scroll{max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.worked-example table{width:100%;border-collapse:collapse;min-width:320px;font-size:15px}
+.worked-example th,.worked-example td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line);white-space:pre-line;overflow-wrap:anywhere}
+.worked-example thead{background:var(--wash)}
+.worked-example tbody th{font-weight:600;min-width:0}
+.prose pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;background:var(--wash);border:1px solid var(--line);border-radius:8px}

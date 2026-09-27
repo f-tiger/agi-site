@@ -92,7 +92,7 @@ The prior collector content and MCP have a separate scope: https://thedollscout.
 
 https://thedollscout.com/verify-file
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
 
@@ -112,6 +112,42 @@ The format is public. Keep the link and verify the SHA-256 and byte count using 
 
 OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
 
+How to verify a file checksum independently
+
+A SHA-256 checksum describes file contents. In TDS, a match requires both the same SHA-256 digest and the same byte count as the sender’s reference. Compare the exact downloaded file, not a screenshot or an exported copy.
+
+Why do two PDFs that look the same have different hashes?
+
+A saved PDF can contain changed metadata, compression or other bytes even when the visible pages look unchanged. For wording changes use Compare PDF text; use a checksum for exact-byte comparison.
+
+Does a matching checksum prove a file is safe?
+
+No. A malicious file can match its own checksum. Obtain the reference through a trusted channel; this tool does not scan for malware, verify identity or certify delivery.
+
+Can I paste any published SHA-256 digest here?
+
+This interface accepts a complete TDS reference link, which also includes the byte count. For a raw digest, use the commands below and compare it manually.
+
+A reproducible three-byte example
+
+Create a plain file containing exactly abc with no newline. It has 3 bytes and this SHA-256 digest. Renaming it leaves the digest unchanged; changing its contents or adding a newline changes it. The built-in known example uses these same bytes.
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+Replace document.pdf with your own file path. These commands read the file locally. Compare the digest and byte count with the TDS reference; uppercase and lowercase hexadecimal letters represent the same digest.
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -122,7 +158,7 @@ Reference material
 
 https://thedollscout.com/delivery-evidence
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
 
@@ -152,7 +188,7 @@ Reference material
 
 https://thedollscout.com/
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
 
@@ -198,7 +234,7 @@ Reference material
 
 https://thedollscout.com/pdf-accessibility-checker
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: Before publishing a report, handout or client deliverable.
 
@@ -220,17 +256,43 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+What does a detected PDF tag tell me?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+It reports a tagged declaration or structure exposed by the PDF reader. A detected tag does not prove correct reading order, useful image descriptions or accessible tables. Review those separately.
 
-Does a clean result prove accessibility?
+Can this checker certify WCAG or PDF/UA compliance?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+No. It is an automated preflight plus a record of your manual review. It does not certify compliance, repair tags or produce a percentage accessibility score.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Check | Observed result | What to do next
+
+Document title | Fictional workshop handout | Check that the title describes the document; the tool does not test the viewer title setting.
+
+Default language declaration | en-US | Check that the declared language matches the content.
+
+Tagged-document declaration | Not detected | Inspect structure and reading order in an authoring or remediation tool.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-accessibility-checker#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -242,7 +304,7 @@ Reference material
 
 https://thedollscout.com/pdf-batch-audit
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: When a team needs one review list for several PDF deliverables.
 
@@ -264,17 +326,37 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+How many PDFs can I audit together?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+Up to 10 PDFs, 20 MB each and 100 MB in total. Inspection is limited to 200 pages per PDF and 600 pages per batch. Partial or unreadable results must stay visible in the handover.
 
-Does a clean result prove accessibility?
+What happens if one PDF cannot be read?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+Readable files keep their findings. The failed file is reported separately and the batch is partial. Obtain a readable copy and check it before treating the batch as finished.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The batch includes a text PDF with missing metadata, a revised text PDF and a page with only a drawn shape. Processing all pages does not mean that every accessibility requirement passes.
+
+Document | Pages | All pages processed | Check
+
+Original handout | 2 | Yes | Document title; Default language declaration; Tagged-document declaration; No page structure tree found (1); No page structure tree found (2)
+
+Revised handout | 3 | Yes | Tagged-document declaration; No page structure tree found (1); No page structure tree found (2); No page structure tree found (3)
+
+Image-only sample | 1 | Yes | Document title; Default language declaration; Tagged-document declaration; No extractable text (1)
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-batch-audit#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -286,7 +368,7 @@ Reference material
 
 https://thedollscout.com/pdf-to-text
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: When you need to reuse existing PDF text or check whether text extraction works.
 
@@ -308,17 +390,38 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+Why does my scanned PDF produce no text?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+A scan may contain page images without a text layer. This tool extracts existing text only. Use OCR separately, check its accuracy, then extract the resulting text again.
 
-Does a clean result prove accessibility?
+Will PDF to text preserve tables and reading order?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+It returns text separated by page. It does not reconstruct table cells or guarantee visual or assistive-technology reading order. Inspect columns, tables and special characters in the original.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The original handout produces the page text below. The image-only sample produces zero text characters; OCR is outside this tool. Check the text against the source before reusing it.
+
+Pages | Extracted text
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-to-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -330,7 +433,7 @@ Reference material
 
 https://thedollscout.com/compare-pdf-text
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: When a revised PDF arrives and you need to find text changes.
 
@@ -352,17 +455,37 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+Can I compare PDF versions after a page is inserted?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+The tool aligns pages using normalized text and proposes pairings around insertions. Review added, removed and changed pages; pairings are suggestions and can be ambiguous for repeated content.
 
-Does a clean result prove accessibility?
+Does identical extracted text mean two PDF files are identical?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+No. Images, tags, layout and other bytes can differ. Use file verification for a SHA-256 and byte-count comparison, and review visual changes in the original PDFs.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The revision changes the workshop time, inserts a page and changes the materials list. Suggested text pairings do not compare visual layout, images or PDF tags.
+
+Text changes | Original page | Revised page
+
+Changed | 1 | 1
+
+Added | — | 2
+
+Changed | 2 | 3
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/compare-pdf-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -374,7 +497,7 @@ Reference material
 
 https://thedollscout.com/learn/pdf-accessibility-checklist
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
 
@@ -394,7 +517,7 @@ Reference material
 
 https://thedollscout.com/learn/scanned-pdf-vs-text-pdf
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
 
@@ -414,7 +537,7 @@ Reference material
 
 https://thedollscout.com/learn/pdf-reading-order
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
 
@@ -434,7 +557,7 @@ Reference material
 
 https://thedollscout.com/methodology
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
 
@@ -456,7 +579,7 @@ Reference material
 
 https://thedollscout.com/document-privacy
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
 
@@ -482,7 +605,7 @@ Reference material
 
 https://thedollscout.com/collectors
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
 
@@ -496,7 +619,7 @@ Reference material
 
 https://thedollscout.com/de/verify-file
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
 
@@ -516,6 +639,42 @@ Das Format ist offen. Link aufbewahren und SHA-256 sowie Bytezahl mit eigener So
 
 OpenTimestamps ist ein separater Dienst und ein Protokoll für Zeitnachweise. Ein TDS-Prüf-Link erzeugt keinen Bitcoin-Zeitstempel.
 
+Eine Datei-Prüfsumme unabhängig prüfen
+
+Eine SHA-256-Prüfsumme beschreibt den Dateiinhalt. TDS verlangt sowohl denselben SHA-256-Wert als auch dieselbe Byteanzahl wie die Referenz des Absenders. Prüfen Sie die tatsächlich heruntergeladene Datei, keinen Screenshot oder neu exportierten Stand.
+
+Warum haben optisch gleiche PDFs unterschiedliche Prüfsummen?
+
+Metadaten, Kompression oder andere Bytes können beim Speichern geändert werden. Für Textänderungen verwenden Sie den PDF-Textvergleich; Prüfsummen vergleichen die exakten Bytes.
+
+Beweist eine passende Prüfsumme, dass die Datei sicher ist?
+
+Nein. Auch Schadsoftware hat eine Prüfsumme. Beziehen Sie die Referenz über einen vertrauenswürdigen Kanal. TDS prüft weder Schadsoftware noch Identität oder Zustellung.
+
+Kann ich einen beliebigen SHA-256-Wert einfügen?
+
+Dieses Formular erwartet einen vollständigen TDS-Link einschließlich Byteanzahl. Einen einzelnen Hash vergleichen Sie manuell mit den unten genannten Befehlen.
+
+Ein reproduzierbares Beispiel mit drei Bytes
+
+Eine Textdatei mit genau abc ohne Zeilenumbruch hat 3 Bytes und den folgenden SHA-256-Wert. Umbenennen ändert ihn nicht, ein geänderter Inhalt oder zusätzlicher Zeilenumbruch schon. Das integrierte Beispiel verwendet diese Bytes.
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+Ersetzen Sie document.pdf durch Ihren Dateipfad. Die Befehle lesen lokal. Vergleichen Sie Prüfsumme und Byteanzahl mit der TDS-Referenz; Groß- und Kleinschreibung der Hexadezimalzeichen ändert den Wert nicht.
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -526,7 +685,7 @@ Referenzen
 
 https://thedollscout.com/de/delivery-evidence
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
 
@@ -556,7 +715,7 @@ Referenzen
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
 
@@ -602,7 +761,7 @@ Referenzen
 
 https://thedollscout.com/de/pdf-accessibility-checker
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.
 
@@ -624,17 +783,43 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Was bedeutet ein erkanntes PDF-Tag?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Erkannt wird eine Tag-Deklaration oder eine vom Parser zugängliche Struktur. Das beweist keine korrekte Lesereihenfolge, Bildbeschreibungen oder barrierefreien Tabellen. Diese Punkte brauchen eine eigene Prüfung.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Zertifiziert dieses Werkzeug WCAG oder PDF/UA?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Nein. Es bietet eine automatisierte Vorprüfung und dokumentiert Ihre manuelle Prüfung. Es zertifiziert keine Konformität, repariert keine Tags und berechnet keinen prozentualen Barrierefreiheitswert.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Prüfung | Beobachtung | Nächster Schritt
+
+Dokumenttitel | Fictional workshop handout | Prüfen Sie, ob der Titel das Dokument beschreibt. Die Titelleisten-Einstellung wird nicht geprüft.
+
+Standard-Dokumentsprache | en-US | Prüfen Sie, ob die Sprachangabe zum Inhalt passt.
+
+Deklaration als getaggtes PDF | Nicht erkannt | Struktur und Lesereihenfolge in einem Autoren- oder Reparaturwerkzeug prüfen.
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-accessibility-checker#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -646,7 +831,7 @@ Referenzen
 
 https://thedollscout.com/de/pdf-batch-audit
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.
 
@@ -668,17 +853,37 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Wie viele PDFs kann ich gemeinsam prüfen?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Was passiert bei einer unlesbaren Datei?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Die Befunde lesbarer Dateien bleiben erhalten. Die fehlerhafte Datei wird getrennt ausgewiesen; der Stapel gilt als teilweise geprüft. Fordern Sie eine lesbare Kopie an und prüfen Sie diese nach.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Der Stapel enthält ein Text-PDF mit fehlenden Metadaten, eine überarbeitete Textfassung und eine Seite nur mit einer gezeichneten Form. Vollständig verarbeitet bedeutet nicht barrierefrei.
+
+Dokument | Seiten | Alle Seiten verarbeitet | Prüfung
+
+Ursprüngliche Unterlage | 2 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2)
+
+Überarbeitete Unterlage | 3 | Ja | Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2); Kein Strukturbaum für die Seite gefunden (3)
+
+Beispiel ohne Textebene | 1 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein auslesbarer Text (1)
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-batch-audit#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -690,7 +895,7 @@ Referenzen
 
 https://thedollscout.com/de/pdf-to-text
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Wenn Sie vorhandenen PDF-Text weiterverwenden oder die Textextraktion prüfen möchten.
 
@@ -712,17 +917,38 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Warum liefert ein gescanntes PDF keinen Text?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Ein Scan kann nur Seitenbilder ohne Textebene enthalten. Das Werkzeug extrahiert vorhandenen Text. Führen Sie OCR separat aus, prüfen Sie die Erkennung und extrahieren Sie danach erneut.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Bleiben Tabellen und Lesereihenfolge erhalten?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Die Ausgabe trennt Text nach Seiten. Tabellenzellen werden nicht rekonstruiert, und die visuelle oder assistive Lesereihenfolge wird nicht garantiert. Spalten, Tabellen und Sonderzeichen am Original prüfen.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die ursprüngliche Unterlage ergibt den folgenden Seitentext. Das Beispiel ohne Textebene ergibt null Textzeichen. Dieses Werkzeug führt keine OCR aus; prüfen Sie den Text am Original.
+
+Seiten | Extrahierter Text
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-to-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -734,7 +960,7 @@ Referenzen
 
 https://thedollscout.com/de/compare-pdf-text
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.
 
@@ -756,17 +982,37 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Funktioniert der Vergleich nach eingefügten Seiten?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Das Werkzeug ordnet Seiten anhand normalisierten Texts zu und schlägt Paare um Einfügungen herum vor. Prüfen Sie Ergänzungen, Löschungen und Änderungen. Wiederholter Inhalt kann die Zuordnung mehrdeutig machen.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Bedeutet gleicher Text identische Dateien?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Nein. Bilder, Tags, Layout und andere Bytes können abweichen. Für SHA-256 und Bytezahl nutzen Sie die Dateiprüfung; visuelle Änderungen prüfen Sie in den Original-PDFs.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die neue Fassung ändert die Uhrzeit, fügt eine Seite ein und ändert die Materialliste. Die Textzuordnung vergleicht keine Bilder, Tags oder Layouts.
+
+Textänderungen | Alte Seite | Neue Seite
+
+Geändert | 1 | 1
+
+Ergänzt | — | 2
+
+Geändert | 2 | 3
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/compare-pdf-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -778,7 +1024,7 @@ Referenzen
 
 https://thedollscout.com/de/learn/pdf-accessibility-checklist
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
 
@@ -798,7 +1044,7 @@ Referenzen
 
 https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
 
@@ -818,7 +1064,7 @@ Referenzen
 
 https://thedollscout.com/de/learn/pdf-reading-order
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
 
@@ -838,7 +1084,7 @@ Referenzen
 
 https://thedollscout.com/de/methodology
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
 
@@ -860,7 +1106,7 @@ Referenzen
 
 https://thedollscout.com/de/document-privacy
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
 
@@ -886,7 +1132,7 @@ Referenzen
 
 https://thedollscout.com/de/collectors
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
 
@@ -900,7 +1146,7 @@ Referenzen
 
 https://thedollscout.com/zh/verify-file
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
 
@@ -920,6 +1166,42 @@ https://thedollscout.com/zh/verify-file
 
 OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
 
+如何独立核对文件校验值
+
+SHA-256 校验值根据文件内容计算。TDS 的匹配要求文件指纹和字节数均与发送者的核验依据一致。请选择实际下载的文件，而不是截图或重新导出的副本。
+
+看起来相同的 PDF，为什么指纹不同？
+
+保存 PDF 可能改变元数据、压缩方式或其他字节，即使页面外观没变。检查文字修改请使用 PDF 文本比较；指纹用于比较文件字节是否一致。
+
+指纹匹配是否说明文件安全？
+
+不能。恶意文件也有自己的指纹。请从可信渠道取得核验依据；此工具不扫描病毒，也不证明身份或送达。
+
+能粘贴任意 SHA-256 校验值吗？
+
+这个界面接受包含字节数的完整 TDS 核验链接。只有原始指纹时，请使用下方命令计算并手动比对。
+
+可复现的三个字节示例
+
+建立只包含 abc、末尾没有换行的纯文本文件：大小为 3 字节，SHA-256 如下。只改文件名不会改变指纹；修改内容或增加换行会改变指纹。工具内置的已知示例使用相同字节。
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+将 document.pdf 替换为你的文件路径。命令只在本地读取文件。把指纹和字节数与 TDS 核验依据比较；十六进制字母的大小写不影响指纹值。
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -930,7 +1212,7 @@ OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不
 
 https://thedollscout.com/zh/delivery-evidence
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
 
@@ -960,7 +1242,7 @@ SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的�
 
 https://thedollscout.com/zh/
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
 
@@ -1006,7 +1288,7 @@ PDF 会离开我的设备吗？
 
 https://thedollscout.com/zh/pdf-accessibility-checker
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 发布报告、讲义或向客户交付 PDF 之前。
 
@@ -1028,17 +1310,43 @@ https://thedollscout.com/zh/pdf-accessibility-checker
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+检测到 PDF 标签，说明了什么？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+它表示解析器发现了已标记声明或可访问的结构，并不证明阅读顺序、图片说明或表格正确。这些项目仍需单独检查。
 
-没有发现问题就代表无障碍合格吗？
+这个工具能认证 WCAG 或 PDF/UA 合规吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+不能。它提供自动预检并记录你的人工复核，不提供合规认证，不修复标签，也不计算百分比无障碍评分。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+检查项 | 实际结果 | 下一步
+
+文档标题 | Fictional workshop handout | 核对标题是否准确描述文档；本工具不检查阅读器标题栏设置。
+
+默认语言声明 | en-US | 核对语言声明是否与正文一致。
+
+已标记文档声明 | 未检测到 | 在编辑或修复工具中检查标签结构和阅读顺序。
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-accessibility-checker#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -1050,7 +1358,7 @@ PDF 会离开我的设备吗？
 
 https://thedollscout.com/zh/pdf-batch-audit
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 团队需要把多份待交付 PDF 汇总成一张处理清单时。
 
@@ -1072,17 +1380,37 @@ https://thedollscout.com/zh/pdf-batch-audit
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+一次能检查多少份 PDF？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+最多 10 份，每份不超过 20 MB，总计不超过 100 MB。每份最多检查 200 页，每批最多 600 页。部分结果和无法读取的文件会在交接中保留。
 
-没有发现问题就代表无障碍合格吗？
+某一份 PDF 无法读取时会怎样？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+可读取文件的结果会保留，失败文件单独显示，整批视为部分完成。取得可读副本并重新检查后，再完成交接。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+这批样本包含缺少元数据的文本 PDF、修订后的文本 PDF，以及只有绘制图形的页面。全部页面已处理，不代表所有无障碍要求均已通过。
+
+文档 | 页数 | 全部页面已处理 | 检查项
+
+原版讲义 | 2 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2)
+
+修订版讲义 | 3 | 是 | 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2); 未找到页面结构树 (3)
+
+无文本层示例 | 1 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 没有可提取文本 (1)
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-batch-audit#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -1094,7 +1422,7 @@ PDF 会离开我的设备吗？
 
 https://thedollscout.com/zh/pdf-to-text
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 需要复用 PDF 已有文字，或先判断能否提取文本时。
 
@@ -1116,17 +1444,38 @@ https://thedollscout.com/zh/pdf-to-text
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+扫描 PDF 为什么提取不出文字？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+扫描件可能只有页面图片，没有文本层。此工具只提取已有文字。请另行进行 OCR，检查识别准确性后，再提取新文件的文本。
 
-没有发现问题就代表无障碍合格吗？
+提取文本能保留表格和阅读顺序吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+输出按页分隔的文字，不重建表格单元格，也不保证视觉或辅助技术的阅读顺序。分栏、表格和特殊字符需要对照原件检查。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+原版讲义会产生下面按页分开的文本。无文本层示例的文本字符数为零；这个工具不做 OCR，复用前请对照原件核对。
+
+页数 | 提取的文本
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-to-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -1138,7 +1487,7 @@ PDF 会离开我的设备吗？
 
 https://thedollscout.com/zh/compare-pdf-text
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 收到修订版 PDF，需要找出文字变化时。
 
@@ -1160,17 +1509,37 @@ https://thedollscout.com/zh/compare-pdf-text
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+插入新页面后，还能比较 PDF 版本吗？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+工具用规范化文本对齐页面，并在新增页面前后建议配对。请复核新增、删除和修改项；重复内容可能让配对存在歧义。
 
-没有发现问题就代表无障碍合格吗？
+提取文字相同，就代表 PDF 文件相同吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+不代表。图片、标签、版式及其他字节仍可能不同。检查完整文件请使用 SHA-256 和字节数核验；视觉变化仍需查看原 PDF。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+修订版更改了活动时间，插入一页，并修改了材料清单。文本配对不比较版式、图片或 PDF 标签。
+
+文字变更 | 原版页码 | 修订版页码
+
+修改 | 1 | 1
+
+新增 | — | 2
+
+修改 | 2 | 3
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/compare-pdf-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -1182,7 +1551,7 @@ PDF 会离开我的设备吗？
 
 https://thedollscout.com/zh/learn/pdf-accessibility-checklist
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
 
@@ -1202,7 +1571,7 @@ https://thedollscout.com/zh/learn/pdf-accessibility-checklist
 
 https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
 
@@ -1222,7 +1591,7 @@ PDF 可以包含真实文字、页面图片，或二者混合。看得见文字�
 
 https://thedollscout.com/zh/learn/pdf-reading-order
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
 
@@ -1242,7 +1611,7 @@ https://thedollscout.com/zh/learn/pdf-reading-order
 
 https://thedollscout.com/zh/methodology
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
 
@@ -1264,7 +1633,7 @@ https://thedollscout.com/zh/methodology
 
 https://thedollscout.com/zh/document-privacy
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
 
@@ -1290,7 +1659,7 @@ https://thedollscout.com/zh/document-privacy
 
 https://thedollscout.com/zh/collectors
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
 
