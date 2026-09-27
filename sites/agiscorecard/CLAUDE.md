@@ -921,7 +921,7 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
   判定线 `agi-invest-demand-1115`。没有需求读数之前不改投资页标题。
 - **同日第三轮(四个投资仓接入会话后)**:整条投资线合计付费 0、**真实询价 0**(唯一那 1 次是 owner 自测,owner 同日确认)、订阅 2(SunWatch 1、Compass 1)。SunWatch 的 pv/点击计数
   含爬虫与部署自检,已在 sunPredition 改为另记真人口径(`/api/growth` 的 `human` 块);Compass 弹窗 459 次里 423 次是爬虫;
-  **Gushen 后端从未部署、线上功能不可用,/invest 中英两页已拿掉它的卡片**(终身 0 点击)。详见 `docs/agi-invest-usage-2026-09-27.md` §六。
+  **Gushen 后端从未部署、线上功能不可用,/invest 中英两页已拿掉它的卡片**(终身 0 点击)。**同日更正**:gushen 已重构为纯前端服务(浏览器内计算 + 部署时抓行情),线上可用,卡片已按现状恢复。详见 `docs/agi-invest-usage-2026-09-27.md` §六。
 
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
