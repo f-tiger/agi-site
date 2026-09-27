@@ -16,7 +16,7 @@ export async function audit(get){
  report.nextAction=!report.ok?'Repair failed checks before acquisition work.':!report.summary.optInPageEvents?'No opted-in page events observed. Check exposure and consent bias; do not conclude no demand.':!report.summary.ownTaskEvents?'Observed opt-in visits but no own-task event. Inspect task fit and input friction before adding pages.':'Review own-task, report and recurring-need feedback together before proposing a paid deliverable.';
  return report;
 }
-export const markdown=r=>`# Web3 行情与转化检查\n\n时间：${r.asOf}\n运行检查：${r.ok?'通过':'需要处理'}\n\n行情状态：${r.sources?.market.status||'未知'}；官方动态：${r.sources?.briefs.status||'未知'}。\n自愿页面事件 ${r.summary.optInPageEvents??'未知'}；自己的任务完成事件 ${r.summary.ownTaskEvents??'未知'}；报告导出事件 ${r.summary.reportExportEvents??'未知'}。\n\n${r.nextAction}\n\n${r.checks.filter(c=>!c.ok).map(c=>'- '+c.name+': '+c.reason).join('\n')}\n\n真实收录、第三方外链、AI 引用、付费买家和收入均需另行取证；未接入证据记为 null。事件不是人数，也不是可相除的跨域转化漏斗。\n`;
+export const markdown=r=>`# Web3 行情与转化检查\n\n时间：${r.asOf}\n运行检查：${r.ok?'通过':'需要处理'}\n\n行情状态：${r.sources?.market?.status||'未知'}；官方动态：${r.sources?.briefs?.status||'未知'}。\n自愿页面事件 ${r.summary.optInPageEvents??'未知'}；自己的任务完成事件 ${r.summary.ownTaskEvents??'未知'}；报告导出事件 ${r.summary.reportExportEvents??'未知'}。\n\n${r.nextAction}\n\n${r.checks.filter(c=>!c.ok).map(c=>'- '+c.name+': '+c.reason).join('\n')}\n\n真实收录、第三方外链、AI 引用、付费买家和收入均需另行取证；未接入证据记为 null。事件不是人数，也不是可相除的跨域转化漏斗。\n`;
 async function get(url,ua='Web3Workbench-growth-healthbot/1.0'){const r=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(20000),headers:{'User-Agent':ua}});return {status:r.status,text:await r.text(),headers:{'x-robots-tag':r.headers.get('x-robots-tag')}};}
 async function main(){const report=await audit(get),args=process.argv.slice(2),root=path.resolve(fileURLToPath(new URL('../../..',import.meta.url))),out=path.join(root,'data/autopilot/web3'),check=args.includes('--check');
  if(!check){await mkdir(out,{recursive:true});let previous=null,history=[];try{previous=JSON.parse(await readFile(path.join(out,'latest.json'),'utf8'));}catch{}try{history=JSON.parse(await readFile(path.join(out,'history.json'),'utf8'));}catch{}
@@ -26,3 +26,4 @@ async function main(){const report=await audit(get),args=process.argv.slice(2),r
  if(process.env.GITHUB_STEP_SUMMARY)await appendFile(process.env.GITHUB_STEP_SUMMARY,'\n'+markdown(report));console.log(JSON.stringify({asOf:report.asOf,ok:report.ok,summary:report.summary,failed:report.checks.filter(c=>!c.ok)}));if(!report.ok)process.exitCode=1;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))await main();
+

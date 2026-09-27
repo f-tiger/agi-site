@@ -29,6 +29,9 @@ for f in root.rglob('*.html'):
         refs=set(re.findall(r"\$\('([^']+)'\)",app))-{'fingerprint','fingerprint-result'}
         assert refs<=set(p.ids),f'{f}: missing JS targets {refs-set(p.ids)}'
     text=f.read_text();title=re.search(r'<title>(.*?)</title>',text).group(1)
+    if f.parent==root and f.name in ['stablecoin-payment-check.html','gas-budget-check.html','protocol-change-check.html','briefs.html']:
+        main=re.search(r'<main\b[^>]*>(.*?)</main>',text,re.S).group(1)
+        assert not re.search(r'[\u3400-\u9fff]',main),(f,'Chinese prose in English task content')
     assert title not in titles,(f,'duplicate title');titles.add(title)
     canonical=re.search(r'rel="canonical" href="([^"]+)"',text).group(1)
     expected=('/zh/' if f.parent==root/'zh' and f.name=='index.html' else ('/zh/'+f.name if f.parent==root/'zh' else ('/' if f.name=='index.html' else '/'+f.name)))

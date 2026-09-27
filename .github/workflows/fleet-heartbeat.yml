@@ -33,6 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Reject stale Web3 audit snapshots
+        id: web3snapshot
+        continue-on-error: true
+        run: python3 tools/fleet/check_web3_snapshot.py
+
       - name: Probe every site and redeploy anything stale
         id: probe
         env:
@@ -476,7 +481,8 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, a traffic read is stale, the forecast ledger fails verification, anchoring refused a manifest, or the daily master Routine stopped reporting
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure' || steps.ledger_upgrade.outcome == 'failure' || steps.masterrun.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure' || steps.ledger_upgrade.outcome == 'failure' || steps.masterrun.outcome == 'failure' || steps.web3snapshot.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }} ledger-upgrade=${{ steps.ledger_upgrade.outcome }} master-routine=${{ steps.masterrun.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }} ledger-upgrade=${{ steps.ledger_upgrade.outcome }} master-routine=${{ steps.masterrun.outcome }} web3-snapshot=${{ steps.web3snapshot.outcome }}"
           exit 1
+

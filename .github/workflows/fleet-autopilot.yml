@@ -105,25 +105,6 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-      - name: Audit Web3 market sources and task conversions
-        id: web3
-        continue-on-error: true
-        timeout-minutes: 3
-        run: |
-          FLAGS=""
-          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
-          node sites/web3-studio/scripts/growth-audit.mjs $FLAGS
-
-      - name: Preserve Web3 growth evidence
-        if: always() && inputs.dry_run != true
-        uses: actions/upload-artifact@v4
-        with:
-          name: web3-growth-${{ github.run_id }}
-          path: data/autopilot/web3/
-          retention-days: 30
-          if-no-files-found: warn
-
-
       # The measured evolution layer keeps the fleet useful when no AI session
       # runs. It reads aggregate membership, demand, health and referral signals,
       # writes only redacted manifests, and queues judgement-heavy work.
@@ -260,10 +241,62 @@ jobs:
           echo "::error::Workbench audit failed; inspect its report or timeout log."
           exit 1
 
-
-
+  # Same daily trigger, independent of algorithm/content failures on other sites.
+  web3-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test audit failure and snapshot freshness detection
+        run: |
+          node --test sites/web3-studio/test/growth-audit.test.mjs
+          python3 tools/fleet/test_web3_snapshot.py
+      - name: Record this audit start
+        id: clock
+        run: echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+      - name: Audit Web3 market sources and task conversions
+        id: web3
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node sites/web3-studio/scripts/growth-audit.mjs $FLAGS
+      - name: Reject evidence from a previous run
+        id: current
+        if: always() && steps.clock.outcome == 'success' && inputs.dry_run != true
+        run: python3 tools/fleet/check_web3_snapshot.py --since "${{ steps.clock.outputs.started }}"
+      - name: Preserve only this run's Web3 evidence
+        if: always() && steps.current.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: web3-growth-${{ github.run_id }}
+          path: data/autopilot/web3/
+          retention-days: 30
+          if-no-files-found: error
+      - name: Commit current Web3 evidence even when checks fail
+        if: always() && steps.current.outcome == 'success' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/autopilot/web3
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(web3): record source and conversion audit ${{ steps.clock.outputs.started }}"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            if [ -n "$(git ls-files -u)" ]; then
+              echo "::error::Concurrent Web3 evidence conflict; inspect the saved artifact."
+              exit 1
+            fi
+            sleep $((2**i))
+          done
+          echo "::error::Could not persist Web3 evidence after three attempts."
+          exit 1
       - name: Enforce Web3 source and measurement health
         if: always() && steps.web3.outcome == 'failure'
         run: |
-          echo "::error::Web3 audit failed; inspect saved source and conversion diagnostics."
+          echo "::error::Web3 audit failed; inspect the current report or timeout log."
           exit 1
