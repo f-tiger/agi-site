@@ -12,7 +12,7 @@ Grow useful, repeatable acquisition that can produce actual revenue. Give TDS th
 - Existing US/DE Amazon affiliate channels provide an available revenue mechanism. The creator-kit page offers optional microphone, lighting and storage comparison links, with free troubleshooting first and compatibility checks. These are category searches, not product tests or paid endorsements. No prices or commission rates were invented.
 - Equipment intent may be weak among people seeking free software. This is an explicit commercial risk. Do not scale hundreds of catalog entries based on page impressions alone. A future paid service or software partnership requires a real deliverable, supported entitlement, and verified demand; none is represented as available here.
 
-## Shipped scope
+## Implemented scope
 
 - `/open-source` plus six individual selection/workflow pages: Upscayl, Whisper, Ollama, OBS Studio, Audacity, Shotcut. Licenses and model/cloud distinctions are linked, dated and visible. External software has not been installed or benchmarked by TDS in this release.
 - `/videos` plus three watch pages: Upscayl (2024-12-04, 4:07, Upscayl), Audacity (2023-07-10, 18:21, Kyle Stedman), Shotcut (2019-09-13, 15:30, James Woo). Original publication dates remain visible. Shotcut's official tutorial page links the selected introduction. Old UI caveats are explicit.
@@ -59,4 +59,6 @@ Video titles/authors/thumbnail URLs were returned by YouTube oEmbed on 2026-09-2
 - Chromium: 39 localized mobile page layouts (36 resources + three homes), no overflow or page errors; no third-party connections before player load. Three real checklist downloads and canonical sharing validated. Players create the verified nocookie embed URL, close and reload; external fallback remains available. This verifies embed integration, not uninterrupted third-party playback worldwide.
 - Desktop homepage and watch-page screenshots inspected. Source license links returned HTTP 200. Existing AI share URL repaired and checked in browser.
 
-Publication: pending final CI and production verification at initial commit; append exact release evidence after deployment.
+Publication checkpoint (2026-09-27): implementation committed to main as `27d692b45424bfc151dcfecbeb7c7b6bb9ff11fe`. GitHub run `36331720010` failed before allocating a runner: first job `108654811135`, retried job `108655106107`, both with empty steps and no runner. No build log was created. The connector does not expose the corresponding startup annotation. A read-only browser fallback reached the private repository sign-in wall; the secure login request was cancelled. The exact platform-side failure reason is unverified; do not infer a billing problem or change budgets/settings.
+
+At the first production check, `/__build.txt` remained `615fe184d432506aa6fe3986eb51ce7f7c2377ee`, not this feature commit. This release is implemented and committed, not confirmed deployed. Do not submit the new sitemap until the resource pages are live. Next action: inspect the startup annotation in the authenticated run detail, resolve the concrete platform blocker, then rerun the existing deployment, verify 93-page production manifest/resources and only then submit changed URLs and sitemaps. No additional fee, permission expansion, alternate hosting or paid plan was authorized.
