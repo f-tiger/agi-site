@@ -2313,6 +2313,18 @@
    "source": "sites/agiscorecard/invest-prd-2026-08.md §五",
    "status": "open",
    "t0": "2026-09-27(28d):0(服务端 32,未确认)"
+  },
+  {
+   "id": "agi-invest-demand-1115",
+   "site": "agiscorecard",
+   "due": "2026-11-15",
+   "metric": "sites/agiscorecard/trends-rising.json 里种子 '13f filings' 与 'ai stocks' 的 rising 词(非 autocomplete 兜底),经 data/autopilot/agiscorecard-demand.json 归入 covered/gaps 的条数;前提:两个种子各至少被抓到一次",
+   "threshold": "≥1 条 v≥200 的非兜底 rising 词落在 invest 页群(covered 或 gaps)",
+   "win": "投资面有可测需求 → 按那个词形改对应页标题/首屏(优化槽),不新建页",
+   "lose": "两轮以上抓取仍 0 条 → 投资页的搜索需求在本站量级上不存在,与 agi-invest-survival-1115 一起判定时作为「停止内容投入」的依据",
+   "source": "docs/agi-invest-marketing-2026-09-27.md",
+   "status": "open",
+   "t0": "2026-09-27:两个种子刚加入,0 次抓取;agi 历史 rising 里与投资相关的只有 'stock market today'(v 37 150,泛市场词,不指向本站任何页)。前提不成立 → insufficient"
   }
  ]
 }

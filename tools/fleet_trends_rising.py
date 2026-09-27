@@ -38,8 +38,13 @@ FLEET = [
     # 有密度的读者面（docs/agents-venture-2026-09-25.md），此前这一面没有任何需求仪器。池子总数不变（仍 11 个），打 Google 的次数不变。
     {"site": "bpj", "geo": "US", "out": "sites/baipiaoji/data/trends-rising.json",
      "seeds": ["deepseek", "cursor", "claude code", "sora", "gemini", "perplexity"]},
+    # 2026-09-27 agi 投资板块(owner:「基于流量,市场营销技能优化投资板块」):invest 页群 28 天浏览器端
+    # 24 次、外部来源 0,而本站的需求仪器此前只有两个 AGI 品类词 —— 投资这一面的搜索需求从来没被量过。
+    # 加两个**品类词**(不是个股/人名,同本站「不追实体新闻」的纪律):"13f filings" 对应 /does-copying-13f-work
+    # 与 /invest,"ai stocks" 对应 /ai-stock-exposure。池子 20 → 22,每次运行打 Google 的次数不变(仍 2),
+    # 一轮覆盖从约 10 天变约 11 天;零新 cron。判定线 agi-invest-demand-1115。
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
-     "seeds": ["artificial general intelligence", "agi timeline"]},
+     "seeds": ["artificial general intelligence", "agi timeline", "13f filings", "ai stocks"]},
     # 2026-09-25 owner: reject a collector-only direction and implement the PDF pivot.
     # Keep the same three seeds and existing shared request budget; no new cron.
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",

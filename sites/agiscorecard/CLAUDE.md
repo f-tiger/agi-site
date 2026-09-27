@@ -916,6 +916,9 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
   33 次 Google 引荐无浏览器端对应(已回放确认统计代码正常),以浏览器端为准。SunWatch / Compass 不在本账号 D1,读不到。
 - 修两处错链接:exposure 页「公开战绩」按钮原指 SunWatch 首页(生成器 `gen_agi_exposure.py` 已改);英文 /invest 的
   Compass 链接原被 302 到中文版。补登 `agi-invest-survival-1115`、`agi-invest-zh-p4-1029`。不加新页、不改被测对象。
+- **同日第二轮(owner「基于流量,市场营销技能优化投资板块」,`docs/agi-invest-marketing-2026-09-27.md`)**:`seo-audit` 逐项查,
+  技术与页面层无问题;缺的是权威与**需求读数**。agi 趋势种子加 `13f filings`、`ai stocks`,词表加 `13f`(零新 cron),
+  判定线 `agi-invest-demand-1115`。没有需求读数之前不改投资页标题。
 
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
