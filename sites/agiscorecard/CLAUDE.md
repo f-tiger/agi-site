@@ -59,10 +59,10 @@ job is to keep the machine sharp and let the daily cadence compound.
    > 按 0 结算(OPT-LOG 08-30:停加钩子,活数字保留为引用差异化);09-27 复读 08-01→09-27
    > `*_live_link` 共 3 次站内点击、0 次来自 AI 引荐(这测的是站内点击,不是 AI→站点点击率)。
    > 活数字照做,理由是**可审计、带日期 = 信任与引用元素**,不再写成点击手段。舰队侧的读数:
-   > 564 次引用(30 天至 08-16,Bing 抽样)对应的 Copilot 点击,08-05 起 54 天共 4 次(约 2.2 次/30 天),
-   > 窗口对不齐,只能说数量级 ≤0.4%——与行业 0.27%(TollBit 2025Q4)同一量级。agi 的判定页并不比
-   > 别人更「零点击」,AI 点击就是引用量的一个很小的比例。详见
-   > `docs/ai-era-site-2026-09-27.md`,判定线 `fleet-ai-landing-shape-1026`。
+   > 564 次引用(30 天至 08-16,Microsoft Copilots & Partners,Bing 抽样)窗口里有 D1 数据的 08-05→08-16,Copilot 送来 0 人;
+   > Copilot 引荐全部在 08-18 之后:3 个访问日(JS 5 次 / 服务端 4 次)。两个窗口不重叠,只能说
+   > 「引用 → 点击」在 <1% 量级,和行业公开的 AI 应用点击率(TollBit 2025Q4 0.27%,分母未公开)同一量级,
+   > **不是同一个比率**。agi 站内判定页的 AI 到达并不比清单页少。详见 `docs/ai-era-site-2026-09-27.md`。
 
 **已知风险**：可见查询引用的 73% 挂在 Aschenbrenner 这一个实体上，属人物依赖型资产；
 对冲方向见 `content-backlog.md` 的 CITATION AMPLIFICATION 队列。

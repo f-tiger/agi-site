@@ -207,6 +207,12 @@ def selftest():
         ("claude.ai split: counts claude.ai only", self_suspect({"claude.ai": 7, "chatgpt.com": 7, "www.perplexity.ai": 3}) == 7),
         ("claude.ai split: empty and missing by_host are 0", self_suspect({}) == 0 and self_suspect(None) == 0),
         ("claude.ai split: never matches another assistant", self_suspect({"copilot.microsoft.com": 2, "kagi.com": 1, "chat.openai.com": 4}) == 0),
+        ("claude.ai split: a non-dict by_host is 0, not a crash", self_suspect(["claude.ai"]) == 0),
+        ("snapshot totals: claude.ai share is disclosed and the fleet total is unchanged",
+         fleet_totals([{"site": "agiscorecard", "ai_ref": 21, "by_host": {"chatgpt.com": 7, "claude.ai": 7, "kagi.com": 7}},
+                       {"site": "baipiaoji", "ai_ref": 22, "by_host": {"chatgpt.com": 22}},
+                       {"site": "gridlings", "ai_ref": 0}])
+         == {"fleet_ai_ref": 43, "fleet_ai_ref_claude_ai": 7, "fleet_ai_ref_excl_claude_ai": 36}),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)
@@ -297,7 +303,18 @@ SELF_SUSPECT_HOSTS = ("claude.ai",)
 
 
 def self_suspect(by_host):
-    return sum(n for h, n in (by_host or {}).items() if any(t in h for t in SELF_SUSPECT_HOSTS))
+    if not isinstance(by_host, dict):
+        return 0
+    return sum(n for h, n in by_host.items() if any(t in str(h) for t in SELF_SUSPECT_HOSTS))
+
+
+def fleet_totals(sites):
+    """Snapshot totals. Marks each site with ai_ref_claude_ai; the fleet total is untouched."""
+    for x in sites:
+        x["ai_ref_claude_ai"] = self_suspect(x.get("by_host"))
+    total = sum(x["ai_ref"] for x in sites)
+    claude = sum(x["ai_ref_claude_ai"] for x in sites)
+    return {"fleet_ai_ref": total, "fleet_ai_ref_claude_ai": claude, "fleet_ai_ref_excl_claude_ai": total - claude}
 
 
 def write(sites, errors, how):
@@ -305,16 +322,14 @@ def write(sites, errors, how):
     for x in sites:
         if x["site"] in PV_CAVEAT:
             x["pv_caveat"] = PV_CAVEAT[x["site"]]
-        x["ai_ref_claude_ai"] = self_suspect(x.get("by_host"))
+    totals = fleet_totals(sites)
     snap = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "window_days": WINDOW, "ok": not errors, "read_via": how, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
-        "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
-        # 2026-09-27: the part of fleet_ai_ref that came from claude.ai (see SELF_SUSPECT_HOSTS).
-        # Registered lines keep reading fleet_ai_ref; this is the disclosure beside it.
-        "fleet_ai_ref_claude_ai": sum(x["ai_ref_claude_ai"] for x in sites),
-        "fleet_ai_ref_excl_claude_ai": sum(x["ai_ref"] - x["ai_ref_claude_ai"] for x in sites),
+        # 2026-09-27: fleet_ai_ref_claude_ai is the part of fleet_ai_ref that came from claude.ai
+        # (see SELF_SUSPECT_HOSTS). Registered lines keep reading fleet_ai_ref; this is the disclosure.
+        **totals,
         "fleet_human_pv": sum(x["human_pv"] for x in sites),
         # sites not flagged as noise; flagged ≠ checked-clean for the rest
         "fleet_human_pv_excl_flagged": sum(x["human_pv"] for x in sites if "pv_caveat" not in x),

@@ -212,13 +212,11 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        # 2026-09-27: the two selftests run first but never stop the read — a red selftest still
+        # 2026-09-27: the selftest runs first but never stops the read — a red selftest still
         # leaves today's snapshot written, and the step goes red at the end (aggregated below).
-        # ai_landing_shape.py guards the label file of fleet-ai-landing-shape-1026 until it settles.
         run: |
           rc=0
           python3 tools/fleet/ai_referrals.py --selftest || rc=1
-          python3 tools/fleet/ai_landing_shape.py --selftest || rc=1
           python3 tools/fleet/ai_referrals.py || rc=1
           exit $rc
 
