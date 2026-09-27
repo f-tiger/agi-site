@@ -345,3 +345,27 @@ Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audi
 ## 2026-09-19 独立站点会员确认
 
 沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。
+
+## 十一、2026-09-27:owner 令「重建每天的定时任务」——执行结果
+
+- **现状查明**:账号里只剩一次性提醒,**没有任何周期性 Routine**。09-14 的总任务 `trig_012kK8KVg4WYD4g6Y6wEiXet` 与存档的 10 条旧 Routine
+  `get_trigger` 均 not found;总任务自绑定的常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc` 于 09-15 13:50 UTC 被归档。
+  **即 09-15 → 09-27 十二天没有每日循环,且没有任何告警**——唯一在看它的就是它自己。这是第四种计划路径故障形态(前三种见第一、八节):
+  **绑定会话被归档 → 自绑定 Routine 随之失效**。另:09-24 有会话建过新会话版 `trig_01EqzKvfWsoUJzNwYeD9m8XL`,记录只在未合并分支
+  `claude/fleet-scheduled-task-rebuild-4c0law` 上,main 上没有它推过的提交,09-27 查时也已不存在。
+- **第一次重建失败了(实测,别再走这条路)**:先建的 `trig_01PXhZ3uG6CcJqiCviAVXAGF`(每次触发开新会话)手动触发后,平台存储的配置是
+  `sources: []`、无 connector——**从会话里建的新会话版 Routine 不带仓库**,触发出的会话拿不到 agi-site,一个提交都没推。已 `enabled=false`
+  并改名「[停用 09-27:新会话拿不到仓库…]」,未删除。
+- **生效的重建**:`trig_011SpfuZB2Lc2aDYp1F9qSLz`「舰队总任务 · 每日 v2(常驻会话)」,`51 3 * * *` UTC,首跑 09-28 03:51 UTC,
+  每天唤醒专用会话 `session_013QnV88GEwyxxdXDZCZKsUr`「舰队总任务 · 每日常驻会话(勿归档)」。该会话以 agi-site 为 source 创建
+  (容器回收后按 main 重新克隆),**实测 30 秒内推上 main(`3c64ef50`)**。prompt 全文 `docs/fleet-master-routine.md`。职责路由与 v1 相同
+  (每日 A–H、周一附加、每月附加),按 09-14 以后的变化更新:18 个 worker、赌注台账、钱线/预测记录线/D1 读预算/机器面快照、bpj 厂商认领队列、
+  四个新 worker 只报数。
+- **owner 的补充要求「避免每天任务无法读取 agi-site 仓库,从而执行发布」的落地**:①会话自带仓库;②prompt 第 0 节固定获取顺序与兜底发布通道
+  (GitHub MCP push_files、分支 + PR 合入);③第 8 节每轮必写 `data/fleet-master-run.json`;④heartbeat 新增 `check_master_run.py`
+  (`masterrun` 步,进红色汇总门),50 小时无记录或连续两轮 `repo_ok=false` 即红——会话被归档、Routine 消失、平台挂起都会落到这条。
+  首跑前(至 09-30)只 warning。
+- **算账**:零新 GitHub cron;heartbeat 增加一个秒级读文件步骤。Routine 每天一次。
+- **已知限制**:Routine 与会话都不带 connector,每日会话没有 Cloudflare MCP;after35 审核与 10 万实验复核在补上 connector 之前会如实报「未做」。
+  补法:owner 在 claude.ai Routines 界面给这条 Routine 加 Cloudflare connector,或在界面里新建一条选好仓库与 connector 的 Routine 并贴入同一 prompt。
+- **通用教训**:长期 Routine 不要绑在对话会话上;要绑就绑在专门建的、以仓库为 source 的会话上,并让它每轮写一条记录、由第①层检查新鲜度。

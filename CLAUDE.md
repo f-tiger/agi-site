@@ -268,6 +268,13 @@ Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire
 3. **合并优先于删除**：`update_trigger` 改 prompt + `enabled=false` 停用，
    **永不 `delete_trigger`**——预登记判定线与历史必须留痕。
 
+**每日总任务(2026-09-27 重建,全文 `docs/fleet-master-routine.md`、map 第十一节)**:`trig_011SpfuZB2Lc2aDYp1F9qSLz`,`51 3 * * *` UTC,
+每天唤醒专用会话 `session_013QnV88GEwyxxdXDZCZKsUr`「舰队总任务 · 每日常驻会话(勿归档)」——它以 agi-site 为 source 创建,容器回收后按 main
+重新克隆,实测 30 秒推上 main。**同日实测:从会话里建的「每次开新会话」Routine 不带仓库(`sources: []`),拿不到 agi-site**,那条
+(`trig_01PXhZ3uG6CcJqiCviAVXAGF`)已停用。v1 自绑定的对话会话 09-15 被归档后,十二天没有任何每日循环且无人发现。每轮在同一次 push 里写
+`data/fleet-master-run.json`;heartbeat 的 `check_master_run.py` 在 50 小时无记录或连续两轮拿不到仓库时打红。**别归档那个会话;
+别把长期 Routine 绑在对话会话上。** 该会话没有 Cloudflare MCP,after35 审核会报「未做」,直到 owner 在 Routines 界面补 connector。
+
 第①层的兜底现在是 `fleet-heartbeat.yml`（每日 08:00 UTC）：八站探活、超 7 天未成功
 部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。
 **GitHub 的 workflow 失败邮件是整条链上唯一不经过任何 AI 会话的告警通道**——
