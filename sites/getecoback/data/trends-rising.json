@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-26",
+ "fetched": "2026-09-27",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -264,36 +264,28 @@
   "kaffeevollautomat": {
    "rising": [
     {
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 16500
+    },
+    {
      "q": "krups kaffeevollautomat intensity milk",
-     "v": 16300
+     "v": 16100
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 11250
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 10150
-    },
-    {
-     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 6600
-    },
-    {
-     "q": "krups ea897b evidence ecodesign kaffeevollautomat",
-     "v": 6100
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 1150
+     "v": 10750
     },
     {
      "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 650
+     "v": 10550
     },
     {
-     "q": "de'longhi kaffeevollautomat",
-     "v": 120
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 10550
+    },
+    {
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 450
     },
     {
      "q": "samsung kaffeevollautomat",
@@ -305,37 +297,33 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-26",
+   "fetched": "2026-09-27",
    "polluted": false
   },
   "akku staubsauger": {
    "rising": [
     {
-     "q": "belstaff jacke herren",
-     "v": 26850
-    },
-    {
-     "q": "sky scanner",
-     "v": 14100
-    },
-    {
      "q": "ford",
      "v": 550
     },
     {
-     "q": "lululemon shorts",
-     "v": 350
+     "q": "dyson tp09",
+     "v": 550
     },
     {
-     "q": "dyson tp09",
-     "v": 350
+     "q": "belstaff jacke herren",
+     "v": 500
     },
     {
      "q": "ventilator dyson",
-     "v": 350
+     "v": 400
     },
     {
-     "q": "lululemon rucksack",
+     "q": "sky scanner",
+     "v": 400
+    },
+    {
+     "q": "lululemon shorts",
      "v": 350
     },
     {
@@ -343,16 +331,20 @@
      "v": 300
     },
     {
-     "q": "belstaff weste",
-     "v": 300
-    },
-    {
      "q": "belstaff",
      "v": 250
+    },
+    {
+     "q": "dyson filter reinigen",
+     "v": 250
+    },
+    {
+     "q": "lululemon align",
+     "v": 140
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-18",
+   "fetched": "2026-09-27",
    "polluted": true
   },
   "matratze": {

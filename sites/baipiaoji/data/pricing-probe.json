@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-26",
+ "generated": "2026-09-27",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "ima",
-  "jsdesign",
-  "krea",
-  "languagetool",
-  "leonardo",
-  "lovable",
-  "luma",
-  "marscode"
+  "metaso",
+  "mistral",
+  "motiff",
+  "n8n",
+  "napkin",
+  "notebooklm",
+  "notion-ai",
+  "nvidia-nim"
  ],
- "cursor": "marscode",
+ "cursor": "nvidia-nim",
  "summary": {
-  "ready": 26,
-  "empty": 23,
-  "blocked": 20,
-  "probed_total": 69
+  "ready": 29,
+  "empty": 26,
+  "blocked": 22,
+  "probed_total": 77
  },
  "tools": {
   "kimi": {
@@ -1991,6 +1991,251 @@
    ],
    "best": {
     "url": "https://www.marscode.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "metaso": {
+   "slug": "metaso",
+   "name": "秘塔 AI 搜索",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://metaso.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://metaso.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://metaso.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "mistral": {
+   "slug": "mistral",
+   "name": "Mistral AI",
+   "cat": "api",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://console.mistral.ai/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "TypeError"
+    },
+    {
+     "url": "https://console.mistral.ai/price",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "TypeError"
+    },
+    {
+     "url": "https://console.mistral.ai/plans",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "TypeError"
+    }
+   ],
+   "best": null
+  },
+  "motiff": {
+   "slug": "motiff",
+   "name": "Motiff 妙多",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://motiff.cn/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 15
+    }
+   ],
+   "best": {
+    "url": "https://motiff.cn/pricing",
+    "tokens": 15,
+    "excerpt": "gma 到妙多 定价 登录 选择合适的版本与席位 基础版 适合个人体验 免费 立即体验 获赠 100 积分/月 妙多 MCP：10 次试用 可协作文件：3 个 文件历史版本：30 天 专业版 适合独立设计师和小型团队 年付 AI 设计席位 ¥ 90 /月 设计席位 ¥ 24 /月 研发席位 ¥ 6 /月 选择专业版 包含基础版所有能力，以及 研发模式（包含不限次的妙多 MCP 访问权限） 可协作文件：不限数量 文件历史版本：永久 团队组件库 私密项目和文件 AI 设计席位： 1000 积分/月 最受欢迎 企业版 适合中大型企业 仅支持年付 AI 设计席位 ¥ 200 /月 设计席位 ¥ 90 /月 研发席位 ¥ 18 /月 选择企业版 企业客户咨询 包含专业版所有能力，以及 企业内团队：不限数量 企业级设计系统 团队共享字体 企业级账号与权限管理 中心化资产管理 活动日志 企业专属服务 AI 设计席位： 2000 积分/月 集团版 适合多业务线的大型企业 仅支持年付 AI 设计席位 ¥ 300 /月 设计席位 ¥ 150 /月 研发席位 ¥ 30 /月 企业客户咨询 包含企业版所有能力，以及 自定义工作区 工作区资源共享 集团级安全管控 多层级管理员权限 SCIM 管理席位 活动日志 API 大客户专属服务 AI 设计席位： 3000 积分/月 需要获取更多 AI 积分? 「专业版」、「企业版」或「集团版」的用户可以购买积分加量包：50 元/500 积分。 不同席位的区别？ AI 设计席位 支持产品经理和设计师高效工作 包含 妙多 AI → 协同设计 → 研发模式 → 设计席位"
+   }
+  },
+  "n8n": {
+   "slug": "n8n",
+   "name": "n8n",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://n8n.io/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "ECONNRESET"
+    },
+    {
+     "url": "https://n8n.io/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://n8n.io/plans",
+     "status": 200,
+     "bytes": 450126,
+     "tokens": 8
+    }
+   ],
+   "best": {
+    "url": "https://n8n.io/plans",
+    "tokens": 8,
+    "excerpt": "egardless of complexity. Monthly Annually (Save 17%) Starter Great for getting started and seeing the power of n8n. 20€ /mo, billed annually 2.5K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n This plan includes: 1 shared project 5 concurrent executions Unlimited users 2,300 AI credits/month Forum support Pro For solo builders and small teams running workflows in production. 50€ /mo, billed annually 10K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n Everything in Starter plan, plus: 3 shared projects 20 concurrent executions 7 days of insights Up to 13,700 AI credits/month Admin roles Global var"
+   }
+  },
+  "napkin": {
+   "slug": "napkin",
+   "name": "Napkin AI",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.napkin.ai/pricing",
+     "status": 200,
+     "bytes": 59995,
+     "tokens": 7
+    }
+   ],
+   "best": {
+    "url": "https://www.napkin.ai/pricing",
+    "tokens": 7,
+    "excerpt": "at scale, directly in your workflow. Create Compelling Visuals 10x Faster Pay monthly Pay yearly Save 25% Free Forever $0 Sign up 500 AI credits per week AI credits are used to generate visuals, with ~1 credit charged per word selected for generation. This may change in the future for more complex outputs or advanced features. Unlimited visuals editing Unlimited file import (PPT, DOC, PDF, HTML, MD) Unlimited PNG &amp; PDF export Built-in styles and fonts Standard icons Napkin branding on visuals Plus Popular $9 per person / month Get Started Everything in Free + 10,000 AI credits per month AI credits are used to generate visuals, with ~1 credit charged per word selected for generation. This"
+   }
+  },
+  "notebooklm": {
+   "slug": "notebooklm",
+   "name": "NotebookLM（Google）",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://notebooklm.google.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://notebooklm.google.com/price",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://notebooklm.google.com/plans",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://notebooklm.google.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "notion-ai": {
+   "slug": "notion-ai",
+   "name": "Notion AI",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.notion.so/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "ECONNRESET"
+    },
+    {
+     "url": "https://www.notion.so/price",
+     "status": 401,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.notion.so/plans",
+     "status": 200,
+     "bytes": 243352,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.notion.so/plans",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "nvidia-nim": {
+   "slug": "nvidia-nim",
+   "name": "NVIDIA NIM",
+   "cat": "api",
+   "reach": 0,
+   "probed": "2026-09-27",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://build.nvidia.com/pricing",
+     "status": 200,
+     "bytes": 53437,
+     "tokens": 0
+    },
+    {
+     "url": "https://build.nvidia.com/price",
+     "status": 200,
+     "bytes": 53429,
+     "tokens": 0
+    },
+    {
+     "url": "https://build.nvidia.com/plans",
+     "status": 200,
+     "bytes": 53429,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://build.nvidia.com/pricing",
     "tokens": 0,
     "excerpt": ""
    }
