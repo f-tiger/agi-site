@@ -78,19 +78,19 @@ export async function computeReach(env, days) {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
     const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
-      q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
-      q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
+      q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC, path LIMIT 400`, since),
+      q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC, ref LIMIT 30`, since),
       // AI 助手引流:雷达里「AI 引用第一次转化为点击」那条信号的数据源（原来指向一个从未存在的快照文件）
-      q(`SELECT ref, path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} AND (ref LIKE '%chatgpt.com%' OR ref LIKE '%openai.com%' OR ref LIKE '%perplexity.ai%' OR ref LIKE '%claude.ai%' OR ref LIKE '%gemini.google%' OR ref LIKE '%copilot.microsoft%' OR ref LIKE '%you.com%' OR ref LIKE '%phind.com%' OR ref LIKE '%kagi.com%') GROUP BY ref, path ORDER BY n DESC LIMIT 40`, since),
+      q(`SELECT ref, path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} AND (ref LIKE '%chatgpt.com%' OR ref LIKE '%openai.com%' OR ref LIKE '%perplexity.ai%' OR ref LIKE '%claude.ai%' OR ref LIKE '%gemini.google%' OR ref LIKE '%copilot.microsoft%' OR ref LIKE '%you.com%' OR ref LIKE '%phind.com%' OR ref LIKE '%kagi.com%') GROUP BY ref, path ORDER BY n DESC, ref, path LIMIT 40`, since),
       // 事件计数:手势/转化/广告/作业包全部按 ev 聚合。剔 CI 自测路径与 CI 语言标记。
-      q(`SELECT ev, count(*) n FROM hits WHERE d >= ? AND ${EVENT_ROWS} AND ev NOT IN ('bot','bot_spoofed','bot_maybe_probe','api') AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND lang != 'ci' GROUP BY ev ORDER BY n DESC`, since),
+      q(`SELECT ev, count(*) n FROM hits WHERE d >= ? AND ${EVENT_ROWS} AND ev NOT IN ('bot','bot_spoofed','bot_maybe_probe','api') AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND lang != 'ci' GROUP BY ev ORDER BY n DESC, ev`, since),
       // 厂商投稿:只出数量。表可能尚不存在（首次投稿时才建）——失败按 0 计,不让整个端点陪葬。
       q("SELECT count(*) n FROM submissions WHERE status = 'new' AND name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),
       q("SELECT count(*) n FROM submissions WHERE name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),
       q('SELECT status, count(*) n FROM ads GROUP BY status').catch(() => []),
       // 市场面:只按国家计数,**不与 path / ref / 事件交叉**,并在下面过 k 匿名下限。
       // 有它之前,「中国流量是不是更大」这种问题只有手接 MCP 查 D1 才答得出来。
-      q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC`, since),
+      q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC, country`, since),
       // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):订阅按状态、广告收银台按状态、
       // 钱包轨订单数、免费额度告警订阅数、会员订单按状态。全部只出计数;表可能不存在,失败按 null。
       q('SELECT status, count(*) n FROM subs GROUP BY status').catch(() => []),

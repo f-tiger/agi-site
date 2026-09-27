@@ -1012,4 +1012,8 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
   「SEARCH … USING COVERING INDEX pageviews_human (day…)」,出现整表扫描即红(8 个变异全红)。
 - **写新的 pageviews 统计查询前先想它走哪个索引**;要放进会被反复调用的端点,就先加缓存。判定线 `agi-d1-reads-1004`
   (09-28→10-03 每天 agiscorecard-events 读取 ≤30 万行;t0 09-26 181 万)。
+- **09-27 进度**:缓存已上线并验证(线上 miss→hit,部署 run 36281663006 全绿);**索引顺延到 09-28 00:05 UTC**——同一个零点 bpj 迁移
+  已用掉 48 589 行写入,全账号日常写入 1.6–3.1 万行/天,再加 20 964 条索引条目会贴 10 万行写入上限,越线 = 全舰队当天事件写入被拒。
+  线上 pageviews 早有 `idx_pv_day` / `idx_pv_path` / `idx_pv_ref`,测试夹具已照抄;点名路径的查询(pulse 的 money 块)按路径等值查
+  `idx_pv_path` 是允许的,**退回 `idx_pv_day` 即红**。建索引后每次 human 页面浏览的 upsert 多一次索引写入(约 1 400 行/天)。
 

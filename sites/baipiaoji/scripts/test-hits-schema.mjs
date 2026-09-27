@@ -4,9 +4,10 @@
 // 在内存 SQLite 里造一张与线上同形的 hits（真人、事件、API、旧爬虫行、CI 行、窗口内外的日期），然后断言：
 //   1. migrations/0002 原样可执行：爬虫行按 天×爬虫×路径×国家 汇总进 bot_daily、计数守恒、hits 里不再有 ev='bot'、
 //      重跑不重复累加；
-//   2. /api/reach 发出的每一条 hits 查询都走 hits_referred 或 hits_events，没有一条整表扫描——查询是从
+//   2. /api/reach 发出的每一条 hits 查询都走 hits_referred、hits_events 或按路径等值查 idx_hits_path，没有一条整表扫描、
+//      没有一条退回 idx_hits_d——查询是从
 //      computeReach 实际发出的 SQL 里截下来的，测的就是线上会跑的那几条；
-//   3. 迁移前（旧表、无索引、爬虫行还在）与迁移后，/api/reach 的全部 hits 统计逐字相同；
+//   3. 迁移前（线上旧表：只有 idx_hits_d / idx_hits_path，爬虫行还在）与迁移后，/api/reach 的全部 hits 统计逐字相同；
 //   4. 中间件对爬虫只写 bot_daily（表不存在时自己建），普通浏览器与 __probe 自测不写；
 //   5. functions/ 与 lib/ 里再没有任何代码往 hits 写 ev='bot'。
 // 运行：node scripts/test-hits-schema.mjs
@@ -41,9 +42,17 @@ function d1(sql, log) {
 }
 
 const day = (back) => new Date(Date.now() - back * 86400000).toISOString().slice(0, 10);
+// 线上 hits 的真实形状（2026-09-27 从 sqlite_master 读出）：08-03 手工建表时还建了 idx_hits_d 与 idx_hits_path。
+// 它们一直在，却挡不住读取——28 天窗口几乎就是整张表，按 d 找到窗口之后仍要逐行判断 ev/ref。
+// 夹具照抄，EXPLAIN 断言才测得到线上规划器真实的选择（商业触发那条在线上走的是 idx_hits_path）。
+const LIVE_HITS = [
+  "CREATE TABLE hits (id INTEGER PRIMARY KEY AUTOINCREMENT, d TEXT NOT NULL, path TEXT NOT NULL, lang TEXT, country TEXT, ref TEXT, ev TEXT DEFAULT '')",
+  'CREATE INDEX idx_hits_d ON hits(d)',
+  'CREATE INDEX idx_hits_path ON hits(path)',
+];
 function fixture() {
   const sql = new DatabaseSync(':memory:');
-  sql.exec('CREATE TABLE hits (d TEXT, path TEXT, lang TEXT, country TEXT, ref TEXT, ev TEXT)');
+  for (const s of LIVE_HITS) sql.exec(s);
   const add = sql.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)');
   const refs = ['www.google.com', 'cn.bing.com', 'chatgpt.com', 'perplexity.ai', 'duckduckgo.com', 'm.baidu.com', ''];
   const countries = ['US', 'CN', 'DE', 'SG', ''];
@@ -104,25 +113,28 @@ ok(after.prepare("SELECT COUNT(*) c FROM hits WHERE ev='bot_spoofed'").get().c >
 after.exec(MIGRATION);
 ok(after.prepare('SELECT SUM(n) s FROM bot_daily').get().s === botBefore + 3, '迁移文件重跑一次不会重复累加');
 const idx = after.prepare("SELECT name FROM sqlite_master WHERE type='index' AND tbl_name='hits'").all().map((r) => r.name).sort();
-ok(JSON.stringify(idx) === JSON.stringify(['hits_events', 'hits_referred']), `hits 上的索引：${idx}`);
+ok(JSON.stringify(idx) === JSON.stringify(['hits_events', 'hits_referred', 'idx_hits_d', 'idx_hits_path']), `hits 上的索引：${idx}`);
 
 const log = [];
 const r7b = pick(await reachOf(after, 7, log)), r28b = pick(await reachOf(after, 28, log)), r90b = pick(await reachOf(after, 90, log));
 assert.deepEqual(r7b, r7a); assert.deepEqual(r28b, r28a); assert.deepEqual(r90b, r90a); n += 3;
 
 // ── 3. /api/reach 实际发出的每条 hits 查询都走部分索引 ──
+// 真人线必须走 hits_referred；其余查询可以走 hits_events 或按路径等值查 idx_hits_path。
+// 走 idx_hits_d 等于回到事故前：按日期找到窗口，再把窗口里每一行读一遍。
 const hitsQueries = log.filter(([q]) => /\bFROM hits\b/.test(q));
 ok(hitsQueries.length >= 7 * 3, `截到 ${hitsQueries.length} 条 hits 查询`);
 for (const [q, args] of hitsQueries) {
   const plan = after.prepare('EXPLAIN QUERY PLAN ' + q).all(...args).map((r) => r.detail).join(' | ');
-  ok(!/\bSCAN hits\b/.test(plan) && /USING (COVERING )?INDEX hits_(referred|events)\b/.test(plan),
-    `整表扫描：${q.slice(0, 90)}… → ${plan}`);
+  const want = q.includes(HUMAN_REFERRED) ? /SEARCH hits USING (COVERING )?INDEX hits_referred\b/
+    : /SEARCH hits USING (COVERING )?INDEX (hits_events\b|idx_hits_path \(path=\?\))/;
+  ok(!/\bSCAN hits\b/.test(plan) && !/\bidx_hits_d\b/.test(plan) && want.test(plan), `没走该走的索引：${q.slice(0, 90)}… → ${plan}`);
 }
 
 // ── 4. 中间件：爬虫只写 bot_daily，表不存在时自建；浏览器与 __probe 不写 ──
 {
   const sql = new DatabaseSync(':memory:');
-  sql.exec('CREATE TABLE hits (d TEXT, path TEXT, lang TEXT, country TEXT, ref TEXT, ev TEXT)');
+  for (const q of LIVE_HITS) sql.exec(q);
   const env = { HITS: d1(sql) };
   const hit = async (url, ua) => {
     const waits = [];
@@ -161,4 +173,4 @@ for (const f of files) {
   for (const m of s.matchAll(/INSERT INTO hits[\s\S]{0,400}?\.run\(/g)) ok(!/'bot'/.test(m[0]), `${path.relative(root, f)} 仍往 hits 写 ev='bot'`);
 }
 
-console.log(`✅ test-hits-schema: ${n} checks — migration conserves crawler counts, /api/reach reads only the two partial indexes and returns identical numbers, crawlers go to bot_daily only`);
+console.log(`✅ test-hits-schema: ${n} checks — migration conserves crawler counts, /api/reach reads through the partial indexes (never idx_hits_d) and returns identical numbers, crawlers go to bot_daily only`);

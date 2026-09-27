@@ -42,12 +42,16 @@ function d1(sql, log) {
 const day = (back) => new Date(Date.now() - back * 86400000).toISOString().slice(0, 10);
 function fixture({ money = true } = {}) {
   const sql = new DatabaseSync(':memory:');
-  // Shape of the live tables (analytics-setup.md): pageviews is one counter row per
-  // (day, path, ref_host, country, utm_*, ua_class) with NOT NULL DEFAULT '' key columns.
+  // Shape of the live table, read from sqlite_master on 2026-09-27: one counter row per
+  // (day, path, ref_host, country, utm_*, ua_class) plus the three secondary indexes it already had.
+  // They stay in the fixture so the plan assertion below sees the same choices the live planner has.
   sql.exec(`CREATE TABLE pageviews (day TEXT NOT NULL, path TEXT NOT NULL, ref_host TEXT NOT NULL DEFAULT '',
     country TEXT NOT NULL DEFAULT '', utm_source TEXT NOT NULL DEFAULT '', utm_medium TEXT NOT NULL DEFAULT '',
-    utm_campaign TEXT NOT NULL DEFAULT '', ua_class TEXT NOT NULL DEFAULT '', hits INTEGER NOT NULL DEFAULT 0,
+    utm_campaign TEXT NOT NULL DEFAULT '', ua_class TEXT NOT NULL DEFAULT 'human', hits INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (day, path, ref_host, country, utm_source, utm_medium, utm_campaign, ua_class))`);
+  sql.exec('CREATE INDEX idx_pv_day ON pageviews (day)');
+  sql.exec('CREATE INDEX idx_pv_path ON pageviews (path, day)');
+  sql.exec('CREATE INDEX idx_pv_ref ON pageviews (ref_host, day)');
   sql.exec(`CREATE TABLE events (id INTEGER PRIMARY KEY, day TEXT, name TEXT, location TEXT, label TEXT, path TEXT,
     ref_host TEXT, country TEXT, ua_class TEXT, utm_source TEXT, utm_medium TEXT, utm_campaign TEXT)`);
   if (money) {
@@ -92,10 +96,14 @@ assert.deepEqual(pulseB, pulseA); n++;
 assert.deepEqual(trendsB, trendsA); n++;
 const pvQueries = log.filter(([q]) => /\bFROM pageviews\b/.test(q));
 ok(pvQueries.length >= 5, `captured ${pvQueries.length} pageviews queries`);
+// A query that names its paths (pulse's money block: /advertise, /audits, …) may instead seek those paths
+// in idx_pv_path, which reads only their rows inside the window. Everything else must use the human index.
 for (const [q, args] of pvQueries) {
   const plan = after.prepare('EXPLAIN QUERY PLAN ' + q).all(...args).map((r) => r.detail).join(' | ');
-  ok(!/\bSCAN pageviews\b/.test(plan) && /SEARCH pageviews USING COVERING INDEX pageviews_human \(day/.test(plan),
-    `pageviews query must read only the human index: ${q.slice(0, 90)}… → ${plan}`);
+  const human = /SEARCH pageviews USING COVERING INDEX pageviews_human \(day/.test(plan);
+  const byPath = /\bpath IN \(/.test(q) && /SEARCH pageviews USING INDEX idx_pv_path \(path=\? AND day>\?\)/.test(plan);
+  ok(!/\bSCAN pageviews\b/.test(plan) && !/\bidx_pv_day\b/.test(plan) && (human || byPath),
+    `pageviews query must read only the human index (or seek its named paths): ${q.slice(0, 90)}… → ${plan}`);
 }
 
 // ── 3: cache behaviour ──

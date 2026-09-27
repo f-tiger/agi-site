@@ -1943,7 +1943,8 @@
    "win": "bpj 的读取量降一个数量级以上成立：部分索引 + 服务端缓存 + 爬虫分表这套做法有效，可照抄到 agi（pulse/trends）、eco 与 tds 的统计接口——agi 那两个接口属 owner 授权范围，需先问",
    "lose": "任一天 > 500 000 → 还有没找到的整表扫描或绕过缓存的调用方：按 d1_usage 的逐条查询表逐条查，不许用「升级付费档」代替找原因（付费档是 owner 的决定，也解决不了表随爬虫增长这件事）",
    "source": "sites/baipiaoji/CLAUDE.md 第 29 条（2026-09-26）",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-27": "Migration applied on live D1 2026-09-27 00:05-00:10 UTC: bot rows moved to bot_daily (23,815 migrated, counts conserved), hits_referred + hits_events created, 48,589 rows written. Live EXPLAIN: human queries SEARCH hits_referred, events SEARCH hits_events, commercial triggers SEARCH idx_hits_path. One /api/reach computation now reads ~7,000 rows (was ~180,000). Window 09-28..10-03 unchanged."
   },
   {
    "id": "agi-d1-reads-1004",
@@ -1954,7 +1955,8 @@
    "win": "agi 与 bpj 两处修法都成立 → 全账号读取回到免费额度的一小半，其余站的统计接口照同样做法改（eco/tds 已有缓存，缺的是索引）",
    "lose": "任一天 > 300 000 → 还有没被缓存覆盖的调用路径（communityRoute / memberRoute / owner-alerts 每 30 分钟一次等）：按 d1_usage 的逐条查询表逐条查",
    "source": "sites/agiscorecard/CLAUDE.md「D1 读取额度」节（2026-09-26）+ docs/d1-read-budget-2026-09-26.md",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-27": "Cache live and verified 2026-09-27 (miss->hit; deploy run 36281663006 green). pageviews_human index deferred to 2026-09-28 00:05 UTC: the bpj migration spent 48,589 of the account's 100,000 daily writes and normal account writes are 16k-31k/day, so 20,964 more index entries risked the write limit. Window 09-28..10-03 unchanged; the index lands at its start."
   }
  ]
 }

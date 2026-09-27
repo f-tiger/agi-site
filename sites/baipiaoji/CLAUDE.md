@@ -931,3 +931,8 @@ Owner要求调用技能改善商业触发。协议见根仓 `docs/bpj-commercial
    `scripts/traffic-truth.mjs bot` 已改读 bot_daily;`bpj-md-mirror-1028`、`bpj-cn-crawlers-1015` 两条判定线加了口径注(阈值不变)。
    **写新的 hits 查询前先想它走哪个索引**;要全表的一次性分析也行,但别放进会被反复调用的端点。判定线 `bpj-d1-reads-1004`
    (09-28→10-03 每天 baipiaoji-hits 读取 ≤50 万行;t0 09-25 466 万)。
+   **09-27 00:10 UTC 已在线上执行**(按日期两批,写入 48 589 行;爬虫计数守恒 23 815 + 中间件已记 795;两个索引建好,
+   线上 EXPLAIN 真人线走 `hits_referred`、事件走 `hits_events`、商业触发走 `idx_hits_path`;一次 reach 约 7 000 行)。
+   **线上 hits 早就有 `idx_hits_d` / `idx_hits_path`**(08-03 手工建,本仓没有记录)——它们挡不住读取,因为 28 天窗口就是整张表;
+   测试夹具已照抄线上 sqlite_master,**断言任何 hits 统计退回 `idx_hits_d` 即红**。reach 的五条 `ORDER BY n DESC` 补了次序键
+   (同票数时 `LIMIT 30` 的来源榜此前是随机的)。

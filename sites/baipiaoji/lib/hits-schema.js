@@ -3,8 +3,10 @@
 // 为什么有这个文件：Cloudflare 账号的 D1 免费额度是全账号每天读 500 万行，09-24/25/26 连续三天在
 // 13:00 / 08:00 / 10:00 UTC 用完，之后全舰队的统计接口、事件写入、账号接口一律被拒到 UTC 零点。
 // Cloudflare 的逐条查询统计（tools/fleet/d1_usage.mjs）显示 09-25 读取量的 58% 是 /api/reach 的
-// 6 条查询，每条都把 hits 读一遍：这张表一次事件一行、没有为读法建过索引、没有保留期，
-// 09-17 起又把每一次爬虫抓取都写进来（每天 4000 多行）。真人统计要的只是其中几百行带来源的访问。
+// 6 条查询，每条都把 hits 读一遍：这张表一次事件一行、没有保留期，08-03 建表时只建了 idx_hits_d 与
+// idx_hits_path（仓库里没有建表语句，09-27 从线上 sqlite_master 读出）——28 天窗口几乎就是整张表，
+// 按日期找到窗口之后仍要逐行判断 ev/ref。09-17 起又把每一次爬虫抓取都写进来（迁移前 34 848 行里
+// 23 815 行是爬虫）。真人统计要的只是其中几百行带来源的访问。
 //
 // 三条规矩都由 scripts/test-hits-schema.mjs 断言：
 //   1. 真人统计的谓词只有 HUMAN 这一份，且它的前三项与 hits_referred 部分索引的 WHERE 逐字相同——
@@ -16,7 +18,7 @@ export const HUMAN = `${HUMAN_REFERRED} AND ref NOT LIKE '%baipiaoji%' AND path 
 export const EVENT_ROWS = "ev != ''";
 
 export const HITS_INDEXES = [
-  // 带来源的真人访问：28 天几百行，而 ev='' 的行有两万多（大多是无来源的浏览与扫描）。
+  // 带来源的真人访问：09-27 全表 562 行，而 ev='' 的行有 6 885（大多是无来源的浏览与扫描）。
   `CREATE INDEX IF NOT EXISTS hits_referred ON hits(d) WHERE ${HUMAN_REFERRED}`,
   // 事件与 API 调用：按日期排，事件查询只读窗口内的这部分行，查询含义不变。
   `CREATE INDEX IF NOT EXISTS hits_events ON hits(d, ev) WHERE ${EVENT_ROWS}`,
