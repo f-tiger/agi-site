@@ -1,6 +1,6 @@
 {
   "name": "AGI Scorecard — Situational Awareness predictions, graded",
-  "description": "Live verdicts on every major prediction from Leopold Aschenbrenner's Situational Awareness (June 2024), graded against public evidence with pre-registered flip conditions.",
+  "description": "Live verdicts on every major prediction from Leopold Aschenbrenner's Situational Awareness (June 2024), graded against public evidence. Where a flip condition is written it is in `flip`; otherwise `resolves`, `watch` or `pending_reason` says what is being waited for.",
   "url": "https://agiscorecard.com/",
   "dataUrl": "https://agiscorecard.com/data.json",
   "license": "CC BY 4.0 — reuse freely with attribution and a link to https://agiscorecard.com",
@@ -28,7 +28,8 @@
           "url": "https://www.swebench.com"
         }
       ],
-      "detail": "https://agiscorecard.com/can-ai-replace-knowledge-workers"
+      "detail": "https://agiscorecard.com/can-ai-replace-knowledge-workers",
+      "flip": "Capability plateaus below skilled-graduate level, or production agent adoption stalls on reliability."
     },
     {
       "id": "compute-scaling",
@@ -42,7 +43,8 @@
           "url": "https://epoch.ai/trends"
         }
       ],
-      "detail": "https://agiscorecard.com/is-ai-compute-still-scaling"
+      "detail": "https://agiscorecard.com/is-ai-compute-still-scaling",
+      "flip": "A sustained multi-year drop below ~0.5 OOM/yr — most plausibly via a capex pullback."
     },
     {
       "id": "capex",
@@ -56,7 +58,8 @@
           "url": "https://epoch.ai/topics/finances"
         }
       ],
-      "detail": "https://agiscorecard.com/ai-capex-trillion-dollar"
+      "detail": "https://agiscorecard.com/ai-capex-trillion-dollar",
+      "watch": "The revenue-vs-capex gap — a funding pullback would slow the compute trend for financial reasons."
     },
     {
       "id": "open-source-fades",
@@ -70,7 +73,8 @@
           "url": "https://epoch.ai"
         }
       ],
-      "detail": "https://agiscorecard.com/did-open-source-ai-fade"
+      "detail": "https://agiscorecard.com/did-open-source-ai-fade",
+      "flip": "The frontier pulls a multi-year lead via advances that don't diffuse. No sign of that yet."
     },
     {
       "id": "agi-2027",
@@ -84,7 +88,8 @@
           "url": "https://situational-awareness.ai"
         }
       ],
-      "detail": "https://agiscorecard.com/will-agi-arrive-2027"
+      "detail": "https://agiscorecard.com/will-agi-arrive-2027",
+      "resolves": "By January 1, 2028. Fulfilled if autonomous AI research is demonstrated; Wrong if the deadline passes without it."
     },
     {
       "id": "the-project",
@@ -98,7 +103,8 @@
           "url": "https://situational-awareness.ai"
         }
       ],
-      "detail": "https://agiscorecard.com/will-the-us-government-build-agi"
+      "detail": "https://agiscorecard.com/will-the-us-government-build-agi",
+      "resolves": "By 2027/28. The open-source verdict weakens its premise: diffused capability undercuts the case for a single Project."
     },
     {
       "id": "intelligence-explosion",
@@ -112,7 +118,8 @@
           "url": "https://situational-awareness.ai"
         }
       ],
-      "detail": "https://agiscorecard.com/intelligence-explosion-2027"
+      "detail": "https://agiscorecard.com/intelligence-explosion-2027",
+      "pending_reason": "Its trigger — AI autonomously doing AI research — hasn't been demonstrated, and the 2027–29 window hasn't arrived. Not enough evidence to grade either way."
     },
     {
       "id": "superintelligence",
@@ -126,7 +133,8 @@
           "url": "https://situational-awareness.ai"
         }
       ],
-      "detail": "https://agiscorecard.com/will-there-be-superintelligence"
+      "detail": "https://agiscorecard.com/will-there-be-superintelligence",
+      "pending_reason": "Downstream of AGI and an intelligence explosion, neither of which has occurred. The furthest-out claim on the scorecard."
     }
   ],
   "forecaster_timelines": [

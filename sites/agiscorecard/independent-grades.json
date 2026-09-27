@@ -1,0 +1,62 @@
+{
+ "name": "Independent graders of Situational Awareness — verbatim quotes, mapped to this site's 8 predictions",
+ "license": "CC BY 4.0 (this compilation); quotes remain their authors' words, quoted for comparison with attribution and link",
+ "dateModified": "2026-09-27",
+ "note": "Each grade below is a verbatim sentence from the grader's own public post, read on the date given. The 'label' is this site's editorial mapping of that sentence onto a five-value scale (ahead / on_track / behind / wrong / unresolved) and is the only judgement added here; a reader who disagrees with a mapping can see the sentence it came from. A grader who did not address a prediction has no row for it — silence is never counted as agreement.",
+ "scale": {
+  "ahead": "the grader says reality is ahead of the prediction",
+  "on_track": "the grader says the prediction is being met / checks out",
+  "behind": "the grader says reality lags the prediction but it has not failed",
+  "wrong": "the grader says the prediction missed",
+  "unresolved": "the grader says it cannot be judged yet"
+ },
+ "self_map": {"Exceeded": "ahead", "On track": "on_track", "Holding": "on_track", "Wrong": "wrong", "Open": "unresolved", "Pending": "unresolved"},
+ "graders": [
+  {
+   "id": "delisle-2025",
+   "author": "Nathan Delisle",
+   "title": "Situational Awareness: A One-Year Retrospective",
+   "venue": "LessWrong",
+   "url": "https://www.lesswrong.com/posts/EGGruXRxGQx6RQt8x/situational-awareness-a-one-year-retrospective",
+   "published": "2025-06-23",
+   "read": "2026-09-27",
+   "scope": "Quantitative audit of the 'drivers' (compute, algorithmic efficiency, unhobbling) and 'indicators' (cluster size, investment, chips, revenue, electricity) using public data through June 2025. Does not grade AGI-2027, the government project, open source, intelligence explosion or superintelligence."
+  },
+  {
+   "id": "harris-2026",
+   "author": "Jamie Harris",
+   "title": "How did Leopold do? Evaluating Situational Awareness's predictions",
+   "venue": "EA Forum",
+   "url": "https://forum.effectivealtruism.org/posts/RuwF8FCfpsLeZRgur/how-did-leopold-do-evaluating-situational-awareness-s",
+   "published": "2026-03-29",
+   "read": "2026-09-27",
+   "scope": "Qualitative evaluation across infrastructure, benchmarks, government, agents, revenue, China/US, open source, safety and the AGI-2027 timeline."
+  }
+ ],
+ "grades": [
+  {"prediction": "knowledge-work", "grader": "harris-2026", "label": "on_track",
+   "quote": "AI capabilities on benchmarks have broadly met his expectations, though the qualitative \"shocking leap\" hasn't landed as he described."},
+  {"prediction": "knowledge-work", "grader": "delisle-2025", "label": "on_track",
+   "quote": "Compute, algorithmic efficiency, and unhobbling gains seem to follow Aschenbrenner’s forecasts as well, although with more uncertainty."},
+  {"prediction": "compute-scaling", "grader": "harris-2026", "label": "ahead",
+   "quote": "Infrastructure investment and algorithmic efficiency are tracking ahead of his predictions."},
+  {"prediction": "compute-scaling", "grader": "delisle-2025", "label": "on_track",
+   "quote": "Overall, Aschenbrenner’s predicted pace of roughly half an order-of-magnitude annual progress is ~roughly supported by available evidence."},
+  {"prediction": "capex", "grader": "harris-2026", "label": "ahead",
+   "quote": "Infrastructure investment and algorithmic efficiency are tracking ahead of his predictions."},
+  {"prediction": "capex", "grader": "delisle-2025", "label": "on_track",
+   "quote": "Using publicly available data as of June 2025, this audit finds that global AI investment, electricity consumption, and chip production follow Aschenbrenner’s forecasts."},
+  {"prediction": "open-source-fades", "grader": "harris-2026", "label": "wrong",
+   "quote": "But he missed that China would innovate independently and that open-source models would thrive at the frontier."},
+  {"prediction": "agi-2027", "grader": "harris-2026", "label": "unresolved",
+   "quote": "The AGI-by-2027 timeline is unresolved. It looked implausible six months ago, but recent capability jumps (particularly on software engineering tasks) have made it more credible again."},
+  {"prediction": "the-project", "grader": "harris-2026", "label": "behind",
+   "quote": "Government response is behind what he predicted, though his AGI project timeline (27/28) hasn't elapsed yet."}
+ ],
+ "not_on_this_site": [
+  {"topic": "AI revenue", "grader": "harris-2026", "quote": "AI revenue isn't quite as high: he predicted $100B run rate by mid-2026, and the best is $60B."},
+  {"topic": "AI revenue", "grader": "delisle-2025", "quote": "However, recent OpenAI and Anthropic models trail raw-compute trends by about one-third to one-half an order of magnitude, and AI-related revenue growth is several months behind."},
+  {"topic": "China/US competition", "grader": "harris-2026", "quote": "China/US competition intensified as he predicted, and most of his specifics were right (7nm chips, power infrastructure, espionage, CCP waking up, Middle East)."},
+  {"topic": "Safety and security", "grader": "harris-2026", "quote": "Safety and security remain roughly as inadequate as he described, with his warnings about state-actor exploitation and race-dynamic pressure on safety vindicated."}
+ ]
+}

@@ -129,6 +129,27 @@ for _f in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
     if _v != _ld.group(1):
         problems.append(f"{os.path.basename(_f)}: 可见日期 {_v} 与 dateModified {_ld.group(1)} 不一致")
 
+# data.json 的 flip / resolves / watch / pending_reason 必须与首页判定行逐字相同(2026-09-26)。
+# /for-agents 与 MCP 描述从 7 月起就宣称 data.json 带翻转条件,而它直到今天才真的带上——
+# 一个自述数据集内容却与页面不一致的信任层,是信誉缺陷。这道门让两处永远不能再分开漂。
+try:
+    _d = json.load(open(os.path.join(ROOT, "data.json"), encoding="utf-8"))
+    _h = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    _dets = re.findall(r"<tr class=\"pred-detail\"><td colspan=\"4\">(.*?)</td></tr>", _h, re.S)
+    _LAB = {"Flips if": "flip", "Flips back if": "flip", "Watch": "watch", "Resolves": "resolves", "Why pending": "pending_reason"}
+    if len(_dets) != len(_d["predictions"]):
+        problems.append(f"index.html has {len(_dets)} prediction detail rows, data.json has {len(_d['predictions'])}")
+    for _p, _det in zip(_d["predictions"], _dets):
+        _page = {}
+        for _lab, _txt in re.findall(r"<span class='pd-label'>([^<]+)</span>\s*(.*?)</p>", _det):
+            if _lab in _LAB:
+                _page[_LAB[_lab]] = re.sub(r"<[^>]+>", "", _txt).strip()
+        for _k in ("flip", "watch", "resolves", "pending_reason"):
+            if _page.get(_k) != _p.get(_k):
+                problems.append(f"data.json {_p['id']}.{_k} != index.html detail row ({(_p.get(_k) or '∅')[:40]!r} vs {(_page.get(_k) or '∅')[:40]!r})")
+except Exception as _e:
+    problems.append("flip-condition parity check could not run: %r" % (_e,))
+
 if problems:
     print(f"FAIL — {len(problems)} problem(s):")
     for p in problems:

@@ -410,7 +410,8 @@
    "win": "继续单独维护",
    "lose": "降级为 /agi-odds-vs-evidence 的一个小节",
    "source": "CLAUDE.md:360",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-26": "页面在 09-07→09-26 之间从未存在(线上 404):取数步 continue-on-error 静默失败三周——Polymarket 列表按成交量只回前 100 条、Kalshi 价格字段改名 *_dollars。09-26 重建为共识板并首次发布;pv 计数从今天起算,t0=0。搜索/AI 引荐同样从 0 起。"
   },
   {
    "id": "eco-stromheat-1020",
@@ -1957,6 +1958,54 @@
    "source": "sites/agiscorecard/CLAUDE.md「D1 读取额度」节（2026-09-26）+ docs/d1-read-budget-2026-09-26.md",
    "status": "open",
    "instrument_note_2026-09-27": "Cache live and verified 2026-09-27 (miss->hit; deploy run 36281663006 green). pageviews_human index deferred to 2026-09-28 00:05 UTC: the bpj migration spent 48,589 of the account's 100,000 daily writes and normal account writes are 16k-31k/day, so 20,964 more index entries risked the write limit. Window 09-28..10-03 unchanged; the index lands at its start."
+  },
+  {
+   "id": "agi-consensus-mcp-1124",
+   "site": "agiscorecard",
+   "due": "2026-11-24",
+   "metric": "① D1 events location='mcp' AND label LIKE 'tool:agi_consensus %' 28d:label 里带 UA 前缀(24 字符);剔本仓 CI(deploy 自检 UA)与索引器形状(自报采集器 UA:SaSame / rokmcp / AIWebIndex / mcp-protections 等,以及「每个工具各调一次」的枚举形)。② pageviews 表 path='/agi-consensus.json' AND ua_class='human' 28d(worker 09-26 起对该路径记 server-side 视图;?ci=1 不记)",
+   "threshold": "① ≥5 次、跨 ≥3 天、且来自 ≥2 个不同非索引器 UA 前缀;或 ② ≥10 次且跨 ≥5 天",
+   "win": "共识板保留为独立页并加 zh 以外语言的引用位(仍不做 zh 镜像);把 median 作为活数字钩子加到 /when-will-agi-arrive 首屏",
+   "lose": "共识板降级为 /agi-odds-vs-evidence 的一节,MCP 工具保留但不再扩;记反面发现「机器面对共识数没有需求」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。"
+  },
+  {
+   "id": "agi-ots-verified-1124",
+   "site": "agiscorecard",
+   "due": "2026-11-24",
+   "metric": "① sites/agiscorecard/ots/manifest.json 里 status='bitcoin' 的证明数(机制健康);② pageviews 表 path LIKE '/ots/%' AND ua_class='human' 28d(worker 09-26 起对 /ots/ 记 server-side 视图;?ci=1 不记;heartbeat 与部署自检都带 ci=1 或识别 UA)",
+   "threshold": "① ≥5(每个被锚定的记录至少一版已进比特币区块)且 ② ≥1",
+   "win": "锚定机制保留;把「verify」一段复制到 /prediction-receipts 与 /progress-index",
+   "lose": "① 未达 → 机制坏了,修或撤;① 达 ② 为 0 → 记反面发现「时间戳无人核验」(Sigstore 的原话:没人看日志就没有信任增益),机制保留但不再宣传",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。"
+  },
+  {
+   "id": "agi-brier-n20-1231",
+   "site": "agiscorecard",
+   "due": "2026-12-31",
+   "metric": "sunwatch-track-record.json 里 verdict∈{hit,miss} 且 odds 为数值的条目数(Brier-eligible n)",
+   "threshold": "≥20 → /calibration 发布 Brier 与校准曲线;<20 → 结算 insufficient 并把这个数字写在页面上",
+   "win": "gen_calibration.py 加 Brier 计算与曲线(仍从快照重算)",
+   "lose": "页面继续如实写 n;台账下一条线改为 2027-06-30",
+   "source": "sites/agiscorecard/calibration.html 的承诺(08-08 立,09-26 首次进台账);docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "0(8 条已评分的 call 没有一条带结构化 odds;7 条 pending 里 6 条带 odds 52–65)。"
+  },
+  {
+   "id": "agi-grader-consensus-1127",
+   "site": "agiscorecard",
+   "due": "2026-11-27",
+   "metric": "① /grader-consensus pageviews ua_class='human' 且 ref_host 为搜索/AI/外站(非本站、非空)28d;② independent-grades.json 里的独立评分者数(不含本站)",
+   "threshold": "① ≥3 次外部来源访问,或 ② 评分者 ≥3(新增的必须是公开、带日期、链接可核的评分;不许为凑数改变收录标准)",
+   "win": "把 counts 作为活数字加到 /situational-awareness-predictions 首屏,并让 MCP get_verdicts 输出带上 independent_grades",
+   "lose": "页面保留(信任层,不是流量页),不再加面;记反面发现「评分者共识对本站量级不产生可见读者」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §八(第二轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。"
   },
   {
    "id": "fleet-d1-budget-1026",

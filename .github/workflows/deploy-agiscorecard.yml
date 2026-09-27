@@ -61,6 +61,13 @@ jobs:
         run: |
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
+          # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
+          python3 tools/gen_changelog.py
+          # the installable skill must survive the mirror pass with its frontmatter intact
+          head -1 skill.md | grep -q '^---$' || { echo "::error::skill.md lost its frontmatter (mirror generator overwrote it?)"; exit 1; }
+          # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
+          python3 tools/gen_grader_consensus.py --selftest
+          python3 tools/gen_grader_consensus.py --check
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
@@ -207,6 +214,21 @@ jobs:
           check "https://agiscorecard.com/for-agents" "for_agents_delivery_lab"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
           check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
+          # 2026-09-26 trust-layer surfaces. The board only exists once the weekly fetch has succeeded,
+          # so assert it live only when the repo carries it (never a hardcoded expectation).
+          if [ -f sites/agiscorecard/agi-consensus.json ]; then
+            check "https://agiscorecard.com/agi-consensus.json" '"median"'
+            check "https://agiscorecard.com/agi-prediction-markets" "Consensus table"
+          fi
+          check "https://agiscorecard.com/skill.md" "^name: agi-scorecard"
+          check "https://agiscorecard.com/ots/manifest.json" "proof"
+          # MCP tools/list must equal the repo's list (live == repo, never a hardcoded count).
+          want=$(grep -o "name: '\(get_\|search_\)[a-z_]*'" sites/agiscorecard/tools/analytics-worker/index.js | sed "s/name: '//;s/'//" | sort -u | tr '\n' ' ')
+          got=$(curl -s --max-time 20 -X POST -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+                -A 'agi-site-deploy-selfcheck/1.0 (+https://github.com/f-tiger/agi-site)' \
+                -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' "https://agiscorecard.com/mcp" \
+                | grep -o '"name":"[a-z_]*"' | sed 's/"name":"//;s/"//' | sort -u | tr '\n' ' ')
+          if [ "$want" != "$got" ]; then echo "::error::MCP tools/list drift — repo: [$want] live: [$got]"; fail=1; else echo "OK /mcp tools/list == repo"; fi
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
           t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
           case "$t" in
