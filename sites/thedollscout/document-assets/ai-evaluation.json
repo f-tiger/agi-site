@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-27",
+  "environment": "Chromium / CPU WebAssembly / Transformers.js 3.8.1 / q8",
+  "scope": "Reproducible smoke checks of real inference, not an accuracy benchmark or proof of support on every browser. English only for transcription and text highlights. Test inputs are public demonstrations, not visitor data.",
+  "models": {
+    "portrait": {
+      "id": "Xenova/modnet",
+      "revision": "fa2fa546052fba4c08921230a26cc69a333fca12",
+      "task": "background-removal",
+      "dtype": "q8",
+      "weights": 6632188
+    },
+    "speech": {
+      "id": "Xenova/whisper-tiny.en",
+      "revision": "79fb389fc764e7c395bd330e9531d9d32ada7049",
+      "task": "automatic-speech-recognition",
+      "dtype": "q8",
+      "weights": 40852295
+    },
+    "summary": {
+      "id": "Xenova/all-MiniLM-L6-v2",
+      "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+      "task": "feature-extraction",
+      "dtype": "q8",
+      "weights": 22972370
+    }
+  },
+  "summary": {
+    "input": "Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.",
+    "selected": [
+      {
+        "sentence": 1,
+        "text": "Our library will open a quiet study room next month."
+      },
+      {
+        "sentence": 3,
+        "text": "Visitors can reserve a desk online for up to two hours each day."
+      },
+      {
+        "sentence": 6,
+        "text": "The workshop is free, but visitors need to book a place."
+      }
+    ]
+  },
+  "portrait": {
+    "source": "https://images.pexels.com/photos/5965592/pexels-photo-5965592.jpeg?auto=compress&cs=tinysrgb&w=512",
+    "width": 512,
+    "height": 341,
+    "mime": "image/png",
+    "transparent": 133700,
+    "opaque": 35619,
+    "scope": "Mask pixel counts prove a nontrivial alpha output, not edge accuracy. Preview also inspected."
+  },
+  "speech": {
+    "source": "https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/fbe92bd97d48f3ec17779d8d8f2964e1c6bc7634/jfk.wav",
+    "text": "And so my fellow Americans ask not what your country can do for you ask what you can do for your country.",
+    "srt": "1\n00:00:00,000 --> 00:00:07,740\nAnd so my fellow Americans ask not what your country can do for you\n\n2\n00:00:07,740 --> 00:00:10,640\nask what you can do for your country.\n"
+  },
+  "checks": {
+    "oversizedSentenceRejected": true,
+    "invalidImageRejected": true,
+    "silenceRejected": true,
+    "cancelStopsStaleOutput": true,
+    "loadFailureRetry": true,
+    "noProcessingPosts": true
+  }
+}

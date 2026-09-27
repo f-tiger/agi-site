@@ -44,3 +44,7 @@
 /document-assets/sample-results.json
   Content-Type: application/json; charset=utf-8
   Access-Control-Allow-Origin: *
+
+/document-assets/ai-evaluation.json
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *

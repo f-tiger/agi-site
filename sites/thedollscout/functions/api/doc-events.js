@@ -10,7 +10,8 @@ for(const event of ['doc_verify_recipient','doc_verify_create','doc_verify_match
 const UTILITY_EVENTS=new Map();
 for(const task of ['image','json','meeting'])for(const action of ['complete','sample']){const name=`doc_${task}_${action}`;EVENTS.add(name);UTILITY_EVENTS.set(name,HUB_TASKS[task]);}
 EVENTS.add('doc_utility_export');
-const PAGE = /^\/(?:(de|zh)\/)?(?:image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
+for(const task of ['portrait','speech','summary'])for(const action of ['complete','sample','export']){const name=`doc_ai_${task}_${action}`;EVENTS.add(name);UTILITY_EVENTS.set(name,HUB_TASKS[task]);}
+const PAGE = /^\/(?:(de|zh)\/)?(?:ai-portrait-background-remover|ai-audio-to-text|ai-text-summarizer|image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 // Return a bounded diagnostic class, never SQL, exception text, keys or identifiers.
 export function databaseFailure(error) {

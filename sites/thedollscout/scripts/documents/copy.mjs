@@ -110,3 +110,12 @@ copy.zh.privacyBody.push('图片处理、JSON 对比和会议规划同样在本�
 copy.en.methodology.push('The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.');
 copy.de.methodology.push('Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.');
 copy.zh.methodology.push('图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。');
+
+// AI tools have their own methods; this disclosure also belongs in the site privacy text.
+copy.en.privacyBody.push("AI tools run fixed models locally after you click Load AI model. Software and model downloads contact jsDelivr and Hugging Face, which receive connection information such as your IP address. Your selected photos, recordings and text are not uploaded. Model files may be cached by your browser; clear website data to remove them. Results and inputs stay in memory unless you download them. AI outputs can be wrong; each tool explains its language and task limits.");
+copy.de.privacyBody.push("KI-Werkzeuge laden feste Modelle erst nach Klick auf KI-Modell laden. Software- und Modelldownloads kontaktieren jsDelivr und Hugging Face; dabei erhalten diese Dienste Verbindungsdaten wie Ihre IP-Adresse. Fotos, Aufnahmen und Text werden nicht hochgeladen. Modelle können im Browser-Cache bleiben; Website-Daten löschen, um sie zu entfernen. Eingaben und Ergebnisse bleiben ohne Download im Speicher. KI kann Fehler machen; Sprach- und Aufgabengrenzen stehen auf jeder Werkzeugseite.");
+copy.zh.privacyBody.push("AI 工具仅在你点击加载模型后下载固定版本的本地模型。程序与模型下载会联系 jsDelivr、Hugging Face，这些服务会收到 IP 地址等连接信息；你选择的照片、录音和文字不会上传。模型可能被浏览器缓存，可清除网站数据来移除。输入和结果保留在内存，除非你主动下载。AI 结果可能出错，各工具页面会说明语言和任务限制。");
+
+copy.en.footer='TDS Document Scout. Free tools with local processing. Review AI results before use.';
+copy.de.footer='TDS Document Scout. Kostenlose Werkzeuge mit lokaler Verarbeitung. KI-Ergebnisse vor Verwendung prüfen.';
+copy.zh.footer='TDS 文档侦察站。免费工具，本机处理。AI 结果请复核后使用。';

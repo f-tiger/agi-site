@@ -1,5 +1,16 @@
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
+## 2026-09-27 AI 工具扩展（owner：ai 工具呢？）
+
+TDS 首页现为 AI、图片、文本数据、时间协作、文件交付、PDF 六类，共十二个工具。新增 `ai-portrait-background-remover`、`ai-audio-to-text`、`ai-text-summarizer`，各 EN/DE/ZH；57 页，54 个 document-sitemap URL。首页 AI 分类优先，不改变默认英文 `/` 和品牌链接规则。
+
+- 三项真正模型推理：固定版本 MODNet 人像透明 PNG、Whisper Tiny English 英语 TXT/SRT、MiniLM 英语原句摘要。摘要为语义向量选句，不是生成式改写；三语界面不代表模型支持三种语言。
+- 浏览器 Web Worker / 单线程 WASM，用户明确点击后从 jsDelivr/Hugging Face 下载模型和程序。输入不上传；连接信息与模型缓存事先披露。无模型服务端、API key、付费开通或新增定时任务。受限网络和旧设备可能失败。
+- 核心与页面源：`document-assets/ai-{core,worker,app}.mjs`、`scripts/documents/ai-{copy,pages}.mjs`，统一 build。首次模型权重约 7/41/23 MB，另有推理程序。每工具公开来源、限制及模型 revision。
+- `ai-evaluation.json` 是实际推理功能验收记录，不是准确率基准。示例和 CI 与真实完成分开；事件禁止输入/文件名，按固定工具路径校验。43 项 Node 测试；浏览器验收必须带 `?ci=1`。
+- 发布记录：根目录 `docs/tds-ai-tools-2026-09-27.md`。新增 AI 功能不代表流量、排名、引用或营收已有提升。
+
+
 ## 2026-09-27 非 PDF 分类扩展（owner 再次纠正）
 
 Owner 明确要求「除了 pdf，其它分类工具」。首页升级为图片、文本与数据、时间与协作、文件核验与交付、PDF 五类；前三类优先展示。现有六个工具保留，新增 `/image-compressor`、`/json-compare`、`/time-zone-planner`，均 EN/DE/ZH。不是重新给 PDF 功能起分类名。

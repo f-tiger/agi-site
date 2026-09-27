@@ -6,9 +6,9 @@ const START='2026-09-25';
 export const DOCUMENT_QUERY=`SELECT d,ev,path,ref,COUNT(*) AS n FROM hits
  WHERE d >= date('now','-27 days') AND d >= '${START}'
  AND (substr(ev,1,4)='doc_' OR (ev='bot' AND
- (path IN ('/','/de/','/zh/','/llms.txt','/llms-full.txt','/document-sitemap.xml','/document-assets/manifest.json','/document-assets/tool-capabilities.json','/document-assets/sample-results.json') OR path LIKE '%/image-compressor' OR path LIKE '%/json-compare' OR path LIKE '%/time-zone-planner' OR path LIKE '%/methodology' OR path LIKE '%/pdf-%' OR path LIKE '%/compare-pdf-text%' OR path LIKE '%/learn/pdf-%' OR path LIKE '%/learn/scanned-pdf%' OR path LIKE '%/delivery-evidence%' OR path LIKE '%/verify-file%')))
+ (path IN ('/','/de/','/zh/','/llms.txt','/llms-full.txt','/document-sitemap.xml','/document-assets/manifest.json','/document-assets/tool-capabilities.json','/document-assets/sample-results.json') OR path LIKE '%/ai-portrait-background-remover' OR path LIKE '%/ai-audio-to-text' OR path LIKE '%/ai-text-summarizer' OR path LIKE '%/image-compressor' OR path LIKE '%/json-compare' OR path LIKE '%/time-zone-planner' OR path LIKE '%/methodology' OR path LIKE '%/pdf-%' OR path LIKE '%/compare-pdf-text%' OR path LIKE '%/learn/pdf-%' OR path LIKE '%/learn/scanned-pdf%' OR path LIKE '%/delivery-evidence%' OR path LIKE '%/verify-file%')))
  GROUP BY d,ev,path,ref LIMIT 10001`;
-const EXCLUDED=new Set(['doc_ci','doc_sample','doc_delivery_sample','doc_verify_sample','doc_image_sample','doc_json_sample','doc_meeting_sample']);
+const EXCLUDED=new Set(['doc_ci','doc_sample','doc_delivery_sample','doc_verify_sample','doc_image_sample','doc_json_sample','doc_meeting_sample','doc_ai_portrait_sample','doc_ai_speech_sample','doc_ai_summary_sample']);
 const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
 export function referralSource(host='') {
  host=String(host).toLowerCase().replace(/\.$/,'');

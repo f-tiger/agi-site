@@ -1,0 +1,40 @@
+# KI-Textzusammenfassung mit Original-Sätzen
+
+https://thedollscout.com/de/ai-text-summarizer
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englischer Text: 80–12.000 Zeichen, 3–60 Sätze, höchstens 256 Modell-Tokens pro Satz. Bis zu 3 oder 5 Sätze, immer weniger als im Original. Keine Umformulierung, Übersetzung oder Faktenprüfung. Wichtiger Kontext kann fehlen.
+
+MiniLM bildet für jeden Satz einen semantischen Vektor. Code bewertet die Nähe zum Durchschnitt des Dokuments und verringert Wiederholungen: 70 % Zentralität, 30 % Ähnlichkeit zu bereits gewählten Sätzen. Die Auswahl erscheint in Originalreihenfolge. Diese Gewichte sind eine Produktheuristik, kein validierter Genauigkeitswert.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Schreibt die KI neue Sätze?
+
+Sie wählt vorhandene Sätze über neuronale Embeddings aus, ohne neue Formulierungen zu erzeugen. Jeder Auszug verlinkt seinen Originalsatz zur Kontextprüfung.
+
+Beweist das Ergebnis die Richtigkeit der Quelle?
+
+Nein. Das Modell schätzt semantische Ähnlichkeit. Es prüft keine Fakten und garantiert keine vollständige Auswahl. Lesen Sie die Quelle.
+
+Modell laden, Beispieltext einsetzen und drei Sätze wählen. Am 27. September 2026 wählte das feste Modell in Chromium die Sätze 1, 3 und 6. Dies ist ein einzelner Funktionstest, kein Qualitätsbenchmark. Andere Browser können kleine numerische Unterschiede zeigen.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2

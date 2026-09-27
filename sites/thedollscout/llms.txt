@@ -1,7 +1,13 @@
 # TDS Document Scout
 
-Nine free browser tools across images, JSON data, time zones, file delivery and PDF. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Twelve free browser tools across AI, images, JSON data, time zones, file delivery and PDF. Three real local AI tools: portrait background removal with MODNet, English audio transcription with Whisper Tiny English, and extractive English summaries using MiniLM sentence embeddings. AI models download from Hugging Face and jsDelivr on explicit load; first-run download, network and memory requirements apply. Inputs remain on the device. AI results require review and are not factual guarantees. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
+- [AI portrait background remover](https://thedollscout.com/ai-portrait-background-remover) (en): Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-portrait-background-remover.txt
+- [AI audio to text — English](https://thedollscout.com/ai-audio-to-text) (en): Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-audio-to-text.txt
+- [AI extractive text summarizer](https://thedollscout.com/ai-text-summarizer) (en): Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-text-summarizer.txt
 - [Image compressor & converter](https://thedollscout.com/image-compressor) (en): Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
   Plain text: https://thedollscout.com/document-assets/text/en/image-compressor.txt
 - [JSON validator, formatter & comparison](https://thedollscout.com/json-compare) (en): Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
@@ -12,7 +18,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free online tools for images, JSON, time zones & PDFs](https://thedollscout.com/) (en): Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
+- [Free AI tools, image tools, JSON & PDF utilities](https://thedollscout.com/) (en): Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -34,6 +40,12 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
   Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [KI-Hintergrundentfernung für Porträts](https://thedollscout.com/de/ai-portrait-background-remover) (de): Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-portrait-background-remover.txt
+- [KI-Audio in Text — Englisch](https://thedollscout.com/de/ai-audio-to-text) (de): Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-audio-to-text.txt
+- [KI-Textzusammenfassung mit Original-Sätzen](https://thedollscout.com/de/ai-text-summarizer) (de): Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-text-summarizer.txt
 - [Bilder komprimieren & umwandeln](https://thedollscout.com/de/image-compressor) (de): Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
   Plain text: https://thedollscout.com/document-assets/text/de/image-compressor.txt
 - [JSON prüfen, formatieren & vergleichen](https://thedollscout.com/de/json-compare) (de): JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
@@ -44,7 +56,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF](https://thedollscout.com/de/) (de): Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
+- [Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF](https://thedollscout.com/de/) (de): Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -66,6 +78,12 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
   Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [AI 人像抠图](https://thedollscout.com/zh/ai-portrait-background-remover) (zh): 用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-portrait-background-remover.txt
+- [AI 英文音频转文字](https://thedollscout.com/zh/ai-audio-to-text) (zh): 在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-audio-to-text.txt
+- [AI 原文摘要](https://thedollscout.com/zh/ai-text-summarizer) (zh): 用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-text-summarizer.txt
 - [图片压缩、缩放与格式转换](https://thedollscout.com/zh/image-compressor) (zh): 调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
   Plain text: https://thedollscout.com/document-assets/text/zh/image-compressor.txt
 - [JSON 校验、格式化与结构对比](https://thedollscout.com/zh/json-compare) (zh): 校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
@@ -76,7 +94,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费在线工具：图片处理、JSON、时区与 PDF](https://thedollscout.com/zh/) (zh): 处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。
+- [免费 AI 工具：人像抠图、语音转写、摘要与日常工具](https://thedollscout.com/zh/) (zh): 用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt

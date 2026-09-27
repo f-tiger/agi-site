@@ -1,0 +1,30 @@
+# KI-Hintergrundentfernung für Porträts
+
+https://thedollscout.com/de/ai-portrait-background-remover
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Statisches JPEG, PNG oder WebP; 10 MiB, 20 Megapixel. Ausgabe auf maximal 1.600 Pixel an der längsten Seite begrenzt. Für Personen gedacht; nicht für beliebige Produkte, Tiere oder Szenen. Haare, transparente Objekte und schwieriges Licht können Probleme verursachen.
+
+MODNet schätzt eine Vordergrund-Alpha-Maske. Diese wird auf das verkleinerte Porträt angewendet und als transparentes PNG exportiert. Das quantisierte Modell verarbeitet Ihr Foto lokal.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Kann ich Produkthintergründe entfernen?
+
+Das Modell wurde für Porträt-Matting trainiert. Reine Produktbilder, Tiere oder komplexe Szenen können schlechte Masken liefern. Für Personen verwenden und Kanten prüfen.
+
+Welche Auflösung bekomme ich?
+
+Die längste Seite ist auf 1.600 Pixel begrenzt. Kleinere Bilder werden nicht vergrößert. Das Ergebnis ist ein transparentes PNG.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet

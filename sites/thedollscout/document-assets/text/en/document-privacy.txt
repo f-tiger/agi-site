@@ -20,6 +20,8 @@ File verification links deliberately share only a SHA-256 fingerprint and byte l
 
 Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
 
+AI tools run fixed models locally after you click Load AI model. Software and model downloads contact jsDelivr and Hugging Face, which receive connection information such as your IP address. Your selected photos, recordings and text are not uploaded. Model files may be cached by your browser; clear website data to remove them. Results and inputs stay in memory unless you download them. AI outputs can be wrong; each tool explains its language and task limits.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

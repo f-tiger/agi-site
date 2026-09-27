@@ -1,3 +1,4 @@
+import {AI_TOOLS,aiCopy} from './ai-copy.mjs';
 import {utilityCopy,utilitySlugs} from './utility-copy.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,10 +26,10 @@ async function read(route, binary = false) {
   throw last;
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
-assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,48);
+assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,57);
 const sitemap = await read('/sitemap.xml');
 const documentSitemap = await read('/document-sitemap.xml');
-assert.equal((documentSitemap.match(/<loc>/g)||[]).length,45);
+assert.equal((documentSitemap.match(/<loc>/g)||[]).length,54);
 const titles = new Set();
 for (const record of manifest.records) {
   const route = new URL(record.url).pathname, html = await read(route);
@@ -43,6 +44,7 @@ for (const record of manifest.records) {
   assert.equal(sitemap.split('<loc>' + record.url + '</loc>').length - 1,1,'One sitemap entry: ' + route);
   assert.equal(documentSitemap.includes('<loc>'+record.url+'</loc>'),record.slug!=='collectors','Document sitemap scope '+route);
   assert.ok(html.includes('page-embed-html'),'Reusable public link '+route);
+  if(Object.values(AI_TOOLS).includes(record.slug)){assert.ok(html.includes('id="ai-panel"')&&html.includes('id="ai-load"')&&html.includes('id="ai-method"'),'AI model controls and method '+route);assert.ok(!html.includes('preload" href="https://huggingface.co'),'No automatic model download');}
   if(Object.values(utilitySlugs).includes(record.slug)){assert.ok(html.includes('id="utility-form"')&&html.includes('id="worked-example"'),'Working tool and example '+route);}
   if(record.slug==='verify-file') assert.ok(html.includes('checksum-method'),'Independent verification method');
   const title = /<title>(.*?)<\/title>/.exec(html)[1];
@@ -82,7 +84,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['ai-evaluation.json','ai-app.mjs','ai-core.mjs','ai-worker.mjs','ai.css','telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 const examples = JSON.parse(await read('/document-assets/sample-results.json'));
 assert.equal(examples.documents.length,3);
@@ -94,12 +96,13 @@ for(const doc of examples.documents) {
  assert.equal(createHash('sha256').update(bytes).digest('hex'),doc.sha256,'Public sample hash '+doc.kind);
  assert.equal(bytes.length,doc.size,'Public sample byte count '+doc.kind);
 }
-assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,21);
+assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,30);
 for (const tool of capabilities.tools) {
   const record = manifest.records.find(r => r.url === tool.url);
   assert.ok(record,'Document capability URL exists');
   const utilityTask=Object.keys(utilitySlugs).find(k=>utilitySlugs[k]===record.slug);
-  assert.equal(tool.output,utilityTask?utilityCopy[record.lang].tools[utilityTask].intro:copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
+  const aiTask=Object.keys(AI_TOOLS).find(k=>AI_TOOLS[k]===record.slug);
+  assert.equal(tool.output,aiTask?aiCopy[record.lang].tools[aiTask].intro:utilityTask?utilityCopy[record.lang].tools[utilityTask].intro:copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
 }
 assert.ok((await read('/img/document-scout-brand.png',true)).length > 1000);
 const brand = await read('/css/brand.css?v=' + edition);

@@ -1,11 +1,12 @@
+import { aiCopy } from './ai-copy.mjs';
 import { utilityCopy } from './utility-copy.mjs';
 import { HUB_TASKS } from '../../document-assets/hub-core.mjs';
 
 export const hubCopy = {
  en:{
-  title:'Free online tools for images, JSON, time zones & PDFs',
+  title:'Free AI tools, image tools, JSON & PDF utilities',
   heading:['Everyday tasks.','One useful toolkit.'],
-  intro:'Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.',
+  intro:'Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.',
   shareBody:'Share this toolkit with your team so they can choose the tool they need.',
   embed:'Link to this toolkit from your website',embedHelp:'Copy this HTML into a relevant resource page or README. It links to the public tool directory; no files or results are shared.',
   nav:'All tools', browse:'Choose your task', groupNav:'Browse by task', tools:'Nine tools across five categories', open:'Open tool',
@@ -34,9 +35,9 @@ export const hubCopy = {
   ]
  },
  de:{
-  title:'Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF',
+  title:'Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF',
   heading:['Alltagsaufgaben.','Passende Werkzeuge.'],
-  intro:'Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.',
+  intro:'Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.',
   shareBody:'Teilen Sie diese Werkzeugübersicht mit Ihrem Team, damit alle das passende Werkzeug finden.',
   embed:'Diese Werkzeugübersicht verlinken',embedHelp:'Dieses HTML auf einer passenden Ressourcenseite oder in einer README einfügen. Es verlinkt die öffentliche Übersicht; Dateien und Ergebnisse werden nicht geteilt.',
   nav:'Alle Werkzeuge',browse:'Aufgabe wählen',groupNav:'Nach Aufgabe auswählen',tools:'Neun Werkzeuge in fünf Kategorien',open:'Werkzeug öffnen',
@@ -64,9 +65,9 @@ export const hubCopy = {
   ]
  },
  zh:{
-  title:'免费在线工具：图片处理、JSON、时区与 PDF',
+  title:'免费 AI 工具：人像抠图、语音转写、摘要与日常工具',
   heading:['处理眼前的任务，','找到顺手的工具。'],
-  intro:'处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。',
+  intro:'用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。',
   shareBody:'把这套工具分享给同事，让他们按任务选择合适的入口。',
   embed:'在你的网站引用这套工具',embedHelp:'把这段 HTML 复制到相关资源页或 README。链接指向公开工具总览，不会分享文件或处理结果。',
   nav:'全部工具',browse:'选择你的任务',groupNav:'按任务查找',tools:'五个分类，九个实用工具',open:'打开工具',
@@ -95,9 +96,16 @@ export const hubCopy = {
  }
 };
 
-const groups=[['image'],['json'],['meeting'],['verify','delivery'],['audit','batch','text','compare']];
-const groupIds=['images','text-data','time-collaboration','files-delivery','pdf-tools'];
-const icons={image:'<path d="M3 4h18v16H3zM4 17l5-6 5 5 3-3 3 4"/><circle cx="16" cy="8" r="1.5"/>',json:'<path d="M8 3H6v7l-3 2 3 2v7h2M16 3h2v7l3 2-3 2v7h-2"/>',meeting:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',audit:'<path d="m7 12 3 3 7-7"/>',batch:'<path d="M7 7h12v13H7zM4 16V4h12"/>',text:'<path d="M6 6h12M12 6v13M8 19h8"/>',compare:'<path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/>',verify:'<path d="m7 4-2 16M16 4l-2 16M3 9h16M2 15h16"/>',delivery:'<path d="M4 5h11v15H4zM8 9h4M8 13h4m4-3 4 4-4 4M12 14h8"/>'};
+for (const [lang,c] of Object.entries(hubCopy)) {
+ const a=aiCopy[lang];c.tools=a.count;c.groups.unshift([a.category,a.group]);
+ for(const [task,t] of Object.entries(a.tools))c.entries[task]=[t.name,t.intro,t.badge];
+ c.trustBody+=' '+a.download;
+ c.faq[0]=lang==='en'?['Are all twelve tools free?','Yes. The three local AI tools and nine everyday utilities are free, without an account. AI tools download model files before first use.']:lang==='de'?['Sind alle zwölf Werkzeuge kostenlos?','Ja. Drei lokale KI-Werkzeuge und neun Alltagswerkzeuge sind kostenlos und ohne Konto nutzbar. KI-Modelle werden vor dem ersten Start heruntergeladen.']:['十二个工具都能免费使用吗？','可以。三个本地 AI 工具和九个日常工具均可免费使用，无需注册。AI 工具首次使用前需要下载模型文件。'];
+ c.faq[1][1]+=' '+a.privacy;
+}
+const groups=[['portrait','speech','summary'],['image'],['json'],['meeting'],['verify','delivery'],['audit','batch','text','compare']];
+const groupIds=['ai-tools','images','text-data','time-collaboration','files-delivery','pdf-tools'];
+const icons={portrait:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3M3 3h3M18 3h3"/>',speech:'<path d="M4 9v6M8 5v14M12 2v20M16 6v12M20 9v6"/>',summary:'<path d="M4 4h16M4 8h16M4 12h10M4 18h6m4 0 2 2 5-6"/>',image:'<path d="M3 4h18v16H3zM4 17l5-6 5 5 3-3 3 4"/><circle cx="16" cy="8" r="1.5"/>',json:'<path d="M8 3H6v7l-3 2 3 2v7h2M16 3h2v7l3 2-3 2v7h-2"/>',meeting:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',audit:'<path d="m7 12 3 3 7-7"/>',batch:'<path d="M7 7h12v13H7zM4 16V4h12"/>',text:'<path d="M6 6h12M12 6v13M8 19h8"/>',compare:'<path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/>',verify:'<path d="m7 4-2 16M16 4l-2 16M3 9h16M2 15h16"/>',delivery:'<path d="M4 5h11v15H4zM8 9h4M8 13h4m4-3 4 4-4 4M12 14h8"/>'};
 export function hubLink(lang,task,route,esc,full=false) {
  const c=hubCopy[lang],entry=c.entries[task];
  const url=route(lang,HUB_TASKS[task]);
@@ -106,7 +114,7 @@ export function hubLink(lang,task,route,esc,full=false) {
 }
 export function homeHub(lang,copy,route,esc,guideLinks) {
  const c=hubCopy[lang];
- return `<section class="hub-hero"><h1>${c.heading.map(s=>`<span>${esc(s)}</span>`).join(' ')}</h1><div class="hub-intro"><p>${esc(c.intro)}</p><ul class="benefits">${copy.benefits.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div></section><section class="hub-directory" id="tools" aria-labelledby="hub-tools-heading"><div class="hub-directory-heading"><h2 id="hub-tools-heading">${esc(c.tools)}</h2><nav class="hub-category-nav" aria-label="${esc(c.groupNav)}">${c.groups.map(([label],i)=>`<a href="#${groupIds[i]}">${esc(label)}</a>`).join('')}</nav></div><div class="hub-groups">${groups.map((tasks,i)=>`<section class="hub-group${i===4?' hub-group-wide':''}" id="${groupIds[i]}" aria-labelledby="${groupIds[i]}-title"><header><h2 id="${groupIds[i]}-title">${esc(c.groups[i][0])}</h2><p>${esc(c.groups[i][1])}</p></header><div class="hub-task-list">${tasks.map(task=>hubLink(lang,task,route,esc,true)).join('')}</div></section>`).join('')}</div></section><section class="section hub-workflows"><h2>${esc(c.workflows)}</h2><div class="hub-journeys">${c.journeys.map(([title,body,tasks],i)=>`<article><h3>${esc(title)}</h3><p>${esc(body)}</p><ol>${tasks.map(task=>`<li>${hubLink(lang,task,route,esc)}</li>`).join('')}</ol></article>`).join('')}</div></section><section class="free-band hub-trust"><div><h2>${esc(c.trust)}</h2><p>${esc(c.trustBody)}</p></div><a href="${route(lang,'methodology')}">${esc(c.methodLink)}</a></section><section class="section" id="guides"><h2>${esc(c.guideTitle)}</h2><ul class="guide-list">${['image','json','meeting'].map(task=>`<li><a href="${route(lang,HUB_TASKS[task])}#worked-example">${esc(c.entries[task][0])} · ${esc(utilityCopy[lang].ui.exampleTitle)}</a></li>`).join('')}</ul>${guideLinks(lang)}</section><section class="section faq"><h2>${esc(c.faqTitle)}</h2>${c.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>`;
+ return `<section class="hub-hero"><h1>${c.heading.map(s=>`<span>${esc(s)}</span>`).join(' ')}</h1><div class="hub-intro"><p>${esc(c.intro)}</p><ul class="benefits">${copy.benefits.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div></section><section class="hub-directory" id="tools" aria-labelledby="hub-tools-heading"><div class="hub-directory-heading"><h2 id="hub-tools-heading">${esc(c.tools)}</h2><nav class="hub-category-nav" aria-label="${esc(c.groupNav)}">${c.groups.map(([label],i)=>`<a href="#${groupIds[i]}">${esc(label)}</a>`).join('')}</nav></div><div class="hub-groups">${groups.map((tasks,i)=>`<section class="hub-group${i===0?' hub-group-ai':i===5?' hub-group-wide':''}" id="${groupIds[i]}" aria-labelledby="${groupIds[i]}-title"><header><h2 id="${groupIds[i]}-title">${esc(c.groups[i][0])}</h2><p>${esc(c.groups[i][1])}</p></header><div class="hub-task-list">${tasks.map(task=>hubLink(lang,task,route,esc,true)).join('')}</div></section>`).join('')}</div></section><section class="section hub-workflows"><h2>${esc(c.workflows)}</h2><div class="hub-journeys">${c.journeys.map(([title,body,tasks],i)=>`<article><h3>${esc(title)}</h3><p>${esc(body)}</p><ol>${tasks.map(task=>`<li>${hubLink(lang,task,route,esc)}</li>`).join('')}</ol></article>`).join('')}</div></section><section class="free-band hub-trust"><div><h2>${esc(c.trust)}</h2><p>${esc(c.trustBody)}</p></div><a href="${route(lang,'methodology')}">${esc(c.methodLink)}</a></section><section class="section" id="guides"><h2>${esc(c.guideTitle)}</h2><ul class="guide-list">${['image','json','meeting'].map(task=>`<li><a href="${route(lang,HUB_TASKS[task])}#worked-example">${esc(c.entries[task][0])} · ${esc(utilityCopy[lang].ui.exampleTitle)}</a></li>`).join('')}</ul>${guideLinks(lang)}</section><section class="section faq"><h2>${esc(c.faqTitle)}</h2>${c.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>`;
 }
 export function hubText(lang,route) {
  const c=hubCopy[lang];

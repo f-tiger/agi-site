@@ -1,5 +1,6 @@
 // Fixed tool identifiers only. No search strings, file data or visitor IDs.
 export const HUB_TASKS = Object.freeze({
+ portrait:'ai-portrait-background-remover', speech:'ai-audio-to-text', summary:'ai-text-summarizer',
  image:'image-compressor', json:'json-compare', meeting:'time-zone-planner',
  verify:'verify-file', delivery:'delivery-evidence', audit:'pdf-accessibility-checker',
  batch:'pdf-batch-audit', text:'pdf-to-text', compare:'compare-pdf-text',

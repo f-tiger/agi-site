@@ -159,7 +159,7 @@ test('homepage choices accept only registered fixed tasks on localized home path
   const rows=[['doc_view','/',3],['doc_view','/zh/',2],['doc_view','/compare-pdf-text',4],['doc_view','/methodology',7],['doc_hub_open_compare','/',2],['doc_hub_open_verify','/zh/',1]].map(([ev,path,n])=>({d:'2026-09-27',ev,path,n,ref:''}));
   const d=aggregateDocuments(rows);
   assert.equal(d.homepage_views,5); assert.equal(d.dedicated_tool_views,4); assert.equal(d.tool_views,9);
-  assert.deepEqual(d.homepage_selections,{image:0,json:0,meeting:0,verify:1,delivery:0,audit:0,batch:0,text:0,compare:2});
+  assert.deepEqual(d.homepage_selections,{portrait:0,speech:0,summary:0,image:0,json:0,meeting:0,verify:1,delivery:0,audit:0,batch:0,text:0,compare:2});
   assert.equal(d.events.doc_complete,undefined);
 });
 test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real completion', async () => {

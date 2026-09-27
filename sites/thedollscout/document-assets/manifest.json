@@ -1,6 +1,9 @@
 {
   "edition": "2026-09-25.8",
   "urls": [
+    "https://thedollscout.com/ai-portrait-background-remover",
+    "https://thedollscout.com/ai-audio-to-text",
+    "https://thedollscout.com/ai-text-summarizer",
     "https://thedollscout.com/image-compressor",
     "https://thedollscout.com/json-compare",
     "https://thedollscout.com/time-zone-planner",
@@ -17,6 +20,9 @@
     "https://thedollscout.com/methodology",
     "https://thedollscout.com/document-privacy",
     "https://thedollscout.com/collectors",
+    "https://thedollscout.com/de/ai-portrait-background-remover",
+    "https://thedollscout.com/de/ai-audio-to-text",
+    "https://thedollscout.com/de/ai-text-summarizer",
     "https://thedollscout.com/de/image-compressor",
     "https://thedollscout.com/de/json-compare",
     "https://thedollscout.com/de/time-zone-planner",
@@ -33,6 +39,9 @@
     "https://thedollscout.com/de/methodology",
     "https://thedollscout.com/de/document-privacy",
     "https://thedollscout.com/de/collectors",
+    "https://thedollscout.com/zh/ai-portrait-background-remover",
+    "https://thedollscout.com/zh/ai-audio-to-text",
+    "https://thedollscout.com/zh/ai-text-summarizer",
     "https://thedollscout.com/zh/image-compressor",
     "https://thedollscout.com/zh/json-compare",
     "https://thedollscout.com/zh/time-zone-planner",
@@ -51,6 +60,30 @@
     "https://thedollscout.com/zh/collectors"
   ],
   "records": [
+    {
+      "url": "https://thedollscout.com/ai-portrait-background-remover",
+      "lang": "en",
+      "title": "AI portrait background remover",
+      "description": "Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.",
+      "slug": "ai-portrait-background-remover",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/ai-portrait-background-remover.txt"
+    },
+    {
+      "url": "https://thedollscout.com/ai-audio-to-text",
+      "lang": "en",
+      "title": "AI audio to text — English",
+      "description": "Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.",
+      "slug": "ai-audio-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/ai-audio-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/ai-text-summarizer",
+      "lang": "en",
+      "title": "AI extractive text summarizer",
+      "description": "Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.",
+      "slug": "ai-text-summarizer",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/ai-text-summarizer.txt"
+    },
     {
       "url": "https://thedollscout.com/image-compressor",
       "lang": "en",
@@ -94,8 +127,8 @@
     {
       "url": "https://thedollscout.com/",
       "lang": "en",
-      "title": "Free online tools for images, JSON, time zones & PDFs",
-      "description": "Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.",
+      "title": "Free AI tools, image tools, JSON & PDF utilities",
+      "description": "Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/en/home.txt"
     },
@@ -180,6 +213,30 @@
       "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/de/ai-portrait-background-remover",
+      "lang": "de",
+      "title": "KI-Hintergrundentfernung für Porträts",
+      "description": "Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.",
+      "slug": "ai-portrait-background-remover",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/ai-portrait-background-remover.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/ai-audio-to-text",
+      "lang": "de",
+      "title": "KI-Audio in Text — Englisch",
+      "description": "Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.",
+      "slug": "ai-audio-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/ai-audio-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/ai-text-summarizer",
+      "lang": "de",
+      "title": "KI-Textzusammenfassung mit Original-Sätzen",
+      "description": "Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.",
+      "slug": "ai-text-summarizer",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/ai-text-summarizer.txt"
+    },
+    {
       "url": "https://thedollscout.com/de/image-compressor",
       "lang": "de",
       "title": "Bilder komprimieren & umwandeln",
@@ -222,8 +279,8 @@
     {
       "url": "https://thedollscout.com/de/",
       "lang": "de",
-      "title": "Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF",
-      "description": "Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.",
+      "title": "Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF",
+      "description": "Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/de/home.txt"
     },
@@ -308,6 +365,30 @@
       "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/zh/ai-portrait-background-remover",
+      "lang": "zh",
+      "title": "AI 人像抠图",
+      "description": "用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。",
+      "slug": "ai-portrait-background-remover",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/ai-portrait-background-remover.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/ai-audio-to-text",
+      "lang": "zh",
+      "title": "AI 英文音频转文字",
+      "description": "在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。",
+      "slug": "ai-audio-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/ai-audio-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/ai-text-summarizer",
+      "lang": "zh",
+      "title": "AI 原文摘要",
+      "description": "用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。",
+      "slug": "ai-text-summarizer",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/ai-text-summarizer.txt"
+    },
+    {
       "url": "https://thedollscout.com/zh/image-compressor",
       "lang": "zh",
       "title": "图片压缩、缩放与格式转换",
@@ -350,8 +431,8 @@
     {
       "url": "https://thedollscout.com/zh/",
       "lang": "zh",
-      "title": "免费在线工具：图片处理、JSON、时区与 PDF",
-      "description": "处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。",
+      "title": "免费 AI 工具：人像抠图、语音转写、摘要与日常工具",
+      "description": "用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/zh/home.txt"
     },
@@ -446,6 +527,11 @@
     "image-compressor",
     "json-compare",
     "time-zone-planner"
+  ],
+  "aiTools": [
+    "ai-portrait-background-remover",
+    "ai-audio-to-text",
+    "ai-text-summarizer"
   ],
   "languages": [
     "en",

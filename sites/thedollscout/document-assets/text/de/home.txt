@@ -1,10 +1,10 @@
-# Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF
+# Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
+Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
 
 Bilder komprimieren & umwandeln
 
@@ -78,6 +78,30 @@ Dateiliste
 
 https://thedollscout.com/de/delivery-evidence
 
+KI-Hintergrundentfernung für Porträts
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Porträt → PNG
+
+https://thedollscout.com/de/ai-portrait-background-remover
+
+KI-Audio in Text — Englisch
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Englisches Audio → TXT / SRT
+
+https://thedollscout.com/de/ai-audio-to-text
+
+KI-Textzusammenfassung mit Original-Sätzen
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englisch → belegbare Textauswahl
+
+https://thedollscout.com/de/ai-text-summarizer
+
 Meine Bilder sind zu groß für die Veröffentlichung.
 
 Bilder verkleinern, Exporte prüfen und die übergebenen Dateien dokumentieren.
@@ -92,15 +116,15 @@ Lokale Uhrzeiten prüfen und eine Kalenderdatei herunterladen, die Sie anschlie�
 
 Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
 
-Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen.
+Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen. Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
 
-Sind alle neun Werkzeuge kostenlos?
+Sind alle zwölf Werkzeuge kostenlos?
 
-Ja. Bildverarbeitung, JSON, Terminplanung, Dateiprüfung, Übergabedokumentation und alle PDF-Werkzeuge sind kostenlos, ohne Konto.
+Ja. Drei lokale KI-Werkzeuge und neun Alltagswerkzeuge sind kostenlos und ohne Konto nutzbar. KI-Modelle werden vor dem ersten Start heruntergeladen.
 
 Werden meine Dateien hochgeladen oder gespeichert?
 
-Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten.
+Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten. Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
 
 Welches Werkzeug prüft eine unveränderte Datei?
 

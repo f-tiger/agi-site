@@ -1,0 +1,30 @@
+# AI 英文音频转文字
+
+https://thedollscout.com/zh/ai-audio-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+仅支持英语语音；WAV 或 MP3 最大 10 MiB、60 秒。不区分说话人，不翻译，不实时录音。Whisper Tiny 可能漏词或产生原音频没有的文字，尤其在噪声或静音时，请逐条复核。
+
+浏览器把音频解码为 16 kHz 单声道数据，再用 Whisper Tiny English 预测文字和分段时间，在本机生成 TXT 和 SRT。字幕时间仅为近似值。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+能识别中文或德语吗？
+
+首版使用英语专用模型。页面提供英、德、中三种界面，但输入录音必须是英语。
+
+字幕和人名一定准确吗？
+
+不一定。小模型可能听错人名、数字、口音或背景声音。发布前请重听原录音并修改草稿。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md

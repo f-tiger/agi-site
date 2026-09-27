@@ -1,7 +1,13 @@
 # TDS Document Scout
 
-Nine free browser tools across images, JSON data, time zones, file delivery and PDF. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Twelve free browser tools across AI, images, JSON data, time zones, file delivery and PDF. Three real local AI tools: portrait background removal with MODNet, English audio transcription with Whisper Tiny English, and extractive English summaries using MiniLM sentence embeddings. AI models download from Hugging Face and jsDelivr on explicit load; first-run download, network and memory requirements apply. Inputs remain on the device. AI results require review and are not factual guarantees. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
+- [AI portrait background remover](https://thedollscout.com/ai-portrait-background-remover) (en): Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-portrait-background-remover.txt
+- [AI audio to text — English](https://thedollscout.com/ai-audio-to-text) (en): Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-audio-to-text.txt
+- [AI extractive text summarizer](https://thedollscout.com/ai-text-summarizer) (en): Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-text-summarizer.txt
 - [Image compressor & converter](https://thedollscout.com/image-compressor) (en): Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
   Plain text: https://thedollscout.com/document-assets/text/en/image-compressor.txt
 - [JSON validator, formatter & comparison](https://thedollscout.com/json-compare) (en): Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
@@ -12,7 +18,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free online tools for images, JSON, time zones & PDFs](https://thedollscout.com/) (en): Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
+- [Free AI tools, image tools, JSON & PDF utilities](https://thedollscout.com/) (en): Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -34,6 +40,12 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
   Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [KI-Hintergrundentfernung für Porträts](https://thedollscout.com/de/ai-portrait-background-remover) (de): Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-portrait-background-remover.txt
+- [KI-Audio in Text — Englisch](https://thedollscout.com/de/ai-audio-to-text) (de): Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-audio-to-text.txt
+- [KI-Textzusammenfassung mit Original-Sätzen](https://thedollscout.com/de/ai-text-summarizer) (de): Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-text-summarizer.txt
 - [Bilder komprimieren & umwandeln](https://thedollscout.com/de/image-compressor) (de): Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
   Plain text: https://thedollscout.com/document-assets/text/de/image-compressor.txt
 - [JSON prüfen, formatieren & vergleichen](https://thedollscout.com/de/json-compare) (de): JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
@@ -44,7 +56,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF](https://thedollscout.com/de/) (de): Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
+- [Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF](https://thedollscout.com/de/) (de): Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -66,6 +78,12 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
   Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [AI 人像抠图](https://thedollscout.com/zh/ai-portrait-background-remover) (zh): 用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-portrait-background-remover.txt
+- [AI 英文音频转文字](https://thedollscout.com/zh/ai-audio-to-text) (zh): 在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-audio-to-text.txt
+- [AI 原文摘要](https://thedollscout.com/zh/ai-text-summarizer) (zh): 用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-text-summarizer.txt
 - [图片压缩、缩放与格式转换](https://thedollscout.com/zh/image-compressor) (zh): 调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
   Plain text: https://thedollscout.com/document-assets/text/zh/image-compressor.txt
 - [JSON 校验、格式化与结构对比](https://thedollscout.com/zh/json-compare) (zh): 校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
@@ -76,7 +94,7 @@ Nine free browser tools across images, JSON data, time zones, file delivery and 
   Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费在线工具：图片处理、JSON、时区与 PDF](https://thedollscout.com/zh/) (zh): 处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。
+- [免费 AI 工具：人像抠图、语音转写、摘要与日常工具](https://thedollscout.com/zh/) (zh): 用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
@@ -104,6 +122,112 @@ Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.js
 ## Historical collector material
 
 The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors
+
+
+# AI portrait background remover
+
+https://thedollscout.com/ai-portrait-background-remover
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Static JPEG, PNG or WebP; 10 MiB, 20 megapixels. Output is resized to at most 1,600 pixels on its longest side. Designed for people; not a general product, pet or scene cutout tool. Fine hair, transparent objects and difficult lighting can fail.
+
+MODNet predicts a foreground alpha matte. The mask is applied to the resized portrait and exported as PNG with transparency. This tool uses the quantized model and keeps the photo on your device.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Can I remove a product background?
+
+This model is trained for portrait matting. Product-only photos, animals and complex scenes may produce poor masks. Use it for people and inspect the exported edges.
+
+What resolution do I get?
+
+The longest side is capped at 1,600 pixels, without enlarging smaller inputs. The output is a transparent PNG.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# AI audio to text — English
+
+https://thedollscout.com/ai-audio-to-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English speech only; WAV or MP3 up to 10 MiB and 60 seconds. No speaker identification, translation or live recording. Whisper Tiny can miss speech or invent words, especially with noise or silence. Review every transcript.
+
+Your browser decodes the file to mono audio at 16 kHz. Whisper Tiny English predicts text and segment timestamps. TXT and SRT downloads are created locally. Subtitle timing is approximate.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Can it transcribe Chinese or German?
+
+This first version uses an English-only model. The page has English, German and Chinese interfaces, but the recording must contain English speech.
+
+Are subtitles and names always accurate?
+
+No. This small model can mishear names, numbers, accents or background sounds. Replay the original and edit the draft before publication.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# AI extractive text summarizer
+
+https://thedollscout.com/ai-text-summarizer
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text: 80–12,000 characters, 3–60 sentences, maximum 256 model tokens per sentence. Select up to 3 or 5 sentences, always fewer than the source. No rewriting, translation or fact-checking. Selections can miss important context.
+
+MiniLM creates a semantic vector for each sentence. Code ranks sentences by their similarity to the document average while reducing repetition: 70% centrality, 30% similarity to already selected sentences. The selected original sentences are shown in source order. These weights are a product heuristic, not a validated accuracy score.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Does the AI write new sentences?
+
+It selects existing sentences using neural sentence embeddings. It does not generate or paraphrase text. Each highlight links to its original sentence so you can inspect the context.
+
+Does the result prove the source is correct?
+
+No. The model estimates semantic similarity; it does not verify facts or guarantee that every important point is included. Read the source before relying on a summary.
+
+Load the model, insert the example text and keep the three-sentence option. On 27 September 2026, the pinned model selected sentences 1, 3 and 6 in our Chromium check. This is one smoke test, not a quality benchmark. Other browsers may produce small numerical differences.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 
 
 # Image compressor & converter
@@ -299,13 +423,13 @@ Reference material
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Free online tools for images, JSON, time zones & PDFs
+# Free AI tools, image tools, JSON & PDF utilities
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
+Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
 
 Image compressor & converter
 
@@ -379,6 +503,30 @@ File inventory
 
 https://thedollscout.com/delivery-evidence
 
+AI portrait background remover
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Portraits → PNG
+
+https://thedollscout.com/ai-portrait-background-remover
+
+AI audio to text — English
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English audio → TXT / SRT
+
+https://thedollscout.com/ai-audio-to-text
+
+AI extractive text summarizer
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text → source-linked highlights
+
+https://thedollscout.com/ai-text-summarizer
+
 My images are too large to publish.
 
 Resize and inspect the exported images, then record the final files you hand over.
@@ -393,15 +541,15 @@ Check the local times and download one calendar file. Import it into your calend
 
 Free tools. Files stay on your device.
 
-No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start.
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start. First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
 
-Are all nine tools free?
+Are all twelve tools free?
 
-Yes. Image processing, JSON, meeting planning, file verification, delivery records and all PDF tools are free. No account is required.
+Yes. The three local AI tools and nine everyday utilities are free, without an account. AI tools download model files before first use.
 
 Do you upload or store my files?
 
-File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes.
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes. AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
 
 Which tool checks whether a file has changed?
 
@@ -790,6 +938,8 @@ File verification links deliberately share only a SHA-256 fingerprint and byte l
 
 Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
 
+AI tools run fixed models locally after you click Load AI model. Software and model downloads contact jsDelivr and Hugging Face, which receive connection information such as your IP address. Your selected photos, recordings and text are not uploaded. Model files may be cached by your browser; clear website data to remove them. Results and inputs stay in memory unless you download them. AI outputs can be wrong; each tool explains its language and task limits.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -808,6 +958,112 @@ Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# KI-Hintergrundentfernung für Porträts
+
+https://thedollscout.com/de/ai-portrait-background-remover
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Statisches JPEG, PNG oder WebP; 10 MiB, 20 Megapixel. Ausgabe auf maximal 1.600 Pixel an der längsten Seite begrenzt. Für Personen gedacht; nicht für beliebige Produkte, Tiere oder Szenen. Haare, transparente Objekte und schwieriges Licht können Probleme verursachen.
+
+MODNet schätzt eine Vordergrund-Alpha-Maske. Diese wird auf das verkleinerte Porträt angewendet und als transparentes PNG exportiert. Das quantisierte Modell verarbeitet Ihr Foto lokal.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Kann ich Produkthintergründe entfernen?
+
+Das Modell wurde für Porträt-Matting trainiert. Reine Produktbilder, Tiere oder komplexe Szenen können schlechte Masken liefern. Für Personen verwenden und Kanten prüfen.
+
+Welche Auflösung bekomme ich?
+
+Die längste Seite ist auf 1.600 Pixel begrenzt. Kleinere Bilder werden nicht vergrößert. Das Ergebnis ist ein transparentes PNG.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# KI-Audio in Text — Englisch
+
+https://thedollscout.com/de/ai-audio-to-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Nur englische Sprache; WAV oder MP3 bis 10 MiB und 60 Sekunden. Keine Sprechererkennung, Übersetzung oder Live-Aufnahme. Whisper Tiny kann Sprache auslassen oder Wörter erfinden, besonders bei Rauschen oder Stille. Jeden Entwurf prüfen.
+
+Der Browser dekodiert die Datei zu Mono-Audio mit 16 kHz. Whisper Tiny English schätzt Text und Segmentzeiten. TXT und SRT werden lokal erzeugt. Zeitangaben sind Näherungen.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Kann es Deutsch oder Chinesisch transkribieren?
+
+Diese erste Version verwendet ein rein englisches Modell. Die Oberfläche ist dreisprachig, die Aufnahme muss englische Sprache enthalten.
+
+Sind Namen und Untertitel immer korrekt?
+
+Nein. Das kleine Modell kann Namen, Zahlen, Akzente oder Geräusche falsch erkennen. Original abspielen und Entwurf vor Veröffentlichung bearbeiten.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# KI-Textzusammenfassung mit Original-Sätzen
+
+https://thedollscout.com/de/ai-text-summarizer
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englischer Text: 80–12.000 Zeichen, 3–60 Sätze, höchstens 256 Modell-Tokens pro Satz. Bis zu 3 oder 5 Sätze, immer weniger als im Original. Keine Umformulierung, Übersetzung oder Faktenprüfung. Wichtiger Kontext kann fehlen.
+
+MiniLM bildet für jeden Satz einen semantischen Vektor. Code bewertet die Nähe zum Durchschnitt des Dokuments und verringert Wiederholungen: 70 % Zentralität, 30 % Ähnlichkeit zu bereits gewählten Sätzen. Die Auswahl erscheint in Originalreihenfolge. Diese Gewichte sind eine Produktheuristik, kein validierter Genauigkeitswert.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Schreibt die KI neue Sätze?
+
+Sie wählt vorhandene Sätze über neuronale Embeddings aus, ohne neue Formulierungen zu erzeugen. Jeder Auszug verlinkt seinen Originalsatz zur Kontextprüfung.
+
+Beweist das Ergebnis die Richtigkeit der Quelle?
+
+Nein. Das Modell schätzt semantische Ähnlichkeit. Es prüft keine Fakten und garantiert keine vollständige Auswahl. Lesen Sie die Quelle.
+
+Modell laden, Beispieltext einsetzen und drei Sätze wählen. Am 27. September 2026 wählte das feste Modell in Chromium die Sätze 1, 3 und 6. Dies ist ein einzelner Funktionstest, kein Qualitätsbenchmark. Andere Browser können kleine numerische Unterschiede zeigen.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 
 
 # Bilder komprimieren & umwandeln
@@ -1003,13 +1259,13 @@ Referenzen
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF
+# Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
+Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
 
 Bilder komprimieren & umwandeln
 
@@ -1083,6 +1339,30 @@ Dateiliste
 
 https://thedollscout.com/de/delivery-evidence
 
+KI-Hintergrundentfernung für Porträts
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Porträt → PNG
+
+https://thedollscout.com/de/ai-portrait-background-remover
+
+KI-Audio in Text — Englisch
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Englisches Audio → TXT / SRT
+
+https://thedollscout.com/de/ai-audio-to-text
+
+KI-Textzusammenfassung mit Original-Sätzen
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englisch → belegbare Textauswahl
+
+https://thedollscout.com/de/ai-text-summarizer
+
 Meine Bilder sind zu groß für die Veröffentlichung.
 
 Bilder verkleinern, Exporte prüfen und die übergebenen Dateien dokumentieren.
@@ -1097,15 +1377,15 @@ Lokale Uhrzeiten prüfen und eine Kalenderdatei herunterladen, die Sie anschlie�
 
 Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
 
-Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen.
+Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen. Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
 
-Sind alle neun Werkzeuge kostenlos?
+Sind alle zwölf Werkzeuge kostenlos?
 
-Ja. Bildverarbeitung, JSON, Terminplanung, Dateiprüfung, Übergabedokumentation und alle PDF-Werkzeuge sind kostenlos, ohne Konto.
+Ja. Drei lokale KI-Werkzeuge und neun Alltagswerkzeuge sind kostenlos und ohne Konto nutzbar. KI-Modelle werden vor dem ersten Start heruntergeladen.
 
 Werden meine Dateien hochgeladen oder gespeichert?
 
-Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten.
+Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten. Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
 
 Welches Werkzeug prüft eine unveränderte Datei?
 
@@ -1494,6 +1774,8 @@ Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine
 
 Auch Bildverarbeitung, JSON-Vergleich und Terminplanung laufen lokal. Bilder, JSON-Werte, Termintitel, Notizen und gewählte Uhrzeiten werden nicht an die Statistik gesendet. Erfasst werden nur feste Aktionsnamen und öffentliche Seitenpfade. Downloads enthalten die gewählte Ausgabe; Kalenderexporte versenden keine Einladungen. Leeren entfernt Eingaben und temporäre Download-Links dieser Seite, keine bereits heruntergeladenen Dateien.
 
+KI-Werkzeuge laden feste Modelle erst nach Klick auf KI-Modell laden. Software- und Modelldownloads kontaktieren jsDelivr und Hugging Face; dabei erhalten diese Dienste Verbindungsdaten wie Ihre IP-Adresse. Fotos, Aufnahmen und Text werden nicht hochgeladen. Modelle können im Browser-Cache bleiben; Website-Daten löschen, um sie zu entfernen. Eingaben und Ergebnisse bleiben ohne Download im Speicher. KI kann Fehler machen; Sprach- und Aufgabengrenzen stehen auf jeder Werkzeugseite.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -1512,6 +1794,112 @@ Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# AI 人像抠图
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+支持静态 JPEG、PNG、WebP，最大 10 MiB、2000 万像素。输出最长边不超过 1600 像素。适用于人物，不是通用商品、宠物或场景抠图。发丝、透明物体和复杂光照可能处理不佳。
+
+MODNet 预测人物前景的透明度蒙版，将蒙版应用到缩放后的人像并导出透明 PNG。本工具使用量化模型，照片始终在本机处理。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+可以给商品图片去背景吗？
+
+该模型针对人像抠图训练。纯商品、动物或复杂场景可能产生较差的蒙版。建议用于人物，并检查导出的边缘。
+
+输出图片是什么分辨率？
+
+最长边最多 1600 像素，小图片不会放大。导出格式是带透明背景的 PNG。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# AI 英文音频转文字
+
+https://thedollscout.com/zh/ai-audio-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+仅支持英语语音；WAV 或 MP3 最大 10 MiB、60 秒。不区分说话人，不翻译，不实时录音。Whisper Tiny 可能漏词或产生原音频没有的文字，尤其在噪声或静音时，请逐条复核。
+
+浏览器把音频解码为 16 kHz 单声道数据，再用 Whisper Tiny English 预测文字和分段时间，在本机生成 TXT 和 SRT。字幕时间仅为近似值。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+能识别中文或德语吗？
+
+首版使用英语专用模型。页面提供英、德、中三种界面，但输入录音必须是英语。
+
+字幕和人名一定准确吗？
+
+不一定。小模型可能听错人名、数字、口音或背景声音。发布前请重听原录音并修改草稿。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# AI 原文摘要
+
+https://thedollscout.com/zh/ai-text-summarizer
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+
+支持 80–12,000 字符、3–60 句英文文本，每句最多 256 个模型 token。最多选 3 或 5 句，且少于原文句数。不改写、不翻译、不核查事实，可能遗漏重要背景。
+
+MiniLM 为每个句子生成语义向量，再由代码按句子与全文平均向量的相似度排序，同时减少重复：70% 中心相关性，30% 与已选句子的相似度。选出的原句按原文顺序展示。权重属于产品规则，不是经过验证的准确率。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+AI 会生成新的句子吗？
+
+模型通过神经网络语义向量选取已有句子，不生成或改写文字。每条要点会链接到原句，方便你检查上下文。
+
+摘要能证明原文正确吗？
+
+不能。模型只估计语义相似度，不核查事实，也不保证选中全部重点。使用摘要前请阅读原文。
+
+加载模型，填入示例文本，保留最多三句。2026 年 9 月 27 日，我们在 Chromium 中用固定模型选出了第 1、3、6 句。这只是一次功能验收，不是质量基准；不同浏览器可能存在细小数值差异。
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
 
 
 # 图片压缩、缩放与格式转换
@@ -1707,13 +2095,13 @@ SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的�
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# 免费在线工具：图片处理、JSON、时区与 PDF
+# 免费 AI 工具：人像抠图、语音转写、摘要与日常工具
 
 https://thedollscout.com/zh/
 由 TDS 文档侦察站发布
 更新日期: 2026-09-27
 
-处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。
+用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
 
 图片压缩、缩放与格式转换
 
@@ -1787,6 +2175,30 @@ https://thedollscout.com/zh/verify-file
 
 https://thedollscout.com/zh/delivery-evidence
 
+AI 人像抠图
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+人像 → 透明 PNG
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+
+AI 英文音频转文字
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+英文音频 → TXT / SRT
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+AI 原文摘要
+
+用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+
+英文文本 → 可回看原句的要点
+
+https://thedollscout.com/zh/ai-text-summarizer
+
 图片太大，网页或附件不好发。
 
 先调整尺寸并检查导出效果，再把最终文件整理成交付记录。
@@ -1801,15 +2213,15 @@ https://thedollscout.com/zh/delivery-evidence
 
 工具免费，文件留在你的设备上。
 
-无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。
+无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。 首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
 
-九个工具都能免费使用吗？
+十二个工具都能免费使用吗？
 
-可以。图片处理、JSON、跨时区会议、文件核验、交付记录和 PDF 工具均可免费使用，无需注册。
+可以。三个本地 AI 工具和九个日常工具均可免费使用，无需注册。AI 工具首次使用前需要下载模型文件。
 
 我的文件会被上传或保存吗？
 
-文件处理在浏览器内完成，不上传文件或文档正文。若你主动分享核验链接，链接包含 SHA-256 指纹和字节数；完整导出文件可能含文件名和你填写的备注。
+文件处理在浏览器内完成，不上传文件或文档正文。若你主动分享核验链接，链接包含 SHA-256 指纹和字节数；完整导出文件可能含文件名和你填写的备注。 AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
 
 用哪个工具确认文件没有变化？
 
@@ -2197,6 +2609,8 @@ https://thedollscout.com/zh/document-privacy
 文件核验链接会主动在网址片段中分享SHA-256指纹和字节数，不包含文件名、内容或备注。持有链接的人可以比对候选文件；分享应用和浏览器历史可能保存链接。TDS不会将指纹发送到统计系统。收件人的核对仅在本地进行，不通知发送者，也不证明已收件。
 
 图片处理、JSON 对比和会议规划同样在本地运行。图片、JSON 内容、会议标题、备注和所选时间不会发送到统计接口；仅统计固定动作名与公开页面路径。下载包含你选择的输出，日历导出不会发送邀请。清空会移除本页输入和临时下载链接，不删除已下载到设备的文件。
+
+AI 工具仅在你点击加载模型后下载固定版本的本地模型。程序与模型下载会联系 jsDelivr、Hugging Face，这些服务会收到 IP 地址等连接信息；你选择的照片、录音和文字不会上传。模型可能被浏览器缓存，可清除网站数据来移除。输入和结果保留在内存，除非你主动下载。AI 结果可能出错，各工具页面会说明语言和任务限制。
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

@@ -1,10 +1,10 @@
-# Free online tools for images, JSON, time zones & PDFs
+# Free AI tools, image tools, JSON & PDF utilities
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
+Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
 
 Image compressor & converter
 
@@ -78,6 +78,30 @@ File inventory
 
 https://thedollscout.com/delivery-evidence
 
+AI portrait background remover
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Portraits → PNG
+
+https://thedollscout.com/ai-portrait-background-remover
+
+AI audio to text — English
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English audio → TXT / SRT
+
+https://thedollscout.com/ai-audio-to-text
+
+AI extractive text summarizer
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text → source-linked highlights
+
+https://thedollscout.com/ai-text-summarizer
+
 My images are too large to publish.
 
 Resize and inspect the exported images, then record the final files you hand over.
@@ -92,15 +116,15 @@ Check the local times and download one calendar file. Import it into your calend
 
 Free tools. Files stay on your device.
 
-No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start.
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start. First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
 
-Are all nine tools free?
+Are all twelve tools free?
 
-Yes. Image processing, JSON, meeting planning, file verification, delivery records and all PDF tools are free. No account is required.
+Yes. The three local AI tools and nine everyday utilities are free, without an account. AI tools download model files before first use.
 
 Do you upload or store my files?
 
-File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes.
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes. AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
 
 Which tool checks whether a file has changed?
 
