@@ -65,7 +65,16 @@
     "sha256": "1401bbb47ebc6b3c52b69f80d879c53f197a6bd8538070bad33ab4f677d49b31",
     "proof": "independent-grades.json.1401bbb47ebc.ots",
     "stamped": "2026-09-27",
-    "status": "pending"
+    "status": "bitcoin",
+    "confirmed": "2026-09-27"
+   },
+   {
+    "sha256": "796c1e3e43a59486fa932fac887baeb064ee43511aa8569b46973521b19cf9f5",
+    "proof": "independent-grades.json.796c1e3e43a5.ots",
+    "stamped": "2026-09-27",
+    "status": "pending",
+    "size": 9016,
+    "stamped_at": "2026-09-27T13:26:51+00:00"
    }
   ]
  },

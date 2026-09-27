@@ -2,7 +2,7 @@
 
 https://thedollscout.com/zh/compare-pdf-text
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 收到修订版 PDF，需要找出文字变化时。
 
@@ -24,17 +24,37 @@ https://thedollscout.com/zh/compare-pdf-text
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+插入新页面后，还能比较 PDF 版本吗？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+工具用规范化文本对齐页面，并在新增页面前后建议配对。请复核新增、删除和修改项；重复内容可能让配对存在歧义。
 
-没有发现问题就代表无障碍合格吗？
+提取文字相同，就代表 PDF 文件相同吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+不代表。图片、标签、版式及其他字节仍可能不同。检查完整文件请使用 SHA-256 和字节数核验；视觉变化仍需查看原 PDF。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+修订版更改了活动时间，插入一页，并修改了材料清单。文本配对不比较版式、图片或 PDF 标签。
+
+文字变更 | 原版页码 | 修订版页码
+
+修改 | 1 | 1
+
+新增 | — | 2
+
+修改 | 2 | 3
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/compare-pdf-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

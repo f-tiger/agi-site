@@ -166,6 +166,13 @@ MARKET_BATCHES = {
         # run; the reader's words are "luftfeuchtigkeit messen", which is what
         # the queued hygrometer item was retargeted to.
         ["luftfeuchtigkeit messen", "heizlüfter riecht", "heizkörper entlüften"],
+        # Restock candidates 2026-09-27 (owner: 「针对谷歌趋势，上线更好的热门品类」).
+        # Each one is a top row of the heizlüfter / infrarotheizung rising
+        # panels (22.–26.09.) with no page whose title answers it. Rising is a
+        # percentage; these rows give each an absolute level before anything
+        # is built (konvektorheizung read 31.700 rising and 1,2 absolute).
+        ["akku heizlüfter", "heizlüfter große räume", "mobile heizung"],
+        ["infrarotheizung 20 qm", "heizlüfter auto", "heizlüfter bad"],
         # A storage batch (anker solarbank / marstek venus / zendure solarflow)
         # sat here from 2026-09-24 to 2026-09-27. Removed with the storage
         # category (owner: 「后续记得不做储能品类」): a term nobody will build a

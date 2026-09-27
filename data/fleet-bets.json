@@ -207,7 +207,8 @@
    "source": "sites/getecoback/CLAUDE.md:1586",
    "status": "open",
    "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。",
-   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。"
+   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。",
+   "note_2026-09-27_ex105": "owner 用 EAN 8004399026445 在 amazon.de(配送 Berlin 10115)搜索:只有 1 条 PACEX105 listing,No featured offers available,仅 2 个二手/新品报价约 USD 1.146。没有 Buy Box,/dp/ 直链会把读者带到无法加购的页,所以 EX105 永不烘焙 ASIN;09-23 预估的「核验通过即 31 %」作废,本线按现有读数(14,5 %)结算。"
   },
   {
    "id": "eco-feuchte-now-0928",
@@ -2196,6 +2197,17 @@
    "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",
    "status": "open",
    "t0_2026-09-27": "0(按钮只在分支上,未部署)。"
+  },
+  {
+   "id": "eco-akku-heizluefter-1225",
+   "site": "getecoback",
+   "due": "2026-12-25",
+   "metric": "/guide/akku-heizluefter.html,28 天窗 11-28→12-25(覆盖 akku heizlüfter 的 11 月峰尾与 12 月),真人,剔 CI:① 搜索 + AI 引荐 ② page_view ③ watt_calc{source:akku} 事件 ④ 前提:bingbot 抓过该页(D1 crawl)。t0(2026-09-27):0 / 0 / 0 / 0(新页)。季节:5 年峰值 1,7(11 月),冬/九月 2,32",
+   "threshold": "④ 成立 且(① ≥5 或 ② ≥20 或 ③ ≥3)",
+   "win": "「物理天花板」页型(一个除法说清营销与批评为什么都对)在取暖簇也接得住读者 → 同法补下一个同形状词(先查 DE-QUEUE 读数)",
+   "lose": "④ 成立但 ①<2 且 ②<8 → 该词 1,7 的量级对本站太薄,取暖簇不再按 rising 行补小词,只按 5 年峰值 ≥5 的词补;④ 不成立 → insufficient(发现面问题,见 eco-new-page-discovery-1020)",
+   "source": "sites/getecoback/CLAUDE.md「按谷歌趋势补冬季品类(2026-09-27)」",
+   "status": "open"
   }
  ]
 }

@@ -34,7 +34,7 @@ SKIP_PREFIX = ("/widgets/", "/workbench", "/member")
 
 FAMILIES = [
     # key, heading, emoji, slug regex
-    ("feuchte", "💧 Feuchte, Schimmel & Lüften", "💧", r"taupunkt|lueft|feucht|schimmel|dehumid|airer|mould|condens|desiccant|wasser|keller|damp"),
+    ("feuchte", "💧 Feuchte, Schimmel & Lüften", "💧", r"taupunkt|(?<!heiz)lueft|feucht|schimmel|dehumid|airer|mould|condens|desiccant|wasser|keller|damp"),
     ("heizen", "🔥 Heizen", "🔥", r"heiz|infrarot|watt|stromausfall|heater"),
     ("strom", "⚡ Stromkosten & Haushalt", "⚡", r"strom|energie|kosten|geraete|messprot|waesche|trockner|austausch"),
     ("solar", "☀️ Balkon-Solar & Speicher", "☀️", r"balkon|speicher|solar|standort|bkw|kraftwerk"),

@@ -312,6 +312,7 @@ jobs:
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
           node scripts/test-ai-tools.mjs
+          node scripts/test-tool-evidence.mjs
           node scripts/test-file-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
           node scripts/test-video-cases.mjs --dist

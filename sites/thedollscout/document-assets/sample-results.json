@@ -1,0 +1,341 @@
+{
+  "schema": "tds-public-examples/v1",
+  "toolVersion": "2026-09-25.8",
+  "pdfjs": "6.3.289",
+  "reviewed": "2026-09-27",
+  "scope": "Fictional reproducible examples, not customer documents, certification or an accuracy benchmark.",
+  "documents": [
+    {
+      "kind": "before",
+      "url": "https://thedollscout.com/document-assets/samples/sample-before.pdf",
+      "sha256": "63012553e38d96214e7f0da5c15ce5b713a9d3f4ecd6d6b69968f03884fbd2d2",
+      "name": "sample-before.pdf",
+      "size": 1197,
+      "pageCount": 2,
+      "title": "",
+      "language": "",
+      "marked": false,
+      "outlineCount": 0,
+      "pages": [
+        {
+          "number": 1,
+          "text": "Fictional workshop handout\nSession starts at 09:30.\nBring a notebook.",
+          "characters": 60,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        },
+        {
+          "number": 2,
+          "text": "Materials checklist\nNotebook and pencil.",
+          "characters": 36,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        }
+      ],
+      "version": "2026-09-25.8",
+      "findings": [
+        {
+          "code": "title",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "language",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "marked",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "noStructure",
+          "status": "attention",
+          "page": 1,
+          "count": null
+        },
+        {
+          "code": "noStructure",
+          "status": "attention",
+          "page": 2,
+          "count": null
+        },
+        {
+          "code": "readingOrder",
+          "status": "review",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "visualMeaning",
+          "status": "review",
+          "page": null,
+          "count": null
+        }
+      ],
+      "counts": {
+        "attention": 5,
+        "detected": 0,
+        "review": 2,
+        "unknown": 0
+      },
+      "complete": true
+    },
+    {
+      "kind": "after",
+      "url": "https://thedollscout.com/document-assets/samples/sample-after.pdf",
+      "sha256": "7946f0acf7ee2f647c6b70aa26fdf4ab057f2bf2ff17ec65e692c9158d86dc59",
+      "name": "sample-after.pdf",
+      "size": 1497,
+      "pageCount": 3,
+      "title": "Fictional workshop handout",
+      "language": "en-US",
+      "marked": false,
+      "outlineCount": 0,
+      "pages": [
+        {
+          "number": 1,
+          "text": "Fictional workshop handout\nSession starts at 10:30.\nBring a notebook.",
+          "characters": 60,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        },
+        {
+          "number": 2,
+          "text": "Added page\nThis is a fictional revision for testing.",
+          "characters": 44,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        },
+        {
+          "number": 3,
+          "text": "Materials checklist\nNotebook, pencil and water.",
+          "characters": 42,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        }
+      ],
+      "version": "2026-09-25.8",
+      "findings": [
+        {
+          "code": "title",
+          "status": "detected",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "language",
+          "status": "detected",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "marked",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "noStructure",
+          "status": "attention",
+          "page": 1,
+          "count": null
+        },
+        {
+          "code": "noStructure",
+          "status": "attention",
+          "page": 2,
+          "count": null
+        },
+        {
+          "code": "noStructure",
+          "status": "attention",
+          "page": 3,
+          "count": null
+        },
+        {
+          "code": "readingOrder",
+          "status": "review",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "visualMeaning",
+          "status": "review",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "languageAccuracy",
+          "status": "review",
+          "page": null,
+          "count": null
+        }
+      ],
+      "counts": {
+        "attention": 4,
+        "detected": 2,
+        "review": 3,
+        "unknown": 0
+      },
+      "complete": true
+    },
+    {
+      "kind": "image",
+      "url": "https://thedollscout.com/document-assets/samples/sample-image.pdf",
+      "sha256": "ca718f5b850d4aa8e1f4c8d10bafd1a10f26cbe114d4b132cbdb8d74758d92c1",
+      "name": "sample-image.pdf",
+      "size": 832,
+      "pageCount": 1,
+      "title": "",
+      "language": "",
+      "marked": false,
+      "outlineCount": 0,
+      "pages": [
+        {
+          "number": 1,
+          "text": "",
+          "characters": 0,
+          "textTruncated": false,
+          "structure": {
+            "hasTree": false,
+            "figures": 0,
+            "missingAlt": 0,
+            "headings": [],
+            "tables": 0
+          },
+          "forms": 0
+        }
+      ],
+      "version": "2026-09-25.8",
+      "findings": [
+        {
+          "code": "title",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "language",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "marked",
+          "status": "attention",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "noText",
+          "status": "attention",
+          "page": 1,
+          "count": null
+        },
+        {
+          "code": "readingOrder",
+          "status": "review",
+          "page": null,
+          "count": null
+        },
+        {
+          "code": "visualMeaning",
+          "status": "review",
+          "page": null,
+          "count": null
+        }
+      ],
+      "counts": {
+        "attention": 4,
+        "detected": 0,
+        "review": 2,
+        "unknown": 0
+      },
+      "complete": true
+    }
+  ],
+  "comparison": {
+    "same": 0,
+    "changes": [
+      {
+        "kind": "changed",
+        "before": 1,
+        "after": 1,
+        "beforeText": "Fictional workshop handout\nSession starts at 09:30.\nBring a notebook.",
+        "afterText": "Fictional workshop handout\nSession starts at 10:30.\nBring a notebook."
+      },
+      {
+        "kind": "added",
+        "before": null,
+        "after": 2,
+        "beforeText": "",
+        "afterText": "Added page\nThis is a fictional revision for testing."
+      },
+      {
+        "kind": "changed",
+        "before": 2,
+        "after": 3,
+        "beforeText": "Materials checklist\nNotebook and pencil.",
+        "afterText": "Materials checklist\nNotebook, pencil and water."
+      }
+    ],
+    "complete": true,
+    "metadata": [
+      {
+        "key": "title",
+        "before": "",
+        "after": "Fictional workshop handout"
+      },
+      {
+        "key": "language",
+        "before": "",
+        "after": "en-US"
+      },
+      {
+        "key": "pageCount",
+        "before": 2,
+        "after": 3
+      }
+    ]
+  }
+}

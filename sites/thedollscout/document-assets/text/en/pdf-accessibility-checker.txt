@@ -2,7 +2,7 @@
 
 https://thedollscout.com/pdf-accessibility-checker
 Published by TDS Document Scout
-Updated: 2026-09-25
+Updated: 2026-09-27
 
 When to use it: Before publishing a report, handout or client deliverable.
 
@@ -24,17 +24,43 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-Do my PDFs leave my device?
+What does a detected PDF tag tell me?
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+It reports a tagged declaration or structure exposed by the PDF reader. A detected tag does not prove correct reading order, useful image descriptions or accessible tables. Review those separately.
 
-Does a clean result prove accessibility?
+Can this checker certify WCAG or PDF/UA compliance?
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+No. It is an automated preflight plus a record of your manual review. It does not certify compliance, repair tags or produce a percentage accessibility score.
 
-Can you repair scanned PDFs or missing tags?
+A result you can reproduce
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Check | Observed result | What to do next
+
+Document title | Fictional workshop handout | Check that the title describes the document; the tool does not test the viewer title setting.
+
+Default language declaration | en-US | Check that the declared language matches the content.
+
+Tagged-document declaration | Not detected | Inspect structure and reading order in an authoring or remediation tool.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-accessibility-checker#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

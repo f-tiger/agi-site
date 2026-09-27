@@ -79,7 +79,7 @@ Mit der Faustregel von rund 340 BTU pro m² sind 9.000 BTU rechnerisch für bis 
 Öffentliche Tests nennen vor allem drei Punkte: den hörbaren Betrieb (Datenblatt 63 dB(A)), die Energieeffizienzklasse A — solide, aber kein Sparwunder wie die A+++-Klasse des Pinguino, bei rund 1 kWh pro Stunde Kühlen also etwa 0,30 € pro Stunde bei 0,30 €/kWh — und das Fenster-Kit: Beigelegt ist ein Schiebefenster-Set, für die in Deutschland üblichen Kipp- und Flügelfenster braucht es eine separate Abdichtung für 15–30 €. Ohne die verliert jeder Monoblock den Großteil seiner Wirkung.
 
 **Lohnt sich der Aufpreis zum De'Longhi Pinguino PAC EX105?**
-Kommt auf Raum und Nutzung an. Der Pinguino kostet mit ca. 400–550 € deutlich mehr und bietet dafür Energieeffizienzklasse A+++ statt A, einen gemessen leiseren Betrieb und Reserve bis etwa 25 m². Wer täglich über viele Wochen kühlt oder geräuschempfindlich schläft, holt den Aufpreis über Stromkosten und Komfort teilweise wieder herein. Für ein kleines Zimmer, das nur an Hitzetagen gekühlt wird, liefert das Comfee die Grundleistung für rund die Hälfte des Preises — dann ist es die rationalere Wahl.
+Kommt auf Raum und Nutzung an. Der Pinguino kostet deutlich mehr und bietet dafür Energieeffizienzklasse A+++ statt A, einen gemessen leiseren Betrieb und Reserve bis etwa 25 m². Wer täglich über viele Wochen kühlt oder geräuschempfindlich schläft, holt den Aufpreis über Stromkosten und Komfort teilweise wieder herein. Für ein kleines Zimmer, das nur an Hitzetagen gekühlt wird, liefert das Comfee die Grundleistung für rund die Hälfte des Preises — dann ist es die rationalere Wahl.
 
 **Aktuellen Preis prüfen** — Preisband zuletzt ca. 250–320 €, in Hitzewellen schnell vergriffen:
 

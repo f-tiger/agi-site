@@ -1,6 +1,9 @@
 // Deliberately bounded metadata only. PDF bytes, names, text, titles, review
 // answers, user/session IDs and full referrer URLs are never stored here.
+import { HUB_TASKS, isHubPath, hubEvent } from '../../document-assets/hub-core.mjs';
 export const EVENTS = new Set(['doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share', 'doc_summary_share', 'doc_share_visit']);
+const HUB_EVENTS = new Set(Object.keys(HUB_TASKS).map(hubEvent));
+for (const event of HUB_EVENTS) EVENTS.add(event);
 for (const event of ['doc_delivery_complete','doc_delivery_sample','doc_delivery_export','doc_delivery_verify']) EVENTS.add(event);
 for (const frequency of ['none','few','repeat']) for (const choice of ['team','project','none']) EVENTS.add(`doc_delivery_interest_${frequency}_${choice}`);
 for(const event of ['doc_verify_recipient','doc_verify_create','doc_verify_match','doc_verify_mismatch','doc_verify_sample','doc_verify_share','doc_verify_embed','doc_verify_next','doc_delivery_recipient_share']) EVENTS.add(event);
@@ -35,6 +38,7 @@ export async function onRequestPost({ request, env }) {
     if (!body || typeof body !== 'object' || Object.keys(body).some(k => !['p','e','r'].includes(k))) return new Response(null, { status:400 });
     const ci = body.e === 'doc_ci' && body.p === '/__ci/documents';
     if (!ci && (typeof body.p !== 'string' || !PAGE.test(body.p) || !EVENTS.has(body.e))) return new Response(null, { status:400 });
+    if (HUB_EVENTS.has(body.e) && !isHubPath(body.p)) return new Response(null, { status:400 });
     const ua = request.headers.get('user-agent') || '';
     if (!ci && (request.headers.get('x-probe') || request.headers.get('dnt') === '1' || /bot|crawler|spider|headless|playwright|puppeteer|release-check|document-probe/i.test(ua))) return new Response(null, { status:204 });
     const day = new Date().toISOString().slice(0, 10), lang = /^\/(de|zh)\//.exec(body.p)?.[1] || 'en';

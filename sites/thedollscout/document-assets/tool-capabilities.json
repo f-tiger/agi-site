@@ -1,7 +1,7 @@
 {
   "name": "TDS Document Scout",
   "edition": "2026-09-25.8",
-  "updated": "2026-09-25",
+  "updated": "2026-09-27",
   "execution": "User-operated browser only. No hosted PDF processing API.",
   "uploads": false,
   "accountRequired": false,
@@ -144,5 +144,9 @@
     "limitBytes": 20971520,
     "output": "Sender-generated links and local SHA-256 plus byte-length comparisons",
     "limitations": "No identity, receipt, consent, malware safety or Bitcoin timestamp verification. No hosted processing API."
+  },
+  "examples": {
+    "url": "https://thedollscout.com/document-assets/sample-results.json",
+    "scope": "Fictional reproducible examples, not customer documents, certification or an accuracy benchmark."
   }
 }

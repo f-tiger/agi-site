@@ -540,7 +540,13 @@ jobs:
           check "https://getecoback.com/guide/infrarotheizung-thermostat.html" "Fußleistenhöhe"
           check "https://getecoback.com/guide/fenster-beschlagen-aussen.html" "Randverbund"
           check "https://getecoback.com/" 'id="eb-newest"'
-          check "https://getecoback.com/" 'href="/guide/beheizter-waeschestaender.html"'
+          # Newest page (2026-09-27): the block must carry whatever was built last.
+          check "https://getecoback.com/" 'href="/guide/akku-heizluefter.html"'
+          # Trends expansion 2026-09-27: the page's answer (a division) and its
+          # body-heat shelf. The accident is the default heater shelf selling a
+          # battery reader a 2 kW mains heater as the first card.
+          check "https://getecoback.com/guide/akku-heizluefter.html" "2,7 Minuten"
+          check "https://getecoback.com/guide/akku-heizluefter.html" "Beheizte Weste (Akku)"
           # Nothing to buy on the outside-condensation page: a shelf there would
           # sell a fix for a sign that the window works. Scripts stripped first,
           # same reason as the UK pages below.

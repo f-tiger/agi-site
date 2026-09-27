@@ -50,6 +50,7 @@ CAT_OF = {
     "tineco-saugt-nicht-mehr": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
+    "akku-heizluefter": "heizen",
     "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
@@ -681,6 +682,14 @@ MODEL_ASIN = {
     # MediaMarkt.at. Whether it is still stocked on amazon.de specifically is
     # unknown from here and cannot be read off the owner's screenshots while
     # their amazon.de delivery country is set to the United States.
+    # 2026-09-27, owner search by EAN 8004399026445 on amazon.de (delivery set to
+    # Berlin 10115): exactly one result, the PACEX105 listing (3,8 stars, 277
+    # ratings) with "No featured offers available" and two used & new offers at
+    # about USD 1.146. The listing exists, but there is no Buy Box: a /dp/ link
+    # would land readers on a page with nothing to add to the basket. Keep the
+    # search link (it shows what is buyable today) and do not ask the owner for
+    # this ASIN again. The shelf badge "ca. 400–550 €" was dropped the same day:
+    # no new unit is on offer at amazon.de at that price.
     "De'Longhi Pinguino PAC EX105": "",
     # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
     # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
@@ -805,11 +814,15 @@ SVG_GRAD = {"ac": "#eaf6ff,#cfe6f7", "mobileac": "#e6f7f2,#c8ece0", "cooler": "#
 # (title, role-badge, one-liner, price-band, amazon-search-q, svg-key)
 DEVICE_MODELS = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "€€€ · ca. 400–550 €", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   # Order changed 2026-09-27 (owner: 「降到后面」): the EX105 sits behind the models
+   # with a verified amazon.de product page. Its listing there has no featured
+   # offer (see MODEL_ASIN), and the first three cards also feed the top strip
+   # and the sticky bar, i.e. the page's first buy button.
    ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "Monoblock-Testsieger der Stiftung Warentest, Silent-Modus, Kältemittel R290.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Preis-Leistung", "Günstig für kleine Schlaf- & Arbeitszimmer — dafür deutlich hörbar.", "€€ · ca. 250–320 €", "Comfee+MPPH-09CRN7", "ac"),
    ("AEG ChillFlex Pro", "Leise & gut ausgestattet", "Angenehm fürs Schlafzimmer, solide Ausstattung.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "Für große Räume", "In öffentlichen Vergleichen die stärkste Kühlleistung der Runde.", "Preis vor Ort prüfen", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("Bosch Cool 5000", "Einfach aufgestellt", "Plug-and-Play — schnell startklar, unkomplizierte Bedienung.", "Preis vor Ort prüfen", "Bosch+Cool+5000+Klimager%C3%A4t", "ac"),
    ("Suntec Impuls 2.0+", "Leicht & mobil", "Leichtgewicht — lässt sich gut zwischen Räumen umstellen.", "Preis vor Ort prüfen", "Suntec+Impuls+2.0%2B", "ac"),
    ("Midea PortaSplit", "Split ohne Bohren", "Quick-Connect-Split: leise und effizient, ohne Kernbohrung.", "€€€€ · Preis vor Ort prüfen", "Midea+PortaSplit", "mobileac"),
@@ -875,13 +888,13 @@ DEVICE_MODELS = {
 
 DEVICE_MODELS_EN = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "€€€ · approx. €400–550", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Best value", "Affordable for small bedrooms & offices — but clearly audible.", "€€ · approx. €250–320", "Comfee+MPPH-09CRN7", "ac"),
    # This card used to be labelled "MeacoFan / quiet pick" while linking an AEG
    # search — a fan brand standing in for an air conditioner. Named properly now.
    ("AEG ChillFlex Pro", "Quiet pick", "Comfortable in the bedroom, well equipped.", "€€€ · approx. €350–500", "AEG+ChillFlex+Pro", "ac"),
-   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "For large rooms", "Strongest cooling of its group in public comparisons.", "check price locally", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "check price locally", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
  ],
  "fan": [
    ("MeacoFan 1056", "Extra quiet", "Very quiet — ideal for the bedroom.", "€€ · approx. €90–120", "MeacoFan+1056", "fan"),
@@ -1407,6 +1420,15 @@ CONTEXT_MODELS = {
    ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
    ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
  ],
+ # Expansion 2026-09-27 (Trends: "akku heizlüfter" peak 1,7 in November, winter
+ # 2,3x September). The page's answer is that a battery heats a body, not a
+ # room, so the shelf is body-heat first and a mains heater only as the
+ # "if there is a socket" card, in the page's own order. No named models.
+ "akku-heizluefter": [
+   ("Beheizte Weste (Akku)", "Wärme am Körper", "Heizt dich statt der Luft — die Wattzahl der Stufe steht im Datenblatt, der Rechner oben macht daraus Stunden.", "Preis vor Ort prüfen", "beheizte+weste+akku", "heater"),
+   ("Beheizte Sitzauflage", "Für den Sitzplatz", "Wärme dort, wo du sitzt: kleine Wattzahl, und damit reicht auch ein kleiner Akku lange.", "Preis vor Ort prüfen", "beheizte+sitzauflage", "heater"),
+   ("Heizlüfter mit Thermostat (Netz)", "Wenn eine Steckdose da ist", "Eine Stunde mit 1.000 W kostet bei 0,30 €/kWh 30 Cent und läuft, solange du willst — der Akku ist dann keine Ersparnis.", "Preis vor Ort prüfen", "heizl%C3%BCfter+thermostat", "heater"),
+ ],
  "infrarotheizung-thermostat": [
    ("Steckdosenthermostat", "Ohne Installation", "Zwischen Steckdose und Panel — Belastbarkeit auf dem Typenschild mit der Leistung des Panels vergleichen.", "Preis vor Ort prüfen", "steckdosenthermostat+infrarotheizung", "heater"),
    ("Funk-Thermostat mit Empfänger", "Fühler frei platzieren", "Misst dort, wo du sitzt, statt auf Fußleistenhöhe — bei manchen Systemen für mehrere Panels.", "Preis vor Ort prüfen", "funkthermostat+infrarotheizung", "heater"),
@@ -1496,6 +1518,8 @@ CONTEXT_SUB = {
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
  "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
                                "messen. Nicht selbst getestet. Symbolbilder."),
+ "akku-heizluefter": ("In der Reihenfolge der Seite: Wärme an den Körper, dann der Sitzplatz, und das Netzgerät nur, "
+                      "wo eine Steckdose ist. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
                                 "sie sparen. Nicht selbst getestet. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "
@@ -2022,15 +2046,15 @@ def qm_toppick(slug):
         ]
     if qm <= 25:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("Comfee MPPH-09CRN7", "Preis-Leistung", "", "", "Comfee+MPPH-09CRN7", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     if qm <= 30:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("Klarstein Kraftwerk Smart 12K", "Mehr Reserve", "", "", "Klarstein+Kraftwerk+Smart+12K", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     # 40 m² and up: monoblocks below ~12k BTU are undersized — the honest chips
     # are the high-BTU class and the quiet-split option the body itself argues for.
@@ -2669,7 +2693,7 @@ function calc(){
   var btu=Math.round(qm*340*sun/500)*500;
   var model,term,url,label;
   if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";url=A_COMFEE;label="bis ca. 9.000 BTU";}
-  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";url=A_PINGUINO;label="9.000–11.000 BTU";}
+  else if(btu<=11000){model="De'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";url=A_N90;label="9.000–11.000 BTU";}
   else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";url=A_KLARSTEIN;label="11.000–13.500 BTU";}
   // Über ~13.500 BTU nennen wir kein Modell, weil wir keines haben: das größte tragbare
   // Gerät in DEVICE_MODELS["ac"] ist der 12K-Klarstein. Einem Leser, der gerade 20.500 BTU
@@ -2754,7 +2778,7 @@ else{var saved=window.ebReadRoom&&window.ebReadRoom();
 # the homepage sent buyers of two ASIN-verified models to a search box.
 HOME_TOOL = (HOME_TOOL
     .replace("A_COMFEE", json.dumps(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")))
-    .replace("A_PINGUINO", json.dumps(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")))
+    .replace("A_N90", json.dumps(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")))
     .replace("A_KLARSTEIN", json.dumps(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K"))))
 
 
@@ -4427,9 +4451,13 @@ def sizer_block(en=False, prefill=20):
             'url=' + repr(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")) + ';'
             + ('test="";' if en else 'test="/guide/comfee-mpph-09crn7-test.html";')
             + 'label=' + repr(b0) + ';}'
-            'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
-            'url=' + repr(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")) + ';'
-            + ('test="";' if en else 'test="/guide/pinguino-pac-ex105-test.html";')
+            # 9–11k slot: PAC N90 ECO Silent (9.800 BTU/h, same class as the EX105
+            # per delonghi-pinguino-vergleich). Owner 2026-09-27: EX105 moved back —
+            # amazon.de has its listing but no featured offer, so the result
+            # button would land on a page with nothing to buy.
+            'else if(btu<=11000){model="De\'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";'
+            'url=' + repr(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")) + ';'
+            + ('test="";' if en else 'test="/guide/delonghi-pac-n90-test.html";')
             + 'label=' + repr(b1) + ';}'
             'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
             'term="Klarstein+Kraftwerk+Smart+12K";'

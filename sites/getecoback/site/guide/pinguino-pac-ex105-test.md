@@ -10,7 +10,7 @@ Der Pinguino PAC EX105 ist das Gerät, das wir auf diesem Portal am häufigsten 
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
 
-**Kurz gesagt:** Für Räume von **15–25 m²** ist der PAC EX105 der Monoblock, den öffentliche Tests am konstantesten vorn sehen: **Energieeffizienzklasse A+++** (Ausnahme in dieser Klasse), gemessen rund **63 dB im Turbo direkt am Gerät** (leiser als die meisten Monoblöcke, kein Flüstergerät), Preisband ca. 400–550 €. Schwächen: ~36 kg Gewicht, keine Fensterabdichtung im Karton. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 25–30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
+**Kurz gesagt:** Für Räume von **15–25 m²** ist der PAC EX105 der Monoblock, den öffentliche Tests am konstantesten vorn sehen: **Energieeffizienzklasse A+++** (Ausnahme in dieser Klasse), gemessen rund **63 dB im Turbo direkt am Gerät** (leiser als die meisten Monoblöcke, kein Flüstergerät), bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026), Preis vor Ort prüfen. Schwächen: ~36 kg Gewicht, keine Fensterabdichtung im Karton. Kleiner Raum + knappes Budget → Comfee MPPH-09CRN7; über 25–30 m² → Klarstein 12K; maximale Ruhe → Midea PortaSplit.
 
 ## Die Testlage: Stärken und Schwächen
 
@@ -59,7 +59,7 @@ In Hitzewellen sind gut getestete Geräte regelmäßig binnen Tagen ausverkauft 
 ## Häufige Fragen
 
 **Ist der De'Longhi Pinguino PAC EX105 sein Geld wert?**
-Für Räume bis etwa 25 m² gehört er in öffentlichen Tests regelmäßig zu den stärksten Monoblock-Geräten: Energieeffizienzklasse A+++ ist in dieser Geräteklasse die Ausnahme, und die gemessene Lautstärke liegt unter der vieler Vergleichsgeräte. Er kostet mit ca. 400–550 € aber deutlich mehr als Einsteigergeräte — wer nur ein kleines Zimmer kühlen will, bekommt mit einem 9.000-BTU-Gerät wie dem Comfee MPPH-09CRN7 die Grundleistung erheblich günstiger. Wir haben das Gerät nicht selbst getestet; wir fassen öffentliche Tests zusammen.
+Für Räume bis etwa 25 m² gehört er in öffentlichen Tests regelmäßig zu den stärksten Monoblock-Geräten: Energieeffizienzklasse A+++ ist in dieser Geräteklasse die Ausnahme, und die gemessene Lautstärke liegt unter der vieler Vergleichsgeräte. Er kostet aber deutlich mehr als Einsteigergeräte — wer nur ein kleines Zimmer kühlen will, bekommt mit einem 9.000-BTU-Gerät wie dem Comfee MPPH-09CRN7 die Grundleistung erheblich günstiger. Wir haben das Gerät nicht selbst getestet; wir fassen öffentliche Tests zusammen.
 
 **Wie laut ist der Pinguino PAC EX105 wirklich?**
 In öffentlichen Messungen wurden im Turbo-Modus rund 63 dB direkt am Gerät und etwa 55 dB in Raummitte gemessen — für einen Monoblock leise, aber kein Flüstergerät. Zum Vergleich: Monoblöcke liegen typisch bei 55–65 dB. Wer sehr geräuschempfindlich schläft, fährt mit der Split-Bauweise des Midea PortaSplit leiser, weil dessen Kompressor draußen hängt. Was gegen gefühlte Lautstärke sonst hilft, steht in unserem Ratgeber zu lauten mobilen Klimaanlagen.
@@ -73,7 +73,7 @@ Mit der Faustregel von rund 340 BTU pro m² ist der PAC EX105 die richtige Klass
 **Was ist die Alternative, wenn der PAC EX105 ausverkauft ist?**
 In der gleichen Leistungsklasse sind das AEG ChillFlex Pro (ähnlich leise Ausrichtung) und für kleinere Räume das deutlich günstigere Comfee MPPH-09CRN7 die üblichen Ausweichkandidaten; für große Räume das Klarstein Kraftwerk Smart 12K, für Leise-Priorität der Midea PortaSplit. In Hitzewellen verschwinden gut getestete Geräte binnen Tagen — vor dem Peak bestellen, nicht währenddessen.
 
-**Aktuellen Preis prüfen** — Preisband zuletzt ca. 400–550 €, in Hitzewellen schnell vergriffen:
+**Aktuellen Preis prüfen** — bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026) — der Link sucht das Modell und zeigt, was es gerade gibt:
 
 Anzeige · Affiliate-Link — du zahlst denselben Preis
 
