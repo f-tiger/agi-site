@@ -8,6 +8,7 @@ import {videoEntry} from './video-business.mjs';
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
 import { lmHashOf } from './lastmod-hash.mjs';
+import { toolEvidence, evidenceSummary } from './tool-evidence.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
@@ -341,12 +342,13 @@ const PROD_HOSTS = (() => {
 const analyticsOf = () => site.ga_id
   ? `<script>
 window.SITE_EDITION = '${LOCALE.code}';
+var bpjQaVisit = /^\\/__(?:ci|probe)/.test(location.pathname) || /(?:[?&])__(?:ci|probe)(?:=|&|$)/.test(location.search) || /(?:[?&])qa=1(?:&|$)/.test(location.search);
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 // 只在正式域名上报。实测：42% 的会话落在回退域名 aiyangmao.pages.dev 上，
 // 且行为特征与正式域完全不同——两个域名混在一份报表里，任何结论都是假的。
 // 非正式域名时 gtag 仍然存在（下面的埋点照常调用），只是没有接收端，事件停在 dataLayer 里。
-if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1) {
+if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1 && !bpjQaVisit) {
   var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=${esc(site.ga_id)}';
@@ -366,7 +368,7 @@ if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1) {
 // 定义在域名门槛之外：非正式域名下也要能安全调用（内部自判，不会抛），
 // 否则回退域名上的脚本会因为 bpjEv 未定义而中断后面的逻辑。
 window.bpjEv = function (name, path) {
-  if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) === -1) return;
+  if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) === -1 || bpjQaVisit) return;
   try {
     navigator.sendBeacon('/api/hit', JSON.stringify({
       p: path || location.pathname, l: window.SITE_EDITION, e: name
@@ -537,8 +539,8 @@ function toolCard(tool, rank) {
     <div class="stub-foot">
       <span class="tags">${tags}</span>
       ${isPending(tool)
-        ? `<span class="seal is-pending" title="${UI('pending_title', '刚录入，等每日巡检确认后才会标注核实日期')}">${UI('pending', '待核实')}</span>`
-        : `<span class="seal" title="${UI('verified', '已核实')} ${esc(tool.last_verified)}">${UI('verified', '已核实')}<b>${esc(shortDate(tool.last_verified))}</b></span>`}
+        ? `<span class="seal is-pending" title="${UI('pending_title', '刚录入，尚无链接检查记录；内容核实日期另列')}">${UI('pending', '待核实')}</span>`
+        : `<span class="seal" title="${UI('link_checked', '链接检查')} ${esc(tool.last_verified)}">${UI('link_checked', '链接检查')}<b>${esc(shortDate(tool.last_verified))}</b></span>`}
     </div>
   </div>
   <a class="go" href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
@@ -569,7 +571,7 @@ const railOf = () => `<aside class="rail">
     <button class="rail-item is-on" data-cat="all">${UI('all_tools', '全部工具')}<span>${tools.length}</span></button>
     ${catEntries.map(([k, v]) => `<button class="rail-item" data-cat="${esc(k)}">${esc(v)}<span>${countOf(k)}</span></button>`).join('\n    ')}
   </nav>
-  <p class="rail-note">${UI('rail_note', '每日自动巡检链接<br>每条福利标注核实日期')}</p>
+  <p class="rail-note">${UI('rail_note', '每日自动巡检链接<br>内容核实日期与来源另列')}</p>
 </aside>`;
 
 
@@ -1076,10 +1078,8 @@ function toolFaq(tool) {
     });
   }
   faq.push({
-    q: UI('t_faq_when', '这条福利信息什么时候核实的？'),
-    a: isPending(tool)
-      ? UI('t_faq_when_pending', '该条目刚录入，还没经过每日巡检确认，所以暂未标注核实日期。链接每天自动巡检一次，通过后会标上日期。')
-      : UI('t_faq_when_a', '于 {date} 核实。本站链接每天自动巡检一次，可达即刷新核实日期，失效的进待复核清单。免费额度政策变动频繁，核实日期即为该信息的可信时点。').replace('{date}', tool.last_verified),
+    q: LOCALE.code === 'zh' ? '额度、价格和链接分别是什么时候检查的？' : 'When were the limits, prices and links checked?',
+    a: evidenceSummary(tool, LICENCE[tool.slug], LOCALE.code),
   });
   return faq;
 }
@@ -1112,11 +1112,11 @@ function toolPage(tool) {
   // 而带具体数字的摘要是我们对 guide 农场唯一的、也是决定性的差异
   const answer = tool.limits
     ? (UI('tool_answer_limits', '{name} 免费额度上限（官方来源已核实）：{quota} 领取方式：{how} 核实于 {date}。'))
-      .replace('{name}', tool.name).replace('{quota}', plain(tool.limits.quota)).replace('{how}', tool.how).replace('{date}', tool.limits.checked)
+      .replace('{name}', tool.name).replace('{quota}', ['claude', 'kimi', 'grok'].includes(tool.slug) ? firstSentence(plain(tool.limits.quota)) : plain(tool.limits.quota)).replace('{how}', tool.how).replace('{date}', tool.limits.checked)
     : isPending(tool)
-    ? (UI('tool_answer_pending', '{name} 的免费额度：{free} 领取方式：{how} 该条目刚录入，尚未经过每日巡检确认，核实日期会在巡检通过后标注。'))
+    ? (UI('tool_answer_pending', '{name} 的免费额度：{free} 领取方式：{how} 该条目刚录入，尚未经过每日巡检确认，链接检查日期会在巡检通过后标注，不能代替内容核实日期。'))
       .replace('{name}', tool.name).replace('{free}', tool.free).replace('{how}', tool.how)
-    : (UI('tool_answer', '{name} 的免费额度：{free} 领取方式：{how} 该信息于 {date} 核实。'))
+    : (UI('tool_answer', '{name} 的免费额度：{free} 领取方式：{how} 链接于 {date} 检查可达；免费额度内容未记录单独核实日期。'))
       .replace('{name}', tool.name).replace('{free}', tool.free).replace('{how}', tool.how).replace('{date}', tool.last_verified);
   const body = `<main class="stage detail-stage">
   <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/c/${esc(tool.category)}.html">${esc(catName)}</a><i>/</i><span>${esc(tool.name)}</span></nav>
@@ -1132,7 +1132,15 @@ function toolPage(tool) {
     <p class="answer">${esc(answer)}</p>
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
+    <p class="coverage">${tool.limits ? `<a href="#free-tier-limits">${LOCALE.code === 'zh' ? '查看完整额度与限制' : 'Read the full allowance and conditions'}</a> · ` : ''}<a href="${BASE}/c/${esc(tool.category)}">${LOCALE.code === 'zh' ? '对比同类工具的额度与限制' : 'Compare limits across this category'} →</a> · <a href="#sources">${LOCALE.code === 'zh' ? '查看来源与内容日期' : 'Check sources and content dates'}</a></p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${tool.category==='video'?'\n    '+videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
+    <section class="panel evidence-panel" id="sources">
+      <h2>${LOCALE.code === 'zh' ? '来源与核实日期' : 'Sources and check dates'}</h2>
+      <p>${esc(evidenceSummary(tool, LICENCE[tool.slug], LOCALE.code))}</p>
+      ${tool.limits?.source ? `<p>${srcLink(tool.limits.source)}</p>` : ''}
+      ${tool.limits?.paid?.source ? `<p>${LOCALE.code === 'zh' ? '付费档依据：' : 'Paid-tier source: '}${srcLink(tool.limits.paid.source)}</p>` : ''}
+      <p><a href="${BASE}/method">${LOCALE.code === 'zh' ? '核实方法与更正流程' : 'Verification method and corrections'}</a> · <a href="#sources">${LOCALE.code === 'zh' ? '此段固定链接' : 'Link to this evidence'}</a></p>
+    </section>
     <section class="panel benefit-panel">
       <h2>${UI('benefit', '福利内容')}</h2>
       <p>${esc(tool.free)}</p>
@@ -1141,7 +1149,7 @@ function toolPage(tool) {
       <h2>${UI('howto', '领取方式')}</h2>
       <p>${esc(tool.how)}</p>
     </section>
-    ${tool.limits ? `<section class="panel limits-panel">
+    ${tool.limits ? `<section class="panel limits-panel" id="free-tier-limits">
       <h2>${UI('limits', '额度到哪为止')}</h2>
       <p>${strong(tool.limits.quota)}</p>
       ${tool.limits.wall ? `<p class="limits-wall">${strong(tool.limits.wall)}</p>` : ''}
@@ -1180,14 +1188,14 @@ function toolPage(tool) {
           ? `上面那个数字有保质期`
           : `The number above has a shelf life`,
         line: zh
-          ? `它是 ${tool.limits.checked} 核实的。厂商改额度不发公告——我们每天巡检，变了就记一条，记录是公开的，不需要你留下任何东西。`
-          : `It was checked on ${tool.limits.checked}. Vendors don't announce when they cut a free tier — we re-check daily and log every move. The log is public and asks nothing of you.`,
+          ? `它是 ${tool.limits.checked} 核实的。厂商改额度不发公告——我们每天检查链接与来源变动信号；内容完成复核后才更新额度记录。记录公开，不需要注册。`
+          : `It was checked on ${tool.limits.checked}. Vendors don't announce when they cut a free tier — we check links and source-change signals daily, then update the limit record after reviewing the content. The log is public and needs no account.`,
       });
     })()}` : ''}
     <div class="detail-foot">
       ${isPending(tool)
         ? `<span class="seal lg is-pending">${UI('pending', '待核实')}</span>`
-        : `<span class="seal lg">${UI('verified', '已核实')} <time datetime="${esc(tool.last_verified)}"><b>${esc(tool.last_verified)}</b></time></span>`}
+        : `<span class="seal lg">${UI('link_checked', '链接检查')} <time datetime="${esc(tool.last_verified)}"><b>${esc(tool.last_verified)}</b></time></span>`}
       <a class="go lg" href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
          data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_page">${UI('claim', '领福利')} — ${esc(tool.name)} →</a>
     </div>
@@ -1198,10 +1206,10 @@ function toolPage(tool) {
     ${isPending(tool) ? '' : `<details class="embed">
       <summary>${UI('embed_title', '是这个工具的团队，或想转载这条数据？')}</summary>
       <div>
-        <p>${UI('embed_badge_note', '核实徽章（挂到官网或 README，链接回本页即可使用）：')}</p>
-        <p class="embed-preview"><img src="${site.base_url}/badge/${esc(tool.slug)}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40" loading="lazy"></p>
+        <p>${UI('embed_badge_note', '链接检查徽章（仅表示链接可达，不代表额度或条款重新核实）：')}</p>
+        <p class="embed-preview"><img src="${site.base_url}/badge/${esc(tool.slug)}.svg" alt="${UI('embed_badge_alt', '白嫖计链接可达检查')}" width="236" height="40" loading="lazy"></p>
         <pre><code>${esc(`<a href="${site.base_url}${LOCALE.dir}/tools/${tool.slug}.html?utm_source=badge">
-  <img src="${site.base_url}/badge/${tool.slug}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40" loading="lazy">
+  <img src="${site.base_url}/badge/${tool.slug}.svg" alt="${UI('embed_badge_alt', '白嫖计链接可达检查')}" width="236" height="40" loading="lazy">
 </a>`)}</code></pre>
         <p>${UI('embed_data_note', '本站已核实的额度数据以 CC BY 4.0 开放转载（含商用），条件是注明「白嫖计 baipiaoji.com」并回链：')}<a href="${site.base_url}/limits.json">limits.json</a> · <a href="${site.base_url}/limits.md">limits.md</a></p>
       </div>
@@ -1263,14 +1271,13 @@ function toolPage(tool) {
     path: `/tools/${tool.slug}.html`,
     body,
     schema: [
-      // 新鲜度进 schema：AI 引擎显式加权 dateModified/lastReviewed，
-      // 而核实日期是全站最硬的新鲜度证据——此前只在正文里，机器读不到结构化的它
+      // Only a recorded content review is a review date; URL probes are not policy reviews.
       {
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         url: `${BASE}/tools/${tool.slug}.html`,
-        dateModified: tool.limits?.checked || tool.last_verified || TODAY,
-        lastReviewed: tool.limits?.checked || tool.last_verified || TODAY,
+        ...(tool.limits?.checked ? { lastReviewed: tool.limits.checked } : {}),
+        citation: `${BASE}/tools/${tool.slug}.html#sources`,
       },
       toolLd(tool),
       faqLd(faq),
@@ -1300,7 +1307,7 @@ const toolLd = (t) => ({
   url: t.url,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', description: t.free, availability: 'https://schema.org/InStock' },
   isAccessibleForFree: true,
-  ...(t.last_verified ? { dateModified: t.last_verified } : {}),
+  // This describes the vendor's app; our URL-probe date is not its modification date.
 });
 
 // 方案页用 HowTo：步骤结构天然适配「怎么免费做 XX」类问题
@@ -2212,11 +2219,11 @@ function categoryPage(key, label) {
   const CE = UI('cat_en', null);
   const ce = CE && CE[key];
   const answer = (pendN === list.length
-    ? UI('cat_answer_allpending', '{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。这批条目刚录入，等每日巡检确认后才会标注核实日期。以下按推荐度排序。')
+    ? UI('cat_answer_allpending', '{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。这批条目尚无链接检查记录；内容核实日期见各条来源。以下按推荐度排序。')
     : pendN
-    ? UI('cat_answer_pending','{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。其中 {done} 个已于 {date} 核实，{pend} 个刚录入、等每日巡检确认后才会标注日期。以下按推荐度排序。')
+    ? UI('cat_answer_pending','{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。其中 {done} 个已有链接检查记录，{pend} 个尚无记录；各条内容核实日期另列。以下按推荐度排序。')
       .replace('{done}', list.length - pendN).replace('{pend}', pendN)
-    : UI('cat_answer', '{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。全部于 {date} 核实，链接每日自动巡检。以下按推荐度排序。')
+    : UI('cat_answer', '{label}类共收录 {n} 个真有免费额度的 AI 工具，其中 {free} 个完全免费、{cn} 个国内可直连。链接每日自动巡检；额度内容的核实日期见各条来源，不以链接检查日期代替。以下按推荐度排序。')
       + (limNn ? UI('cat_answer_limits', '其中 {ln} 个的额度上限已核实到官方来源（含具体数字，见下表）。').replace('{ln}', limNn) : ''))
     .replace('{label}', label).replace('{noun}', (ce && ce.noun) || label)
     .replace('{n}', list.length).replace('{free}', freeN).replace('{cn}', cnN)
@@ -3228,7 +3235,7 @@ for (const L of LOCALES) {
 
 
   writeFileSync(join(outDir, 'index.html'), layout({
-    title: UI('index_title', '{name} - {n} 个真有免费额度的 AI 工具（含官方出处）+ {p} 套 0 元方案')
+    title: UI('index_title', '{name} - 免费 AI 工具、额度对比与实用工具箱')
       .replace('{name}', NAME).replace('{n}', tools.length).replace('{p}', solutions.length),
     description: DESC,
     path: '/',
@@ -3483,7 +3490,11 @@ for (const L of LOCALES) {
       official_url: t.url, page: `${BASE}/tools/${t.slug}.html`,
       verified_limit: t.limits ? { quota: plain(t.limits.quota), wall: plain(t.limits.wall), source: plain(t.limits.source || ''), checked: t.limits.checked } : null,
       licence_verdict: LICENCE[t.slug]?.verdict || null,
+      // Legacy field retained for existing API/MCP consumers; it only checks the link.
       last_verified: t.last_verified || null,
+      evidence: toolEvidence(t, LICENCE[t.slug]),
+      evidence_note: 'last_verified is link availability only. Use evidence.free_tier_checked / paid_tier_checked / commercial_terms_checked for content reviews.',
+      citation_url: `${BASE}/tools/${t.slug}.html#sources`,
     })),
   }));
 
@@ -3547,7 +3558,7 @@ for (const L of LOCALES) {
       tool: m.tool, name: bySlug.get(m.tool).name,
       claim: plain(LOCALE.code === 'zh' ? m.myth : (m.myth_en || m.myth)),
       official: plain(LOCALE.code === 'zh' ? m.official : (m.official_en || m.official)),
-      checked: bySlug.get(m.tool).limits?.checked || bySlug.get(m.tool).last_verified || null,
+      checked: bySlug.get(m.tool).limits?.checked || null,
       page: `${BASE}/tools/${m.tool}.html`,
     })),
   }, null, 2) + '\n');
@@ -8074,12 +8085,12 @@ writeFileSync(join(dist, 'limits.json'), JSON.stringify({
 // 核实徽章：给工具方的回链飞轮。他们拿到第三方核实的信誉背书，我们拿到官网/README 的外链。
 // 视觉遵守 DESIGN.md：纸底、墨字、零圆角，绿色只表「已核实」。
 mkdirSync(join(dist, 'badge'), { recursive: true });
-const badgeSvg = (date) => `<svg xmlns="http://www.w3.org/2000/svg" width="236" height="40" role="img" aria-label="白嫖计已核实免费额度 ${date}">
+const badgeSvg = (date) => `<svg xmlns="http://www.w3.org/2000/svg" width="236" height="40" role="img" aria-label="白嫖计链接可达检查 ${date}">
 <rect width="236" height="40" fill="#efece6"/>
 <rect x="1" y="1" width="234" height="38" fill="none" stroke="#141414" stroke-width="2"/>
 <rect x="8" y="14" width="12" height="12" fill="#1f7a5c"/>
-<text x="28" y="20" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="13" font-weight="700" fill="#141414">白嫖计 · 免费额度已核实</text>
-<text x="28" y="33" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="10.5" fill="#1f7a5c">verified ${date} · baipiaoji.com</text>
+<text x="28" y="20" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="13" font-weight="700" fill="#141414">白嫖计 · 链接可达检查</text>
+<text x="28" y="33" font-family="-apple-system,'PingFang SC','Microsoft YaHei',sans-serif" font-size="10.5" fill="#1f7a5c">link checked ${date} · baipiaoji.com</text>
 </svg>`;
 for (const t of RAW_TOOLS.filter((x) => x.last_verified)) {
   writeFileSync(join(dist, 'badge', `${t.slug}.svg`), badgeSvg(t.last_verified));
@@ -8132,9 +8143,9 @@ writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipi
 
 > ${site.description}
 
-本站是中文互联网上专门收录「AI 工具真实免费额度」的导航站，同时提供英文版（/en/）。与通用 AI 工具目录不同，只收录确有免费额度的工具，且每条福利都标注核实日期、链接每日自动巡检。
+本站是中文互联网上专门收录「AI 工具真实免费额度」的导航站，同时提供英文版（/en/）。与通用 AI 工具目录不同，只收录确有免费额度的工具，且每条额度以内容核实日期为准；链接每日自动巡检，链接可达不代表内容重新核实。
 
-A bilingual directory of AI tools that genuinely have a free tier. Chinese at the root, English under /en/. Every listing carries the date its free tier was verified; links are re-checked automatically every day.
+A bilingual directory of AI tools with free tiers. Chinese at the root, English under /en/. Content reviews use each record's checked date; last_verified only records link availability. Daily link checks do not re-verify quotas, prices or terms. Cite the relevant content date and source, not the build date.
 
 ## 核心数据 / Key figures（截至 ${TODAY}）
 

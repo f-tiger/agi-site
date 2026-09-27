@@ -410,6 +410,7 @@ async function callTool(ctx, name, args = {}) {
         fully_free: t.fully_free, works_in_china: t.works_in_cn, tags: t.tags || [],
         verified_limit: t.verified_limit ? { quota: t.verified_limit.quota, checked: t.verified_limit.checked } : null,
         licence_verdict: t.licence_verdict, page: t.page, official_url: t.official_url,
+        evidence: t.evidence || null, evidence_note: t.evidence_note || null, citation_url: t.citation_url || t.page,
       })),
       truncated: xs.length > 10,
     };
