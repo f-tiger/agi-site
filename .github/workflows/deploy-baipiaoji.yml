@@ -24,12 +24,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: deploy-baipiaoji
+  # A push skipped by the job gate must not cancel an actual deployment.
+  group: ${{ (github.event_name != 'push' || contains(github.event.head_commit.message, '[deploy]')) && 'deploy-baipiaoji' || format('skip-baipiaoji-{0}', github.run_id) }}
   # 2026-08-16:账号 Actions 额度 15 天用掉 90%(1803/2000),本仓是最大消耗源
   # (342 次运行 × 均 3.5 分)。根因不是定时任务,是会话开发期连续 push——默认分支
   # 就是 claude/**,每推一次都跑一次完整构建部署。改成取消被顶替的运行:一串连续
   # push 只有最后一次真正部署,结果完全一样,前面几次的分钟数省下来。
-  # 定时任务不受影响(它们各自独立触发,不会被 push 顶掉)。
+  # 实际部署共享组；无 [deploy] 的 push 使用独立组，不会顶掉部署。
   cancel-in-progress: true
 
 jobs:
