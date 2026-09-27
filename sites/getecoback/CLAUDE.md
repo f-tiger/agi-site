@@ -3288,3 +3288,13 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **顺手修**:工具枢纽的家族正则里 `lueft` 会命中 `heizluefter`,任何暖风机工具页都会被归到「💧 Feuchte」;改为 `(?<!heiz)lueft`。
 - **队列**:可建项仍只有 2 个(riecht-verbrannt、hygrometer;后者今天补了 SERP,剩「75 % 盐测」要一手来源),闸门会继续 warning——这是实情,五个候选里只有一个过门。
 - **判定线 `eco-akku-heizluefter-1225`**(已进台账)。**别再从 rising 面挑 `große räume` / `20 qm` / `auto` / `mobile heizung`**,读数与判定都在队列里。
+
+## EX105 核验结案:amazon.de 有 listing、没有可买的新品(2026-09-27,owner 截图)
+
+- **方法**:无痕/登录均可,配送地设 Berlin 10115,用 EAN **8004399026445** 搜 amazon.de(比搜型号名准)。结果只有 1 条:PACEX105 listing(3,8 星 / 277 评),
+  **「No featured offers available」**,只有 2 个二手/新品报价,约 USD 1.146(账号以美元显示)。
+- **结论**:没有 Buy Box,`/dp/` 直链只会把读者送到加不了购物车的页 → **永不烘焙 EX105 的 ASIN,也不再向 owner 要**。搜索链接是正确形态(显示当天真能买到的)。
+  09-23 写的「核验通过就是 31 % /dp/」作废,`eco-dp-share-0928` 按现有读数结算。
+- **同日改掉的不实数字**:货架徽章「€€€ · ca. 400–550 €」(约 70 页)改为「Preis vor Ort prüfen」;五张页正文里的「kostet mit ca. 400–550 €」去掉数字,
+  EX105 测评页与 Pinguino 对比页写明「bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026)」;FAQ 与 JSON-LD 同步改,parity 闸门验过。
+- **没动的**:EX105 在货架上的位置与角色(Allrounder)。它 28 天仍有 14 次点击,点进去看到的是搜索页上的可买替代品;要不要把它从首卡降下来是编辑决定,等 owner 定。

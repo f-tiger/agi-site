@@ -682,6 +682,14 @@ MODEL_ASIN = {
     # MediaMarkt.at. Whether it is still stocked on amazon.de specifically is
     # unknown from here and cannot be read off the owner's screenshots while
     # their amazon.de delivery country is set to the United States.
+    # 2026-09-27, owner search by EAN 8004399026445 on amazon.de (delivery set to
+    # Berlin 10115): exactly one result, the PACEX105 listing (3,8 stars, 277
+    # ratings) with "No featured offers available" and two used & new offers at
+    # about USD 1.146. The listing exists, but there is no Buy Box: a /dp/ link
+    # would land readers on a page with nothing to add to the basket. Keep the
+    # search link (it shows what is buyable today) and do not ask the owner for
+    # this ASIN again. The shelf badge "ca. 400–550 €" was dropped the same day:
+    # no new unit is on offer at amazon.de at that price.
     "De'Longhi Pinguino PAC EX105": "",
     # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
     # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
@@ -806,7 +814,7 @@ SVG_GRAD = {"ac": "#eaf6ff,#cfe6f7", "mobileac": "#e6f7f2,#c8ece0", "cooler": "#
 # (title, role-badge, one-liner, price-band, amazon-search-q, svg-key)
 DEVICE_MODELS = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "€€€ · ca. 400–550 €", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "Monoblock-Testsieger der Stiftung Warentest, Silent-Modus, Kältemittel R290.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Preis-Leistung", "Günstig für kleine Schlaf- & Arbeitszimmer — dafür deutlich hörbar.", "€€ · ca. 250–320 €", "Comfee+MPPH-09CRN7", "ac"),
    ("AEG ChillFlex Pro", "Leise & gut ausgestattet", "Angenehm fürs Schlafzimmer, solide Ausstattung.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
@@ -876,7 +884,7 @@ DEVICE_MODELS = {
 
 DEVICE_MODELS_EN = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "€€€ · approx. €400–550", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "check price locally", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("Comfee MPPH-09CRN7", "Best value", "Affordable for small bedrooms & offices — but clearly audible.", "€€ · approx. €250–320", "Comfee+MPPH-09CRN7", "ac"),
    # This card used to be labelled "MeacoFan / quiet pick" while linking an AEG
    # search — a fan brand standing in for an air conditioner. Named properly now.
