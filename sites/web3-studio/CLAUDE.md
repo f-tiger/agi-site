@@ -15,7 +15,7 @@
 - D1:隔离表 `web3_studio_feedback`(匿名反馈);`/api/stats`(排除 qa=1)· `/api/feedback` ·
   `/api/event` · `/api/growth`(`measurement.mjs`)· `/api/health` · hub 另有 `/api/market`(公开
   行情,只引用注明 UTC 取数时间)· `/api/research` · `/api/briefs` · `/mcp`(官方 SDK,pinned)。
-  **不记录 page_view,没有 `/api/pulse`**(设计如此)。
+  **没有全量访问统计或 `/api/pulse`**；`/api/growth` 只计用户同意后的 `page_view` 等分类事件，默认关闭。事件不是独立用户。
 - 部署:`deploy-web3-studio.yml`(push 到 main 或 `codex/web3-*`)。闸门 = `npm test`(先构建 dist,
   再 94 条测试,含「部署清单覆盖每一页且每条可解析」)+ `scripts/check_html.py`(64 页)+
   wrangler dry-run;需 Pillow(`requirements-build.txt`)渲染分享卡。部署后四个 smoke
@@ -26,6 +26,14 @@
 - heartbeat:hub 一行带部署链;十个工具主机各一行只探活。
 - `ai_access_probe.py` 探 hub;首读 09-21 全 200。`sitemap_guard.py` 十一主机全在(首读 0 重定向)。
 - **不在 `ai_referrals.py` / `traffic_sources.py`**(没有 page_view)。
+
+## 2026-09-27 复盘修复
+- Web3 巡检迁入既有 fleet-autopilot 的独立 job；其他站点失败不跳过它。当次时间戳核验后才保存 artifact / 提交，heartbeat 对超过 36 小时的旧快照报错。无新定时任务。
+- 研究笔记导出保留 Markdown 下载链接、完整文本与复制兜底，链接在编辑/删除笔记或离页时撤销；页面只说“请求下载”，不把浏览器发起动作当文件已保存。
+- `review_export` 仍是同意后的下载请求事件，不是落盘、人数或回访；复制兜底不新增事件。笔记正文不上传。
+- 英文三类任务页和官方动态页移除中文正文；中文笔记导出新增控件采用中文。现有工具指南与研究台其他文案的完整双语治理不属于此次验收。
+- 09-24 至 09-26 的共享 D1 额度事故按根目录 CLAUDE.md 标注统计缺口，零计数不能说明零使用。
+- 继续保留 `web3-research-1019` 原门槛；没有两名独立重复用户和相对既有流程改善证据，不扩激励或收费。
 
 ## 判定线(main 09-19 预登记,`data/fleet-bets.json`)
 - `web3-<tool>-1019` 十条 + `web3-research-1019`:各工具 `/api/stats` 排除 qa=1 后

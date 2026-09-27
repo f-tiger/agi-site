@@ -1,3 +1,4 @@
+import {prepareNoteDownload} from './research-export.mjs';
 import {assets,makeBaseline,readBaseline,compareBaseline,reviewValue,reviewMarkdown,reviewFields} from './research-core.mjs';
 import {mineResearchProof,verifyResearchProof,decodeProof,proofShareUrl} from './proof-core.mjs';
 import {calculateFinanceScenario,decodeFinanceShare,financeShareUrl} from './finance-core.mjs';
@@ -21,8 +22,30 @@ $('refresh-source').addEventListener('click',refresh);setInterval(refresh,60000)
 const form=$('research-note-form');const value=()=>reviewValue(Object.fromEntries(reviewFields.map(k=>[k,form.elements[k].value])));
 try{const raw=localStorage.getItem(noteKey);if(raw&&raw.length<14000){const record=JSON.parse(raw),age=Date.now()-Date.parse(record.savedAt);if(age>=0&&age<=30*86400000){const v=reviewValue(record.value);reviewFields.forEach(k=>form.elements[k].value=v[k]);$('review-status').textContent='Loaded your note saved '+record.savedAt+'. Review date: '+v.reviewDate+'.';}else localStorage.removeItem(noteKey);}}catch{}
 form.addEventListener('submit',e=>{e.preventDefault();try{localStorage.setItem(noteKey,JSON.stringify({savedAt:new Date().toISOString(),value:value()}));$('review-status').textContent='Saved in this browser for up to 30 days. No note was uploaded.';send('review_save');}catch(e){$('review-status').textContent=/QuotaExceeded|Security/.test(e.name)?'Browser storage is unavailable. Use Export to keep your note.':e.message;}});
-$('export-review').addEventListener('click',()=>{try{const text=reviewMarkdown(value(),data().quotes||[]),blob=new Blob([text],{type:'text/markdown;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='web3-evidence-note.md';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('review-status').textContent='Evidence brief exported. Review your text before sharing it.';send('review_export');}catch(e){$('review-status').textContent=e.message;}});
-$('delete-review').addEventListener('click',()=>{try{localStorage.removeItem(noteKey);form.reset();$('review-status').textContent='Saved note deleted and fields cleared.';}catch{$('review-status').textContent='Browser storage could not be changed.';}});
+const exportPanel=$('review-export-panel'),exportText=$('review-export-text'),downloadLink=$('review-download');
+const zh=document.documentElement.lang.startsWith('zh');
+const exportMessage=(en,cn)=>zh?cn:en;
+let disposeDownload=null;
+function clearExport(){disposeDownload?.();disposeDownload=null;exportText.value='';exportPanel.hidden=true;}
+form.addEventListener('input',clearExport);
+window.addEventListener('pagehide',()=>disposeDownload?.());
+$('export-review').addEventListener('click',()=>{
+ try{
+  const text=reviewMarkdown(value(),data().quotes||[]);
+  clearExport();exportPanel.hidden=false;
+  try{disposeDownload=prepareNoteDownload(text,downloadLink,exportText);downloadLink.click();}
+  catch{$('review-status').textContent=exportMessage('Download unavailable. Copy the complete brief below; your note was not uploaded.','无法下载。请复制下方完整简报；笔记未上传。');}
+ }catch(e){$('review-status').textContent=e.message;}
+});
+downloadLink.addEventListener('click',()=>{
+ $('review-status').textContent=exportMessage('Download requested. Check your browser downloads; if no file appears, use Download Markdown or copy the brief below.','已请求下载。请检查浏览器下载记录；如果没有文件，可点击“下载 Markdown”或复制下方简报。');
+ send('review_export');
+});
+$('copy-review-export').addEventListener('click',async()=>{
+ try{await navigator.clipboard.writeText(exportText.value);$('review-status').textContent=exportMessage('Evidence brief copied. Review it before sharing.','证据简报已复制。分享前请复核内容。');}
+ catch{exportText.focus();exportText.select();$('review-status').textContent=exportMessage('Copy was blocked. The complete brief is selected for manual copy.','自动复制被阻止。已选中完整简报，请手动复制。');}
+});
+$('delete-review').addEventListener('click',()=>{try{localStorage.removeItem(noteKey);form.reset();clearExport();$('review-status').textContent='Saved note deleted and fields cleared.';}catch{$('review-status').textContent='Browser storage could not be changed.';}});
 
 const proofSymbol=$('proof-symbol'),proofStatus=$('proof-status'),proofShare=$('proof-share'),copyProof=$('copy-proof');let currentProofUrl='';
 if(proofSymbol){for(const a of assets){const o=document.createElement('option');o.value=a.symbol;o.textContent=a.symbol+' · '+a.name;proofSymbol.append(o);}if(saved?.quotes[0])proofSymbol.value=saved.quotes[0].symbol;}
@@ -46,4 +69,5 @@ function runFinance(sendEvent=false){try{const s=calculateFinanceScenario(financ
 financeForm?.addEventListener('submit',e=>{e.preventDefault();runFinance(true);});
 financeShare?.addEventListener('click',async()=>{if(!financeUrl)return;try{await navigator.clipboard.writeText(financeUrl);financeStatus.textContent='Scenario link copied. It contains assumptions only.';}catch{financeStatus.textContent='Copy was blocked. Use this page URL after calculation: '+financeUrl;}send('finance_card_share');});
 if(financeForm&&new URL(location.href).searchParams.has('finance')){try{const s=decodeFinanceShare(new URL(location.href).searchParams.get('finance'));for(const [k,v] of Object.entries(s)){if(financeForm.elements[k])financeForm.elements[k].value=v;}runFinance(false);financeStatus.textContent='Shared scenario loaded. Review its assumptions before using it.';}catch{financeStatus.textContent='This finance scenario link could not be read.';}}
+
 
