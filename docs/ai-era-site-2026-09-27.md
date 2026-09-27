@@ -34,7 +34,7 @@ agi 八月 Bing AI Performance、外部带日期证据。做:①落地页普查 
 |---|---|---|
 | **读**(引用) | agi 564 次 / 30 天,前十页 502 次,全是英文定义/现状/对比页 | Bing Webmaster AI Performance 截图,Microsoft Copilots & Partners,窗口至 **2026-08-16**(Bing 标注为抽样),`sites/agiscorecard/analytics-notes.md`;**已陈旧 6 周**;bpj/eco 从没有过引用数据 |
 | **替人读**(用户触发抓取) | agi:Claude-User **29**(25 次带 claude-code UA,版本 2.1.141–2.1.281,本会话是 2.1.283;4 次是裸「Claude-User」)、Perplexity-User 1、**ChatGPT-User 0**、Google-NotebookLM 2(被判成 human);gamesledger Claude-User 4(均为 claude-code);eco、SR、gridlings、goldrush、after35 组 **0** | D1 `ua_audit`,08-30→09-27 |
-| **送**(引荐) | 三站自有数据起(bpj 08-03、agi/eco 08-05):agi **36**、bpj **45**、eco **43**(JS 口径);舰队仪器 28 天:09-13 **78** → 09-23 **59** → 09-24 58 → 09-26 渠道构成快照 56 | D1 agi `events` / bpj `hits` / eco `ev`;`data/fleet-ai-referrals.json` 历次快照(09-25、09-26 两份 ok:false,不能读) |
+| **送**(引荐) | 三站自有数据起(bpj 08-03、agi/eco 08-05):agi **36**、bpj **45**、eco **43**(JS 口径);舰队仪器 28 天:09-13 **78** → 09-23 **59** → 09-24 58 → 09-26 渠道构成快照 56 → 09-27 **53** | D1 agi `events` / bpj `hits` / eco `ev`;`data/fleet-ai-referrals.json` 历次快照(09-25、09-26 两份 ok:false,不能读) |
 
 **「替人读」不建仪表**:agi 之外只有 gamesledger 4 次(全是 claude-code),agi 的 29 次里 25 次是 claude-code,
 很可能大部分是舰队自己的会话;而 ChatGPT 08-05→09-22 送 eco 28 次,同窗 ChatGPT-User 0——用户触发抓取既不跟引用走,
@@ -145,7 +145,7 @@ eco 仪器读数 09-13 为 25、09-23 为 15。季节(eco 空调季结束)、老
 
 ## 七、判定线
 
-- **`fleet-ai-referrals-1024`**(预读,阈值与原文都不动):最近完整读数 59 / 58 / 56,≥156 需要约 2.6–2.8 倍。
+- **`fleet-ai-referrals-1024`**(预读,阈值与原文都不动):最近完整读数 59 / 58 / 56 / 53(09-27T13:26Z),≥156 需要约 2.6–2.9 倍。
   第一版曾把「0 站转正」收紧为「≥3 个访问日且 ≥2 个日期」——**撤回**:引用的两个先例都是原口径在 t0 已被非目标类别满足
   (自检、重放器、品牌导航、爬虫),这里原口径在 t0 并未满足,收紧的是目标事件本身,是移动球门。改为照字面结算,但 reading
   必须逐站写出访问日数、日期数与来源 host;「字面赢、实质单次点击」要写明,且不得据此做超出 win 分支的扩建。
