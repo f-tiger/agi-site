@@ -51,6 +51,14 @@ CAT_OF = {
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
     "akku-heizluefter": "heizen",
+    # 2026-09-27 audit: these five fell through to the "klimaanlagen" default
+    # (no prefix rule matched), so a heating blanket, an infrared-panel test and
+    # three dehumidifier/laundry pages carried an air-conditioning breadcrumb.
+    "heizdecke-stromverbrauch": "heizen",
+    "schmidbauer-infrarotheizung-test": "heizen",
+    "pro-breeze-luftentfeuchter-test": "luftqualitaet",
+    "trotec-luftentfeuchter-test": "luftqualitaet",
+    "waesche-trocknen-wohnung": "luftqualitaet",
     "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
@@ -297,6 +305,18 @@ CHROME_STYLE = ("<style id=\"eb-chrome\">"
               ".eb-thresh .hi{background:#fdf3ea;border:1px solid #f3ddc0}"
               ".eb-thresh b{display:block;font-size:15px;margin-bottom:3px}"
               "@media(max-width:560px){.eb-thresh{grid-template-columns:1fr}.eb-viz-row{grid-template-columns:96px 1fr;font-size:12.5px}}"
+              # Phone chrome (2026-09-27 audit). At 390 px the sticky nav wrapped to
+              # three rows (158 px) and the trust strip to three lines (95 px), so the
+              # H1 started at 386 px and every page's answer paragraph sat below the
+              # first screen (920–1000 px of 844). Links become one scrollable row,
+              # the trust strip one scrollable line; nothing is hidden.
+              "@media(max-width:560px){.eb-nav-in{padding:7px 14px;gap:4px 10px}"
+              ".eb-links{order:3;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;gap:16px;scrollbar-width:none;padding:2px 0}"
+              ".eb-links::-webkit-scrollbar{display:none}.eb-links a{white-space:nowrap;flex:none}"
+              ".eb-links a.eb-nav-tools{padding:3px 10px}"
+              ".eb-crumb{padding:8px 14px 0}"
+              ".eb-trust{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none;padding:6px 14px;font-size:12px}"
+              ".eb-trust::-webkit-scrollbar{display:none}}"
               "</style>\n")
 
 HEAD_EXTRA = ("<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\">\n"
@@ -2065,18 +2085,21 @@ def qm_toppick(slug):
     ]
 
 
-def toppick_block(device, en=False, slug=None):
+def toppick_block(device, en=False, slug=None, entries=None, more_href="#eb-models", more_text=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
     ctx = context_entries(slug, en)
-    entries = (ctx or (None if en else qm_toppick(slug))
+    override = entries is not None
+    entries = (entries or ctx or (None if en else qm_toppick(slug))
                or table.get(device) or table["ac"])[:3]
     head, more = TOPPICK_HEAD[en]
+    if more_text:
+        more = more_text
     # Need-first framing (2026-09-05): every device in the default AC set is a
     # monoblock or the Quick-Connect PortaSplit — "ohne Bohren" is true of all
     # of them. CONTEXT pages are excluded on purpose: the split cluster's
     # sets carry an installer clause, and a blanket promise there would
     # contradict the page's own refrigerant section.
-    if device == "ac" and not ctx:
+    if device == "ac" and not ctx and not override:
         head = head + (" — all without drilling" if en else " — alle ohne Bohren")
     pills = ""
     for name, role, _why, _price, q, _svg in entries:
@@ -2098,7 +2121,7 @@ def toppick_block(device, en=False, slug=None):
             '<strong style="font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#5b6b78;">'
             f'{head}</strong>'
             f'<span style="font-size:11px;color:#8a99a6;">{ad}</span></div>{pills}'
-            f'<a href="#eb-models" style="font-size:12.5px;color:#0f6ba8;font-weight:700;text-decoration:none;">{more}</a>'
+            f'<a href="{more_href}" style="font-size:12.5px;color:#0f6ba8;font-weight:700;text-decoration:none;">{more}</a>'
             '</div></section>\n'
             '<script>(function(){var s=document.currentScript.previousElementSibling;if(!s)return;'
             's.querySelectorAll("[data-eb-tp]").forEach(function(a){a.addEventListener("click",function(){'
@@ -2468,10 +2491,38 @@ def inject_newest(html):
     return html
 
 
+def current_season():
+    import datetime
+    from build_season import season_of
+    month = int(os.environ.get("EB_SEASON_MONTH") or datetime.date.today().month)
+    return season_of(month)
+
+
+# Homepage top strip for September–February: the same products as the autumn
+# block (home_storage_block), no named model beyond the dehumidifier that block
+# already names.
+HOME_COLD_PICKS = [
+    ("Hygrometer", "Erst messen", "", "", "hygrometer+innen", "dehum"),
+    ("Comfee MDDF-20DEN7", "Keller-Favorit", "", "", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
+    ("Infrarotheizung mit Thermostat", "Heizen ohne Dauerlauf", "", "", "infrarotheizung+mit+thermostat", "heater"),
+]
+
+
 def inject_home_toppick(html, en=False):
     """Same strip on the homepage, directly under the hero — products before prose."""
     html = re.sub(r'<!--EB_TOPPICK-->.*?<!--/EB_TOPPICK-->\n?', '', html, flags=re.S)
-    block = toppick_block("ac", en)
+    # Season-aware on the German homepage (2026-09-27). The H1 rotates with
+    # build_season ("Feuchte Wohnung im Herbst?"), but this strip — the first
+    # buy buttons on the page and the source of the mobile sticky bar — kept
+    # offering three air conditioners all year. From September to February it
+    # offers what the autumn block below sells, in the site's own order:
+    # measure first, then dehumidify, then heat. The EN homepage keeps the AC
+    # set (its section is cooling only).
+    if not en and current_season() in ("herbst", "winter"):
+        block = toppick_block("dehum", en, entries=HOME_COLD_PICKS, more_href="#eb-herbst",
+                              more_text="Alle Empfehlungen für die kalte Jahreszeit ↓")
+    else:
+        block = toppick_block("ac", en)
     # Inside the hero, right after the promise and before the generic buttons.
     # Placing it after the hero put it at 1453 px on a phone — the hero alone is
     # 880 px and the season teaser another 495 — so "under the fold" again.
@@ -3587,10 +3638,14 @@ def home_storage_block():
              'In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.',
              'Hygrostat &amp; Schlauchanschluss an Bord', 'Kompressor verliert unter ca. 10–15 °C Leistung',
              'Comfee+MDDF-20DEN7+Luftentfeuchter')
-        + card('Meistgesucht diese Woche', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Pro Breeze Luftentfeuchter 20 L',
-               'Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage. Nachfrage-Signal, kein Testurteil.',
-               'Starke reale Nachfrage', 'Nicht selbst getestet',
-               'pro+breeze+luftentfeuchter+20l')
+        # 2026-09-27: this card was "Pro Breeze 20 L — das aktuell meistgesuchte
+        # Einzelmodell", a present-tense Trends claim written in August that no
+        # current reading supports. Replaced by the cold-room answer the site's
+        # own pages give (desiccant-vs-compressor, luftentfeuchter-zieht-kein-wasser).
+        + card('Für kalte Räume', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Adsorptions-Luftentfeuchter',
+               'Unter etwa 15 °C verliert ein Kompressorgerät Leistung — für Keller, Garage und unbeheizte Räume ist diese Bauart gemacht.',
+               'Arbeitet auch in kalten Räumen', 'Braucht pro Stunde meist mehr Strom',
+               'adsorptions+luftentfeuchter')
         + card('Heizen ohne Dauerlauf', 'linear-gradient(135deg,#fff7ed,#fed7aa)', heat, 'Infrarotheizung mit Thermostat',
                'Strahlungswärme für Bad, Büro oder Garage — mit Thermostat schaltet sie nur, wenn der Raum es braucht.',
                'Thermostat = der eigentliche Spar-Hebel', 'Watt-Bedarf vorher rechnen (Rechner oben)',
@@ -3609,19 +3664,26 @@ def home_storage_block():
         'background:#fff;border:1px solid #f3ddc0;border-radius:10px;padding:9px 14px;margin:0 8px 8px 0;'
         'text-decoration:none;color:#1a2733;font-weight:700;font-size:13.5px;">' + icon + ' ' + label + '</a>'
         for icon, label, href in tools)
+    # The heading used to say "der Herbst-Schwerpunkt" all year; the block is
+    # on the homepage in every season (build_home_order moves it up from
+    # September to February and down the rest of the year).
+    season = current_season()
+    head_suffix = {"herbst": "der Herbst-Schwerpunkt", "winter": "der Winter-Schwerpunkt"}.get(
+        season, "für die kalte Jahreszeit")
+    lead = {"herbst": "Wenn die Kühl-Saison endet, beginnen die beiden Themen, die deutsche Wohnungen im Herbst wirklich beschäftigen:",
+            "winter": "In der Heizperiode beschäftigen deutsche Wohnungen vor allem zwei Themen:"}.get(
+        season, "Zwei Themen, die deutsche Wohnungen in der kalten Jahreszeit beschäftigen:")
     return (
         '<!--EB_HERBST--><section id="eb-herbst" style="background:#fbf7f0;border-top:1px solid #f3ddc0;border-bottom:1px solid #f3ddc0;">'
         '<div style="max-width:1000px;margin:0 auto;padding:30px 20px;">'
-        '<h2 style="margin:0 0 6px;">Feuchte, Schimmel &amp; Heizen — der Herbst-Schwerpunkt</h2>'
-        '<p style="margin:0 0 14px;max-width:74ch;">Wenn die Kühl-Saison endet, beginnen die beiden Themen, die deutsche '
-        'Wohnungen im Herbst wirklich beschäftigen: Kondenswasser an kühlen Wänden (und der Schimmel, der daraus wird) — '
+        '<h2 style="margin:0 0 6px;">Feuchte, Schimmel &amp; Heizen — ' + head_suffix + '</h2>'
+        '<p style="margin:0 0 14px;max-width:74ch;">' + lead + ' Kondenswasser an kühlen Wänden (und der Schimmel, der daraus wird) — '
         'und die Frage, womit sich einzelne Räume effizient heizen lassen. Erst messen und rechnen, dann kaufen.</p>'
         '<div style="margin-bottom:16px;">' + toolrow + '</div>'
         '<div class="eb-shop-h" style="margin-bottom:2px;">Was jetzt wirklich hilft</div>'
         '<p class="eb-shop-sub" style="margin-bottom:4px;"><span style="font-size:11px;color:#8a99a6;">'
         + AD_LABEL[False] + '</span></p>'
-        '<p class="eb-shop-sub">„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-Abfrage, '
-        'kein Testurteil. Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
+        '<p class="eb-shop-sub">Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
         '<div class="eb-shop-grid">' + cards + '</div>'
         '<p style="margin:14px 0 0;font-size:13.5px;">📖 Mehr dazu: '
         '<a href="/guide/schimmel-im-keller-entfernen.html">Schimmel im Keller entfernen</a> · '

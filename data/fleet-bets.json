@@ -997,7 +997,8 @@
    "win": "「给最大的 AI 面一张数据表」有效 → 把同形态加到四个分类页(它们同样是入链最多、结构化事实最少的页)",
    "lose": "AI 引荐不动 → 首页表格不是杠杆,GEO 回到只维护 llms.txt/MCP,不再为引用改版面",
    "source": "2026-09-17 D1:28 天 chatgpt-user 抓取 190 次,其中 **157 次(83%)落在首页**,单篇指南只有 1–5 次;首页此前**没有任何 table**,而 house skill(citation-growth)把表格列为引用磁石。已建 `build_home_table.py`:7 个房型 × 冷/湿/热三列,全部从 `sizing-data.json` 生成(不可手写、不会漂移),并顺带给首页加了 19 条指向冬季梯页的内链。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_home_order": "首页 09-27 起按季节排序(build_home_order.py):9–2 月表格上移到秋季块之后、第三屏;chatgpt-user 28 天读首页 430 次而真人只有 4 次,所以结算时 AI 读数的变化不能全归因于表格,也有首页整体改为当季内容的份额。"
   },
   {
    "id": "eco-troubleshoot-shape-1112",
@@ -1963,7 +1964,8 @@
    "win": "有人在用且有人从外面找到它 → 可以扩:下一个法规检查按同一形态做(候选:与阳台储能出口相关的欧盟电池法规义务,事实须在建页当天按 EUR-Lex/Commission 原文核实);€299 试点仍须 owner 接通收款后才可开售",
    "lose": "① <3 → 四页只维护不扩建,不再加法规;不把首页入口当成失败原因去挪位置(先看 ②)。① ≥3 而 ② = 0 → 用的人都来自站内入口,问题在发现面(eco 在 B2B 合规词上零权威),不是工具本身",
    "source": "sites/getecoback/docs/eu-evidence-migration-2026-09-25.md(2026-09-25 检查一节)",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_home_order": "首页入口 09-27 从 Richtwerte 表格之下移到页脚上方的「Weitere Rechner und Werkzeuge」带(链接与文字未变)。首页 28 天真人 4 次,入口位置对读数影响可忽略;工具总览、llms、sitemap 入口不变。"
   },
   {
    "id": "bpj-coding-harvard-1025",

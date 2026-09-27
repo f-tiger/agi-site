@@ -3300,3 +3300,32 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **同日 owner 定:「降到后面」**。生成层全部执行:共享货架(德/英)顺序改为 **N90 → Comfee → AEG → Klarstein → EX105**(前三张同时喂顶部条与移动端 sticky,所以全站第一个购买按钮从 EX105 搜索页变成 N90 的 `/dp/`);qm 顶部条 ≤25 m² 为 N90/Comfee/EX105、≤30 m² 为 Klarstein/N90/EX105;四个 BTU 工具(首页工具、注入式 sizer、`btu-rechner`、EN `btu-calculator`)的 9.000–11.000 BTU 档换成 **PAC N90 ECO Silent**(9.800 BTU/h,本站对比页原话「dieselbe Leistungsklasse」,ASIN 已核验)。实测:176 张带顶部条的页里 EX105 排第一的 0 张。
 - **刻意没改的**:10 张手写正文(beste-tragbare、pinguino-vergleich、EN 国家页等)里 EX105 仍是正文第一条链接——那是文章论证的一部分,不是货架;移动端 sticky 取的是页面第一个 Amazon 链接,而顶部条在正文之前,所以购买入口已经是 N90。两个 EX105 视频门面也保留。
 - **读数**:10 月看 `/dp/` 占比与 N90 点击;EX105 点击若从 14/28d 掉到个位数而总点击不降,说明读者跟着顺序走,调整成立。
+
+## 全站复审:风格、首页、分类、SEO/GEO(2026-09-27,owner:「eco站点风格，内容在首页分类，seo，geo等ai友好，都重新审视」)
+
+**先量读者再改首页(D1 28 天)**:首页真人 pv **4**(另 18 次美国无来源扫描器),真人流量 95 % 落在指南页;
+但 **chatgpt-user 读首页 430 次(占它在本站抓取的 83 %)**,duckduckbot 78、yandex 69、perplexity 47、claudebot 40、bingbot 34。
+**首页是 AI 与爬虫的读物,不是人的入口**——它的问题是「助手读到什么」,不是「人看着美不美」。
+
+**发现与处置**
+- **首页 H1 随季节换,页面本身不换**:9 月 27 日 H1 说「Feuchte Wohnung im Herbst?」,下面约 60 % 高度是制冷(BTU 工具、「Die besten Kühlgeräte diese Woche」、
+  制冷购买指南和 34 条夏季链接)。首页由十几个注入器拼成,各自挑锚点,**顺序从来没人定过**。
+  → 新增 `tools/build_home_order.py`(部署链里最后一个首页步骤):把 hero 与页脚之间切成单元,按季节排序;9–2 月秋季块、表格、分类、新页上移,
+  制冷组下移;3–8 月是原顺序。**不删不改任何文字**(实测前后词、链接逐一相同),认不出的单元跟着前一个单元走,二次运行逐字节相同,季节来回切换可逆。
+- **首页顶部推荐条全年卖三台空调**(它也是手机底部购买栏的来源)。9–2 月改为秋季块自己的三件:湿度计 → Comfee MDDF-20DEN7 → 带温控的红外板(先测再除湿再取暖)。
+  Hero 两个按钮同步:秋季指向秋季块和「Feuchte & Schimmel」分类,冬季指向「Heizen」,夏季不变。
+- **秋季块**:标题全年写「Herbst-Schwerpunkt」→ 按季节(冬季「Winter-Schwerpunkt」);中间那张卡写着「Pro Breeze 20 L — das aktuell meistgesuchte Einzelmodell」,
+  这是 8 月的趋势说法,今天没有读数支撑 → 换成本站自己页面给的冷房间答案(吸附式除湿机,优缺点取自 desiccant 页)。
+- **首页的 CBAM/EUDR 进口合规检查、家用成本工作台、电价工作台、Werkzeugkasten**(其他会话的注入,话题与室内气候无关;Werkzeugkasten 还在页脚**下面**)
+  → 统一放进页脚上方的「Weitere Rechner und Werkzeuge」带;`tools/revenue-studio/build.mjs` 对有 `EB_FOOTER` 的页(只有 eco)改为插在页脚之上。入口都保留。
+- **首页手写的「Beliebte Modelle」**里 EX105 还是第一行 → 按 owner 的「降到后面」排到 AEG 之后。
+- **分类**:五张页掉进「Klimaanlagen」默认桶(Heizdecke、Schmidbauer 测评、Pro Breeze 与 Trotec 测评、Wäsche trocknen)→ 写进 `CAT_OF`,面包屑与 JSON-LD 同步。
+  现在:Klimaanlagen 73 · Luftqualität 35 · Heizen 25 · Energie sparen 8(拆储能后最薄,但每页都是电价/电费题,不合并)。
+- **手机风格**:390 px 下吸顶导航折三行(158 px)、信任条折三行(95 px),H1 在 386 px,**每张页的「Kurz」答案段在第一屏之下(920–1000 px / 844)**。
+  → 共享 chrome CSS:导航链接一行横滑、信任条一行横滑,不隐藏任何东西;实测导航 81 px、H1 253 px、答案段 775–867 px。**这一改动让约 220 张页的 HTML 变化,
+  IndexNow 会按 pushed diff 整站提交一次——一次性的、真实的样式变更,不是 churn。**
+- **SEO/GEO 复核无新缺陷**:22 道闸门全绿;llms.txt 描述已是全年范围;首页 Organization/WebSite 与 knowsAbout 正常;09-17 那次「技术 SEO 无缺陷」结论仍成立。
+- **Hero 注册框**承诺「Alarm vor der nächsten Hitzewelle」却没说发信未建 → 补上与站内其他 Radar 表单相同的「Versand noch im Aufbau」。
+
+**没做的**:删首页夏季内容(夏天它们是主角,顺序由季节决定而不是删除)、改 Beliebteste Ratgeber(按真实读数生成)、给首页新立判定线(4 个真人读不出任何东西)——
+在 `eco-home-table-geo-1112` 与 `eco-eu-evidence-1023` 上记了 09-27 的结构变化,结算时别把变化全归到原来那一个动作上。

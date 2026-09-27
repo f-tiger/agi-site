@@ -237,6 +237,25 @@ def rotate_de(season):
     html = swap(html, r'<p class="sub">.*?</p>', lambda m: f'<p class="sub">{cfg["sub"]}</p>', "hero sub")
     html = swap(html, r'<span class="badge">.*?</span>',
                 lambda m: f'<span class="badge">{cfg["badge"]}</span>', "badge")
+    # Hero buttons (2026-09-27). They pointed at #deals ("Die besten Kühlgeräte
+    # diese Woche") and #guide (the cooling buying guide) all year; from
+    # September to February build_home_order moves both sections down, so the
+    # buttons point at the season's own block and category instead.
+    cold = season in ("herbst", "winter")
+    offers = ('<a class="btn-primary" href="#eb-herbst">Empfehlungen für die kalte Jahreszeit ↓</a>' if cold
+              else '<a class="btn-primary" href="#deals">Top-Angebote ansehen ↓</a>')
+    guide = ({"herbst": '<a class="btn-ghost" href="/kategorie/luftqualitaet.html">Ratgeber Feuchte &amp; Schimmel</a>',
+              "winter": '<a class="btn-ghost" href="/kategorie/heizen.html">Ratgeber Heizen</a>'}.get(season)
+             or '<a class="btn-ghost" href="#guide">Kaufberatung</a>')
+    html = swap(html, r'<a class="btn-primary" href="#(?:deals|eb-herbst)">[^<]*</a>', lambda m: offers, "hero offers button")
+    html = swap(html, r'(<div class="hero-btns">.*?)<a class="btn-ghost" href="[^"]*">[^<]*</a>',
+                lambda m: m.group(1) + guide, "hero guide button")
+    # The hero sign-up promised a heat alarm with no word that nothing is sent
+    # yet; every other radar form on the site already says so (2026-08-06).
+    html = swap(html, r'<p class="cta-note">.*?</p>',
+                lambda m: '<p class="cta-note">Kostenloser Alarm vor der nächsten Hitzewelle — plus Preis-Alarm für empfohlene Geräte. '
+                          'Kein Spam. Ehrlich vorab: Der Versand ist noch im Aufbau, bis dahin bekommst du keine E-Mails.</p>',
+                "hero cta note")
     strip = teaser_html(cfg["teaser"], "Jetzt in der Saison:")
     if "<!--EB_SEASON-->" in html:
         html = re.sub(r'<!--EB_SEASON-->.*?<!--/EB_SEASON-->', lambda m: strip, html, flags=re.S)

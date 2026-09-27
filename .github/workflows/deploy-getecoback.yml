@@ -170,6 +170,11 @@ jobs:
       - name: Link electricity workbenches from existing content
         run: |
           python3 tools/link_energy_workbench.py
+      # Last homepage step: orders the sections by season (the H1 rotated, the
+      # page underneath did not) and groups other-topic tool blocks above the
+      # footer. Idempotent; refuses if a second run would differ.
+      - name: Order homepage sections by season
+        run: python3 tools/build_home_order.py
 
       - name: Verify household calculation examples and edge cases
         run: node tools/test_household.mjs
@@ -540,6 +545,8 @@ jobs:
           check "https://getecoback.com/guide/infrarotheizung-thermostat.html" "Fußleistenhöhe"
           check "https://getecoback.com/guide/fenster-beschlagen-aussen.html" "Randverbund"
           check "https://getecoback.com/" 'id="eb-newest"'
+          # Homepage composer (2026-09-27): other-topic tools live in one band above the footer.
+          check "https://getecoback.com/" 'id="eb-tools-band"'
           # Newest page (2026-09-27): the block must carry whatever was built last.
           check "https://getecoback.com/" 'href="/guide/akku-heizluefter.html"'
           # Trends expansion 2026-09-27: the page's answer (a division) and its
