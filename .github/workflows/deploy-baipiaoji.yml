@@ -278,6 +278,7 @@ jobs:
         run: |
           node scripts/test-hits-schema.mjs
           node scripts/test-reach-cache.mjs
+          node scripts/test-conversion-stages.mjs
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
@@ -313,6 +314,7 @@ jobs:
           node scripts/test-studio.mjs --dist
           node scripts/test-ai-tools.mjs
           node scripts/test-tool-evidence.mjs
+          node scripts/test-search-experiment.mjs
           node scripts/test-file-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
           node scripts/test-video-cases.mjs --dist
@@ -389,6 +391,9 @@ jobs:
 
       - name: Verify live free-account lifecycle and remove synthetic account
         run: node scripts/verify-free-account-live.mjs
+
+      - name: Verify search experiment and conversion stages on live site
+        run: node scripts/verify-search-experiment-live.mjs
 
       - name: Verify paid-app demand pilot without counting QA
         run: node scripts/verify-release-pilot-live.mjs

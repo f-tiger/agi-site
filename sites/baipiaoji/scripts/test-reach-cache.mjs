@@ -98,6 +98,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   const { onRequestGet } = await import('../functions/api/reach.js');
   const sql = new DatabaseSync(':memory:');
   sql.exec('CREATE TABLE hits (d TEXT, path TEXT, lang TEXT, country TEXT, ref TEXT, ev TEXT)');
+  sql.exec('CREATE TABLE free_accounts (id TEXT PRIMARY KEY,created INTEGER,qa INTEGER); CREATE TABLE free_account_identities (account_id TEXT PRIMARY KEY,email_verified INTEGER)');
   sql.prepare('INSERT INTO hits VALUES (?,?,?,?,?,?)').run(new Date().toISOString().slice(0, 10), '/tools/grok', 'en', 'US', 'www.google.com', '');
   let reads = 0;
   const HITS = { prepare(q) { let a = []; const st = { bind(...v) { a = v; return st; },
@@ -113,6 +114,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   ok(second.headers.get('x-bpj-reach-cache') === 'hit' && reads === afterFirst, '第二次请求一条 hits 查询都不发');
   const j = await second.json();
   ok(j.ok === true && j.window_days === 7 && j.humans_referred === 1 && Array.isArray(j.paths), '缓存里的是完整的 reach 响应');
+  ok(j.conversion_stages.ok && j.conversion_stages.accounts.created === 0, '注册空表是已知零，完整分层统计一起命中缓存');
   // 商业触发那条查询失败（额度边缘时实见）→ 响应标 partial，不进缓存，下一次重算。
   cache.store.clear();
   const failing = { prepare(q) { const st = HITS.prepare(q); if (/ev='biz'/.test(q)) { const b = st.bind; st.bind = (...v) => { b(...v); return { all: async () => { throw new Error('D1_ERROR: daily row read limit'); } }; }; } return st; } };
@@ -122,6 +124,11 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   const pj = await p1.json();
   ok(pj.ok === true && pj.partial === true && pj.commercial_triggers.ok === false, '商业触发读不出来时响应标 partial');
   ok(cache.store.size === 0 && p1.headers.get('x-bpj-reach-cache') === 'bypass', 'partial 响应不进缓存');
+  sql.exec('DROP TABLE free_accounts');
+  const accountFailure = await call();
+  const failedStage = await accountFailure.json();
+  ok(failedStage.partial === true && failedStage.conversion_stages.accounts === null, '账户表不可读必须是未知，不能当零注册');
+  ok(accountFailure.headers.get('x-bpj-reach-cache') === 'bypass', '缺失账户统计不缓存');
   delete globalThis.caches;
 }
 

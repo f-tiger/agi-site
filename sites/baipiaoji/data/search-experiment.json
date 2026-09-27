@@ -1,0 +1,84 @@
+{
+  "id": "bpj-en-snippet-20260927",
+  "status": "running",
+  "source": "GSC Wizard / Google Search Console Web",
+  "date_basis": "America/Los_Angeles",
+  "baseline": {
+    "start": "2026-08-28",
+    "end": "2026-09-24",
+    "property_clicks": 3,
+    "property_impressions": 613,
+    "aggregation": "Page baselines combine canonical and .html variants; page totals must not be used as property totals."
+  },
+  "observation": {
+    "start": "2026-09-28",
+    "end": "2026-10-25",
+    "review_after": "2026-10-29",
+    "minimum_impressions_per_cohort": 500,
+    "minimum_clicks_total": 10,
+    "rule": "Below either gate: inconclusive, no expansion. These are operational gates, not statistical significance. Even above them, inspect comparable query/country/device/rank strata before any attribution."
+  },
+  "variable": "English meta description only on two existing tool pages; titles and body are unchanged. Homepage navigation is a separate usability change, not a randomized SEO test.",
+  "design": "Non-randomized observation controls have different query intent; no causal lift claim. Google may rewrite snippets.",
+  "pages": [
+    {
+      "path": "/en/tools/fireworks",
+      "cohort": "treatment",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 42,
+        "position": 3.3333333333333335,
+        "metadata": {
+          "title": "Fireworks AI free tier limits | AI tools - Baipiaoji",
+          "description": "Fireworks AI free-tier ceiling (verified against an official source): New accounts automatically receive $1 in free credits (roughly 1M tokens on a 70B-cla…"
+        }
+      },
+      "description": "Is Fireworks AI free? Check trial credits, what happens when they run out, and billing conditions, with dated sources."
+    },
+    {
+      "path": "/en/tools/pixverse",
+      "cohort": "treatment",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 27,
+        "position": 2.7777777777777777,
+        "metadata": {
+          "title": "PixVerse free tier limits | AI tools - Baipiaoji",
+          "description": "PixVerse free-tier ceiling (verified against an official source): The free tier grants daily credits — officially stated as 30–60 per day, with the in-app…"
+        }
+      },
+      "description": "Check PixVerse's free credit allowance, reset rules, watermarks and commercial-use limits. Compare dated sources before choosing a plan."
+    },
+    {
+      "path": "/en/tools/suno",
+      "cohort": "observation_control",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 31,
+        "position": 10.387096774193548,
+        "metadata": {
+          "title": "Suno free tier limits | AI tools - Baipiaoji",
+          "description": "Suno free-tier ceiling (verified against an official source): The free plan refreshes 50 credits daily — officially about 10 short songs a day."
+        }
+      }
+    },
+    {
+      "path": "/en/tools/kling",
+      "cohort": "observation_control",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 18,
+        "position": 6.333333333333333,
+        "metadata": {
+          "title": "Kling AI (Kuaishou) free tier limits | AI tools - Baipiaoji",
+          "description": "Kling AI (Kuaishou) free-tier ceiling (verified against an official source): Non-members get 66 inspiration credits on each daily login — roughly six stand…"
+        }
+      }
+    }
+  ],
+  "stop_conditions": [
+    "Incorrect source claim or technical/indexing regression: fix immediately and mark interrupted.",
+    "Any cohort title, description or source content change: record contamination before interpretation.",
+    "No automatic expansion or extension at the review date."
+  ]
+}
