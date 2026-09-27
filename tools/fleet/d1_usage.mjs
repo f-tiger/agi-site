@@ -117,11 +117,13 @@ async function main() {
 
   // Daily totals per database, and the hour each UTC day crossed the limit.
   const perDay = new Map(); // date -> Map(db -> rowsRead)
+  const perDayW = new Map(); // date -> Map(db -> rowsWritten)
   const perHour = new Map(); // date -> [[hour, rowsRead]]
   for (const g of hourly) {
     const h = g.dimensions.datetimeHour, d = h.slice(0, 10), db = g.dimensions.databaseId, n = g.sum.rowsRead;
-    if (!perDay.has(d)) perDay.set(d, new Map());
+    if (!perDay.has(d)) { perDay.set(d, new Map()); perDayW.set(d, new Map()); }
     perDay.get(d).set(db, (perDay.get(d).get(db) || 0) + n);
+    perDayW.get(d).set(db, (perDayW.get(d).get(db) || 0) + (g.sum.rowsWritten || 0));
     if (!perHour.has(d)) perHour.set(d, new Map());
     perHour.get(d).set(h, (perHour.get(d).get(h) || 0) + n);
   }
@@ -135,6 +137,15 @@ async function main() {
   say(`|---|${dates.map(() => '---:').join('|')}|`);
   for (const db of dbs) say(`| ${nameOf(db)} | ${dates.map((d) => fmt(perDay.get(d).get(db))).join(' | ')} |`);
   say(`| **account total** | ${dates.map((d) => `**${fmt([...perDay.get(d).values()].reduce((a, b) => a + b, 0))}**`).join(' | ')} |`);
+  say();
+  // Writes have their own account-wide limit (100,000/day). A one-off migration spends from the same pool
+  // as every site's event and pageview writes, so size it against this table first.
+  say('### Rows written per database per UTC day (limit 100,000, account-wide)');
+  say();
+  say(`| database | ${dates.map((d) => d.slice(5)).join(' | ')} |`);
+  say(`|---|${dates.map(() => '---:').join('|')}|`);
+  for (const db of dbs) say(`| ${nameOf(db)} | ${dates.map((d) => fmt(perDayW.get(d).get(db))).join(' | ')} |`);
+  say(`| **account total** | ${dates.map((d) => `**${fmt([...perDayW.get(d).values()].reduce((a, b) => a + b, 0))}**`).join(' | ')} |`);
   say();
   say('### When each day hit 5,000,000');
   say();
