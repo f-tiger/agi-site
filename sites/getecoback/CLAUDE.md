@@ -3297,4 +3297,6 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
   09-23 写的「核验通过就是 31 % /dp/」作废,`eco-dp-share-0928` 按现有读数结算。
 - **同日改掉的不实数字**:货架徽章「€€€ · ca. 400–550 €」(约 70 页)改为「Preis vor Ort prüfen」;五张页正文里的「kostet mit ca. 400–550 €」去掉数字,
   EX105 测评页与 Pinguino 对比页写明「bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026)」;FAQ 与 JSON-LD 同步改,parity 闸门验过。
-- **没动的**:EX105 在货架上的位置与角色(Allrounder)。它 28 天仍有 14 次点击,点进去看到的是搜索页上的可买替代品;要不要把它从首卡降下来是编辑决定,等 owner 定。
+- **同日 owner 定:「降到后面」**。生成层全部执行:共享货架(德/英)顺序改为 **N90 → Comfee → AEG → Klarstein → EX105**(前三张同时喂顶部条与移动端 sticky,所以全站第一个购买按钮从 EX105 搜索页变成 N90 的 `/dp/`);qm 顶部条 ≤25 m² 为 N90/Comfee/EX105、≤30 m² 为 Klarstein/N90/EX105;四个 BTU 工具(首页工具、注入式 sizer、`btu-rechner`、EN `btu-calculator`)的 9.000–11.000 BTU 档换成 **PAC N90 ECO Silent**(9.800 BTU/h,本站对比页原话「dieselbe Leistungsklasse」,ASIN 已核验)。实测:176 张带顶部条的页里 EX105 排第一的 0 张。
+- **刻意没改的**:10 张手写正文(beste-tragbare、pinguino-vergleich、EN 国家页等)里 EX105 仍是正文第一条链接——那是文章论证的一部分,不是货架;移动端 sticky 取的是页面第一个 Amazon 链接,而顶部条在正文之前,所以购买入口已经是 N90。两个 EX105 视频门面也保留。
+- **读数**:10 月看 `/dp/` 占比与 N90 点击;EX105 点击若从 14/28d 掉到个位数而总点击不降,说明读者跟着顺序走,调整成立。

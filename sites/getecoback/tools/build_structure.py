@@ -814,11 +814,15 @@ SVG_GRAD = {"ac": "#eaf6ff,#cfe6f7", "mobileac": "#e6f7f2,#c8ece0", "cooler": "#
 # (title, role-badge, one-liner, price-band, amazon-search-q, svg-key)
 DEVICE_MODELS = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   # Order changed 2026-09-27 (owner: 「降到后面」): the EX105 sits behind the models
+   # with a verified amazon.de product page. Its listing there has no featured
+   # offer (see MODEL_ASIN), and the first three cards also feed the top strip
+   # and the sticky bar, i.e. the page's first buy button.
    ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "Monoblock-Testsieger der Stiftung Warentest, Silent-Modus, Kältemittel R290.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Preis-Leistung", "Günstig für kleine Schlaf- & Arbeitszimmer — dafür deutlich hörbar.", "€€ · ca. 250–320 €", "Comfee+MPPH-09CRN7", "ac"),
    ("AEG ChillFlex Pro", "Leise & gut ausgestattet", "Angenehm fürs Schlafzimmer, solide Ausstattung.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "Für große Räume", "In öffentlichen Vergleichen die stärkste Kühlleistung der Runde.", "Preis vor Ort prüfen", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("Bosch Cool 5000", "Einfach aufgestellt", "Plug-and-Play — schnell startklar, unkomplizierte Bedienung.", "Preis vor Ort prüfen", "Bosch+Cool+5000+Klimager%C3%A4t", "ac"),
    ("Suntec Impuls 2.0+", "Leicht & mobil", "Leichtgewicht — lässt sich gut zwischen Räumen umstellen.", "Preis vor Ort prüfen", "Suntec+Impuls+2.0%2B", "ac"),
    ("Midea PortaSplit", "Split ohne Bohren", "Quick-Connect-Split: leise und effizient, ohne Kernbohrung.", "€€€€ · Preis vor Ort prüfen", "Midea+PortaSplit", "mobileac"),
@@ -884,13 +888,13 @@ DEVICE_MODELS = {
 
 DEVICE_MODELS_EN = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "check price locally", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Best value", "Affordable for small bedrooms & offices — but clearly audible.", "€€ · approx. €250–320", "Comfee+MPPH-09CRN7", "ac"),
    # This card used to be labelled "MeacoFan / quiet pick" while linking an AEG
    # search — a fan brand standing in for an air conditioner. Named properly now.
    ("AEG ChillFlex Pro", "Quiet pick", "Comfortable in the bedroom, well equipped.", "€€€ · approx. €350–500", "AEG+ChillFlex+Pro", "ac"),
-   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "For large rooms", "Strongest cooling of its group in public comparisons.", "check price locally", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "check price locally", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
  ],
  "fan": [
    ("MeacoFan 1056", "Extra quiet", "Very quiet — ideal for the bedroom.", "€€ · approx. €90–120", "MeacoFan+1056", "fan"),
@@ -2042,15 +2046,15 @@ def qm_toppick(slug):
         ]
     if qm <= 25:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("Comfee MPPH-09CRN7", "Preis-Leistung", "", "", "Comfee+MPPH-09CRN7", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     if qm <= 30:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("Klarstein Kraftwerk Smart 12K", "Mehr Reserve", "", "", "Klarstein+Kraftwerk+Smart+12K", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     # 40 m² and up: monoblocks below ~12k BTU are undersized — the honest chips
     # are the high-BTU class and the quiet-split option the body itself argues for.
@@ -2689,7 +2693,7 @@ function calc(){
   var btu=Math.round(qm*340*sun/500)*500;
   var model,term,url,label;
   if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";url=A_COMFEE;label="bis ca. 9.000 BTU";}
-  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";url=A_PINGUINO;label="9.000–11.000 BTU";}
+  else if(btu<=11000){model="De'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";url=A_N90;label="9.000–11.000 BTU";}
   else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";url=A_KLARSTEIN;label="11.000–13.500 BTU";}
   // Über ~13.500 BTU nennen wir kein Modell, weil wir keines haben: das größte tragbare
   // Gerät in DEVICE_MODELS["ac"] ist der 12K-Klarstein. Einem Leser, der gerade 20.500 BTU
@@ -2774,7 +2778,7 @@ else{var saved=window.ebReadRoom&&window.ebReadRoom();
 # the homepage sent buyers of two ASIN-verified models to a search box.
 HOME_TOOL = (HOME_TOOL
     .replace("A_COMFEE", json.dumps(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")))
-    .replace("A_PINGUINO", json.dumps(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")))
+    .replace("A_N90", json.dumps(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")))
     .replace("A_KLARSTEIN", json.dumps(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K"))))
 
 
@@ -4447,9 +4451,13 @@ def sizer_block(en=False, prefill=20):
             'url=' + repr(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")) + ';'
             + ('test="";' if en else 'test="/guide/comfee-mpph-09crn7-test.html";')
             + 'label=' + repr(b0) + ';}'
-            'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
-            'url=' + repr(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")) + ';'
-            + ('test="";' if en else 'test="/guide/pinguino-pac-ex105-test.html";')
+            # 9–11k slot: PAC N90 ECO Silent (9.800 BTU/h, same class as the EX105
+            # per delonghi-pinguino-vergleich). Owner 2026-09-27: EX105 moved back —
+            # amazon.de has its listing but no featured offer, so the result
+            # button would land on a page with nothing to buy.
+            'else if(btu<=11000){model="De\'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";'
+            'url=' + repr(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")) + ';'
+            + ('test="";' if en else 'test="/guide/delonghi-pac-n90-test.html";')
             + 'label=' + repr(b1) + ';}'
             'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
             'term="Klarstein+Kraftwerk+Smart+12K";'
