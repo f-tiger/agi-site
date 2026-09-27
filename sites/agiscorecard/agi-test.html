@@ -93,7 +93,8 @@ footer a{color:var(--muted)}
   </div>
   <div style="text-align:center;margin:4px 0 2px">
     <button class="btn sec" id="lock-btn" onclick="lockPrediction()">🔒 Lock in my prediction</button>
-    <p style="font-size:12px;color:var(--muted);margin:8px 0 0">Lock it and we'll tell you if the Tracker proves you right.</p>
+    <p id="lock-note" style="font-size:12px;color:var(--muted);margin:8px 0 0">Lock it and we'll tell you if the Tracker proves you right.</p>
+    <div id="lock-sub" style="text-align:left;max-width:460px;margin:0 auto"><a id="lock-sub-a" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=agi_test_lock" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'agi_test_lock'});" style="display:none">Get told if you're proven right</a></div>
   </div>
   <div class="cta">
     <p>Want to know if your call was right? We track it — the live AGI-2027 Thesis Tracker moves only when real evidence lands.</p>
@@ -137,6 +138,8 @@ var ARCH = {
   'contrarian':{name:'The Contrarian',emoji:'🛡️',line:'With the academic survey (2040+) — betting against the trend.'}
 };
 var mySlug=null;
+var LOCK_SUB_FROM=Date.UTC(2026,9,1);
+try{if(Date.now()>=LOCK_SUB_FROM)document.getElementById('lock-note').textContent="Lock it, leave an email, and we'll tell you if the Tracker proves you right.";}catch(e){}
 function castVote(slug){
   mySlug=slug;
   var a=ARCH[slug];
@@ -147,7 +150,11 @@ function castVote(slug){
   document.getElementById('r-card').src='/share/'+slug+'.png';
   document.getElementById('r-detail').href='/agi-type/'+slug;
   document.getElementById('result').style.display='block';
-  gtag('event','vote_cast',{label:slug});
+  if(!window.__quietPick) gtag('event','vote_cast',{label:slug});
+  window.__quietPick=false;
+  // Put the pick in the URL so the edge-injected signup form can name the reader's type
+  // (it reads ?pick=). self=1 keeps a reload from counting as an article deep-link.
+  if(Date.now()>=LOCK_SUB_FROM){try{history.replaceState(null,'',location.pathname+'?pick='+slug+'&self=1');}catch(e){}}
 }
 function sUrl(){return mySlug?'https://agiscorecard.com/agi-type/'+mySlug:'https://agiscorecard.com/agi-test';}
 function sText(){var a=ARCH[mySlug]||{name:'',emoji:''};return 'I’m '+a.name+' '+a.emoji+' on AGI. Think you can out-predict me? What’s your AGI type?';}
@@ -167,6 +174,14 @@ function lockPrediction(){
   var b=document.getElementById('lock-btn');
   b.textContent='🔒 Locked in — '+d; b.disabled=true; b.style.opacity=.65; b.style.cursor='default';
   renderLocked();
+  // Locking used to store the pick in localStorage only, so "we'll tell you" had no way
+  // to reach anyone. Open the on-site email form right under the button (the edge
+  // script turns this beehiiv link into an inline form on click; if it is absent, the
+  // link simply opens beehiiv).
+  // Dormant until 2026-10-01 UTC: the pre-registered 09-30 sub_ok line must settle on the
+  // funnel it was registered against (never change the tested object inside its window).
+  if(Date.now()<LOCK_SUB_FROM) return;
+  try{var sa=document.getElementById('lock-sub-a');if(sa){sa.style.display='inline';sa.click();sa.style.display='none';}}catch(e){}
 }
 function renderLocked(){
   var raw; try{raw=localStorage.getItem('agiLock');}catch(e){}
@@ -188,7 +203,8 @@ try{
     var order=['accelerationist','true-believer','realist','skeptic','contrarian'];
     var idx=order.indexOf(m[1]);
     // Deferred: the gtag beacon wrapper is edge-injected at the end of <body>, so it does not exist yet at parse time.
-    window.addEventListener('DOMContentLoaded',function(){ if(idx>-1 && btns[idx]){ btns[idx].click(); gtag('event','deeplink_pick',{label:m[1]}); } });
+    var selfPick=/[?&]self=1/.test(location.search);
+    window.addEventListener('DOMContentLoaded',function(){ if(idx>-1 && btns[idx]){ window.__quietPick=selfPick; btns[idx].click(); if(!selfPick) gtag('event','deeplink_pick',{label:m[1]}); } });
   }
 }catch(e){}
 
