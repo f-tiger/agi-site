@@ -10,8 +10,20 @@ opposite of what it claims to be. v2 reads:
   * ots/manifest.json            — OpenTimestamps proofs (which records are anchored, status)
 and states the one number v1 never stated: how many scored calls carry a structured
 probability, i.e. the Brier-eligible n. NEVER pad n, NEVER show a curve before n>=20.
+
+v3 2026-09-27 — click-to-verify. "Don't trust, verify" only builds trust if verifying is cheap,
+and until today it needed a CLI install. The OTS section now carries a button that (only on
+click) fetches /ots/manifest.json and every file it lists, hashes each with Web Crypto, checks
+the hash against the listed versions and that the proof file's header commits to it, then
+recomputes the Thesis Tracker from /data.json with the weights of tools/gen_index.py. Those
+weights are read from gen_index.py's SOURCE (ast), never imported: gen_index writes data.json,
+index-history.json and pages at import time (CLAUDE.md 生成器漂移). Byte-identity audit
+2026-09-27: the deploy build (gen_feed / gen_agent_surfaces / gen_changelog / grader --check)
+writes none of the six anchored JSON files and the worker's non-HTML branch passes them through
+untouched, so nothing is excluded; if that ever changes, exclude the file here and say why.
 Rerun after any ledger change: python3 tools/gen_calibration.py
 """
+import ast
 import datetime as dt
 import json
 import os
@@ -34,6 +46,27 @@ def load():
     if os.path.exists(mp):
         man = json.load(open(mp, encoding="utf-8")).get("files", {})
     return sw, d, man
+
+
+def published_weights():
+    """WEIGHT from tools/gen_index.py, parsed from its source — importing it would rewrite the site."""
+    src = open(os.path.join(ROOT, "tools", "gen_index.py"), encoding="utf-8").read()
+    for node in ast.parse(src).body:
+        if isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == "WEIGHT" for t in node.targets):
+            w = ast.literal_eval(node.value)
+            if isinstance(w, dict) and w and all(isinstance(k, str) and isinstance(v, (int, float)) for k, v in w.items()):
+                return {k: float(v) for k, v in w.items()}
+    # the in-browser recompute is only honest if it uses the published method; never guess it
+    sys.exit("gen_calibration: no literal WEIGHT dict in tools/gen_index.py — refusing to publish a recompute with guessed weights")
+
+
+def recompute(d, weights):
+    """Same arithmetic as gen_index.py (mean of weights x100; whole numbers stay whole, else round(,1))."""
+    preds = d["predictions"]
+    if not preds or any(p["verdict"] not in weights for p in preds):
+        return None
+    v = sum(weights[p["verdict"]] for p in preds) / len(preds) * 100
+    return int(v) if v == int(v) else round(v, 1)
 
 
 def stats(sw, d):
@@ -73,7 +106,179 @@ def stats(sw, d):
             "ledger_asof": sw.get("asOf"), "fetched": sw.get("fetched", "")[:10]}
 
 
-def render(s, man):
+# Scoped to the verify block (+ the proof table, whose 40-char proof names pushed a phone-width page to 625px);
+# uses only the page's existing tokens (gen_lib STYLE).
+VERIFY_CSS = """  .verify{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.25rem;margin:1rem 0 1.4rem;}
+  .verify-btn{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 20px;font:500 14px var(--font);cursor:pointer;}
+  .verify-btn[disabled]{opacity:.6;cursor:progress;}
+  .verify-sum{margin:.9rem 0 0;font-weight:600;}
+  .verify-out{list-style:none;margin:.5rem 0 0;padding:0;font-size:13.5px;}
+  .verify-out li{padding:8px 0;border-top:1px solid var(--border);overflow-wrap:anywhere;}
+  .verify-out li.warn{border-left:3px solid var(--warn);padding-left:10px;}
+  .verify code{font-family:var(--mono);font-size:12.5px;}
+  .vr-ok{color:var(--accent2);font-weight:600;}.vr-new{color:var(--text);font-weight:600;}.vr-warn{color:var(--warn);font-weight:600;}
+  .verify-score{margin:.9rem 0 0;font-size:14px;}.verify-score.diff{color:var(--warn);}
+  .ots-wrap{overflow-x:auto;}.ots-proofs td{overflow-wrap:anywhere;}
+"""
+
+# The in-browser half of `ots verify`. Nothing is fetched until the click. Every string that
+# reaches the DOM goes through textContent (manifest and file names are data, not markup), and
+# a name outside [A-Za-z0-9._-] is never turned into a URL. The proof check reads the detached
+# proof header (python-opentimestamps DetachedTimestampFile: 31-byte HEADER_MAGIC, version 1,
+# file-hash op 0x08 = SHA-256, then the 32-byte digest) — it shows the proof is ABOUT these
+# bytes; walking it to a block header stays with `ots verify`. round1() reproduces Python's
+# round(v, 1) (exact decimal value, ties to even) so a tie like 56.25 cannot read as a diff.
+# Measurement: the worker keeps ?utm_source=verify fetches out of `pageviews` (they would otherwise
+# satisfy agi-ots-verified-1124 ② / agi-consensus-mcp-1124 ② on one click); the run is one verify_run
+# event. QA: open the page with ?ci=1 and the fetches carry ci=1 too and no event is sent.
+VERIFY_JS = r"""(function(){
+var W=__WEIGHTS__;
+var box=document.getElementById('verify'),btn=document.getElementById('verify-run'),out=document.getElementById('verify-out'),
+    sum=document.getElementById('verify-sum'),sc=document.getElementById('verify-score');
+if(!box||!btn||!out)return;
+if(!(window.crypto&&crypto.subtle&&window.fetch&&window.TextDecoder)){
+  box.hidden=false;btn.hidden=true;
+  sum.textContent='This browser does not expose Web Crypto here, so the check cannot run in the page; use the command-line steps above.';
+  return;
+}
+box.hidden=false;
+var SAFE=/^[A-Za-z0-9][A-Za-z0-9._-]*$/,QA=/(?:^|[?&])ci=1(?:&|$)/.test(location.search);
+var MAGIC='004f70656e54696d657374616d7073000050726f6f6600bf89e2e884e89294';
+var own=function(o,k){return Object.prototype.hasOwnProperty.call(o,k);};
+function hex(buf){var b=new Uint8Array(buf),s='';for(var i=0;i<b.length;i++){s+=(b[i]<16?'0':'')+b[i].toString(16);}return s;}
+async function get(path){
+  var r=await fetch(path+'?utm_source=verify'+(QA?'&ci=1':''),{cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return r.arrayBuffer();
+}
+function parse(buf){return JSON.parse(new TextDecoder().decode(buf));}
+// the file's own date: first dated key of the object, or of the last row of a history array
+function ownDate(j){
+  var o=Array.isArray(j)?j[j.length-1]:j,ks=['dateModified','updated','asOf','fetched','generated','date'];
+  if(!o||typeof o!=='object')return null;
+  for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(typeof v==='string'&&/^\d{4}-\d{2}-\d{2}/.test(v))return v.slice(0,10);}
+  return null;
+}
+function commits(buf,digest){
+  var b=new Uint8Array(buf);
+  if(b.length<65)return false;
+  return hex(b.slice(0,31))===MAGIC&&b[31]===1&&b[32]===8&&hex(b.slice(33,65))===digest;
+}
+function round1(v){
+  var m=/^(\d+)\.(\d)50*$/.exec(v.toFixed(100));
+  if(m&&(+m[2])%2===0)return +(m[1]+'.'+m[2]);
+  return +v.toFixed(1);
+}
+function row(kind,name,head,tail){
+  var li=document.createElement('li');if(kind==='warn')li.className='warn';
+  var c=document.createElement('code');c.textContent=name;li.appendChild(c);
+  li.appendChild(document.createTextNode(': '));
+  var h=document.createElement('span');h.className='vr-'+kind;h.textContent=head;li.appendChild(h);
+  if(tail)li.appendChild(document.createTextNode(' '+tail));
+  out.appendChild(li);
+}
+btn.addEventListener('click',async function(){
+  btn.disabled=true;btn.textContent='Checking…';out.textContent='';sum.textContent='';sc.textContent='';sc.className='verify-score';
+  var matched=0,total=0,bufs={},man=null,st='err';
+  try{man=parse(await get('/ots/manifest.json')).files||{};}
+  catch(e){sum.textContent='Could not load /ots/manifest.json ('+e.message+'); no record was checked.';}
+  if(man){
+    var names=Object.keys(man).sort();
+    for(var i=0;i<names.length;i++){
+      var f=names[i],ents=man[f];
+      if(!Array.isArray(ents)||!ents.length)continue;
+      total++;
+      if(!SAFE.test(f)){row('warn',f,'skipped','(unexpected file name in the manifest).');continue;}
+      var buf;
+      try{buf=await get('/'+f);bufs[f]=buf;}catch(e){row('warn',f,'could not be fetched','('+e.message+').');continue;}
+      var d=hex(await crypto.subtle.digest('SHA-256',buf)),k=-1,last=ents[ents.length-1];
+      for(var j=0;j<ents.length;j++){if(ents[j].sha256===d)k=j;}
+      if(k>=0){
+        var e=ents[k],meta=e.status+', stamped '+e.stamped;
+        if(e.status==='bitcoin'&&e.confirmed)meta+=', in a Bitcoin block by '+e.confirmed;
+        if(e.status==='pending')meta+=', calendar receipt only, not in a block yet';
+        var ok=false,why='';
+        if(SAFE.test(e.proof||'')){try{ok=commits(await get('/ots/'+e.proof),d);}catch(x){why=x.message;}}
+        if(ok){
+          matched++;
+          row('ok',f,'matches proof '+e.proof,'('+meta+'); the proof file itself commits to this SHA-256'+
+              (k<ents.length-1?'. This is an earlier listed version; the latest listed one was stamped '+last.stamped+'.':'.'));
+        }else{
+          row('warn',f,'hash is listed, but the proof file '+(e.proof||'(none)')+' does not commit to it',
+              why?'(proof '+why+').':'(check it with ots verify).');
+        }
+      }else{
+        var own_d=null;try{own_d=ownDate(parse(buf));}catch(x){}
+        if(own_d&&own_d>=last.stamped){
+          row('new',f,'this version is newer than the last stamp (records are stamped daily)',
+              '— its own date, '+own_d+', is on or after the last stamp, '+last.stamped+'. SHA-256 '+d.slice(0,12)+'…');
+        }else{
+          row('warn',f,'does not match any listed version',
+              '— SHA-256 '+d.slice(0,12)+'… is not in the manifest, and '+(own_d?'its own date, '+own_d+', is before':'it carries no date of its own later than')+
+              ' the last stamp, '+last.stamped+'. Either it was edited without its date moving, or the bytes served are not the bytes stamped; the public git log settles which.');
+        }
+      }
+    }
+    sum.textContent=matched+' of '+total+' records match a listed proof (checked in this browser, '+new Date().toISOString().slice(0,16).replace('T',' ')+' UTC).';
+  }
+  try{
+    var dj=parse(bufs['data.json']||await get('/data.json')),preds=dj.predictions||[],tt=dj.thesisTracker||{},raw=0,cnt={},bad=[];
+    preds.forEach(function(p){if(own(W,p.verdict)){raw+=W[p.verdict];cnt[W[p.verdict]]=(cnt[W[p.verdict]]||0)+1;}else bad.push(String(p.verdict));});
+    if(!preds.length||bad.length){
+      st='diff';sc.className='verify-score diff';
+      sc.textContent='Thesis Tracker: cannot recompute — '+(bad.length?'verdict label(s) with no published weight: '+bad.join(', '):'no verdicts in /data.json')+'. Published: '+tt.score+'.';
+    }else{
+      var v=raw/preds.length*100,rec=v===Math.trunc(v)?v:round1(v),pub=tt.score;
+      var parts=Object.keys(cnt).sort(function(a,b){return b-a;}).map(function(w){return cnt[w]+' × '+w;}).join(', ');
+      st=rec===pub?'ok':'diff';
+      if(st==='diff')sc.className='verify-score diff';
+      sc.textContent='Thesis Tracker, recomputed in this browser from /data.json: '+rec+' / published '+pub+
+        (st==='ok'?' — they agree.':' — they differ: the score published in /data.json does not follow from the verdicts in the same file under the published weights.')+
+        ' Mean of '+preds.length+' verdict weights ('+parts+') × 100'+(tt.asOf?'; published as of '+tt.asOf:'')+'.';
+    }
+  }catch(e){sc.className='verify-score diff';sc.textContent='Thesis Tracker: could not read /data.json ('+e.message+'); nothing recomputed.';}
+  if(!QA&&typeof gtag==='function'){try{gtag('event','verify_run',{location:'calibration',label:matched+'/'+total+'|score:'+st});}catch(e){}}
+  btn.disabled=false;btn.textContent='Run the check again';
+});
+})();"""
+
+
+def verify_block(weights):
+    """Click-to-verify: static copy (what is and is not proven) + button + noscript CLI fallback."""
+    groups = {}
+    for k, w in weights.items():
+        groups.setdefault(w, []).append(k)
+    wtext = "; ".join(f"{', '.join(v)} = {w:g}" for w, v in sorted(groups.items(), key=lambda kv: -kv[0]))
+    js = VERIFY_JS.replace("__WEIGHTS__", json.dumps(weights, ensure_ascii=False).replace("</", "<\\/"))
+    return f"""<h3>Check them yourself, in this browser</h3>
+<p>“Don't trust, verify” only builds trust if verifying is cheap. The button below runs the first half of the command-line
+check with nothing to install: it downloads <a href="/ots/manifest.json">the manifest</a> and every record it lists, hashes each
+one with your browser's own SHA-256 (Web Crypto), and looks that hash up among the listed versions; for a match it also downloads
+the proof and checks that the proof file commits to that same hash. It then recomputes the Thesis Tracker from
+<a href="/data.json">/data.json</a> with the published weights ({wtext}; mean ×100) and compares it with the score the same file
+publishes. Nothing is fetched until you click. Those downloads are tagged <code>?utm_source=verify</code> and are not counted as
+visits to the files; the run leaves one event with no identifiers (how many records matched, whether the score agreed).</p>
+<p><strong>What a match proves:</strong> the bytes served to you are the bytes a listed proof was made for, and once that proof has a
+Bitcoin attestation, those bytes existed no later than that block. <strong>What it does not prove:</strong> that any verdict is right,
+that a source was read correctly, or that nothing was left out; an agreeing recompute only shows the score is the stated arithmetic
+of the verdicts. The button does not walk the proof up to a Bitcoin block header: <code>ots verify</code> or the verifier at
+opentimestamps.org does that against headers it fetches itself. A record changed since the last daily stamp is reported as newer,
+not as a failure, when its own date says so. These files are served exactly as committed (checked 2026-09-27: neither the deploy
+build nor the edge worker rewrites them), so a stamped version should match byte for byte.</p>
+<div class="verify" id="verify" hidden>
+<button type="button" class="verify-btn" id="verify-run">Verify these records in your browser</button>
+<p class="verify-sum" id="verify-sum" aria-live="polite"></p>
+<ul class="verify-out" id="verify-out"></ul>
+<p class="verify-score" id="verify-score" aria-live="polite"></p>
+</div>
+<noscript><p style="font-size:13px;color:var(--muted);">JavaScript is off, so the in-browser check cannot run. The same check from a
+terminal: download a record (<code>curl -sO https://agiscorecard.com/data.json</code>), hash it (<code>sha256sum data.json</code>),
+find that hash in <a href="/ots/manifest.json">/ots/manifest.json</a>, download the proof it names from <code>/ots/</code>, then run
+<code>ots verify &lt;proof&gt; -f data.json</code>.</p></noscript>
+<script>{js}</script>"""
+
+
+def render(s, man, weights):
     tally = " · ".join(f"{v} {k.lower()}" for k, v in sorted(s["tally"].items(), key=lambda kv: -kv[1]))
     wl, wh = s["wilson"]
     rng = s["open_odds_range"]
@@ -96,8 +301,9 @@ proof: the file's SHA-256 is submitted to public calendars and, once their aggre
 Status today: <strong>{n_all}</strong> version(s) listed, <strong>{n_btc}</strong> with a Bitcoin block attestation, <strong>{n_pend}</strong> pending
 (calendar receipt only, not in a block yet). A proof shows that those exact bytes existed no later than the block it names; it says
 nothing about whether a verdict is right, and versions before 2026-09-26 rest on the public git log only. Index: <a href="/ots/manifest.json">/ots/manifest.json</a>.</p>
-<table><thead><tr><th>Record</th><th>Versions</th><th>Latest stamped</th><th>Status</th><th>Proof</th></tr></thead><tbody>{ots_rows}</tbody></table>
-<p style="font-size:13px;color:var(--muted);">Verify: <code>ots verify &lt;proof&gt; -f &lt;file&gt;</code> (client or web verifier at opentimestamps.org); pick the manifest entry whose sha256 matches the file you downloaded. We issue no coin, hold no coin and pay nothing; the calendars are free public services.</p>"""
+<div class="ots-wrap"><table class="ots-proofs"><thead><tr><th>Record</th><th>Versions</th><th>Latest stamped</th><th>Status</th><th>Proof</th></tr></thead><tbody>{ots_rows}</tbody></table></div>
+<p style="font-size:13px;color:var(--muted);">Verify: <code>ots verify &lt;proof&gt; -f &lt;file&gt;</code> (client or web verifier at opentimestamps.org); pick the manifest entry whose sha256 matches the file you downloaded. We issue no coin, hold no coin and pay nothing; the calendars are free public services.</p>
+{verify_block(weights)}"""
     return f"""<h2>What we grade, today</h2>
 <table><thead><tr><th>Ledger</th><th>Type</th><th>Current state</th></tr></thead><tbody>
 <tr><td><a href="/situational-awareness-predictions">{s['n_pred']} Situational Awareness verdicts</a></td><td>Categorical verdicts; {s['with_flip']} of {s['n_pred']} carry a written flip condition, {s['with_resolves']} a resolution date, {s['with_watch']} a watch item, {s['with_pending']} a stated blocker (all in <a href="/data.json">data.json</a>)</td><td>{tally} → <a href="/progress-index">Thesis Tracker {s['tracker']}/100</a> as of {s['tracker_asof']}</td></tr>
@@ -128,6 +334,11 @@ explicit, including the part where the sample is still too small.</p>"""
 def main():
     sw, d, man = load()
     s = stats(sw, d)
+    weights = published_weights()
+    # build-time twin of the in-browser recompute: a mismatch is not hidden (the page will say it live), but say it here too
+    rec = recompute(d, weights)
+    if rec != s["tracker"]:
+        print(f"::warning::gen_calibration: Thesis Tracker recomputes to {rec} from data.json verdicts, data.json publishes {s['tracker']}")
     # the visible/JSON-LD date moves only when a number can have moved: ledger asOf, tracker asOf or a new/upgraded proof —
     # never the snapshot's fetch time (that would bump the page every Monday with nothing changed).
     stamps = [x.get("confirmed") or x.get("stamped") for e in man.values() for x in e if x.get("stamped")]
@@ -145,10 +356,12 @@ def main():
          "verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, "
          "including the red-team layer."),
         ("How do I check that a record was not backdated?",
-         "Versions of data.json, index-history.json, the consensus board and the odds history stamped since 2026-09-26 carry an "
+         f"Versions of {', '.join(sorted(man)) or 'the listed records'} stamped since 2026-09-26 carry an "
          "OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a "
-         "Bitcoin block). Verify with the free client against the entry whose sha256 matches your download. That proves when those "
-         "bytes existed, not that they are correct; earlier history rests on the public git log."),
+         "Bitcoin block). The “Verify these records in your browser” button on this page downloads each listed file, hashes it "
+         "locally and checks the hash against the manifest and the proof file; to follow a proof to its Bitcoin block, run the free "
+         "client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are "
+         "correct; earlier history rests on the public git log."),
     ]
     related = [("/progress-index", "AGI-2027 Thesis Tracker"),
                ("/prediction-receipts", "Every dated AGI call, on the clock"),
@@ -168,8 +381,11 @@ def main():
                  f'them can actually be Brier-scored today (<strong>{s["brier_eligible"]}</strong>), and pre-commits to publishing a '
                  f'Brier score and calibration curve once scored probability calls reach n≥{BRIER_N}. '
                  'We would rather show a small honest n than a big fake curve.'),
-        body_html=render(s, man), faqs=faqs, related=related,
+        body_html=render(s, man, weights), faqs=faqs, related=related,
     )
+    if man:
+        assert html.count("</style>\n</head>") == 1, "gen_lib head changed: cannot place the verify block's CSS"
+        html = html.replace("</style>\n</head>", VERIFY_CSS + "</style>\n</head>", 1)
     html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                         f'"datePublished": "{PUBLISHED}", "dateModified": "{day}"')
     visible = dt.date.fromisoformat(day).strftime("%B %-d, %Y")

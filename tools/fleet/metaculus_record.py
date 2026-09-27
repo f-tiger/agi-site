@@ -14,6 +14,16 @@ A sealed forecast is opened only after its question has closed (the probability 
 appear in the public repo while rival bots can still forecast). Opening needs
 METACULUS_TOKEN (the ledger key is derived from it, see tools/metaculus-bot/ledger.py).
 
+Reveals (2026-09-27). Once a question has closed — Metaculus says "closed" or "resolved" AND
+its close time has passed, both — every ledger line for it is opened and appended to
+data/metaculus/revealed.jsonl with the exact canonical plaintext (nonce included), so anyone
+can re-hash it against the committed digest without our key
+(tools/fleet/verify_commitments.py does, and checks the Bitcoin anchor of the line). The file
+is append-only and idempotent by digest: a line is revealed once, earlier lines are never
+rewritten, a question that has not closed is never revealed, and a line the current key cannot
+open (rotated token, no token) stays sealed and is only counted. A reveal made at close keeps
+"resolution": null for good; the resolution is in fleet-forecast-record.json.
+
 Metaculus API shape note: the fields read below (question.resolution, question.status,
 actual_close_time / scheduled_close_time) are the ones forecasting-tools 0.2.92 reads; the
 sandbox cannot reach metaculus.com (403), so they were not re-verified live here. Anything
@@ -25,6 +35,7 @@ unparseable counts as "unknown", never as resolved.
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import json
 import os
 import sys
@@ -35,6 +46,8 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "metaculus-bot"))
 import ledger  # noqa: E402
 
 OUT = os.path.join(ROOT, "data", "fleet-forecast-record.json")
+REVEALED = os.path.join(ROOT, "data", "metaculus", "revealed.jsonl")
+CLOSED_STATUSES = ("closed", "resolved")   # a whitelist: an unknown or new status never reveals
 OWNER = os.path.join(ROOT, "data", "fleet-money-owner.json")
 API = "https://www.metaculus.com/api/posts/{}/"
 MAX_LOOKUPS = 60           # per heartbeat; the rest wait for tomorrow
@@ -63,6 +76,70 @@ def parse_post(body: dict) -> dict:
     if res is not None and status == "resolved":
         out["resolution"] = str(res).lower()
     return out
+
+
+def is_closed(r: dict | None, now: dt.datetime) -> bool:
+    """True only when Metaculus reports the question closed or resolved AND its close time has
+    passed. Either signal alone is not enough (a stale cache entry says "open" with a past close
+    time; a re-scheduled question can say "closed" with a future one)."""
+    r = r or {}
+    close = parse_time(r.get("close_time"))
+    return close is not None and close <= now and r.get("status") in CLOSED_STATUSES
+
+
+def read_revealed(path: str) -> list[dict]:
+    rows = []
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            for raw in f:
+                raw = raw.strip()
+                if raw:
+                    try:
+                        row = json.loads(raw)
+                    except ValueError:
+                        continue  # verify_commitments.py reports it; it never blocks a reveal
+                    if isinstance(row, dict):
+                        rows.append(row)
+    return rows
+
+
+def reveal(forecasts: list[dict], resolutions: dict, key, now: dt.datetime, path: str = REVEALED) -> dict:
+    """Append a reveal line for every ledger line whose question has closed and that is not revealed
+    yet. Append-only (never rewrites a byte already there), idempotent by digest. Returns counts."""
+    have = {r.get("digest") for r in read_revealed(path)}
+    new, unopened = [], 0
+    for f in forecasts:  # ledger order, so the reveal file reads in submission order
+        d = f.get("digest")
+        if not d or d in have:
+            continue
+        r = resolutions.get(str(f.get("post_id"))) or {}
+        if not is_closed(r, now):
+            continue
+        text = ledger.unseal_text(f, key)
+        # re-hash here too: a reveal line can never be taken back, so it is checked before it is written
+        if text is None or hashlib.sha256(text.encode("utf-8")).hexdigest() != d:
+            unopened += 1
+            continue
+        new.append({"digest": d, "question_id": f.get("question_id"), "post_id": f.get("post_id"),
+                    "submitted_at": f.get("submitted_at"),
+                    "commit_v": f.get("commit_v", 1),  # no field = v1 by ledger.COMMIT_V's definition
+                    "plain_text": text, "revealed_at": now.isoformat(timespec="seconds"),
+                    "closed_at": parse_time(r.get("close_time")).isoformat(timespec="seconds"),
+                    "resolution": r.get("resolution")})
+        have.add(d)
+    if new:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        torn = False
+        if os.path.exists(path) and os.path.getsize(path):
+            with open(path, "rb") as fh:
+                fh.seek(-1, os.SEEK_END)
+                torn = fh.read(1) != b"\n"
+        with open(path, "a", encoding="utf-8") as fh:
+            if torn:  # finish a torn last line instead of gluing the next one onto it
+                fh.write("\n")
+            for row in new:
+                fh.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+    return {"new": len(new), "lines": len(have - {None}), "closed_unopened": unopened}
 
 
 def brier(p: float, outcome: int) -> float:
@@ -169,10 +246,72 @@ def selftest() -> int:
     rs = runs_summary(runs, now)
     checks += [("runs: live, success 0.5, spend 1.5", rs["state"] == "live" and rs["run_success_14d"] == 0.5 and rs["spend_usd_7d"] == 1.5),
                ("runs: stalled after 48h", runs_summary(runs, now + dt.timedelta(days=4))["state"] == "stalled")]
+    checks += reveal_checks(fs, res, key, now)
     bad = [n for n, okk in checks if not okk]
     for n, okk in checks:
         print(("  ok   " if okk else "  FAIL ") + n)
     return 1 if bad else 0
+
+
+def reveal_checks(fs, res, key, now) -> list:
+    """Reveal cases on the real ledger format (the lines come from ledger.forecast_line)."""
+    import shutil
+    import tempfile
+    td = tempfile.mkdtemp()
+    try:
+        return _reveal_checks(td, fs, res, key, now)
+    finally:
+        shutil.rmtree(td, ignore_errors=True)
+
+
+def _reveal_checks(td, fs, res, key, now) -> list:
+    path = os.path.join(td, "revealed.jsonl")
+    by_pid = {str(f["post_id"]): f for f in fs}
+    r1 = reveal(fs, res, key, now, path)
+    raw1 = open(path, "rb").read() if os.path.exists(path) else b""
+    rows = read_revealed(path)
+    got = {str(r["post_id"]) for r in rows}
+    bind = all(hashlib.sha256(r["plain_text"].encode("utf-8")).hexdigest() == r["digest"] == by_pid[str(r["post_id"])]["digest"]
+               and json.loads(r["plain_text"])["question_id"] == by_pid[str(r["post_id"])]["question_id"]
+               and json.loads(r["plain_text"])["submitted_at"] == by_pid[str(r["post_id"])]["submitted_at"]
+               and len(json.loads(r["plain_text"])["nonce"]) == 64 for r in rows)
+    r2 = reveal(fs, res, key, now, path)
+    checks = [
+        ("reveal: closed questions (1, 2 logged after close, 4) revealed once, open 3 not", r1["new"] == 3 and got == {"1", "2", "4"}),
+        ("reveal: plain_text re-hashes to the committed digest and names the same question/time", bind),
+        ("reveal: header fields and resolution carried", rows and rows[0]["resolution"] == "yes" and rows[0]["commit_v"] == 2
+         and rows[0]["closed_at"] == "2026-10-10T00:00:00+00:00" and sorted(rows[0]) == sorted(
+             ["digest", "question_id", "post_id", "submitted_at", "commit_v", "plain_text", "revealed_at", "closed_at", "resolution"])),
+        ("reveal: rerun appends nothing (idempotent by digest)", r2["new"] == 0 and open(path, "rb").read() == raw1),
+    ]
+    # the open question closes: one more line, and every byte already there stays
+    res2 = dict(res, **{"3": {"status": "closed", "close_time": "2026-10-25T00:00:00Z"}})
+    r3 = reveal(fs, res2, key, now, path)
+    raw3 = open(path, "rb").read()
+    last = read_revealed(path)[-1]
+    checks += [("reveal: a newly closed question appends one line, earlier bytes untouched",
+                r3["new"] == 1 and raw3.startswith(raw1) and last["post_id"] == 3 and last["resolution"] is None)]
+    # never reveal when only one of the two closure signals says closed
+    p2 = os.path.join(td, "r2.jsonl")
+    odd = {"1": {"status": "open", "close_time": "2026-10-10T00:00:00Z"},          # stale cache: open
+           "3": {"status": "closed", "close_time": "2026-12-01T00:00:00Z"},        # says closed, close in future
+           "4": {"status": "pending_resolution", "close_time": "2026-10-10T00:00:00Z"}}  # unknown status
+    checks += [("reveal: open / future close / unknown status never revealed",
+                reveal(fs, odd, key, now, p2)["new"] == 0 and not os.path.exists(p2))]
+    # wrong key or no key: nothing revealed, no crash, no file
+    p3 = os.path.join(td, "r3.jsonl")
+    w = reveal(fs, res, ledger.derive_key("another-token"), now, p3)
+    n = reveal(fs, res, None, now, p3)
+    checks += [("reveal: wrong key reveals nothing, counts the sealed lines, no crash",
+                w["new"] == 0 and w["closed_unopened"] == 3 and n["new"] == 0 and not os.path.exists(p3))]
+    # a torn last line is finished, not glued onto
+    p4 = os.path.join(td, "r4.jsonl")
+    open(p4, "w").write('{"digest":"torn"')
+    reveal(fs, res, key, now, p4)
+    raw4 = open(p4, "rb").read()
+    checks += [("reveal: a torn last line is closed with a newline first",
+                raw4.startswith(b'{"digest":"torn"\n') and len(read_revealed(p4)) == 3)]
+    return checks
 
 
 def main(argv) -> int:
@@ -199,6 +338,7 @@ def main(argv) -> int:
             cache[pid] = parse_post(fetch_post(pid, token))
         except Exception as e:  # keep the last good entry
             errors.append(f"{pid}: {type(e).__name__}")
+    rv = reveal(forecasts, cache, key, now)
     sc = score(forecasts, cache, key, now)
     owner = load(OWNER) or {}
     prize = owner.get("metaculus_prize_usd_30d")
@@ -215,6 +355,9 @@ def main(argv) -> int:
         "runs": rs,
         "north_star_resolved_prelogged": sc["north_star_resolved_prelogged"],
         "house_prior": sc["house_prior"],
+        "reveals": {"file": "data/metaculus/revealed.jsonl", "lines": rv["lines"], "new_today": rv["new"],
+                    "closed_but_sealed": rv["closed_unopened"],
+                    "definition": "exact sealed plaintext of every ledger line whose question has closed; check with tools/fleet/verify_commitments.py"},
         "money": {"prize_usd_30d": prize, "spend_usd_30d": rs["spend_usd_30d"],
                   "net_usd_30d": None if prize is None else round(float(prize) - rs["spend_usd_30d"], 2),
                   "definition": "prize is entered by the owner from the Metaculus payout; never inferred from rank"},
@@ -225,7 +368,10 @@ def main(argv) -> int:
         json.dump(snap, f, ensure_ascii=False, indent=1)
         f.write("\n")
     print(f"forecast record: state={rs['state']} lines={len(forecasts)} north_star={sc['north_star_resolved_prelogged']} "
-          f"ablation_n={sc['house_prior']['n']} spend30={rs['spend_usd_30d']} lookups={looked} errors={len(errors)}")
+          f"ablation_n={sc['house_prior']['n']} reveals={rv['lines']} (+{rv['new']}) spend30={rs['spend_usd_30d']} "
+          f"lookups={looked} errors={len(errors)}")
+    if rv["closed_unopened"]:
+        print(f"::warning::{rv['closed_unopened']} closed ledger line(s) could not be opened with the current key (token rotated or missing?)")
     if rs["state"] == "stalled":
         print(f"::warning::the Metaculus bot has published nothing for >{STALL_HOURS}h (disabled on purpose, or broken?)")
     if errors:

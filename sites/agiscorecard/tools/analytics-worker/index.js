@@ -54,6 +54,13 @@ const ALLOWED_EVENTS = new Set([
   // On-site signup funnel: opened the form / submitted / succeeded / failed. Without
   // all four, a form nobody opens and a form that errors on submit look the same.
   'sub_open', 'sub_submit', 'sub_ok', 'sub_fail',
+  // Click-to-verify on /calibration (2026-09-27): the reader hashed the OpenTimestamps-listed
+  // records and recomputed the Thesis Tracker in their own browser. location='calibration',
+  // label='<matched>/<files>|score:<ok|diff|err>'. This event is the ONLY row a run leaves: the
+  // button's own fetches (?utm_source=verify) are kept out of `pageviews` below, so they cannot
+  // satisfy agi-ots-verified-1124 ② or agi-consensus-mcp-1124 ②, which count hand fetches of
+  // /ots/ and /agi-consensus.json. verify_run is a separate reading, not those lines' metric.
+  'verify_run',
 ]);
 
 // Campaign tags are the one part of a query string worth keeping: GA4 attributed
@@ -768,9 +775,13 @@ export default {
       // 2026-09-26: the consensus JSON, the board snapshot and the OpenTimestamps proofs are the surfaces two
       // judgment lines read (agi-consensus-mcp-1124 / agi-ots-verified-1124); without a row here their readings
       // would be 0 by construction. Same aggregate pageviews table, UA-classified; CI requests carry ?ci=1.
+      // 2026-09-27: /calibration's verify button fetches the manifest, every proof and both JSON files in
+      // one click (?utm_source=verify). Counting those would let a single click, the owner's or a QA
+      // session's included, satisfy both lines above — a hash check is not someone reading the consensus
+      // number or fetching a proof by hand. The run is recorded once, as the verify_run event.
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) &&
           (url.pathname === '/agi-consensus.json' || url.pathname === '/market-board.json' || url.pathname.startsWith('/ots/')) &&
-          url.searchParams.get('ci') !== '1') {
+          url.searchParams.get('ci') !== '1' && url.searchParams.get('utm_source') !== 'verify') {
         try { recordView(env, ctx, request, url); } catch (e) {}
       }
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
