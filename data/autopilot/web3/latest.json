@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-24T07:47:49.508Z",
+  "asOf": "2026-09-27T15:09:11.492Z",
   "ok": true,
   "checks": [
     {
@@ -15,11 +15,7 @@
       "ok": true
     },
     {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -27,7 +23,7 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,11 +31,15 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +55,7 @@
       "ok": true
     },
     {
-      "name": "calls.agiscorecard.com",
+      "name": "compute.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-09-24T07:47:50.053Z",
+      "retrievedAt": "2026-09-27T15:09:18.172Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 84397.53373906402,
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "price": 84491.92720758596,
+          "sourceUpdatedAt": "2026-09-27T15:07:50.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2695.4618356451706,
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "price": 2687.1709411094016,
+          "sourceUpdatedAt": "2026-09-27T15:07:50.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9998768323896052,
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
-          "deviationBps": -1.2316761039476987
+          "price": 0.9999121339258237,
+          "sourceUpdatedAt": "2026-09-27T15:07:50.000Z",
+          "deviationBps": -0.8786607417632375
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9998399208278083,
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
-          "deviationBps": -1.600791721917405
+          "price": 0.9998436028377591,
+          "sourceUpdatedAt": "2026-09-27T15:07:50.000Z",
+          "deviationBps": -1.563971622409177
         }
       ],
       "source": {
@@ -110,22 +110,22 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-09-24T07:47:50.027Z",
+      "retrievedAt": "2026-09-27T15:01:35.646Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-09-24T07:47:49.823Z"
+          "checkedAt": "2026-09-27T15:01:35.594Z"
         },
         {
           "id": "x402",
           "status": "unavailable",
-          "checkedAt": "2026-09-24T07:47:49.863Z"
+          "checkedAt": "2026-09-27T15:01:35.641Z"
         },
         {
           "id": "ezkl",
-          "status": "ok",
-          "checkedAt": "2026-09-24T07:47:49.823Z"
+          "status": "unavailable",
+          "checkedAt": "2026-09-27T15:01:35.646Z"
         }
       ],
       "items": [
@@ -178,110 +178,118 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-09-24T07:47:50.292Z",
+      "retrievedAt": "2026-09-27T15:08:45.393Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": -2.384220817720384,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 0.5633052215183065,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 10.449384351045165,
-            "from": "2026-09-17T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 4.746594321975506,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": -2.116027559644662,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": -0.06058495107269524,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 10.502043050028531,
-            "from": "2026-09-17T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 3.9454876450749854,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": 0.0015387201202310408,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 0.0033698844433605046,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 0.025075807726282484,
-            "from": "2026-09-17T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 0.022320962306277004,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": 0.004196895015118329,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 0.0019141308439607485,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 0.06360612943334676,
-            "from": "2026-09-17T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 0.02166432300234611,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": -7.082787584160199,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": -2.437390131075279,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 29.411978436625862,
-            "from": "2026-09-17T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 27.71921293181321,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "RENDER",
-          "status": "stale",
-          "sourceUpdatedAt": "2026-09-24T07:31:40.000Z",
-          "day": null,
-          "week": null
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-27T15:01:40.000Z",
+          "day": {
+            "percent": -1.2852458254298815,
+            "from": "2026-09-26T15:01:40.000Z",
+            "to": "2026-09-27T15:01:40.000Z"
+          },
+          "week": {
+            "percent": 31.154544729053946,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:01:40.000Z"
+          }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-24T07:45:50.000Z",
+          "sourceUpdatedAt": "2026-09-27T15:06:50.000Z",
           "day": {
-            "percent": -6.964253398418164,
-            "from": "2026-09-23T07:00:00.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": -4.915243255451074,
+            "from": "2026-09-26T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           },
           "week": {
-            "percent": 28.048407332932925,
-            "from": "2026-09-17T07:01:40.000Z",
-            "to": "2026-09-24T07:45:50.000Z"
+            "percent": 41.03765178403922,
+            "from": "2026-09-20T15:00:00.000Z",
+            "to": "2026-09-27T15:06:50.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "stale",
-          "sourceUpdatedAt": "2026-09-24T07:31:40.000Z",
+          "sourceUpdatedAt": "2026-09-27T14:51:40.000Z",
           "day": null,
           "week": null
         }
@@ -289,7 +297,7 @@
     }
   },
   "events": {
-    "asOf": "2026-09-24T07:47:52.373Z",
+    "asOf": "2026-09-27T15:09:19.116Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
