@@ -1,7 +1,9 @@
 // Deliberately bounded metadata only. PDF bytes, names, text, titles, review
 // answers, user/session IDs and full referrer URLs are never stored here.
+import {GROWTH_EVENTS,growthEventAllowed} from '../../document-assets/growth-core.mjs';
 import { HUB_TASKS, isHubPath, hubEvent } from '../../document-assets/hub-core.mjs';
 export const EVENTS = new Set(['doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share', 'doc_summary_share', 'doc_share_visit']);
+for(const event of GROWTH_EVENTS)EVENTS.add(event);
 const HUB_EVENTS = new Set(Object.keys(HUB_TASKS).map(hubEvent));
 for (const event of HUB_EVENTS) EVENTS.add(event);
 for (const event of ['doc_delivery_complete','doc_delivery_sample','doc_delivery_export','doc_delivery_verify']) EVENTS.add(event);
@@ -11,7 +13,7 @@ const UTILITY_EVENTS=new Map();
 for(const task of ['image','json','meeting'])for(const action of ['complete','sample']){const name=`doc_${task}_${action}`;EVENTS.add(name);UTILITY_EVENTS.set(name,HUB_TASKS[task]);}
 EVENTS.add('doc_utility_export');
 for(const task of ['portrait','speech','summary'])for(const action of ['complete','sample','export']){const name=`doc_ai_${task}_${action}`;EVENTS.add(name);UTILITY_EVENTS.set(name,HUB_TASKS[task]);}
-const PAGE = /^\/(?:(de|zh)\/)?(?:ai-portrait-background-remover|ai-audio-to-text|ai-text-summarizer|image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
+const PAGE = /^\/(?:(de|zh)\/)?(?:open-source(?:\/(?:upscayl|whisper|ollama|obs|audacity|shotcut))?|videos(?:\/(?:upscayl|audacity|shotcut))?|creator-kit|ai-portrait-background-remover|ai-audio-to-text|ai-text-summarizer|image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 // Return a bounded diagnostic class, never SQL, exception text, keys or identifiers.
 export function databaseFailure(error) {
@@ -42,6 +44,7 @@ export async function onRequestPost({ request, env }) {
     if (!body || typeof body !== 'object' || Object.keys(body).some(k => !['p','e','r'].includes(k))) return new Response(null, { status:400 });
     const ci = body.e === 'doc_ci' && body.p === '/__ci/documents';
     if (!ci && (typeof body.p !== 'string' || !PAGE.test(body.p) || !EVENTS.has(body.e))) return new Response(null, { status:400 });
+    if(GROWTH_EVENTS.has(body.e)&&!growthEventAllowed(body.e,body.p))return new Response(null,{status:400});
     if (HUB_EVENTS.has(body.e) && !isHubPath(body.p)) return new Response(null, { status:400 });
     if(UTILITY_EVENTS.has(body.e) && body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')!==UTILITY_EVENTS.get(body.e))return new Response(null,{status:400});
     if(body.e==='doc_utility_export' && !['image','json','meeting'].some(k=>body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')===HUB_TASKS[k]))return new Response(null,{status:400});

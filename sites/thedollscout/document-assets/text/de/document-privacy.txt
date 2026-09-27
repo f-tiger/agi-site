@@ -22,6 +22,8 @@ Auch Bildverarbeitung, JSON-Vergleich und Terminplanung laufen lokal. Bilder, JS
 
 KI-Werkzeuge laden feste Modelle erst nach Klick auf KI-Modell laden. Software- und Modelldownloads kontaktieren jsDelivr und Hugging Face; dabei erhalten diese Dienste Verbindungsdaten wie Ihre IP-Adresse. Fotos, Aufnahmen und Text werden nicht hochgeladen. Modelle können im Browser-Cache bleiben; Website-Daten löschen, um sie zu entfernen. Eingaben und Ergebnisse bleiben ohne Download im Speicher. KI kann Fehler machen; Sprach- und Aufgabengrenzen stehen auf jeder Werkzeugseite.
 
+Open-Source-Seiten verlinken unabhängige Projekte. Videoseiten verbinden sich erst beim Laden des Players mit YouTube/Google; dabei werden Verbindungsdaten übermittelt. Der erweiterte Datenschutzmodus garantiert keine Anonymität. Optionale Zubehörlinks öffnen Amazon mit einer Partnerkennung. Wir zählen feste Ressourcenaktionen, keine eingegebenen Videotitel oder Kaufdetails.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

@@ -1,6 +1,18 @@
 {
   "edition": "2026-09-25.8",
   "urls": [
+    "https://thedollscout.com/open-source",
+    "https://thedollscout.com/open-source/upscayl",
+    "https://thedollscout.com/open-source/whisper",
+    "https://thedollscout.com/open-source/ollama",
+    "https://thedollscout.com/open-source/obs",
+    "https://thedollscout.com/open-source/audacity",
+    "https://thedollscout.com/open-source/shotcut",
+    "https://thedollscout.com/videos",
+    "https://thedollscout.com/videos/upscayl",
+    "https://thedollscout.com/videos/audacity",
+    "https://thedollscout.com/videos/shotcut",
+    "https://thedollscout.com/creator-kit",
     "https://thedollscout.com/ai-portrait-background-remover",
     "https://thedollscout.com/ai-audio-to-text",
     "https://thedollscout.com/ai-text-summarizer",
@@ -20,6 +32,18 @@
     "https://thedollscout.com/methodology",
     "https://thedollscout.com/document-privacy",
     "https://thedollscout.com/collectors",
+    "https://thedollscout.com/de/open-source",
+    "https://thedollscout.com/de/open-source/upscayl",
+    "https://thedollscout.com/de/open-source/whisper",
+    "https://thedollscout.com/de/open-source/ollama",
+    "https://thedollscout.com/de/open-source/obs",
+    "https://thedollscout.com/de/open-source/audacity",
+    "https://thedollscout.com/de/open-source/shotcut",
+    "https://thedollscout.com/de/videos",
+    "https://thedollscout.com/de/videos/upscayl",
+    "https://thedollscout.com/de/videos/audacity",
+    "https://thedollscout.com/de/videos/shotcut",
+    "https://thedollscout.com/de/creator-kit",
     "https://thedollscout.com/de/ai-portrait-background-remover",
     "https://thedollscout.com/de/ai-audio-to-text",
     "https://thedollscout.com/de/ai-text-summarizer",
@@ -39,6 +63,18 @@
     "https://thedollscout.com/de/methodology",
     "https://thedollscout.com/de/document-privacy",
     "https://thedollscout.com/de/collectors",
+    "https://thedollscout.com/zh/open-source",
+    "https://thedollscout.com/zh/open-source/upscayl",
+    "https://thedollscout.com/zh/open-source/whisper",
+    "https://thedollscout.com/zh/open-source/ollama",
+    "https://thedollscout.com/zh/open-source/obs",
+    "https://thedollscout.com/zh/open-source/audacity",
+    "https://thedollscout.com/zh/open-source/shotcut",
+    "https://thedollscout.com/zh/videos",
+    "https://thedollscout.com/zh/videos/upscayl",
+    "https://thedollscout.com/zh/videos/audacity",
+    "https://thedollscout.com/zh/videos/shotcut",
+    "https://thedollscout.com/zh/creator-kit",
     "https://thedollscout.com/zh/ai-portrait-background-remover",
     "https://thedollscout.com/zh/ai-audio-to-text",
     "https://thedollscout.com/zh/ai-text-summarizer",
@@ -60,6 +96,102 @@
     "https://thedollscout.com/zh/collectors"
   ],
   "records": [
+    {
+      "url": "https://thedollscout.com/open-source",
+      "lang": "en",
+      "title": "Open-source tools",
+      "description": "Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.",
+      "slug": "open-source",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/upscayl",
+      "lang": "en",
+      "title": "Upscayl: Enlarge a small image with local AI.",
+      "description": "Use it when you need a larger raster image, then compare the result at full size. Desktop processing needs a compatible Vulkan-capable GPU; a CPU alone is not the normal supported path. Upscayl Cloud is separate.",
+      "slug": "open-source/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/whisper",
+      "lang": "en",
+      "title": "Whisper: Transcribe longer or multilingual audio locally.",
+      "description": "Choose the Python project for its model choices and language coverage. Setup needs Python, FFmpeg and enough resources for the selected model. For a short English clip, the TDS browser tool has a smaller setup.",
+      "slug": "open-source/whisper",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/whisper.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/ollama",
+      "lang": "en",
+      "title": "Ollama: Run a selected language model on your own computer.",
+      "description": "Useful when you want a local model workflow and can manage model downloads and memory use. Select a local model and check the current documentation; hosted/cloud features have separate behavior.",
+      "slug": "open-source/ollama",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/ollama.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/obs",
+      "lang": "en",
+      "title": "OBS Studio: Record a screen demonstration.",
+      "description": "OBS Studio fits screen recording, scenes and audio sources. Start with its auto-configuration wizard and make a short recording on your actual computer. No streaming account is needed just to record.",
+      "slug": "open-source/obs",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/obs.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/audacity",
+      "lang": "en",
+      "title": "Audacity: Record and edit speech before transcription.",
+      "description": "Audacity is a desktop audio editor for recording, trimming and mixing. It is useful for preparing a short speech clip and listening closely to mistakes.",
+      "slug": "open-source/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/open-source/shotcut",
+      "lang": "en",
+      "title": "Shotcut: Edit a screen recording into a short tutorial.",
+      "description": "Shotcut provides a desktop timeline for cutting clips, adding titles and exporting video. The selected introductory video is linked by Shotcut’s official tutorial page.",
+      "slug": "open-source/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/open-source/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/videos",
+      "lang": "en",
+      "title": "Video tutorials",
+      "description": "Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.",
+      "slug": "videos",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/videos.txt"
+    },
+    {
+      "url": "https://thedollscout.com/videos/upscayl",
+      "lang": "en",
+      "title": "Upscayl: your first AI image upscale",
+      "description": "Make one enlarged image, inspect the result, then prepare a smaller web export.",
+      "slug": "videos/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/videos/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/videos/audacity",
+      "lang": "en",
+      "title": "Audacity: record, edit and prepare speech",
+      "description": "Record a clear short clip and prepare it for an English transcript.",
+      "slug": "videos/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/videos/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/videos/shotcut",
+      "lang": "en",
+      "title": "Shotcut: a first edit and export",
+      "description": "Turn one raw recording into a short edited tutorial and prepare its thumbnail.",
+      "slug": "videos/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/videos/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/creator-kit",
+      "lang": "en",
+      "title": "Creator setup",
+      "description": "Start with the computer and equipment you already own. Upgrade only when a recording or editing test reveals a specific problem.",
+      "slug": "creator-kit",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/creator-kit.txt"
+    },
     {
       "url": "https://thedollscout.com/ai-portrait-background-remover",
       "lang": "en",
@@ -213,6 +345,102 @@
       "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/de/open-source",
+      "lang": "de",
+      "title": "Open Source",
+      "description": "Open-Source-Software für konkrete Aufgaben. Einrichtung, Grenzen und den nächsten Schritt vor der Installation vergleichen.",
+      "slug": "open-source",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/upscayl",
+      "lang": "de",
+      "title": "Upscayl: Ein kleines Bild mit lokaler KI vergrößern.",
+      "description": "Für größere Rasterbilder mit anschließender Sichtprüfung. Desktop-Verarbeitung erfordert eine kompatible Vulkan-GPU; reine CPU-Verarbeitung ist kein regulärer unterstützter Weg. Upscayl Cloud ist separat.",
+      "slug": "open-source/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/whisper",
+      "lang": "de",
+      "title": "Whisper: Längere oder mehrsprachige Audiodateien lokal transkribieren.",
+      "description": "Das Python-Projekt bietet verschiedene Modelle und Sprachen. Python, FFmpeg und passende Hardware sind nötig. Für einen kurzen englischen Clip ist das TDS-Browserwerkzeug einfacher.",
+      "slug": "open-source/whisper",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/whisper.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/ollama",
+      "lang": "de",
+      "title": "Ollama: Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.",
+      "description": "Für lokale Modellabläufe mit eigener Verwaltung von Downloads und Speicher. Ein lokales Modell wählen und aktuelle Dokumentation lesen; Cloud-Funktionen verhalten sich anders.",
+      "slug": "open-source/ollama",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/ollama.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/obs",
+      "lang": "de",
+      "title": "OBS Studio: Eine Bildschirmvorführung aufzeichnen.",
+      "description": "OBS Studio bietet Bildschirmaufnahme, Szenen und Audioquellen. Mit dem Assistenten und einer kurzen Aufnahme auf dem eigenen Rechner beginnen. Für lokale Aufnahmen ist kein Streaming-Konto nötig.",
+      "slug": "open-source/obs",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/obs.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/audacity",
+      "lang": "de",
+      "title": "Audacity: Sprache vor der Transkription aufnehmen und schneiden.",
+      "description": "Desktop-Audioeditor zum Aufnehmen, Kürzen und Mischen. Gut zum Vorbereiten eines kurzen Sprachclips und zum genauen Abhören.",
+      "slug": "open-source/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/open-source/shotcut",
+      "lang": "de",
+      "title": "Shotcut: Eine Aufnahme zu einem kurzen Tutorial schneiden.",
+      "description": "Desktop-Zeitleiste für Schnitt, Titel und Videoexport. Das ausgewählte Einführungsvideo wird auf der offiziellen Tutorial-Seite verlinkt.",
+      "slug": "open-source/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/open-source/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/videos",
+      "lang": "de",
+      "title": "Video-Anleitungen",
+      "description": "Einführungen in Bild-, Audio- und Videowerkzeuge mit Urheberangaben und einer praktischen Folgeaufgabe.",
+      "slug": "videos",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/videos.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/videos/upscayl",
+      "lang": "de",
+      "title": "Upscayl: das erste Bild mit KI vergrößern",
+      "description": "Ein Bild vergrößern, Details prüfen und einen kleineren Webexport vorbereiten.",
+      "slug": "videos/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/videos/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/videos/audacity",
+      "lang": "de",
+      "title": "Audacity: Sprache aufnehmen und vorbereiten",
+      "description": "Einen klaren Sprachclip für ein englisches Transkript vorbereiten.",
+      "slug": "videos/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/videos/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/videos/shotcut",
+      "lang": "de",
+      "title": "Shotcut: erster Schnitt und Export",
+      "description": "Eine Aufnahme zu einem kurzen Tutorial schneiden und ein Vorschaubild vorbereiten.",
+      "slug": "videos/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/videos/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/creator-kit",
+      "lang": "de",
+      "title": "Creator-Ausrüstung",
+      "description": "Zuerst mit dem vorhandenen Computer und Zubehör arbeiten. Nur aufrüsten, wenn ein konkretes Problem bei einer Testaufnahme sichtbar wird.",
+      "slug": "creator-kit",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/creator-kit.txt"
+    },
+    {
       "url": "https://thedollscout.com/de/ai-portrait-background-remover",
       "lang": "de",
       "title": "KI-Hintergrundentfernung für Porträts",
@@ -363,6 +591,102 @@
       "description": "Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.",
       "slug": "collectors",
       "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source",
+      "lang": "zh",
+      "title": "开源工具",
+      "description": "按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。",
+      "slug": "open-source",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/upscayl",
+      "lang": "zh",
+      "title": "Upscayl: 用本地 AI 放大小图片。",
+      "description": "适合需要更大尺寸并愿意逐项检查结果的图片任务。桌面版需要兼容 Vulkan 的 GPU，只有 CPU 不是常规支持方式；Upscayl Cloud 为独立服务。",
+      "slug": "open-source/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/whisper",
+      "lang": "zh",
+      "title": "Whisper: 在本地转录较长或多语言音频。",
+      "description": "Python 项目适合需要更多模型与语言选择的人。安装需 Python、FFmpeg 以及适配所选模型的硬件资源；短英文片段可以先用 TDS 浏览器工具。",
+      "slug": "open-source/whisper",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/whisper.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/ollama",
+      "lang": "zh",
+      "title": "Ollama: 在自己的电脑上运行选定的语言模型。",
+      "description": "适合愿意管理模型下载与内存用量的本地 AI 工作流。选择本地模型并参考当前文档；云模型等功能有不同的数据处理方式。",
+      "slug": "open-source/ollama",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/ollama.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/obs",
+      "lang": "zh",
+      "title": "OBS Studio: 录制屏幕操作演示。",
+      "description": "OBS Studio 可配置屏幕录制、场景和音频来源。先运行自动配置向导，再在自己的设备上试录；仅本地录制不需要直播账号。",
+      "slug": "open-source/obs",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/obs.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/audacity",
+      "lang": "zh",
+      "title": "Audacity: 录制并整理适合转录的人声。",
+      "description": "桌面音频编辑器，可录音、裁剪与混音。适合制作一小段语音素材，并仔细试听错误。",
+      "slug": "open-source/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/open-source/shotcut",
+      "lang": "zh",
+      "title": "Shotcut: 把录屏剪成一段工具演示。",
+      "description": "桌面时间线适合裁剪、加标题与导出视频。所选入门视频来自 Shotcut 官方教程页的推荐链接。",
+      "slug": "open-source/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/open-source/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/videos",
+      "lang": "zh",
+      "title": "视频教程",
+      "description": "精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。",
+      "slug": "videos",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/videos.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/videos/upscayl",
+      "lang": "zh",
+      "title": "Upscayl：第一次用 AI 放大图片",
+      "description": "放大一张图片，检查细节，再准备更小的网页导出版本。",
+      "slug": "videos/upscayl",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/videos/upscayl.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/videos/audacity",
+      "lang": "zh",
+      "title": "Audacity：录制、剪辑与准备人声",
+      "description": "录制清楚的短片段，准备进行英文音频转文字。",
+      "slug": "videos/audacity",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/videos/audacity.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/videos/shotcut",
+      "lang": "zh",
+      "title": "Shotcut：第一次剪辑与导出",
+      "description": "把原始录屏剪成一段简短教程，并准备独立缩略图。",
+      "slug": "videos/shotcut",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/videos/shotcut.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/creator-kit",
+      "lang": "zh",
+      "title": "创作设备指南",
+      "description": "先用手边的电脑和设备做一次测试。只有录音或制作中出现了具体问题，再考虑购买。",
+      "slug": "creator-kit",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/creator-kit.txt"
     },
     {
       "url": "https://thedollscout.com/zh/ai-portrait-background-remover",
@@ -532,6 +856,20 @@
     "ai-portrait-background-remover",
     "ai-audio-to-text",
     "ai-text-summarizer"
+  ],
+  "resourcePages": [
+    "open-source",
+    "open-source/upscayl",
+    "open-source/whisper",
+    "open-source/ollama",
+    "open-source/obs",
+    "open-source/audacity",
+    "open-source/shotcut",
+    "videos",
+    "videos/upscayl",
+    "videos/audacity",
+    "videos/shotcut",
+    "creator-kit"
   ],
   "languages": [
     "en",

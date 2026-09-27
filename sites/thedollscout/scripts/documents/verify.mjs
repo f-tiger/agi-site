@@ -1,3 +1,4 @@
+import {growthSlugs,projects,videos,affiliateUrl} from './growth-data.mjs';
 import {AI_TOOLS,aiCopy} from './ai-copy.mjs';
 import {utilityCopy,utilitySlugs} from './utility-copy.mjs';
 import fs from 'node:fs';
@@ -26,10 +27,10 @@ async function read(route, binary = false) {
   throw last;
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
-assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,57);
+assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,57+growthSlugs.length*3);
 const sitemap = await read('/sitemap.xml');
 const documentSitemap = await read('/document-sitemap.xml');
-assert.equal((documentSitemap.match(/<loc>/g)||[]).length,54);
+assert.equal((documentSitemap.match(/<loc>/g)||[]).length,54+growthSlugs.length*3);
 const titles = new Set();
 for (const record of manifest.records) {
   const route = new URL(record.url).pathname, html = await read(route);
@@ -68,6 +69,12 @@ for (const record of manifest.records) {
     }
   }
   if (record.slug) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'BreadcrumbList'));
+  if(growthSlugs.includes(record.slug)){
+    assert.ok(!ld[0]['@graph'].some(s=>s['@type']==='WebApplication'),'External content is not a TDS app');
+    const video=videos.find(v=>'videos/'+v.id===record.slug);
+    if(video){const schema=ld[0]['@graph'].find(s=>s['@type']==='VideoObject');assert.equal(schema.creator.name,video.author);assert.equal(schema.uploadDate,video.date);assert.ok(html.includes('data-video-load="'+video.id+'"'));assert.ok(!/<iframe[^>]*src=/.test(html),'YouTube is opt-in');assert.ok(html.includes('https://www.youtube.com/watch?v='+video.youtube));}
+    if(record.slug==='creator-kit')for(const kind of ['mic','light','storage'])assert.ok(html.includes(affiliateUrl(record.lang,kind).replaceAll('&','&amp;')),'Correct affiliate market');
+  }
   if (record.slug.startsWith('learn/')) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'Article'));
   const tool = toolSlugs.indexOf(record.slug);
   if(tool>=0) {
@@ -84,7 +91,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['ai-evaluation.json','ai-app.mjs','ai-core.mjs','ai-worker.mjs','ai.css','telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['growth.css','growth-app.mjs','growth-core.mjs','resource-library.json','ai-evaluation.json','ai-app.mjs','ai-core.mjs','ai-worker.mjs','ai.css','telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 const examples = JSON.parse(await read('/document-assets/sample-results.json'));
 assert.equal(examples.documents.length,3);

@@ -360,6 +360,12 @@
     "url": "https://thedollscout.com/document-assets/ai-evaluation.json",
     "scope": "Real-model smoke checks on public samples; not an accuracy benchmark or a general compatibility guarantee"
   },
+  "resources": {
+    "index": "https://thedollscout.com/document-assets/resource-library.json",
+    "openSource": 6,
+    "videos": 3,
+    "scope": "Curated external projects and creator videos; not additional TDS processing tools. Equipment links are optional affiliate links, not paid AI features."
+  },
   "directory": {
     "categories": 6,
     "tools": 12,

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 const HOST='thedollscout.com', PREFIX='sites/thedollscout/';
-const PUBLIC_DATA=new Set(['llms.txt','llms-full.txt','document-assets/tool-capabilities.json','document-assets/sample-results.json']);
+const PUBLIC_DATA=new Set(['llms.txt','llms-full.txt','document-assets/tool-capabilities.json','document-assets/sample-results.json','document-assets/resource-library.json']);
 export function changedUrls(files) {
  return [...new Set(files.filter(p=>p.startsWith(PREFIX)).map(p=>p.slice(PREFIX.length))
   .filter(p=>!p.startsWith('scripts/')&&!p.startsWith('content/')&&(p.endsWith('.html')||PUBLIC_DATA.has(p)))

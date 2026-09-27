@@ -1,0 +1,38 @@
+# Ollama: 在自己的电脑上运行选定的语言模型。
+
+https://thedollscout.com/zh/open-source/ollama
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在自己的电脑上运行选定的语言模型。
+
+适合愿意管理模型下载与内存用量的本地 AI 工作流。选择本地模型并参考当前文档；云模型等功能有不同的数据处理方式。
+
+运行程序的 MIT 许可证不覆盖所有模型。分别核实模型许可证；不要在未配置安全措施时把服务暴露给网络。生成答案需要复核。
+
+从官方页面安装。
+
+按许可证和大小选择合适的本地模型。
+
+先用公开示例测试，再考虑敏感内容。
+
+如果只需保留原句，可尝试 TDS 原文摘要。
+
+Windows · macOS · Linux
+
+MIT (runtime)
+
+https://github.com/ollama/ollama/blob/main/LICENSE
+
+https://ollama.com/download
+
+https://docs.ollama.com/
+
+https://github.com/ollama/ollama
+
+https://thedollscout.com/zh/ai-text-summarizer
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+

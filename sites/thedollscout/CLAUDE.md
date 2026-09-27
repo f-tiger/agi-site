@@ -345,3 +345,13 @@ labubu is fake」的多源标准答案是**刮码 + fwsy.popmart.com 验证 + UV
 
 ## 钱线仪器(2026-09-21)
 `/api/pulse` 多返回 `money`(affiliate_click_28d,08-30 起 / member_orders_by_state),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:pv 341、affiliate_click 1(首页);货架所在的 picks 页 28d pv <6。
+
+## 2026-09-27 revenue-oriented resource expansion
+
+Owner requested prompt optimization, adversarial execution, a separate open-source section and YouTube tool introductions. Home now has Online tools / Open-source tools / Video tutorials entry points. The 12 functional tools remain distinct from curated external resources. `/open-source` covers Upscayl, Whisper, Ollama, OBS Studio, Audacity and Shotcut; `/videos` contains three credited videos with original TDS exercises and local TXT checklist downloads. All EN/DE/ZH: 93 generated pages, 90 document-sitemap URLs.
+
+Existing collector membership does not unlock AI or resource features. `/creator-kit` is an optional, task-relevant equipment buying checklist using the existing US and DE Amazon tags, with a clear affiliate disclosure and free alternatives first. No new paid plan, sponsor booking or inference spend was opened. Directory visits, player loads, checklist downloads, tool referrals and affiliate clicks are separately bounded anonymous actions. Only actual merchant commission reports establish revenue; none was observed for this release.
+
+Data/copy/pages live in `scripts/documents/growth-{data,copy,pages}.mjs`, with public `document-assets/resource-library.json`. Video metadata was verified with YouTube oEmbed/watch metadata and project sources; older tutorials retain actual dates and interface caveats. Video players connect only on explicit load, with an external fallback. This consent interaction may limit video rich-result eligibility; VideoObject markup does not guarantee indexing or citations. Source review date does not claim the desktop apps were individually tested.
+
+Release and commercial stop/scale criteria: root `docs/tds-resources-revenue-2026-09-27.md`. Do not inflate the resource count into a tool count or replace the free tools with irrelevant collector upsells.

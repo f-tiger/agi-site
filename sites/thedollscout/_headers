@@ -48,3 +48,7 @@
 /document-assets/ai-evaluation.json
   Content-Type: application/json; charset=utf-8
   Access-Control-Allow-Origin: *
+
+/document-assets/resource-library.json
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
