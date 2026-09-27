@@ -2277,6 +2277,18 @@
     "starts_per_usd": 522,
     "engagement_events": "not instrumented then"
    }
+  },
+  {
+   "id": "agi-crowd-reveal-1029",
+   "site": "agiscorecard",
+   "due": "2026-10-29",
+   "metric": "/agi-test 众人分布揭晓,10-01→10-28 真人:(challenge_share + x_share + prediction_lock) ÷ vote_cast{path='/agi-test'};另记 crowd_view",
+   "threshold": "比例 ≥10% 且绝对数 ≥5",
+   "win": "社会比较在此量级有放大作用 → 第二阶段:由 agi-consensus.json 每周自动判定的短周期题 + 浏览器内匿名记分(docs/agi-crowd-amplifier-2026-09-27.md §五)",
+   "lose": "vote_cast ≥30 而比例 <3% → 7 人/天量级放大不出来,不建第二阶段;vote_cast <30 → insufficient",
+   "source": "docs/agi-crowd-amplifier-2026-09-27.md",
+   "status": "open",
+   "t0": "2026-09-27 终身:分享 0、锁定 1、投票约 117(<1%);揭晓 10-01 00:00 UTC 前休眠"
   }
  ]
 }

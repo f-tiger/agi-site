@@ -103,6 +103,9 @@ jobs:
       - name: Test pulse/trends D1 read budget (index + server-side cache)
         working-directory: sites/agiscorecard
         run: node tools/test_analytics_d1.mjs
+      - name: /api/crowd shape, bot exclusion and index use (zero network)
+        working-directory: sites/agiscorecard
+        run: node tools/test_crowd.mjs
 
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
@@ -234,6 +237,12 @@ jobs:
           case "$t" in
             *'"ok":true'*) echo "OK /api/trends" ;;
             *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
+          esac
+          # /api/crowd (2026-09-27): the /agi-test crowd reveal reads this; five buckets, cached.
+          c=$(curl -s --max-time 20 "https://agiscorecard.com/api/crowd" || echo "")
+          case "$c" in
+            *'"ok":true'*'"buckets":{"accelerationist":'*'"contrarian":'*) echo "OK /api/crowd" ;;
+            *) echo "::error::/api/crowd broken: ${c:0:120}"; fail=1 ;;
           esac
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
           p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")

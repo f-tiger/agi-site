@@ -900,6 +900,15 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
   agi 的营收规划不再以 Metaculus 为出路;agi 当前的商业角色 = 信任/引用资产 + 一份自有邮件名单(10-01 起测),
   近期营收目标放在 eco(舰队唯一在赚的线)。破例项(券商 CPA,非 Amazon)仍只是 owner 决策卡,不抢跑。
 
+## 2026-09-27 站队的放大效应(owner:「和股票App投票帖、Polymarket一样放大了人性」;全文 `docs/agi-crowd-amplifier-2026-09-27.md`)
+
+- Polymarket 与股票 App 投票放大的是四个机制:押注、看到众人、很快揭晓并记分、阵营身份。agi 只有阵营;
+  押注在法律上禁止;缺「看到众人」与「很快揭晓」。终身约 117 次投票,分享 0。
+- 已建 `/api/crowd`(五档计数,Cache API 1 小时,走 idx_events_name)+ `/agi-test` 投票**之后**的众人分布揭晓
+  + 少数派分享文案 + `crowd_view` 事件;与锁定表单同一日期门,**10-01 00:00 UTC 生效**。判定线 `agi-crowd-reveal-1029`。
+- 第二阶段(每周自动判定的短周期题 + 浏览器内匿名记分)**只在上一条判赢后才做**。永不:真钱、奖品、积分兑换、
+  实名排行、券商或预测市场链接。
+
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
 - **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，

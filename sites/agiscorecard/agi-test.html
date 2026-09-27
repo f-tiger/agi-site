@@ -84,6 +84,7 @@ footer a{color:var(--muted)}
     <div class="name" id="r-name"></div>
     <div id="r-line" style="color:var(--muted)"></div>
   </div>
+  <div id="crowd" style="display:none;margin:14px 0 4px;font-size:14px"></div>
   <img class="card" id="r-card" src="" width="1200" height="630" alt="Your AGI type share card">
   <div class="row">
     <button class="btn" onclick="challengeFriend()">🔥 Challenge a friend</button>
@@ -151,13 +152,39 @@ function castVote(slug){
   document.getElementById('r-detail').href='/agi-type/'+slug;
   document.getElementById('result').style.display='block';
   if(!window.__quietPick) gtag('event','vote_cast',{label:slug});
+  if(!window.__quietPick) showCrowd(slug);
   window.__quietPick=false;
   // Put the pick in the URL so the edge-injected signup form can name the reader's type
   // (it reads ?pick=). self=1 keeps a reload from counting as an article deep-link.
   if(Date.now()>=LOCK_SUB_FROM){try{history.replaceState(null,'',location.pathname+'?pick='+slug+'&self=1');}catch(e){}}
 }
+// Crowd reveal (2026-09-27; dormant until LOCK_SUB_FROM with the lock form, so the 09-30 line
+// settles on the funnel it was registered against). Shown only after the reader answers:
+// seeing the crowd first makes answers copy it. The server count is up to an hour old, so the
+// reader's own answer is added here and the line says so.
+var CROWD=null;
+function showCrowd(slug){
+  if(Date.now()<LOCK_SUB_FROM) return;
+  fetch('/api/crowd').then(function(r){return r.json();}).then(function(d){
+    if(!d||!d.ok||!d.buckets) return;
+    var b={},n=0,k;for(k in d.buckets){b[k]=d.buckets[k]+(k===slug?1:0);n+=b[k];}
+    if(n<20) return;
+    var mine=Math.round(100*b[slug]/n);
+    CROWD={pct:mine,n:n};
+    var order=['accelerationist','true-believer','realist','skeptic','contrarian'];
+    var lab={'accelerationist':'2025–26','true-believer':'2027','realist':'2028–30','skeptic':'2030s','contrarian':'2040+ / never'};
+    var h='<div style="font-weight:700;margin-bottom:6px">'+(mine<=15?'You are in a small minority: ':'')+mine+'% of '+n+' readers answered the same as you</div>';
+    order.forEach(function(o){var p=Math.round(100*b[o]/n);
+      h+='<div style="display:flex;align-items:center;gap:8px;margin:3px 0"><span style="width:92px;font-size:12.5px;'+(o===slug?'font-weight:700':'color:var(--muted)')+'">'+lab[o]+'</span>'+
+        '<span style="flex:1;background:var(--bg2);border-radius:4px;height:10px;overflow:hidden"><span style="display:block;height:10px;width:'+p+'%;background:'+(o===slug?'var(--accent)':'var(--border2, #3a3650)')+'"></span></span>'+
+        '<span style="width:38px;text-align:right;font-size:12.5px">'+p+'%</span></div>';});
+    h+='<div style="font-size:11.5px;color:var(--muted);margin-top:4px">All answers on this site since August 2026, bots excluded, including yours. Readers, not a survey sample. None of this settles anything: the evidence does, and the Tracker scores it.</div>';
+    var el=document.getElementById('crowd');el.innerHTML=h;el.style.display='block';
+    gtag('event','crowd_view',{label:slug});
+  }).catch(function(){});
+}
 function sUrl(){return mySlug?'https://agiscorecard.com/agi-type/'+mySlug:'https://agiscorecard.com/agi-test';}
-function sText(){var a=ARCH[mySlug]||{name:'',emoji:''};return 'I’m '+a.name+' '+a.emoji+' on AGI. Think you can out-predict me? What’s your AGI type?';}
+function sText(){var a=ARCH[mySlug]||{name:'',emoji:''};var c=(CROWD&&CROWD.pct<=35)?' Only '+CROWD.pct+'% of '+CROWD.n+' readers agree with me.':'';return 'I’m '+a.name+' '+a.emoji+' on AGI.'+c+' Think you can out-predict me? What’s your AGI type?';}
 function challengeFriend(){
   gtag('event','challenge_share',{label:mySlug||''});
   if(navigator.share){navigator.share({title:"What's your AGI type?",text:sText(),url:sUrl()}).catch(function(){});}

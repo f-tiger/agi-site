@@ -37,6 +37,9 @@ const ALLOWED_EVENTS = new Set([
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
   'exposure_score',
   'retake_test', 'badge_copy',
+  // Crowd reveal on /agi-test (2026-09-27): the reader saw how everyone else answered, after
+  // answering. label = the reader's own bucket. Denominator for agi-crowd-reveal-1029.
+  'crowd_view',
   // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
   // launch and fire gtag('event','affiliate_click'), but the name was never allowlisted,
   // so every click was dropped here and only GA4 could have seen it. That made the
@@ -425,6 +428,15 @@ export default {
     // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
     if (url.pathname === '/api/pulse' && request.method === 'GET') {
       return aggregateCache(request, ctx, 'pulse', 3600, () => pulseResponse(env, url));
+    }
+
+    // /api/crowd (2026-09-27): how readers answered the one question the site asks —
+    // "when does AGI arrive?" — as five bucket counts. Shown only AFTER a reader answers
+    // (showing the crowd first makes answers copy the crowd: Salganik/Dodds/Watts 2006).
+    // Counts only, all-time, human rows; cached an hour like /api/pulse, so a page view
+    // never touches D1 (idx_events_name keeps a miss at ~120 rows).
+    if (url.pathname === '/api/crowd' && request.method === 'GET') {
+      return aggregateCache(request, ctx, 'crowd', 3600, () => crowdResponse(env));
     }
 
     // /api/trends 同样有服务端缓存:SunWatch、autopilot、部署自检与外部调用方(09-26 一天 53 次)共用一份结果。
@@ -1124,6 +1136,40 @@ const SLIDEIN = '<script>(function(){try{' +
 
 // /api/pulse 与 /api/trends 的计算本体(2026-09-26 从 fetch 里抽出来,外面包 aggregate-cache.js)。
 // 两者都读 pageviews 的 human 行;D1 上的部分索引 pageviews_human 让它们只读这部分行(tools/analytics-worker/migrations/)。
+// Normalise every label the two AGI-year polls have ever written (homepage button text in
+// three historical spellings, /agi-test archetype slugs) onto five buckets. Unknown labels
+// are dropped, never guessed.
+export const CROWD_BUCKETS = ['accelerationist', 'true-believer', 'realist', 'skeptic', 'contrarian'];
+export function crowdBucket(label) {
+  const k = String(label || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const map = {
+    accelerationist: 'accelerationist', '202526': 'accelerationist',
+    truebeliever: 'true-believer', '2027': 'true-believer',
+    realist: 'realist', '202830': 'realist',
+    skeptic: 'skeptic', '2030s': 'skeptic',
+    contrarian: 'contrarian', never2040: 'contrarian',
+  };
+  return map[k] || null;
+}
+
+export async function crowdResponse(env) {
+  const H = { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*' };
+  try {
+    const { results } = await env.EVENTS.prepare(
+      "SELECT label, COUNT(*) AS n FROM events WHERE name = 'vote_cast' AND path IN ('/', '/agi-test')" +
+      " AND (ua_class = 'human' OR ua_class IS NULL) GROUP BY label"
+    ).all();
+    const buckets = Object.fromEntries(CROWD_BUCKETS.map((b) => [b, 0]));
+    for (const r of results || []) { const b = crowdBucket(r.label); if (b) buckets[b] += r.n; }
+    const n = Object.values(buckets).reduce((a, b) => a + b, 0);
+    return new Response(JSON.stringify({ ok: true, generated: new Date().toISOString(),
+      question: 'When does AGI arrive?', scope: 'all-time answers on / and /agi-test, bots excluded',
+      n, buckets }), { headers: H });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'unavailable' }), { status: 503, headers: Object.assign({ 'cache-control': 'no-store' }, H) });
+  }
+}
+
 export async function pulseResponse(env, url) {
   const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
   // 失败绝不带 max-age(2026-09-25 舰队规矩,check_pulse_cache.py 断言):aggregate-cache 确实不收非 ok 的
