@@ -189,7 +189,14 @@ jobs:
       # ③重定向环(gridlings 教训)。三样都测。
       - name: Verify live document pages and assets
         id: document_pages
-        run: node scripts/documents/verify.mjs --live --skip-events
+        # Pages can briefly serve the previous manifest during deployment propagation.
+        # Retry the complete strict verification; persistent mismatches still fail.
+        run: |
+          for attempt in 1 2 3 4; do
+            if node scripts/documents/verify.mjs --live --skip-events; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
 
       - name: Verify independent membership after deployment
         if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
