@@ -36,3 +36,9 @@ No outreach messages, forum posts, bought links or new scheduled jobs were sent 
 - https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
 - https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+## Production verification
+
+Published commit: `d0dcf4a48f6ccbd40e13c930bdcf075130cd8e44`. GitHub Actions run https://github.com/f-tiger/agi-site/actions/runs/36322800047 completed successfully. Production build stamp matched this commit. All 39 localized pages and generated sample checksums passed the live verifier.
+
+September 27 at 13:34 UTC: live document sitemap contained 36 URLs and no collector archive URLs. Google Search Console accepted both document-sitemap.xml and sitemap.xml; downloads were pending at submission. Changed-content IndexNow notification accepted 42 URLs with HTTP 200. Neither acceptance establishes indexing, ranking or citation.
