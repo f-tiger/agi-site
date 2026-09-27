@@ -1109,3 +1109,9 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   自建评测榜单去比 LMArena/Epoch;用本站的数代替第三方数当「共识」。
 - **两份调研(法律、agent 工具)两次撞会话额度上限未完成**;Metaculus API 形状来自 forecasting-tools 源码,沙箱 403 未实测,
   看周一 runner 的 `venues.metaculus`。
+- **09-27 第二轮(owner「先调用 skills 优化 prompt 3 轮再执行:继续探索」)**:定稿 = 不造节点,找已存在的独立节点。
+  `/grader-consensus`:本站 8 条判定逐条对照两位公开、带日期的独立评分者(Delisle/LessWrong 2025-06-23、Harris/EA Forum 2026-03-29),
+  原句逐字引用 + 印在页上的一致规则;**9 次比较 6 完全一致 · 3 同向 · 0 分歧,5/8 条至多一位独立评分者**(页面写「面板薄」)。
+  `--check` 进部署构建步,`independent-grades.json` 进 OTS。判定线 `agi-grader-consensus-1127`。
+  **纠正**:09-26 所写「gen_changelog 已接进部署」当时未落盘,09-27 才真正接上。
+

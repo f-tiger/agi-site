@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-26",
+ "updated": "2026-09-27",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1967,6 +1967,18 @@
    "source": "sites/agiscorecard/calibration.html 的承诺(08-08 立,09-26 首次进台账);docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
    "t0_2026-09-26": "0(8 条已评分的 call 没有一条带结构化 odds;7 条 pending 里 6 条带 odds 52–65)。"
+  },
+  {
+   "id": "agi-grader-consensus-1127",
+   "site": "agiscorecard",
+   "due": "2026-11-27",
+   "metric": "① /grader-consensus pageviews ua_class='human' 且 ref_host 为搜索/AI/外站(非本站、非空)28d;② independent-grades.json 里的独立评分者数(不含本站)",
+   "threshold": "① ≥3 次外部来源访问,或 ② 评分者 ≥3(新增的必须是公开、带日期、链接可核的评分;不许为凑数改变收录标准)",
+   "win": "把 counts 作为活数字加到 /situational-awareness-predictions 首屏,并让 MCP get_verdicts 输出带上 independent_grades",
+   "lose": "页面保留(信任层,不是流量页),不再加面;记反面发现「评分者共识对本站量级不产生可见读者」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §八(第二轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。"
   }
  ]
 }

@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-26T00:00:00Z</updated>
+  <updated>2026-09-27T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Grader Consensus: Who Else Graded Situational Awareness?</title>
+    <link href="https://agiscorecard.com/grader-consensus"/>
+    <id>https://agiscorecard.com/grader-consensus</id>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <summary>Our 8 Situational Awareness verdicts next to two independent public gradings, quoted verbatim: 6 exact agreements, 3 same direction, 0 disagreements, and which predictions nobody else has graded.</summary>
+  </entry>
   <entry>
     <title>AGI Consensus Board: What Forecasters Put on AGI by 2027–2040</title>
     <link href="https://agiscorecard.com/agi-prediction-markets"/>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/ai-vs-human-intelligence</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>Superhuman in narrow bands, subhuman where it counts — reliable autonomous judgment. Intelligence is a jagged frontier, not one scale. Where AI leads and humans still win.</summary>
-  </entry>
-  <entry>
-    <title>What Is GDPval? The AI Knowledge-Work Benchmark, Explained</title>
-    <link href="https://agiscorecard.com/gdpval-explained"/>
-    <id>https://agiscorecard.com/gdpval-explained</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>GDPval is a benchmark that scores AI on real, economically valuable knowledge-work tasks across many occupations. Top models now reach ~83% — the evidence behind the On-track &#x27;AI outpaces knowledge workers&#x27; verdict.</summary>
   </entry>
 </feed>

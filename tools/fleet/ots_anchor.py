@@ -42,6 +42,7 @@ TARGETS = [
     ("sites/agiscorecard/agi-consensus.json", "sites/agiscorecard/ots"),
     ("sites/agiscorecard/market-board.json", "sites/agiscorecard/ots"),
     ("sites/agiscorecard/odds-history.json", "sites/agiscorecard/ots"),
+    ("sites/agiscorecard/independent-grades.json", "sites/agiscorecard/ots"),
     ("data/fleet-bets.json", "data/ots"),
 ]
 

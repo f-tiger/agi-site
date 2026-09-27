@@ -61,6 +61,13 @@ jobs:
         run: |
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
+          # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
+          python3 tools/gen_changelog.py
+          # the installable skill must survive the mirror pass with its frontmatter intact
+          head -1 skill.md | grep -q '^---$' || { echo "::error::skill.md lost its frontmatter (mirror generator overwrote it?)"; exit 1; }
+          # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
+          python3 tools/gen_grader_consensus.py --selftest
+          python3 tools/gen_grader_consensus.py --check
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py

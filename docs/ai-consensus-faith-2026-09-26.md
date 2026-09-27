@@ -141,3 +141,27 @@ Knuth 的 $2.56 支票多半被裱起来(Wikipedia「Knuth reward check」,引 2
   位置实验 10-07 才结算(判定期内不改被测对象);`agi-consensus-mcp-1124` 判 win 后把 median 作为活数字钩子加上去,
   这是预登记的 win 分支,不是现在做。
 - experiments.json E1 过期 22 天未结算,属另一条线,记在此不代办。
+
+## 八、第二轮(2026-09-27,owner:「先调用 skills 优化 prompt 3 轮再执行:继续探索这个话题」)
+
+**prompt 三轮(prompt-optimizer 技能)**
+1. **字面**:继续找类比特币的共识机制,工具、共识、金融全上。→ 问题:上一轮已把「能借的」列完(时间戳、可重算、公开评分记录),
+   再列一遍是第六次;「金融」一侧规则内只剩 Metaculus,仍在 owner 手里。
+2. **拆解**:上一轮审计留下的最大信任缺口是哪一个?答:**Thesis Tracker 只有算术可重算,判定本身是单一编辑的判断**——
+   比特币对「为什么信一个节点」的回答是「别信,拿独立节点对一遍」。→ 问题:本站没有第二个节点,自建评分者群 = 双边冷启动(已杀)。
+3. **定稿**:不造节点,**找已经存在的独立节点**——公开、带日期、给同一批预测打过分的第三方评分者,逐字引用、链接、
+   用一条印在页上的规则数一致与分歧,**包括我们被判错的地方**。零新 cron、零代币、主域一页、一条判定线。
+
+**做了什么**:`/grader-consensus` + `grader-consensus.json`(源数据 `independent-grades.json`,手工整理,每条评分是评分者原帖里的
+一整句,带 URL 与读取日期;唯一加进去的判断是五值映射,就摆在原句旁边)。两位独立评分者:Nathan Delisle(LessWrong,2025-06-23,
+定量审计)、Jamie Harris(EA Forum,2026-03-29)。**读数:9 次比较,6 次完全一致、3 次同向(ahead vs on track / behind vs unresolved)、
+0 次分歧;8 条里 5 条至多只有一位独立评分者,2 条(智能爆炸、超级智能)没人评过**。页面把这件事写成「面板很薄」,不写成「被证实」。
+最接近分歧的是政府 AGI 项目:Harris 说 behind,本站仍判 Open,双方都说 27/28 窗口未关。
+机制:`gen_grader_consensus.py --check` 逐字重算,进了部署构建步;`independent-grades.json` 进了 OTS 锚定清单。
+判定线 `agi-grader-consensus-1127`。
+
+**纠正上一轮一句假话**:09-26 文档与站内 CLAUDE.md 写「gen_changelog 已接进部署构建步」——当时那次补丁因前一条命令失败而没落盘,
+评审也指出了,但修复轮漏了这一处。本轮实际接上(连同 skill.md frontmatter 门)。
+
+**仍然不做**:给评分者发帖/外联征集第三位(机器永不外联);按「与我们一致」挑评分者(收录标准只看:公开、带日期、链接可核、
+评的是同一批预测)。**owner 侧**:Metaculus Fall 主赛 09-28 开题,key + `METACULUS_BOT_ENABLED=1` 仍是规则内唯一的「金融」一步。

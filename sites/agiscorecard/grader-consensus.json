@@ -1,0 +1,179 @@
+{
+ "name": "Grader consensus — Situational Awareness",
+ "url": "https://agiscorecard.com/grader-consensus",
+ "license": "CC BY 4.0 (compilation); quotes remain their authors' words",
+ "our_verdicts_asOf": "2026-09-06",
+ "graders": [
+  {
+   "id": "delisle-2025",
+   "author": "Nathan Delisle",
+   "title": "Situational Awareness: A One-Year Retrospective",
+   "venue": "LessWrong",
+   "url": "https://www.lesswrong.com/posts/EGGruXRxGQx6RQt8x/situational-awareness-a-one-year-retrospective",
+   "published": "2025-06-23",
+   "read": "2026-09-27",
+   "scope": "Quantitative audit of the 'drivers' (compute, algorithmic efficiency, unhobbling) and 'indicators' (cluster size, investment, chips, revenue, electricity) using public data through June 2025. Does not grade AGI-2027, the government project, open source, intelligence explosion or superintelligence."
+  },
+  {
+   "id": "harris-2026",
+   "author": "Jamie Harris",
+   "title": "How did Leopold do? Evaluating Situational Awareness's predictions",
+   "venue": "EA Forum",
+   "url": "https://forum.effectivealtruism.org/posts/RuwF8FCfpsLeZRgur/how-did-leopold-do-evaluating-situational-awareness-s",
+   "published": "2026-03-29",
+   "read": "2026-09-27",
+   "scope": "Qualitative evaluation across infrastructure, benchmarks, government, agents, revenue, China/US, open source, safety and the AGI-2027 timeline."
+  }
+ ],
+ "rule": "Two labels agree exactly when they are the same. They agree in direction when both are supportive (ahead or on track) or both say 'not delivered yet' (behind or unresolved). Anything else — including any pairing with 'wrong' that is not 'wrong' on both sides — is a disagreement.",
+ "counts": {
+  "exact": 6,
+  "direction": 3,
+  "disagree": 0
+ },
+ "predictions_with_external_grade": 6,
+ "predictions_without_external_grade": [
+  "intelligence-explosion",
+  "superintelligence"
+ ],
+ "rows": [
+  {
+   "id": "knowledge-work",
+   "prediction": "Models outpace college graduates across knowledge work",
+   "ours": "On track",
+   "ours_label": "on_track",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "on_track",
+     "relation": "exact",
+     "quote": "AI capabilities on benchmarks have broadly met his expectations, though the qualitative \"shocking leap\" hasn't landed as he described."
+    },
+    {
+     "grader": "delisle-2025",
+     "label": "on_track",
+     "relation": "exact",
+     "quote": "Compute, algorithmic efficiency, and unhobbling gains seem to follow Aschenbrenner’s forecasts as well, although with more uncertainty."
+    }
+   ]
+  },
+  {
+   "id": "compute-scaling",
+   "prediction": "Compute + algorithmic scaling continues at trend",
+   "ours": "On track",
+   "ours_label": "on_track",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "ahead",
+     "relation": "direction",
+     "quote": "Infrastructure investment and algorithmic efficiency are tracking ahead of his predictions."
+    },
+    {
+     "grader": "delisle-2025",
+     "label": "on_track",
+     "relation": "exact",
+     "quote": "Overall, Aschenbrenner’s predicted pace of roughly half an order-of-magnitude annual progress is ~roughly supported by available evidence."
+    }
+   ]
+  },
+  {
+   "id": "capex",
+   "prediction": "Massive AI capex acceleration",
+   "ours": "Exceeded",
+   "ours_label": "ahead",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "ahead",
+     "relation": "exact",
+     "quote": "Infrastructure investment and algorithmic efficiency are tracking ahead of his predictions."
+    },
+    {
+     "grader": "delisle-2025",
+     "label": "on_track",
+     "relation": "direction",
+     "quote": "Using publicly available data as of June 2025, this audit finds that global AI investment, electricity consumption, and chip production follow Aschenbrenner’s forecasts."
+    }
+   ]
+  },
+  {
+   "id": "open-source-fades",
+   "prediction": "Open source fades; proprietary algorithms create a durable US moat",
+   "ours": "Wrong",
+   "ours_label": "wrong",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "wrong",
+     "relation": "exact",
+     "quote": "But he missed that China would innovate independently and that open-source models would thrive at the frontier."
+    }
+   ]
+  },
+  {
+   "id": "agi-2027",
+   "prediction": "AGI: models do the work of an AI researcher/engineer",
+   "ours": "Open",
+   "ours_label": "unresolved",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "unresolved",
+     "relation": "exact",
+     "quote": "The AGI-by-2027 timeline is unresolved. It looked implausible six months ago, but recent capability jumps (particularly on software engineering tasks) have made it more credible again."
+    }
+   ]
+  },
+  {
+   "id": "the-project",
+   "prediction": "US government launches formal AGI project",
+   "ours": "Open",
+   "ours_label": "unresolved",
+   "external": [
+    {
+     "grader": "harris-2026",
+     "label": "behind",
+     "relation": "direction",
+     "quote": "Government response is behind what he predicted, though his AGI project timeline (27/28) hasn't elapsed yet."
+    }
+   ]
+  },
+  {
+   "id": "intelligence-explosion",
+   "prediction": "Intelligence explosion: a decade of progress in ~1 year",
+   "ours": "Pending",
+   "ours_label": "unresolved",
+   "external": []
+  },
+  {
+   "id": "superintelligence",
+   "prediction": "Superintelligence; decisive strategic advantage",
+   "ours": "Pending",
+   "ours_label": "unresolved",
+   "external": []
+  }
+ ],
+ "not_on_this_site": [
+  {
+   "topic": "AI revenue",
+   "grader": "harris-2026",
+   "quote": "AI revenue isn't quite as high: he predicted $100B run rate by mid-2026, and the best is $60B."
+  },
+  {
+   "topic": "AI revenue",
+   "grader": "delisle-2025",
+   "quote": "However, recent OpenAI and Anthropic models trail raw-compute trends by about one-third to one-half an order of magnitude, and AI-related revenue growth is several months behind."
+  },
+  {
+   "topic": "China/US competition",
+   "grader": "harris-2026",
+   "quote": "China/US competition intensified as he predicted, and most of his specifics were right (7nm chips, power infrastructure, espionage, CCP waking up, Middle East)."
+  },
+  {
+   "topic": "Safety and security",
+   "grader": "harris-2026",
+   "quote": "Safety and security remain roughly as inadequate as he described, with his warnings about state-actor exploitation and race-dynamic pressure on safety vindicated."
+  }
+ ]
+}
