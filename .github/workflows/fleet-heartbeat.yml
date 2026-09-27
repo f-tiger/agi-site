@@ -263,9 +263,11 @@ jobs:
           python3 tools/fleet/mcp_usage.py --selftest
           python3 tools/fleet/mcp_usage.py
 
-      # 预测承诺的第三方可核链(2026-09-27,owner「…类似比特币的共识算法…AI 时代信仰」第二轮)。
-      # 下面的锚定步起 data/metaculus/forecasts.jsonl 也被锚进比特币,且每个新版本记 size;账本只追加,
-      # 所以 size=N 的那一版就是今天文件的前 N 字节。这一步用 tools/fleet/verify_commitments.py 核三件事:
+      # 预测承诺的第三方可核链(2026-09-27,owner「…类似比特币的共识算法…AI 时代信仰」第三轮)。
+      # data/metaculus/forecasts.jsonl 由 metaculus-bot.yml 在写账本的同一个 job 里锚进比特币
+      # (ots_anchor --group ledger,证明与清单在 data/metaculus/ots/,每个新版本记 size 与 stamped_at);
+      # 本 workflow 只读不写那份清单(一份清单一个写入者,两条 workflow 不会互相 rebase 冲突)。
+      # 账本只追加,所以 size=N 的那一版就是今天文件的前 N 字节。这一步用 tools/fleet/verify_commitments.py 核三件事:
       #   ① 只追加:manifest 里每个带 size 的已锚版本,仍等于今天文件前 size 字节的 sha256(改写/重排/删行/截断 → TAMPER);
       #      manifest 没登记的 forecasts.jsonl.*.ots(孤儿证明)也核:证明头里写着它锚的哈希,必须仍是今天文件某个整行前缀;
       #      manifest 不可读、或被删而证明还在 → TAMPER;
@@ -273,10 +275,9 @@ jobs:
       #      账本里有这一行、明文的 question_id/submitted_at 与公开行一致(把别题的密封块挂到这一题 → TAMPER);
       #   ③ 每条已揭示行最早被哪一版锚定、锚定日是否早于关题;--ots 用 ots 客户端实核证明(runner 无比特币节点 →
       #      --no-bitcoin,仍核哈希链并给出区块高度 + merkle root 供人工对照;客户端或节点缺失永不致红)。
-      # **放在锚定步之前**(2026-09-27 对抗评审):先核仓库里已提交的 manifest 与证明,再让 ots_anchor 往上加。
-      # 反过来的顺序下,一份损坏或被删的 manifest 会先被 ots_anchor 重建成「只有今天一版」的干净样子,
-      # 改写过的账本随后也能核过(评审在草稿里复现了)。ots_anchor 现在对这两种 manifest 一律 fail closed
-      # (不重建、不覆盖已有证明、::error),锚定后再核一次(见锚定步后面那一步)。
+      # 放在锚定步之前(2026-09-27 对抗评审):核的是仓库里已提交的清单与证明。ots_anchor 对不可读或被删的
+      # 清单一律 fail closed(不重建、不覆盖已有证明、::error、退出码 2 → 下面锚定步变红进汇总),
+      # 所以「清单被重建成只有今天一版、改写过的账本随后核过」那条路径两头都堵上了。
       # continue-on-error + 末尾汇总步(与本 workflow 其余读数同一模式):TAMPER 会一直红到有人把字节修回来,
       # 若这一步直接挂掉 job,后面每一道独立断言(autopilot、UA 一致、过期判定线、召回雷达…)都会被跳过,
       # 「GitHub 失败邮件」这根保险丝就只剩这一个原因。run 照样红、照样发邮件。
@@ -305,19 +306,16 @@ jobs:
       # 「公开时间戳、无人能回填」这一项。OpenTimestamps 把带日期记录(verdicts / 分数史 / 共识板 /
       # 赌注台账)的 SHA-256 锚进比特币区块,免费公共日历、零密钥、不发币不持币。fail-open:
       # 日历不通只 warning。账:~0.2 分钟/天。证明文件随本步一起提交(下一步 git add)。
+      # 2026-09-27:加 id 并进末尾汇总。ots_anchor 拒绝一份坏清单时退出 2——此前只留一条 ::error 注释,
+      # 六份站点记录会悄悄停止锚定(评审指出)。日历不通仍只 warning、退出 0。
       - name: Anchor dated records in Bitcoin via OpenTimestamps (stamp new versions, upgrade pending proofs)
+        id: ots_anchor
         continue-on-error: true
         run: |
           pip install -q opentimestamps-client 2>/dev/null || { echo "::warning::ots client install failed; skipping anchoring"; exit 0; }
           python3 tools/fleet/ots_anchor.py --selftest
           python3 tools/fleet/ots_anchor.py
 
-      # 锚定之后再核一次(纯 stdlib、不跑 --ots,报告写 runner 临时目录,提交的仍是锚定前那一份):
-      # 锚定步若把 manifest 写坏,同一天就红,不等明天那次「锚定前核验」。
-      - name: Re-verify forecast commitments after anchoring
-        id: commitments_post
-        continue-on-error: true
-        run: python3 tools/fleet/verify_commitments.py --out "$RUNNER_TEMP/fleet-commitments-after-anchor.json"
 
       - name: Commit health snapshot
         run: |
@@ -434,8 +432,8 @@ jobs:
       - name: Assert the recall radar the shelves gate on is fresh
         run: python3 tools/fleet/recall_gate.py --check
 
-      - name: Fail the run if any site is down, blocks AI crawlers, a traffic read is stale, or the forecast ledger fails verification
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.commitments_post.outcome == 'failure'
+      - name: Fail the run if any site is down, blocks AI crawlers, a traffic read is stale, the forecast ledger fails verification, or anchoring refused a manifest
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} commitments-after-anchor=${{ steps.commitments_post.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }}"
           exit 1

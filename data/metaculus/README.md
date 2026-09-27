@@ -2,8 +2,10 @@
 
 Written by `.github/workflows/metaculus-bot.yml` after each published run (code: `tools/metaculus-bot/ledger.py`).
 
-- `forecasts.jsonl`: one line per forecast submitted to Metaculus FutureEval. Append-only. The probability and the shadow (no-house-prior) probability are sealed and carry a sha256 digest, so they are fixed before the question closes. They are opened only after the question closes, and today only by the key holder (see "What exists today").
+- `forecasts.jsonl`: one line per forecast submitted to Metaculus FutureEval. Append-only. The probability and the shadow (no-house-prior) probability are sealed and carry a sha256 digest, so they are fixed before the question closes. They are opened only after the question closes; the opened text is then published in `revealed.jsonl` so anyone can check it.
 - `runs.jsonl`: one line per run with LLM spend and counts. It feeds the daily spend ceiling.
+- `ots/`: OpenTimestamps proofs of `forecasts.jsonl`, one per version, and `ots/manifest.json` (sha256, byte `size`, `stamped`, `stamped_at`, status). Written by the same workflow run that appends to the ledger (`tools/fleet/ots_anchor.py --group ledger`); nothing else writes here.
+- `revealed.jsonl`: written by the daily heartbeat (`tools/fleet/metaculus_record.py`), one line per ledger line whose question has closed. Append-only.
 
 Nothing here is a trading signal or advice. The bot competes in a bot-only tournament; prize amounts are reported by the owner, never inferred.
 
@@ -30,14 +32,13 @@ The Actions logs of this public repo are world-readable too. In `main.py`:
 
 An AST gate in `test_ledger.py` fails on any log or print call that passes those values outside `redact()`. `BOT_LOG_PLAINTEXT=1` turns all of this off, for a private runner only. The workflow does not set it.
 
-## What exists today, and what does not
+## Commit → anchor → reveal → verify (what exists, 2026-09-27)
 
-**Exists.** `tools/fleet/metaculus_record.py` opens a sealed line only when the question's close time has passed and it has resolved, and only to score it. For resolved binary questions where the house prior was used, the submitted and shadow probabilities and their Brier scores are published in `data/fleet-forecast-record.json` (`house_prior.rows`). The time evidence for a forecast line is the git commit that added it, plus Metaculus's own record of the submitted forecast.
+1. **Commit.** The bot appends a line whose `digest` hides the forecast (nonce, above) and binds it.
+2. **Anchor.** In the same workflow run, `ots_anchor.py --group ledger` stamps the new version of `forecasts.jsonl` with OpenTimestamps (free public calendars; a Bitcoin block attestation follows within hours) and records its byte `size` and `stamped_at`. The file only grows, so the version stamped with size N is exactly the first N bytes of today's file: `head -c N forecasts.jsonl > v && ots verify ots/<proof> -f v` shows those lines existed by that block, without trusting this repo or GitHub.
+3. **Reveal.** Once Metaculus reports the question `closed` or `resolved` *and* its close time has passed, the heartbeat appends the exact canonical plaintext (nonce included) to `revealed.jsonl`: `{"digest", "question_id", "post_id", "submitted_at", "commit_v", "plain_text", "revealed_at", "closed_at", "resolution"}`. `plain_text` is the string whose sha256 is the committed `digest`. A line the current key cannot open is never revealed and never crashes the run. The file can be regenerated from the ledger and the key: if a line is ever corrupted, deleting it lets the next heartbeat append it again.
+4. **Verify.** `python3 tools/fleet/verify_commitments.py [--ots]` (standard library only) checks that every anchored version is still an exact prefix of today's ledger (append-only), that every reveal hashes to a committed digest and names that line's `question_id` and `submitted_at`, that no proof file on disk is missing from the manifest while committing to a non-prefix, and reports for each revealed line the earliest anchored version that contains it and whether that stamp came before the close (to the second, from `stamped_at`). `--ots` also runs the OpenTimestamps client on those proofs. Any rewritten line or mismatched reveal is TAMPER: exit 1, and the heartbeat run turns red.
 
-**Not built yet (planned; do not cite as existing):**
+**What this does not prove.** `stamped` / `stamped_at` are our runner's clock; the proof-backed time is the Bitcoin block, which is at or after it (usually within hours). Someone who rewrites the ledger, the manifest and deletes the proofs in this repo together defeats the in-repo check; a copy of any published proof still shows the original bytes. A reveal shows what was committed, not that the forecast was good. And the key is derived from `METACULUS_TOKEN`: **regenerating that token before every line has been revealed makes the unrevealed lines impossible to open** (the submission count survives; the ablation for those lines does not).
 
-- a public file with the exact opened plaintext, nonce included, so anyone can re-hash it against the committed `digest` without our key;
-- a script that checks such reveals against `forecasts.jsonl`;
-- OpenTimestamps anchoring of `forecasts.jsonl`. `tools/fleet/ots_anchor.py` does not stamp this file.
-
-Until those exist, only the key holder can check a line against its digest. The published scores in `fleet-forecast-record.json` are our statement of what was sealed, not something a third party can verify byte for byte.
+The house-prior comparison (`data/fleet-forecast-record.json`, `house_prior.rows`) is computed from resolved binary questions where the prior was used; with the reveals published, anyone can recompute it from `revealed.jsonl` and Metaculus's resolutions.

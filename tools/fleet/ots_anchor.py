@@ -21,13 +21,18 @@ What it does (idempotent; safe to run daily from fleet-heartbeat.yml):
 
 Append-only targets (2026-09-27): data/metaculus/forecasts.jsonl is the Metaculus bot's sealed
 point-in-time ledger. It only ever grows, so a new stamp is taken whenever lines were appended, and
-every entry added from today on records "size" = byte length of the version it stamped (entries
-made before that stay exactly as they were). Because the file is append-only, the version stamped
-with size N is exactly the first N bytes of today's file: `head -c N forecasts.jsonl > v &&
-ots verify <proof> -f v` proves those lines existed by that Bitcoin block, and
-tools/fleet/verify_commitments.py checks every stamped prefix still matches (a rewritten earlier
-line breaks it). Stamped once a day by the heartbeat, so a line is anchored the morning after it
-was written, not the minute it was written.
+every entry added from today on records "size" = byte length of the version it stamped and
+"stamped_at" = the UTC second it was stamped (entries made before that stay exactly as they were).
+Because the file is append-only, the version stamped with size N is exactly the first N bytes of
+today's file: `head -c N forecasts.jsonl > v && ots verify <proof> -f v` proves those lines existed
+by that Bitcoin block, and tools/fleet/verify_commitments.py checks every stamped prefix still
+matches (a rewritten earlier line breaks it).
+Two groups, one writer per manifest (2026-09-27 integration): the default group (site records +
+bet ledger) is stamped by the daily heartbeat; `--group ledger` (the forecast ledger, proofs in
+data/metaculus/ots/) is stamped by metaculus-bot.yml in the same job that appends the lines, so a
+forecast is anchored minutes after it is submitted instead of at the next heartbeat (a question
+that opens and closes between two heartbeats would otherwise never get a pre-close anchor), and the
+two workflows never rebase against each other's manifest edits.
 Fail-open: calendars unreachable → ::warning, exit 0; nothing here may block a heartbeat.
 Never fabricates: a proof file is only recorded after `ots info` parses it.
 Fails closed on history (2026-09-27 review): a manifest.json that exists but does not parse, or is
@@ -38,7 +43,8 @@ directory is skipped with ::error until a human restores the manifest from git. 
 an existing proof file is never overwritten: under a name with no manifest entry it may be the
 Bitcoin-confirmed proof of that very version.
 
-Usage: python3 tools/fleet/ots_anchor.py [--selftest] [--dry-run]
+Usage: python3 tools/fleet/ots_anchor.py [--selftest] [--dry-run] [--group default|ledger]
+Exit 2 when any manifest was refused (so the calling step turns red instead of only annotating).
 """
 import contextlib
 import datetime as dt
@@ -64,8 +70,12 @@ TARGETS = [
     ("sites/agiscorecard/odds-history.json", "sites/agiscorecard/ots"),
     ("sites/agiscorecard/independent-grades.json", "sites/agiscorecard/ots"),
     ("data/fleet-bets.json", "data/ots"),
-    ("data/metaculus/forecasts.jsonl", "data/ots"),
 ]
+# The forecast ledger has its own manifest and its own writer (metaculus-bot.yml, --group ledger).
+LEDGER_TARGETS = [
+    ("data/metaculus/forecasts.jsonl", "data/metaculus/ots"),
+]
+GROUPS = {"default": TARGETS, "ledger": LEDGER_TARGETS}
 
 # Targets that only ever grow. Their manifest carries a one-line how-to for checking a stamped
 # prefix; tools/fleet/verify_commitments.py keeps its own copy of this list on purpose (a verifier
@@ -184,6 +194,12 @@ def upgrade(proof_path, dry_run):
     return st or "pending"
 
 
+def utc_now_iso():
+    """The stamp time recorded next to a new entry. Our clock, not the proof's: the Bitcoin block that
+    later attests the digest is at or after it, so it is the lower bound a pre-close claim needs."""
+    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+
+
 def anchor(targets, today, dry_run=False, root=None):
     """Returns (summary dict, warnings list). Pure apart from the filesystem and `ots`.
     Manifests are rewritten only when an entry changed, so a quiet day commits nothing.
@@ -233,7 +249,7 @@ def anchor(targets, today, dry_run=False, root=None):
             proof_path = os.path.join(root, ots_dir, proof_rel)
             if stamp(fp, proof_path, dry_run, data=data):
                 entries.append({"sha256": digest, "proof": proof_rel, "stamped": today, "status": "pending",
-                                "size": len(data)})
+                                "size": len(data), "stamped_at": utc_now_iso()})
                 summary["stamped"] += 1
             else:
                 warnings.append("could not stamp %s (calendars unreachable, or see the warning above)" % rel)
@@ -293,6 +309,15 @@ def selftest():
     assert said.count("::error::") == 2 and "is missing but" in said and "not a readable manifest" in said, \
         "a refused manifest is reported as an error, once per run"
     assert "already exists with no manifest entry" in said, "a refused re-stamp says why"
+    # one writer per manifest (2026-09-27): the heartbeat's default group never touches the ledger's
+    # proofs, and the ledger group touches nothing else — two workflows editing one manifest.json
+    # would rebase against each other.
+    dirs = lambda g: {d for _, d in GROUPS[g]}
+    assert not dirs("default") & dirs("ledger"), "the two groups share no proof directory"
+    assert [r for r, _ in GROUPS["ledger"]] == ["data/metaculus/forecasts.jsonl"], "the ledger group is the ledger only"
+    assert all(r in dict(GROUPS["ledger"]) for r in APPEND_ONLY), "every append-only target is in the ledger group"
+    iso = utc_now_iso()
+    assert iso.endswith("+00:00") and dt.datetime.fromisoformat(iso).tzinfo is not None, "stamped_at is UTC, to the second"
     print("ots_anchor selftest: ok")
 
 
@@ -335,6 +360,8 @@ def anchor_selftest():
         e1 = man["files"]["forecasts.jsonl"]
         assert summary["stamped"] == 2 and len(e1) == 1, "one new version per changed target"
         assert e1[0]["size"] == len(v1) == os.path.getsize(led), "size = byte length of the stamped version"
+        assert dt.datetime.fromisoformat(e1[0]["stamped_at"]).date().isoformat() == dt.datetime.now(dt.timezone.utc).date().isoformat(), \
+            "every new entry records the UTC second it was stamped"
         assert e1[0]["sha256"] == hashlib.sha256(v1).hexdigest()
         assert stamped_bytes[os.path.join(td, "data/ots", e1[0]["proof"])] == v1, "stamp gets the hashed bytes"
         assert man["files"]["fleet-bets.json"][0] == legacy, "legacy entry untouched (no size added)"
@@ -453,12 +480,17 @@ def main(argv):
     if shutil.which("ots") is None:
         print("::warning::ots client not installed (pip install opentimestamps-client); skipping anchoring")
         return 0
-    today = dt.date.today().isoformat()
-    summary, warnings = anchor(TARGETS, today, dry_run=dry)
+    group = argv[argv.index("--group") + 1] if "--group" in argv else "default"
+    if group not in GROUPS:
+        print("::error::ots_anchor: unknown --group %r (known: %s)" % (group, ", ".join(sorted(GROUPS))))
+        return 2
+    today = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    summary, warnings = anchor(GROUPS[group], today, dry_run=dry)
     for w in warnings:
         print("::warning::ots_anchor: " + w)
-    print("ots_anchor: " + json.dumps(summary))
-    return 0
+    print("ots_anchor[%s]: %s" % (group, json.dumps(summary)))
+    # a refused manifest is history that can no longer be extended; say so with the exit code too
+    return 2 if summary.get("refused") else 0
 
 
 if __name__ == "__main__":

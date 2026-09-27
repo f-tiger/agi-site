@@ -21,6 +21,9 @@ index-history.json and pages at import time (CLAUDE.md 生成器漂移). Byte-id
 2026-09-27: the deploy build (gen_feed / gen_agent_surfaces / gen_changelog / grader --check)
 writes none of the six anchored JSON files and the worker's non-HTML branch passes them through
 untouched, so nothing is excluded; if that ever changes, exclude the file here and say why.
+v4 2026-09-27 — the Metaculus forecast ledger section (commit → anchor → reveal → verify) and a row in the
+inventory, both from data/fleet-forecast-record.json; the verify button no longer guesses "tampered" from a
+file's self-declared date (a record not in the manifest is "not among the listed versions yet").
 Rerun after any ledger change: python3 tools/gen_calibration.py
 """
 import ast
@@ -36,6 +39,50 @@ import gen_lib as g
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PUBLISHED = "2026-08-08"
 BRIER_N = 20
+
+
+REPO = os.path.dirname(os.path.dirname(ROOT))
+GH = "https://github.com/f-tiger/agi-site/blob/main/"
+
+
+def load_forecast_record():
+    """data/fleet-forecast-record.json (tools/fleet/metaculus_record.py, daily heartbeat) — the Metaculus bot's
+    point-in-time ledger read back. None if absent; the page then says nothing about it rather than guess."""
+    p = os.path.join(REPO, "data", "fleet-forecast-record.json")
+    if not os.path.exists(p):
+        return None
+    try:
+        return json.load(open(p, encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def ledger_block(rec):
+    """v4 2026-09-27 — the forecast ledger as a commit → anchor → reveal → verify protocol, and its state today.
+    Every number comes from the record file; the date shown is that file's own."""
+    if not rec:
+        return ""
+    led, st = rec.get("ledger") or {}, rec.get("enabled_state") or "unknown"
+    hp = rec.get("house_prior") or {}
+    asof = str(rec.get("generated") or "")[:10] or "unknown date"
+    state = {"never": "has not submitted a forecast yet", "live": "is submitting forecasts",
+             "stalled": "has stopped submitting (no successful run in 48 hours)"}.get(st, "is in state “%s”" % st)
+    return f"""<h2>The forecast ledger: sealed before the question closes, opened after</h2>
+<p>The one place this network states probabilities that someone else scores is its bot in Metaculus's
+FutureEval bot tournament. Metaculus keeps what the bot submits;
+it does not keep what the bot would have said <em>without</em> this site's own research as a prior, and that counterfactual is the only
+test of whether the site's judgement helps. So each forecast, and a shadow forecast made without the prior, is committed in public before
+the question closes: a line in <a href="{GH}data/metaculus">data/metaculus/forecasts.jsonl</a> carries the SHA-256 of the sealed forecast
+plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered from its hash in milliseconds — we measured
+it on the first version and fixed it before the bot ever ran). The ledger only grows; each version is stamped into Bitcoin with
+OpenTimestamps in the same run that writes it, and its byte length is recorded, so every earlier version must remain an exact prefix of
+today's file. After a question closes, the exact sealed text is published in <code>revealed.jsonl</code>; anyone can hash it, find the
+matching line, and check the proof that the line existed before the close. The whole check is one standard-library script:
+<a href="{GH}tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's heartbeat,
+which turns red on any rewritten line or mismatched reveal.</p>
+<p><strong>State as of {asof}:</strong> the bot {state}; <strong>{led.get("forecast_lines", 0)}</strong> forecast line(s) committed,
+<strong>{led.get("shadows_logged", 0)}</strong> with a shadow; house-prior comparison on resolved questions: n = <strong>{hp.get("n", 0)}</strong>.
+A Brier comparison appears here only once questions resolve; until then this section says exactly this.</p>"""
 
 
 def load():
@@ -152,20 +199,15 @@ async function get(path){
   return r.arrayBuffer();
 }
 function parse(buf){return JSON.parse(new TextDecoder().decode(buf));}
-// the file's own date: first dated key of the object, or of the last row of a history array
-function ownDate(j){
-  var o=Array.isArray(j)?j[j.length-1]:j,ks=['dateModified','updated','asOf','fetched','generated','date'];
-  if(!o||typeof o!=='object')return null;
-  for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(typeof v==='string'&&/^\d{4}-\d{2}-\d{2}/.test(v))return v.slice(0,10);}
-  return null;
-}
 function commits(buf,digest){
   var b=new Uint8Array(buf);
   if(b.length<65)return false;
   return hex(b.slice(0,31))===MAGIC&&b[31]===1&&b[32]===8&&hex(b.slice(33,65))===digest;
 }
 function round1(v){
-  var m=/^(\d+)\.(\d)50*$/.exec(v.toFixed(100));
+  // toFixed(20), not (100): engines before ES2018 throw above 20. A double that is exactly x.y5 has at most
+  // two decimals, so 20 digits always show whether the half-to-even rule (Python's round) applies.
+  var m=/^(\d+)\.(\d)50*$/.exec(v.toFixed(20));
   if(m&&(+m[2])%2===0)return +(m[1]+'.'+m[2]);
   return +v.toFixed(1);
 }
@@ -194,7 +236,8 @@ btn.addEventListener('click',async function(){
       var d=hex(await crypto.subtle.digest('SHA-256',buf)),k=-1,last=ents[ents.length-1];
       for(var j=0;j<ents.length;j++){if(ents[j].sha256===d)k=j;}
       if(k>=0){
-        var e=ents[k],meta=e.status+', stamped '+e.stamped;
+        // status and dates are the manifest's own record; the button checks the hash and the proof header only
+        var e=ents[k],meta='manifest: '+e.status+', stamped '+e.stamped;
         if(e.status==='bitcoin'&&e.confirmed)meta+=', in a Bitcoin block by '+e.confirmed;
         if(e.status==='pending')meta+=', calendar receipt only, not in a block yet';
         var ok=false,why='';
@@ -208,15 +251,12 @@ btn.addEventListener('click',async function(){
               why?'(proof '+why+').':'(check it with ots verify).');
         }
       }else{
-        var own_d=null;try{own_d=ownDate(parse(buf));}catch(x){}
-        if(own_d&&own_d>=last.stamped){
-          row('new',f,'this version is newer than the last stamp (records are stamped daily)',
-              '— its own date, '+own_d+', is on or after the last stamp, '+last.stamped+'. SHA-256 '+d.slice(0,12)+'…');
-        }else{
-          row('warn',f,'does not match any listed version',
-              '— SHA-256 '+d.slice(0,12)+'… is not in the manifest, and '+(own_d?'its own date, '+own_d+', is before':'it carries no date of its own later than')+
-              ' the last stamp, '+last.stamped+'. Either it was edited without its date moving, or the bytes served are not the bytes stamped; the public git log settles which.');
-        }
+        // 2026-09-27 integration: no guess from the file's self-declared date (hand edits do not always move
+        // it, and a guess that cries "tampered" is worse than none). Not listed = not stamped yet, said plainly.
+        row('new',f,'not among the listed versions yet',
+            '— SHA-256 '+d.slice(0,12)+'… The record changed after the last daily stamp ('+last.stamped+'), or the newest proofs '+
+            'are not published yet (they go live with the next site deploy). If this persists for more than two days, compare '+
+            'the file with the public git history.');
       }
     }
     sum.textContent=matched+' of '+total+' records match a listed proof (checked in this browser, '+new Date().toISOString().slice(0,16).replace('T',' ')+' UTC).';
@@ -261,9 +301,9 @@ visits to the files; the run leaves one event with no identifiers (how many reco
 <p><strong>What a match proves:</strong> the bytes served to you are the bytes a listed proof was made for, and once that proof has a
 Bitcoin attestation, those bytes existed no later than that block. <strong>What it does not prove:</strong> that any verdict is right,
 that a source was read correctly, or that nothing was left out; an agreeing recompute only shows the score is the stated arithmetic
-of the verdicts. The button does not walk the proof up to a Bitcoin block header: <code>ots verify</code> or the verifier at
-opentimestamps.org does that against headers it fetches itself. A record changed since the last daily stamp is reported as newer,
-not as a failure, when its own date says so. These files are served exactly as committed (checked 2026-09-27: neither the deploy
+of the verdicts. The button does not walk the proof up to a Bitcoin block header: the verifier at opentimestamps.org does, and so
+does <code>ots verify</code> on a machine with access to a Bitcoin node. A record changed since the last daily stamp is reported as
+“not among the listed versions yet”, not as a failure. These files are served exactly as committed (checked 2026-09-27: neither the deploy
 build nor the edge worker rewrites them), so a stamped version should match byte for byte.</p>
 <div class="verify" id="verify" hidden>
 <button type="button" class="verify-btn" id="verify-run">Verify these records in your browser</button>
@@ -278,7 +318,7 @@ find that hash in <a href="/ots/manifest.json">/ots/manifest.json</a>, download 
 <script>{js}</script>"""
 
 
-def render(s, man, weights):
+def render(s, man, weights, rec=None):
     tally = " · ".join(f"{v} {k.lower()}" for k, v in sorted(s["tally"].items(), key=lambda kv: -kv[1]))
     wl, wh = s["wilson"]
     rng = s["open_odds_range"]
@@ -309,6 +349,7 @@ nothing about whether a verdict is right, and versions before 2026-09-26 rest on
 <tr><td><a href="/situational-awareness-predictions">{s['n_pred']} Situational Awareness verdicts</a></td><td>Categorical verdicts; {s['with_flip']} of {s['n_pred']} carry a written flip condition, {s['with_resolves']} a resolution date, {s['with_watch']} a watch item, {s['with_pending']} a stated blocker (all in <a href="/data.json">data.json</a>)</td><td>{tally} → <a href="/progress-index">Thesis Tracker {s['tracker']}/100</a> as of {s['tracker_asof']}</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/track-record">SunWatch market-call ledger</a></td><td>Dated, falsifiable market calls</td><td>{s['n_scored']} scored, {s['n_hit']} hits ({s['hit_rate']}%), {s['n_pending']} pending, ledger as of {s['ledger_asof']}. n={s['n_scored']} is small: the Wilson 95% interval is roughly {wl}–{wh}%, so this is a work-in-progress sample, not proof of skill.</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/red-team">Red-team survival odds</a></td><td>Editorial probabilities on open calls</td><td>{s['open_odds']} open calls carry a stated probability{f' ({rng[0]}–{rng[1]}%)' if rng else ''}; confidence cuts are published the day counter-evidence lands.</td></tr>
+{("<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each sealed and Bitcoin-timestamped before close</td><td>" + str((rec.get("ledger") or {}).get("forecast_lines", 0)) + " forecast(s) committed, as of " + str(rec.get("generated") or "")[:10] + "</td></tr>") if rec else ""}
 <tr><td><a href="/agi-prediction-markets">AGI consensus board</a></td><td>Third-party forecasts, not ours</td><td>Cross-venue median and spread, recomputable from the published snapshot; it is a reference we quote, not a call we are scored on.</td></tr>
 </tbody></table>
 <h2>The number nobody wants to print: Brier-eligible n = {s['brier_eligible']}</h2>
@@ -324,6 +365,7 @@ calibration curve (stated probability vs realized frequency), recomputed on ever
 as a dated line in the public bet ledger of this site's repository; if the pool never gets there, the line settles as
 <em>insufficient</em> and says so here. The forecast ledger is public and timestamped, so anyone can compute it before we do.</p>
 {ots_html}
+<div id="forecast-ledger"></div>{ledger_block(rec)}
 <h2>Why this page exists</h2>
 <p>Every AI-era answer engine can generate confident takes; almost none can show you a scored history. Being auditable —
 misses kept on the page next to hits, flip conditions registered before outcomes, probabilities graded against reality,
@@ -333,6 +375,7 @@ explicit, including the part where the sample is still too small.</p>"""
 
 def main():
     sw, d, man = load()
+    frec = load_forecast_record()
     s = stats(sw, d)
     weights = published_weights()
     # build-time twin of the in-browser recompute: a mismatch is not hidden (the page will say it live), but say it here too
@@ -381,7 +424,7 @@ def main():
                  f'them can actually be Brier-scored today (<strong>{s["brier_eligible"]}</strong>), and pre-commits to publishing a '
                  f'Brier score and calibration curve once scored probability calls reach n≥{BRIER_N}. '
                  'We would rather show a small honest n than a big fake curve.'),
-        body_html=render(s, man, weights), faqs=faqs, related=related,
+        body_html=render(s, man, weights, frec), faqs=faqs, related=related,
     )
     if man:
         assert html.count("</style>\n</head>") == 1, "gen_lib head changed: cannot place the verify block's CSS"

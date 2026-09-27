@@ -438,6 +438,24 @@ ck(own.getMessage() == "questions touched: main=3", "our own run lines pass the 
 lookalike = _rec("forecasting_tools_fork", logging.WARNING, "/x/y.py", 1, "kept %s", ("text",))
 ck(main._SealLibraryText().filter(lookalike) and lookalike.getMessage() == "kept text", "only the forecasting_tools logger tree is touched")
 
+# 2026-09-27 integration: LiteLLM / asyncio / py.warnings carry model text too (see _SealLibraryText)
+others = [_rec("LiteLLM", logging.WARNING, "/x/litellm/utils.py", 7, "reply: %s", ("Probability: 73%",)),
+          _rec("LiteLLM Router", logging.ERROR, "/x/router.py", 9, "fallback after %s", ("Probability: 73%",)),
+          _rec("asyncio", logging.ERROR, "/x/base_events.py", 1, "Task exception was never retrieved", ()),
+          _rec("py.warnings", logging.WARNING, "/x/warnings.py", 1, "%s", ("PydanticSerializationUnexpectedValue: Message(content='Probability: 73%')",))]
+try:
+    raise RuntimeError("Probability: 73%")
+except RuntimeError:
+    others[2].exc_info = sys.exc_info()
+for r in others:
+    main._SealLibraryText().filter(r)
+shown_o = [LOUD.format(r) for r in others]
+ck(all("73" not in x and "Probability" not in x and "/x/" not in x for x in shown_o),
+   f"LiteLLM / asyncio / py.warnings records are sealed: {shown_o!r}")
+ck(shown_o[2].endswith("[library log sealed] (RuntimeError)") and " asyncio " in shown_o[2],
+   "a sealed record with a traceback keeps only its exception class (why a run died stays readable)")
+ck(main._SealLibraryText().filter(_rec("litellm_helpers", logging.WARNING, "/x/y.py", 1, "kept", ())), "lookalike names are not touched")
+
 
 def configured(env_plain: bool):
     """Run main()'s real logging setup against a capture handler on the root logger."""
@@ -465,6 +483,32 @@ def configured(env_plain: bool):
         root.setLevel(saved[1])
         ftl.setLevel(saved[2])
 
+
+def own_handler_and_warnings():
+    """LiteLLM's own-handler path and warnings.warn, through main()'s real public-mode setup."""
+    import warnings
+    root, lit = logging.getLogger(), logging.getLogger("LiteLLM")
+    saved = (list(root.handlers), list(lit.handlers), lit.propagate, warnings.showwarning)
+    rbuf, lbuf = io.StringIO(), io.StringIO()
+    root.handlers[:] = [logging.StreamHandler(rbuf)]
+    lit.handlers[:] = [logging.StreamHandler(lbuf)]  # what `import litellm` installs
+    lit.propagate = False
+    try:
+        main._configure_logging()
+        lit.warning("reply was %s", "Probability: 73%")
+        with warnings.catch_warnings():
+            warnings.simplefilter("always")
+            warnings.warn("Message(content='Probability: 73%')")
+        return rbuf.getvalue() + lbuf.getvalue()
+    finally:
+        logging.captureWarnings(False)
+        root.handlers[:], lit.handlers[:], lit.propagate = saved[0], saved[1], saved[2]
+        warnings.showwarning = saved[3]
+
+
+ow = own_handler_and_warnings()
+ck("73" not in ow and ow.count("[library log sealed]") == 2,
+   f"public mode: LiteLLM's own handler and warnings.warn are sealed too: {ow!r}")
 
 out, lvl, filtered = configured(False)
 ck(lvl == logging.WARNING and filtered, "main()'s logging setup: forecasting_tools at WARNING and the seal filter on the root handler")

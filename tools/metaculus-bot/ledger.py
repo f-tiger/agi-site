@@ -16,12 +16,13 @@ Sealing. The probability and the shadow (no-house-prior) probability are sealed
 with Fernet (AES-128-CBC + HMAC-SHA256, `cryptography`) under a key derived from
 METACULUS_TOKEN, which is already in Secrets — so the owner adds nothing. Each line
 also carries sha256(plaintext) so a later reveal can be checked against what was
-committed. The reader (tools/fleet/metaculus_record.py) unseals only questions that
-have closed and resolved, and only to score them. A public reveal file with the exact
-plaintext, a reveal verifier and OpenTimestamps anchoring of forecasts.jsonl are
-planned, NOT built (data/metaculus/README.md says what exists). If the token is
-rotated, older lines stay sealed under the old key id; that loses the ablation for
-those lines, never the submission count.
+committed. The reader (tools/fleet/metaculus_record.py) unseals a line only once its
+question has closed, scores resolved ones, and appends the exact opened text to
+data/metaculus/revealed.jsonl; the bot workflow stamps every ledger version into
+Bitcoin with OpenTimestamps (tools/fleet/ots_anchor.py --group ledger); and
+tools/fleet/verify_commitments.py lets anyone check the chain (data/metaculus/README.md).
+If the token is rotated, lines not yet revealed stay sealed under the old key id and can
+never be opened; that loses the ablation for those lines, never the submission count.
 
 Hiding (commit_v 2, 2026-09-27). A digest is only a commitment if it binds AND hides.
 v1 hashed the plaintext with no salt, and every field of it except the two

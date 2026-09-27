@@ -7,7 +7,7 @@ means something if a stranger can check three things without our key and without
 the ledger was never rewritten, each opened forecast is exactly what was committed, and the line
 existed by a Bitcoin block. This script is that check, run daily by fleet-heartbeat.yml.
 
-  (a) append-only. data/ots/manifest.json lists every stamped version of
+  (a) append-only. data/metaculus/ots/manifest.json lists every stamped version of
       data/metaculus/forecasts.jsonl with "size" (tools/fleet/ots_anchor.py). The ledger only
       grows, so each of those versions must still be the first `size` bytes of today's file
       (same sha256). A rewritten, reordered, removed or truncated earlier line breaks it → TAMPER.
@@ -20,8 +20,8 @@ existed by a Bitcoin block. This script is that check, run daily by fleet-heartb
       that digest, and the opened JSON names that line's question_id and submitted_at (a sealed
       blob copied under another question does not count) → else TAMPER.
   (c) anchoring. For each revealed line, the earliest stamped version whose size covers the line:
-      its stamped / confirmed dates, status and proof, and whether the stamp day is before the
-      question closed. A line written after the last stamp is reported as not anchored yet —
+      its stamped / stamped_at / confirmed, status and proof, and whether the stamp was taken
+      before the question closed (to the second when the entry has stamped_at, else by UTC day). A line written after the last stamp is reported as not anchored yet —
       that is timing, not tampering.
   (d) --ots. `ots verify <proof> -f <that prefix>` for the proofs behind revealed lines and for
       the latest Bitcoin-confirmed version. Without a Bitcoin node (the runner has none) it reruns
@@ -33,9 +33,10 @@ Writes data/fleet-commitments.json (summary + one row per revealed line). Exit 1
 0 otherwise; nothing to check yet (no ledger, no manifest, no reveals) = 0 with a note.
 
 What this does NOT prove, said plainly:
-  * the manifest's "stamped" day is our record; the proof-backed bound is the Bitcoin block's time.
-    The heartbeat stamps once a day (08:00 UTC), so a forecast made less than a day before its
-    question closed usually has only the git commit and Metaculus's own record as time evidence;
+  * the manifest's "stamped" / "stamped_at" are our clock; the proof-backed bound is the Bitcoin
+    block's time, which is at or after the stamp (usually one to a few hours). metaculus-bot.yml
+    stamps the ledger in the same job that appends to it, so the gap between submission and stamp
+    is minutes; the gap between stamp and block is the calendars' aggregation, not ours;
   * someone who rewrites the ledger AND the manifest AND deletes the proof files in this repo defeats
     (a) here. They cannot make an already-published .ots proof commit to other bytes: anyone holding a
     copy of a proof, and its version of the file, can still show the original;
@@ -56,17 +57,19 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 LEDGER = "data/metaculus/forecasts.jsonl"
 REVEALED = "data/metaculus/revealed.jsonl"
-OTS_DIR = "data/ots"
+OTS_DIR = "data/metaculus/ots"  # the ledger's own manifest; one writer: metaculus-bot.yml (ots_anchor --group ledger)
 OUT = "data/fleet-commitments.json"
 # (append-only file, its proof dir). Kept here on purpose rather than read from the manifest: a
 # verifier that learned from the manifest what to check could be told to check nothing.
 APPEND_ONLY = [(LEDGER, OTS_DIR)]
-OTS_CAP = 10          # proofs the ots client checks per run (newest first); the rest wait
-OTS_TIMEOUT = 60
+OTS_CAP = 10          # proofs the ots client checks per run: the newest confirmed one + a window that rotates daily
+OTS_TIMEOUT = 30      # per ots call
+OTS_BUDGET = 180      # seconds for all ots calls in one run: calendars or a node that hang cannot stall the heartbeat
 # the fixed start of an OpenTimestamps proof file: magic, major version 1, the sha256 op tag; the next
 # 32 bytes are the digest the proof commits to (read without the ots client)
 OTS_HEADER = b"\x00OpenTimestamps\x00\x00Proof\x00\xbf\x89\xe2\xe8\x84\xe8\x92\x94" + b"\x01\x08"
@@ -270,18 +273,24 @@ def check_reveal(rev: dict, by_digest: dict) -> list[str]:
 def anchor_for(end: int, anchored: list) -> dict | None:
     """Earliest stamped version (by stamp day, then size) that contains every byte of the line."""
     cover = [e for e in anchored if e["size"] >= end]
-    return min(cover, key=lambda e: (str(e.get("stamped") or ""), e["size"])) if cover else None
+    return min(cover, key=lambda e: (str(e.get("stamped_at") or e.get("stamped") or ""), e["size"])) if cover else None
 
 
 def stamped_before_close(stamped, closed_at) -> bool | None:
-    """True/False by UTC day; None when the close time is unknown or it is the same day (the manifest
-    records the day only — the Bitcoin block's time decides that case)."""
+    """Was the stamp taken before the question closed? `stamped` is an entry's "stamped_at" (a UTC
+    datetime, compared to the second) or, for entries without it, its "stamped" day (compared by UTC
+    day; the same day is None because the day alone cannot order them — the block time decides).
+    None when the close time is unknown or the stamp does not parse."""
     close = parse_time(closed_at)
-    try:
-        day = dt.date.fromisoformat(str(stamped))
-    except ValueError:
-        return None
     if close is None:
+        return None
+    text = str(stamped or "")
+    if "T" in text:
+        at = parse_time(text)
+        return None if at is None else at < close
+    try:
+        day = dt.date.fromisoformat(text)
+    except ValueError:
         return None
     cday = close.astimezone(dt.timezone.utc).date()
     return None if day == cday else day < cday
@@ -351,7 +360,7 @@ def verify(root: str, now: dt.datetime, use_ots: bool = False) -> dict:
         check_append_only(root, extra_rel, extra_dir, tamper, notes)
     prefix_ok = not tamper
     if data is not None and entries is not None and not any("size" in e for e in entries):
-        notes.append("no stamped version of %s yet (ots_anchor.py stamps it once a day)" % rel)
+        notes.append("no stamped version of %s yet (the bot workflow stamps it in the run that appends lines: ots_anchor.py --group ledger)" % rel)
 
     index = ledger_index(data or b"")
     by_digest = {}
@@ -384,9 +393,9 @@ def verify(root: str, now: dt.datetime, use_ots: bool = False) -> dict:
         used.append(a)
         rows.append({"digest": d, "question_id": rev.get("question_id"), "post_id": rev.get("post_id"),
                      "ok": not problems, "closed_at": rev.get("closed_at"),
-                     "anchor": None if a is None else {k: a.get(k) for k in ("stamped", "confirmed", "status", "size")}
+                     "anchor": None if a is None else {k: a.get(k) for k in ("stamped", "stamped_at", "confirmed", "status", "size")}
                      | {"proof": "%s/%s" % (ots_dir, a.get("proof"))},
-                     "stamped_before_close": None if a is None else stamped_before_close(a.get("stamped"), rev.get("closed_at"))})
+                     "stamped_before_close": None if a is None else stamped_before_close(a.get("stamped_at") or a.get("stamped"), rev.get("closed_at"))})
 
     ots = None
     if use_ots:
@@ -400,10 +409,14 @@ def verify(root: str, now: dt.datetime, use_ots: bool = False) -> dict:
             confirmed = [e for e in anchored if e.get("status") == "bitcoin"]
             chain = max(confirmed, key=newest) if confirmed else None
             behind = sorted({e.get("proof"): e for e in used if e is not None}.values(), key=newest, reverse=True)
-            order = ([chain] if chain else []) + [e for e in behind if chain is None or e.get("proof") != chain.get("proof")]
-            state, results = {}, {}
+            rest = [e for e in behind if chain is None or e.get("proof") != chain.get("proof")]
+            if len(rest) > OTS_CAP - 1:  # rotate daily, so every proof behind a reveal is checked over time
+                k = dt.date.today().toordinal() % len(rest)
+                rest = rest[k:] + rest[:k]
+            order = ([chain] if chain else []) + rest
+            state, results, t0 = {}, {}, time.monotonic()
             for i, e in enumerate(order):
-                if i >= OTS_CAP:
+                if i >= OTS_CAP or time.monotonic() - t0 > OTS_BUDGET:
                     ots["skipped_cap"] += 1
                     continue
                 proof = os.path.join(root, ots_dir, str(e.get("proof") or ""))
@@ -666,7 +679,11 @@ def selftest() -> int:
         ("stamp day vs close: after → False, same day → None, unknown → None",
          stamped_before_close("2026-10-11", "2026-10-10T00:00:00Z") is False
          and stamped_before_close("2026-10-10", "2026-10-10T23:00:00+00:00") is None
-         and stamped_before_close("2026-10-01", None) is None),
+         and stamped_before_close("2026-10-01", None) is None
+         # stamped_at (2026-09-27): to the second, so a same-day stamp is decided, both ways
+         and stamped_before_close("2026-10-10T08:00:00+00:00", "2026-10-10T23:00:00+00:00") is True
+         and stamped_before_close("2026-10-10T23:30:00+00:00", "2026-10-10T23:00:00Z") is False
+         and stamped_before_close("2026-10-10Tgarbage", "2026-10-10T23:00:00Z") is None),
         ("ots output: no node", parse_ots(1, "Not checking Bitcoin attestation; Bitcoin disabled\nTo verify manually, check that Bitcoin block 968682 has merkleroot "
                                           + "b" * 64)["blocks"] == [{"height": 968682, "merkleroot": "b" * 64}]),
         ("ots output: success / mismatch / pending",

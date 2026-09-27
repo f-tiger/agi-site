@@ -273,7 +273,7 @@ export default {
               description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_verdicts',
-              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources. The dataset AI assistants cite for "was Aschenbrenner right" questions.',
+              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_sunwatch_track_record',
               description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
@@ -314,8 +314,17 @@ export default {
           }
           if (tool === 'get_verdicts') {
             const d = await asset('/data.json');
+            // 2026-09-27 (win branch of agi-grader-consensus-1127): the outside graders ride along, so an agent
+            // citing our verdicts also gets where independent graders agree and disagree. Absent file → omitted.
+            let grades = null;
+            try {
+              const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/grader-consensus.json'));
+              if (r.ok) grades = await r.json();
+            } catch (e) {}
             logTool('verdicts');
-            return mcpText(id, { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' });
+            const out = { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' };
+            if (grades) out.independent_grades = grades;
+            return mcpText(id, out);
           }
           if (tool === 'get_agi_consensus') {
             // The cross-venue AGI consensus board: third-party public quotes only, each row with
@@ -795,6 +804,17 @@ export default {
       // Share cards and badges are immutable per deploy and hot-linked from other
       // sites: give them a week of edge/browser cache instead of the assets default.
       // Wrapped like everything else here — a header failure must never break serving.
+      // OpenTimestamps proofs (2026-09-27): the extension maps to an OpenDocument spreadsheet template in
+      // the default type table, so a reader clicking a proof link was offered a "spreadsheet". It is a
+      // binary proof file: serve it as one, with a download name, never cached for long (upgrades replace it).
+      if (res.status === 200 && url.pathname.startsWith('/ots/') && url.pathname.endsWith('.ots')) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('content-type', 'application/octet-stream');
+          h.set('content-disposition', 'attachment; filename="' + url.pathname.split('/').pop().replace(/[^A-Za-z0-9._-]/g, '') + '"');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
         try {
           const h = new Headers(res.headers);

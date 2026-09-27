@@ -165,3 +165,79 @@ Knuth 的 $2.56 支票多半被裱起来(Wikipedia「Knuth reward check」,引 2
 
 **仍然不做**:给评分者发帖/外联征集第三位(机器永不外联);按「与我们一致」挑评分者(收录标准只看:公开、带日期、链接可核、
 评的是同一批预测)。**owner 侧**:Metaculus Fall 主赛 09-28 开题,key + `METACULUS_BOT_ENABLED=1` 仍是规则内唯一的「金融」一步。
+
+## 九、第三轮(2026-09-27,owner:「优化 prompt 3 轮再执行:再继续探索…」)
+
+**prompt 三轮(prompt-optimizer 技能)**
+1. **字面**:继续用工具、共识、金融探索类比特币的共识。→ 能借的性质前两轮已列完并建好(时间戳、可重算、公开评分、独立节点),
+   再列是第六次;「金融」规则内仍只有 Metaculus,仍在 owner 手里。
+2. **对照现状拆解**:第二轮之后 main 上多了舰队**唯一一份「被打分的记录」**——Metaculus bot 的点时账本(另一会话 09-27 建,
+   `docs/ai-era-founder-2026-09-25.md` §4.1),它宣称「题目关闭前明文永不进公开仓」。这是舰队里最像比特币的东西(事前承诺、事后揭示),
+   按第一轮审计 agi 信任层的办法审它。
+3. **定稿**:把舰队的预测做成一条完整、任何人可独立复核的协议——**承诺(加盐哈希)→ 锚定(OpenTimestamps 进比特币)→ 关题后揭示 →
+   自己验证**;只追加账本 + 每个版本的前缀哈希锚进比特币(CT 透明日志的做法),改写历史即被发现;`/calibration` 加点击才运行的浏览器内核验;
+   同时三件调研(第三位独立评分者、金融侧押钱承诺、AGI 时钟横向对比页的需求门)。零代币、零新 cron、零投注入口、零编造、机器不外联。
+
+**审计:v0 账本的「封存」有两处不成立**(机器人从未运行,没有任何一行泄露):
+- **承诺不隐藏**:`sha256(明文)` 不加盐,明文里除两个概率外全是公开或可推出的字段,二元答案是 1–99 整数百分比 →
+  本会话实测 **3 643 次猜测 / 14 毫秒**反推出封存的预测与影子预测(`test_ledger.py` 的隐藏性检查保留了这次攻击:对去掉 nonce 的同一行必须搜得出,对 v2 行 9 900 次全空)。
+- **公开日志泄露明文**:`main.py` 以 INFO 打研究全文、推理全文(含「Probability: ZZ%」)与「Forecasted <url>: <值>」,
+  `log_report_summary` 逐题打印预测;公开仓库的 Actions 日志任何人可读。整合评审再发现三条旁路:LiteLLM 的 logger 自带 stderr 处理器
+  (根处理器上的过滤器看不到)、asyncio「Task exception was never retrieved」带异常 repr、pydantic 序列化警告经 `warnings.warn` 直出 stderr
+  并引用模型回复原文。
+- 另两处缺口:没有外部时间戳(只靠 git,force-push 可改);揭示后没人能复核(读取器只输出 Brier 汇总)。
+
+**建了什么(均在分支上,合并 main 前不生效)**
+| 件 | 位置 | 做什么 |
+|---|---|---|
+| 承诺 v2 | `tools/metaculus-bot/ledger.py` | 封存明文里放 256 位随机 nonce;Fernet 明文补齐到 512 字节块(密文长度不泄露位数);`unseal_text()` 核摘要且核对 question_id/submitted_at 与公开行一致;`commit_v: 2` |
+| 公开日志封存 | `tools/metaculus-bot/main.py` | 研究/推理/预测一律 `[sealed: N chars]`(二元值定宽);forecasting_tools、LiteLLM(含其自有处理器)、asyncio、`py.warnings`(captureWarnings)的记录只留级别与异常类名;失败只报 URL + 异常类型 + HTTP 状态;`BOT_LOG_PLAINTEXT=1` 仅私有 runner |
+| 锚定 | `tools/fleet/ots_anchor.py --group ledger` + `metaculus-bot.yml` | 写账本的**同一个 job** 里 stamp,清单在 `data/metaculus/ots/`(一份清单一个写入者,heartbeat 只读);每个新版本记 `size` 与 `stamped_at`;坏清单 fail closed 且退出 2 |
+| 揭示 | `tools/fleet/metaculus_record.py` → `data/metaculus/revealed.jsonl` | Metaculus 报 closed/resolved **且**关题时间已过才揭示;精确明文(含 nonce);只追加、按摘要幂等;打不开的行不揭示也不崩 |
+| 验证器 | `tools/fleet/verify_commitments.py`(纯 stdlib) | 只追加(每个已锚版本仍是今天文件的精确前缀)、揭示绑定、孤儿证明、每条揭示行最早被哪版锚定及是否早于关题(到秒);`--ots` 调客户端(单次 30 s、总预算 180 s、每日轮换);TAMPER 退出 1 |
+| heartbeat | `fleet-heartbeat.yml` | 每日跑验证器(进汇总步,TAMPER 即红,后面的断言照跑);站点锚定步加 id 进汇总(拒绝坏清单不再只留注释) |
+| 浏览器核验 | `/calibration`(`gen_calibration.py`) | 点击才请求:SHA-256 对 `/ots/manifest.json`、查证明头、按公开权重从 `/data.json` 重算 Tracker;请求带 `utm_source=verify` 不写 pageviews;事件 `verify_run`;新增「预测账本」一节(状态从 `fleet-forecast-record.json` 生成) |
+| `.ots` 类型 | analytics worker | 证明文件按二进制下载返回(此前被当成电子表格模板) |
+
+测试:账本零网络闸门 23 → **96** 条(隐藏性:v2 暴力搜不出、同一行去 nonce 必须搜得出;绑定;AST 闸门;真库日志捕获;LiteLLM 自有处理器与
+warnings),验证器 29 条、读取器 17 条;每道新闸门都做过变异检查(去 nonce、去 redact、去 captureWarnings、去自有处理器过滤、缩小封存树
+→ 全红)。本地 Playwright 点按钮:点击前 0 次请求,6/6 记录对上已列证明,重算 62.5 = 发布 62.5。
+
+**评分者面板 2 → 4,出现第一条真分歧**。定向检索 + 每个候选三方对抗核验(默认驳回),本会话再 curl 两页逐字复核:
+- **收录**:Daniel Reeves(AGI Friday,2025-10-04;读书会一年后「with the goal of assessing its predictions」)——knowledge-work
+  *unresolved*、capex *on track*、agi-2027 *unresolved*(他对算力的那句讲的是能力回报不是 ~0.5 OOM/年,不映射);Philipp D. Dubach
+  (个人站,2026-05-21,页面标 2026-08-16 更新)——compute-scaling *on track*、the-project *behind*、open-source *wrong*、agi-2027 *unresolved*
+  (GPQA 与电力两句进「不是我们八条」)。
+- **驳回**:Redwood capital(化名、投资推广、含个股价格;且其一句被映射为 behind 实为 unresolved)、Leo @runes_leo(自述 LLM 起草、
+  推荐链接)、Medium/Stockalarm(抓不到原文,不能逐字)、若干只评基金爆仓或只做摘要的帖子;**EA Forum「Edison」的 Two-Year Scorecard
+  是 owner 本人的帖子,不算独立**。
+- **读数**:16 次比较,10 完全一致、5 同向、**1 分歧**——Reeves 认为 knowledge-work 仍 unresolved,本站 On track。页面与 FAQ 原先
+  手写「没有真分歧」「两位评分者」,本轮改为全部从数据生成(selftest 断言),否则加人当天就撒谎。
+- **纠正第二轮**:「面板很薄」一半是本站检索窄——这两位早于第二轮就存在。
+- `agi-grader-consensus-1127` 按 ② 结算 **won**,执行预登记 win 分支:计数作为活数字进 `/situational-awareness-predictions`
+  (`gen_grader_consensus.py` 生成、`--check` 守门,事件 `index_click{predictions_graders_live}`),MCP `get_verdicts` 输出带
+  `independent_grades`,`llms.txt` 那一行也由生成器写。
+
+**金融侧(只出 owner 决策卡,不建)**——调研 + 怀疑者复核(09-27 重新抓取):
+- **Long Bets 仍在收新预测**(#973 ARC-AGI-3 2026–2028、#977 2026–2031,均无人挑战):发预测 **$50**、对赌每方最低 **$200**、
+  **赔率永远 1:1**、至少 2 年、**要求真名**、Long Now 审批与裁决、奖金进赢家指定的慈善(longbets.org/rules,09-27 读)。反证:
+  gwern 2017 统计约 1,9 个赌/年,「no one is being held accountable」;1:1 赔率表达不了本站的概率读数;Kapor–Kurzweil(#1,2002–2029)
+  按合同措辞裁决,不按舆论。真名要求**不违反本仓隐私红线**(红线管的是仓库,不是 owner 在第三方站点的署名),但属 owner 个人决定。
+- **最可辩护的形态**不需要对手:owner **单方预先公布**「每条被独立评分者判错的判定,捐 €X 给某慈善」,由第三方评分(本页的评分者面板)结算。
+  它不是赌,没有对手也没有奖池;但德国/中国对「公开邀请陌生人对赌」的定性**本轮未找到一手法源(UNSOURCED)**,所以只能单方承诺、不能邀赌。
+- 结论不变:**押钱证明的是「真诚」与「错了要付代价」,不证明对**;规则内「金融」仍只有 Metaculus(key + `METACULUS_BOT_ENABLED=1`)。
+
+**「AGI 时钟横向对比」页:三门全不过,不建**。数据门:rising / 美国热搜 / 需求摘要 / 08-16 Bing 引用表里没有 clock/countdown/tracker 类查询,
+九月 Bing 明细从未拿到(那是 08-19 储备选题的前提);需求门:供给拥挤(countdowntoasi、singularityclock、theagiclock 等 9 个专站),
+HN 唯一的「求一个追踪器」帖 1 分 0 评论;商业门:无营收路径受益。且目标意图已由 `/how-close-is-agi`、`/when-will-agi-arrive` 承接,
+新页会分走已有引用份额;各时钟量的是不同东西(风险分钟、百分比、日期、调查年份、论题得分),并排摆会暗示可比。
+
+**判定线**:`agi-grader-consensus-1127` → **won**(见上);新增 `fe-commitments-preclose-0215`(≥20 条揭示、0 TAMPER、≥90% 关题前已锚)、
+`agi-verify-run-1127`(≥3 次 verify_run 跨 ≥2 天);`agi-ots-verified-1124` / `agi-consensus-mcp-1124` 补注:按钮请求不写 pageviews,② 口径不变。
+
+**剩余风险(照实写)**:①**合并 main 之前打开机器人,跑的仍是 v0**(可被暴力反推的摘要 + 明文日志),这是本轮最要紧的一句;
+②密钥由 `METACULUS_TOKEN` 派生,赛季中重新生成 token → 尚未揭示的行永远打不开;③第三方复核依赖仓库保持公开(`data/metaculus/*`
+不在任何站点上服务);④`stamped_at` 是 runner 时钟,证明背书的是其后的区块时间;⑤在仓库内同时改写账本、清单并删证明可骗过仓内检查,
+已发布的证明副本仍能指认原字节;⑥封存日志仍泄露「有几行被封存」的计数与时间;多选/数值预测的 `[sealed: N chars]` 长度含位数信息
+(二元已定宽)。
+**没做**:法律一手核对(德 § 284/§ 762 对单方慈善承诺);为 SunWatch 调用补结构化概率(属另一私有仓);MCP 新工具(get_verdicts 只加字段)。

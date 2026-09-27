@@ -706,15 +706,36 @@ class _SealLibraryText(logging.Filter):
     Why a question failed is printed by summarize() from exception types and HTTP status instead."""
 
     SEALED = "[library log sealed]"
+    # 2026-09-27 integration review: three more channels carry model text while a question is open.
+    # LiteLLM's loggers ("LiteLLM", "LiteLLM Router", "LiteLLM Proxy") have their OWN stderr handlers, so
+    # a filter on the root handlers never sees what they print; asyncio prints "Task exception was never
+    # retrieved" with the exception's repr; and Python warnings (pydantic serializer warnings raised
+    # inside LiteLLM quote the model's reply, "Probability: ZZ%" included) bypass logging unless
+    # captured (_configure_logging turns captureWarnings on). These keep their level, their tree name
+    # and, for a record with a traceback, the exception class — never text, location or length.
+    OTHER_TREES = ("LiteLLM", "litellm", "asyncio", "py.warnings")
+
+    @staticmethod
+    def _in_tree(name: str, root: str) -> bool:
+        return name == root or name.startswith(root + ".") or name.startswith(root + " ")
 
     def filter(self, record: logging.LogRecord) -> bool:
-        if record.name != "forecasting_tools" and not record.name.startswith("forecasting_tools."):
+        if record.name == "forecasting_tools" or record.name.startswith("forecasting_tools."):
+            if record.name.startswith("forecasting_tools.data_models"):
+                return False
+            record.name = "forecasting_tools"
+            record.msg, record.args = self.SEALED, ()
+            record.module = record.filename = record.funcName = record.pathname = "forecasting_tools"
+            record.lineno = 0
+            record.exc_info = record.exc_text = record.stack_info = None
             return True
-        if record.name.startswith("forecasting_tools.data_models"):
-            return False
-        record.name = "forecasting_tools"
-        record.msg, record.args = self.SEALED, ()
-        record.module = record.filename = record.funcName = record.pathname = "forecasting_tools"
+        tree = next((t for t in self.OTHER_TREES if self._in_tree(record.name, t)), None)
+        if tree is None:
+            return True
+        exc = record.exc_info[0] if record.exc_info and record.exc_info[0] else None
+        record.name = tree
+        record.msg, record.args = self.SEALED + (" (%s)" % exc.__name__ if exc else ""), ()
+        record.module = record.filename = record.funcName = record.pathname = tree
         record.lineno = 0
         record.exc_info = record.exc_text = record.stack_info = None
         return True
@@ -734,8 +755,17 @@ def _configure_logging() -> None:
         # same … First Sample: …") or fire only for extreme values (binary_report). This log is public
         # while the question is open.
         logging.getLogger("forecasting_tools").setLevel(logging.WARNING)
+        logging.captureWarnings(True)  # warnings.warn → logger "py.warnings" → sealed below
+        seal = _SealLibraryText()
         for handler in logging.getLogger().handlers:
-            handler.addFilter(_SealLibraryText())
+            handler.addFilter(seal)
+        # loggers that print through their own handlers (LiteLLM installs one per logger at import,
+        # which has happened by now: forecasting_tools imports litellm)
+        for name, lg in list(logging.Logger.manager.loggerDict.items()):
+            if isinstance(lg, logging.Logger) and any(_SealLibraryText._in_tree(name, t) for t in
+                                                       ("forecasting_tools",) + _SealLibraryText.OTHER_TREES):
+                for handler in lg.handlers:
+                    handler.addFilter(seal)
 
 
 _FAILED_URL = re.compile(r"question url: '(https://www\.metaculus\.com/[A-Za-z0-9/_\-]+)'")

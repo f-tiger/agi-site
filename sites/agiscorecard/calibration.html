@@ -91,6 +91,7 @@
 <tr><td><a href="/situational-awareness-predictions">8 Situational Awareness verdicts</a></td><td>Categorical verdicts; 3 of 8 carry a written flip condition, 2 a resolution date, 1 a watch item, 2 a stated blocker (all in <a href="/data.json">data.json</a>)</td><td>2 on track · 2 open · 2 pending · 1 exceeded · 1 wrong → <a href="/progress-index">Thesis Tracker 62.5/100</a> as of 2026-09-06</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/track-record">SunWatch market-call ledger</a></td><td>Dated, falsifiable market calls</td><td>8 scored, 5 hits (63%), 7 pending, ledger as of 2026-09-26. n=8 is small: the Wilson 95% interval is roughly 31–86%, so this is a work-in-progress sample, not proof of skill.</td></tr>
 <tr><td><a href="https://invest.agiscorecard.com/red-team">Red-team survival odds</a></td><td>Editorial probabilities on open calls</td><td>6 open calls carry a stated probability (52–65%); confidence cuts are published the day counter-evidence lands.</td></tr>
+<tr><td><a href='#forecast-ledger'>Metaculus FutureEval bot</a></td><td>Probabilities on third-party questions, scored by Metaculus; each sealed and Bitcoin-timestamped before close</td><td>0 forecast(s) committed, as of 2026-09-27</td></tr>
 <tr><td><a href="/agi-prediction-markets">AGI consensus board</a></td><td>Third-party forecasts, not ours</td><td>Cross-venue median and spread, recomputable from the published snapshot; it is a reference we quote, not a call we are scored on.</td></tr>
 </tbody></table>
 <h2>The number nobody wants to print: Brier-eligible n = 0</h2>
@@ -124,9 +125,9 @@ visits to the files; the run leaves one event with no identifiers (how many reco
 <p><strong>What a match proves:</strong> the bytes served to you are the bytes a listed proof was made for, and once that proof has a
 Bitcoin attestation, those bytes existed no later than that block. <strong>What it does not prove:</strong> that any verdict is right,
 that a source was read correctly, or that nothing was left out; an agreeing recompute only shows the score is the stated arithmetic
-of the verdicts. The button does not walk the proof up to a Bitcoin block header: <code>ots verify</code> or the verifier at
-opentimestamps.org does that against headers it fetches itself. A record changed since the last daily stamp is reported as newer,
-not as a failure, when its own date says so. These files are served exactly as committed (checked 2026-09-27: neither the deploy
+of the verdicts. The button does not walk the proof up to a Bitcoin block header: the verifier at opentimestamps.org does, and so
+does <code>ots verify</code> on a machine with access to a Bitcoin node. A record changed since the last daily stamp is reported as
+“not among the listed versions yet”, not as a failure. These files are served exactly as committed (checked 2026-09-27: neither the deploy
 build nor the edge worker rewrites them), so a stamped version should match byte for byte.</p>
 <div class="verify" id="verify" hidden>
 <button type="button" class="verify-btn" id="verify-run">Verify these records in your browser</button>
@@ -159,20 +160,15 @@ async function get(path){
   return r.arrayBuffer();
 }
 function parse(buf){return JSON.parse(new TextDecoder().decode(buf));}
-// the file's own date: first dated key of the object, or of the last row of a history array
-function ownDate(j){
-  var o=Array.isArray(j)?j[j.length-1]:j,ks=['dateModified','updated','asOf','fetched','generated','date'];
-  if(!o||typeof o!=='object')return null;
-  for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(typeof v==='string'&&/^\d{4}-\d{2}-\d{2}/.test(v))return v.slice(0,10);}
-  return null;
-}
 function commits(buf,digest){
   var b=new Uint8Array(buf);
   if(b.length<65)return false;
   return hex(b.slice(0,31))===MAGIC&&b[31]===1&&b[32]===8&&hex(b.slice(33,65))===digest;
 }
 function round1(v){
-  var m=/^(\d+)\.(\d)50*$/.exec(v.toFixed(100));
+  // toFixed(20), not (100): engines before ES2018 throw above 20. A double that is exactly x.y5 has at most
+  // two decimals, so 20 digits always show whether the half-to-even rule (Python's round) applies.
+  var m=/^(\d+)\.(\d)50*$/.exec(v.toFixed(20));
   if(m&&(+m[2])%2===0)return +(m[1]+'.'+m[2]);
   return +v.toFixed(1);
 }
@@ -201,7 +197,8 @@ btn.addEventListener('click',async function(){
       var d=hex(await crypto.subtle.digest('SHA-256',buf)),k=-1,last=ents[ents.length-1];
       for(var j=0;j<ents.length;j++){if(ents[j].sha256===d)k=j;}
       if(k>=0){
-        var e=ents[k],meta=e.status+', stamped '+e.stamped;
+        // status and dates are the manifest's own record; the button checks the hash and the proof header only
+        var e=ents[k],meta='manifest: '+e.status+', stamped '+e.stamped;
         if(e.status==='bitcoin'&&e.confirmed)meta+=', in a Bitcoin block by '+e.confirmed;
         if(e.status==='pending')meta+=', calendar receipt only, not in a block yet';
         var ok=false,why='';
@@ -215,15 +212,12 @@ btn.addEventListener('click',async function(){
               why?'(proof '+why+').':'(check it with ots verify).');
         }
       }else{
-        var own_d=null;try{own_d=ownDate(parse(buf));}catch(x){}
-        if(own_d&&own_d>=last.stamped){
-          row('new',f,'this version is newer than the last stamp (records are stamped daily)',
-              '— its own date, '+own_d+', is on or after the last stamp, '+last.stamped+'. SHA-256 '+d.slice(0,12)+'…');
-        }else{
-          row('warn',f,'does not match any listed version',
-              '— SHA-256 '+d.slice(0,12)+'… is not in the manifest, and '+(own_d?'its own date, '+own_d+', is before':'it carries no date of its own later than')+
-              ' the last stamp, '+last.stamped+'. Either it was edited without its date moving, or the bytes served are not the bytes stamped; the public git log settles which.');
-        }
+        // 2026-09-27 integration: no guess from the file's self-declared date (hand edits do not always move
+        // it, and a guess that cries "tampered" is worse than none). Not listed = not stamped yet, said plainly.
+        row('new',f,'not among the listed versions yet',
+            '— SHA-256 '+d.slice(0,12)+'… The record changed after the last daily stamp ('+last.stamped+'), or the newest proofs '+
+            'are not published yet (they go live with the next site deploy). If this persists for more than two days, compare '+
+            'the file with the public git history.');
       }
     }
     sum.textContent=matched+' of '+total+' records match a listed proof (checked in this browser, '+new Date().toISOString().slice(0,16).replace('T',' ')+' UTC).';
@@ -248,6 +242,22 @@ btn.addEventListener('click',async function(){
   btn.disabled=false;btn.textContent='Run the check again';
 });
 })();</script>
+<div id="forecast-ledger"></div><h2>The forecast ledger: sealed before the question closes, opened after</h2>
+<p>The one place this network states probabilities that someone else scores is its bot in Metaculus's
+FutureEval bot tournament. Metaculus keeps what the bot submits;
+it does not keep what the bot would have said <em>without</em> this site's own research as a prior, and that counterfactual is the only
+test of whether the site's judgement helps. So each forecast, and a shadow forecast made without the prior, is committed in public before
+the question closes: a line in <a href="https://github.com/f-tiger/agi-site/blob/main/data/metaculus">data/metaculus/forecasts.jsonl</a> carries the SHA-256 of the sealed forecast
+plus a random 256-bit nonce (without the nonce, a probability on a 1–99 grid could be recovered from its hash in milliseconds — we measured
+it on the first version and fixed it before the bot ever ran). The ledger only grows; each version is stamped into Bitcoin with
+OpenTimestamps in the same run that writes it, and its byte length is recorded, so every earlier version must remain an exact prefix of
+today's file. After a question closes, the exact sealed text is published in <code>revealed.jsonl</code>; anyone can hash it, find the
+matching line, and check the proof that the line existed before the close. The whole check is one standard-library script:
+<a href="https://github.com/f-tiger/agi-site/blob/main/tools/fleet/verify_commitments.py">tools/fleet/verify_commitments.py</a>, run daily by the repository's heartbeat,
+which turns red on any rewritten line or mismatched reveal.</p>
+<p><strong>State as of 2026-09-27:</strong> the bot has not submitted a forecast yet; <strong>0</strong> forecast line(s) committed,
+<strong>0</strong> with a shadow; house-prior comparison on resolved questions: n = <strong>0</strong>.
+A Brier comparison appears here only once questions resolve; until then this section says exactly this.</p>
 <h2>Why this page exists</h2>
 <p>Every AI-era answer engine can generate confident takes; almost none can show you a scored history. Being auditable —
 misses kept on the page next to hits, flip conditions registered before outcomes, probabilities graded against reality,

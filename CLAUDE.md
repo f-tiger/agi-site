@@ -1119,6 +1119,15 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   原句逐字引用 + 印在页上的一致规则;**9 次比较 6 完全一致 · 3 同向 · 0 分歧,5/8 条至多一位独立评分者**(页面写「面板薄」)。
   `--check` 进部署构建步,`independent-grades.json` 进 OTS。判定线 `agi-grader-consensus-1127`。
   **纠正**:09-26 所写「gen_changelog 已接进部署」当时未落盘,09-27 才真正接上。
+- **09-27 第三轮(owner「优化 prompt 3 轮再执行:再继续探索」)**:审舰队唯一「被打分的记录」——Metaculus bot 的点时账本(同日另一会话建)。
+  它宣称「关题前明文不进公开仓」,**v0 两处不成立**:不加盐的 sha256 在 1–99 整数百分比上 **3 643 次猜测 / 14 ms** 反推出预测与影子;
+  公开 Actions 日志逐题打印推理全文与概率。机器人从未运行,零泄露。现为 **承诺(nonce)→ 锚定(写账本的同一 job 里 OTS,
+  `data/metaculus/ots/`,一份清单一个写入者)→ 关题后揭示(`revealed.jsonl`)→ `tools/fleet/verify_commitments.py` 任何人自验**;
+  heartbeat 每日核,TAMPER 即红。**⚠ 修复只在合并 main 后生效——合并之前打开机器人跑的仍是 v0**;赛季中别重新生成 `METACULUS_TOKEN`
+  (派生密钥,未揭示的行会永远打不开)。评分者面板 2 → 4(Reeves、Dubach,逐字复核),出现**第一条真分歧**(knowledge-work),
+  `agi-grader-consensus-1127` 判 won 并执行 win 分支;页面「无分歧/两位」等措辞改为从数据生成。`/calibration` 加点击才运行的浏览器内核验。
+  **金融**:Long Bets 仍收新预测($50 发布、$200/方、1:1、真名)——只进 owner 决策卡;**「AGI 时钟对比」页三门全不过,别再提**。
+  全文 `docs/ai-consensus-faith-2026-09-26.md` §九。
 
 ## D1 免费读取额度:全账号每天 500 万行,09-24 起连续三天白天用完(2026-09-26;全文 `docs/d1-read-budget-2026-09-26.md`)
 

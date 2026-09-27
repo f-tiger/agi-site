@@ -23,13 +23,33 @@
    "published": "2026-03-29",
    "read": "2026-09-27",
    "scope": "Qualitative evaluation across infrastructure, benchmarks, government, agents, revenue, China/US, open source, safety and the AGI-2027 timeline."
+  },
+  {
+   "id": "reeves-2025",
+   "author": "Daniel Reeves",
+   "title": "Retrospective Book Review: Situational Awareness",
+   "venue": "AGI Friday (Substack)",
+   "url": "https://agifriday.substack.com/p/aschenbrenner",
+   "published": "2025-10-04",
+   "read": "2026-09-27",
+   "scope": "Retrospective by the Beeminder co-founder after a group re-read that started a year after publication 'with the goal of assessing its predictions'. Verdicts are explicitly hedged. Grades knowledge work, the trillion-dollar cluster and the drop-in remote worker on the 2027 timescale; his base-model/unhobbling remark is about capability returns, not the ~0.5 OOM/yr pace, so it is not mapped."
+  },
+  {
+   "id": "dubach-2026",
+   "author": "Philipp D. Dubach",
+   "title": "Aschenbrenner's Receipts (Leopold Aschenbrenner Predictions: A Two-Year Scorecard)",
+   "venue": "philippdubach.com",
+   "url": "https://philippdubach.com/posts/aschenbrenners-receipts/",
+   "published": "2026-05-21",
+   "read": "2026-09-27",
+   "scope": "Personal-site scorecard dated 21 May 2026 (page shows 'Updated 16 August 2026'). Grades the counting-OOMs framework, nationalisation, open-source diffusion and the 2027-28 window; its GPQA and power sentences address claims this site does not track, so they are listed separately."
   }
  ],
  "rule": "Two labels agree exactly when they are the same. They agree in direction when both are supportive (ahead or on track) or both say 'not delivered yet' (behind or unresolved). Anything else — including any pairing with 'wrong' that is not 'wrong' on both sides — is a disagreement.",
  "counts": {
-  "exact": 6,
-  "direction": 3,
-  "disagree": 0
+  "exact": 10,
+  "direction": 5,
+  "disagree": 1
  },
  "predictions_with_external_grade": 6,
  "predictions_without_external_grade": [
@@ -54,6 +74,12 @@
      "label": "on_track",
      "relation": "exact",
      "quote": "Compute, algorithmic efficiency, and unhobbling gains seem to follow Aschenbrenner’s forecasts as well, although with more uncertainty."
+    },
+    {
+     "grader": "reeves-2025",
+     "label": "unresolved",
+     "relation": "disagree",
+     "quote": "In terms of homework and exams, absolutely. And I don’t think it was obvious in June 2024 how thoroughly true that would be (the International Math Olympiad gold medal performance being the biggest surprise). But Aschenbrenner meant more than homework and exams or even math competitions so there’s plenty of ambiguity about how accurate this prediction is so far."
     }
    ]
   },
@@ -74,6 +100,12 @@
      "label": "on_track",
      "relation": "exact",
      "quote": "Overall, Aschenbrenner’s predicted pace of roughly half an order-of-magnitude annual progress is ~roughly supported by available evidence."
+    },
+    {
+     "grader": "dubach-2026",
+     "label": "on_track",
+     "relation": "exact",
+     "quote": "The framework is unfashionably simple. It is also empirically unusually well calibrated."
     }
    ]
   },
@@ -94,6 +126,12 @@
      "label": "on_track",
      "relation": "direction",
      "quote": "Using publicly available data as of June 2025, this audit finds that global AI investment, electricity consumption, and chip production follow Aschenbrenner’s forecasts."
+    },
+    {
+     "grader": "reeves-2025",
+     "label": "on_track",
+     "relation": "direction",
+     "quote": "And as for the progress toward the trillion-dollar cluster, well, Stargate is happening on schedule. Aschenbrenner doesn’t look particularly wrong with any of his “just trust the trendlines” predictions."
     }
    ]
   },
@@ -108,6 +146,12 @@
      "label": "wrong",
      "relation": "exact",
      "quote": "But he missed that China would innovate independently and that open-source models would thrive at the frontier."
+    },
+    {
+     "grader": "dubach-2026",
+     "label": "wrong",
+     "relation": "exact",
+     "quote": "Bets on defence-AI consolidation and against open-source diffusion would not have paid."
     }
    ]
   },
@@ -122,6 +166,18 @@
      "label": "unresolved",
      "relation": "exact",
      "quote": "The AGI-by-2027 timeline is unresolved. It looked implausible six months ago, but recent capability jumps (particularly on software engineering tasks) have made it more credible again."
+    },
+    {
+     "grader": "reeves-2025",
+     "label": "unresolved",
+     "relation": "exact",
+     "quote": "As for full-fledged AI agents and drop-in remote workers on that timescale, my gut says no, but my gut has said no to a lot of things the past few years that have proceeded to happen."
+    },
+    {
+     "grader": "dubach-2026",
+     "label": "unresolved",
+     "relation": "exact",
+     "quote": "The strongest counter-counter is that the timeline remained open on May 21, 2026."
     }
    ]
   },
@@ -136,6 +192,12 @@
      "label": "behind",
      "relation": "direction",
      "quote": "Government response is behind what he predicted, though his AGI project timeline (27/28) hasn't elapsed yet."
+    },
+    {
+     "grader": "dubach-2026",
+     "label": "behind",
+     "relation": "direction",
+     "quote": "By May 21, 2026, the full nationalisation that he predicted had not happened."
     }
    ]
   },
@@ -174,6 +236,16 @@
    "topic": "Safety and security",
    "grader": "harris-2026",
    "quote": "Safety and security remain roughly as inadequate as he described, with his warnings about state-actor exploitation and race-dynamic pressure on safety vindicated."
+  },
+  {
+   "topic": "GPQA Diamond saturation",
+   "grader": "dubach-2026",
+   "quote": "It took roughly 18 months, almost exactly the prediction window."
+  },
+  {
+   "topic": "Power as the binding constraint",
+   "grader": "dubach-2026",
+   "quote": "His power-not-chips framing preceded consensus and later became industry consensus."
   }
  ]
 }

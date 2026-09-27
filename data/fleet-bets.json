@@ -1969,7 +1969,8 @@
    "lose": "共识板降级为 /agi-odds-vs-evidence 的一节,MCP 工具保留但不再扩;记反面发现「机器面对共识数没有需求」",
    "source": "docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
-   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。"
+   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。",
+   "note_2026-09-27": "同上:验证按钮对 /agi-consensus.json 的请求带 ?utm_source=verify,worker 不记 pageviews,② 不受影响。"
   },
   {
    "id": "agi-ots-verified-1124",
@@ -1981,7 +1982,8 @@
    "lose": "① 未达 → 机制坏了,修或撤;① 达 ② 为 0 → 记反面发现「时间戳无人核验」(Sigstore 的原话:没人看日志就没有信任增益),机制保留但不再宣传",
    "source": "docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
-   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。"
+   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。",
+   "note_2026-09-27": "/calibration 新增的浏览器内验证按钮会请求 /ots/*(带 ?utm_source=verify);worker 对带该标记的请求不写 pageviews,所以 ② 只数直接抓取证明的人。按钮的使用另记为事件 verify_run,由新线 agi-verify-run-1127 读,不并入本线。"
   },
   {
    "id": "agi-brier-n20-1231",
@@ -2004,8 +2006,10 @@
    "win": "把 counts 作为活数字加到 /situational-awareness-predictions 首屏,并让 MCP get_verdicts 输出带上 independent_grades",
    "lose": "页面保留(信任层,不是流量页),不再加面;记反面发现「评分者共识对本站量级不产生可见读者」",
    "source": "docs/ai-consensus-faith-2026-09-26.md §八(第二轮,09-27)",
-   "status": "open",
-   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。"
+   "status": "won",
+   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。",
+   "settled": "2026-09-27",
+   "reading": "② 评分者 2 → 4(阈值 ≥3),由第三轮的定向检索达成:Daniel Reeves(AGI Friday,2025-10-04,Beeminder 联合创始人,读书会一年后专为评估预测而写)与 Philipp D. Dubach(个人站,2026-05-21,两年期计分卡)。两者都早于本线存在——第二轮的「面板薄」一半是本站检索窄,不全是世界上没人评。收录标准未改:每句引语由对抗核验代理重新抓取原文逐字核对,本会话 09-27 再用 curl 抓取两页逐字复核一遍,全部命中;同轮被驳回两位:Redwood capital(化名、投资推广、含个股价格)与 Leo(@runes_leo,自述 LLM 起草、推荐链接);另排除 EA Forum「Edison」的 Two-Year Scorecard——那是 owner 本人的帖子,不算独立。新读数 16 次比较:10 完全一致、5 同向、1 真分歧(Reeves 认为 knowledge-work 仍 unresolved,本站 On track)——页面与 FAQ 的「无分歧」措辞原为手写,已改为从数据生成。① 外部来源访问仍为 0(页面刚上线)。按预登记 win 分支执行:计数作为活数字进 /situational-awareness-predictions(由 gen_grader_consensus.py 生成、--check 守门),MCP get_verdicts 输出带 independent_grades。"
   },
   {
    "id": "fleet-d1-budget-1026",
@@ -2127,6 +2131,30 @@
    "source": "docs/ai-era-founder-2026-09-25.md §三",
    "status": "open",
    "t0_2026-09-27": "到账 €0;PartnerNet DE 佣金 €11,20 累计中(窗至 2026-09-14),被未完成的付款/税务表挡住。"
+  },
+  {
+   "id": "fe-commitments-preclose-0215",
+   "site": "fleet",
+   "due": "2027-02-15",
+   "metric": "data/fleet-commitments.json(tools/fleet/verify_commitments.py,heartbeat 每日):revealed 行数、tamper 列表、每条已揭示行的 stamped_before_close(按 stamped_at 到秒)",
+   "threshold": "≥20 条已揭示的账本行 且 赛季内每次 heartbeat 的 tamper 均为空 且 ≥90% 的已揭示行 stamped_before_close=true",
+   "win": "预测记录可被第三方逐字节核验:在 /calibration 与赛季复盘里把它当证据引用(说明只证明时间与内容,不证明预测好)",
+   "lose": "<90% 关题前锚定 → 查锚定缺口(日历不通/工作流没跑)并修;任何 TAMPER → 事故复盘;bot 从未上线或揭示 <20 → insufficient",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "0 条账本行、0 条揭示、0 个锚定版本(bot 从未上线;修复只在分支上,合并 main 之前机器人跑的仍是 v1)。due 为占位,runner 读到赛季关闭日后改为关闭日 +45(与 fe-fall-record-0215 同步)。"
+  },
+  {
+   "id": "agi-verify-run-1127",
+   "site": "agiscorecard",
+   "due": "2026-11-27",
+   "metric": "D1 agiscorecard-events:events name='verify_run' AND location='calibration'(页面 URL 带 ci=1 时脚本不发事件;本仓自检与会话不点线上按钮)28d",
+   "threshold": "≥3 次,跨 ≥2 个不同 UTC 日",
+   "win": "按钮保留,并从 /progress-index 的方法说明链过去(「自己核一遍」)",
+   "lose": "按钮保留(零维护),但永不把它当作「有人在核验」的证据引用;记反面发现「按钮式验证在本站量级无人用」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "0(按钮只在分支上,未部署)。"
   }
  ]
 }
