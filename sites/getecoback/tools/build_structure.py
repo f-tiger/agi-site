@@ -50,6 +50,7 @@ CAT_OF = {
     "tineco-saugt-nicht-mehr": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
+    "akku-heizluefter": "heizen",
     "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
@@ -1407,6 +1408,15 @@ CONTEXT_MODELS = {
    ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
    ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
  ],
+ # Expansion 2026-09-27 (Trends: "akku heizlüfter" peak 1,7 in November, winter
+ # 2,3x September). The page's answer is that a battery heats a body, not a
+ # room, so the shelf is body-heat first and a mains heater only as the
+ # "if there is a socket" card, in the page's own order. No named models.
+ "akku-heizluefter": [
+   ("Beheizte Weste (Akku)", "Wärme am Körper", "Heizt dich statt der Luft — die Wattzahl der Stufe steht im Datenblatt, der Rechner oben macht daraus Stunden.", "Preis vor Ort prüfen", "beheizte+weste+akku", "heater"),
+   ("Beheizte Sitzauflage", "Für den Sitzplatz", "Wärme dort, wo du sitzt: kleine Wattzahl, und damit reicht auch ein kleiner Akku lange.", "Preis vor Ort prüfen", "beheizte+sitzauflage", "heater"),
+   ("Heizlüfter mit Thermostat (Netz)", "Wenn eine Steckdose da ist", "Eine Stunde mit 1.000 W kostet bei 0,30 €/kWh 30 Cent und läuft, solange du willst — der Akku ist dann keine Ersparnis.", "Preis vor Ort prüfen", "heizl%C3%BCfter+thermostat", "heater"),
+ ],
  "infrarotheizung-thermostat": [
    ("Steckdosenthermostat", "Ohne Installation", "Zwischen Steckdose und Panel — Belastbarkeit auf dem Typenschild mit der Leistung des Panels vergleichen.", "Preis vor Ort prüfen", "steckdosenthermostat+infrarotheizung", "heater"),
    ("Funk-Thermostat mit Empfänger", "Fühler frei platzieren", "Misst dort, wo du sitzt, statt auf Fußleistenhöhe — bei manchen Systemen für mehrere Panels.", "Preis vor Ort prüfen", "funkthermostat+infrarotheizung", "heater"),
@@ -1496,6 +1506,8 @@ CONTEXT_SUB = {
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
  "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
                                "messen. Nicht selbst getestet. Symbolbilder."),
+ "akku-heizluefter": ("In der Reihenfolge der Seite: Wärme an den Körper, dann der Sitzplatz, und das Netzgerät nur, "
+                      "wo eine Steckdose ist. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
                                 "sie sparen. Nicht selbst getestet. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "

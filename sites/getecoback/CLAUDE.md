@@ -3274,3 +3274,17 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **顺手抓到的上一步漏洞**:第一步的储能闸门只扫 Amazon 链接,于是首页秋季视频栏里那条储能「Top 5 im Test」视频、首页那张不带 Amazon 链接的「Balkonkraftwerk-Speicher」卡都没被拦住——**储能促销不一定是联盟链接**。这一步的 `check_gone.py` 按「链向被删页」检查,把它们都抓出来了。
 - **判定线**:`eco-balkon-mieter-recht-1115`、`eco-at-balkon-1116`、`eco-storage-retitle-1112`、`eco-stromausfall-0116` **withdrawn**(读数写进台账);`eco-newest-block-1008`(处理组 9→7,阈值等比 ≥4/7)、`eco-tools-hub-1020`(剔除四个已删计算器的事件)、`eco-at-mrg-1116` 与 `eco-dach-troubleshoot-1116`(赢的动作里光伏那一半不再执行)、`eco-wallbox-demand-1015`(建 wallbox 页前先问 owner)、`eco-troubleshoot-shape-1112` 各加 `note_2026-09-27_pages`。队列里 Anker 那一项改为新状态 `removed`(闸门:页面必须不存在)。
 - **别再做**:为这 14 个 URL 做重定向「挽回流量」、把 Growatt 页换个名字重发、在其他页里补一段阳台光伏内容、把计算器的 solar 模式加回来。
+
+## 按谷歌趋势补冬季品类:rising 五个候选,量完只剩一个(2026-09-27,owner:「针对谷歌趋势，上线更好的热门品类」)
+
+- **先量再建**:rising 面(heizlüfter 09-22、infrarotheizung 09-26)五个候选全部进 `DE-QUEUE` 做 5 年绝对值(锚 heizlüfter):
+  `akku heizlüfter` **1,7(11 月,冬/九月 2,32)** · `heizlüfter auto` 1,6(11 月,**5,57**)· `mobile heizung` 1,6 · `heizlüfter bad` 1,4(9 月峰)·
+  **`heizlüfter große räume` 0,0**(rising 27.750)· **`infrarotheizung 20 qm` 0,0**(rising 42.350)。rising 第五次骗人:两个最大的 rising 行绝对量为零。
+- **SERP 门**:auto = 红海(Auto Zeitung / PC-WELT / vergleich.org,且 Auto Zeitung 已经写了诚实答案)· mobile heizung = 红海(ADAC / vergleich.org / immowelt)且与 stromsparend 蚕食 ·
+  **akku = 可写**(小比价站 + 店铺博客 + gutefrage,无评测媒体;而且 SERP 自相矛盾:比价站写 3–4 小时,店铺博客写 2–3 分钟)。全部判定写进队列。
+- **建了 `/guide/akku-heizluefter.html`**:整页就是一个除法——Wh ÷ W。18 V × 5 Ah = 90 Wh → 2.000 W **2,7 分钟**、25 W **3 h 36 min**;
+  「3–4 小时」对应平均 22–30 W = 加热垫级别,所以宣传和批评**都对,说的是不同档位**。10 m² 按本站 60–100 W/m² → 5–9 分钟。
+  货架是**身体取暖**(加热背心 / 坐垫)+ 只在「有插座时」的市电暖风机,不点名型号。计算器发已白名单的 `watt_calc{source:"akku"}`,浏览器实测三组与表逐位一致。
+- **顺手修**:工具枢纽的家族正则里 `lueft` 会命中 `heizluefter`,任何暖风机工具页都会被归到「💧 Feuchte」;改为 `(?<!heiz)lueft`。
+- **队列**:可建项仍只有 2 个(riecht-verbrannt、hygrometer;后者今天补了 SERP,剩「75 % 盐测」要一手来源),闸门会继续 warning——这是实情,五个候选里只有一个过门。
+- **判定线 `eco-akku-heizluefter-1225`**(已进台账)。**别再从 rising 面挑 `große räume` / `20 qm` / `auto` / `mobile heizung`**,读数与判定都在队列里。
