@@ -79,3 +79,115 @@ The storage guides are still online and are now information only. Taking the
 pages down as well would be a separate change: 410 or redirects, sitemap and
 llms removal, and the internal links that point at them. The session does not do
 that without being asked.
+
+---
+
+# Step 2: the pages (2026-09-27, same day)
+
+The owner followed up in three messages: 「全部下线储能页！」, then asked which
+scope, answered **all 14**, then added 「指南页，排障页，只要是相关的都下架」.
+That covers guides, troubleshooting pages, and anything else related.
+
+## Why it was 14 and not 7
+
+In step 1 I described "12 storage guide pages plus Growatt and Anker". That
+count mixed two groups:
+
+- **Storage pages (7).** Their subject is a battery or a power station:
+  - speicher-nachruesten;
+  - balkonspeicher-rechner, balkonspeicher-foerderung, balkonspeicher-winter-frost;
+  - Anker Solarbank troubleshooting and Growatt NOAH troubleshooting;
+  - stromausfall-heizen (power stations).
+- **Balcony-PV pages (7):** lohnt-sich-rechner, mieter-recht, oesterreich,
+  ohne-bohren, standort-check, wo-kaufen, klimaanlage-balkonkraftwerk.
+
+Before deleting anything I asked which scope was meant. The answer was all 14.
+
+I then scanned the whole site, titles and body text. **These 14 are every page
+whose subject is storage or balcony PV.** Single mentions on other pages were
+left in place, because they are not related pages:
+
+- the "Heimspeicher" category in the § 14a EnWG explanation;
+- the MRG examples;
+- the verb "speichern".
+
+## Final reading before removal
+
+D1, 28 days to 2026-09-27, human rows, CI excluded.
+
+| | pv | affiliate clicks | external referrals |
+|---|---|---|---|
+| Growatt NOAH troubleshooting | 28 | 3 | 25 |
+| the other 13 pages together | 15 | 0 | 3 |
+| **site total** | 595 | 78 | |
+
+Almost all of the cost is the Growatt page.
+
+## What went offline
+
+- **The 14 page files and their .md mirrors.** The worker answers 410 Gone
+  (noindex) for both. The list lives only in `tools/gone_pages.txt`.
+- **The generator that rebuilt the Anker page on every deploy:**
+  `build_revenue_guide.py`, its data file and two assets.
+- **The MCP tool `balkonspeicher_foerderung`.**
+  - Its answers linked a removed page.
+  - The smoke test drops the case, and its tool count stays equal to the
+    server's.
+  - The registry description no longer says "balcony solar": version 1.3.0,
+    97 characters.
+  - The agent pages now say eight tools.
+- **The five country cost calculators** lost their "Solar-Eigenverbrauch" mode.
+  - Removed from the option, the fields, the PV method note and the PV
+    sections.
+  - The IDAE and PVGIS sources are removed.
+  - An old `?mode=solar` link falls back to the first mode.
+- **Other surfaces:**
+  - the homepage storage card and three homepage links;
+  - the storage "Top 5 im Test" video in the autumn homepage rail. It was live
+    through step 1, because step 1's gate only looked at Amazon links;
+  - the balcony-PV slots in the summer and spring teasers;
+  - the "Mit eigenem Solarstrom?" button on about 50 AC pages;
+  - the balcony-PV lever on the electricity-check page (list, FAQ and result
+    text);
+  - the "indirekt mit Balkonkraftwerk + Speicher" passages on the price radar
+    (summary, body and one FAQ);
+  - "Balkonkraftwerk" in the homepage schema `knowsAbout`;
+  - the `balkonkraftwerk` Trends seed.
+
+## Guards
+
+| Guard | What it refuses |
+|---|---|
+| `test_gone.mjs` | the worker's list differing from `gone_pages.txt`, a listed page or .md not answering 410, or a live page (balcony shade, price radar, hub, home) being caught |
+| `check_gone.py` | a removed page file coming back, or any published html, md, txt, xml, json or js linking one (step 1's gate missed the video and the non-Amazon card; this one found them) |
+| `storage_veto.txt` | now also lists balcony-PV terms, so the rising rail, the queue gate and the digest drop them. Balcony shade and "ohne Balkon" are self-tested as allowed. |
+| post-deploy | every listed page answers 410 live, the .md mirror answers 410, and the live sitemap lists none of them |
+
+## Queue and bets
+
+- **Queue:** the Anker item moves to the new status `removed`. The gate
+  requires that its page does not exist.
+- **Withdrawn**, with final readings: `eco-balkon-mieter-recht-1115`,
+  `eco-at-balkon-1116`, `eco-storage-retitle-1112`, `eco-stromausfall-0116`.
+- **Annotated** (`note_2026-09-27_pages`):
+  - `eco-newest-block-1008`: the treatment group is now 7 pages;
+  - `eco-tools-hub-1020`: events from the removed calculators are excluded;
+  - `eco-at-mrg-1116` and `eco-dach-troubleshoot-1116`: the balcony-PV half of
+    each win action is dropped;
+  - `eco-wallbox-demand-1015`: ask the owner before building a page;
+  - `eco-troubleshoot-shape-1112`.
+
+## A mistake the browser caught before shipping
+
+The first build of step 2 took the solar fields out of the calculator form but
+left them in `country-model.js`. That file treats every field as required, so
+**all five calculators refused every input** ("Bitte markierte Werte prüfen").
+None of the static gates flagged this, because they only check the HTML.
+
+A click-through in Chromium caught it. The model now drops the three solar
+fields and the solar branch. I then ran all 5 calculators in all 3 modes: all
+15 compute, and they reproduce the page's own worked example (108 € / 75,60 € /
+21,6 years).
+
+**Rule:** when you remove a form field, check whether the model or validator
+still expects it.

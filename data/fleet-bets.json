@@ -912,8 +912,10 @@
    "win": "「把一手法条原文做成可引用页」有效 → 同形态复制到其他有法规钩子的题(空调安装许可、WEG 装修)",
    "lose": "零引用零 pv → 法条页不是本站的引用杠杆,以后法规内容只作为已有页里的一节,不再单独出页",
    "source": "owner 2026-09-17「阳台储能赛道法规立案支持,租户可以在阳台装光伏板」。会话实测一手法条(gesetze-im-internet.de,2026-09-17 抓取):§554 BGB 标题含 Steckersolargeräte、Abs.1 给 Anspruch auf Erlaubnis(非免许可)、Abs.2 不利于租户的约定无效;§20 Abs.2 Nr.5 WEG 同列;EEG §8 Abs.5a = 2 kW 组件 / 800 VA 逆变器,MaStR 登记保留但**不得要求额外向 Netzbetreiber 报备**。",
-   "status": "open",
-   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics."
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/balkonkraftwerk-mieter-recht.html 1 pv、0 外部引荐、0 AI 引荐 —— 阈值 ≥25 pv 或 ≥1 AI 引荐,未达。"
   },
   {
    "id": "eco-storage-spring-0415",
@@ -937,7 +939,9 @@
    "win": "「把产品调研写成『你想买的东西做不到这件事』」有效 → 同形态再做一页(Notstromaggregat / Kühlschrank im Ausfall)",
    "lose": "德国停电面需求太薄(stromausfall 10,0 里几乎全是『我家停电了』的信息查询,不是购买查询)→ 不再扩,页面留作储能簇的安全锚",
    "source": "2026-09-17 owner 要求「针对乌克兰深度产品调研」。乌克兰三门全不过(见下),把同一份产品知识转到能计佣的德国市场后实测:stromausfall **10,0**(1 月峰,anchor heizlüfter 30,6)、notstromaggregat 2,4、powerstation **1,5** —— 真实但小,且 stromausfall 主要是信息型查询。页面核心是算术:2000 W 暖风机在 1 kWh 上 **30 分钟**,同一块电池带路由器 **4,2 天**,倍数 200。",
-   "status": "open"
+   "status": "withdrawn",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/stromausfall-heizen.html 0 pv、CO-Melder 块 0 点击。"
   },
   {
    "id": "eco-traffic-double-1112",
@@ -981,7 +985,8 @@
    "win": "「故障排查型页型」可复制 → 按同形状再建 3 张(heizlüfter riecht verbrannt / klimaanlage kühlt nicht / infrarotheizung wird nicht warm),并把评测页型正式判死",
    "lose": "<15 → growatt-noah-2000-probleme 的 26 次是单页特例不是页型规律,停止按此形状铺页",
    "source": "2026-09-17 第一方实测(28 天,真人):troubleshooting 形 **4 张页 = 32 次搜索访问**,评测形(-test/-erfahrungen)**16 张页 = 1 次** —— 每页约 **128 倍**差距。解释:评测页与 Stiftung Warentest/CHIP/Idealo 竞争,故障页只与论坛帖竞争。**Trends 无法佐证**(related_queries 配额打爆;且三个品牌种子 top+rising 里零条故障意图 —— 这类查询太长尾,Trends 测不到),**此处第一方数据优先**。页面核心是可复算的算术:40 m³ 房间 18 °C 从 60% 到 50% 只含 **61 g** 水;额定 20 l/天的测试条件 30 °C/80% 含 24,2 g/m³,而 18 °C/60% 只有 9,2 g/m³(**38%**)、10 °C 地下室 5,6(**23%**)。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:对照组里的 growatt-noah-2000-probleme 已删除(410);结算只看本页阈值,不受影响。"
   },
   {
    "id": "gridlings-playgama-traffic-0922",
@@ -1074,8 +1079,10 @@
    "win": "「把标题换成活词」是可复制的优化动作 → 按同法处理其他标题用死词的页(先量 seasonality 再改,URL 一律不动)",
    "lose": "仍 <15 且零外部引荐 → 词形不是这三页零流量的原因(更可能是域权威 + 4 月才是峰值月),**不要再为改标题立项**;真正的读数推到 eco-storage-spring-0415",
    "source": "2026-09-17:`seasonality-de-storage.json`(5 年,anchor heizlüfter)读出 **balkonspeicher 峰值 0,0** 而 **balkonkraftwerk speicher 23,0(3 月峰)**,而站内三张页的 title/h1/description 全部用的是那个 0,0 的词。本轮把这三处 + og/headline 换成活词,**URL 保持不变**(改 URL 要做重定向,不值得);正文仍可说 Balkonspeicher(是真实德语,也留住第二个词形)。**注意归因边界**:11-12 这个读数日**早于**该词 3 月的峰值,所以它测的是「词形对不对」,不是「这个类目行不行」—— 后者是 eco-storage-spring-0415。",
-   "status": "open",
-   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics."
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。三张页全部删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):balkonspeicher-rechner 1 + -foerderung 1 + -winter-frost 3 = 5 pv、0 外部引荐(t0 3 pv / 0)—— 阈值 ≥15 pv 或 ≥2 外部引荐,未达。"
   },
   {
    "id": "bpj-ad-inventory-1014",
@@ -1121,7 +1128,8 @@
    "win": "按「买点型」页形态（选型/尺寸/合规清单，非排障型）试一页，预登记 28 天 affiliate_click ≥3",
    "lose": "wallbox <对照组 → 归档，不再提；wärmepumpe 无论读数如何都不做联盟（Luft-Wasser 非 Amazon 商品，线索形态 08-28 已杀）",
    "source": "sites/getecoback/CLAUDE.md 德语区读数与两个品类裁定（2026-09-17）",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:对照组 balkonkraftwerk 只作 Trends 读数用;阳台光伏页已全部下线。wallbox 若赢,建页前先问 owner(与储能/光伏同属能源硬件,是否在「相关的都下架」范围内由 owner 定)。"
   },
   {
    "id": "eco-dup-rewrite-1117",
@@ -1197,7 +1205,8 @@
    "win": "「同一语言、另一部法律」是本站对德语区第二国的正确形态 → 按同法补 CH(OR 统一了瑞士租法?先查)与 AT 的 Balkonkraftwerk 规则页",
    "lose": "AT 读者不需要奥地利专页(德语页已经够用)→ 奥地利只在既有页里加一段「in Österreich gilt …」,不再单独出页",
    "source": "2026-09-18 D1:AT 是第三市场(26 pv / 4 点击,15,4%,全部落在德语页),而这些页引用的是 § 554 BGB —— 对奥地利读者是另一个国家的法律。`seasonality-at.json`(5 年,anchor heizlüfter,仅 AT 内可比):schimmel 71,0(12 月)· balkonkraftwerk 61,4(3 月)· infrarotheizung 33,2(11 月)· klimaanlage 22,6(6 月)· **heizkostenzuschuss 19,3(10 月,零覆盖,但 oesterreich.gv.at 全站维护页 404,官方源拿不到,本轮没建)**· `klimaanlage mietwohnung` 0,2 —— 所以这条是**正确性 + 引用赌注,不是搜索赌注**。法条全部实抓 RIS(Fassung vom 18.09.2026):§ 9 Abs 1 两个月视为同意、七项条件;Abs 2 Beheizungsanlagen 特权;§ 1 适用范围。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:阳台光伏页已全部下线且不再做;赢了只能按同法补 CH 的租房规则页,「AT 的 Balkonkraftwerk 规则页」这一半不再执行。"
   },
   {
    "id": "eco-es-winter-en-1116",
@@ -1230,7 +1239,8 @@
    "win": "「故障排查页型」跨簇成立(不只是空调簇)→ 按同形状补 balkonkraftwerk/wechselrichter 与 infrarotheizung 的故障页",
    "lose": "128 倍页效只是空调簇 + 夏季的特例 → 停止按页型铺页,冬季簇回到季节性单词选题",
    "source": "2026-09-17 D1:troubleshooting 形 4 页 = 32 次搜索访问/28d,评测形 16 页 = 1 次(每页 128 倍)。Trends 对这三个故障短语全部 ≈0(5 年 interest,anchor heizlüfter),与手册「故障长尾 Trends 结构上测不到,信第一方」一致——所以这是**页型赌注**,不是搜索量赌注。三页零编造:物理 + 算术(2 000 W ÷ 230 V = 8,7 A;16 A × 230 V = 3 680 W)、站内既有规则(单一清洁剂、不混氯与酸、不写浓度),没有型号级断言。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:赢的动作里「balkonkraftwerk/wechselrichter 故障页」不再执行(阳台光伏已全部下线);只补 infrarotheizung 那一页。"
   },
   {
    "id": "eco-luftfeuchtigkeit-hub-1116",
@@ -1252,8 +1262,10 @@
    "win": "AT 法条页型(RIS 一手 + 与 DE 对照表)成立 → 按同法做 AT 的 Heizkostenzuschuss(等 oesterreich.gv.at 恢复)与 CH 的对应页",
    "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
    "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
-   "status": "open",
-   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics."
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/balkonkraftwerk-oesterreich.html 0 pv、0 外部引荐 —— 阈值 ≥8 pv 或 ≥1 外部引荐,未达。"
   },
   {
    "id": "agent-delivery-demand-1019",
@@ -1515,7 +1527,8 @@
    "win": "工具的瓶颈确是发现面 → 把每个家族的前一名工具卡放进对应 /kategorie/ 页;继续用 check_tools_hub 保证枢纽==文件系统",
    "lose": "读者不从枢纽找工具、只在指南里顺手用 → 枢纽只维护闸门不再投入;结论并入 fleet-tool-use-1014(新站三件套里的「工具」降为可选)",
    "source": "sites/getecoback/docs/tools-audit-2026-09-22.md;本轮修复 = 枢纽从文件系统生成(14 张漏掉的工具页补齐)+ 7 个无埋点工具面加事件 + pro-werkzeuge 能源工具从「永远算不出」修好 + 国家计算器表头 undefined 与 390px 溢出修好 + es/fr/it 三页补 page_view",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:工具事件 ② 里的 standort_check / bkw_calc / speicher_calc / foerder_check 对应的计算器页已全部删除,结算时从 ② 中剔除这四个事件(原口径保留)。"
   },
   {
    "id": "eco-btu-sizer-1020",
@@ -1703,7 +1716,8 @@
    "win": "从每天被抓的首页链过去是发现面的杠杆 → 保留该块,把同一模式搬到 /en/,eco-new-page-discovery-1020 按此解读",
    "lose": "两组相当 → 首页链接不是杠杆;块保留(零成本、对读者有用)但不扩建,Bing Webmaster 抓取统计仍列 owner 待办。两组都为 0 → Bing 目前根本不抓本域新 URL,别在页面上找原因",
    "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:处理组 9 张里 balkonkraftwerk-oesterreich 与 stromausfall-heizen 已删除(410)。结算按剩余 7 张算,阈值等比改为 ≥4/7(原文 ≥5/9 保留);对照组里若有已删页,一并剔除后再算占比。"
   },
   {
    "id": "eco-prime-bounty-1027",

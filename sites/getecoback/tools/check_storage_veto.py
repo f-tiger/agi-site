@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Gate: no energy-storage product is sold anywhere on the built site (2026-09-27).
+"""Gate: no energy-storage or balcony-PV product is sold anywhere on the built site (2026-09-27).
 
 Owner instruction 2026-09-27: 「eco站点下架所有储能产品」. Before this there were
 108 storage links on 14 pages — the shared storage shelf (grid, top strip, exit
@@ -100,7 +100,12 @@ def selftest():
         ("nachtspeicherofen", False),
         ("warmwasserspeicher+elektrisch", False),
         ("energiekostenmessger%C3%A4t+steckdose", False),
-        ("balkonkraftwerk+halterung+gitterbalkon", False),
+        # Balcony PV joined the list with the page takedown (2026-09-27); balcony
+        # shade and "without a balcony" did not.
+        ("balkonkraftwerk+halterung+gitterbalkon", True),
+        ("Steckersolar 800 W", True),
+        ("sonnensegel+balkon", False),
+        ("klimaanlage+ohne+balkon", False),
         ("wlan+steckdose+strommessung", False),
         ("akku+heizl%C3%BCfter+makita", False),
     ]

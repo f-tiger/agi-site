@@ -1,5 +1,6 @@
-# Energy-storage products this site no longer sells (owner, 2026-09-27:
-# 「eco站点下架所有储能产品」). One token per line, case-insensitive, matched as
+# Energy storage and balcony PV — categories this site no longer covers (owner,
+# 2026-09-27: 「eco站点下架所有储能产品」, then 「全部下线储能页！」 and
+# 「指南页，排障页，只要是相关的都下架」, which took the balcony-PV pages too). One token per line, case-insensitive, matched as
 # a substring of an Amazon search query or product name after URL-decoding
 # ('+' and %20 become spaces, %C3%A4 becomes ä).
 #
@@ -28,6 +29,14 @@ ecoflow
 bluetti
 powerstation
 power station
+# Balcony PV (added with the page takedown, 2026-09-27). "balkon" alone is not
+# here: Balkon beschatten (shade) and "Klimaanlage ohne Balkon" stay on the site.
+balkonkraftwerk
+steckersolar
+stecker-solar
+balkon-solar
+balkon solar
+solarmodul
 !nachtspeicher
 !wärmespeicher
 !waermespeicher

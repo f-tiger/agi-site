@@ -139,7 +139,6 @@ jobs:
           node --test tools/test_energy_tariffs.mjs
           node --test tools/test_pulse_cache.mjs
           python3 tools/build_energy_workbench.py
-          python3 tools/build_revenue_guide.py
       # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
       # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
       - name: Fill the tools hub from the pages that exist (idempotent)
@@ -171,7 +170,6 @@ jobs:
       - name: Link electricity workbenches from existing content
         run: |
           python3 tools/link_energy_workbench.py
-          python3 tools/build_revenue_guide.py
 
       - name: Verify household calculation examples and edge cases
         run: node tools/test_household.mjs
@@ -260,6 +258,16 @@ jobs:
         run: |
           python3 tools/check_storage_veto.py --selftest
           python3 tools/check_storage_veto.py
+
+      # Storage and balcony-PV pages removed 2026-09-27 (owner). The worker answers
+      # 410 from its own list; test_gone checks that list equals tools/gone_pages.txt
+      # and answers 410 only for those pages; check_gone fails if a page file comes
+      # back or anything published still links to one.
+      - name: Check removed pages stay removed and unlinked (gate)
+        run: |
+          node tools/test_gone.mjs
+          python3 tools/check_gone.py --selftest
+          python3 tools/check_gone.py
 
       - name: Check the lateral link blocks are suggestions, not walls
         run: python3 tools/check_related.py
@@ -459,11 +467,6 @@ jobs:
           check "https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html" "$cap_period"
           check "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html" "${cap_rate}p per kWh"
           check "https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html" "penetrating damp"
-          # Blackout page (2026-09-17). The accident to guard is not a 404 but the
-          # page losing the one number it exists for, or its CO warning — the only
-          # safety-critical sentence on this site.
-          check "https://getecoback.com/guide/stromausfall-heizen.html" "Kohlenmonoxid"
-          check "https://getecoback.com/guide/stromausfall-heizen.html" "30 Minuten"
           # The dehumidifier troubleshooting page (2026-09-17). Its whole value is
           # one computed figure; a page that renders without it is intact and
           # useless, which is the accident worth asserting.
@@ -489,8 +492,6 @@ jobs:
           # humidity hub without the 48 % figure, the heater page without the
           # 8.7 A arithmetic, the two troubleshooting pages without their one
           # safety line — each would be a page that renders and misleads.
-          check "https://getecoback.com/guide/balkonkraftwerk-oesterreich.html" "0,8 kW"
-          check "https://getecoback.com/guide/balkonkraftwerk-oesterreich.html" "keinen eigenen Zählpunkt"
           check "https://getecoback.com/guide/luftfeuchtigkeit-senken.html" "48 Prozent"
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" "8,7 A"
           check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" "Nichts in den Tank"
@@ -547,12 +548,12 @@ jobs:
                | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
           if [ "$n" != "0" ]; then echo "::error::fenster-beschlagen-aussen carries $n amazon link(s) — the page sells nothing by design"; fail=1; else echo "OK fenster-beschlagen-aussen sells nothing"; fi
           # Storage products are off the site (2026-09-27). Checked on what the edge
-          # serves, with the deploy gate's own scanner, on the pages that sold the
-          # most of them. A page that does not come back as a full document is ERR,
-          # never OK — an empty body would otherwise scan as zero links. Retried
+          # serves, with the deploy gate's own scanner, on the pages that carried
+          # storage cross-sells (the storage pages themselves now answer 410). A
+          # page that does not come back as a full document is ERR, never OK — an
+          # empty body would otherwise scan as zero links. Retried
           # because the edge can answer with the previous build for a few seconds.
-          for pg in guide/balkonspeicher-rechner.html guide/balkonkraftwerk-speicher-nachruesten.html \
-                    guide/growatt-noah-2000-probleme.html kategorie/energie-sparen.html ""; do
+          for pg in kategorie/energie-sparen.html guide/strompreis-radar.html ""; do
             sn=ERR
             for i in 1 2 3 4; do
               sn=$(curl -sL --max-time 20 -A "getecoback-ci" "https://getecoback.com/$pg" \
@@ -562,6 +563,22 @@ jobs:
             done
             if [ "$sn" != "0" ]; then echo "::error::/$pg still sells a storage product ($sn)"; fail=1; else echo "OK /$pg sells no storage product"; fi
           done
+          # Removed pages (2026-09-27, tools/gone_pages.txt — never a typed list): each
+          # page and one .md mirror must answer 410, and the live sitemap must not
+          # list any of them. 200 here means the worker change did not ship or a
+          # page file came back; 404 means the list and the worker disagree.
+          for slug in $(grep -v '^#' tools/gone_pages.txt | grep -v '^$'); do
+            gc=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -A "getecoback-ci" "https://getecoback.com/guide/$slug.html")
+            if [ "$gc" != "410" ]; then
+              sleep 10
+              gc=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -A "getecoback-ci" "https://getecoback.com/guide/$slug.html")
+            fi
+            if [ "$gc" != "410" ]; then echo "::error::/guide/$slug.html answers $gc, expected 410 (removed page)"; fail=1; fi
+          done
+          gm=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 -A "getecoback-ci" "https://getecoback.com/guide/growatt-noah-2000-probleme.md")
+          if [ "$gm" != "410" ]; then echo "::error::removed page .md mirror answers $gm, expected 410"; fail=1; else echo "OK removed pages answer 410"; fi
+          gs=$(curl -s --max-time 20 -A "getecoback-ci" https://getecoback.com/sitemap.xml | grep -c -E "/guide/($(grep -v '^#' tools/gone_pages.txt | grep -v '^$' | paste -sd'|'))\.html" || true)
+          if [ "$gs" != "0" ]; then echo "::error::live sitemap still lists $gs removed page(s)"; fail=1; fi
           # Deal band (2026-09-24). The expectation is computed from the calendar
           # for today's Berlin date, never typed: the accident is a band that is
           # missing while an event is live, or still on the page after it ended.
@@ -582,9 +599,9 @@ jobs:
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)
           if echo "$body" | grep -q "MeacoDry"; then echo "::error::white-dust page carries a dehumidifier shelf — context override lost"; fail=1; else echo "OK white-dust page sells no dehumidifier"; fi
-          # The three German tenancy pages now point Austrian readers to Austrian
+          # The German tenancy pages point Austrian readers to Austrian
           # law; losing that pointer would silently return them to § 554 BGB.
-          for u in klimaanlage-mietwohnung balkonkraftwerk-mieter-recht heizkosten-senken-als-mieter; do
+          for u in klimaanlage-mietwohnung heizkosten-senken-als-mieter; do
             check "https://getecoback.com/guide/$u.html" "oesterreich.html"
           done
           # Shelf shape: the Spanish page is a heater page and the Italian page a

@@ -5,6 +5,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 BASE = "https://getecoback.com"
+# The "solar" (PV self-consumption) mode and its copy were removed on 2026-09-27
+# with every storage and balcony-PV page (owner: 「只要是相关的都下架」). Its
+# translation strings stay in KEYS/rows unused; country-model.js keeps the dead
+# branch — nothing can select it any more.
 COUNTRIES = json.loads((ROOT / "data/country-calculators.json").read_text())
 KEYS = "choose mode cool dry heat solar inputs sample rate hours days wattsA wattsB heatDemand effA effB generation self exportRate costA costB grant maintenanceA maintenanceB years comparable run results energy annual total saving payback noPayback notComparable immediate year share copied copyFail print sources next methodology limits formula noteSolar scenario sensitivity invalid initial assumption cite citationLabel confirm status".split()
 TEXT = {
@@ -82,7 +86,7 @@ def build():
    title=t["heatDemand" if k=="heat" else k];lo,hi=BOUNDS[k]
    return f'<label for="{k}">{esc(title)}<input id="{k}" name="{k}" type="number" min="{lo}" max="{hi}" step="any" value="{DEFAULTS[k]}" required></label>'
   common="".join(field(k) for k in ["rate","costA","costB","grant","maintenanceA","maintenanceB","years"])
-  groups="".join(f'<div class="fields mode-fields" data-modes="{m}">'+ "".join(field(k) for k in ks)+'</div>' for m,ks in [("cool dry",["hours","days","wattsA","wattsB"]),("heat",["heat","effA","effB"]),("solar",["generation","self","exportRate"])])
+  groups="".join(f'<div class="fields mode-fields" data-modes="{m}">'+ "".join(field(k) for k in ks)+'</div>' for m,ks in [("cool dry",["hours","days","wattsA","wattsB"]),("heat",["heat","effA","effB"])])
   body="".join(f'<section><h2>{esc(h)}</h2><p>{esc(p)}</p></section>' for h,p in c["sections"])
   sources="".join(f'<li><a href="{esc(u)}" rel="noopener">{esc(n)}</a></li>' for n,u in c["sources"])
   related="".join(f'<li><a href="{u}">{esc(n)}</a></li>' for n,u in c["related"])
@@ -111,7 +115,7 @@ def build():
 <header><p class="eyebrow">{esc(c["country"])} · EcoBack</p><h1>{esc(c["heading"])}</h1><p>{esc(c["intro"])}</p></header>
 <div class="workspace">
 <form id="country-form"><h2>{esc(t["inputs"])}</h2><p class="notice">{esc(t["sample"])}</p>
-<label for="mode">{esc(t["mode"])}<select id="mode" name="mode">{"".join(f'<option value="{k}">{esc(t[k])}</option>' for k in ["cool","dry","heat","solar"])}</select></label>
+<label for="mode">{esc(t["mode"])}<select id="mode" name="mode">{"".join(f'<option value="{k}">{esc(t[k])}</option>' for k in ["cool","dry","heat"])}</select></label>
 {groups}<div class="fields">{common}</div><p class="small">{esc(t["confirm"])}</p>
 <label class="check"><input type="checkbox" id="comparable" name="comparable">{esc(t["comparable"])}</label>
 <button type="submit">{esc(t["run"])}</button><p id="form-error" role="alert"></p></form>
@@ -120,7 +124,7 @@ def build():
 </div>
 <article>
 {body}
-<section id="method"><h2>{esc(t["methodology"])}</h2><p>{esc(t["formula"])}</p><p>{esc(t["noteSolar"])}</p><p>{esc(t["limits"])}</p>
+<section id="method"><h2>{esc(t["methodology"])}</h2><p>{esc(t["formula"])}</p><p>{esc(t["limits"])}</p>
 <h3>{esc(t["scenario"])}</h3><p>1000 W ÷ 1000 × 6 h × 60 = 360 kWh · 700 W ÷ 1000 × 6 h × 60 = 252 kWh. 0.30 €/kWh: A = 108 €, B = 75.60 €. Δ = 32.40 €/a. 700 € ÷ 32.40 €/a = 21.60 a.</p><p>{esc(t["assumption"])}</p></section>
 <section><h2>{esc(t["sources"])} · 2026-09-20</h2><ul>{sources}</ul><h3>{esc(t["next"])}</h3><ul>{related}</ul></section>
 <section><h2>{esc(t["citationLabel"])}</h2><p>{esc(t["cite"])}</p><p>EcoBack · {esc(c["title"])} · <a href="{url}">{url}</a> · 2026-09-20</p><a href="{path[:-5]}.md">Markdown</a></section>
@@ -134,7 +138,7 @@ def build():
   target=SITE/path.lstrip("/");target.parent.mkdir(parents=True,exist_ok=True);target.write_text(content)
   md=f'# {c["title"]}\n\nCanonical: {url}\n\n{c["intro"]}\n\n'
   md+='\n\n'.join(f'## {h}\n\n{p}' for h,p in c["sections"])
-  md+=f'\n\n## {t["methodology"]}\n\n{t["formula"]}\n\n{t["noteSolar"]}\n\n{t["limits"]}\n\n'
+  md+=f'\n\n## {t["methodology"]}\n\n{t["formula"]}\n\n{t["limits"]}\n\n'
   md+=f'## {t["sources"]} · 2026-09-20\n\n'+'\n'.join(f'- [{n}]({u})' for n,u in c["sources"])
   target.with_suffix(".md").write_text(md+"\n")
  print("Built 5 country/language calculators and Markdown mirrors.")

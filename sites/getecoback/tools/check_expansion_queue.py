@@ -16,6 +16,9 @@ a page that was never shipped. So this checks the shape of those accidents:
     of recording rejections is that nobody researches the same term twice;
   * no slug twice;
   * 'withdrawn' (owner took the topic off the site) carries who, when and why;
+  * 'removed' = a page that was built and then taken down (the storage and
+    balcony-PV pages, 2026-09-27): it carries who, when and why, and its page
+    must NOT exist any more — the worker answers 410 for it;
   * no storage item is still waiting to be built. The owner took the storage
     category off this site on 2026-09-27 (「后续记得不做储能品类」); an item whose
     slug or title matches tools/storage_veto.txt may be built (history),
@@ -36,7 +39,7 @@ SITE_ROOT = os.path.dirname(HERE)
 QUEUE = os.path.join(SITE_ROOT, "data", "expansion-queue.json")
 BETS = os.path.join(os.path.dirname(os.path.dirname(SITE_ROOT)), "data", "fleet-bets.json")
 GUIDE = os.path.join(SITE_ROOT, "site", "guide")
-STATUSES = {"queued", "built", "rejected", "blocked", "gated", "seasonal-hold", "withdrawn"}
+STATUSES = {"queued", "built", "rejected", "blocked", "gated", "seasonal-hold", "withdrawn", "removed"}
 WAITING = {"queued", "blocked", "gated", "seasonal-hold"}
 sys.path.insert(0, HERE)
 import storage_veto  # noqa: E402
@@ -71,15 +74,18 @@ def check(queue, page_exists, page_date, bet_ids):
             if it.get("bet") not in bet_ids:
                 errors.append(f"{where}: built without a bet in data/fleet-bets.json ({it.get('bet')!r})")
         elif page_exists(slug):
-            errors.append(f"{where}: status {st!r} but site/guide/{slug}.html exists — mark it built or rename the slug")
+            if st == "removed":
+                errors.append(f"{where}: marked removed but site/guide/{slug}.html still exists")
+            else:
+                errors.append(f"{where}: status {st!r} but site/guide/{slug}.html exists — mark it built or rename the slug")
         if st == "rejected":
             s = it["serp"] or {}
             if not s.get("date") or s.get("verdict") in ("", "unchecked"):
                 errors.append(f"{where}: rejected without a dated SERP verdict")
-        if st == "withdrawn":
-            w = it.get("withdrawn") or {}
+        if st in ("withdrawn", "removed"):
+            w = it.get(st) or {}
             if not (w.get("date") and w.get("by") and w.get("reason")):
-                errors.append(f"{where}: withdrawn without date/by/reason")
+                errors.append(f"{where}: {st} without date/by/reason")
         if st in WAITING and (storage_veto.is_storage(slug.replace("-", " "))
                               or storage_veto.is_storage(it["working_title"])):
             errors.append(f"{where}: storage item with status {st!r} — the storage category is off this "
@@ -121,6 +127,10 @@ def selftest():
         ("storage item withdrawn", {**base, "slug": "marstek-venus-probleme", "status": "withdrawn",
                                     "withdrawn": {"date": "2026-09-27", "by": "owner", "reason": "r"}}, False),
         ("withdrawn without reason", {**base, "slug": "w", "status": "withdrawn", "withdrawn": {"date": "2026-09-27"}}, True),
+        ("removed page still on disk", {**base, "slug": "exists", "status": "removed",
+                                        "removed": {"date": "2026-09-27", "by": "owner", "reason": "r"}}, True),
+        ("removed page gone", {**base, "slug": "gone", "status": "removed",
+                               "removed": {"date": "2026-09-27", "by": "owner", "reason": "r"}}, False),
         ("heater item queued is fine", {**base, "slug": "nachtspeicherofen-kosten", "status": "queued"}, False),
     ]
     bad = 0

@@ -30,7 +30,7 @@ CATEGORIES = [
     ("luftqualitaet", "Luftqualität",
      "Luftentfeuchter gegen Schimmel, Luftreiniger gegen Pollen und Staub sowie die richtige Gerätepflege."),
     ("energie-sparen", "Energie sparen",
-     "Stromkosten senken mit Balkonkraftwerk & Speicher, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt."),
+     "Stromkosten senken: Verbrauch messen, Börsenpreise und Tarife verstehen, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt."),
 ]
 CAT_TITLE = {k: t for k, t, _ in CATEGORIES}
 CAT_DESC = {k: d for k, _, d in CATEGORIES}
@@ -1029,10 +1029,6 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "desiccant-vs-compressor-dehumidifier",
                "heated-airer-vs-dehumidifier",
                "rising-damp-penetrating-damp-or-condensation",
-               # The honest product answer here is a CO alarm and warm bedding,
-               # not a balcony battery — the page's whole argument is that the
-               # battery does not do what buyers think.
-               "stromausfall-heizen",
                # Outside condensation on well-insulated glass (2026-09-24) is a
                # good sign with nothing to buy; the humidity family would put a
                # dehumidifier shelf on a page whose answer is "wait an hour".
@@ -1057,15 +1053,6 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
- # growatt-noah-2000-probleme (2026-08-28). Live gap: the site's hottest current
- # page (11 pv in the last 4 days) showed 0 affiliate clicks — because its top
- # pitch was three €1.000 REPLACEMENT batteries aimed at a reader who is
- # TROUBLESHOOTING the battery they already own. Category-corrected to the
- # diagnostic tools the page's own sections imply (Ausgangsleistung → measure at
- # the socket; App/WLAN → an app-independent meter), which are the 6%-band cheap
- # durables this site's A-grade data shows converting. One switch-instead-of-fix
- # chip stays, honestly labelled, because the page has an explicit
- # "Alternativen im Blick" section.
  # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
  # cheapest device on it. The BTU calculator's fourth tier routes every room
  # above 13.500 BTU here because a monoblock is genuinely at its limit — and
@@ -1111,13 +1098,6 @@ CONTEXT_MODELS = {
                 "portasplit-vs-monoblock",
                 "midea-portasplit-kaufen")},
 
- "growatt-noah-2000-probleme": [
-   ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
-   ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),
-   # The third slot ("Wenn tauschen statt reparieren": Anker Solarbank 2) was
-   # a storage product and went with the storage shelf on 2026-09-27. The two
-   # meters are measuring tools, not storage, and stay.
- ],
 
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
@@ -1309,10 +1289,6 @@ CONTEXT_MODELS = {
    ("Raumentfeuchter (Granulat)", "Für kleine Kellerräume", "Kein Strom, kein Schlauch — für abgeschlossene kleine Räume oft ausreichend.", "Preis vor Ort prüfen", "raumentfeuchter+granulat", "dehum"),
    ("Luftentfeuchter mit Schlauchanschluss", "Dauerbetrieb ohne Eimer", "Im Keller will niemand täglich den Tank leeren — Schlauchanschluss in den Ablauf.", "Preis vor Ort prüfen", "luftentfeuchter+mit+schlauch", "dehum"),
  ],
- "klimaanlage-balkonkraftwerk": [
-   ("Energiekostenmessgerät", "Erst messen, dann rechnen", "Steckdosen-Messgerät zeigt, was dein Gerät wirklich zieht — glaub keiner Rechnung (auch unserer nicht), bevor du deinen eigenen Wert kennst.", "ab ca. 15 €", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
-   ("Ventilator", "Läuft wirklich mit 800 W", "Ein Ventilator zieht 30–60 W statt 1.000 — das ist der Verbraucher, den ein Balkonkraftwerk tatsächlich den ganzen Tag trägt.", "ab ca. 70 €", "ventilator+leise+standventilator", "fan"),
- ],
  # Fast-strike 2026-08-25 (rising: "schimmel im keller entfernen" v=108.750).
  # Every product type below is named in the article body itself; the third item
  # is the page's core judgement (removal without dehumidifying = subscription
@@ -1424,14 +1400,6 @@ CONTEXT_MODELS = {
    ("Weiche Lamellenbürste", "Für das Register", "Losen Staub in Lamellenrichtung abnehmen, ohne die dünnen Bleche zu verbiegen — die Quelle, wenn es beim Einschalten riecht.", "Preis vor Ort prüfen", "lamellenb%C3%BCrste+weich", "dehum"),
    ("Ablaufschlauch (Luftentfeuchter)", "Dauerhaft trocken", "Fast jedes Kompressorgerät hat den Anschluss — dann steht kein Wasser mehr im Gerät, und der Tank-Geruch hat keine Grundlage.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
  ],
- # The balcony-PV mounting page: its products are the mounts themselves, not
- # the battery family the storage default would show. Category cards matching
- # the page's three mounting routes.
- "balkonkraftwerk-ohne-bohren": [
-   ("Gitterbalkon-Halterung", "Stab- & Gittergeländer", "Haken/Klemmen um die Querstreben — rückstandsfrei, in Minuten montiert. Streben-Abstand vorher messen.", "ab ca. 30 €", "balkonkraftwerk+halterung+gitterbalkon", "battery"),
-   ("Klemmhalterung Betonbrüstung", "Massive Brüstung", "Umgreift die Mauerkrone mit Gegenplatte — klemmt statt dübelt. Auf Gummiauflagen achten.", "ab ca. 40 €", "balkonkraftwerk+halterung+beton+ohne+bohren", "battery"),
-   ("Ballast-Aufständerung", "Boden & Flachdach", "Frei neigbar für den besten Ertrag — hält über Gewicht statt über das Geländer.", "ab ca. 35 €", "solarmodul+aufstaenderung+ballast", "battery"),
- ],
  # Expansion queue batch 1 (2026-09-24). Both shelves are what each page's own
  # text tells the reader to do, in the page's order — no new selection judgement.
  "beheizter-waeschestaender": [
@@ -1489,9 +1457,6 @@ CONTEXT_SUB = {
                               "getestet. Symbolbilder."),
  "luftentfeuchter-keller": ("Im Keller entscheidet der Messwert vor dem Kauf — deshalb steht das Hygrometer "
                             "zuerst. Nicht selbst getestet. Symbolbilder."),
- "klimaanlage-balkonkraftwerk": ("Passend zur Rechnung oben, nicht dagegen: Ein Monoblock sprengt die 800 W "
-                                "meistens — deshalb stehen hier das Messgerät und der Verbraucher, der "
-                                "wirklich mit Solarstrom läuft. Nicht selbst getestet. Symbolbilder."),
  "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
                                   "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer Trends-Abfrage, kein "
@@ -1529,8 +1494,6 @@ CONTEXT_SUB = {
                                    "dann ein anderes Gerät. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-stinkt": ("Reinigen statt ersetzen: Bürste fürs Register, Ablaufschlauch gegen stehendes Wasser — was nie "
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
- "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
-                                 "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
  "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
                                "messen. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
@@ -1548,9 +1511,6 @@ CONTEXT_SUB = {
  # family's sentence about subsidies for buying a battery — under two
  # measuring plugs. Since 2026-09-27 the page sells no battery, so it says
  # what the two cards are for.
- "growatt-noah-2000-probleme": ("Erst messen, dann entscheiden: Beide Steckdosen zeigen unabhängig von der "
-                                "Growatt-App, was der NOAH wirklich ins Hausnetz liefert. Nicht selbst getestet. "
-                                "Symbolbilder."),
 }
 
 
@@ -2293,7 +2253,7 @@ POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
               "desiccant-vs-compressor-dehumidifier",
               "heated-airer-vs-dehumidifier",
               "rising-damp-penetrating-damp-or-condensation",
-              "stromausfall-heizen", "fenster-beschlagen-aussen"}
+              "fenster-beschlagen-aussen"}
 
 
 def inject_popup(html, slug, en=False):
@@ -2527,8 +2487,7 @@ def inject_climate(html, slug):
 # them they can put it on their own site, so embeds no longer depend on outreach.
 TOOL_PAGES = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
               "heizkosten-vergleich-rechner", "stromvergleich-check", "hitze-check",
-              "keller-lueften-sommer", "balkonspeicher-rechner",
-              "balkonkraftwerk-lohnt-sich-rechner", "balkonkraftwerk-standort-check"}
+              "keller-lueften-sommer"}
 
 # Only these calculators actually exist as an embeddable widget, so only their
 # pages may promise "this calculator". The rest link to what is really on offer.
@@ -2566,7 +2525,7 @@ def embed_box(slug):
 # draws meaningful power. Fans, shading and the energy pages themselves are left
 # out: for a 50 W fan the argument does not matter, and on the energy pages it
 # would be circular.
-HEATENERGY_SKIP = {"klimaanlage-balkonkraftwerk", "strompreis-radar", "klimaanlage-stromkosten",
+HEATENERGY_SKIP = {"strompreis-radar", "klimaanlage-stromkosten",
                    "stromkosten-rechner", "stromvergleich-check"}
 
 HEATENERGY_BOX = (
@@ -2586,8 +2545,6 @@ HEATENERGY_BOX = (
     'padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Aktuelle Preiskurve →</a>'
     '<a href="/guide/stromkosten-rechner.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
     'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Was kostet mein Gerät? →</a>'
-    '<a href="/guide/klimaanlage-balkonkraftwerk.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
-    'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Mit eigenem Solarstrom? →</a>'
     '</div>'
     # Twenty-one pages advise pre-cooling on a timer; none of the cooling
     # cluster linked the accessory that does it. With the honest catch stated:
@@ -3041,8 +2998,6 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
             'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
             '\'<strong style="color:#8a6410;">\'+head+\'</strong>\'+'
             '\'<span style="color:#5a5340;">Börsenpreis ohne Steuern und Abgaben (EPEX). Jede selbst erzeugte Kilowattstunde ersetzt Netzstrom.</span>\'+'
-            '\'<a href="/guide/balkonkraftwerk-lohnt-sich-rechner.html" data-eb-s="rechner" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Lohnt sich deins? Rechner →</a>\'+'
-            '\'<a href="/guide/balkonspeicher-foerderung.html" data-eb-s="foerder" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Förderung im Bundesland →</a>\'+'
             '\'</div></div>\';'
             'if(window.gtag)gtag("event","strom_now",{avg:Math.round(avg*10)/10});'
             'h.querySelectorAll("[data-eb-s]").forEach(function(a){a.addEventListener("click",function(){'
@@ -3649,7 +3604,7 @@ def home_storage_block():
         '<a href="/guide/luftentfeuchter-keller.html">Luftentfeuchter für den Keller</a> · '
         '<a href="/guide/heizluefter-stromsparend.html">Heizlüfter stromsparend</a> · '
         '<a href="/kategorie/luftqualitaet.html">Alles zu Luftqualität</a></p>'
-        '<p style="margin:10px 0 0;font-size:13px;color:#5b6b78;">☀️ Balkonkraftwerk &amp; Strom sparen (Sommerhalbjahr-Schwerpunkt): '
+        '<p style="margin:10px 0 0;font-size:13px;color:#5b6b78;">💡 Strom sparen: Tarife, Verbrauch &amp; Messen: '
         '<a href="/kategorie/energie-sparen.html">alle Ratgeber →</a></p>'
         '</div></section>'
         '<script>(function(){var s=document.getElementById("eb-herbst");if(!s)return;'
@@ -4136,7 +4091,6 @@ VIDEOS = {
  # balkonkraftwerk-speicher-nachruesten carried "Balkonkraftwerk mit Speicher:
  # Top 5 im Test" until 2026-09-27 — a product ranking of storage units, i.e. a
  # shelf in video form. Removed with the storage shelf; inject_video strips it.
- "balkonkraftwerk-lohnt-sich-rechner": ("z7RO0E8ZAJ8", "Rechnet sich ein Balkonkraftwerk mit Speicher wirklich? (Video)", "Unabhängiger Test im Video"),
  "luftentfeuchter-keller": ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)", "Unabhängiger Test im Video"),
  "keller-lueften-sommer": ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)", "Video-Anleitung"),
 }

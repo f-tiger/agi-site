@@ -214,53 +214,6 @@
    "fetched": "2026-09-22",
    "polluted": false
   },
-  "balkonkraftwerk": {
-   "rising": [
-    {
-     "q": "ecoflow stream 5000",
-     "v": 11300
-    },
-    {
-     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
-     "v": 7000
-    },
-    {
-     "q": "anker solix solarbank 4 e5000 pro",
-     "v": 300
-    },
-    {
-     "q": "anker solarbank 4 pro",
-     "v": 250
-    },
-    {
-     "q": "anker solix 4 pro",
-     "v": 250
-    },
-    {
-     "q": "anker solix 4",
-     "v": 200
-    },
-    {
-     "q": "split klimaanlage",
-     "v": 200
-    },
-    {
-     "q": "ecoflow stream",
-     "v": 80
-    },
-    {
-     "q": "ecoflow stream ultra",
-     "v": 70
-    },
-    {
-     "q": "ecoflow balkonkraftwerk mit speicher",
-     "v": 60
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-09-23",
-   "polluted": true
-  },
   "kaffeevollautomat": {
    "rising": [
     {

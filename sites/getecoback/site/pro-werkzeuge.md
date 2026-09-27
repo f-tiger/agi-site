@@ -15,7 +15,6 @@ Beispiel (keine Prognose): 180 EUR/Monat, 6800 EUR Investition, 27 % Reduktion:
 583,20 EUR/Jahr, rund 11,7 Jahre Amortisation, −968 EUR nach zehn Jahren.
 Keine Zinsen, Förderung, Wartung, Ersatzteile, Inflation oder Alterung berücksichtigt.
 Region und Projektname sind Beschriftungen; keine landesspezifische Tarif- oder Förderberechnung.
-Spezialmodell für Balkon-Solar: https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html
 
 ## Ausschreibungen
 

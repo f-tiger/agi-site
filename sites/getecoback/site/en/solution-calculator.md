@@ -24,8 +24,6 @@ German heating support has a KfW eligibility process. France has the Médiateur 
 
 Cooling/drying: W ÷ 1000 × hours × days. Heating: useful heat ÷ seasonal ratio. Saving = annual cost A − annual cost B. Payback = max(0, cost B − cash grant − cost A) ÷ positive annual saving.
 
-Solar: avoided imports = generation × self-use share. Add effective surplus credit and subtract annual costs. A is no PV. Energy B is generation, not consumption; negative running cost is a net benefit. No storage dispatch simulation.
-
 No financing, discounting, inflation, equipment replacement, degradation or delayed tax credits. Results do not establish capacity, installation permission or grant eligibility.
 
 ## Sources checked · 2026-09-20
@@ -33,4 +31,3 @@ No financing, discounting, inflation, equipment replacement, degradation or dela
 - [France · official tariff comparator](https://comparateur-offres.energie-info.fr/)
 - [Spain · CNMC tariff comparator](https://comparador.cnmc.gob.es/)
 - [Italy · Portale Offerte](https://www.ilportaleofferte.it/portaleOfferte/)
-- [EU JRC · PVGIS](https://re.jrc.ec.europa.eu/pvg_tools/en/)

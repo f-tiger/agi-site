@@ -1,11 +1,12 @@
-## 储能品类:已下架,永久不做(2026-09-27,owner:「eco站点下架所有储能产品」+「后续记得不做储能品类」;全文 `docs/storage-takedown-2026-09-27.md`)
+## 储能与阳台光伏:产品、页面、工具已全部下线,永久不做(2026-09-27,owner:「eco站点下架所有储能产品」+「后续记得不做储能品类」+「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」;全文 `docs/storage-takedown-2026-09-27.md`)
 
 **这一条优先于本文件任何提到储能的旧规则、旧队列项与旧判定线(包括下文 09-17「储能:类目确实大」与 09-24「阳台储能爆发」两节)。**
 
 1. **不卖**:全站不得出现任何储能产品的 Amazon 链接或卡片——阳台储能(Anker Solarbank/SOLIX、Zendure SolarFlow、Marstek Venus、Growatt NOAH、EcoFlow STREAM)、便携电站(Jackery、Bluetti、EcoFlow)、`balkonkraftwerk speicher` 类搜索链接。名单在 `tools/storage_veto.txt`(唯一来源)。
 2. **不做**:不新建储能页、不把储能词放进扩展队列(queued/gated/blocked/seasonal-hold 一律不行,只能是 built 的历史、rejected 或 withdrawn)、不为储能做季节性测量、不按储能 rising 词选题。
-3. **机器执行,不靠记忆**:`build_structure.py` 的 `storage_guard()` 在货架表里见到储能行就拒绝构建;首页上升词栏丢弃储能词;`check_storage_veto.py`(部署闸门)扫构建产物里的 Amazon URL 和脚本里拼搜索词的字面量;`check_expansion_queue.py` 见到等待中的储能项就红;每日摘要的 rising 节把储能词隐藏并注明条数;部署后自检在线上再扫四张原储能页 + 首页。
-4. **不是题材禁令**:现有储能指南页(12 张 balkonkraftwerk/balkonspeicher 页 + growatt + anker 排障页)**保留在线、只作信息**,可以在正文里提到设备名;是否连页面一起下线,等 owner 决定,**会话不自行删页**。Balkonkraftwerk(光伏板本身)不是储能,不在禁令内;Nachtspeicherofen / Warmwasserspeicher 是取暖/热水设备,也不在内(名单里有例外行)。
+3. **机器执行,不靠记忆**(第一步,产品):`build_structure.py` 的 `storage_guard()` 在货架表里见到储能行就拒绝构建;首页上升词栏丢弃储能词;`check_storage_veto.py`(部署闸门)扫构建产物里的 Amazon URL 和脚本里拼搜索词的字面量;`check_expansion_queue.py` 见到等待中的储能项就红;每日摘要的 rising 节把储能词隐藏并注明条数;部署后自检在线上再扫四张原储能页 + 首页。
+4. **页面也下线了(同日第二步)**:储能与阳台光伏的 **14 张页**全部删除,worker 对页面与 `.md` 镜像回 **410 Gone**(名单 `tools/gone_pages.txt` 唯一来源):7 张储能页(speicher-nachruesten、balkonspeicher-rechner/-foerderung/-winter-frost、Anker Solarbank 排障、Growatt NOAH 排障、stromausfall-heizen)+ 7 张阳台光伏页(lohnt-sich-rechner、mieter-recht、oesterreich、ohne-bohren、standort-check、wo-kaufen、klimaanlage-balkonkraftwerk)。同时撤掉:MCP 工具 `balkonspeicher_foerderung`(注册表描述去掉 balcony solar,版本 1.3.0)、五国成本计算器的「Solar-Eigenverbrauch」模式及其 PV 段落/来源、首页储能卡与三条链接、首页秋季视频栏里的储能「Top 5」视频、季节导语里的光伏位、`build_revenue_guide.py`(它每次部署都会重建 Anker 页)。**阳台光伏(Balkonkraftwerk)从此也按这条规则处理:不建页、不入队、不做工具**;Balkon-Beschattung(遮阳)与 Nachtspeicher/Warmwasserspeicher 不在内。
+   **闸门**:`check_gone.py`(页面文件不得复现、任何发布文件不得再链这 14 页)+ `test_gone.mjs`(worker 名单 == 文件、只对这 14 页回 410)+ 部署后逐页断言线上 410、sitemap 不含它们。
 5. **代价是实测过的**:90 天 180 次真人联盟点击里 4 次(2,2 %)点向储能产品。
 
 ## 当前生效的扩展规则(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
@@ -3264,3 +3265,12 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **刻意没动**:`EB_STROMNOW`(交易所电价带,纯信息)、储能指南页本身、Förderung 页与 MCP 的补贴工具(信息)、北美 AC 桥(`EB_USMARKET`,只对 America/* 渲染,不是储能;它的撤块早由 `eco-us-market-0925` 判定、另行执行)。
 - **判定线**:`eco-storage-spring-0415` **withdrawn**(处理与赢的动作都已不存在);`eco-balkon-mieter-recht-1115`、`eco-at-balkon-1116`、`eco-storage-retitle-1112` 照常(不依赖储能点击),各加 `note_2026-09-27`:赢的动作不得扩到储能题。
 - **待 owner 决定**:储能指南页要不要也下线(删页要加 410/重定向并撤 sitemap,是一次独立的变更)。
+
+## 储能与阳台光伏页全部下线(2026-09-27 第二步,owner:「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」;全文 `docs/storage-takedown-2026-09-27.md` 后半)
+
+- **范围怎么定的**:我上一轮把 7 张阳台光伏页也写成了「储能页」(口径错误),下线前用一个问题向 owner 确认,答复是 **14 张全部下线**;随后 owner 追加「只要是相关的都下架」,于是范围扩到页面以外的一切相关面(见文件顶部第 4 条)。按标题 + 正文全站扫描,专门讲储能/光伏的页**就是这 14 张**,没有漏的第 15 张;其余页面里的单句提及(§14a 里的 Heimspeicher、MRG 法条里的例子、「speichern」动词)不是相关页,没动。
+- **下线前的最终读数(D1 28 天,真人,剔 CI)**:14 页合计 **43 pv / 595(7,2 %)**、**3 次联盟点击 / 78(3,8 %,全部在 Growatt 排障页)**、外部引荐 28(25 次在 Growatt 页)。**代价主要就是 Growatt 那一页**(28 pv、25 次搜索、3 次点击);其余 13 页 28 天合计 15 pv。
+- **410 而不是 404 或跳转**:内容是有意删除且不回来;跳转到不相关页在 Google 眼里是软 404。410 页 `noindex`,只给首页与「Energie sparen」两个出口。
+- **顺手抓到的上一步漏洞**:第一步的储能闸门只扫 Amazon 链接,于是首页秋季视频栏里那条储能「Top 5 im Test」视频、首页那张不带 Amazon 链接的「Balkonkraftwerk-Speicher」卡都没被拦住——**储能促销不一定是联盟链接**。这一步的 `check_gone.py` 按「链向被删页」检查,把它们都抓出来了。
+- **判定线**:`eco-balkon-mieter-recht-1115`、`eco-at-balkon-1116`、`eco-storage-retitle-1112`、`eco-stromausfall-0116` **withdrawn**(读数写进台账);`eco-newest-block-1008`(处理组 9→7,阈值等比 ≥4/7)、`eco-tools-hub-1020`(剔除四个已删计算器的事件)、`eco-at-mrg-1116` 与 `eco-dach-troubleshoot-1116`(赢的动作里光伏那一半不再执行)、`eco-wallbox-demand-1015`(建 wallbox 页前先问 owner)、`eco-troubleshoot-shape-1112` 各加 `note_2026-09-27_pages`。队列里 Anker 那一项改为新状态 `removed`(闸门:页面必须不存在)。
+- **别再做**:为这 14 个 URL 做重定向「挽回流量」、把 Growatt 页换个名字重发、在其他页里补一段阳台光伏内容、把计算器的 solar 模式加回来。

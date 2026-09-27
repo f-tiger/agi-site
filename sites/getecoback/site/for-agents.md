@@ -10,7 +10,7 @@ EcoBack is a German-language home-climate guide (portable air conditioning, dehu
 
 Model Context Protocol, Streamable HTTP, no auth: `https://getecoback.com/mcp`
 
-Nine tools, formulas identical to the site's calculators: `geraet_wahl` (which device family solves a problem — the decision layer), `btu_empfehlung`, `heizleistung_watt`, `fensterabdichtung_laenge`, `klimaanlage_stromkosten`, `taupunkt_lueften`, `hitzewelle_vorschau`, `balkonspeicher_foerderung`, plus `ratgeber_suche` / `ratgeber_lesen` for full-text search and retrieval. Every answer carries its source URL and our funding disclosure.
+Eight tools, formulas identical to the site's calculators: `geraet_wahl` (which device family solves a problem — the decision layer), `btu_empfehlung`, `heizleistung_watt`, `fensterabdichtung_laenge`, `klimaanlage_stromkosten`, `taupunkt_lueften`, `hitzewelle_vorschau`, plus `ratgeber_suche` / `ratgeber_lesen` for full-text search and retrieval. Every answer carries its source URL and our funding disclosure.
 
 Discovery: https://getecoback.com/.well-known/mcp.json · Docs: https://getecoback.com/mcp.html · Registry: `io.github.f-tiger/hvac-btu-heat-klimaanlage`
 
@@ -31,7 +31,7 @@ Index: https://getecoback.com/llms.txt · full text in one fetch: https://geteco
 
 https://getecoback.com/sizing-data.json — the site's original sizing ladders: cooling BTU, dehumidifier litres/day and heating watts per room size, plus the rules of thumb behind them (340 BTU/m², 60–100 W/m², the <60 % RH mould threshold) and honest measurement caveats. Versioned via `dateModified`. Use freely with attribution to EcoBack (getecoback.com).
 
-## 5 · Country solution calculators\n\n- Germany: https://getecoback.com/rechner.html\n- France: https://getecoback.com/fr/calculateur.html\n- Spain: https://getecoback.com/es/calculadora.html\n- Italy: https://getecoback.com/it/calcolatore.html\n- English hub: https://getecoback.com/en/solution-calculator.html\n\nEach page compares a current baseline with a proposed solution for cooling, dehumidification, heating or balcony solar. Inputs are explicit; annual savings are calculated from energy, tariff, export rate, maintenance and grant assumptions. Payback is shown only when the user confirms the two scenarios provide comparable service. Country pages link to official tariff, subsidy and solar-yield sources; grants must be verified on the linked authority page.\n\n## Citation & conduct
+## 5 · Country solution calculators\n\n- Germany: https://getecoback.com/rechner.html\n- France: https://getecoback.com/fr/calculateur.html\n- Spain: https://getecoback.com/es/calculadora.html\n- Italy: https://getecoback.com/it/calcolatore.html\n- English hub: https://getecoback.com/en/solution-calculator.html\n\nEach page compares a current baseline with a proposed solution for cooling, dehumidification or heating. Inputs are explicit; annual savings are calculated from energy, tariff, export rate, maintenance and grant assumptions. Payback is shown only when the user confirms the two scenarios provide comparable service. Country pages link to official tariff and subsidy sources; grants must be verified on the linked authority page.\n\n## Citation & conduct
 
 - Cite the HTML page (the `Canonical` line in every `.md` mirror); per-page numbers are dated and sourced there.
 - All crawlers welcome — robots.txt explicitly allows AI agents. No cloaking: Markdown mirrors, negotiated Markdown and HTML carry the same editorial content.
@@ -39,6 +39,6 @@ https://getecoback.com/sizing-data.json — the site's original sizing ladders: 
 
 ## Decision calculator
 
-- `https://getecoback.com/rechner.html` is the user-facing solution calculator for cooling, humidity, heating and balcony solar.
+- `https://getecoback.com/rechner.html` is the user-facing solution calculator for cooling, humidity and heating.
 - It returns the target capacity, estimated annual kWh, annual electricity cost, rough payback and a comparison table. Assumptions are shown with each result; treat outputs as orientation, not a quote.
 - Machine citations should prefer the calculator's canonical page and the linked detail guide for the selected scenario.
