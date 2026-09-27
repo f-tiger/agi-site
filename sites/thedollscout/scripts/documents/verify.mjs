@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs } from './copy.mjs';
+import { HUB_TASKS } from '../../document-assets/hub-core.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
 const origin = 'https://thedollscout.com', edition = '2026-09-25.8';
@@ -49,7 +50,19 @@ for (const record of manifest.records) {
   const plain = await read(new URL(record.textUrl).pathname);
   assert.ok(plain.includes(record.url) && plain.includes(copy[record.lang].maintained), 'Citable text: ' + route);
   const ld = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
-  assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'WebPage'));
+  assert.ok(ld[0]['@graph'].some(s => s['@type'] === (record.slug ? 'WebPage' : 'CollectionPage')));
+  if (!record.slug) {
+    assert.ok(!html.includes('type="file"') && !html.includes('id="workspace"'), 'Homepage is a directory: '+route);
+    assert.ok(html.includes('data-document-mode="hub"'), 'Homepage mode: '+route);
+    assert.ok(!ld[0]['@graph'].some(s=>s['@type']==='WebApplication'), 'Directory is not one application');
+    const list=ld[0]['@graph'].find(s=>s['@type']==='ItemList');
+    assert.equal(list.numberOfItems,6);
+    assert.deepEqual(list.itemListElement.map(s=>s.url),Object.values(HUB_TASKS).map(slug=>origin+route+slug));
+    for (const [task,slug] of Object.entries(HUB_TASKS)) {
+      assert.ok(html.includes(`data-hub-task="${task}" href="${route+slug}"`), 'Visible task destination: '+task);
+      assert.ok(plain.includes(origin+route+slug), 'Same task in text: '+task);
+    }
+  }
   if (record.slug) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'BreadcrumbList'));
   if (record.slug.startsWith('learn/')) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'Article'));
   const tool = toolSlugs.indexOf(record.slug);
@@ -67,7 +80,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['app.mjs','core.mjs','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 const examples = JSON.parse(await read('/document-assets/sample-results.json'));
 assert.equal(examples.documents.length,3);

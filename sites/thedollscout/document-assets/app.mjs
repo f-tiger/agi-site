@@ -1,5 +1,6 @@
 import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.8';
 import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.8';
+import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-09-27.1';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -25,6 +26,13 @@ export function track(event) {
   try { if (navigator.sendBeacon) navigator.sendBeacon('/api/doc-events', body); else fetch('/api/doc-events', { method: 'POST', body, keepalive: true }).catch(() => {}); } catch {}
 }
 track('doc_view');
+if (mode === 'hub' && isHubPath(location.pathname)) document.addEventListener('click', event => {
+  const link = event.target.closest('a[data-hub-task]');
+  if (!link) return;
+  const task = link.dataset.hubTask, name = hubEvent(task);
+  const target = new URL(link.href);
+  if (name && target.origin === location.origin && target.pathname === location.pathname + HUB_TASKS[task]) track(name);
+});
 if (new URLSearchParams(location.search).get('via') === 'share') track('doc_share_visit');
 function status(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
 function setBusy(value) {

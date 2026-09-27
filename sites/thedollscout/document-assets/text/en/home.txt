@@ -1,42 +1,86 @@
-# Free PDF checks, batch reviews and text comparison
+# Free document tools: PDF, file verification & delivery
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
-
-Files are processed in this browser. No file upload or account required.
-
-This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
 
 PDF accessibility checker
 
-Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+Find missing titles, language declarations, tags and page-level issues.
+
+PDF preflight
+
+https://thedollscout.com/pdf-accessibility-checker
 
 Batch PDF audit
 
-Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+Review up to 10 PDFs and export one combined findings list.
+
+Up to 10 PDFs
+
+https://thedollscout.com/pdf-batch-audit
 
 PDF to text
 
-Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+Extract existing text by page and save a TXT file.
+
+Text extraction
+
+https://thedollscout.com/pdf-to-text
 
 Compare PDF text
 
-Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+Locate changed, added and removed text pages across two versions.
 
-Do my PDFs leave my device?
+Two PDF versions
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+https://thedollscout.com/compare-pdf-text
 
-Does a clean result prove accessibility?
+File verification
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+Create a checksum link or check a received copy against one.
 
-Can you repair scanned PDFs or missing tags?
+SHA-256 + file size
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+https://thedollscout.com/verify-file
+
+Delivery record
+
+List delivered files, add your notes and export a portable record.
+
+File inventory
+
+https://thedollscout.com/delivery-evidence
+
+I need to send a set of documents.
+
+Review the batch, record the files you send, then give recipients a way to check their copies.
+
+I received a revised PDF.
+
+Compare the wording first. Use a checksum when you need to check exact file bytes.
+
+I need text from a PDF.
+
+Try extraction. If pages have no text layer, use the guide to decide whether a separate OCR workflow is needed.
+
+Free tools. Files stay on your device.
+
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start.
+
+Are all six tools free?
+
+Yes. PDF checks, batch review, text extraction, comparison, file verification and delivery records are free to use. No account is required.
+
+Do you upload or store my files?
+
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes.
+
+Which tool checks whether a file has changed?
+
+File verification compares SHA-256 and byte count with a sender-provided reference. Text comparison checks extracted wording instead. Neither tool proves identity, delivery, acceptance or malware safety.
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

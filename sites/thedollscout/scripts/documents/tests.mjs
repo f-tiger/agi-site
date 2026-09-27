@@ -16,6 +16,7 @@ import { fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, rec
 import { deliveryCopy } from './delivery-copy.mjs';
 import { parseReference, referenceURL, referenceEmbed, compareReference } from '../../document-assets/verify-core.mjs';
 import { verifyCopy } from './verify-copy.mjs';
+import { HUB_TASKS, hubEvent } from '../../document-assets/hub-core.mjs';
 import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -146,6 +147,20 @@ test('events store only bounded metadata and strip referrer paths', async () => 
     assert.equal((await event({ p:'/zh/pdf-batch-audit', e })).bound.length,1);
     assert.equal((await event({ p:'/zh/pdf-batch-audit', e, summary:'private' })).bound.length,0);
   }
+});
+test('homepage choices accept only six fixed tasks on localized home paths and remain separate from completions', async () => {
+  for (const task of Object.keys(HUB_TASKS)) for (const p of ['/','/de/','/zh/']) {
+    const e=hubEvent(task);
+    assert.equal((await event({p,e})).bound.length,1);
+    for (const invalid of [{p:p+HUB_TASKS[task],e},{p,e:e+'_private'},{p,e,filename:'private.pdf'},{p:p+'?name=private',e}]) {
+      assert.equal((await event(invalid)).bound.length,0);
+    }
+  }
+  const rows=[['doc_view','/',3],['doc_view','/zh/',2],['doc_view','/compare-pdf-text',4],['doc_view','/methodology',7],['doc_hub_open_compare','/',2],['doc_hub_open_verify','/zh/',1]].map(([ev,path,n])=>({d:'2026-09-27',ev,path,n,ref:''}));
+  const d=aggregateDocuments(rows);
+  assert.equal(d.homepage_views,5); assert.equal(d.dedicated_tool_views,4); assert.equal(d.tool_views,9);
+  assert.deepEqual(d.homepage_selections,{audit:0,batch:0,text:0,compare:2,verify:1,delivery:0});
+  assert.equal(d.events.doc_complete,undefined);
 });
 test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real completion', async () => {
   const body = { p:'/', e:'doc_complete' };

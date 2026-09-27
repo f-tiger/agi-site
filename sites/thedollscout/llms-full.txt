@@ -1,12 +1,12 @@
 # TDS Document Scout
 
-Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Six free browser tools for PDF preflight, batch review, text extraction, text-version comparison, SHA-256 file verification and delivery records. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
 - [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+- [Free document tools: PDF, file verification & delivery](https://thedollscout.com/) (en): Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -32,7 +32,7 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+- [Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe](https://thedollscout.com/de/) (de): Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -58,7 +58,7 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+- [免费文档工具：PDF 处理、文件核验与交付记录](https://thedollscout.com/zh/) (zh): 按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
@@ -184,45 +184,89 @@ Reference material
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Free PDF checks, batch reviews and text comparison
+# Free document tools: PDF, file verification & delivery
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
-
-Files are processed in this browser. No file upload or account required.
-
-This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
 
 PDF accessibility checker
 
-Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+Find missing titles, language declarations, tags and page-level issues.
+
+PDF preflight
+
+https://thedollscout.com/pdf-accessibility-checker
 
 Batch PDF audit
 
-Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+Review up to 10 PDFs and export one combined findings list.
+
+Up to 10 PDFs
+
+https://thedollscout.com/pdf-batch-audit
 
 PDF to text
 
-Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+Extract existing text by page and save a TXT file.
+
+Text extraction
+
+https://thedollscout.com/pdf-to-text
 
 Compare PDF text
 
-Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+Locate changed, added and removed text pages across two versions.
 
-Do my PDFs leave my device?
+Two PDF versions
 
-No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+https://thedollscout.com/compare-pdf-text
 
-Does a clean result prove accessibility?
+File verification
 
-No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+Create a checksum link or check a received copy against one.
 
-Can you repair scanned PDFs or missing tags?
+SHA-256 + file size
 
-This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+https://thedollscout.com/verify-file
+
+Delivery record
+
+List delivered files, add your notes and export a portable record.
+
+File inventory
+
+https://thedollscout.com/delivery-evidence
+
+I need to send a set of documents.
+
+Review the batch, record the files you send, then give recipients a way to check their copies.
+
+I received a revised PDF.
+
+Compare the wording first. Use a checksum when you need to check exact file bytes.
+
+I need text from a PDF.
+
+Try extraction. If pages have no text layer, use the guide to decide whether a separate OCR workflow is needed.
+
+Free tools. Files stay on your device.
+
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start.
+
+Are all six tools free?
+
+Yes. PDF checks, batch review, text extraction, comparison, file verification and delivery records are free to use. No account is required.
+
+Do you upload or store my files?
+
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes.
+
+Which tool checks whether a file has changed?
+
+File verification compares SHA-256 and byte count with a sender-provided reference. Text comparison checks extracted wording instead. Neither tool proves identity, delivery, acceptance or malware safety.
 
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -711,45 +755,89 @@ Referenzen
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich
+# Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
-
-Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
-
-Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
 
 PDF-Barrierefreiheit prüfen
 
-Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+Fehlende Titel, Sprachangaben, Tags und seitenbezogene Hinweise finden.
+
+PDF-Vorprüfung
+
+https://thedollscout.com/de/pdf-accessibility-checker
 
 PDF-Stapelprüfung
 
-Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+Bis zu 10 PDFs prüfen und eine gemeinsame Befundliste exportieren.
+
+Bis zu 10 PDFs
+
+https://thedollscout.com/de/pdf-batch-audit
 
 PDF in Text umwandeln
 
-Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+Vorhandenen Text nach Seiten extrahieren und als TXT speichern.
 
-PDF-Texte vergleichen
+Textextraktion
 
-Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+https://thedollscout.com/de/pdf-to-text
 
-Verlassen meine PDFs mein Gerät?
+PDF-Text vergleichen
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Geänderte, ergänzte und entfernte Textseiten zweier Fassungen erkennen.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Zwei PDF-Fassungen
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+https://thedollscout.com/de/compare-pdf-text
 
-Werden Scans oder fehlende Tags repariert?
+Datei verifizieren
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Einen Prüfsummen-Link erstellen oder eine empfangene Datei abgleichen.
+
+SHA-256 + Dateigröße
+
+https://thedollscout.com/de/verify-file
+
+Dateiübergabe dokumentieren
+
+Dateien auflisten, Notizen ergänzen und eine portable Aufzeichnung exportieren.
+
+Dateiliste
+
+https://thedollscout.com/de/delivery-evidence
+
+Ich möchte mehrere Dokumente versenden.
+
+Stapel prüfen, versendete Dateien dokumentieren und Empfängern den Abgleich ihrer Kopien ermöglichen.
+
+Ich habe eine neue PDF-Fassung erhalten.
+
+Zuerst Textänderungen vergleichen. Für die exakten Dateibytes anschließend eine Prüfsumme nutzen.
+
+Ich brauche den Text aus einem PDF.
+
+Textextraktion versuchen. Fehlt die Textebene, hilft die Anleitung bei der Entscheidung für eine separate OCR-Lösung.
+
+Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
+
+Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen.
+
+Sind alle sechs Werkzeuge kostenlos?
+
+Ja. PDF-Prüfung, Stapelprüfung, Textextraktion, Vergleich, Dateiverifizierung und Übergabedokumentation sind kostenlos. Ein Konto ist nicht erforderlich.
+
+Werden meine Dateien hochgeladen oder gespeichert?
+
+Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten.
+
+Welches Werkzeug prüft eine unveränderte Datei?
+
+Die Dateiverifizierung vergleicht SHA-256 und Bytezahl mit einer Referenz des Absenders. Der Textvergleich prüft extrahierten Wortlaut. Beide belegen weder Identität noch Zustellung, Abnahme oder Freiheit von Schadsoftware.
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
@@ -1238,45 +1326,89 @@ SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的�
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# 免费 PDF 检查、批量审查与文本版本对比
+# 免费文档工具：PDF 处理、文件核验与交付记录
 
 https://thedollscout.com/zh/
 由 TDS 文档侦察站发布
 更新日期: 2026-09-27
 
-检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
-
-在当前浏览器中处理，无需上传文件或注册。
-
-这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。
 
 PDF 无障碍检查
 
-检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+检查标题、语言声明、标签结构，并按页定位问题线索。
+
+PDF 发布前预检
+
+https://thedollscout.com/zh/pdf-accessibility-checker
 
 PDF 批量审查
 
-一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+一次检查最多 10 份 PDF，导出一张合并的问题清单。
 
-PDF 文本提取
+最多 10 份 PDF
 
-提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+https://thedollscout.com/zh/pdf-batch-audit
 
-PDF 文本版本对比
+PDF 转文字
 
-比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+按页提取 PDF 中已有文字，保存为 TXT 文件。
 
-PDF 会离开我的设备吗？
+提取已有文本
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+https://thedollscout.com/zh/pdf-to-text
 
-没有发现问题就代表无障碍合格吗？
+PDF 文本对比
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+比较两个版本，定位修改、新增和删除的文字页面。
 
-能修复扫描件或补齐标签吗？
+比较两个 PDF 版本
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+https://thedollscout.com/zh/compare-pdf-text
+
+文件核验
+
+创建校验链接，或核对收到的文件是否与参考版本一致。
+
+SHA-256 与文件大小
+
+https://thedollscout.com/zh/verify-file
+
+文件交付记录
+
+列出交付文件，填写备注，导出可携带的记录。
+
+文件清单与备注
+
+https://thedollscout.com/zh/delivery-evidence
+
+我要向客户发送一批文档。
+
+先做批量检查，再记录交付的文件，最后让接收者能够核对自己的副本。
+
+我收到了一份修订版 PDF。
+
+先比较文字改动；需要确认文件字节完全一致时，再用校验链接核对。
+
+我需要复制 PDF 里的文字。
+
+先尝试提取。遇到没有文本层的页面，再按指南判断是否需要另外做 OCR。
+
+工具免费，文件留在你的设备上。
+
+无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。
+
+六个工具都能免费使用吗？
+
+可以。PDF 检查、批量审查、文本提取、版本对比、文件核验与交付记录均可免费使用，无需注册。
+
+我的文件会被上传或保存吗？
+
+文件处理在浏览器内完成，不上传文件或文档正文。若你主动分享核验链接，链接包含 SHA-256 指纹和字节数；完整导出文件可能含文件名和你填写的备注。
+
+用哪个工具确认文件没有变化？
+
+文件核验会把 SHA-256 和字节数与发送者提供的参考值比较；文本对比则检查提取后的文字。这些工具都不证明身份、送达、验收或文件安全。
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
