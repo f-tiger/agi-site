@@ -1,0 +1,29 @@
+# Time zone meeting planner
+
+https://thedollscout.com/time-zone-planner
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+One meeting, 5–480 minutes, dates from 1970 to 2100, 16 available time zones. Uses your browser’s time-zone rules. No recurring events, attendee availability, holiday calendar or invitations.
+
+Choose the date and the organiser’s time zone. Nonexistent spring-forward times are rejected. Repeated fall-back times require an explicit earlier/later choice. Work-hour hints assume weekdays 09:00–18:00, not local holidays or personal schedules.
+
+A 60-minute meeting on 15 October 2026 at 09:00 in New York starts at 13:00 UTC, 14:00 in London, 15:00 in Berlin and 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Does the calendar download send invitations?
+
+No. It creates an .ics file on your device. You choose whether to import or share it; the tool contacts no attendees or calendar accounts.
+
+Why can a local time be invalid or occur twice?
+
+Daylight-saving changes can skip a clock interval or repeat it. The tool rejects skipped times and asks you to choose the earlier or later occurrence for repeated times.
+
+Reference material
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545

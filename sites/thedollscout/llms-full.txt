@@ -1,12 +1,18 @@
 # TDS Document Scout
 
-Six free browser tools for PDF preflight, batch review, text extraction, text-version comparison, SHA-256 file verification and delivery records. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Nine free browser tools across images, JSON data, time zones, file delivery and PDF. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
+- [Image compressor & converter](https://thedollscout.com/image-compressor) (en): Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
+  Plain text: https://thedollscout.com/document-assets/text/en/image-compressor.txt
+- [JSON validator, formatter & comparison](https://thedollscout.com/json-compare) (en): Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
+  Plain text: https://thedollscout.com/document-assets/text/en/json-compare.txt
+- [Time zone meeting planner](https://thedollscout.com/time-zone-planner) (en): Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
+  Plain text: https://thedollscout.com/document-assets/text/en/time-zone-planner.txt
 - [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free document tools: PDF, file verification & delivery](https://thedollscout.com/) (en): Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
+- [Free online tools for images, JSON, time zones & PDFs](https://thedollscout.com/) (en): Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -28,11 +34,17 @@ Six free browser tools for PDF preflight, batch review, text extraction, text-ve
   Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
   Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [Bilder komprimieren & umwandeln](https://thedollscout.com/de/image-compressor) (de): Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
+  Plain text: https://thedollscout.com/document-assets/text/de/image-compressor.txt
+- [JSON prüfen, formatieren & vergleichen](https://thedollscout.com/de/json-compare) (de): JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/json-compare.txt
+- [Zeitzonen-Terminplaner](https://thedollscout.com/de/time-zone-planner) (de): Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/time-zone-planner.txt
 - [Empfangene Datei prüfen](https://thedollscout.com/de/verify-file) (de): Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
   Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe](https://thedollscout.com/de/) (de): Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
+- [Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF](https://thedollscout.com/de/) (de): Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -54,11 +66,17 @@ Six free browser tools for PDF preflight, batch review, text extraction, text-ve
   Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
   Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [图片压缩、缩放与格式转换](https://thedollscout.com/zh/image-compressor) (zh): 调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
+  Plain text: https://thedollscout.com/document-assets/text/zh/image-compressor.txt
+- [JSON 校验、格式化与结构对比](https://thedollscout.com/zh/json-compare) (zh): 校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
+  Plain text: https://thedollscout.com/document-assets/text/zh/json-compare.txt
+- [跨时区会议与日历导出](https://thedollscout.com/zh/time-zone-planner) (zh): 查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。
+  Plain text: https://thedollscout.com/document-assets/text/zh/time-zone-planner.txt
 - [核对收到的文件](https://thedollscout.com/zh/verify-file) (zh): 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
   Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费文档工具：PDF 处理、文件核验与交付记录](https://thedollscout.com/zh/) (zh): 按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。
+- [免费在线工具：图片处理、JSON、时区与 PDF](https://thedollscout.com/zh/) (zh): 处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
@@ -86,6 +104,103 @@ Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.js
 ## Historical collector material
 
 The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors
+
+
+# Image compressor & converter
+
+https://thedollscout.com/image-compressor
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+Up to 8 still JPEG, PNG or WebP images; 20 MiB each, 50 MiB total, 20 megapixels each. No GIF, HEIC, SVG or animation. Output is limited to 4096 × 4096 pixels and never enlarged.
+
+The browser decodes and redraws each image, preserving proportions. JPEG uses a white background for transparency. PNG ignores the quality setting. Re-encoding can change colours or increase file size; this is not a print-quality or metadata-erasure guarantee.
+
+A 1500 × 1000 image fitted within 1000 × 1000 becomes 1000 × 667. The original stays unchanged. The interactive sample measures its actual exported size.
+
+1500 × 1000 → 1000 × 667
+
+Does compression always make an image smaller?
+
+No. Output size depends on the source, chosen format, dimensions and browser encoder. The result shows both byte counts, including an increase when the output is larger.
+
+Are transparent images supported?
+
+PNG and WebP can preserve transparency. JPEG cannot; transparent pixels are placed on a white background. Animated files are rejected.
+
+Reference material
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON validator, formatter & comparison
+
+https://thedollscout.com/json-compare
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+UTF-8 JSON only, up to 512 KiB per input, 60 nesting levels, 20,000 values and 1,000 differences. Duplicate keys are rejected. Numeric exponents are limited to ±100,000. No JSON5, comments, schema validation or executable code.
+
+Object key order and whitespace do not count as changes. Arrays are compared by index, so an insertion may produce several changes. Number tokens remain exact; equivalent decimal values such as 1 and 1.0 compare equal. Paths use JSON Pointer escaping.
+
+Change enabled from false to true and add a third region. Reordering the object keys leaves the large numeric ID untouched.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Will a long numeric ID be rounded?
+
+No. The formatter preserves number tokens and comparison normalizes decimal strings without converting them to JavaScript floating-point numbers.
+
+What happens to duplicate JSON keys?
+
+This tool rejects them and reports the location. It does not silently discard an earlier value. Object order is ignored during comparison, but array order matters.
+
+Reference material
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# Time zone meeting planner
+
+https://thedollscout.com/time-zone-planner
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+One meeting, 5–480 minutes, dates from 1970 to 2100, 16 available time zones. Uses your browser’s time-zone rules. No recurring events, attendee availability, holiday calendar or invitations.
+
+Choose the date and the organiser’s time zone. Nonexistent spring-forward times are rejected. Repeated fall-back times require an explicit earlier/later choice. Work-hour hints assume weekdays 09:00–18:00, not local holidays or personal schedules.
+
+A 60-minute meeting on 15 October 2026 at 09:00 in New York starts at 13:00 UTC, 14:00 in London, 15:00 in Berlin and 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Does the calendar download send invitations?
+
+No. It creates an .ics file on your device. You choose whether to import or share it; the tool contacts no attendees or calendar accounts.
+
+Why can a local time be invalid or occur twice?
+
+Daylight-saving changes can skip a clock interval or repeat it. The tool rejects skipped times and asks you to choose the earlier or later occurrence for repeated times.
+
+Reference material
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
 
 
 # Check the file you received
@@ -184,13 +299,37 @@ Reference material
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Free document tools: PDF, file verification & delivery
+# Free online tools for images, JSON, time zones & PDFs
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.
+Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.
+
+Image compressor & converter
+
+Resize and convert JPEG, PNG and WebP; compare actual output size.
+
+Images
+
+https://thedollscout.com/image-compressor
+
+JSON validator, formatter & comparison
+
+Validate, format and compare fields without rounding large numbers.
+
+Structured data
+
+https://thedollscout.com/json-compare
+
+Time zone meeting planner
+
+Compare city times and export a calendar file with DST checks.
+
+Time zones + .ics
+
+https://thedollscout.com/time-zone-planner
 
 PDF accessibility checker
 
@@ -240,25 +379,25 @@ File inventory
 
 https://thedollscout.com/delivery-evidence
 
-I need to send a set of documents.
+My images are too large to publish.
 
-Review the batch, record the files you send, then give recipients a way to check their copies.
+Resize and inspect the exported images, then record the final files you hand over.
 
-I received a revised PDF.
+An API response or configuration changed.
 
-Compare the wording first. Use a checksum when you need to check exact file bytes.
+Compare JSON fields and download the change report. Object key order will not create noise.
 
-I need text from a PDF.
+My team works in different time zones.
 
-Try extraction. If pages have no text layer, use the guide to decide whether a separate OCR workflow is needed.
+Check the local times and download one calendar file. Import it into your calendar when ready.
 
 Free tools. Files stay on your device.
 
 No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start.
 
-Are all six tools free?
+Are all nine tools free?
 
-Yes. PDF checks, batch review, text extraction, comparison, file verification and delivery records are free to use. No account is required.
+Yes. Image processing, JSON, meeting planning, file verification, delivery records and all PDF tools are free. No account is required.
 
 Do you upload or store my files?
 
@@ -299,6 +438,8 @@ Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection cover
 Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
 
 What does a detected PDF tag tell me?
 
@@ -370,6 +511,8 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
 How many PDFs can I audit together?
 
 Up to 10 PDFs, 20 MB each and 100 MB in total. Inspection is limited to 200 pages per PDF and 600 pages per batch. Partial or unreadable results must stay visible in the handover.
@@ -433,6 +576,8 @@ Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection cover
 Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
 
 Why does my scanned PDF produce no text?
 
@@ -498,6 +643,8 @@ Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection cover
 Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
 
 Can I compare PDF versions after a page is inserted?
 
@@ -613,6 +760,8 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -639,6 +788,8 @@ Delivery records are processed locally. Downloads include file names and entered
 
 File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
 
+Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -657,6 +808,103 @@ Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Bilder komprimieren & umwandeln
+
+https://thedollscout.com/de/image-compressor
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Bis zu 8 statische JPEG-, PNG- oder WebP-Bilder; je 20 MiB, zusammen 50 MiB, je 20 Megapixel. Kein GIF, HEIC, SVG oder Animation. Ausgabe höchstens 4096 × 4096 Pixel, ohne Vergrößerung.
+
+Der Browser dekodiert und zeichnet jedes Bild mit erhaltenem Seitenverhältnis neu. JPEG erhält bei Transparenz einen weißen Hintergrund. PNG ignoriert die Qualitätseinstellung. Farben und Dateigröße können sich ändern; keine Garantie für Druckqualität oder vollständige Metadatenbereinigung.
+
+Ein Bild mit 1500 × 1000 Pixeln wird innerhalb von 1000 × 1000 auf 1000 × 667 verkleinert. Das Original bleibt unverändert. Das interaktive Beispiel misst die tatsächliche Exportgröße.
+
+1500 × 1000 → 1000 × 667
+
+Wird die Datei immer kleiner?
+
+Nein. Die Größe hängt von Quelle, Format, Abmessungen und Browser-Encoder ab. Beide Bytezahlen werden angezeigt, auch wenn die Ausgabe größer ist.
+
+Bleibt Transparenz erhalten?
+
+PNG und WebP können Transparenz erhalten. JPEG verwendet dafür einen weißen Hintergrund. Animierte Dateien werden abgelehnt.
+
+Referenzen
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON prüfen, formatieren & vergleichen
+
+https://thedollscout.com/de/json-compare
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+UTF-8-JSON, höchstens 512 KiB je Eingabe, 60 Ebenen, 20.000 Werte und 1.000 Unterschiede. Doppelte Schlüssel werden abgelehnt. Exponenten höchstens ±100.000. Kein JSON5, keine Kommentare, Schema-Validierung oder Code-Ausführung.
+
+Leerzeichen und Objektschlüssel-Reihenfolge zählen nicht als Änderung. Arrays werden nach Index verglichen; Einfügungen können mehrere Änderungen auslösen. Zahlentexte bleiben exakt; 1 und 1.0 gelten als gleich. Pfade verwenden JSON-Pointer-Escaping.
+
+enabled von false zu true ändern und eine dritte Region ergänzen. Eine neue Reihenfolge der Objektschlüssel ändert die große numerische ID nicht.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Werden lange numerische IDs gerundet?
+
+Nein. Zahlentexte werden beim Formatieren erhalten und für Vergleiche als Dezimaltext normalisiert, ohne Umwandlung in JavaScript-Gleitkommazahlen.
+
+Was passiert mit doppelten Schlüsseln?
+
+Das Werkzeug lehnt sie mit Positionsangabe ab, statt frühere Werte zu verwerfen. Objektreihenfolge wird ignoriert, Arrayreihenfolge bleibt relevant.
+
+Referenzen
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# Zeitzonen-Terminplaner
+
+https://thedollscout.com/de/time-zone-planner
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Ein Termin, 5–480 Minuten, Jahre 1970–2100, 16 Zeitzonen. Verwendet Zeitzonenregeln des Browsers. Keine Serien, Verfügbarkeitsabfrage, Feiertage oder Einladungen.
+
+Datum und Zeitzone der organisierenden Person wählen. Übersprungene Uhrzeiten werden abgelehnt. Bei doppelten Uhrzeiten muss die frühere oder spätere gewählt werden. Arbeitszeithinweise nehmen Montag bis Freitag 09:00–18:00 an, ohne Feiertage oder persönliche Pläne.
+
+Ein 60-minütiger Termin am 15. Oktober 2026 um 09:00 in New York beginnt um 13:00 UTC, 14:00 in London, 15:00 in Berlin und 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Verschickt der Kalender-Download Einladungen?
+
+Nein. Er erstellt lokal eine .ics-Datei. Sie entscheiden über Import und Weitergabe; das Werkzeug kontaktiert weder Teilnehmende noch Kalenderkonten.
+
+Warum fehlt eine Uhrzeit oder kommt zweimal vor?
+
+Zeitumstellungen können eine Zeitspanne überspringen oder wiederholen. Fehlende Uhrzeiten werden abgelehnt; bei doppelten müssen Sie die frühere oder spätere wählen.
+
+Referenzen
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
 
 
 # Empfangene Datei prüfen
@@ -755,13 +1003,37 @@ Referenzen
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe
+# Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
+Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.
+
+Bilder komprimieren & umwandeln
+
+JPEG, PNG und WebP verkleinern, umwandeln und die Ausgabegröße prüfen.
+
+Bilder
+
+https://thedollscout.com/de/image-compressor
+
+JSON prüfen, formatieren & vergleichen
+
+Felder validieren, formatieren und ohne Rundung großer Zahlen vergleichen.
+
+Strukturierte Daten
+
+https://thedollscout.com/de/json-compare
+
+Zeitzonen-Terminplaner
+
+Stadtzeiten vergleichen, Zeitumstellungen prüfen und Kalender exportieren.
+
+Zeitzonen + .ics
+
+https://thedollscout.com/de/time-zone-planner
 
 PDF-Barrierefreiheit prüfen
 
@@ -811,25 +1083,25 @@ Dateiliste
 
 https://thedollscout.com/de/delivery-evidence
 
-Ich möchte mehrere Dokumente versenden.
+Meine Bilder sind zu groß für die Veröffentlichung.
 
-Stapel prüfen, versendete Dateien dokumentieren und Empfängern den Abgleich ihrer Kopien ermöglichen.
+Bilder verkleinern, Exporte prüfen und die übergebenen Dateien dokumentieren.
 
-Ich habe eine neue PDF-Fassung erhalten.
+Eine API-Antwort oder Konfiguration wurde geändert.
 
-Zuerst Textänderungen vergleichen. Für die exakten Dateibytes anschließend eine Prüfsumme nutzen.
+JSON-Felder vergleichen und den Bericht herunterladen. Schlüsselreihenfolge erzeugt keine Unterschiede.
 
-Ich brauche den Text aus einem PDF.
+Mein Team arbeitet in mehreren Zeitzonen.
 
-Textextraktion versuchen. Fehlt die Textebene, hilft die Anleitung bei der Entscheidung für eine separate OCR-Lösung.
+Lokale Uhrzeiten prüfen und eine Kalenderdatei herunterladen, die Sie anschließend importieren können.
 
 Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
 
 Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen.
 
-Sind alle sechs Werkzeuge kostenlos?
+Sind alle neun Werkzeuge kostenlos?
 
-Ja. PDF-Prüfung, Stapelprüfung, Textextraktion, Vergleich, Dateiverifizierung und Übergabedokumentation sind kostenlos. Ein Konto ist nicht erforderlich.
+Ja. Bildverarbeitung, JSON, Terminplanung, Dateiprüfung, Übergabedokumentation und alle PDF-Werkzeuge sind kostenlos, ohne Konto.
 
 Werden meine Dateien hochgeladen oder gespeichert?
 
@@ -870,6 +1142,8 @@ Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten 
 Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
 
 Was bedeutet ein erkanntes PDF-Tag?
 
@@ -941,6 +1215,8 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
 Wie viele PDFs kann ich gemeinsam prüfen?
 
 Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.
@@ -1004,6 +1280,8 @@ Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten 
 Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
 
 Warum liefert ein gescanntes PDF keinen Text?
 
@@ -1069,6 +1347,8 @@ Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten 
 Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
 
 Funktioniert der Vergleich nach eingefügten Seiten?
 
@@ -1184,6 +1464,8 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -1210,6 +1492,8 @@ Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teil
 
 Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine Namen, Inhalte oder Notizen. Wer den Link besitzt, kann eine Datei abgleichen. Apps und Browserverlauf können die URL speichern. TDS sendet den Fingerabdruck nicht an die Statistik. Prüfungen bleiben lokal und benachrichtigen den Absender nicht; sie belegen keinen Empfang.
 
+Auch Bildverarbeitung, JSON-Vergleich und Terminplanung laufen lokal. Bilder, JSON-Werte, Termintitel, Notizen und gewählte Uhrzeiten werden nicht an die Statistik gesendet. Erfasst werden nur feste Aktionsnamen und öffentliche Seitenpfade. Downloads enthalten die gewählte Ausgabe; Kalenderexporte versenden keine Einladungen. Leeren entfernt Eingaben und temporäre Download-Links dieser Seite, keine bereits heruntergeladenen Dateien.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -1228,6 +1512,103 @@ Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 图片压缩、缩放与格式转换
+
+https://thedollscout.com/zh/image-compressor
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+最多 8 张静态 JPEG、PNG 或 WebP；单张 20 MiB、合计 50 MiB、单张 2000 万像素。暂不支持 GIF、HEIC、SVG 或动画。输出最大 4096 × 4096 像素，不放大小图。
+
+浏览器解码并按比例重新绘制图片。转 JPEG 时透明部分填充白色，PNG 不使用质量参数。重新编码可能改变颜色或使文件变大，不保证印刷色彩或彻底清除所有元数据。
+
+1500 × 1000 的图片限制在 1000 × 1000 内，会变成 1000 × 667。原图不变，交互示例会测量导出文件的实际大小。
+
+1500 × 1000 → 1000 × 667
+
+压缩后一定更小吗？
+
+不一定。结果取决于原图、格式、尺寸和浏览器编码器。页面会显示处理前后的实际字节数，变大时也会如实提示。
+
+透明背景能保留吗？
+
+PNG 和 WebP 可以保留透明度；JPEG 不支持透明，透明部分会填充白色。动画文件会被拒绝处理。
+
+参考资料
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON 校验、格式化与结构对比
+
+https://thedollscout.com/zh/json-compare
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+仅支持 UTF-8 JSON；每份最多 512 KiB、60 层嵌套、20,000 个值、1,000 处差异。拒绝重复键，数字指数限 ±100,000。不支持 JSON5、注释、Schema 校验或代码执行。
+
+忽略空白和对象键顺序；数组按下标比较，插入一项可能产生多处变化。数字保留原始写法，比较时 1 和 1.0 等价。字段路径采用 JSON Pointer 转义。
+
+把 enabled 从 false 改为 true，并增加第三个地区。对象键换序不会改变长数字 ID，也不会被误报为修改。
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+很长的数字 ID 会被舍入吗？
+
+不会。格式化保留数字原文，比较时按十进制文本归一化，不转换成 JavaScript 浮点数。
+
+同一对象里有重复键怎么办？
+
+工具会拒绝处理并提示位置，不会悄悄丢掉前面的值。对象键顺序不影响比较，数组顺序会影响比较。
+
+参考资料
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# 跨时区会议与日历导出
+
+https://thedollscout.com/zh/time-zone-planner
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+单次会议，时长 5–480 分钟，年份 1970–2100，提供 16 个时区。使用浏览器的时区规则。不包含周期会议、参会者忙闲、节假日或邀请发送。
+
+选择日期和组织者时区。春季跳过的时间会被拒绝，秋季重复的时间必须选择较早或较晚一次。工作时段提示按周一至周五 09:00–18:00 计算，不包含各地节假日和个人日程。
+
+2026 年 10 月 15 日纽约 09:00 开始的一小时会议，对应 UTC 13:00、伦敦 14:00、柏林 15:00、上海 21:00。
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+导出日历会自动发送邀请吗？
+
+不会。工具只在本地生成 .ics 文件，由你决定导入或分享，不联系参会者或访问日历账户。
+
+为什么某个时间不存在，或者出现两次？
+
+夏令时切换可能跳过一段时间，也可能让一段时间重复。工具会拒绝不存在的时刻，并要求你明确选择重复时刻中的较早或较晚一次。
+
+参考资料
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
 
 
 # 核对收到的文件
@@ -1326,13 +1707,37 @@ SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的�
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# 免费文档工具：PDF 处理、文件核验与交付记录
+# 免费在线工具：图片处理、JSON、时区与 PDF
 
 https://thedollscout.com/zh/
 由 TDS 文档侦察站发布
 更新日期: 2026-09-27
 
-按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。
+处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。
+
+图片压缩、缩放与格式转换
+
+批量调整 JPEG、PNG、WebP 尺寸与格式，查看实际输出大小。
+
+图片处理
+
+https://thedollscout.com/zh/image-compressor
+
+JSON 校验、格式化与结构对比
+
+校验与格式化数据，按字段比较版本，保留长数字精度。
+
+结构化数据
+
+https://thedollscout.com/zh/json-compare
+
+跨时区会议与日历导出
+
+对照多地时间，识别夏令时变化，导出日历文件。
+
+时区与 .ics
+
+https://thedollscout.com/zh/time-zone-planner
 
 PDF 无障碍检查
 
@@ -1382,25 +1787,25 @@ https://thedollscout.com/zh/verify-file
 
 https://thedollscout.com/zh/delivery-evidence
 
-我要向客户发送一批文档。
+图片太大，网页或附件不好发。
 
-先做批量检查，再记录交付的文件，最后让接收者能够核对自己的副本。
+先调整尺寸并检查导出效果，再把最终文件整理成交付记录。
 
-我收到了一份修订版 PDF。
+接口返回或配置文件改了。
 
-先比较文字改动；需要确认文件字节完全一致时，再用校验链接核对。
+按字段比较 JSON，下载变更报告，避免把键顺序变化当成内容变化。
 
-我需要复制 PDF 里的文字。
+团队分布在不同国家。
 
-先尝试提取。遇到没有文本层的页面，再按指南判断是否需要另外做 OCR。
+先确认各地对应时间，再导出一份日历文件，按需导入自己的日历。
 
 工具免费，文件留在你的设备上。
 
 无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。
 
-六个工具都能免费使用吗？
+九个工具都能免费使用吗？
 
-可以。PDF 检查、批量审查、文本提取、版本对比、文件核验与交付记录均可免费使用，无需注册。
+可以。图片处理、JSON、跨时区会议、文件核验、交付记录和 PDF 工具均可免费使用，无需注册。
 
 我的文件会被上传或保存吗？
 
@@ -1441,6 +1846,8 @@ https://thedollscout.com/zh/pdf-accessibility-checker
 版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
 
 检测到 PDF 标签，说明了什么？
 
@@ -1512,6 +1919,8 @@ https://thedollscout.com/zh/pdf-batch-audit
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
 一次能检查多少份 PDF？
 
 最多 10 份，每份不超过 20 MB，总计不超过 100 MB。每份最多检查 200 页，每批最多 600 页。部分结果和无法读取的文件会在交接中保留。
@@ -1575,6 +1984,8 @@ https://thedollscout.com/zh/pdf-to-text
 版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
 
 扫描 PDF 为什么提取不出文字？
 
@@ -1640,6 +2051,8 @@ https://thedollscout.com/zh/compare-pdf-text
 版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
 
 插入新页面后，还能比较 PDF 版本吗？
 
@@ -1755,6 +2168,8 @@ https://thedollscout.com/zh/methodology
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -1780,6 +2195,8 @@ https://thedollscout.com/zh/document-privacy
 交付记录在本地处理，下载包含文件名和填写的备注。可选团队方案调研只记录固定的交付次数档位和方案偏好，不收集邮箱、账户、文件指纹或来源备注。回答不是订单。
 
 文件核验链接会主动在网址片段中分享SHA-256指纹和字节数，不包含文件名、内容或备注。持有链接的人可以比对候选文件；分享应用和浏览器历史可能保存链接。TDS不会将指纹发送到统计系统。收件人的核对仅在本地进行，不通知发送者，也不证明已收件。
+
+图片处理、JSON 对比和会议规划同样在本地运行。图片、JSON 内容、会议标题、备注和所选时间不会发送到统计接口；仅统计固定动作名与公开页面路径。下载包含你选择的输出，日历导出不会发送邀请。清空会移除本页输入和临时下载链接，不删除已下载到设备的文件。
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

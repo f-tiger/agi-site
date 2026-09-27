@@ -7,7 +7,10 @@ for (const event of HUB_EVENTS) EVENTS.add(event);
 for (const event of ['doc_delivery_complete','doc_delivery_sample','doc_delivery_export','doc_delivery_verify']) EVENTS.add(event);
 for (const frequency of ['none','few','repeat']) for (const choice of ['team','project','none']) EVENTS.add(`doc_delivery_interest_${frequency}_${choice}`);
 for(const event of ['doc_verify_recipient','doc_verify_create','doc_verify_match','doc_verify_mismatch','doc_verify_sample','doc_verify_share','doc_verify_embed','doc_verify_next','doc_delivery_recipient_share']) EVENTS.add(event);
-const PAGE = /^\/(?:(de|zh)\/)?(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
+const UTILITY_EVENTS=new Map();
+for(const task of ['image','json','meeting'])for(const action of ['complete','sample']){const name=`doc_${task}_${action}`;EVENTS.add(name);UTILITY_EVENTS.set(name,HUB_TASKS[task]);}
+EVENTS.add('doc_utility_export');
+const PAGE = /^\/(?:(de|zh)\/)?(?:image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 // Return a bounded diagnostic class, never SQL, exception text, keys or identifiers.
 export function databaseFailure(error) {
@@ -39,6 +42,8 @@ export async function onRequestPost({ request, env }) {
     const ci = body.e === 'doc_ci' && body.p === '/__ci/documents';
     if (!ci && (typeof body.p !== 'string' || !PAGE.test(body.p) || !EVENTS.has(body.e))) return new Response(null, { status:400 });
     if (HUB_EVENTS.has(body.e) && !isHubPath(body.p)) return new Response(null, { status:400 });
+    if(UTILITY_EVENTS.has(body.e) && body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')!==UTILITY_EVENTS.get(body.e))return new Response(null,{status:400});
+    if(body.e==='doc_utility_export' && !['image','json','meeting'].some(k=>body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')===HUB_TASKS[k]))return new Response(null,{status:400});
     const ua = request.headers.get('user-agent') || '';
     if (!ci && (request.headers.get('x-probe') || request.headers.get('dnt') === '1' || /bot|crawler|spider|headless|playwright|puppeteer|release-check|document-probe/i.test(ua))) return new Response(null, { status:204 });
     const day = new Date().toISOString().slice(0, 10), lang = /^\/(de|zh)\//.exec(body.p)?.[1] || 'en';

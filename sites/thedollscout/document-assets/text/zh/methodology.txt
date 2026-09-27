@@ -14,6 +14,8 @@ https://thedollscout.com/zh/methodology
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

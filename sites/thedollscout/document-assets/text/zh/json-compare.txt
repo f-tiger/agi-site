@@ -1,0 +1,33 @@
+# JSON 校验、格式化与结构对比
+
+https://thedollscout.com/zh/json-compare
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+仅支持 UTF-8 JSON；每份最多 512 KiB、60 层嵌套、20,000 个值、1,000 处差异。拒绝重复键，数字指数限 ±100,000。不支持 JSON5、注释、Schema 校验或代码执行。
+
+忽略空白和对象键顺序；数组按下标比较，插入一项可能产生多处变化。数字保留原始写法，比较时 1 和 1.0 等价。字段路径采用 JSON Pointer 转义。
+
+把 enabled 从 false 改为 true，并增加第三个地区。对象键换序不会改变长数字 ID，也不会被误报为修改。
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+很长的数字 ID 会被舍入吗？
+
+不会。格式化保留数字原文，比较时按十进制文本归一化，不转换成 JavaScript 浮点数。
+
+同一对象里有重复键怎么办？
+
+工具会拒绝处理并提示位置，不会悄悄丢掉前面的值。对象键顺序不影响比较，数组顺序会影响比较。
+
+参考资料
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901

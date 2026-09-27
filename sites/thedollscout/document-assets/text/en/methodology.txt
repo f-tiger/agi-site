@@ -14,6 +14,8 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

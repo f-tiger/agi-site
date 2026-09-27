@@ -24,6 +24,8 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
 Wie viele PDFs kann ich gemeinsam prüfen?
 
 Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.

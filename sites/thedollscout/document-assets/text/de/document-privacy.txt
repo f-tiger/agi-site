@@ -18,6 +18,8 @@ Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teil
 
 Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine Namen, Inhalte oder Notizen. Wer den Link besitzt, kann eine Datei abgleichen. Apps und Browserverlauf können die URL speichern. TDS sendet den Fingerabdruck nicht an die Statistik. Prüfungen bleiben lokal und benachrichtigen den Absender nicht; sie belegen keinen Empfang.
 
+Auch Bildverarbeitung, JSON-Vergleich und Terminplanung laufen lokal. Bilder, JSON-Werte, Termintitel, Notizen und gewählte Uhrzeiten werden nicht an die Statistik gesendet. Erfasst werden nur feste Aktionsnamen und öffentliche Seitenpfade. Downloads enthalten die gewählte Ausgabe; Kalenderexporte versenden keine Einladungen. Leeren entfernt Eingaben und temporäre Download-Links dieser Seite, keine bereits heruntergeladenen Dateien.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

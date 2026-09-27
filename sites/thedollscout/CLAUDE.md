@@ -1,5 +1,15 @@
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
+## 2026-09-27 非 PDF 分类扩展（owner 再次纠正）
+
+Owner 明确要求「除了 pdf，其它分类工具」。首页升级为图片、文本与数据、时间与协作、文件核验与交付、PDF 五类；前三类优先展示。现有六个工具保留，新增 `/image-compressor`、`/json-compare`、`/time-zone-planner`，均 EN/DE/ZH。不是重新给 PDF 功能起分类名。
+
+- `utility-core.mjs` 提供受限图片头/尺寸校验、精确保留数字的 JSON 解析/格式化/结构对比、夏令时消歧与 UTC 日历导出；浏览器 `utility-app.mjs` 实际处理/下载，不上传输入、不发邀请、不调用付费 API。图像为静态 JPEG/PNG/WebP，不支持 HEIC/GIF/SVG/动画。JSON 非 Schema 验证，数组按下标比较。日历只导出文件，不查询忙闲。
+- 三语文案、页面和样例：`utility-copy.mjs`、`utility-pages.mjs`，统一由 `build.mjs` 生成。48 个页面，45 URL 文档 sitemap；三个 PDF 指南仍保留，新工具方法和案例位于各自页面。
+- 计量共用 `telemetry.mjs`，防止不同版本 app 模块产生重复浏览。新增工具完成/示例固定事件，按工具路径校验；示例与 CI 排除于完成事件。首页选择现在为九个固定任务。无需 D1 迁移或新定时任务。
+- 本轮说明和验收见根目录 `docs/tds-non-pdf-tools-2026-09-27.md`。37 项 Node 测试，浏览器验收必须加 `?ci=1`。新增功能不代表流量、AI 引用、客户或营收已获得验证。
+
+
 ## 2026-09-27 首页改为文档与交付工具总览
 
 Owner 要求借鉴 BPJ/ECO 多入口，避免首页押注单一工具。本节替代 09-25「保持现有首页」要求：EN `/`、DE `/de/`、ZH `/zh/` 均按检查文档、提取与比较、核验与交付三组展示现有六个工具；首页没有上传工作区。品牌与首页链接仍返回默认英文 `/`。保持独立工具 URL 和处理逻辑。

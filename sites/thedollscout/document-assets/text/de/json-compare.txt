@@ -1,0 +1,33 @@
+# JSON prüfen, formatieren & vergleichen
+
+https://thedollscout.com/de/json-compare
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+UTF-8-JSON, höchstens 512 KiB je Eingabe, 60 Ebenen, 20.000 Werte und 1.000 Unterschiede. Doppelte Schlüssel werden abgelehnt. Exponenten höchstens ±100.000. Kein JSON5, keine Kommentare, Schema-Validierung oder Code-Ausführung.
+
+Leerzeichen und Objektschlüssel-Reihenfolge zählen nicht als Änderung. Arrays werden nach Index verglichen; Einfügungen können mehrere Änderungen auslösen. Zahlentexte bleiben exakt; 1 und 1.0 gelten als gleich. Pfade verwenden JSON-Pointer-Escaping.
+
+enabled von false zu true ändern und eine dritte Region ergänzen. Eine neue Reihenfolge der Objektschlüssel ändert die große numerische ID nicht.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Werden lange numerische IDs gerundet?
+
+Nein. Zahlentexte werden beim Formatieren erhalten und für Vergleiche als Dezimaltext normalisiert, ohne Umwandlung in JavaScript-Gleitkommazahlen.
+
+Was passiert mit doppelten Schlüsseln?
+
+Das Werkzeug lehnt sie mit Positionsangabe ab, statt frühere Werte zu verwerfen. Objektreihenfolge wird ignoriert, Arrayreihenfolge bleibt relevant.
+
+Referenzen
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901

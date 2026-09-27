@@ -2,7 +2,7 @@
   "name": "TDS Document Scout",
   "edition": "2026-09-25.8",
   "updated": "2026-09-27",
-  "execution": "User-operated browser only. No hosted PDF processing API.",
+  "execution": "User-operated browser only. No hosted processing API.",
   "uploads": false,
   "accountRequired": false,
   "cost": "Free",
@@ -120,8 +120,98 @@
       "output": "对齐的文本页面，以及修改、新增、删除或无法比较的页面。",
       "limitations": "不比较图片、版式和批注；相似页面的配对结果需要复核。",
       "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Image compressor & converter",
+      "url": "https://thedollscout.com/image-compressor",
+      "useCase": "Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.",
+      "output": "Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.",
+      "limitations": "Up to 8 still JPEG, PNG or WebP images; 20 MiB each, 50 MiB total, 20 megapixels each. No GIF, HEIC, SVG or animation. Output is limited to 4096 × 4096 pixels and never enlarged.",
+      "method": "https://thedollscout.com/image-compressor#worked-example"
+    },
+    {
+      "language": "en",
+      "name": "JSON validator, formatter & comparison",
+      "url": "https://thedollscout.com/json-compare",
+      "useCase": "Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.",
+      "output": "Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.",
+      "limitations": "UTF-8 JSON only, up to 512 KiB per input, 60 nesting levels, 20,000 values and 1,000 differences. Duplicate keys are rejected. Numeric exponents are limited to ±100,000. No JSON5, comments, schema validation or executable code.",
+      "method": "https://thedollscout.com/json-compare#worked-example"
+    },
+    {
+      "language": "en",
+      "name": "Time zone meeting planner",
+      "url": "https://thedollscout.com/time-zone-planner",
+      "useCase": "Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.",
+      "output": "Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.",
+      "limitations": "One meeting, 5–480 minutes, dates from 1970 to 2100, 16 available time zones. Uses your browser’s time-zone rules. No recurring events, attendee availability, holiday calendar or invitations.",
+      "method": "https://thedollscout.com/time-zone-planner#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "Bilder komprimieren & umwandeln",
+      "url": "https://thedollscout.com/de/image-compressor",
+      "useCase": "Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.",
+      "output": "Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.",
+      "limitations": "Bis zu 8 statische JPEG-, PNG- oder WebP-Bilder; je 20 MiB, zusammen 50 MiB, je 20 Megapixel. Kein GIF, HEIC, SVG oder Animation. Ausgabe höchstens 4096 × 4096 Pixel, ohne Vergrößerung.",
+      "method": "https://thedollscout.com/de/image-compressor#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "JSON prüfen, formatieren & vergleichen",
+      "url": "https://thedollscout.com/de/json-compare",
+      "useCase": "JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.",
+      "output": "JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.",
+      "limitations": "UTF-8-JSON, höchstens 512 KiB je Eingabe, 60 Ebenen, 20.000 Werte und 1.000 Unterschiede. Doppelte Schlüssel werden abgelehnt. Exponenten höchstens ±100.000. Kein JSON5, keine Kommentare, Schema-Validierung oder Code-Ausführung.",
+      "method": "https://thedollscout.com/de/json-compare#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "Zeitzonen-Terminplaner",
+      "url": "https://thedollscout.com/de/time-zone-planner",
+      "useCase": "Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.",
+      "output": "Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.",
+      "limitations": "Ein Termin, 5–480 Minuten, Jahre 1970–2100, 16 Zeitzonen. Verwendet Zeitzonenregeln des Browsers. Keine Serien, Verfügbarkeitsabfrage, Feiertage oder Einladungen.",
+      "method": "https://thedollscout.com/de/time-zone-planner#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "图片压缩、缩放与格式转换",
+      "url": "https://thedollscout.com/zh/image-compressor",
+      "useCase": "调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。",
+      "output": "调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。",
+      "limitations": "最多 8 张静态 JPEG、PNG 或 WebP；单张 20 MiB、合计 50 MiB、单张 2000 万像素。暂不支持 GIF、HEIC、SVG 或动画。输出最大 4096 × 4096 像素，不放大小图。",
+      "method": "https://thedollscout.com/zh/image-compressor#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "JSON 校验、格式化与结构对比",
+      "url": "https://thedollscout.com/zh/json-compare",
+      "useCase": "校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。",
+      "output": "校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。",
+      "limitations": "仅支持 UTF-8 JSON；每份最多 512 KiB、60 层嵌套、20,000 个值、1,000 处差异。拒绝重复键，数字指数限 ±100,000。不支持 JSON5、注释、Schema 校验或代码执行。",
+      "method": "https://thedollscout.com/zh/json-compare#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "跨时区会议与日历导出",
+      "url": "https://thedollscout.com/zh/time-zone-planner",
+      "useCase": "查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。",
+      "output": "查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。",
+      "limitations": "单次会议，时长 5–480 分钟，年份 1970–2100，提供 16 个时区。使用浏览器的时区规则。不包含周期会议、参会者忙闲、节假日或邀请发送。",
+      "method": "https://thedollscout.com/zh/time-zone-planner#worked-example"
     }
   ],
+  "directory": {
+    "categories": 5,
+    "tools": 9,
+    "urls": [
+      "https://thedollscout.com/",
+      "https://thedollscout.com/de/",
+      "https://thedollscout.com/zh/"
+    ]
+  },
   "deliveryRecord": {
     "urls": [
       "https://thedollscout.com/delivery-evidence",

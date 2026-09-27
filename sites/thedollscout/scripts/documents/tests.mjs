@@ -148,7 +148,7 @@ test('events store only bounded metadata and strip referrer paths', async () => 
     assert.equal((await event({ p:'/zh/pdf-batch-audit', e, summary:'private' })).bound.length,0);
   }
 });
-test('homepage choices accept only six fixed tasks on localized home paths and remain separate from completions', async () => {
+test('homepage choices accept only registered fixed tasks on localized home paths and remain separate from completions', async () => {
   for (const task of Object.keys(HUB_TASKS)) for (const p of ['/','/de/','/zh/']) {
     const e=hubEvent(task);
     assert.equal((await event({p,e})).bound.length,1);
@@ -159,7 +159,7 @@ test('homepage choices accept only six fixed tasks on localized home paths and r
   const rows=[['doc_view','/',3],['doc_view','/zh/',2],['doc_view','/compare-pdf-text',4],['doc_view','/methodology',7],['doc_hub_open_compare','/',2],['doc_hub_open_verify','/zh/',1]].map(([ev,path,n])=>({d:'2026-09-27',ev,path,n,ref:''}));
   const d=aggregateDocuments(rows);
   assert.equal(d.homepage_views,5); assert.equal(d.dedicated_tool_views,4); assert.equal(d.tool_views,9);
-  assert.deepEqual(d.homepage_selections,{audit:0,batch:0,text:0,compare:2,verify:1,delivery:0});
+  assert.deepEqual(d.homepage_selections,{image:0,json:0,meeting:0,verify:1,delivery:0,audit:0,batch:0,text:0,compare:2});
   assert.equal(d.events.doc_complete,undefined);
 });
 test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real completion', async () => {
@@ -273,4 +273,17 @@ test('recipient counters stay anonymous and never promote samples into completed
  const result=aggregateDocuments([{d:'2026-09-25',ev:'doc_verify_sample',path:'/verify-file',ref:'',n:7},{d:'2026-09-25',ev:'doc_view',path:'/verify-file',ref:'',n:2}]);
  assert.equal(result.excluded.doc_verify_sample,7);assert.equal(result.events.doc_verify_sample,undefined);assert.equal(result.tool_views,2);
  for(const lang of ['de','zh'])assert.deepEqual(Object.keys(verifyCopy[lang]).sort(),Object.keys(verifyCopy.en).sort());
+});
+
+test('utility telemetry accepts only matching public tool paths and never stores payload content or counts samples as work',async()=>{
+ for(const task of ['image','json','meeting']){
+  const p='/zh/'+HUB_TASKS[task],e='doc_'+task+'_complete';
+  assert.equal((await event({p,e})).bound.length,1);
+  assert.equal((await event({p:'/',e})).bound.length,0);
+  assert.equal((await event({p,e,input:'private'})).bound.length,0);
+  assert.equal((await event({p,e:'doc_utility_export'})).bound.length,1);
+  assert.equal(shareUrl(p+'?private=secret'),'https://thedollscout.com'+p+'?via=share');
+ }
+ const d=aggregateDocuments([{d:'2026-09-27',ev:'doc_json_sample',path:'/json-compare',ref:'',n:5},{d:'2026-09-27',ev:'doc_view',path:'/image-compressor',ref:'',n:2}]);
+ assert.equal(d.events.doc_json_sample,undefined);assert.equal(d.excluded.doc_json_sample,5);assert.equal(d.dedicated_tool_views,2);assert.equal(d.tool_views,2);
 });

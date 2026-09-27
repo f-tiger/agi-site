@@ -14,6 +14,8 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

@@ -1,14 +1,15 @@
+import {track,isProbe} from './telemetry.mjs?v=2026-09-27.2';
+export {track};
 import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.8';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.8';
-import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-09-27.1';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-27.2';
+import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-09-27.2';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
 let files = [], reports = [], failures = [], reviews = {}, comparison = null, busy = false, controller, epoch = 0, sample = false;
-const sent = new Set();
 const downloadUrls = new Set();
-const isProbe = new URLSearchParams(location.search).has('ci');
+
 // Keep a navigation check isolated when following links to another TDS page.
 // Canonical URLs and the public sharing payload are left untouched.
 if (isProbe) for (const link of document.querySelectorAll('a[href]')) {
@@ -16,14 +17,6 @@ if (isProbe) for (const link of document.querySelectorAll('a[href]')) {
   if (url.origin !== location.origin || link.getAttribute('href').startsWith('#')) continue;
   url.searchParams.set('ci', '1');
   link.href = url.pathname + url.search + url.hash;
-}
-export function track(event) {
-  if (location.hostname !== 'thedollscout.com' || isProbe || navigator.webdriver || navigator.doNotTrack === '1' || sent.has(event)) return;
-  sent.add(event);
-  let ref = '';
-  try { ref = new URL(document.referrer).origin; } catch {}
-  const body = JSON.stringify({ p: location.pathname, e: event, r: ref });
-  try { if (navigator.sendBeacon) navigator.sendBeacon('/api/doc-events', body); else fetch('/api/doc-events', { method: 'POST', body, keepalive: true }).catch(() => {}); } catch {}
 }
 track('doc_view');
 if (mode === 'hub' && isHubPath(location.pathname)) document.addEventListener('click', event => {

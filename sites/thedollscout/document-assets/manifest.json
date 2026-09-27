@@ -1,6 +1,9 @@
 {
   "edition": "2026-09-25.8",
   "urls": [
+    "https://thedollscout.com/image-compressor",
+    "https://thedollscout.com/json-compare",
+    "https://thedollscout.com/time-zone-planner",
     "https://thedollscout.com/verify-file",
     "https://thedollscout.com/delivery-evidence",
     "https://thedollscout.com/",
@@ -14,6 +17,9 @@
     "https://thedollscout.com/methodology",
     "https://thedollscout.com/document-privacy",
     "https://thedollscout.com/collectors",
+    "https://thedollscout.com/de/image-compressor",
+    "https://thedollscout.com/de/json-compare",
+    "https://thedollscout.com/de/time-zone-planner",
     "https://thedollscout.com/de/verify-file",
     "https://thedollscout.com/de/delivery-evidence",
     "https://thedollscout.com/de/",
@@ -27,6 +33,9 @@
     "https://thedollscout.com/de/methodology",
     "https://thedollscout.com/de/document-privacy",
     "https://thedollscout.com/de/collectors",
+    "https://thedollscout.com/zh/image-compressor",
+    "https://thedollscout.com/zh/json-compare",
+    "https://thedollscout.com/zh/time-zone-planner",
     "https://thedollscout.com/zh/verify-file",
     "https://thedollscout.com/zh/delivery-evidence",
     "https://thedollscout.com/zh/",
@@ -42,6 +51,30 @@
     "https://thedollscout.com/zh/collectors"
   ],
   "records": [
+    {
+      "url": "https://thedollscout.com/image-compressor",
+      "lang": "en",
+      "title": "Image compressor & converter",
+      "description": "Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.",
+      "slug": "image-compressor",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/image-compressor.txt"
+    },
+    {
+      "url": "https://thedollscout.com/json-compare",
+      "lang": "en",
+      "title": "JSON validator, formatter & comparison",
+      "description": "Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.",
+      "slug": "json-compare",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/json-compare.txt"
+    },
+    {
+      "url": "https://thedollscout.com/time-zone-planner",
+      "lang": "en",
+      "title": "Time zone meeting planner",
+      "description": "Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.",
+      "slug": "time-zone-planner",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/time-zone-planner.txt"
+    },
     {
       "url": "https://thedollscout.com/verify-file",
       "lang": "en",
@@ -61,8 +94,8 @@
     {
       "url": "https://thedollscout.com/",
       "lang": "en",
-      "title": "Free document tools: PDF, file verification & delivery",
-      "description": "Review PDFs, extract and compare text, check file copies, or prepare a client handover. Six free tools, all on your device.",
+      "title": "Free online tools for images, JSON, time zones & PDFs",
+      "description": "Prepare images, check JSON, plan across time zones, verify files or work with PDFs. Nine free tools, organised around the job you need to finish.",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/en/home.txt"
     },
@@ -147,6 +180,30 @@
       "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/de/image-compressor",
+      "lang": "de",
+      "title": "Bilder komprimieren & umwandeln",
+      "description": "Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.",
+      "slug": "image-compressor",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/image-compressor.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/json-compare",
+      "lang": "de",
+      "title": "JSON prüfen, formatieren & vergleichen",
+      "description": "JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.",
+      "slug": "json-compare",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/json-compare.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/time-zone-planner",
+      "lang": "de",
+      "title": "Zeitzonen-Terminplaner",
+      "description": "Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.",
+      "slug": "time-zone-planner",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/time-zone-planner.txt"
+    },
+    {
       "url": "https://thedollscout.com/de/verify-file",
       "lang": "de",
       "title": "Empfangene Datei prüfen",
@@ -165,8 +222,8 @@
     {
       "url": "https://thedollscout.com/de/",
       "lang": "de",
-      "title": "Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe",
-      "description": "Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.",
+      "title": "Kostenlose Online-Tools für Bilder, JSON, Zeitzonen & PDF",
+      "description": "Bilder vorbereiten, JSON prüfen, Termine über Zeitzonen planen, Dateien abgleichen oder PDFs bearbeiten. Neun kostenlose Werkzeuge für konkrete Aufgaben.",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/de/home.txt"
     },
@@ -251,6 +308,30 @@
       "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/zh/image-compressor",
+      "lang": "zh",
+      "title": "图片压缩、缩放与格式转换",
+      "description": "调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。",
+      "slug": "image-compressor",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/image-compressor.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/json-compare",
+      "lang": "zh",
+      "title": "JSON 校验、格式化与结构对比",
+      "description": "校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。",
+      "slug": "json-compare",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/json-compare.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/time-zone-planner",
+      "lang": "zh",
+      "title": "跨时区会议与日历导出",
+      "description": "查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。",
+      "slug": "time-zone-planner",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/time-zone-planner.txt"
+    },
+    {
       "url": "https://thedollscout.com/zh/verify-file",
       "lang": "zh",
       "title": "核对收到的文件",
@@ -269,8 +350,8 @@
     {
       "url": "https://thedollscout.com/zh/",
       "lang": "zh",
-      "title": "免费文档工具：PDF 处理、文件核验与交付记录",
-      "description": "按眼前的任务选择工具：检查 PDF、提取与比较文字、核验文件版本，或整理客户交付记录。所有文件处理都在你的设备上完成。",
+      "title": "免费在线工具：图片处理、JSON、时区与 PDF",
+      "description": "处理图片、校验数据、安排跨时区会议、核验文件，或处理 PDF。九个免费工具，按任务分类，直接开始使用。",
       "slug": "",
       "textUrl": "https://thedollscout.com/document-assets/text/zh/home.txt"
     },
@@ -360,6 +441,11 @@
     "pdf-batch-audit",
     "pdf-to-text",
     "compare-pdf-text"
+  ],
+  "utilityTools": [
+    "image-compressor",
+    "json-compare",
+    "time-zone-planner"
   ],
   "languages": [
     "en",

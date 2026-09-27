@@ -1,3 +1,4 @@
+import {utilityCopy,utilitySlugs} from './utility-copy.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -24,10 +25,10 @@ async function read(route, binary = false) {
   throw last;
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
-assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,39);
+assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,48);
 const sitemap = await read('/sitemap.xml');
 const documentSitemap = await read('/document-sitemap.xml');
-assert.equal((documentSitemap.match(/<loc>/g)||[]).length,36);
+assert.equal((documentSitemap.match(/<loc>/g)||[]).length,45);
 const titles = new Set();
 for (const record of manifest.records) {
   const route = new URL(record.url).pathname, html = await read(route);
@@ -42,6 +43,7 @@ for (const record of manifest.records) {
   assert.equal(sitemap.split('<loc>' + record.url + '</loc>').length - 1,1,'One sitemap entry: ' + route);
   assert.equal(documentSitemap.includes('<loc>'+record.url+'</loc>'),record.slug!=='collectors','Document sitemap scope '+route);
   assert.ok(html.includes('page-embed-html'),'Reusable public link '+route);
+  if(Object.values(utilitySlugs).includes(record.slug)){assert.ok(html.includes('id="utility-form"')&&html.includes('id="worked-example"'),'Working tool and example '+route);}
   if(record.slug==='verify-file') assert.ok(html.includes('checksum-method'),'Independent verification method');
   const title = /<title>(.*?)<\/title>/.exec(html)[1];
   assert.ok(!titles.has(title),'Unique localized search title: ' + route); titles.add(title);
@@ -56,7 +58,7 @@ for (const record of manifest.records) {
     assert.ok(html.includes('data-document-mode="hub"'), 'Homepage mode: '+route);
     assert.ok(!ld[0]['@graph'].some(s=>s['@type']==='WebApplication'), 'Directory is not one application');
     const list=ld[0]['@graph'].find(s=>s['@type']==='ItemList');
-    assert.equal(list.numberOfItems,6);
+    assert.equal(list.numberOfItems,Object.keys(HUB_TASKS).length);
     assert.deepEqual(list.itemListElement.map(s=>s.url),Object.values(HUB_TASKS).map(slug=>origin+route+slug));
     for (const [task,slug] of Object.entries(HUB_TASKS)) {
       assert.ok(html.includes(`data-hub-task="${task}" href="${route+slug}"`), 'Visible task destination: '+task);
@@ -80,7 +82,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 const examples = JSON.parse(await read('/document-assets/sample-results.json'));
 assert.equal(examples.documents.length,3);
@@ -92,11 +94,12 @@ for(const doc of examples.documents) {
  assert.equal(createHash('sha256').update(bytes).digest('hex'),doc.sha256,'Public sample hash '+doc.kind);
  assert.equal(bytes.length,doc.size,'Public sample byte count '+doc.kind);
 }
-assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,12);
+assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,21);
 for (const tool of capabilities.tools) {
   const record = manifest.records.find(r => r.url === tool.url);
   assert.ok(record,'Document capability URL exists');
-  assert.equal(tool.output,copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
+  const utilityTask=Object.keys(utilitySlugs).find(k=>utilitySlugs[k]===record.slug);
+  assert.equal(tool.output,utilityTask?utilityCopy[record.lang].tools[utilityTask].intro:copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
 }
 assert.ok((await read('/img/document-scout-brand.png',true)).length > 1000);
 const brand = await read('/css/brand.css?v=' + edition);

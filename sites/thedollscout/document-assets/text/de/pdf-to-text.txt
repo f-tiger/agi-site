@@ -24,6 +24,8 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
 Warum liefert ein gescanntes PDF keinen Text?
 
 Ein Scan kann nur Seitenbilder ohne Textebene enthalten. Das Werkzeug extrahiert vorhandenen Text. Führen Sie OCR separat aus, prüfen Sie die Erkennung und extrahieren Sie danach erneut.

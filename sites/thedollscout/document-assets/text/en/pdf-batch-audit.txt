@@ -24,6 +24,8 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
 How many PDFs can I audit together?
 
 Up to 10 PDFs, 20 MB each and 100 MB in total. Inspection is limited to 200 pages per PDF and 600 pages per batch. Partial or unreadable results must stay visible in the handover.

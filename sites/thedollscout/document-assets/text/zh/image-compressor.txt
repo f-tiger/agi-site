@@ -1,0 +1,29 @@
+# 图片压缩、缩放与格式转换
+
+https://thedollscout.com/zh/image-compressor
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+最多 8 张静态 JPEG、PNG 或 WebP；单张 20 MiB、合计 50 MiB、单张 2000 万像素。暂不支持 GIF、HEIC、SVG 或动画。输出最大 4096 × 4096 像素，不放大小图。
+
+浏览器解码并按比例重新绘制图片。转 JPEG 时透明部分填充白色，PNG 不使用质量参数。重新编码可能改变颜色或使文件变大，不保证印刷色彩或彻底清除所有元数据。
+
+1500 × 1000 的图片限制在 1000 × 1000 内，会变成 1000 × 667。原图不变，交互示例会测量导出文件的实际大小。
+
+1500 × 1000 → 1000 × 667
+
+压缩后一定更小吗？
+
+不一定。结果取决于原图、格式、尺寸和浏览器编码器。页面会显示处理前后的实际字节数，变大时也会如实提示。
+
+透明背景能保留吗？
+
+PNG 和 WebP 可以保留透明度；JPEG 不支持透明，透明部分会填充白色。动画文件会被拒绝处理。
+
+参考资料
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container

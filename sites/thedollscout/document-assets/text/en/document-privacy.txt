@@ -18,6 +18,8 @@ Delivery records are processed locally. Downloads include file names and entered
 
 File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
 
+Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

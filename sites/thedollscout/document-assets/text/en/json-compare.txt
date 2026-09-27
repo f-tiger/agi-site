@@ -1,0 +1,33 @@
+# JSON validator, formatter & comparison
+
+https://thedollscout.com/json-compare
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+UTF-8 JSON only, up to 512 KiB per input, 60 nesting levels, 20,000 values and 1,000 differences. Duplicate keys are rejected. Numeric exponents are limited to ±100,000. No JSON5, comments, schema validation or executable code.
+
+Object key order and whitespace do not count as changes. Arrays are compared by index, so an insertion may produce several changes. Number tokens remain exact; equivalent decimal values such as 1 and 1.0 compare equal. Paths use JSON Pointer escaping.
+
+Change enabled from false to true and add a third region. Reordering the object keys leaves the large numeric ID untouched.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Will a long numeric ID be rounded?
+
+No. The formatter preserves number tokens and comparison normalizes decimal strings without converting them to JavaScript floating-point numbers.
+
+What happens to duplicate JSON keys?
+
+This tool rejects them and reports the location. It does not silently discard an earlier value. Object order is ignored during comparison, but array order matters.
+
+Reference material
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
