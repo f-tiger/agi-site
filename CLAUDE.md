@@ -494,7 +494,57 @@ owner 决策卡、事实表)。
   七条 deploy 自检各加一条 `/api/pulse` 硬断言。**首读(09-13 06:01 UTC,heartbeat run 34741697973,八站全经端点)**:
   舰队 AI 引荐 **78**/28d(agi 20、bpj 33、eco 25、其余五站 0)。**口径差**:eco 端点按该站 `/api/trend` 惯例计
   `ua_class IS NULL OR 'human'`(手测 16 是严格 human),bpj 的 pv 列是「有来源的真人」不是全部 pv——**判定线
-  10-24 以仪器口径为准,阈值改为 ≥156(2×78)**,台账已同步。D1 token 仍缺 read 权限,只影响 tds 那条历史导出。
+  10-24 以仪器口径为准,阈值改为 ≥156(2×78)**,台账已同步。
+- **⚠ 2026-09-25 推翻上面那句「已绕开,不再需要 owner 动作」——它没有去掉单点,只是把同一个单点搬了个位置。**
+  当天的形状:账号撞上 **D1 免费额度的「日行读上限」**(`exceeded D1's free tier daily row read limit`),而
+  每个 `/api/pulse` 都是**每次请求现查 D1**,于是 **14 站里 13 站同时 500**(gridlings 先 200 后 500,间隔几十秒);
+  文档写着的兜底(D1 REST)**同一天也走不了**,因为「D1 token 仍缺 read 权限」那件事从来没被修——所以
+  两条路是同一个前提的两种写法,不是主备。**结论:那条 owner 待办(给 token 加 D1 Read)仍然有效,
+  09-13 只是让它看起来不紧急。**
+  **真正危险的不是 500,是文件照样写成了「舰队合计」**:`fleet_ai_ref: 19`(只有 bpj 一站),基线 78,
+  而 `fleet-ai-referrals-1024` 这条线正是拿这个字段结算、阈值 ≥156 —— 下一个会话按规程「到期先结算」打开它,
+  会把一次**从未发生的灾难性下跌**记成 lost。`ok/read_via/errors` 三个字段当时都写着真话,**但读者拿走的是那个数**。
+  **已修(同日)**:`ai_referrals.py` 在有 errors 时把 `fleet_ai_ref` / `fleet_human_pv` /
+  `fleet_human_pv_excl_flagged` 一律写 **null**,分项挪到 `partial_ai_ref` / `partial_human_pv`,
+  并加 `sites_read` / `sites_expected`;`demand_digest.py` 在 null 时印「读数不全,不可用于结算」而不是数字;
+  三条 selftest 断言锁住这个形状(能红)。旧文件已就地订正并留 `migrated_note`。
+  **对全舰队的规矩(第三条,与 09-16「能被 t0 满足的线不是赌注」、09-22「爬虫抓取不算消费」同级)**:
+  **任何喂判定线的聚合字段,读不全时必须写 null,不许写「读到的那部分的和」。** 一个旁边带警告的数字,
+  在三周后只会剩下那个数字。**另一条**:说「不再需要 owner 动作」之前,先确认兜底路径与主路径**没有共用前提**;
+  这次主备共用的是同一个缺失权限。
+  **09-26 配额重置后的干净读数(14/14 站全通,`ok:true`、`errors:[]`、`partial_*` 为 null)**:舰队 AI 引荐 **54**/28d
+  (agi 19 / bpj 18 / eco 16,其余十一站 0;剔噪音站真人 pv 3 461)。**对照昨天那个 19**:同一个字段、同一条判定线,
+  一天之差从「灾难性崩塌」变成「比基线 78 低 31%」——**后者是真实读数,前者是仪器故障**,而它们在文件里长得一模一样。
+  10-24 那条线(≥156)按 54 这个起点看会判负,**到期照原文结算,现在不提前改线**。
+- **⚠ 同日第二处,比第一处更隐蔽:那 13 个 500 每一个都带着 `cache-control: public, max-age=3600`。**
+  header 对象在 handler 顶上建一次,200 / 503 / 500 共用(12 个读端点无一例外,含 agi、eco、
+  gridlings、goldrush、SR、gamesledger、tds 与五个新站)。后果是**一次瞬时报错被交给任何中间缓存
+  重放一小时**:本会话先把 gridlings 读成 `200 {"human_pv":758,...}`、几分钟后同一个 URL 是 500,
+  于是**在报告里写下了「gridlings 已恢复」——那一刻 D1 正在拒绝每一条查询**。成功响应里的
+  `generated` 字段本可以揭穿它,但缓存给回的那份 body 里没有。eco 自己的 `handleHeat`/`handleDew`
+  早把规则写在注释里(「never freeze a failure into the cache for an hour」),**喂舰队仪器的读端点
+  全体漏了**。同类还有两处不是 5xx 的:goldrush `/fetchlog.json` 与 SR `/api/pop` 用「200 + body 里
+  `live:false` / `degraded:true`」报告查询失败,照样被缓存一小时。
+  **已修(同日,12 个文件)**:失败一律 `no-store`(tds 的 helper 改成按 status 三元);
+  新增 `tools/fleet/check_pulse_cache.py` 挂 heartbeat,规则一句话:**响应体带失败标记就不许带 public**。
+  **这个检查自己先红过三次才算写成**:①只认 `{ headers }` 漂亮写法,漏掉 `{ status: 500, headers }`
+  简写 —— 故意改坏一处仍然绿;②`headers` 每个 handler 重新定义,沿用上一块的值把无 cache-control 的
+  `/sub` 误报成 public;③正则要求 `json` 前面有前缀,于是漏掉 tds 那个**正是本次动机**的 helper;
+  顺带暴露第四个洞:glob 只看 `sites/*/worker.js`,**舰队最大的站 agi 的 worker 在三层深处,
+  同样有这个缺陷而检查看不见** —— 覆盖漏洞读起来与「全绿」一模一样。
+  **规矩(与 09-04「自检要能红」同级,是它的加强版)**:**新写的自检,必须逐个故意改坏它声称能抓的
+  每一种形状,看它真的红。** 一次「改坏一处仍然绿」就说明它抓的是想象里的代码,不是仓里的代码。
+  **⚠ 2026-09-27 合并时的两条修正(main 侧另一个会话同一天独立发现同一个缺陷,命名 `errH`)**:
+  ①**机制说窄了**:`cache-control: public` 单独**并不会让 Cloudflare 缓存一个 Worker 响应** —— 它只对浏览器与
+  中间代理有效,所以那次读到的 stale 200 来自出网代理,不是 Cloudflare 边缘。真正的读预算修复是 main 侧建的
+  **Cache API 层**(`cachedJson`,按 URL + 部署版本做键、错误永不入缓存),它才解决「每次轮询重跑全表扫描」。
+  两侧合并后取 main 的实现,本侧保留 `check_pulse_cache.py` 这把尺子。
+  ②**尺子当场证明了自己有用**:合并后跑一遍,main 的修复漏了 **agi `pulseResponse`**(`/api/pulse` 与 `/api/trends`
+  09-26 抽出成函数时,那一个 `headers` 又被 503/200/500 共用),已补 `errH`。同时修掉尺子自己的一个**误报**:
+  SR `/api/pop` 用行内 `{ ...headers, "cache-control": "no-store" }` 是对的,而尺子只看见行上有 `headers` 就报红
+  ——**误报和漏报一样有害**,它教人相信这盏红灯会撒谎。两个方向各有一个红测钉住。
+  ③**过程事实**:同一个缺陷被两个会话在同一天各查一遍、各修一遍。合并时按「取更彻底的实现 + 保留对方的尺子」
+  收敛,没有任何一侧的工作被丢掉;但这是**重复劳动**,下次开工前先 `git fetch` 看一眼 main 的当日提交。
 
 ## 固定循环:持续优化 · 探索 · 扩张(2026-09-13,owner:「目标是持续优化,探索,扩张。成长为这类型」)
 

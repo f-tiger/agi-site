@@ -1126,7 +1126,11 @@ const SLIDEIN = '<script>(function(){try{' +
 // 两者都读 pageviews 的 human 行;D1 上的部分索引 pageviews_human 让它们只读这部分行(tools/analytics-worker/migrations/)。
 export async function pulseResponse(env, url) {
   const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
-  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers });
+  // 失败绝不带 max-age(2026-09-25 舰队规矩,check_pulse_cache.py 断言):aggregate-cache 确实不收非 ok 的
+  // 响应,但这个 header 仍然在告诉浏览器与任何中间代理「这个 500 可以替我重放一小时」——那正是当天把一次
+  // D1 报错读成 200 带真数字的那条路径。
+  const errH = { ...headers, 'cache-control': 'no-store' };
+  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers: errH });
   try {
     const q = await env.EVENTS.prepare(
       `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
@@ -1175,7 +1179,7 @@ export async function pulseResponse(env, url) {
     // money 的主查询失败时标 partial:缓存层(aggregate-cache.js)不收缺一块的结果,否则它会被原样挂一小时。
     return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, ...(money === null ? { partial: true } : {}), generated: new Date().toISOString() }), { headers });
   } catch (e) {
-    return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
+    return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers: errH });
   }
 }
 

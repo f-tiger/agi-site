@@ -463,7 +463,8 @@
    "status": "open",
    "baseline_instrument_2026_09_13": 78,
    "reading_2026-09-27": "预读(不结算,阈值与原文都不动)。最近的完整读数:59(09-23T16:04Z,agi 21 / bpj 22 / eco 15 / gamesledger 1)、58(09-24T13:03Z)、56(09-26T05:27Z 渠道构成快照 by_source.ai,同一批 /api/pulse)、53(09-27T13:26Z,agi 19 / bpj 17 / eco 16 / gamesledger 1);09-25、09-26 两份 fleet-ai-referrals 快照 ok:false(D1 读额度用完后 13 个 /api/pulse 500),不能当舰队合计读。下降是真的:三站 D1 JS 口径两段不重叠的 10 天,08-16..08-25 共 35 次(30 个访问日)对 09-13..09-22 共 17 次(16 个访问日),z≈2.5(按访问日 ≈2.1);下降全在 bpj(13→5 个访问日)与 eco(12→4),agi 持平(5→7);eco 仪器读数 09-13 为 25、09-23 为 15。原因(季节、老化、D1 写入缺口)都未检验。≥156 需要现水平的约 2.6–2.9 倍,照现速几乎必输。其中 claude.ai:agi 21 次里 7 次,可能含舰队自己在 claude.ai/code 的点击,判定照读合计(快照另列 fleet_ai_ref_claude_ai)。",
-   "reading_rule_2026-09-27": "结算照原文字面(不收紧,参照 goldrush-tripwire-0930 的 reading_rule 写法):「五个 0 站」= 09-12 基线里的 thedollscout / goldrush / gridlings / buysomething / gamesledger;「转正」按原文 = 28 天快照 ai_ref ≥1。reading 必须逐站写出每个转正站的访问日数(去重 path×day×country)、不同日期数与来源 host;若判 win 只因 ≥2 站转正而其中有站只有 1 个访问日,reading 写明「字面赢、实质单次点击」,win 分支(补 llms-full 与 JSON-LD 到只有 llms.txt 的站)照做,但不得据此做超出 win 分支的扩建。t0:gamesledger 1 次(copilot.microsoft.com),其余四站 0。读数路径:heartbeat 快照 ok:true 优先;快照残缺时会话在 00:05–06:00 UTC 用 ai_referrals.py 的 sql_for() 直查 D1,访问日另按 path/day/country 分组查,并标注窗口内 09-24/25/26 的 D1 写入缺口。"
+   "reading_rule_2026-09-27": "结算照原文字面(不收紧,参照 goldrush-tripwire-0930 的 reading_rule 写法):「五个 0 站」= 09-12 基线里的 thedollscout / goldrush / gridlings / buysomething / gamesledger;「转正」按原文 = 28 天快照 ai_ref ≥1。reading 必须逐站写出每个转正站的访问日数(去重 path×day×country)、不同日期数与来源 host;若判 win 只因 ≥2 站转正而其中有站只有 1 个访问日,reading 写明「字面赢、实质单次点击」,win 分支(补 llms-full 与 JSON-LD 到只有 llms.txt 的站)照做,但不得据此做超出 win 分支的扩建。t0:gamesledger 1 次(copilot.microsoft.com),其余四站 0。读数路径:heartbeat 快照 ok:true 优先;快照残缺时会话在 00:05–06:00 UTC 用 ai_referrals.py 的 sql_for() 直查 D1,访问日另按 path/day/country 分组查,并标注窗口内 09-24/25/26 的 D1 写入缺口。",
+   "settle_guard": "2026-09-25 起:只在 fleet_ai_ref 不是 null(即 sites_read == sites_expected)的快照上结算。读数不全时记 insufficient 或等下一次完整读数,绝不拿 partial_ai_ref 当舰队合计——那天 13/14 站 500(D1 日行读配额),文件曾写着 19。"
   },
   {
    "id": "fleet-ai-landing-shape-1026",
@@ -2208,6 +2209,25 @@
    "lose": "④ 成立但 ①<2 且 ②<8 → 该词 1,7 的量级对本站太薄,取暖簇不再按 rising 行补小词,只按 5 年峰值 ≥5 的词补;④ 不成立 → insufficient(发现面问题,见 eco-new-page-discovery-1020)",
    "source": "sites/getecoback/CLAUDE.md「按谷歌趋势补冬季品类(2026-09-27)」",
    "status": "open"
+  },
+  {
+   "id": "gridlings-playgama-loadfix-1024",
+   "site": "gridlings",
+   "due": "2026-10-24",
+   "metric": "修复后一次免费投放的读数,与 09-15 同形投放对照:① play_start ÷ 实际花费美元;② 发出 engagement 事件(GHOSTLINE race_start/finish/medal,SINGULARITY first_click/milestone/ship)的 play_start 占比 —— 这两个事件族 09-16 才进 worker 白名单,09-15 那次测不到,所以②只看新读数不做对照",
+   "threshold": "① ≥522 次/美元(09-15:155 非 US 起玩 ÷ 花掉的 $0.297)且 ②≥10%",
+   "win": "加载时间确实是约束 → 把同一套 low-GPU 处理与新包发给五个 puzzle,并花掉它们的免费投放额度",
+   "lose": "加载时间不是约束 → 停止在 AI 游戏上花免费额度,游戏线维持冻结,结论写回 gridlings CLAUDE.md",
+   "source": "sites/gridlings/CLAUDE.md 「最后一轮探索 2026-09-25」+ 「2026-09-26 执行结果」",
+   "status": "open",
+   "gated_on": "owner 发一条帖子并把帖子链接贴回(start_sandbox_traffic 要求 ≥1 个 postUrls;09-26 只传 applicationId 实测 400)。投放未开跑就到期一律记 insufficient,不改判据,不顺延",
+   "baseline_2026_09_15": {
+    "non_us_play_start": 155,
+    "budget_usd": 1,
+    "spent_ratio": 0.29666,
+    "starts_per_usd": 522,
+    "engagement_events": "not instrumented then"
+   }
   }
  ]
 }

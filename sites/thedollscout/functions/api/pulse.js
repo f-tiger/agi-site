@@ -9,9 +9,15 @@ const HOSTS = ['chatgpt', 'chat.openai', 'perplexity', 'claude.ai', 'copilot', '
 const AI = '(' + HOSTS.map((h) => `ref LIKE '%${h}%'`).join(' OR ') + ')';
 const HUMAN = "ev = '' AND d >= date('now','-28 days') AND d >= '2026-08-30' AND path NOT LIKE '/__ci%'";
 
+// 2026-09-25: 失败绝不带 max-age。这个 helper 原先把 `public, max-age=3600` 贴在每个状态码上,
+// 于是一次 D1 报错会被任何中间缓存冻住一小时,把瞬时故障放大成一小时的仪器停摆。
 const json = (o, status = 200) => new Response(JSON.stringify(o), {
   status,
-  headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' },
+  headers: {
+    'content-type': 'application/json; charset=utf-8',
+    'cache-control': status === 200 ? 'public, max-age=3600' : 'no-store',
+    'access-control-allow-origin': '*',
+  },
 });
 
 

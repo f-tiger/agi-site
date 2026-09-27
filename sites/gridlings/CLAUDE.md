@@ -1229,3 +1229,58 @@ cg-package-smoke，别靠肉眼。
   09-16 那张 17 小时读数 13/49 = 26,5%)。保持 open,09-29 前结算。
 - 未到期只记:`gridlings-itch-0924` itch play_start 58 / solve 13(阈值 150 / 25);`gridlings-playgama-five-0925`
   五款全部 REJECTED(09-15),0/5,另有 TOWERS DRAFT。
+
+## 最后一轮探索 2026-09-25:两个已修好的构建,从来没送到玩家面前
+
+**结论一句话:09-16 的加载修复上传到了 Playgama,却没有 publish 到 sandbox —— 公开链接这 9 天一直在发旧包。**
+Cabinet 自己就是证人,不是推测:
+
+| 证据 | 读数 |
+|---|---|
+| `get_launch_steps` (GHOSTLINE / SINGULARITY) | `sandbox: OUTDATED`,`reason: CHANGED`,`nextTools: [publish_sandbox]`,`askDeveloper: true` |
+| GHOSTLINE 当前 archive | `cmu48i4f803apnr0hi6vekyqv` = `ghostline-2026.09.16-lowgpu`,**loadingTime 2 655 ms** |
+| GHOSTLINE sandbox 正在发的 revision | `archiveId cmtrgnt5o3mudhg0hqw6icbti` = 09-07 那包,**loadingTime 5 143 ms**,publishedAt 09-15 14:49 |
+| SINGULARITY 同形 | 当前 `cmu48i5cy03arnr0h6tqzz5zs`,sandbox 仍发 `cmtsqomzh05dhmn0hpvax0me8` |
+
+**这解释了一个此前归因错误的读数**:09-15 的投放之后 `play_start` 在 09-19 就归零,而我们把它算在「sandbox 送来的人
+就是这么多」上。真实情况是**投放与其后所有访客拿到的都是 5,1 秒那版**;2,6 秒那版一个真人都没见过。
+「加载时间是流失主因」这个假设**到今天仍然一次都没有被测过**——不是证伪,是没测。
+
+**第二件同样没用掉的东西:免费投放额度还在,而且比用过的更大。** `get_sandbox_traffic` 三个应用逐个读:
+`offer.kind FREE` · `available true` · `budgetUsd 2` · `durationDays 3` · `expectedGameplays 100` ·
+**`remainingFreeRuns 3`** · `verdict.allowed true`。七个已发 sandbox 的应用各 3 次 = **约 21 次 × 100 ≈ 2 100 次免费游戏**。
+已经用掉的只有 2 次(GHOSTLINE / SINGULARITY,09-15,各 $1/1 天),而且**两次都没花完**:
+`spentRatio` 0.297 与 0.336 —— 预算不是约束,素材的展示/点击才是。
+**❌ 上面这一段最初还写了一句「已完成那两次的 `postUrls` 是 `[]`,所以 FREE 档不需要社交帖」——错的,09-26 实测推翻。**
+只传 `applicationId` 调用 `start_sandbox_traffic`,返回 **HTTP 400 `postUrls must contain at least 1 elements`**。
+正确的读法:`offer.available: true` + `remainingFreeRuns: 3` 说的是**额度还在**,不是**现在就能开**;
+开跑的门是分享。09-15 那两次 `postUrls: []` 是**分享门之前的首轮免费 boost**,与现在这三次不是同一件东西
+——**用历史行里的空字段去推当前接口的前置条件,就是这个错的形状**。
+
+**推荐动作(两步都 `askDeveloper: true`,会话不抢跑)**:①`publish_sandbox` 把两个 AI 游戏指到 09-16 的包
+(同一个公开 URL,不新增曝光面,只是把发出去的构建换成快的那个);②各用掉 1 次免费投放($2/3 天/约 100 次),
+**先 GHOSTLINE 与 SINGULARITY,puzzle 那五个留着**——先让唯一一个有前后对照的变量单独跑。
+
+### 2026-09-26 执行结果(owner 答「重发 + 各投 1 次免费」)
+
+- **①已完成,两个游戏的玩家现在拿到的是快的那版。** 逐个核对**面向玩家的那个字段**(昨天写下的规矩,第一次用上):
+  GHOSTLINE 线上 revision `cmuhp1sov0ab5ma0hacqodkfq` → archive `cmu48i4f803apnr0hi6vekyqv`(2 655 ms);
+  SINGULARITY revision `cmuhy26290pvhlc0h54hsrm6s` → archive `cmu48i5cy03arnr0h6tqzz5zs`。
+  `get_launch_steps` 的 `sandbox` 从 `OUTDATED/CHANGED` 变 **DONE**;再查一次 `changeStatus` 已是 **UNCHANGED**
+  (= 重发会是空操作,说明真的落地了);两个公开 URL HTTP 200。**URL 一个字没变**,所以旧链接全部继续有效。
+- **②开不了,卡在分享门,不是卡在额度。** 见上面那条订正:接口 400 要求 ≥1 个已发布的帖子链接。
+  **会话不编帖子链接**(不可逆花钱 + 冒充 owner 发帖,两条都撞红线),所以这一步停在 owner 手上。
+- **owner 要做的一步(约 2 分钟,两个游戏各一次)**:用 Playgama 现成的分享链接发一条,然后把**帖子本身的链接**贴回来,
+  会话就用 `postUrls` 开跑($2 / 3 天 / 约 100 次;最多贴 3 条链接,每条 +1 个 boost 单位并把活动延到贴出后至少 3 天)。
+  X:`https://x.com/intent/post?...`(见 `get_sandbox_share`,**链接由接口给出,永不自己拼**);
+  文案 Playgama 已预填 `Made with AI. Brought to you by #PlaygamaMCP. Fine-tuned by me. <游戏> → <链接>`。
+  **若 owner 自己改写文案,适用根手册的反 AI 味 8 条**;Playgama 预填的那句属平台文案,不在此列。
+- **台账**:`gridlings-playgama-loadfix-1024` 已进 `data/fleet-bets.json`(投放开跑日 +28 天;
+  metric = 修复后一次免费投放的 `play_start` 与 30 秒留存,对照 09-15 那次同预算读数)。
+  **注意它只有在 owner 贴回帖子链接后才开始计时**,没开跑就到期一律记 `insufficient`,不改判据。
+**不推荐**的:七个应用一起投(把 6 次额度花在同一个未知上)、再改游戏代码(还没有任何一版被真实测过)、
+再上传新包(上传不是发布,这一轮的教训正是这两件被当成了一件)。
+
+**通用教训(写进根手册的那条的游戏侧版本)**:`isUploaded: true` + `analysis.COMPLETED` + `loadingTime` 变好,
+**读起来与「已经上线」完全一样**,而 `activeArchives: []` 与 `sandbox: OUTDATED` 才是真话。
+**以后任何「修好了」的收尾一步,必须是读那个面向玩家的字段**(sandbox revision 的 archiveId),不是读上传结果。
