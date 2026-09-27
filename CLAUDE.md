@@ -409,7 +409,7 @@ owner 决策卡、事实表)。
   「AGI 赔率」类搜索/AI 引荐;否则降级为 `/agi-odds-vs-evidence` 的一个小节,不再单独维护。
 - **同时必须对 owner 说的话**:这一轮没给出抽佣渠道,但**「不靠流量的钱」舰队已经建好一条且关着** ——
   Metaculus FutureEval(每季 $50k 奖池、按准确度付钱、零访客需求),只差 owner 拿 token +
-  设 `METACULUS_BOT_ENABLED=1`。每次报告都要带出这一条,直到它被打开或被 owner 明确否掉。
+  设 `METACULUS_BOT_ENABLED=1`。每次报告都要带出这一条,直到它被打开或被 owner 明确否掉。 **(2026-09-27 owner 原话「不要依赖所谓Metaculus」:此条「每次报告都要带出」作废;bot 代码与判定线原样保留不删,但任何营收规划与报告不再把它当作营收路径或首行待办。)**
 
 ## 舰队整体进化 2026-09-12(owner:「舰队整体进化一次」;全文 `docs/fleet-evolution-2026-09-12.md`)
 
@@ -1089,7 +1089,7 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   给账本加「链上证明」层(**09-26 补注**:这里杀的是给零消费者的协议再加一个「链上证明」*面*;纯时间戳锚定——OpenTimestamps,
   不发币、不加页、不加协议——09-26 作为明确收窄的例外建成,见该节)· 用「AI 来定价」绕开「价值来自后入者」。
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
-  Fall 主赛 09-28 开题。
+  Fall 主赛 09-28 开题。 **(2026-09-27 owner 原话「不要依赖所谓Metaculus」:此条「每次报告都要带出」作废;bot 代码与判定线原样保留不删,但任何营收规划与报告不再把它当作营收路径或首行待办。)**
 
 ## AI agents 创业机会点:MCP 信任层撤回,哈佛 = bpj 的编程智能体读者(2026-09-25,owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…」;全文 `docs/agents-venture-2026-09-25.md`)
 
@@ -1216,7 +1216,7 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 > `data/fleet-forecast-record.json`(北极星 = 赛前已记录且已结算的题数)。**六个候选没有一个在三个反驳者面前幸存**,它排第一只因为
 > 第一笔钱不靠访客;网络层(结算台 / 复盘公地)全部锁在判定线后面(`fe-coverage-1005`、`fe-commons-intent-1130`)。
 > 09-26 建的 bpj 认领层三票 refuted(免费徽章挂了 55 天零回链),降级为零成本探针。**每次报告带出:bot 状态、账本条数、北极星、
-> 净美元;在 owner 打开 bot 之前,第一行就是「差 owner 的 key + `METACULUS_BOT_ENABLED=1`,且先合并本分支」。**
+> 净美元;在 owner 打开 bot 之前,第一行就是「差 owner 的 key + `METACULUS_BOT_ENABLED=1`,且先合并本分支」。** **(2026-09-27 owner 原话「不要依赖所谓Metaculus」:此条「每次报告都要带出」作废;bot 代码与判定线原样保留不删,但任何营收规划与报告不再把它当作营收路径或首行待办。)**
 > 全文与异议 `docs/ai-era-founder-2026-09-25.md` §二–§六。
 
 > **2026-09-27 对账**:事故以上一节(main 侧 `docs/d1-read-budget-2026-09-26.md`)为准——09-24、09-25、09-26 三天都用完,bpj `/api/reach` 每次约 18 万行是主因。下面的「规矩①–⑥」仍适用;bpj / agi / tds 的缓存实现以 main 的 `reach-cache.js` / `aggregate-cache.js` 为准。

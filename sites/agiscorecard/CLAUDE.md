@@ -896,8 +896,9 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - **agi-test 锁定按钮原是空承诺**(只写 localStorage)。现改为锁定后在按钮下方出站内邮箱表单
   (`location=agi_test_lock`),**代码日期门 2026-10-01 00:00 UTC 前休眠**,不污染 09-30 `sub_ok` 线。
   判定线 `agi-lock-sub-1029`。09-26/09-30/10-31 三条线已补进 `data/fleet-bets.json`。
-- **结论**:agi 在 7 人/天的量级上,点击优化最多是 €0–5/月;唯一能在一个月内改变营收 = 0 的仍是
-  Metaculus FutureEval(owner 的 key + `METACULUS_BOT_ENABLED=1`)。
+- **结论**:agi 在 7 人/天的量级上,点击优化最多是 €0–5/月。**owner 同日:「不要依赖所谓Metaculus」**——
+  agi 的营收规划不再以 Metaculus 为出路;agi 当前的商业角色 = 信任/引用资产 + 一份自有邮件名单(10-01 起测),
+  近期营收目标放在 eco(舰队唯一在赚的线)。破例项(券商 CPA,非 Amazon)仍只是 owner 决策卡,不抢跑。
 
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
