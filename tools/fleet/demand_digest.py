@@ -377,6 +377,20 @@ def main():
             out.append(f"- owner 亲报 PartnerNet DE(30 天窗至 {own.get('window_end')}):佣金 €{own.get('commission_eur')} · {own.get('clicks')} 点击 · 待办 {own.get('payout_blocked')}")
         if mo.get("errors"):
             out.append("- 未读到:" + " | ".join(mo["errors"]))
+    # 预测记录线(2026-09-27 创业复盘楔子):不靠访客的那条钱线,读 heartbeat 写的 data/fleet-forecast-record.json。
+    fr = load(os.path.join(ROOT, "data/fleet-forecast-record.json"))
+    fc = load(os.path.join(ROOT, "data/futureeval-coverage.json"))
+    if "__error__" not in fr:
+        fa = age_days(today, fr.get("generated", ""))
+        m_ = fr.get("money") or {}
+        hp = fr.get("house_prior") or {}
+        out.append(f"- 预测记录线(Metaculus bot,快照 {fr.get('generated','?')[:10]}{' **STALE**' if (fa is None or fa > 3) else ''}):"
+                   f"状态 {fr.get('enabled_state')} · 账本 {(fr.get('ledger') or {}).get('forecast_lines')} 条 · "
+                   f"北极星(赛前记录且已结算){fr.get('north_star_resolved_prelogged')} · house prior Brier 差 {hp.get('mean_brier_delta')}(n={hp.get('n')}) · "
+                   f"30 天花费 ${m_.get('spend_usd_30d')} · 奖金 {m_.get('prize_usd_30d') if m_.get('prize_usd_30d') is not None else '未报'} · 净 {m_.get('net_usd_30d') if m_.get('net_usd_30d') is not None else '—'}")
+    if "__error__" not in fc:
+        out.append(f"- FutureEval 覆盖探针:抽样 {fc.get('sampled')} 题,舰队已存档来源覆盖 {fc.get('covered')}(占比 {fc.get('coverage_share')})"
+                   + (" · **规则页有变化**" if fc.get("rules_changed") else "") + ("(沿用上次)" if fc.get("stale") else ""))
     out.append("")
 
     out.append("---")

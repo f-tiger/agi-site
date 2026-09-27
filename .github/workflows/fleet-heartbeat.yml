@@ -224,6 +224,25 @@ jobs:
         continue-on-error: true
         run: python3 tools/fleet/traffic_sources.py
 
+      # 4c) 预测记录线(2026-09-27 创业复盘选定的楔子,docs/ai-era-founder-2026-09-25.md §三)。
+      #     读 bot 提交的点时账本 data/metaculus/*.jsonl;题目关闭后才向 Metaculus 公开 API 取结算并解封概率,
+      #     算北极星(赛前已记录且已结算的题数)、house prior 消融(Brier 差)、花费与净美元(奖金只收 owner 亲报)。
+      #     另一个探针抽样开放题的结算来源,看舰队已存档的官方源能覆盖多少(判定线 fe-coverage-1005)。
+      #     零 D1、零新 cron;只警告不红,除非脚本本身崩了。
+      - name: Read the forecast record and FutureEval coverage
+        id: forecast
+        continue-on-error: true
+        env:
+          METACULUS_TOKEN: ${{ secrets.METACULUS_TOKEN }}
+          BOT_TOURNAMENT_ID: ${{ vars.BOT_TOURNAMENT_ID }}
+          BOT_MINIBENCH_ID: ${{ vars.BOT_MINIBENCH_ID }}
+        run: |
+          python3 -m pip install -q cryptography
+          python3 tools/fleet/metaculus_record.py --selftest
+          python3 tools/fleet/metaculus_record.py
+          python3 tools/fleet/futureeval_coverage.py --selftest
+          python3 tools/fleet/futureeval_coverage.py
+
       # ④ 钱线仪表盘(2026-09-21「营收目标增长」):手册 08-23 起要求每次报告带钱线,而 runner 从来读不到
       #    一条——D1 没有读 token。现在五个钱线站的 pulse/reach 多返回一个 money 对象(聚合计数),
       #    这里每天读一次写 data/fleet-money.json,demand-digest 次日读它;owner 亲报的 PartnerNet 数字
@@ -252,7 +271,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json data/fleet-d1-budget.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json data/fleet-d1-budget.json data/fleet-forecast-record.json data/futureeval-coverage.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -358,7 +377,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }}"
           exit 1

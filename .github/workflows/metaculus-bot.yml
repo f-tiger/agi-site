@@ -24,7 +24,10 @@ name: Metaculus forecasting bot
 
 on:
   schedule:
-    - cron: "13 */2 * * *"
+    # 2026-09-27:每 2 小时 → 每 6 小时(题目开放窗口以天计;创业复盘的现金视角把「净美元」列为护栏指标,
+    # 2 小时 × $3/次最坏 $36/天)。叠加 BOT_MAX_USD_PER_DAY(缺省 $4)从已提交的 runs.jsonl 读当日花费。
+    # 分钟账:≤5 分/次 × 4 次/天 ≈ 600 分/月,公开仓免费;未启用时 0。
+    - cron: "13 */6 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -44,7 +47,8 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  # 2026-09-27:写回 data/metaculus/(点时预测账本 + 运行日志)。只写这一个目录。
+  contents: write
 
 jobs:
   forecast:
@@ -62,7 +66,11 @@ jobs:
       - name: Install
         run: pip install -q -r tools/metaculus-bot/requirements.txt
       - name: Syntax gate
-        run: python -m py_compile tools/metaculus-bot/main.py
+        run: python -m py_compile tools/metaculus-bot/main.py tools/metaculus-bot/ledger.py
+      # 点时账本的零网络测试(2026-09-27):密封/摘要校验/当日上限/同日同错只红一次/只记已提交的预测。
+      # 账本错了,「赛前记录」这条证据就不成立——所以它红了就不跑预测。
+      - name: Ledger tests (zero network)
+        run: python tools/metaculus-bot/test_ledger.py
       - name: Forecast
         working-directory: tools/metaculus-bot
         env:
@@ -78,8 +86,23 @@ jobs:
           BOT_TOURNAMENT_ID: ${{ vars.BOT_TOURNAMENT_ID }}
           BOT_MINIBENCH_ID: ${{ vars.BOT_MINIBENCH_ID }}
           BOT_MAX_USD_PER_RUN: ${{ vars.BOT_MAX_USD_PER_RUN }}
+          BOT_MAX_USD_PER_DAY: ${{ vars.BOT_MAX_USD_PER_DAY }}
+          BOT_SHADOW_MAX: ${{ vars.BOT_SHADOW_MAX }}
         run: |
           MODE="${{ github.event.inputs.mode || 'tournament' }}"
           DRY=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; fi
           python main.py --mode "$MODE" $DRY
+
+      # 点时账本回写(2026-09-27):forecasts.jsonl(概率与影子预测已密封,公开行只有题号/时间/是否用了 house prior)
+      # 与 runs.jsonl(花费、计数)。失败的运行也写,当日上限与「同错只红一次」都靠它。dry run 不写。
+      - name: Commit forecast ledger
+        if: ${{ always() && github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/metaculus/ 2>/dev/null || true
+          if git diff --cached --quiet; then echo "ledger unchanged"; exit 0; fi
+          git commit -q -m "chore(metaculus): forecast ledger $(date -u +%FT%H%MZ)"
+          for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*5)); done
+          echo "::error::forecast ledger push failed after 3 tries"; exit 1

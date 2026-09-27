@@ -1102,6 +1102,14 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 
 ## D1 免费档读预算事故 + AI 时代创业楔子(2026-09-25/26;全文 `docs/ai-era-founder-2026-09-25.md`)
 
+> **2026-09-27 楔子已选定(工作流 34 个代理全部返回,三位策略师独立一致)**:**预测记录线**——舰队的 Metaculus bot 作为 0 号成员进 FutureEval Fall 2026,
+> 每条预测在关闭前进 `data/metaculus/forecasts.jsonl`(封存 + 摘要),AI 题另记不带 house prior 的影子预测,heartbeat 写
+> `data/fleet-forecast-record.json`(北极星 = 赛前已记录且已结算的题数)。**六个候选没有一个在三个反驳者面前幸存**,它排第一只因为
+> 第一笔钱不靠访客;网络层(结算台 / 复盘公地)全部锁在判定线后面(`fe-coverage-1005`、`fe-commons-intent-1130`)。
+> 09-26 建的 bpj 认领层三票 refuted(免费徽章挂了 55 天零回链),降级为零成本探针。**每次报告带出:bot 状态、账本条数、北极星、
+> 净美元;在 owner 打开 bot 之前,第一行就是「差 owner 的 key + `METACULUS_BOT_ENABLED=1`,且先合并本分支」。**
+> 全文与异议 `docs/ai-era-founder-2026-09-25.md` §二–§六。
+
 > **2026-09-27 对账**:事故以上一节(main 侧 `docs/d1-read-budget-2026-09-26.md`)为准——09-24、09-25、09-26 三天都用完,bpj `/api/reach` 每次约 18 万行是主因。下面的「规矩①–⑥」仍适用;bpj / agi / tds 的缓存实现以 main 的 `reach-cache.js` / `aggregate-cache.js` 为准。
 
 - **事故**:09-25 约 09:00–10:30 UTC 起账号超出 Workers Free 档 D1 **5,000,000 行读取/日**(全库之和,Cloudflare 2026-09-01 起强制,
