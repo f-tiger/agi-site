@@ -1,0 +1,121 @@
+# D1 免费读取额度：谁在用、为什么爆、怎么修（2026-09-26）
+
+Owner 问：「为什么一直报错…是 Cloudflare D1 数据库免费日配额耗尽导致的吗？哪些查询导致每天都消耗完了？」
+→「为什么 bpj 会全表扫描？这个设计是不是有问题」→「1-2-3 全部执行」。
+
+## 一、事实
+
+- **额度**：Cloudflare 免费档 D1 按**全账号**计，每天读 500 万行、写 10 万行，00:00 UTC（北京 08:00）重置。
+  **2026-09-01 起硬性执行**：超了以后读和写都被拒（错误码 7500），直到重置。
+- **截图里的报错就是它**：eco 部署自检 `/api/pulse` 500、事件写入 `{"ok":false}`、bpj 免费账号自检失败。
+  09-26 12:00 UTC 会话直接查 D1 仍返回 7500。
+- **仪器**：`tools/fleet/d1_usage.mjs` + `.github/workflows/d1-usage.yml`（只读，手动触发，<1 分钟）。
+  用仓库现有的 `CLOUDFLARE_API_TOKEN` 读 Cloudflare GraphQL 分析（`d1AnalyticsAdaptiveGroups`、`d1QueriesAdaptiveGroups`），
+  首跑 run 36240658410。数字是 Cloudflare 的抽样估算：占比可信，单个数字是近似值。
+
+| UTC 日 | 全账号读取 | 用完时刻 |
+|---|---:|---|
+| 09-19 → 09-23 | 226 万 – 361 万 | 没用完 |
+| 09-24 | 542 万 | 13 点那一小时 |
+| 09-25 | 687 万 | 08 点那一小时 |
+| 09-26 | 550 万 | 10 点那一小时 |
+
+| 接口 | 每次调用约读 | 09-25 占比 | 09-26 占比 |
+|---|---:|---:|---:|
+| bpj `/api/reach`（6 条 hits 查询） | 18 万行 | 58% | 45% |
+| agi `/api/trends` | 4.5 万行 | 2% | 29%（当天 53 次调用，仓库内调用方最多 6 次） |
+| agi `/api/pulse` | 9 万行 | 15% | 17% |
+| eco / tds / gridlings 统计接口 | — | ≈11% | ≈7% |
+| 会话里手动跑的一次性分析查询 | — | ≈7% | ≈1% |
+
+**副作用**：额度用完后事件写入同样失败。09-24 13:00、09-25 08:00、09-26 10:00 之后到当天结束，各站 D1 的访问与点击记录缺失；
+这几天按 D1 结算的判定线要注明。
+
+## 二、bpj 为什么全表扫描（设计缺陷）
+
+1. `hits` 是一次事件一行的流水表（d, path, lang, country, ref, ev），08-03 手工建，仓库里没有建表语句、没有保留期。
+   线上其实有 `idx_hits_d` 与 `idx_hits_path`（09-27 读 sqlite_master 才发现，本仓没有记录），但挡不住读取：
+   28 天窗口几乎就是整张表，按日期找到窗口之后仍要逐行判断 ev/ref。
+2. 真人统计靠 `ev='' AND ref != '' …` 筛选，这几列没有能用的索引，只能每行都读。28 天带来源真人约 400 次，读进来的 99% 没用。
+3. 09-17 起中间件把每次爬虫抓取写进同一张表（每天 4 000 多行），真人统计替爬虫数据买单。
+4. `reach.js` 的注释假设「CI 每天调一次」「`Cache-Control` 缓存一小时」——实际一天被调几十次，而 Cloudflare 不缓存 Pages Functions 的响应。
+
+读取量 ≈ 调用次数 × 表行数，两个都在涨，所以 09-24 越线是必然的。
+
+**更正（两次）**：会话在上一条回复里引用「`ev=''` 28 天约 2 200 条，建 `(ev,d)` 索引能省 90% 以上」——那是 08-20 的旧数。
+随后又据 Cloudflare 的逐条数字写成「`ev=''` 的行有两万多条」——**这一句也错了**：每次调用约 3.5 万行读的是整张表（含爬虫行），
+不是 `ev=''` 的行数。09-27 线上实数：全表 34 848 行 = 爬虫 23 815 + 事件/API 4 148 + `ev=''` 6 885（其中带来源 562）。
+改用只收录「带来源真人」的部分索引这个决定不受影响——它读的是 562 行，而不是 6 885 或 34 848。
+
+## 三、修了什么（bpj，2026-09-26）
+
+1. **服务端缓存** `lib/reach-cache.js`：Cache API，键只含版本号与 `days`，一小时内同 `days` 只算一次，并发未命中合并，
+   失败不缓存，缓存出错照常现算。部署自检断言响应头 `x-bpj-reach-cache` 在。
+   **部分失败也不缓存**（10d97e66）：上线后第一次线上计算（12:25 UTC，账号仍在额度边缘）主查询成功、商业触发那条被拒，
+   缺一块的结果被缓存了一小时；现在这种响应带 `partial:true`，缓存拒收，缓存版本 v2→v3。
+   同一时刻会话经 D1 查询接口仍收到 7500，而站点的 D1 绑定已能部分读写——额度用完后的拒绝并非对每条查询同时生效。
+2. **两个部分索引**（`migrations/0002_hits_indexes_bot_daily.sql`，`lib/hits-schema.js`）：
+   `hits_referred ON hits(d) WHERE ev='' AND ref IS NOT NULL AND ref != ''`（真人统计只读带来源的几百行）、
+   `hits_events ON hits(d, ev) WHERE ev != ''`（事件查询只读窗口内的事件与 API 行）。查询文字与改动前逐字相同或只多一个被蕴含的条件。
+3. **爬虫分表** `bot_daily(d, bot, path, country, n)`，WITHOUT ROWID，按天汇总计数；中间件只写它（表不存在时自建）；
+   历史 `ev='bot'` 行按原样汇总搬过去（计数守恒）后从 hits 删除。读法：次数 = `SUM(n)`，`bot` 列即原 `hits.ref`。
+
+门禁：`scripts/test-hits-schema.mjs`（50+ 项：迁移守恒与幂等、reach 实际发出的每条 hits 查询 EXPLAIN 必须走两个索引之一、
+迁移前后 reach 统计逐字相同、中间件只写 bot_daily、源码里无人再往 hits 写 `bot`）与 `scripts/test-reach-cache.mjs`（20 项，
+含端到端「第二次请求一条 hits 查询都不发」）。两者都做了改坏验证：12 个变异全红。
+
+**执行顺序**：代码先部署（D1 被拒期间部署，不花明天的额度）；零点额度恢复后由会话经 D1 查询接口执行迁移——
+先数 `ev='bot'` 行数与分组数，两者之和超过 6 万就把删除分两天做（写入额度同样是全账号 10 万行/天）；先删爬虫行再建索引
+（反过来每删一行还要多写一次索引）；然后在线上 D1 上对 reach 的查询跑 EXPLAIN QUERY PLAN 确认走索引。
+
+## 三点五、agi（owner 09-26「agi的也改了」）
+
+- **服务端缓存** `sites/agiscorecard/tools/analytics-worker/aggregate-cache.js`：pulse 1 小时、trends 30 分钟，规矩同 bpj
+  （失败与 `partial:true` 不缓存，响应头 `x-agi-aggregate-cache`，部署自检断言）。计算本体抽成 `pulseResponse()` / `trendsResponse()`。
+- **部分覆盖索引** `pageviews_human ON pageviews(day, path, ref_host, hits) WHERE ua_class = 'human'`
+  （`tools/analytics-worker/migrations/0001_pageviews_human_index.sql`）：两个接口发出的 5 条 pageviews 查询全部变成
+  「SEARCH … USING COVERING INDEX pageviews_human (day>?)」，只读窗口内的 human 行、不回表。
+- 门禁 `sites/agiscorecard/tools/test_analytics_d1.mjs`（25 项，8 个变异全红），已接进 agi 部署流程。
+  索引原计划与 bpj 迁移同一个零点执行，因写入额度顺延到 09-28 00:05 UTC（见下节）。判定线 `agi-d1-reads-1004`。
+
+## 三点六、线上执行（2026-09-27，零点额度恢复后）
+
+**bpj 迁移（经 D1 查询接口，按日期两批，每批先 INSERT、核对计数、再 DELETE）**
+
+| 步骤 | 写入行数 |
+|---|---:|
+| bot_daily ← d < 09-10（2 993 组） | 2 993 |
+| 删 hits 爬虫行 d < 09-10 | 4 089 |
+| bot_daily ← d ≥ 09-10（17 069 组） | 17 069 |
+| 删 hits 爬虫行 d ≥ 09-10 | 19 726 |
+| `hits_referred`（562 条） | 563 |
+| `hits_events`（4 148 条） | 4 149 |
+| **合计** | **48 589** |
+
+- 守恒：bot_daily `SUM(n)` = 迁移的 23 815 + 中间件 09-26 已记 792 + 09-27 已记 3；09-26 单日 858 + 792 = 1 650，逐项对上。
+- D1 对 DELETE 按删除行数计写入，hits 上已有的两个索引不另计；CREATE INDEX 按条目计。
+- 线上执行计划：真人线 → `SEARCH hits USING INDEX hits_referred (d>?)`；事件 → `SEARCH hits USING INDEX hits_events (d>?)`；
+  商业触发（7 个固定路径）→ `SEARCH hits USING INDEX idx_hits_path (path=?)`。
+- 实测读取：真人线每条 393 行、事件 5 000 行、商业触发 7 行 → **一次 `/api/reach` 约 7 000 行（改前约 18 万）**，再叠加一小时缓存。
+- 线上响应头：`/api/reach?days=7` miss → hit（max-age 3600 → 3599）；agi `/api/pulse` 与 `/api/trends` 同样 miss → hit。
+  agi 部署手动重跑一次全绿（run 36281663006，含线上 `x-agi-aggregate-cache` 断言）。
+
+**agi 索引顺延到 09-28 00:05 UTC**：写入同样是全账号每天 10 万行。`d1_usage` 新增的写入表显示 09-20→26 全账号日常写入
+1.6 万–3.1 万行/天；今天 48 589 + 日常最多 3.1 万 ≈ 8 万，再加 `pageviews_human` 的 20 964 条会贴线或越线——越线等于全舰队
+当天剩余时间的事件写入全部被拒，正是这次要修的那种事故。缓存已上线，今天只少一个索引的收益；判定线 `agi-d1-reads-1004`
+的窗口从 09-28 开始，零点建索引不影响读数。建好之后 agi 每次 human 页面浏览的 upsert 多一次索引写入（约 1 400 行/天）。
+
+**门禁跟着线上改**：两个测试夹具原来按「没有索引」建表，现在照抄线上 sqlite_master（bpj 的 `idx_hits_d`/`idx_hits_path`，
+agi 的 `idx_pv_day`/`idx_pv_path`/`idx_pv_ref`），执行计划断言因此测到的是线上规划器真实的选择：真人线必须走部分索引、
+点名路径的查询可以按路径等值查、任何查询退回按日期索引即红。照抄之后当场抓到一处：reach 的 `ORDER BY n DESC` 没有次序键，
+换了执行计划后同票数的行顺序就变——`LIMIT 30` 的来源榜里谁排进去是随机的。五条 ORDER BY 已补次序键。
+
+## 四、没修的与需要决定的
+
+- ~~agi `/api/trends` 与 `/api/pulse`~~：见上节，09-26 已改。
+- **heartbeat 的五个脚本各自重复拉同一组端点**、eco 部署的 `household_live.mjs` 每次都读 bpj/agi/tds 的统计接口：
+  缓存上线后这些重复调用基本命中缓存，暂不改。
+- **Workers Paid（每月 5 美元，新增支出，owner 决定）**：含每月 250 亿行读取，当前用量约每月 2 亿行。它能立刻消除每日被拒，
+  但解决不了「表随爬虫增长、每次调用整表扫描」这件事，所以不代替上面的修复。
+
+判定线 `bpj-d1-reads-1004`：09-28 → 10-03 每天 baipiaoji-hits 读取 ≤ 50 万行。

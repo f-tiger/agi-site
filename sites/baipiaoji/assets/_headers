@@ -34,3 +34,37 @@
   Cache-Control: public, max-age=600, stale-while-revalidate=86400
 /assets/tok/*
   Cache-Control: public, max-age=31536000, immutable
+
+/site-journeys.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/site-journeys.md
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/en/site-journeys.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/en/site-journeys.md
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+# Account pages may receive one-time credentials in URL fragments.
+/account
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow
+/account.html
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow
+/en/account
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow
+/en/account.html
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow

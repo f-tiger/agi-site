@@ -1,0 +1,42 @@
+# TDS Delivery Record v1
+
+Published: 2026-09-25
+Tool: https://thedollscout.com/delivery-evidence
+
+This is an open file inventory, not a certificate. You can implement a compatible reader without using TDS. The format and this specification are offered under CC0-1.0. Original documents and user notes retain their owners' rights.
+
+Required fields:
+format: "tds-delivery-record"
+version: 1
+files: array of 1–10 objects, each with name (string), bytes (integer), sha256 (64 lowercase hexadecimal characters).
+The current tool limits each file to 20 MiB and total files to 100 MiB. File names must be unique. A verifier must reject unsupported versions and malformed digests.
+
+Descriptive fields:
+project: user-supplied label
+notes.scope: user-supplied scope and source reference, or empty
+notes.delivery: user-supplied delivery details and source reference, or empty
+notes.acceptance: user-supplied client response and source reference, or empty
+createdAtDevice: ISO 8601 timestamp from an untrusted device clock
+timeSource: "Unverified device clock"
+claimsSource: "User-entered; not independently verified"
+attestation: recipientVerified, deliveryVerified, consentVerified and bitcoinAnchored are all false. Imported claims must never be treated as independently verified.
+
+Verification:
+Recompute SHA-256 over the exact bytes of each selected file. Compare the name, length and digest with the inventory. Report matching, changed, missing and extra files separately. A renamed file will appear as missing and extra. Matching all entries confirms equality with this inventory only. The inventory itself is unsigned, editable and unauthenticated. It does not establish when a file existed or who prepared it.
+
+Independent checks:
+Linux: sha256sum -- example.pdf
+macOS: shasum -a 256 -- example.pdf
+PowerShell: Get-FileHash -Algorithm SHA256 -LiteralPath 'example.pdf'
+Compare the resulting digest with the sha256 field; also check the byte length and file name. These commands do not verify notes, timestamps or identity.
+
+Privacy and sharing:
+The tool processes file bytes locally. JSON and HTML exports include file names and notes. They are not encrypted. Review them before sharing. The page share control includes only the public tool URL. No file hash or private notes are sent to TDS. Optional demand research records only fixed delivery-frequency and plan-choice categories, with no account or contact information.
+
+Limits:
+No authorship, delivery, consent, payment authorization, legal validity, trusted timestamp or Bitcoin anchoring is established. SHA-256 matching does not make user-entered claims true. No chargeback outcome is promised. Preserve original messages and processor evidence separately.
+
+Sources:
+https://docs.stripe.com/disputes/best-practices
+https://opentimestamps.org/
+https://creativecommons.org/publicdomain/zero/1.0/

@@ -71,6 +71,7 @@
       $('share-status').textContent = t.copyError;
     }
   });
+  $('supplier-template')?.addEventListener('click', () => ping('evidence_download'));
   clearResult();
   ping('page_view');
 })();

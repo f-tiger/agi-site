@@ -1,6 +1,6 @@
 {
  "note": "eco's standing expansion queue (owner 2026-09-24: 「站点应该持续扩展」). The daily fleet task (block C) takes the first item with status 'queued' and an empty 'blocked_by', builds it through the kgr-page checklist, flips it to 'built' with the page date and a bet id, and never builds more than one page a day. When fewer than three items are 'queued', the same run restocks from the season calendar in data/autopilot/demand-digest.md and records every SERP verdict here, rejections included, so no term is researched twice. Gate: tools/check_expansion_queue.py.",
- "updated": "2026-09-24",
+ "updated": "2026-09-25",
  "items": [
   {
    "slug": "beheizter-waeschestaender",
@@ -70,7 +70,7 @@
    "next_action": ""
   },
   {
-   "slug": "anker-solarbank-probleme",
+   "slug": "balkonspeicher-anker-solarbank-probleme",
    "working_title": "Anker Solarbank lädt nicht oder speist nicht ein: die Ursachen in der Reihenfolge",
    "cluster": "energie-sparen",
    "evidence": [
@@ -87,9 +87,11 @@
    },
    "cannibalization": "growatt-noah-2000-probleme (anderes Gerät) und balkonspeicher-winter-frost (Frost, nicht Fehlersuche) — beide verlinken",
    "monetisation": "diagnosis-first shelf nach dem gewonnenen Growatt-Muster (eco-growatt-diagnosis-0925): Energiekostenmessgerät zuerst, die Solarbank selbst nur als Tausch-Slot",
-   "status": "queued",
+   "status": "built",
    "blocked_by": "",
-   "next_action": "Jede gerätespezifische Aussage (Neustart per Tastenkombination, Winter-Kalibrierung, Einspeise-Stopp bei niedrigem Ladestand) nur aus Ankers eigenen Support-Seiten, mit Abrufdatum zitiert. Fehlercodes nicht aus Foren übernehmen. Symptome nach Reihenfolge: erst messen (0 W? Ladestand? App/WLAN?), dann Firmware, dann Wechselrichter-Kopplung. Keine EcoFlow-Erwähnung."
+   "next_action": "Published 2026-09-25 with model-specific official update guidance, a support checklist and purchase options after diagnosis. The unpublished slug gained the existing storage prefix so category discovery remains correct. Near-term evaluation is documented in docs/revenue-actions-2026-09-25.md; the storage-cluster parent experiment remains eco-storage-spring-0415.",
+   "built": "2026-09-25",
+   "bet": "eco-storage-spring-0415"
   },
   {
    "slug": "marstek-venus-probleme",
@@ -110,7 +112,7 @@
    "monetisation": "diagnosis-first shelf (Energiekostenmessgerät, Smart-Meter-Lesekopf nur wenn die Herstellerdoku ihn nennt), Venus selbst nur als Tausch-Slot",
    "status": "queued",
    "blocked_by": "",
-   "next_action": "Erst bauen, wenn anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Versionen), nicht als Tatsache übernehmen."
+   "next_action": "Erst bauen, wenn balkonspeicher-anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Versionen), nicht als Tatsache übernehmen."
   },
   {
    "slug": "heizluefter-riecht-verbrannt",

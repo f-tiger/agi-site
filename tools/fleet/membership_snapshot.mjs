@@ -11,6 +11,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {sites} from '../revenue-studio/catalog.mjs';
 import {memberSecret} from '../member-studio/ops.mjs';
+import {membershipTotals} from './membership_totals.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '../..');
@@ -83,19 +84,15 @@ async function inspectSite(site) {
 }
 
 const rows = await Promise.all(siteCodes.map(inspectSite));
-const totals = rows.reduce((acc, row) => {
-  for (const key of ['paid_orders', 'paid_members', 'active_members', 'unexpired_pending']) {
-    const value = row.admin[key];
-    if (Number.isFinite(value)) acc[key] += value;
-  }
-  return acc;
-}, {paid_orders: 0, paid_members: 0, active_members: 0, unexpired_pending: 0});
+// An unread counter is unknown, never a zero-revenue observation.
+const totals = membershipTotals(rows);
 const snapshot = {
   schema_version: 1,
   generated: new Date().toISOString(),
   source: 'same-origin /api/member and /api/member-admin stats',
   privacy: 'aggregate counters only; no member, order, support, token or wallet data',
   ok: rows.every(row => row.public.ok && row.public.ready),
+  counters_complete: rows.every(row => row.admin.ok),
   sites: rows,
   totals
 };

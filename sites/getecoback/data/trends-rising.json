@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-25",
+ "fetched": "2026-09-26",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -67,58 +67,51 @@
    "fetched": "2026-09-25"
   },
   "infrarotheizung": {
-   "auto": [
-    "infrarotheizung",
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung bild",
-    "infrarotheizung standgerät",
-    "infrarotheizung test",
-    "infrarotheizungen",
-    "infrarotheizung stromverbrauch",
-    "infrarotheizung decke mit licht"
-   ],
    "rising": [
     {
-     "q": "infrarotheizung wand",
-     "v": "new"
+     "q": "infrarotheizung für 20 qm",
+     "v": 42350
     },
     {
-     "q": "infrarotheizung decke",
-     "v": "new"
+     "q": "infrarotheizung test stiftung warentest",
+     "v": 41250
     },
     {
-     "q": "infrarotheizung badezimmer",
-     "v": "new"
+     "q": "infrarotheizung bauhaus",
+     "v": 35900
     },
     {
-     "q": "infrarotheizung bild",
-     "v": "new"
+     "q": "welltherm infrarotheizung",
+     "v": 33450
     },
     {
-     "q": "infrarotheizung standgerät",
-     "v": "new"
+     "q": "mobile heizung",
+     "v": 28700
     },
     {
-     "q": "infrarotheizung test",
-     "v": "new"
+     "q": "redwell infrarotheizung preisliste",
+     "v": 28600
     },
     {
-     "q": "infrarotheizungen",
-     "v": "new"
+     "q": "trotec",
+     "v": 27950
     },
     {
-     "q": "infrarotheizung stromverbrauch",
-     "v": "new"
+     "q": "infrarotheizung wieviel watt für 20 qm",
+     "v": 24650
     },
     {
-     "q": "infrarotheizung decke mit licht",
-     "v": "new"
+     "q": "stand infrarotheizung",
+     "v": 21750
+    },
+    {
+     "q": "schmidbauer infrarotheizung",
+     "v": 21600
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-25"
+   "source": "related-queries",
+   "fetched": "2026-09-26",
+   "polluted": false
   },
   "luftentfeuchter": {
    "auto": [
@@ -272,19 +265,31 @@
    "rising": [
     {
      "q": "krups kaffeevollautomat intensity milk",
-     "v": 16500
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 13950
+     "v": 16300
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 10550
+     "v": 11250
     },
     {
      "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 9600
+     "v": 10150
+    },
+    {
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 6600
+    },
+    {
+     "q": "krups ea897b evidence ecodesign kaffeevollautomat",
+     "v": 6100
+    },
+    {
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 1150
+    },
+    {
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 650
     },
     {
      "q": "de'longhi kaffeevollautomat",
@@ -293,10 +298,14 @@
     {
      "q": "samsung kaffeevollautomat",
      "v": 100
+    },
+    {
+     "q": "mini kaffeevollautomat",
+     "v": 80
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-17",
+   "fetched": "2026-09-26",
    "polluted": false
   },
   "akku staubsauger": {

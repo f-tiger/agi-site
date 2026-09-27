@@ -2,10 +2,14 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-09-25T11:29:10.388Z",
-  "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed.",
+  "generated": "2026-09-26T11:04:09.189Z",
+  "cache_seconds": 300,
+  "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
     "doc_view": 4
+  },
+  "excluded": {
+    "doc_ci": 9
   },
   "daily": [
     {
@@ -30,69 +34,97 @@
       "n": 4
     }
   ],
-  "tool_views": 4,
-  "excluded": {
-    "doc_ci": 4
-  },
   "crawler_fetches": [
     {
       "path": "/",
-      "n": 25
+      "n": 40
+    },
+    {
+      "path": "/de/pdf-to-text",
+      "n": 7
     },
     {
       "path": "/de/learn/pdf-reading-order",
       "n": 6
     },
     {
-      "path": "/pdf-to-text",
-      "n": 4
-    },
-    {
-      "path": "/pdf-batch-audit",
-      "n": 4
+      "path": "/de/pdf-batch-audit",
+      "n": 6
     },
     {
       "path": "/pdf-accessibility-checker",
-      "n": 4
+      "n": 6
     },
     {
-      "path": "/learn/scanned-pdf-vs-text-pdf",
-      "n": 4
+      "path": "/pdf-batch-audit",
+      "n": 6
+    },
+    {
+      "path": "/zh/learn/pdf-accessibility-checklist",
+      "n": 6
+    },
+    {
+      "path": "/de/pdf-accessibility-checker",
+      "n": 5
     },
     {
       "path": "/learn/pdf-reading-order",
+      "n": 5
+    },
+    {
+      "path": "/learn/scanned-pdf-vs-text-pdf",
+      "n": 5
+    },
+    {
+      "path": "/pdf-to-text",
+      "n": 5
+    },
+    {
+      "path": "/zh/",
+      "n": 5
+    },
+    {
+      "path": "/zh/learn/pdf-reading-order",
+      "n": 5
+    },
+    {
+      "path": "/zh/pdf-batch-audit",
+      "n": 5
+    },
+    {
+      "path": "/compare-pdf-text",
       "n": 4
     },
     {
-      "path": "/de/pdf-to-text",
+      "path": "/de/compare-pdf-text",
       "n": 4
     },
     {
-      "path": "/de/pdf-batch-audit",
+      "path": "/de/learn/pdf-accessibility-checklist",
+      "n": 4
+    },
+    {
+      "path": "/de/learn/scanned-pdf-vs-text-pdf",
+      "n": 4
+    },
+    {
+      "path": "/learn/pdf-accessibility-checklist",
+      "n": 4
+    },
+    {
+      "path": "/zh/learn/scanned-pdf-vs-text-pdf",
+      "n": 4
+    },
+    {
+      "path": "/zh/pdf-accessibility-checker",
       "n": 4
     },
     {
       "path": "/zh/pdf-to-text",
-      "n": 3
+      "n": 4
     },
     {
-      "path": "/zh/pdf-batch-audit",
-      "n": 3
-    },
-    {
-      "path": "/zh/pdf-accessibility-checker",
-      "n": 3
-    },
-    {
-      "path": "/zh/learn/scanned-pdf-vs-text-pdf",
-      "n": 3
-    },
-    {
-      "path": "/zh/learn/pdf-reading-order",
-      "n": 3
-    },
-    {
-      "path": "/zh/learn/pdf-accessibility-checklist",
+      "path": "/delivery-evidence",
       "n": 3
     },
     {
@@ -100,32 +132,86 @@
       "n": 3
     },
     {
-      "path": "/zh/",
-      "n": 3
+      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
+      "n": 2
     },
     {
-      "path": "/learn/pdf-accessibility-checklist",
-      "n": 3
+      "path": "/de/",
+      "n": 1
     },
     {
-      "path": "/de/pdf-accessibility-checker",
-      "n": 3
+      "path": "/de/delivery-evidence",
+      "n": 1
     },
     {
-      "path": "/de/learn/scanned-pdf-vs-text-pdf",
-      "n": 3
+      "path": "/document-assets/text/de/compare-pdf-text.txt",
+      "n": 1
     },
     {
-      "path": "/de/learn/pdf-accessibility-checklist",
-      "n": 3
+      "path": "/document-assets/text/de/delivery-evidence.txt",
+      "n": 1
     },
     {
-      "path": "/de/compare-pdf-text",
-      "n": 3
+      "path": "/document-assets/text/de/learn/pdf-accessibility-checklist.txt",
+      "n": 1
     },
     {
-      "path": "/compare-pdf-text",
-      "n": 3
+      "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/de/pdf-accessibility-checker.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/de/pdf-batch-audit.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/en/compare-pdf-text.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/en/delivery-evidence.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/en/learn/pdf-reading-order.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/en/pdf-to-text.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/compare-pdf-text.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/delivery-evidence.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/learn/pdf-accessibility-checklist.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/learn/pdf-reading-order.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/pdf-accessibility-checker.txt",
+      "n": 1
+    },
+    {
+      "path": "/document-assets/text/zh/pdf-batch-audit.txt",
+      "n": 1
+    },
+    {
+      "path": "/zh/delivery-evidence",
+      "n": 1
     }
-  ]
+  ],
+  "tool_views": 4,
+  "query_rows_read": 3607
 }

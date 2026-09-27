@@ -1,7 +1,7 @@
 {
 	"vars": {"MEMBERS_ENABLED":"true"},
   "name": "ecoback",
-	"main": "src/worker.js",
+	"main": "src/cached-worker.mjs",
 	"compatibility_date": "2026-07-01",
 	"routes": [
 		{ "pattern": "getecoback.com/*", "zone_name": "getecoback.com" },

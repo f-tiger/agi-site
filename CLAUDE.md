@@ -1028,6 +1028,16 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
 
+## AI agents 创业机会点:MCP 信任层撤回,哈佛 = bpj 的编程智能体读者(2026-09-25,owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…」;全文 `docs/agents-venture-2026-09-25.md`)
+
+- **MCP 服务器信任层(普查 + 工具列表变更流)不做**:官方注册表 ≥32 100 条、19 342 条带远程端点、约每月翻倍,抽样 55.5% 免凭据可连——问题是真的,但
+  **mcpcensus.com(09-04 起,同名同形,收费未开通)+ mcp-drift-registry + CSOAI + Apify 两个 actor(各 2 用户)**已在同月占满独立开发者那一格,付费证据为零;
+  本站 MCP 的第三方调用方正是这些普查者。管线先建后撤,一行未上线。**「免 key 可连的 MCP 服务器」清单同样不做**(推荐未审查服务器 = tool poisoning 渠道)。
+- **扎克伯格路径只抄机制(先在一个小网络做到饱和,每步有门槛,最后才变现)**。舰队唯一有密度的 agents 网络是 **bpj 的编程智能体读者**(coding 61/395,
+  agent 类目 5)。第 0 阶段已做:补 Kiro、OpenAI Codex,重核 Cursor,rising 种子换成 cursor / claude code;判定线 `bpj-coding-harvard-1025`。
+- **全舰队适用的教训**:每页都带的外壳里只要有一个精确数字(导航计数、页脚总数、"最近一条"),任何一次编辑都会把全站 lastmod 刷新、IndexNow 整站重推。
+  bpj 的修法是 `scripts/lastmod-hash.mjs` 忽略外壳 + 能红的测试;**其他带 sitemap lastmod 的站遇到同形状先查外壳里的数字**。
+
 ## 舰队数据检查:三条判定线差点被自检撑过线(2026-09-24,owner:「整个舰队数据检查下」;全文 `docs/fleet-data-check-2026-09-24.md`)
 
 - **引用任何「机器面调用」读数前,先按 UA 剔本仓自检**:SR 80 次 mcp_call 里 58 次是 deploy 自检(45 次 selfcheck UA + 13 次没带 `-A`
@@ -1071,6 +1081,24 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   **从来没被测过**。本轮已在 SR `/mcp` 补齐:两条可复制安装指令 + 复制即落 `mcp_install_click`(只记客户端名)
   + `/e` 白名单 + 部署自检断言页面还带着它。**这不是新工具,是把「被发现 → 被装上」变成可读的数。**
   判定线:`sr-mcp-install-1022`(10-22,≥1 次复制)、`fleet-mcp-instrument-1022`(10-22,≥2 个站的机器面可读)。
+
+## D1 免费读取额度:全账号每天 500 万行,09-24 起连续三天白天用完(2026-09-26;全文 `docs/d1-read-budget-2026-09-26.md`)
+
+- **症状**:各站部署自检 `/api/pulse` 500、事件写入 `{"ok":false}`、bpj 账号自检失败——D1 返回 7500「exceeded D1's free tier daily row read limit」。
+  **Cloudflare 自 2026-09-01 起硬性执行**,超了读写都拒到 00:00 UTC(北京 08:00)。**额度用完后事件也写不进去,当天后半段的 D1 统计缺失**,
+  按 D1 结算判定线时要注明 09-24 13:00、09-25 08:00、09-26 10:00 之后的缺口。
+- **先看谁在用,别猜**:dispatch `.github/workflows/d1-usage.yml`(只读,<1 分钟;main 上可手动触发)→ 每库每日读取、每天越线的小时、
+  逐条查询的 rows/call 与调用次数。会话自己进不了 Cloudflare 分析面板,这是唯一的逐条读数来源。
+- **09-26 读数**:bpj `/api/reach` 45–58%、agi `/api/trends` 2–29%、agi `/api/pulse` 15–17%。全是「公开统计接口每次请求现算 + 整表扫描」,
+  **`Cache-Control` 头对 Worker/Pages Functions 的响应不起作用**,只有 Cache API 才挡得住重复计算(eco 09-26、tds 09-25 已加,bpj 09-26 已加)。
+- **规矩**:新增或修改任何会被反复调用的 D1 统计接口 → ①服务端缓存(Cache API)②查询要走索引(写个 EXPLAIN 断言)③别让一个共享路径
+  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口 09-26 owner 授权后已照 bpj 的做法改**(服务端缓存 + `pageviews_human` 部分覆盖索引,`sites/agiscorecard/tools/test_analytics_d1.mjs`);
+  Workers Paid(5 美元/月)是 owner 的支出决定,它能消除每日被拒,但不代替修查询。
+- **写入额度同样是全账号、每天 10 万行、越线即拒**:全账号日常写入 1.6–3.1 万行/天(`d1-usage.yml` 09-27 起同时报写入)。
+  **一次性迁移先按这个余量排期**,放不下就分天做——越线的代价是全舰队当天剩余时间的事件写入全部丢失。
+  09-27:bpj 迁移已执行(48 589 行写入,一次 reach 从约 18 万行降到约 7 000 行);agi 索引(20 964 条)因此顺延到 09-28 00:05 UTC。
+- **仓库里的建表语句不等于线上**:bpj hits 与 agi pageviews 在线上都有仓库里没有记录的索引。写 EXPLAIN 断言前先读线上 `sqlite_master`,
+  让测试夹具照抄它,否则断言测的是一个不存在的数据库。
 
 ## D1 免费档读预算事故 + AI 时代创业楔子(2026-09-25/26;全文 `docs/ai-era-founder-2026-09-25.md`)
 

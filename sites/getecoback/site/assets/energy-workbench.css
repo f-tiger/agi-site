@@ -99,3 +99,5 @@ button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visi
  .notes h2{font-size:14px}
  a{color:inherit;text-decoration:none}
 }
+
+.next-steps ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.next-steps li{border-top:1px solid var(--line);padding-top:16px}.next-steps a{font-weight:750;display:inline-block;padding:8px 0}.next-steps li p{font-size:14px;color:var(--muted);margin:4px 0}.next-steps>p{font-size:15px}@media print{.next-steps{display:none!important}}

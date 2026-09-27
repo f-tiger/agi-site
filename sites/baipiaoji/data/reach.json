@@ -1,16 +1,16 @@
 {
-  "generated": "2026-09-25",
+  "generated": "2026-09-26",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-28",
-  "until": "2026-09-25",
+  "since": "2026-08-29",
+  "until": "2026-09-26",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 395,
-  "per_day": 14.1,
+  "humans_referred": 392,
+  "per_day": 14,
   "by_kind": {
-    "tool": 300,
-    "category": 50,
-    "page": 39,
+    "tool": 301,
+    "category": 48,
+    "page": 37,
     "alternatives": 2,
     "judgement": 1,
     "plans": 1,
@@ -23,7 +23,7 @@
     },
     {
       "cat": "coding",
-      "n": 61
+      "n": 62
     },
     {
       "cat": "api",
@@ -35,11 +35,11 @@
     },
     {
       "cat": "office",
-      "n": 19
+      "n": 18
     },
     {
       "cat": "image",
-      "n": 16
+      "n": 15
     },
     {
       "cat": "writing",
@@ -83,12 +83,17 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 33
+      "n": 32
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 17
+      "n": 16
+    },
+    {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 16
     },
     {
       "slug": "fireworks",
@@ -101,14 +106,14 @@
       "n": 14
     },
     {
-      "slug": "cline",
-      "cat": "coding",
-      "n": 14
-    },
-    {
       "slug": "google-flow",
       "cat": "video",
       "n": 7
+    },
+    {
+      "slug": "deepl",
+      "cat": "writing",
+      "n": 6
     },
     {
       "slug": "fastgpt",
@@ -118,11 +123,6 @@
     {
       "slug": "tongyi",
       "cat": "chat",
-      "n": 5
-    },
-    {
-      "slug": "deepl",
-      "cat": "writing",
       "n": 5
     },
     {
@@ -148,11 +148,6 @@
     {
       "slug": "fish-audio",
       "cat": "audio",
-      "n": 3
-    },
-    {
-      "slug": "quillbot",
-      "cat": "writing",
       "n": 3
     },
     {
@@ -231,8 +226,18 @@
       "n": 2
     },
     {
+      "slug": "quillbot",
+      "cat": "writing",
+      "n": 2
+    },
+    {
       "slug": "runway",
       "cat": "video",
+      "n": 2
+    },
+    {
+      "slug": "zhipu-glm",
+      "cat": "api",
       "n": 2
     },
     {
@@ -266,13 +271,8 @@
       "n": 1
     },
     {
-      "slug": "tongyi-lingma",
-      "cat": "coding",
-      "n": 1
-    },
-    {
-      "slug": "windsurf",
-      "cat": "coding",
+      "slug": "qwen-chat",
+      "cat": "chat",
       "n": 1
     }
   ],
@@ -289,19 +289,23 @@
     },
     {
       "path": "coding",
-      "n": 35
+      "n": 34
     },
     {
       "path": "kimi",
-      "n": 33
+      "n": 32
     },
     {
       "path": "/",
-      "n": 30
+      "n": 28
     },
     {
       "path": "feishu-miaoji",
-      "n": 17
+      "n": 16
+    },
+    {
+      "path": "cline",
+      "n": 16
     },
     {
       "path": "fireworks",
@@ -309,10 +313,6 @@
     },
     {
       "path": "haiper",
-      "n": 14
-    },
-    {
-      "path": "cline",
       "n": 14
     },
     {
@@ -328,15 +328,15 @@
       "n": 7
     },
     {
+      "path": "deepl",
+      "n": 6
+    },
+    {
       "path": "fastgpt",
       "n": 5
     },
     {
       "path": "tongyi",
-      "n": 5
-    },
-    {
-      "path": "deepl",
       "n": 5
     },
     {
@@ -356,15 +356,7 @@
       "n": 4
     },
     {
-      "path": "image",
-      "n": 3
-    },
-    {
       "path": "fish-audio",
-      "n": 3
-    },
-    {
-      "path": "quillbot",
       "n": 3
     },
     {
@@ -394,6 +386,10 @@
     {
       "path": "jianying",
       "n": 3
+    },
+    {
+      "path": "image",
+      "n": 2
     },
     {
       "path": "anythingllm",
@@ -428,7 +424,15 @@
       "n": 2
     },
     {
+      "path": "quillbot",
+      "n": 2
+    },
+    {
       "path": "runway",
+      "n": 2
+    },
+    {
+      "path": "zhipu-glm",
       "n": 2
     },
     {
@@ -476,6 +480,10 @@
       "n": 1
     },
     {
+      "path": "qwen-chat",
+      "n": 1
+    },
+    {
       "path": "tongyi-lingma",
       "n": 1
     },
@@ -512,30 +520,22 @@
       "n": 1
     },
     {
-      "path": "deepinfra",
-      "n": 1
-    },
-    {
       "path": "dujia",
-      "n": 1
-    },
-    {
-      "path": "elevenlabs",
       "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 174
+      "n": 173
     },
     {
       "ref": "cn.bing.com",
-      "n": 126
+      "n": 128
     },
     {
       "ref": "www.bing.com",
-      "n": 22
+      "n": 21
     },
     {
       "ref": "chatgpt.com",
@@ -550,19 +550,19 @@
       "n": 8
     },
     {
-      "ref": "www.perplexity.ai",
-      "n": 6
-    },
-    {
-      "ref": "www.baidu.com",
-      "n": 6
-    },
-    {
       "ref": "m.baidu.com",
       "n": 6
     },
     {
       "ref": "yandex.com",
+      "n": 5
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 5
+    },
+    {
+      "ref": "www.baidu.com",
       "n": 5
     },
     {
@@ -578,10 +578,6 @@
       "n": 4
     },
     {
-      "ref": "yandex.com.tr",
-      "n": 2
-    },
-    {
       "ref": "www.google.com.hk",
       "n": 2
     },
@@ -591,6 +587,10 @@
     },
     {
       "ref": "yandex.kz",
+      "n": 1
+    },
+    {
+      "ref": "yandex.com.tr",
       "n": 1
     },
     {
@@ -611,7 +611,7 @@
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 3
+      "n": 2
     },
     {
       "ref": "chatgpt.com",
@@ -640,12 +640,12 @@
     }
   ],
   "events": {
-    "sub_view": 435,
-    "go": 121,
+    "sub_view": 430,
+    "go": 117,
     "home": 12,
     "star": 10,
     "calc": 9,
-    "biz": 8,
+    "biz": 9,
     "sub_submit": 5,
     "sheet_dl": 5,
     "sub_ok": 4,

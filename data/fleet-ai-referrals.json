@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-25T13:08:39Z",
+ "generated": "2026-09-26T12:35:36Z",
  "window_days": 28,
  "ok": false,
  "read_via": "endpoints (partial)",
@@ -22,17 +22,17 @@
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 19,
- "fleet_human_pv": 399,
- "fleet_human_pv_excl_flagged": 399,
+ "fleet_ai_ref": 18,
+ "fleet_human_pv": 395,
+ "fleet_human_pv_excl_flagged": 395,
  "sites": [
   {
    "site": "baipiaoji",
-   "human_pv": 399,
-   "ai_ref": 19,
+   "human_pv": 395,
+   "ai_ref": 18,
    "by_host": {
     "chatgpt.com": 12,
-    "www.perplexity.ai": 6,
+    "www.perplexity.ai": 5,
     "kagi.com": 1
    },
    "via": "endpoint"

@@ -1589,10 +1589,10 @@
       "free": "The free tier includes an allowance of premium-model requests plus unlimited basic completion.",
       "how": "Download from the site and sign up by email. Some models require access outside mainland China.",
       "limits": {
-        "quota": "The Hobby tier is real and needs no card: Agent, Chat and Tab completions (Auto model) with officially \"limited\" usage — **current official pages publish no figures**. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
-        "wall": "Hitting the unpublished ceiling throttles Agent/completions until you upgrade to Pro ($20/month); your account settings page shows the actual remaining allowance.",
-        "source": "Cursor official pricing page and docs (cursor.com, verified via search-index quotes; no current official free-tier figures — the old numbers are stale)",
-        "checked": "2026-08-03",
+        "quota": "The Hobby free tier is real and needs no card. On 2026-09-25 the official pricing page lists exactly three things under Hobby: no credit card required, Limited Agent requests, and access to Composer — **still no figures**. Chat and Tab completion (Auto model), which we recorded on 08-03, do not appear in the free-tier list this time; the page does not say they were removed, so we only repeat what it says. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
+        "wall": "Hitting the unpublished ceiling limits Agent until you upgrade to an Individual plan (the same column switches between Pro, Pro+ and Ultra; the static text that day shows only Pro at $20/month). The official FAQ: every plan includes an amount of model usage, and on-demand usage lets you keep going after it is consumed, billed in arrears; your account settings page shows the actual remaining allowance.",
+        "source": "Cursor official pricing page https://cursor.com/pricing (fetched directly 2026-09-25; still no official free-tier figures — the old numbers are stale)",
+        "checked": "2026-09-25",
         "paid": {
           "tiers": "Hobby free; Pro $20/mo (~$20 usage pool at API prices + Auto pool); Pro+ $60/mo (~$70 pool); Ultra $200/mo (~$400 pool); Teams $40/user/mo",
           "unit_cost": "Post-June-2025 billing: model usage metered at provider API prices against a dollar pool; two readings for Ultra: fixed $400 pool (docs) vs '20x Pro usage' (marketing)",
@@ -3514,6 +3514,50 @@
         "wall": "There is no usage wall, but two uncertainties are worth knowing: the free terms are tied to the alpha-preview Binary Preview Terms and may change once the preview ends, and the vendor describes the project as public alpha with breaking changes expected. macOS and Linux only for now.",
         "source": "The ante.run and antigma.ai official sites plus the AntigmaLabs/ante-preview README on GitHub (verified through search-index citations; the pages were not opened directly because the egress proxy blocks vendor domains)",
         "checked": "2026-08-17"
+      }
+    },
+    "kiro": {
+      "name": "Kiro",
+      "tagline": "An AI IDE and coding agent with vibe and spec modes — the perpetual free tier gives 50 credits a month",
+      "free": "The perpetual Kiro Free tier: 50 credits a month, with open-weight models and Claude Sonnet 4.5 (rate-limited).",
+      "how": "Download the Kiro IDE (or use the Kiro CLI or the web app) and sign in with a social login or AWS Builder ID to start on the free tier.",
+      "limits": {
+        "quota": "The perpetual Kiro Free tier: 50 credits a month. Free users who signed up with a social login or AWS Builder ID get Claude Sonnet 4.5 and open-weight models (Kiro names Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.1), subject to rate limits. A credit is a unit of work per prompt: Kiro says a simple prompt can cost less than 1 credit, a complex one such as executing a spec task usually costs more, and different models consume at different rates — so 50 credits is not 50 questions.",
+        "wall": "The allowance resets each billing month and unused credits do not roll over. Add-on credits ($0.04 each) are listed only under the paid plans, so going further means upgrading; paid plans add premium models including Auto, Claude Sonnet 5 and Claude Opus 5 (not every model is available in every country or region). A subscription may be used in the Kiro IDE, Kiro CLI, Kiro on the web, Kiro Crew, ACP-compatible IDEs and development automation such as CI/CD reviews; routing requests through third-party automation harnesses such as OpenClaw is explicitly not permitted.",
+        "source": "Kiro official pricing page https://kiro.dev/pricing/ (fetched directly 2026-09-25)",
+        "checked": "2026-09-25",
+        "cycle": "monthly",
+        "paid": {
+          "tiers": "Five tiers on the official pricing page that day: Kiro Free $0 (50 credits a month); Pro $20 per user per month (1,000 credits); Pro+ $40 per user per month (2,000 credits); Pro Max $100 per user per month (5,000 credits); Power $200 per user per month (10,000 credits); all four paid tiers can buy add-on credits, for teams of up to 500. Enterprise (centralised billing, SSO, usage analytics, enterprise security controls) is contact-sales and billed through AWS. The first upgrade to any paid plan via social login or AWS Builder ID credits $20 toward the subscription (not via AWS Identity Center). Prices exclude tax",
+          "unit_cost": "Add-on credits cost $0.04 each, charged when you buy a pack; Enterprise can enable overages billed at $0.04 per credit at month-end. Kiro publishes no per-credit price for the credits included in each tier, and we do not divide one out",
+          "quota_included": "true — every tier includes a fixed monthly credit allowance; paid tiers can top up at $0.04 per credit",
+          "rollover": "Resets each billing month; unused credits do not roll over (the official FAQ: Unused credits do not roll over to the next month)",
+          "effective": "2026-09-25 (= the verification date, fetched directly from the official pricing page)",
+          "source": "https://kiro.dev/pricing/ (official pricing page, fetched directly 2026-09-25)",
+          "checked": "2026-09-25"
+        }
+      }
+    },
+    "codex": {
+      "name": "OpenAI Codex",
+      "tagline": "OpenAI's coding agent — desktop app, CLI, IDE extension and web — included in every ChatGPT plan",
+      "free": "ChatGPT Free includes Codex for quick coding tasks in the desktop app (officially \"subject to rollout\"); OpenAI publishes no usage figure for the free tier.",
+      "how": "Sign in to the Codex desktop app with a ChatGPT account; the CLI, IDE extension, web and iOS come with Plus and above, or use an API key billed at API prices.",
+      "limits": {
+        "quota": "ChatGPT Free ($0) includes Codex, pitched officially as a way to \"explore Codex capabilities on quick coding tasks\": GPT-6 Luna at Standard speed in the desktop app, marked subject to rollout (not necessarily available to everyone yet); image generation is not available on Free. **The official usage table lists Plus and above only — there is no Free column** — so OpenAI has not published how many messages the free tier allows per five hours, and we do not estimate it.",
+        "wall": "OpenAI says usage depends on the model, the size and complexity of the task and whether it runs locally or in the cloud; it publishes only estimated ranges of local messages per five-hour period, not fixed limits, and weekly limits may also apply — the usage dashboard shows the real remainder. Plus and Pro users who hit the limit can buy ChatGPT credits, and anyone can run extra local chats with an API key at standard API rates. Codex shares its usage with ChatGPT Work. GPT-5.5 retires from ChatGPT, ChatGPT Work and Codex on all plans on 2026-10-14 (the API is not affected).",
+        "source": "OpenAI Codex official pricing page https://developers.openai.com/codex/pricing (fetched directly 2026-09-25)",
+        "checked": "2026-09-25",
+        "cycle": "unknown",
+        "paid": {
+          "tiers": "On the official pricing page that day: Free $0; Go $8/month (lightweight coding tasks, GPT-6 Luna at Standard speed in the desktop app, subject to rollout); Plus $20/month (web, CLI, IDE extension and iOS, cloud integrations such as automatic code review and Slack, GPT-6 Sol and GPT-6 Luna, extendable with ChatGPT credits); Pro from $100/month (5x or 20x the Plus usage); Business $20 per user per month (2+ users, billed annually; $25 per user per month billed monthly); Enterprise and Edu contact sales. An API key is also an option: the CLI, SDK and IDE extension, no cloud features, billed at API prices",
+          "unit_cost": "Subscription tiers publish no per-message price, only estimated ranges of local messages per five hours — for example Plus gets roughly 350–3,000 with GPT-6 Luna and 15–150 with GPT-6 Sol, with higher ranges listed separately for Pro 5x and Pro 20x. API keys are billed at standard API rates",
+          "quota_included": "true — each tier includes a usage allowance counted per five-hour period (weekly limits may also apply); Plus and Pro can buy ChatGPT credits past it",
+          "rollover": "The official pricing page does not say whether unused usage carries over; the allowance is counted per five-hour period, and weekly limits may also apply",
+          "effective": "2026-09-25 (= the verification date, fetched directly from the official pricing page)",
+          "source": "https://developers.openai.com/codex/pricing (official pricing page, fetched directly 2026-09-25)",
+          "checked": "2026-09-25"
+        }
       }
     }
   },
