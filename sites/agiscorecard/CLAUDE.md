@@ -1011,6 +1011,12 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
   证明只证明时间,页面文案永远不许写成「区块链验证的真相」。
 - **MCP 每个工具调用都落库 `tool:<name>`**(09-26 补齐 thesis_tracker / verdicts);部署自检断言线上 tools/list 与 worker 源码一致。
 - `gen_changelog.py` 已接进部署构建步;`gen_index.py` 遇到 WEIGHT 外的判定标签直接退出(不再静默按 0.5)。
+- **09-27 第三轮**:`/grader-consensus` 评分者 2 → 4(+Reeves AGI Friday 2025-10-04、+Dubach 2026-05-21),16 次比较 9/6/**1 分歧**
+  (knowledge-work);页面、FAQ、描述、`llms.txt` 那一行与 `/situational-awareness-predictions` 首屏的活数字**全部由 `gen_grader_consensus.py`
+  从数据生成,`--check` 守门**(`<!-- grader-consensus:start/end -->` 之间别手改)。新增评分者只按原规则:公开、带日期、署名、逐字引语、
+  映射可争;owner 本人的帖子(EA Forum「Edison」)永不算独立。MCP `get_verdicts` 输出带 `independent_grades`。
+  `/calibration` 有点击才运行的浏览器核验(请求带 `utm_source=verify`,worker 不写 pageviews;事件 `verify_run`)与「预测账本」一节;
+  `/ots/*.ots` 按二进制下载返回。
 
 ## D1 读取额度:/api/pulse 与 /api/trends 的服务端缓存 + human 部分索引(2026-09-26,owner「agi的也改了」;全文根仓 `docs/d1-read-budget-2026-09-26.md`)
 

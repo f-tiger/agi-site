@@ -2,7 +2,7 @@
 
 https://thedollscout.com/zh/verify-file
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
 
@@ -21,6 +21,42 @@ https://thedollscout.com/zh/verify-file
 格式公开。保留链接，使用自己的软件计算SHA-256和字节数即可比较。可下载的独立核验程序使用Node.js离线运行。
 
 OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
+
+如何独立核对文件校验值
+
+SHA-256 校验值根据文件内容计算。TDS 的匹配要求文件指纹和字节数均与发送者的核验依据一致。请选择实际下载的文件，而不是截图或重新导出的副本。
+
+看起来相同的 PDF，为什么指纹不同？
+
+保存 PDF 可能改变元数据、压缩方式或其他字节，即使页面外观没变。检查文字修改请使用 PDF 文本比较；指纹用于比较文件字节是否一致。
+
+指纹匹配是否说明文件安全？
+
+不能。恶意文件也有自己的指纹。请从可信渠道取得核验依据；此工具不扫描病毒，也不证明身份或送达。
+
+能粘贴任意 SHA-256 校验值吗？
+
+这个界面接受包含字节数的完整 TDS 核验链接。只有原始指纹时，请使用下方命令计算并手动比对。
+
+可复现的三个字节示例
+
+建立只包含 abc、末尾没有换行的纯文本文件：大小为 3 字节，SHA-256 如下。只改文件名不会改变指纹；修改内容或增加换行会改变指纹。工具内置的已知示例使用相同字节。
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+将 document.pdf 替换为你的文件路径。命令只在本地读取文件。把指纹和字节数与 TDS 核验依据比较；十六进制字母的大小写不影响指纹值。
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

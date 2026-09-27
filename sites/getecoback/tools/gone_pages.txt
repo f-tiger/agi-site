@@ -1,0 +1,27 @@
+# Pages taken off getecoback.com (owner, 2026-09-27: 「全部下线储能页！」,
+# 「指南页，排障页，只要是相关的都下架」). Every energy-storage page and every
+# balcony-PV page: guides, troubleshooting pages and calculators. One slug per
+# line, /guide/<slug>.html.
+#
+# This file is the single source. src/worker.js carries the same list as a
+# literal (the worker cannot read the repo at runtime) and answers 410 Gone for
+# the page and its .md mirror; tools/check_gone.py fails the deploy if the two
+# lists differ, if a page file reappears (a generator re-creating it), or if any
+# published page, sitemap, feed, llms file or search index still points at one.
+#
+# 410, not 404 and not a redirect: the content was removed on purpose and is
+# not coming back, and a redirect to an unrelated page is a soft 404 to Google.
+balkonkraftwerk-speicher-nachruesten
+balkonspeicher-anker-solarbank-probleme
+balkonspeicher-foerderung
+balkonspeicher-rechner
+balkonspeicher-winter-frost
+growatt-noah-2000-probleme
+stromausfall-heizen
+balkonkraftwerk-lohnt-sich-rechner
+balkonkraftwerk-mieter-recht
+balkonkraftwerk-oesterreich
+balkonkraftwerk-ohne-bohren
+balkonkraftwerk-standort-check
+balkonkraftwerk-wo-kaufen
+klimaanlage-balkonkraftwerk

@@ -2,7 +2,7 @@
 
 https://thedollscout.com/de/pdf-accessibility-checker
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.
 
@@ -24,17 +24,43 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Was bedeutet ein erkanntes PDF-Tag?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Erkannt wird eine Tag-Deklaration oder eine vom Parser zugängliche Struktur. Das beweist keine korrekte Lesereihenfolge, Bildbeschreibungen oder barrierefreien Tabellen. Diese Punkte brauchen eine eigene Prüfung.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Zertifiziert dieses Werkzeug WCAG oder PDF/UA?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Nein. Es bietet eine automatisierte Vorprüfung und dokumentiert Ihre manuelle Prüfung. Es zertifiziert keine Konformität, repariert keine Tags und berechnet keinen prozentualen Barrierefreiheitswert.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Prüfung | Beobachtung | Nächster Schritt
+
+Dokumenttitel | Fictional workshop handout | Prüfen Sie, ob der Titel das Dokument beschreibt. Die Titelleisten-Einstellung wird nicht geprüft.
+
+Standard-Dokumentsprache | en-US | Prüfen Sie, ob die Sprachangabe zum Inhalt passt.
+
+Deklaration als getaggtes PDF | Nicht erkannt | Struktur und Lesereihenfolge in einem Autoren- oder Reparaturwerkzeug prüfen.
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-accessibility-checker#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

@@ -34,7 +34,7 @@ Wichtigste Lese-Regel: **Höhere Zahl heißt mehr Leistung für größere Räume
 
 **Energieeffizienz** | A+++ | A | A |
 
-**Preisband** | ca. 400–550 € | zuletzt ab ca. 400 € gelistet — tagesaktuell prüfen | je nach Variante — tagesaktuell prüfen |
+**Preisband** | bei Amazon.de zuletzt ohne Neuangebot (Stand 27.09.2026) — tagesaktuell prüfen | zuletzt ab ca. 400 € gelistet — tagesaktuell prüfen | je nach Variante — tagesaktuell prüfen |
 
 **Raumgröße (340-BTU-Regel)** | 15–25 m² | 15–25 m² | ca. 25–35 m² |
 

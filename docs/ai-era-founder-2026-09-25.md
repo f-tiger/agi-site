@@ -213,6 +213,19 @@ house prior 在 AI 题上可测地不差 → 对手作者自愿采用一个共�
 
 **今天的读数就是 t0**:`enabled_state = never`、账本 0 条、北极星 0。**这一切都要等 owner 卡 1 才开始计数。**
 
+> **2026-09-27 纠正(同日另一会话审计 v0,全文 `docs/ai-consensus-faith-2026-09-26.md` §九)**:上表「题目关闭前明文永不进公开仓」
+> **在 v0 里不成立,有两处**,都已在机器人首次上线前修掉(v0 从未运行,没有任何一行泄露):
+> ①摘要是**不加盐**的 `sha256(明文)`,明文里除两个概率外全是公开或可推出的字段,而 bot 的二元答案是 1–99 的整数百分比 →
+> 实测 **3 643 次猜测、14 毫秒**反推出封存的预测与影子预测;②`main.py` 以 INFO 级把研究全文、推理全文(含「Probability: ZZ%」)、
+> 「Forecasted <url>: <值>」打进**公开仓库的 Actions 日志**,`log_report_summary` 还逐题打印预测。
+> 修法:`commit_v: 2`(明文里放 256 位随机 nonce、Fernet 明文补齐到 512 字节块、开封时核对 question_id/submitted_at)、
+> 公开模式下研究/推理/预测一律 `[sealed: N chars]`,forecasting_tools / LiteLLM / asyncio / Python warnings 的记录只留级别;
+> 账本每个版本在**写账本的同一个 job 里**提交给 OpenTimestamps 日历(`ots_anchor.py --group ledger`,清单在 `data/metaculus/ots/`;比特币区块证明在其后数小时,只有区块时间有证明背书),
+> 题目关闭后 heartbeat 把精确明文写进 `revealed.jsonl`,`tools/fleet/verify_commitments.py` 让任何人核「只追加 + 揭示绑定 + 关题前已锚」。
+> 零网络闸门从 23 条增至 **96 条**(隐藏性:v2 暴力搜不出、同一行去掉 nonce 必须搜得出;AST 闸门;真库日志捕获),均做过变异检查。
+> **这些修复只在合并进 main 之后生效**——定时任务跑的是 main 上的工作流;在那之前打开 bot,跑的仍是 v0。
+> 另:派生密钥来自 `METACULUS_TOKEN`,**赛季中重新生成 token,尚未揭示的行将永远无法打开**(提交计数不受影响,消融样本受影响)。
+
 ### 4.2 更早建的:bpj 厂商认领层(09-26,现在降级为零成本探针)
 
 **厂商认领层 v0(bpj,2026-09-26 提交 `459c03e`,合并 main 前不在线上)。** 全部搭在已有武器上,零新 cron、零新收款面、零新站。

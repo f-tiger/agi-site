@@ -30,7 +30,7 @@ CATEGORIES = [
     ("luftqualitaet", "Luftqualität",
      "Luftentfeuchter gegen Schimmel, Luftreiniger gegen Pollen und Staub sowie die richtige Gerätepflege."),
     ("energie-sparen", "Energie sparen",
-     "Stromkosten senken mit Balkonkraftwerk & Speicher, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt."),
+     "Stromkosten senken: Verbrauch messen, Börsenpreise und Tarife verstehen, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt."),
 ]
 CAT_TITLE = {k: t for k, t, _ in CATEGORIES}
 CAT_DESC = {k: d for k, _, d in CATEGORIES}
@@ -50,6 +50,7 @@ CAT_OF = {
     "tineco-saugt-nicht-mehr": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
+    "akku-heizluefter": "heizen",
     "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
@@ -335,7 +336,10 @@ CAT_SHOP = {
    ("purifier", "Gegen Pollen", "Luftreiniger", "Filtert Pollen, Staub & Gerüche — HEPA-Modelle.", "ab 80 €", "luftreiniger+hepa", "#eefaf3,#cdeede"),
  ],
  "energie-sparen": [
-   ("battery", "Strom speichern", "Balkonkraftwerk-Speicher", "Solarstrom abends nutzen statt verschenken — nachrüstbar.", "ab 550 €", "balkonkraftwerk+speicher", "#eefaf3,#d4ecd9"),
+   # The first card was "Balkonkraftwerk-Speicher" until 2026-09-27 (storage
+   # shelf taken down). The meter replaces it: it is on four energy pages'
+   # own shelves already, so this is not a new recommendation.
+   ("battery", "Erst messen", "Strommessgerät", "Zeigt, welches Gerät wirklich Strom frisst — bevor du etwas Neues kaufst.", "ab 15 €", "strommessgeraet+steckdose", "#eefaf3,#d4ecd9"),
    ("shade", "Hitzeschutz", "Thermo-Rollo & Vorhang", "Sperrt Hitze aus, bevor der Raum sich aufheizt.", "ab 20 €", "thermo+rollo+verdunkelung", "#eef4ff,#d5e2f6"),
    ("shade", "Fenster", "Hitzeschutzfolie", "Reflektiert Sonne am Fenster — spürbar kühler.", "ab 15 €", "hitzeschutzfolie+fenster", "#eefaf3,#cdeede"),
  ],
@@ -678,6 +682,14 @@ MODEL_ASIN = {
     # MediaMarkt.at. Whether it is still stocked on amazon.de specifically is
     # unknown from here and cannot be read off the owner's screenshots while
     # their amazon.de delivery country is set to the United States.
+    # 2026-09-27, owner search by EAN 8004399026445 on amazon.de (delivery set to
+    # Berlin 10115): exactly one result, the PACEX105 listing (3,8 stars, 277
+    # ratings) with "No featured offers available" and two used & new offers at
+    # about USD 1.146. The listing exists, but there is no Buy Box: a /dp/ link
+    # would land readers on a page with nothing to add to the basket. Keep the
+    # search link (it shows what is buyable today) and do not ask the owner for
+    # this ASIN again. The shelf badge "ca. 400–550 €" was dropped the same day:
+    # no new unit is on offer at amazon.de at that price.
     "De'Longhi Pinguino PAC EX105": "",
     # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
     # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
@@ -705,10 +717,7 @@ MODEL_ASIN = {
     # ("COMFEE' Luftentfeuchter 20L/Tag … MDDF-20DEN7") — non-WF confirmed —
     # + amazon.es/.ae/.co.uk + ubuy
     "Comfee MDDF-20DEN7": "B07KJX6RDK",
-    "Marstek Venus E": "",
-    "Anker Solarbank 3 E2700 Pro": "",
-    "Anker Solarbank 2 E1600 Pro": "",
-    "Zendure SolarFlow 800 Pro": "",
+    # Storage rows removed 2026-09-27 (storage shelf taken down).
 }
 ASIN_RE = re.compile(r"^B[0-9A-Z]{9}$")
 
@@ -805,11 +814,15 @@ SVG_GRAD = {"ac": "#eaf6ff,#cfe6f7", "mobileac": "#e6f7f2,#c8ece0", "cooler": "#
 # (title, role-badge, one-liner, price-band, amazon-search-q, svg-key)
 DEVICE_MODELS = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "€€€ · ca. 400–550 €", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   # Order changed 2026-09-27 (owner: 「降到后面」): the EX105 sits behind the models
+   # with a verified amazon.de product page. Its listing there has no featured
+   # offer (see MODEL_ASIN), and the first three cards also feed the top strip
+   # and the sticky bar, i.e. the page's first buy button.
    ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "Monoblock-Testsieger der Stiftung Warentest, Silent-Modus, Kältemittel R290.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Preis-Leistung", "Günstig für kleine Schlaf- & Arbeitszimmer — dafür deutlich hörbar.", "€€ · ca. 250–320 €", "Comfee+MPPH-09CRN7", "ac"),
    ("AEG ChillFlex Pro", "Leise & gut ausgestattet", "Angenehm fürs Schlafzimmer, solide Ausstattung.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "Für große Räume", "In öffentlichen Vergleichen die stärkste Kühlleistung der Runde.", "Preis vor Ort prüfen", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("Bosch Cool 5000", "Einfach aufgestellt", "Plug-and-Play — schnell startklar, unkomplizierte Bedienung.", "Preis vor Ort prüfen", "Bosch+Cool+5000+Klimager%C3%A4t", "ac"),
    ("Suntec Impuls 2.0+", "Leicht & mobil", "Leichtgewicht — lässt sich gut zwischen Räumen umstellen.", "Preis vor Ort prüfen", "Suntec+Impuls+2.0%2B", "ac"),
    ("Midea PortaSplit", "Split ohne Bohren", "Quick-Connect-Split: leise und effizient, ohne Kernbohrung.", "€€€€ · Preis vor Ort prüfen", "Midea+PortaSplit", "mobileac"),
@@ -858,24 +871,15 @@ DEVICE_MODELS = {
    ("Midea NTH20-17BR", "Schnell warm, nicht sparsam", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb. Zur zweitgrößten Anfrage der Woche, „energiesparender Heizlüfter“ (48.600): sparsam macht ihn nicht das Gerät, sondern die Abschaltung — 2.000 W kosten 2.000 W, solange sie laufen.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
- # Balcony storage is the highest-basket category on this site — and the one
- # place where the cards used to contradict our own calculator. Sorting the grid
- # by €/kWh put a 5,12-kWh unit in the first slot, while /guide/balkonspeicher-
- # rechner.html tells the same reader that above ~2,7 kWh nothing pays off on an
- # 800-W balcony plant. €/kWh is the right metric only when capacity is free to
- # grow; here usefulness is capped, so the order below follows the recommended
- # capacity band (1,6–2,7 kWh) and the oversized unit is kept, but labelled for
- # the reader it actually fits. Capacities are the manufacturers' figures as
- # quoted in the public 2026 comparisons; prices stay "check on site".
- "storage": [
-   ("Zendure SolarFlow 800 Pro", "Sweet Spot 1,9 kWh", "1,92 kWh — genau die Größe, die unser Rechner für ein 800-Watt-Balkonkraftwerk empfiehlt. TÜV-zertifiziert.", "1,92 kWh · Preis vor Ort prüfen", "Zendure+SolarFlow+800+Pro", "battery"),
-   ("Anker Solarbank 3 E2700 Pro", "Obergrenze der Empfehlung", "2,7 kWh — mehr rechnet sich an 800 Watt selten. Ausgereifte App und passende Smart Plugs aus einer Hand.", "2,7 kWh · ca. 370 €/kWh", "Anker+Solarbank+3+E2700", "battery"),
-   # EcoFlow removed 2026-08-28 — owner instruction: do not recommend EcoFlow
-   # products. Sitewide rule, recorded in CLAUDE.md; the storage ladder keeps
-   # four models, which still spans the 1,6-5,1 kWh range the pages discuss.
-   ("Anker Solarbank 2 E1600 Pro", "Kleinste sinnvolle Größe", "1,6 kWh mit vier MPPT-Eingängen — reicht meist, wenn du tagsüber zu Hause bist, und lässt sich später erweitern.", "1,6 kWh · Preis vor Ort prüfen", "Anker+Solix+Solarbank+2+E1600+Pro", "battery"),
-   ("Marstek Venus E", "Nur wenn es mehr als Balkon ist", "5,12 kWh zum niedrigsten Preis pro Kilowattstunde 2026 — aber rund doppelt so viel Kapazität, wie sich an einem 800-Watt-Balkonkraftwerk rechnet. Sinnvoll mit Dachanlage oder hohem Abendverbrauch.", "5,12 kWh · ca. 215 €/kWh", "Marstek+Venus+E+Balkonkraftwerk+Speicher", "battery"),
- ],
+ # Storage shelf taken down 2026-09-27 — owner: 「eco站点下架所有储能产品」.
+ # The family key stays so device_of() keeps filing balcony pages together
+ # (breadcrumbs, the EPEX price band), but it has no products: storage-family
+ # pages without their own CONTEXT set get no grid, no top strip and no exit
+ # prompt at all (see shelf_skipped()). The four cards that lived here
+ # (Zendure SolarFlow 800 Pro, Anker Solarbank 3 E2700 Pro / 2 E1600 Pro,
+ # Marstek Venus E) are in git history; tools/storage_veto.txt and
+ # check_storage_veto.py keep them from coming back through any surface.
+ "storage": [],
  "shade": [
    ("Lichtblick Thermo-Rollo", "Hitzeschutz", "Sperrt Hitze am Fenster aus, bevor der Raum heiß wird.", "ab 25 €", "Lichtblick+Thermo+Rollo", "shade"),
    ("Hitzeschutzfolie", "Fürs Fenster", "Reflektiert Sonne am Glas — spürbar kühler.", "ab 15 €", "hitzeschutzfolie+fenster", "shade"),
@@ -884,13 +888,13 @@ DEVICE_MODELS = {
 
 DEVICE_MODELS_EN = {
  "ac": [
-   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "€€€ · approx. €400–550", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Best value", "Affordable for small bedrooms & offices — but clearly audible.", "€€ · approx. €250–320", "Comfee+MPPH-09CRN7", "ac"),
    # This card used to be labelled "MeacoFan / quiet pick" while linking an AEG
    # search — a fan brand standing in for an air conditioner. Named properly now.
    ("AEG ChillFlex Pro", "Quiet pick", "Comfortable in the bedroom, well equipped.", "€€€ · approx. €350–500", "AEG+ChillFlex+Pro", "ac"),
-   ("De'Longhi PAC N90 ECO Silent", "Quietest", "Monoblock test winner at Stiftung Warentest, silent mode, R290 refrigerant.", "check price locally", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Klarstein Kraftwerk Smart 12K", "For large rooms", "Strongest cooling of its group in public comparisons.", "check price locally", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "All-rounder", "Strong cooling, often in the test-winner line.", "check price locally", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
  ],
  "fan": [
    ("MeacoFan 1056", "Extra quiet", "Very quiet — ideal for the bedroom.", "€€ · approx. €90–120", "MeacoFan+1056", "fan"),
@@ -1038,10 +1042,6 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "desiccant-vs-compressor-dehumidifier",
                "heated-airer-vs-dehumidifier",
                "rising-damp-penetrating-damp-or-condensation",
-               # The honest product answer here is a CO alarm and warm bedding,
-               # not a balcony battery — the page's whole argument is that the
-               # battery does not do what buyers think.
-               "stromausfall-heizen",
                # Outside condensation on well-insulated glass (2026-09-24) is a
                # good sign with nothing to buy; the humidity family would put a
                # dehumidifier shelf on a page whose answer is "wait an hour".
@@ -1066,15 +1066,6 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
- # growatt-noah-2000-probleme (2026-08-28). Live gap: the site's hottest current
- # page (11 pv in the last 4 days) showed 0 affiliate clicks — because its top
- # pitch was three €1.000 REPLACEMENT batteries aimed at a reader who is
- # TROUBLESHOOTING the battery they already own. Category-corrected to the
- # diagnostic tools the page's own sections imply (Ausgangsleistung → measure at
- # the socket; App/WLAN → an app-independent meter), which are the 6%-band cheap
- # durables this site's A-grade data shows converting. One switch-instead-of-fix
- # chip stays, honestly labelled, because the page has an explicit
- # "Alternativen im Blick" section.
  # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
  # cheapest device on it. The BTU calculator's fourth tier routes every room
  # above 13.500 BTU here because a monoblock is genuinely at its limit — and
@@ -1120,11 +1111,6 @@ CONTEXT_MODELS = {
                 "portasplit-vs-monoblock",
                 "midea-portasplit-kaufen")},
 
- "growatt-noah-2000-probleme": [
-   ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
-   ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),
-   ("Anker Solarbank 2 E1600 Pro", "Wenn tauschen statt reparieren", "Die kleinste sinnvolle Alternative, falls du das Kapitel NOAH beendest — Details im Abschnitt „Alternativen im Blick“.", "1,6 kWh · Preis vor Ort prüfen", "Anker+Solix+Solarbank+2+E1600+Pro", "battery"),
- ],
 
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
@@ -1316,11 +1302,6 @@ CONTEXT_MODELS = {
    ("Raumentfeuchter (Granulat)", "Für kleine Kellerräume", "Kein Strom, kein Schlauch — für abgeschlossene kleine Räume oft ausreichend.", "Preis vor Ort prüfen", "raumentfeuchter+granulat", "dehum"),
    ("Luftentfeuchter mit Schlauchanschluss", "Dauerbetrieb ohne Eimer", "Im Keller will niemand täglich den Tank leeren — Schlauchanschluss in den Ablauf.", "Preis vor Ort prüfen", "luftentfeuchter+mit+schlauch", "dehum"),
  ],
- "klimaanlage-balkonkraftwerk": [
-   ("Balkonkraftwerk-Speicher", "Macht die Kombination erst tragfähig", "Ohne Speicher fällt die Solarleistung genau dann weg, wenn die Wohnung am wärmsten ist — mit Speicher kühlst du auch abends aus der Sonne.", "ab ca. 215 €/kWh", "balkonkraftwerk+speicher", "battery"),
-   ("Energiekostenmessgerät", "Erst messen, dann rechnen", "Steckdosen-Messgerät zeigt, was dein Gerät wirklich zieht — glaub keiner Rechnung (auch unserer nicht), bevor du deinen eigenen Wert kennst.", "ab ca. 15 €", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
-   ("Ventilator", "Läuft wirklich mit 800 W", "Ein Ventilator zieht 30–60 W statt 1.000 — das ist der Verbraucher, den ein Balkonkraftwerk tatsächlich den ganzen Tag trägt.", "ab ca. 70 €", "ventilator+leise+standventilator", "fan"),
- ],
  # Fast-strike 2026-08-25 (rising: "schimmel im keller entfernen" v=108.750).
  # Every product type below is named in the article body itself; the third item
  # is the page's core judgement (removal without dehumidifying = subscription
@@ -1367,7 +1348,6 @@ CONTEXT_MODELS = {
  ],
  "strompreis-radar": [
    ("Smarte Steckdose mit Messfunktion", "Last verschieben", "Schaltet Verbraucher in die billigen Stunden — die Voraussetzung, um vom dynamischen Tarif zu profitieren.", "ab 15 €", "smart+home+steckdose+messfunktion", "battery"),
-   ("Balkonkraftwerk-Speicher", "Billige Stunden speichern", "Speichert Sonnenstrom oder günstige Stunden für den teuren Abend — Modelle im Vergleich unten.", "ab ca. 215 €/kWh", "balkonkraftwerk+speicher", "battery"),
  ],
  # Condensation on the inside of windows: the reader needs to know their
  # humidity, then lower it. The page's own body links the hygrometer search
@@ -1433,20 +1413,21 @@ CONTEXT_MODELS = {
    ("Weiche Lamellenbürste", "Für das Register", "Losen Staub in Lamellenrichtung abnehmen, ohne die dünnen Bleche zu verbiegen — die Quelle, wenn es beim Einschalten riecht.", "Preis vor Ort prüfen", "lamellenb%C3%BCrste+weich", "dehum"),
    ("Ablaufschlauch (Luftentfeuchter)", "Dauerhaft trocken", "Fast jedes Kompressorgerät hat den Anschluss — dann steht kein Wasser mehr im Gerät, und der Tank-Geruch hat keine Grundlage.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
  ],
- # The balcony-PV mounting page: its products are the mounts themselves, not
- # the battery family the storage default would show. Category cards matching
- # the page's three mounting routes.
- "balkonkraftwerk-ohne-bohren": [
-   ("Gitterbalkon-Halterung", "Stab- & Gittergeländer", "Haken/Klemmen um die Querstreben — rückstandsfrei, in Minuten montiert. Streben-Abstand vorher messen.", "ab ca. 30 €", "balkonkraftwerk+halterung+gitterbalkon", "battery"),
-   ("Klemmhalterung Betonbrüstung", "Massive Brüstung", "Umgreift die Mauerkrone mit Gegenplatte — klemmt statt dübelt. Auf Gummiauflagen achten.", "ab ca. 40 €", "balkonkraftwerk+halterung+beton+ohne+bohren", "battery"),
-   ("Ballast-Aufständerung", "Boden & Flachdach", "Frei neigbar für den besten Ertrag — hält über Gewicht statt über das Geländer.", "ab ca. 35 €", "solarmodul+aufstaenderung+ballast", "battery"),
- ],
  # Expansion queue batch 1 (2026-09-24). Both shelves are what each page's own
  # text tells the reader to do, in the page's order — no new selection judgement.
  "beheizter-waeschestaender": [
    ("Beheizter Wäscheständer mit Timer", "Mit Abschaltung", "Die Stäbe wärmen die Wäsche direkt — der Timer verhindert, dass er vergessen den ganzen Tag läuft.", "Preis vor Ort prüfen", "beheizter+w%C3%A4schest%C3%A4nder+timer", "shade"),
    ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
    ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ # Expansion 2026-09-27 (Trends: "akku heizlüfter" peak 1,7 in November, winter
+ # 2,3x September). The page's answer is that a battery heats a body, not a
+ # room, so the shelf is body-heat first and a mains heater only as the
+ # "if there is a socket" card, in the page's own order. No named models.
+ "akku-heizluefter": [
+   ("Beheizte Weste (Akku)", "Wärme am Körper", "Heizt dich statt der Luft — die Wattzahl der Stufe steht im Datenblatt, der Rechner oben macht daraus Stunden.", "Preis vor Ort prüfen", "beheizte+weste+akku", "heater"),
+   ("Beheizte Sitzauflage", "Für den Sitzplatz", "Wärme dort, wo du sitzt: kleine Wattzahl, und damit reicht auch ein kleiner Akku lange.", "Preis vor Ort prüfen", "beheizte+sitzauflage", "heater"),
+   ("Heizlüfter mit Thermostat (Netz)", "Wenn eine Steckdose da ist", "Eine Stunde mit 1.000 W kostet bei 0,30 €/kWh 30 Cent und läuft, solange du willst — der Akku ist dann keine Ersparnis.", "Preis vor Ort prüfen", "heizl%C3%BCfter+thermostat", "heater"),
  ],
  "infrarotheizung-thermostat": [
    ("Steckdosenthermostat", "Ohne Installation", "Zwischen Steckdose und Panel — Belastbarkeit auf dem Typenschild mit der Leistung des Panels vergleichen.", "Preis vor Ort prüfen", "steckdosenthermostat+infrarotheizung", "heater"),
@@ -1498,9 +1479,6 @@ CONTEXT_SUB = {
                               "getestet. Symbolbilder."),
  "luftentfeuchter-keller": ("Im Keller entscheidet der Messwert vor dem Kauf — deshalb steht das Hygrometer "
                             "zuerst. Nicht selbst getestet. Symbolbilder."),
- "klimaanlage-balkonkraftwerk": ("Passend zur Rechnung oben, nicht dagegen: Ein Monoblock sprengt die 800 W "
-                                "meistens — deshalb stehen hier Speicher, Messgerät und der Verbraucher, der "
-                                "wirklich mit Solarstrom läuft. Nicht selbst getestet. Symbolbilder."),
  "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
                                   "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer Trends-Abfrage, kein "
@@ -1538,10 +1516,10 @@ CONTEXT_SUB = {
                                    "dann ein anderes Gerät. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-stinkt": ("Reinigen statt ersetzen: Bürste fürs Register, Ablaufschlauch gegen stehendes Wasser — was nie "
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
- "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
-                                 "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
  "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
                                "messen. Nicht selbst getestet. Symbolbilder."),
+ "akku-heizluefter": ("In der Reihenfolge der Seite: Wärme an den Körper, dann der Sitzplatz, und das Netzgerät nur, "
+                      "wo eine Steckdose ist. Nicht selbst getestet. Symbolbilder."),
  "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
                                 "sie sparen. Nicht selbst getestet. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "
@@ -1550,8 +1528,13 @@ CONTEXT_SUB = {
                            "und zeigen bzw. beenden die größten Dauerverbraucher. Nicht selbst getestet. Symbolbilder."),
  "stromvergleich-check": ("Liegt dein Verbrauch über dem Stromspiegel, hilft kein neues Gerät, sondern erst die "
                           "Messung. Nicht selbst getestet. Symbolbilder."),
- "strompreis-radar": ("Von schwankenden Börsenpreisen profitierst du nur mit verschiebbarer Last oder Speicher — "
-                      "beides hier. Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder."),
+ "strompreis-radar": ("Von schwankenden Börsenpreisen profitierst du nur, wenn du Verbrauch in die billigen "
+                      "Stunden verschieben kannst — dafür diese Steckdose. Nicht selbst getestet, Preise vor Ort "
+                      "prüfen. Symbolbilder."),
+ # The growatt page had no sub of its own and fell through to the storage
+ # family's sentence about subsidies for buying a battery — under two
+ # measuring plugs. Since 2026-09-27 the page sells no battery, so it says
+ # what the two cards are for.
 }
 
 
@@ -1635,13 +1618,6 @@ MODEL_PROCON = {
     "Comfee MDDF-20DEN7": ("Bewährt, gutes Preis-Leistungs-Verhältnis", "Im Betrieb hörbar"),
     "Levoit (HEPA)": ("HEPA-Filter, leiser Nachtmodus", "Filter sind Folgekosten"),
     "Lichtblick Thermo-Rollo": ("Sperrt Hitze vor der Scheibe aus", "Verdunkelt den Raum"),
-    # Storage was the only device family whose cards had no trade-off line — on
-    # the most expensive products of all. Sourced from the same public 2026
-    # comparisons the price bands come from.
-    "Marstek Venus E": ("Mit Abstand günstigster Preis pro kWh", "Für ein Balkonkraftwerk meist überdimensioniert"),
-    "Anker Solarbank 3 E2700 Pro": ("Reifes Ökosystem, gute App", "Teurer pro kWh, Cloud für den vollen Funktionsumfang"),
-    "Zendure SolarFlow 800 Pro": ("Passende Größe zum kleinsten Gesamtpreis", "Höherer Preis pro kWh als große Speicher"),
-    "Anker Solarbank 2 E1600 Pro": ("Vier MPPT-Eingänge, später erweiterbar", "1,6 kWh sind knapp, wenn tagsüber niemand da ist"),
 }
 MODEL_PROCON_EN = {
     "De'Longhi Pinguino PAC EX105": ("Strong cooling, good efficiency", "Big & heavy"),
@@ -1735,25 +1711,9 @@ def models_block(device, en=False, slug=None):
                      "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt. "
                      "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
                      "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
-    # The default sub warns about window sealing — right for every monoblock,
-    # nonsense under battery cards. Storage gets the one sentence that actually
-    # protects this buyer: most subsidy programmes void the grant if the
-    # invoice predates the application.
-    if device == "storage" and not en:
-        # On the subsidy page itself the same sentence stays, minus the self-link.
-        foerder = ('der <a href="/guide/balkonspeicher-foerderung.html">Antrag vor dem Kauf</a>'
-                   if slug != "balkonspeicher-foerderung" else "der Antrag <strong>vor</strong> dem Kauf")
-        # Sorted by the capacity that pays off, not by €/kWh — the cheapest
-        # kilowatt-hour comes in a box twice as big as an 800-W balcony plant
-        # ever fills, so the reader needs the size question answered first.
-        groesse = ('' if slug == "balkonspeicher-rechner" else
-                   ' Welche Größe zu deinem Balkonkraftwerk passt, rechnet der '
-                   '<a href="/guide/balkonspeicher-rechner.html">Balkonspeicher-Rechner</a> aus.')
-        sub = ("Aus öffentlichen Vergleichen 2026 zusammengestellt — nicht selbst getestet. "
-               "Sortiert nach der Kapazität, die sich rechnet — nicht nach dem billigsten Preis pro kWh. "
-               "Aktuellen Preis auf Amazon prüfen. Symbolbilder. "
-               f"Vorab das Wichtigste: Viele Kommunen bezuschussen Speicher mit 100–500 € — aber fast immer nur, "
-               f"wenn {foerder} gestellt wird.{groesse}")
+    # (A storage-family sub about subsidies for buying a battery lived here until
+    # 2026-09-27. Storage pages no longer get a grid unless they have their own
+    # CONTEXT set, and every such set now has its own CONTEXT_SUB.)
     # Same correction for the humidity and heating families (2026-08-28, found
     # while enabling the EN qm cards): the default sub tells a dehumidifier or
     # heater buyer about window sealing for monoblocks — nonsense advice under
@@ -2010,6 +1970,18 @@ def inject_us_shelf(html, slug):
     return html
 
 
+def shelf_skipped(slug, ctx):
+    """True when a page gets no product grid, top strip or exit prompt.
+
+    SKIP_MODELS pages, and — since the storage shelf came down on 2026-09-27 —
+    every storage-family page that has no CONTEXT set of its own. Without the
+    second clause an empty storage list would fall back to the air-conditioner
+    ladder (`table.get(device) or table["ac"]`), i.e. a balcony-battery page
+    would start selling portable ACs. A CONTEXT set still wins: the Growatt
+    page keeps its two measuring plugs and the mounting page its mounts."""
+    return (slug in SKIP_MODELS or device_of(slug) == "storage") and not ctx
+
+
 def inject_models(html, slug, en=False):
     """Add the 图文 model grid before the first content <h2>, unless the page is a
     tool page or already recommends a named model. Idempotent via marker."""
@@ -2017,7 +1989,7 @@ def inject_models(html, slug, en=False):
     # Skipped pages: strip any previously-injected block, then leave alone.
     # A page with its own context set is never skipped — that set exists
     # precisely because the generic one was wrong for it.
-    if slug in SKIP_MODELS and not ctx:
+    if shelf_skipped(slug, ctx):
         return re.sub(r'<!--EB_MODELS-->.*?<!--/EB_MODELS-->\n?', '', html, flags=re.S)
     block = models_block(device_of(slug), en, slug)
     if "<!--EB_MODELS-->" in html:
@@ -2074,15 +2046,15 @@ def qm_toppick(slug):
         ]
     if qm <= 25:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("Comfee MPPH-09CRN7", "Preis-Leistung", "", "", "Comfee+MPPH-09CRN7", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     if qm <= 30:
         return [
-            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
             ("Klarstein Kraftwerk Smart 12K", "Mehr Reserve", "", "", "Klarstein+Kraftwerk+Smart+12K", "ac"),
             ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     # 40 m² and up: monoblocks below ~12k BTU are undersized — the honest chips
     # are the high-BTU class and the quiet-split option the body itself argues for.
@@ -2144,7 +2116,7 @@ def inject_toppick(html, slug, en=False):
     """
     html = re.sub(r'<!--EB_TOPPICK-->.*?<!--/EB_TOPPICK-->\n?', '', html, flags=re.S)
     ctx = context_entries(slug, en)
-    eligible = (slug not in SKIP_MODELS or ctx) and (
+    eligible = not shelf_skipped(slug, ctx) and (
         "<!--EB_MODELS-->" in html or any(n in html for n in CANON_NAMES))
     if not eligible:
         return html
@@ -2305,13 +2277,13 @@ POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
               "desiccant-vs-compressor-dehumidifier",
               "heated-airer-vs-dehumidifier",
               "rising-damp-penetrating-damp-or-condensation",
-              "stromausfall-heizen", "fenster-beschlagen-aussen"}
+              "fenster-beschlagen-aussen"}
 
 
 def inject_popup(html, slug, en=False):
     """Idempotently add the bottom-sheet purchase prompt on buying pages."""
     ctx = context_entries(slug, en)
-    eligible = ((slug not in SKIP_MODELS or ctx) and slug not in POPUP_SKIP
+    eligible = (not shelf_skipped(slug, ctx) and slug not in POPUP_SKIP
                 and ("<!--EB_MODELS-->" in html or any(n in html for n in CANON_NAMES)))
     if not eligible:
         return re.sub(r'<!--EB_POPUP-->.*?<!--/EB_POPUP-->\n?', '', html, flags=re.S)
@@ -2527,27 +2499,11 @@ def inject_climate(html, slug):
     return html
 
 
-# --- Energy cross-sell: cost-pain pages get a bridge to the high-AOV storage
-# cluster ("offset the running costs with balcony solar"). Idempotent marker. ---
-ENERGY_PAGES = {"klimaanlage-stromkosten", "ventilator-stromverbrauch",
-                "heizluefter-stromverbrauch", "strom-sparen-haushalt",
-                "klimaanlage-nachts-laufen-lassen"}
-
-ENERGY_BOX = (
-    '<!--EB_ENERGY--><section style="max-width:1000px;margin:14px auto 0;padding:0 20px;">'
-    '<div style="background:#eefaf3;border:1px solid #cdeede;border-radius:12px;padding:16px 18px;'
-    'display:flex;gap:14px;align-items:center;flex-wrap:wrap;">'
-    '<div style="font-size:28px;line-height:1;">🔋</div>'
-    '<div style="flex:1 1 260px;"><strong style="font-size:15px;display:block;">Laufende Kosten mit '
-    'Solarstrom senken</strong><span style="font-size:13.5px;color:#3d5748;">Ein Balkonkraftwerk mit '
-    'Speicher deckt einen Teil genau dieser Stromkosten — nachrüstbar, ohne Handwerker, 0 % MwSt.</span></div>'
-    '<div style="display:flex;gap:8px;flex-wrap:wrap;">'
-    '<a href="/guide/balkonspeicher-rechner.html" style="background:#2f7d4f;color:#fff;font-weight:800;'
-    'padding:9px 14px;border-radius:8px;text-decoration:none;font-size:13.5px;white-space:nowrap;">Speicher-Rechner →</a>'
-    '<a href="/guide/balkonkraftwerk-speicher-nachruesten.html" style="background:#fff;color:#2f7d4f;'
-    'border:1px solid #9fd4b4;font-weight:700;padding:9px 14px;border-radius:8px;text-decoration:none;'
-    'font-size:13.5px;white-space:nowrap;">Nachrüsten-Guide →</a>'
-    '</div></div></section><!--/EB_ENERGY-->\n')
+# --- Energy cross-sell box (EB_ENERGY), retired 2026-09-27. It sent readers of
+# five running-cost pages to the storage cluster ("Ein Balkonkraftwerk mit
+# Speicher deckt einen Teil genau dieser Stromkosten") — a sales bridge to a
+# product family the owner has taken off the site. inject_energy() now only
+# removes the block from pages that still carry it.
 
 
 # Pages that carry an interactive calculator. Whoever reaches one of these has
@@ -2555,8 +2511,7 @@ ENERGY_BOX = (
 # them they can put it on their own site, so embeds no longer depend on outreach.
 TOOL_PAGES = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
               "heizkosten-vergleich-rechner", "stromvergleich-check", "hitze-check",
-              "keller-lueften-sommer", "balkonspeicher-rechner",
-              "balkonkraftwerk-lohnt-sich-rechner", "balkonkraftwerk-standort-check"}
+              "keller-lueften-sommer"}
 
 # Only these calculators actually exist as an embeddable widget, so only their
 # pages may promise "this calculator". The rest link to what is really on offer.
@@ -2594,7 +2549,7 @@ def embed_box(slug):
 # draws meaningful power. Fans, shading and the energy pages themselves are left
 # out: for a 50 W fan the argument does not matter, and on the energy pages it
 # would be circular.
-HEATENERGY_SKIP = {"klimaanlage-balkonkraftwerk", "strompreis-radar", "klimaanlage-stromkosten",
+HEATENERGY_SKIP = {"strompreis-radar", "klimaanlage-stromkosten",
                    "stromkosten-rechner", "stromvergleich-check"}
 
 HEATENERGY_BOX = (
@@ -2614,8 +2569,6 @@ HEATENERGY_BOX = (
     'padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Aktuelle Preiskurve →</a>'
     '<a href="/guide/stromkosten-rechner.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
     'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Was kostet mein Gerät? →</a>'
-    '<a href="/guide/klimaanlage-balkonkraftwerk.html" style="background:#fff;color:#8a6410;border:1px solid #f0cf9a;'
-    'font-weight:700;padding:8px 13px;border-radius:8px;text-decoration:none;font-size:13px;">Mit eigenem Solarstrom? →</a>'
     '</div>'
     # Twenty-one pages advise pre-cooling on a timer; none of the cooling
     # cluster linked the accessory that does it. With the honest catch stated:
@@ -2740,7 +2693,7 @@ function calc(){
   var btu=Math.round(qm*340*sun/500)*500;
   var model,term,url,label;
   if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";url=A_COMFEE;label="bis ca. 9.000 BTU";}
-  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";url=A_PINGUINO;label="9.000–11.000 BTU";}
+  else if(btu<=11000){model="De'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";url=A_N90;label="9.000–11.000 BTU";}
   else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";url=A_KLARSTEIN;label="11.000–13.500 BTU";}
   // Über ~13.500 BTU nennen wir kein Modell, weil wir keines haben: das größte tragbare
   // Gerät in DEVICE_MODELS["ac"] ist der 12K-Klarstein. Einem Leser, der gerade 20.500 BTU
@@ -2825,7 +2778,7 @@ else{var saved=window.ebReadRoom&&window.ebReadRoom();
 # the homepage sent buyers of two ASIN-verified models to a search box.
 HOME_TOOL = (HOME_TOOL
     .replace("A_COMFEE", json.dumps(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")))
-    .replace("A_PINGUINO", json.dumps(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")))
+    .replace("A_N90", json.dumps(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")))
     .replace("A_KLARSTEIN", json.dumps(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K"))))
 
 
@@ -3069,8 +3022,6 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
             'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
             '\'<strong style="color:#8a6410;">\'+head+\'</strong>\'+'
             '\'<span style="color:#5a5340;">Börsenpreis ohne Steuern und Abgaben (EPEX). Jede selbst erzeugte Kilowattstunde ersetzt Netzstrom.</span>\'+'
-            '\'<a href="/guide/balkonkraftwerk-lohnt-sich-rechner.html" data-eb-s="rechner" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Lohnt sich deins? Rechner →</a>\'+'
-            '\'<a href="/guide/balkonspeicher-foerderung.html" data-eb-s="foerder" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Förderung im Bundesland →</a>\'+'
             '\'</div></div>\';'
             'if(window.gtag)gtag("event","strom_now",{avg:Math.round(avg*10)/10});'
             'h.querySelectorAll("[data-eb-s]").forEach(function(a){a.addEventListener("click",function(){'
@@ -3677,8 +3628,8 @@ def home_storage_block():
         '<a href="/guide/luftentfeuchter-keller.html">Luftentfeuchter für den Keller</a> · '
         '<a href="/guide/heizluefter-stromsparend.html">Heizlüfter stromsparend</a> · '
         '<a href="/kategorie/luftqualitaet.html">Alles zu Luftqualität</a></p>'
-        '<p style="margin:10px 0 0;font-size:13px;color:#5b6b78;">🔋 Balkonspeicher &amp; Solar (Sommerhalbjahr-Schwerpunkt): '
-        '<a href="/kategorie/energie-sparen.html">alle Ratgeber &amp; Modelle →</a></p>'
+        '<p style="margin:10px 0 0;font-size:13px;color:#5b6b78;">💡 Strom sparen: Tarife, Verbrauch &amp; Messen: '
+        '<a href="/kategorie/energie-sparen.html">alle Ratgeber →</a></p>'
         '</div></section>'
         '<script>(function(){var s=document.getElementById("eb-herbst");if(!s)return;'
         's.querySelectorAll(\'a[href*="amazon."]\').forEach(function(a){a.addEventListener("click",function(){'
@@ -4075,18 +4026,8 @@ def inject_embed(html, slug):
 
 
 def inject_energy(html, slug):
-    """Idempotently add the storage cross-sell box on cost-pain pages, after the
-    model grid / explainer if present, else before the first content <h2>."""
-    if slug not in ENERGY_PAGES:
-        return re.sub(r'<!--EB_ENERGY-->.*?<!--/EB_ENERGY-->\n?', '', html, flags=re.S)
-    if "<!--EB_ENERGY-->" in html:
-        return re.sub(r'<!--EB_ENERGY-->.*?<!--/EB_ENERGY-->\n?', lambda m: ENERGY_BOX, html, flags=re.S)
-    for anchor in ("<!--/EB_EXPLAINER-->", "<!--/EB_MODELS-->"):
-        if anchor in html:
-            return html.replace(anchor, anchor + "\n" + ENERGY_BOX, 1)
-    if re.search(r'<h2\b', html):
-        return re.sub(r'(<h2\b)', lambda m: ENERGY_BOX + m.group(1), html, count=1)
-    return html
+    """Remove the retired storage cross-sell box (see the note above)."""
+    return re.sub(r'<!--EB_ENERGY-->.*?<!--/EB_ENERGY-->\n?', '', html, flags=re.S)
 
 
 # --- Self-made animated SVG explainers ("video-like", zero copyright, tiny). ---
@@ -4171,8 +4112,9 @@ VIDEOS = {
  "beste-tragbare-klimaanlage-schlafzimmer": ("7sooX2zoH0c", "De'Longhi Pinguino PAC EX105 im Test: Wie leise ist sie wirklich?", "Unabhängiger Test im Video"),
  "ventilator-kaufen-ratgeber": ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich", "Unabhängiger Test im Video"),
  "luftentfeuchter-gegen-schimmel": ("mBSS57P_rl4", "Comfee MDDF-20DEN7 Luftentfeuchter im Video-Test", "Unabhängiger Test im Video"),
- "balkonkraftwerk-speicher-nachruesten": ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)", "Unabhängiger Test im Video"),
- "balkonkraftwerk-lohnt-sich-rechner": ("z7RO0E8ZAJ8", "Rechnet sich ein Balkonkraftwerk mit Speicher wirklich? (Video)", "Unabhängiger Test im Video"),
+ # balkonkraftwerk-speicher-nachruesten carried "Balkonkraftwerk mit Speicher:
+ # Top 5 im Test" until 2026-09-27 — a product ranking of storage units, i.e. a
+ # shelf in video form. Removed with the storage shelf; inject_video strips it.
  "luftentfeuchter-keller": ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)", "Unabhängiger Test im Video"),
  "keller-lueften-sommer": ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)", "Video-Anleitung"),
 }
@@ -4509,9 +4451,13 @@ def sizer_block(en=False, prefill=20):
             'url=' + repr(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")) + ';'
             + ('test="";' if en else 'test="/guide/comfee-mpph-09crn7-test.html";')
             + 'label=' + repr(b0) + ';}'
-            'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
-            'url=' + repr(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")) + ';'
-            + ('test="";' if en else 'test="/guide/pinguino-pac-ex105-test.html";')
+            # 9–11k slot: PAC N90 ECO Silent (9.800 BTU/h, same class as the EX105
+            # per delonghi-pinguino-vergleich). Owner 2026-09-27: EX105 moved back —
+            # amazon.de has its listing but no featured offer, so the result
+            # button would land on a page with nothing to buy.
+            'else if(btu<=11000){model="De\'Longhi PAC N90 ECO Silent";term="De%27Longhi+PAC+N90+ECO+Silent";'
+            'url=' + repr(amazon_url("De%27Longhi+PAC+N90+ECO+Silent", "De'Longhi PAC N90 ECO Silent")) + ';'
+            + ('test="";' if en else 'test="/guide/delonghi-pac-n90-test.html";')
             + 'label=' + repr(b1) + ';}'
             'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
             'term="Klarstein+Kraftwerk+Smart+12K";'
@@ -4630,7 +4576,39 @@ def inject_radar(html, radar=RADAR):
         return html.replace("<!--EB_FOOTER-->", radar + "<!--EB_FOOTER-->", 1)
     return html.replace("</body>", radar + "</body>", 1)
 
+def storage_guard():
+    """Refuse to build while any shelf table still names a storage product.
+
+    The owner took storage off the site on 2026-09-27. check_storage_veto.py
+    asserts that on the built pages; this catches it one step earlier, at the
+    table a person would edit, with the table and row in the message."""
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import storage_veto
+    veto = storage_veto.load()
+    bad = []
+    for tname, table in (("DEVICE_MODELS", DEVICE_MODELS), ("DEVICE_MODELS_EN", DEVICE_MODELS_EN),
+                         ("CONTEXT_MODELS", CONTEXT_MODELS), ("CONTEXT_MODELS_EN", CONTEXT_MODELS_EN)):
+        for key, rows in table.items():
+            for row in rows:
+                t = storage_veto.is_storage(row[0], veto) or storage_veto.is_storage(row[4], veto)
+                if t:
+                    bad.append(f"{tname}[{key!r}]: {row[0]!r} ({t})")
+    for key, rows in CAT_SHOP.items():
+        for row in rows:
+            t = storage_veto.is_storage(row[2], veto) or storage_veto.is_storage(row[5], veto)
+            if t:
+                bad.append(f"CAT_SHOP[{key!r}]: {row[2]!r} ({t})")
+    for name in MODEL_ASIN:
+        if storage_veto.is_storage(name, veto):
+            bad.append(f"MODEL_ASIN: {name!r}")
+    if bad:
+        raise SystemExit("storage products are off this site (owner, 2026-09-27) — remove:\n  "
+                         + "\n  ".join(bad))
+
+
 def main():
+    storage_guard()
     os.makedirs(KAT, exist_ok=True)
     arts = collect_articles()
     for key, _, _ in CATEGORIES:

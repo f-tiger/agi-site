@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-26T05:27:51+00:00",
+ "generated": "2026-09-27T13:26:45+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
   {
@@ -26,14 +26,14 @@
     "days": 28,
     "subscribers": 2,
     "ev_calc_use_28d": 20,
-    "ev_invest_tool_click_28d": 9,
+    "ev_invest_tool_click_28d": 10,
     "ev_pick_ledger_28d": 4,
     "ev_subscribe_click_28d": 2,
     "ev_tool_click_28d": 24,
-    "pv_advertise_28d": 222,
-    "pv_audits_28d": 160,
+    "pv_advertise_28d": 158,
+    "pv_audits_28d": 101,
     "pv_members_28d": 2,
-    "pv_workbench_28d": 52,
+    "pv_workbench_28d": 62,
     "member_orders_by_state": {},
     "discuss_profiles": 0
    },
@@ -60,8 +60,10 @@
     "video_orders_by_state": {},
     "video_order_definition": "Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.",
     "submissions_total": 9,
-    "go_28d": 117,
-    "biz_28d": 9
+    "go_28d": 121,
+    "biz_28d": 12,
+    "claims_verified": 0,
+    "attestations_queued": 0
    },
    "summary": {
     "affiliate_click_28d": null,
@@ -88,7 +90,7 @@
    "via": "endpoint",
    "money": {
     "days": 28,
-    "mcp_call_28d": 87
+    "mcp_call_28d": 90
    },
    "summary": {
     "affiliate_click_28d": null,
@@ -122,5 +124,13 @@
   "fleet_verified_revenue_to_date_eur": 11.2,
   "fleet_non_amazon_revenue_to_date": 0
  },
- "errors": []
+ "errors": [],
+ "forecast": {
+  "enabled_state": "never",
+  "prize_usd_30d": null,
+  "spend_usd_30d": 0,
+  "net_usd_30d": null,
+  "north_star_resolved_prelogged": 0,
+  "generated": "2026-09-27T13:26:45+00:00"
+ }
 }

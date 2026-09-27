@@ -12,7 +12,7 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 ## Warum die deutschen Regeln hier nicht gelten
 
-Unser Ratgeber [Klimaanlage für die Mietwohnung](https://getecoback.com/guide/klimaanlage-mietwohnung.html) und der zum [Balkonkraftwerk als Mieter](https://getecoback.com/guide/balkonkraftwerk-mieter-recht.html) stützen sich auf § 554 BGB. Das ist deutsches Recht. In Österreich gilt das Mietrechtsgesetz, und dort ist die Frage anders gebaut: Das BGB nennt einzelne Maßnahmen beim Namen (Barrierefreiheit, Ladepunkt, Einbruchschutz, Steckersolargerät) und gibt dafür einen Anspruch auf Erlaubnis. Das MRG nennt keine einzige Gerätegattung. Es arbeitet mit einem Verfahren — Anzeige, Frist, Bedingungen — und mit einer Liste von Änderungen, bei denen eine der Bedingungen automatisch als erfüllt gilt.
+Unser Ratgeber [Klimaanlage für die Mietwohnung](https://getecoback.com/guide/klimaanlage-mietwohnung.html) stützt sich auf § 554 BGB. Das ist deutsches Recht. In Österreich gilt das Mietrechtsgesetz, und dort ist die Frage anders gebaut: Das BGB nennt einzelne Maßnahmen beim Namen (Barrierefreiheit, Ladepunkt, Einbruchschutz, Steckersolargerät) und gibt dafür einen Anspruch auf Erlaubnis. Das MRG nennt keine einzige Gerätegattung. Es arbeitet mit einem Verfahren — Anzeige, Frist, Bedingungen — und mit einer Liste von Änderungen, bei denen eine der Bedingungen automatisch als erfüllt gilt.
 
 Für die Praxis heißt das: Wer in Wien oder Graz einen deutschen Forenbeitrag über „§ 554" liest, liest die Regel für ein anderes Land.
 

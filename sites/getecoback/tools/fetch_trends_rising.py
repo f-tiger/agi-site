@@ -21,7 +21,10 @@ OUT = os.path.join(ROOT, "data", "trends-rising.json")
 # rising sub-segment of Bodenpflege (Tineco/Dreame duopoly press wave), and the
 # "akku staubsauger" seed does not capture those queries. 10 seeds × 2/day = 5-day
 # full coverage.
-SEEDS = ["luftentfeuchter", "heizlüfter", "balkonkraftwerk",
+# "balkonkraftwerk" was a seed until 2026-09-27, when the owner took every
+# storage and balcony-PV page off the site; a closed category does not need
+# a daily share of the Trends quota.
+SEEDS = ["luftentfeuchter", "heizlüfter",
          "klimaanlage", "schimmel entfernen", "infrarotheizung",
          "kaffeevollautomat", "akku staubsauger", "matratze", "saugwischer"]
 GEO = "DE"
@@ -104,7 +107,9 @@ def main():
             previous = {}
     tr = Trends()
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    result = dict(previous)  # 未轮到的种子保留上次数据
+    # 未轮到的种子保留上次数据 — but only seeds still in SEEDS. A retired seed kept
+    # forever would pin the rail's "Stand" (the oldest seed date) in the past.
+    result = {k: v for k, v in previous.items() if k in SEEDS}
     off = datetime.now(timezone.utc).toordinal() % len(SEEDS)
     todays = [SEEDS[(off + k) % len(SEEDS)] for k in range(SEEDS_PER_RUN)]
     print(f"today's rotation: {todays}")

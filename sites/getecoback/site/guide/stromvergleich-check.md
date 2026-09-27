@@ -42,13 +42,11 @@ Haushalt (Wohnung) | Ø Verbrauch/Jahr* | Ø Kosten bei 37 ct |
 
 *Stromspiegel 2025 (co2online), Wohnung ohne elektrische Warmwasserbereitung — basiert auf 57.000 realen Haushaltsdaten.
 
-## Du liegst drüber? Die drei größten Hebel
+## Du liegst drüber? Die zwei größten Hebel
 
 - **Stromfresser finden:** Ein Strommessgerät (~15 €) zwischen Steckdose und Verdächtige (alter Kühlschrank, Trockner, Heizlüfter) zeigt in Tagen, wo die kWh verschwinden. Was einzelne Geräte kosten, rechnet der [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html).
 
 - **Standby abschalten:** Schaltbare Steckdosenleisten für TV-Ecke und Schreibtisch sparen oft 50–100 kWh im Jahr.
-
-- **Grundlast selbst decken:** Ein Balkonkraftwerk produziert deine Grundlast (Router, Kühlschrank, Standby) tagsüber selbst — ob es sich für dich rechnet, zeigt der [Lohnt-sich-Rechner](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html) in 30 Sekunden.
 
 ## Häufige Fragen
 
@@ -58,7 +56,7 @@ Haushalt (Wohnung) | Ø Verbrauch/Jahr* | Ø Kosten bei 37 ct |
 
 **Wo finde ich meinen Jahresverbrauch?**Auf deiner letzten Stromrechnung (Jahresabrechnung) — dort steht der Verbrauch in kWh für die letzten 12 Monate. Alternativ kannst du den Zählerstand notieren und mit dem Wert der letzten Abrechnung vergleichen.
 
-**Wie kann ich meinen Stromverbrauch dauerhaft senken?**Die drei größten Hebel: Stromfresser identifizieren und ersetzen (Messgerät), Standby konsequent abschalten (schaltbare Steckdosenleisten) — und die Grundlast mit einem Balkonkraftwerk selbst decken: ein 800-Watt-Set kann je nach Ausrichtung 100 bis 190 Euro pro Jahr sparen.
+**Wie kann ich meinen Stromverbrauch dauerhaft senken?**Die zwei größten Hebel: Stromfresser identifizieren und ersetzen (Messgerät) und Standby konsequent abschalten (schaltbare Steckdosenleisten).
 
 **Werkzeug für die Fresser-Suche:**
 
@@ -68,7 +66,6 @@ Strommessgeräte ansehen →
 **Weiter im Thema**
 [Strom sparen im Haushalt: Maßnahmen mit echtem Effekt →](https://getecoback.com/guide/strom-sparen-haushalt.html)
 [Stromkosten-Rechner für einzelne Geräte →](https://getecoback.com/guide/stromkosten-rechner.html)
-[Balkonkraftwerk: Lohnt es sich? Der Rechner →](https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html)
 [Börsenstrompreis-Radar: Preis jetzt & negative Stunden →](https://getecoback.com/guide/strompreis-radar.html)
 
 ---

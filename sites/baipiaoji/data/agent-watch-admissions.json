@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-26",
+ "checked": "2026-09-27",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -18,116 +18,116 @@
    "last_attempt": "2026-09-26"
   },
   "controlflow": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "codex-cli": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 403",
    "source_http": 403,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "plandex": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source unreachable (timeout / network)",
    "source_http": null,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "amp": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source unreachable (timeout / network)",
    "source_http": null,
    "repo_http": null,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "cloudflare-mcp-servers": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
-   "reason": "duplicate repository of an existing record",
-   "source_http": 200,
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "mcp-toolbox-databases": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "appbuilder": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 500",
    "source_http": 500,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "perplexity-comet": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 403",
    "source_http": 403,
    "repo_http": null,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "llm-guard": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source unreachable (timeout / network)",
    "source_http": null,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "be-florealholidays-workspace": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "linkbreakers-mcp": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "wiretensors-wiretensors": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "sketchxflow-dev-mcp": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 403",
    "source_http": 403,
    "repo_http": 403,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "voyahomes-voya-homes": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "slidingbox-hydrate-dehydrate": {
    "attempts": 1,
@@ -138,36 +138,36 @@
    "last_attempt": "2026-09-22"
   },
   "niubiagent-niubiagent": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "proabono-mcp-installation": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 500",
    "source_http": 500,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "klipy-klipy": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "microsoft-azure": {
-   "attempts": 3,
+   "attempts": 4,
    "first_attempt": "2026-09-22",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "apify-mcp-server": {
    "attempts": 3,
@@ -354,12 +354,12 @@
    "last_attempt": "2026-09-25"
   },
   "exa-exa": {
-   "attempts": 2,
+   "attempts": 3,
    "first_attempt": "2026-09-23",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "goaimoat-brand-intel-memory": {
    "attempts": 1,
@@ -394,28 +394,28 @@
    "last_attempt": "2026-09-25"
   },
   "a2awire-benchmark-record-review-2026-09-24-4f9382bf": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-25",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 404,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "getnoden-noden": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-25",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "goaimoat-returns-refund-management": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-25",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 200,
-   "last_attempt": "2026-09-25"
+   "last_attempt": "2026-09-27"
   },
   "agency-ottobot-licensed-house-painters": {
    "attempts": 1,
@@ -432,6 +432,54 @@
    "source_http": 200,
    "repo_http": 200,
    "last_attempt": "2026-09-26"
+  },
+  "bookingtruth-bookingtruth": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-09-27"
+  },
+  "1102tools-bls-oews-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-27"
+  },
+  "verdixapi-verdix": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-09-27"
+  },
+  "vouchedhq-vouched": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-27"
+  },
+  "pixelcove-citation-tracker": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-27"
+  },
+  "wenreceipts-site": {
+   "attempts": 1,
+   "first_attempt": "2026-09-27",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 404,
+   "last_attempt": "2026-09-27"
   }
  },
  "admitted": [
@@ -5953,6 +6001,166 @@
   {
    "slug": "loomaly-loomaly",
    "date": "2026-09-26",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agent-bev-bev-door",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kairossignal-kairos-signal",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "voxell-forge",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rubiic-agent",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "reassign-reassign",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "openworklabs-openwork",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cc-heatpulse-heatpulse",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "screenbrowser-screenbrowser",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "babyblueviper-invinoveritas",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "recordist-gateway",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "listnsfwai-catalog",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "yungle-yungle",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "harborrank-harborrank",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "zensation-zenbrain",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hooklistener-mcp",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "flightclaw-flightclaw",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aicitely-citely",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentboxd-mcp",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "brydge-ai-brydge",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parallelsandbox-parallelsandbox",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rewindmap-rewindmap",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "doklad-mcp",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "loppee-loppee",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ad-getle-leads",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cnrcode-tillpad",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "artifactshare-artifactshare",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "marketmayhem-mcp",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "click-appdesigns-screenshots",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "radicadouno-mcp",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "svglab-svglab",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "meetclair-clair",
+   "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "warmerly-warmerly",
+   "date": "2026-09-27",
    "origin": "mcp-registry"
   }
  ],

@@ -2,7 +2,7 @@
 
 https://thedollscout.com/de/compare-pdf-text
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.
 
@@ -24,17 +24,37 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Funktioniert der Vergleich nach eingefügten Seiten?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Das Werkzeug ordnet Seiten anhand normalisierten Texts zu und schlägt Paare um Einfügungen herum vor. Prüfen Sie Ergänzungen, Löschungen und Änderungen. Wiederholter Inhalt kann die Zuordnung mehrdeutig machen.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Bedeutet gleicher Text identische Dateien?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Nein. Bilder, Tags, Layout und andere Bytes können abweichen. Für SHA-256 und Bytezahl nutzen Sie die Dateiprüfung; visuelle Änderungen prüfen Sie in den Original-PDFs.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die neue Fassung ändert die Uhrzeit, fügt eine Seite ein und ändert die Materialliste. Die Textzuordnung vergleicht keine Bilder, Tags oder Layouts.
+
+Textänderungen | Alte Seite | Neue Seite
+
+Geändert | 1 | 1
+
+Ergänzt | — | 2
+
+Geändert | 2 | 3
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/compare-pdf-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

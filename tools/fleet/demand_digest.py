@@ -32,10 +32,33 @@ def age_days(today, iso):
         return None
 
 
+def _veto_load(path):
+    """Tokens and '!'-exceptions of a site's category veto list, or None."""
+    if not os.path.exists(path):
+        return None
+    tokens, allow = [], []
+    for line in open(path, encoding="utf-8"):
+        line = line.split("#", 1)[0].strip().lower()
+        if line:
+            (allow if line.startswith("!") else tokens).append(line.lstrip("!"))
+    return tokens, allow
+
+
+def _veto_hit(q, veto):
+    s = " ".join(q.lower().replace("+", " ").split())
+    for a in veto[1]:
+        s = s.replace(a, " ")
+    return any(t in s for t in veto[0])
+
+
 def rising_for(site, today):
     """每个 seed 自带 fetched 时取它自己的;否则退到文件顶层。超过 10 天标 STALE。"""
     files = [f for f in glob.glob(os.path.join(ROOT, "sites", site, "**", "*rising*.json"), recursive=True)
              if "/node_modules/" not in f and "/dist/" not in f]
+    # A site that has taken a category off its shelves keeps its veto list in
+    # tools/storage_veto.txt (eco, 2026-09-27: 「后续记得不做储能品类」). Rows
+    # matching it are hidden here so the digest does not present them as topics.
+    veto = _veto_load(os.path.join(ROOT, "sites", site, "tools", "storage_veto.txt"))
     rows = []
     for f in files:
         d = load(f)
@@ -49,7 +72,13 @@ def rising_for(site, today):
                 a = age_days(today, when)
                 tag = "STALE" if (a is None or a > MAX_AGE) else f"{a}d"
                 rs = v.get("rising") if isinstance(v, dict) else None
+                hidden = 0
+                if isinstance(rs, list) and veto:
+                    kept = [r for r in rs if not _veto_hit(str(r.get("q", "")), veto)]
+                    hidden, rs = len(rs) - len(kept), kept
                 items = ", ".join(f"{r.get('q')} ({r.get('v')})" for r in rs[:4]) if isinstance(rs, list) and rs else "(空)"
+                if hidden:
+                    items += f" · 另 {hidden} 条储能词已隐藏(品类已下架,不作选题)"
                 rows.append(f"- [{tag}] **{seed}** → {items}")
         elif isinstance(seeds, list):
             rows.append(f"- 文件 {os.path.relpath(f, ROOT)}:列表形 {len(seeds)} 条(未细读)")

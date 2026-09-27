@@ -40,7 +40,7 @@
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   footer a, a { color:#0f6ba8; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit neun Raumklima-Tools: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau für Deutschland, Klimaanlagen-Stromkosten, Heizleistung in Watt, Taupunkt/Lüften, Balkonspeicher-Förderung sowie Volltextsuche und Volltext-Abruf der 133 Ratgeber. Ohne Authentifizierung, ohne personenbezogene Daten.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit acht Raumklima-Tools: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau für Deutschland, Klimaanlagen-Stromkosten, Heizleistung in Watt, Taupunkt/Lüften sowie Volltextsuche und Volltext-Abruf der 133 Ratgeber. Ohne Authentifizierung, ohne personenbezogene Daten.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -71,7 +71,7 @@
 <article>
   <div class="answer"><strong>Endpoint:</strong> <code>https://getecoback.com/mcp</code> (Model Context Protocol, Streamable HTTP, keine Authentifizierung). Die Formeln sind identisch mit den <a href="/tools.html">Rechnern dieser Website</a> — dein KI-Assistent und diese Seite geben nie unterschiedliche Antworten. Jedes Ergebnis nennt seine Quelle und unsere Finanzierung (Affiliate-Links, nicht selbst getestet).</div>
 
-  <h2 id="tools">Die neun Tools</h2>
+  <h2 id="tools">Die acht Tools</h2>
   <div class="tool"><strong>geraet_wahl</strong><p>Die Entscheidungsebene über den Rechnern: welches Gerät löst mein Problem (zu heiß / feucht &amp; Schimmel / zu kalt / stickige Luft)? Antwort mit ehrlicher Physik, Größen-Faustregel für den Raum und dem passenden Ratgeber.</p></div>
   <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
   <div class="tool"><strong>fensterabdichtung_laenge</strong><p>Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen (Umfang = 2 × (Breite + Höhe)), plus passende Konfektionsgröße — für Kipp-, Drehkipp- und Dachfenster.</p></div>
@@ -81,7 +81,7 @@
   <div class="tool"><strong>ratgeber_suche</strong><p>Durchsucht die 133 Ratgeber dieser Website und liefert Titel, URL und Kurzbeschreibung — damit dein Assistent zur Antwort auch die Quelle nennen kann. Optional auf Deutsch oder Englisch eingegrenzt.</p></div>
   <div class="tool"><strong>ratgeber_lesen</strong><p>Volltext eines einzelnen Ratgebers als Klartext (ohne Navigation, Shop-Karten und Skripte), inklusive zitierfähiger Quell-URL.</p></div>
   <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
-  <div class="tool"><strong>balkonspeicher_foerderung</strong><p>Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026): welche Landesprogramme es gibt, der ~100-€-Speicher-Bonus, die „erst Antrag, dann kaufen"-Regel — und auf Wunsch die Amortisationsrechnung mit und ohne Zuschuss.</p></div>
+  
 
   <h2 id="einrichten">In deinem Client einrichten</h2>
 

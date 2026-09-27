@@ -2,7 +2,7 @@
 
 https://thedollscout.com/de/pdf-batch-audit
 Veröffentlicht von TDS Document Scout
-Aktualisiert: 2026-09-25
+Aktualisiert: 2026-09-27
 
 Wann es hilft: Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.
 
@@ -24,17 +24,37 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-Verlassen meine PDFs mein Gerät?
+Wie viele PDFs kann ich gemeinsam prüfen?
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Was passiert bei einer unlesbaren Datei?
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+Die Befunde lesbarer Dateien bleiben erhalten. Die fehlerhafte Datei wird getrennt ausgewiesen; der Stapel gilt als teilweise geprüft. Fordern Sie eine lesbare Kopie an und prüfen Sie diese nach.
 
-Werden Scans oder fehlende Tags repariert?
+Ein Ergebnis zum Nachprüfen
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Der Stapel enthält ein Text-PDF mit fehlenden Metadaten, eine überarbeitete Textfassung und eine Seite nur mit einer gezeichneten Form. Vollständig verarbeitet bedeutet nicht barrierefrei.
+
+Dokument | Seiten | Alle Seiten verarbeitet | Prüfung
+
+Ursprüngliche Unterlage | 2 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2)
+
+Überarbeitete Unterlage | 3 | Ja | Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2); Kein Strukturbaum für die Seite gefunden (3)
+
+Beispiel ohne Textebene | 1 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein auslesbarer Text (1)
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-batch-audit#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

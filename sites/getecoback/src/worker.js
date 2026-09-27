@@ -976,19 +976,9 @@ const MCP_TOOLS = [
       required: ["aussen_temp_c", "aussen_luftfeuchte_prozent", "innen_temp_c"],
     },
   },
-  {
-    name: "balkonspeicher_foerderung",
-    description: "Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026) und wie ein Zuschuss die Amortisation verkürzt. — German subsidies for plug-in balcony solar and storage: which state programmes exist, the ~100 € storage bonus, the apply-BEFORE-buying rule most programmes enforce, and the payback arithmetic with and without a grant. No federal purchase premium — only the VAT exemption.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        bundesland: { type: "string", description: "Bundesland, z. B. 'Sachsen' oder 'Berlin' — German federal state (optional; ohne Angabe wird die Gesamtlage beschrieben)" },
-        preis_eur: { type: "number", description: "Kaufpreis des Speichers/Sets in € für die Amortisationsrechnung (optional)" },
-        zuschuss_eur: { type: "number", description: "Erwarteter Zuschuss in € (optional, Default 0)" },
-        ersparnis_eur_jahr: { type: "number", description: "Jährliche Stromersparnis in € (optional, Default 100 — typisch 60–120 € bei 1–1,5 kWh/Tag Verschiebung)" },
-      },
-    },
-  },
+  // balkonspeicher_foerderung (balcony solar / storage subsidies) was removed on
+  // 2026-09-27 together with the storage and balcony-PV pages it pointed at
+  // (owner: 「全部下线储能页」). A tools/call for it now gets the unknown-tool error.
   // Retrieval, not arithmetic. The six tools above hand back a number; an
   // assistant answering "welche Klimaanlage bei Kippfenster im Dachgeschoss?"
   // needs the site's actual guides — and a URL it can cite. These two make the
@@ -1183,42 +1173,6 @@ async function mcpCallTool(name, args, env) {
       `\nGerechnet wird mit Wänden 2 °C unter Raumtemperatur. Im Sommer sind das oft die frühen Morgenstunden.\n` +
       `Hintergrund & Check im Browser: https://getecoback.com/guide/keller-lueften-sommer.html\n${MCP_DISCLOSURE}`);
   }
-  if (name === "balkonspeicher_foerderung") {
-    // Mirrors the table on /guide/balkonspeicher-foerderung.html — same data,
-    // same caveats. Programme pots empty mid-year, so the answer names the
-    // magnitude and the rule, never a guaranteed amount.
-    const LAND = {
-      "mecklenburg-vorpommern": "Mecklenburg-Vorpommern hat ein Landesprogramm (Größenordnung 300–500 €).",
-      "sachsen": "Sachsen fördert speziell Mietende — befristetes Programm, Größenordnung 300–500 €.",
-      "hamburg": "Hamburg hat ein Landesprogramm (Größenordnung 300–500 €).",
-      "berlin": "Berlin fördert an den Bezug von Sozialleistungen geknüpft (Größenordnung 300–500 €).",
-    };
-    const raw = String(a.bundesland || "").trim().toLowerCase()
-      .replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
-      .replace(/\s+/g, "-");
-    const key = raw === "mv" ? "mecklenburg-vorpommern" : raw;
-    const landLine = key
-      ? (LAND[key] || `Für ${a.bundesland}: kein landesweites Programm bekannt (Stand 08/2026).`)
-      : "Landesprogramme gibt es u. a. in Mecklenburg-Vorpommern, Sachsen (Mietende, befristet), Hamburg und Berlin (an Sozialleistungen geknüpft) — Größenordnung 300–500 €.";
-    let calc = "";
-    const preis = Number(a.preis_eur);
-    if (isFinite(preis) && preis > 0) {
-      const zuschuss = Math.max(0, Math.min(preis, Number(a.zuschuss_eur) || 0));
-      const sparen = Math.max(10, Number(a.ersparnis_eur_jahr) || 100);
-      const ohne = preis / sparen;
-      const mit = (preis - zuschuss) / sparen;
-      calc = `\nAmortisation bei ${sparen.toFixed(0)} € Ersparnis/Jahr: ohne Zuschuss ca. ${ohne.toFixed(1).replace(".", ",")} Jahre` +
-        (zuschuss > 0 ? `, mit ${zuschuss.toFixed(0)} € Zuschuss ca. ${mit.toFixed(1).replace(".", ",")} Jahre. Der Zuschuss ändert nichts am Nutzen pro Jahr — er verkürzt nur die Zeit bis zur schwarzen Null.` : ".");
-    }
-    return mcpToolResult(
-      `Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026):\n` +
-      `Bundesweit gibt es KEINE Kaufprämie — nur die Mehrwertsteuer-Befreiung, die im Preis bereits enthalten ist.\n` +
-      `${landLine}\n` +
-      `Dazu rund 20 kommunale Programme (u. a. Leipzig, Dresden, Chemnitz) mit 100–500 €; einige zahlen ca. +100 € extra, wenn ein Speicher dazukommt.\n` +
-      `Wichtigste Regel: ERST Antrag stellen, DANN kaufen — eine Rechnung von vor der Bewilligung kippt den Zuschuss in fast allen Programmen.${calc}\n` +
-      `Fördertöpfe sind begrenzt und ändern sich unterjährig — verbindlich ist nur die Richtlinie des eigenen Programms (Kommune/Stadtwerke prüfen).\n` +
-      `Details & Rechenweg: https://getecoback.com/guide/balkonspeicher-foerderung.html\n${MCP_DISCLOSURE}`);
-  }
   if (name === "ratgeber_suche") {
     if (!env || !env.ASSETS) {
       return { content: [{ type: "text", text: "Suchindex derzeit nicht erreichbar." }], isError: true };
@@ -1351,7 +1305,7 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.2.0" },
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.0" },
       instructions: "Raumklima-Tools von getecoback.com: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau (DE), Stromkosten. Formeln identisch mit den Rechnern der Website; Antworten enthalten Quell-URLs.",
     });
   }
@@ -1531,6 +1485,52 @@ async function pulseCompute(url, env) {
   }
 }
 
+// --- GONE PAGES (2026-09-27) ------------------------------------------------
+// Owner: 「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」. Every
+// energy-storage and balcony-PV page is gone for good: 410 for the page and its
+// .md mirror. The list must equal tools/gone_pages.txt (check_gone.py asserts
+// it); the block between these markers is self-contained so tools/test_gone.mjs
+// can import it without the rest of the worker.
+const GONE_PAGES = new Set([
+  "balkonkraftwerk-speicher-nachruesten",
+  "balkonspeicher-anker-solarbank-probleme",
+  "balkonspeicher-foerderung",
+  "balkonspeicher-rechner",
+  "balkonspeicher-winter-frost",
+  "growatt-noah-2000-probleme",
+  "stromausfall-heizen",
+  "balkonkraftwerk-lohnt-sich-rechner",
+  "balkonkraftwerk-mieter-recht",
+  "balkonkraftwerk-oesterreich",
+  "balkonkraftwerk-ohne-bohren",
+  "balkonkraftwerk-standort-check",
+  "balkonkraftwerk-wo-kaufen",
+  "klimaanlage-balkonkraftwerk"
+]);
+
+function goneResponse(pathname) {
+  const m = /^\/guide\/([a-z0-9-]+)\.(html|md)$/.exec(pathname);
+  if (!m || !GONE_PAGES.has(m[1])) return null;
+  const body = '<!doctype html><html lang="de"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    '<meta name="robots" content="noindex"><title>Seite entfernt | EcoBack</title></head>' +
+    '<body style="font-family:system-ui,sans-serif;max-width:640px;margin:48px auto;padding:0 20px;color:#1a2733;">' +
+    '<h1>Diese Seite gibt es nicht mehr</h1>' +
+    '<p>Wir haben unsere Ratgeber zu Balkonkraftwerken und Stromspeichern eingestellt. ' +
+    'Die Seite wurde dauerhaft entfernt.</p>' +
+    '<p><a href="/">Zur Startseite</a> · <a href="/kategorie/energie-sparen.html">Energie sparen</a></p>' +
+    '</body></html>';
+  return new Response(body, {
+    status: 410,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "public, max-age=3600",
+      "x-robots-tag": "noindex",
+    },
+  });
+}
+// --- /GONE PAGES ---------------------------------------------------------------
+
 export default {
   async fetch(request, env, ctx) {
     const memberResponse=await memberRoute(request,env,'eco');if(memberResponse)return memberResponse;
@@ -1611,6 +1611,10 @@ export default {
     if (changed) {
       return Response.redirect(url.toString(), 301);
     }
+
+    // Removed pages answer 410 before any asset or markdown lookup (see GONE PAGES).
+    const gone = goneResponse(url.pathname);
+    if (gone) return gone;
 
     if (wantsMarkdown(request, url.pathname)) {
       const assetPath = url.pathname === "/" ? "/index.html"

@@ -94,7 +94,6 @@ Tragbare Klimaanlagen →
   Fensterabdichtungen →
 
 **Weitere Ratgeber**
-[Balkonkraftwerk ohne Bohren befestigen →](https://getecoback.com/guide/balkonkraftwerk-ohne-bohren.html)
 [Split-Klimaanlage ohne Kernbohrung →](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html)
 [Tragbare Klimaanlage am Kippfenster abdichten →](https://getecoback.com/guide/klimaanlage-kippfenster.html)
 [Beste tragbare Klimaanlage für die Hitzewelle →](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html)

@@ -16,15 +16,13 @@ Il Portale Offerte mette a confronto offerte luce e gas usando comune e profilo 
 
 Usa il fabbisogno termico annuale e un rendimento stagionale giustificato per il clima e l’impianto. Non assumere che un dato nominale valga tutto l’inverno. Prima di installare un’unità esterna, verifica con tecnico e amministratore gli aspetti di facciata, rumore e autorizzazioni.
 
-## Detrazioni fiscali e fotovoltaico
+## Detrazioni fiscali
 
-ENEA distingue Ecobonus, Bonus Casa e altri percorsi, con portali e documentazione dedicati. Una detrazione fiscale futura non è uno sconto immediato: il calcolo base non la sottrae come contributo in contanti. Per il fotovoltaico usa una stima PVGIS locale e una quota di autoconsumo realistica, non una resa ricavata dai metri quadrati della stanza.
+ENEA distingue Ecobonus, Bonus Casa e altri percorsi, con portali e documentazione dedicati. Una detrazione fiscale futura non è uno sconto immediato: il calcolo base non la sottrae come contributo in contanti.
 
 ## Metodo di calcolo
 
 Raffrescamento/deumidificazione: W ÷ 1000 × ore × giorni. Riscaldamento: calore utile ÷ rapporto stagionale. Risparmio = costo annuo A − costo annuo B. Rientro = max(0, costo B − contributo immediato − costo A) ÷ risparmio annuo positivo.
-
-Solare: acquisti evitati = produzione × autoconsumo. Aggiungi credito effettivo delle eccedenze, sottrai costi annui. A è senza FV. L’energia B è produzione; un costo netto negativo è un beneficio. Nessuna simulazione di accumulo.
 
 Esclusi finanziamento, attualizzazione, inflazione, sostituzioni, degrado e detrazioni fiscali differite. Il risultato non conferma dimensionamento, autorizzazioni o diritto alle agevolazioni.
 
@@ -32,4 +30,3 @@ Esclusi finanziamento, attualizzazione, inflazione, sostituzioni, degrado e detr
 
 - [Portale Offerte · luce e gas](https://www.ilportaleofferte.it/portaleOfferte/)
 - [ENEA · detrazioni fiscali](https://www.efficienzaenergetica.enea.it/detrazioni-fiscali.html)
-- [EU JRC · PVGIS](https://re.jrc.ec.europa.eu/pvg_tools/en/)

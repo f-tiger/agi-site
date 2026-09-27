@@ -54,6 +54,13 @@ const ALLOWED_EVENTS = new Set([
   // On-site signup funnel: opened the form / submitted / succeeded / failed. Without
   // all four, a form nobody opens and a form that errors on submit look the same.
   'sub_open', 'sub_submit', 'sub_ok', 'sub_fail',
+  // Click-to-verify on /calibration (2026-09-27): the reader hashed the OpenTimestamps-listed
+  // records and recomputed the Thesis Tracker in their own browser. location='calibration',
+  // label='<matched>/<files>|score:<ok|diff|err>'. This event is the ONLY row a run leaves: the
+  // button's own fetches (?utm_source=verify) are kept out of `pageviews` below, so they cannot
+  // satisfy agi-ots-verified-1124 ② or agi-consensus-mcp-1124 ②, which count hand fetches of
+  // /ots/ and /agi-consensus.json. verify_run is a separate reading, not those lines' metric.
+  'verify_run',
 ]);
 
 // Campaign tags are the one part of a query string worth keeping: GA4 attributed
@@ -266,7 +273,7 @@ export default {
               description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_verdicts',
-              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources. The dataset AI assistants cite for "was Aschenbrenner right" questions.',
+              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_sunwatch_track_record',
               description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
@@ -307,8 +314,17 @@ export default {
           }
           if (tool === 'get_verdicts') {
             const d = await asset('/data.json');
+            // 2026-09-27 (win branch of agi-grader-consensus-1127): the outside graders ride along, so an agent
+            // citing our verdicts also gets where independent graders agree and disagree. Absent file → omitted.
+            let grades = null;
+            try {
+              const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/grader-consensus.json'));
+              if (r.ok) grades = await r.json();
+            } catch (e) {}
             logTool('verdicts');
-            return mcpText(id, { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' });
+            const out = { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' };
+            if (grades) out.independent_grades = grades;
+            return mcpText(id, out);
           }
           if (tool === 'get_agi_consensus') {
             // The cross-venue AGI consensus board: third-party public quotes only, each row with
@@ -768,9 +784,13 @@ export default {
       // 2026-09-26: the consensus JSON, the board snapshot and the OpenTimestamps proofs are the surfaces two
       // judgment lines read (agi-consensus-mcp-1124 / agi-ots-verified-1124); without a row here their readings
       // would be 0 by construction. Same aggregate pageviews table, UA-classified; CI requests carry ?ci=1.
+      // 2026-09-27: /calibration's verify button fetches the manifest, every proof and both JSON files in
+      // one click (?utm_source=verify). Counting those would let a single click, the owner's or a QA
+      // session's included, satisfy both lines above — a hash check is not someone reading the consensus
+      // number or fetching a proof by hand. The run is recorded once, as the verify_run event.
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) &&
           (url.pathname === '/agi-consensus.json' || url.pathname === '/market-board.json' || url.pathname.startsWith('/ots/')) &&
-          url.searchParams.get('ci') !== '1') {
+          url.searchParams.get('ci') !== '1' && url.searchParams.get('utm_source') !== 'verify') {
         try { recordView(env, ctx, request, url); } catch (e) {}
       }
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
@@ -784,6 +804,17 @@ export default {
       // Share cards and badges are immutable per deploy and hot-linked from other
       // sites: give them a week of edge/browser cache instead of the assets default.
       // Wrapped like everything else here — a header failure must never break serving.
+      // OpenTimestamps proofs (2026-09-27): the extension maps to an OpenDocument spreadsheet template in
+      // the default type table, so a reader clicking a proof link was offered a "spreadsheet". It is a
+      // binary proof file: serve it as one, with a download name, never cached for long (upgrades replace it).
+      if (res.status === 200 && url.pathname.startsWith('/ots/') && url.pathname.endsWith('.ots')) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('content-type', 'application/octet-stream');
+          h.set('content-disposition', 'attachment; filename="' + url.pathname.split('/').pop().replace(/[^A-Za-z0-9._-]/g, '') + '"');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
         try {
           const h = new Headers(res.headers);

@@ -1,0 +1,45 @@
+# Energy storage and balcony PV — categories this site no longer covers (owner,
+# 2026-09-27: 「eco站点下架所有储能产品」, then 「全部下线储能页！」 and
+# 「指南页，排障页，只要是相关的都下架」, which took the balcony-PV pages too). One token per line, case-insensitive, matched as
+# a substring of an Amazon search query or product name after URL-decoding
+# ('+' and %20 become spaces, %C3%A4 becomes ä).
+#
+# This is a shelf veto, not a topic veto: the storage guides stay online and may
+# name these devices in their text (a Growatt NOAH troubleshooting page has to).
+# What may not exist is a link or a card that sells one. check_storage_veto.py
+# asserts that on the built site; the rising rail and the shelf builder read the
+# same list, so there is one place to change it.
+#
+# Lines starting with "!" are exceptions: substrings that contain a token but
+# are not a battery. A Nachtspeicherofen is a heater that stores heat; a
+# Warmwasserspeicher is a boiler. Neither is 储能 in the owner's sense.
+speicher
+solarbank
+solix
+solarflow
+zendure
+marstek
+growatt noah
+noah 2000
+jackery
+# EcoFlow's range is power stations and balcony storage (STREAM). The brand is
+# also on brand_veto.txt since 2026-08-28; listing it here as well lets the
+# digest hide "ecoflow stream …" rising rows as storage topics.
+ecoflow
+bluetti
+powerstation
+power station
+# Balcony PV (added with the page takedown, 2026-09-27). "balkon" alone is not
+# here: Balkon beschatten (shade) and "Klimaanlage ohne Balkon" stay on the site.
+balkonkraftwerk
+steckersolar
+stecker-solar
+balkon-solar
+balkon solar
+solarmodul
+!nachtspeicher
+!wärmespeicher
+!waermespeicher
+!warmwasserspeicher
+!speicherheizung
+!speicherofen

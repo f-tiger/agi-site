@@ -7,7 +7,8 @@ import { fixture } from './fixtures.mjs';
 import { readPdf } from '../../document-assets/pdf-reader.mjs';
 import { auditDocument, compareDocuments, structureFacts, validateFiles, csvCell, auditExport, LIMITS } from '../../document-assets/core.mjs';
 import { onRequestPost, safeRef, databaseFailure } from '../../functions/api/doc-events.js';
-import { onRequestGet, aggregateDocuments, DOCUMENT_QUERY } from '../../functions/api/document-stats.js';
+import { onRequestGet, aggregateDocuments, DOCUMENT_QUERY, referralSource } from '../../functions/api/document-stats.js';
+import { changedUrls } from '../indexnow.mjs';
 import { cachedAggregate } from '../../lib/aggregate-cache.js';
 import { copy } from './copy.mjs';
 import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
@@ -20,6 +21,27 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const parse = async (kind, options = {}) => readPdf(await fixture(kind), { library:pdfjs, ...options });
+test('search and AI attribution remains per event, excludes samples and does not trust lookalike hosts', () => {
+ assert.equal(referralSource('chatgpt.com'),'ai_referral');
+ assert.equal(referralSource('gemini.google.com'),'ai_referral');
+ assert.equal(referralSource('www.google.com'),'search_referral');
+ assert.equal(referralSource('chatgpt.com.evil.example'),'other_referral');
+ assert.equal(referralSource('notchatgpt.com'),'other_referral');
+ assert.equal(referralSource(''),'direct_or_unknown');
+ const d=aggregateDocuments([
+  {d:'2026-09-27',ev:'doc_complete',path:'/pdf-accessibility-checker',ref:'chatgpt.com',n:2},
+  {d:'2026-09-27',ev:'doc_sample',path:'/pdf-accessibility-checker',ref:'chatgpt.com',n:10},
+  {d:'2026-09-27',ev:'bot',path:'/pdf-accessibility-checker',ref:'OAI-SearchBot',n:3}
+ ]);
+ assert.deepEqual(d.source_events,[{source:'ai_referral',events:{doc_complete:2}}]);
+ assert.deepEqual(d.crawler_agents,[{claimed_agent:'OAI-SearchBot',n:3}]);
+ assert.equal(d.excluded.doc_sample,10);
+});
+test('IndexNow maps only changed publishable TDS content to canonical URLs', () => {
+ assert.deepEqual(changedUrls(['sites/thedollscout/index.html','sites/thedollscout/de/index.html','sites/thedollscout/zh/pdf-to-text.html','sites/thedollscout/zh/pdf-to-text.html','sites/thedollscout/document-assets/sample-results.json','sites/thedollscout/content/traffic.json','sites/thedollscout/scripts/draft.html','sites/getecoback/index.html']),[
+  'https://thedollscout.com/','https://thedollscout.com/de/','https://thedollscout.com/zh/pdf-to-text','https://thedollscout.com/document-assets/sample-results.json'
+ ]);
+});
 test('compressed real PDF: text, title and /Lang are actually parsed', async () => {
   const report = await parse('after');
   assert.equal(report.pageCount, 3); assert.equal(report.language, 'en-US');

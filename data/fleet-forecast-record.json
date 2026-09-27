@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-27T02:06:18+00:00",
+ "generated": "2026-09-27T13:26:45+00:00",
  "note": "point-in-time ledger read from data/metaculus/*.jsonl; resolutions from the public Metaculus API; prize is owner-reported only",
  "enabled_state": "never",
  "ledger": {
@@ -26,6 +26,13 @@
   "definition": "mean(Brier submitted with house prior − Brier of the no-prior shadow) on resolved binary AI questions; ≤0 means the prior did not hurt",
   "rows": [],
   "sealed_unopened": 0
+ },
+ "reveals": {
+  "file": "data/metaculus/revealed.jsonl",
+  "lines": 0,
+  "new_today": 0,
+  "closed_but_sealed": 0,
+  "definition": "exact sealed plaintext of every ledger line whose question has closed; check with tools/fleet/verify_commitments.py"
  },
  "money": {
   "prize_usd_30d": null,

@@ -203,7 +203,8 @@
    "source": "sites/getecoback/CLAUDE.md:1586",
    "status": "open",
    "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。",
-   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。"
+   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。",
+   "note_2026-09-27_ex105": "owner 用 EAN 8004399026445 在 amazon.de(配送 Berlin 10115)搜索:只有 1 条 PACEX105 listing,No featured offers available,仅 2 个二手/新品报价约 USD 1.146。没有 Buy Box,/dp/ 直链会把读者带到无法加购的页,所以 EX105 永不烘焙 ASIN;09-23 预估的「核验通过即 31 %」作废,本线按现有读数(14,5 %)结算。"
   },
   {
    "id": "eco-feuchte-now-0928",
@@ -912,7 +913,10 @@
    "win": "「把一手法条原文做成可引用页」有效 → 同形态复制到其他有法规钩子的题(空调安装许可、WEG 装修)",
    "lose": "零引用零 pv → 法条页不是本站的引用杠杆,以后法规内容只作为已有页里的一节,不再单独出页",
    "source": "owner 2026-09-17「阳台储能赛道法规立案支持,租户可以在阳台装光伏板」。会话实测一手法条(gesetze-im-internet.de,2026-09-17 抓取):§554 BGB 标题含 Steckersolargeräte、Abs.1 给 Anspruch auf Erlaubnis(非免许可)、Abs.2 不利于租户的约定无效;§20 Abs.2 Nr.5 WEG 同列;EEG §8 Abs.5a = 2 kW 组件 / 800 VA 逆变器,MaStR 登记保留但**不得要求额外向 Netzbetreiber 报备**。",
-   "status": "open"
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/balkonkraftwerk-mieter-recht.html 1 pv、0 外部引荐、0 AI 引荐 —— 阈值 ≥25 pv 或 ≥1 AI 引荐,未达。"
   },
   {
    "id": "eco-storage-spring-0415",
@@ -923,7 +927,9 @@
    "win": "储能是本站第二根真柱子 → 按 4 月峰值扩品类(Speicher 选型、Nulleinspeisung、WEG)",
    "lose": "峰值月都做不到 → 储能簇冻结为维护态,不再投入;承认 08-26 的「能源板块降级」是对的",
    "source": "2026-09-17 首次把储能放到本站自己的标尺上量(anchor heizlüfter,seasonality-de-storage.json):**balkonkraftwerk 62,6 ≈ 站内锚点的 2 倍、≈ luftentfeuchter 32,0 的 2 倍、接近 schimmel 68,5** —— 类目确实大。但**峰值月是 4 月不是冬天**(win/sep=0,82,冬季低于九月),所以这是「现在建、春天收」,不是「现在火」。",
-   "status": "open"
+   "status": "withdrawn",
+   "settled": "2026-09-27",
+   "reading": "withdrawn by owner directive 2026-09-27 (「eco站点下架所有储能产品」+「后续记得不做储能品类」): the treatment (storage shelf) is gone and the win action (expand storage at the April peak) is now forbidden, so there is no decision left for this line to make. Last reading before takedown (D1, 90 d to 2026-09-27, human, CI excluded): 4 of 180 affiliate clicks went to storage products (Anker Solarbank 3 ×2, of them 1 from IN on the homepage; Growatt NOAH 2000 ×2 on its troubleshooting page) = 2,2 %. The storage guides stay online as information only; whether to remove them too is an open question to the owner."
   },
   {
    "id": "eco-stromausfall-0116",
@@ -934,7 +940,9 @@
    "win": "「把产品调研写成『你想买的东西做不到这件事』」有效 → 同形态再做一页(Notstromaggregat / Kühlschrank im Ausfall)",
    "lose": "德国停电面需求太薄(stromausfall 10,0 里几乎全是『我家停电了』的信息查询,不是购买查询)→ 不再扩,页面留作储能簇的安全锚",
    "source": "2026-09-17 owner 要求「针对乌克兰深度产品调研」。乌克兰三门全不过(见下),把同一份产品知识转到能计佣的德国市场后实测:stromausfall **10,0**(1 月峰,anchor heizlüfter 30,6)、notstromaggregat 2,4、powerstation **1,5** —— 真实但小,且 stromausfall 主要是信息型查询。页面核心是算术:2000 W 暖风机在 1 kWh 上 **30 分钟**,同一块电池带路由器 **4,2 天**,倍数 200。",
-   "status": "open"
+   "status": "withdrawn",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/stromausfall-heizen.html 0 pv、CO-Melder 块 0 点击。"
   },
   {
    "id": "eco-traffic-double-1112",
@@ -978,7 +986,8 @@
    "win": "「故障排查型页型」可复制 → 按同形状再建 3 张(heizlüfter riecht verbrannt / klimaanlage kühlt nicht / infrarotheizung wird nicht warm),并把评测页型正式判死",
    "lose": "<15 → growatt-noah-2000-probleme 的 26 次是单页特例不是页型规律,停止按此形状铺页",
    "source": "2026-09-17 第一方实测(28 天,真人):troubleshooting 形 **4 张页 = 32 次搜索访问**,评测形(-test/-erfahrungen)**16 张页 = 1 次** —— 每页约 **128 倍**差距。解释:评测页与 Stiftung Warentest/CHIP/Idealo 竞争,故障页只与论坛帖竞争。**Trends 无法佐证**(related_queries 配额打爆;且三个品牌种子 top+rising 里零条故障意图 —— 这类查询太长尾,Trends 测不到),**此处第一方数据优先**。页面核心是可复算的算术:40 m³ 房间 18 °C 从 60% 到 50% 只含 **61 g** 水;额定 20 l/天的测试条件 30 °C/80% 含 24,2 g/m³,而 18 °C/60% 只有 9,2 g/m³(**38%**)、10 °C 地下室 5,6(**23%**)。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:对照组里的 growatt-noah-2000-probleme 已删除(410);结算只看本页阈值,不受影响。"
   },
   {
    "id": "gridlings-playgama-traffic-0922",
@@ -1071,7 +1080,10 @@
    "win": "「把标题换成活词」是可复制的优化动作 → 按同法处理其他标题用死词的页(先量 seasonality 再改,URL 一律不动)",
    "lose": "仍 <15 且零外部引荐 → 词形不是这三页零流量的原因(更可能是域权威 + 4 月才是峰值月),**不要再为改标题立项**;真正的读数推到 eco-storage-spring-0415",
    "source": "2026-09-17:`seasonality-de-storage.json`(5 年,anchor heizlüfter)读出 **balkonspeicher 峰值 0,0** 而 **balkonkraftwerk speicher 23,0(3 月峰)**,而站内三张页的 title/h1/description 全部用的是那个 0,0 的词。本轮把这三处 + og/headline 换成活词,**URL 保持不变**(改 URL 要做重定向,不值得);正文仍可说 Balkonspeicher(是真实德语,也留住第二个词形)。**注意归因边界**:11-12 这个读数日**早于**该词 3 月的峰值,所以它测的是「词形对不对」,不是「这个类目行不行」—— 后者是 eco-storage-spring-0415。",
-   "status": "open"
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。三张页全部删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):balkonspeicher-rechner 1 + -foerderung 1 + -winter-frost 3 = 5 pv、0 外部引荐(t0 3 pv / 0)—— 阈值 ≥15 pv 或 ≥2 外部引荐,未达。"
   },
   {
    "id": "bpj-ad-inventory-1014",
@@ -1117,7 +1129,8 @@
    "win": "按「买点型」页形态（选型/尺寸/合规清单，非排障型）试一页，预登记 28 天 affiliate_click ≥3",
    "lose": "wallbox <对照组 → 归档，不再提；wärmepumpe 无论读数如何都不做联盟（Luft-Wasser 非 Amazon 商品，线索形态 08-28 已杀）",
    "source": "sites/getecoback/CLAUDE.md 德语区读数与两个品类裁定（2026-09-17）",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:对照组 balkonkraftwerk 只作 Trends 读数用;阳台光伏页已全部下线。wallbox 若赢,建页前先问 owner(与储能/光伏同属能源硬件,是否在「相关的都下架」范围内由 owner 定)。"
   },
   {
    "id": "eco-dup-rewrite-1117",
@@ -1193,7 +1206,8 @@
    "win": "「同一语言、另一部法律」是本站对德语区第二国的正确形态 → 按同法补 CH(OR 统一了瑞士租法?先查)与 AT 的 Balkonkraftwerk 规则页",
    "lose": "AT 读者不需要奥地利专页(德语页已经够用)→ 奥地利只在既有页里加一段「in Österreich gilt …」,不再单独出页",
    "source": "2026-09-18 D1:AT 是第三市场(26 pv / 4 点击,15,4%,全部落在德语页),而这些页引用的是 § 554 BGB —— 对奥地利读者是另一个国家的法律。`seasonality-at.json`(5 年,anchor heizlüfter,仅 AT 内可比):schimmel 71,0(12 月)· balkonkraftwerk 61,4(3 月)· infrarotheizung 33,2(11 月)· klimaanlage 22,6(6 月)· **heizkostenzuschuss 19,3(10 月,零覆盖,但 oesterreich.gv.at 全站维护页 404,官方源拿不到,本轮没建)**· `klimaanlage mietwohnung` 0,2 —— 所以这条是**正确性 + 引用赌注,不是搜索赌注**。法条全部实抓 RIS(Fassung vom 18.09.2026):§ 9 Abs 1 两个月视为同意、七项条件;Abs 2 Beheizungsanlagen 特权;§ 1 适用范围。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:阳台光伏页已全部下线且不再做;赢了只能按同法补 CH 的租房规则页,「AT 的 Balkonkraftwerk 规则页」这一半不再执行。"
   },
   {
    "id": "eco-es-winter-en-1116",
@@ -1226,7 +1240,8 @@
    "win": "「故障排查页型」跨簇成立(不只是空调簇)→ 按同形状补 balkonkraftwerk/wechselrichter 与 infrarotheizung 的故障页",
    "lose": "128 倍页效只是空调簇 + 夏季的特例 → 停止按页型铺页,冬季簇回到季节性单词选题",
    "source": "2026-09-17 D1:troubleshooting 形 4 页 = 32 次搜索访问/28d,评测形 16 页 = 1 次(每页 128 倍)。Trends 对这三个故障短语全部 ≈0(5 年 interest,anchor heizlüfter),与手册「故障长尾 Trends 结构上测不到,信第一方」一致——所以这是**页型赌注**,不是搜索量赌注。三页零编造:物理 + 算术(2 000 W ÷ 230 V = 8,7 A;16 A × 230 V = 3 680 W)、站内既有规则(单一清洁剂、不混氯与酸、不写浓度),没有型号级断言。",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:赢的动作里「balkonkraftwerk/wechselrichter 故障页」不再执行(阳台光伏已全部下线);只补 infrarotheizung 那一页。"
   },
   {
    "id": "eco-luftfeuchtigkeit-hub-1116",
@@ -1248,7 +1263,10 @@
    "win": "AT 法条页型(RIS 一手 + 与 DE 对照表)成立 → 按同法做 AT 的 Heizkostenzuschuss(等 oesterreich.gv.at 恢复)与 CH 的对应页",
    "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
    "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
-   "status": "open"
+   "status": "withdrawn",
+   "note_2026-09-27": "2026-09-27: storage shelf taken down and storage category closed by owner. This line does not depend on storage clicks, so it stays open; any clause that pointed at eco-storage-spring-0415 now points nowhere (that line is withdrawn). Its win action may not expand into storage topics.",
+   "settled": "2026-09-27",
+   "reading": "owner 2026-09-27「全部下线储能页！」+「指南页，排障页，只要是相关的都下架」:14 张储能与阳台光伏页删除,worker 回 410(tools/gone_pages.txt)。页面已删除,判定线无对象。下线前最终读数(D1 28 天,真人,剔 CI,至 2026-09-27):/guide/balkonkraftwerk-oesterreich.html 0 pv、0 外部引荐 —— 阈值 ≥8 pv 或 ≥1 外部引荐,未达。"
   },
   {
    "id": "agent-delivery-demand-1019",
@@ -1510,7 +1528,8 @@
    "win": "工具的瓶颈确是发现面 → 把每个家族的前一名工具卡放进对应 /kategorie/ 页;继续用 check_tools_hub 保证枢纽==文件系统",
    "lose": "读者不从枢纽找工具、只在指南里顺手用 → 枢纽只维护闸门不再投入;结论并入 fleet-tool-use-1014(新站三件套里的「工具」降为可选)",
    "source": "sites/getecoback/docs/tools-audit-2026-09-22.md;本轮修复 = 枢纽从文件系统生成(14 张漏掉的工具页补齐)+ 7 个无埋点工具面加事件 + pro-werkzeuge 能源工具从「永远算不出」修好 + 国家计算器表头 undefined 与 390px 溢出修好 + es/fr/it 三页补 page_view",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:工具事件 ② 里的 standort_check / bkw_calc / speicher_calc / foerder_check 对应的计算器页已全部删除,结算时从 ② 中剔除这四个事件(原口径保留)。"
   },
   {
    "id": "eco-btu-sizer-1020",
@@ -1698,7 +1717,8 @@
    "win": "从每天被抓的首页链过去是发现面的杠杆 → 保留该块,把同一模式搬到 /en/,eco-new-page-discovery-1020 按此解读",
    "lose": "两组相当 → 首页链接不是杠杆;块保留(零成本、对读者有用)但不扩建,Bing Webmaster 抓取统计仍列 owner 待办。两组都为 0 → Bing 目前根本不抓本域新 URL,别在页面上找原因",
    "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
-   "status": "open"
+   "status": "open",
+   "note_2026-09-27_pages": "2026-09-27:处理组 9 张里 balkonkraftwerk-oesterreich 与 stromausfall-heizen 已删除(410)。结算按剩余 7 张算,阈值等比改为 ≥4/7(原文 ≥5/9 保留);对照组里若有已删页,一并剔除后再算占比。"
   },
   {
    "id": "eco-prime-bounty-1027",
@@ -1969,7 +1989,8 @@
    "lose": "共识板降级为 /agi-odds-vs-evidence 的一节,MCP 工具保留但不再扩;记反面发现「机器面对共识数没有需求」",
    "source": "docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
-   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。"
+   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。",
+   "note_2026-09-27": "同上:验证按钮对 /agi-consensus.json 的请求带 ?utm_source=verify,worker 不记 pageviews,② 不受影响。"
   },
   {
    "id": "agi-ots-verified-1124",
@@ -1981,7 +2002,8 @@
    "lose": "① 未达 → 机制坏了,修或撤;① 达 ② 为 0 → 记反面发现「时间戳无人核验」(Sigstore 的原话:没人看日志就没有信任增益),机制保留但不再宣传",
    "source": "docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
-   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。"
+   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。",
+   "note_2026-09-27": "/calibration 新增的浏览器内验证按钮会请求 /ots/*(带 ?utm_source=verify);worker 对带该标记的请求不写 pageviews,所以 ② 只数直接抓取证明的人。按钮的使用另记为事件 verify_run,由新线 agi-verify-run-1127 读,不并入本线。"
   },
   {
    "id": "agi-brier-n20-1231",
@@ -2004,8 +2026,10 @@
    "win": "把 counts 作为活数字加到 /situational-awareness-predictions 首屏,并让 MCP get_verdicts 输出带上 independent_grades",
    "lose": "页面保留(信任层,不是流量页),不再加面;记反面发现「评分者共识对本站量级不产生可见读者」",
    "source": "docs/ai-consensus-faith-2026-09-26.md §八(第二轮,09-27)",
-   "status": "open",
-   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。"
+   "status": "won",
+   "t0_2026-09-27": "① 0(页面今天才建,分支未并 main);② 2(Delisle 2025-06-23、Harris 2026-03-29)。自检与 heartbeat 都不带外部 ref,满足不了 ①;② 需要第三位真实评分者。",
+   "settled": "2026-09-27",
+   "reading": "② 评分者 2 → 4(阈值 ≥3),由第三轮的定向检索达成:Daniel Reeves(AGI Friday,2025-10-04,Beeminder 联合创始人,读书会一年后专为评估预测而写)与 Philipp D. Dubach(个人站,2026-05-21,两年期计分卡)。两者都早于本线存在——第二轮的「面板薄」一半是本站检索窄,不全是世界上没人评。收录标准未改:每句引语由对抗核验代理重新抓取原文逐字核对,本会话 09-27 再用 curl 抓取两页逐字复核一遍,全部命中;同轮被驳回两位:Redwood capital(化名、投资推广、含个股价格)与 Leo(@runes_leo,自述 LLM 起草、推荐链接);另排除 EA Forum「Edison」的 Two-Year Scorecard——那是 owner 本人的帖子,不算独立。新读数 16 次比较:9 完全一致、6 同向、1 真分歧(Reeves 认为 knowledge-work 仍 unresolved,本站 On track;Reeves 的 agi-2027 取保守映射 behind)——页面与 FAQ 的「无分歧」措辞原为手写,已改为从数据生成。① 外部来源访问仍为 0(页面刚上线)。按预登记 win 分支执行:计数作为活数字进 /situational-awareness-predictions(由 gen_grader_consensus.py 生成、--check 守门),MCP get_verdicts 输出带 independent_grades。 【自评注意,终审提出】② 是本会话自己检索达成的,不是外部信号——两位评分者早已存在,是第二轮漏检。以后凡「评分者数」类判定线,要求新增评分者由外部发现/投稿,或发布于登记之后,否则登记当日就能被自己的检索满足。"
   },
   {
    "id": "fleet-d1-budget-1026",
@@ -2127,6 +2151,41 @@
    "source": "docs/ai-era-founder-2026-09-25.md §三",
    "status": "open",
    "t0_2026-09-27": "到账 €0;PartnerNet DE 佣金 €11,20 累计中(窗至 2026-09-14),被未完成的付款/税务表挡住。"
+  },
+  {
+   "id": "fe-commitments-preclose-0215",
+   "site": "fleet",
+   "due": "2027-02-15",
+   "metric": "data/fleet-commitments.json(tools/fleet/verify_commitments.py,heartbeat 每日):revealed 行数、tamper 列表、每条已揭示行的 stamped_before_close(runner 时钟,自报)与覆盖它的证明所指比特币区块高度(--ots 输出)",
+   "threshold": "≥20 条已揭示的账本行 且 赛季内每次 heartbeat 的 tamper 均为空 且 ≥90% 的已揭示行同时满足:runner 的 stamped_at 早于关题、**并且**覆盖它的证明所指的比特币区块时间早于关题(结算时用区块高度在任意区块浏览器查;只有区块时间有证明背书)",
+   "win": "预测记录可被第三方逐字节核验:在 /calibration 与赛季复盘里把它当证据引用(说明只证明时间与内容,不证明预测好)",
+   "lose": "<90% 关题前锚定 → 查锚定缺口(日历不通/工作流没跑)并修;任何 TAMPER → 事故复盘;bot 从未上线或揭示 <20 → insufficient",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "0 条账本行、0 条揭示、0 个锚定版本(bot 从未上线;修复只在分支上,合并 main 之前机器人跑的仍是 v1)。due 为占位,runner 读到赛季关闭日后改为关闭日 +45(与 fe-fall-record-0215 同步)。"
+  },
+  {
+   "id": "agi-verify-run-1127",
+   "site": "agiscorecard",
+   "due": "2026-11-27",
+   "metric": "D1 agiscorecard-events:events name='verify_run' AND location='calibration'(页面 URL 带 ci=1 时脚本不发事件;本仓自检与会话不点线上按钮)28d",
+   "threshold": "≥3 次,跨 ≥2 个不同 UTC 日",
+   "win": "按钮保留,并从 /progress-index 的方法说明链过去(「自己核一遍」)",
+   "lose": "按钮保留(零维护),但永不把它当作「有人在核验」的证据引用;记反面发现「按钮式验证在本站量级无人用」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §九(第三轮,09-27)",
+   "status": "open",
+   "t0_2026-09-27": "0(按钮只在分支上,未部署)。"
+  },
+  {
+   "id": "eco-akku-heizluefter-1225",
+   "site": "getecoback",
+   "due": "2026-12-25",
+   "metric": "/guide/akku-heizluefter.html,28 天窗 11-28→12-25(覆盖 akku heizlüfter 的 11 月峰尾与 12 月),真人,剔 CI:① 搜索 + AI 引荐 ② page_view ③ watt_calc{source:akku} 事件 ④ 前提:bingbot 抓过该页(D1 crawl)。t0(2026-09-27):0 / 0 / 0 / 0(新页)。季节:5 年峰值 1,7(11 月),冬/九月 2,32",
+   "threshold": "④ 成立 且(① ≥5 或 ② ≥20 或 ③ ≥3)",
+   "win": "「物理天花板」页型(一个除法说清营销与批评为什么都对)在取暖簇也接得住读者 → 同法补下一个同形状词(先查 DE-QUEUE 读数)",
+   "lose": "④ 成立但 ①<2 且 ②<8 → 该词 1,7 的量级对本站太薄,取暖簇不再按 rising 行补小词,只按 5 年峰值 ≥5 的词补;④ 不成立 → insufficient(发现面问题,见 eco-new-page-discovery-1020)",
+   "source": "sites/getecoback/CLAUDE.md「按谷歌趋势补冬季品类(2026-09-27)」",
+   "status": "open"
   }
  ]
 }

@@ -31,6 +31,26 @@
    "published": "2026-03-29",
    "read": "2026-09-27",
    "scope": "Qualitative evaluation across infrastructure, benchmarks, government, agents, revenue, China/US, open source, safety and the AGI-2027 timeline."
+  },
+  {
+   "id": "reeves-2025",
+   "author": "Daniel Reeves",
+   "title": "Retrospective Book Review: Situational Awareness",
+   "venue": "AGI Friday (Substack)",
+   "url": "https://agifriday.substack.com/p/aschenbrenner",
+   "published": "2025-10-04",
+   "read": "2026-09-27",
+   "scope": "Retrospective by the Beeminder co-founder after a group re-read that started a year after publication 'with the goal of assessing its predictions'. Verdicts are explicitly hedged. Grades knowledge work, the trillion-dollar cluster and the drop-in remote worker on the 2027 timescale; his base-model/unhobbling remark is about capability returns, not the ~0.5 OOM/yr pace, so it is not mapped. His agi-2027 sentence ('my gut says no', hedged) could be read as unresolved or behind; it is mapped to behind, the reading that credits this site with less agreement."
+  },
+  {
+   "id": "dubach-2026",
+   "author": "Philipp D. Dubach",
+   "title": "Aschenbrenner's Receipts (Leopold Aschenbrenner Predictions: A Two-Year Scorecard)",
+   "venue": "philippdubach.com",
+   "url": "https://philippdubach.com/posts/aschenbrenners-receipts/",
+   "published": "2026-05-21",
+   "read": "2026-09-27",
+   "scope": "Personal-site scorecard dated 21 May 2026 (page shows 'Updated 16 August 2026'). Grades the counting-OOMs framework, nationalisation, open-source diffusion and the 2027-28 window; its GPQA and power sentences address claims this site does not track, so they are listed separately. The same post also says 'Compute scaling was alive but contested.'; the compute-scaling row quotes his verdict on the counting-OOMs framework instead."
   }
  ],
  "grades": [
@@ -51,12 +71,28 @@
   {"prediction": "agi-2027", "grader": "harris-2026", "label": "unresolved",
    "quote": "The AGI-by-2027 timeline is unresolved. It looked implausible six months ago, but recent capability jumps (particularly on software engineering tasks) have made it more credible again."},
   {"prediction": "the-project", "grader": "harris-2026", "label": "behind",
-   "quote": "Government response is behind what he predicted, though his AGI project timeline (27/28) hasn't elapsed yet."}
+   "quote": "Government response is behind what he predicted, though his AGI project timeline (27/28) hasn't elapsed yet."},
+  {"prediction": "knowledge-work", "grader": "reeves-2025", "label": "unresolved",
+   "quote": "In terms of homework and exams, absolutely. And I don’t think it was obvious in June 2024 how thoroughly true that would be (the International Math Olympiad gold medal performance being the biggest surprise). But Aschenbrenner meant more than homework and exams or even math competitions so there’s plenty of ambiguity about how accurate this prediction is so far."},
+  {"prediction": "capex", "grader": "reeves-2025", "label": "on_track",
+   "quote": "And as for the progress toward the trillion-dollar cluster, well, Stargate is happening on schedule. Aschenbrenner doesn’t look particularly wrong with any of his “just trust the trendlines” predictions."},
+  {"prediction": "agi-2027", "grader": "reeves-2025", "label": "behind",
+   "quote": "As for full-fledged AI agents and drop-in remote workers on that timescale, my gut says no, but my gut has said no to a lot of things the past few years that have proceeded to happen."},
+  {"prediction": "compute-scaling", "grader": "dubach-2026", "label": "on_track",
+   "quote": "The framework is unfashionably simple. It is also empirically unusually well calibrated."},
+  {"prediction": "the-project", "grader": "dubach-2026", "label": "behind",
+   "quote": "By May 21, 2026, the full nationalisation that he predicted had not happened."},
+  {"prediction": "open-source-fades", "grader": "dubach-2026", "label": "wrong",
+   "quote": "Bets on defence-AI consolidation and against open-source diffusion would not have paid."},
+  {"prediction": "agi-2027", "grader": "dubach-2026", "label": "unresolved",
+   "quote": "The strongest counter-counter is that the timeline remained open on May 21, 2026."}
  ],
  "not_on_this_site": [
   {"topic": "AI revenue", "grader": "harris-2026", "quote": "AI revenue isn't quite as high: he predicted $100B run rate by mid-2026, and the best is $60B."},
   {"topic": "AI revenue", "grader": "delisle-2025", "quote": "However, recent OpenAI and Anthropic models trail raw-compute trends by about one-third to one-half an order of magnitude, and AI-related revenue growth is several months behind."},
   {"topic": "China/US competition", "grader": "harris-2026", "quote": "China/US competition intensified as he predicted, and most of his specifics were right (7nm chips, power infrastructure, espionage, CCP waking up, Middle East)."},
-  {"topic": "Safety and security", "grader": "harris-2026", "quote": "Safety and security remain roughly as inadequate as he described, with his warnings about state-actor exploitation and race-dynamic pressure on safety vindicated."}
+  {"topic": "Safety and security", "grader": "harris-2026", "quote": "Safety and security remain roughly as inadequate as he described, with his warnings about state-actor exploitation and race-dynamic pressure on safety vindicated."},
+  {"topic": "GPQA Diamond saturation", "grader": "dubach-2026", "quote": "It took roughly 18 months, almost exactly the prediction window."},
+  {"topic": "Power as the binding constraint", "grader": "dubach-2026", "quote": "His power-not-chips framing preceded consensus and later became industry consensus."}
  ]
 }

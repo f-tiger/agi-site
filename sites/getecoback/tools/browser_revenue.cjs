@@ -35,7 +35,6 @@ const http=require('node:http');
   try{
    const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),errors=[];events=[];
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-   const preventAffiliateNavigation=()=>page.locator('[data-revenue-link]').evaluateAll(links=>links.forEach(link=>link.addEventListener('click',event=>event.preventDefault())));
    for(const [lang,t]of Object.entries(copy)){
     console.log('Checking revenue next steps: '+name+' / '+lang);
     await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);
@@ -57,27 +56,8 @@ const http=require('node:http');
    await page.locator('[name=purpose][value=own]').check();await page.locator('[name=confirm]').check();await page.locator('button[type=submit]').click();
    await page.locator('#next-steps').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/revenue-next-'+name+'.png'});
    await page.locator('[name=kwh0]').fill('4000');assert.equal(await page.locator('#next-steps').isVisible(),false);checks++;
-   const guide='/guide/balkonspeicher-anker-solarbank-probleme.html';
-   for(const width of [320,390,1280]){
-    await page.setViewportSize({width,height:900});await page.goto(base+guide+'?__probe=1');
-    assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.eb-nav').count(),1);assert.equal(await page.locator('.eb-footer').count(),1);checks+=3;
-    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);checks++;
-    assert.equal(await page.locator('[data-revenue-link]').count(),2);checks++;
-    assert.equal(await page.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(247, 250, 252)');checks++;
-    assert.equal(await page.locator('.hero').evaluate(e=>getComputedStyle(e).backgroundImage),'linear-gradient(135deg, rgb(15, 107, 168), rgb(10, 77, 122))');checks++;
-    if(width!==320){await page.screenshot({path:`${dir}/solarbank-${name}-${width}.png`,fullPage:true});}
-   }
-   const count=events.length;
-   await preventAffiliateNavigation();
-   await page.locator('[data-revenue-link]').first().click();
-   assert.equal(events.length,count);checks++;
-   await page.goto(base+guide);await page.waitForFunction(()=>document.readyState==='complete');
-   const before=events.filter(e=>e.n==='affiliate_click').length;
-   await preventAffiliateNavigation();
-   await page.locator('[data-revenue-link]').first().click();
-   await received('affiliate_click',before+1);
-   const clicks=events.filter(e=>e.n==='affiliate_click');assert.equal(clicks.length,before+1);checks++;
-   assert.equal(clicks.at(-1).m.source,'solarbank-diagnosis');assert.equal(new URL(clicks.at(-1).m.link_url).searchParams.get('tag'),'getecoback-21');checks+=2;
+   // The Solarbank diagnosis guide checked here was taken down on 2026-09-27
+   // (owner: all storage and balcony-PV pages removed); it now answers 410.
    assert.deepEqual(errors,[]);checks++;
    assert.deepEqual(serverErrors,[]);checks++;
   } finally{await browser.close();}

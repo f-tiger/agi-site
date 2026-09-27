@@ -3129,3 +3129,13 @@ Owner explicitly asked to continue expanding the newly launched Web3 × AI tool.
 读数(D1 09-26,28d,pageviews human 口径):when-will-agi-arrive 2 168 · how-close-is-agi 525 · progress-index 359 · forecaster-leaderboard 266 · calibration 227 · prediction-receipts 227 · for-agents 220;MCP 28d:sunwatch 7 · invest 7 · claim_ledger 5(thesis_tracker/verdicts 此前不落库)。
 共识板首读(沙箱,无 Metaculus token):before 2027 中位 7.6%、2028 45%(spread 42 点)、2030 64.5%。
 详见根仓 docs/ai-consensus-faith-2026-09-26.md。
+
+## 2026-09-27 — 第三轮:预测承诺协议 + 评分者 2 → 4(owner:「优化 prompt 3 轮再执行:再继续探索」)
+
+- **改动页**:`/grader-consensus`(+2 位独立评分者,首条真分歧;全部措辞由数据生成)、`/situational-awareness-predictions`
+  (首屏下加一行活数字「Outside check」,标记块由生成器维护;dateModified/Last updated/sitemap → 09-27)、`/calibration`
+  (点击才运行的浏览器核验 + 预测账本一节;sitemap lastmod 此前停在 08-08,→ 09-27)、`/for-agents`(get_verdicts 一句)、
+  `llms.txt`(两行)、`changelog.json`(09-27 条)。**防翻炒**:predictions 页上次改动 08-29,不在近 5 轮内;只加一行,正文判定一字未动。
+- **事件**:`index_click{predictions_graders_live}`(活数字点击)、`verify_run{calibration}`(按钮运行,label = 匹配数/总数|score)。
+- **判定线**:`agi-grader-consensus-1127` won(② 4 ≥ 3;① 外部访问 0);新 `agi-verify-run-1127`、`fe-commitments-preclose-0215`。
+- 全文根仓 `docs/ai-consensus-faith-2026-09-26.md` §九。

@@ -2,7 +2,7 @@
 
 https://thedollscout.com/zh/pdf-accessibility-checker
 由 TDS 文档侦察站发布
-更新日期: 2026-09-25
+更新日期: 2026-09-27
 
 适用场景: 发布报告、讲义或向客户交付 PDF 之前。
 
@@ -24,17 +24,43 @@ https://thedollscout.com/zh/pdf-accessibility-checker
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-PDF 会离开我的设备吗？
+检测到 PDF 标签，说明了什么？
 
-不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+它表示解析器发现了已标记声明或可访问的结构，并不证明阅读顺序、图片说明或表格正确。这些项目仍需单独检查。
 
-没有发现问题就代表无障碍合格吗？
+这个工具能认证 WCAG 或 PDF/UA 合规吗？
 
-不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+不能。它提供自动预检并记录你的人工复核，不提供合规认证，不修复标签，也不计算百分比无障碍评分。
 
-能修复扫描件或补齐标签吗？
+你可以复现的检查结果
 
-当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+检查项 | 实际结果 | 下一步
+
+文档标题 | Fictional workshop handout | 核对标题是否准确描述文档；本工具不检查阅读器标题栏设置。
+
+默认语言声明 | en-US | 核对语言声明是否与正文一致。
+
+已标记文档声明 | 未检测到 | 在编辑或修复工具中检查标签结构和阅读顺序。
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-accessibility-checker#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
