@@ -865,7 +865,7 @@ def build(lang, preds, base, asof):
         ("__H_PRO__", c["h_pro"]), ("__PRO__", c["pro"]),
         ("__H_BRIDGE__", c["h_bridge"]), ("__BRIDGE__", c["bridge"]),
         ("__BRIDGEBTN__", c["bridgebtn"]),
-        ("__BRIDGEPATH__", "" if lang == "zh" else "en"),
+        ("__BRIDGEPATH__", "track-record" if lang == "zh" else "en/track-record"),
         ("__BRIDGELOC__", c["loc"] + "_sunwatch"),
         ("__H_EMBED__", c["h_embed"]), ("__EMBEDP__", c["embedp"]),
         ("__EMBEDBTN__", c["embedbtn"]), ("__H_FAQ__", c["h_faq"]), ("__FAQ__", faq_html),

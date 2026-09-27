@@ -2289,6 +2289,30 @@
    "source": "docs/agi-crowd-amplifier-2026-09-27.md",
    "status": "open",
    "t0": "2026-09-27 终身(两处合计):投票 97(/api/crowd 口径)、分享 0、锁定 1(<1%);揭晓 10-01 00:00 UTC 前休眠。09-27 同日范围从 /agi-test 扩到首页(owner「加上」),窗口开始前改,阈值不动"
+  },
+  {
+   "id": "agi-invest-survival-1115",
+   "site": "agiscorecard",
+   "due": "2026-11-15",
+   "metric": "三条合并判定(JS 真人,剔 CI):① invest 簇(/invest*、/zh/invest、/ai-stock-exposure(+zh)、/is-nvidia-overvalued、/does-copying-13f-work(+zh)、/is-the-ai-capex-a-bubble、/ai-capex-trillion-dollar)page_view 28d;② invest_tool_click{location LIKE 'exposure_%_sunwatch%'} 累计;③ invest_tool_click{location LIKE '%tg_watch%'} 累计(TG 篮子绑定)",
+   "threshold": "① ≥60 / ② ≥5 / ③ ≥1,三条中 ≥2 条达标",
+   "win": "invest 深化继续,按 PRD 队列每 run 一条",
+   "lose": "<2 条达标 → invest 回归季度 13F 同步义务模式;Pro 桥保留(零成本),停止内容投入",
+   "source": "sites/agiscorecard/invest-prd-2026-08.md §五",
+   "status": "open",
+   "t0": "2026-09-27(28d):① 24 次、外部来源 0(服务端另记 Google 引荐 33 次,浏览器端未确认,不计);② 终身 0;③ 终身 0。同日修两处链接:exposure 页「公开战绩」按钮原指 SunWatch 首页、英文 /invest 的 Compass 链接原被 302 到中文版"
+  },
+  {
+   "id": "agi-invest-zh-p4-1029",
+   "site": "agiscorecard",
+   "due": "2026-10-29",
+   "metric": "/zh/does-copying-13f-work 28d JS 真人 page_view(上线 2026-08-30,+60d)",
+   "threshold": "≥5",
+   "win": "zh invest 页可继续加",
+   "lose": "<5 → 停止 zh invest 新页",
+   "source": "sites/agiscorecard/invest-prd-2026-08.md §五",
+   "status": "open",
+   "t0": "2026-09-27(28d):0(服务端 32,未确认)"
   }
  ]
 }
