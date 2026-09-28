@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-27T13:26:42Z",
+ "generated": "2026-09-28T16:19:04Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
@@ -8,131 +8,152 @@
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 53,
- "fleet_human_pv": 39269,
- "fleet_human_pv_excl_flagged": 3393,
+ "fleet_ai_ref": 51,
+ "fleet_ai_ref_claude_ai": 6,
+ "fleet_ai_ref_excl_claude_ai": 45,
+ "partial_ai_ref": null,
+ "partial_ai_ref_claude_ai": null,
+ "fleet_human_pv": 40486,
+ "partial_human_pv": null,
+ "sites_read": 14,
+ "sites_expected": 14,
+ "fleet_human_pv_excl_flagged": 3359,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 33790,
-   "ai_ref": 19,
+   "human_pv": 35004,
+   "ai_ref": 18,
    "by_host": {
-    "claude.ai": 7,
+    "claude.ai": 6,
     "chatgpt.com": 5,
     "www.perplexity.ai": 3,
-    "copilot.microsoft.com": 2,
-    "kagi.com": 2
+    "kagi.com": 2,
+    "copilot.microsoft.com": 2
    },
    "via": "endpoint",
-   "pv_caveat": "server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23"
+   "pv_caveat": "server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23",
+   "ai_ref_claude_ai": 6
   },
   {
    "site": "baipiaoji",
-   "human_pv": 410,
-   "ai_ref": 17,
+   "human_pv": 420,
+   "ai_ref": 16,
    "by_host": {
-    "chatgpt.com": 10,
-    "www.perplexity.ai": 5,
+    "chatgpt.com": 8,
+    "www.perplexity.ai": 6,
     "copilot.microsoft.com": 1,
     "kagi.com": 1
    },
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "getecoback",
-   "human_pv": 597,
+   "human_pv": 611,
    "ai_ref": 16,
    "by_host": {
     "chatgpt.com": 12,
     "www.perplexity.ai": 3,
     "kagi.com": 1
    },
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "thedollscout",
-   "human_pv": 661,
+   "human_pv": 578,
    "ai_ref": 0,
    "by_host": {},
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "goldrush",
-   "human_pv": 433,
+   "human_pv": 400,
    "ai_ref": 0,
    "by_host": {},
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "gridlings",
-   "human_pv": 716,
+   "human_pv": 742,
    "ai_ref": 0,
    "by_host": {},
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "buysomething",
-   "human_pv": 122,
+   "human_pv": 131,
    "ai_ref": 0,
    "by_host": {},
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "gamesledger",
-   "human_pv": 454,
+   "human_pv": 477,
    "ai_ref": 1,
    "by_host": {
     "copilot.microsoft.com": 1
    },
-   "via": "endpoint"
+   "via": "endpoint",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "after35",
-   "human_pv": 460,
+   "human_pv": 463,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "learn",
-   "human_pv": 291,
+   "human_pv": 294,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "fanzha",
-   "human_pv": 291,
+   "human_pv": 295,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "firstjob",
-   "human_pv": 258,
+   "human_pv": 261,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "codeword",
-   "human_pv": 415,
+   "human_pv": 429,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   },
   {
    "site": "powerbill",
-   "human_pv": 371,
+   "human_pv": 381,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
+   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23",
+   "ai_ref_claude_ai": 0
   }
  ]
 }

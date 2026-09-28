@@ -27,11 +27,20 @@
     "sha256": "5c86827c63addc9bde777f3cb175ec75989d7249938e95b1551c78bbb5071d8f",
     "proof": "fleet-bets.json.5c86827c63ad.ots",
     "stamped": "2026-09-27",
-    "status": "pending",
+    "status": "bitcoin",
     "size": 194410,
-    "stamped_at": "2026-09-27T13:26:54+00:00"
+    "stamped_at": "2026-09-27T13:26:54+00:00",
+    "confirmed": "2026-09-28"
+   },
+   {
+    "sha256": "99246a8f9c9624e333fef55b9e80c2720dd8b10a1bc3cafd987531fbe8725548",
+    "proof": "fleet-bets.json.99246a8f9c96.ots",
+    "stamped": "2026-09-28",
+    "status": "pending",
+    "size": 219820,
+    "stamped_at": "2026-09-28T16:19:28+00:00"
    }
   ]
  },
- "updated": "2026-09-27"
+ "updated": "2026-09-28"
 }

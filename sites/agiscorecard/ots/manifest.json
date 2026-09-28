@@ -33,6 +33,14 @@
     "stamped": "2026-09-26",
     "status": "bitcoin",
     "confirmed": "2026-09-27"
+   },
+   {
+    "sha256": "8decabbbcbe02d982cf2f6cd0bbce9fdfbfe5484181467b4b8219dfe42a10638",
+    "proof": "agi-consensus.json.8decabbbcbe0.ots",
+    "stamped": "2026-09-28",
+    "status": "pending",
+    "size": 25825,
+    "stamped_at": "2026-09-28T16:19:14+00:00"
    }
   ],
   "market-board.json": [
@@ -49,6 +57,14 @@
     "stamped": "2026-09-26",
     "status": "bitcoin",
     "confirmed": "2026-09-27"
+   },
+   {
+    "sha256": "3265e88a15377013233938e254d4a15058e6c5bce163cfe2f30b80ebb9516a80",
+    "proof": "market-board.json.3265e88a1537.ots",
+    "stamped": "2026-09-28",
+    "status": "pending",
+    "size": 20935,
+    "stamped_at": "2026-09-28T16:19:19+00:00"
    }
   ],
   "odds-history.json": [
@@ -58,6 +74,14 @@
     "stamped": "2026-09-26",
     "status": "bitcoin",
     "confirmed": "2026-09-26"
+   },
+   {
+    "sha256": "d67f840bf51648897e8376da336c3fce090330ef947db92be537896c0ee4afde",
+    "proof": "odds-history.json.d67f840bf516.ots",
+    "stamped": "2026-09-28",
+    "status": "pending",
+    "size": 878,
+    "stamped_at": "2026-09-28T16:19:20+00:00"
    }
   ],
   "independent-grades.json": [
@@ -72,11 +96,12 @@
     "sha256": "796c1e3e43a59486fa932fac887baeb064ee43511aa8569b46973521b19cf9f5",
     "proof": "independent-grades.json.796c1e3e43a5.ots",
     "stamped": "2026-09-27",
-    "status": "pending",
+    "status": "bitcoin",
     "size": 9016,
-    "stamped_at": "2026-09-27T13:26:51+00:00"
+    "stamped_at": "2026-09-27T13:26:51+00:00",
+    "confirmed": "2026-09-28"
    }
   ]
  },
- "updated": "2026-09-27"
+ "updated": "2026-09-28"
 }
