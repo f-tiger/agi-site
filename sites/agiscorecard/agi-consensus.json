@@ -2,8 +2,8 @@
  "name": "AGI consensus board",
  "url": "https://agiscorecard.com/agi-prediction-markets",
  "license": "CC BY 4.0 (this file); prices remain the venues' data, quoted with as-of time",
- "fetched": "2026-09-26T11:40:56.619Z",
- "board_sha256": "426bb4cae6589d35bae73eb6c97bb3358e7e97123d7896c964b87493a3e01a7e",
+ "fetched": "2026-09-28T10:02:28.368Z",
+ "board_sha256": "0ac4e3f0cda5c7cd3605c3990f73d9597822be42b257401299126aa4cd0e6e64",
  "method": "For each anchor date D, every series contributes at most one row: the open market or question whose 'before' date equals D. A series is a venue whitelist plus a fixed regular expression on the question text; if a venue lists duplicates for one date, the row kept is the real-money one first, then the highest volume, then the most unique bettors. The consensus value is the plain median of the consensus series that have a row for D (minimum 2 series; otherwise no median is printed); spread is max minus min of those same values. Reference series are shown but never enter the median. The implied 50% date per series is the first crossing of 0.5 by linear interpolation over that series' own dated points (Metaculus: its community median date). Prices are read as the venue reports them at the fetch time and are never adjusted. The fetcher keeps every dated timeline row it found and, beyond those, only the highest-volume rows up to a fixed cap, so the full list below is 'all dated rows plus the top of the rest', not every match.",
  "recompute": {
   "script": "https://github.com/f-tiger/agi-site/blob/main/sites/agiscorecard/tools/gen_market_board.py",
@@ -98,7 +98,7 @@
   "metaculus": {
    "ok": false,
    "via": null,
-   "reason": "METACULUS_TOKEN 未设置(未登录 403;runner 从 Secrets 注入)",
+   "reason": "post 5121 没有可用的 CDF/scaling",
    "found": 0
   }
  },
@@ -107,27 +107,27 @@
    "before": "2027-01-01",
    "values": {
     "manifold-we-get-agi": 0.0226,
-    "kalshi-any-company-announce": 0.13
+    "kalshi-any-company-announce": 0.24
    },
    "reference": {
-    "openai-announce": 0.174
+    "openai-announce": 0.142
    },
    "n": 2,
-   "median": 0.0763,
-   "spread": 0.1074
+   "median": 0.1313,
+   "spread": 0.2174
   },
   {
    "before": "2028-01-01",
    "values": {
-    "manifold-we-get-agi": 0.2445,
-    "kalshi-any-company-announce": 0.66
+    "manifold-we-get-agi": 0.234,
+    "kalshi-any-company-announce": 0.61
    },
    "reference": {
-    "openai-announce": 0.481
+    "openai-announce": 0.44
    },
    "n": 2,
-   "median": 0.4523,
-   "spread": 0.4155
+   "median": 0.422,
+   "spread": 0.376
   },
   {
    "before": "2030-01-01",
@@ -136,7 +136,7 @@
     "kalshi-any-company-announce": 0.79
    },
    "reference": {
-    "openai-announce": 0.649
+    "openai-announce": 0.703
    },
    "n": 2,
    "median": 0.645,
@@ -167,7 +167,7 @@
   "manifold-we-get-agi": "2030-01-01",
   "kalshi-any-company-announce": "2027-10-01",
   "metaculus-strong-agi": null,
-  "openai-announce": "2028-03-23",
+  "openai-announce": "2028-06-15",
   "metaculus-weak-agi": null
  },
  "rows": [
@@ -176,8 +176,8 @@
    "question": "Will OpenAI announce the creation of AGI? — Before 2027",
    "kind": "announcement",
    "before": "2027-01-01",
-   "yes": 0.174,
-   "volume": 346652.16,
+   "yes": 0.142,
+   "volume": 347698.98,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxoaiagi",
@@ -188,9 +188,9 @@
    "question": "Superhuman mathematical problem solving before 2030, assuming no AGI yet?",
    "kind": "achievement",
    "before": "2030-01-01",
-   "yes": 0.8740503733003787,
-   "volume": 332444.99042470334,
-   "bettors": 193,
+   "yes": 0.88,
+   "volume": 337296.99042470334,
+   "bettors": 194,
    "money": "play",
    "url": "https://manifold.markets/dreev/superhuman-mathematical-problem-sol",
    "series": null
@@ -200,11 +200,23 @@
    "question": "Will OpenAI announce the creation of AGI? — Before 2028",
    "kind": "announcement",
    "before": "2028-01-01",
-   "yes": 0.481,
-   "volume": 290279.35,
+   "yes": 0.44,
+   "volume": 290886.49,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxoaiagi",
+   "series": "openai-announce"
+  },
+  {
+   "venue": "Polymarket",
+   "question": "OpenAI announces it has achieved AGI before 2027?",
+   "kind": "announcement",
+   "before": "2027-01-01",
+   "yes": 0.175,
+   "volume": 280539.603467,
+   "bettors": null,
+   "money": "real",
+   "url": "https://polymarket.com/event/openai-announces-it-has-achieved-agi-before-2027",
    "series": "openai-announce"
   },
   {
@@ -220,24 +232,12 @@
    "series": "manifold-we-get-agi"
   },
   {
-   "venue": "Polymarket",
-   "question": "OpenAI announces it has achieved AGI before 2027?",
-   "kind": "announcement",
-   "before": "2027-01-01",
-   "yes": 0.165,
-   "volume": 275190.616813,
-   "bettors": null,
-   "money": "real",
-   "url": "https://polymarket.com/event/openai-announces-it-has-achieved-agi-before-2027",
-   "series": "openai-announce"
-  },
-  {
    "venue": "Kalshi",
    "question": "Will OpenAI announce the creation of AGI? — Before 2030",
    "kind": "announcement",
    "before": "2030-01-01",
-   "yes": 0.649,
-   "volume": 193509.79,
+   "yes": 0.703,
+   "volume": 194087.59,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxoaiagi",
@@ -248,8 +248,8 @@
    "question": "Will we get AGI before 2028?",
    "kind": "achievement",
    "before": "2028-01-01",
-   "yes": 0.24447549246600503,
-   "volume": 171388.19953415412,
+   "yes": 0.23403490414124387,
+   "volume": 171473.83651523385,
    "bettors": 336,
    "money": "play",
    "url": "https://manifold.markets/RemNi/will-we-get-agi-before-2028-ff560f9e9346",
@@ -308,8 +308,8 @@
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Oct 1, 2026? — Before Oct 1, 2026",
    "kind": "announcement",
    "before": "2026-10-01",
-   "yes": 0.01,
-   "volume": 40659.78,
+   "yes": 0.02,
+   "volume": 41503.78,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
@@ -380,8 +380,8 @@
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jan 1, 2027? — Before Jan 1, 2027",
    "kind": "announcement",
    "before": "2027-01-01",
-   "yes": 0.13,
-   "volume": 23253.76,
+   "yes": 0.24,
+   "volume": 23714.93,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
@@ -392,8 +392,8 @@
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jul 1, 2027? — Before Jul 1, 2027",
    "kind": "announcement",
    "before": "2027-07-01",
-   "yes": 0.31,
-   "volume": 18785.96,
+   "yes": 0.4,
+   "volume": 18924.23,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
@@ -416,8 +416,8 @@
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Apr 1, 2027? — Before Apr 1, 2027",
    "kind": "announcement",
    "before": "2027-04-01",
-   "yes": 0.26,
-   "volume": 15256.24,
+   "yes": 0.31,
+   "volume": 15261.24,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
@@ -440,8 +440,8 @@
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jan 1, 2028? — Before Jan 1, 2028",
    "kind": "announcement",
    "before": "2028-01-01",
-   "yes": 0.66,
-   "volume": 13955.51,
+   "yes": 0.61,
+   "volume": 14039.66,
    "bettors": null,
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
@@ -568,6 +568,18 @@
    "series": "manifold-we-get-agi"
   },
   {
+   "venue": "Kalshi",
+   "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jan 1, 2031? — Before Jan 1, 2031",
+   "kind": "announcement",
+   "before": "2031-01-01",
+   "yes": 0.8,
+   "volume": 8821.04,
+   "bettors": null,
+   "money": "real",
+   "url": "https://kalshi.com/markets/kxagico",
+   "series": "kalshi-any-company-announce"
+  },
+  {
    "venue": "Manifold",
    "question": "By 2050, will there be a cure to aging conditional on no AGI by 2050?",
    "kind": "achievement",
@@ -578,18 +590,6 @@
    "money": "play",
    "url": "https://manifold.markets/DanielEth/by-2050-will-there-be-a-cure-to-agi-20f64c45fcbd",
    "series": null
-  },
-  {
-   "venue": "Kalshi",
-   "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jan 1, 2031? — Before Jan 1, 2031",
-   "kind": "announcement",
-   "before": "2031-01-01",
-   "yes": 0.59,
-   "volume": 8702.67,
-   "bettors": null,
-   "money": "real",
-   "url": "https://kalshi.com/markets/kxagico",
-   "series": "kalshi-any-company-announce"
   },
   {
    "venue": "Manifold",
@@ -652,6 +652,18 @@
    "series": "manifold-we-get-agi"
   },
   {
+   "venue": "Kalshi",
+   "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jul 1, 2028? — Before Jul 1, 2028",
+   "kind": "announcement",
+   "before": "2028-07-01",
+   "yes": 0.75,
+   "volume": 4781.86,
+   "bettors": null,
+   "money": "real",
+   "url": "https://kalshi.com/markets/kxagico",
+   "series": "kalshi-any-company-announce"
+  },
+  {
    "venue": "Manifold",
    "question": "Will we get AGI before July 1st 2030?",
    "kind": "achievement",
@@ -662,18 +674,6 @@
    "money": "play",
    "url": "https://manifold.markets/RemNi/will-we-get-agi-before-july-1st-203",
    "series": "manifold-we-get-agi"
-  },
-  {
-   "venue": "Kalshi",
-   "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jul 1, 2028? — Before Jul 1, 2028",
-   "kind": "announcement",
-   "before": "2028-07-01",
-   "yes": 0.75,
-   "volume": 4757.89,
-   "bettors": null,
-   "money": "real",
-   "url": "https://kalshi.com/markets/kxagico",
-   "series": "kalshi-any-company-announce"
   },
   {
    "venue": "Manifold",
@@ -688,6 +688,18 @@
    "series": null
   },
   {
+   "venue": "Manifold",
+   "question": "Will we get AGI before 2044?",
+   "kind": "achievement",
+   "before": "2044-01-01",
+   "yes": 0.7921643750530464,
+   "volume": 4392.182717960143,
+   "bettors": 52,
+   "money": "play",
+   "url": "https://manifold.markets/RemNi/will-we-get-agi-before-2044",
+   "series": "manifold-we-get-agi"
+  },
+  {
    "venue": "Kalshi",
    "question": "Will any company announce that it has achieved Artificial General Intelligence (AGI) before Jan 1, 2030? — Before Jan 1, 2030",
    "kind": "announcement",
@@ -698,18 +710,6 @@
    "money": "real",
    "url": "https://kalshi.com/markets/kxagico",
    "series": "kalshi-any-company-announce"
-  },
-  {
-   "venue": "Manifold",
-   "question": "Will we get AGI before 2044?",
-   "kind": "achievement",
-   "before": "2044-01-01",
-   "yes": 0.7959277806942047,
-   "volume": 4369.155157859614,
-   "bettors": 52,
-   "money": "play",
-   "url": "https://manifold.markets/RemNi/will-we-get-agi-before-2044",
-   "series": "manifold-we-get-agi"
   },
   {
    "venue": "Kalshi",
