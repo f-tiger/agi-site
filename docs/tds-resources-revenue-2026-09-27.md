@@ -62,3 +62,16 @@ Video titles/authors/thumbnail URLs were returned by YouTube oEmbed on 2026-09-2
 Publication checkpoint (2026-09-27): implementation committed to main as `27d692b45424bfc151dcfecbeb7c7b6bb9ff11fe`. GitHub run `36331720010` failed before allocating a runner: first job `108654811135`, retried job `108655106107`, both with empty steps and no runner. No build log was created. The connector does not expose the corresponding startup annotation. A read-only browser fallback reached the private repository sign-in wall; the secure login request was cancelled. The exact platform-side failure reason is unverified; do not infer a billing problem or change budgets/settings.
 
 At the first production check, `/__build.txt` remained `615fe184d432506aa6fe3986eb51ce7f7c2377ee`, not this feature commit. This release is implemented and committed, not confirmed deployed. Do not submit the new sitemap until the resource pages are live. Next action: inspect the startup annotation in the authenticated run detail, resolve the concrete platform blocker, then rerun the existing deployment, verify 93-page production manifest/resources and only then submit changed URLs and sitemaps. No additional fee, permission expansion, alternate hosting or paid plan was authorized.
+
+
+## Production completion — 2026-09-28, Asia/Shanghai
+
+The existing run `36331720010`, attempt 3, completed successfully with job `108737788492`. A GitHub-hosted runner was allocated on retry; the prior startup failure cause remains unknown. No browser login, billing change, permission expansion or alternate hosting was needed. All build, retired-content, affiliate, visible-schema, membership, workbench, production-page and isolated-measurement gates passed.
+
+Production `/__build.txt` reports `27d692b45424bfc151dcfecbeb7c7b6bb9ff11fe`; the live manifest has 93 localized pages and 12 resource routes. The deployment replay guard used main's tip, which included the documentation-only checkpoint. `/api/document-stats` returned `ok:true` with 33 fixed resource-action keys; initial resource view count was zero at this check, not evidence of future acquisition or income.
+
+Production Chromium checks confirmed three localized homepage portals, twelve retained browser tools, localized video pages without mobile overflow, correct US/DE affiliate destinations, three checklist TXT downloads, and working load/close controls that create the verified privacy-enhanced iframe URLs. No YouTube connection occurred before explicit load, and no page JavaScript errors were observed. This verifies integration; it does not guarantee third-party playback in every region.
+
+Search Console accepted both published sitemap URLs at 2026-09-28 00:08 UTC (08:08 Shanghai); download is pending. The automatic document IndexNow step skipped because the replayed push SHA differs from the checked-out main tip. A verified-key manual recovery notification submitted the 90 changed non-archive HTML URLs and received HTTP 200. Acceptance is not indexing, ranking, AI citation or revenue proof.
+
+Live entry points: https://thedollscout.com/ · https://thedollscout.com/open-source · https://thedollscout.com/videos · https://thedollscout.com/creator-kit . Earlier blocked-publication notes above are historical and superseded by this successful release.
