@@ -3360,3 +3360,10 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
   `eco-split-cluster-0928` **lost**(三页 1 次点击),但三页 28 天只有 6 个真人 pv、点击率与全站相当——**输的是流量不是价位**;照 lose 动作不再扩高客单簇,页面与货架原样保留,2027 制冷季再读。
 - **隐私复查(仓库改回 public 当天)**:已跟踪文件与本地可见历史里没有密钥、钱包地址、订阅者邮箱;唯一的真实邮箱是 Impressum 法定联系邮箱(本来就公开);
   Supabase anon key 按设计公开(RLS 限制);EU 证据测试里一处写着 owner 账号前缀的断言已改为通用的 `.chatgpt.site` 正则。
+- **同日第二个发现:意大利试点的入口页从上线起就是 404**。`/it/` 是它的 canonical 与 sitemap URL,12 张页有 15 条站内链接指向它,
+  而 worker 只特判了 `/` 与 `/en/`,其余带斜杠的路径一律 301 到 `<dir>.html` → `/it.html` 不存在 → 404(08-28 上线起)。
+  `/agents/trade/` 同形,只是另一个会话放了一份 `agents/trade.html` 副本才没露出来。现在 worker 有 `DIR_INDEXES`
+  (有 index.html 的目录按斜杠 URL 直接出页,不带斜杠的 301 到带斜杠),`tools/test_dir_index.mjs` 用真 worker + 真文件断言:
+  名单 == site/ 下的 index.html、每个入口页 canonical 是它的斜杠 URL、斜杠 URL 回 200、裸路径 301 到斜杠、普通页的旧规则不变;
+  删掉 `/it/` 的变异实测两处变红。部署自检加 `/it` → `/it/` 301 与 `/it/` 200。`eco-it-pilot-1027` 已加注:10-27 的零读数有一部分是入口不可达。
+  **新增任何带 index.html 的目录,DIR_INDEXES 要同时加,否则测试红。**

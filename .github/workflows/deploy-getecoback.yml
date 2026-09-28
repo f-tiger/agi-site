@@ -276,6 +276,9 @@ jobs:
       - name: Check removed pages stay removed and unlinked (gate)
         run: |
           node tools/test_gone.mjs
+          # Directory indexes (/it/, /agents/trade/) must be served at their slash
+          # canonical; until 2026-09-28 /it/ answered 301 -> /it.html -> 404.
+          node tools/test_dir_index.mjs
           python3 tools/check_gone.py --selftest
           python3 tools/check_gone.py
 
@@ -843,6 +846,12 @@ jobs:
           check_301 "https://getecoback.com/guide/klimaanlage-kippfenster" "https://getecoback.com/guide/klimaanlage-kippfenster.html"
           check_301 "https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave" "https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave.html"
           check_301 "https://getecoback.com/en" "https://getecoback.com/en/"
+          # 2026-09-28: the Italian hub's canonical and sitemap URL is /it/. It used
+          # to 301 to /it.html, which is a 404; the slash form must now answer 200.
+          check_301 "https://getecoback.com/it" "https://getecoback.com/it/"
+          it_code=$(curl -s -o /dev/null --max-time 20 -w "%{http_code}" "https://getecoback.com/it/" || echo "000")
+          if [ "$it_code" = "200" ]; then echo "OK 200 https://getecoback.com/it/"
+          else echo "::error::https://getecoback.com/it/ answered $it_code (canonical + sitemap URL of the Italian hub)"; fail=1; fi
 
           # First-party event pipeline: the endpoint must accept a whitelisted
           # event and confirm the D1 write. Without this the funnel goes blind

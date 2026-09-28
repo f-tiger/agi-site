@@ -510,7 +510,8 @@
    "lose": "60 天三维度全 0 → /it/ 只维护不扩建,且不为 ES/FR 重建同类试点",
    "source": "sites/getecoback/CLAUDE.md:90(口径需 owner Bing WMT)",
    "status": "open",
-   "reading_20260916": "提前读数(D1 现查,不等 10-27):/it/ **上线至今全部 page_view = 9 次,ua_class 全部是 bot**(来源 US/SG,零 referrer);28/56 天窗口内 **human pv = 0、affiliate_click = 0**。即 11 页意大利语页上线 18 天,**没有任何真人看过**。判定线口径是「Bing 曝光/AI 引荐//it/ 点击 任一 >0」,Bing 侧仍需 owner 截图,但 D1 这两维已确定为 0。10-27 按原口径结算,不提前判负;**但在此之前不得以「多语言有效」为由新建任何语言版本**。"
+   "reading_20260916": "提前读数(D1 现查,不等 10-27):/it/ **上线至今全部 page_view = 9 次,ua_class 全部是 bot**(来源 US/SG,零 referrer);28/56 天窗口内 **human pv = 0、affiliate_click = 0**。即 11 页意大利语页上线 18 天,**没有任何真人看过**。判定线口径是「Bing 曝光/AI 引荐//it/ 点击 任一 >0」,Bing 侧仍需 owner 截图,但 D1 这两维已确定为 0。10-27 按原口径结算,不提前判负;**但在此之前不得以「多语言有效」为由新建任何语言版本**。",
+   "note_2026-09-28_hub": "结算时必须带上:意大利试点的入口页 /it/(canonical 与 sitemap 都用这个 URL,另有 12 张页 15 条站内链接指向它)自 08-28 上线起一直是 301 → /it.html → 404——worker 只特判了 / 与 /en/。09-28 修复(DIR_INDEXES + tools/test_dir_index.mjs)。所以 10-27 读到的 /it/ 零读数有一部分是入口不可达,不是需求为零;11 张 /it/guide/ 页本身一直可达,判定时按它们的读数为主。"
   },
   {
    "id": "bpj-md-mirror-1028",

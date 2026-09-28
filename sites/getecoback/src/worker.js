@@ -292,7 +292,7 @@ function htmlToMarkdown(html, path) {
 }
 
 function wantsMarkdown(request, pathname) {
-  if (!(pathname === "/" || pathname === "/en/" || pathname.endsWith(".html"))) return false;
+  if (!(DIR_INDEXES.has(pathname) || pathname.endsWith(".html"))) return false;
   const accept = request.headers.get("accept") || "";
   // Only an explicit ask. Browsers send text/html and */* and must never be
   // handed Markdown by accident.
@@ -1531,6 +1531,16 @@ function goneResponse(pathname) {
 }
 // --- /GONE PAGES ---------------------------------------------------------------
 
+// --- DIR INDEXES (2026-09-28) -------------------------------------------------
+// Directories that have their own index.html. Their canonical and sitemap URL is
+// the slash form (/it/, /agents/trade/), so that form is served as is and the bare
+// form (/it) redirects to it. Every other slash path keeps the old rule
+// (/x/ -> /x.html). Until 09-28 only / and /en/ were special-cased here, so /it/,
+// the Italian hub's canonical and sitemap URL, answered 301 -> /it.html -> 404.
+// tools/test_dir_index.mjs asserts this set equals the index.html files in site/.
+const DIR_INDEXES = new Set(["/", "/en/", "/it/", "/agents/trade/"]);
+// --- /DIR INDEXES --------------------------------------------------------------
+
 export default {
   async fetch(request, env, ctx) {
     const memberResponse=await memberRoute(request,env,'eco');if(memberResponse)return memberResponse;
@@ -1594,10 +1604,10 @@ export default {
     }
 
     const path = url.pathname;
-    if (path === "/en") {
-      url.pathname = "/en/";
+    if (DIR_INDEXES.has(path + "/")) {
+      url.pathname = path + "/";
       changed = true;
-    } else if (path !== "/" && path !== "/en/") {
+    } else if (!DIR_INDEXES.has(path)) {
       const lastSegment = path.slice(path.lastIndexOf("/") + 1);
       if (path.endsWith("/")) {
         url.pathname = path.slice(0, -1) + ".html";
@@ -1617,21 +1627,17 @@ export default {
     if (gone) return gone;
 
     if (wantsMarkdown(request, url.pathname)) {
-      const assetPath = url.pathname === "/" ? "/index.html"
-        : (url.pathname === "/en/" ? "/en/index.html" : url.pathname);
+      const assetPath = DIR_INDEXES.has(url.pathname) ? url.pathname + "index.html" : url.pathname;
       const md = await serveMarkdown(request, env, url.pathname, assetPath);
       // A conversion failure falls through to the normal HTML response rather
       // than handing a crawler an error.
       if (md) return md;
     }
 
-    if (url.pathname === "/") {
-      url.pathname = "/index.html";
-      return serveAsset(new Request(url.toString(), request), env, "/", ctx);
-    }
-    if (url.pathname === "/en/") {
-      url.pathname = "/en/index.html";
-      return serveAsset(new Request(url.toString(), request), env, "/en/", ctx);
+    if (DIR_INDEXES.has(url.pathname)) {
+      const logical = url.pathname;
+      url.pathname = logical + "index.html";
+      return serveAsset(new Request(url.toString(), request), env, logical, ctx);
     }
     return serveAsset(request, env, url.pathname, ctx);
   },
