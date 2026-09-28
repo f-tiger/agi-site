@@ -4,8 +4,8 @@
 Why this file exists: original data is the site's strongest citation magnet
 (data.json proved it). The Invest section holds three things nobody else
 publishes together — the eight legends' AI stance as filed, a 17-ticker map from
-each company to the eight graded predictions, and the filing-day-priced
-copy-homework readings. Until now all three lived only inside HTML.
+each company to the eight graded predictions, and the post-disclosure-session
+copy-homework readings, supplied as a reviewed versioned JSON snapshot.
 
 The zero-fabrication rule shapes the whole design: NOTHING here is typed in.
 Every field is read out of an existing authoritative in-repo surface, and if a
@@ -24,9 +24,8 @@ Sources, in order of authority:
                              (it writes on import) and would put stale holdings
                              in a file published to be cited. Discovered
                              2026-09-04 while building this script.
-  invest.html             -> the 8-stance table and the copy-homework readings,
-                             both of which are hand-authored there and carry the
-                             quarterly 13F sync obligation recorded in CLAUDE.md
+  invest.html             -> the 8-stance table
+  copy-homework-snapshot.json -> reviewed Compass historical simulation, with per-manager execution windows
 
 Run it in any commit that changes a verdict, alongside gen_index / gen_badges /
 gen_agi_exposure — the same propagation chain. Adding it there is the point:
@@ -79,30 +78,20 @@ FILED = re.search(r"Q2 2026 SEC 13F filings \(holdings as of ([^,]+), filed ([^)
 if not FILED:
     die("could not find the 13F as-of/filed line in invest.html")
 
-# ---- copy-homework readings: filing-day pricing, the section's one original backtest
-CH = re.search(
-    r"As of (\d{4}-\d{2}-\d{2}), over (\d+) rebalances since ([A-Z][a-z]+ \d{4}): "
-    r"Druckenmiller <strong>\+([\d.]+)%</strong>, Cathie Wood \+([\d.]+)%, Tepper \+([\d.]+)%, "
-    r"against QQQ \+([\d.]+)% over the same window &mdash; while Buffett's AI sleeve returned \+([\d.]+)%",
-    html,
-)
-if not CH:
-    die("could not parse the copy-homework readings in invest.html — they carry a quarterly sync obligation, so a parse failure means the shape changed and this script must be updated in the same run")
-
+# ---- Reviewed versioned source from the independent Compass repository.
+ch = json.loads(read("copy-homework-snapshot.json"))
+if ch.get("methodVersion") != "13f-next-session-v2":
+    die("unreviewed copy-homework method")
+ns = {"stanley-druckenmiller": "Stanley Druckenmiller", "cathie-wood": "Cathie Wood", "david-tepper": "David Tepper", "warren-buffett": "Warren Buffett"}
+rs = {r["slug"]: r for r in ch["investors"]}
+d = rs["stanley-druckenmiller"]
 copy_homework = {
-    "asOf": CH.group(1),
-    "rebalances": int(CH.group(2)),
-    "since": CH.group(3),
-    "method": "Each basket is bought at the CLOSE OF ITS FILING DATE and held to the next filing — a 13F is public ~45 days late, so quarter-end pricing assumes a price nobody could have traded.",
-    "scope": "AI-related holdings only, re-weighted as filed. Not these managers' whole-portfolio returns. 13F does not show shorts or option hedges; which names count as 'AI' is this site's editorial judgement.",
-    "returns": [
-        {"investor": "Stanley Druckenmiller", "pct": float(CH.group(3 + 1))},
-        {"investor": "Cathie Wood", "pct": float(CH.group(5))},
-        {"investor": "David Tepper", "pct": float(CH.group(6))},
-        {"investor": "Warren Buffett", "pct": float(CH.group(8)), "note": "lagged the benchmark"},
-    ],
-    "benchmark": {"name": "QQQ", "pct": float(CH.group(7)), "window": "same window, per-leg compounded"},
-    "source": "https://compass.agiscorecard.com/en/track-record",
+    "asOf": ch["generated"], "rebalances": d["quarters"], "since": "August 2024",
+    "methodVersion": ch["methodVersion"], "method": ch["method"], "validation": ch["validation"],
+    "scope": "Editorial AI equity slice; historical gross simulation, not actual trades or future-return evidence.",
+    "returns": [{"investor": name, "pct": rs[slug]["cumulativeReturn"], "benchmarkQQQ": rs[slug]["benchmarkQQQ"], "from": rs[slug]["entryDate"], "to": rs[slug]["exitDate"]} for slug, name in ns.items() if slug in rs],
+    "benchmark": {"name": "QQQ", "pct": d["benchmarkQQQ"], "from": d["entryDate"], "to": d["exitDate"], "window": "Druckenmiller/Tepper/Buffett execution window; other managers have their own benchmark"},
+    "source": "https://agiscorecard.com/copy-homework-snapshot.json",
 }
 
 # ---- verdicts and weights, straight from the published dataset
@@ -184,8 +173,8 @@ out = {
     "name": "AGI Scorecard — Invest dataset",
     "url": "https://agiscorecard.com/invest-data.json",
     "license": "CC BY 4.0 — cite agiscorecard.com/invest",
-    "dateModified": data.get("dateModified"),
-    "about": "How the eight graded Situational Awareness predictions map onto listed AI equities, how eight well-known investors are actually positioned per their public SEC 13F filings, and what copying them would have returned when priced on the filing date rather than at quarter end.",
+    "dateModified": max(data.get("dateModified") or "", ch["generated"]),
+    "about": "How the eight graded Situational Awareness predictions map onto listed AI equities, how eight well-known investors are actually positioned per their public SEC 13F filings, and versioned gross historical AI-sleeve simulations using post-filing execution dates.",
     "notInvestmentAdvice": "Educational information built from public SEC 13F filings and public statements. Holdings are quarterly snapshots and may not reflect current positions. Nothing here is a recommendation to buy or sell any security, and this site never judges whether a price is cheap or expensive.",
     "thesisTracker": {
         "score": (data.get("thesisTracker") or {}).get("score"),

@@ -6,14 +6,14 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
-<title>Does Copying 13F Filings Actually Work? We Tested It</title>
-<meta name="description" content="Backtested at filing-day closes over 8 rebalances: Druckenmiller's AI book +187.2% vs QQQ +59.6%; Buffett's AI slice lagged. Copying works — if you pick who.">
+<title>Does copying 13F filings work? A revised historical simulation | AGI Scorecard</title>
+<meta name="description" content="Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.">
 <link rel="canonical" href="https://agiscorecard.com/does-copying-13f-work">
 <link rel="alternate" hreflang="en" href="https://agiscorecard.com/does-copying-13f-work">
 <link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/does-copying-13f-work">
 <link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/does-copying-13f-work">
 <meta property="og:title" content="Does Copying 13F Filings Actually Work? We Tested It">
-<meta property="og:description" content="The only test that buys at filing-day closes — the first price a real person could pay. Druckenmiller +187.2%, Wood +170%, Tepper +108.2% vs QQQ +59.6%; Buffett's AI slice +37.3% and lagging.">
+<meta property="og:description" content="Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.">
 <meta property="og:url" content="https://agiscorecard.com/does-copying-13f-work">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://agiscorecard.com/share/copy-13f-en.png">
@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://agiscorecard.com/share/copy-13f-en.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Does copying 13F filings actually work? We tested it","datePublished":"2026-08-29","dateModified":"2026-08-29","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A first-party backtest of copying famous investors' AI holdings at filing-day closing prices — the first price a real 13F reader could actually pay. Eight rebalances since August 2024, winners and the loser both published, with the four caveats on the same screen as the numbers."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"Does copying 13F filings work?","item":"https://agiscorecard.com/does-copying-13f-work"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does copying 13F filings actually make money?", "acceptedAnswer": {"@type": "Answer", "text": "It can — the question is who you copy. Our backtest buys each investor's disclosed AI holdings at the closing price of the day the 13F was filed and holds to the next filing. Over 8 rebalances since August 2024 (as of 2026-08-16): Druckenmiller +187.2%, Cathie Wood +170%, Tepper +108.2%, against QQQ +59.6% over the same window — while Warren Buffett's AI-related slice returned +37.3% and lagged the index. Copying is not one strategy; it is a different strategy per investor."}}, {"@type": "Question", "name": "Isn't the 45-day filing delay fatal to copying?", "acceptedAnswer": {"@type": "Answer", "text": "The classic academic result says no: Martin and Puthenpurackal's study of Berkshire Hathaway (SSRN, 2008) found a portfolio mimicking Berkshire's disclosed holdings from 1976 to 2006 would have beaten the market substantially even when trades were made a month after the disclosures became public. Our test is the tradeable version of that idea: it never uses quarter-end prices (which nobody reading a filing 45 days later could get) — it buys at the filing-day close, the first price a real person opening EDGAR could actually pay."}}, {"@type": "Question", "name": "Why did copying Buffett lag while others beat the index?", "acceptedAnswer": {"@type": "Answer", "text": "Because the AI slice of Berkshire's book is deliberately conservative: cash-flowing businesses adjacent to AI (Apple, and Alphabet added through 2026) rather than accelerator names. That slice returned +37.3% over the test window against QQQ's +59.6% — a fact about this AI-only slice and this window, not a verdict on Berkshire's whole portfolio, which the 13F-visible slice does not represent."}}, {"@type": "Question", "name": "How is this different from other 13F tracker sites?", "acceptedAnswer": {"@type": "Answer", "text": "Three ways. Pricing: every other backtest we found uses quarter-end prices, which assume you traded 45 days before you could have read the filing; ours uses filing-day closes. Honesty: the loser (Buffett's AI slice, lagging) is published beside the winners, and four caveats sit on the same screen as the numbers. Auditability: holdings come from the line-by-line EDGAR filings, returns use adjusted daily closes, and the whole thing recomputes each 13F season rather than being written once."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does this prove that copying will make money?", "acceptedAnswer": {"@type": "Answer", "text": "No. As of 2026-09-28, over 8 rebalances: Druckenmiller +179.5% vs QQQ +55.5%; Buffett +34.6% vs QQQ +55.5% (2024-08-15 to 2026-08-17). Wood +161.8% vs her own-window QQQ +59.0%; Tepper +107.1% vs QQQ +55.5%. Different managers can have different windows. These results do not establish future alpha."}}, {"@type": "Question", "name": "Why use a later execution price?", "acceptedAnswer": {"@type": "Answer", "text": "A filing-day close can precede a post-market disclosure. The revised simulation waits until the next completed trading-session close. This remains a price assumption, not proof of an actual fill."}}, {"@type": "Question", "name": "What is excluded?", "acceptedAnswer": {"@type": "Answer", "text": "Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures."}}, {"@type": "Question", "name": "Where can I inspect the data?", "acceptedAnswer": {"@type": "Answer", "text": "The dated JSON snapshot records each filing source, execution dates, price coverage and exclusions. 6 managers have complete histories; other attempts are listed under failures. Use each manager own-window benchmark."}}]}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -60,78 +60,16 @@
   <a href="/" class="back-link">← Live scorecard</a>
 </header>
 <main>
-  <article>
-  <div class="eyebrow">Tested, not argued · Follow the money</div>
-  <h1>Does Copying 13F Filings Actually Work? We Tested It</h1>
-  <div class="updated">Last updated: August 29, 2026 · Recomputed each 13F season · Not investment advice</div>
-
-  <div class="capsule"><span class="verdict">Over 8 rebalance periods, copying the right investor's disclosed AI book beat the index badly — and copying Buffett's AI slice lost to it. The question is not whether copying works; it is who you copy.</span>
-  Everyone else answers this question with a quarter-end backtest, which quietly assumes you traded
-  45 days before you could have read the filing. Ours buys at <strong>the closing price of the day the
-  13F was filed</strong> — the first price a real person opening EDGAR could actually pay — and holds to
-  the next filing. Winners and the loser are published together, with the caveats on the same screen.</div>
-
-  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
-    <span style="font-size:13px;color:var(--muted);">The headline read, recomputed each filing season (as of 2026-08-16, 8 rebalances since Aug 2024):</span><br>
-    <a href="https://compass.agiscorecard.com/en/track-record" target="_blank" rel="noopener" onclick="gtag('event','index_click',{location:'copy13f_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">+187.2%<span style="font-size:16px;color:var(--muted);"> Druckenmiller</span></a>
-    <span style="font-size:13px;color:var(--muted);">— vs <strong>QQQ +59.6%</strong> over the same window. Copying the wrong book (Buffett's AI slice, +37.3%) lagged that same index.</span>
-  </div>
-
-  <h2>The numbers — winners and the loser together</h2>
-  <table>
-    <thead><tr><th>Whose AI book you copy</th><th>Return since Aug 2024</th><th>QQQ, same window</th><th>Verdict</th></tr></thead>
-    <tbody>
-      <tr><td>Stanley Druckenmiller</td><td class="nowrap v-ok">+187.2%</td><td class="nowrap">+59.6%</td><td class="v-ok">Beat, by ~3x</td></tr>
-      <tr><td>Cathie Wood (ARK)</td><td class="nowrap v-ok">+170%</td><td class="nowrap">+59.6%</td><td class="v-ok">Beat</td></tr>
-      <tr><td>David Tepper</td><td class="nowrap v-ok">+108.2%</td><td class="nowrap">+59.6%</td><td class="v-ok">Beat</td></tr>
-      <tr><td>Warren Buffett (AI-related slice)</td><td class="nowrap v-wrong">+37.3%</td><td class="nowrap">+59.6%</td><td class="v-wrong">Lagged</td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:13px;color:var(--muted);margin-top:-.6rem;">Four caveats belong on the same screen as these numbers, not in a footer: ① this is each investor's <strong>AI-related slice</strong>, not their whole portfolio; ② a 13F cannot see short positions or option hedges, so a hedged book looks naked here; ③ <em>which holdings count as AI</em> is this site's editorial judgement; ④ any period where price coverage fell below 50% of the basket is skipped, not guessed. Past performance is not a promise of anything.</p>
-
-  <h2>Why filing-day prices are the whole point</h2>
-  <p>A 13F becomes public roughly <strong>45 days after the quarter ends</strong>. Backtests built on
-  quarter-end prices — which is nearly all of them — therefore price the copy at a moment when the
-  filing did not exist. That is not a small technicality: it is the difference between measuring a
-  strategy and measuring time travel. Our ledger enters every position at the filing-day close and
-  re-enters at each subsequent filing, using adjusted daily closes, with holdings taken from the
-  <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;type=13F" rel="noopener nofollow">line-by-line EDGAR filings</a> themselves.</p>
-  <p>The academic base rate points the same way: Martin and Puthenpurackal's Berkshire study
-  (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=806246" rel="noopener">"Imitation is the Sincerest Form of Flattery"</a>, SSRN 2008)
-  found that mimicking Berkshire's <em>disclosed</em> holdings from 1976–2006 would have beaten the
-  market substantially even when the copy traded a month after disclosure. The lag is survivable.
-  What our test adds is the part the literature can't give you: <strong>which of today's AI books was
-  worth copying, at prices you could actually have paid</strong> — and the answer splits hard by investor.</p>
-
-  <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;">
-    <p style="margin:0 0 .7rem;font-weight:700;">Run it yourself — your investors, your date, your amount</p>
-    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">The Copy-Homework calculator answers "if I had copied them starting then, what would it be worth today" — pick any mix of investors and a starting filing date; it computes in your browser, each leg benchmarked against QQQ over that investor's own window, result permalinked. One tap in the tool follows your pick with an update when the next 13F lands.</p>
-    <a href="https://compass.agiscorecard.com/en/track-record" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'copy13f_record'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">Open the calculator &rarr;</a>
-    <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'copy13f_invest'});" style="display:inline-block;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">Who holds what now &rarr;</a>
-  </div>
-
-  <h2>What this test cannot tell you</h2>
-  <ul>
-    <li><strong>Whether it keeps working.</strong> Eight rebalances is a real record and a short one; the next filing season recomputes everything, including our own headline.</li>
-    <li><strong>Anything about whole portfolios.</strong> The AI slice is the part this site can grade against its <a href="/situational-awareness-predictions">tracked predictions</a>; Berkshire's full book is a different (and unmeasured-here) animal.</li>
-    <li><strong>Which investor to copy next.</strong> The ledger reports what happened at tradeable prices. It does not rank the future — and a site that graded predictions for a living would be the first to tell you those are different jobs.</li>
-  </ul>
-
-  <h2>FAQ</h2>
-  <h3>Does copying 13F filings actually make money?</h3>
-  <p>It can — the question is who you copy. Our backtest buys each investor's disclosed AI holdings at the closing price of the day the 13F was filed and holds to the next filing. Over 8 rebalances since August 2024 (as of 2026-08-16): Druckenmiller +187.2%, Cathie Wood +170%, Tepper +108.2%, against QQQ +59.6% over the same window — while Warren Buffett's AI-related slice returned +37.3% and lagged the index. Copying is not one strategy; it is a different strategy per investor.</p>
-  <h3>Isn't the 45-day filing delay fatal to copying?</h3>
-  <p>The classic academic result says no: Martin and Puthenpurackal's study of Berkshire Hathaway (SSRN, 2008) found a portfolio mimicking Berkshire's disclosed holdings from 1976 to 2006 would have beaten the market substantially even when trades were made a month after the disclosures became public. Our test is the tradeable version of that idea: it never uses quarter-end prices (which nobody reading a filing 45 days later could get) — it buys at the filing-day close, the first price a real person opening EDGAR could actually pay.</p>
-  <h3>Why did copying Buffett lag while others beat the index?</h3>
-  <p>Because the AI slice of Berkshire's book is deliberately conservative: cash-flowing businesses adjacent to AI (Apple, and Alphabet added through 2026) rather than accelerator names. That slice returned +37.3% over the test window against QQQ's +59.6% — a fact about this AI-only slice and this window, not a verdict on Berkshire's whole portfolio, which the 13F-visible slice does not represent.</p>
-  <h3>How is this different from other 13F tracker sites?</h3>
-  <p>Three ways. Pricing: every other backtest we found uses quarter-end prices, which assume you traded 45 days before you could have read the filing; ours uses filing-day closes. Honesty: the loser (Buffett's AI slice, lagging) is published beside the winners, and four caveats sit on the same screen as the numbers. Auditability: holdings come from the line-by-line EDGAR filings, returns use adjusted daily closes, and the whole thing recomputes each 13F season rather than being written once.</p>
-
-  <div style="margin:1.6rem 0;">
-    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_copy13f" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_copy13f'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email each 13F season, with the recomputed ledger &rarr;</a>
-  </div>
-  <p style="font-size:13px;color:var(--muted);">Browse all <a href="/agi-questions">AGI questions</a> · Holdings come only from line-by-line 13F filings; the ledger recomputes quarterly and this page's numbers update in the same run. Nothing here is investment advice.</p>
-  </article>
+  <article><div class="eyebrow">Auditable historical research</div><h1>Does copying 13F filings work? A revised historical simulation</h1>
+<div class="updated">2026-09-28 · 13f-next-session-v2</div>
+<div class="capsule"><span class="verdict">A historical simulation does not prove future profits.</span> Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.</div>
+<h2>Compare each manager with its own-window benchmark</h2>
+<div style="overflow-x:auto"><table><thead><tr><th>Investor</th><th>Execution window</th><th>Gross return</th><th>QQQ, same window</th></tr></thead><tbody><tr><td>Stanley Druckenmiller</td><td>2024-08-15 → 2026-08-17</td><td>+179.5%</td><td>+55.5%</td></tr><tr><td>Cathie Wood</td><td>2024-07-29 → 2026-08-17</td><td>+161.8%</td><td>+59.0%</td></tr><tr><td>David Tepper</td><td>2024-08-15 → 2026-08-17</td><td>+107.1%</td><td>+55.5%</td></tr><tr><td>Philippe Laffont</td><td>2024-08-15 → 2026-08-17</td><td>+80.4%</td><td>+55.5%</td></tr><tr><td>Bill Ackman</td><td>2024-05-16 → 2026-05-18</td><td>+76.5%</td><td>+57.9%</td></tr><tr><td>Warren Buffett</td><td>2024-08-15 → 2026-08-17</td><td>+34.6%</td><td>+55.5%</td></tr></tbody></table></div>
+<p>As of 2026-09-28, over 8 rebalances: Druckenmiller +179.5% vs QQQ +55.5%; Buffett +34.6% vs QQQ +55.5% (2024-08-15 to 2026-08-17). Wood +161.8% vs her own-window QQQ +59.0%; Tepper +107.1% vs QQQ +55.5%. Different managers can have different windows. These results do not establish future alpha.</p><p>Incomplete histories are excluded, with reasons retained under failures. The old same-day-close and option handling had defects; the figures here have been recomputed.</p>
+<p><a href="/copy-homework-snapshot.json">Download this page source and calculation snapshot</a> · <a href="https://compass.agiscorecard.com/en/track-record">Open Compass research calculator</a></p>
+<h2>Method questions</h2><h3>Does this prove that copying will make money?</h3><p>No. As of 2026-09-28, over 8 rebalances: Druckenmiller +179.5% vs QQQ +55.5%; Buffett +34.6% vs QQQ +55.5% (2024-08-15 to 2026-08-17). Wood +161.8% vs her own-window QQQ +59.0%; Tepper +107.1% vs QQQ +55.5%. Different managers can have different windows. These results do not establish future alpha.</p><h3>Why use a later execution price?</h3><p>A filing-day close can precede a post-market disclosure. The revised simulation waits until the next completed trading-session close. This remains a price assumption, not proof of an actual fill.</p><h3>What is excluded?</h3><p>Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.</p><h3>Where can I inspect the data?</h3><p>The dated JSON snapshot records each filing source, execution dates, price coverage and exclusions. 6 managers have complete histories; other attempts are listed under failures. Use each manager own-window benchmark.</p>
+<p><a href="https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f">SEC 13F FAQ</a> · <a href="/invest#research-workbench">Create your own thesis and counterevidence record</a></p>
+<p>Research only. Not a stock recommendation, live track record or return promise.</p></article>
 </main>
 <footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
 </body>
