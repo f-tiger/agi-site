@@ -1,0 +1,29 @@
+# Zeitzonen-Terminplaner
+
+https://thedollscout.com/de/time-zone-planner
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Ein Termin, 5–480 Minuten, Jahre 1970–2100, 16 Zeitzonen. Verwendet Zeitzonenregeln des Browsers. Keine Serien, Verfügbarkeitsabfrage, Feiertage oder Einladungen.
+
+Datum und Zeitzone der organisierenden Person wählen. Übersprungene Uhrzeiten werden abgelehnt. Bei doppelten Uhrzeiten muss die frühere oder spätere gewählt werden. Arbeitszeithinweise nehmen Montag bis Freitag 09:00–18:00 an, ohne Feiertage oder persönliche Pläne.
+
+Ein 60-minütiger Termin am 15. Oktober 2026 um 09:00 in New York beginnt um 13:00 UTC, 14:00 in London, 15:00 in Berlin und 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Verschickt der Kalender-Download Einladungen?
+
+Nein. Er erstellt lokal eine .ics-Datei. Sie entscheiden über Import und Weitergabe; das Werkzeug kontaktiert weder Teilnehmende noch Kalenderkonten.
+
+Warum fehlt eine Uhrzeit oder kommt zweimal vor?
+
+Zeitumstellungen können eine Zeitspanne überspringen oder wiederholen. Fehlende Uhrzeiten werden abgelehnt; bei doppelten müssen Sie die frühere oder spätere wählen.
+
+Referenzen
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545

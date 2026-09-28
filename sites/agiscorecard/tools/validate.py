@@ -14,12 +14,22 @@ import json
 import os
 import re
 import sys
+import subprocess
 import xml.dom.minidom
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KNOWN_EXTENSIONLESS = {"two-year-scorecard", "agi-questions"}
 
 problems = []
+
+# Community pages are rendered by the Worker, not static HTML files. Exercise the
+# actual routes against a temporary SQLite fixture; never exempt arbitrary paths.
+try:
+    DYNAMIC_ROUTES = set(json.loads(subprocess.check_output(
+        ['node', os.path.join(ROOT, 'tools/community/validate-routes.mjs')], text=True)))
+except Exception as exc:
+    DYNAMIC_ROUTES = set()
+    problems.append('Community route validation failed: %r' % (exc,))
 
 # Root pages plus the language/section subdirectories (zh/, invest/, agi-type/ ...).
 # These used to be unvalidated: 43 live pages with no FAQ/JSON-LD/link checking.
@@ -58,7 +68,7 @@ for f in PAGES:
     no_script = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
     for href in set(re.findall(r"<(?:a|link)\b[^>]*?href=[\"']/([a-z0-9\-/\.]+?)[\"']", no_script)):
         base = href[:-5] if href.endswith(".html") else href.rstrip("/")
-        if not base or base in KNOWN_EXTENSIONLESS:
+        if not base or base in KNOWN_EXTENSIONLESS or base in DYNAMIC_ROUTES:
             continue
         if (os.path.exists(os.path.join(ROOT, base + ".html"))
                 or os.path.exists(os.path.join(ROOT, base, "index.html"))
@@ -118,6 +128,27 @@ for _f in sorted(glob.glob(os.path.join(ROOT, "*.html"))):
     _v = f"{_vis.group(3)}-{_MON.get(_vis.group(1), '??')}-{int(_vis.group(2)):02d}"
     if _v != _ld.group(1):
         problems.append(f"{os.path.basename(_f)}: 可见日期 {_v} 与 dateModified {_ld.group(1)} 不一致")
+
+# data.json 的 flip / resolves / watch / pending_reason 必须与首页判定行逐字相同(2026-09-26)。
+# /for-agents 与 MCP 描述从 7 月起就宣称 data.json 带翻转条件,而它直到今天才真的带上——
+# 一个自述数据集内容却与页面不一致的信任层,是信誉缺陷。这道门让两处永远不能再分开漂。
+try:
+    _d = json.load(open(os.path.join(ROOT, "data.json"), encoding="utf-8"))
+    _h = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    _dets = re.findall(r"<tr class=\"pred-detail\"><td colspan=\"4\">(.*?)</td></tr>", _h, re.S)
+    _LAB = {"Flips if": "flip", "Flips back if": "flip", "Watch": "watch", "Resolves": "resolves", "Why pending": "pending_reason"}
+    if len(_dets) != len(_d["predictions"]):
+        problems.append(f"index.html has {len(_dets)} prediction detail rows, data.json has {len(_d['predictions'])}")
+    for _p, _det in zip(_d["predictions"], _dets):
+        _page = {}
+        for _lab, _txt in re.findall(r"<span class='pd-label'>([^<]+)</span>\s*(.*?)</p>", _det):
+            if _lab in _LAB:
+                _page[_LAB[_lab]] = re.sub(r"<[^>]+>", "", _txt).strip()
+        for _k in ("flip", "watch", "resolves", "pending_reason"):
+            if _page.get(_k) != _p.get(_k):
+                problems.append(f"data.json {_p['id']}.{_k} != index.html detail row ({(_p.get(_k) or '∅')[:40]!r} vs {(_page.get(_k) or '∅')[:40]!r})")
+except Exception as _e:
+    problems.append("flip-condition parity check could not run: %r" % (_e,))
 
 if problems:
     print(f"FAIL — {len(problems)} problem(s):")

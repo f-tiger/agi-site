@@ -1,0 +1,38 @@
+# Upscayl: Enlarge a small image with local AI.
+
+https://thedollscout.com/open-source/upscayl
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Enlarge a small image with local AI.
+
+Use it when you need a larger raster image, then compare the result at full size. Desktop processing needs a compatible Vulkan-capable GPU; a CPU alone is not the normal supported path. Upscayl Cloud is separate.
+
+Upscaling estimates detail; it cannot recover an authoritative original. Faces, lettering and textures can change. Larger dimensions usually increase file size.
+
+Install from the official desktop download and check GPU support.
+
+Keep the original and upscale a copy of one image.
+
+Inspect faces and text at 100%; reject invented details.
+
+Use TDS image compression to compare export size for the web.
+
+Windows · macOS · Linux
+
+AGPL-3.0
+
+https://github.com/upscayl/upscayl/blob/main/LICENSE
+
+https://upscayl.org/download
+
+https://docs.upscayl.org/
+
+https://github.com/upscayl/upscayl
+
+https://thedollscout.com/image-compressor
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+

@@ -42,8 +42,11 @@ DE_SEASONS = {
             ("🌡️", "Hitze-Check: Wie heiß wird dein Zimmer?", "/guide/hitze-check.html"),
             ("🧮", "BTU-Rechner: Kühlleistung in 30 Sekunden", "/guide/btu-rechner.html"),
             ("❄️", "Beste tragbare Klimaanlage 2026", "/guide/beste-tragbare-klimaanlage-hitzewelle.html"),
-            ("☀️", "Balkon-Check: Lohnt sich Solar bei dir?", "/guide/balkonkraftwerk-standort-check.html"),
-            ("💶", "Balkonspeicher-Förderung: Wer zahlt was dazu?", "/guide/balkonspeicher-foerderung.html"),
+            # Two balcony-PV slots (Balkon-Check, Balkonspeicher-Förderung) until
+            # 2026-09-27, when the owner took every storage and balcony-PV page off
+            # the site. Replaced by two existing cooling pages.
+            ("🪟", "Klimaanlage am Kippfenster abdichten", "/guide/klimaanlage-kippfenster.html"),
+            ("💶", "Was kostet eine Klimaanlage im Betrieb?", "/guide/klimaanlage-stromkosten.html"),
             ("🛒", "Alle Kühlgeräte", "/kategorie/klimaanlagen.html"),
         ],
     },
@@ -103,7 +106,7 @@ DE_SEASONS = {
         "teaser": [
             ("🌬️", "Luftreiniger gegen Pollen & Staub", "/guide/luftreiniger-ratgeber.html"),
             ("🪟", "Hitzeschutz fürs Fenster", "/guide/hitzeschutz-fenster.html"),
-            ("☀️", "Balkon-Check: Lohnt sich Solar bei dir?", "/guide/balkonkraftwerk-standort-check.html"),
+            ("⚡", "Börsenstrompreis-Radar", "/guide/strompreis-radar.html"),
             ("🧮", "BTU-Rechner: jetzt in Ruhe planen", "/guide/btu-rechner.html"),
             ("🛒", "Energie sparen", "/kategorie/energie-sparen.html"),
         ],
@@ -133,8 +136,11 @@ DE_SEASON_VIDEOS = {
          "/guide/luftentfeuchter-40-qm.html", "Ratgeber: Luftentfeuchter für 40 m² →"),
         ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)",
          "/guide/luftentfeuchter-gegen-schimmel.html", "Ratgeber: Luftentfeuchter gegen Schimmel →"),
-        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
-         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+        # Third slot was a storage "Top 5 im Test" video until 2026-09-27 (storage
+        # and balcony-PV pages taken down); the cellar video is from the same
+        # verified pool.
+        ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)",
+         "/guide/keller-lueften-sommer.html", "Ratgeber: Keller richtig lüften →"),
     ],
     "winter": [
         ("x1S_Y7b9bvc", "Infrarotheizung im Härtetest: Reichen 400 W für 8 m² im Winter?",
@@ -145,8 +151,8 @@ DE_SEASON_VIDEOS = {
          "/guide/keller-lueften-sommer.html", "Ratgeber: Keller richtig lüften →"),
     ],
     "fruehjahr": [
-        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
-         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+        ("DqjrdUiaftc", "Fensterabdichtung für die mobile Klimaanlage anbringen (Anleitung)",
+         "/guide/klimaanlage-kippfenster.html", "Ratgeber: Klimaanlage am Kippfenster →"),
         ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
          "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Ratgeber: Beste tragbare Klimaanlage →"),
         ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich",
@@ -231,6 +237,25 @@ def rotate_de(season):
     html = swap(html, r'<p class="sub">.*?</p>', lambda m: f'<p class="sub">{cfg["sub"]}</p>', "hero sub")
     html = swap(html, r'<span class="badge">.*?</span>',
                 lambda m: f'<span class="badge">{cfg["badge"]}</span>', "badge")
+    # Hero buttons (2026-09-27). They pointed at #deals ("Die besten Kühlgeräte
+    # diese Woche") and #guide (the cooling buying guide) all year; from
+    # September to February build_home_order moves both sections down, so the
+    # buttons point at the season's own block and category instead.
+    cold = season in ("herbst", "winter")
+    offers = ('<a class="btn-primary" href="#eb-herbst">Empfehlungen für die kalte Jahreszeit ↓</a>' if cold
+              else '<a class="btn-primary" href="#deals">Top-Angebote ansehen ↓</a>')
+    guide = ({"herbst": '<a class="btn-ghost" href="/kategorie/luftqualitaet.html">Ratgeber Feuchte &amp; Schimmel</a>',
+              "winter": '<a class="btn-ghost" href="/kategorie/heizen.html">Ratgeber Heizen</a>'}.get(season)
+             or '<a class="btn-ghost" href="#guide">Kaufberatung</a>')
+    html = swap(html, r'<a class="btn-primary" href="#(?:deals|eb-herbst)">[^<]*</a>', lambda m: offers, "hero offers button")
+    html = swap(html, r'(<div class="hero-btns">.*?)<a class="btn-ghost" href="[^"]*">[^<]*</a>',
+                lambda m: m.group(1) + guide, "hero guide button")
+    # The hero sign-up promised a heat alarm with no word that nothing is sent
+    # yet; every other radar form on the site already says so (2026-08-06).
+    html = swap(html, r'<p class="cta-note">.*?</p>',
+                lambda m: '<p class="cta-note">Kostenloser Alarm vor der nächsten Hitzewelle — plus Preis-Alarm für empfohlene Geräte. '
+                          'Kein Spam. Ehrlich vorab: Der Versand ist noch im Aufbau, bis dahin bekommst du keine E-Mails.</p>',
+                "hero cta note")
     strip = teaser_html(cfg["teaser"], "Jetzt in der Saison:")
     if "<!--EB_SEASON-->" in html:
         html = re.sub(r'<!--EB_SEASON-->.*?<!--/EB_SEASON-->', lambda m: strip, html, flags=re.S)

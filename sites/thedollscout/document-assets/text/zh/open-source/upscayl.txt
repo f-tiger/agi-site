@@ -1,0 +1,38 @@
+# Upscayl: 用本地 AI 放大小图片。
+
+https://thedollscout.com/zh/open-source/upscayl
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用本地 AI 放大小图片。
+
+适合需要更大尺寸并愿意逐项检查结果的图片任务。桌面版需要兼容 Vulkan 的 GPU，只有 CPU 不是常规支持方式；Upscayl Cloud 为独立服务。
+
+放大生成的是估计细节，不是恢复可靠原件。人脸、文字和纹理都可能变化；尺寸增大通常也会增加文件体积。
+
+通过官方下载桌面版，检查 GPU 支持。
+
+保留原图，仅对副本进行放大。
+
+按 100% 大小检查脸部与文字，舍弃虚构细节。
+
+用 TDS 图片压缩比较适合网页的导出体积。
+
+Windows · macOS · Linux
+
+AGPL-3.0
+
+https://github.com/upscayl/upscayl/blob/main/LICENSE
+
+https://upscayl.org/download
+
+https://docs.upscayl.org/
+
+https://github.com/upscayl/upscayl
+
+https://thedollscout.com/zh/image-compressor
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+

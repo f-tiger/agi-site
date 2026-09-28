@@ -1,0 +1,64 @@
+# PDF-Stapelprüfung
+
+https://thedollscout.com/de/pdf-batch-audit
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.
+
+Ihr Ergebnis: Eine gemeinsame Liste für bis zu 10 PDFs, mit gekennzeichneten Teilprüfungen.
+
+Was Sie selbst prüfen müssen: Je PDF höchstens 20 MB und 200 geprüfte Seiten; je Stapel 100 MB und 600 geprüfte Seiten.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Wie viele PDFs kann ich gemeinsam prüfen?
+
+Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.
+
+Was passiert bei einer unlesbaren Datei?
+
+Die Befunde lesbarer Dateien bleiben erhalten. Die fehlerhafte Datei wird getrennt ausgewiesen; der Stapel gilt als teilweise geprüft. Fordern Sie eine lesbare Kopie an und prüfen Sie diese nach.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Der Stapel enthält ein Text-PDF mit fehlenden Metadaten, eine überarbeitete Textfassung und eine Seite nur mit einer gezeichneten Form. Vollständig verarbeitet bedeutet nicht barrierefrei.
+
+Dokument | Seiten | Alle Seiten verarbeitet | Prüfung
+
+Ursprüngliche Unterlage | 2 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2)
+
+Überarbeitete Unterlage | 3 | Ja | Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2); Kein Strukturbaum für die Seite gefunden (3)
+
+Beispiel ohne Textebene | 1 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein auslesbarer Text (1)
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-batch-audit#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

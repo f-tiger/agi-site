@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>三明治数独规则：外圈的数字是怎么算的</title>
+<meta name="description" content="三明治数独规则：每个外圈提示数等于该行或该列中夹在 1 和最大数之间的数字之和。0 表示 1 和最大数相邻。附技巧和一道经验证的每日题。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/sandwich-sudoku-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/sandwich-sudoku-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/sandwich-sudoku-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="三明治数独规则：外圈的数字是怎么算的">
+<meta property="og:description" content="三明治数独规则：每个外圈提示数等于该行或该列中夹在 1 和最大数之间的数字之和。0 表示 1 和最大数相邻。附技巧和一道经验证的每日题。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/sandwich-sudoku-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥪</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "三明治数独规则：外圈的数字是怎么算的", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/sandwich-sudoku-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "三明治数独规则：每个外圈提示数等于该行或该列中夹在 1 和最大数之间的数字之和。0 表示 1 和最大数相邻。附技巧和一道经验证的每日题。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "三明治数独的提示数怎么算？", "acceptedAnswer": {"@type": "Answer", "text": "方格外的每个提示数，等于该行或该列中严格夹在 1 和最大数之间的数字之和。1 和最大数是「面包」；提示数加的是「馅」。"}}, {"@type": "Question", "name": "三明治数独里 0 是什么意思？", "acceptedAnswer": {"@type": "Answer", "text": "0 表示 1 和最大数之间什么都没有 —— 它们在那一行或那一列里相邻。这是整道题里最有力的提示之一。"}}, {"@type": "Question", "name": "三明治数独比普通数独难吗？", "acceptedAnswer": {"@type": "Answer", "text": "它用位置算术换掉了宫的约束，所以一开始会觉得更难：信息是间接的。在经验证的盘面上难度是有上限的 —— 本站每一道每日题都经机器检查，不需要猜。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "三明治数独规则 —— 外面的数字是什么意思", "item": "https://play.agiscorecard.com/zh/sandwich-sudoku-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/sandwich-sudoku-rules">三明治数独规则 —— 外面的数字是什么意思</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>每个外圈提示数把「馅」加起来。</strong>在每一行每一列里，找到 1 和最大数（5×5 上是 5）的位置 —— 外圈的提示数就是严格夹在它们之间的所有数字之和。提示数为 <strong>0</strong> 表示 1 和 5 相邻；最大提示数（5×5 上是 2+3+4 = 9）表示它们分别在两端。行与列仍然各数字恰好出现一次。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/sandwich">去玩</a>。</p>
+<script>fetch("/sandwich-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/sandwich">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>拉丁方</strong></td><td style="padding:6px 8px">每一行、每一列都恰好包含每个数字一次。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>三明治和</strong></td><td style="padding:6px 8px">外圈提示数等于该行或该列中严格夹在 1 和最大数之间的数字之和。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>提示数全部显示</strong></td><td style="padding:6px 8px">本站显示全部 2n 个提示数（经典呈现方式），转而把已知数字压到最少。</td></tr></tbody>
+  </table>
+  <h2>先读极端值</h2><p>0 ⇒ 这一行/列里 1 和 5 在某处相邻。9（5×5 上）⇒ 它们在两端。两种情况都把 1/5 的可能位置压到寥寥几个。</p><h2>数一数馅有几格</h2><p>和为 2 只能是单格 {2}；和为 5 能是 {5} 吗？不能 —— 5 是「面包」。它只能是 {2,3}。每个和值只对应极少几种组合；把它们列出来。</p><h2>交叉面包</h2><p>一旦 1 或 5 在某一行落下，它同时约束与之交叉的那一列的三明治 —— 「面包」在行读和列读之间是共用的。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>450 盘 5×5 每日题（自 2026-08-24 起）加 320 盘畅玩题。生成器保留全部三明治提示数可见，只把已知数字压到最少，每删掉一个都重新验证：恰好一个解仍然可以靠推理到达。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">三明治数独的提示数怎么算？</h3><p style="margin:0 0 6px">方格外的每个提示数，等于该行或该列中严格夹在 1 和最大数之间的数字之和。1 和最大数是「面包」；提示数加的是「馅」。</p><h3 style="font-size:.98rem;margin:10px 0 2px">三明治数独里 0 是什么意思？</h3><p style="margin:0 0 6px">0 表示 1 和最大数之间什么都没有 —— 它们在那一行或那一列里相邻。这是整道题里最有力的提示之一。</p><h3 style="font-size:.98rem;margin:10px 0 2px">三明治数独比普通数独难吗？</h3><p style="margin:0 0 6px">它用位置算术换掉了宫的约束，所以一开始会觉得更难：信息是间接的。在经验证的盘面上难度是有上限的 —— 本站每一道每日题都经机器检查，不需要猜。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/kropki-sudoku-rules">⚫ 点点</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/star-battle-rules">⭐ 星战</a> · <a href="/zh/thermometer-puzzle-rules">🌡 温度计</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/6x6-sudoku-rules">🔢 迷你数独</a> · <a href="/zh/binary-puzzle-rules">🌙 日月</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/sandwich">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

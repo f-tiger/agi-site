@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "checked_at": "2026-09-28",
+  "scope": "Dated teaching snapshots, not live market data or investment recommendations",
+  "sources": [
+    {"id":"nvda","company":"NVIDIA (NVDA)","published":"2026-08-26","period":"FY2027 Q2 · 2026-07-26","source":"https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027","en":{"observation":"Data Center revenue: $89.0 billion; company-reported quarter, USD.","thesis":"Compute demand can support durable earnings growth.","counter":"Segment revenue does not isolate end-user AI returns or prove a fair stock price.","flip":"Recheck revenue, margins and customer concentration in the next filing; revise if growth depends on weaker cash collection."},"zh":{"observation":"数据中心收入 890 亿美元；公司披露的单季数据，币种 USD。","thesis":"算力需求有望转化为可持续的盈利增长。","counter":"分部收入不能单独证明终端 AI 投资回报，也不能证明股价合理。","flip":"下次财报核对收入、毛利率与客户集中度；若增长伴随回款恶化，则重新审视假设。"}},
+    {"id":"msft","company":"Microsoft (MSFT)","published":"2026-07-29","period":"FY2026 Q4 · 2026-06-30","source":"https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast","en":{"observation":"Microsoft Cloud revenue: $59.3 billion; company-reported quarter, USD.","thesis":"Cloud usage can monetize AI infrastructure investment.","counter":"Microsoft Cloud is broader than Azure and AI; this is not standalone AI revenue.","flip":"Recheck cash flow and capital investment together; revise if monetization does not cover ongoing investment needs."},"zh":{"observation":"Microsoft Cloud 收入 593 亿美元；公司披露的单季数据，币种 USD。","thesis":"云服务使用有望变现 AI 基础设施投入。","counter":"Microsoft Cloud 范围大于 Azure 和 AI，不能把它全部当成 AI 收入。","flip":"下次同时核对现金流和资本投入；若变现不足以覆盖持续投入，则重新审视假设。"}}
+  ]
+}

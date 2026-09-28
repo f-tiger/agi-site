@@ -3,37 +3,24 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 3,
+    "n": 5,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 5,
+    "q": "tool:invest_positions"
+   },
+   {
+    "n": 1,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    }
   ]
  },
- "fetched": "2026-09-19",
+ "fetched": "2026-09-24",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {
-  "/ai-and-your-job": {
-   "n7": 94,
-   "p7": 29
-  },
-  "/ai-job-risk-check": {
-   "n7": 84,
-   "p7": 31
-  },
-  "/can-ai-replace-knowledge-workers": {
-   "n7": 83,
-   "p7": 30
-  },
-  "/search": {
-   "n7": 280,
-   "p7": 60
-  },
-  "/two-year-scorecard": {
-   "n7": 87,
-   "p7": 24
-  }
- },
+ "pages": {},
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

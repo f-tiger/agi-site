@@ -33,6 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Reject stale Web3 audit snapshots
+        id: web3snapshot
+        continue-on-error: true
+        run: python3 tools/fleet/check_web3_snapshot.py
+
       - name: Probe every site and redeploy anything stale
         id: probe
         env:
@@ -41,6 +46,11 @@ jobs:
         run: |
           set -uo pipefail
           # site|live URL|deploy workflow file
+          # 2026-09-21:四个新 worker(18 个)+ 它们的 13 个次级主机名(31 个公开主机)。
+          # 第三列为空 = 只探活不查部署年龄、不自动重发(同一 worker 的多主机共用一条部署链,
+          # 重发只挂在带 workflow 的那一行,否则一次 run 会把同一条 workflow 派发多次)。
+          # The last four were deployed (push-only, no schedule) but in no fleet
+          # instrument until 2026-09-23: a stall or an outage there alerted nobody.
           SITES='agiscorecard|https://agiscorecard.com/|deploy-agiscorecard.yml
           baipiaoji|https://baipiaoji.com/|deploy-baipiaoji.yml
           getecoback|https://getecoback.com/|deploy-getecoback.yml
@@ -54,7 +64,24 @@ jobs:
           fanzha|https://fanzha.agiscorecard.com/?ci=1|deploy-fanzha.yml
           firstjob|https://firstjob.agiscorecard.com/?ci=1|deploy-firstjob.yml
           codeword|https://codeword.agiscorecard.com/?ci=1|deploy-codeword.yml
-          powerbill|https://powerbill.agiscorecard.com/?ci=1|deploy-powerbill.yml'
+          powerbill|https://powerbill.agiscorecard.com/?ci=1|deploy-powerbill.yml
+          localebatch|https://localebatch.agiscorecard.com/?ci=1|deploy-localebatch.yml
+          agent-delivery-lab|https://verify.agiscorecard.com/?ci=1|deploy-agent-delivery-lab.yml
+          venture-lab|https://rfqdesk.agiscorecard.com/?ci=1|deploy-venture-lab.yml
+          web3-studio|https://web3.agiscorecard.com/?ci=1|deploy-web3-studio.yml
+          venture-lab/modelmeter|https://modelmeter.agiscorecard.com/?ci=1|
+          venture-lab/querysprint|https://querysprint.agiscorecard.com/?ci=1|
+          venture-lab/filinglens|https://filinglens.agiscorecard.com/?ci=1|
+          web3-studio/reconcile|https://reconcile.agiscorecard.com/?ci=1|
+          web3-studio/evidence|https://evidence.agiscorecard.com/?ci=1|
+          web3-studio/route|https://route.agiscorecard.com/?ci=1|
+          web3-studio/protocol|https://protocol.agiscorecard.com/?ci=1|
+          web3-studio/permit|https://permit.agiscorecard.com/?ci=1|
+          web3-studio/compute|https://compute.agiscorecard.com/?ci=1|
+          web3-studio/incentives|https://incentives.agiscorecard.com/?ci=1|
+          web3-studio/proof|https://proof.agiscorecard.com/?ci=1|
+          web3-studio/calls|https://calls.agiscorecard.com/?ci=1|
+          web3-studio/disclosures|https://disclosures.agiscorecard.com/?ci=1|'
 
           NOW=$(date -u +%s)
           BAD=0
@@ -82,6 +109,19 @@ jobs:
             #   · 取最近 5 条成功 run 的 updated_at **最大值**,而不是盲信 [0];
             #   · 把拿到的原始值打进日志,下次再出就是可诊断的,而不是靠推。
             # (教训同源:此前 itch 那次也是靠"步骤耗时"去推断而不是读日志,推错了。)
+            if [ -z "$wf" ]; then
+              # 次级主机名:只探活。部署年龄与重发由同一 worker 带 workflow 的那一行负责。
+              echo "  probe $name: http=$code (secondary host, no deploy-age check)"
+              if [ "$code" != "200" ]; then
+                BAD=1
+                echo "::error::$name ($url) 返回 $code,不是 200"
+              fi
+              [ $FIRST -eq 0 ] && echo ',' >> /tmp/h.json
+              FIRST=0
+              printf '    {"site":"%s","url":"%s","http":"%s","days_since_deploy":null,"redeployed":false}' \
+                "$name" "$url" "$code" >> /tmp/h.json
+              continue
+            fi
             last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=5" \
                      --jq '[.workflow_runs[].updated_at] | max // ""' 2>/dev/null || echo "")
             echo "  probe $name: http=$code last_success=${last:-<none>}"
@@ -153,6 +193,22 @@ jobs:
       #    D1 REST 直连,三个 token secret 逐个试(承 tds-traffic.yml 纪律),只打印生效的 env 名;
       #    读失败保留上一份快照,连续 >3 天读不到才红(不做每天一封的噪音)。快照写回
       #    data/fleet-ai-referrals.json,autopilot 的 demand-digest 次日读它。
+      # ①b D1 读预算护栏(2026-09-25 事故:账号超出免费档 5,000,000 行读取/日,D1 读全部失败到午夜)。
+      #    一次 GraphQL POST 读账号昨日与今日的 rows_read(分库),写 data/fleet-d1-budget.json;
+      #    >40% 警告、>60% 红。token 缺 Account Analytics 读权限时写 status:unreadable 并警告,不假装绿。
+      #    零 cron、零 D1 行读取。判定线 fleet-d1-budget-1026。
+      - name: Read the account's D1 read budget (yesterday + today's pace)
+        id: d1budget
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 tools/fleet/d1_budget.py --selftest
+          python3 tools/fleet/d1_budget.py
+
       - name: Read AI-assistant referrals (28d) from every site's D1
         id: airef
         continue-on-error: true
@@ -161,17 +217,143 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: python3 tools/fleet/ai_referrals.py
+        # 2026-09-27: the selftest runs first but never stops the read — a red selftest still
+        # leaves today's snapshot written, and the step goes red at the end (aggregated below).
+        run: |
+          rc=0
+          python3 tools/fleet/ai_referrals.py --selftest || rc=1
+          python3 tools/fleet/ai_referrals.py || rc=1
+          exit $rc
+
+      # ③ 每个站的读者从哪来(2026-09-15「舰队相互学习」)。此前读侧只数 AI 主机,于是
+      #    除 eco 外没有一个站知道自己的渠道构成——而同日手查发现 bpj 的第一大来源是
+      #    Google(157/305),eco 的 Google 却是 0。两个相反的答案,谁都看不见自己属于哪种。
+      #    端点优先(/api/pulse 自本日起多返回 by_source/by_search/by_fleet),分桶表是
+      #    tools/fleet/ref_sources.txt。读失败保留上一份,连续 >3 天读不到才红。
+      - name: Read where each site's readers come from (28d)
+        id: srcmix
+        continue-on-error: true
+        run: python3 tools/fleet/traffic_sources.py
+
+      # 4c) 预测记录线(2026-09-27 创业复盘选定的楔子,docs/ai-era-founder-2026-09-25.md §三)。
+      #     读 bot 提交的点时账本 data/metaculus/*.jsonl;题目关闭后才向 Metaculus 公开 API 取结算并解封概率,
+      #     算北极星(赛前已记录且已结算的题数)、house prior 消融(Brier 差)、花费与净美元(奖金只收 owner 亲报)。
+      #     另一个探针抽样开放题的结算来源,看舰队已存档的官方源能覆盖多少(判定线 fe-coverage-1005)。
+      #     零 D1、零新 cron;只警告不红,除非脚本本身崩了。
+      - name: Read the forecast record and FutureEval coverage
+        id: forecast
+        continue-on-error: true
+        env:
+          METACULUS_TOKEN: ${{ secrets.METACULUS_TOKEN }}
+          BOT_TOURNAMENT_ID: ${{ vars.BOT_TOURNAMENT_ID }}
+          BOT_MINIBENCH_ID: ${{ vars.BOT_MINIBENCH_ID }}
+        run: |
+          python3 -m pip install -q cryptography
+          python3 tools/fleet/metaculus_record.py --selftest
+          python3 tools/fleet/metaculus_record.py
+          python3 tools/fleet/futureeval_coverage.py --selftest
+          python3 tools/fleet/futureeval_coverage.py
+
+      # ④ 钱线仪表盘(2026-09-21「营收目标增长」):手册 08-23 起要求每次报告带钱线,而 runner 从来读不到
+      #    一条——D1 没有读 token。现在五个钱线站的 pulse/reach 多返回一个 money 对象(聚合计数),
+      #    这里每天读一次写 data/fleet-money.json,demand-digest 次日读它;owner 亲报的 PartnerNet 数字
+      #    在 data/fleet-money-owner.json,只并入,永不推算。读失败保留上一份,连续 >3 天读不到才红。
+      - name: Read the fleet money line (28d)
+        id: money
+        continue-on-error: true
+        run: python3 tools/fleet/money_line.py
+
+      # 4b) 机器面读数(2026-09-24 复盘产物)。三个站各自服务 MCP,各自数过一遍,
+      #     结论都是「大部分是我们自己」——但没人把三份读数放在一起过,每次都要重新手算。
+      #     这一步用同一套词汇(ci / operator / indexer / other + 需求调用方规则)读各站的
+      #     公开聚合端点(零 token),写 data/fleet-mcp-usage.json;某站曾经能读、连续 >3 天读不到才红。
+      - name: Read the fleet machine face (MCP, 28d)
+        id: mcpusage
+        continue-on-error: true
+        run: |
+          python3 tools/fleet/mcp_usage.py --selftest
+          python3 tools/fleet/mcp_usage.py
+
+      # 预测承诺的第三方可核链(2026-09-27,owner「…类似比特币的共识算法…AI 时代信仰」第三轮)。
+      # data/metaculus/forecasts.jsonl 由 metaculus-bot.yml 在写账本的同一个 job 里锚进比特币
+      # (ots_anchor --group ledger,证明与清单在 data/metaculus/ots/,每个新版本记 size 与 stamped_at);
+      # 本 workflow 只读不写那份清单(一份清单一个写入者,两条 workflow 不会互相 rebase 冲突)。
+      # 账本只追加,所以 size=N 的那一版就是今天文件的前 N 字节。这一步用 tools/fleet/verify_commitments.py 核三件事:
+      #   ① 只追加:manifest 里每个带 size 的已锚版本,仍等于今天文件前 size 字节的 sha256(改写/重排/删行/截断 → TAMPER);
+      #      manifest 没登记的 forecasts.jsonl.*.ots(孤儿证明)也核:证明头里写着它锚的哈希,必须仍是今天文件某个整行前缀;
+      #      manifest 不可读、或被删而证明还在 → TAMPER;
+      #   ② 揭示绑定:revealed.jsonl(上面「Read the forecast record」只对已关题写)每行 sha256(plain_text)==digest、
+      #      账本里有这一行、明文的 question_id/submitted_at 与公开行一致(把别题的密封块挂到这一题 → TAMPER);
+      #   ③ 每条已揭示行最早被哪一版锚定、锚定日是否早于关题;--ots 用 ots 客户端实核证明(runner 无比特币节点 →
+      #      --no-bitcoin,仍核哈希链并给出区块高度 + merkle root 供人工对照;客户端或节点缺失永不致红)。
+      # 核的是仓库里已提交的清单与证明。账本清单坏了或被删而证明还在 → 这一步报 TAMPER(进汇总,run 变红);
+      # 账本清单的唯一写入者 ots_anchor --group ledger 对这两种清单一律 fail closed(不重建、不覆盖已有证明、
+      # 退出码 2,在 bot job 里变红),所以「清单被重建成只有今天一版、改写过的账本随后核过」那条路径两头都堵上了。
+      # continue-on-error + 末尾汇总步(与本 workflow 其余读数同一模式):TAMPER 会一直红到有人把字节修回来,
+      # 若这一步直接挂掉 job,后面每一道独立断言(autopilot、UA 一致、过期判定线、召回雷达…)都会被跳过,
+      # 「GitHub 失败邮件」这根保险丝就只剩这一个原因。run 照样红、照样发邮件。
+      # selftest 要 cryptography(PyPI 抖动时跳过并 warning);核验本身是纯 stdlib,无论如何都跑。
+      # 账:~0.1 分钟/天(纯 stdlib 读三个文件;--ots 每次最多核 10 份证明)。零新 cron、零密钥、只读公共日历。
+      - name: Verify forecast commitments (append-only ledger, reveals, Bitcoin anchors)
+        id: commitments
+        continue-on-error: true
+        run: |
+          rc=0
+          # 客户端在这里装(锚定步排在后面,它那条 pip 届时是空操作);装不上 → --ots 只记 note,不致红。
+          python3 -m pip install -q opentimestamps-client 2>/dev/null || echo "::warning::ots client install failed; --ots proofs not checked today"
+          python3 -m pip install -q cryptography 2>/dev/null || true
+          # 探的是 selftest 真正要用的 Fernet:坏掉的安装里 `import cryptography` 能过,Fernet 才崩(沙箱实测)。
+          if python3 -c 'from cryptography.fernet import Fernet' 2>/dev/null; then
+            python3 tools/fleet/verify_commitments.py --selftest || rc=1
+          else
+            echo "::warning::cryptography unavailable; verify_commitments selftest skipped (the verification below is stdlib and still runs)"
+          fi
+          python3 tools/fleet/verify_commitments.py --ots || rc=1
+          exit $rc
 
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
+      # 2026-09-26(owner「类似比特币的共识算法…AI 时代信仰」):比特币能被合法借用的只有
+      # 「公开时间戳、无人能回填」这一项。OpenTimestamps 把带日期记录(verdicts / 分数史 / 共识板 /
+      # 赌注台账)的 SHA-256 锚进比特币区块,免费公共日历、零密钥、不发币不持币。fail-open:
+      # 日历不通只 warning。账:~0.2 分钟/天。证明文件随本步一起提交(下一步 git add)。
+      # 2026-09-27:加 id 并进末尾汇总。ots_anchor 拒绝一份坏清单时退出 2——此前只留一条 ::error 注释,
+      # 六份站点记录会悄悄停止锚定(评审指出)。日历不通仍只 warning、退出 0。
+      - name: Anchor dated records in Bitcoin via OpenTimestamps (stamp new versions, upgrade pending proofs)
+        id: ots_anchor
+        continue-on-error: true
+        run: |
+          pip install -q opentimestamps-client 2>/dev/null || { echo "::warning::ots client install failed; skipping anchoring"; exit 0; }
+          python3 tools/fleet/ots_anchor.py --selftest
+          python3 tools/fleet/ots_anchor.py
+
+
+      # 账本证明的升级(2026-09-27 终审):账本清单只有 bot job 写(--group ledger),但 bot 关着时
+      # (METACULUS_BOT_ENABLED≠1,owner 曾主动关过)最后几版会永远停在 pending(只有日历回执)。
+      # 所以只在 bot 关着时由这里做 --upgrade-only:只把已登记的 pending 证明升级为比特币区块证明,
+      # 绝不 stamp 新版本、不碰 forecasts.jsonl;bot 开着时它自己每 6 小时升级,这一步跳过——任何时刻只有一个写入者。
+      # fail-open:日历不通只 warning(ots_anchor 的网络调用不再抛异常);清单坏了退出 2 → 进汇总。账:~0.1 分钟/天。
+      - name: Upgrade pending forecast-ledger proofs while the bot is off (never stamps)
+        id: ledger_upgrade
+        if: ${{ vars.METACULUS_BOT_ENABLED != '1' }}
+        continue-on-error: true
+        run: |
+          if [ ! -f data/metaculus/ots/manifest.json ]; then echo "no ledger proofs yet"; exit 0; fi
+          pip install -q opentimestamps-client 2>/dev/null || { echo "::warning::ots client install failed; ledger proofs not upgraded today"; exit 0; }
+          python3 tools/fleet/ots_anchor.py --group ledger --upgrade-only
+
       - name: Commit health snapshot
         run: |
           cd "$GITHUB_WORKSPACE"
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json data/fleet-d1-budget.json data/fleet-forecast-record.json data/futureeval-coverage.json 2>/dev/null || true
+          git add data/ots sites/agiscorecard/ots 2>/dev/null || true
+          git add data/metaculus/ots 2>/dev/null || true   # 只在 bot 关着时由上面的 --upgrade-only 改动
+          # 各占一行:revealed.jsonl 在第一道题关闭前不存在,而一条 git add 里只要一个路径不存在,整条就一个也不加。
+          git add data/fleet-commitments.json 2>/dev/null || true
+          git add data/metaculus/revealed.jsonl 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -237,6 +419,57 @@ jobs:
       - name: Assert bot-UA classifier parity across workers
         run: python3 tools/fleet/check_bot_ua.py
 
+      # 同一个教训的第二次应用:13 份引荐来源分类器必须与 tools/fleet/ref_sources.txt 逐字相同。
+      # 这里不只比字面量,还把每个 worker 里**真正那段代码**抠出来交给 node 跑一组用例
+      # (两个方向:该命中的必中,netflix.com / agiscorecard.com.spam.example 这类必不误判)。
+      - name: Assert referrer-source classifier parity across workers
+        run: python3 tools/fleet/check_ref_sources.py
+
+      # 同一个教训的第三次应用(2026-09-25):失败响应绝不许是 public 可缓存的。当天账号撞上
+      # D1 免费额度的日行读上限,14 个读端点里 13 个 500,而每一个 500 都带着
+      # `cache-control: public, max-age=3600` —— header 对象在 handler 顶上建一次,200/503/500
+      # 共用。于是一次瞬时报错被交给中间缓存重放一小时:本会话把 gridlings 读成 200 带真数字,
+      # 而那一刻 D1 正在拒绝每一条查询。eco 自己的 handleHeat/handleDew 早写过这条规则,
+      # 喂舰队仪器的这些读端点漏了。规则:响应体带失败标记(ok:false / live:false / degraded)
+      # 就不许带 public —— 非 2xx 与「200 但 body 说 live:false」两种形状都算。
+      - name: Assert no failure response is publicly cacheable
+        run: python3 tools/fleet/check_pulse_cache.py
+
+      # sitemap 里的 URL 必须是终点。这类缺陷不跟随跳转就看不见:站是 200、sitemap 是 200,
+      # 唯独每条 loc 都多一跳。实测 bpj 1558 条全中(canonical 也指向非 200),另外 13 站为 0。
+      # 抽样 4 条/站,只打自家站,零外部副作用。3xx 才红;取不到只 warning。
+      - name: Assert every sitemap URL is a destination, not a redirect
+        id: smguard
+        continue-on-error: true
+        run: python3 tools/fleet/sitemap_guard.py
+
+      # 舰队互学矩阵(每周一,脚本自己判星期,不新增 cron):同一套判据打在 14 个站上,
+      # 谁在哪条已验证做法上最好、谁缺它,一张表看完。第一次跑就推翻了直觉——
+      # 带日期的新鲜度标注 bpj 12/16 是全舰队最好,agi 只有 4/16(而它站规里写着这条)。
+      # 只读自家页面,零外部副作用;测不到只 warning,不红(它是选题输入,不是告警器)。
+      - name: Weekly cross-site pattern matrix
+        continue-on-error: true
+        run: python3 tools/fleet/page_patterns.py
+
+      # 外链监测(每周一,脚本自己判星期,不新增 cron)。两半:①各站 by_other = 真的把人
+      # 送过来的站外来源域(第一方,不花钱不靠第三方工具);②目标清单核对——只读 README,
+      # **机器永不自动提 PR、永不发帖**(同 Reddit 那条规矩)。掉链会 warning。
+      - name: Weekly backlink monitor (read-only)
+        continue-on-error: true
+        run: python3 tools/fleet/backlinks.py
+
+      # 每日总任务看门狗(2026-09-27,owner:「重建每天的定时任务」+「你要避免每天任务无法读取agi-site仓库，从而执行发布」)。
+      # v1 总任务自绑定在一个会话上,那个会话 09-15 被归档,此后 12 天没有任何每日循环,而且没有任何东西发现——
+      # 唯一在看它的就是它自己。v2 每次触发开新会话,每轮在同一次 push 里给 data/fleet-master-run.json 追加一行;
+      # 这里零 AI 地检查:50 小时内没有新记录,或连续两轮 repo_ok=false(拿不到 agi-site)→ 红 → GitHub 邮件。
+      # 秒级、零外部副作用、零新 cron。首跑前(至 09-30)只 warning。
+      - name: Assert the daily master Routine reported from inside the repo
+        id: masterrun
+        continue-on-error: true
+        run: |
+          python3 tools/fleet/check_master_run.py --selftest
+          python3 tools/fleet/check_master_run.py
+
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
       # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
@@ -247,8 +480,9 @@ jobs:
       - name: Assert the recall radar the shelves gate on is fresh
         run: python3 tools/fleet/recall_gate.py --check
 
-      - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
+      - name: Fail the run if any site is down, blocks AI crawlers, a traffic read is stale, the forecast ledger fails verification, anchoring refused a manifest, or the daily master Routine stopped reporting
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure' || steps.forecast.outcome == 'failure' || steps.commitments.outcome == 'failure' || steps.ots_anchor.outcome == 'failure' || steps.ledger_upgrade.outcome == 'failure' || steps.masterrun.outcome == 'failure' || steps.web3snapshot.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }} forecast=${{ steps.forecast.outcome }} commitments=${{ steps.commitments.outcome }} ots-anchor=${{ steps.ots_anchor.outcome }} ledger-upgrade=${{ steps.ledger_upgrade.outcome }} master-routine=${{ steps.masterrun.outcome }} web3-snapshot=${{ steps.web3snapshot.outcome }}"
           exit 1
+

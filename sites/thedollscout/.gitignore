@@ -7,3 +7,7 @@ dist/
 # does not exist.
 package.json
 package-lock.json
+
+# Document Scout now has an explicit pinned PDF build, introduced 2026-09-25.
+!scripts/documents/package.json
+!scripts/documents/package-lock.json

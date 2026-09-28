@@ -12,7 +12,7 @@
 <meta property="og:description" content="The smallest unit of checkable judgement: claim + evidence tier + dated verdict + written flip condition, published at /claimledger.json. Misses never deleted, verdicts never for sale, no tokens.">
 <meta property="og:url" content="https://goldrush.agiscorecard.com/protocol">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The Claim Ledger Protocol (v0.1)","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A minimal format for publishing money claims that can be checked: evidence tiers, dated verdicts, written flip conditions, and one well-known location (/claimledger.json)."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The Claim Ledger Protocol (v0.1)","datePublished":"2026-08-29","dateModified":"2026-09-22","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A minimal format for publishing money claims that can be checked: evidence tiers, dated verdicts, written flip conditions, and one well-known location (/claimledger.json)."}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:ui-monospace,'JetBrains Mono',monospace;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -117,10 +117,11 @@
   An earlier version of this page said publishing the file makes your ledger readable by every protocol tool and agent the day
   you publish it. That is verbatim the sentence llms.txt shipped with, and on this reference implementation it is false: as of
   2026-08-30 this site's own <code>/claimledger.json</code> had been fetched by an outside client <strong>zero</strong> times in
-  its entire life (live count: <a href="/fetchlog.json">/fetchlog.json</a>). Adopt the format because the file is useful to you.
-  A network does not exist yet.</p>
+  its entire life (live count: <a href="/fetchlog.json">/fetchlog.json</a>). By 2026-09-22 the count was 31, and 22 of those
+  carried crawler user agents — a URL being indexed, not a ledger being consumed; ledger clicks and audit clicks were still zero.
+  Adopt the format because the file is useful to you. A network does not exist yet.</p>
   <div id="regout" style="font-size:13.5px;color:var(--muted);margin:0 0 1rem;">
-    <div>1 ledger listed · 1 validates · <b>0</b> fetched by an outside client (<a href="/fetchlog.json">fetchlog.json</a>, 2026-08-30)</div>
+    <div>1 ledger listed · 1 validates · <b>31</b> fetched by outside clients since launch — 22 crawler-class user agents, 9 browser-class; ledger clicks and audit clicks still 0 (<a href="/fetchlog.json">fetchlog.json</a>, 2026-09-22)</div>
     <div>· <b>goldrush.agiscorecard.com (reference, first-party)</b> — 9 entries, all five fields present — <a href="/claimledger.json">/claimledger.json</a></div>
     <div style="opacity:.7">No external ledger has been submitted yet. First-party ledgers are labelled and are never counted as adoption.</div>
   </div>

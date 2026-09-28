@@ -1,0 +1,38 @@
+# Whisper: Längere oder mehrsprachige Audiodateien lokal transkribieren.
+
+https://thedollscout.com/de/open-source/whisper
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Längere oder mehrsprachige Audiodateien lokal transkribieren.
+
+Das Python-Projekt bietet verschiedene Modelle und Sprachen. Python, FFmpeg und passende Hardware sind nötig. Für einen kurzen englischen Clip ist das TDS-Browserwerkzeug einfacher.
+
+Bei Stille und Störgeräuschen kann falscher Text entstehen. Namen, Sprache und Zeiten am Original prüfen. TDS verarbeitet derzeit maximal 60 Sekunden englische Sprache.
+
+Offizielle Einrichtungsanleitung befolgen.
+
+Sprache und ein zur Hardware passendes Modell wählen.
+
+Zunächst einen Clip mit klarer Sprache testen.
+
+Text und Zeiten mit der Aufnahme vergleichen.
+
+Python · FFmpeg
+
+MIT
+
+https://github.com/openai/whisper/blob/main/LICENSE
+
+https://github.com/openai/whisper
+
+https://github.com/openai/whisper#setup
+
+https://github.com/openai/whisper
+
+https://thedollscout.com/de/ai-audio-to-text
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+

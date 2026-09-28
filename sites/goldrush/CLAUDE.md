@@ -207,3 +207,37 @@ v0.1 格式未动,不触发版本升级(§7 合规)。
 判定页而不复制其数字(**避免加入硬同步面**——copy13f 条目只写「split,depends who」
 不带收益数字,这是刻意的,别"补全"它)。主站侧接线:llms.txt + /for-agents 提及
 本域(下次主站 run 顺手,不单独 push)。
+
+## 2026-09-22:owner 第三次提出「分裂子站 + 编号资产 + 越老越值钱」——映射到本站,三条线提前读,补登台账(全文 `docs/fork-ledger-pricing-2026-09-22.md`)
+
+owner 原话要素:分享即复制分裂用户子站、区块链式证明、每站自动生成 MCP 写入账本、AI 定价带编号似 NFT、
+分裂越多/链上位置越老越值钱。**这就是本站 08-29 的建站提案;「增值」半边 08-30 已由 v0.6 自删并列入永不。**
+本轮零新面、零新页、零新 cron,只做三件维护:
+1. **三条判定线此前没进 `data/fleet-bets.json`**(= 等于没预登记),本日补登为 `goldrush-tripwire-0930` /
+   `goldrush-survival-1028` / `goldrush-protocol-adoption-1130`。09-22 现查:**三条全部被字面满足,而要测的机制一个读数都没动**
+   ——JS pv 8/28d 但单国四天;外部 referrer 有但全是搜「agiscorecard」的品牌导航;`/claimledger.json` 外部抓取 31 次但 22 次是
+   bot-UA(日形状与 ua_audit 里 OpenAI 家族 UA 每日 9–22 次吻合);fork_click 终身 1、ledger_click 0、audit_click 0、外部账本 0。
+   后两条线早于到期改了判据(保留 `threshold_original`):品牌导航不算发现、爬虫抓取不算消费。**09-16 教训的第二次应用。**
+2. **`fetchlog.json` 从 08-31 的 0 刷新到 31(crawler 22 / browser 9)**,加两栏与 `consumption_evidence`;`index.html` /
+   `protocol.html` 无 JS 兜底行 / `llms.txt` 三处「zero」同步——它们 22 天里已经是假话,而 AI 读者读的正是静态文本。
+3. **账本条目 `our-own-protocol-economics` 的 v1 翻转条件字面被触发**(任一外部抓取 ≥1)。按协议规则 1 公开处理:
+   `asOf` 改 09-22、verdict 加「抓取不是使用、判定不变」、flip 收紧为「解析五字段的客户端」,**v1 原文保留在
+   `flip_v1_2026-08-30`** 并写 `correction`。registry 对别人要求的「no silent history rewrites」第一次用在自己身上。
+**别再提(在 08-30 铁律之上新增)**:给账本加「链上证明」层、每个子站自动生成 MCP、按分裂数或链上位置加权的任何定价、
+用「AI 来定价」绕开「价值来自后入者」。
+
+### 同日第二轮(owner:「goldrush优化再上线」):公布的数字改由仪器自己算,准入规则先对自己执行
+
+- **`/fetchlog.json` 不再是手抄文件**:worker 每次读时从本站 D1 现算(`FETCHLOG_SQL_CLASSES` / `FETCHLOG_SQL_EVIDENCE`,
+  三条排除项逐字对应文件里的 definitions),`site/fetchlog.json` 退为模板 + 兜底(标 `live:false`,永远不能冒充现值)。
+  **理由**:它承诺「updated as it moves」却停在 0 二十二天;而 11-30 采用线要用同一条 SQL 结算——t0 与结算必须同一个仪器
+  (eco 09-17 定的规矩)。`tools/test_fetchlog.mjs` 钉死求和不变式(50 组 fuzz)、零是合法读数、脏行不抛错、
+  **SQL 排除项逐字在位**(放宽一条 = 制造采纳,收紧一条 = 藏采纳,页面上都看不出来)。
+- **`tools/check_ledger.mjs`**:registry 对别人要求的准入规则(五字段、flip ≥15 字、source 可查、更正必须保留旧文本)
+  第一次对自己的 `ledger.json` 执行,挂进部署闸门;`--selftest` 11 例先证明它能红。
+- **部署后自检加两条协议自己的承诺**:`/claimledger.json` 必须带 `access-control-allow-origin: *`(丢了它页面照样 200,
+  但 grader 的 reader 与所有跨域 registry 全断),`/fetchlog.json` 必须 `live:true` 且 headline = 三部分之和;
+  `/.well-known/claimledger.json` 进 200 名单。
+- 读数(D1 现查 2026-09-22):**grader_use / grader_copy / ledger_click / audit_click / ledger_render 终身全部 0**,
+  只有 08-29 那 1 次 fork_click;28 天 JS 口径 pv 13(`/` 3 · protocol 3 · grader 3 · agix 2 · how-to 2)。
+  「工具在零采纳时也对单个使用者有用」那条赌注到今天**没有一个使用者**。这轮因此只动仪器与闸门,不动页面。

@@ -1,0 +1,144 @@
+# 免费 AI 工具：人像抠图、语音转写、摘要与日常工具
+
+https://thedollscout.com/zh/
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
+
+图片压缩、缩放与格式转换
+
+批量调整 JPEG、PNG、WebP 尺寸与格式，查看实际输出大小。
+
+图片处理
+
+https://thedollscout.com/zh/image-compressor
+
+JSON 校验、格式化与结构对比
+
+校验与格式化数据，按字段比较版本，保留长数字精度。
+
+结构化数据
+
+https://thedollscout.com/zh/json-compare
+
+跨时区会议与日历导出
+
+对照多地时间，识别夏令时变化，导出日历文件。
+
+时区与 .ics
+
+https://thedollscout.com/zh/time-zone-planner
+
+PDF 无障碍检查
+
+检查标题、语言声明、标签结构，并按页定位问题线索。
+
+PDF 发布前预检
+
+https://thedollscout.com/zh/pdf-accessibility-checker
+
+PDF 批量审查
+
+一次检查最多 10 份 PDF，导出一张合并的问题清单。
+
+最多 10 份 PDF
+
+https://thedollscout.com/zh/pdf-batch-audit
+
+PDF 转文字
+
+按页提取 PDF 中已有文字，保存为 TXT 文件。
+
+提取已有文本
+
+https://thedollscout.com/zh/pdf-to-text
+
+PDF 文本对比
+
+比较两个版本，定位修改、新增和删除的文字页面。
+
+比较两个 PDF 版本
+
+https://thedollscout.com/zh/compare-pdf-text
+
+文件核验
+
+创建校验链接，或核对收到的文件是否与参考版本一致。
+
+SHA-256 与文件大小
+
+https://thedollscout.com/zh/verify-file
+
+文件交付记录
+
+列出交付文件，填写备注，导出可携带的记录。
+
+文件清单与备注
+
+https://thedollscout.com/zh/delivery-evidence
+
+AI 人像抠图
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+人像 → 透明 PNG
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+
+AI 英文音频转文字
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+英文音频 → TXT / SRT
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+AI 原文摘要
+
+用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+
+英文文本 → 可回看原句的要点
+
+https://thedollscout.com/zh/ai-text-summarizer
+
+图片太大，网页或附件不好发。
+
+先调整尺寸并检查导出效果，再把最终文件整理成交付记录。
+
+接口返回或配置文件改了。
+
+按字段比较 JSON，下载变更报告，避免把键顺序变化当成内容变化。
+
+团队分布在不同国家。
+
+先确认各地对应时间，再导出一份日历文件，按需导入自己的日历。
+
+工具免费，文件留在你的设备上。
+
+无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。 首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+十二个工具都能免费使用吗？
+
+可以。三个本地 AI 工具和九个日常工具均可免费使用，无需注册。AI 工具首次使用前需要下载模型文件。
+
+我的文件会被上传或保存吗？
+
+文件处理在浏览器内完成，不上传文件或文档正文。若你主动分享核验链接，链接包含 SHA-256 指纹和字节数；完整导出文件可能含文件名和你填写的备注。 AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+用哪个工具确认文件没有变化？
+
+文件核验会把 SHA-256 和字节数与发送者提供的参考值比较；文本对比则检查提取后的文字。这些工具都不证明身份、送达、验收或文件安全。
+
+按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。
+
+https://thedollscout.com/zh/open-source
+
+精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。
+
+https://thedollscout.com/zh/videos
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

@@ -31,17 +31,24 @@ SEEDS_PER_RUN = 2  # 配额纪律:每次运行全池只打 Google 2 次
 #  agi = 判定型引用台账 → 只用定义型品类词(绝不用 openai/altman 这类实体,那会把
 #        本站推向它明确回避的追新闻;品类词浮出的是 "is agi close/when will agi/agi
 #        2027" —— 正是本站 33-37.5% 引用份额所在的判定题territory,喂 rung ⓪);
-#  tds = 联盟产品目录 → niche 产品词,rising = 买家意图需求(同 eco/bpj)。
+#  tds = 文档预检 → PDF 可访问性、修复与版本比较需求(趋势并非付费证明)。
 FLEET = [
+    # 2026-09-25 bpj：suno / midjourney 换成 cursor / claude code。依据是 bpj 自己的读数（28 天带来源真人：coding 61、image 16、
+    # audio 8，/c/coding 是 Google 第二大页），而 suno 的 rising 一直是新闻/诉讼词、不是选型需求。编程智能体是本站在 agents 赛道唯一
+    # 有密度的读者面（docs/agents-venture-2026-09-25.md），此前这一面没有任何需求仪器。池子总数不变（仍 11 个），打 Google 的次数不变。
     {"site": "bpj", "geo": "US", "out": "sites/baipiaoji/data/trends-rising.json",
-     "seeds": ["deepseek", "midjourney", "suno", "sora", "gemini", "perplexity"]},
+     "seeds": ["deepseek", "cursor", "claude code", "sora", "gemini", "perplexity"]},
+    # 2026-09-27 agi 投资板块(owner:「基于流量,市场营销技能优化投资板块」):invest 页群 28 天浏览器端
+    # 24 次、外部来源 0,而本站的需求仪器此前只有两个 AGI 品类词 —— 投资这一面的搜索需求从来没被量过。
+    # 加两个**品类词**(不是个股/人名,同本站「不追实体新闻」的纪律):"13f filings" 对应 /does-copying-13f-work
+    # 与 /invest,"ai stocks" 对应 /ai-stock-exposure。池子 20 → 22,每次运行打 Google 的次数不变(仍 2),
+    # 一轮覆盖从约 10 天变约 11 天;零新 cron。判定线 agi-invest-demand-1115。
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
-     "seeds": ["artificial general intelligence", "agi timeline"]},
-    # tds 种子全换(2026-08-30,owner 重大决策:成人站下架,本域改为 Labubu 导购站):
-    # "labubu" 主需求面;"fake labubu" 直接浮出真伪鉴别长尾(本站旗舰页所在);
-    # "pop mart" 品牌面(新系列/补货事件会先在这里冒头)。配额中性(3 换 3)。
+     "seeds": ["artificial general intelligence", "agi timeline", "13f filings", "ai stocks"]},
+    # 2026-09-25 owner: reject a collector-only direction and implement the PDF pivot.
+    # Keep the same three seeds and existing shared request budget; no new cron.
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
-     "seeds": ["labubu", "fake labubu", "pop mart"]},
+     "seeds": ["pdf accessibility", "pdf remediation", "compare pdf"]},
     # eco 的美国面(2026-08-28,owner:「分别扩展德国与美国不同的热点」)。此前 eco 只有
     # 德国需求信号——sites/getecoback/tools/fetch_trends_rising.py 写死 GEO="DE",而
     # 「按美国趋势扩展」在没有美国数据时只能靠猜,那是本站明令禁止的。故先建数据面。

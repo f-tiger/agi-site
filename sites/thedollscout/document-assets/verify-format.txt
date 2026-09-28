@@ -1,0 +1,38 @@
+TDS File Reference v1 — public format, CC0 1.0
+Published 2026-09-25. https://thedollscout.com/verify-file
+
+Purpose: compare the bytes of a local file with a sender-provided reference.
+This is a file-integrity check, not a blockchain, certificate, reputation score,
+signature, malware check, proof of authorship, acceptance or trusted timestamp.
+Anyone can make a reference. A substituted file AND reference will match.
+Obtain the reference from the sender through a channel you trust.
+
+Canonical English link:
+https://thedollscout.com/verify-file?via=recipient#tds-file-v1=SHA256.BYTES
+German and Chinese links use /de/verify-file and /zh/verify-file.
+SHA256: exactly 64 lowercase hexadecimal characters, SHA-256 of exact file bytes.
+BYTES: base-10 byte count, no leading zeros, from 0 through 20971520 (20 MiB).
+The fragment contains no file name, content, project note, ID or timestamp.
+Hashes are not encryption: holders can test whether a file matches the reference.
+The browser does not include the fragment in an HTTP page request. A copied URL
+can still be stored by messaging apps, clipboard tools, browser history or recipients.
+TDS scripts must not transmit the fragment or digest in analytics events.
+
+Independent verification:
+1. Keep the original file and full reference URL. No TDS account is needed.
+2. Calculate SHA-256 and exact byte length. Both must match the reference.
+3. Optional: save https://thedollscout.com/document-assets/verify-file-cli.mjs
+   and inspect its source. Run with Node.js 20+ (no packages or network needed):
+   node verify-file-cli.mjs ./my-file 'FULL_REFERENCE_URL'
+   Exit 0 = match; 1 = different; 2 = invalid input/read failure.
+4. Other implementations may use any correct SHA-256 library. TDS is not required.
+
+Known-answer test: UTF-8 bytes abc (no newline), size 3:
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+Renaming the file does not change this result; adding a newline does.
+Never run an untrusted file just to check it.
+
+For Bitcoin-backed time proofs, OpenTimestamps is a separate open protocol:
+https://opentimestamps.org/
+TDS does not submit hashes to calendars, create .ots proofs, or claim anchoring.
+Keep a completed timestamp proof and verify it independently if using that service.

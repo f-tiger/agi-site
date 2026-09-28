@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>日月谜题（二进制谜题）规则：数量平衡，且不能三连</title>
+<meta name="description" content="二进制谜题（Binairo / Tango 家族）规则：每行每列两种符号数量相等，且不能有三个相同符号相邻。附技巧和一道经验证的每日题。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/binary-puzzle-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/binary-puzzle-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/binary-puzzle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="日月谜题（二进制谜题）规则：数量平衡，且不能三连">
+<meta property="og:description" content="二进制谜题（Binairo / Tango 家族）规则：每行每列两种符号数量相等，且不能有三个相同符号相邻。附技巧和一道经验证的每日题。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/binary-puzzle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "日月谜题（二进制谜题）规则：数量平衡，且不能三连", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/binary-puzzle-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "二进制谜题（Binairo / Tango 家族）规则：每行每列两种符号数量相等，且不能有三个相同符号相邻。附技巧和一道经验证的每日题。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "二进制谜题的规则是什么？", "acceptedAnswer": {"@type": "Answer", "text": "用两种符号填满方格，使每行每列两种符号数量相等，且横向、纵向都没有三个相同符号相邻。有些版本还禁止重复的行；本站的盘面仅凭两条核心规则和已知数就唯一可解。"}}, {"@type": "Question", "name": "这和 Tango、Binairo 是一回事吗？", "acceptedAnswer": {"@type": "Answer", "text": "同一家族。Binairo / Takuzu 用 0 和 1，LinkedIn 的 Tango 用太阳月亮外加 = 和 × 的边提示。两条核心约束 —— 数量平衡、不能三连 —— 是所有版本共有的。"}}, {"@type": "Question", "name": "二进制谜题里最快的推理是什么？", "acceptedAnswer": {"@type": "Answer", "text": "封住每一对相邻的相同符号：一行里两个相同符号并排，就逼出两端相反的符号。再加上填满 X_X 空格的中间，这两招在需要数数之前就能解掉一盘 6×6 的大部分。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "二进制谜题规则 —— 两种符号，两条约束", "item": "https://play.agiscorecard.com/zh/binary-puzzle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/binary-puzzle-rules">二进制谜题规则 —— 两种符号，两条约束</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>两种符号，两条规则。</strong>把太阳和月亮填进 6×6 方格，使每一行、每一列最终<strong>各恰好三个</strong>，并且<strong>不能有三个相同符号连在一起</strong> —— 横向、纵向都不行。这是经典的二进制谜题家族（也叫 Binairo、Takuzu，或 LinkedIn 的 Tango）：规则说来简单，深度出人意料。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/balance">去玩</a>。</p>
+<script>fetch("/balance-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/balance">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>数量相等</strong></td><td style="padding:6px 8px">每一行、每一列恰好包含三个太阳和三个月亮（6×6 上）。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>不能三连</strong></td><td style="padding:6px 8px">任何一行或一列里，三个相同符号绝不连续出现。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>唯一解</strong></td><td style="padding:6px 8px">每一盘发布的题都经机器验证：一个解，纯推理可达。</td></tr></tbody>
+  </table>
+  <h2>拆开成对</h2><p>两个相同符号并排，两端必须由相反的符号封住 —— ☀☀ 逼出 🌙☀☀🌙。这是这个家族里触发最快的规则。</p><h2>填 X_X 的中间</h2><p>两个相同符号之间的空格必须放相反的符号：☀_☀ 逼出中间一个月亮，否则就出现三连。</p><h2>数到三</h2><p>一行里第三个太阳一落下，它剩下的每一个空格都是月亮。配合三连检查，一遍扫过就能收完整行。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>450 盘 6×6 每日题（自 2026-08-24 起）加 440 盘三种难度的畅玩题，全部遵守与本站每款游戏相同的验证契约：恰好一个解，可证明不需要猜，发布前经机器检查。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">二进制谜题的规则是什么？</h3><p style="margin:0 0 6px">用两种符号填满方格，使每行每列两种符号数量相等，且横向、纵向都没有三个相同符号相邻。有些版本还禁止重复的行；本站的盘面仅凭两条核心规则和已知数就唯一可解。</p><h3 style="font-size:.98rem;margin:10px 0 2px">这和 Tango、Binairo 是一回事吗？</h3><p style="margin:0 0 6px">同一家族。Binairo / Takuzu 用 0 和 1，LinkedIn 的 Tango 用太阳月亮外加 = 和 × 的边提示。两条核心约束 —— 数量平衡、不能三连 —— 是所有版本共有的。</p><h3 style="font-size:.98rem;margin:10px 0 2px">二进制谜题里最快的推理是什么？</h3><p style="margin:0 0 6px">封住每一对相邻的相同符号：一行里两个相同符号并排，就逼出两端相反的符号。再加上填满 X_X 空格的中间，这两招在需要数数之前就能解掉一盘 6×6 的大部分。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/kropki-sudoku-rules">⚫ 点点</a> · <a href="/zh/sandwich-sudoku-rules">🥪 三明治</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/star-battle-rules">⭐ 星战</a> · <a href="/zh/thermometer-puzzle-rules">🌡 温度计</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/6x6-sudoku-rules">🔢 迷你数独</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/balance">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

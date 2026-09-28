@@ -315,14 +315,18 @@ if (process.argv.includes('--selftest')) {
 
 await redditAuth();
 const sources = {};
+// 2026-09-28 按 09-13 预登记规则停用未鉴权读取:三个 Reddit 源 09-13→09-27 连续 15 天逐板 403。
+// 不换 IP、不换 UA、不绕过;只有 owner 设了 REDDIT_CLIENT_ID/SECRET(官方 Data API)时才再读 Reddit。
+const REDDIT_STOPPED = REDDIT.mode === 'public-json';
+const redditStopped = async () => { throw new Error('stopped 2026-09-28: public JSON 403 for 14+ days (pre-registered rule); runs again only via OAuth'); };
 for (const [name, fn] of [
   ['softwarerecs', fetchSoftwareRecs],
   ['bluesky_wish', fetchBlueskyWish],
   ['lemmy_wish', fetchLemmyWish],
   ['producthunt', fetchProductHunt],
-  ['reddit_requests', fetchRedditRequests],
-  ['reddit_vertical', fetchRedditVertical],
-  ['reddit_wish', fetchRedditWish],
+  ['reddit_requests', REDDIT_STOPPED ? redditStopped : fetchRedditRequests],
+  ['reddit_vertical', REDDIT_STOPPED ? redditStopped : fetchRedditVertical],
+  ['reddit_wish', REDDIT_STOPPED ? redditStopped : fetchRedditWish],
   ['hn_ask', () => fetchHNAsk(7 * 24)],
   ['hn_show', () => fetchHN('show_hn', 36)],
   ['hn_top_ai', async () => (await fetchHN('story', 36)).filter((i) => NICHES.agiscorecard.some((k) => hit(i.title, k))).slice(0, 20)],

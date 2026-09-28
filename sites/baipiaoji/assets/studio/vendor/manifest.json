@@ -1,0 +1,18 @@
+[
+  {
+    "name": "pdf-lib",
+    "version": "1.17.1",
+    "file": "pdf-lib-1.17.1.mjs",
+    "license": "pdf-lib-LICENSE.md",
+    "source": "https://github.com/Hopding/pdf-lib",
+    "sha256": "72c052d97b4d5d9fa6cdbdcb7ad709f03d4ddb1122390cb3afeba4d88651d969"
+  },
+  {
+    "name": "fflate",
+    "version": "0.8.2",
+    "file": "fflate-0.8.2.mjs",
+    "license": "fflate-LICENSE.txt",
+    "source": "https://github.com/101arrowz/fflate",
+    "sha256": "8cc1f687e0159e977addb6b85e274dbd11e622cf151f4fcb7b85d49622ea43e7"
+  }
+]

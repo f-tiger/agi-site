@@ -1,0 +1,101 @@
+{
+  "siteUrl": "sc-domain:baipiaoji.com",
+  "startDate": "2026-08-28",
+  "endDate": "2026-09-24",
+  "dimensions": [
+    "page",
+    "country",
+    "device"
+  ],
+  "searchType": "web",
+  "rowCount": 6,
+  "rows": [
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/fireworks",
+        "usa",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/kling",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/kling",
+        "mys",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9
+    },
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/pixverse",
+        "gbr",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/pixverse",
+        "mys",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "keys": [
+        "https://baipiaoji.com/en/tools/pixverse",
+        "nld",
+        "DESKTOP"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    }
+  ],
+  "pagination": {
+    "limit": 1000,
+    "offset": 0,
+    "returned": 6,
+    "hasMore": false,
+    "note": "Showing all 6 rows."
+  },
+  "dataSource": "api",
+  "settledThrough": "2026-09-24",
+  "dataMaturity": {
+    "firstIncompleteDate": "2026-09-25",
+    "settledThrough": "2026-09-24",
+    "dateBasis": "America/Los_Angeles",
+    "source": "gsc-api-metadata",
+    "probe": {
+      "searchType": "web",
+      "startDate": "2026-09-18",
+      "endDate": "2026-09-27",
+      "dataState": "all"
+    }
+  }
+}

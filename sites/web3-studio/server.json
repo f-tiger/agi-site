@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.f-tiger/agiscorecard-web3-workbench",
+  "description": "AGI Scorecard Web3 Workbench: ten free deterministic review tools (stablecoin, gas, zkML, agents).",
+  "version": "1.7.0",
+  "websiteUrl": "https://web3.agiscorecard.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://web3.agiscorecard.com/mcp"
+    }
+  ]
+}

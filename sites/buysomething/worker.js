@@ -1,7 +1,7 @@
 import { handleMcp } from "./mcp.js";
 // buysomething(SourceRadar)worker:静态资产透传 + /e 事件白名单 + 服务端 pageview。
 // 舰队模式(同 gridlings/gamesledger):所有 D1 写都 try/catch + waitUntil,埋点永不 500 页面。
-const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use"]);
+const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use", "mcp_install_click"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
@@ -69,6 +69,84 @@ async function packTokenValid(env, token) {
 }
 const PACK_PUBLIC = new Set(["/packs/index.json", "/packs/sample.json"]);
 
+// 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
+// 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
+// 漂了就走 GitHub 失败邮件。教训与 bot_ua.txt 同源:各自演化的分类器 = 各站台账不可比。
+// 读的是已入库的来源域名,出的仍是聚合计数:无路径、无国家、无 UA、无行级数据。
+const REF_SRC = "self:pages.dev|workers.dev;;ai:chatgpt|chat.openai|perplexity|claude.ai|copilot.microsoft|copilot.cloud.microsoft|copilot|gemini.google|you.com|kagi|poe.com|mistral|deepseek|kimi|doubao|yiyan.baidu|yiyan|metaso|phind|felo.ai|genspark|monica.im|tiangong|chatglm|moonshot;;search:google.|bing.|duckduckgo|search.yahoo|yahoo.co|ecosia|yandex|baidu.|sogou|so.com|startpage|brave.com|qwant|naver|seznam|petalsearch|mojeek|lycos|ask.com;;fleet:agiscorecard.com|getecoback.com|baipiaoji.com|thedollscout.com;;social:t.co|twitter.com|x.com|reddit.com|facebook|instagram|linkedin|lnkd.in|news.ycombinator|producthunt|weibo|zhihu|douban|xiaohongshu|telegram|t.me|pinterest|youtube|tiktok|douyin|discord|substack|medium.com|tumblr|vk.com|line.me|whatsapp|quora|mastodon|bsky";
+const srcHost = (r) => {
+  let h = String(r == null ? "" : r).trim().toLowerCase();
+  if (!h) return "";
+  h = h.replace(/^[a-z][a-z0-9+.-]*:\/\//, "");
+  h = h.split("/")[0].split("?")[0].split("#")[0].split("@").pop().split(":")[0];
+  return h.replace(/^www\./, "");
+};
+// self 只认完全相同的主机名:play.agiscorecard.com 对主域是兄弟站(fleet),不是自己。
+const srcBucket = (host, self) => {
+  if (!host) return "direct";
+  if (self && host === self) return "self";
+  // 标签对齐 + 尾部只许 TLD 段。两个方向的错都真发生过:裸 includes 会把 netflix.com
+  // 判成 x.com(social);只做前缀对齐又会把 agiscorecard.com.spam.example 判成 fleet
+  // ——那正是引荐垃圾的常见形状。
+  const tld = (rest) => rest === "" || rest.split(".").every((l) => l.length > 0 && l.length <= 4 && /^[a-z]+$/.test(l));
+  const dotted = "." + host;
+  for (const grp of REF_SRC.split(";;")) {
+    const i = grp.indexOf(":");
+    for (const t of grp.slice(i + 1).split("|")) {
+      if (!t) continue;
+      const at = dotted.indexOf("." + t);
+      if (at < 0) continue;
+      let rest = dotted.slice(at + t.length + 1);
+      if (rest.startsWith(".")) rest = rest.slice(1);
+      if (tld(rest)) return grp.slice(0, i);
+    }
+  }
+  return "other";
+};
+// ── 机器面调用的分类(2026-09-24 复盘产物)──────────────────────────────────────
+// 09-17→09-24 的读数里 80 次 mcp_call 有 58 次是我们自己(部署自检 45 + 沙箱手测 curl 13),
+// 而 22 次第三方全部是空参数的采集器。把"我们自己"和"手动 curl"混进同一个数字里,
+// 任何"机器面有人用"的说法都不可证伪。所以分类写死在这里,并与 tools/fleet/mcp_usage.py
+// 逐字相同:ci = 本仓的自检机器人;operator = 裸 curl/wget 之类(可能是我们,也可能是有人手戳,
+// 两者都不算需求);indexer = 自报家门的 MCP 采集/审计/普查器;other = 其余,唯一算需求的一档。
+// **with_args 只数 other 档**——带着自己参数来的调用才是使用,空参数是探测。
+function mcpClass(ua) {
+  const u = String(ua || "");
+  if (/deploy-selfcheck-bot|deploy-smoke-bot|getecoback-ci|bpj-ci-selftest|crawlprobe/i.test(u)) return "ci";
+  if (/^(curl|wget|httpie|python-requests|node|go-http-client|libwww|okhttp)\b/i.test(u) || u === "") return "operator";
+  if (/collector|audit|census|verifier|index|prove|probe|research|crawler|spider|bot\b|bot\/|mcp\/\d/i.test(u)) return "indexer";
+  return "other";
+}
+
+// D1 读预算(2026-09-25 事故:免费档每日 500 万行读取被打满,全舰队 D1 读失败到午夜)。
+// 聚合端点从 Cache API 出,按 URL + 部署版本做键,TTL 秒;错误响应永不入缓存。
+// 此前的 `cache-control: public, max-age=3600` 只对浏览器有效——Cloudflare 不会仅凭它缓存 Worker 响应,
+// 每次轮询都重跑全部扫描。
+async function cachedJson(request, env, ctx, ttl, compute, params = []) {
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  if (!cache) return compute();
+  const u = new URL(request.url);
+  const version = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || env.CF_PAGES_COMMIT_SHA || "dev";
+  const qs = params.map((p) => p + "=" + encodeURIComponent(u.searchParams.get(p) || "")).join("&");
+  const key = new Request(u.origin + u.pathname + "?v=" + encodeURIComponent(version) + (qs ? "&" + qs : ""), { method: "GET" });
+  const hit = await cache.match(key);
+  if (hit) return hit;
+  const res = await compute();
+  if (res.ok && res.headers.get("cache-control") !== "no-store") {
+    const stored = new Response(res.clone().body, res);
+    stored.headers.set("cache-control", "public, max-age=" + ttl);
+    stored.headers.set("x-fleet-cache", "store");
+    if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(key, stored)); else await cache.put(key, stored);
+  }
+  return res;
+}
+
+// /api/pulse 的 AI 引荐主机判定。2026-09-26 之前是 SQL 里 15 个 `ref LIKE '%x%'`(SQLite LIKE 对 ASCII
+// 不分大小写),现在同一份 GROUP BY ref 结果在 worker 里判,省掉一次全窗扫描;子串表逐字照抄,口径不变。
+// 与 tools/fleet/ai_referrals.py 的主机表同源;by_source 的 ai 桶另按 REF_SRC 分,两者故意不合并。
+const AI_HOST_LIKE = ["chatgpt", "chat.openai", "perplexity", "claude.ai", "copilot", "gemini.google", "you.com", "kagi", "poe.com", "mistral", "deepseek", "kimi", "doubao", "yiyan", "metaso"];
+const aiHostHit = (ref) => { const r = String(ref).toLowerCase(); return AI_HOST_LIKE.some((t) => r.includes(t)); };
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -79,7 +157,8 @@ export default {
       const label = (url.searchParams.get("label") || "").slice(0, 40);
       if (!label || !env.EV) return jsonNoStore({ ok: false, error: "no label or no db" }, 400);
       try {
-        const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+        // 2026-09-26 D1 读预算:只看最近 500 行(id 是 AUTOINCREMENT 主键)。自检只需看见自己刚写的那一行。
+        const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE id > (SELECT MAX(id) FROM ev) - 500 AND label = ? AND day >= date('now','-2 days')").bind(label).first();
         return jsonNoStore({ ok: true, label, n: (r && r.n) | 0 });
       } catch (e) { return jsonNoStore({ ok: false, error: "query_failed" }, 500); }
     }
@@ -147,7 +226,10 @@ export default {
     // 每次调用记一行 mcp_call(只记工具名与 UA 前缀,零 PII),它是 fleet-machine-demand-1014 的读数来源。
     if (url.pathname === "/api/mcp" || url.pathname.startsWith("/api/mcp/")) {
       const ua = request.headers.get("user-agent") || "";
-      const log = (tool) => logRow(env, ctx, {
+      // 部署自检的调用不落库:它每天固定打 5–6 次,会把 fleet-machine-demand-1014 的分子
+      // 顶成噪音(09-24 读数:80 次里 45 次是它)。工具本身仍然照常回答,自检照样能红。
+      const isCi = /deploy-selfcheck-bot|deploy-smoke-bot/i.test(ua);
+      const log = (tool) => isCi ? undefined : logRow(env, ctx, {
         name: "mcp_call",
         label: String(tool).slice(0, 60),
         value: 0,
@@ -213,26 +295,82 @@ export default {
     // views and how many arrived from an AI assistant, by referrer host. Aggregate counts
     // only — no paths, no countries, no UA, no row-level data. Worker reads its own D1
     // binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
-    // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
+    // Same host list as tools/fleet/ai_referrals.py.
+    // 2026-09-26:从 Cache API 出(1 小时,键含部署版本),错误永不入缓存;human_pv / by_host / by_source
+    // 此前是三次全窗扫描(UNION 两段 + q2),现在只跑一次 GROUP BY ref,其余在 worker 里算;
+    // 去掉了 q2 的 LIMIT 1000,sum(by_source) == human_pv 恒成立。money 与 mcp 两块各自的查询保留
+    // (mcp 按 substr(ref,1,60) 分组、按 label 形状计数,并进 ref 分组会改数字)。
     if (url.pathname === "/api/pulse" && request.method === "GET") {
+      return cachedJson(request, env, ctx, 3600, async () => {
       const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
-      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });
+      const noStore = { ...headers, "cache-control": "no-store" };
+      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: noStore });
       try {
         const q = await env.EV.prepare(
-          "SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC"
+          "SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC"
         ).all();
         let human_pv = 0; const by_host = {};
+        const self_host = srcHost(url.hostname);
+        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+        const by_search = {}; const by_fleet = {}; const by_other = {};
         for (const r of (q.results || [])) {
-          if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
+          const n = r.n | 0;
+          human_pv += n;
+          if (r.host && aiHostHit(r.host)) by_host[r.host] = (by_host[r.host] || 0) + n;
+          // 渠道构成(2026-09-15):同一个 human 谓词按 tools/fleet/ref_sources.txt 分桶。
+          // sum(by_source) 应等于 human_pv —— 对不上就是有站把 ref 存成了整条 URL 或分类器漂了,
+          // 读侧 traffic_sources.py 会把差额打出来。
+          const h = srcHost(r.host); const b = srcBucket(h, self_host);
+          by_source[b] += n;
+          if (b === "search") by_search[h] = (by_search[h] || 0) + n;
+          else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+          // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+          // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+          else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
         }
         const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }), { headers });
+        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数,剔 CI 自测。
+        let money = null;
+        try {
+          const m = await env.EV.prepare(
+            "SELECT name||'_28d' AS k, COUNT(*) AS n FROM ev WHERE day >= date('now','-28 days') AND name IN ('mcp_call','pick_open','out_click','calc_use','pack_open','pack_order') AND (path IS NULL OR path NOT LIKE '/__ci%') AND (label IS NULL OR label NOT LIKE '__ci%') GROUP BY name"
+          ).all();
+          money = { days: 28 };
+          for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+        } catch (e) { money = null; }
+        // 机器面读数(同窗 28 天)。只回聚合计数,**永不回 UA 字符串** —— 采集器的 UA 里出现过
+        // 联系邮箱,原样吐出来就是把别人的个人信息搬上公开端点。
+        const m = await env.EV.prepare(
+          "SELECT substr(ref,1,60) AS ua, COUNT(*) AS n, COUNT(DISTINCT day) AS d, " +
+          "COUNT(DISTINCT label) AS shapes, " +
+          "SUM(CASE WHEN label LIKE '%:∅' THEN 0 ELSE 1 END) AS args " +
+          "FROM ev WHERE name='mcp_call' AND day >= date('now','-28 days') GROUP BY substr(ref,1,60)"
+        ).all().catch(() => ({ results: [] }));
+        // variety = 同一调用方用过多少种不同的**参数形状**。本站按隐私选择只记参数名不记参数值,
+        // 所以这里只能给形状多样性(eco 记了值,能给更强的口径);两者不可混为一谈,字段名因此不同。
+        const mcp = { days: 28, variety: "shape_only", calls: 0, ci: 0, operator: 0, indexer: 0, other: 0, with_args: 0, callers: 0, demand_callers: 0, best: { calls: 0, days: 0, shapes: 0 } };
+        for (const r of (m.results || [])) {
+          const k = mcpClass(r.ua), n = r.n | 0, d = r.d | 0, shapes = r.shapes | 0, args = r.args | 0;
+          mcp.calls += n; mcp[k] += n;
+          if (k !== "other") continue;
+          mcp.callers += 1;
+          mcp.with_args += args;
+          // 需求调用方(2026-09-24 预登记):≥10 次带参数调用、跨 ≥5 天、且形状多样性 ≥ 1/4 的调用次数。
+          // 最后一条是这轮复盘加的:eco 的 `node` 调用方 180 次 / 20 天全带参数,但只有 9 种参数组合
+          // —— 那是重放,不是使用。旧口径会把它判成需求,所以口径在任何人达标之前先收紧。
+          if (args >= 10 && d >= 5 && shapes * 4 >= args) mcp.demand_callers += 1;
+          if (n > mcp.best.calls) mcp.best = { calls: n, days: d, shapes };
+        }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, mcp, generated: new Date().toISOString() }), { headers });
       } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
+        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: noStore });
       }
+      });
     }
 
+    // /api/pop:2026-09-26 起走 cachedJson(1 小时);降级体(degraded:true)带 no-store,永不入缓存。
     if (url.pathname === "/api/pop" && request.method === "GET") {
+      return cachedJson(request, env, ctx, 3600, async () => {
       const headers = { "content-type": "application/json", "cache-control": "public, max-age=3600" };
       try {
         const q = await env.EV.prepare(
@@ -244,8 +382,9 @@ export default {
         for (const r of q.results) picks[r.label] = { o: r.o | 0, x: r.x | 0 };
         return new Response(JSON.stringify({ days: 28, picks }), { headers });
       } catch (e) {
-        return new Response('{"days":28,"picks":{},"degraded":true}', { headers });
+        return new Response('{"days":28,"picks":{},"degraded":true}', { headers: { ...headers, "cache-control": "no-store" } });
       }
+      });
     }
 
     let res = await env.ASSETS.fetch(request);

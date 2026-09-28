@@ -1,124 +1,124 @@
 {
-  "published": "2026-09-19",
-  "sites": {
-    "rfqdesk": {
-      "name": "RFQ Desk",
-      "host": "rfqdesk.agiscorecard.com",
-      "title": "Supplier Quote Comparison & Invoice Matching | RFQ Desk",
-      "description": "Compare supplier quotes with MOQ, pack size and freight. Check purchase orders against invoices with the free TradeCheck browser tool and local MCP.",
-      "summary": "RFQ Desk compares same-currency supplier quotes. TradeCheck performs two-way purchase-order and invoice checks in your browser or a local MCP process.",
-      "category": "BusinessApplication",
-      "limitations": "No supplier verification, customs estimate, PDF/OCR extraction, receipt matching or payment authorization. Paid workspaces are proposals and are not available."
-    },
-    "modelmeter": {
-      "name": "ModelMeter",
-      "host": "modelmeter.agiscorecard.com",
-      "title": "AI API Cost Tracker from Billed CSV Data | ModelMeter",
-      "description": "Review billed AI API costs by project, provider and model. Calculate spend per request and monthly pace from a normalized CSV, locally and without signup.",
-      "summary": "ModelMeter groups billed USD costs from a normalized CSV and calculates cost per 1,000 requests and an explicitly assumed monthly spending pace.",
-      "category": "BusinessApplication",
-      "limitations": "No live provider connection, price database, automatic savings or future-bill prediction. Enter already-billed USD costs; missing expenses stay missing. Paid subscriptions are unavailable."
-    },
-    "querysprint": {
-      "name": "QuerySprint",
-      "host": "querysprint.agiscorecard.com",
-      "title": "Free SQL Revenue Analysis Practice in SQLite | QuerySprint",
-      "description": "Practice SQL with a fictional orders dataset: filter paid orders, subtract refunds and group net revenue by country. Run real SQLite in your browser.",
-      "summary": "QuerySprint teaches three linked SQL reporting tasks against two fictional orders datasets, using a real SQLite engine in the browser.",
-      "category": "EducationalApplication",
-      "limitations": "Three beginner exercises, not a complete course or job credential. Educational revenue definition is paid order value minus refunds; this is not an accounting revenue-recognition system."
-    },
-    "filinglens": {
-      "name": "FilingLens",
-      "host": "filinglens.agiscorecard.com",
-      "title": "Compare SEC Financial Facts Across Filings | FilingLens",
-      "description": "Compare the same SEC financial fact and exact period at two filing cutoffs. Inspect values, differences and source accession links. Free browser tool and local MCP.",
-      "summary": "FilingLens compares one SEC US-GAAP concept, entity, unit and exact period at two filing-date cutoffs. It returns both values and source accession links.",
-      "category": "FinanceApplication",
-      "limitations": "A difference is not a restatement diagnosis or investment signal. Missing or conflicting observations remain unresolved. Local MCP does not fetch data; browser SEC lookup is separate. Paid alerts are unavailable."
-    },
-    "localebatch": {
-      "name": "LocaleBatch",
-      "host": "localebatch.agiscorecard.com",
-      "title": "Shopify Translation CSV Checker & Import Guide | LocaleBatch",
-      "description": "Check a Shopify translation CSV locally. Find duplicate keys, preserve existing translations and review protected names and numbers before preparing an import.",
-      "summary": "LocaleBatch checks a Shopify translations export locally, identifies supported product-text rows and demonstrates a fixed reviewed translation example.",
-      "category": "BusinessApplication",
-      "limitations": "Not a Shopify app or automatic store publisher. The free checker does not translate your catalog with AI. Paid translation, checkout and production delivery are not available."
-    }
+ "published": "2026-09-19",
+ "sites": {
+  "rfqdesk": {
+   "name": "RFQ Desk",
+   "host": "rfqdesk.agiscorecard.com",
+   "title": "Supplier Quote Comparison & Invoice Matching | RFQ Desk",
+   "description": "Compare supplier quotes with MOQ, pack size and freight. Check purchase orders against invoices with the free TradeCheck browser tool and local MCP.",
+   "summary": "RFQ Desk compares same-currency supplier quotes. TradeCheck performs two-way purchase-order and invoice checks in your browser or a local MCP process.",
+   "category": "BusinessApplication",
+   "limitations": "No supplier verification, customs estimate, PDF/OCR extraction, receipt matching or payment authorization. Paid workspaces are proposals and are not available."
   },
-  "pages": [
-    {
-      "site": "rfqdesk",
-      "slug": "supplier-quote-comparison-template",
-      "title": "Supplier Quote Comparison Template: MOQ, Freight & Total Cost",
-      "description": "Download a supplier quote CSV and compare three fictional quotes for 300 units. See how MOQ, pack size and freight change the cheapest option.",
-      "deck": "The lowest unit price can require the largest cash outlay. Compare the quantity you must actually order, then add the known freight and setup charges.",
-      "cta": "Compare these supplier quotes",
-      "tool": "/#workbench",
-      "download": "supplier-quotes.csv",
-      "download_label": "Download the worked CSV",
-      "body": "<h2 id=\"example\">Worked example: buying 300 identical bottles</h2><p>All three fictional suppliers quote in EUR, with equivalent specifications and freight to the same destination. This is a calculation example, not a list of suppliers you can buy from.</p><div class=\"table-wrap\"><table><thead><tr><th>Quote</th><th>Unit price</th><th>MOQ / pack</th><th>Freight + setup</th><th>Order units</th><th>Known cost</th></tr></thead><tbody><tr><td>Sample A</td><td>€2.10</td><td>500 / 100</td><td>€250 + €50</td><td>500</td><td>€1,350</td></tr><tr><td>Sample B</td><td>€2.45</td><td>200 / 50</td><td>€90 + €0</td><td>300</td><td>€825</td></tr><tr><td>Sample C</td><td>€1.90</td><td>1,000 / 100</td><td>€350 + €80</td><td>1,000</td><td>€2,330</td></tr></tbody></table></div><p>Sample B has the highest unit price but the lowest known outlay for this order. Sample C leaves 700 extra units. A lower per-unit cost is not automatically a better use of cash.</p><h2 id=\"method\">The calculation you can reproduce</h2><pre>order_units = ceil(max(required_units, MOQ) / pack_size) × pack_size\nknown_cost = order_units × unit_price + freight + setup\ncost_per_ordered_unit = known_cost / order_units</pre><p>For B: ceil(max(300, 200) / 50) × 50 = 300 units. The known cost is 300 × €2.45 + €90 = €825. Cost per ordered unit is €2.75. The RFQ Desk example uses the same data and required quantity.</p><h2 id=\"use\">How to use the CSV</h2><ol><li>Download the file or select the sample in the calculator.</li><li>Use one row per supplier and keep all seven headers unchanged.</li><li>Enter one currency for the entire comparison and set required units to 300.</li><li>Replace fictional figures only with confirmed quotes. A blank freight charge is unknown; zero means confirmed zero.</li><li>Export the comparison, then ask suppliers about exclusions before ordering.</li></ol><h2 id=\"limits\">What is missing from the total?</h2><p>Duty, tax, insurance, inspection, payment fees, financing and unquoted delivery charges are excluded. Align freight scope, destination, specifications and payment terms first. This is a known-cost comparison, not a complete landed-cost estimate or a supplier recommendation.</p><h2 id=\"next\">What happens after the quote?</h2><p>Once a purchase order and invoice exist, use the <a href=\"/purchase-order-invoice-matching\">two-way invoice-matching example</a> to understand unit-price differences and cumulative invoiced quantities. It does not authorize a payment.</p>"
-    },
-    {
-      "site": "rfqdesk",
-      "slug": "purchase-order-invoice-matching",
-      "title": "Purchase Order vs Invoice Matching: A €44 Worked Example",
-      "description": "Learn two-way PO and invoice matching with a fictional €44 price difference and 20-unit overbilling example. Download the source JSON and try TradeCheck.",
-      "deck": "Two-way matching compares the invoice with the purchase order. It can reveal price and quantity exceptions, but it cannot prove that goods arrived or that payment is safe.",
-      "cta": "Run the TradeCheck example",
-      "tool": "/agent",
-      "download": "tradecheck-example.json",
-      "download_label": "Download the fictional source JSON",
-      "body": "<h2 id=\"example\">One invoice, two different exceptions</h2><p>The fictional PO orders 300 bottles at €2.50 and 100 lids at €0.40. The current invoice bills 220 bottles at €2.70 and 100 lids at €0.40. An earlier invoice already billed 100 bottles.</p><div class=\"table-wrap\"><table><thead><tr><th>Check</th><th>Calculation</th><th>Finding</th></tr></thead><tbody><tr><td>Current bottle price</td><td>220 × (€2.70 − €2.50)</td><td>€44 price variance</td></tr><tr><td>Cumulative bottle quantity</td><td>100 prior + 220 current − 300 ordered</td><td>20 units above the PO</td></tr><tr><td>Current invoice arithmetic</td><td>220 × €2.70 + 100 × €0.40</td><td>€634, matching its stated total</td></tr></tbody></table></div><p>A mathematically correct invoice can still disagree with the purchase order. The €44 is a calculated price exception, not money that has been recovered.</p><h2 id=\"method\">Reproduce it in TradeCheck</h2><ol><li>Download the source JSON or choose the fictional example in TradeCheck.</li><li>Confirm PO ID, invoice PO reference, supplier, currency, line references and units.</li><li>Run the review and inspect exceptions together with their source references.</li><li>Export the evidence report or an unsent supplier question draft.</li></ol><p>The local MCP exposes the same deterministic review. Read the <a href=\"/agent-guide\">MCP installation guide</a> before connecting it to your assistant.</p><h2 id=\"history\">Missing history is not a clean result</h2><p>Without the earlier 100-unit invoice, the current 220 units alone do not exceed 300. If the history is unknown, the report must preserve that gap. Do not turn an empty list of known prior invoices into a claim that no prior invoices exist. Source references are labels supplied by the caller; the tool has not independently read a PDF.</p><h2 id=\"limits\">Two-way versus three-way matching</h2><p>Three-way matching adds goods-receipt evidence. TradeCheck performs two-way checks only: it does not read receipts, authenticate suppliers, check a bank-account change or approve payments. A clean arithmetic result still needs the organization's receipt and approval process.</p><h2 id=\"tables\">Starting with an Excel export?</h2><p>The browser importer accepts CSV, TSV and pasted table rows with explicit column mapping. Review the preview, enter invoice totals and confirm the extraction. It does not perform OCR. See <a href=\"/agent-guide\">the table import guide</a> for required fields.</p>"
-    },
-    {
-      "site": "modelmeter",
-      "slug": "ai-api-cost-tracking-template",
-      "title": "AI API Cost Tracking Template: Billed Spend by Project",
-      "description": "Download a normalized AI usage CSV. Calculate billed spend per 1,000 requests, monthly pace and cost per customer with a fully worked fictional example.",
-      "deck": "Start from billed cost when reconciling API spending. Token counts alone cannot account for every discount, cache rate, tool charge or billing adjustment.",
-      "cta": "Review the sample costs",
-      "tool": "/#workbench",
-      "download": "ai-usage.csv",
-      "download_label": "Download the usage CSV",
-      "body": "<h2 id=\"example\">A 14-day example with three cost buckets</h2><p>These provider and model labels are fictional. They illustrate the normalized format accepted by ModelMeter, not current provider prices.</p><div class=\"table-wrap\"><table><thead><tr><th>Project / model</th><th>Requests</th><th>Billed USD</th><th>USD / 1,000 requests</th></tr></thead><tbody><tr><td>Support / Fast model</td><td>12,000</td><td>$48</td><td>$4</td></tr><tr><td>Research / Reasoning model</td><td>500</td><td>$86</td><td>$172</td></tr><tr><td>Support / Backup model</td><td>800</td><td>$6</td><td>$7.50</td></tr></tbody></table></div><p>Total billed spend is $140 over 14 complete days. Research accounts for $86 / $140 = 61.43% of that spend, despite having fewer requests. This identifies a bucket to inspect; it does not establish that the model is wasteful or replaceable.</p><h2 id=\"method\">Monthly pace is an assumption</h2><pre>monthly_pace = billed_spend / complete_days × days_in_month\n$140 / 14 × 30 = $300\n$300 / 40 active_customers = $7.50 per customer</pre><p>This calculation assumes the remaining days behave like the observed days. A launch, trial cohort or traffic spike can invalidate it. It is neither a forecast nor your next invoice. An entered $300 monthly budget is exactly matched by this example's pace.</p><h2 id=\"use\">Prepare a comparable export</h2><ol><li>Keep project, provider, model, requests, input_tokens, output_tokens and billed_usd headers.</li><li>Aggregate to non-overlapping rows for the same complete time window.</li><li>Reconcile the billed USD column with the provider's invoice or dashboard. Resolve currency conversion and credits outside this tool.</li><li>Enter complete days, calendar days in the month and the customer count for your chosen definition.</li><li>Review expensive groups before changing routing, quality thresholds or quotas.</li></ol><h2 id=\"limits\">What does this report omit?</h2><p>Costs absent from your CSV remain absent, including infrastructure, storage, retrieval, tool calls and support. Provider-native exports are not automatically mapped. Input and output tokens are retained as context; ModelMeter does not apply a hidden price table to them. Files are processed locally, with no provider key required.</p>"
-    },
-    {
-      "site": "querysprint",
-      "slug": "sql-revenue-analysis-practice",
-      "title": "SQL Revenue Analysis Practice: Paid Orders, Refunds & GROUP BY",
-      "description": "Work through a six-row orders dataset in SQLite. Filter paid orders, subtract refunds and produce a country report with expected results and downloadable SQL.",
-      "deck": "Build a small report from six orders. The exercise definition is simple: count paid orders and subtract their refunds; exclude cancelled orders.",
-      "cta": "Practice in the SQLite workbench",
-      "tool": "/#workbench",
-      "download": "revenue-practice.sql",
-      "download_label": "Download dataset and answer SQL",
-      "body": "<h2 id=\"example\">The fictional orders table</h2><div class=\"table-wrap\"><table><thead><tr><th>ID</th><th>Customer</th><th>Country</th><th>Status</th><th>Revenue</th><th>Refund</th></tr></thead><tbody><tr><td>1</td><td>Ada</td><td>DE</td><td>paid</td><td>120</td><td>0</td></tr><tr><td>2</td><td>Bo</td><td>FR</td><td>paid</td><td>80</td><td>20</td></tr><tr><td>3</td><td>Ada</td><td>DE</td><td>cancelled</td><td>50</td><td>0</td></tr><tr><td>4</td><td>Cy</td><td>DE</td><td>paid</td><td>90</td><td>90</td></tr><tr><td>5</td><td>Di</td><td>FR</td><td>paid</td><td>200</td><td>0</td></tr><tr><td>6</td><td>Bo</td><td>FR</td><td>paid</td><td>40</td><td>0</td></tr></tbody></table></div><h2 id=\"method\">1. Select paid orders</h2><pre>SELECT id, customer\nFROM orders\nWHERE status = 'paid'\nORDER BY id;</pre><p>Expected IDs: 1, 2, 4, 5 and 6. Order 4 remains a paid order even though it was fully refunded. Order 3 is cancelled and must not contribute to this exercise.</p><h2 id=\"total\">2. Calculate net revenue</h2><pre>SELECT SUM(revenue - refund) AS net_revenue\nFROM orders\nWHERE status = 'paid';</pre><p>Expected result: 420. The paid gross amounts total 530 and refunds total 110. Counting the cancelled order would incorrectly return 470.</p><h2 id=\"group\">3. Report by country</h2><pre>SELECT country, SUM(revenue - refund) AS net_revenue\nFROM orders\nWHERE status = 'paid'\nGROUP BY country\nORDER BY net_revenue DESC, country ASC;</pre><p>Expected rows: FR = 300, then DE = 120. The second sort key makes equal totals deterministic. The browser checks queries against a second dataset too, so a hard-coded 420 is not a solution.</p><h2 id=\"limits\">What this teaches, and what it does not</h2><p>Practice WHERE before aggregation, SUM of a row-level expression, GROUP BY and a stable ORDER BY. This toy definition is not a revenue-recognition policy. Real finance reports may require tax, currencies, settlement dates, partial refunds and duplicate prevention. SQLite runs locally; there is no production database connection.</p><p>Syntax reference: <a href=\"https://www.sqlite.org/lang_select.html\">SQLite SELECT documentation</a>.</p>"
-    },
-    {
-      "site": "filinglens",
-      "slug": "sec-companyfacts-period-matching",
-      "title": "SEC Company Facts: Match Exact Periods Before Comparing",
-      "description": "Understand SEC financial fact periods, filing dates and accession links. Compare one exact fact across filing cutoffs with a fictional worked example.",
-      "deck": "A reporting period and a filing date answer different questions. Match entity, concept, unit and exact period first; then compare what was available at each filing cutoff.",
-      "cta": "Try the source comparison",
-      "tool": "/#workbench",
-      "download": "filing-review-checklist.txt",
-      "download_label": "Download the evidence checklist",
-      "body": "<h2 id=\"example\">One annual period, two reported values</h2><p>FilingLens's fictional example reports revenue for 1 January–31 December 2024 as 125,000,000 USD at an earlier filing cutoff and 123,000,000 USD at a later cutoff. The absolute difference is −2,000,000 USD. These are illustrative values from a fictional company, not a real issuer disclosure.</p><p>The comparison asks what value was available for the same period at two cutoffs. It does not compare one year's revenue with another year's revenue.</p><h2 id=\"method\">Keep these fields separate</h2><div class=\"table-wrap\"><table><thead><tr><th>Field</th><th>Question it answers</th><th>Common mistake</th></tr></thead><tbody><tr><td>CIK</td><td>Which reporting entity?</td><td>Treating a ticker as a numeric CIK</td></tr><tr><td>Concept and unit</td><td>What is measured, in what units?</td><td>Comparing USD with per-share facts</td></tr><tr><td>Start / end dates</td><td>What exact period does the value cover?</td><td>Mixing quarterly and year-to-date revenue</td></tr><tr><td>Filed date</td><td>When was the filing submitted?</td><td>Treating the filing date as the financial period</td></tr><tr><td>Accession</td><td>Which filing contains the reported context?</td><td>Treating a link as proof someone read the filing</td></tr></tbody></table></div><h2 id=\"use\">Reproduce an evidence check</h2><ol><li>Start with the fictional example, or use the browser's Apple total-assets lookup for live SEC data.</li><li>Select one exact period and unit from the available observations.</li><li>Choose two filing-date cutoffs. The tool selects the latest eligible filed date at each cutoff.</li><li>Read both values and the absolute difference, then follow the real accession links to the filings.</li><li>Export the source note and record any unresolved context before drawing a conclusion.</li></ol><h2 id=\"conflicts\">Missing and conflicting values</h2><p>No observation before a cutoff means incomplete evidence, not zero. Different values reported on the same selected filing date remain ambiguous. Two cutoffs can correctly select the same filing and produce no change. A changed value alone does not prove a restatement or explain its cause.</p><h2 id=\"limits\">Data and tool boundaries</h2><p>The live browser lookup uses the SEC companyconcept API for a small allowlist of US-GAAP concepts. An uploaded file is not authenticated. The local MCP performs comparisons only and does not fetch data. Neither interface provides trading signals. Read the <a href=\"/guide\">methodology and setup guide</a>.</p><p>Primary source: <a href=\"https://www.sec.gov/search-filings/edgar-application-programming-interfaces\">SEC EDGAR API documentation</a>. Check original filings for the financial and reporting context.</p>"
-    },
-    {
-      "site": "localebatch",
-      "slug": "shopify-translation-csv-checklist",
-      "title": "Shopify Translation CSV Checklist: Keys, Existing Text & Imports",
-      "description": "Check a Shopify translation export before editing it. See the required columns, duplicate-key pitfalls and a fictional product example you can download.",
-      "deck": "Keep a backup of the Shopify translations export. Preserve the row identity, leave existing translations intact and review protected names and numbers before importing edited text.",
-      "cta": "Check a translation CSV",
-      "tool": "/#workbench",
-      "download": "shopify-translation-example.csv",
-      "download_label": "Download the fictional CSV",
-      "body": "<h2 id=\"example\">A safe practice file</h2><p>The download contains three fictional product rows, not products from your shop. Its first row is an untranslated German title: Cedar insulated bottle, 750 ml. A second row already contains a German translation. A third row contains HTML and falls outside this pilot's supported text fields.</p><div class=\"table-wrap\"><table><thead><tr><th>Row</th><th>Input</th><th>Checker result</th></tr></thead><tbody><tr><td>Product 1001 / title / de</td><td>Blank translation, plain product title</td><td>Eligible for the pilot's text workflow</td></tr><tr><td>Product 1002 / title / de</td><td>Existing translated text</td><td>Kept unchanged</td></tr><tr><td>Product 1003 / body_html / de</td><td>HTML description</td><td>Kept unchanged; outside pilot scope</td></tr></tbody></table></div><h2 id=\"method\">Eight columns to preserve</h2><pre>Type,Identification,Field,Locale,Market,Status,Default content,Translated content</pre><p>The checker requires these unique headers. A general product export is a different file. The combination of Type, Identification, Field, Locale and Market identifies a translation row; duplicate keys are rejected. Keep the original identifiers instead of substituting a product title or spreadsheet row number.</p><h2 id=\"use\">Before your next import</h2><ol><li>Export translations from Shopify Settings → Languages and keep an untouched backup.</li><li>Check a small batch in LocaleBatch. The free checker handles 1–500 rows and a file under 700 KB.</li><li>Review eligible rows. This pilot handles PRODUCT title, meta_title and meta_description text in its listed languages.</li><li>Protect your brand names, model labels, placeholders and numeric claims. Keeping those strings does not prove that the translation is linguistically correct.</li><li>Have a competent speaker review the text, then test a small import and inspect the storefront before scaling.</li></ol><h2 id=\"limits\">Does the free checker translate my store?</h2><p>No. Your own CSV is checked locally; the delivery demonstration uses fixed example translations. Paid AI translation and store publishing are unavailable. The tool cannot prove that a Shopify import will succeed or that the translated copy is legally or commercially suitable.</p><h2 id=\"sources\">Shopify's import instructions</h2><p>Shopify supports translation export and import through CSV. Follow the current <a href=\"https://help.shopify.com/en/manual/international/localization-and-translation#adding-language-translations-using-csv-files\">Shopify translation documentation</a> when exporting, selecting import options and publishing languages. LocaleBatch is an independent checker and is not endorsed by Shopify.</p>"
-    }
-  ]
+  "modelmeter": {
+   "name": "ModelMeter",
+   "host": "modelmeter.agiscorecard.com",
+   "title": "AI API Cost Tracker from Billed CSV Data | ModelMeter",
+   "description": "Review billed AI API costs by project, provider and model. Calculate spend per request and monthly pace from a normalized CSV, locally and without signup.",
+   "summary": "ModelMeter groups billed USD costs from a normalized CSV and calculates cost per 1,000 requests and an explicitly assumed monthly spending pace.",
+   "category": "BusinessApplication",
+   "limitations": "No live provider connection, price database, automatic savings or future-bill prediction. Enter already-billed USD costs; missing expenses stay missing. Paid subscriptions are unavailable."
+  },
+  "querysprint": {
+   "name": "QuerySprint",
+   "host": "querysprint.agiscorecard.com",
+   "title": "Free SQL Revenue Analysis Practice in SQLite | QuerySprint",
+   "description": "Practice SQL with a fictional orders dataset: filter paid orders, subtract refunds and group net revenue by country. Run real SQLite in your browser.",
+   "summary": "QuerySprint teaches three linked SQL reporting tasks against two fictional orders datasets, using a real SQLite engine in the browser.",
+   "category": "EducationalApplication",
+   "limitations": "Three beginner exercises, not a complete course or job credential. Educational revenue definition is paid order value minus refunds; this is not an accounting revenue-recognition system."
+  },
+  "filinglens": {
+   "name": "FilingLens",
+   "host": "filinglens.agiscorecard.com",
+   "title": "Compare SEC Financial Facts Across Filings | FilingLens",
+   "description": "Compare the same SEC financial fact and exact period at two filing cutoffs. Inspect values, differences and source accession links. Free browser tool and local MCP.",
+   "summary": "FilingLens compares one SEC US-GAAP concept, entity, unit and exact period at two filing-date cutoffs. It returns both values and source accession links.",
+   "category": "FinanceApplication",
+   "limitations": "A difference is not a restatement diagnosis or investment signal. Missing or conflicting observations remain unresolved. Local MCP does not fetch data; browser SEC lookup is separate. Paid alerts are unavailable."
+  },
+  "localebatch": {
+   "name": "LocaleBatch",
+   "host": "localebatch.agiscorecard.com",
+   "title": "Shopify Translation CSV Checker & Import Guide | LocaleBatch",
+   "description": "Check a Shopify translation CSV locally. Find duplicate keys, preserve existing translations and review protected names and numbers before preparing an import.",
+   "summary": "LocaleBatch checks a Shopify translations export locally, identifies supported product-text rows and demonstrates a fixed reviewed translation example.",
+   "category": "BusinessApplication",
+   "limitations": "Not a Shopify app or automatic store publisher. The free checker does not translate your catalog with AI. Paid translation, checkout and production delivery are not available."
+  }
+ },
+ "pages": [
+  {
+   "site": "rfqdesk",
+   "slug": "supplier-quote-comparison-template",
+   "title": "Supplier Quote Template: MOQ, Freight & Total Cost",
+   "description": "Download a supplier quote CSV and compare three fictional quotes for 300 units. See how MOQ, pack size and freight change the cheapest option.",
+   "deck": "The lowest unit price can require the largest cash outlay. Compare the quantity you must actually order, then add the known freight and setup charges.",
+   "cta": "Compare these supplier quotes",
+   "tool": "/#workbench",
+   "download": "supplier-quotes.csv",
+   "download_label": "Download the worked CSV",
+   "body": "<h2 id=\"example\">Worked example: buying 300 identical bottles</h2><p>All three fictional suppliers quote in EUR, with equivalent specifications and freight to the same destination. This is a calculation example, not a list of suppliers you can buy from.</p><div class=\"table-wrap\"><table><thead><tr><th>Quote</th><th>Unit price</th><th>MOQ / pack</th><th>Freight + setup</th><th>Order units</th><th>Known cost</th></tr></thead><tbody><tr><td>Sample A</td><td>€2.10</td><td>500 / 100</td><td>€250 + €50</td><td>500</td><td>€1,350</td></tr><tr><td>Sample B</td><td>€2.45</td><td>200 / 50</td><td>€90 + €0</td><td>300</td><td>€825</td></tr><tr><td>Sample C</td><td>€1.90</td><td>1,000 / 100</td><td>€350 + €80</td><td>1,000</td><td>€2,330</td></tr></tbody></table></div><p>Sample B has the highest unit price but the lowest known outlay for this order. Sample C leaves 700 extra units. A lower per-unit cost is not automatically a better use of cash.</p><h2 id=\"method\">The calculation you can reproduce</h2><pre>order_units = ceil(max(required_units, MOQ) / pack_size) × pack_size\nknown_cost = order_units × unit_price + freight + setup\ncost_per_ordered_unit = known_cost / order_units</pre><p>For B: ceil(max(300, 200) / 50) × 50 = 300 units. The known cost is 300 × €2.45 + €90 = €825. Cost per ordered unit is €2.75. The RFQ Desk example uses the same data and required quantity.</p><h2 id=\"use\">How to use the CSV</h2><ol><li>Download the file or select the sample in the calculator.</li><li>Use one row per supplier and keep all seven headers unchanged.</li><li>Enter one currency for the entire comparison and set required units to 300.</li><li>Replace fictional figures only with confirmed quotes. A blank freight charge is unknown; zero means confirmed zero.</li><li>Export the comparison, then ask suppliers about exclusions before ordering.</li></ol><h2 id=\"limits\">What is missing from the total?</h2><p>Duty, tax, insurance, inspection, payment fees, financing and unquoted delivery charges are excluded. Align freight scope, destination, specifications and payment terms first. This is a known-cost comparison, not a complete landed-cost estimate or a supplier recommendation.</p><h2 id=\"next\">What happens after the quote?</h2><p>Once a purchase order and invoice exist, use the <a href=\"/purchase-order-invoice-matching\">two-way invoice-matching example</a> to understand unit-price differences and cumulative invoiced quantities. It does not authorize a payment.</p>"
+  },
+  {
+   "site": "rfqdesk",
+   "slug": "purchase-order-invoice-matching",
+   "title": "Purchase Order vs Invoice Matching: A €44 Worked Example",
+   "description": "Learn two-way PO and invoice matching with a fictional €44 price difference and 20-unit overbilling example. Download the source JSON and try TradeCheck.",
+   "deck": "Two-way matching compares the invoice with the purchase order. It can reveal price and quantity exceptions, but it cannot prove that goods arrived or that payment is safe.",
+   "cta": "Run the TradeCheck example",
+   "tool": "/agent",
+   "download": "tradecheck-example.json",
+   "download_label": "Download the fictional source JSON",
+   "body": "<h2 id=\"example\">One invoice, two different exceptions</h2><p>The fictional PO orders 300 bottles at €2.50 and 100 lids at €0.40. The current invoice bills 220 bottles at €2.70 and 100 lids at €0.40. An earlier invoice already billed 100 bottles.</p><div class=\"table-wrap\"><table><thead><tr><th>Check</th><th>Calculation</th><th>Finding</th></tr></thead><tbody><tr><td>Current bottle price</td><td>220 × (€2.70 − €2.50)</td><td>€44 price variance</td></tr><tr><td>Cumulative bottle quantity</td><td>100 prior + 220 current − 300 ordered</td><td>20 units above the PO</td></tr><tr><td>Current invoice arithmetic</td><td>220 × €2.70 + 100 × €0.40</td><td>€634, matching its stated total</td></tr></tbody></table></div><p>A mathematically correct invoice can still disagree with the purchase order. The €44 is a calculated price exception, not money that has been recovered.</p><h2 id=\"method\">Reproduce it in TradeCheck</h2><ol><li>Download the source JSON or choose the fictional example in TradeCheck.</li><li>Confirm PO ID, invoice PO reference, supplier, currency, line references and units.</li><li>Run the review and inspect exceptions together with their source references.</li><li>Export the evidence report or an unsent supplier question draft.</li></ol><p>The local MCP exposes the same deterministic review. Read the <a href=\"/agent-guide\">MCP installation guide</a> before connecting it to your assistant.</p><h2 id=\"history\">Missing history is not a clean result</h2><p>Without the earlier 100-unit invoice, the current 220 units alone do not exceed 300. If the history is unknown, the report must preserve that gap. Do not turn an empty list of known prior invoices into a claim that no prior invoices exist. Source references are labels supplied by the caller; the tool has not independently read a PDF.</p><h2 id=\"limits\">Two-way versus three-way matching</h2><p>Three-way matching adds goods-receipt evidence. TradeCheck performs two-way checks only: it does not read receipts, authenticate suppliers, check a bank-account change or approve payments. A clean arithmetic result still needs the organization's receipt and approval process.</p><h2 id=\"tables\">Starting with an Excel export?</h2><p>The browser importer accepts CSV, TSV and pasted table rows with explicit column mapping. Review the preview, enter invoice totals and confirm the extraction. It does not perform OCR. See <a href=\"/agent-guide\">the table import guide</a> for required fields.</p>"
+  },
+  {
+   "site": "modelmeter",
+   "slug": "ai-api-cost-tracking-template",
+   "title": "AI API Cost Tracking Template: Billed Spend by Project",
+   "description": "Download a normalized AI usage CSV. Calculate billed spend per 1,000 requests, monthly pace and cost per customer with a fully worked fictional example.",
+   "deck": "Start from billed cost when reconciling API spending. Token counts alone cannot account for every discount, cache rate, tool charge or billing adjustment.",
+   "cta": "Review the sample costs",
+   "tool": "/#workbench",
+   "download": "ai-usage.csv",
+   "download_label": "Download the usage CSV",
+   "body": "<h2 id=\"example\">A 14-day example with three cost buckets</h2><p>These provider and model labels are fictional. They illustrate the normalized format accepted by ModelMeter, not current provider prices.</p><div class=\"table-wrap\"><table><thead><tr><th>Project / model</th><th>Requests</th><th>Billed USD</th><th>USD / 1,000 requests</th></tr></thead><tbody><tr><td>Support / Fast model</td><td>12,000</td><td>$48</td><td>$4</td></tr><tr><td>Research / Reasoning model</td><td>500</td><td>$86</td><td>$172</td></tr><tr><td>Support / Backup model</td><td>800</td><td>$6</td><td>$7.50</td></tr></tbody></table></div><p>Total billed spend is $140 over 14 complete days. Research accounts for $86 / $140 = 61.43% of that spend, despite having fewer requests. This identifies a bucket to inspect; it does not establish that the model is wasteful or replaceable.</p><h2 id=\"method\">Monthly pace is an assumption</h2><pre>monthly_pace = billed_spend / complete_days × days_in_month\n$140 / 14 × 30 = $300\n$300 / 40 active_customers = $7.50 per customer</pre><p>This calculation assumes the remaining days behave like the observed days. A launch, trial cohort or traffic spike can invalidate it. It is neither a forecast nor your next invoice. An entered $300 monthly budget is exactly matched by this example's pace.</p><h2 id=\"use\">Prepare a comparable export</h2><ol><li>Keep project, provider, model, requests, input_tokens, output_tokens and billed_usd headers.</li><li>Aggregate to non-overlapping rows for the same complete time window.</li><li>Reconcile the billed USD column with the provider's invoice or dashboard. Resolve currency conversion and credits outside this tool.</li><li>Enter complete days, calendar days in the month and the customer count for your chosen definition.</li><li>Review expensive groups before changing routing, quality thresholds or quotas.</li></ol><h2 id=\"limits\">What does this report omit?</h2><p>Costs absent from your CSV remain absent, including infrastructure, storage, retrieval, tool calls and support. Provider-native exports are not automatically mapped. Input and output tokens are retained as context; ModelMeter does not apply a hidden price table to them. Files are processed locally, with no provider key required.</p>"
+  },
+  {
+   "site": "querysprint",
+   "slug": "sql-revenue-analysis-practice",
+   "title": "SQL Revenue Practice: Paid Orders, Refunds & GROUP BY",
+   "description": "Work through a six-row orders dataset in SQLite. Filter paid orders, subtract refunds and produce a country report with expected results and downloadable SQL.",
+   "deck": "Build a small report from six orders. The exercise definition is simple: count paid orders and subtract their refunds; exclude cancelled orders.",
+   "cta": "Practice in the SQLite workbench",
+   "tool": "/#workbench",
+   "download": "revenue-practice.sql",
+   "download_label": "Download dataset and answer SQL",
+   "body": "<h2 id=\"example\">The fictional orders table</h2><div class=\"table-wrap\"><table><thead><tr><th>ID</th><th>Customer</th><th>Country</th><th>Status</th><th>Revenue</th><th>Refund</th></tr></thead><tbody><tr><td>1</td><td>Ada</td><td>DE</td><td>paid</td><td>120</td><td>0</td></tr><tr><td>2</td><td>Bo</td><td>FR</td><td>paid</td><td>80</td><td>20</td></tr><tr><td>3</td><td>Ada</td><td>DE</td><td>cancelled</td><td>50</td><td>0</td></tr><tr><td>4</td><td>Cy</td><td>DE</td><td>paid</td><td>90</td><td>90</td></tr><tr><td>5</td><td>Di</td><td>FR</td><td>paid</td><td>200</td><td>0</td></tr><tr><td>6</td><td>Bo</td><td>FR</td><td>paid</td><td>40</td><td>0</td></tr></tbody></table></div><h2 id=\"method\">1. Select paid orders</h2><pre>SELECT id, customer\nFROM orders\nWHERE status = 'paid'\nORDER BY id;</pre><p>Expected IDs: 1, 2, 4, 5 and 6. Order 4 remains a paid order even though it was fully refunded. Order 3 is cancelled and must not contribute to this exercise.</p><h2 id=\"total\">2. Calculate net revenue</h2><pre>SELECT SUM(revenue - refund) AS net_revenue\nFROM orders\nWHERE status = 'paid';</pre><p>Expected result: 420. The paid gross amounts total 530 and refunds total 110. Counting the cancelled order would incorrectly return 470.</p><h2 id=\"group\">3. Report by country</h2><pre>SELECT country, SUM(revenue - refund) AS net_revenue\nFROM orders\nWHERE status = 'paid'\nGROUP BY country\nORDER BY net_revenue DESC, country ASC;</pre><p>Expected rows: FR = 300, then DE = 120. The second sort key makes equal totals deterministic. The browser checks queries against a second dataset too, so a hard-coded 420 is not a solution.</p><h2 id=\"limits\">What this teaches, and what it does not</h2><p>Practice WHERE before aggregation, SUM of a row-level expression, GROUP BY and a stable ORDER BY. This toy definition is not a revenue-recognition policy. Real finance reports may require tax, currencies, settlement dates, partial refunds and duplicate prevention. SQLite runs locally; there is no production database connection.</p><p>Syntax reference: <a href=\"https://www.sqlite.org/lang_select.html\">SQLite SELECT documentation</a>.</p>"
+  },
+  {
+   "site": "filinglens",
+   "slug": "sec-companyfacts-period-matching",
+   "title": "SEC Company Facts: Match Exact Periods Before Comparing",
+   "description": "Understand SEC financial fact periods, filing dates and accession links. Compare one exact fact across filing cutoffs with a fictional worked example.",
+   "deck": "A reporting period and a filing date answer different questions. Match entity, concept, unit and exact period first; then compare what was available at each filing cutoff.",
+   "cta": "Try the source comparison",
+   "tool": "/#workbench",
+   "download": "filing-review-checklist.txt",
+   "download_label": "Download the evidence checklist",
+   "body": "<h2 id=\"example\">One annual period, two reported values</h2><p>FilingLens's fictional example reports revenue for 1 January–31 December 2024 as 125,000,000 USD at an earlier filing cutoff and 123,000,000 USD at a later cutoff. The absolute difference is −2,000,000 USD. These are illustrative values from a fictional company, not a real issuer disclosure.</p><p>The comparison asks what value was available for the same period at two cutoffs. It does not compare one year's revenue with another year's revenue.</p><h2 id=\"method\">Keep these fields separate</h2><div class=\"table-wrap\"><table><thead><tr><th>Field</th><th>Question it answers</th><th>Common mistake</th></tr></thead><tbody><tr><td>CIK</td><td>Which reporting entity?</td><td>Treating a ticker as a numeric CIK</td></tr><tr><td>Concept and unit</td><td>What is measured, in what units?</td><td>Comparing USD with per-share facts</td></tr><tr><td>Start / end dates</td><td>What exact period does the value cover?</td><td>Mixing quarterly and year-to-date revenue</td></tr><tr><td>Filed date</td><td>When was the filing submitted?</td><td>Treating the filing date as the financial period</td></tr><tr><td>Accession</td><td>Which filing contains the reported context?</td><td>Treating a link as proof someone read the filing</td></tr></tbody></table></div><h2 id=\"use\">Reproduce an evidence check</h2><ol><li>Start with the fictional example, or use the browser's Apple total-assets lookup for live SEC data.</li><li>Select one exact period and unit from the available observations.</li><li>Choose two filing-date cutoffs. The tool selects the latest eligible filed date at each cutoff.</li><li>Read both values and the absolute difference, then follow the real accession links to the filings.</li><li>Export the source note and record any unresolved context before drawing a conclusion.</li></ol><h2 id=\"conflicts\">Missing and conflicting values</h2><p>No observation before a cutoff means incomplete evidence, not zero. Different values reported on the same selected filing date remain ambiguous. Two cutoffs can correctly select the same filing and produce no change. A changed value alone does not prove a restatement or explain its cause.</p><h2 id=\"limits\">Data and tool boundaries</h2><p>The live browser lookup uses the SEC companyconcept API for a small allowlist of US-GAAP concepts. An uploaded file is not authenticated. The local MCP performs comparisons only and does not fetch data. Neither interface provides trading signals. Read the <a href=\"/guide\">methodology and setup guide</a>.</p><p>Primary source: <a href=\"https://www.sec.gov/search-filings/edgar-application-programming-interfaces\">SEC EDGAR API documentation</a>. Check original filings for the financial and reporting context.</p>"
+  },
+  {
+   "site": "localebatch",
+   "slug": "shopify-translation-csv-checklist",
+   "title": "Shopify Translation CSV Checklist: Keys, Text & Imports",
+   "description": "Check a Shopify translation export before editing it. See the required columns, duplicate-key pitfalls and a fictional product example you can download.",
+   "deck": "Keep a backup of the Shopify translations export. Preserve the row identity, leave existing translations intact and review protected names and numbers before importing edited text.",
+   "cta": "Check a translation CSV",
+   "tool": "/#workbench",
+   "download": "shopify-translation-example.csv",
+   "download_label": "Download the fictional CSV",
+   "body": "<h2 id=\"example\">A safe practice file</h2><p>The download contains three fictional product rows, not products from your shop. Its first row is an untranslated German title: Cedar insulated bottle, 750 ml. A second row already contains a German translation. A third row contains HTML and falls outside this pilot's supported text fields.</p><div class=\"table-wrap\"><table><thead><tr><th>Row</th><th>Input</th><th>Checker result</th></tr></thead><tbody><tr><td>Product 1001 / title / de</td><td>Blank translation, plain product title</td><td>Eligible for the pilot's text workflow</td></tr><tr><td>Product 1002 / title / de</td><td>Existing translated text</td><td>Kept unchanged</td></tr><tr><td>Product 1003 / body_html / de</td><td>HTML description</td><td>Kept unchanged; outside pilot scope</td></tr></tbody></table></div><h2 id=\"method\">Eight columns to preserve</h2><pre>Type,Identification,Field,Locale,Market,Status,Default content,Translated content</pre><p>The checker requires these unique headers. A general product export is a different file. The combination of Type, Identification, Field, Locale and Market identifies a translation row; duplicate keys are rejected. Keep the original identifiers instead of substituting a product title or spreadsheet row number.</p><h2 id=\"use\">Before your next import</h2><ol><li>Export translations from Shopify Settings → Languages and keep an untouched backup.</li><li>Check a small batch in LocaleBatch. The free checker handles 1–500 rows and a file under 700 KB.</li><li>Review eligible rows. This pilot handles PRODUCT title, meta_title and meta_description text in its listed languages.</li><li>Protect your brand names, model labels, placeholders and numeric claims. Keeping those strings does not prove that the translation is linguistically correct.</li><li>Have a competent speaker review the text, then test a small import and inspect the storefront before scaling.</li></ol><h2 id=\"limits\">Does the free checker translate my store?</h2><p>No. Your own CSV is checked locally; the delivery demonstration uses fixed example translations. Paid AI translation and store publishing are unavailable. The tool cannot prove that a Shopify import will succeed or that the translated copy is legally or commercially suitable.</p><h2 id=\"sources\">Shopify's import instructions</h2><p>Shopify supports translation export and import through CSV. Follow the current <a href=\"https://help.shopify.com/en/manual/international/localization-and-translation#adding-language-translations-using-csv-files\">Shopify translation documentation</a> when exporting, selecting import options and publishing languages. LocaleBatch is an independent checker and is not endorsed by Shopify.</p>"
+  }
+ ]
 }

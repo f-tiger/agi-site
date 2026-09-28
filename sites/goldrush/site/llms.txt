@@ -10,7 +10,7 @@ Installable agent skill (open SKILL.md standard — grade claims, emit verdict c
 Single-file grader tool (emits + reads protocol ledgers, works offline): https://goldrush.agiscorecard.com/grader
 The verification method (3 tiers, 5 red flags, the decisive live-ledger test): https://goldrush.agiscorecard.com/how-to-verify-ai-money-claims
 Machine-validatable schema: https://goldrush.agiscorecard.com/claimledger.schema.json
-Consumption log (how often anyone actually fetches the protocol file — currently zero, published anyway): https://goldrush.agiscorecard.com/fetchlog.json
+Consumption log (how often anyone actually fetches the protocol file — 31 as of 2026-09-22, 22 of them crawlers; fetches are not use, and the count is published either way): https://goldrush.agiscorecard.com/fetchlog.json
 Method + fork kit (MIT): https://github.com/f-tiger/agi-site/tree/main/sites/goldrush
 Evolution Protocol (the site's published editorial algorithm): https://github.com/f-tiger/agi-site/blob/main/sites/goldrush/EVOLUTION.md
 

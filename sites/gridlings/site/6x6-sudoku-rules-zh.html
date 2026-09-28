@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>6×6 数独规则：2×3 的宫怎么用</title>
+<meta name="description" content="6×6 数独规则：把 1–6 填进每行、每列和每个描边的 2×3 宫，各出现一次。为什么长方形的宫会改变逻辑，以及一道经机器验证的每日迷你数独。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/6x6-sudoku-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/6x6-sudoku-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/6x6-sudoku-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="6×6 数独规则：2×3 的宫怎么用">
+<meta property="og:description" content="6×6 数独规则：把 1–6 填进每行、每列和每个描边的 2×3 宫，各出现一次。为什么长方形的宫会改变逻辑，以及一道经机器验证的每日迷你数独。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/6x6-sudoku-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "6×6 数独规则：2×3 的宫怎么用", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/6x6-sudoku-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "6×6 数独规则：把 1–6 填进每行、每列和每个描边的 2×3 宫，各出现一次。为什么长方形的宫会改变逻辑，以及一道经机器验证的每日迷你数独。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "6×6 数独的规则是什么？", "acceptedAnswer": {"@type": "Answer", "text": "把数字 1–6 填进方格，使每一行、每一列、每一个描边的 2×3 宫都恰好包含每个数字一次。这是标准数独逻辑在更小方格上的版本。"}}, {"@type": "Question", "name": "6×6 数独的宫是什么形状？", "acceptedAnswer": {"@type": "Answer", "text": "每个宫是两行乘三列的长方形；整盘有六个。长方形的形状让宫与行的相互作用比 9×9 数独更频繁。"}}, {"@type": "Question", "name": "6×6 数独适合新手吗？", "acceptedAnswer": {"@type": "Answer", "text": "适合 —— 数独的完整规则，搜索空间小到几分钟就能做完。本站每日题都经验证不需要猜，是练习核心技巧的可靠材料。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "6×6 数独规则 —— 盘小一号，逻辑不变", "item": "https://play.agiscorecard.com/zh/6x6-sudoku-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/6x6-sudoku-rules">6×6 数独规则 —— 盘小一号，逻辑不变</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>标准数独，小一号。</strong>把数字 1–6 填进 6×6 方格，使每一行、每一列、每一个描边的 <strong>2×3 宫</strong>都恰好包含每个数字一次。长方形的宫是它的变化所在：每个宫只跨两行却跨三列，所以宫与行列的相互作用触发方式和你熟悉的 9×9 不一样。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/minisudoku">去玩</a>。</p>
+<script>fetch("/minisudoku-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/minisudoku">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>行与列</strong></td><td style="padding:6px 8px">每一行、每一列恰好包含 1–6 各一次。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>2×3 宫</strong></td><td style="padding:6px 8px">每个描边的宫（两行 × 三列）也恰好包含 1–6 各一次。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>已知数</strong></td><td style="padding:6px 8px">预先填好的格；每日题在保持唯一解、纯推理可达的前提下把已知数压到最少。</td></tr></tbody>
+  </table>
+  <h2>宫-行占位</h2><p>一个宫覆盖某一行的三格。如果某个数在这个宫里只能落在同一行，那这个数就被禁出该行的其余部分 —— 在 2×3 的宫上这条规则会不停触发。</p><h2>六个数配对</h2><p>只有六个值，一行缺三个数、剩三个格，本身就是一道小题。显性数对、数组出现得又早又多 —— 扫描之前先找它们。</p><h2>两宫一带</h2><p>每一带两个宫恰好横跨两行。某个数在带内一个宫里落下，就决定了它在相邻宫里的行 —— 这是 6×6 版本的「指向数对」。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>450 盘 6×6 每日题（自 2026-08-24 起）加 320 盘三种难度的畅玩题。每盘的已知数由求解器压到最少，每删掉一个都重新证明恰好一个解仍然存在、纯逻辑可达 —— 不用猜，也不需要做笔记。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">6×6 数独的规则是什么？</h3><p style="margin:0 0 6px">把数字 1–6 填进方格，使每一行、每一列、每一个描边的 2×3 宫都恰好包含每个数字一次。这是标准数独逻辑在更小方格上的版本。</p><h3 style="font-size:.98rem;margin:10px 0 2px">6×6 数独的宫是什么形状？</h3><p style="margin:0 0 6px">每个宫是两行乘三列的长方形；整盘有六个。长方形的形状让宫与行的相互作用比 9×9 数独更频繁。</p><h3 style="font-size:.98rem;margin:10px 0 2px">6×6 数独适合新手吗？</h3><p style="margin:0 0 6px">适合 —— 数独的完整规则，搜索空间小到几分钟就能做完。本站每日题都经验证不需要猜，是练习核心技巧的可靠材料。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/kropki-sudoku-rules">⚫ 点点</a> · <a href="/zh/sandwich-sudoku-rules">🥪 三明治</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/star-battle-rules">⭐ 星战</a> · <a href="/zh/thermometer-puzzle-rules">🌡 温度计</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/binary-puzzle-rules">🌙 日月</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/minisudoku">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

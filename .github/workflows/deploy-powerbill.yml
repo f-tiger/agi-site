@@ -106,7 +106,7 @@ jobs:
           for a in /api/pulse; do
             body=$(curl -s --max-time 20 -A 'powerbill-deploy-smoke-bot (+ci)' "https://powerbill.agiscorecard.com$a?ci=1" || echo "")
             case "$body" in
-              *'"ok":true'*) echo "OK    $a" ;;
+              *'"ok":true'*'"by_source"'*) echo "OK    $a" ;;
               *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
             esac
           done

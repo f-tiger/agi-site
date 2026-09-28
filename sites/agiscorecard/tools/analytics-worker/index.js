@@ -1,3 +1,6 @@
+import {communityRoute} from '../community/server.mjs';
+import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
+import {aggregateCache} from './aggregate-cache.js';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -23,6 +26,7 @@
 // identify a person or link one visit to another. /privacy says all of this in prose.
 
 const ALLOWED_EVENTS = new Set([
+  'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
   'deeplink_pick', 'vote_cast', 'challenge_share', 'x_share', 'embed_copy',
   // 读者预测台账(2026-08-21,strategy-2027 九月项 v0):location='p_'+匿名8位id,
@@ -33,6 +37,9 @@ const ALLOWED_EVENTS = new Set([
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
   'exposure_score',
   'retake_test', 'badge_copy',
+  // Crowd reveal on /agi-test (2026-09-27): the reader saw how everyone else answered, after
+  // answering. label = the reader's own bucket. Denominator for agi-crowd-reveal-1029.
+  'crowd_view',
   // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
   // launch and fire gtag('event','affiliate_click'), but the name was never allowlisted,
   // so every click was dropped here and only GA4 could have seen it. That made the
@@ -50,6 +57,13 @@ const ALLOWED_EVENTS = new Set([
   // On-site signup funnel: opened the form / submitted / succeeded / failed. Without
   // all four, a form nobody opens and a form that errors on submit look the same.
   'sub_open', 'sub_submit', 'sub_ok', 'sub_fail',
+  // Click-to-verify on /calibration (2026-09-27): the reader hashed the OpenTimestamps-listed
+  // records and recomputed the Thesis Tracker in their own browser. location='calibration',
+  // label='<matched>/<files>|score:<ok|diff|err>'. This event is the ONLY row a run leaves: the
+  // button's own fetches (?utm_source=verify) are kept out of `pageviews` below, so they cannot
+  // satisfy agi-ots-verified-1124 ② or agi-consensus-mcp-1124 ②, which count hand fetches of
+  // /ots/ and /agi-consensus.json. verify_run is a separate reading, not those lines' metric.
+  'verify_run',
 ]);
 
 // Campaign tags are the one part of a query string worth keeping: GA4 attributed
@@ -190,8 +204,46 @@ const mcpErr = (id, code, message) => new Response(JSON.stringify({ jsonrpc: '2.
   { headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' } });
 const mcpText = (id, obj) => mcpOk(id, { content: [{ type: 'text', text: JSON.stringify(obj, null, 1) }], isError: false });
 
+// 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
+// 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
+// 漂了就走 GitHub 失败邮件。教训与 bot_ua.txt 同源:各自演化的分类器 = 各站台账不可比。
+// 读的是已入库的来源域名,出的仍是聚合计数:无路径、无国家、无 UA、无行级数据。
+const REF_SRC = 'self:pages.dev|workers.dev;;ai:chatgpt|chat.openai|perplexity|claude.ai|copilot.microsoft|copilot.cloud.microsoft|copilot|gemini.google|you.com|kagi|poe.com|mistral|deepseek|kimi|doubao|yiyan.baidu|yiyan|metaso|phind|felo.ai|genspark|monica.im|tiangong|chatglm|moonshot;;search:google.|bing.|duckduckgo|search.yahoo|yahoo.co|ecosia|yandex|baidu.|sogou|so.com|startpage|brave.com|qwant|naver|seznam|petalsearch|mojeek|lycos|ask.com;;fleet:agiscorecard.com|getecoback.com|baipiaoji.com|thedollscout.com;;social:t.co|twitter.com|x.com|reddit.com|facebook|instagram|linkedin|lnkd.in|news.ycombinator|producthunt|weibo|zhihu|douban|xiaohongshu|telegram|t.me|pinterest|youtube|tiktok|douyin|discord|substack|medium.com|tumblr|vk.com|line.me|whatsapp|quora|mastodon|bsky';
+const srcHost = (r) => {
+  let h = String(r == null ? '' : r).trim().toLowerCase();
+  if (!h) return '';
+  h = h.replace(/^[a-z][a-z0-9+.-]*:\/\//, '');
+  h = h.split('/')[0].split('?')[0].split('#')[0].split('@').pop().split(':')[0];
+  return h.replace(/^www\./, '');
+};
+// self 只认完全相同的主机名:play.agiscorecard.com 对主域是兄弟站(fleet),不是自己。
+const srcBucket = (host, self) => {
+  if (!host) return 'direct';
+  if (self && host === self) return 'self';
+  // 标签对齐 + 尾部只许 TLD 段。两个方向的错都真发生过:裸 includes 会把 netflix.com
+  // 判成 x.com(social);只做前缀对齐又会把 agiscorecard.com.spam.example 判成 fleet
+  // ——那正是引荐垃圾的常见形状。
+  const tld = (rest) => rest === '' || rest.split('.').every((l) => l.length > 0 && l.length <= 4 && /^[a-z]+$/.test(l));
+  const dotted = '.' + host;
+  for (const grp of REF_SRC.split(';;')) {
+    const i = grp.indexOf(':');
+    for (const t of grp.slice(i + 1).split('|')) {
+      if (!t) continue;
+      const at = dotted.indexOf('.' + t);
+      if (at < 0) continue;
+      let rest = dotted.slice(at + t.length + 1);
+      if (rest.startsWith('.')) rest = rest.slice(1);
+      if (tld(rest)) return grp.slice(0, i);
+    }
+  }
+  return 'other';
+};
+
 export default {
   async fetch(request, env, ctx) {
+    const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
+    const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
+    if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
 
     // MCP server v0(STRATEGY-2027 E1:agent 分发先手棋)。Streamable HTTP:
@@ -224,7 +276,7 @@ export default {
               description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_verdicts',
-              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources. The dataset AI assistants cite for "was Aschenbrenner right" questions.',
+              description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_sunwatch_track_record',
               description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
@@ -234,6 +286,9 @@ export default {
               inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
             { name: 'get_invest_positions',
               description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
+              inputSchema: { type: 'object', properties: {} } },
+            { name: 'get_agi_consensus',
+              description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each series\' implied 50% date (implied_50pct_date) and resolution basis, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
@@ -246,13 +301,42 @@ export default {
           const asset = function (path) {
             return env.ASSETS.fetch(new Request('https://agiscorecard.com' + path)).then(function (r) { return r.json(); });
           };
+          // Every tool call is logged the same way (label 'tool:<name>', never arguments' values),
+          // so the fleet machine-face read (tools/fleet/mcp_usage.py) can tell our own CI from
+          // outside callers. Until 2026-09-26 the two core trust tools were the only unlogged ones.
+          const logTool = function (name) {
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:' + name).slice(0, 48), '/mcp', 'bot')
+              .run().catch(function () {}));
+          };
           if (tool === 'get_thesis_tracker') {
             const [d, h] = await Promise.all([asset('/data.json'), asset('/index-history.json')]);
+            logTool('thesis_tracker');
             return mcpText(id, { tracker: d.thesisTracker, history: h, license: 'CC BY 4.0 — cite agiscorecard.com/progress-index' });
           }
           if (tool === 'get_verdicts') {
             const d = await asset('/data.json');
-            return mcpText(id, { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' });
+            // 2026-09-27 (win branch of agi-grader-consensus-1127): the outside graders ride along, so an agent
+            // citing our verdicts also gets where independent graders agree and disagree. Absent file → omitted.
+            let grades = null;
+            try {
+              const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/grader-consensus.json'));
+              if (r.ok) grades = await r.json();
+            } catch (e) {}
+            logTool('verdicts');
+            const out = { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' };
+            if (grades) out.independent_grades = grades;
+            return mcpText(id, out);
+          }
+          if (tool === 'get_agi_consensus') {
+            // The cross-venue AGI consensus board: third-party public quotes only, each row with
+            // its as-of time; recomputable from market-board.json (gen_market_board.py --check).
+            const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/agi-consensus.json'));
+            if (!r.ok) return mcpText(id, { error: 'consensus board not published yet (fetch step has not succeeded)', status: r.status });
+            // label carries a short UA prefix (never the full string) so the 11-24 line can exclude indexer shapes.
+            logTool('agi_consensus ' + String(request.headers.get('user-agent') || '-').slice(0, 24));
+            return mcpText(id, await r.json());
           }
           if (tool === 'get_sunwatch_track_record') {
             // Worker-to-worker over the public URL: the ledger lives in the sunPredition
@@ -343,47 +427,21 @@ export default {
     // binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
     // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
     if (url.pathname === '/api/pulse' && request.method === 'GET') {
-      const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
-      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers });
-      try {
-        const q = await env.EVENTS.prepare(
-          `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
-        ).all();
-        let human_pv = 0; const by_host = {};
-        for (const r of (q.results || [])) {
-          if (r.host === '_total') human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
-        }
-        const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }), { headers });
-      } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
-      }
+      return aggregateCache(request, ctx, 'pulse', 3600, () => pulseResponse(env, url));
     }
 
+    // /api/crowd (2026-09-27): how readers answered the one question the site asks —
+    // "when does AGI arrive?" — as five bucket counts. Shown only AFTER a reader answers
+    // (showing the crowd first makes answers copy the crowd: Salganik/Dodds/Watts 2006).
+    // Counts only, all-time, human rows; cached an hour like /api/pulse, so a page view
+    // never touches D1 (idx_events_name keeps a miss at ~120 rows).
+    if (url.pathname === '/api/crowd' && request.method === 'GET') {
+      return aggregateCache(request, ctx, 'crowd', 3600, () => crowdResponse(env));
+    }
+
+    // /api/trends 同样有服务端缓存:SunWatch、autopilot、部署自检与外部调用方(09-26 一天 53 次)共用一份结果。
     if (url.pathname === '/api/trends') {
-      try {
-        const [searches, zero, cur, prev] = await Promise.all([
-          env.EVENTS.prepare(
-            "SELECT label, COUNT(*) n FROM events WHERE name='site_search' AND day > date('now','-7 days') GROUP BY label ORDER BY n DESC LIMIT 10").all(),
-          env.EVENTS.prepare(
-            "SELECT label, COUNT(*) n FROM events WHERE name='search_no_result' AND day > date('now','-7 days') GROUP BY label HAVING n >= 2 ORDER BY n DESC LIMIT 10").all(),
-          env.EVENTS.prepare(
-            "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-7 days') GROUP BY path ORDER BY h DESC LIMIT 40").all(),
-          env.EVENTS.prepare(
-            "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-14 days') AND day <= date('now','-7 days') GROUP BY path").all(),
-        ]);
-        const prevMap = Object.fromEntries((prev.results || []).map(function (r) { return [r.path, r.h]; }));
-        const rising = (cur.results || [])
-          .map(function (r) { return { path: r.path, h: r.h, prev: prevMap[r.path] || 0 }; })
-          .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
-          .slice(0, 5);
-        return new Response(JSON.stringify({
-          ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
-        }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
-      } catch (e) {
-        return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
-          { headers: { 'content-type': 'application/json' } });
-      }
+      return aggregateCache(request, ctx, 'trends', 1800, () => trendsResponse(env));
     }
 
     // Owner alert feed — the "major information only" channel (owner request 2026-08-16:
@@ -735,6 +793,18 @@ export default {
       // them server-side so the 60-day adoption line has real numbers, and mark them
       // noindex — the HTML page stays the canonical and the citation surface. Both
       // steps are wrapped so they can never break serving.
+      // 2026-09-26: the consensus JSON, the board snapshot and the OpenTimestamps proofs are the surfaces two
+      // judgment lines read (agi-consensus-mcp-1124 / agi-ots-verified-1124); without a row here their readings
+      // would be 0 by construction. Same aggregate pageviews table, UA-classified; CI requests carry ?ci=1.
+      // 2026-09-27: /calibration's verify button fetches the manifest, every proof and both JSON files in
+      // one click (?utm_source=verify). Counting those would let a single click, the owner's or a QA
+      // session's included, satisfy both lines above — a hash check is not someone reading the consensus
+      // number or fetching a proof by hand. The run is recorded once, as the verify_run event.
+      if (request.method === 'GET' && (res.status === 200 || res.status === 304) &&
+          (url.pathname === '/agi-consensus.json' || url.pathname === '/market-board.json' || url.pathname.startsWith('/ots/')) &&
+          url.searchParams.get('ci') !== '1' && url.searchParams.get('utm_source') !== 'verify') {
+        try { recordView(env, ctx, request, url); } catch (e) {}
+      }
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
         try { recordView(env, ctx, request, url); } catch (e) {}
         try {
@@ -746,6 +816,17 @@ export default {
       // Share cards and badges are immutable per deploy and hot-linked from other
       // sites: give them a week of edge/browser cache instead of the assets default.
       // Wrapped like everything else here — a header failure must never break serving.
+      // OpenTimestamps proofs (2026-09-27): the extension maps to an OpenDocument spreadsheet template in
+      // the default type table, so a reader clicking a proof link was offered a "spreadsheet". It is a
+      // binary proof file: serve it as one, with a download name, never cached for long (upgrades replace it).
+      if (res.status === 200 && url.pathname.startsWith('/ots/') && url.pathname.endsWith('.ots')) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('content-type', 'application/octet-stream');
+          h.set('content-disposition', 'attachment; filename="' + url.pathname.split('/').pop().replace(/[^A-Za-z0-9._-]/g, '') + '"');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
         try {
           const h = new Headers(res.headers);
@@ -1052,6 +1133,127 @@ const SLIDEIN = '<script>(function(){try{' +
     'if(left<=0){clearInterval(iv);show("timer");}' +
   '},1000);' +
 '}catch(e){}})();</script>';
+
+// /api/pulse 与 /api/trends 的计算本体(2026-09-26 从 fetch 里抽出来,外面包 aggregate-cache.js)。
+// 两者都读 pageviews 的 human 行;D1 上的部分索引 pageviews_human 让它们只读这部分行(tools/analytics-worker/migrations/)。
+// Normalise every label the two AGI-year polls have ever written (homepage button text in
+// three historical spellings, /agi-test archetype slugs) onto five buckets. Unknown labels
+// are dropped, never guessed.
+export const CROWD_BUCKETS = ['accelerationist', 'true-believer', 'realist', 'skeptic', 'contrarian'];
+export function crowdBucket(label) {
+  const k = String(label || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const map = {
+    accelerationist: 'accelerationist', '202526': 'accelerationist',
+    truebeliever: 'true-believer', '2027': 'true-believer',
+    realist: 'realist', '202830': 'realist',
+    skeptic: 'skeptic', '2030s': 'skeptic',
+    contrarian: 'contrarian', never2040: 'contrarian',
+  };
+  return map[k] || null;
+}
+
+export async function crowdResponse(env) {
+  const H = { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*' };
+  try {
+    const { results } = await env.EVENTS.prepare(
+      "SELECT label, COUNT(*) AS n FROM events WHERE name = 'vote_cast' AND path IN ('/', '/agi-test')" +
+      " AND (ua_class = 'human' OR ua_class IS NULL) GROUP BY label"
+    ).all();
+    const buckets = Object.fromEntries(CROWD_BUCKETS.map((b) => [b, 0]));
+    for (const r of results || []) { const b = crowdBucket(r.label); if (b) buckets[b] += r.n; }
+    const n = Object.values(buckets).reduce((a, b) => a + b, 0);
+    return new Response(JSON.stringify({ ok: true, generated: new Date().toISOString(),
+      question: 'When does AGI arrive?', scope: 'all-time answers on / and /agi-test, bots excluded',
+      n, buckets }), { headers: H });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'unavailable' }), { status: 503, headers: Object.assign({ 'cache-control': 'no-store' }, H) });
+  }
+}
+
+export async function pulseResponse(env, url) {
+  const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
+  // 失败绝不带 max-age(2026-09-25 舰队规矩,check_pulse_cache.py 断言):aggregate-cache 确实不收非 ok 的
+  // 响应,但这个 header 仍然在告诉浏览器与任何中间代理「这个 500 可以替我重放一小时」——那正是当天把一次
+  // D1 报错读成 200 带真数字的那条路径。
+  const errH = { ...headers, 'cache-control': 'no-store' };
+  if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers: errH });
+  try {
+    const q = await env.EVENTS.prepare(
+      `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
+    ).all();
+    let human_pv = 0; const by_host = {};
+    for (const r of (q.results || [])) {
+      if (r.host === '_total') human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
+    }
+    const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+    // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
+    // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
+    // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
+    const q2 = await env.EVENTS.prepare(
+      `SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') GROUP BY ref_host ORDER BY n DESC LIMIT 1000`
+    ).all();
+    const self_host = srcHost(url.hostname);
+    const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+    const by_search = {}; const by_fleet = {}; const by_other = {};
+    for (const r of (q2.results || [])) {
+      const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
+      by_source[b] += n;
+      if (b === 'search') by_search[h] = (by_search[h] || 0) + n;
+      else if (b === 'fleet') by_fleet[h] = (by_fleet[h] || 0) + n;
+      // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+      // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+      else if (b === 'other') by_other[h] = (by_other[h] || 0) + n;
+    }
+    // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
+    // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
+    let money = null;
+    try {
+      const m = await env.EVENTS.prepare(
+        `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
+      ).all();
+      money = { days: 28 };
+      for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+      try {
+        const o = await env.EVENTS.prepare('SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state').all();
+        money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+      } catch (e) { money.member_orders_by_state = null; }
+      try {
+        const d = await env.EVENTS.prepare('SELECT COUNT(*) AS n FROM discuss_profiles').all();
+        money.discuss_profiles = ((d.results || [])[0] || {}).n | 0;
+      } catch (e) { money.discuss_profiles = null; }
+    } catch (e) { money = null; }
+    // money 的主查询失败时标 partial:缓存层(aggregate-cache.js)不收缺一块的结果,否则它会被原样挂一小时。
+    return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, ...(money === null ? { partial: true } : {}), generated: new Date().toISOString() }), { headers });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers: errH });
+  }
+}
+
+export async function trendsResponse(env) {
+  try {
+    const [searches, zero, cur, prev] = await Promise.all([
+      env.EVENTS.prepare(
+        "SELECT label, COUNT(*) n FROM events WHERE name='site_search' AND day > date('now','-7 days') GROUP BY label ORDER BY n DESC LIMIT 10").all(),
+      env.EVENTS.prepare(
+        "SELECT label, COUNT(*) n FROM events WHERE name='search_no_result' AND day > date('now','-7 days') GROUP BY label HAVING n >= 2 ORDER BY n DESC LIMIT 10").all(),
+      env.EVENTS.prepare(
+        "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-7 days') GROUP BY path ORDER BY h DESC LIMIT 40").all(),
+      env.EVENTS.prepare(
+        "SELECT path, SUM(hits) h FROM pageviews WHERE ua_class='human' AND day > date('now','-14 days') AND day <= date('now','-7 days') GROUP BY path").all(),
+    ]);
+    const prevMap = Object.fromEntries((prev.results || []).map(function (r) { return [r.path, r.h]; }));
+    const rising = (cur.results || [])
+      .map(function (r) { return { path: r.path, h: r.h, prev: prevMap[r.path] || 0 }; })
+      .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
+      .slice(0, 5);
+    return new Response(JSON.stringify({
+      ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising, generated: new Date().toISOString(),
+    }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
+  } catch (e) {
+    return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
+      { headers: { 'content-type': 'application/json' } });
+  }
+}
 
 // Exported for tools/test_analytics_sanitiser.mjs only. The Workers runtime ignores
 // extra named exports; `export default` above stays the worker entrypoint. These two

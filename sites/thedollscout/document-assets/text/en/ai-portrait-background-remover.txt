@@ -1,0 +1,30 @@
+# AI portrait background remover
+
+https://thedollscout.com/ai-portrait-background-remover
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Static JPEG, PNG or WebP; 10 MiB, 20 megapixels. Output is resized to at most 1,600 pixels on its longest side. Designed for people; not a general product, pet or scene cutout tool. Fine hair, transparent objects and difficult lighting can fail.
+
+MODNet predicts a foreground alpha matte. The mask is applied to the resized portrait and exported as PNG with transparency. This tool uses the quantized model and keeps the photo on your device.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Can I remove a product background?
+
+This model is trained for portrait matting. Product-only photos, animals and complex scenes may produce poor masks. Use it for people and inspect the exported edges.
+
+What resolution do I get?
+
+The longest side is capped at 1,600 pixels, without enlarging smaller inputs. The output is a transparent PNG.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet

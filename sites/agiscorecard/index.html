@@ -584,10 +584,17 @@
   footer a { color: var(--muted); }
   footer a:hover { color: var(--text); opacity: 1; }
 
+
+  .mobile-menu { display: none; position: relative; }
+  .mobile-menu summary { list-style: none; cursor: pointer; color: var(--text); font-size: 13px; font-weight: 600; padding: 8px 10px; border: 1px solid var(--border2); border-radius: 8px; }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu-links { position: absolute; right: 0; top: calc(100% + 8px); min-width: 210px; padding: 8px; display: grid; gap: 2px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+  .mobile-menu-links a { display: block; padding: 9px 10px; color: var(--text); font-size: 13px; border-radius: 6px; }
+  .mobile-menu-links a:hover { background: var(--bg3); opacity: 1; }
   /* RESPONSIVE */
   @media (max-width: 700px) {
     header { padding: 0 1rem; }
-    nav { display: none; }
+    .desktop-nav { display: none; }\n    .mobile-menu { display: block; }
     .hero { padding: 3rem 1rem 2rem; }
     .clock-section, .section, .newsletter { margin-left: 1rem; margin-right: 1rem; }
     .milestones-grid { grid-template-columns: 1fr; margin-left: 1rem; margin-right: 1rem; }
@@ -603,6 +610,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "AGI Scorecard — Situational Awareness predictions, graded", "description": "Live verdicts on all 8 major predictions from Situational Awareness (2024), graded against public evidence with pre-registered flip conditions. Machine-readable JSON.", "url": "https://agiscorecard.com/", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "dateModified": "2026-08-17", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/data.json"}]}</script>
 <link rel="alternate" type="application/atom+xml" title="The AGI Scorecard" href="/feed.xml">
+<link rel="stylesheet" href="/community-assets/home.css?v=1">
+<script type="module" src="/community-assets/home.mjs?v=1"></script>
 </head>
 <body>
 
@@ -611,18 +620,38 @@
     <div class="logo-dot"></div>
     AGI Scorecard
   </div>
-  <nav>
+  <nav class="desktop-nav" aria-label="Primary">
     <a href="#predictions">Scorecard</a>
+    <a href="/discuss">Discuss</a>
     <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'nav_job'});">💼 AI &amp; your job</a>
+    <a href="/is-ai-music-good-enough" onclick="gtag('event','hot_topic_click',{location:'nav_aimusic'});">🎵 AI music?</a>
     <a href="/does-ai-slowdown-change-agi-2027" onclick="gtag('event','hot_topic_click',{location:'nav_pacing'});">🔥 Slow down?</a>
     <a href="/ai-tools" onclick="gtag('event','tool_click',{location:'nav'});">🎮 Play</a>
     <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'nav'});">💰 Invest</a>
     <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'nav_compass'});">🧭 13F Compass</a>
+    <a href="https://web3.agiscorecard.com/" onclick="gtag('event','tool_click',{location:'nav_web3'});">◈ Web3</a>
     <a href="/search" title="Search · 站内搜索">🔍</a>
     <a href="two-year-scorecard.html" onclick="gtag('event','analysis_click',{location:'nav'});">Analysis</a>
     <a href="/cn">中文</a>
     <a href="/advertise">Advertise</a>
   </nav>
+  <details class="mobile-menu">
+    <summary>Menu <span aria-hidden="true">☰</span></summary>
+    <div class="mobile-menu-links">
+      <a href="#predictions">Scorecard</a>
+      <a href="/discuss">Discuss</a>
+      <a href="/ai-and-your-job">💼 AI &amp; your job</a>
+      <a href="/does-ai-slowdown-change-agi-2027">🔥 Slow down?</a>
+      <a href="/ai-tools">🎮 Play / AI tools</a>
+      <a href="/invest">💰 Invest</a>
+      <a href="https://compass.agiscorecard.com/en">🧭 13F Compass</a>
+      <a href="https://web3.agiscorecard.com/">◈ Web3 Workbench</a>
+      <a href="/search">🔍 Search</a>
+      <a href="two-year-scorecard.html">Analysis</a>
+      <a href="/cn">中文</a>
+      <a href="/advertise">Advertise</a>
+    </div>
+  </details>
   <a class="subscribe-btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=header" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'header'});" style="text-decoration:none; display:inline-block;">Subscribe free</a>
 </header>
 
@@ -691,6 +720,7 @@
     </span>
   </a>
 
+<section id="community-home" class="community-home" data-lang="en" aria-labelledby="community-home-title"><h2 id="community-home-title">What did AI actually change? Let’s discuss.</h2><p>Share a tool test, challenge an AGI forecast or compare how work is changing. Read freely; join to reply and follow.</p><div class="community-topics"><a href="/discuss/tool-evidence"><small>AI tools in practice</small>Which AI workflow survived a real task?</a><a href="/discuss/agi-flip-condition"><small>The future of AI</small>What would change your AGI timeline?</a><a href="/discuss/work-changed"><small>AI and your work</small>Which part of your job actually changed?</a></div><p>New community. These are editorial opening prompts; member submissions appear after review.</p><div class="community-actions"><a class="community-primary" href="/discuss">Explore discussions</a><a href="/discuss/account">Join free / my discussions</a></div></section>
   <!-- READ NEXT (curiosity-gap recirculation) -->
   <nav class="readnext" aria-label="Start here">
     <a href="/did-open-source-ai-fade" onclick="gtag('event','readnext_click',{label:'wrong'});">
@@ -756,6 +786,7 @@
           <a href="/agi-questions">All AGI questions</a>
           <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'directory_job'});">💼 Should you worry about AI &amp; your job?</a>
           <a href="/amodei-white-collar-bloodbath-prediction">⏱ Amodei&#39;s &ldquo;bloodbath&rdquo; clock</a>
+          <a href="/is-ai-music-good-enough" onclick="gtag('event','hot_topic_click',{location:'directory_aimusic'});">🎵 Is AI music good enough yet? 97% can't tell — and still don't listen</a>
           <a href="/does-ai-slowdown-change-agi-2027" onclick="gtag('event','hot_topic_click',{location:'directory_pacing'});">🔥 Amodei says slow down — does it move the 2027 odds?</a>
           <a href="/eu-ai-act-what-applies-now">⚖️ EU AI Act: applies vs. deferred</a>
           <a href="https://codeword.agiscorecard.com/" onclick="gtag('event','hot_topic_click',{location:'directory',label:'codeword'});">🔐 Code Word: can you spot an AI voice clone?</a>
@@ -858,6 +889,7 @@
         <div class="spectrum" id="vote-spectrum"></div>
       </div>
       <p id="vote-verdict" style="font-size:15px; margin-bottom:1rem;"></p>
+      <div id="vote-crowd" style="display:none; margin:0 0 1rem; font-size:14px;"></div>
       <button class="email-submit" id="share-challenge" onclick="challengeFriend()">🔥 Challenge a friend</button>
       <button class="email-submit" style="background:var(--bg3); margin-left:8px;" onclick="shareToX()">Share on 𝕏</button>
       <button class="email-submit" style="background:var(--bg3); margin-left:8px;" onclick="copyShare()">Copy link</button>
@@ -1361,6 +1393,7 @@ function castVote(choice) {
   if (ask) ask.innerHTML = '<strong>Your ' + a.name + ' call (' + choice + ') is on record.</strong> The evidence clock reads <strong style="color:var(--accent);">62.5/100</strong> — get each verdict change the week it happens, and you’ll know the moment it moves toward your date, or away from it.';
   document.getElementById('vote-result').style.display = 'block';
   gtag('event','vote_cast',{label:choice});
+  showCrowdHome(a.slug);
 }
 
 function renderSpectrum(choice) {
@@ -1436,13 +1469,43 @@ function shareScorecard() {
   window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
 }
 
+// Crowd reveal (2026-09-27, same as /agi-test; dormant until 2026-10-01 UTC so the 09-30
+// sub_ok line settles on the funnel it was registered against). Shown only AFTER the vote:
+// seeing the crowd first makes answers copy it. /api/crowd is cached an hour, so the
+// reader's own answer is added here and the note says so.
+const CROWD_FROM = Date.UTC(2026, 9, 1);
+let homeCrowd = null;
+function showCrowdHome(slug) {
+  if (!slug || Date.now() < CROWD_FROM) return;
+  fetch('/api/crowd').then(r => r.json()).then(d => {
+    if (!d || !d.ok || !d.buckets) return;
+    const b = {}; let n = 0;
+    for (const k in d.buckets) { b[k] = d.buckets[k] + (k === slug ? 1 : 0); n += b[k]; }
+    if (n < 20) return;
+    const mine = Math.round(100 * b[slug] / n);
+    homeCrowd = {pct: mine, n: n};
+    const order = ['accelerationist','true-believer','realist','skeptic','contrarian'];
+    const lab = {'accelerationist':'2025–26','true-believer':'2027','realist':'2028–30','skeptic':'2030s','contrarian':'2040+ / never'};
+    let h = '<div style="font-weight:700;margin-bottom:6px">' + (mine <= 15 ? 'You are in a small minority: ' : '') + mine + '% of ' + n + ' readers answered the same as you</div>';
+    order.forEach(o => {
+      const p = Math.round(100 * b[o] / n);
+      h += '<div style="display:flex;align-items:center;gap:8px;margin:3px 0"><span style="width:92px;font-size:12.5px;' + (o === slug ? 'font-weight:700' : 'color:var(--muted)') + '">' + lab[o] + '</span>' +
+        '<span style="flex:1;background:var(--bg3);border-radius:4px;height:10px;overflow:hidden"><span style="display:block;height:10px;width:' + p + '%;background:' + (o === slug ? 'var(--accent)' : 'var(--border2, #3a3650)') + '"></span></span>' +
+        '<span style="width:38px;text-align:right;font-size:12.5px">' + p + '%</span></div>';
+    });
+    h += '<div style="font-size:11.5px;color:var(--muted);margin-top:4px">All answers on this site since August 2026, bots excluded, including yours. Readers, not a survey sample. None of this settles anything: the evidence does, and the Tracker scores it.</div>';
+    const el = document.getElementById('vote-crowd'); el.innerHTML = h; el.style.display = 'block';
+    gtag('event','crowd_view',{label:slug});
+  }).catch(() => {});
+}
 function agiShareUrl() {
   const a = myArchetype || {slug:''};
   return a.slug ? `https://agiscorecard.com/agi-type/${a.slug}` : 'https://agiscorecard.com/#vote';
 }
 function agiShareText() {
   const a = myArchetype || {name:'',emoji:''};
-  return `I'm "${a.name}" ${a.emoji} on AGI — I put it at ${myVote}. Think you can out-predict me? What's your AGI type?`;
+  const c = (homeCrowd && homeCrowd.pct <= 35) ? ` Only ${homeCrowd.pct}% of ${homeCrowd.n} readers agree with me.` : '';
+  return `I'm "${a.name}" ${a.emoji} on AGI — I put it at ${myVote}.${c} Think you can out-predict me? What's your AGI type?`;
 }
 // Native share sheet (WhatsApp/WeChat/iMessage/…) on mobile — the real fission
 // channel — with an X-intent fallback on desktop.

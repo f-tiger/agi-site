@@ -219,6 +219,10 @@ TikTok/1688 抓取、付费数据源。
 - **`sr-mcp-registry-1014` 已结:won(2026-09-17)** —— 注册表可搜到 `io.github.f-tiger/us-import-duty-facts` v1.1.0、status=active。
   **踩过的坑记死**:注册表 `description` **硬限 100 字符**(超了在 publish 那步 422),断言已加在发布前;
   remotes-only + `io.github.*` 命名空间可用本仓 OIDC 直接发布,零 owner 密钥。
+- **2026-09-19→22 部署连红四天,原因是闸门写死了主机名(09-23 修)**:CPSC API 开始把部分召回链接给成 `https://cpsc.gov/…`(裸域,301 到 www),
+  `test_mcp.mjs` 第 9 条只认 `https://www.cpsc.gov/` 前缀 → 每天 schedule 部署在闸门处停,站点四天没发布。修法两处:`recall_radar.py` 的
+  `canonical_url()` 把裸域改写成 301 的目标(同一条记录,少一跳);断言改为解析主机名 ∈ {www.cpsc.gov, cpsc.gov},形似域(`cpsc.gov.evil.example`)
+  变异测试仍红。**教训:断言官方来源时断言主机,不断言字符串前缀——上游换一次写法就会把部署冻住,而冻住的是整站不只是这条数据。**
 - **这不是收费件**:按 §十一 的单位经济,按次计量要到 ~870 次/月才够 €100/月。**先上线、先数,不装收款**;
   向爬虫收费仍是舰队杀单。
 
@@ -241,3 +245,6 @@ TikTok/1688 抓取、付费数据源。
 - **下一格的候选与门槛**:openFDA food/device enforcement(2026-09-16 实测 200)是首选,
   **但必须等 `sr-vertical-1014` 判 win 再接**;EU Safety Gate 当日未找到免密钥 alerts 接口,不写代码不承诺。
 - **永远不做**:担保金额、归类意见、反倾销个案跟踪、替用户决定税号。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(mcp_call / pick_open / out_click / calc_use / pack_open / pack_order 的 28d 计数,剔 CI 路径与 `__ci` 标签),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:`/api/mcp` 09-17 起 24 次非 CI 调用(check_import_claim 带参数 7 次)。另:`tools/test_mcp.mjs` 第 9 条(recall_check 21 条)在 main HEAD 上就红,与钱线改动无关。

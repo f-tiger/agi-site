@@ -1,0 +1,405 @@
+{
+  "name": "TDS Document Scout",
+  "edition": "2026-09-25.8",
+  "updated": "2026-09-27",
+  "execution": "User-operated browser only. No hosted processing API.",
+  "uploads": false,
+  "accountRequired": false,
+  "cost": "Free",
+  "notSupported": [
+    "OCR",
+    "Tag repair",
+    "Visual comparison",
+    "Conformance certification"
+  ],
+  "tools": [
+    {
+      "language": "en",
+      "name": "PDF accessibility checker",
+      "url": "https://thedollscout.com/pdf-accessibility-checker",
+      "useCase": "Before publishing a report, handout or client deliverable.",
+      "output": "Page-level findings, manual review prompts, and CSV or JSON exports.",
+      "limitations": "Reading order, image descriptions and the accuracy of tags require human review. This tool does not certify conformance.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Batch PDF audit",
+      "url": "https://thedollscout.com/pdf-batch-audit",
+      "useCase": "When a team needs one review list for several PDF deliverables.",
+      "output": "One combined findings list for up to 10 PDFs, with partial inspections labelled.",
+      "limitations": "Each PDF is limited to 20 MB and 200 inspected pages; each batch to 100 MB and 600 inspected pages.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "PDF to text",
+      "url": "https://thedollscout.com/pdf-to-text",
+      "useCase": "When you need to reuse existing PDF text or check whether text extraction works.",
+      "output": "Readable text grouped by page, with a local TXT download.",
+      "limitations": "Image-only pages need a separate OCR workflow. Extracted text may have an incorrect reading order.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Compare PDF text",
+      "url": "https://thedollscout.com/compare-pdf-text",
+      "useCase": "When a revised PDF arrives and you need to find text changes.",
+      "output": "Aligned text pages and changed, added, removed or unknown pages.",
+      "limitations": "Images, layout and annotations are not compared. Suggested page pairings need review.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Barrierefreiheit prüfen",
+      "url": "https://thedollscout.com/de/pdf-accessibility-checker",
+      "useCase": "Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.",
+      "output": "Seitenbezogene Hinweise, manuelle Prüfpunkte und CSV- oder JSON-Exporte.",
+      "limitations": "Lesereihenfolge, Bildbeschreibungen und die Richtigkeit der Tags brauchen eine manuelle Prüfung. Keine Konformitätszertifizierung.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Stapelprüfung",
+      "url": "https://thedollscout.com/de/pdf-batch-audit",
+      "useCase": "Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.",
+      "output": "Eine gemeinsame Liste für bis zu 10 PDFs, mit gekennzeichneten Teilprüfungen.",
+      "limitations": "Je PDF höchstens 20 MB und 200 geprüfte Seiten; je Stapel 100 MB und 600 geprüfte Seiten.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF in Text umwandeln",
+      "url": "https://thedollscout.com/de/pdf-to-text",
+      "useCase": "Wenn Sie vorhandenen PDF-Text weiterverwenden oder die Textextraktion prüfen möchten.",
+      "output": "Text nach Seiten gegliedert, als lokale TXT-Datei speicherbar.",
+      "limitations": "Reine Bildseiten benötigen eine separate OCR-Lösung. Extrahierter Text kann eine falsche Lesereihenfolge haben.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Texte vergleichen",
+      "url": "https://thedollscout.com/de/compare-pdf-text",
+      "useCase": "Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.",
+      "output": "Zugeordnete Textseiten und geänderte, hinzugefügte, entfernte oder unklare Seiten.",
+      "limitations": "Bilder, Layout und Anmerkungen werden nicht verglichen. Vorgeschlagene Seitenzuordnungen müssen geprüft werden.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 无障碍检查",
+      "url": "https://thedollscout.com/zh/pdf-accessibility-checker",
+      "useCase": "发布报告、讲义或向客户交付 PDF 之前。",
+      "output": "按页定位的检查线索、人工复核提示，以及 CSV 或 JSON 报告。",
+      "limitations": "阅读顺序、图片描述和标签的正确性仍需人工判断；本工具不提供合规认证。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 批量审查",
+      "url": "https://thedollscout.com/zh/pdf-batch-audit",
+      "useCase": "团队需要把多份待交付 PDF 汇总成一张处理清单时。",
+      "output": "最多 10 份 PDF 的合并问题清单，明确标记未完成的检查。",
+      "limitations": "每份 PDF 最多 20 MB、检查 200 页；每批最多 100 MB、检查 600 页。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 文本提取",
+      "url": "https://thedollscout.com/zh/pdf-to-text",
+      "useCase": "需要复用 PDF 已有文字，或先判断能否提取文本时。",
+      "output": "按页分组的可提取文字，以及保存在本地的 TXT 文件。",
+      "limitations": "纯图片页面需要另外使用 OCR；提取的文字顺序也可能需要修正。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 文本版本对比",
+      "url": "https://thedollscout.com/zh/compare-pdf-text",
+      "useCase": "收到修订版 PDF，需要找出文字变化时。",
+      "output": "对齐的文本页面，以及修改、新增、删除或无法比较的页面。",
+      "limitations": "不比较图片、版式和批注；相似页面的配对结果需要复核。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Image compressor & converter",
+      "url": "https://thedollscout.com/image-compressor",
+      "useCase": "Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.",
+      "output": "Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.",
+      "limitations": "Up to 8 still JPEG, PNG or WebP images; 20 MiB each, 50 MiB total, 20 megapixels each. No GIF, HEIC, SVG or animation. Output is limited to 4096 × 4096 pixels and never enlarged.",
+      "method": "https://thedollscout.com/image-compressor#worked-example"
+    },
+    {
+      "language": "en",
+      "name": "JSON validator, formatter & comparison",
+      "url": "https://thedollscout.com/json-compare",
+      "useCase": "Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.",
+      "output": "Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.",
+      "limitations": "UTF-8 JSON only, up to 512 KiB per input, 60 nesting levels, 20,000 values and 1,000 differences. Duplicate keys are rejected. Numeric exponents are limited to ±100,000. No JSON5, comments, schema validation or executable code.",
+      "method": "https://thedollscout.com/json-compare#worked-example"
+    },
+    {
+      "language": "en",
+      "name": "Time zone meeting planner",
+      "url": "https://thedollscout.com/time-zone-planner",
+      "useCase": "Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.",
+      "output": "Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.",
+      "limitations": "One meeting, 5–480 minutes, dates from 1970 to 2100, 16 available time zones. Uses your browser’s time-zone rules. No recurring events, attendee availability, holiday calendar or invitations.",
+      "method": "https://thedollscout.com/time-zone-planner#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "Bilder komprimieren & umwandeln",
+      "url": "https://thedollscout.com/de/image-compressor",
+      "useCase": "Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.",
+      "output": "Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.",
+      "limitations": "Bis zu 8 statische JPEG-, PNG- oder WebP-Bilder; je 20 MiB, zusammen 50 MiB, je 20 Megapixel. Kein GIF, HEIC, SVG oder Animation. Ausgabe höchstens 4096 × 4096 Pixel, ohne Vergrößerung.",
+      "method": "https://thedollscout.com/de/image-compressor#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "JSON prüfen, formatieren & vergleichen",
+      "url": "https://thedollscout.com/de/json-compare",
+      "useCase": "JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.",
+      "output": "JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.",
+      "limitations": "UTF-8-JSON, höchstens 512 KiB je Eingabe, 60 Ebenen, 20.000 Werte und 1.000 Unterschiede. Doppelte Schlüssel werden abgelehnt. Exponenten höchstens ±100.000. Kein JSON5, keine Kommentare, Schema-Validierung oder Code-Ausführung.",
+      "method": "https://thedollscout.com/de/json-compare#worked-example"
+    },
+    {
+      "language": "de",
+      "name": "Zeitzonen-Terminplaner",
+      "url": "https://thedollscout.com/de/time-zone-planner",
+      "useCase": "Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.",
+      "output": "Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.",
+      "limitations": "Ein Termin, 5–480 Minuten, Jahre 1970–2100, 16 Zeitzonen. Verwendet Zeitzonenregeln des Browsers. Keine Serien, Verfügbarkeitsabfrage, Feiertage oder Einladungen.",
+      "method": "https://thedollscout.com/de/time-zone-planner#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "图片压缩、缩放与格式转换",
+      "url": "https://thedollscout.com/zh/image-compressor",
+      "useCase": "调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。",
+      "output": "调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。",
+      "limitations": "最多 8 张静态 JPEG、PNG 或 WebP；单张 20 MiB、合计 50 MiB、单张 2000 万像素。暂不支持 GIF、HEIC、SVG 或动画。输出最大 4096 × 4096 像素，不放大小图。",
+      "method": "https://thedollscout.com/zh/image-compressor#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "JSON 校验、格式化与结构对比",
+      "url": "https://thedollscout.com/zh/json-compare",
+      "useCase": "校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。",
+      "output": "校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。",
+      "limitations": "仅支持 UTF-8 JSON；每份最多 512 KiB、60 层嵌套、20,000 个值、1,000 处差异。拒绝重复键，数字指数限 ±100,000。不支持 JSON5、注释、Schema 校验或代码执行。",
+      "method": "https://thedollscout.com/zh/json-compare#worked-example"
+    },
+    {
+      "language": "zh-CN",
+      "name": "跨时区会议与日历导出",
+      "url": "https://thedollscout.com/zh/time-zone-planner",
+      "useCase": "查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。",
+      "output": "查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。",
+      "limitations": "单次会议，时长 5–480 分钟，年份 1970–2100，提供 16 个时区。使用浏览器的时区规则。不包含周期会议、参会者忙闲、节假日或邀请发送。",
+      "method": "https://thedollscout.com/zh/time-zone-planner#worked-example"
+    },
+    {
+      "language": "en",
+      "name": "AI portrait background remover",
+      "url": "https://thedollscout.com/ai-portrait-background-remover",
+      "useCase": "Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.",
+      "output": "Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.",
+      "limitations": "Static JPEG, PNG or WebP; 10 MiB, 20 megapixels. Output is resized to at most 1,600 pixels on its longest side. Designed for people; not a general product, pet or scene cutout tool. Fine hair, transparent objects and difficult lighting can fail.",
+      "model": {
+        "id": "Xenova/modnet",
+        "revision": "fa2fa546052fba4c08921230a26cc69a333fca12",
+        "task": "background-removal",
+        "dtype": "q8",
+        "weights": 6632188
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/ai-portrait-background-remover#ai-method"
+    },
+    {
+      "language": "en",
+      "name": "AI audio to text — English",
+      "url": "https://thedollscout.com/ai-audio-to-text",
+      "useCase": "Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.",
+      "output": "Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.",
+      "limitations": "English speech only; WAV or MP3 up to 10 MiB and 60 seconds. No speaker identification, translation or live recording. Whisper Tiny can miss speech or invent words, especially with noise or silence. Review every transcript.",
+      "model": {
+        "id": "Xenova/whisper-tiny.en",
+        "revision": "79fb389fc764e7c395bd330e9531d9d32ada7049",
+        "task": "automatic-speech-recognition",
+        "dtype": "q8",
+        "weights": 40852295
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/ai-audio-to-text#ai-method"
+    },
+    {
+      "language": "en",
+      "name": "AI extractive text summarizer",
+      "url": "https://thedollscout.com/ai-text-summarizer",
+      "useCase": "Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.",
+      "output": "Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.",
+      "limitations": "English text: 80–12,000 characters, 3–60 sentences, maximum 256 model tokens per sentence. Select up to 3 or 5 sentences, always fewer than the source. No rewriting, translation or fact-checking. Selections can miss important context.",
+      "model": {
+        "id": "Xenova/all-MiniLM-L6-v2",
+        "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+        "task": "feature-extraction",
+        "dtype": "q8",
+        "weights": 22972370
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/ai-text-summarizer#ai-method"
+    },
+    {
+      "language": "de",
+      "name": "KI-Hintergrundentfernung für Porträts",
+      "url": "https://thedollscout.com/de/ai-portrait-background-remover",
+      "useCase": "Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.",
+      "output": "Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.",
+      "limitations": "Statisches JPEG, PNG oder WebP; 10 MiB, 20 Megapixel. Ausgabe auf maximal 1.600 Pixel an der längsten Seite begrenzt. Für Personen gedacht; nicht für beliebige Produkte, Tiere oder Szenen. Haare, transparente Objekte und schwieriges Licht können Probleme verursachen.",
+      "model": {
+        "id": "Xenova/modnet",
+        "revision": "fa2fa546052fba4c08921230a26cc69a333fca12",
+        "task": "background-removal",
+        "dtype": "q8",
+        "weights": 6632188
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/de/ai-portrait-background-remover#ai-method"
+    },
+    {
+      "language": "de",
+      "name": "KI-Audio in Text — Englisch",
+      "url": "https://thedollscout.com/de/ai-audio-to-text",
+      "useCase": "Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.",
+      "output": "Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.",
+      "limitations": "Nur englische Sprache; WAV oder MP3 bis 10 MiB und 60 Sekunden. Keine Sprechererkennung, Übersetzung oder Live-Aufnahme. Whisper Tiny kann Sprache auslassen oder Wörter erfinden, besonders bei Rauschen oder Stille. Jeden Entwurf prüfen.",
+      "model": {
+        "id": "Xenova/whisper-tiny.en",
+        "revision": "79fb389fc764e7c395bd330e9531d9d32ada7049",
+        "task": "automatic-speech-recognition",
+        "dtype": "q8",
+        "weights": 40852295
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/de/ai-audio-to-text#ai-method"
+    },
+    {
+      "language": "de",
+      "name": "KI-Textzusammenfassung mit Original-Sätzen",
+      "url": "https://thedollscout.com/de/ai-text-summarizer",
+      "useCase": "Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.",
+      "output": "Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.",
+      "limitations": "Englischer Text: 80–12.000 Zeichen, 3–60 Sätze, höchstens 256 Modell-Tokens pro Satz. Bis zu 3 oder 5 Sätze, immer weniger als im Original. Keine Umformulierung, Übersetzung oder Faktenprüfung. Wichtiger Kontext kann fehlen.",
+      "model": {
+        "id": "Xenova/all-MiniLM-L6-v2",
+        "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+        "task": "feature-extraction",
+        "dtype": "q8",
+        "weights": 22972370
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/de/ai-text-summarizer#ai-method"
+    },
+    {
+      "language": "zh-CN",
+      "name": "AI 人像抠图",
+      "url": "https://thedollscout.com/zh/ai-portrait-background-remover",
+      "useCase": "用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。",
+      "output": "用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。",
+      "limitations": "支持静态 JPEG、PNG、WebP，最大 10 MiB、2000 万像素。输出最长边不超过 1600 像素。适用于人物，不是通用商品、宠物或场景抠图。发丝、透明物体和复杂光照可能处理不佳。",
+      "model": {
+        "id": "Xenova/modnet",
+        "revision": "fa2fa546052fba4c08921230a26cc69a333fca12",
+        "task": "background-removal",
+        "dtype": "q8",
+        "weights": 6632188
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/zh/ai-portrait-background-remover#ai-method"
+    },
+    {
+      "language": "zh-CN",
+      "name": "AI 英文音频转文字",
+      "url": "https://thedollscout.com/zh/ai-audio-to-text",
+      "useCase": "在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。",
+      "output": "在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。",
+      "limitations": "仅支持英语语音；WAV 或 MP3 最大 10 MiB、60 秒。不区分说话人，不翻译，不实时录音。Whisper Tiny 可能漏词或产生原音频没有的文字，尤其在噪声或静音时，请逐条复核。",
+      "model": {
+        "id": "Xenova/whisper-tiny.en",
+        "revision": "79fb389fc764e7c395bd330e9531d9d32ada7049",
+        "task": "automatic-speech-recognition",
+        "dtype": "q8",
+        "weights": 40852295
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/zh/ai-audio-to-text#ai-method"
+    },
+    {
+      "language": "zh-CN",
+      "name": "AI 原文摘要",
+      "url": "https://thedollscout.com/zh/ai-text-summarizer",
+      "useCase": "用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。",
+      "output": "用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。",
+      "limitations": "支持 80–12,000 字符、3–60 句英文文本，每句最多 256 个模型 token。最多选 3 或 5 句，且少于原文句数。不改写、不翻译、不核查事实，可能遗漏重要背景。",
+      "model": {
+        "id": "Xenova/all-MiniLM-L6-v2",
+        "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+        "task": "feature-extraction",
+        "dtype": "q8",
+        "weights": 22972370
+      },
+      "execution": "Local browser WebAssembly; weights fetched on explicit load from Hugging Face, runtime from jsDelivr; no input upload",
+      "method": "https://thedollscout.com/zh/ai-text-summarizer#ai-method"
+    }
+  ],
+  "aiEvaluation": {
+    "url": "https://thedollscout.com/document-assets/ai-evaluation.json",
+    "scope": "Real-model smoke checks on public samples; not an accuracy benchmark or a general compatibility guarantee"
+  },
+  "resources": {
+    "index": "https://thedollscout.com/document-assets/resource-library.json",
+    "openSource": 6,
+    "videos": 3,
+    "scope": "Curated external projects and creator videos; not additional TDS processing tools. Equipment links are optional affiliate links, not paid AI features."
+  },
+  "directory": {
+    "categories": 6,
+    "tools": 12,
+    "urls": [
+      "https://thedollscout.com/",
+      "https://thedollscout.com/de/",
+      "https://thedollscout.com/zh/"
+    ]
+  },
+  "deliveryRecord": {
+    "urls": [
+      "https://thedollscout.com/delivery-evidence",
+      "https://thedollscout.com/de/delivery-evidence",
+      "https://thedollscout.com/zh/delivery-evidence"
+    ],
+    "format": "https://thedollscout.com/document-assets/delivery-format.txt",
+    "output": "Local JSON and HTML file inventory with SHA-256 fingerprints and user notes",
+    "verification": "File equality only; no identity, delivery, consent or trusted time attestation",
+    "teamPlan": "Research only; not available to purchase"
+  },
+  "fileVerification": {
+    "urls": [
+      "https://thedollscout.com/verify-file",
+      "https://thedollscout.com/de/verify-file",
+      "https://thedollscout.com/zh/verify-file"
+    ],
+    "format": "https://thedollscout.com/document-assets/verify-format.txt",
+    "offlineVerifier": "https://thedollscout.com/document-assets/verify-file-cli.mjs",
+    "limitBytes": 20971520,
+    "output": "Sender-generated links and local SHA-256 plus byte-length comparisons",
+    "limitations": "No identity, receipt, consent, malware safety or Bitcoin timestamp verification. No hosted processing API."
+  },
+  "examples": {
+    "url": "https://thedollscout.com/document-assets/sample-results.json",
+    "scope": "Fictional reproducible examples, not customer documents, certification or an accuracy benchmark."
+  }
+}

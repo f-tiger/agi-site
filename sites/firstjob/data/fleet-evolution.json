@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "site": "firstjob",
+  "signals": {
+    "membership": {
+      "ready": null,
+      "has_paid_members": null,
+      "has_active_members": null
+    },
+    "traffic": {
+      "human_pv_band": "100+",
+      "ai_ref_band": "0",
+      "reach_humans_referred_band": null
+    },
+    "demand": {
+      "has_underserved": false,
+      "has_gaps": false,
+      "has_hot_pages": false,
+      "top_underserved_page": null,
+      "top_hot_page": null
+    },
+    "health": {
+      "http": "200",
+      "stale_deploy": false
+    }
+  },
+  "actions": [],
+  "autonomous_changes": [
+    "refresh aggregate snapshots",
+    "refresh opportunity and demand queues",
+    "update truthful sitemap lastmod when content hashes change",
+    "submit IndexNow only for changed URLs"
+  ]
+}

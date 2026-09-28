@@ -1,0 +1,65 @@
+# PDF 文本提取
+
+https://thedollscout.com/zh/pdf-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+适用场景: 需要复用 PDF 已有文字，或先判断能否提取文本时。
+
+你会得到: 按页分组的可提取文字，以及保存在本地的 TXT 文件。
+
+仍需确认: 纯图片页面需要另外使用 OCR；提取的文字顺序也可能需要修正。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+扫描 PDF 为什么提取不出文字？
+
+扫描件可能只有页面图片，没有文本层。此工具只提取已有文字。请另行进行 OCR，检查识别准确性后，再提取新文件的文本。
+
+提取文本能保留表格和阅读顺序吗？
+
+输出按页分隔的文字，不重建表格单元格，也不保证视觉或辅助技术的阅读顺序。分栏、表格和特殊字符需要对照原件检查。
+
+你可以复现的检查结果
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+原版讲义会产生下面按页分开的文本。无文本层示例的文本字符数为零；这个工具不做 OCR，复用前请对照原件核对。
+
+页数 | 提取的文本
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-to-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

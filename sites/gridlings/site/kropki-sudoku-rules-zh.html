@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>点点数独（Kropki）规则：黑点和白点各是什么意思</title>
+<meta name="description" content="点点数独规则：白点 = 两格相差恰好 1；黑点 = 一格是另一格的两倍；没有点 = 两种关系都不成立。「没有点」占了半道题。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/kropki-sudoku-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/kropki-sudoku-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/kropki-sudoku-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="点点数独（Kropki）规则：黑点和白点各是什么意思">
+<meta property="og:description" content="点点数独规则：白点 = 两格相差恰好 1；黑点 = 一格是另一格的两倍；没有点 = 两种关系都不成立。「没有点」占了半道题。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/kropki-sudoku-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚫</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "点点数独（Kropki）规则：黑点和白点各是什么意思", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/kropki-sudoku-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "点点数独规则：白点 = 两格相差恰好 1；黑点 = 一格是另一格的两倍；没有点 = 两种关系都不成立。「没有点」占了半道题。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "点点数独里的点是什么意思？", "acceptedAnswer": {"@type": "Answer", "text": "两格之间的白点表示两数相差恰好 1。黑点表示一个数恰好是另一个数的两倍。如果没有点，两种关系都不成立 —— 这条否定约束是规则的完整组成部分。"}}, {"@type": "Question", "name": "点点数独里 1 和 2 之间标黑点还是白点？", "acceptedAnswer": {"@type": "Answer", "text": "1 和 2 同时满足两种关系（相差 1，且 2 是 1 的两倍）。本站采用的标准惯例是：1-2 这一对标黑点。"}}, {"@type": "Question", "name": "点点数独可以一个已知数都没有吗？", "acceptedAnswer": {"@type": "Answer", "text": "可以。有点与没有点的图案本身就能逼出唯一解 —— 本站多数每日题从完全空白开始，并经机器验证纯推理可解。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "点点数独规则 —— 黑点、白点，以及「没有点」", "item": "https://play.agiscorecard.com/zh/kropki-sudoku-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/kropki-sudoku-rules">点点数独规则 —— 黑点、白点，以及「没有点」</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>点点数独恰好只有三种信号。</strong>两格之间的<strong>白点</strong>表示它们相差恰好 1（如 3·4）。<strong>黑点</strong>表示一格是另一格的两倍（如 2·4）。而<strong>没有点意味着两种关系都不成立</strong> —— 缺失的点是真实的约束，不是没有信息。1 和 2 同时满足两种关系；按惯例标黑点。行与列仍然各数字只出现一次，和任何拉丁方一样。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/kropki">去玩</a>。</p>
+<script>fetch("/kropki-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/kropki">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>拉丁方</strong></td><td style="padding:6px 8px">每一行、每一列都恰好包含每个数字一次。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>白点</strong></td><td style="padding:6px 8px">两格相差恰好 1 —— 连续的两个数，顺序不限。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>黑点</strong></td><td style="padding:6px 8px">一格恰好是另一格的两倍（5×5 上是 1·2、2·4）。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>没有点</strong></td><td style="padding:6px 8px">两种关系都不成立 —— 这条否定约束排除的候选数和点一样多。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>1-2 惯例</strong></td><td style="padding:6px 8px">1 和 2 既相差 1 又成两倍 —— 这一对按惯例标黑点。</td></tr></tbody>
+  </table>
+  <h2>从黑点开始</h2><p>5×5 上黑点两侧只能是 1·2 或 2·4，所以每个黑点都逼着一个 2 落在它的两格之一。两个黑点连成链更强：必然是 1-2-4。</p><h2>利用「沉默」</h2><p>与 3 相邻且中间没有点的格子，不能是 2、4、6。在已知数很少甚至为零的盘面上 —— 本站多数每日题都从空盘开始 —— 没有点的边做了大部分工作。</p><h2>奇偶步行</h2><p>白点链上奇偶交替。从任何一个已落的数沿链追过去，整条链上一半的候选数会消失。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>本站多数点点数独每日题从零个已知数开始 —— 点的图案本身就决定了唯一解，而且客户端同样强制执行「没有点」这条否定约束（很多站不做）。450 盘 5×5 每日题加 320 盘畅玩题，每一盘都在发布前经机器验证：唯一解、纯推理可达。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">点点数独里的点是什么意思？</h3><p style="margin:0 0 6px">两格之间的白点表示两数相差恰好 1。黑点表示一个数恰好是另一个数的两倍。如果没有点，两种关系都不成立 —— 这条否定约束是规则的完整组成部分。</p><h3 style="font-size:.98rem;margin:10px 0 2px">点点数独里 1 和 2 之间标黑点还是白点？</h3><p style="margin:0 0 6px">1 和 2 同时满足两种关系（相差 1，且 2 是 1 的两倍）。本站采用的标准惯例是：1-2 这一对标黑点。</p><h3 style="font-size:.98rem;margin:10px 0 2px">点点数独可以一个已知数都没有吗？</h3><p style="margin:0 0 6px">可以。有点与没有点的图案本身就能逼出唯一解 —— 本站多数每日题从完全空白开始，并经机器验证纯推理可解。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/sandwich-sudoku-rules">🥪 三明治</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/star-battle-rules">⭐ 星战</a> · <a href="/zh/thermometer-puzzle-rules">🌡 温度计</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/6x6-sudoku-rules">🔢 迷你数独</a> · <a href="/zh/binary-puzzle-rules">🌙 日月</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/kropki">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

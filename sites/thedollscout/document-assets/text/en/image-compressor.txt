@@ -1,0 +1,29 @@
+# Image compressor & converter
+
+https://thedollscout.com/image-compressor
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+Up to 8 still JPEG, PNG or WebP images; 20 MiB each, 50 MiB total, 20 megapixels each. No GIF, HEIC, SVG or animation. Output is limited to 4096 × 4096 pixels and never enlarged.
+
+The browser decodes and redraws each image, preserving proportions. JPEG uses a white background for transparency. PNG ignores the quality setting. Re-encoding can change colours or increase file size; this is not a print-quality or metadata-erasure guarantee.
+
+A 1500 × 1000 image fitted within 1000 × 1000 becomes 1000 × 667. The original stays unchanged. The interactive sample measures its actual exported size.
+
+1500 × 1000 → 1000 × 667
+
+Does compression always make an image smaller?
+
+No. Output size depends on the source, chosen format, dimensions and browser encoder. The result shows both byte counts, including an increase when the output is larger.
+
+Are transparent images supported?
+
+PNG and WebP can preserve transparency. JPEG cannot; transparent pixels are placed on a white background. Animated files are rejected.
+
+Reference material
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container

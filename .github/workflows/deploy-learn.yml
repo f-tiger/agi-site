@@ -99,7 +99,7 @@ jobs:
           for a in /api/pulse; do
             body=$(curl -s --max-time 20 -A 'learn-deploy-smoke-bot (+ci)' "https://learn.agiscorecard.com$a?ci=1" || echo "")
             case "$body" in
-              *'"ok":true'*) echo "OK    $a" ;;
+              *'"ok":true'*'"by_source"'*) echo "OK    $a" ;;
               *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
             esac
           done

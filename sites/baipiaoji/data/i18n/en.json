@@ -3,10 +3,10 @@
     "site_name": "Baipiaoji",
     "tagline": "Use the best AI without wasting money",
     "description": "Free-tier limits for AI tools, checked one by one: what you get, where the wall is, the official page it comes from, and the date we checked it. Where a vendor publishes no number, we say so instead of guessing. Links re-checked daily.",
-    "index_title": "{name} — free-tier limits for {n} AI tools, each with an official source and a check date",
+    "index_title": "Free AI Tools, Limits & Practical Toolbox | {name}",
     "search_ph": "Search tools, use cases, tags",
     "all_tools": "All tools",
-    "rail_note": "Links checked daily<br>Every listing shows its verification date",
+    "rail_note": "Links checked daily<br>Content review dates and sources listed separately",
     "hero_h1": "{n} AI tools with a free tier we actually checked<br>every number traced to an official page, and dated",
     "hero_lede_a": "",
     "hero_lede_b": " money playbooks you can copy, ",
@@ -52,6 +52,7 @@
     "pick": "Pick",
     "rank_title": "Category pick",
     "verified": "Verified",
+    "link_checked": "Link checked",
     "verified_on": "Verified on",
     "go_get": "Get it",
     "use": "Use ",
@@ -74,7 +75,7 @@
     "rss": "RSS",
     "contact": "Partnerships",
     "tool_h1": "free tier: what you get and how to claim it",
-    "tool_answer": "{name} free tier: {free} How to claim: {how} Verified on {date}.",
+    "tool_answer": "{name} free tier: {free} How to claim: {how} Link availability checked {date}; no separate content review date is recorded.",
     "benefit": "What you get",
     "howto": "How to claim it",
     "used_by": "What you can do with it",
@@ -100,7 +101,7 @@
     "faq_a_reg": "{list} work immediately with no sign-up. The others need an account before you can claim the free tier.",
     "cat_h1": "Free {label} AI tools",
     "cat_title_unit": " tools with a free tier we checked",
-    "cat_answer": "{ln} of these {n} {noun} have their free-tier ceiling traced to an official page, with the exact figure and the date it was checked — see the table below. Where a vendor publishes no number, we say so instead of guessing. Verified {date}; links re-checked daily, ranked by our pick order.",
+    "cat_answer": "{ln} of these {n} {noun} have a free-tier record with a source and content check date below. Links are checked separately; an available link does not re-verify a policy.",
     "cat_plans": "What you can build with these",
     "claim": "Claim it",
     "prompt_title": "Copy this instead of staring at an empty box",
@@ -171,10 +172,10 @@
     "ladder_4_d": "The tools those recipes use, with verified free tiers and links re-checked daily",
     "plot_cap": "{n} paths / steps each",
     "pending": "Not yet checked",
-    "pending_title": "Just added — the verification date appears once the daily link check confirms it",
-    "tool_answer_pending": "{name} free tier: {free} How to claim: {how} This entry was just added and has not yet passed the daily check, so no verification date is shown.",
-    "cat_answer_pending": "{ln} of these {n} {noun} have their free-tier ceiling traced to an official page with a check date; where a vendor publishes no number we say so instead of guessing. {done} were verified on {date}; {pend} were just added and get a date once the daily check confirms them.",
-    "cat_answer_allpending": "{n} {noun} with a genuine free tier. These entries were just added and each gets a verification date once the daily check confirms it — until then we do not claim they are verified.",
+    "pending_title": "No link check recorded yet; content review dates are separate",
+    "tool_answer_pending": "{name} free tier: {free} How to claim: {how} This entry has no recorded link check yet; a link check does not verify the free-tier policy.",
+    "cat_answer_pending": "{ln} of these {n} {noun} have a source-backed free-tier record below. {done} have a recorded link check; {pend} have none yet. Content review dates are separate.",
+    "cat_answer_allpending": "{n} {noun} with free tiers. No link checks are recorded for these entries yet. Use the separate content check dates and sources where available.",
     "t_faq_free": "Is {name} free, and how much do you get?",
     "t_faq_how": "How do I claim it — do I need an account?",
     "t_faq_how_noreg": "{how} No sign-up needed; it works straight away.",
@@ -186,7 +187,7 @@
     "t_faq_use": "What can I actually build with {name}?",
     "t_faq_use_a": "{n} zero-cost recipes here use it, for example: {list}.",
     "t_faq_when": "When was this free-tier information verified?",
-    "t_faq_when_a": "Verified on {date}. Links here are re-checked automatically once a day; reachable ones get their date refreshed and unreachable ones are queued for review. Free-tier terms change often, so treat that date as the point the information was known good.",
+    "t_faq_when_a": "Link checked {date}. This does not re-verify free-tier limits, prices or terms; use the separate content check date and source.",
     "t_faq_when_pending": "This entry was just added and has not yet passed the daily check, so it carries no verification date. Links are checked once a day and a date appears once it passes.",
     "limits": "Where the free tier stops",
     "limits_src": "Source: {source}, checked {checked}. Free-tier terms change often — the official page wins.",
@@ -203,8 +204,8 @@
     "lt_wall": "When it runs out",
     "lt_checked": "Checked",
     "embed_title": "Built this tool, or want to republish this data?",
-    "embed_badge_note": "Verification badge — use it on your site or README, linked back to this page:",
-    "embed_badge_alt": "Free tier verified by Baipiaoji",
+    "embed_badge_note": "Link-check badge (availability only; it does not re-verify limits or terms):",
+    "embed_badge_alt": "Baipiaoji link availability check",
     "embed_data_note": "Our verified limits data is CC BY 4.0 — reuse (incl. commercial) with attribution to Baipiaoji (baipiaoji.com) and a link back: ",
     "tool_answer_limits": "{name} free-tier ceiling (verified against an official source): {quota} How to claim: {how} Checked {date}.",
     "cat_answer_limits": "",
@@ -1143,7 +1144,7 @@
     "kimi": {
       "name": "Kimi (Moonshot AI)",
       "tagline": "Very long context — built for reading long documents",
-      "free": "Web and app are free, with a 2-million-character context window and document parsing.",
+      "free": "Web and app offer free chat and document parsing; see the dated record for context limits and advanced-feature allowances.",
       "how": "Sign up with a phone number on the site or in the app.",
       "limits": {
         "quota": "The official help centre is explicit: the flagship chat model (currently K2.6) is free for every user and **consumes no membership quota**; single-turn context runs to roughly 128K tokens (officially about 50,000–60,000 Chinese characters). The free tier has an official name in Kimi's membership system — **Adagio** — above which sit Andante (¥49) and Moderato (¥99). Membership quota is a separate pool, and **every advanced feature draws on that one pool** (the Agent line, deep research, PPT, documents, spreadsheets, Kimi Code, Kimi Work, Kimi Claw and so on), metered by actual token consumption rather than allotted per feature.",
@@ -1247,10 +1248,19 @@
       "free": "The free personal plan includes unlimited code completion plus an allowance of premium-model chat.",
       "how": "Download the app or install the VS Code extension, then sign up by email.",
       "limits": {
-        "quota": "The free plan includes 25 prompt credits a month (stated in official docs); Tab completions are free. Note: Windsurf is now part of Cognition (Devin) — official pricing and docs pages carry Devin branding.",
-        "wall": "After the month's 25 credits, Cascade/Agent features are limited — top up at $10 per 250 credits or subscribe; completions keep working.",
-        "source": "Windsurf/Devin official pricing page and docs (windsurf.com / docs.windsurf.com, verified via search-index quotes)",
-        "checked": "2026-08-03"
+        "quota": "The free plan includes 25 prompt credits a month (stated in official docs); Tab completions are free. Note: Windsurf is now part of Cognition (Devin) — official pricing and docs pages carry Devin branding. ⚠ The official pricing page fetched directly by the runner on 2026-09-20 no longer states a credit count: the Free tier reads a light quota to code with agents, limited model availability, unlimited inline edits and Tab completions — the 25 credits figure is the 08-03 official-docs wording. The two statements come from different official pages on different dates; we keep both rather than choose for you, pending the next docs re-check.",
+        "wall": "After the month's 25 credits, Cascade/Agent features are limited — top up at $10 per 250 credits or subscribe; completions keep working. (On 2026-09-20 the pricing page phrases top-ups as purchase extra usage at API pricing; $10 per 250 credits is likewise the 08-03 docs wording.)",
+        "source": "Windsurf/Devin official pricing page and docs (windsurf.com / docs.windsurf.com, verified via search-index quotes); https://windsurf.com/pricing (fetched directly by the runner probe 2026-09-20)",
+        "checked": "2026-08-03",
+        "paid": {
+          "tiers": "The Individual section of the official pricing page lists three tiers that day: Free $0 (a light quota for agent coding, limited model availability, unlimited inline edits and Tab completions); Pro $20 per month (increased quotas including frontier models from OpenAI, Claude, Gemini and SpaceXAI plus leading open-source models, full model availability, free use of SWE-2, free in Devin Desktop and CLI through 2026-10-10, access to cloud agents via Devin Cloud, extra usage purchasable at API pricing); Max $200 per month (marked NEW: everything in Pro plus significantly higher quotas). Team plans sit on the same page, but the fetched text stops at the TEAM PLANS heading, so we publish no team price. This entry rests on the runner probe's 700-byte excerpt only — the sandbox fetch failed (connection reset) — so there is no FAQ and no annual pricing here",
+          "unit_cost": "The page gives no numeric quota that day (no credit count, no message count); the gap between Pro and Max is described only as significantly higher. Usage beyond the quota is bought at API pricing, at rates not in the fetched text. Whether the 08-03 docs figure of $10 per 250 credits still applies, the pricing page no longer says",
+          "quota_included": "true — all three tiers include a quota, but its size is described that day only with the words light, increased and significantly higher, with no numbers",
+          "rollover": "The fetched pricing text says nothing about rollover, so we state nothing",
+          "effective": "2026-09-20 (= the runner verification date; the page's only dated clause that day is SWE-2 free in Devin Desktop/CLI through 2026-10-10)",
+          "source": "https://windsurf.com/pricing (official pricing page, fetched by the runner probe 2026-09-20, 700-byte excerpt; sandbox fetch on 2026-09-21 failed)",
+          "checked": "2026-09-20"
+        }
       }
     },
     "jimeng": {
@@ -1372,10 +1382,19 @@
       "free": "New users get a one-time grant of 125 credits to try the Gen series of video models.",
       "how": "Email signup. Requires access outside mainland China.",
       "limits": {
-        "quota": "The free plan is a one-time deposit of 125 credits: it never expires, but it also never renews once spent (stated plainly on the official help-center page — note this is NOT \"125 per month\"); model access is also narrower than paid tiers.",
+        "quota": "The free plan is a one-time deposit of 125 credits: it never expires, but it also never renews once spent (stated plainly on the official help-center page — note this is NOT \"125 per month\"); model access is also narrower than paid tiers. Re-checked against the official pricing page on 2026-09-21 and consistent: Free $0/month, 125 credits deposited once and never expiring, with 5GB of asset storage.",
         "wall": "Once the 125 credits are gone, the free plan cannot buy more — continuing requires Standard or above; the free tier is explicitly positioned as a pre-purchase trial. **On licensing this is the most permissive tier we have verified, and it is precisely what breaks the \"no watermark = commercial rights\" equation**: Runway states that users on every plan — Free included — retain ownership and all rights to what they upload and generate, and **hold commercial rights**. The official page enumerates the cases: monetised and non-monetised YouTube uploads, Reels/TikTok and other short-form video, social posts, film-festival entries, product advertising. Free output does carry a Runway watermark and removing it needs Standard or above — but **the watermark is only an appearance; the commercial rights are already granted on the free plan**.",
-        "source": "Runway Help Center (\"Free plan details\", \"Usage rights\", \"Can I use the content I made in Runway for commercial purposes?\") and Terms of Use (help.runwayml.com / runwayml.com/terms-of-use, verified via search-index quotes)",
-        "checked": "2026-08-06"
+        "source": "Runway Help Center (\"Free plan details\", \"Usage rights\", \"Can I use the content I made in Runway for commercial purposes?\") and Terms of Use (help.runwayml.com / runwayml.com/terms-of-use, verified via search-index quotes); official pricing page https://runwayml.com/pricing (fetched directly 2026-09-21, FAQ and model comparison table included)",
+        "checked": "2026-09-21",
+        "paid": {
+          "tiers": "The Individual tab of the official pricing page lists four tiers that day (monthly price / annual price per month, annual advertised as 20% off): Free $0; Standard $15 per month ($12 annual): 625 credits a month — Runway's own conversion is 52 seconds of Gen-4.5, 104 seconds of Gen-4 Turbo or 78 Gen-4 images at 1080p — all video and image models, 5 parallel generations, up to 3 projects, no watermarks, 4K upscaling, 20GB storage; Pro $35 per month ($28 annual, marked Popular): 2250 credits a month (187 s Gen-4.5 / 375 s Gen-4 Turbo / 281 Gen-4 images), 15 parallel generations, up to 5 projects, 1 Brand Kit, 1 custom voice clone, top-up credits anytime, Runway MCP, unlimited 4K video upscaling, 100GB; Max $95 per month ($76 annual, marked Best value): 9500 credits a month (791 s Gen-4.5 / 1900 s Gen-4 Turbo / 1187 Gen-4 images / 475 Nano Banana Pro 2K images), 20 parallel generations, unused credits roll over one month, up to 10 projects, 3 Brand Kits, 3 voice clones, HDR/ProRes/image-sequence output, 500GB. Team & Enterprise and API are separate tabs and were not fetched",
+          "unit_cost": "The unit is the credit, charged by model, duration and resolution. Stated in the FAQ and comparison table: Gen-4.5 costs 12 credits per second (60 credits per 5 s), Aleph 2.0 140 credits per 5 s, Seedance 2.0 Pro 1080p 160 credits per 4 s, Seedance 2.0 Fast 116 credits per 4 s, Gen-4 Image 1080p 8 credits per image, Gen-4 Image Turbo 2 credits per image, Nano Banana Pro 2K 20 credits per image, Seed Audio 15 credits per minute, text to speech 1 credit per 50 characters. Extra credits are sold from 1,000 credits upward; the top-up price was not in the fetched text",
+          "quota_included": "true — every paid tier includes monthly credits (625 / 2250 / 9500); the free plan is a one-time 125",
+          "rollover": "Stated in the official FAQ: Standard and Pro monthly credits do not roll over and reset within 24 hours of the billing date; Max rolls over up to one month of unused credits; purchased credits never expire; the free plan's 125 credits never expire either",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same page on 2026-09-19)",
+          "source": "https://runwayml.com/pricing (official pricing page, Individual tab, fetched 2026-09-21, FAQ and model comparison table included)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "gamma": {
@@ -1571,19 +1590,19 @@
       "free": "The free tier includes an allowance of premium-model requests plus unlimited basic completion.",
       "how": "Download from the site and sign up by email. Some models require access outside mainland China.",
       "limits": {
-        "quota": "The Hobby tier is real and needs no card: Agent, Chat and Tab completions (Auto model) with officially \"limited\" usage — **current official pages publish no figures**. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
-        "wall": "Hitting the unpublished ceiling throttles Agent/completions until you upgrade to Pro ($20/month); your account settings page shows the actual remaining allowance.",
-        "source": "Cursor official pricing page and docs (cursor.com, verified via search-index quotes; no current official free-tier figures — the old numbers are stale)",
-        "checked": "2026-08-03",
+        "quota": "The Hobby free tier is real and needs no card. On 2026-09-25 and again on 2026-09-28 the official pricing page lists exactly three things under Hobby: no credit card required, Limited Agent requests, and access to Composer — **still no figures**. Chat and Tab completion (Auto model), which we recorded on 08-03, do not appear in the free-tier list this time; the page does not say they were removed, so we only repeat what it says. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
+        "wall": "Hitting the unpublished ceiling limits Agent until you upgrade to an Individual plan (the same column switches between Pro, Pro+ and Ultra; the static text that day shows only Pro at $20/month). The official FAQ: every plan includes an amount of model usage, and on-demand usage lets you keep going after it is consumed, billed in arrears; your account settings page shows the actual remaining allowance.",
+        "source": "Cursor official pricing page https://cursor.com/pricing (re-fetched directly 2026-09-28; the three Hobby items are word-for-word the same as on 09-25; still no official free-tier figures — the old numbers are stale)",
+        "checked": "2026-09-28",
         "paid": {
-          "tiers": "Hobby free; Pro $20/mo (~$20 usage pool at API prices + Auto pool); Pro+ $60/mo (~$70 pool); Ultra $200/mo (~$400 pool); Teams $40/user/mo",
-          "unit_cost": "Post-June-2025 billing: model usage metered at provider API prices against a dollar pool; two readings for Ultra: fixed $400 pool (docs) vs '20x Pro usage' (marketing)",
+          "tiers": "Hobby free; Pro $20/mo; Pro Plus (also written Pro+) $60/mo; Ultra $200/mo; Teams has two seat types: Standard $40/user/mo and Premium $120/user/mo (Premium gets 5x the Standard Agent limits); Enterprise custom. There is also a Start plan for developers in India (no price in the docs; covers only the Cursor Models pool). Prices from the pricing page structured data and the models-and-pricing docs, both fetched 2026-09-28",
+          "unit_cost": "Official docs 2026-09-28: Pro / Pro Plus / Ultra include two usage pools: (1) Cursor Models (Grok 4.7/4.6/4.5 and Composer 2.5, \"significantly more included usage\"); (2) Other Models (third-party models charged at that model API price). Both reset monthly. On Teams/Enterprise, third-party requests add a Cursor Token Rate of $0.25 per million tokens on top of API pricing (included, on-demand and BYOK usage); first-party Grok and Composer are exempt. **The official pages no longer state a dollar amount per pool**; our earlier ~$20/$70/$400 figures are kept under prev",
           "quota_included": "partial — pool included; once exhausted, on-demand pay-as-you-go at API rates or upgrade; heavy users routinely exceed the sticker price",
-          "rollover": "Pool resets each billing month, no rollover",
-          "effective": "Billing overhaul June 2025; prices verified 2026-08-15",
-          "prev": "Pre-June-2025 Pro = 500 fast premium requests/mo for $20; June-July 2025 pricing backlash ended in apology and refunds",
-          "source": "https://cursor.com/docs/models-and-pricing (official, proxy-blocked; cross-checked via vantage.sh [unofficial])",
-          "checked": "2026-08-15"
+          "rollover": "Both pools reset each billing month, no rollover (official docs 2026-09-28)",
+          "effective": "Billing overhaul June 2025; prices verified 2026-08-15; re-checked 2026-09-28: billing is now split into Cursor Models / Other Models pools, and Teams gained a Premium seat",
+          "prev": "Pre-June-2025 Pro = 500 fast premium requests/mo for $20; June-July 2025 pricing backlash ended in apology and refunds; the pool sizes we recorded on 2026-08-15 (Pro ~$20, Pro+ ~$70, Ultra ~$400 at API prices) came from unofficial cross-checks such as vantage.sh; the official docs no longer give amounts as of 2026-09-28, so they are kept here as history only",
+          "source": "https://cursor.com/pricing and https://cursor.com/docs/models-and-pricing (official, both fetched directly 2026-09-28)",
+          "checked": "2026-09-28"
         }
       }
     },
@@ -1985,10 +2004,19 @@
       "free": "The free version translates text and a limited number of documents, at noticeably better quality than most free translators.",
       "how": "Use the web version directly — text translation needs no account.",
       "limits": {
-        "quota": "The developer API Free tier covers 500,000 characters per month with no daily cap — translation stops for the month once it is used up (stated in official docs). The free web translator has a per-translation character limit, but no official number is published; long texts must be split.",
+        "quota": "The developer API Free tier covers 500,000 characters per month with no daily cap — translation stops for the month once it is used up (stated in official docs). The free web translator has a per-translation character limit, but no official number is published; long texts must be split. On 2026-09-21 the comparison table on the official pricing page added the monthly figures for the free web/app version: 50,000 characters per user per month, 1 file translation per month, 1 saved translation (the per-paste character limit is still not published).",
         "wall": "The API stops translating after the monthly 500k characters and resets next month; the web version truncates long texts — paste in chunks or upgrade to Pro.",
-        "source": "DeepL official developer docs and Help Center (verified via search-index quotes)",
-        "checked": "2026-08-02"
+        "source": "DeepL official developer docs and Help Center (verified via search-index quotes); official pricing page https://www.deepl.com/pricing (fetched directly 2026-09-21; the free 50,000 characters/month and the paid tiers come from its comparison table)",
+        "checked": "2026-09-21",
+        "paid": {
+          "tiers": "This is the DeepL Pro subscription for the web/app translator, not API pricing — API and Voice are separate tabs on the pricing page and were not in the fetched text. On the Germany (EUR, VAT included) page with annual billing, four tiers that day: Individual €7.49 per month (300,000 characters per month, 3 file translations per month, 1 glossary, 1 saved translation, full-page translation, no training on your data); Team €24.99 per user per month (1,000,000 characters per user per month, 20 file translations per month, batch file translation, 5 shared style rule lists, 5 glossaries, 10 saved translations, team administration, analytics, SSO); Business €49.99 per user per month (unlimited characters under a fair-usage policy, 100 file translations per month, translation memory, SCIM provisioning, 99.0% availability); Enterprise, custom pricing (bring your own key, 99.9% availability, dedicated account team). Individual and Team offer a 30-day free trial. Monthly billing is only described as annual saves 16%; the monthly amounts were not in the fetched text. Prices are shown per country and currency, so other regions should read their own local page. Write Pro add-on: €6.99 per user per month, billed annually",
+          "unit_cost": "The unit is characters per user per month (300k on Individual, 1M on Team, unlimited with a fair-usage policy on Business), with file translations counted separately per month (3 / 20 / 100). The page sells no overage characters — past the allowance you wait for next month or move up a tier; there is no character top-up pack on this page. The API is billed per character on its own schedule and is not mixed in here",
+          "quota_included": "true — each tier states its monthly characters and file count; the unlimited wording on Business and Enterprise carries footnote 2, a fair-usage policy",
+          "rollover": "The official pricing page says nothing about carrying unused characters into the next month; per month means a monthly reset, and we infer nothing beyond that",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same euro prices on 2026-09-19)",
+          "source": "https://www.deepl.com/pricing (official pricing page, Germany/EUR, annual billing view, fetched 2026-09-21)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "miaobi": {
@@ -2107,7 +2135,7 @@
     "grok": {
       "name": "Grok (xAI)",
       "tagline": "xAI's model, with a usable free tier",
-      "free": "The free tier gives a daily number of chats and image generations.",
+      "free": "A free tier is available; our record has no official fixed message count. Web/app allowances and API quotas are separate.",
       "how": "Sign in with an X account. Requires access outside mainland China.",
       "limits": {
         "quota": "The free tier works, but **xAI publishes no message count** — the x.ai pricing page and the official Grok FAQ only say Grok is free to start, with no per-day or per-week figure for the free tier. Every \"X messages per Y hours\" number circulating online has no official source, so we don't repeat it. What *is* documented is the **shape** of the allowance: paid SuperGrok plans draw from **a single weekly usage pool** shared across products, rather than a separate ration per feature. One common mix-up to avoid: **the rate limits you can find in xAI's docs (RPS/TPM) are per-team API quotas, not the web and app free allowance** — the two cannot be substituted, and inferring a daily chat count from an API RPS figure produces a meaningless number.",
@@ -2242,11 +2270,20 @@
       "free": "Daily token allowance for generating and running complete projects in the browser.",
       "how": "Sign in with GitHub. Requires access outside mainland China.",
       "limits": {
-        "quota": "The free plan has a double cap (stated in official support docs): up to 300,000 tokens a day within 1,000,000 tokens a month — note the \"150K/day\" figure circulating in guides is outdated.",
+        "quota": "The free plan has a double cap (stated in official support docs): up to 300,000 tokens a day within 1,000,000 tokens a month — note the \"150K/day\" figure circulating in guides is outdated. Re-checked against the official pricing page on 2026-09-21 and unchanged: Free $0 still reads 300K tokens daily and 1M tokens monthly; the free plan also carries Bolt branding on sites, a 10MB file-upload limit, hosting up to 333k web requests and unlimited databases.",
         "wall": "Hit the daily cap and you wait for tomorrow; hit the monthly cap and you wait for next month or upgrade (bigger token pools — rollover rules on the official page); interrupted generations keep the project intact for manual continuation.",
         "cycle": "daily",
-        "source": "Bolt official support docs (Tokens article) and pricing page (support.bolt.new / bolt.new, verified via search-index quotes)",
-        "checked": "2026-08-03"
+        "source": "Bolt official support docs (Tokens article, support.bolt.new, verified via search-index quotes) and the official pricing page https://bolt.new/pricing (fetched directly 2026-09-21, FAQ included)",
+        "checked": "2026-09-21",
+        "paid": {
+          "tiers": "The official pricing page (monthly billing) lists four tiers that day: Free $0; Pro $25 per month (no daily token limit, starting at 10M tokens per month, no Bolt branding, private site sharing, 100MB file uploads, hosting up to 1M web requests, unused tokens roll over, custom domains, SEO boosting, expanded database capacity with a choice of provider, AI image editing); Teams $30 per month per member (marked Popular: everything in Pro plus centralised billing, team-level access and user provisioning, private NPM registries, per-package Design System prompts; the FAQ says each paid member gets their own monthly token allotment and tokens are not shared); Enterprise, custom pricing (SSO, audit logs, dedicated account manager, 24/7 support, SLAs). Yearly billing is advertised as saving up to 28%, but the yearly amounts were not in the fetched text. Pro reads start at 10M tokens, meaning the page has a selector for larger token tiers — we captured only the $25 entry tier and publish no price for the larger ones",
+          "unit_cost": "The unit is the AI token. Bolt's own FAQ says most usage goes to syncing your project's file system to the model, so a bigger project burns more tokens per message — how long 10M tokens lasts depends on project size, not message count. The pricing page publishes no per-token price and no price for buying tokens beyond a tier's allotment",
+          "quota_included": "true — Pro starts with 10M tokens a month included, and on Teams every paid member has their own monthly allotment (explicitly not shared, per the FAQ); the free plan is 300K per day within 1M per month",
+          "rollover": "Stated in the official FAQ: since 2025-07-01, tokens from a paid subscription roll over for one additional month, so they stay valid for up to two months in total, and an active paid subscription is required to use rolled-over tokens. Free-plan tokens do not roll over (daily cap resets next day, monthly cap next month)",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same page on 2026-09-18; the rollover rule is dated 2025-07-01 by Bolt itself)",
+          "source": "https://bolt.new/pricing (official pricing page, fetched 2026-09-21, FAQ included)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "lovable": {
@@ -2271,7 +2308,16 @@
         "quota": "The Starter (free) plan: Agent usage runs on daily credit grants with a monthly cap (mechanism stated in official docs; amounts unpublished, so we don't repeat third-party figures); monthly publishing credits allow 1 free published app.",
         "wall": "The real trap isn't the quota: **free published apps go offline automatically after 30 days** (stated plainly in official docs) — using one as a long-lived portfolio piece or client demo will burn you; staying online needs a paid plan.",
         "source": "Replit official docs (Starter Plan) and official blog (docs.replit.com / replit.com, verified via search-index quotes; credit amounts unpublished)",
-        "checked": "2026-08-03"
+        "checked": "2026-08-03",
+        "paid": {
+          "tiers": "The official pricing page shows only three cards that day and no free-plan card (the free Starter rules above come from the official docs): Core $20 per month ($18 per month billed annually: up to 30 hours of chat on Free Mode, up to 60 projects on Free Mode, $20 towards the most powerful models, Plan mode, unlimited workspaces); Pro $100 per month ($90 billed annually: 10 parallel agents, premium support, more Free Mode usage, $100 towards the most powerful models, up to 15 collaborators, up to 50 viewers, database rollback up to 28 days); Enterprise, custom pricing (custom seat limits, SSO/SAML, advanced privacy controls, single-tenant environments, static outbound IPs). Annual billing is advertised as up to 10% off; prices exclude tax",
+          "unit_cost": "The unit is a dollar allowance: Core includes $20 a month and Pro $100 a month towards the most powerful models, with Free Mode metered separately in hours and projects. The FAQ has entries for what Effort-Based Pricing (pay-as-you-go) is and what happens when credits run out, but the answers were not in the fetched text, so we publish no overage rate; the page itself notes the Agent is probabilistic and may make mistakes",
+          "quota_included": "true — what the subscription includes is a dollar allowance ($20 / $100), not a fixed number of runs; past it you move to pay-as-you-go per the FAQ, at a rate we did not capture",
+          "rollover": "The official pricing page does not say whether the monthly dollar allowance carries over, and we infer nothing",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same prices on 2026-09-19)",
+          "source": "https://replit.com/pricing (official pricing page, fetched 2026-09-21)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "codebuddy": {
@@ -2808,10 +2854,19 @@
       "free": "Open source and free to self-host; the cloud version has a free tier. Good for company knowledge bases.",
       "how": "Self-host it or sign up for the cloud version. Reachable from China.",
       "limits": {
-        "quota": "The open-source community edition is free to self-host with all core features (agent builder, workflows, knowledge base). The cloud free tier meters AI credits and knowledge-base indexes — official docs confirm both meters exist, but no free-tier figures appear in verifiable quotes, so we don't guess.",
+        "quota": "The open-source community edition is free to self-host with all core features (agent builder, workflows, knowledge base). The cloud free tier meters AI credits and knowledge-base indexes — official docs confirm both meters exist, but no free-tier figures appear in verifiable quotes, so we don't guess — on 2026-09-21 the official pricing page (fastgpt.cn/price) was fetched directly and does publish the free-tier numbers: ¥0/month, 100 AI credits, 600 knowledge-base index groups, 1 team member, 10 agents, 3 knowledge bases, 30 days of chat history, 30 QPM (on 08-04 we could only confirm the two meters existed; the figures are now filled in).",
         "wall": "The harshest clause on the cloud free tier is data, not quota: knowledge bases are wiped after 30 days without login. Exceeding the index limit blocks new or updated content, and when a paid plan lapses it reverts to free and clears AI credits. Self-host if the data must persist.",
-        "source": "FastGPT official docs and pricing page (fastgpt.cn / doc.tryfastgpt.ai, verified via search-index quotes; free-tier figures not officially stated)",
-        "checked": "2026-08-04"
+        "source": "FastGPT official pricing page https://fastgpt.cn/price (fetched directly 2026-09-21; free and paid figures come from that page) and official docs (doc.tryfastgpt.ai, verified via search-index quotes)",
+        "checked": "2026-09-21",
+        "paid": {
+          "tiers": "The official pricing page (Cloud, monthly) lists four tiers that day: Free ¥0/month; Basic ¥99/month (4000 AI credits, 6000 knowledge-base index groups, 5 team members, 50 agents, 30 knowledge bases, 180 days of chat history, 300 QPM, site sync up to 500 pages, 48-hour ticket response); Advanced ¥599/month (marked most popular: 25000 AI credits, 36000 index groups, 50 team members, 200 agents, 100 knowledge bases, 360 days of chat history, 720 days of team audit log, 1500 QPM, site sync up to 2000 pages, 24-hour ticket response, 3 app filings); Custom, priced on request via sales. Annual billing is described as pay for 10 months, use for a year. A separate private-deployment tab exists; its prices were not in the fetched text, so we do not repeat them",
+          "unit_cost": "The units are AI credits and knowledge-base index groups, sold only as tier bundles — the page gives no per-credit price. How many credits one chat costs depends on the model; the FAQ lists entries for what AI credits are and whether extra resource packs stack, but the answers were not expanded in the fetched text, so we publish no top-up price",
+          "quota_included": "true — every tier states the monthly AI credits and index groups it includes, and model calls do not require your own key; past the allowance you wait for next month or buy an extra resource pack (price not captured)",
+          "rollover": "The pricing-page FAQ has an entry asking whether AI credits expire, but the answer was not in the fetched text, so we state no rollover rule; the previously verified docs say a lapsed paid plan reverts to free and clears AI credits",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same figures on 2026-09-18)",
+          "source": "https://fastgpt.cn/price (official pricing page, fetched 2026-09-21; the /pricing path returns 404, prices live at /price)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "yuanqi": {
@@ -3035,10 +3090,19 @@
       "free": "MIT-licensed with a free desktop app: drop in PDFs and documents for a local RAG knowledge base, wired to local models or any API.",
       "how": "Download the desktop app, or self-host via Docker.",
       "limits": {
-        "quota": "The desktop app is MIT-licensed and entirely free, described officially as needing **no account, no API key and having no token limits**, running locally on macOS, Windows and Linux. The cloud edition is hosted by the team on isolated AWS instances for trials or scale-up; **its pricing and usage ceilings aren't stated on any verifiable official page**, so we publish no figure.",
+        "quota": "The desktop app is MIT-licensed and entirely free, described officially as needing **no account, no API key and having no token limits**, running locally on macOS, Windows and Linux; the official pricing page also states that self-hosting with Docker is free. The cloud edition is hosted by the team on isolated AWS instances for trials or scale-up; **its prices were fetched directly from the official /pricing page on 2026-09-21 (Basic $50/month, Pro $99/month — see paid tiers), but its usage ceilings are still not stated on any verifiable official page**, so we publish no allowance figure.",
         "wall": "The desktop app has no quota wall — capability depends on the model you attach and your own hardware (same shape as Ollama and LM Studio). Multi-user collaboration or managed hosting means the cloud edition, priced per the official cloud page.",
-        "source": "AnythingLLM site and docs (anythingllm.com, docs.anythingllm.com — verified via search-index quotes; cloud allowances are not officially stated)",
-        "checked": "2026-08-04"
+        "source": "AnythingLLM site and docs (anythingllm.com, docs.anythingllm.com — verified via search-index quotes); official pricing page https://anythingllm.com/pricing (fetched directly 2026-09-21; cloud prices come from it, usage ceilings are not on it)",
+        "checked": "2026-09-21",
+        "paid": {
+          "tiers": "The official pricing page lists three Cloud plans that day, while the desktop app and Docker self-hosting stay free: Basic $50 per month (for individuals and small teams: private instance, custom subdomain, RAG and agents out of the box, just bring an LLM API key); Pro $99 per month (for startups: private instance, priority resources, suited to large teams, 72-hour support SLA); Enterprise, contact for a quote (on-premise deployment, custom SLA, custom integrations, SSO and RBAC). The page shows no annual price, no usage ceiling and no seat count — none of the three tiers says how many users it covers; multi-user capability is described in the feature section (tenant isolation, admin controls, white-labeling)",
+          "unit_cost": "The cloud plans sell a hosted instance, not model inference: Basic explicitly says bring your own LLM API key, so model costs are paid to your provider at list price on top (as with the desktop app, the free tiers in this site's API category can plug in). Pro does not say whether inference is included, and we infer nothing. There is no per-usage rate, only the monthly instance fee",
+          "quota_included": "false — the subscription buys the instance and its operation; Basic explicitly requires your own key, so token spend is not inside the $50; for Pro the vendor does not say",
+          "rollover": "Not applicable: a monthly instance fee has no allowance to carry over",
+          "effective": "2026-09-21 (= the verification date, fetched directly from the official pricing page; the runner probe read the same page the same day)",
+          "source": "https://anythingllm.com/pricing (official pricing page, fetched 2026-09-21)",
+          "checked": "2026-09-21"
+        }
       }
     },
     "comfyui": {
@@ -3451,6 +3515,50 @@
         "wall": "There is no usage wall, but two uncertainties are worth knowing: the free terms are tied to the alpha-preview Binary Preview Terms and may change once the preview ends, and the vendor describes the project as public alpha with breaking changes expected. macOS and Linux only for now.",
         "source": "The ante.run and antigma.ai official sites plus the AntigmaLabs/ante-preview README on GitHub (verified through search-index citations; the pages were not opened directly because the egress proxy blocks vendor domains)",
         "checked": "2026-08-17"
+      }
+    },
+    "kiro": {
+      "name": "Kiro",
+      "tagline": "An AI IDE and coding agent with vibe and spec modes — the perpetual free tier gives 50 credits a month",
+      "free": "The perpetual Kiro Free tier: 50 credits a month, with open-weight models and Claude Sonnet 4.5 (rate-limited).",
+      "how": "Download the Kiro IDE (or use the Kiro CLI or the web app) and sign in with a social login or AWS Builder ID to start on the free tier.",
+      "limits": {
+        "quota": "The perpetual Kiro Free tier: 50 credits a month. Free users who signed up with a social login or AWS Builder ID get Claude Sonnet 4.5 and open-weight models (Kiro names Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.1), subject to rate limits. A credit is a unit of work per prompt: Kiro says a simple prompt can cost less than 1 credit, a complex one such as executing a spec task usually costs more, and different models consume at different rates — so 50 credits is not 50 questions.",
+        "wall": "The allowance resets each billing month and unused credits do not roll over. Add-on credits ($0.04 each) are listed only under the paid plans, so going further means upgrading; paid plans add premium models including Auto, Claude Sonnet 5 and Claude Opus 5 (not every model is available in every country or region). A subscription may be used in the Kiro IDE, Kiro CLI, Kiro on the web, Kiro Crew, ACP-compatible IDEs and development automation such as CI/CD reviews; routing requests through third-party automation harnesses such as OpenClaw is explicitly not permitted.",
+        "source": "Kiro official pricing page https://kiro.dev/pricing/ (fetched directly 2026-09-25)",
+        "checked": "2026-09-25",
+        "cycle": "monthly",
+        "paid": {
+          "tiers": "Five tiers on the official pricing page that day: Kiro Free $0 (50 credits a month); Pro $20 per user per month (1,000 credits); Pro+ $40 per user per month (2,000 credits); Pro Max $100 per user per month (5,000 credits); Power $200 per user per month (10,000 credits); all four paid tiers can buy add-on credits, for teams of up to 500. Enterprise (centralised billing, SSO, usage analytics, enterprise security controls) is contact-sales and billed through AWS. The first upgrade to any paid plan via social login or AWS Builder ID credits $20 toward the subscription (not via AWS Identity Center). Prices exclude tax",
+          "unit_cost": "Add-on credits cost $0.04 each, charged when you buy a pack; Enterprise can enable overages billed at $0.04 per credit at month-end. Kiro publishes no per-credit price for the credits included in each tier, and we do not divide one out",
+          "quota_included": "true — every tier includes a fixed monthly credit allowance; paid tiers can top up at $0.04 per credit",
+          "rollover": "Resets each billing month; unused credits do not roll over (the official FAQ: Unused credits do not roll over to the next month)",
+          "effective": "2026-09-25 (= the verification date, fetched directly from the official pricing page)",
+          "source": "https://kiro.dev/pricing/ (official pricing page, fetched directly 2026-09-25)",
+          "checked": "2026-09-25"
+        }
+      }
+    },
+    "codex": {
+      "name": "OpenAI Codex",
+      "tagline": "OpenAI's coding agent — desktop app, CLI, IDE extension and web — included in every ChatGPT plan",
+      "free": "ChatGPT Free includes Codex for quick coding tasks in the desktop app (officially \"subject to rollout\"); OpenAI publishes no usage figure for the free tier.",
+      "how": "Sign in to the Codex desktop app with a ChatGPT account; the CLI, IDE extension, web and iOS come with Plus and above, or use an API key billed at API prices.",
+      "limits": {
+        "quota": "ChatGPT Free ($0) includes Codex, pitched officially as a way to \"explore Codex capabilities on quick coding tasks\": GPT-6 Luna at Standard speed in the desktop app, marked subject to rollout (not necessarily available to everyone yet); image generation is not available on Free. **The official usage table lists Plus and above only — there is no Free column** — so OpenAI has not published how many messages the free tier allows per five hours, and we do not estimate it.",
+        "wall": "OpenAI says usage depends on the model, the size and complexity of the task and whether it runs locally or in the cloud; it publishes only estimated ranges of local messages per five-hour period, not fixed limits, and weekly limits may also apply — the usage dashboard shows the real remainder. Plus and Pro users who hit the limit can buy ChatGPT credits, and anyone can run extra local chats with an API key at standard API rates. Codex shares its usage with ChatGPT Work. GPT-5.5 retires from ChatGPT, ChatGPT Work and Codex on all plans on 2026-10-14 (the API is not affected).",
+        "source": "OpenAI Codex official pricing page https://developers.openai.com/codex/pricing (fetched directly 2026-09-25)",
+        "checked": "2026-09-25",
+        "cycle": "unknown",
+        "paid": {
+          "tiers": "On the official pricing page that day: Free $0; Go $8/month (lightweight coding tasks, GPT-6 Luna at Standard speed in the desktop app, subject to rollout); Plus $20/month (web, CLI, IDE extension and iOS, cloud integrations such as automatic code review and Slack, GPT-6 Sol and GPT-6 Luna, extendable with ChatGPT credits); Pro from $100/month (5x or 20x the Plus usage); Business $20 per user per month (2+ users, billed annually; $25 per user per month billed monthly); Enterprise and Edu contact sales. An API key is also an option: the CLI, SDK and IDE extension, no cloud features, billed at API prices",
+          "unit_cost": "Subscription tiers publish no per-message price, only estimated ranges of local messages per five hours — for example Plus gets roughly 350–3,000 with GPT-6 Luna and 15–150 with GPT-6 Sol, with higher ranges listed separately for Pro 5x and Pro 20x. API keys are billed at standard API rates",
+          "quota_included": "true — each tier includes a usage allowance counted per five-hour period (weekly limits may also apply); Plus and Pro can buy ChatGPT credits past it",
+          "rollover": "The official pricing page does not say whether unused usage carries over; the allowance is counted per five-hour period, and weekly limits may also apply",
+          "effective": "2026-09-25 (= the verification date, fetched directly from the official pricing page)",
+          "source": "https://developers.openai.com/codex/pricing (official pricing page, fetched directly 2026-09-25)",
+          "checked": "2026-09-25"
+        }
       }
     }
   },

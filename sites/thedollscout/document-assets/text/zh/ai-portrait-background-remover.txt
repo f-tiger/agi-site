@@ -1,0 +1,30 @@
+# AI 人像抠图
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+支持静态 JPEG、PNG、WebP，最大 10 MiB、2000 万像素。输出最长边不超过 1600 像素。适用于人物，不是通用商品、宠物或场景抠图。发丝、透明物体和复杂光照可能处理不佳。
+
+MODNet 预测人物前景的透明度蒙版，将蒙版应用到缩放后的人像并导出透明 PNG。本工具使用量化模型，照片始终在本机处理。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+可以给商品图片去背景吗？
+
+该模型针对人像抠图训练。纯商品、动物或复杂场景可能产生较差的蒙版。建议用于人物，并检查导出的边缘。
+
+输出图片是什么分辨率？
+
+最长边最多 1600 像素，小图片不会放大。导出格式是带透明背景的 PNG。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet

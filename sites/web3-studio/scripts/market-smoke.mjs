@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {release} from '../release.generated.mjs';
+const base='https://web3.agiscorecard.com',request=(p,o={})=>fetch(base+p,{...o,redirect:'manual',signal:AbortSignal.timeout(25000)});
+for(const kind of ['market','briefs']){const r=await request('/api/'+kind);assert.equal(r.status,200);assert.equal(r.headers.get('cache-control'),'no-store');const d=await r.json();assert.equal(d.revision,release.revision);assert.equal(d.status,'fresh',kind+' must be actually connected');assert.ok(Date.now()-Date.parse(d.retrievedAt)<(kind==='market'?360000:3660000));if(kind==='market'){assert.deepEqual(d.quotes.map(x=>x.symbol),['BTC','ETH','USDC','USDT']);for(const q of d.quotes)assert.ok(Number.isFinite(q.price)&&q.price>0);}else assert.ok(d.sources.some(s=>s.status==='ok'));const html=await(await request('/'+kind+'.html?__probe=1')).text();assert.match(html,/data-source-state="fresh"/);assert.ok(!html.includes('Loading the source snapshot'));}
+const qa=await(await request('/api/growth?qa=1')).json(),before=qa.groups.filter(g=>g.site==='hub'&&g.page==='market'&&g.event==='cost_check'&&g.channel==='direct'&&g.campaign==='market').reduce((a,g)=>a+g.events,0);
+const v={id:randomUUID(),page:'market',channel:'direct',campaign:'market',event:'cost_check',qa:true,consent:true};
+for(let i=0;i<2;i++){const r=await request('/api/event',{method:'POST',headers:{Origin:base,'Content-Type':'application/json','User-Agent':'Web3-smoke'},body:JSON.stringify(v)});assert.equal(r.status,200);assert.equal((await r.json()).accepted,true);}
+const after=await(await request('/api/growth?qa=1')).json();assert.equal(after.groups.filter(g=>g.site==='hub'&&g.page==='market'&&g.event==='cost_check'&&g.channel==='direct'&&g.campaign==='market').reduce((a,g)=>a+g.events,0),before+1);
+const real=await(await request('/api/growth')).json();assert.equal(real.qa,false);assert.equal(real.outcomes.revenue,null);
+for(const p of ['/api/market?url=https://evil.example','/api/briefs?format=raw'])assert.equal((await request(p)).status,400);
+assert.match((await request('/updates.xml')).headers.get('Content-Type'),/application\/rss\+xml/);
+console.log(JSON.stringify({revision:release.revision,market:'connected',officialSources:'connected',eventWriteReadDedup:'passed',qaExcluded:true}));

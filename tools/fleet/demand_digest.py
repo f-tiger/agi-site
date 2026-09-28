@@ -32,10 +32,33 @@ def age_days(today, iso):
         return None
 
 
+def _veto_load(path):
+    """Tokens and '!'-exceptions of a site's category veto list, or None."""
+    if not os.path.exists(path):
+        return None
+    tokens, allow = [], []
+    for line in open(path, encoding="utf-8"):
+        line = line.split("#", 1)[0].strip().lower()
+        if line:
+            (allow if line.startswith("!") else tokens).append(line.lstrip("!"))
+    return tokens, allow
+
+
+def _veto_hit(q, veto):
+    s = " ".join(q.lower().replace("+", " ").split())
+    for a in veto[1]:
+        s = s.replace(a, " ")
+    return any(t in s for t in veto[0])
+
+
 def rising_for(site, today):
     """每个 seed 自带 fetched 时取它自己的;否则退到文件顶层。超过 10 天标 STALE。"""
     files = [f for f in glob.glob(os.path.join(ROOT, "sites", site, "**", "*rising*.json"), recursive=True)
              if "/node_modules/" not in f and "/dist/" not in f]
+    # A site that has taken a category off its shelves keeps its veto list in
+    # tools/storage_veto.txt (eco, 2026-09-27: 「后续记得不做储能品类」). Rows
+    # matching it are hidden here so the digest does not present them as topics.
+    veto = _veto_load(os.path.join(ROOT, "sites", site, "tools", "storage_veto.txt"))
     rows = []
     for f in files:
         d = load(f)
@@ -49,11 +72,159 @@ def rising_for(site, today):
                 a = age_days(today, when)
                 tag = "STALE" if (a is None or a > MAX_AGE) else f"{a}d"
                 rs = v.get("rising") if isinstance(v, dict) else None
+                hidden = 0
+                if isinstance(rs, list) and veto:
+                    kept = [r for r in rs if not _veto_hit(str(r.get("q", "")), veto)]
+                    hidden, rs = len(rs) - len(kept), kept
                 items = ", ".join(f"{r.get('q')} ({r.get('v')})" for r in rs[:4]) if isinstance(rs, list) and rs else "(空)"
+                if hidden:
+                    items += f" · 另 {hidden} 条储能词已隐藏(品类已下架,不作选题)"
                 rows.append(f"- [{tag}] **{seed}** → {items}")
         elif isinstance(seeds, list):
             rows.append(f"- 文件 {os.path.relpath(f, ROOT)}:列表形 {len(seeds)} 条(未细读)")
     return rows or ["- (无 rising 文件)"]
+
+
+SEASON_HORIZON = 42      # days: the peak MONTH has to begin within six weeks
+SEASON_STALE = 40        # the file refreshes monthly (eco-trends.yml); older = the refresh broke
+SEASON_FLOOR = 2.0       # below this peak (anchor scale) a term is too small to plan a page on
+_TRANS = str.maketrans({"ü": "ue", "ö": "oe", "ä": "ae", "ß": "ss"})
+
+
+def _title_index(site):
+    """{path: lowercased title + h1} for the site's German pages (not /en/, /it/)."""
+    import html as _h, re as _re
+    idx = {}
+    for p in glob.glob(os.path.join(ROOT, "sites", site, "site", "**", "*.html"), recursive=True):
+        rel = os.path.relpath(p, os.path.join(ROOT, "sites", site, "site"))
+        if rel.startswith(("en/", "it/")) or "workbench" in rel:
+            continue
+        try:
+            s = open(p, encoding="utf-8").read()
+        except Exception:
+            continue
+        t = _re.search(r"<title>(.*?)</title>", s, _re.S)
+        h = _re.search(r"<h1[^>]*>(.*?)</h1>", s, _re.S)
+        txt = (t.group(1) if t else "") + " " + _re.sub(r"<[^>]+>", " ", h.group(1) if h else "")
+        idx[rel.lower()] = _h.unescape(txt).lower()
+    return idx
+
+
+def _covered(term, idx):
+    """Pages whose title/h1 contains every word of the term, or whose slug
+    contains its transliteration (heizlüfter -> heizluefter). Title-level on
+    purpose: the question is whether a page is ABOUT this term, and the
+    2026-09-17 gap audit showed body-text matching answers a different one."""
+    ws = term.lower().split()
+    return [p for p, t in idx.items() if all(w in t or w.translate(_TRANS) in p for w in ws)]
+
+
+def season_calendar(site, today):
+    """Terms whose five-year peak month begins within SEASON_HORIZON days,
+    against how many of the site's German pages are titled for them.
+    Reads sites/<site>/data/seasonality-de.json (refreshed monthly) and the
+    settled decisions in season-verdicts.json. Empty for sites without it."""
+    f = os.path.join(ROOT, "sites", site, "data", "seasonality-de.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**季节日历**:seasonality-de.json 不可用({d['__error__']})"]
+    verdicts = (load(os.path.join(ROOT, "sites", site, "data", "season-verdicts.json")) or {}).get("verdicts") or {}
+    a = age_days(today, d.get("fetched", ""))
+    stale = " **STALE:月度刷新断了,查 eco-trends.yml**" if (a is None or a > SEASON_STALE) else ""
+    idx = _title_index(site)
+    rows = []
+    for r in d.get("terms", []):
+        m = r.get("peak_month")
+        if not isinstance(m, int):
+            continue
+        if m == today.month:
+            days = 0
+        else:
+            y = today.year + (1 if m < today.month else 0)
+            days = (dt.date(y, m, 1) - today).days
+        if days > SEASON_HORIZON:
+            continue
+        cov = _covered(r["term"], idx)
+        v = verdicts.get(r["term"])
+        if v:
+            status = f"已裁定:{v.get('verdict')}({v.get('date')})"
+        elif (r.get("peak") or 0) < SEASON_FLOOR:
+            status = f"量太小(峰值 <{SEASON_FLOOR})"
+        elif not cov:
+            status = "**未覆盖 · 待过三门**"
+        else:
+            status = f"已覆盖 {len(cov)} 页"
+        carried = f" (沿用 {r['carried_from']})" if r.get("carried_from") else ""
+        rows.append((days, -(r.get("peak") or 0), f"| {r['term']}{carried} | {r.get('peak')} | {m} 月 | "
+                     + ("本月" if days == 0 else f"{days} 天") + f" | {r.get('win_over_sep')} | {len(cov)} | {status} |"))
+    rows.sort()
+    out = [f"**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 {SEASON_HORIZON} 天内开始;"
+           f"数据 {d.get('fetched', '?')},{a} 天前,锚 {d.get('anchor')}{stale})"]
+    if not rows:
+        return out + ["- (未来 6 周没有进入峰值月的词)"]
+    out += ["| 词 | 峰值 | 峰值月 | 距峰值月 | 冬÷九月 | 标题覆盖页 | 状态 |", "|---|---|---|---|---|---|---|"]
+    out += [x[2] for x in rows]
+    out.append("读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;"
+               "过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,"
+               "新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。")
+    return out
+
+
+def expansion_queue(site):
+    """The site's standing expansion queue (sites/<site>/data/expansion-queue.json,
+    2026-09-24, owner: 「站点应该持续扩展」): counts by status and the next three
+    buildable items with the action each one still needs. The daily run builds
+    the first of them; this makes the queue visible to whoever reads the digest
+    before choosing a topic. Empty for sites without a queue."""
+    f = os.path.join(ROOT, "sites", site, "data", "expansion-queue.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**扩展队列**:expansion-queue.json 不可用({d['__error__']})"]
+    items = d.get("items") or []
+    counts = {}
+    for it in items:
+        counts[it.get("status")] = counts.get(it.get("status"), 0) + 1
+    ready = [it for it in items if it.get("status") == "queued" and not it.get("blocked_by")]
+    out = [f"**扩展队列**(更新 {d.get('updated', '?')};"
+           + " · ".join(f"{k} {v}" for k, v in sorted(counts.items()))
+           + (";**可建 <3,当天先补货**" if len(ready) < 3 else "") + ")"]
+    for it in ready[:3]:
+        out.append(f"- `{it.get('slug')}` — {it.get('working_title', '')}"
+                   + (f" · 待办:{str(it.get('next_action'))[:160]}" if it.get("next_action") else ""))
+    if not ready:
+        out.append("- (没有可建项:按季节日历补货,每个 SERP 裁定都写回队列)")
+    return out
+
+
+def deal_calendar(site, today):
+    """Next Amazon.de shopping events from sites/<site>/data/deal-calendar.json
+    (2026-09-24). An event that is close and still unannounced is the prompt to
+    look for Amazon's own announcement; the band renders nothing until it is filled."""
+    f = os.path.join(ROOT, "sites", site, "data", "deal-calendar.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**Deal-Kalender**:deal-calendar.json 不可用({d['__error__']})"]
+    rows = []
+    for ev in d.get("events") or []:
+        try:
+            end = dt.date.fromisoformat(ev["end"])
+            start = dt.date.fromisoformat(ev["start"])
+        except Exception:
+            continue
+        if end < today:
+            continue
+        if ev.get("announced"):
+            st = f"已公告,横幅 {ev.get('show_from')}→{ev['end']}" + (",带 Prime 试用链接" if ev.get("prime_only") else "")
+        else:
+            st = "**未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**"
+        rows.append(f"- {ev.get('name')} {start}({(start - today).days} 天后)· {st}")
+    return ["**Deal-Kalender**(Amazon 活动;data/deal-calendar.json)"] + (rows or ["- (没有未结束的活动)"])
 
 
 def main():
@@ -129,7 +300,8 @@ def main():
         if os.path.exists(dp):
             d = load(dp)
             gaps = d.get("gaps") or []
-            out.append(f"**autopilot 需求队列**:gaps **{len(gaps)}** / covered {len(d.get('covered') or [])} · heat: {str(d.get('heat_source'))[:60]}")
+            out.append(f"**autopilot 需求队列**:gaps **{len(gaps)}** / covered {len(d.get('covered') or [])} · heat: {str(d.get('heat_source'))[:60]}"
+                       + ("(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)" if gaps else ""))
             for g in gaps[:3]:
                 if isinstance(g, dict):
                     out.append("- " + " · ".join(f"{k}={str(v)[:40]}" for k, v in list(g.items())[:4]))
@@ -140,6 +312,9 @@ def main():
                 out.append(f"**第一方需求**:`{json.dumps(fp, ensure_ascii=False)[:200]}`")
         else:
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
+        out.extend(season_calendar(site, today))
+        out.extend(expansion_queue(site))
+        out.extend(deal_calendar(site, today))
         out.append("")
 
     # 机会撮合(Reddit 请求 × rising 需求 × 已有供给;零 AI,派生事实,不转载帖子)
@@ -169,12 +344,106 @@ def main():
         aa = age_days(today, ar.get("generated", ""))
         stale = " **STALE**" if (aa is None or aa > 3) else ""
         base = (ar.get("baseline_2026_09_12") or {}).get("fleet_ai_ref")
-        out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+        # 读数不全时绝不印成「舰队合计」——那正是 2026-09-25 D1 日读配额耗尽那天的形状:
+        # 14 站里 13 站 500,文件写着 19,而基线是 78。
+        if ar.get("fleet_ai_ref") is None:
+            out.append(f"- ⚠️ **舰队 AI 引荐读数不全,不可用于结算**:仅读到 {ar.get('sites_read','?')}/{ar.get('sites_expected','?')} 站"
+                       f"(这几站合计 {ar.get('partial_ai_ref','?')} 次,**不是舰队合计**);"
+                       f"快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base}。原因见同文件 errors 字段")
+        else:
+            out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')},剔除已标记噪音站 {ar.get('fleet_human_pv_excl_flagged', '?')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+            # claude.ai 拆分同样只在完整读数上印:半份读数上的分项比合计更容易被当成事实。
+            if ar.get("fleet_ai_ref_claude_ai") is not None:
+                out.append(f"- 其中 claude.ai **{ar['fleet_ai_ref_claude_ai']}** 次(可能含舰队自己在 claude.ai/code 里的点击,分不开所以不剔除;"
+                           f"不含它是 {ar.get('fleet_ai_ref_excl_claude_ai')} 次。判定线照旧读合计)")
         for s_ in sorted(ar.get("sites", []), key=lambda x: -x.get("ai_ref", 0)):
             hosts = ", ".join(f"{h} {n}" for h, n in sorted(s_.get("by_host", {}).items(), key=lambda kv: -kv[1])) or "—"
-            out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}")
+            out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}" + (f" · ⚠ pv 不是读者数:{s_['pv_caveat']}" if s_.get('pv_caveat') else ''))
         if ar.get("errors"):
             out.append("- 未读到:" + " | ".join(ar["errors"]))
+    # AI 占外部到达(2026-09-27 AI 时代站点第五轮,docs/ai-era-site-2026-09-27.md):三个有 AI 引荐的站
+    # 都是个位数百分比。这一行读渠道构成快照,是 /api/pulse 口径(agi 为服务端计数),与文档里的
+    # D1 JS 口径(agi 8.6% / bpj 7.8% / eco 8.4%)不是同一个数,别拿两者对比出「份额在掉」。
+    # 分母 = search+ai+fleet+social+other(不含 direct/self)。
+    ts_ = load(os.path.join(ROOT, "data/fleet-traffic-sources.json"))
+    shares = []
+    for s_ in (ts_.get("sites") or []) if "__error__" not in ts_ else []:
+        b = s_.get("by_source") or {}
+        ext = sum(b.get(k, 0) for k in ("search", "ai", "fleet", "social", "other"))
+        if ext >= 20 and b.get("ai", 0) > 0:
+            shares.append(f"{s_['site']} {b.get('ai', 0)}/{ext} = {100 * b.get('ai', 0) / ext:.1f}%")
+    if shares:
+        out.append(f"- AI 占外部到达(渠道构成快照 {str(ts_.get('generated', '?'))[:10]},pulse 口径,agi 为服务端计数;只列外部到达 ≥20 且 AI>0 的站):" + " · ".join(shares))
+    out.append("")
+
+    # 渠道构成(2026-09-15):每个站的读者从哪来。在这之前只有 eco 被手查过,而同日手查 bpj
+    # 的答案与 eco 正相反(bpj 第一大来源是 Google,eco 的 Google 是 0)——所以"按 Google 优化"
+    # 这件事,每个站必须先看自己的这一行再决定。
+    ts = load(os.path.join(ROOT, "data/fleet-traffic-sources.json"))
+    out.append("## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)")
+    if "__error__" in ts or not ts.get("sites"):
+        out.append("- 快照不可用:" + str(ts.get("__error__") or "尚无数据")
+                   + "(worker 的 /api/pulse 要先部署 2026-09-15 的 by_source 才有读数)")
+    else:
+        ta = age_days(today, ts.get("generated", ""))
+        stale = " **STALE**" if (ta is None or ta > 3) else ""
+        f = ts.get("fleet") or {}
+        out.append(f"- 舰队合计(快照 {ts.get('generated','?')[:10]}{stale}):"
+                   + " · ".join(f"{k} {f.get(k, 0)}" for k in ["search", "ai", "fleet", "social", "self", "direct", "other"]))
+        for s_ in sorted(ts.get("sites", []), key=lambda x: -(x.get("by_source", {}).get("search", 0))):
+            b = s_.get("by_source", {})
+            eng = ", ".join(f"{h} {n}" for h, n in list(s_.get("by_search", {}).items())[:3]) or "—"
+            g = sum(n for h, n in s_.get("by_search", {}).items() if h.startswith("google.") or ".google." in h or h == "google.com")
+            out.append(f"- {s_['site']}: 搜索 {b.get('search', 0)} / AI {b.get('ai', 0)} / 舰队内 {b.get('fleet', 0)}"
+                       f" / 社交 {b.get('social', 0)} / 直接 {b.get('direct', 0)} · Google {g} · 前三 {eng}")
+        if ts.get("errors"):
+            out.append("- 未读到:" + " | ".join(ts["errors"]))
+        out.append("- **读法**:自己这一行 Google = 0,就不要做「给 Google 看」的优化(eco 09-15 的教训);"
+                   "`舰队内` 是兄弟站互链真的送来的人,不是链接数。")
+
+    # 钱线仪表盘(2026-09-21「营收目标增长」):手册 08-23 起要求每次报告带钱线,此前只能由有 Cloudflare MCP
+    # 的会话手查 D1。现在读 heartbeat 写的快照;各站钱线口径不同,不归一化成假的统一口径。
+    mo = load(os.path.join(ROOT, "data/fleet-money.json"))
+    out.append("## 钱线仪表盘(28 天窗,各站自己的口径;owner 亲报的 PartnerNet 数字带数据窗)")
+    if "__error__" in mo or not mo.get("sites"):
+        out.append("- 快照不可用:" + str(mo.get("__error__") or "尚无数据") + "(五站 pulse/reach 的 money 键要先部署)")
+    else:
+        ma = age_days(today, mo.get("generated", ""))
+        stale = " **STALE**" if (ma is None or ma > 3) else ""
+        out.append(f"- 快照 {mo.get('generated','?')[:10]}{stale}")
+        for s_ in mo.get("sites", []):
+            sm = s_.get("summary") or {}
+            f_ = lambda v: "—" if v is None else str(v)
+            extra = ""
+            m_ = s_.get("money") or {}
+            if s_["site"] == "getecoback":
+                extra = f" · us-market {m_.get('affiliate_click_us_market_28d','—')} · amazon.com {m_.get('affiliate_click_amazon_com_28d','—')}"
+            elif s_["site"] == "baipiaoji":
+                extra = f" · go {m_.get('go_28d','—')} · 厂商 biz {m_.get('biz_28d','—')} · 投稿累计 {m_.get('submissions_total','—')} · watches {m_.get('watches','—')}"
+            elif s_["site"] == "buysomething":
+                extra = f" · mcp_call {m_.get('mcp_call_28d','—')} · out_click {m_.get('out_click_28d','—')}"
+            elif s_["site"] == "agiscorecard":
+                extra = f" · invest_tool_click {m_.get('ev_invest_tool_click_28d','—')} · /advertise pv {m_.get('pv_advertise_28d','—')} · /audits pv {m_.get('pv_audits_28d','—')}"
+            out.append(f"- {s_['site']}: 联盟点击 {f_(sm.get('affiliate_click_28d'))} / 付费订单 {f_(sm.get('paid_orders'))} / 订阅 {f_(sm.get('subscribers'))}{extra} ({s_.get('via')})")
+        own = (mo.get("owner_reported") or {}).get("amazon_de_partnernet") or {}
+        if own:
+            out.append(f"- owner 亲报 PartnerNet DE(30 天窗至 {own.get('window_end')}):佣金 €{own.get('commission_eur')} · {own.get('clicks')} 点击 · 待办 {own.get('payout_blocked')}")
+        if mo.get("errors"):
+            out.append("- 未读到:" + " | ".join(mo["errors"]))
+    # 预测记录线(2026-09-27 创业复盘楔子):不靠访客的那条钱线,读 heartbeat 写的 data/fleet-forecast-record.json。
+    fr = load(os.path.join(ROOT, "data/fleet-forecast-record.json"))
+    fc = load(os.path.join(ROOT, "data/futureeval-coverage.json"))
+    if "__error__" not in fr:
+        fa = age_days(today, fr.get("generated", ""))
+        m_ = fr.get("money") or {}
+        hp = fr.get("house_prior") or {}
+        out.append(f"- 预测记录线(Metaculus bot,快照 {fr.get('generated','?')[:10]}{' **STALE**' if (fa is None or fa > 3) else ''}):"
+                   f"状态 {fr.get('enabled_state')} · 账本 {(fr.get('ledger') or {}).get('forecast_lines')} 条 · "
+                   f"北极星(赛前记录且已结算){fr.get('north_star_resolved_prelogged')} · house prior Brier 差 {hp.get('mean_brier_delta')}(n={hp.get('n')}) · "
+                   f"30 天花费 ${m_.get('spend_usd_30d')} · 奖金 {m_.get('prize_usd_30d') if m_.get('prize_usd_30d') is not None else '未报'} · 净 {m_.get('net_usd_30d') if m_.get('net_usd_30d') is not None else '—'}")
+    if "__error__" not in fc:
+        out.append(f"- FutureEval 覆盖探针:抽样 {fc.get('sampled')} 题,舰队已存档来源覆盖 {fc.get('covered')}(占比 {fc.get('coverage_share')})"
+                   + (" · **规则页有变化**" if fc.get("rules_changed") else "") + ("(沿用上次)" if fc.get("stale") else ""))
     out.append("")
 
     out.append("---")

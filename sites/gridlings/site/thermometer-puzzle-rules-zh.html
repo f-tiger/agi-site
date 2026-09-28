@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>温度计谜题规则：水银从球部开始填</title>
+<meta name="description" content="温度计谜题规则：每支温度计的水银从球部沿管子连续填充，不能有空隙；边上的提示数是每行每列被填满的格数。附解题技巧。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/thermometer-puzzle-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/thermometer-puzzle-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/thermometer-puzzle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="温度计谜题规则：水银从球部开始填">
+<meta property="og:description" content="温度计谜题规则：每支温度计的水银从球部沿管子连续填充，不能有空隙；边上的提示数是每行每列被填满的格数。附解题技巧。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/thermometer-puzzle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌡</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "温度计谜题规则：水银从球部开始填", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/thermometer-puzzle-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "温度计谜题规则：每支温度计的水银从球部沿管子连续填充，不能有空隙；边上的提示数是每行每列被填满的格数。附解题技巧。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "温度计谜题的规则是什么？", "acceptedAnswer": {"@type": "Answer", "text": "从球部开始给温度计填水银，沿管子连续填、不留空隙。方格外的数字告诉你每行每列各有多少格被填满。"}}, {"@type": "Question", "name": "温度计可以只填一部分吗？", "acceptedAnswer": {"@type": "Answer", "text": "可以 —— 一支温度计可以是空的、部分填满或全满，只要填满的部分从球部开始且连续。它不能有的是空隙。"}}, {"@type": "Question", "name": "温度计谜题怎么开局最好？", "acceptedAnswer": {"@type": "Answer", "text": "先做极端值：任何一行或一列，提示数等于它的温度计格子总数就全填满；任何提示数为 0 的线全清空。两者都会沿着弯折的管子传播到其他线，通常能打开盘面中部。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "温度计谜题规则 —— 从球部往上填", "item": "https://play.agiscorecard.com/zh/thermometer-puzzle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/thermometer-puzzle-rules">温度计谜题规则 —— 从球部往上填</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>两条规则，一个物理比喻。</strong>每支温度计都从它的球部（●）沿管子填充 —— 一格只有在它与球部之间的所有格都已填满时才能填，绝不能有空隙。方格外的提示数说明该行或该列最终有多少格被填满。就这些：方格内完全没有数字。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/thermo">去玩</a>。</p>
+<script>fetch("/thermo-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/thermo">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>水银</strong></td><td style="padding:6px 8px">每支温度计从球部沿管子填充 —— 连续地，可以一格不填，也可以填满。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>行/列计数</strong></td><td style="padding:6px 8px">方格外的每个提示数等于该行或该列被填满的格数。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>相互作用</strong></td><td style="padding:6px 8px">温度计会跨行跨列弯折，所以一个填充决定会同时影响好几个计数。</td></tr></tbody>
+  </table>
+  <h2>先做极端值</h2><p>提示数等于该线上温度计格子总数 ⇒ 全部填满；提示数为 0 ⇒ 全部清空。两者都会沿管子连锁到相邻的行列。</p><h2>每支管子算最小最大</h2><p>对每支温度计问：它最少能给这条线贡献几格？最多几格？如果最小值已经等于提示数，所有可选的格都为空 —— 反之亦然。</p><h2>顺着弯折走</h2><p>填一格，就等于填满同一管子上球部方向的所有格 —— 包括在其他行的格。先沿管子传播完，再去读下一个提示数。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>450 盘 6×6 每日题（自 2026-08-24 起）加 320 盘畅玩题。求解器用后缀上界剪枝证明每一盘发布的题恰好有一个解、纯推理可达 —— 与本站其他每款游戏用的是同一道检查。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">温度计谜题的规则是什么？</h3><p style="margin:0 0 6px">从球部开始给温度计填水银，沿管子连续填、不留空隙。方格外的数字告诉你每行每列各有多少格被填满。</p><h3 style="font-size:.98rem;margin:10px 0 2px">温度计可以只填一部分吗？</h3><p style="margin:0 0 6px">可以 —— 一支温度计可以是空的、部分填满或全满，只要填满的部分从球部开始且连续。它不能有的是空隙。</p><h3 style="font-size:.98rem;margin:10px 0 2px">温度计谜题怎么开局最好？</h3><p style="margin:0 0 6px">先做极端值：任何一行或一列，提示数等于它的温度计格子总数就全填满；任何提示数为 0 的线全清空。两者都会沿着弯折的管子传播到其他线，通常能打开盘面中部。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/kropki-sudoku-rules">⚫ 点点</a> · <a href="/zh/sandwich-sudoku-rules">🥪 三明治</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/star-battle-rules">⭐ 星战</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/6x6-sudoku-rules">🔢 迷你数独</a> · <a href="/zh/binary-puzzle-rules">🌙 日月</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/thermo">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

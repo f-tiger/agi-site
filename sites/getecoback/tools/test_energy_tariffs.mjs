@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {example,calculate,normalize,encode,decode,parseCSV} from '../site/assets/energy-tariff-model.mjs';
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
+test('DE: first-year, recurring and two-year costs stay separate',()=>{const r=calculate(example('de'));near(r.firstSaving,124);near(r.recurringSaving,24);near(r.twoYearSaving,148);});
+test('FR: off-peak break-even includes subscriptions; shift is separate',()=>{const r=calculate(example('fr'));near(r.A.recurring,840);near(r.B.recurring,840);near(r.threshold,.3);near(r.shiftSaving,24);near(r.firstSaving,0);});
+test('ES: two contracted powers are daily costs for 365 days',()=>{const r=calculate(example('es'));near(r.B.power,167.9);near(r.A.recurring,803.9);near(r.B.recurring,719.9);near(r.firstSaving,84);});
+test('IT: annual power fee and three consumption bands',()=>{const r=calculate(example('it'));near(r.A.recurring,948);near(r.B.recurring,945);near(r.firstSaving,3);});
+test('Bonus trap, switching costs and sensitivity are not recurring discounts',()=>{const s=example();s.B.fixed=250;s.switchCost=10;const r=calculate(s);assert.equal(r.bonusTrap,true);near(r.firstSaving,44);near(r.recurringSaving,-46);near(r.stressLow,970);near(r.stressHigh,1330);});
+test('Invalid prices, consumption, versions and prototypes fail closed',()=>{for(const change of [s=>s.kwh=[0],s=>s.A.rates=[-1],s=>s.B.fixed=NaN,s=>s.shift=9000,s=>s.market='toString',s=>s.version=2,s=>s.own='true']){const s=example();change(s);assert.throws(()=>normalize(s));}});
+test('Sharing normalizes known fields, rejects oversized content and roundtrips',()=>{const s=example('it');s.email='ignored';assert.deepEqual(decode(encode(s)),example('it'));assert.throws(()=>decode('x'.repeat(12001)));});
+test('CSV imports totals, accepts decimal comma only with semicolon, rejects formulas',()=>{assert.deepEqual(parseCSV('kwh1;kwh2\n10,5;20\n9,5;30','fr'),[20,50]);for(const csv of ['kwh1;kwh2\n=1;2','kwh1;kwh2\n;2','kwh1;kwh2\n-1;2','wrong\n1'])assert.throws(()=>parseCSV(csv,'fr'));});

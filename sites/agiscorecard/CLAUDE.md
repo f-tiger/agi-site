@@ -55,6 +55,14 @@ job is to keep the machine sharp and let the daily cadence compound.
    可逐条审计的活数字（62.5/100 + 八条翻转条件）。已在 `/situational-awareness-summary`、
    `/what-is-agi`、`/ai-orders-of-magnitude-explained` 落地，埋点 `index_click{*_live}`。
    **新发布的判定型页面一律照此办理。**
+   > **2026-09-27 对齐(不是新规则)**:「收点击」这层理由从未被证实——08-30 `index_click{*_live}`
+   > 按 0 结算(OPT-LOG 08-30:停加钩子,活数字保留为引用差异化);09-27 复读 08-01→09-27
+   > `*_live_link` 共 3 次站内点击、0 次来自 AI 引荐(这测的是站内点击,不是 AI→站点点击率)。
+   > 活数字照做,理由是**可审计、带日期 = 信任与引用元素**,不再写成点击手段。舰队侧的读数:
+   > 564 次引用(30 天至 08-16,Microsoft Copilots & Partners,Bing 抽样)窗口里有 D1 数据的 08-05→08-16,Copilot 送来 0 人;
+   > Copilot 引荐全部在 08-18 之后:3 个访问日(JS 5 次 / 服务端 4 次)。两个窗口不重叠,只能说
+   > 「引用 → 点击」在 <1% 量级,和行业公开的 AI 应用点击率(TollBit 2025Q4 0.27%,分母未公开)同一量级,
+   > **不是同一个比率**。agi 站内判定页的 AI 到达并不比清单页少。详见 `docs/ai-era-site-2026-09-27.md`。
 
 **已知风险**：可见查询引用的 73% 挂在 Aschenbrenner 这一个实体上，属人物依赖型资产；
 对冲方向见 `content-backlog.md` 的 CITATION AMPLIFICATION 队列。
@@ -145,6 +153,8 @@ Positioning umbrella: **"The evidence layer for the AI era — track the predict
   在 #directory 之前各有一块独立的引流区,写死了德鲁肯米勒 +187.2% / QQQ +59.6% / 巴菲特
   +37.3%(跑输)。**它们受上面那条硬同步义务约束**——每季重算时,这两块和 invest 两页
   一起改,再加 `/does-copying-13f-work` + `/zh/does-copying-13f-work`(2026-08-29/30 上线,活数字+表格整页引用成绩单),**共六处**。
+  **第七处(2026-09-27)**:13F 专属分享卡 `share/copy-13f-{en,zh}.png` —— 不手改,重算后先 `python3 tools/gen_invest_data.py`
+  再 `NODE_PATH=/opt/node22/lib/node_modules node tools/gen_invest_cards.cjs`(卡片数字只读 invest-data.json)。
   **它是工具,不是榜单(2026-08-16 补齐)**:计算器「如果当时我抄了,今天多少钱」选投资人
   (可多选)+ 起始申报日 + 本金,全部在浏览器里算;深链 `?who=a-_-b&from=YYYY-MM-DD&amt=N`
   双向绑定,`?embed=1` 出无壳嵌入版 + 带 `utm_source=widget` 的品牌回链。基准必须用
@@ -316,7 +326,8 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
       具备：① 标题即那个问题本身（定义 / 现状 / 对比三选一）② 首屏答案胶囊先给结论
       ③ 表格 ④ 可见 FAQ 与 FAQPage JSON-LD 逐条一致 ⑤ 带日期的一手判定 + 一手源外链
       ⑥ **首屏一个聊天答案装不下的活数字**（62.5/100 + 八条翻转条件，埋点
-      `index_click{<page>_live}`）。缺第 ⑥ 条 = 白送引用不收点击，这条不能省。
+      `index_click{<page>_live}`）。这条不能省——理由是可审计的活数字让引用可核(信任元素);
+      「缺了就白送引用不收点击」的旧说法 08-30 已按 0 结算,2026-09-27 起不再这样写。
    d. **不要拿引用数去考核工具页与游戏化页**：它们在前十引用页里一个都没有，本来就不吃
       引用。它们的 KPI 是 `tool_click` / `embed_copy` / 绑定数。
 3. **Optimize — ONE change per run** (owner-authorized exception 2026-07-11:
@@ -878,6 +889,48 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
 
 
+## 2026-09-27 点击分析 → 商业下一步(owner:「先分析点击,再看如何优化」;全文 `docs/agi-click-analysis-2026-09-27.md`)
+
+- **读数(28d,JS 真人)**:外部来源约 200 次(≈7 人/天);唯一有量的动作是「站队」(vote_cast 90);
+  **priced click = 0**(affiliate_click 历史 0 行,已证是真 0);28 天 0 新订阅(历史 2)。
+  `/progress-index`、`/amodei-…bloodbath`、`/about` 的 US 集中 pv 零外部来源 = 运维噪音,判定一律不计。
+- **09-26 `opinion_*_exposure` 判 lost(3 <8)**:8 页观点→持股篮子块已按输分支删除(sasummary 保留)。
+- **agi-test 锁定按钮原是空承诺**(只写 localStorage)。现改为锁定后在按钮下方出站内邮箱表单
+  (`location=agi_test_lock`),**代码日期门 2026-10-01 00:00 UTC 前休眠**,不污染 09-30 `sub_ok` 线。
+  判定线 `agi-lock-sub-1029`。09-26/09-30/10-31 三条线已补进 `data/fleet-bets.json`。
+- **结论**:agi 在 7 人/天的量级上,点击优化最多是 €0–5/月。**owner 同日:「不要依赖所谓Metaculus」**——
+  agi 的营收规划不再以 Metaculus 为出路;agi 当前的商业角色 = 信任/引用资产 + 一份自有邮件名单(10-01 起测),
+  近期营收目标放在 eco(舰队唯一在赚的线)。破例项(券商 CPA,非 Amazon)仍只是 owner 决策卡,不抢跑。
+
+## 2026-09-27 站队的放大效应(owner:「和股票App投票帖、Polymarket一样放大了人性」;全文 `docs/agi-crowd-amplifier-2026-09-27.md`)
+
+- Polymarket 与股票 App 投票放大的是四个机制:押注、看到众人、很快揭晓并记分、阵营身份。agi 只有阵营;
+  押注在法律上禁止;缺「看到众人」与「很快揭晓」。终身约 117 次投票,分享 0。
+- 已建 `/api/crowd`(五档计数,Cache API 1 小时,走 idx_events_name)+ `/agi-test` 投票**之后**的众人分布揭晓
+  + 少数派分享文案 + `crowd_view` 事件;同日按 owner「加上」**首页投票也接上**(同一接口、同一日期门);
+  **10-01 00:00 UTC 生效**。判定线 `agi-crowd-reveal-1029`(两处合计)。
+- 第二阶段(每周自动判定的短周期题 + 浏览器内匿名记分)**只在上一条判赢后才做**。永不:真钱、奖品、积分兑换、
+  实名排行、券商或预测市场链接。
+
+## 2026-09-27 投资线使用检查(owner:「agi股票投资子站点检查使用情况，优化」;全文 `docs/agi-invest-usage-2026-09-27.md`)
+
+- 主域 invest 页群 28 天浏览器端真人 **24 次、外部来源 0**;付费桥点击与 TG 绑定终身都是 0。服务端 664 次「真人」与
+  33 次 Google 引荐无浏览器端对应(已回放确认统计代码正常),以浏览器端为准。SunWatch / Compass 不在本账号 D1,读不到。
+- 修两处错链接:exposure 页「公开战绩」按钮原指 SunWatch 首页(生成器 `gen_agi_exposure.py` 已改);英文 /invest 的
+  Compass 链接原被 302 到中文版。补登 `agi-invest-survival-1115`、`agi-invest-zh-p4-1029`。不加新页、不改被测对象。
+- **同日第二轮(owner「基于流量,市场营销技能优化投资板块」,`docs/agi-invest-marketing-2026-09-27.md`)**:`seo-audit` 逐项查,
+  技术与页面层无问题;缺的是权威与**需求读数**。agi 趋势种子加 `13f filings`、`ai stocks`,词表加 `13f`(零新 cron),
+  判定线 `agi-invest-demand-1115`。没有需求读数之前不改投资页标题。
+- **同日第三轮(四个投资仓接入会话后)**:整条投资线合计付费 0、**真实询价 0**(唯一那 1 次是 owner 自测,owner 同日确认)、订阅 2(SunWatch 1、Compass 1)。SunWatch 的 pv/点击计数
+  含爬虫与部署自检,已在 sunPredition 改为另记真人口径(`/api/growth` 的 `human` 块);Compass 弹窗 459 次里 423 次是爬虫;
+  **Gushen 后端从未部署、线上功能不可用,/invest 中英两页已拿掉它的卡片**(终身 0 点击)。**同日更正**:gushen 已重构为纯前端服务(浏览器内计算 + 部署时抓行情),线上可用,卡片已按现状恢复。详见 `docs/agi-invest-usage-2026-09-27.md` §六。
+
+## 2026-09-27 投资板块的 SEO/GEO/外链/分享(owner 原话同标题;全文 `docs/agi-invest-share-2026-09-27.md`)
+
+- 补 5 页分享预览(13F 两页用数据生成的专属卡,其余用 scorecard-summary);13F 判定页站内内链 4 → 8(锚文本不放数字);
+  兄弟站:gushen 补 meta/OG/JSON-LD/真 robots·sitemap·llms、SunWatch 出口统一补 og:image、Compass 战绩页链到判定页。
+- 分享按钮仍是杀单,机器仍不外联。判定线 `agi-invest-share-1127`。
+
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 
 - **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，
@@ -972,3 +1025,82 @@ CLAUDE.md 里「propagation IS the product」那条规则要防的那件事。�
   启动 +26 周把结果与 Alpha Arena 对照写进 `/do-ai-trading-agents-work`。
 - 事件:`invest_tool_click{invest_hub_ledger}`、`tool_click{doaitrading_ledger}`、
   `index_click{ledger_tracker}`、`subscribe_click{deep_ledger}`。
+
+
+## 原生讨论区（2026-09-20，owner 明确要求）
+
+本轮范围覆盖旧的新增板块冻结；研究与运营界线见根仓 `docs/agi-community-research-2026-09-20.md`。
+`/discuss` + `/zh/discuss`，三个主题、六个明确标注的编辑开场话题。首页 `/` 与 `/cn` 都有入口。
+免费社区注册使用**本站 AGI 会员的访问密钥身份**，`wb_members.ends_at=0`，不授予付费权益；
+这不是邮箱订阅或 SunWatch Telegram 绑定，不改变投资工具现有的 Telegram 契约。
+账号、订单与讨论数据不能跨 BPJ/Eco/TDS 复用。用户原文不冒充译文。
+
+代码 `tools/community/`（不作为静态资产公开），前端 `community-assets/`。新增讨论表使用 EVENTS D1。
+投稿全部待审核；公开接口、SSR、动态 `/discuss-sitemap.xml` 只读通过内容。编辑主题不使用
+DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在外部社区发帖。
+
+审核 `/discuss/moderate`，社区子密钥由现有 AGI 运维密钥派生；
+私有生成方式见 `tools/community/ops.mjs` 与研究报告。禁止把凭据、待审正文或用户记录写入公开日志。
+每日现有部署流程只输出聚合 stats，未增加定时任务。`data/fleet-bets.json` 的
+`agi-discussion-1020` 在 2026-10-20 复盘，注意 session-days 不是独立用户，分享意图不是外链。
+
+修改讨论功能必须跑 SQLite 权限/隐私测试与中英浏览器流程；上线需跑只读 verify。
+保留 AGI 原有判断台账、分歧引擎和付费工作区，不把论坛加入自动生成工具页面的模板。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(subscribers / ev_tool_click|invest_tool_click|subscribe_click|calc_use_28d / pv_advertise|audits|members|workbench_28d / member_orders_by_state / discuss_profiles),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。/advertise 09-21 读数:223 pv(服务端口径)、0 询单。
+
+## 信任层审计与共识板(2026-09-26;全文根仓 `docs/ai-consensus-faith-2026-09-26.md`)
+
+- **data.json 每条预测现在带 `flip` / `watch` / `resolves` / `pending_reason` 之一,逐字来自首页判定行**;`validate.py` 断言两处
+  永远一致——改首页的 Flips if 就必须同一次改 data.json,反之亦然。`/for-agents` 与 MCP 描述从 7 月起宣称的东西到今天才是真的。
+- **`/calibration` 由 `gen_calibration.py` 从 `sunwatch-track-record.json`(runner 周一快照,会话不手改)+ data.json + `ots/manifest.json`
+  生成**,一个数字都不写死;页面如实写 Brier-eligible n(今天 0)。承诺线 `agi-brier-n20-1231`。
+- **`/agi-prediction-markets` = AGI 共识板**(`fetch_market_board.mjs` 四家来源 → `market-board.json` → `gen_market_board.py` →
+  页 + `agi-consensus.json`;`--check` 逐字重算;`--selftest` 15 条)。锚点行永远保留不被成交量上限截掉;系列判据是对问题文本的
+  正则,不是编辑挑选;**中位数只跨泛 AGI 三系列**。红线同 `/ai-trading-ledger`。MCP `get_agi_consensus` 读 `/agi-consensus.json`。
+- **`/skill.md` 是手维护的 SKILL 文件(带 frontmatter),`gen_agent_surfaces.py` 跳过它**;部署自检断言首行 `---`。
+- **`/ots/` 是 OpenTimestamps 证明目录**(heartbeat 每日 stamp 新版本、upgrade pending;manifest 列状态)。会话不要手改;
+  证明只证明时间,页面文案永远不许写成「区块链验证的真相」。
+- **MCP 每个工具调用都落库 `tool:<name>`**(09-26 补齐 thesis_tracker / verdicts);部署自检断言线上 tools/list 与 worker 源码一致。
+- `gen_changelog.py` 已接进部署构建步;`gen_index.py` 遇到 WEIGHT 外的判定标签直接退出(不再静默按 0.5)。
+- **09-27 第三轮**:`/grader-consensus` 评分者 2 → 4(+Reeves AGI Friday 2025-10-04、+Dubach 2026-05-21),16 次比较 9/6/**1 分歧**
+  (knowledge-work);页面、FAQ、描述、`llms.txt` 那一行与 `/situational-awareness-predictions` 首屏的活数字**全部由 `gen_grader_consensus.py`
+  从数据生成,`--check` 守门**(`<!-- grader-consensus:start/end -->` 之间别手改)。新增评分者只按原规则:公开、带日期、署名、逐字引语、
+  映射可争;owner 本人的帖子(EA Forum「Edison」)永不算独立。MCP `get_verdicts` 输出带 `independent_grades`。
+  `/calibration` 有点击才运行的浏览器核验(请求带 `utm_source=verify`,worker 不写 pageviews;事件 `verify_run`)与「预测账本」一节;
+  `/ots/*.ots` 按二进制下载返回。
+
+## D1 读取额度:/api/pulse 与 /api/trends 的服务端缓存 + human 部分索引(2026-09-26,owner「agi的也改了」;全文根仓 `docs/d1-read-budget-2026-09-26.md`)
+
+- **为什么**:D1 免费额度是**全账号**每天读 500 万行,09-24/25/26 连续用完,之后全舰队的统计与事件写入被拒到 UTC 零点
+  (**本站 `events`/`pageviews` 当天后半段也没记上**)。Cloudflare 逐条查询统计:09-26 本站 `/api/trends` 一天 53 次调用
+  (仓库内调用方最多 6 次)、每次约 3.5 万行,`/api/pulse` 每次约 9 万行,合计占全账号 46%。两个接口原来只设 `cache-control`
+  头——**Cloudflare 不缓存 Worker 自己返回的响应**,每个请求都把 pageviews 整表读一遍。
+- **改了什么**:①`tools/analytics-worker/aggregate-cache.js`(Cache API,pulse 1 小时、trends 30 分钟;键只含接口名与版本号;
+  失败与 `partial:true` 不缓存;响应头 `x-agi-aggregate-cache: miss|hit|bypass`,部署自检断言它在)。计算本体抽成
+  `pulseResponse()` / `trendsResponse()`;pulse 的 money 主查询失败时标 `partial:true`。**响应形状一改就把 `AGG_CACHE_VERSION` 加一。**
+  ②`tools/analytics-worker/migrations/0001_pageviews_human_index.sql`:`pageviews_human ON pageviews(day, path, ref_host, hits)
+  WHERE ua_class = 'human'`——覆盖两个接口要读的全部列,只读 human 行、不回表。**查询里必须原样带 `ua_class='human'`**,
+  否则 SQLite 不用这个索引;`tools/test_analytics_d1.mjs` 对两个接口实际发出的每条 pageviews 查询跑 EXPLAIN,要求
+  「SEARCH … USING COVERING INDEX pageviews_human (day…)」,出现整表扫描即红(8 个变异全红)。
+- **写新的 pageviews 统计查询前先想它走哪个索引**;要放进会被反复调用的端点,就先加缓存。判定线 `agi-d1-reads-1004`
+  (09-28→10-03 每天 agiscorecard-events 读取 ≤30 万行;t0 09-26 181 万)。
+- **09-27 进度**:缓存已上线并验证(线上 miss→hit,部署 run 36281663006 全绿);**索引顺延到 09-28 00:05 UTC**——同一个零点 bpj 迁移
+  已用掉 48 589 行写入,全账号日常写入 1.6–3.1 万行/天,再加 20 964 条索引条目会贴 10 万行写入上限,越线 = 全舰队当天事件写入被拒。
+  线上 pageviews 早有 `idx_pv_day` / `idx_pv_path` / `idx_pv_ref`,测试夹具已照抄;点名路径的查询(pulse 的 money 块)按路径等值查
+  `idx_pv_path` 是允许的,**退回 `idx_pv_day` 即红**。建索引后每次 human 页面浏览的 upsert 多一次索引写入(约 1 400 行/天)。
+- **09-28 00:07 UTC 索引已建**(21 705 行写入,线上 EXPLAIN 四条走 `pageviews_human`、money 块走 `idx_pv_path`)。实测:trends 7 天
+  35 600 → **8 195** 行/次;**pulse 28 天来源榜 35 300 → 29 881 行/次,几乎没省**——28 天窗口占 human 行的七成,且 D1 把 GROUP BY 排序
+  经手的行也算读取(2 × 14 916 + 49)。**agi 的主要省法是缓存,不是索引**;要再降只能减少 28 天全窗口聚合的调用次数或改成预聚合表。
+
+
+## 2026-09-28 投资研究工作台（owner：三轮 prompt 后执行）
+
+`/invest#research-workbench` 与 `/zh/invest#research-workbench` 是同一免费研究流程；源码 `invest-research/`，生成器 `tools/build_invest_research.py` 只管理带标记的片段，不能重跑旧 `gen_invest_profiles.py`。不新增域名、不卖信号、不变更独立子站算法。输入与本机保存只在浏览器，工具匿名事件需主动选择，`research_<lang>_<action>` + `sample|own`，QA 用 `__qa=1`。这些事件不能算唯一用户、续费或收入。
+
+教学来源固定记录核对日期和披露期间，不自动更新日期；`evidence.json` 不是实时行情。EPS/P-E 和仓位冲击全部是用户假设算术，不是目标价、建议仓位或最坏损失。未接站内模型/自动提醒；Markdown 是交给用户 AI 复核的文档，不能宣称已由 AI 核验。
+
+方法更正：旧文“申报日收盘价是真人可成交价格”不严谨，盘后申报仍可能前视。中英入口已加限制，独立 aistock 回测未按披露时刻重算，历史数字不能视为已验证真实投资利润。Q3 2026 SEC 截止是 11-16；商业复盘 11-15 不改。本轮是新的明确研究深化指令，旧实验保留但本页前后不再能作干净对照。详见 `docs/agi-invest-research-2026-09-28.md`。
+
+修改本模块跑 `node --test tools/test_invest_research.mjs`、`node tools/browser_invest_research.cjs`，后者复用根仓 `tools/revenue-studio/node_modules/playwright`；再跑原站 validate/hreflang。部署工作流已经接入两项测试。

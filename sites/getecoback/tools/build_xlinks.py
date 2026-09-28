@@ -107,14 +107,7 @@ XREF = {
     "guide/split-klimaanlage-ohne-kernbohrung.html": [
         ("/guide/heizkosten-senken-als-mieter.html", "Heizkosten senken als Mieter: was erlaubt ist und was sich rechnet"),
     ],
-    "guide/balkonspeicher-rechner.html": [
-        ("/guide/growatt-noah-2000-probleme.html", "Growatt NOAH 2000: bekannte Probleme und Abhilfe"),
-        ("/guide/balkonspeicher-winter-frost.html", "Balkonspeicher im Winter: Frostschutz richtig einstellen"),
-    ],
-    "guide/balkonkraftwerk-speicher-nachruesten.html": [
-        ("/guide/growatt-noah-2000-probleme.html", "Growatt NOAH 2000: bekannte Probleme und Abhilfe"),
-        ("/guide/balkonspeicher-winter-frost.html", "Balkonspeicher im Winter: Frostschutz richtig einstellen"),
-    ],
+    # Storage cross-links removed 2026-09-27 with the pages themselves (410).
     "guide/beste-tragbare-klimaanlage-schlafzimmer.html": [
         ("/guide/mobile-klimaanlage-zu-laut.html", "Mobile Klimaanlage zu laut? Was wirklich hilft"),
         ("/guide/guenstige-klimaanlage-unter-300-euro.html", "Günstige Klimaanlagen unter 300 €"),

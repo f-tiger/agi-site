@@ -181,20 +181,28 @@ jobs:
           check_body / 'SourceRadar'
           check_body /16507d8e1997c4be371f5fbaf7ac1985.txt ''
           # 3) JSON feeds
+          # 2026-09-26(D1 读预算事故):只在网络错误/非 2xx 时重试,最多 3 次;2xx 而断言不过**不再重抓**——
+          # /api/pulse、/api/pop 现在从 Cache API 出,重抓拿到的是同一份缓存,此前每次重抓都是一轮全窗 D1 扫描。
+          # 断言原样保留。
           check_json() { # path, python-assert-expr
-            p="$1"; expr="$2"; ok=0
-            for try in 1 2 3 4 5; do
-              if curl -s -L --max-redirs 5 -A "$UA" "$BASE$p" -o body.json && \
-                 python3 -c "import json,sys; j=json.load(open('body.json')); assert $expr, 'assert failed'" 2>/dev/null; then ok=1; break; fi
-              sleep 5
+            p="$1"; expr="$2"; ok=0; code=000
+            for try in 1 2 3; do
+              code=$(curl -s -L --max-redirs 5 -A "$UA" -w '%{http_code}' "$BASE$p" -o body.json || echo 000)
+              case "$code" in 2*) break ;; esac
+              [ "$try" -lt 3 ] && sleep 5
             done
+            case "$code" in 2*)
+              python3 -c "import json,sys; j=json.load(open('body.json')); assert $expr, 'assert failed'" 2>/dev/null && ok=1 ;;
+            esac
             if [ "$ok" = "1" ]; then echo "OK    $p JSON: $expr"
-            else echo "::error::$p not valid JSON or failed: $expr"; fail=1; fi
+            else echo "::error::$p HTTP $code, not valid JSON or failed: $expr"; fail=1; fi
           }
           check_json /trends.json 'True'
           check_json /api/pop '"picks" in j and "degraded" not in j'
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
-          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
+          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28 and isinstance(j.get("by_source"), dict) and sum(j["by_source"].values()) == j["human_pv"] and isinstance(j.get("money"), dict)'
+          # 机器面块是 fleet-machine-demand-1014 / sr-mcp-calls-1014 的唯一读数源;缺了就等于没读数。
+          check_json /api/pulse 'isinstance(j["mcp"]["calls"], int) and isinstance(j["mcp"]["demand_callers"], int) and j["mcp"]["variety"] == "shape_only"'
           rm -f body.json
           # 3b) PRD P0-1 beacon truth test: POST a CI-labelled event, then read it back through the aggregate endpoint.
           curl -s -o /dev/null -X POST "$BASE/e" -H 'content-type: text/plain' --data '{"n":"calc_use","l":"__ci","p":"/__ci"}' || true
@@ -222,11 +230,14 @@ jobs:
           # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
           check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
           # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)
+          # -A "$UA"(2026-09-24):不带时 curl 默认 UA 被 worker 记成外部调用方 —— 09-17→09-24 的 80 次 mcp_call
+          # 里 58 次是本步自己(45 带 selfcheck UA + 13 次裸 curl),它会把 sr-mcp-calls/sr-vertical/fleet-machine-demand 三条线
+          # 用自测撑过线。读数一律剔 ref LIKE 'buysomething-deploy-selfcheck%' 与 09-24 前的裸 curl/。
           ok=0
           for try in 1 2 3 4 5; do
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' -o mcp1.json || true
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_import_claim","arguments":{"claim":"under $800 is duty free"}}}' -o mcp2.json || true
             if python3 sites/buysomething/tools/assert_mcp_live.py mcp1.json mcp2.json; then ok=1; break; fi
             sleep 5
@@ -239,6 +250,8 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/packs/2026-W01.json" || echo 000)
           case "$code" in 403|503) echo "OK    /packs/<week>.json without token -> $code";; *) echo "::error::gated pack served without token (HTTP $code)"; fail=1;; esac
           check_body /packs 'Opportunity packs'
+          # 安装指令是「被发现 → 被装上」这一步的唯一入口(sr-mcp-install-1022 的读数源)
+          check_body /mcp 'claude mcp add --transport http sourceradar' 'mcp_install_click'
           # 3d) official data files, asserted only once the schedule has produced them
           if [ -f sites/buysomething/site/passports.json ]; then check_json /passports.json '"picks" in j and len(j["picks"]) == 31 and j.get("hts_release") is not None or "picks" in j'; fi
           if [ -f sites/buysomething/site/recalls.json ]; then check_json /recalls.json '"picks" in j and j.get("window_days") == 365'; fi

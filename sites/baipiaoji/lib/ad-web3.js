@@ -171,3 +171,7 @@ export async function watchWeb3(env){
   throw failure;
  }
 }
+
+
+// Shared receipt verification primitives for the separately authorized membership product.
+export {rpc as chainRpc,logMatches as matchesTransfer};

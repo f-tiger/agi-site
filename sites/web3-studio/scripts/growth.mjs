@@ -1,8 +1,10 @@
+import {marketPages,newPaths} from './market-pages.mjs';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {sites,byId,hubHost} from '../public/catalog.mjs';
 import {topics,scenarios,exampleLink,publicMetadata,inputSchema,updated,csvExamples} from '../public/experience.mjs';
 import {run} from '../public/engine.mjs';
+import {agentPages} from './mcp-pages.mjs';
 import {VERSION} from '../public/core.mjs';
 const h=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ld=x=>'<script type="application/ld+json">'+JSON.stringify(x).replace(/</g,'\\u003c')+'</script>';
@@ -13,13 +15,13 @@ const breadcrumb=(s,path,name)=>({'@type':'BreadcrumbList',itemListElement:[{'@t
 function enrichHead(text,s,path,title){
  const url='https://'+s.host+'/'+path;const t=topics[s.id];const description=t?s.description:'Free AI and Web3 tools with local records, worked scenarios and portable reports. Compare evidence, costs, permissions and payment exceptions.';
  text=text.replace(/<title>[^<]*<\/title>/,'<title>'+h(title)+'</title>').replace(/<meta property="og:title" content="[^"]*">/,'<meta property="og:title" content="'+h(title)+'">');
- const graph=[{'@type':'WebPage','@id':url,name:title,url,description,dateModified:updated,inLanguage:'en',isPartOf:{'@id':'https://'+hubHost+'/#website'}}];
+ const graph=[{'@type':'WebPage','@id':url,name:title,url,description,inLanguage:'en',isPartOf:{'@id':'https://'+hubHost+'/#website'}}];
  if(t){graph.push(breadcrumb(s,path,path==='guide.html'?'Method and input guide':path==='examples.html'?'Worked examples':path==='privacy.html'?'Privacy':s.name));if(!path)graph.push({'@type':'WebApplication','@id':url+'#app',name:s.name,url,description:t.answer,applicationCategory:'BusinessApplication',operatingSystem:'Any modern browser',browserRequirements:'JavaScript enabled for local calculation',isAccessibleForFree:true,offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},featureList:[s.description,'Local input processing','Three fictional worked scenarios','JSON and Markdown reports','Offline Node.js runner'],softwareVersion:VERSION,author:{'@type':'Organization',name:'AGI Scorecard',url:'https://agiscorecard.com/'}});if(['','guide.html'].includes(path))graph.push({'@type':'FAQPage',mainEntity:faq(s).map(x=>({'@type':'Question',name:x.q,acceptedAnswer:{'@type':'Answer',text:x.a}}))});}
  else graph.push({'@type':'WebSite','@id':'https://'+hubHost+'/#website',name:'Web3 Workbench',url:'https://'+hubHost+'/',publisher:{'@type':'Organization',name:'AGI Scorecard',url:'https://agiscorecard.com/'}});
  const meta=`<meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:image" content="https://${s.host}/share.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${h(t?t.query+' — fictional worked scenario':'Web3 Workbench — free local tools')}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://${s.host}/share.png">${t?'<link rel="alternate" type="text/markdown" href="https://'+s.host+'/guide.md" title="Method in Markdown"><link rel="alternate" type="application/json" href="https://'+s.host+'/tool.json" title="Tool capabilities">':''}${ld({'@context':'https://schema.org','@graph':graph})}`;
  return replace(text,'</head>',meta+'</head>');
 }
-const nav=text=>text.replace('<a href="/guide.html">Guide / 中文</a>','<a href="/examples.html">Examples</a><a href="/guide.html">Guide / 中文</a>');
+const nav=text=>text.replace('<a href="/guide.html">Guide</a>','<a href="/examples.html">Examples</a><a href="/guide.html">Guide</a><a href="https://${hubHost}/zh/">Chinese research board</a>');
 const related=s=>`<div class="next-tools"><h2>Continue your review</h2>${topics[s.id].next.map(id=>`<a href="https://${byId[id].host}/"><strong>${h(byId[id].name)}</strong><span>${h(byId[id].description)}</span></a>`).join('')}</div>`;
 const sharing=s=>`<section class="share-kit"><h2>Useful for your team or readers?</h2><p>Share a public example or use the card in your documentation. These links never contain your input records.</p><div class="share-actions"><button id="share-example" class="secondary" type="button">Copy example link</button><a href="/share.png" download>Download share card</a><a href="https://${hubHost}/publish.html">Get a link or embed card</a></div><label for="share-output">Public example link</label><input id="share-output" type="text" readonly value="${h(exampleLink(s.id,scenarios(s.id)[0].key))}"><p id="share-status" role="status"></p></section>`;
 function preparation(s){
@@ -71,8 +73,8 @@ export async function enrich(){
   await writeFile(dir+'/llms.txt',`# ${s.name}\n\n${topics[s.id].answer}\n\n- [Tool](https://${s.host}/)\n- [Method](https://${s.host}/guide.html)\n- [Worked examples](https://${s.host}/examples.html)\n- [Markdown reference](https://${s.host}/guide.md)\n- [Capabilities](https://${s.host}/tool.json)\n- [Input structure](https://${s.host}/input.schema.json)\n- [Privacy](https://${s.host}/privacy.html)\n\nFree beta. Version ${VERSION}. Reviewed ${updated}. ${s.limit}\n`);
   cardData.push({id:s.id,name:s.name,topic:topics[s.id].query,host:s.host,color:s.color,metrics:run(s.id,s.sample).metrics.slice(0,2),scenario:scenarios(s.id)[0].title});
  }
- await hubPages();cardData.push({id:'hub',name:'Web3 Workbench',topic:'Bring a question. Leave with a working result.',host:hubHost,color:'#315aa2',metrics:[{label:'Local worksheets',value:'10'},{label:'Fictional scenarios',value:'30'}],scenario:'AI & Web3 operational tools'});
+ await hubPages();await agentPages(enrichHead);await marketPages();cardData.push({id:'hub',name:'Web3 Workbench',topic:'Bring a question. Leave with a working result.',host:hubHost,color:'#315aa2',metrics:[{label:'Local worksheets',value:'10'},{label:'Fictional scenarios',value:'30'}],scenario:'AI & Web3 operational tools'});
  await writeFile('dist/cards.json',JSON.stringify(cardData));execFileSync('python3',['scripts/cards.py']);
- for(const s of [{id:'hub',host:hubHost},...sites]){const dir='dist/'+(s.id==='hub'?'':s.id+'/'),paths=s.id==='hub'?['','guide.html','publish.html','privacy.html']:['','guide.html','examples.html','privacy.html'];await writeFile(dir+'sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>https://${s.host}/${p}</loc><lastmod>${updated}</lastmod></url>`).join('')}</urlset>`);}
+ for(const s of [{id:'hub',host:hubHost},...sites]){const dir='dist/'+(s.id==='hub'?'':s.id+'/'),paths=s.id==='hub'?['','guide.html','publish.html','privacy.html','for-agents.html',...newPaths]:['','guide.html','examples.html','privacy.html','for-agents.html'];await writeFile(dir+'sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>https://${s.host}/${p}</loc></url>`).join('')}</urlset>`);}
 }
 

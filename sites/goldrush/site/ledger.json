@@ -2,7 +2,7 @@
   "name": "The AI Gold Rush Ledger",
   "url": "https://goldrush.agiscorecard.com/",
   "license": "CC BY 4.0",
-  "dateModified": "2026-08-30",
+  "dateModified": "2026-09-22",
   "method": {
     "tiers": {
       "verified": "primary documents or our own measured data",
@@ -93,9 +93,11 @@
       "id": "our-own-protocol-economics",
       "claim": "This protocol spreads because a registry position appreciates with adoption, because early coverage is unrepeatable seniority, and because audit demand follows",
       "tier": "self-reported",
-      "verdict": "No mechanism evidence — all three claims were ours, none survived review, and all three are deleted (AGIX v0.6)",
-      "asOf": "2026-08-30",
-      "flip": "One /claimledger.json anywhere fetched by a client this network did not write, or any documented case of a tokenless format spreading without a committed consumer",
+      "verdict": "No mechanism evidence — all three claims were ours, none survived review, and all three are deleted (AGIX v0.6). Rechecked 2026-09-22: the original flip condition (below, kept verbatim) was met by the letter — 31 outside fetches of /claimledger.json, 22 of them crawler-class user agents — and nothing else moved: ledger_click 0, audit_click 0, fork_click 1, external ledgers 0. Fetches are not use. Verdict stands.",
+      "asOf": "2026-09-22",
+      "flip": "A client this network did not write that parses the five fields — an MCP or skill call with a non-goldrush ledger URL, a registry render of a non-goldrush /claimledger.json, or a published external ledger — or any documented case of a tokenless format spreading without a committed consumer",
+      "flip_v1_2026-08-30": "One /claimledger.json anywhere fetched by a client this network did not write, or any documented case of a tokenless format spreading without a committed consumer",
+      "correction": "2026-09-22 — the v1 flip counted any fetch, including crawlers; crawler fetches are indexing, not consumption (the llms.txt failure mode this ledger cites against everyone else). Tightened in public, before the 2026-11-30 adoption line, with the v1 text kept here per ledger rule 1.",
       "source": "https://goldrush.agiscorecard.com/agix"
     }
   ],

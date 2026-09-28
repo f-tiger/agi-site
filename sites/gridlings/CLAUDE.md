@@ -302,6 +302,9 @@ Star Battle 的**区域根本没有被勾出来**。共享网格样式 `gap:6px`
 `ref LIKE '%itch.zone%'` 的 `play_start` 累计 **≥150** 且 `solve` **≥25**,
 才继续投入游戏线;否则游戏降为「只维护、不新增」,人力全部回到 eco/bpj 的变现线。
 判定当天把结果写进 analytics-notes.md,不管方向如何。
+**✗ 结算(2026-09-24,判负)**:D1 `ev` 表 `ref LIKE '%itch.zone%'`:`play_start` 累计 **52**、`solve` **13**
+(最后一次 solve 在 08-27)——两项都不到阈值的三分之一。按上面原文执行:**游戏线只维护、不新增**,
+人力回 eco/bpj 变现线。(本站没有 analytics-notes.md,结论写在这里与 `data/fleet-bets.json`。)
 
 **本次已做的唯一改动(证据驱动,不是口味)**:胜利画面加「下一题:<某款> →」+
 「全部 11 款 →」,并给此前完全没有埋点的 `.gamesnav` 补上 `hub_click` 信标。
@@ -601,6 +604,48 @@ Playgama 自己测的 `loadingTime` 从 **5 143 → 2 867** 和 **4 589 → 1 11
 **后续会话的硬规矩**：09-22 投放结束前，**任何一款都不要 `publish_sandbox`**；
 `gridlings-playgama-traffic-0922` 的读数属于**旧包**，不要用它代表新包。
 结算之后再一次性做两件事：发新包到 sandbox + 带数据重新提交主目录。
+
+## 游戏方向结算:门户线走完了,四条判定线的答案已经齐了(2026-09-24)
+
+**同一周结掉四条,合起来是一个结论,不是四个读数。**
+
+| 判定线 | 结果 | 决定性读数 |
+|---|---|---|
+| `gridlings-itch-0924` | **lost** | itch 累计 play_start **52** / solve **13**,阈值 150/25;solve 已四周为 0 |
+| `gridlings-playgama-five-0925` | **lost** | 排队五款 09-15 全部 REJECTED,进主目录 **0** |
+| `gridlings-playgama-traffic-0922` | **won** | 非 US play_start **155**/46 国(阈值 150);60s 留存 27%(09-16 截图,阈值 15%) |
+| `gridlings-rules-cluster-0921` | **won** | 十张规则页 28d 真人 pv **52**(阈值 50);搜索/AI 引荐 **0** |
+
+**① 主目录对本舰队关着,七款 7/7。** 09-14 两款、09-15 五款,拒稿原文**逐字相同**,
+是那段「AI 做的游戏先经 MCP 拿数据」的分流政策,**不是质量评语**。加上 CG 三次同模板拒稿
+(09-09 已永久关闭),**「把游戏投给门户编辑看」这条路在两家独立平台上各走到头一次**。
+
+**② sandbox 确实送人,但确实不给钱。** 155 次开局、46 个国家、我们出 $0——
+这是这七款有史以来最大的玩家来源。而 `playgama.com/llms-full.txt` 原文写明 sandbox
+"does not by itself establish ... monetization"。**所以这条通道的产出只能是数据,不能是收入。**
+
+**③ 留存的真相:是三个人,不是一群人。** PROMPT 17 次开局配 80 次二次事件,比值 4.7 很漂亮,
+拆开看是 **BR 一个人 2 开局→23 次 game_over、ID 3→13、SO 1→4,其余九国 12 次开局→0**。
+深度参与 ≈ **3/17**。**本站第三次踩同一个形状了**(towers 的 55% 是一个 CN 用户、
+GHOSTLINE 的 27% 也只有一张 17 小时的截图)——**门户这种小样本下,任何漂亮比值先按国家和人拆开再引用。**
+
+**④ 因此 itch 那条 lose 分支已经生效,它是预登记过的**:
+> 「游戏降为只维护;不新增,人力回 eco/bpj 变现线」
+
+**这条不是我的判断,是 2026-08-27 写下、09-24 按原文结算的。** 后续会话要推翻它需要 owner 明说。
+
+**还活着的只有一条,而且不靠流量**:`gridlings-licensing-1017` —— 一次性非独占授权
+(Poki 的 non-exclusive flat fee、htmlgames $1 000/款挂牌),三封草稿在
+`docs/games-licensing-outreach-2026-09-16.md`,**owner 发信,会话不代发**。
+
+**owner 侧还卡着两件**(都不是代码问题):TOWERS 仍是 `DRAFT`,认证只能人在 QA Tool 里跑
+(`gridlings-puzzle-portal-1013` 到期会因为没人跑认证而判负,不是因为包不行);
+投放要 owner 发社交帖再回传 post URL。
+
+**投放机制又变了一次(09-24 查)**:`start_sandbox_traffic` 现在可以用 **`bonusId` 代替 `postUrls`**,
+而 bonus 只能靠**邀请别的开发者组织**赚(每个被邀组织 +$3,它首次 sandbox 发布再给邀请方 +$3)。
+我们当前 `availableBonuses: 0`,且 `canApply: false`(`ALREADY_PUBLISHED`)。
+**邀请链接是真实存在的增长机制,但拿它去换流量属于「换量」,舰队红线,不做。**
 
 # 做门户游戏的要素清单（owner 2026-09-05「以后记得做 crazygame 游戏的要素」）
 
@@ -1136,3 +1181,106 @@ cg-package-smoke，别靠肉眼。
   沙箱打不到线上站，这条只能在 runner 上验。
 - **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
   itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。
+
+## Playgama 主目录 7/7 同模板拒稿 + 流量线 ① 达标(2026-09-22,到期结算)
+
+- **`gridlings-playgama-five-0925` 提前 3 天判 lost**:MCP `list_applications` 显示 PROMPT / OVERFIT / MIMIC / OVERSEER /
+  MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC),五款的 `list_moderation_comments` 是**同一条模板**:AI 生成的游戏
+  要先经 Playgama MCP 沙箱拿到真实表现数据,再由他们挑选进主目录。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)
+  也是同一句 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。lose 动作生效:只经营 sandbox 面,**不再空手重投**;
+  进主目录的唯一通道是平台按沙箱表现挑,不是我们再提交。09-08 那次「质量」拒稿的教训(第 1063 行)仍有效,但已不是主因。
+- **`gridlings-playgama-traffic-0922` ① 达标、② 等 owner**:D1 现查 play_start 非 US 且 ref 含 games.playgama.net、ts≥09-15 14:53
+  = **155**(阈值 150;全部 167,含 US 12)。**投放形状要记住**:09-15 76、09-16 87、09-17 2、09-19 2、之后 0 ——
+  163/167 落在前 48 小时,而 MCP `get_sandbox_traffic` 说 run 仍 RUNNING、budget $2 只花了 16.8%、**09-22 14:53 UTC 结束**。
+  所以「≥150」是免费 boost 头两天给的,不是持续流量;主目录 09-14/15 全拒与投放停摆同期。
+  **owner 一件事**:run 结束后截一张 Overview(VISITS / PLAYS 60S,附日期)—— 这是 ② 的唯一读数;09-29 前没截图记 insufficient。
+  win 动作里「回投主目录」已被上一条作废,剩下的只有「$20 付费轮」这个 owner 决策;lose 则游戏降为只维护。
+- **版本冻结仍有效**:结算前不 `publish_sandbox` 新包(09-16 那个更快的归档仍未发)。② 结算之后再一次性做:发新包到 sandbox;
+  「带数据重新提交主目录」这半句删掉,主目录不接受提交。
+
+## 规则簇 zh 版:从台账第一条 won 长出来的扩张槽(2026-09-22,owner:「继续」)
+
+- **依据**:`gridlings-rules-cluster-0921` 09-21 判 won(52 pv/28d ≥50),预登记的 win 动作就是「追加 zh 版与更多查询」;
+  同日 D1 现查 zh 页占全站真人 pv **27%**(229/850,11 个 `/zh/*` 路径),所以 zh 面不是猜出来的受众。
+  「更多查询」那半句**没做**:没有任何需求仪器给 gridlings 读数(站规「无需求触发器」),凭空造查询页正是防薄页门要拦的。
+- **做法(生成器驱动,不手写页)**:`tools/geo_pages_zh.py` 按 EN slug 存 10 张页的中文数据(标题/答案胶囊/规则表/技巧/
+  一手数据/FAQ),**数字与 EN 逐个相同**(450 每日题自 2026-08-24、320 畅玩、0.2% 星战接受率、43% 数织逐线可解),
+  游戏名沿用 zh.html 既有词表(不等号·点点·三明治·摩天楼·星战·温度计·数织·迷你数独·日月·一笔画),Zip 一词全站禁用照旧。
+  `gen_geo_pages.py` 改为 `build(p, lang)`:同一 slug 出 `<slug>.html` 与 `<slug>-zh.html`,两边互挂 hreflang(照游戏页的
+  en/zh 成对写法),Article `inLanguage` 与 `url`、面包屑 item 按语种。**EN 页重生成后只多了 hreflang 两行与 JSON-LD 的 url,
+  正文一字未动**(逐页 diff 过,连每日 #N 那句的「or browse the archive」都保持原样)。
+- **接线**:worker `GEO_ZH` 集合(`/zh/<slug>` → `<slug>-zh.html`,`/zh/ai-games` 无孪生故意不在集合里,本地 6 例路由模拟全过);
+  sitemap +10 条(45 → 55);9 张 zh 游戏页 modes 行补「规则与技巧」回链(与 EN 页同形);llms.txt 10 条规则页各加 Chinese 链接;
+  部署自检路径表加 `/zh/star-battle-rules`(200 + 零重定向)。
+- **判定线 `gridlings-rules-zh-1022`**(已进台账):上线后 28 天 10 张 zh 规则页 human pv ≥20 → 把 `/ai-games` 与
+  `/nonogram-no-guessing` 也做 zh 版并在 zh.html 加入口;<10 停止 zh 扩张;10–19 insufficient 再看 28 天。
+  阈值故意高于按比例的 ~14,免得 t0 附近就自我满足。**上线日 = PR #2 合并日,不是今天。**
+
+## 判定线结算 2026-09-22(D1 现查;全文见根仓 `docs/fork-ledger-pricing-2026-09-22.md` §六)
+
+- **`gridlings-rules-cluster-0921` → won(52 ≥ 50,边际 4%)**:十张规则页 28 天真人 pv 52(6x6 5 · binary 5 · futoshiki 6 ·
+  games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5)。
+  10 行来自 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(不是秒级扫描)。**搜索/AI 引荐 0。**
+  异常值:`/star-battle-rules` 28 天 bot 抓取 89 次(其余页 6–10),下次维护看一眼 ua_audit。
+  win 分支「追加 zh 版与更多查询」**记为下一个扩张槽候选、本日未铺**:阈值另一半(Bing/GSC 前 20)只有 owner 能读,
+  零搜索引荐的 won 不该直接长出第二批页。
+- **`gridlings-playgama-traffic-0922`**:① 非 US `play_start` **155 ≥150**(全部落在 09-15 14:54 → 09-19 18:41,之后 0;
+  投放 run `spentRatio` 0.148,09-22 14:53 UTC 结束)。② 等 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那版;
+  09-16 那张 17 小时读数 13/49 = 26,5%)。保持 open,09-29 前结算。
+- 未到期只记:`gridlings-itch-0924` itch play_start 58 / solve 13(阈值 150 / 25);`gridlings-playgama-five-0925`
+  五款全部 REJECTED(09-15),0/5,另有 TOWERS DRAFT。
+
+## 最后一轮探索 2026-09-25:两个已修好的构建,从来没送到玩家面前
+
+**结论一句话:09-16 的加载修复上传到了 Playgama,却没有 publish 到 sandbox —— 公开链接这 9 天一直在发旧包。**
+Cabinet 自己就是证人,不是推测:
+
+| 证据 | 读数 |
+|---|---|
+| `get_launch_steps` (GHOSTLINE / SINGULARITY) | `sandbox: OUTDATED`,`reason: CHANGED`,`nextTools: [publish_sandbox]`,`askDeveloper: true` |
+| GHOSTLINE 当前 archive | `cmu48i4f803apnr0hi6vekyqv` = `ghostline-2026.09.16-lowgpu`,**loadingTime 2 655 ms** |
+| GHOSTLINE sandbox 正在发的 revision | `archiveId cmtrgnt5o3mudhg0hqw6icbti` = 09-07 那包,**loadingTime 5 143 ms**,publishedAt 09-15 14:49 |
+| SINGULARITY 同形 | 当前 `cmu48i5cy03arnr0h6tqzz5zs`,sandbox 仍发 `cmtsqomzh05dhmn0hpvax0me8` |
+
+**这解释了一个此前归因错误的读数**:09-15 的投放之后 `play_start` 在 09-19 就归零,而我们把它算在「sandbox 送来的人
+就是这么多」上。真实情况是**投放与其后所有访客拿到的都是 5,1 秒那版**;2,6 秒那版一个真人都没见过。
+「加载时间是流失主因」这个假设**到今天仍然一次都没有被测过**——不是证伪,是没测。
+
+**第二件同样没用掉的东西:免费投放额度还在,而且比用过的更大。** `get_sandbox_traffic` 三个应用逐个读:
+`offer.kind FREE` · `available true` · `budgetUsd 2` · `durationDays 3` · `expectedGameplays 100` ·
+**`remainingFreeRuns 3`** · `verdict.allowed true`。七个已发 sandbox 的应用各 3 次 = **约 21 次 × 100 ≈ 2 100 次免费游戏**。
+已经用掉的只有 2 次(GHOSTLINE / SINGULARITY,09-15,各 $1/1 天),而且**两次都没花完**:
+`spentRatio` 0.297 与 0.336 —— 预算不是约束,素材的展示/点击才是。
+**❌ 上面这一段最初还写了一句「已完成那两次的 `postUrls` 是 `[]`,所以 FREE 档不需要社交帖」——错的,09-26 实测推翻。**
+只传 `applicationId` 调用 `start_sandbox_traffic`,返回 **HTTP 400 `postUrls must contain at least 1 elements`**。
+正确的读法:`offer.available: true` + `remainingFreeRuns: 3` 说的是**额度还在**,不是**现在就能开**;
+开跑的门是分享。09-15 那两次 `postUrls: []` 是**分享门之前的首轮免费 boost**,与现在这三次不是同一件东西
+——**用历史行里的空字段去推当前接口的前置条件,就是这个错的形状**。
+
+**推荐动作(两步都 `askDeveloper: true`,会话不抢跑)**:①`publish_sandbox` 把两个 AI 游戏指到 09-16 的包
+(同一个公开 URL,不新增曝光面,只是把发出去的构建换成快的那个);②各用掉 1 次免费投放($2/3 天/约 100 次),
+**先 GHOSTLINE 与 SINGULARITY,puzzle 那五个留着**——先让唯一一个有前后对照的变量单独跑。
+
+### 2026-09-26 执行结果(owner 答「重发 + 各投 1 次免费」)
+
+- **①已完成,两个游戏的玩家现在拿到的是快的那版。** 逐个核对**面向玩家的那个字段**(昨天写下的规矩,第一次用上):
+  GHOSTLINE 线上 revision `cmuhp1sov0ab5ma0hacqodkfq` → archive `cmu48i4f803apnr0hi6vekyqv`(2 655 ms);
+  SINGULARITY revision `cmuhy26290pvhlc0h54hsrm6s` → archive `cmu48i5cy03arnr0h6tqzz5zs`。
+  `get_launch_steps` 的 `sandbox` 从 `OUTDATED/CHANGED` 变 **DONE**;再查一次 `changeStatus` 已是 **UNCHANGED**
+  (= 重发会是空操作,说明真的落地了);两个公开 URL HTTP 200。**URL 一个字没变**,所以旧链接全部继续有效。
+- **②开不了,卡在分享门,不是卡在额度。** 见上面那条订正:接口 400 要求 ≥1 个已发布的帖子链接。
+  **会话不编帖子链接**(不可逆花钱 + 冒充 owner 发帖,两条都撞红线),所以这一步停在 owner 手上。
+- **owner 要做的一步(约 2 分钟,两个游戏各一次)**:用 Playgama 现成的分享链接发一条,然后把**帖子本身的链接**贴回来,
+  会话就用 `postUrls` 开跑($2 / 3 天 / 约 100 次;最多贴 3 条链接,每条 +1 个 boost 单位并把活动延到贴出后至少 3 天)。
+  X:`https://x.com/intent/post?...`(见 `get_sandbox_share`,**链接由接口给出,永不自己拼**);
+  文案 Playgama 已预填 `Made with AI. Brought to you by #PlaygamaMCP. Fine-tuned by me. <游戏> → <链接>`。
+  **若 owner 自己改写文案,适用根手册的反 AI 味 8 条**;Playgama 预填的那句属平台文案,不在此列。
+- **台账**:`gridlings-playgama-loadfix-1024` 已进 `data/fleet-bets.json`(投放开跑日 +28 天;
+  metric = 修复后一次免费投放的 `play_start` 与 30 秒留存,对照 09-15 那次同预算读数)。
+  **注意它只有在 owner 贴回帖子链接后才开始计时**,没开跑就到期一律记 `insufficient`,不改判据。
+**不推荐**的:七个应用一起投(把 6 次额度花在同一个未知上)、再改游戏代码(还没有任何一版被真实测过)、
+再上传新包(上传不是发布,这一轮的教训正是这两件被当成了一件)。
+
+**通用教训(写进根手册的那条的游戏侧版本)**:`isUploaded: true` + `analysis.COMPLETED` + `loadingTime` 变好,
+**读起来与「已经上线」完全一样**,而 `activeArchives: []` 与 `sandbox: OUTDATED` 才是真话。
+**以后任何「修好了」的收尾一步,必须是读那个面向玩家的字段**(sandbox revision 的 archiveId),不是读上传结果。

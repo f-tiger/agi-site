@@ -1,6 +1,76 @@
 {
   "items": [
     {
+      "name": "Doom or Bloom, map your AI worldview",
+      "url": "https://www.doom-or-bloom.com",
+      "host": "doom-or-bloom.com",
+      "src": "https://news.ycombinator.com/item?id=49846953",
+      "points": 56,
+      "comments": 44,
+      "found": "2026-09-26",
+      "status": "candidate"
+    },
+    {
+      "name": "AI·rete·RAG – a Rete rule engine decides, RAG explains why",
+      "url": "https://ai-rete-rag.com/",
+      "host": "ai-rete-rag.com",
+      "src": "https://news.ycombinator.com/item?id=49803683",
+      "points": 43,
+      "comments": 9,
+      "found": "2026-09-24",
+      "status": "candidate"
+    },
+    {
+      "name": "Launch HN: Coverage Cat (YC S22) – Umbrella insurance via your personal agent",
+      "url": "https://www.coveragecat.com/",
+      "host": "coveragecat.com",
+      "src": "https://news.ycombinator.com/item?id=49804931",
+      "points": 45,
+      "comments": 28,
+      "found": "2026-09-23",
+      "status": "candidate"
+    },
+    {
+      "name": "Lossless-memory – a personal AI memory that never summarizes",
+      "url": "https://github.com/aru-labs/lossless-memory",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49786419",
+      "points": 59,
+      "comments": 21,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
+      "name": "Mini-AGI – Dynamic continual learning model trained on 8GB VRAM",
+      "url": "https://github.com/volotat/mini-AGI/",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49783133",
+      "points": 257,
+      "comments": 57,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
+      "name": "jevals – replacing LLM judges with typed Jev decisions",
+      "url": "https://github.com/openlayer-ai/jevals",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49780849",
+      "points": 42,
+      "comments": 1,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
+      "name": "CUA-S1 – A System One Model for Computer Use",
+      "url": "https://github.com/trycua/cua",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49767564",
+      "points": 72,
+      "comments": 8,
+      "found": "2026-09-20",
+      "status": "candidate"
+    },
+    {
       "name": "Share your AI Setup, Learn from others",
       "url": "https://mysetup.ai/",
       "host": "mysetup.ai",
@@ -259,117 +329,7 @@
       "comments": 35,
       "found": "2026-08-14",
       "status": "candidate"
-    },
-    {
-      "name": "Needle2: 14MB agentic LLM for phones, wearables, smart home and robots",
-      "url": "https://cactuscompute.com/needle",
-      "host": "cactuscompute.com",
-      "src": "https://news.ycombinator.com/item?id=49246804",
-      "points": 191,
-      "comments": 82,
-      "found": "2026-08-11",
-      "status": "candidate"
-    },
-    {
-      "name": "Ante, a coding agent in a single binary that runs offline",
-      "url": "https://github.com/AntigmaLabs/ante",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49245437",
-      "points": 119,
-      "comments": 75,
-      "found": "2026-08-11",
-      "status": "candidate"
-    },
-    {
-      "name": "A tiny LLM running at 21,000 tok/s on a $250 FPGA (Live Demo)",
-      "url": "https://www.mikeayles.com/blog/on-chip-llm-kv260/",
-      "host": "mikeayles.com",
-      "src": "https://news.ycombinator.com/item?id=49242475",
-      "points": 43,
-      "comments": 14,
-      "found": "2026-08-11",
-      "status": "candidate"
-    },
-    {
-      "name": "Voice driven murder mystery, Interview AI suspects with your voice",
-      "url": "https://www.whodunnitai.com/",
-      "host": "whodunnitai.com",
-      "src": "https://news.ycombinator.com/item?id=49238851",
-      "points": 190,
-      "comments": 81,
-      "found": "2026-08-11",
-      "status": "candidate"
-    },
-    {
-      "name": "Launch HN: Stoa Markets (YC S26) – A Marketplace for GPUs and AI Servers",
-      "url": "https://www.stoaexchange.com",
-      "host": "stoaexchange.com",
-      "src": "https://news.ycombinator.com/item?id=49246057",
-      "points": 66,
-      "comments": 40,
-      "found": "2026-08-11",
-      "status": "candidate"
-    },
-    {
-      "name": "The Channels SDK – Bring Any Agent to Any Channel (Slack, MS Teams)",
-      "url": "https://github.com/CopilotKit/channels-sdk",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49198583",
-      "points": 118,
-      "comments": 24,
-      "found": "2026-08-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Fine-tune an 8B model on a 4 GB laptop GPU",
-      "url": "https://github.com/MakazhanAlpamys/Soup",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49166984",
-      "points": 137,
-      "comments": 28,
-      "found": "2026-08-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Hacker News with AI stories filtered out",
-      "url": "https://hcker.news/?view=frontpage&ai=exclude",
-      "host": "hcker.news",
-      "src": "https://news.ycombinator.com/item?id=49159018",
-      "points": 52,
-      "comments": 11,
-      "found": "2026-08-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Product analytics (and evals) for agent sessions on your MCP",
-      "url": "https://armature.tech/",
-      "host": "armature.tech",
-      "src": "https://news.ycombinator.com/item?id=49157807",
-      "points": 42,
-      "comments": 8,
-      "found": "2026-08-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Nightcrawler – A local AI pentesting agent running on a smartphone",
-      "url": "https://github.com/garagehq/nightcrawler/",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49154127",
-      "points": 119,
-      "comments": 35,
-      "found": "2026-08-09",
-      "status": "candidate"
-    },
-    {
-      "name": "Sprocket – The Best AI Agent for Hardware and Software Development",
-      "url": "https://sprocket-demo.spikonado.com",
-      "host": "sprocket-demo.spikonado.com",
-      "src": "https://news.ycombinator.com/item?id=49145934",
-      "points": 124,
-      "comments": 14,
-      "found": "2026-08-09",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-09-19"
+  "updated": "2026-09-27"
 }

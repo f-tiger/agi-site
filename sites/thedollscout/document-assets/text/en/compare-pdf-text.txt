@@ -1,0 +1,64 @@
+# Compare PDF text
+
+https://thedollscout.com/compare-pdf-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: When a revised PDF arrives and you need to find text changes.
+
+What you get: Aligned text pages and changed, added, removed or unknown pages.
+
+What to check yourself: Images, layout and annotations are not compared. Suggested page pairings need review.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+Can I compare PDF versions after a page is inserted?
+
+The tool aligns pages using normalized text and proposes pairings around insertions. Review added, removed and changed pages; pairings are suggestions and can be ambiguous for repeated content.
+
+Does identical extracted text mean two PDF files are identical?
+
+No. Images, tags, layout and other bytes can differ. Use file verification for a SHA-256 and byte-count comparison, and review visual changes in the original PDFs.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The revision changes the workshop time, inserts a page and changes the materials list. Suggested text pairings do not compare visual layout, images or PDF tags.
+
+Text changes | Original page | Revised page
+
+Changed | 1 | 1
+
+Added | — | 2
+
+Changed | 2 | 3
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/compare-pdf-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

@@ -148,7 +148,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
+          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /zh/star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly
@@ -170,7 +170,7 @@ jobs:
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
           pulse=$(curl -s --max-time 20 -A 'gridlings-deploy-smoke-bot (+ci; classified as bot by design)' "https://play.agiscorecard.com/api/pulse" || echo "")
           case "$pulse" in
-            *'"ok":true'*'"ai_ref"'*) echo "OK    /api/pulse" ;;
+            *'"ok":true'*'"ai_ref"'*'"by_source"'*) echo "OK    /api/pulse" ;;
             *) echo "::error::/api/pulse broken: ${pulse:0:120}"; fail=1 ;;
           esac
           [ "$fail" = "0" ] || exit 1

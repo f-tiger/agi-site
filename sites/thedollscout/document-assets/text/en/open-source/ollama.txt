@@ -1,0 +1,38 @@
+# Ollama: Run a selected language model on your own computer.
+
+https://thedollscout.com/open-source/ollama
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Run a selected language model on your own computer.
+
+Useful when you want a local model workflow and can manage model downloads and memory use. Select a local model and check the current documentation; hosted/cloud features have separate behavior.
+
+The runtime MIT license does not grant rights to every model. Check each model license and keep the service private unless you deliberately secure network access. Generated answers require verification.
+
+Install from the official download page.
+
+Choose a local model whose license and size fit your task.
+
+Test with public sample text before sensitive material.
+
+If you only need source sentences, try the TDS extractive summarizer.
+
+Windows · macOS · Linux
+
+MIT (runtime)
+
+https://github.com/ollama/ollama/blob/main/LICENSE
+
+https://ollama.com/download
+
+https://docs.ollama.com/
+
+https://github.com/ollama/ollama
+
+https://thedollscout.com/ai-text-summarizer
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+

@@ -1,0 +1,30 @@
+# KI-Audio in Text — Englisch
+
+https://thedollscout.com/de/ai-audio-to-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Nur englische Sprache; WAV oder MP3 bis 10 MiB und 60 Sekunden. Keine Sprechererkennung, Übersetzung oder Live-Aufnahme. Whisper Tiny kann Sprache auslassen oder Wörter erfinden, besonders bei Rauschen oder Stille. Jeden Entwurf prüfen.
+
+Der Browser dekodiert die Datei zu Mono-Audio mit 16 kHz. Whisper Tiny English schätzt Text und Segmentzeiten. TXT und SRT werden lokal erzeugt. Zeitangaben sind Näherungen.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Kann es Deutsch oder Chinesisch transkribieren?
+
+Diese erste Version verwendet ein rein englisches Modell. Die Oberfläche ist dreisprachig, die Aufnahme muss englische Sprache enthalten.
+
+Sind Namen und Untertitel immer korrekt?
+
+Nein. Das kleine Modell kann Namen, Zahlen, Akzente oder Geräusche falsch erkennen. Original abspielen und Entwurf vor Veröffentlichung bearbeiten.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md

@@ -1,60 +1,61 @@
 {
-  "generated": "2026-09-19",
+  "generated": "2026-09-27",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-22",
-  "until": "2026-09-19",
+  "since": "2026-08-30",
+  "until": "2026-09-27",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 334,
-  "per_day": 11.9,
+  "humans_referred": 396,
+  "per_day": 14.1,
   "by_kind": {
-    "tool": 234,
-    "category": 52,
-    "page": 36,
-    "plans": 4,
-    "vs": 6,
-    "alternatives": 2
+    "tool": 307,
+    "category": 47,
+    "page": 35,
+    "alternatives": 2,
+    "judgement": 1,
+    "plans": 1,
+    "vs": 3
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 100
+      "n": 136
     },
     {
       "cat": "coding",
-      "n": 56
-    },
-    {
-      "cat": "api",
-      "n": 49
+      "n": 63
     },
     {
       "cat": "video",
-      "n": 31
+      "n": 43
+    },
+    {
+      "cat": "api",
+      "n": 41
     },
     {
       "cat": "office",
-      "n": 12
-    },
-    {
-      "cat": "image",
-      "n": 12
+      "n": 18
     },
     {
       "cat": "writing",
-      "n": 9
+      "n": 15
+    },
+    {
+      "cat": "image",
+      "n": 15
     },
     {
       "cat": "local",
-      "n": 8
-    },
-    {
-      "cat": "agent",
-      "n": 6
+      "n": 11
     },
     {
       "cat": "audio",
-      "n": 6
+      "n": 9
+    },
+    {
+      "cat": "agent",
+      "n": 5
     },
     {
       "cat": "search",
@@ -67,42 +68,58 @@
     {
       "cat": "study",
       "n": 1
-    },
-    {
-      "cat": "design",
-      "n": 1
     }
   ],
   "tools": [
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 75
+      "n": 91
     },
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 21
-    },
-    {
-      "slug": "fireworks",
-      "cat": "api",
-      "n": 19
-    },
-    {
-      "slug": "haiper",
-      "cat": "video",
-      "n": 12
+      "n": 34
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 11
+      "n": 16
     },
     {
       "slug": "cline",
       "cat": "coding",
+      "n": 16
+    },
+    {
+      "slug": "fireworks",
+      "cat": "api",
+      "n": 15
+    },
+    {
+      "slug": "haiper",
+      "cat": "video",
+      "n": 15
+    },
+    {
+      "slug": "google-flow",
+      "cat": "video",
       "n": 7
+    },
+    {
+      "slug": "deepl",
+      "cat": "writing",
+      "n": 6
+    },
+    {
+      "slug": "fastgpt",
+      "cat": "agent",
+      "n": 5
+    },
+    {
+      "slug": "tongyi",
+      "cat": "chat",
+      "n": 5
     },
     {
       "slug": "pixverse",
@@ -110,18 +127,33 @@
       "n": 5
     },
     {
-      "slug": "fastgpt",
-      "cat": "agent",
-      "n": 4
-    },
-    {
-      "slug": "google-flow",
-      "cat": "video",
-      "n": 4
-    },
-    {
-      "slug": "quillbot",
+      "slug": "immersive-translate",
       "cat": "writing",
+      "n": 4
+    },
+    {
+      "slug": "liblib",
+      "cat": "image",
+      "n": 4
+    },
+    {
+      "slug": "comfyui",
+      "cat": "local",
+      "n": 4
+    },
+    {
+      "slug": "fish-audio",
+      "cat": "audio",
+      "n": 3
+    },
+    {
+      "slug": "qingying",
+      "cat": "video",
+      "n": 3
+    },
+    {
+      "slug": "replit",
+      "cat": "coding",
       "n": 3
     },
     {
@@ -130,8 +162,18 @@
       "n": 3
     },
     {
+      "slug": "ttsmaker",
+      "cat": "audio",
+      "n": 3
+    },
+    {
       "slug": "lm-studio",
       "cat": "local",
+      "n": 3
+    },
+    {
+      "slug": "tongyi-wanxiang",
+      "cat": "image",
       "n": 3
     },
     {
@@ -140,13 +182,18 @@
       "n": 3
     },
     {
-      "slug": "comfyui",
-      "cat": "local",
+      "slug": "jianying",
+      "cat": "video",
       "n": 3
     },
     {
-      "slug": "tongyi",
+      "slug": "ms-copilot",
       "cat": "chat",
+      "n": 2
+    },
+    {
+      "slug": "anythingllm",
+      "cat": "local",
       "n": 2
     },
     {
@@ -160,13 +207,8 @@
       "n": 2
     },
     {
-      "slug": "deepl",
-      "cat": "writing",
-      "n": 2
-    },
-    {
-      "slug": "fish-audio",
-      "cat": "audio",
+      "slug": "doubao",
+      "cat": "chat",
       "n": 2
     },
     {
@@ -180,23 +222,13 @@
       "n": 2
     },
     {
-      "slug": "immersive-translate",
-      "cat": "writing",
-      "n": 2
-    },
-    {
       "slug": "openrouter",
       "cat": "api",
       "n": 2
     },
     {
-      "slug": "qingying",
-      "cat": "video",
-      "n": 2
-    },
-    {
-      "slug": "replit",
-      "cat": "coding",
+      "slug": "quillbot",
+      "cat": "writing",
       "n": 2
     },
     {
@@ -205,8 +237,13 @@
       "n": 2
     },
     {
-      "slug": "ttsmaker",
-      "cat": "audio",
+      "slug": "wordvice",
+      "cat": "writing",
+      "n": 2
+    },
+    {
+      "slug": "zhipu-glm",
+      "cat": "api",
       "n": 2
     },
     {
@@ -215,13 +252,8 @@
       "n": 2
     },
     {
-      "slug": "tongyi-wanxiang",
-      "cat": "image",
-      "n": 2
-    },
-    {
-      "slug": "windsurf",
-      "cat": "coding",
+      "slug": "elevenlabs",
+      "cat": "audio",
       "n": 2
     },
     {
@@ -238,103 +270,97 @@
       "slug": "goose",
       "cat": "coding",
       "n": 1
-    },
+    }
+  ],
+  "judgement": [
     {
-      "slug": "groq",
-      "cat": "api",
-      "n": 1
-    },
-    {
-      "slug": "guojia-fanzha",
-      "cat": "safety",
-      "n": 1
-    },
-    {
-      "slug": "poe",
-      "cat": "chat",
-      "n": 1
-    },
-    {
-      "slug": "tongyi-lingma",
-      "cat": "coding",
-      "n": 1
-    },
-    {
-      "slug": "zed",
-      "cat": "coding",
-      "n": 1
-    },
-    {
-      "slug": "anythingllm",
-      "cat": "local",
-      "n": 1
-    },
-    {
-      "slug": "cerebras",
-      "cat": "api",
+      "path": "/is-google-flow-still-free",
       "n": 1
     }
   ],
-  "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 75
+      "n": 91
     },
     {
       "path": "coding",
-      "n": 37
-    },
-    {
-      "path": "/",
-      "n": 28
+      "n": 35
     },
     {
       "path": "kimi",
-      "n": 21
+      "n": 34
     },
     {
-      "path": "fireworks",
-      "n": 19
-    },
-    {
-      "path": "haiper",
-      "n": 12
-    },
-    {
-      "path": "api",
-      "n": 11
+      "path": "/",
+      "n": 26
     },
     {
       "path": "feishu-miaoji",
-      "n": 11
+      "n": 16
+    },
+    {
+      "path": "cline",
+      "n": 16
+    },
+    {
+      "path": "fireworks",
+      "n": 15
+    },
+    {
+      "path": "haiper",
+      "n": 15
+    },
+    {
+      "path": "api",
+      "n": 9
     },
     {
       "path": "/report",
       "n": 8
     },
     {
-      "path": "cline",
+      "path": "google-flow",
       "n": 7
+    },
+    {
+      "path": "deepl",
+      "n": 6
+    },
+    {
+      "path": "fastgpt",
+      "n": 5
+    },
+    {
+      "path": "tongyi",
+      "n": 5
     },
     {
       "path": "pixverse",
       "n": 5
     },
     {
-      "path": "image",
+      "path": "immersive-translate",
       "n": 4
     },
     {
-      "path": "fastgpt",
+      "path": "liblib",
       "n": 4
     },
     {
-      "path": "google-flow",
+      "path": "comfyui",
       "n": 4
     },
     {
-      "path": "quillbot",
+      "path": "fish-audio",
+      "n": 3
+    },
+    {
+      "path": "qingying",
+      "n": 3
+    },
+    {
+      "path": "replit",
       "n": 3
     },
     {
@@ -342,7 +368,15 @@
       "n": 3
     },
     {
+      "path": "ttsmaker",
+      "n": 3
+    },
+    {
       "path": "lm-studio",
+      "n": 3
+    },
+    {
+      "path": "tongyi-wanxiang",
       "n": 3
     },
     {
@@ -350,19 +384,19 @@
       "n": 3
     },
     {
-      "path": "comfyui",
+      "path": "jianying",
       "n": 3
     },
     {
-      "path": "/plans/free-video-gen",
+      "path": "image",
       "n": 2
     },
     {
-      "path": "tongyi",
+      "path": "ms-copilot",
       "n": 2
     },
     {
-      "path": "/vs/dify-vs-n8n",
+      "path": "anythingllm",
       "n": 2
     },
     {
@@ -374,11 +408,7 @@
       "n": 2
     },
     {
-      "path": "deepl",
-      "n": 2
-    },
-    {
-      "path": "fish-audio",
+      "path": "doubao",
       "n": 2
     },
     {
@@ -390,19 +420,11 @@
       "n": 2
     },
     {
-      "path": "immersive-translate",
-      "n": 2
-    },
-    {
       "path": "openrouter",
       "n": 2
     },
     {
-      "path": "qingying",
-      "n": 2
-    },
-    {
-      "path": "replit",
+      "path": "quillbot",
       "n": 2
     },
     {
@@ -410,7 +432,11 @@
       "n": 2
     },
     {
-      "path": "ttsmaker",
+      "path": "wordvice",
+      "n": 2
+    },
+    {
+      "path": "zhipu-glm",
       "n": 2
     },
     {
@@ -418,11 +444,7 @@
       "n": 2
     },
     {
-      "path": "tongyi-wanxiang",
-      "n": 2
-    },
-    {
-      "path": "windsurf",
+      "path": "elevenlabs",
       "n": 2
     },
     {
@@ -434,11 +456,15 @@
       "n": 1
     },
     {
-      "path": "/plans/free-life",
+      "path": "video",
       "n": 1
     },
     {
-      "path": "/plans/free-meeting-notes",
+      "path": "/is-google-flow-still-free",
+      "n": 1
+    },
+    {
+      "path": "/plans/free-video-gen",
       "n": 1
     },
     {
@@ -454,15 +480,11 @@
       "n": 1
     },
     {
-      "path": "groq",
-      "n": 1
-    },
-    {
       "path": "guojia-fanzha",
       "n": 1
     },
     {
-      "path": "poe",
+      "path": "qwen-chat",
       "n": 1
     },
     {
@@ -470,15 +492,11 @@
       "n": 1
     },
     {
+      "path": "windsurf",
+      "n": 1
+    },
+    {
       "path": "zed",
-      "n": 1
-    },
-    {
-      "path": "/vs/bailian-vs-cerebras",
-      "n": 1
-    },
-    {
-      "path": "/vs/cloudflare-workers-ai-vs-google-ai-studio",
       "n": 1
     },
     {
@@ -486,7 +504,7 @@
       "n": 1
     },
     {
-      "path": "anythingllm",
+      "path": "/llm-api-calculator",
       "n": 1
     },
     {
@@ -494,93 +512,73 @@
       "n": 1
     },
     {
+      "path": "cherry-studio",
+      "n": 1
+    },
+    {
       "path": "cohere",
-      "n": 1
-    },
-    {
-      "path": "connectedpapers",
-      "n": 1
-    },
-    {
-      "path": "deepinfra",
-      "n": 1
-    },
-    {
-      "path": "doubao",
-      "n": 1
-    },
-    {
-      "path": "elevenlabs",
-      "n": 1
-    },
-    {
-      "path": "figma",
       "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 165
+      "n": 176
     },
     {
       "ref": "cn.bing.com",
-      "n": 88
+      "n": 133
     },
     {
       "ref": "www.bing.com",
-      "n": 13
+      "n": 22
     },
     {
       "ref": "chatgpt.com",
-      "n": 13
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "n": 12
-    },
-    {
-      "ref": "www.facebook.com",
-      "n": 8
+      "n": 10
     },
     {
       "ref": "m.facebook.com",
       "n": 8
     },
     {
+      "ref": "www.facebook.com",
+      "n": 8
+    },
+    {
+      "ref": "duckduckgo.com",
+      "n": 5
+    },
+    {
       "ref": "m.baidu.com",
-      "n": 6
+      "n": 5
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 5
+    },
+    {
+      "ref": "baidu.com",
+      "n": 4
+    },
+    {
+      "ref": "com.twitter.android",
+      "n": 4
+    },
+    {
+      "ref": "www.baidu.com",
+      "n": 4
     },
     {
       "ref": "yandex.com",
       "n": 4
     },
     {
-      "ref": "www.baidu.com",
-      "n": 3
-    },
-    {
-      "ref": "duckduckgo.com",
-      "n": 3
-    },
-    {
-      "ref": "baidu.com",
-      "n": 3
-    },
-    {
-      "ref": "yandex.com.tr",
-      "n": 2
-    },
-    {
-      "ref": "www.google.com.hk",
-      "n": 2
-    },
-    {
       "ref": "www.doubao.com",
-      "n": 1
+      "n": 2
     },
     {
-      "ref": "search.brave.com",
+      "ref": "copilot.microsoft.com",
       "n": 1
     },
     {
@@ -588,7 +586,19 @@
       "n": 1
     },
     {
-      "ref": "com.twitter.android",
+      "ref": "search.brave.com",
+      "n": 1
+    },
+    {
+      "ref": "www.google.com.hk",
+      "n": 1
+    },
+    {
+      "ref": "yandex.com.tr",
+      "n": 1
+    },
+    {
+      "ref": "yandex.kz",
       "n": 1
     }
   ],
@@ -596,26 +606,21 @@
     {
       "ref": "chatgpt.com",
       "path": "/c/api",
-      "n": 11
+      "n": 9
     },
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 4
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/dify-vs-n8n",
       "n": 2
     },
     {
       "ref": "chatgpt.com",
-      "path": "/",
+      "path": "/tools/qingying",
       "n": 1
     },
     {
-      "ref": "chatgpt.com",
-      "path": "/tools/qingying",
+      "ref": "copilot.microsoft.com",
+      "path": "/en/tools/ms-copilot",
       "n": 1
     },
     {
@@ -630,22 +635,7 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/c/coding",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/tools/groq",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/bailian-vs-cerebras",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
+      "path": "/en/is-google-flow-still-free",
       "n": 1
     },
     {
@@ -655,19 +645,35 @@
     }
   ],
   "events": {
-    "sub_view": 330,
-    "go": 91,
-    "star": 7,
-    "calc": 6,
-    "sub_submit": 5,
+    "sub_view": 427,
+    "go": 117,
+    "home": 15,
+    "biz": 12,
+    "star": 10,
+    "calc": 9,
     "sheet_dl": 5,
+    "sub_submit": 5,
     "sub_ok": 4,
-    "biz": 2,
+    "gate": 3,
     "sub_dup": 1
   },
   "submissions": {
-    "new": 7,
-    "total": 7
+    "new": 9,
+    "total": 9
   },
-  "ads": {}
+  "ads": {},
+  "commercial_triggers": {
+    "ok": true,
+    "started": "2026-09-26",
+    "counts": {
+      "vendor-view": 0,
+      "vendor-sponsor": 0,
+      "vendor-wait": 0,
+      "ad-view": 0,
+      "ad-wallet": 0,
+      "ad-reach": 0,
+      "ad-later": 0
+    },
+    "definition": "First event per action per page load, QA excluded at emitter. Not unique people, a linked funnel, verified vendors or paid conversions. Client events can be blocked or spoofed."
+  }
 }

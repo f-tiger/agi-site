@@ -1,0 +1,30 @@
+# File privacy
+
+https://thedollscout.com/document-privacy
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+
+When you download a report, your browser saves it to your device. JSON and CSV reports can contain filenames and document titles. JSON comparison reports and text downloads also contain extracted document text. No report is made public by this site.
+
+We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. No analytics cookies or cross-session user identifier are used on these document pages.
+
+Legacy collector pages and the separate member area have their own behavior, described in the existing privacy notice. Document tools do not require membership, and membership does not add paid document features.
+
+Sharing a page sends only its public link. Sharing a summary sends the previewed counts and limitations to the destination you choose, or copies them to your clipboard. It does not include filenames, titles, document text or manual notes. Downloaded full reports have different contents, described above.
+
+Delivery records are processed locally. Downloads include file names and entered notes. Optional team-plan research records only a fixed handoff-frequency range and plan preference; it collects no email, account, file hash or source notes. An answer is not an order.
+
+File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
+
+Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
+
+AI tools run fixed models locally after you click Load AI model. Software and model downloads contact jsDelivr and Hugging Face, which receive connection information such as your IP address. Your selected photos, recordings and text are not uploaded. Model files may be cached by your browser; clear website data to remove them. Results and inputs stay in memory unless you download them. AI outputs can be wrong; each tool explains its language and task limits.
+
+Open-source pages link to independent projects. Video pages connect to YouTube/Google only after you load the embedded player; connection information is then sent to those providers. The privacy-enhanced player does not guarantee anonymous viewing. Optional equipment links open Amazon and include an affiliate tag. We count fixed resource actions, never video titles supplied by visitors or purchase details.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

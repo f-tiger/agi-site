@@ -791,3 +791,10 @@ MINIMA（2 次开局 → 7 次 game_over，比值最高）→ OVERFIT（6 次开
 （`race_start` / `finish` / `medal` / `beat_clone` / `first_click` / `milestone` /
 `ship` / `rogue` / `rewarded`）。**口径断点：这九个事件的历史从 2026-09-17 15:16 开始，
 与之前的窗口不可比。** 这两款占了投放样本 146 次开局里的 117 次。
+
+## 2026-09-22 结算读数(到期日)
+
+- 主目录:7/7 REJECTED,同一条「AI 游戏走 MCP 沙箱」模板(GHOSTLINE 09-14 13:02、SINGULARITY 09-14 13:39、五款 09-15 18:57–19:17 UTC)。
+  `gridlings-playgama-five-0925` 判 lost;以后不再向主目录提交,只经营 sandbox。
+- 流量线 ①:D1 play_start(非 US、ref 含 games.playgama.net、ts≥09-15 14:53)= 155 / 167,按日 76 / 87 / 2 / 2 / 0…;
+  run RUNNING、$2 预算花了 16.8%、09-22 14:53 UTC 结束。② 等 owner 的 Overview 截图(VISITS / PLAYS 60S)。

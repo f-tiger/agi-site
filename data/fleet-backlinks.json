@@ -1,0 +1,97 @@
+{
+ "generated": "2026-09-16T14:48:31Z",
+ "note": "earned = 各站 by_other(真的送来过人的站外来源域);targets = 清单核对,只读不提交",
+ "errors": [
+  "agiscorecard: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "getecoback: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "thedollscout: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "goldrush: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "gridlings: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "buysomething: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "gamesledger: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "after35: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "learn: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "fanzha: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "firstjob: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "codeword: no by_other yet (worker 未部署 2026-09-16 的外链读数)",
+  "powerbill: no by_other yet (worker 未部署 2026-09-16 的外链读数)"
+ ],
+ "earned": [
+  {
+   "site": "baipiaoji",
+   "referrers": {
+    "com.twitter.android": 1
+   },
+   "domains": 1,
+   "visits": 1
+  }
+ ],
+ "targets": [
+  {
+   "repo": "awesomedata/awesome-public-datasets",
+   "section": "Machine Learning",
+   "site": "agiscorecard",
+   "fit": "/data.json 是 CC BY 4.0 的开放数据集,这是本舰队最诚实的数据集类契合点",
+   "status": "queued",
+   "http": 200,
+   "present": false,
+   "bytes": 243384
+  },
+  {
+   "repo": "punkpeye/awesome-mcp-servers",
+   "section": "MCP servers",
+   "site": "baipiaoji",
+   "fit": "verified-ai-free-tiers MCP server 已在官方 registry;四个 PR 已提(#12240/#12245/#12513/#12084),等维护者合并",
+   "status": "pr_open",
+   "http": 200,
+   "present": false,
+   "bytes": 1708563
+  },
+  {
+   "repo": "wong2/awesome-mcp-servers",
+   "section": "MCP servers",
+   "site": "baipiaoji",
+   "fit": "同上,另一份主流 MCP 列表",
+   "status": "queued",
+   "http": 200,
+   "present": false,
+   "bytes": 98998
+  },
+  {
+   "repo": "Hannibal046/Awesome-LLM",
+   "section": "Resources / Leaderboards",
+   "site": "agiscorecard",
+   "fit": "AGI 判定台账 + 0-100 Thesis Tracker,属 LLM 评测/资源面",
+   "status": "queued",
+   "http": 200,
+   "present": false,
+   "bytes": 62048
+  },
+  {
+   "repo": "steven2358/awesome-generative-ai",
+   "section": "Resources",
+   "site": "agiscorecard",
+   "fit": "同上,通用生成式 AI 资源列表",
+   "status": "queued",
+   "http": 200,
+   "present": false,
+   "bytes": 52392
+  },
+  {
+   "repo": "mahseema/awesome-ai-tools",
+   "section": "Directories / Free tools",
+   "site": "baipiaoji",
+   "fit": "白嫖计是「确有免费额度的 AI 工具」目录,契合免费工具分区",
+   "status": "queued",
+   "http": 200,
+   "present": false,
+   "bytes": 60869
+  }
+ ],
+ "unverified": [
+  {
+   "repo": "ComposioHQ/awesome-claude-skills",
+   "why": "2026-09-16 实测 raw README 404(路径或分支已变);backlink-kit 里记的 67k star 无法在本会话核实,先不当成现存目标"
+  }
+ ]
+}

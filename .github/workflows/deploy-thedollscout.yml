@@ -10,6 +10,10 @@ on:
     branches: [main]
     paths:
       - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
+      - "sites/baipiaoji/lib/**"
+      - "sites/baipiaoji/functions/api/member*.js"
+      - "sites/baipiaoji/scripts/ad-runner-config.mjs"
       # 纯簿记文件(content/ 被 assemble-dist 排除,不发布)不触发部署。
       - "sites/thedollscout/**"
       - "!sites/thedollscout/content/traffic.json"
@@ -17,6 +21,7 @@ on:
       - "!sites/thedollscout/content/growth-log.md"
       - "!sites/thedollscout/content/trends-rising.json"
       - "!sites/thedollscout/content/trends-us.json"
+      - "!sites/thedollscout/content/document-metrics.json"
       # 簿记文件,不发布(assemble-dist 排除 *.md)——手册更新不该烧一次部署。
       - "!sites/thedollscout/CLAUDE.md"
       - ".github/workflows/deploy-thedollscout.yml"
@@ -54,6 +59,17 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Build and test Document Scout from pinned dependencies
+        run: |
+          npm ci --prefix scripts/documents --ignore-scripts
+          npm test --prefix scripts/documents
+          node scripts/documents/build.mjs
+          node scripts/documents/verify.mjs
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
@@ -96,6 +112,12 @@ jobs:
       - name: Gate — FAQ/DefinedTerm structured data must match visible text
         run: node scripts/check-structured-data.mjs
 
+      - name: Verify collector tools and generated pages
+        run: |
+          node --test scripts/collector-tools.test.cjs
+          node scripts/gen-collector-pages.mjs
+          git diff --exit-code -- collection-tracker.html display-calculator.html collector-guide.html de/collection-tracker.html de/display-calculator.html de/collector-guide.html
+
       - name: Regenerate the /odds/ cluster and prove it is in sync
         # 生成器是幂等的,所以在部署链上重跑一次等于断言「仓库里的页 == 数据脊算出来的页」。
         # 若有人手改了生成页或改了 rarity-odds.json 却忘了重跑,这一步会让 diff 非空而失败。
@@ -109,12 +131,8 @@ jobs:
           echo "odds cluster in sync with data/rarity-odds.json"
 
 
-      # llms-full.txt = 全站正文单文件渲染(GEO 面:AI 引擎一次抓取读全站)。
-      # 生成器铁律(本站 8 天冻结教训):脚本内部永远 exit 0,任何失败只降级
-      # 输出;这里再包一层 continue-on-error,双保险——生成器绝不阻断部署。
-      - name: Build llms-full.txt (degrades, never blocks)
-        continue-on-error: true
-        run: node scripts/build-llms-full.mjs
+      # 2026-09-25 owner-authorized pivot: document build owns both AI indexes.
+      # The historical collector generator must not restore the old positioning.
 
       - name: Assemble static site into dist/
         run: |
@@ -131,8 +149,27 @@ jobs:
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/build.mjs --site tds --out sites/thedollscout/dist
           node tools/revenue-studio/verify.mjs --site tds --out sites/thedollscout/dist
+          node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/verify.mjs --site tds --out sites/thedollscout/dist
+
+      - name: Finalize document homepage and AI indexes after legacy workbench
+        run: |
+          node scripts/documents/build.mjs --out dist
+          node scripts/documents/verify.mjs --out dist
+
+      - name: Configure independent membership secrets
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          node tools/member-studio/ops.mjs preflight
+          node tools/member-studio/ops.mjs configure tds
 
       - name: Deploy to Cloudflare Pages
+        id: publish
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CF_ACCOUNT_ID_SECRET: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -150,17 +187,51 @@ jobs:
       # 部署后自检(根仓 CLAUDE.md 2026-08-27 审计要求:断言事故的形状)。
       # 本站的事故形状:①新页 404(部署没生效)②旧成人页仍 200(下架没生效)
       # ③重定向环(gridlings 教训)。三样都测。
-      - name: Verify every published workbench tool
+      - name: Verify live document pages and assets
+        id: document_pages
+        # Pages can briefly serve the previous manifest during deployment propagation.
+        # Retry the complete strict verification; persistent mismatches still fail.
+        run: |
+          for attempt in 1 2 3 4; do
+            if node scripts/documents/verify.mjs --live --skip-events; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Verify independent membership after deployment
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         working-directory: ${{ github.workspace }}
-        run: node tools/revenue-studio/verify.mjs --site tds --live
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node tools/member-studio/ops.mjs watch tds && node tools/member-studio/verify.mjs --site tds --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Verify every published workbench tool
+        id: workbench_pages
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        working-directory: ${{ github.workspace }}
+        run: |
+          # Deployment propagation may briefly serve the previous edition.
+          # Retry the same strict checks; persistent mismatches still fail.
+          for attempt in 1 2 3 4; do
+            if node tools/revenue-studio/verify.mjs --site tds --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
 
       - name: Notify verified localized tool URLs to IndexNow
-        if: github.event_name == 'push'
+        if: ${{ !cancelled() && github.event_name == 'push' && steps.document_pages.outcome == 'success' && steps.workbench_pages.outcome == 'success' }}
         continue-on-error: true
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/indexnow.mjs --site tds --out sites/thedollscout/dist
 
       - name: Post-deploy self-check
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         run: |
           sleep 20
           fail=0
@@ -170,7 +241,7 @@ jobs:
           else
             echo "build stamp ok: $live"
           fi
-          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
+          for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"
@@ -221,11 +292,13 @@ jobs:
 
       # Bing/Yandex/Seznam/Naver pick this up within minutes.
       - name: Ping IndexNow with the published URL list
+        if: ${{ !cancelled() && steps.document_pages.outcome == 'success' && steps.workbench_pages.outcome == 'success' }}
         continue-on-error: true
         run: node scripts/indexnow.mjs
 
       # First-party analytics self-test: one POST to /api/ev must come back 204.
       - name: Self-test the /api/ev beacon endpoint
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         continue-on-error: true
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://thedollscout.com/api/ev \
@@ -237,17 +310,25 @@ jobs:
       # Hard assertion (not a warning): a missing HITS binding or a broken query is exactly
       # the shape this should catch — the beacon test above only warns.
       - name: Assert /api/pulse serves the aggregate
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         run: |
-          ok=0
-          for try in 1 2 3 4 5; do
-            pulse=$(curl -s --max-time 20 "https://thedollscout.com/api/pulse" || echo "")
-            case "$pulse" in *'"ok":true'*'"ai_ref"'*) ok=1; break;; esac
-            sleep 5
+          # 2026-09-26 D1 读预算:只对非 200 重试(最多 3 次),内容断言只做一次——
+          # 响应现在按部署版本缓存,对一个 200 反复重抓只会重复扫表,不会换来不同结果。
+          code=000; pulse=""
+          for try in 1 2 3; do
+            pulse=$(curl -s --max-time 20 -w "\n%{http_code}" "https://thedollscout.com/api/pulse" || echo -e "\n000")
+            code=$(tail -1 <<<"$pulse"); pulse=$(sed '$d' <<<"$pulse")
+            [ "$code" = "200" ] && break
+            [ "$try" -lt 3 ] && sleep 5
           done
-          [ "$ok" = "1" ] && echo "OK /api/pulse" || { echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1; }
+          [ "$code" = "200" ] || { echo "::error::/api/pulse returned HTTP $code"; exit 1; }
+          case "$pulse" in *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse";; *) echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1;; esac
+
+      # Independent diagnostics remain hard failures, but do not suppress validated URL submission.
+      - name: Verify isolated document measurement
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        run: node scripts/documents/verify-events.mjs
 
 concurrency:
   group: deploy-thedollscout
   cancel-in-progress: true
-
-

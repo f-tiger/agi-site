@@ -155,11 +155,14 @@ jobs:
           fi
           rm -f d1-response.json d1-curl.err
 
+      - name: Record Document Scout action counts separately from legacy traffic
+        run: node scripts/documents/metrics.mjs
+
       - name: Commit the day's numbers
         run: |
           bash scripts/commit-generated.sh traffic-bot \
             "chore: record daily metrics (edge / GA4 / GSC)" \
-            content/traffic.json content/ga4.json content/gsc.json content/d1-snapshot.json
+            content/traffic.json content/ga4.json content/gsc.json content/d1-snapshot.json content/document-metrics.json
 
       # content/ is excluded from the published site, so there is nothing to
       # deploy here — the file exists for the growth loop, not for visitors.

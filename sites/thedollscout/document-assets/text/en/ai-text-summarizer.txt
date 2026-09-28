@@ -1,0 +1,40 @@
+# AI extractive text summarizer
+
+https://thedollscout.com/ai-text-summarizer
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text: 80–12,000 characters, 3–60 sentences, maximum 256 model tokens per sentence. Select up to 3 or 5 sentences, always fewer than the source. No rewriting, translation or fact-checking. Selections can miss important context.
+
+MiniLM creates a semantic vector for each sentence. Code ranks sentences by their similarity to the document average while reducing repetition: 70% centrality, 30% similarity to already selected sentences. The selected original sentences are shown in source order. These weights are a product heuristic, not a validated accuracy score.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Does the AI write new sentences?
+
+It selects existing sentences using neural sentence embeddings. It does not generate or paraphrase text. Each highlight links to its original sentence so you can inspect the context.
+
+Does the result prove the source is correct?
+
+No. The model estimates semantic similarity; it does not verify facts or guarantee that every important point is included. Read the source before relying on a summary.
+
+Load the model, insert the example text and keep the three-sentence option. On 27 September 2026, the pinned model selected sentences 1, 3 and 6 in our Chromium check. This is one smoke test, not a quality benchmark. Other browsers may produce small numerical differences.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2

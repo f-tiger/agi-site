@@ -1,0 +1,10 @@
+(()=>{const zh=document.documentElement.lang.startsWith('zh'),qa=['__ci','__probe','qa','ci'].some(k=>new URLSearchParams(location.search).has(k));
+const main=document.querySelector('main');if(main&&!document.getElementById('bpj-main')){const anchor=document.createElement('span');anchor.id='bpj-main';anchor.tabIndex=-1;main.prepend(anchor);}
+const emit=(a)=>{if(!qa&&window.bpjEv)window.bpjEv('home','/discovery/'+a);};
+document.querySelectorAll('[data-bpj-next]').forEach(a=>a.addEventListener('click',()=>emit('next'+new URL(a.href).pathname)));
+document.querySelectorAll('[data-bpj-share]').forEach(b=>b.addEventListener('click',async()=>{const box=b.closest('[data-share-url]'),msg=box.querySelector('[role=status]');let u;try{u=new URL(box.dataset.shareUrl);if(u.origin!==location.origin)return;u.search='';u.hash='';}catch{return;}const title=box.dataset.shareTitle||document.title,url=u.href;try{if(b.dataset.bpjShare==='native'&&navigator.share)await navigator.share({title,url});else{const text=b.dataset.bpjShare==='cite'?`[${title}](${url}) — BPJ`:url;await navigator.clipboard.writeText(text);}msg.textContent=zh?'已完成。分享的是公开页面链接，不包含你的文件或项目内容。':'Done. Only the public page link is shared, without your files or project contents.';emit('share/'+b.dataset.bpjShare);}catch(e){if(e.name==='AbortError')return;msg.replaceChildren(document.createTextNode(zh?'请复制这个公开链接：':'Copy this public link: '));const input=document.createElement('input');input.readOnly=true;input.value=url;input.setAttribute('aria-label',zh?'公开页面链接':'Public page link');msg.append(input);input.select();}}));
+// Existing tool-specific share actions keep their own opt-in parameter semantics.
+})();
+
+function revealTarget(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id)return;const node=document.getElementById(id);if(node){for(let p=node.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')p.open=true;node.scrollIntoView();}}
+window.addEventListener('hashchange',revealTarget);revealTarget();

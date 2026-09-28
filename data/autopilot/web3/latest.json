@@ -1,0 +1,426 @@
+{
+  "asOf": "2026-09-28T08:56:09.003Z",
+  "ok": true,
+  "checks": [
+    {
+      "name": "source snapshots",
+      "ok": true
+    },
+    {
+      "name": "research board",
+      "ok": true
+    },
+    {
+      "name": "usage and feedback",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "public AI access OAI-SearchBot",
+      "ok": true
+    },
+    {
+      "name": "public AI access PerplexityBot",
+      "ok": true
+    }
+  ],
+  "sources": {
+    "market": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-28T08:56:09.900Z",
+      "ageSeconds": 0,
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "quote": "USD",
+          "price": 82984.77675828205,
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "ETH",
+          "quote": "USD",
+          "price": 2650.9349898467312,
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "USDC",
+          "quote": "USD",
+          "price": 0.9998057539215113,
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "deviationBps": -1.9424607848872455
+        },
+        {
+          "symbol": "USDT",
+          "quote": "USD",
+          "price": 0.9996527907981018,
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "deviationBps": -3.4720920189823534
+        }
+      ],
+      "source": {
+        "name": "DefiLlama current prices",
+        "url": "https://coins.llama.fi/prices/current/coingecko:bitcoin,coingecko:ethereum,coingecko:usd-coin,coingecko:tether",
+        "method": "https://api-docs.defillama.com/"
+      }
+    },
+    "briefs": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-28T08:56:09.629Z",
+      "sources": [
+        {
+          "id": "ethereum",
+          "status": "ok",
+          "checkedAt": "2026-09-28T08:56:09.273Z"
+        },
+        {
+          "id": "x402",
+          "status": "ok",
+          "checkedAt": "2026-09-28T08:56:09.273Z"
+        },
+        {
+          "id": "ezkl",
+          "status": "ok",
+          "checkedAt": "2026-09-28T08:56:09.273Z"
+        }
+      ],
+      "items": [
+        {
+          "title": "perf(svm): cache derived payment-channel PDAs (#3601)",
+          "url": "https://github.com/x402-foundation/x402/commit/c84154b5d6a31d77fd5b9dbb01213053fd9cb9eb",
+          "publishedAt": "2026-09-28T07:44:27.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "docs: fix broken relative links in guides, examples and specs (#3596)",
+          "url": "https://github.com/x402-foundation/x402/commit/5e97d9a6b7ca232baa5ecbbeeab2b9a4a360d6af",
+          "publishedAt": "2026-09-28T07:22:28.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "feat(evm): add Arc default stablecoins (#3590)",
+          "url": "https://github.com/x402-foundation/x402/commit/dd89698504a0498f0009e35a0f8b7db3c88c63da",
+          "publishedAt": "2026-09-28T03:38:55.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(e2e): retry public Solana devnet 429s in swig setup (#3595)",
+          "url": "https://github.com/x402-foundation/x402/commit/02e80f38e015ac0dc522a4285f41bf93d90b102f",
+          "publishedAt": "2026-09-27T12:11:18.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(e2e): stop the mechanisms catalog from importing a built package (#3594)",
+          "url": "https://github.com/x402-foundation/x402/commit/5b7078e47e1a9d86a975221e12ae2e5df93e007c",
+          "publishedAt": "2026-09-27T11:33:11.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
+          "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
+          "publishedAt": "2026-09-09T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: Current and Emerging Priorities",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-priorities",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
+          "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
+          "publishedAt": "2026-08-24T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+          "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+          "publishedAt": "2026-08-20T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        }
+      ]
+    },
+    "research": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-28T08:56:10.508Z",
+      "historyStatus": "fresh",
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -2.0794834117989214,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": 1.5424996010862557,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "ETH",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -2.425375155134468,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": -0.36585382536713507,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -0.00572352113047403,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": 0.0053771686040926525,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDT",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -0.012468114007435638,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": -0.00860784433320827,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "TAO",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -8.792853051365945,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": 11.726110033899806,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "RENDER",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:46:50.000Z",
+          "day": {
+            "percent": -6.461525403532953,
+            "from": "2026-09-27T07:59:50.000Z",
+            "to": "2026-09-28T08:46:50.000Z"
+          },
+          "week": {
+            "percent": 9.579222434989966,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:46:50.000Z"
+          }
+        },
+        {
+          "symbol": "FET",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:54:50.000Z",
+          "day": {
+            "percent": -6.653763178231098,
+            "from": "2026-09-27T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          },
+          "week": {
+            "percent": 25.864701617403817,
+            "from": "2026-09-21T08:00:00.000Z",
+            "to": "2026-09-28T08:54:50.000Z"
+          }
+        },
+        {
+          "symbol": "AKT",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-28T08:51:50.000Z",
+          "day": {
+            "percent": -7.807794105505339,
+            "from": "2026-09-27T07:51:50.000Z",
+            "to": "2026-09-28T08:51:50.000Z"
+          },
+          "week": {
+            "percent": 8.750439041910042,
+            "from": "2026-09-21T07:51:50.000Z",
+            "to": "2026-09-28T08:51:50.000Z"
+          }
+        }
+      ]
+    }
+  },
+  "events": {
+    "asOf": "2026-09-28T08:56:11.423Z",
+    "windowDays": 28,
+    "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
+    "groups": []
+  },
+  "feedback": {
+    "groups": [],
+    "measurement": "Self-reported submissions, not independent buyers."
+  },
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/c84154b5d6a31d77fd5b9dbb01213053fd9cb9eb",
+      "title": "perf(svm): cache derived payment-channel PDAs (#3601)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/5e97d9a6b7ca232baa5ecbbeeab2b9a4a360d6af",
+      "title": "docs: fix broken relative links in guides, examples and specs (#3596)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/dd89698504a0498f0009e35a0f8b7db3c88c63da",
+      "title": "feat(evm): add Arc default stablecoins (#3590)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/02e80f38e015ac0dc522a4285f41bf93d90b102f",
+      "title": "fix(e2e): retry public Solana devnet 429s in swig setup (#3595)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/5b7078e47e1a9d86a975221e12ae2e5df93e007c",
+      "title": "fix(e2e): stop the mechanisms catalog from importing a built package (#3594)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
+  "outcomes": {
+    "indexedPages": null,
+    "verifiedThirdPartyBacklinks": null,
+    "aiCitations": null,
+    "paidBuyers": null,
+    "revenue": null
+  },
+  "notes": [
+    "Availability is not indexing. AI-user-agent requests do not authenticate a crawler or prove citation.",
+    "Opt-in events are not people or a joined session funnel; incoming channel labels are unverified.",
+    "External referral counts are not verified backlinks. Price movements are not customer demand."
+  ],
+  "summary": {
+    "optInPageEvents": 0,
+    "ownTaskEvents": 0,
+    "reportExportEvents": 0,
+    "toolOpenEvents": 0,
+    "watchSaveEvents": 0,
+    "watchCompareEvents": 0,
+    "reviewSaveEvents": 0,
+    "reviewExportEvents": 0,
+    "proofMineEvents": 0,
+    "proofShareEvents": 0,
+    "proofVerifyEvents": 0,
+    "aiReferredEvents": 0
+  },
+  "nextAction": "No opted-in page events observed. Check exposure and consent bias; do not conclude no demand."
+}

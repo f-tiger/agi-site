@@ -110,7 +110,7 @@ faqs = [
     ("Why compare them at all?",
      "Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes."),
     ("How current are the odds shown?",
-     f"Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since {REVIEW_DATE} the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page."),
+     f"Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. The odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page."),
 ]
 related = [("/agi-2027-resolution", "AGI-2027 resolution criteria & countdown"),
            ("/progress-index", "AGI-2027 Thesis Tracker"),

@@ -1,0 +1,61 @@
+name: Publish Web3 Workbench MCP server
+
+# 2026-09-21. The hub already speaks Streamable HTTP at /mcp (official SDK, no auth) but was never
+# listed in the official MCP registry — the only distribution channel the fleet has evidence for
+# (registry entries live, awesome-list PRs dead; see CLAUDE.md 09-16). Same shape as sr-mcp-publish.yml:
+# GitHub OIDC login, publish server.json, verify the listing. Triggers only when server.json changes.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['sites/web3-studio/server.json', '.github/workflows/web3-mcp-publish.yml']
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/web3-studio
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity — manifest matches the live endpoint and the shipped version
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          m = json.load(open('server.json')); pkg = json.load(open('package.json'))
+          assert m['remotes'][0]['url'] == 'https://web3.agiscorecard.com/mcp', m['remotes'][0]['url']
+          assert m['remotes'][0]['type'] == 'streamable-http'
+          assert m['version'] == pkg['version'], 'server.json %s != package.json %s (bump both)' % (m['version'], pkg['version'])
+          assert len(m['description']) <= 100, 'description %d chars > 100 (registry rejects it)' % len(m['description'])
+          assert 'agiscorecard' in m['name'] and 'AGI Scorecard' in m['description'], 'brand must be in name and description (registry search ignores websiteUrl)'
+          req = urllib.request.Request(m['remotes'][0]['url'], method='POST', data=json.dumps({'jsonrpc':'2.0','id':1,'method':'initialize','params':{'protocolVersion':'2025-06-18','capabilities':{},'clientInfo':{'name':'publish-sanity','version':'1'}}}).encode(), headers={'Content-Type':'application/json','Accept':'application/json, text/event-stream','User-Agent':'agi-site-mcp-publish-sanity/1.0 (+https://github.com/f-tiger/agi-site)'})  # the edge 403s Python's default UA
+          body = urllib.request.urlopen(req, timeout=20).read().decode()
+          assert '"serverInfo"' in body and pkg['version'] in body, 'live /mcp did not answer initialize with the shipped version: ' + body[:200]
+          print('manifest ok:', m['name'], m['version'], '| description', len(m['description']), 'chars | live /mcp answers initialize')
+          PY
+
+      - name: Install mcp-publisher
+        run: |
+          OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+          ARCH=$(uname -m); [ "$ARCH" = "x86_64" ] && ARCH=amd64; [ "$ARCH" = "aarch64" ] && ARCH=arm64
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_${OS}_${ARCH}.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher --version
+
+      - name: Login via GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server.json
+        run: ./mcp-publisher publish
+
+      - name: Verify listing
+        run: |
+          sleep 5
+          out=$(curl -s "https://registry.modelcontextprotocol.io/v0/servers?search=agiscorecard-web3-workbench")
+          echo "$out" | head -c 400; echo
+          echo "$out" | grep -q 'agiscorecard-web3-workbench' || { echo "::error::registry search does not return the server yet"; exit 1; }

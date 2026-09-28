@@ -1,10 +1,10 @@
 # Product marketing context
 
-**Document version: v2** — **Last updated: 2026-09-19**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v5** — **Last updated: 2026-09-26**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
-Owner wants a portfolio that can scale from approximately €11 to €110 and €1,100 in trailing-30-day net revenue. Net revenue means receipts less refunds and tax; profit also deducts provider, payment, acquisition, maintenance and human delivery costs. Eco has the only owner-reported revenue. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on experiments are hypotheses; all paid offers are closed.
+Owner wants a portfolio that can scale from approximately €11 to €110 and €1,100 in trailing-30-day net revenue. Net revenue means receipts less refunds and tax; profit also deducts provider, payment, acquisition, maintenance and human delivery costs. Eco has the only owner-reported revenue. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Products and provisional buyers
 
@@ -40,6 +40,12 @@ No new paid features for the three discovery probes until repeated task evidence
 
 ## Changelog
 
+- v5 (2026-09-26): Audited BPJ current reach and payment readiness; optional sponsorship decision support after free submission, explicit buyer fit and rejection reasons. Keep video expansion on hold and the $299 pilot independent. See docs/bpj-commercial-triggers-2026-09-26.md.
+
+- v4 (2026-09-26): Added the owner-requested BPJ paid-app review demand pilot, distinct from x402 verification and prior portfolio hypotheses. Structured task applications, proposed USD299 scope, no checkout; see docs/bpj-release-pilot-2026-09-26.md.
+
+- v3 (2026-09-20): Added the owner-requested AGI discussion experiment. Free community participation is distinct from paid workspaces; existing same-site AGI identity is preserved. Growth is unverified.
+
 - v2 (2026-09-19): Added eight-track/24-product portfolio, separated BPJ vendor placements from reader memberships, and gated automated marketing drafts on real checkout readiness. Owner requested implementation of BPJ checkout; historical general feature freezes do not block this scope.
 
 - 2026-09-18: Adopted product-marketing, customer-research, pricing and free-tools methods; downgraded three new sites from paid-business candidates to bounded discovery probes. Existing Eco revenue remains the portfolio benchmark.
@@ -68,3 +74,13 @@ BPJ implementation uses server-owned Checkout pricing, signed payment events, th
 
 Agent Delivery Lab (`verify.agiscorecard.com`) is a bounded free experiment for developers consuming paid API results. Read `docs/agent-delivery-lab-validation-2026-09-19.md`. It checks x402 v2 exact EVM challenge shapes, declared JSON response rules and payment snapshot differences, with an offline Node runner. It does not verify payments or factual accuracy. Hosted history and monitoring at €29/month remain an unavailable price hypothesis; no checkout or verified buyer. Anonymous feedback explicitly includes zero frequency and no-interest answers and separates QA. Launch authorization was explicit in the owner's current request; commercial scaling still requires real purchase and repeat-task evidence.
 
+
+## AGI community experiment — 2026-09-20
+
+Read `docs/agi-community-research-2026-09-20.md`. The owner requested deep research and an AGI homepage discussion area to grow registrations and traffic. Target hypothesis: readers who want first-hand AI tool evidence, testable AGI predictions and concrete work changes. The first release has three topics, editorial prompts, free same-site registration, moderated submissions, follows and shareable SSR pages. Existing AGI access keys work; free registration grants no paid workspace entitlement.
+
+Alternatives include staying on Reddit/Hugging Face, embedded GitHub comments, and external chat. We have not validated willingness to migrate or contribute. Login-key backup is a friction risk; no email recovery or off-site notifications are promised. All user submissions require review. Editorial prompts are explicitly labeled and excluded from forum-post schema. Shares, external referrals, registrations, approved contributions and return visits remain separate measures. Do not publish generated promotional text into communities that prohibit it, or equate a share button with acquired backlinks.
+
+## BPJ paid-app review pilot — 2026-09-26
+
+Hypothesis: studios maintaining at least two paid apps may pay to reduce payment/access acceptance labor before a release. User/payer authority, actual task, current alternative and buyer net value remain unverified. Existing coding-category visits provide a distribution entry, not proof of buyer fit. Proposed one-time $299 scope is public; no checkout or reserved delivery. Avoid claims of bug-free releases, security audit, saved hours or real customer findings. A sample report is fictional; checklist export prepares work and does not execute tests. Structured applications include a no-budget choice, private email consent and withdrawal. Full protocol and subsequent paid-delivery gates: docs/bpj-release-pilot-2026-09-26.md. This is a specific current-owner exception to historical expansion freezes, not a fleetwide repositioning.

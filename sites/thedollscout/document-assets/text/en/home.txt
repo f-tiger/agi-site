@@ -1,0 +1,144 @@
+# Free AI tools, image tools, JSON & PDF utilities
+
+https://thedollscout.com/
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
+
+Image compressor & converter
+
+Resize and convert JPEG, PNG and WebP; compare actual output size.
+
+Images
+
+https://thedollscout.com/image-compressor
+
+JSON validator, formatter & comparison
+
+Validate, format and compare fields without rounding large numbers.
+
+Structured data
+
+https://thedollscout.com/json-compare
+
+Time zone meeting planner
+
+Compare city times and export a calendar file with DST checks.
+
+Time zones + .ics
+
+https://thedollscout.com/time-zone-planner
+
+PDF accessibility checker
+
+Find missing titles, language declarations, tags and page-level issues.
+
+PDF preflight
+
+https://thedollscout.com/pdf-accessibility-checker
+
+Batch PDF audit
+
+Review up to 10 PDFs and export one combined findings list.
+
+Up to 10 PDFs
+
+https://thedollscout.com/pdf-batch-audit
+
+PDF to text
+
+Extract existing text by page and save a TXT file.
+
+Text extraction
+
+https://thedollscout.com/pdf-to-text
+
+Compare PDF text
+
+Locate changed, added and removed text pages across two versions.
+
+Two PDF versions
+
+https://thedollscout.com/compare-pdf-text
+
+File verification
+
+Create a checksum link or check a received copy against one.
+
+SHA-256 + file size
+
+https://thedollscout.com/verify-file
+
+Delivery record
+
+List delivered files, add your notes and export a portable record.
+
+File inventory
+
+https://thedollscout.com/delivery-evidence
+
+AI portrait background remover
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Portraits → PNG
+
+https://thedollscout.com/ai-portrait-background-remover
+
+AI audio to text — English
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English audio → TXT / SRT
+
+https://thedollscout.com/ai-audio-to-text
+
+AI extractive text summarizer
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text → source-linked highlights
+
+https://thedollscout.com/ai-text-summarizer
+
+My images are too large to publish.
+
+Resize and inspect the exported images, then record the final files you hand over.
+
+An API response or configuration changed.
+
+Compare JSON fields and download the change report. Object key order will not create noise.
+
+My team works in different time zones.
+
+Check the local times and download one calendar file. Import it into your calendar when ready.
+
+Free tools. Files stay on your device.
+
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start. First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Are all twelve tools free?
+
+Yes. The three local AI tools and nine everyday utilities are free, without an account. AI tools download model files before first use.
+
+Do you upload or store my files?
+
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes. AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+Which tool checks whether a file has changed?
+
+File verification compares SHA-256 and byte count with a sender-provided reference. Text comparison checks extracted wording instead. Neither tool proves identity, delivery, acceptance or malware safety.
+
+Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.
+
+https://thedollscout.com/open-source
+
+Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.
+
+https://thedollscout.com/videos
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

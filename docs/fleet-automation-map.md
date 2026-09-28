@@ -52,7 +52,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
 | workflow | cron (UTC) | 作用 |
 |---|---|---|
-| **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道）**2026-09-12 加两块「AI 时代」仪表**:`tools/fleet/ai_access_probe.py`(8 站 × 8 个 AI 爬虫 UA × / 与 /llms.txt,任一 403/429/503 即红——Cloudflare Pay-Per-Crawl 09-15 起默认拦截,此前手册承诺的「heartbeat 看到 403」从未真的在看)+ `tools/fleet/ai_referrals.py`(读八站 28 天 AI 助手引荐 → `data/fleet-ai-referrals.json`;**09-13 改为各站公开 `/api/pulse` 端点优先、D1 REST 只兜底,零 token,首读 78/28d**;>3 天读不到才红)。**09-13 再加两条断言**:`check_bets.py`(判定线过期 >7 天未结算即红)、`recall_gate.py --check`(SR 召回雷达存在但 >14 天即红)。增量 ≈10 秒,仍在 1 分钟粒度内。全文 `docs/ai-era-site-2026-09-12.md`**2026-09-13 加赌注台账断言**:`tools/fleet/check_bets.py` 读 `data/fleet-bets.json`(42 条预登记判定线),到期 3 天内 warning、过期 >7 天未结算即红;秒级,零副作用。 |
+| **`fleet-heartbeat.yml`** | `0 8 * * *` | **2026-09-21 起覆盖 18 个 worker / 31 个公开主机**(四个新 worker 各一行带部署链 + 13 行次级主机只探活;`ai_access_probe` 18 站、`sitemap_guard` 31 主机、`page_patterns` 18 站;AI 引荐/渠道构成仍只读记录 page_view 的 14 站,原因见舰队 CLAUDE.md 09-21 节)。**2026-09-21 加钱线仪表盘**:`tools/fleet/money_line.py` 读五站 pulse/reach 的 `money` 对象 → `data/fleet-money.json`(零 cron,同一 run)。**新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道）**2026-09-12 加两块「AI 时代」仪表**:`tools/fleet/ai_access_probe.py`(8 站 × 8 个 AI 爬虫 UA × / 与 /llms.txt,任一 403/429/503 即红——Cloudflare Pay-Per-Crawl 09-15 起默认拦截,此前手册承诺的「heartbeat 看到 403」从未真的在看)+ `tools/fleet/ai_referrals.py`(读八站 28 天 AI 助手引荐 → `data/fleet-ai-referrals.json`;**09-13 改为各站公开 `/api/pulse` 端点优先、D1 REST 只兜底,零 token,首读 78/28d**;>3 天读不到才红)。**09-13 再加两条断言**:`check_bets.py`(判定线过期 >7 天未结算即红)、`recall_gate.py --check`(SR 召回雷达存在但 >14 天即红)。增量 ≈10 秒,仍在 1 分钟粒度内。全文 `docs/ai-era-site-2026-09-12.md`**2026-09-13 加赌注台账断言**:`tools/fleet/check_bets.py` 读 `data/fleet-bets.json`(42 条预登记判定线),到期 3 天内 warning、过期 >7 天未结算即红;秒级,零副作用。**2026-09-27 `airef` 步加零网络自检** `ai_referrals.py --selftest`(含 claude.ai 单列与快照合计);自检红不挡取数,步骤末尾才判红。增量 <1 秒,零 cron。 |
 | `fleet-trends.yml` | `45 3 * * *` | 全舰队趋势快照 **2026-09-12 雷达加 Reddit 求做板块源**(r/SomebodyMakeThis + r/AppIdeas 公开 JSON,只读,增量 <0,2 分/月)。**2026-09-13 加机会撮合层**:`tools/fleet/opportunity_match.py`(零 AI,Reddit 请求 × rising × PH/HN 供给 → `data/autopilot/opportunities.json`)+ `sites/buysomething/tools/gen_demand_board.py`(出页门 ≥3,不转载 Reddit 内容);秒级;页有变化才触发 buysomething 部署(≈1 分/次)。**同日板块名单外置** `tools/fleet/reddit_watchlist.json`(36 板/日,6.5 s 串行 ≈ +4 分钟/次 ≈ 120 分/月,公开仓免费;board_stats 按产出淘汰;Ask HN 周窗新增;idea feed 只探针)。裁定见 `docs/reddit-opportunity-board-2026-09-13.md` |
 | `eco-trends.yml` | `30 4 * * *` | 德国热搜触发器 |
 | `eco-health.yml` | `0 5 * * *` | eco 站健康 |
@@ -68,6 +68,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 | `bpj-mcp-publish.yml` | **无 cron**(`server.json` 变更或手动 dispatch) | bpj MCP server 发布到 registry.modelcontextprotocol.io(GitHub OIDC,零 owner 密钥)。此前漏登本表,2026-09-16 补 |
 | `sr-mcp-publish.yml` | **无 cron**(同上) | **新增 2026-09-16**:SourceRadar MCP server(`io.github.f-tiger/us-import-duty-facts`)发布到同一注册表。发布前先跑 `tools/test_mcp.mjs` 17 条断言,红了不发。**零新增 cron**:只在 `sites/buysomething/server.json` 改动时触发,≈1 分/次,月均 <2 分。理由与判定线见 `docs/tool-monetization-2026-09-16.md` §十三 |
+| `web3-mcp-publish.yml` | **无 cron**(同上) | **新增 2026-09-21**:Web3 Workbench hub 的 `/mcp`(官方 SDK Streamable HTTP)登记进同一注册表(`io.github.f-tiger/agiscorecard-web3-workbench`)。sanity 步断言版本 == package.json、描述 ≤100、名字带品牌,并带自定义 UA 打一次线上 initialize(边缘 403 Python 默认 UA)。只在 `sites/web3-studio/server.json` 改动时触发,≈1 分/次。判定线 `web3-mcp-registry-1019` |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
 最小计费粒度算 1 分/次 × 30 = ≤30 分/月；agi-site 为公开仓，Actions 免费，
@@ -319,3 +320,54 @@ owner 原话：「现在舰队你的定时运行任务各种出错，你帮我�
   会话侧改不了自己的模型，也不许自作主张改 Routine 的 model 字段。
 - **单会话承载**：一轮要过 5 个站 + 周一 4 项。prompt 里写了优先级截断规则
   （A 健康 → B agi → C eco → D bpj → E tds → F SunWatch），截断时必须在报告里写明哪块没做。
+
+
+## 2026-09-19：24 工具的多语言日检
+
+在既有 fleet-autopilot（02:40 UTC）中加入 tools/fleet/workbench_growth.mjs，不增加 cron 或 AI 任务。
+按 catalog 与语言路由动态计算页面清单，检查 HTML/canonical/hreflang/结构化数据、文本镜像、独立嵌入、母站入口、运行文件与 Web3 就绪状态。
+结果写入 data/autopilot/workbench/latest.json、latest.md 与最多 30 天的 history.json；GitHub artifact 保留 30 天。
+失败先保存诊断并让其他每日收据正常提交，最后将 workflow 标红。dry_run 不写结果。
+预算：预估正常 1–2 分钟/日，即增量约 30–60 runner 分钟/月；检查步骤硬上限 4 分钟/次，即最多 120 分钟/月，不含原流程与 artifact 开销。不是免费额度或免计费承诺。
+仅请求四个自有域的公开资源，无 IndexNow 重复提交、第三方抓取或消息外发。null 表示缺少证据，不能替换成 0。
+
+
+
+## 2026-09-19: Web3 source and conversion monitoring
+
+The existing fleet-autopilot daily 02:40 UTC job now runs sites/web3-studio/scripts/growth-audit.mjs. No additional GitHub cron or AI content-generation loop. It checks the 11 owned tool hosts, near-real-time price source freshness, official metadata, crawlable task pages, opt-in aggregate events and QA-separated feedback. It writes data/autopilot/web3/latest.json, latest.md and 30 daily history records; artifacts retain 30 days. Failed checks preserve diagnostics before the workflow fails.
+
+2026-09-27 repair: Web3 now has an independent `web3-audit` job in that same workflow, with no `needs` dependency on the fleet algorithm. The 09-25 and 09-26 algorithm failures on gridlings had skipped Web3 entirely while uploading an older report. A run-start timestamp now gates artifact upload and the Web3-only commit; failure/timeout cannot relabel old evidence as current. Failed checks with a current report are preserved, then the job fails. The existing heartbeat checks snapshot age (36-hour limit), without calling a data endpoint. No new schedule. Allow about one extra runner minute/day for the separate checkout/job (approximately 30/month); the audit retains its three-minute timeout, with an eight-minute whole-job limit including commit retries.
+
+Data refresh is request-driven in the existing Worker: price snapshots after 5 minutes, official feed metadata after 1 hour; visible market tabs request updates every minute. Cache reuse is per Cloudflare location. Upstream failure preserves the original receipt timestamp, labels stale snapshots and hides data older than 24 hours. No tick-by-tick or alert SLA is offered. Daily source changes are a review queue, never automatically rewritten editorial claims.
+
+Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audit limit 3 minutes/day (90/month), excluding existing job/artifact overhead. Repository is currently private: this is not a free-Actions claim. Worker requests use existing hosting; upstream market/feed reads are public and cached, no paid credentials or subscriptions added. No IndexNow in deployment, no external messages, directory submissions or outreach.
+
+
+## 2026-09-19 独立站点会员确认
+
+沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。
+
+## 十一、2026-09-27:owner 令「重建每天的定时任务」——执行结果
+
+- **现状查明**:账号里只剩一次性提醒,**没有任何周期性 Routine**。09-14 的总任务 `trig_012kK8KVg4WYD4g6Y6wEiXet` 与存档的 10 条旧 Routine
+  `get_trigger` 均 not found;总任务自绑定的常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc` 于 09-15 13:50 UTC 被归档。
+  **即 09-15 → 09-27 十二天没有每日循环,且没有任何告警**——唯一在看它的就是它自己。这是第四种计划路径故障形态(前三种见第一、八节):
+  **绑定会话被归档 → 自绑定 Routine 随之失效**。另:09-24 有会话建过新会话版 `trig_01EqzKvfWsoUJzNwYeD9m8XL`,记录只在未合并分支
+  `claude/fleet-scheduled-task-rebuild-4c0law` 上,main 上没有它推过的提交,09-27 查时也已不存在。
+- **第一次重建失败了(实测,别再走这条路)**:先建的 `trig_01PXhZ3uG6CcJqiCviAVXAGF`(每次触发开新会话)手动触发后,平台存储的配置是
+  `sources: []`、无 connector——**从会话里建的新会话版 Routine 不带仓库**,触发出的会话拿不到 agi-site,一个提交都没推。已 `enabled=false`
+  并改名「[停用 09-27:新会话拿不到仓库…]」,未删除。
+- **生效的重建**:`trig_011SpfuZB2Lc2aDYp1F9qSLz`「舰队总任务 · 每日 v2(常驻会话)」,`51 3 * * *` UTC,首跑 09-28 03:51 UTC,
+  每天唤醒专用会话 `session_013QnV88GEwyxxdXDZCZKsUr`「舰队总任务 · 每日常驻会话(勿归档)」。该会话以 agi-site 为 source 创建
+  (容器回收后按 main 重新克隆),**实测 30 秒内推上 main(`3c64ef50`)**。prompt 全文 `docs/fleet-master-routine.md`。职责路由与 v1 相同
+  (每日 A–H、周一附加、每月附加),按 09-14 以后的变化更新:18 个 worker、赌注台账、钱线/预测记录线/D1 读预算/机器面快照、bpj 厂商认领队列、
+  四个新 worker 只报数。
+- **owner 的补充要求「避免每天任务无法读取 agi-site 仓库,从而执行发布」的落地**:①会话自带仓库;②prompt 第 0 节固定获取顺序与兜底发布通道
+  (GitHub MCP push_files、分支 + PR 合入);③第 8 节每轮必写 `data/fleet-master-run.json`;④heartbeat 新增 `check_master_run.py`
+  (`masterrun` 步,进红色汇总门),50 小时无记录或连续两轮 `repo_ok=false` 即红——会话被归档、Routine 消失、平台挂起都会落到这条。
+  首跑前(至 09-30)只 warning。
+- **算账**:零新 GitHub cron;heartbeat 增加一个秒级读文件步骤。Routine 每天一次。
+- **已知限制**:Routine 与会话都不带 connector,每日会话没有 Cloudflare MCP;after35 审核与 10 万实验复核在补上 connector 之前会如实报「未做」。
+  补法:owner 在 claude.ai Routines 界面给这条 Routine 加 Cloudflare connector,或在界面里新建一条选好仓库与 connector 的 Routine 并贴入同一 prompt。
+- **通用教训**:长期 Routine 不要绑在对话会话上;要绑就绑在专门建的、以仓库为 source 的会话上,并让它每轮写一条记录、由第①层检查新鲜度。

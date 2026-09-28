@@ -19,3 +19,4 @@
 .batch-table td:first-child{min-width:150px}
 .actions{flex-wrap:wrap}.tabs button{padding-left:18px;padding-right:18px}
 @media(max-width:640px){.rule-fields{grid-template-columns:1fr}.rule-builder{padding:12px}.tabs button{padding-left:8px;padding-right:8px}.rule-actions{flex-wrap:wrap}.actions .quiet{display:block;margin-left:0;flex-basis:100%}.document .table-wrap{overflow:auto}}
+.updated{font-size:12px;color:var(--muted);margin:24px 0 0}

@@ -1,0 +1,42 @@
+{
+ "note": "Amazon.de shopping events that the EB_DEALS band may mention (tools/build_deals.py, gate tools/check_deals.py). An event renders only when announced is true, a primary source is recorded, and today lies between show_from and end. The Prime-trial link is offered only for prime_only events: that is the one moment a reader has a reason of their own to want Prime, and the band never pushes the trial without one. When Amazon announces an event, add its dates, the quote and the source URL here; never from memory, never from a deal blog's forecast.",
+ "updated": "2026-09-24",
+ "bounty": {
+  "prime_trial": {
+   "url": "https://www.amazon.de/primegratistesten?tag=getecoback-21",
+   "eur": 3,
+   "source": "https://partnernet.amazon.de/promotion/prime",
+   "quote": "3 EUR für jeden vermittelten Prime Gratiszeitraum",
+   "checked": "2026-09-24"
+  }
+ },
+ "events": [
+  {
+   "id": "prime-deal-days-2026",
+   "name": "Prime Deal Days",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "show_from": "2026-09-29",
+   "announced": true,
+   "prime_only": true,
+   "date_text": "6. und 7. Oktober",
+   "source": "https://www.aboutamazon.de/news/amazon-prime-und-shopping/prime-deal-days-termine-angebote",
+   "quote": "Die Prime Deal Days 2026 starten am Dienstag, 6. Oktober, um 00:01 Uhr und laufen 48 Stunden bis zum Mittwoch, 7. Oktober. … Die Prime Deal Days sind exklusiv für Prime-Mitglieder.",
+   "checked": "2026-09-24"
+  },
+  {
+   "id": "black-friday-2026",
+   "name": "Black Friday",
+   "start": "2026-11-27",
+   "end": "2026-11-27",
+   "show_from": null,
+   "announced": false,
+   "prime_only": false,
+   "date_text": "",
+   "source": "",
+   "quote": "",
+   "checked": "2026-09-24",
+   "pending": "27 November is the calendar date (the Friday after US Thanksgiving). Amazon.de had not announced its 2026 Black Friday week on 2026-09-24; deal blogs only forecast it. Fill start/end/show_from/date_text/source/quote from Amazon's own announcement (aboutamazon.de), then set announced to true."
+  }
+ ]
+}

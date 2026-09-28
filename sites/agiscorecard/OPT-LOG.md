@@ -3121,3 +3121,21 @@ true-believer 2 · contrarian 2)。新页的 `deep_pacing_mid` / `hot_topic_clic
 ## 2026-09-19 — Agent Delivery Lab contextual developer entry
 
 Owner explicitly asked to continue expanding the newly launched Web3 × AI tool. Added one contextual block on /for-agents linking to Agent Delivery Lab batch acceptance/cost checks, with existing tool_click location=for_agents_delivery_lab. The free dataset and its subscription flow are unchanged. Source page remains authoritative; stale gen_for_agents.py was not run. Updated visible/article date and sitemap lastmod; deploy pipeline regenerates feed/Markdown surfaces and validates. This is a distribution probe, not demonstrated traffic or revenue. Details: ../../docs/agent-delivery-lab-v02-2026-09-19.md.
+
+## 2026-09-26 — 信任层审计 + 共识板首发 + OTS 锚定(owner:「类似比特币的共识算法…AI 时代信仰」)
+
+改动页:/agi-prediction-markets(首发,此前 404 三周)、/calibration(改为生成)、/changelog(接进部署,补 2 条)、/for-agents(工具数 5→7、翻转条件描述改为如实)、/skill.md(重写为真 SKILL)。
+未动:/when-will-agi-arrive(`deep_when_mid` 位置实验 10-07 结算,判定期内不改被测对象;判 `agi-consensus-mcp-1124` win 后再加 median 活数字钩子)。
+读数(D1 09-26,28d,pageviews human 口径):when-will-agi-arrive 2 168 · how-close-is-agi 525 · progress-index 359 · forecaster-leaderboard 266 · calibration 227 · prediction-receipts 227 · for-agents 220;MCP 28d:sunwatch 7 · invest 7 · claim_ledger 5(thesis_tracker/verdicts 此前不落库)。
+共识板首读(沙箱,无 Metaculus token):before 2027 中位 7.6%、2028 45%(spread 42 点)、2030 64.5%。
+详见根仓 docs/ai-consensus-faith-2026-09-26.md。
+
+## 2026-09-27 — 第三轮:预测承诺协议 + 评分者 2 → 4(owner:「优化 prompt 3 轮再执行:再继续探索」)
+
+- **改动页**:`/grader-consensus`(+2 位独立评分者,首条真分歧;全部措辞由数据生成)、`/situational-awareness-predictions`
+  (首屏下加一行活数字「Outside check」,标记块由生成器维护;dateModified/Last updated/sitemap → 09-27)、`/calibration`
+  (点击才运行的浏览器核验 + 预测账本一节;sitemap lastmod 此前停在 08-08,→ 09-27)、`/for-agents`(get_verdicts 一句)、
+  `llms.txt`(两行)、`changelog.json`(09-27 条)。**防翻炒**:predictions 页上次改动 08-29,不在近 5 轮内;只加一行,正文判定一字未动。
+- **事件**:`index_click{predictions_graders_live}`(活数字点击)、`verify_run{calibration}`(按钮运行,label = 匹配数/总数|score)。
+- **判定线**:`agi-grader-consensus-1127` won(② 4 ≥ 3;① 外部访问 0);新 `agi-verify-run-1127`、`fe-commitments-preclose-0215`。
+- 全文根仓 `docs/ai-consensus-faith-2026-09-26.md` §九。

@@ -10,6 +10,10 @@ on:
     branches: [main]
     paths:
       - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
+      - "sites/baipiaoji/lib/**"
+      - "sites/baipiaoji/functions/api/member*.js"
+      - "sites/baipiaoji/scripts/ad-runner-config.mjs"
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
   workflow_dispatch: {}
@@ -57,6 +61,16 @@ jobs:
         run: |
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
+          # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
+          python3 tools/gen_changelog.py
+          # the installable skill must survive the mirror pass with its frontmatter intact
+          head -1 skill.md | grep -q '^---$' || { echo "::error::skill.md lost its frontmatter (mirror generator overwrote it?)"; exit 1; }
+          # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
+          python3 tools/gen_grader_consensus.py --selftest
+          python3 tools/gen_grader_consensus.py --check
+      - name: Validate investment research arithmetic and portable records
+        run: node --test sites/agiscorecard/tools/test_invest_research.mjs
+
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
@@ -65,14 +79,36 @@ jobs:
         working-directory: sites/agiscorecard
         run: python3 tools/check_hreflang.py
 
+      # 站规写着「每个新页都要有 BreadcrumbList JSON-LD」,但 2026-09-15 实测:英文根目录
+      # 85/99 做到了,zh 只有 10/44,de/es/fr/it/ja/ko/pt 各 0/10 —— 104 页缺。补完之后
+      # 加这道门,免得下一批多语言页又漏。纯正确性校验,零外部副作用,可以挂 push 路径。
+      - name: Every multilingual page carries a BreadcrumbList
+        working-directory: sites/agiscorecard
+        run: python3 tools/add_breadcrumbs.py --check
+
       # The collector's field sanitisers decide what survives into D1. When they are
       # wrong they are wrong SILENTLY: from 2026-08-08 to 2026-09-08 every reader's
       # search query was stored as an empty label, and the table looked fine. Runs on
       # the push path because it is a correctness gate on the deployed worker, and it
       # costs a couple of seconds.
+      - name: Test community privacy, registration and permissions
+        run: node --test sites/agiscorecard/tools/community/test.mjs
+
       - name: Test analytics field sanitisers
         working-directory: sites/agiscorecard
         run: node tools/test_analytics_sanitiser.mjs
+
+      # D1 read budget (2026-09-26): the account-wide free tier (5M rows read/day) ran out three days
+      # running; /api/pulse + /api/trends were ~46% of 09-26. This pins the fix: every pageviews query
+      # the two handlers issue must use the human covering index (EXPLAIN on the real SQL), numbers are
+      # identical with and without it, and the server-side cache computes once per TTL and never stores
+      # failures or partial results. 8 mutations verified red.
+      - name: Test pulse/trends D1 read budget (index + server-side cache)
+        working-directory: sites/agiscorecard
+        run: node tools/test_analytics_d1.mjs
+      - name: /api/crowd shape, bot exclusion and index use (zero network)
+        working-directory: sites/agiscorecard
+        run: node tools/test_crowd.mjs
 
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
@@ -89,8 +125,24 @@ jobs:
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node tools/revenue-studio/browser-test.mjs
+          node sites/agiscorecard/tools/browser_invest_research.cjs
+          node tools/member-studio/browser-test.mjs
+          node sites/agiscorecard/tools/community/browser-test.mjs
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
+          node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
+
+      - name: Configure independent membership secrets
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          node tools/member-studio/ops.mjs preflight
+          node tools/member-studio/ops.mjs configure agi
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
@@ -100,6 +152,32 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/agiscorecard
           command: deploy
+
+      - name: Verify independent membership after deployment
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node tools/member-studio/ops.mjs watch agi && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Verify discussion pages and private API boundaries
+        run: |
+          for attempt in 1 2 3; do
+            if node sites/agiscorecard/tools/community/verify.mjs; then exit 0; fi
+            if [ "$attempt" != "3" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Read aggregate community growth and review backlog
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node sites/agiscorecard/tools/community/ops.mjs stats
 
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}
@@ -143,19 +221,47 @@ jobs:
           check "https://agiscorecard.com/for-agents" "for_agents_delivery_lab"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
           check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
+          # 2026-09-26 trust-layer surfaces. The board only exists once the weekly fetch has succeeded,
+          # so assert it live only when the repo carries it (never a hardcoded expectation).
+          if [ -f sites/agiscorecard/agi-consensus.json ]; then
+            check "https://agiscorecard.com/agi-consensus.json" '"median"'
+            check "https://agiscorecard.com/agi-prediction-markets" "Consensus table"
+          fi
+          check "https://agiscorecard.com/skill.md" "^name: agi-scorecard"
+          check "https://agiscorecard.com/ots/manifest.json" "proof"
+          # MCP tools/list must equal the repo's list (live == repo, never a hardcoded count).
+          want=$(grep -o "name: '\(get_\|search_\)[a-z_]*'" sites/agiscorecard/tools/analytics-worker/index.js | sed "s/name: '//;s/'//" | sort -u | tr '\n' ' ')
+          got=$(curl -s --max-time 20 -X POST -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+                -A 'agi-site-deploy-selfcheck/1.0 (+https://github.com/f-tiger/agi-site)' \
+                -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' "https://agiscorecard.com/mcp" \
+                | grep -o '"name":"[a-z_]*"' | sed 's/"name":"//;s/"//' | sort -u | tr '\n' ' ')
+          if [ "$want" != "$got" ]; then echo "::error::MCP tools/list drift — repo: [$want] live: [$got]"; fail=1; else echo "OK /mcp tools/list == repo"; fi
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
-          t=$(curl -s --max-time 20 "https://agiscorecard.com/api/trends" || echo "")
+          t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
           case "$t" in
             *'"ok":true'*) echo "OK /api/trends" ;;
-            *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
+            *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
+          esac
+          # /api/crowd (2026-09-27): the /agi-test crowd reveal reads this; five buckets, cached.
+          c=$(curl -s --max-time 20 "https://agiscorecard.com/api/crowd" || echo "")
+          case "$c" in
+            *'"ok":true'*'"buckets":{"accelerationist":'*'"contrarian":'*) echo "OK /api/crowd" ;;
+            *) echo "::error::/api/crowd broken: ${c:0:120}"; fail=1 ;;
           esac
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
-          p=$(curl -s --max-time 20 "https://agiscorecard.com/api/pulse" || echo "")
+          p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")
           case "$p" in
-            *'"ok":true'*'"ai_ref"'*) echo "OK /api/pulse" ;;
-            *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
+            *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
+            *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
           esac
+          # Server-side cache in place (2026-09-26): without it every caller recomputes the aggregates in
+          # D1, which is how the account's daily read budget ran out. A partial or failed result says
+          # "bypass" and already fails the ok:true checks above.
+          for h in trends-headers.txt pulse-headers.txt; do
+            grep -qiE '^x-agi-aggregate-cache: (hit|miss)' "$h" \
+              && grep -i '^x-agi-aggregate-cache' "$h" \
+              || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
+          done
           exit $fail
-
 
 

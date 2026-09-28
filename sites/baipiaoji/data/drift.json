@@ -1,10 +1,291 @@
 {
-  "generated": "2026-09-19",
+  "generated": "2026-09-27",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 102,
-  "fetched_fail": 22,
-  "pending": 8,
+  "fetched_ok": 101,
+  "fetched_fail": 26,
+  "pending": 7,
   "items": [
+    {
+      "slug": "cursor",
+      "url": "https://cursor.com/pricing",
+      "confirmed": "2026-09-27",
+      "first_seen": "2026-09-26",
+      "added": [
+        "$20/mo",
+        "$40/user"
+      ],
+      "removed": [
+        "$3,000",
+        "0032b",
+        "00810b",
+        "00b",
+        "011b",
+        "01237b",
+        "01358061b",
+        "01b",
+        "03024b",
+        "031b",
+        "03b",
+        "04380b"
+      ],
+      "checked_then": "2026-09-25"
+    },
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "15秒",
+        "16秒",
+        "1个",
+        "1秒",
+        "3207b",
+        "5个",
+        "6秒",
+        "72668b",
+        "786579b",
+        "84b",
+        "9543b",
+        "98b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "1.6k",
+        "18.0k",
+        "181.7k",
+        "182k",
+        "18k"
+      ],
+      "removed": [
+        "1.5k",
+        "17.9k",
+        "181.3k",
+        "181k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [],
+      "removed": [
+        "$30",
+        "10,000credits",
+        "100,000credits",
+        "100gb",
+        "20,000credits",
+        "3,000credits",
+        "30,000credits",
+        "5,000credits",
+        "50,000credits"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "fastgpt",
+      "url": "https://fastgpt.cn/price",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "100个",
+        "10个",
+        "180天",
+        "1个",
+        "2000页",
+        "200个",
+        "24小时",
+        "30个",
+        "30天",
+        "360天",
+        "3个",
+        "48小时"
+      ],
+      "removed": [
+        "0.00k",
+        "1%",
+        "10%",
+        "1周",
+        "42%",
+        "50%",
+        "60%",
+        "70%",
+        "90%"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "294b"
+      ],
+      "removed": [
+        "$15",
+        "0.5credit",
+        "0.5credits",
+        "0026video",
+        "10000credits",
+        "1000characters",
+        "1000credits",
+        "100minutes",
+        "100words",
+        "10minutes",
+        "11,000minutes",
+        "11minutes"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "11m",
+        "69.3k",
+        "69k"
+      ],
+      "removed": [
+        "67.9k",
+        "68k",
+        "8.0m",
+        "8m"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-09-26",
+      "first_seen": "2026-09-25",
+      "added": [
+        "$1",
+        "$10",
+        "$11",
+        "$12",
+        "$15",
+        "$16",
+        "$19",
+        "$5",
+        "$6",
+        "10,m",
+        "1461,m",
+        "1b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [],
+      "removed": [
+        "$20"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [
+        "157k"
+      ],
+      "removed": [
+        "156k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [
+        "3000万"
+      ],
+      "removed": [
+        "2000万"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [],
+      "removed": [
+        "1,s"
+      ],
+      "checked_then": "2026-08-01"
+    },
+    {
+      "slug": "anythingllm",
+      "url": "https://anythingllm.com",
+      "confirmed": "2026-09-24",
+      "first_seen": "2026-09-23",
+      "added": [
+        "28months",
+        "37months"
+      ],
+      "removed": [
+        "27months",
+        "36months"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "kimi",
+      "url": "https://kimi.com/zh-cn/help/membership",
+      "confirmed": "2026-09-22",
+      "first_seen": "2026-09-21",
+      "added": [],
+      "removed": [
+        "24小时"
+      ],
+      "checked_then": "2026-08-12"
+    },
+    {
+      "slug": "groq",
+      "url": "https://console.groq.com/docs/rate-limits",
+      "confirmed": "2026-09-21",
+      "first_seen": "2026-09-20",
+      "added": [],
+      "removed": [
+        "70k"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-09-20",
+      "first_seen": "2026-09-19",
+      "added": [
+        "36.0k",
+        "36k"
+      ],
+      "removed": [
+        "35.9k"
+      ],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "elicit",
       "url": "https://elicit.com",
@@ -30,19 +311,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "156k"
-      ],
-      "removed": [
-        "155k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "pika",
       "url": "https://pika.art/terms-of-service",
       "confirmed": "2026-09-19",
@@ -59,17 +327,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "cursor",
-      "url": "https://cursor.com",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "$3"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "siliconflow",
       "url": "https://siliconflow.cn",
       "confirmed": "2026-09-19",
@@ -79,21 +336,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "ollama",
-      "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "17.9k",
-        "181.2k"
-      ],
-      "removed": [
-        "17.8k",
-        "180.8k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "n8n",
@@ -107,68 +349,6 @@
         "19days"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "$16",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11,000minutes",
-        "11minutes"
-      ],
-      "removed": [
-        "15b",
-        "294b",
-        "30b",
-        "3b",
-        "79b",
-        "880662b",
-        "8b"
-      ],
-      "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "anythingllm",
-      "url": "https://anythingllm.com",
-      "confirmed": "2026-09-17",
-      "first_seen": "2026-09-16",
-      "added": [
-        "66k"
-      ],
-      "removed": [
-        "65k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-09-17",
-      "first_seen": "2026-09-16",
-      "added": [
-        "$30",
-        "10,000credits",
-        "100,000credits",
-        "100gb",
-        "20,000credits",
-        "3,000credits",
-        "30,000credits",
-        "5,000credits",
-        "50,000credits"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
     },
     {
       "slug": "deepinfra",
@@ -224,17 +404,6 @@
         "60seconds"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-09-16",
-      "first_seen": "2026-09-15",
-      "added": [],
-      "removed": [
-        "1,m"
-      ],
-      "checked_then": "2026-08-01"
     }
   ]
 }

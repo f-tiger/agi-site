@@ -1,0 +1,30 @@
+# AI audio to text — English
+
+https://thedollscout.com/ai-audio-to-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English speech only; WAV or MP3 up to 10 MiB and 60 seconds. No speaker identification, translation or live recording. Whisper Tiny can miss speech or invent words, especially with noise or silence. Review every transcript.
+
+Your browser decodes the file to mono audio at 16 kHz. Whisper Tiny English predicts text and segment timestamps. TXT and SRT downloads are created locally. Subtitle timing is approximate.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Can it transcribe Chinese or German?
+
+This first version uses an English-only model. The page has English, German and Chinese interfaces, but the recording must contain English speech.
+
+Are subtitles and names always accurate?
+
+No. This small model can mishear names, numbers, accents or background sounds. Replay the original and edit the draft before publication.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md

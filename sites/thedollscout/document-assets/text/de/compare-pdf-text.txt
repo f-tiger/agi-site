@@ -1,0 +1,64 @@
+# PDF-Texte vergleichen
+
+https://thedollscout.com/de/compare-pdf-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.
+
+Ihr Ergebnis: Zugeordnete Textseiten und geänderte, hinzugefügte, entfernte oder unklare Seiten.
+
+Was Sie selbst prüfen müssen: Bilder, Layout und Anmerkungen werden nicht verglichen. Vorgeschlagene Seitenzuordnungen müssen geprüft werden.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Funktioniert der Vergleich nach eingefügten Seiten?
+
+Das Werkzeug ordnet Seiten anhand normalisierten Texts zu und schlägt Paare um Einfügungen herum vor. Prüfen Sie Ergänzungen, Löschungen und Änderungen. Wiederholter Inhalt kann die Zuordnung mehrdeutig machen.
+
+Bedeutet gleicher Text identische Dateien?
+
+Nein. Bilder, Tags, Layout und andere Bytes können abweichen. Für SHA-256 und Bytezahl nutzen Sie die Dateiprüfung; visuelle Änderungen prüfen Sie in den Original-PDFs.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die neue Fassung ändert die Uhrzeit, fügt eine Seite ein und ändert die Materialliste. Die Textzuordnung vergleicht keine Bilder, Tags oder Layouts.
+
+Textänderungen | Alte Seite | Neue Seite
+
+Geändert | 1 | 1
+
+Ergänzt | — | 2
+
+Geändert | 2 | 3
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/compare-pdf-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

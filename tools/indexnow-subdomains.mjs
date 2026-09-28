@@ -4,7 +4,8 @@
 // 只在 runner 上跑(会话沙箱出网被挡);只挂 schedule(舰队 CI 纪律第 3 条)。
 const KEY = '16507d8e1997c4be371f5fbaf7ac1985';
 const HOSTS = ['play.agiscorecard.com', 'source.agiscorecard.com', 'goldrush.agiscorecard.com', '35.agiscorecard.com', 'learn.agiscorecard.com', 'fanzha.agiscorecard.com', 'firstjob.agiscorecard.com',
-  'codeword.agiscorecard.com', 'powerbill.agiscorecard.com'];
+  'codeword.agiscorecard.com', 'powerbill.agiscorecard.com',
+  'verify.agiscorecard.com']; // 2026-09-21: Agent Delivery Lab (venture/localebatch submit at deploy; web3 has its own step)
 
 let failures = 0;
 for (const HOST of HOSTS) {

@@ -4,10 +4,15 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {products} from '../../../tools/revenue-studio/catalog.mjs';
+import {pageURL} from '../../../tools/revenue-studio/i18n.mjs';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const root = 'dist';
+// These exact catalog routes are built later by the workbench step and checked by
+// its verifier. The video-business gate also checks its linked file after that build.
+const deferredWorkbench = new Set(products.filter(p=>p.site==='bpj').flatMap(p=>['zh','en'].map(l=>new URL(pageURL(p,l)).pathname)));
 const pages = [];
 (function walk(d) {
   for (const f of readdirSync(d)) {
@@ -37,6 +42,9 @@ for (const p of pages) {
   // 相对链接——70,421 条里只看了 4 条，broken=0 是没看，不是没坏。
   for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
     const h = m[1].replace(/^https:\/\/baipiaoji\.com(?=\/|$)/, '') || '/';
+    // 会员页由 tools/member-studio/build.mjs 在同一条部署流水线里、本门之后写进 dist（它自己的 verify.mjs 检查那些路由）。
+    if (/^\/(?:en\/)?members(?:\?|$)/.test(h)) continue;
+    if (deferredWorkbench.has(h.split(/[?#]/)[0])) continue;
     if (h.startsWith('/') && !exists(h)) { console.log('BROKEN', p, m[1]); broken++; }
   }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
@@ -110,12 +118,18 @@ let staleCount = 0;
   // 三个合法的规模数，全部派生自同一数据源：收录数、已核实数、及其差
   // （「其余 N 个工具追不到官方出处」——报告页在用，它和前两者一样每日重算）。
   const ok = new Set([all.length, nLim, all.length - nLim]);
+  // Category sizes are computed from the same data (e.g. /c/coding "30 个工具"). They stayed under the <30 floor until 2026-09-25,
+  // when coding reached 30 and a correct, data-driven number started failing this gate.
+  for (const c of new Set(all.map((t) => t.category))) { const xs = all.filter((t) => t.category === c); ok.add(xs.length); ok.add(xs.filter((t) => t.limits).length); }
   const RE = /(\d{2,5})\s*(?:个)?\s*(?:AI\s*)?(?:工具|-tool\b|tools\b|verified free tiers|条已核实)/g;
   const files = [...pages];
   for (const f of ['.well-known/mcp.json', 'openapi.json', 'llms.txt', 'llms-full.txt']) {
     if (existsSync(join(root, f))) files.push(join(root, f));
   }
   for (const p of files) {
+    // /agents/ 页面引用第三方（官方 MCP 注册表）发布者自己的描述原文——「exposes 187 tools」「1102tools.com」都是
+    // 他们的话不是本站的规模声明；本站在 agents 面自己的文案一律说「records / 条记录」，由 test-agent-watch --dist 守。
+    if (/(?:^|\/)agents\//.test(p)) continue;
     const txt = readFileSync(p, 'utf8');
     for (const m of txt.matchAll(RE)) {
       const n = Number(m[1]);
@@ -182,7 +196,7 @@ let hreflangErr = 0;
   }
   for (const [p, { canon, tags }] of sets) {
     for (const { lang } of tags) {
-      if (!['zh-Hans', 'en', 'x-default'].includes(lang)) { console.log(`HREFLANG 非法语言码 ${lang}：${p}`); hreflangErr++; }
+      if (!(p.endsWith('/members.html') ? ['zh-Hans','en','de','it','x-default'] : ['zh-Hans','en','x-default']).includes(lang)) { console.log(`HREFLANG 非法语言码 ${lang}：${p}`); hreflangErr++; }
     }
     if (tags.filter((t) => t.lang === 'x-default').length !== 1) { console.log(`HREFLANG x-default 数量≠1：${p}`); hreflangErr++; }
     if (canon && !tags.some((t) => t.href === canon)) { console.log(`HREFLANG 缺自引用（无 alternate 等于 canonical）：${p}`); hreflangErr++; }

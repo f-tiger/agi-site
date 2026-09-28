@@ -1,0 +1,64 @@
+# Batch PDF audit
+
+https://thedollscout.com/pdf-batch-audit
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: When a team needs one review list for several PDF deliverables.
+
+What you get: One combined findings list for up to 10 PDFs, with partial inspections labelled.
+
+What to check yourself: Each PDF is limited to 20 MB and 200 inspected pages; each batch to 100 MB and 600 inspected pages.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+How many PDFs can I audit together?
+
+Up to 10 PDFs, 20 MB each and 100 MB in total. Inspection is limited to 200 pages per PDF and 600 pages per batch. Partial or unreadable results must stay visible in the handover.
+
+What happens if one PDF cannot be read?
+
+Readable files keep their findings. The failed file is reported separately and the batch is partial. Obtain a readable copy and check it before treating the batch as finished.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The batch includes a text PDF with missing metadata, a revised text PDF and a page with only a drawn shape. Processing all pages does not mean that every accessibility requirement passes.
+
+Document | Pages | All pages processed | Check
+
+Original handout | 2 | Yes | Document title; Default language declaration; Tagged-document declaration; No page structure tree found (1); No page structure tree found (2)
+
+Revised handout | 3 | Yes | Tagged-document declaration; No page structure tree found (1); No page structure tree found (2); No page structure tree found (3)
+
+Image-only sample | 1 | Yes | Document title; Default language declaration; Tagged-document declaration; No extractable text (1)
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-batch-audit#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

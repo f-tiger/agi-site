@@ -1,0 +1,29 @@
+# Bilder komprimieren & umwandeln
+
+https://thedollscout.com/de/image-compressor
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Bis zu 8 statische JPEG-, PNG- oder WebP-Bilder; je 20 MiB, zusammen 50 MiB, je 20 Megapixel. Kein GIF, HEIC, SVG oder Animation. Ausgabe höchstens 4096 × 4096 Pixel, ohne Vergrößerung.
+
+Der Browser dekodiert und zeichnet jedes Bild mit erhaltenem Seitenverhältnis neu. JPEG erhält bei Transparenz einen weißen Hintergrund. PNG ignoriert die Qualitätseinstellung. Farben und Dateigröße können sich ändern; keine Garantie für Druckqualität oder vollständige Metadatenbereinigung.
+
+Ein Bild mit 1500 × 1000 Pixeln wird innerhalb von 1000 × 1000 auf 1000 × 667 verkleinert. Das Original bleibt unverändert. Das interaktive Beispiel misst die tatsächliche Exportgröße.
+
+1500 × 1000 → 1000 × 667
+
+Wird die Datei immer kleiner?
+
+Nein. Die Größe hängt von Quelle, Format, Abmessungen und Browser-Encoder ab. Beide Bytezahlen werden angezeigt, auch wenn die Ausgabe größer ist.
+
+Bleibt Transparenz erhalten?
+
+PNG und WebP können Transparenz erhalten. JPEG verwendet dafür einen weißen Hintergrund. Animierte Dateien werden abgelehnt.
+
+Referenzen
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container

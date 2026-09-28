@@ -21,7 +21,7 @@ for f in root.rglob('*.html'):
         if not link or link.startswith(('https://','http://','mailto:')):continue
         if link.startswith('#'):assert link[1:] in p.ids,(f,link);continue
         path=link.split('#')[0].split('?')[0]
-        if path in ['/openapi.json','/api/v1/profiles']:continue
+        if path in ['/openapi.json','/api/v1/profiles','/mcp','/api/research','/api/market','/api/briefs','/updates.xml']:continue
         if path=='/':path='/index.html'
         assert (f.parent/path.lstrip('/')).exists() or (root/path.lstrip('/')).exists(),(f,link)
     if 'data-site="hub"' not in f.read_text() and f.name=='index.html' and f.parent!=root:
@@ -29,9 +29,12 @@ for f in root.rglob('*.html'):
         refs=set(re.findall(r"\$\('([^']+)'\)",app))-{'fingerprint','fingerprint-result'}
         assert refs<=set(p.ids),f'{f}: missing JS targets {refs-set(p.ids)}'
     text=f.read_text();title=re.search(r'<title>(.*?)</title>',text).group(1)
+    if f.parent==root and f.name in ['stablecoin-payment-check.html','gas-budget-check.html','protocol-change-check.html','briefs.html']:
+        main=re.search(r'<main\b[^>]*>(.*?)</main>',text,re.S).group(1)
+        assert not re.search(r'[\u3400-\u9fff]',main),(f,'Chinese prose in English task content')
     assert title not in titles,(f,'duplicate title');titles.add(title)
     canonical=re.search(r'rel="canonical" href="([^"]+)"',text).group(1)
-    expected='/' if f.name=='index.html' else '/'+f.name
+    expected=('/zh/' if f.parent==root/'zh' and f.name=='index.html' else ('/zh/'+f.name if f.parent==root/'zh' else ('/' if f.name=='index.html' else '/'+f.name)))
     assert urlparse(canonical).path==expected,(f,canonical)
     assert f'<meta property="og:url" content="{canonical}">' in text,(f,'og:url differs from canonical')
     assert re.search(r'<meta property="og:image" content="https://[^/]+/share.png">',text),(f,'share image')
@@ -42,6 +45,7 @@ for f in root.rglob('*.html'):
             if entity['@type']=='WebPage':assert entity['url']==canonical
             if entity['@type']=='FAQPage':
                 for q in entity['mainEntity']:assert q['name'].replace('&','&amp;') in text,(f,q['name'])
-    with Image.open(f.parent/'share.png') as image:assert image.size==(1200,630)
+    share=f.parent/'share.png';share=share if share.exists() else root/'share.png'
+    with Image.open(share) as image:assert image.size==(1200,630)
     checked+=1
 print(f'PASS: {checked} HTML pages — unique IDs, labels, primary headings, local links and app targets.')

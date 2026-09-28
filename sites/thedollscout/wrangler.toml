@@ -13,3 +13,6 @@ compatibility_date = "2026-08-01"
 binding = "HITS"
 database_name = "dollscout-events"
 database_id = "6e71ddc6-b58c-49f4-b6f5-207f3778133f"
+
+[vars]
+MEMBERS_ENABLED = "true"

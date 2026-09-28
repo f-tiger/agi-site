@@ -1,0 +1,38 @@
+# Whisper: 在本地转录较长或多语言音频。
+
+https://thedollscout.com/zh/open-source/whisper
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在本地转录较长或多语言音频。
+
+Python 项目适合需要更多模型与语言选择的人。安装需 Python、FFmpeg 以及适配所选模型的硬件资源；短英文片段可以先用 TDS 浏览器工具。
+
+静音或背景噪声可能导致虚构转录。请对照录音核实语言、人名与时间。TDS 当前仅处理最多 60 秒英文音频。
+
+按项目官方说明安装。
+
+选择音频语言与适合设备的模型。
+
+先用一段清晰语音测试，再跑长任务。
+
+对照原音频复核文字与时间。
+
+Python · FFmpeg
+
+MIT
+
+https://github.com/openai/whisper/blob/main/LICENSE
+
+https://github.com/openai/whisper
+
+https://github.com/openai/whisper#setup
+
+https://github.com/openai/whisper
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+

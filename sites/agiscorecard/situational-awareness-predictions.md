@@ -1,6 +1,6 @@
 # Situational Awareness Predictions: Full Tracker
 
-_Last updated: August 29, 2026 · Updated as verdicts change_
+_Last updated: September 27, 2026 · Updated as verdicts change_
 
 **Answer:** 8 predictions, graded live. Aschenbrenner's Situational Awareness (June 2024) made a set of specific, falsifiable predictions. As of mid-2026: 3 on track, 1 wrong, 2 open, 2 too early. Each is graded with evidence and a pre-registered condition to flip.
 

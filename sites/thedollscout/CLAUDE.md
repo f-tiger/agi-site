@@ -1,4 +1,68 @@
-# CLAUDE.md — thedollscout.com(Labubu 导购站)
+# CLAUDE.md — thedollscout.com / TDS Document Scout
+
+## 2026-09-27 AI 工具扩展（owner：ai 工具呢？）
+
+TDS 首页现为 AI、图片、文本数据、时间协作、文件交付、PDF 六类，共十二个工具。新增 `ai-portrait-background-remover`、`ai-audio-to-text`、`ai-text-summarizer`，各 EN/DE/ZH；57 页，54 个 document-sitemap URL。首页 AI 分类优先，不改变默认英文 `/` 和品牌链接规则。
+
+- 三项真正模型推理：固定版本 MODNet 人像透明 PNG、Whisper Tiny English 英语 TXT/SRT、MiniLM 英语原句摘要。摘要为语义向量选句，不是生成式改写；三语界面不代表模型支持三种语言。
+- 浏览器 Web Worker / 单线程 WASM，用户明确点击后从 jsDelivr/Hugging Face 下载模型和程序。输入不上传；连接信息与模型缓存事先披露。无模型服务端、API key、付费开通或新增定时任务。受限网络和旧设备可能失败。
+- 核心与页面源：`document-assets/ai-{core,worker,app}.mjs`、`scripts/documents/ai-{copy,pages}.mjs`，统一 build。首次模型权重约 7/41/23 MB，另有推理程序。每工具公开来源、限制及模型 revision。
+- `ai-evaluation.json` 是实际推理功能验收记录，不是准确率基准。示例和 CI 与真实完成分开；事件禁止输入/文件名，按固定工具路径校验。43 项 Node 测试；浏览器验收必须带 `?ci=1`。
+- 发布记录：根目录 `docs/tds-ai-tools-2026-09-27.md`。新增 AI 功能不代表流量、排名、引用或营收已有提升。
+
+
+## 2026-09-27 非 PDF 分类扩展（owner 再次纠正）
+
+Owner 明确要求「除了 pdf，其它分类工具」。首页升级为图片、文本与数据、时间与协作、文件核验与交付、PDF 五类；前三类优先展示。现有六个工具保留，新增 `/image-compressor`、`/json-compare`、`/time-zone-planner`，均 EN/DE/ZH。不是重新给 PDF 功能起分类名。
+
+- `utility-core.mjs` 提供受限图片头/尺寸校验、精确保留数字的 JSON 解析/格式化/结构对比、夏令时消歧与 UTC 日历导出；浏览器 `utility-app.mjs` 实际处理/下载，不上传输入、不发邀请、不调用付费 API。图像为静态 JPEG/PNG/WebP，不支持 HEIC/GIF/SVG/动画。JSON 非 Schema 验证，数组按下标比较。日历只导出文件，不查询忙闲。
+- 三语文案、页面和样例：`utility-copy.mjs`、`utility-pages.mjs`，统一由 `build.mjs` 生成。48 个页面，45 URL 文档 sitemap；三个 PDF 指南仍保留，新工具方法和案例位于各自页面。
+- 计量共用 `telemetry.mjs`，防止不同版本 app 模块产生重复浏览。新增工具完成/示例固定事件，按工具路径校验；示例与 CI 排除于完成事件。首页选择现在为九个固定任务。无需 D1 迁移或新定时任务。
+- 本轮说明和验收见根目录 `docs/tds-non-pdf-tools-2026-09-27.md`。37 项 Node 测试，浏览器验收必须加 `?ci=1`。新增功能不代表流量、AI 引用、客户或营收已获得验证。
+
+
+## 2026-09-27 首页改为文档与交付工具总览
+
+Owner 要求借鉴 BPJ/ECO 多入口，避免首页押注单一工具。本节替代 09-25「保持现有首页」要求：EN `/`、DE `/de/`、ZH `/zh/` 均按检查文档、提取与比较、核验与交付三组展示现有六个工具；首页没有上传工作区。品牌与首页链接仍返回默认英文 `/`。保持独立工具 URL 和处理逻辑。
+
+- 首页文案源 `scripts/documents/home-hub.mjs`，固定六个路径共用 `document-assets/hub-core.mjs`；`build.mjs` 同步生成 HTML、CollectionPage/ItemList、可见 FAQ、纯文本及 llms 索引。不是新增六项功能或通用 AI 工具目录。
+- 首页入口事件只有六种 `doc_hub_open_*`，仅首页允许，不记录文件、关键词或标识。`homepage_views`、`dedicated_tool_views`、`homepage_selections` 分开报告；旧 `tool_views` 为兼容继续含首页。首页浏览包含窗口内旧版首页，点击不是完成、人数、引用或成交。
+- 保留 39 页 / 36 URL 文档 sitemap、真实样例与既有处理器版本。27 项 Node 测试；浏览器 QA 用 `?ci=1`。发布与本轮验证追加在根目录 `docs/tds-search-recovery-2026-09-27.md`。
+
+
+## 2026-09-25 收件人核验迭代
+
+版本2026-09-25.8，39个生成页面，24项测试。`/verify-file`及DE/ZH提供SHA-256+字节数参考链接、本地比较、网站嵌入链接和独立离线CLI；不依赖D1。交付记录每个文件可复制收件人链接，HTML导出附核验入口。URL片段不含名称或备注，统计不得接收指纹；不得称为身份、收件、验收或Bitcoin证明。共享PDF脚本只绑定`#workspace`下文件输入，避免干扰其他工具。新增匿名事件不是用户、留存或营收。第二轮路线与传播门槛见根目录`docs/tds-consensus-growth-2026-09-25.md`。
+
+
+## 2026-09-25 月收入目标与交付实验
+
+Owner 明确要求主动探索工具、共识和金融机制，目标月营收1万以上。未指定币种：当前模型按人民币，另列美元情景。见根目录 `docs/tds-consensus-revenue-2026-09-25.md`、站内 `.agents/product-marketing.md` 和 `docs/delivery-experiment-2026-09-25.md`。
+
+- 新增 `/delivery-evidence` 及 DE/ZH：本地文件指纹、来源备注、JSON/HTML导出与文件核对。开放记录格式不是收件、同意、作者身份或可信时间证明，没有Bitcoin锚定。保持现有首页与PDF工具；不再先推倒整站。
+- 79美元/月团队功能仅为明示调研概念，未建成、不能购买。匿名预算/频次答案不是订单。既有会员隔离不变。
+- `doc_delivery_sample` 排除于真实动作；`doc_delivery_interest_*` 仅固定类别。不要把动作当独立客户。
+- 版本2026-09-25.7，36个生成页面。静态页验证与D1计量验证拆开：`verify.mjs --live --skip-events`、`verify-events.mjs`。工作流仍保留失败，只允许已验证页面的IndexNow通知不受无关会员/计量故障阻断。
+- 后续D1诊断已返回 `daily_limit`，不是把失效计量当成零流量。统计采用单次分组查询＋成功聚合5分钟缓存；`x-probe`绕过缓存，失败不缓存。缓存不能恢复已耗尽额度；不要静默开通Cloudflare付费计划。
+- GSC Wizard已确认连接，但本会话未暴露查询方法；当天runner仍缺GSC/GA4凭据。未取得搜索数据前，不断言收录问题已解决。
+
+## 当前方向：2026-09-25 文档工具转型（owner 明确授权）
+
+Owner：「为什么一定是收藏品，整个站点方向不对就该转型」→「按照调研优化后，落地到tds，整个站点可以起来流量」。本节替代下方历史收藏品定位和扩张限制；2026-09-25 owner 再次要求新工具沿用 TDS 风格，视觉继续采用原站 Swiss 电商白、黑字和红色强调；退役内容守卫、隐私、来源诚实、会员隔离与部署防回滚要求继续有效。
+
+- 品牌：TDS Document Scout；用户：发布或交付 PDF 的内容团队、制作人员、顾问。首个可验证任务是交付前批量预检和审查记录。
+- 当前可用：PDF 元数据/结构/文本预检、10 文件批量审查、分页文本提取、两个 PDF 文本比较。全部免费，文件仅在浏览器处理。不是 OCR、标签修复、视觉比较或 WCAG/PDF/UA 认证；不把趋势信号称为商业验证。
+- 默认语言为英语（2026-09-25 owner 明确要求）。无语言前缀的 `/` 是 TDS 主首页；中文和德语只通过显式语言切换访问。站点标识、可见 Home 导航、页脚首页入口及面包屑 Home 均返回 `/`；手机端保留可见首页链接。不要再给 owner 默认发送 `/zh/` 预览链接。
+- 首页和核心入口 EN/DE/ZH，`scripts/documents/copy.mjs` 为文案源，`build.mjs` 生成 33 页、示例、sitemap 和两个 llms 文件。页面与工具源需一起提交。PDF.js 6.3.289 锁在 package-lock，Node 24；vendor 不入 git。
+- 开发：`npm ci --prefix scripts/documents --ignore-scripts` → `npm test --prefix scripts/documents` → `node scripts/documents/build.mjs` → `node scripts/documents/verify.mjs`。沿用根仓部署 workflow；旧 workbench 后再运行文档生成器到 dist，防止旧收藏品推荐回到首页。
+- 收藏品 URL、数据、历史 MCP 和独立会员继续可用，由 `/collectors` 链接。勿把旧会员包装成 PDF 付费能力。`gen-collector-pages.mjs` 不得再改文档首页。不要在新首页运行旧 `build-llms-full.mjs`。
+- 新计量只看 `/api/document-stats`：动作数非人数。自带文件完整处理、部分处理、示例、CI 分开；原 PV 口径和 09-23 QA 不能并入新方向。新事件不给旧 `ev=''` 加行。部署以 `/__ci/documents` 写入并回读验证 D1；浏览器 QA 必须 `?ci=1`。
+- 视觉共用 `css/brand.css`：白底 `#fff`、黑字 `#111114`、红色 `#e4002b`、Helvetica 字体、1080px 内容宽度与圆角按钮。文档页、原有内容、TDS 工作台与会员页都消费它；禁止另起蓝绿主题。样式变更须同步图标、分享图片和缓存版本。
+- 统一样式/SEO/分享：见 `docs/document-experience-2026-09-25.md`。新页使用文档生成器和 `experience.mjs` 共用文案；摘要分享严格白名单，不含文件标识或正文。`doc_share` / `doc_summary_share` 只表示复制或设备分享交接，`doc_share_visit` 是带固定来源标记的访问，不是独立用户或实际消息送达。
+- 每日既有 `tds-traffic.yml` 保存 `content/document-metrics.json`，不新增 cron。趋势种子换为 pdf accessibility / pdf remediation / compare pdf，仍共享原配额。不要用旧 Labubu 趋势扩张新站。
+- 增长与商业判定：见 `docs/document-scout-release-2026-09-25.md`、根仓 `data/fleet-bets.json` 的 `tds-documents-1023`。访问不足先解决分发；动作达标后仍须核实重复任务、独立买家和实付，才定义收费层。
+
+以下为历史定位记录，不构成禁止本次转型的新指令。
 
 ## 2026-08-30 重大转向(owner 原话:「下架掉这个站点,风险太大,更换为卖labubu的站点」)
 
@@ -278,3 +342,16 @@ labubu is fake」的多源标准答案是**刮码 + fwsy.popmart.com 验证 + UV
   全部未达 → 把「域名历史包袱」假设升级为主因,报 owner 议新域名。
 - 旧站教训延续:任何漏斗事件读数前先剔 CI;insert-only injector 禁止;
   判定线一律带日期与查询口径。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(affiliate_click_28d,08-30 起 / member_orders_by_state),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:pv 341、affiliate_click 1(首页);货架所在的 picks 页 28d pv <6。
+
+## 2026-09-27 revenue-oriented resource expansion
+
+Owner requested prompt optimization, adversarial execution, a separate open-source section and YouTube tool introductions. Home now has Online tools / Open-source tools / Video tutorials entry points. The 12 functional tools remain distinct from curated external resources. `/open-source` covers Upscayl, Whisper, Ollama, OBS Studio, Audacity and Shotcut; `/videos` contains three credited videos with original TDS exercises and local TXT checklist downloads. All EN/DE/ZH: 93 generated pages, 90 document-sitemap URLs.
+
+Existing collector membership does not unlock AI or resource features. `/creator-kit` is an optional, task-relevant equipment buying checklist using the existing US and DE Amazon tags, with a clear affiliate disclosure and free alternatives first. No new paid plan, sponsor booking or inference spend was opened. Directory visits, player loads, checklist downloads, tool referrals and affiliate clicks are separately bounded anonymous actions. Only actual merchant commission reports establish revenue; none was observed for this release.
+
+Data/copy/pages live in `scripts/documents/growth-{data,copy,pages}.mjs`, with public `document-assets/resource-library.json`. Video metadata was verified with YouTube oEmbed/watch metadata and project sources; older tutorials retain actual dates and interface caveats. Video players connect only on explicit load, with an external fallback. This consent interaction may limit video rich-result eligibility; VideoObject markup does not guarantee indexing or citations. Source review date does not claim the desktop apps were individually tested.
+
+Release and commercial stop/scale criteria: root `docs/tds-resources-revenue-2026-09-27.md`. Do not inflate the resource count into a tool count or replace the free tools with irrelevant collector upsells.
