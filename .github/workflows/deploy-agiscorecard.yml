@@ -68,6 +68,9 @@ jobs:
           # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
           python3 tools/gen_grader_consensus.py --selftest
           python3 tools/gen_grader_consensus.py --check
+      - name: Validate investment research arithmetic and portable records
+        run: node --test sites/agiscorecard/tools/test_invest_research.mjs
+
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
@@ -122,6 +125,7 @@ jobs:
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node tools/revenue-studio/browser-test.mjs
+          node sites/agiscorecard/tools/browser_invest_research.cjs
           node tools/member-studio/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
