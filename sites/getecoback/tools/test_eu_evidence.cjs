@@ -19,7 +19,7 @@ for (const lang of ['en', 'zh']) for (const slug of slugs) {
     const canonical = `https://getecoback.com/${lang}/agents/${slug}.html`;
     assert.equal(graph[0].url, canonical);
     assert.ok(html.includes(`href="${canonical}"`));
-    assert.ok(!html.includes('thomasedisonfault.chatgpt.site'));
+    assert.ok(!/\.chatgpt\.site\b/.test(html), 'page still points at the old chatgpt.site host');
     assert.equal((html.match(/<h1>/g)||[]).length,1);
     const visible = html.replace(/<script\b.*?<\/script>/gs,'').replace(/<style\b.*?<\/style>/gs,'').replace(/<[^>]*>/g,' ').replace(/&#x27;/g,"'").replace(/&quot;/g,'"').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&').replace(/\s+/g,' ');
     assert.deepEqual(graph.find(x=>x['@type']==='FAQPage').mainEntity.map(x=>[x.name,x.acceptedAnswer.text]), t.faqs);

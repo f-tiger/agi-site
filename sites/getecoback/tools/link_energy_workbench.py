@@ -14,7 +14,14 @@ for lang,paths in targets.items():
   if '<!--EB_ENERGY_WORKBENCH-->' in s:s=re.sub(r'<!--EB_ENERGY_WORKBENCH-->.*?<!--/EB_ENERGY_WORKBENCH-->\n?',lambda _:block,s,flags=re.S)
   elif name=='index.html' and '<!--EB_TOPPICK-->' in s:s=s.replace('<!--EB_TOPPICK-->',block+'<!--EB_TOPPICK-->',1)
   else:
-   s,n=re.subn(r'(<h2\b)',lambda m:block+m[1],s,count=1)
-   assert n==1,name
+   # Only look for a heading in the page's own content. it/index.html has no <h2> in
+   # <main>, so the first <h2> used to be the one inside the task-workbench aside; the
+   # link landed inside that aside and tools/revenue-studio/build.mjs deleted it with
+   # the aside on every deploy (live page without the link, repo and deploy fighting).
+   cut=s.find('<!-- task-workbench:start -->');m=re.search(r'<h2\b',s if cut<0 else s[:cut])
+   if m:s=s[:m.start()]+block+s[m.start():]
+   else:
+    assert '</main>' in s,name
+    s=s.replace('</main>',block+'</main>',1)
   p.write_text(s)
 print('Electricity workbench linked from 13 existing pages.')

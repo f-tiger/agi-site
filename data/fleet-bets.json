@@ -205,10 +205,12 @@
    "win": "重写触达了读者",
    "lose": "<5% → 回去重诊断,别重复同一动作",
    "source": "sites/getecoback/CLAUDE.md:1586",
-   "status": "open",
+   "status": "won",
    "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。",
    "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。",
-   "note_2026-09-27_ex105": "owner 用 EAN 8004399026445 在 amazon.de(配送 Berlin 10115)搜索:只有 1 条 PACEX105 listing,No featured offers available,仅 2 个二手/新品报价约 USD 1.146。没有 Buy Box,/dp/ 直链会把读者带到无法加购的页,所以 EX105 永不烘焙 ASIN;09-23 预估的「核验通过即 31 %」作废,本线按现有读数(14,5 %)结算。"
+   "note_2026-09-27_ex105": "owner 用 EAN 8004399026445 在 amazon.de(配送 Berlin 10115)搜索:只有 1 条 PACEX105 listing,No featured offers available,仅 2 个二手/新品报价约 USD 1.146。没有 Buy Box,/dp/ 直链会把读者带到无法加购的页,所以 EX105 永不烘焙 ASIN;09-23 预估的「核验通过即 31 %」作废,本线按现有读数(14,5 %)结算。",
+   "settled": "2026-09-28",
+   "reading": "D1 现查(08-31→09-27,28 天,ua_class IS NULL/human,剔 /__ 路径):affiliate_click 79 次,78 次带 link_url,其中 /dp/ 14 次 = 17,9 %(阈值 ≥15 %,t0 ~1 %)。EX105 搜索链 12 次(15 %)仍是最大的非直链一块,且按 09-27 owner 核验它没有 Buy Box,永不烘焙 ASIN。amazon.com 1 次、Prime 试用 0 次。注意 09-24/25/26 午后 D1 读额度用尽、事件写入被拒,真实点击略多于 79。win 动作 =「重写触达了读者」:已核验型号的直链保留,不再为提高占比做新动作;09-27 起 N90 排在货架第一(owner「降到后面」),10 月读 N90 点击看这一改动。"
   },
   {
    "id": "eco-feuchte-now-0928",
@@ -219,8 +221,23 @@
    "win": "取暖簇做冬季版",
    "lose": "渲染够点击 ≤2 → 活数字不驱动购买,撤块",
    "source": "sites/getecoback/CLAUDE.md:1464",
+   "status": "insufficient",
+   "reading_2026-09-23": "08-31→09-23 feuchte_now 渲染 22(阈值 50)、湿度簇点击 5(基线 5)。渲染不够 → 09-28 记 insufficient(不是「点击不够」),顺延 10-28。",
+   "settled": "2026-09-28",
+   "reading": "D1 现查(08-31→09-27,28 天,真人口径):feuchte_now 渲染 29 次 / 17 页(阈值 ≥50)。湿度簇联盟点击 6 次(阈值 ≥6,基线 5),全部落在 luftentfeuchter-10/20/25-qm 三张页上——都属 08-31 首批 18 页。渲染不够,按 09-23 预读的规则记 insufficient,不判「活数字不驱动购买」;这个露点带目前已在 32 张页上(08-31 为 18),顺延为 eco-feuchte-now-1028。D1 在 09-24/25/26 午后有写入缺口。",
+   "rolled_to": "eco-feuchte-now-1028"
+  },
+  {
+   "id": "eco-feuchte-now-1028",
+   "site": "getecoback",
+   "due": "2026-10-28",
+   "metric": "10-01→10-28 D1(真人口径,剔 /__ 路径):feuchte_now 渲染次数(全站),以及当日带 EB_FEUCHTENOW 露点带的德语指南页(09-28 为 32 张)上的 affiliate_click 合计。基线(08-31→09-27):渲染 29 次 / 17 页,点击 6 次",
+   "threshold": "渲染 ≥50 且点击 ≥6",
+   "win": "活数字在湿度季有人看且伴随购买 → 按同法给取暖簇做冬季版(露点带之于湿度 = 什么之于取暖,先写清楚再建)",
+   "lose": "渲染 ≥50 而点击 ≤2 → 活数字不驱动购买,从非计算器页撤掉露点带,只留在 luftentfeuchter-N-qm 与 luftfeuchtigkeit-senken;渲染仍 <50 → 露点带所在页在湿度季也没人看,记 insufficient 并停止扩这个组件",
+   "source": "sites/getecoback/CLAUDE.md(2026-08-31 暗区证伪 + 秋季活数字;2026-09-28 结算)",
    "status": "open",
-   "reading_2026-09-23": "08-31→09-23 feuchte_now 渲染 22(阈值 50)、湿度簇点击 5(基线 5)。渲染不够 → 09-28 记 insufficient(不是「点击不够」),顺延 10-28。"
+   "t0": "2026-09-28:29 次渲染 / 6 次点击(08-31→09-27)"
   },
   {
    "id": "eco-split-cluster-0928",
@@ -231,8 +248,10 @@
    "win": "补第二个高客单簇",
    "lose": "≤2 → 该价位在本站受众不成立,停止",
    "source": "sites/getecoback/CLAUDE.md:1512",
-   "status": "open",
-   "reading_2026-09-23": "08-31→09-23 split 簇三页点击 1(基线 4、阈值 6、≤2 判负)→ 09-28 按原文 lose:这个价位在本站受众里不成立。"
+   "status": "lost",
+   "reading_2026-09-23": "08-31→09-23 split 簇三页点击 1(基线 4、阈值 6、≤2 判负)→ 09-28 按原文 lose:这个价位在本站受众里不成立。",
+   "settled": "2026-09-28",
+   "reading": "D1 现查(08-31→09-27,28 天,真人口径):split 簇三页 affiliate_click 1 次(阈值 ≥6,≤2 判负)→ 按原文 lost。但分母要写清楚:三页 28 天真人 pv 只有 6(split-klimaanlage-ohne-kernbohrung 5、portasplit-vs-monoblock 1、midea-portasplit-kaufen 0),点击率约 17 %,与全站相当——这组读数说明的是制冷季结束后这三页没有流量,并没有证明「这个价位在本站受众里不成立」。执行 lose 动作:不再在高客单方向加簇、加卡;三页与 Quick-Connect 货架原样保留(零维护),2027 制冷季(6 月)有流量时再读一次再定去留。"
   },
   {
    "id": "sr-sourcing-margins-0928",

@@ -3343,3 +3343,20 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
   爆款 Faktencheck 页(epicooler、air zuma)历史读数 ≈0,`voltomat heating` 不追。
 - **判定线**:`eco-bing-newpage-1027`(≥8/15 被抓)、`eco-winter-growth-1108`(28 天非美国真人 pv 439 → ≥660)、`eco-winter-videos-1108`(6 页 ≥6 次播放)。
 - **别做**:假新鲜度(temperaturheld 那种全站 lastmod 同月)、量产页、重复 ping 老 URL。
+
+## 部署被计费拦截后恢复 + 两处「仓库 ≠ 线上」修复 + 三条判定线结算(2026-09-28,owner:「继续,已经改成public」)
+
+- **09-27 16:00 起 eco 部署一步都没跑**:仓库当时是 private,Actions 分钟用完,GitHub 以「payments have failed or spending limit」拒绝启动(重跑一次同样被拒)。
+  owner 09-28 改回 public 后重跑 run 36331560573 → 绿;catnew 列表、6 个冬季视频、akku 页线上全部在位,IndexNow 提交 15 个 URL(HTTP 200)。
+  **以后看到「job 2 秒结束、0 个步骤」先读 check-run 的 annotation**,那是计费/账号层,不是代码;这类失败只有 owner 能解。
+- **部署日志里的「5 张页 churn」是两个真缺陷,已修**:①`tools/revenue-studio/build.mjs`(部署时才跑,本地链不跑)把工作台块删掉再插到页脚前,
+  而首页的 `build_home_order.py` 已把它放进「Weitere Rechner und Werkzeuge」带里——两步互相改写,仓库永远和线上不一样。现在:块已经在页脚之上就原地刷新,
+  否则才删掉重插(只影响有 `EB_FOOTER` 的 eco,别的站行为不变)。②`link_energy_workbench.py` 在没有标记时插到「第一个 `<h2>` 前」,而 `it/index.html`
+  的 `<main>` 里没有 `<h2>`,第一个 `<h2>` 在工作台块里——电费工作台入口被塞进工作台块,部署时随块一起被删,**线上意大利首页一直没有这个入口**。现在只在工作台块之前找 `<h2>`,
+  找不到就插在 `</main>` 前。验证:整条本地链 + `build.mjs` 连跑两轮,第二轮零 HTML 变化。
+  **规矩:部署里在本地链之后才跑的注入器,改它之后要在本地按部署顺序跑一次再比对**——只跑本地链会把它的产物当成「没变」。
+- **判定线结算(D1,08-31→09-27,真人口径;09-24/25/26 午后 D1 写入有缺口)**:`eco-dp-share-0928` **won**(/dp/ 14/78 = 17,9 %);
+  `eco-feuchte-now-0928` **insufficient**(露点带渲染 29,阈值 50;湿度簇点击 6 全在 luftentfeuchter 尺寸页),顺延为 `eco-feuchte-now-1028`;
+  `eco-split-cluster-0928` **lost**(三页 1 次点击),但三页 28 天只有 6 个真人 pv、点击率与全站相当——**输的是流量不是价位**;照 lose 动作不再扩高客单簇,页面与货架原样保留,2027 制冷季再读。
+- **隐私复查(仓库改回 public 当天)**:已跟踪文件与本地可见历史里没有密钥、钱包地址、订阅者邮箱;唯一的真实邮箱是 Impressum 法定联系邮箱(本来就公开);
+  Supabase anon key 按设计公开(RLS 限制);EU 证据测试里一处写着 owner 账号前缀的断言已改为通用的 `.chatgpt.site` 正则。
