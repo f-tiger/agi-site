@@ -126,6 +126,20 @@ agi 的 `idx_pv_day`/`idx_pv_path`/`idx_pv_ref`），执行计划断言因此测
 - 按上午的速度外推，今天全账号约 370 万行，**不会越线**；写入全天约 6.5 万行，低于 10 万。明天建 agi 索引（约 2.1 万行写入）
   加日常写入仍在余量内。
 
+**09-28 00:07 UTC agi 索引已建**（零点额度重置后，经 D1 查询接口）：`pageviews_human` 写入 21 705 行（human 行 21 704）。
+线上执行计划：trends 7 天、trends 前一周、pulse 来源、pulse AI 引荐四条都是 `SEARCH pageviews USING COVERING INDEX pageviews_human`；
+pulse 的 money 块（点名 4 个路径）走 `idx_pv_path (path=? AND day>?)`；没有一条退回整表或按日期索引。线上 pulse / trends 均 miss → hit、`ok:true`、无 partial。
+
+| 查询 | 建索引前 rows/次 | 建索引后 rows/次 |
+|---|---:|---:|
+| trends 7 天路径榜 | 约 35 600 | **8 195** |
+| pulse 28 天来源榜 | 约 35 300 | **29 881** |
+
+**28 天那几条几乎没省**：28 天窗口里有 14 916 行 human（占全部 human 行的七成），D1 还把 GROUP BY 排序经手的行算作读取
+（29 881 = 2 × 14 916 + 49）。所以 agi 的主要省法是缓存（pulse 1 小时、trends 30 分钟），索引只对 7 天窗口有 4 倍效果。
+按 09-27 的调用次数估，agi 每天仍在 100 万行上下，`agi-d1-reads-1004`（≤30 万/天）大概率判负——阈值照原文，到期如实结算。
+全账号已不再越线，这件事不影响额度。
+
 ## 四、没修的与需要决定的
 
 - ~~agi `/api/trends` 与 `/api/pulse`~~：见上节，09-26 已改。

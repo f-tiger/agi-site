@@ -838,6 +838,10 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
    也是第 24 条「rail 改下限写法」没能生效的原因(那次改对了,但清单没存下来)。同一原因让「traffic snapshot」「AI crawler probe」两个回写也从未落库。
    修法:三处构建后的提交一律 `git pull --rebase --autostash`(在临时仓复现了原报错并验证修复);本步加 `id: manifest` 进汇总门,再失败 run 就红;
    本次推送带上当前清单作为新基线。判定线 `bpj-manifest-commit-0927`。**通用教训:`continue-on-error` 的步骤必须有别的东西看它的 outcome,否则它就是一个静默失败的开关。**
+   **09-28 结算 `bpj-manifest-commit-0927` → lost(按原阈值)**:清单回写已修通(09-25、09-26 两次提交,步骤 success),可以引用「今天变了多少页」;
+   但 09-26 定时运行 sitemap 只判 84/1 704 页变化,IndexNow 却提交 1 698 条——`scripts/indexnow-plan.mjs` 选「清单日期 = 今天或昨天」,
+   09-25 的真实全站变更第二天又整站提交一遍。09-27 定时运行在「Sync payment secrets」失败(同日两次 push 运行通过同一步),没跑到 IndexNow;
+   其构建判定 1 712/1 714 页有变化(09-26 起多个会话改了全站外壳,未逐页核实)。**「IndexNow 只提真变化」在本站仍不成立**,改法是按「上次提交日」去重,不是缩窗口。
    **明确不做**:单位换算(字符 → 分钟、credits → 份数,官方没给口径)、给未确认的工具估一个「大概能用」、为分享做短链服务、为每个岗位建 SEO 页。
 
 

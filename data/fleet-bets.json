@@ -1668,10 +1668,12 @@
    "win": "清单回写修通，sitemap lastmod 与 IndexNow 回到只报真变化；结论写回 bpj CLAUDE.md 第 26 条",
    "lose": "读那次 run 的「Commit page change manifest」日志：若仍是工作区不干净，查是哪个文件（--autostash 应已覆盖）；若是推送竞争，改为重试；在修通之前不把任何「今天变了多少页」的读数当事实引用",
    "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
-   "status": "open",
+   "status": "lost",
    "reading_2026-09-25": "中间读数（不结算）：① 已满足——09-25 定时 run 提交了 59e64217（清单首次由 CI 回写）；③ 已满足——汇总门「变更清单回写」success；② 当日 IndexNow 推了 1 670 条。原因已查实不是基线造假：本地与 CI 构建哈希逐页一致（1 620/1 672 相同；其余 52 页是清单 59e64217 之后的真改动，而该清单早于 d1a02d6f：d1a02d6f 视频上线 48 页（40 个视频工具页、首页与 /c/video 各 2、studio 枢纽 2、新增 /video/ 2），video-variants 2 页（上线 + 本轮 EDITION），本轮审计单独带来的只有 quote-compare 2 页），整站 1 662 页变更来自 5a24095d→e565fe0f 之间的真实全站改动（PR #2 的 canonical/跳板 URL 修复 + Studio 上线）。09-26 的 run 仍会推 ~1 672 条（indexnow-plan 选「今天或昨天」变更的页，而 1 662 页日期是 09-25），所以按原计划只看 09-27 的日志结算 ②。09-25 另一处 424 页空白行 churn（d1a02d6f 的空模板槽）已在 09-26 定时 run 之前修掉，本地构建由 474 降到 52 页。",
    "reading_2026-09-25b": "同日第二次中间读数（不结算）：本轮新增 Kiro/Codex 并重核 Cursor 时发现，导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳会让加 2 个工具就把 1 700 页全判为变化（任何一次额度编辑都会，09-21 那批 7 家多半也触发过）。已改 lastmod 哈希忽略这三处（scripts/lastmod-hash.mjs + test-lastmod-hash.mjs，5 个变异全红），并把清单一次性迁移到新公式：1 454 页只动了外壳、保留原日期，166 页本轮真改动 + 30 个新 URL + 50 页清单之后的 Studio 改动，共 246 页记为 09-25；与 main 合并后另一会话同日的 Studio 文件工具 / 视频案例再加 54 页（含 4 个新 URL），合计 300 页记为 09-25。所以 09-26 的定时 run 会把这 300 页当「昨天」推一次；09-27 的读数不含它们，② 照原计划按 09-27 日志结算。",
-   "reading_2026-09-27": "到期读数(不结算,顺延读 09-28 定时 run):① 已满足(59e64217 09-25、b4f06a08 09-26 两次 CI 回写);③ 09-27 05:37 定时 run 36297733713 在「Sync payment secrets」一步失败(ad-configure.mjs 抛错,错误被吞只打印通用提示),汇总门里「变更清单回写」为 skipped,IndexNow 步未运行,② 无读数。同一次构建日志与本地重建一致:1712/1714 页判为变化——原因是 09-26 的全站改版(#22 统一体验、#24/#27 账户、#30 AI 工具枢纽)确实改了每页,不是哈希 churn;所以 09-28 的 ② 预计仍 >300,读那一次时要把这一次性整站改版单列,不当成回写失效。"
+   "reading_2026-09-27": "到期读数(不结算,顺延读 09-28 定时 run):① 已满足(59e64217 09-25、b4f06a08 09-26 两次 CI 回写);③ 09-27 05:37 定时 run 36297733713 在「Sync payment secrets」一步失败(ad-configure.mjs 抛错,错误被吞只打印通用提示),汇总门里「变更清单回写」为 skipped,IndexNow 步未运行,② 无读数。同一次构建日志与本地重建一致:1712/1714 页判为变化——原因是 09-26 的全站改版(#22 统一体验、#24/#27 账户、#30 AI 工具枢纽)确实改了每页,不是哈希 churn;所以 09-28 的 ② 预计仍 >300,读那一次时要把这一次性整站改版单列,不当成回写失效。",
+   "settled": "2026-09-28",
+   "reading": "① 2 次（59e64217 09-25、b4f06a08 09-26）✓；③ 09-25/09-26 两次定时运行「Commit page change manifest」均 success ✓；② 最近一次跑到 IndexNow 的定时运行是 09-26（run 36220547257）：sitemap 步只有 84/1 704 页变化，但 IndexNow 提交了 1 698 条 ✗。09-27 定时运行（36297733713）在「Sync payment secrets」一步失败（Payment setup failed，同日 13:49 与 15:43 的 push 运行通过同一步），IndexNow 与清单步被跳过。按预登记阈值判 lost（② > 300）。原因不是清单回写：scripts/indexnow-plan.mjs 选「清单日期 = 今天或昨天」的页面，09-25 是真实的全站变更（PR #2 + Studio），所以 09-26 又整站提交一遍——同一批变化被提交两天。另记：09-27 定时构建判定 1 712/1 714 页有变化（09-26 起多个会话改了全站外壳，未逐页核实），下一次定时运行预计再整站提交两天。清单回写本身已修通，可以引用「今天变了多少页」；「IndexNow 只提真变化」这一条仍不成立。"
   },
   {
    "id": "bpj-studio-video-own-1023",
@@ -2002,7 +2004,8 @@
    "lose": "任一天 > 300 000 → 还有没被缓存覆盖的调用路径（communityRoute / memberRoute / owner-alerts 每 30 分钟一次等）：按 d1_usage 的逐条查询表逐条查",
    "source": "sites/agiscorecard/CLAUDE.md「D1 读取额度」节（2026-09-26）+ docs/d1-read-budget-2026-09-26.md",
    "status": "open",
-   "instrument_note_2026-09-27": "Cache live and verified 2026-09-27 (miss->hit; deploy run 36281663006 green). pageviews_human index deferred to 2026-09-28 00:05 UTC: the bpj migration spent 48,589 of the account's 100,000 daily writes and normal account writes are 16k-31k/day, so 20,964 more index entries risked the write limit. Window 09-28..10-03 unchanged; the index lands at its start."
+   "instrument_note_2026-09-27": "Cache live and verified 2026-09-27 (miss->hit; deploy run 36281663006 green). pageviews_human index deferred to 2026-09-28 00:05 UTC: the bpj migration spent 48,589 of the account's 100,000 daily writes and normal account writes are 16k-31k/day, so 20,964 more index entries risked the write limit. Window 09-28..10-03 unchanged; the index lands at its start.",
+   "instrument_note_2026-09-28": "pageviews_human created on live D1 2026-09-28 00:07 UTC (21 705 rows written). Live EXPLAIN: trends 7-day, trends previous-week, pulse referrers and pulse AI-referrers all SEARCH ... USING COVERING INDEX pageviews_human; the money block's path IN (...) query uses idx_pv_path (path=? AND day>?). Measured rows read: trends 7-day query 8 195 (was ~35 600); pulse 28-day referrer query 29 881 (was ~35 300). The 28-day window holds 14 916 of 21 704 human rows and D1 also counts the GROUP BY sorter rows (29 881 = 2 x 14 916 + 49), so the index barely helps the 28-day queries; the one-hour cache is agi's main lever. Threshold unchanged."
   },
   {
    "id": "agi-consensus-mcp-1124",
