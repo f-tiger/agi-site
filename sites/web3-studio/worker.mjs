@@ -2,12 +2,12 @@ import {researchSnapshot,researchMarkup} from './research.mjs';
 import {snapshot,marketMarkup,briefsMarkup,rss} from './market.mjs';
 import {measurement} from './measurement.mjs';
 import {handleMcp} from './mcp.mjs';
-import {scenarios} from './public/experience.mjs';
+import {scenarios,csvExamples} from './public/experience.mjs';
 import {sites,hubHost} from './public/catalog.mjs';
 import {profiles,selectProfiles,CHECKED_AT} from './public/profiles.mjs';
 import {release} from './release.generated.mjs';
 const hosts=new Map([[hubHost,'hub'],...sites.map(s=>[s.host,s.id])]);
-const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','research-ui.mjs','research-export.mjs','research-core.mjs','proof-core.mjs','finance-core.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
+const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','feedback.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','research-ui.mjs','research-export.mjs','research-core.mjs','proof-core.mjs','finance-core.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
 const pages=new Set(['/','/index.html','/zh/','/zh/index.html','/zh/guide.html','/zh/privacy.html','/zh/market.html','/zh/robots.txt','/zh/sitemap.xml','/zh/llms.txt','/guide.html','/privacy.html','/robots.txt','/sitemap.xml','/llms.txt','/examples/input.json','/examples/report.json','/share.png','/zh/share.png','/llms-full.txt','/for-agents.html','/agents.html','/zh/agents.html','/.well-known/mcp.json']);
 const security={'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://*.agiscorecard.com; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Strict-Transport-Security':'max-age=31536000; includeSubDomains'};
 const json=(v,status=200,headers={})=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers}});
@@ -64,13 +64,15 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405,{Allow:'GET, HEAD'});
  if(u.pathname==='/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/'+u.search}});
  if(site==='hub'&&u.pathname==='/zh/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/zh/'+u.search}});
- const toolPages=site!=='hub'?new Set(['/examples.html','/tool.json','/input.schema.json','/guide.md',...scenarios(site).flatMap(c=>['/examples/'+c.key+'.json','/examples/'+c.key+'-report.json'])]):new Set(['/publish.html','/tools.json','/stablecoin-payment-check.html','/gas-budget-check.html','/protocol-change-check.html']);
+ const toolPages=site!=='hub'?new Set([...csvExamples(site).map(c=>c.path),'/examples.html','/tool.json','/input.schema.json','/guide.md',...scenarios(site).flatMap(c=>['/examples/'+c.key+'.json','/examples/'+c.key+'-report.json'])]):new Set(['/publish.html','/tools.json','/stablecoin-payment-check.html','/gas-budget-check.html','/protocol-change-check.html']);
  let path;if(shared.has(u.pathname.slice(1)))path=u.pathname;else if(pages.has(u.pathname)||toolPages.has(u.pathname)){if(site==='hub'&&u.pathname.startsWith('/examples/'))return json({error:'Not found'},404);path=site==='hub'?(u.pathname.startsWith('/zh/')?(u.pathname==='/zh/'?'/zh/index.html':u.pathname):(u.pathname==='/'?'/index.html':u.pathname)):(u.pathname==='/'?'/'+site+'/index.html':'/'+site+u.pathname);}else return json({error:'Not found'},404);
  const assetUrl=new URL(request.url);assetUrl.pathname=path;assetUrl.search='';const response=await env.ASSETS.fetch(new Request(assetUrl,{method:request.method}));const headers=new Headers(response.headers);
+ if(u.pathname.endsWith('-template.csv')){headers.set('Content-Type','text/csv; charset=utf-8');headers.set('Content-Disposition','attachment; filename="'+u.pathname.split('/').at(-1)+'"');headers.set('X-Robots-Tag','noindex');}
  if(u.pathname==='/guide.md')headers.set('Content-Type','text/markdown; charset=utf-8');
  if(['/guide.md','/llms-full.txt'].includes(u.pathname))headers.set('Link','<'+u.origin+'/guide.html>; rel="canonical"');
  if(u.pathname.endsWith('.json')||u.pathname==='/guide.md'||u.pathname==='/llms-full.txt')headers.set('X-Robots-Tag','noindex');
  return new Response(response.body,{status:response.status,headers});
 }
 export default {async fetch(request,env){let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
+
 

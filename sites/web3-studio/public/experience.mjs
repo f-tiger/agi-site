@@ -44,5 +44,15 @@ export function csvRows(text,template){
  const result=rows.map((r,i)=>{if(r.length!==header.length)throw Error('CSV row '+(i+2)+' has the wrong number of columns.');return Object.fromEntries(header.map((k,j)=>{let v=r[j];if(typeof template[k]==='boolean'){if(!['true','false'].includes(v))throw Error(k+' must be true or false.');v=v==='true';}else if(typeof template[k]==='number'){if(!/^-?(?:\d+\.?\d*|\.\d+)$/.test(v))throw Error(k+' needs a finite decimal number.');v=Number(v);}return[k,v];}));});return parse(JSON.stringify(result));
 }
 export const csvTemplate=template=>Object.keys(template).join(',')+'\n';
+// Only catalog-owned fictional inputs are exported as CSV templates.
+export function csvExamples(id){
+ const site=byId[id];if(!site)throw Error('Unknown tool.');
+ const quote=value=>'"'+String(value).replace(/"/g,'""')+'"';
+ return Object.entries(site.sample).filter(([,rows])=>Array.isArray(rows)&&rows.length).map(([group,rows])=>{
+  const keys=Object.keys(rows[0]);
+  return {group,path:'/examples/'+group+'-template.csv',content:keys.map(quote).join(',')+'\r\n'+rows.map(row=>keys.map(key=>quote(row[key])).join(',')).join('\r\n')+'\r\n'};
+ });
+}
 export function inputSchema(id){const make=v=>Array.isArray(v)?{type:'array',items:make(v[0])}:v&&typeof v==='object'?{type:'object',additionalProperties:false,required:Object.keys(v),properties:Object.fromEntries(Object.entries(v).map(([k,x])=>[k,enums[k]?{type:'string',enum:enums[k]}:make(x)]))}:{type:typeof v};return {$schema:'https://json-schema.org/draft/2020-12/schema',$id:'https://'+byId[id].host+'/input.schema.json',title:byId[id].name+' input structure',description:'Structural contract. The engine additionally validates ranges, dates, amounts, uniqueness and cross-field constraints; passing this schema is not a complete validation.',...make(byId[id].sample)};}
-export function publicMetadata(id){const s=byId[id],t=topics[id];return {name:s.name,url:'https://'+s.host+'/',version:VERSION,updated,description:t.answer,price:{amount:0,currency:'USD',status:'free beta'},method:s.method,limitations:s.limit,exampleOnly:false,inputsUploaded:false,modelCalled:false,guide:'https://'+s.host+'/guide.html',schema:'https://'+s.host+'/input.schema.json',examples:scenarios(id).map(c=>({id:c.key,url:exampleLink(id,c.key),input:'https://'+s.host+'/examples/'+c.key+'.json'})),sources:s.competitors.map(c=>({name:c.name,url:c.url}))};}
+export function publicMetadata(id){const s=byId[id],t=topics[id];return {name:s.name,url:'https://'+s.host+'/',version:VERSION,updated,description:t.answer,price:{amount:0,currency:'USD',status:'free beta'},method:s.method,limitations:s.limit,exampleOnly:false,inputsUploaded:false,modelCalled:false,csvTemplates:csvExamples(id).map(c=>({group:c.group,url:'https://'+s.host+c.path,fictional:true})),guide:'https://'+s.host+'/guide.html',schema:'https://'+s.host+'/input.schema.json',examples:scenarios(id).map(c=>({id:c.key,url:exampleLink(id,c.key),input:'https://'+s.host+'/examples/'+c.key+'.json'})),sources:s.competitors.map(c=>({name:c.name,url:c.url}))};}
+
