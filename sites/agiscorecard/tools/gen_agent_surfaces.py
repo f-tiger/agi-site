@@ -95,6 +95,15 @@ def main():
         if not title:
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)
+        if slug == 'invest':
+            source_html = open(fpath, encoding='utf-8').read()
+            workbench = re.search(r'<!-- invest-research-body:start -->(.*?)<!-- invest-research-body:end -->', source_html, re.S)
+            if workbench:
+                # Extract only static teaching content; no user-entered browser records exist here.
+                readable = text_of(workbench.group(1))
+                evidence_url = 'https://agiscorecard.com/invest-research/evidence.json'
+                md += '\n## Source-led research workbench\n\n' + readable + '\n\nDated examples: ' + evidence_url + '\n'
+                full += ['## Investment research workflow', '', readable, '', 'Dated examples: ' + evidence_url, '']
         md_name = (slug[:-5] if slug.endswith('.html') else slug) + '.md'
         # /skill.md is the installable SKILL file the /skill page tells agents to curl
         # (hand-maintained, with frontmatter). Until 2026-09-26 this loop overwrote it

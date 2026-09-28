@@ -1,0 +1,28 @@
+name: Check investment research workflow
+on:
+  pull_request:
+    paths:
+      - 'sites/agiscorecard/invest-research/**'
+      - 'sites/agiscorecard/tools/*invest_research*'
+      - 'sites/agiscorecard/invest.html'
+      - 'sites/agiscorecard/zh/invest.html'
+      - '.github/workflows/invest-research-check.yml'
+permissions:
+  contents: read
+concurrency:
+  group: invest-research-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix tools/revenue-studio --ignore-scripts
+      - run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - run: node --test sites/agiscorecard/tools/test_invest_research.mjs
+      - run: node sites/agiscorecard/tools/browser_invest_research.cjs
+      - run: python3 sites/agiscorecard/tools/validate.py
+      - run: python3 sites/agiscorecard/tools/check_hreflang.py

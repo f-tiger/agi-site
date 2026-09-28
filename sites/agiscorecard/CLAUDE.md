@@ -1094,3 +1094,13 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
   35 600 → **8 195** 行/次;**pulse 28 天来源榜 35 300 → 29 881 行/次,几乎没省**——28 天窗口占 human 行的七成,且 D1 把 GROUP BY 排序
   经手的行也算读取(2 × 14 916 + 49)。**agi 的主要省法是缓存,不是索引**;要再降只能减少 28 天全窗口聚合的调用次数或改成预聚合表。
 
+
+## 2026-09-28 投资研究工作台（owner：三轮 prompt 后执行）
+
+`/invest#research-workbench` 与 `/zh/invest#research-workbench` 是同一免费研究流程；源码 `invest-research/`，生成器 `tools/build_invest_research.py` 只管理带标记的片段，不能重跑旧 `gen_invest_profiles.py`。不新增域名、不卖信号、不变更独立子站算法。输入与本机保存只在浏览器，工具匿名事件需主动选择，`research_<lang>_<action>` + `sample|own`，QA 用 `__qa=1`。这些事件不能算唯一用户、续费或收入。
+
+教学来源固定记录核对日期和披露期间，不自动更新日期；`evidence.json` 不是实时行情。EPS/P-E 和仓位冲击全部是用户假设算术，不是目标价、建议仓位或最坏损失。未接站内模型/自动提醒；Markdown 是交给用户 AI 复核的文档，不能宣称已由 AI 核验。
+
+方法更正：旧文“申报日收盘价是真人可成交价格”不严谨，盘后申报仍可能前视。中英入口已加限制，独立 aistock 回测未按披露时刻重算，历史数字不能视为已验证真实投资利润。Q3 2026 SEC 截止是 11-16；商业复盘 11-15 不改。本轮是新的明确研究深化指令，旧实验保留但本页前后不再能作干净对照。详见 `docs/agi-invest-research-2026-09-28.md`。
+
+修改本模块跑 `node --test tools/test_invest_research.mjs`、`node tools/browser_invest_research.cjs`，后者复用根仓 `tools/revenue-studio/node_modules/playwright`；再跑原站 validate/hreflang。部署工作流已经接入两项测试。
