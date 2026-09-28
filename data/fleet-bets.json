@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-27",
+ "updated": "2026-09-28",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -193,8 +193,10 @@
    "win": "板块保留并扩路子",
    "lose": "0 且 pv ≥50 → 拆墙;pv <50 → 先补发现层",
    "source": "sites/baipiaoji/CLAUDE.md:105",
-   "status": "open",
-   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
+   "status": "lost",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。",
+   "settled": "2026-09-28",
+   "reading": "D1 现查 2026-09-28 03:5x UTC(baipiaoji-hits,窗 08-31→09-27):subs 表 src LIKE 'earn-gate%' 终身 0 行(全表 5 行:/slide/exit 2、/stack-build 1、/slide/up 1、/__ci 1)→ 注册 0,未达 ≥3。枢纽页 JS pv:/earn/ 1 + /en/earn/ 1 = 2,外部 ref 0。按原文 lose 分支的 pv<50 那一支:这是分发问题不是板块问题——墙不拆(没有人走到墙前,拆墙读不出任何东西),先补发现层再判;补发现层属 bpj 会话按站规排期,本轮未动。仪器注记:earn 事件名 09-22 前被边缘丢弃,但注册读自 subs 表、pv 读自 ev='' 行,两者不受影响。"
   },
   {
    "id": "eco-dp-share-0928",
@@ -262,7 +264,9 @@
    "win": "问题页库形状成立,扩 2-3 张",
    "lose": "形状不成立;样本不足则记「不判」",
    "source": "sites/buysomething/CLAUDE.md:102",
-   "status": "open"
+   "status": "insufficient",
+   "settled": "2026-09-28",
+   "reading": "D1 现查 2026-09-28(sourceradar-events ev 表,窗 08-31→09-27,path LIKE '/sourcing-margins%'):page_view human 5、bot 49;calc_use{margins} 0。③ 不成立;② 5 <10 不成立;① 字面成立 1 次——唯一外部 referrer 是 google.com/search?q=agiscorecard(品牌导航,读者本来就在找本站,不是该问题页被发现)。按原文自带的「样本不足时如实记样本不足」结算为 insufficient,不判 won:5 次 pv 与 1 次品牌导航撑不起「问题页库形状成立」;也不判 lost(样本太小不足以说 eco 模式不可移植)。执行:不扩页(win 分支不执行),回到最低维护。口径说明:ev.ua_class 是服务端分类,不是 JS 口径。"
   },
   {
    "id": "fleet-bounty-line-0929",

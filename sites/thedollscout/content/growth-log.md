@@ -2484,3 +2484,9 @@ The first deployment verifier read stale unversioned main.css and stopped at the
 Edition .6 aligns the final mobile navigation item with the other 44px links; screenshot inspection of the German tool return confirmed that the mobile Home click displayed the English homepage. Asset verification now uses edition-qualified URLs to avoid stale CSS.
 
 Final release `0b4bc6fdf18e1d1ad0416cc02cacc0be203d87bb` deployed successfully (run 36122114129). Live edition .6 is English at `/`; browser screenshots confirm aligned mobile navigation, and live workbench/member headers each contain Home pointing to `/`. The versioned CSS gate passed. The remaining failure is the existing measurement service: `/api/document-stats` returned HTTP 500 during the final run, before the isolated write step. Thus page/navigation verification succeeded, while the overall measurement/deploy verification remains failed. No traffic or conversion improvement is claimed.
+
+## 2026-09-28 · 每日总任务 v2(E 块,只做机制体检,0 页)
+- 结构化数据闸门:`check-structured-data.mjs` 182 条 FAQ/DefinedTerm,0 条页面不可见。`collector-tools.test.cjs` 全过。
+- **发现:llms-full 生成器已过时**。`scripts/build-llms-full.mjs` 仍按旧的 Labubu 导购站结构输出(43 页,228 KB),而 09-27 提交的 `llms-full.txt` 已是 "TDS Document Scout" 版(工具站文本)。重跑会把线上文件改回旧站内容,所以本轮没有重跑也没有提交;要么更新生成器,要么在文件头注明它是手写的,由负责 tds 改版的会话决定。
+- MCP 冒烟:本轮未验证(不为体检去打生产接口)。
+- 钱线快照 09-27:affiliate_click 3/28d。无新页。

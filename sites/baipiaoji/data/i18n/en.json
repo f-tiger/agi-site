@@ -1590,19 +1590,19 @@
       "free": "The free tier includes an allowance of premium-model requests plus unlimited basic completion.",
       "how": "Download from the site and sign up by email. Some models require access outside mainland China.",
       "limits": {
-        "quota": "The Hobby free tier is real and needs no card. On 2026-09-25 the official pricing page lists exactly three things under Hobby: no credit card required, Limited Agent requests, and access to Composer — **still no figures**. Chat and Tab completion (Auto model), which we recorded on 08-03, do not appear in the free-tier list this time; the page does not say they were removed, so we only repeat what it says. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
+        "quota": "The Hobby free tier is real and needs no card. On 2026-09-25 and again on 2026-09-28 the official pricing page lists exactly three things under Hobby: no credit card required, Limited Agent requests, and access to Composer — **still no figures**. Chat and Tab completion (Auto model), which we recorded on 08-03, do not appear in the free-tier list this time; the page does not say they were removed, so we only repeat what it says. The \"2,000 completions + 50 requests\" numbers still circulating come from an older pricing structure and are outdated, so we don't repeat them.",
         "wall": "Hitting the unpublished ceiling limits Agent until you upgrade to an Individual plan (the same column switches between Pro, Pro+ and Ultra; the static text that day shows only Pro at $20/month). The official FAQ: every plan includes an amount of model usage, and on-demand usage lets you keep going after it is consumed, billed in arrears; your account settings page shows the actual remaining allowance.",
-        "source": "Cursor official pricing page https://cursor.com/pricing (fetched directly 2026-09-25; still no official free-tier figures — the old numbers are stale)",
-        "checked": "2026-09-25",
+        "source": "Cursor official pricing page https://cursor.com/pricing (re-fetched directly 2026-09-28; the three Hobby items are word-for-word the same as on 09-25; still no official free-tier figures — the old numbers are stale)",
+        "checked": "2026-09-28",
         "paid": {
-          "tiers": "Hobby free; Pro $20/mo (~$20 usage pool at API prices + Auto pool); Pro+ $60/mo (~$70 pool); Ultra $200/mo (~$400 pool); Teams $40/user/mo",
-          "unit_cost": "Post-June-2025 billing: model usage metered at provider API prices against a dollar pool; two readings for Ultra: fixed $400 pool (docs) vs '20x Pro usage' (marketing)",
+          "tiers": "Hobby free; Pro $20/mo; Pro Plus (also written Pro+) $60/mo; Ultra $200/mo; Teams has two seat types: Standard $40/user/mo and Premium $120/user/mo (Premium gets 5x the Standard Agent limits); Enterprise custom. There is also a Start plan for developers in India (no price in the docs; covers only the Cursor Models pool). Prices from the pricing page structured data and the models-and-pricing docs, both fetched 2026-09-28",
+          "unit_cost": "Official docs 2026-09-28: Pro / Pro Plus / Ultra include two usage pools: (1) Cursor Models (Grok 4.7/4.6/4.5 and Composer 2.5, \"significantly more included usage\"); (2) Other Models (third-party models charged at that model API price). Both reset monthly. On Teams/Enterprise, third-party requests add a Cursor Token Rate of $0.25 per million tokens on top of API pricing (included, on-demand and BYOK usage); first-party Grok and Composer are exempt. **The official pages no longer state a dollar amount per pool**; our earlier ~$20/$70/$400 figures are kept under prev",
           "quota_included": "partial — pool included; once exhausted, on-demand pay-as-you-go at API rates or upgrade; heavy users routinely exceed the sticker price",
-          "rollover": "Pool resets each billing month, no rollover",
-          "effective": "Billing overhaul June 2025; prices verified 2026-08-15",
-          "prev": "Pre-June-2025 Pro = 500 fast premium requests/mo for $20; June-July 2025 pricing backlash ended in apology and refunds",
-          "source": "https://cursor.com/docs/models-and-pricing (official, proxy-blocked; cross-checked via vantage.sh [unofficial])",
-          "checked": "2026-08-15"
+          "rollover": "Both pools reset each billing month, no rollover (official docs 2026-09-28)",
+          "effective": "Billing overhaul June 2025; prices verified 2026-08-15; re-checked 2026-09-28: billing is now split into Cursor Models / Other Models pools, and Teams gained a Premium seat",
+          "prev": "Pre-June-2025 Pro = 500 fast premium requests/mo for $20; June-July 2025 pricing backlash ended in apology and refunds; the pool sizes we recorded on 2026-08-15 (Pro ~$20, Pro+ ~$70, Ultra ~$400 at API prices) came from unofficial cross-checks such as vantage.sh; the official docs no longer give amounts as of 2026-09-28, so they are kept here as history only",
+          "source": "https://cursor.com/pricing and https://cursor.com/docs/models-and-pricing (official, both fetched directly 2026-09-28)",
+          "checked": "2026-09-28"
         }
       }
     },

@@ -812,19 +812,19 @@
     "hot": true,
     "last_verified": "2026-09-27",
     "limits": {
-      "quota": "Hobby 免费档存在且无需绑卡。官方定价页 2026-09-25 的 Hobby 栏只列三项：无需绑卡、有限的 Agent 请求（Limited Agent requests）、可用 Composer——**仍不公布具体数字**。08-03 核实时写到的 Chat 与 Tab 补全（Auto 模型）这次没有出现在免费档清单里，页面也没有说它们被取消，本站只照录当日原文。网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，现已过时，不予采信。",
+      "quota": "Hobby 免费档存在且无需绑卡。官方定价页 2026-09-25 与 2026-09-28 两次抓取，Hobby 栏都只列三项：无需绑卡、有限的 Agent 请求（Limited Agent requests）、可用 Composer——**仍不公布具体数字**。08-03 核实时写到的 Chat 与 Tab 补全（Auto 模型）这次没有出现在免费档清单里，页面也没有说它们被取消，本站只照录当日原文。网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，现已过时，不予采信。",
       "wall": "触及隐性限额后 Agent 受限，升级 Individual 档解锁（页面同一栏可切换 Pro、Pro+、Ultra，静态文本当日只显示 Pro 的 $20/月）；官方 FAQ：每档都含一份模型用量，用完后可开 on-demand 按量续用、事后结算；实际余量以账户设置页显示为准。",
-      "source": "Cursor 官方定价页 https://cursor.com/pricing（2026-09-25 直接抓取；免费档仍不公布具体数额，旧数字已过时）",
-      "checked": "2026-09-25",
+      "source": "Cursor 官方定价页 https://cursor.com/pricing（2026-09-28 直接抓取复核，Hobby 三项与 09-25 逐字相同；免费档仍不公布具体数额，旧数字已过时）",
+      "checked": "2026-09-28",
       "paid": {
-        "tiers": "Hobby 免费；Pro $20/月（含约$20按API价计的前沿模型用量池+Auto池）；Pro+ $60/月（含约$70池）；Ultra $200/月（含约$400池）；Teams $40/人/月",
-        "unit_cost": "计费改制后按「API 价格」扣池：模型按各家 API 原价折算消耗池内美元额度。两种口径：Ultra=固定$400池（官方 docs，多家核实）／早期宣传口径「Pro 的20倍用量」（官方营销页）",
+        "tiers": "Hobby 免费；Pro $20/月；Pro Plus（页面也写作 Pro+）$60/月；Ultra $200/月；Teams 分两种席位：Standard $40/人/月、Premium $120/人/月（Premium 的 Agent 额度为 Standard 的 5 倍）；Enterprise 定制。另有面向印度开发者的 Start 档（官方文档未列价格，只含 Cursor Models 池）。以上价格均见官方定价页结构化数据与 models-and-pricing 文档（2026-09-28 直抓）",
+        "unit_cost": "官方文档 2026-09-28：Pro / Pro Plus / Ultra 含两个用量池——①Cursor Models 池（Grok 4.7/4.6/4.5 与 Composer 2.5，官方称用量「显著更多」）②Other Models 池（第三方模型按该模型 API 原价扣减）；两池均按账单月重置。Teams/Enterprise 对第三方模型另收 Cursor Token Rate $0.25/百万 token，叠加在 API 价之上（含池内、on-demand 与 BYOK），自家模型（Grok、Composer）免收。**官方页面不再写各档池子的美元金额**，本站此前记的约 $20/$70/$400 见 prev",
         "quota_included": "partial——订阅含美元用量池，池尽后需开启 on-demand 按量付费（同 API 价另计）或升级，重度用户实付常超订阅费（套娃预警）",
-        "rollover": "月度池随账单周期重置，未用完不结转",
-        "effective": "2025-06 计费改制（500次快速请求制→美元用量池制）；价格核实于 2026-08-15",
-        "prev": "改制前 Pro $20/月=500 次快速高级请求；2025-06-16~07-04 定价争议期官方曾道歉并退款",
-        "source": "https://cursor.com/docs/models-and-pricing（官方；代理拦截未直抓，经 vantage.sh 与 omidsaffari.com 交叉核实，[非官方口径]）",
-        "checked": "2026-08-15"
+        "rollover": "两个用量池都随账单周期每月重置，未用完不结转（官方文档 2026-09-28）",
+        "effective": "2025-06 计费改制（500次快速请求制→美元用量池制）；价格核实于 2026-08-15；2026-09-28 复核：计费结构改为 Cursor Models / Other Models 双池，Teams 拆出 Premium 席位",
+        "prev": "改制前 Pro $20/月=500 次快速高级请求；2025-06-16~07-04 定价争议期官方曾道歉并退款；2026-08-15 本站记录的池子金额「Pro 约$20、Pro+ 约$70、Ultra 约$400（按 API 价计）」来自 vantage.sh 等非官方交叉核实，2026-09-28 官方文档已不再给出金额，保留在此仅作历史",
+        "source": "https://cursor.com/pricing 与 https://cursor.com/docs/models-and-pricing（官方，2026-09-28 均直接抓取）",
+        "checked": "2026-09-28"
       }
     }
   },

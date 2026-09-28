@@ -616,6 +616,7 @@ owner 决策卡、事实表)。
   r/singularity、r/artificial、r/ChatGPT、r/ClaudeAI、r/LocalLLaMA、r/puzzles…全部 403,非 404 非 429)。这是网络层
   拒绝,与 robots.txt 一致,换代码不会变。**照预登记规则:连续 14 天 403 → 直接停 Reddit 源,不换 IP/UA、不绕过**;
   匹配器自动退化为 Trends × PH/HN/Ask HN。板块名单与产出榜的价值因此取决于 Reddit 是否放行,09-27 前不下结论。
+  **2026-09-28 已按此规则停用**:`startup-radar.json.history` 显示 09-13→09-27 连续 15 天全部板块 ok:false、`reddit_access` 始终 `public-json`(owner 的 OAuth secret 未设)。`startup_radar.mjs` 现在在 public-json 模式下直接把三个 Reddit 源记为 ok:false(原因写明),不再发请求;**设了 `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET` 后自动恢复,走官方 Data API**。
 - **板块名单(owner 同日:「监控好 Reddit 合适的板块,监控好板块比什么都合适」)**:名单外置到
   **`tools/fleet/reddit_watchlist.json`**(每个板块带 why),三层:①request 板(SomebodyMakeThis / AppIdeas /
   Lightbulb / software,48h 新帖)②大板块 wish 句式搜索(Entrepreneur / smallbusiness / startups / SaaS /

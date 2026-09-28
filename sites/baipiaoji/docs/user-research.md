@@ -3061,3 +3061,10 @@ Google 141 / cn.bing 44 / Perplexity 20 / ChatGPT 12;AI 引荐 34,ChatGPT→/c/a
   reach-export.mjs,判定页只在有引荐真人 pv 时才计入,0 表示 28 天内 is-*-still-free 页没有带引荐
   的真人访问,不是导出缺字段。paid_gap 空、agenda 09-12 未更新(radar 挂在 bpj-ad-watch 每 2 小时,
   09-12 之后 agenda.json 未变——下轮查)。submissions.new 仍 7(owner)。
+
+### 2026-09-28 每日总任务 v2(D 块)
+- 漂移复核:drift.json(09-27)待核 23 条,本轮核 1 条 **cursor**(09-27 确认漂移)。沙箱直抓 cursor.com/pricing 与 /docs/models-and-pricing(均 200):Hobby 三项与 09-25 逐字相同,免费档不动;漂移来自付费栏——Teams 拆 Standard $40 / Premium $120(Premium Agent 额度 ×5)、计费改为 Cursor Models / Other Models 双池、Teams/Enterprise 第三方模型加收 Cursor Token Rate $0.25/百万 token、新增印度 Start 档(文档未列价)。**官方已不再写各档池子的美元金额**,08-15 记的 ~$20/$70/$400(非官方交叉核实)移入 prev 作历史,没有新编数字。经 limits-edit 两步写入,guard-regression 131 条无丢失;本地 build 通过,verify-dist 的 4 个 /en/workbench 断链在未改动的 main 上同样出现(workbench 步只在 CI 跑),非本次引入。其余 22 条漂移留给后续轮。
+- 认领队列:claims 0、attestations 0,无事可做。
+- 厂商投稿:submissions.new = 9(total 9),全部未审;提醒 owner 手发回复(同一条不再重复催)。
+- reach 09-27:humans_referred 396/28d(14.1/日);google 176、cn.bing 133、bing 22、chatgpt 10。
+- 不带 [deploy]:属常规复核,随次日定时部署上线。
