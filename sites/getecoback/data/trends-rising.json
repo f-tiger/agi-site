@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-27",
+ "fetched": "2026-09-28",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -256,31 +256,27 @@
   "akku staubsauger": {
    "rising": [
     {
+     "q": "sky scanner",
+     "v": 20850
+    },
+    {
+     "q": "dyson filter reinigen",
+     "v": 14750
+    },
+    {
+     "q": "lululemon leipzig",
+     "v": 11100
+    },
+    {
      "q": "ford",
-     "v": 550
-    },
-    {
-     "q": "dyson tp09",
-     "v": 550
-    },
-    {
-     "q": "belstaff jacke herren",
-     "v": 500
+     "v": 400
     },
     {
      "q": "ventilator dyson",
-     "v": 400
-    },
-    {
-     "q": "sky scanner",
-     "v": 400
-    },
-    {
-     "q": "lululemon shorts",
      "v": 350
     },
     {
-     "q": "new balance herren sale",
+     "q": "lululemon shorts",
      "v": 300
     },
     {
@@ -288,63 +284,67 @@
      "v": 250
     },
     {
-     "q": "dyson filter reinigen",
-     "v": 250
+     "q": "dyson tp09",
+     "v": 200
     },
     {
-     "q": "lululemon align",
-     "v": 140
+     "q": "belstaff jacke herren",
+     "v": 200
+    },
+    {
+     "q": "new balance herren sale",
+     "v": 200
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-27",
+   "fetched": "2026-09-28",
    "polluted": true
   },
   "matratze": {
    "rising": [
     {
      "q": "fluss durch riga",
-     "v": 3800
-    },
-    {
-     "q": "emma performance matratze",
-     "v": 140
-    },
-    {
-     "q": "kühlende matratze",
-     "v": 130
+     "v": 200
     },
     {
      "q": "bett1 de",
-     "v": 100
+     "v": 150
+    },
+    {
+     "q": "emma performance matratze",
+     "v": 130
     },
     {
      "q": "boxspringbett 140x200 mit matratze und topper",
-     "v": 80
+     "v": 110
     },
     {
-     "q": "mozart bett",
+     "q": "emma original matratze",
      "v": 70
     },
     {
      "q": "emma original pro matratze",
-     "v": 70
-    },
-    {
-     "q": "emma dynamic matratze",
-     "v": 70
-    },
-    {
-     "q": "emma original matratze",
      "v": 60
     },
     {
-     "q": "kinderbett 90x200",
+     "q": "klappbare matratze",
+     "v": 60
+    },
+    {
+     "q": "mozart bett",
+     "v": 60
+    },
+    {
+     "q": "am qualitätsmatratzen",
+     "v": 50
+    },
+    {
+     "q": "bodenbett 120x200",
      "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-19",
+   "fetched": "2026-09-28",
    "polluted": false
   },
   "saugwischer": {
