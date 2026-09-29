@@ -17,3 +17,9 @@ UTM：utm_source=youtube 或 tiktok；utm_medium=organic_video；utm_campaign=bp
 测量：仅启用 /en/video 的新 campaign；保留旧 campaign。到站与有效阅读不等于人数、工具完成或收入。平台描述和个人主页外链可点击性未知。
 
 渲染源码：tools/marketing/bpj-ai-service-01/render.py。
+
+## 发布状态追加
+
+2026-09-30 07:33 Asia/Shanghai：两条已提交自动发布，TikTok 回执为 PUBLISHING、YouTube 为 PENDING；尚无平台公开链接，发布未核实。未重复发布。
+
+上线核验：/en/video/ 已读回 bpj-ai-service-01 埋点；来源分别为 youtube、tiktok。托管 MP4 哈希与本地验收成片一致。增长统计只覆盖完整 UTC 日，暂不覆盖本次发布。
