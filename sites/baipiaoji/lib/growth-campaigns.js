@@ -2,7 +2,7 @@
 export const CAMPAIGNS = [{
   id: 'bpj-quota-clarity-01',
   paths: ['/en/tools/google-ai-studio', '/en/how-much-has-gemini-free-tier-been-cut'],
-  sources: ['github', 'x', 'linkedin', 'telegram', 'newsletter', 'community'],
+  sources: ['github', 'x', 'linkedin', 'telegram', 'newsletter', 'community', 'youtube', 'tiktok'],
   state: 'awaiting_distribution',
 }];
 export const SESSION_SECONDS = 1800;

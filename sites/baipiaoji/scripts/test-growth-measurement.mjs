@@ -60,4 +60,16 @@ const fakeWin={location:{href:page+'?utm_campaign=bpj-quota-clarity-01&utm_sourc
 const script={dataset:{bpjGrowth:'bpj-quota-clarity-01',growthSources:'github,x'}};
 assert.equal(campaignInput(fakeWin,{referrer:'https://github.com/x?private=1'},script).referrer_host,'github.com');
 fakeWin.navigator.globalPrivacyControl=true;assert.equal(campaignInput(fakeWin,{},script),null);
+// Exercise the deployed allowlist through the browser parser, server and report.
+const sources=growthMarkup('/en/tools/google-ai-studio').match(/data-growth-sources="([^"]+)"/)[1];
+for(const [source,sid] of [['youtube','2'],['tiktok','3']]) {
+  const input=campaignInput({location:{href:page+'?utm_campaign=bpj-quota-clarity-01&utm_source='+source},navigator:{}},{referrer:'https://www.'+source+'.com/'},{dataset:{bpjGrowth:'bpj-quota-clarity-01',growthSources:sources}});
+  assert.equal(input.source,source);
+  const arrival=event({...input,sid:sid.repeat(32)});
+  assert.equal(await recordGrowthEvent(binding,arrival,at),true);
+  assert.equal(await recordGrowthEvent(binding,{...arrival,kind:'official_click'},at+1000),true);
+}
+const socialRows=(await report()).campaigns[0].rows.filter(r=>['youtube','tiktok'].includes(r.source));
+assert.equal(socialRows.length,2,'channels remain separate');
+for(const row of socialRows)assert.deepEqual([row.arrivals,row.qualified,row.action_sessions],[1,1,1]);
 console.log('PASS SQLite replay/order/expiry/retention, complete UTC days, indexed reads, unknown vs zero, origin/QA/bot/privacy filters, scoped pages.');

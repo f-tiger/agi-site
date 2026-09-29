@@ -1437,13 +1437,13 @@
     "google-ai-studio": {
       "name": "Google AI Studio",
       "tagline": "Gemini's free API tier — the first stop for personal projects",
-      "free": "The Gemini API free tier gives a substantial daily request allowance with no card required.",
+      "free": "Some Gemini API models and features offer a free tier. Check your active project for the available allowance.",
       "how": "Sign in to AI Studio with a Google account and create an API key. Requires access outside mainland China.",
       "limits": {
-        "quota": "Free-tier limits are per model (RPM/RPD), counted per project, resetting at midnight Pacific (stated in official docs — the live table on the official rate-limits page is authoritative). Important: the free tier was slashed in December 2025 — e.g. Flash dropped from 250 to 20 requests/day (confirmed across the official developer forum) — while many guides still quote the old numbers.",
-        "wall": "Hitting the cap returns 429 for that model until the Pacific-midnight reset; heavy users either upgrade to a paid tier or stack other free APIs as fallbacks (see our zero-cost plan).",
-        "source": "Google AI official docs (rate-limits page) + official developer forum (ai.google.dev, verified via search-index quotes)",
-        "checked": "2026-08-03"
+        "quota": "Free access depends on the model and feature: check its pricing entry first. RPM (requests/minute), TPM (input tokens/minute) and RPD (requests/day) are separate limits. Any one can be exceeded. Quotas belong to the project; extra keys in that project do not increase them. Check your active project and model in AI Studio because tier and account status affect limits. Only daily request quotas reset at midnight Pacific. Old fixed daily figures do not establish your current allowance.",
+        "wall": "For a 429, inspect the error and active project limits. Reduce concurrency or request size for minute-level limits, and use bounded exponential backoff for retryable errors. Wait for the daily reset only when the daily quota is exhausted. Persistent shortages may require another suitable model or a paid tier; paid access still has limits, and stated limits do not guarantee capacity.",
+        "source": "Google AI documentation: https://ai.google.dev/gemini-api/docs/rate-limits , https://ai.google.dev/gemini-api/docs/pricing , https://ai.google.dev/gemini-api/docs/troubleshooting (directly reviewed 2026-09-29)",
+        "checked": "2026-09-29"
       }
     },
     "siliconflow": {

@@ -4,7 +4,7 @@
   "goal": "source_associated_qualified_visits_and_official_link_actions",
   "landing_url": "https://baipiaoji.com/en/tools/google-ai-studio",
   "measurement_version": "bpj-growth-v1",
-  "sources": ["github", "x", "linkedin", "telegram", "newsletter", "community"],
+  "sources": ["github", "x", "linkedin", "telegram", "newsletter", "community", "youtube", "tiktok"],
   "review_days": 14,
   "min_qualified_sessions": 50,
   "min_action_sessions": 5,
@@ -13,7 +13,8 @@
   "cost": {"operator_minutes": null, "cash_spend": null},
   "notes": [
     "One active acquisition experiment. No external post has been sent for this experiment.",
-    "Verify one relevant social account and audience before preparing more drafts. A connected plugin is not a verified publishing channel.",
+    "Metricool reports connected YouTube and TikTok accounts on 2026-09-29. Clickable outbound entry points and public delivery remain unverified.",
+    "YouTube is the planned primary acquisition source; TikTok is a separately reported discovery channel. Never pool their counts to satisfy the primary-source gate. Keep distribution unverified until scope and link access are checked.",
     "Delivery needs an actual provider readback and public post URL; scheduled or timed-out calls are not published.",
     "Use a fresh experiment ID for replication, preserve this record, and do not overwrite a failed run.",
     "Thresholds are operating gates, not statistical significance, verified people, causal lift or revenue."
