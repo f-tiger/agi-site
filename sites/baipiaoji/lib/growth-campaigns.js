@@ -4,6 +4,11 @@ export const CAMPAIGNS = [{
   paths: ['/en/tools/google-ai-studio', '/en/how-much-has-gemini-free-tier-been-cut'],
   sources: ['github', 'x', 'linkedin', 'telegram', 'newsletter', 'community', 'youtube', 'tiktok'],
   state: 'awaiting_distribution',
+}, {
+  id: 'bpj-ai-service-01',
+  paths: ['/en/studio/video'],
+  sources: ['youtube', 'tiktok'],
+  state: 'awaiting_distribution',
 }];
 export const SESSION_SECONDS = 1800;
 export const RETENTION_DAYS = 31;
