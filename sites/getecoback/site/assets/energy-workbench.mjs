@@ -1,5 +1,5 @@
 import {VERSION,MARKETS,example,normalize,calculate,encode,decode,parseCSV} from './energy-tariff-model.mjs?v=879d727a654d';
-import {campaignTags} from './video-campaign.mjs?v=1';
+import {campaignTags} from './video-campaign.mjs?v=2';
 const $=id=>document.getElementById(id),form=$('tariff-form'),t=JSON.parse($('energy-copy').textContent),lang=document.documentElement.lang;
 const locale={de:'de-DE',en:'en-GB',fr:'fr-FR',es:'es-ES',it:'it-IT'}[lang],money=n=>new Intl.NumberFormat(locale,{style:'currency',currency:'EUR'}).format(Math.abs(n)<1e-8?0:n);
 const field=n=>form.elements.namedItem(n),value=n=>Number(field(n).value),set=(n,v)=>{field(n).value=v;};

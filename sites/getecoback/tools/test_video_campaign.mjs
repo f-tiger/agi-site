@@ -30,3 +30,36 @@ test('Report failures remain unknown; successful counts are explicitly events',a
  const res=await videoGrowth({EVENTS:{prepare(sql){assert.equal(sql,VIDEO_SQL);return {all:async()=>({results:[]})};}}});
  const body=await res.json();assert.equal(body.metric,'events_not_users');assert.equal(body.window.complete_utc_days,14);assert.deepEqual(body.rows,[]);
 });
+
+test('Second video stays isolated and arbitrary campaign names are rejected',async()=>{
+ const second=href.replace('eco-bonus-01','eco-fixed-02');
+ assert.deepEqual(campaignTags(second),{c:'eco-fixed-02',s:'youtube',v:'tag_only'});
+ const r=await videoGrowth({EVENTS:{prepare(sql){assert(sql.includes("='eco-fixed-02'"));assert(!sql.includes("='eco-bonus-01'"));return {all:async()=>({results:[]})};}}},'eco-fixed-02');
+ assert.equal((await r.json()).campaign,'eco-fixed-02');
+ assert.equal((await videoGrowth({},"x' OR 1=1 --")).status,400);
+});
+test('Spoken entry links have fixed destinations, preserve QA, and do not count redirect requests',async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ for(const source of ['youtube','tiktok']){
+  const r=videoEntry(new URL('https://getecoback.com/bill-'+source+'?next=https://evil.test&__probe=1'));
+  assert.equal(r.status,302); const target=new URL(r.headers.get('location'));
+  assert.equal(target.origin,'https://getecoback.com');assert.equal(target.searchParams.get('utm_source'),source);
+  assert.equal(target.searchParams.get('__probe'),'1');assert(!target.searchParams.has('next'));
+  assert.equal(campaignTags(target.href).v,'tag_only');
+ }
+ assert.equal(videoEntry(new URL('https://getecoback.com/bill-tiktok'),'POST'),null);
+ assert.equal(videoEntry(new URL('https://getecoback.com/unknown')),null);
+});
+
+test('Worker cache keys keep the two experiment reports separate',async()=>{
+ const {default:worker}=await import('../src/worker.js');const prior=globalThis.caches;const cache=new Map();let reads=0;
+ globalThis.caches={default:{match:async r=>cache.get(r.url)?.clone(),put:async(r,v)=>cache.set(r.url,v.clone())}};
+ const env={EVENTS:{prepare:sql=>({all:async()=>{reads++;return {results:[]}}})}};
+ try {
+  for(const c of ['eco-bonus-01','eco-fixed-02','eco-bonus-01']){
+   const pending=[];const r=await worker.fetch(new Request('https://getecoback.com/api/video-growth?campaign='+c),env,{waitUntil:p=>pending.push(p)});
+   assert.equal((await r.json()).campaign,c);await Promise.all(pending);
+  }
+  assert.equal(reads,2);
+ }finally{globalThis.caches=prior}
+});

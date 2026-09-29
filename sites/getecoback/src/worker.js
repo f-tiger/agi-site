@@ -1,6 +1,7 @@
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 import {videoGrowth} from './video-growth.mjs';
+import {videoEntry} from './video-entry.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -1581,8 +1582,10 @@ export default {
     if (url.pathname === "/api/distribution-growth" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => distributionGrowth(env));
     }
+    const videoRedirect=videoEntry(url,request.method);
+    if(videoRedirect) return videoRedirect;
     if (url.pathname === "/api/video-growth" && request.method === "GET") {
-      return cachedJson(request, env, ctx, 3600, () => videoGrowth(env));
+      return cachedJson(request, env, ctx, 3600, () => videoGrowth(env, url.searchParams.get("campaign") || undefined), ["campaign"]);
     }
 
     if (url.pathname === "/api/trend") {

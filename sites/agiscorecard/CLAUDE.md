@@ -1104,3 +1104,11 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
 方法更正：旧文“申报日收盘价是真人可成交价格”不严谨，盘后申报仍可能前视。中英入口已加限制，独立 aistock 回测未按披露时刻重算，历史数字不能视为已验证真实投资利润。Q3 2026 SEC 截止是 11-16；商业复盘 11-15 不改。本轮是新的明确研究深化指令，旧实验保留但本页前后不再能作干净对照。详见 `docs/agi-invest-research-2026-09-28.md`。
 
 修改本模块跑 `node --test tools/test_invest_research.mjs`、`node tools/browser_invest_research.cjs`，后者复用根仓 `tools/revenue-studio/node_modules/playwright`；再跑原站 validate/hreflang。部署工作流已经接入两项测试。
+
+## 2026-09-29 Relay / 接力创作实验（Owner：继续检验完善想法，然后推进落地）
+
+`/create`、`/zh/create`，源码 `create-assets/` + `tools/create/`。范围与反证见根仓 `docs/agi-relay-experiment-2026-09-29.md`。这是 Owner 新授权的独立实验，不改变首页分歧引擎或判定页定位。首页仅加入 Play 目录入口。
+
+使用 Workers AI binding `AI` 和原 EVENTS D1 `relay_*` 表。模型最多12次/滚动24小时、每IP3次、max_tokens2200；失败计入预算。不得自动提高额度、把预设冒充AI、把生成/分享次数叫真实用户/营收。公共作品流未开放，作品unlisted+noindex；恢复密钥仅本机，数据库只存hash。原作删除后不泄露原作正文或署名，已有改编可保留。
+
+修改必须跑 `tools/create/test.mjs` 和 `tools/create/browser-test.mjs`（从仓库根），再跑原站validate/hreflang。live verify只读不生成用户内容。私有维护 `tools/create/ops.mjs stats|queue PRIVATE_PATH|remove STORY_ID`；禁止公开输出原文/密钥。模型在线验收与真实商业验证分开报告。

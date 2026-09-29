@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-09-30 Asia/Shanghai",
+  "source": "GSC Wizard / Search Console web",
+  "sites": [
+    {
+      "site": "agiscorecard.com",
+      "range": {
+        "startDate": "2026-08-30",
+        "endDate": "2026-09-26",
+        "days": 28
+      },
+      "current": {
+        "clicks": 1,
+        "impressions": 161,
+        "ctr": 0.6211180124223602,
+        "avgPosition": 39.41614906832298
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 243,
+        "ctr": 1.2345679012345678,
+        "avgPosition": 58.82304526748971
+      },
+      "dateBasis": "America/Los_Angeles"
+    },
+    {
+      "site": "baipiaoji.com",
+      "range": {
+        "startDate": "2026-08-30",
+        "endDate": "2026-09-26",
+        "days": 28
+      },
+      "current": {
+        "clicks": 3,
+        "impressions": 663,
+        "ctr": 0.4524886877828055,
+        "avgPosition": 6.425339366515837
+      },
+      "previous": {
+        "clicks": 27,
+        "impressions": 1710,
+        "ctr": 1.5789473684210527,
+        "avgPosition": 15.709356725146199
+      },
+      "dateBasis": "America/Los_Angeles"
+    },
+    {
+      "site": "getecoback.com",
+      "range": {
+        "startDate": "2026-08-30",
+        "endDate": "2026-09-26",
+        "days": 28
+      },
+      "current": {
+        "clicks": 0,
+        "impressions": 92,
+        "ctr": 0,
+        "avgPosition": 44.619565217391305
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 168,
+        "ctr": 0,
+        "avgPosition": 49.226190476190474
+      },
+      "dateBasis": "America/Los_Angeles"
+    },
+    {
+      "site": "thedollscout.com",
+      "range": {
+        "startDate": "2026-08-30",
+        "endDate": "2026-09-26",
+        "days": 28
+      },
+      "current": {
+        "clicks": 4,
+        "impressions": 348,
+        "ctr": 1.1494252873563218,
+        "avgPosition": 24.689655172413794
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 279,
+        "ctr": 1.0752688172043012,
+        "avgPosition": 39.44086021505376
+      },
+      "dateBasis": "America/Los_Angeles"
+    }
+  ]
+}
