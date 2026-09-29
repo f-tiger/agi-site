@@ -280,6 +280,7 @@ jobs:
           node scripts/test-hits-schema.mjs
           node scripts/test-reach-cache.mjs
           node scripts/test-conversion-stages.mjs
+          node scripts/test-growth-measurement.mjs
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
@@ -378,6 +379,7 @@ jobs:
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
           node sites/baipiaoji/scripts/test-site-experience-browser.mjs
           node sites/baipiaoji/scripts/test-ai-tools-browser.mjs
+          node sites/baipiaoji/scripts/test-growth-browser.mjs
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
           node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
@@ -389,6 +391,9 @@ jobs:
 
       - name: Verify live AI tools and free MCP
         run: node scripts/verify-ai-tools-live.mjs
+
+      - name: Verify live campaign measurement (QA excluded)
+        run: node scripts/verify-growth-live.mjs
 
       - name: Verify live free-account lifecycle and remove synthetic account
         run: node scripts/verify-free-account-live.mjs

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import {buildAccountPages} from './account-pages.mjs';
+import {growthMarkup,growthNotice} from '../lib/growth-campaigns.js';
 import {experimentDescription,limitCheckEntry} from './search-experiment.mjs';
 import {shellHead,shellHeader,shellFooter,shellRelated,shellShare} from './site-shell.mjs';
 import {buildSiteJourneys} from './site-journeys-pages.mjs';
@@ -494,6 +495,7 @@ function layout({ title, description, path, body, wide, schema, noindex, feed, p
 ${shellHead(site.base_url)}
 ${(schema || []).map(jsonLd).join('\n')}
 ${/\/account(?:\.html)?$/.test(path)?'':analyticsOf()}
+${growthMarkup(new URL(canonical).pathname)}
 </head>
 <body class="bpj-shell${(wide || body.includes('class="rail"')) ? ' has-rail' : ''}">
 ${shellHeader({lang:LOCALE.code,path:pub(path),alternates:(path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter(l=>l.code==='zh') : LOCALES).map(l=>({lang:l.code,href:site.base_url+l.dir+pub(path==='/404.html'?'/':path)}))})}
@@ -502,6 +504,7 @@ ${GATED_TOOLS.has(path)?body.replace(/(<main\b[^>]*>)/, '$1'+gateOf(path)):body}
 ${shellRelated(LOCALE.code,pub(path))}
 ${!noindex && !/unsubscribe|release-check|advertise|submit/.test(path) ? shellShare(LOCALE.code,canonical,title) : ''}
 ${shellFooter(LOCALE.code)}
+${growthNotice(new URL(canonical).pathname) ? `<p class="disclosure">${growthNotice(new URL(canonical).pathname)}</p>` : ''}
 ${subJs()}
 <footer class="site-footer">
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}

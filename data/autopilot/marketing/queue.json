@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-24",
+  "as_of": "2026-09-28",
   "kind": "marketing_preparation_not_distribution",
   "sends": 0,
   "campaigns": [
@@ -646,5 +646,12 @@
   "notes": [
     "No social post or email was sent. Unknown metrics remain null, never zero.",
     "One-time sponsored orders are not membership MRR. Draft readiness is not payment acceptance."
-  ]
+  ],
+  "growth_review": {
+    "id": "bpj-quota-clarity-01",
+    "status": "awaiting_channel",
+    "claim": "growth_unproven",
+    "metrics": null,
+    "next_action": "Verify one relevant social account, its audience and allowed publishing scope."
+  }
 }

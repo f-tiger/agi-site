@@ -91,6 +91,21 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   ok(cache.store.size === 0, '非 GET 不进缓存');
 }
 
+// Acquisition aggregates must never reuse the legacy reach payload.
+{
+  const cache=memCache();
+  const reach=createReachCache({getCache:()=>cache,now});
+  const growth=createReachCache({getCache:()=>cache,now,cachePath:'/__bpj-cache/growth/v1'});
+  await reach(ctxOf('https://baipiaoji.com/api/reach?days=14'),14,()=>okRes({kind:'reach'}));
+  await settle();
+  let calls=0;
+  const read=()=>{calls++;return okRes({kind:'growth'});};
+  const first=await growth(ctxOf('https://baipiaoji.com/api/growth?days=14'),14,read);
+  await settle();
+  const second=await growth(ctxOf('https://baipiaoji.com/api/growth?days=14&noise=1'),14,read);
+  ok((await first.json()).kind==='growth' && (await second.json()).kind==='growth' && calls===1,'growth cache isolated from reach and ignores extra query keys');
+}
+
 // 端到端：真实 onRequestGet，第二次请求不再读 D1。
 {
   const cache = memCache();

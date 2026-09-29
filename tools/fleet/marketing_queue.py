@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate reviewable campaign drafts, never send posts/emails or invent results."""
 import argparse, datetime as dt, hashlib, json, pathlib, urllib.parse, urllib.request
+from growth_lab import acquisition_decision
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 ALLOWED = {'baipiaoji.com','agiscorecard.com','www.getecoback.com','getecoback.com','thedollscout.com','localebatch.agiscorecard.com'}
 
@@ -23,21 +24,30 @@ def compile_plan(catalog, doctor, today):
     return {'as_of':today,'kind':'marketing_preparation_not_distribution','sends':0,'campaigns':rows,'measurement':{'visits':None,'qualified_tasks':None,'paid_buyers':None,'net_revenue':None},'notes':['No social post or email was sent. Unknown metrics remain null, never zero.','One-time sponsored orders are not membership MRR. Draft readiness is not payment acceptance.']}
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--today',default=dt.datetime.now(dt.timezone.utc).date().isoformat());p.add_argument('--check',action='store_true');p.add_argument('--doctor-file');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--today',default=dt.datetime.now(dt.timezone.utc).date().isoformat());p.add_argument('--check',action='store_true');p.add_argument('--doctor-file');p.add_argument('--growth-file');a=p.parse_args()
     if a.doctor_file:doctor=json.loads(pathlib.Path(a.doctor_file).read_text())
     else:
         try:
             with urllib.request.urlopen('https://baipiaoji.com/api/ads?doctor=1',timeout=15) as r:doctor=json.load(r)
         except Exception:doctor={'ok':False,'selling':False}
     catalog=json.loads((ROOT/'data/marketing/campaigns.json').read_text());report=compile_plan(catalog,doctor,a.today)
+    experiment=json.loads((ROOT/'data/marketing/traffic-experiment.json').read_text())
+    if a.growth_file:measurement=json.loads(pathlib.Path(a.growth_file).read_text())
+    else:
+        try:
+            with urllib.request.urlopen('https://baipiaoji.com/api/growth?days=14',timeout=15) as r:measurement=json.load(r)
+        except Exception:measurement={'ok':False}
+    report['growth_review']=acquisition_decision(experiment,measurement,a.today)
     output=ROOT/'data/autopilot/marketing';
     if not a.check:
         output.mkdir(parents=True,exist_ok=True)
         (output/'queue.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-        lines=['# 自动营销准备清单', '',a.today+'；只生成草稿，未外发。','']
+        growth=report['growth_review']
+        lines=['# 自动营销准备清单', '',a.today+'；只生成草稿，未外发。','',
+               '## 当前唯一获客实验','',growth['id']+' — '+growth['status'],growth['next_action'],
+               '流量结论：'+growth['claim'],'', '以下为旧活动目录，不代表新增发布。','']
         for c in report['campaigns']:
             lines += ['## '+c['id'],'',c['state']+' / '+', '.join(c['blockers']),c['draft'],'',c['url'],'']
         (output/'queue.md').write_text('\n'.join(lines))
-    print(json.dumps({'date':a.today,'drafts':sum(c['state']=='draft_ready' for c in report['campaigns']),'blocked':sum(c['state']=='blocked' for c in report['campaigns']),'sends':0,'check_only':a.check}))
+    print(json.dumps({'date':a.today,'drafts':sum(c['state']=='draft_ready' for c in report['campaigns']),'blocked':sum(c['state']=='blocked' for c in report['campaigns']),'sends':0,'growth_review':report['growth_review'],'check_only':a.check}))
 if __name__=='__main__':main()
-

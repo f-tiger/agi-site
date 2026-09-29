@@ -14,12 +14,12 @@
 export const REACH_CACHE_VERSION = 'v4';   // v4: complete-day conversion stage counts (2026-09-27)
 export const REACH_TTL = 3600;
 
-export function createReachCache({ getCache = () => globalThis.caches?.default, now = Date.now } = {}) {
+export function createReachCache({ getCache = () => globalThis.caches?.default, now = Date.now, cachePath = `/__bpj-cache/reach/${REACH_CACHE_VERSION}` } = {}) {
   const pending = new Map();
 
   const keyOf = (url, days) => {
     const k = new URL(url);
-    k.pathname = `/__bpj-cache/reach/${REACH_CACHE_VERSION}/${days}`;
+    k.pathname = `${cachePath}/${days}`;
     k.search = ''; k.hash = '';
     return new Request(k.toString(), { method: 'GET' });
   };

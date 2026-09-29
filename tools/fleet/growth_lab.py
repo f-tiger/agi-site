@@ -13,6 +13,69 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 
+def acquisition_decision(exp, measurement, today):
+    """Review reported delivery evidence; never authorize or send a post.
+
+    Publishing and readback belong to the connected provider. Configuring a
+    channel, receipt or threshold is not proof of people, lift or revenue.
+    """
+    out={'id':exp['id'],'status':'awaiting_channel','claim':'growth_unproven',
+         'metrics':None,'next_action':'Verify one relevant social account, its audience and allowed publishing scope.'}
+    channel=exp.get('distribution',{})
+    if channel.get('connection')!='verified' or channel.get('source') not in exp['sources'] or not channel.get('scope_reference'):
+        return out
+    receipt=exp.get('delivery')
+    if not isinstance(receipt,dict):
+        return {**out,'status':'awaiting_delivery','next_action':'Publish the reviewed asset within the verified scope, then read its final status.'}
+    try:
+        from urllib.parse import urlsplit
+        from datetime import datetime, timezone, timedelta
+        stamp=lambda s:datetime.fromisoformat(s.replace('Z','+00:00'))
+        observed=stamp(receipt['verified_at']);published=stamp(receipt['published_at'])
+        now=datetime.combine(datetime.fromisoformat(today).date(),datetime.max.time(),tzinfo=timezone.utc)
+        url=urlsplit(receipt['post_url'])
+        valid=receipt.get('status')=='published' and receipt.get('verification')=='provider_readback' and receipt.get('campaign_id')==exp['id'] and receipt.get('source')==channel['source'] and receipt.get('provider') and receipt.get('receipt_reference')
+        valid=valid and url.scheme=='https' and url.hostname and not url.username and not url.password and observed.tzinfo is not None and published.tzinfo is not None and published<=observed<=now and now-observed<=timedelta(days=2)
+        if not valid:raise ValueError()
+        published_utc=published.astimezone(timezone.utc)
+        eligible_start=published_utc.date()+timedelta(days=published_utc.time()!=datetime.min.time())
+    except (KeyError,TypeError,ValueError,AttributeError):
+        return {**out,'status':'delivery_unverified','next_action':'Read the actual published post again; an accepted/scheduled/error response is not publication.'}
+    missing={**out,'status':'awaiting_measurement','next_action':'Restore a fresh complete-day measurement; missing is not zero.'}
+    if not isinstance(measurement,dict) or measurement.get('ok') is not True or measurement.get('measurement_version')!=exp['measurement_version']:
+        return missing
+    try:
+        window=measurement['window'];start=datetime.fromisoformat(window['start']).date();end=datetime.fromisoformat(window['end_exclusive']).date()
+        generated=stamp(measurement['generated'])
+        if window.get('date_basis')!='UTC' or (end-start).days!=exp['review_days'] or window.get('complete_days')!=exp['review_days'] or not now.date()-timedelta(days=1)<=end<=now.date() or generated>now or now-generated>timedelta(days=2):return missing
+        campaigns=[c for c in measurement['campaigns'] if c['id']==exp['id']]
+        if len(campaigns)!=1:return missing
+        counts={k:0 for k in ['arrivals','qualified','action_sessions','tag_only_arrivals','excluded_arrivals']}
+        seen=set()
+        for row in campaigns[0]['rows']:
+            if row['source']!=channel['source']:continue
+            key=(row['source'],row['arrival'])
+            if key in seen or row['arrival'] not in ['external_referrer','tag_only','internal','fleet','search']:return missing
+            seen.add(key)
+            values=[row[k] for k in ['arrivals','qualified','action_sessions']]
+            if any(not numeric(v) or int(v)!=v for v in values) or not values[2]<=values[1]<=values[0]:return missing
+            if row['arrival'] in ['internal','fleet','search']:
+                counts['excluded_arrivals']+=row['arrivals'];continue
+            for key in ['arrivals','qualified','action_sessions']:counts[key]+=row[key]
+            if row['arrival']=='tag_only':counts['tag_only_arrivals']+=row['arrivals']
+    except (KeyError,TypeError,ValueError,AttributeError):return missing
+    out.update(metrics=counts,window=window,source=channel['source'],evidence='reported_provider_receipt_and_client_session_estimates')
+    if start<eligible_start:
+        return {**out,'status':'collecting_evidence','next_action':'Wait for 14 complete UTC days after publication; this rolling window includes pre-publication time.'}
+    if counts['qualified']<exp['min_qualified_sessions']:
+        return {**out,'status':'distribution_review','next_action':'Inspect real reach, outbound clicks and landing delivery before changing the product.'}
+    if counts['action_sessions']<exp['min_action_sessions']:
+        return {**out,'status':'landing_review','next_action':'Inspect audience fit and the official-link task; visits alone do not prove useful use.'}
+    if any(not numeric(exp.get('cost',{}).get(k)) for k in ['operator_minutes','cash_spend']):
+        return {**out,'status':'cost_missing','next_action':'Record operator minutes and cash spend before claiming a repeatable result.'}
+    return {**out,'status':'replicate_once','claim':'source_associated_signal_not_causal_lift',
+            'next_action':'Run a separate predeclared replication. One window does not prove a case, revenue or a market.'}
+
 def numeric(value):
     return not isinstance(value,bool) and isinstance(value,(int,float)) and math.isfinite(value) and value>=0
 

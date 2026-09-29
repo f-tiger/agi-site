@@ -1,6 +1,14 @@
 # 自动营销准备清单
 
-2026-09-24；只生成草稿，未外发。
+2026-09-28；只生成草稿，未外发。
+
+## 当前唯一获客实验
+
+bpj-quota-clarity-01 — awaiting_channel
+Verify one relevant social account, its audience and allowed publishing scope.
+流量结论：growth_unproven
+
+以下为旧活动目录，不代表新增发布。
 
 ## bpj-sponsored-placement
 
