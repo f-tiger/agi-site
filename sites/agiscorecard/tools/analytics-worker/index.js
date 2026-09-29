@@ -1,3 +1,4 @@
+import {createRoute} from '../create/server.mjs';
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
@@ -242,6 +243,7 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    const createResponse=await createRoute(request,env);if(createResponse)return createResponse;
     const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
     const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
     if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));

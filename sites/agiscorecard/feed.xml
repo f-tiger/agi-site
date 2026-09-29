@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-28T00:00:00Z</updated>
+  <updated>2026-09-29T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Relay — make a story your friends can change</title>
+    <link href="https://agiscorecard.com/create"/>
+    <id>https://agiscorecard.com/create</id>
+    <updated>2026-09-29T00:00:00Z</updated>
+    <summary>Create a three-choice story with AI, let friends play, and remix it into a new adventure. Free experimental beta.</summary>
+  </entry>
   <entry>
     <title>Free AI &amp;amp; AGI Tools: 6 Interactive Checks</title>
     <link href="https://agiscorecard.com/ai-tools"/>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/ai-and-your-job</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>A dated verdict: fear (79%) vs the economy-wide record (4.2% unemployment, no discernible disruption) vs one real early signal: ages 22–25 in exposed jobs.</summary>
-  </entry>
-  <entry>
-    <title>Was Amodei Right About the White-Collar Bloodbath? (2026)</title>
-    <link href="https://agiscorecard.com/amodei-white-collar-bloodbath-prediction"/>
-    <id>https://agiscorecard.com/amodei-white-collar-bloodbath-prediction</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>Dario Amodei&#x27;s May 2025 call: half of entry-level white-collar jobs gone, 10–20% unemployment, in 1–5 years. Graded against the data as of Sept 2026.</summary>
   </entry>
 </feed>
