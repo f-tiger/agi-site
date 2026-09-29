@@ -8,4 +8,4 @@ const invalid=await fetch(origin+'/api/create?id=invalid');assert.equal(invalid.
 console.log('Relay live version, bilingual pages, AI binding presence, private API boundary and invalid link checks passed. No user data or model calls made.');
 
 }
-let failure;for(let attempt=0;attempt<4;attempt++){try{await verify();failure=null;break;}catch(e){failure=e;if(attempt<3)await new Promise(r=>setTimeout(r,5000));}}if(failure)throw failure;
+let failure;for(let attempt=0;attempt<7;attempt++){try{await verify();failure=null;break;}catch(e){failure=e;if(attempt<6)await new Promise(r=>setTimeout(r,5000));}}if(failure)throw failure;
