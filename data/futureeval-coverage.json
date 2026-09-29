@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28T16:19:08+00:00",
+ "generated": "2026-09-29T14:29:51+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
@@ -10,9 +10,11 @@
  "stale": false,
  "sample": [
   {
-   "post_id": 45847,
-   "title": "What will be the margin of seats won by Labour over National in the 2026 New Zealand general election?",
-   "hosts": [],
+   "post_id": 45844,
+   "title": "Will Trump demolish the Kennedy Center before January 1, 2027?",
+   "hosts": [
+    "www.metaculus.com"
+   ],
    "covered_by": null,
    "tournament": "33121"
   },
