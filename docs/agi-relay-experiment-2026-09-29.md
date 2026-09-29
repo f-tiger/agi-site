@@ -82,3 +82,14 @@ Cloudflare Workers AI 官方依据：
 上线修正：实测旧 `@cf/meta/llama-3.1-8b-instruct` 返回5028，已于2026-05-30退役。改用官方仍列出的FP8版本，并在部署版本确认后测试中英文真实调用。依据：https://developers.cloudflare.com/changelog/post/2026-05-08-planned-model-deprecations/ 及 https://developers.cloudflare.com/workers-ai/models/llama-3.1-8b-instruct-fp8/ 。真实生成检查消耗同一全站/IP限额，不重置、不豁免限流；测试不发布作品、不产生用户统计。
 
 第二次模型核对：8B FP8 可以推理，但真实请求返回5025、不支持JSON Schema。最终选择JSON Mode官方支持列表中的 `@cf/meta/llama-3.3-70b-instruct-fp8-fast`；不靠降低校验标准接受缺字段故事。当前定价与容量计算以上文最终模型为准。依据：https://developers.cloudflare.com/workers-ai/features/json-mode/ 与 https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/ 。
+
+## 已验收的交付状态
+
+2026-09-29 16:57 UTC，发布版本 `relay-20260929-6`，部署工作流全绿：https://github.com/f-tiger/agi-site/actions/runs/36601251429 。
+- 真实英文生成通过完整结构校验，单次约16.4秒；真实中文生成通过结构和中文字符检查，单次约8.0秒。各一个固定虚构题材样本，不能推出总体成功率、创作质量或延迟保证。
+- 本地与部署环境中英文浏览器流程通过；浏览器测试的AI为明确fixture。线上真实AI由独立上述调用验证，未混淆两类证据。
+- 线上作品发布、跨请求读取、分享页面访问、拥有者删除已验收；临时作品已删除。线上只读版本/页面/权限检查通过。
+- 私有汇总此刻为作品0、同意统计事件0、举报0；没有把测试或上线当作真实用户增长。
+- 入口 https://agiscorecard.com/zh/create 与 https://agiscorecard.com/create 。限量beta，失败也计入额度；不要重置或豁免额度以制造验收成功。
+
+下一步执行边界：先观察10名成年兴趣群创作者/组织者实际使用，再按上文门槛扩展队列。尚未完成真实访谈、招募、留存或付费验证，也未代表owner向任何人发消息。
