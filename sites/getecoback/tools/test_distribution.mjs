@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';
+import worker from '../src/worker.js';
+import {DISTRIBUTION_SQL,distributionGrowth,evidence} from '../src/distribution-growth.mjs';
+const valid={n:'tariff_embed_calc',p:'/en/energy-tariff-workbench.html',r:'https://publisher.example/article?private=1',m:{lang:'en',input:'own',placement:'frame'}};
+test('collector bounds distribution metadata and suppresses QA/privacy signals',async()=>{let writes=[];const env={EVENTS:{prepare:()=>({bind:(...args)=>({run:async()=>writes.push(args)})})}};const send=(body,headers={})=>worker.fetch(new Request('https://getecoback.com/api/ev',{method:'POST',headers:{'content-type':'application/json','user-agent':'Mozilla/5.0',...headers},body:JSON.stringify(body)}),env,{});
+ assert.equal((await send(valid)).status,200);assert.equal(writes.length,1);assert.equal(writes[0][3],'publisher.example');assert.equal(writes[0][4],JSON.stringify(valid.m));
+ for(const body of [{...valid,p:'/wrong'}, {...valid,m:{...valid.m,bill:900}},{...valid,m:{...valid.m,placement:'fake'}}])assert.equal((await send(body)).status,400);
+ for(const headers of [{'dnt':'1'},{'sec-gpc':'1'},{'user-agent':'getecoback-ci'},{'user-agent':'Googlebot'}])await send(valid,headers);
+ assert.equal(writes.length,1);
+});
+test('completed-day SQL separates preview, real frame and sample with coarse host evidence',async()=>{const db=new DatabaseSync(':memory:');db.exec('CREATE TABLE ev(day TEXT,name TEXT,page TEXT,ref TEXT,meta TEXT,ua_class TEXT)');const insert=(day,p=valid,ua='human')=>db.prepare("INSERT INTO ev VALUES(date('now',?),?,?,?,?,?)").run(day,p.n,p.p,new URL(p.r).hostname,JSON.stringify(p.m),ua);insert('-1 day');insert('-1 day',{...valid,m:{...valid.m,input:'example',placement:'preview'}});insert('0 day');insert('-15 days');insert('-1 day',valid,'bot');insert('-1 day',{...valid,p:'/wrong'});
+ const rows=db.prepare(DISTRIBUTION_SQL).all();assert.equal(rows.reduce((n,x)=>n+x.n,0),2);const response=await distributionGrowth({EVENTS:{prepare:()=>({all:async()=>({results:rows})})}});const j=await response.json();assert.equal(j.rows.length,2);assert.ok(j.rows.every(r=>r.evidence==='external_host'));assert.ok(!JSON.stringify(j).includes('publisher.example'));assert.equal(evidence('getecoback.com.evil.example'),'external_host');assert.equal(evidence('getecoback.com'),'internal');assert.equal(evidence(''),'unknown');db.close();assert.equal((await distributionGrowth({})).status,503);
+});

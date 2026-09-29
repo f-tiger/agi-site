@@ -1,3 +1,4 @@
+import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 import {videoGrowth} from './video-growth.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
@@ -391,6 +392,7 @@ async function serveAsset(request, env, pathname, ctx) {
 // header Cloudflare already provides. That is aggregate, non-personal data, so
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
+  ...DISTRIBUTION_EVENTS,
   "crawl",
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "feuchte_now",
@@ -754,6 +756,10 @@ async function handleEvent(request, env, ctx) {
   const name = String(body.n || "").slice(0, 40);
   if (!EV_NAMES.has(name)) return json({ ok: false, error: "unknown_event" }, 200, cors);
 
+  if(DISTRIBUTION_EVENTS.includes(name)) {
+    if(!validDistribution(body))return json({ok:false,error:'invalid_distribution'},400,cors);
+    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
+  }
   const page = String(body.p || "").slice(0, 200);
   // Referrer reduced to its host — enough to tell Google from ChatGPT, not
   // enough to reconstruct anyone's browsing.
@@ -1571,6 +1577,9 @@ export default {
     // /api/pulse:见 pulseCompute;从 Cache API 出(1 小时,键含部署版本),错误永不入缓存。
     if (url.pathname === "/api/pulse" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => pulseCompute(url, env));
+    }
+    if (url.pathname === "/api/distribution-growth" && request.method === "GET") {
+      return cachedJson(request, env, ctx, 3600, () => distributionGrowth(env));
     }
     if (url.pathname === "/api/video-growth" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => videoGrowth(env));

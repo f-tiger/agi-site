@@ -20,6 +20,16 @@ The link contains a fingerprint and file size, but no file name, notes or conten
 
 The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
 
+Download a working starter with a known example, an offline runner and an optional GitHub Actions template. No npm dependencies or API keys.
+
+Unzip and run: node tools/run-file-check.mjs. The example must match.
+
+Change the example file while keeping its reference. Run again: the check must fail.
+
+Replace both with your own file and a separately trusted reference.
+
+The scripts never contact TDS. Optional GitHub use uploads files to your repository and prints fingerprints in logs; keep confidential files offline or in an appropriately restricted repository. A match proves only file equality, not delivery or acceptance.
+
 OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
 
 How to verify a file checksum independently

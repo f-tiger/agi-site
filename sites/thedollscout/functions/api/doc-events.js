@@ -3,7 +3,7 @@ import {validCampaign,videoEventName} from '../../document-assets/video-campaign
 // answers, user/session IDs and full referrer URLs are never stored here.
 import {GROWTH_EVENTS,growthEventAllowed} from '../../document-assets/growth-core.mjs';
 import { HUB_TASKS, isHubPath, hubEvent } from '../../document-assets/hub-core.mjs';
-export const EVENTS = new Set(['doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share', 'doc_summary_share', 'doc_share_visit']);
+export const EVENTS = new Set(['doc_workflow_download','doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share', 'doc_summary_share', 'doc_share_visit']);
 for(const event of GROWTH_EVENTS)EVENTS.add(event);
 const HUB_EVENTS = new Set(Object.keys(HUB_TASKS).map(hubEvent));
 for (const event of HUB_EVENTS) EVENTS.add(event);
@@ -43,6 +43,7 @@ export async function onRequestPost({ request, env }) {
     const body = JSON.parse(raw);
     // Extra keys are rejected, preventing accidental document data collection.
     if (!body || typeof body !== 'object' || Object.keys(body).some(k => !['p','e','r','c','s'].includes(k))) return new Response(null, { status:400 });
+    if(body.e==='doc_workflow_download'&&!/^\/(?:(de|zh)\/)?verify-file$/.test(body.p))return new Response(null,{status:400});
     const tagged = body.c !== undefined || body.s !== undefined;
     if(tagged&&!validCampaign(body))return new Response(null,{status:400});
     const ci = body.e === 'doc_ci' && body.p === '/__ci/documents';

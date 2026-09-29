@@ -923,6 +923,16 @@ The link contains a fingerprint and file size, but no file name, notes or conten
 
 The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
 
+Download a working starter with a known example, an offline runner and an optional GitHub Actions template. No npm dependencies or API keys.
+
+Unzip and run: node tools/run-file-check.mjs. The example must match.
+
+Change the example file while keeping its reference. Run again: the check must fail.
+
+Replace both with your own file and a separately trusted reference.
+
+The scripts never contact TDS. Optional GitHub use uploads files to your repository and prints fingerprints in logs; keep confidential files offline or in an appropriately restricted repository. A match proves only file equality, not delivery or acceptance.
+
 OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
 
 How to verify a file checksum independently
@@ -2273,6 +2283,16 @@ Der Link enthält Fingerabdruck und Dateigröße, aber keinen Dateinamen, Inhalt
 
 Das Format ist offen. Link aufbewahren und SHA-256 sowie Bytezahl mit eigener Software prüfen. Das herunterladbare Prüfprogramm läuft mit Node.js offline.
 
+Startpaket mit bekanntem Beispiel, Offline-Prüfung und optionaler GitHub-Actions-Vorlage. Keine npm-Abhängigkeiten oder API-Schlüssel.
+
+Entpacken und ausführen: node tools/run-file-check.mjs. Das Beispiel muss übereinstimmen.
+
+Beispieldatei ändern, Referenz beibehalten. Erneut prüfen: Die Prüfung muss fehlschlagen.
+
+Eigene Datei und eine separat vertrauenswürdig erhaltene Referenz einsetzen.
+
+Die Skripte kontaktieren TDS nicht. Die optionale GitHub-Nutzung lädt Dateien in Ihr Repository und schreibt Fingerabdrücke in Protokolle. Vertrauliche Dateien offline oder in einem geeignet geschützten Repository halten. Übereinstimmung belegt nur Dateigleichheit, nicht Zustellung oder Abnahme.
+
 OpenTimestamps ist ein separater Dienst und ein Protokoll für Zeitnachweise. Ein TDS-Prüf-Link erzeugt keinen Bitcoin-Zeitstempel.
 
 Eine Datei-Prüfsumme unabhängig prüfen
@@ -3622,6 +3642,16 @@ https://thedollscout.com/zh/verify-file
 链接包含文件指纹和大小，不包含文件名、备注或内容。持有链接的人可以用候选文件进行比对；分享使用的应用可能保存链接。TDS不会将指纹发送到统计系统。
 
 格式公开。保留链接，使用自己的软件计算SHA-256和字节数即可比较。可下载的独立核验程序使用Node.js离线运行。
+
+下载包含已知示例、离线运行程序及可选 GitHub Actions 模板的入门包，无需 npm 依赖或 API 密钥。
+
+解压后运行：node tools/run-file-check.mjs。示例应当匹配。
+
+修改示例文件，保留核验依据，再运行一次：应当检测出不一致。
+
+换成自己的文件及通过可信渠道独立取得的核验依据。
+
+脚本不会连接 TDS。可选 GitHub 用法会把文件上传到你的仓库，并在日志中输出指纹；机密文件请留在本地或使用访问受限的仓库。匹配只证明文件一致，不证明送达或验收。
 
 OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
 

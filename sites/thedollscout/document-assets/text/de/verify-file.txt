@@ -20,6 +20,16 @@ Der Link enthält Fingerabdruck und Dateigröße, aber keinen Dateinamen, Inhalt
 
 Das Format ist offen. Link aufbewahren und SHA-256 sowie Bytezahl mit eigener Software prüfen. Das herunterladbare Prüfprogramm läuft mit Node.js offline.
 
+Startpaket mit bekanntem Beispiel, Offline-Prüfung und optionaler GitHub-Actions-Vorlage. Keine npm-Abhängigkeiten oder API-Schlüssel.
+
+Entpacken und ausführen: node tools/run-file-check.mjs. Das Beispiel muss übereinstimmen.
+
+Beispieldatei ändern, Referenz beibehalten. Erneut prüfen: Die Prüfung muss fehlschlagen.
+
+Eigene Datei und eine separat vertrauenswürdig erhaltene Referenz einsetzen.
+
+Die Skripte kontaktieren TDS nicht. Die optionale GitHub-Nutzung lädt Dateien in Ihr Repository und schreibt Fingerabdrücke in Protokolle. Vertrauliche Dateien offline oder in einem geeignet geschützten Repository halten. Übereinstimmung belegt nur Dateigleichheit, nicht Zustellung oder Abnahme.
+
 OpenTimestamps ist ein separater Dienst und ein Protokoll für Zeitnachweise. Ein TDS-Prüf-Link erzeugt keinen Bitcoin-Zeitstempel.
 
 Eine Datei-Prüfsumme unabhängig prüfen

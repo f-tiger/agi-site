@@ -101,3 +101,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visi
 }
 
 .next-steps ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.next-steps li{border-top:1px solid var(--line);padding-top:16px}.next-steps a{font-weight:750;display:inline-block;padding:8px 0}.next-steps li p{font-size:14px;color:var(--muted);margin:4px 0}.next-steps>p{font-size:15px}@media print{.next-steps{display:none!important}}
+
+/* The same calculation and localized inputs inside an external iframe. */
+.embed-only{display:none}#embed-code{width:100%;min-height:140px;box-sizing:border-box;font:14px/1.5 monospace;overflow-wrap:anywhere}.energy-embedded .embed-only{display:block}.energy-embedded .eb-nav,.energy-embedded .eb-footer,.energy-embedded .hero-bar,.energy-embedded .data-panel,.energy-embedded .embed-kit,.energy-embedded #save,.energy-embedded #print,.energy-embedded #next-steps{display:none!important}.energy-embedded .hero{padding:16px 0}.energy-embedded .hero .lead{font-size:15px}.energy-embedded .panel{padding:16px;margin:14px 0}.energy-embedded .notes{font-size:14px}.energy-embedded main{padding:0 12px}.energy-embedded .offers{gap:12px}.energy-embedded .offers>fieldset{padding:12px}
+
+.energy-embedded #ledger td{white-space:nowrap;font-variant-numeric:tabular-nums}

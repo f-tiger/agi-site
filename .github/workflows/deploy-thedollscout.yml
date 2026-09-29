@@ -68,6 +68,8 @@ jobs:
         run: |
           npm ci --prefix scripts/documents --ignore-scripts
           npm test --prefix scripts/documents
+          python3 scripts/documents/build-workflow-kit.py --check
+          python3 scripts/documents/test-workflow-kit.py
           node scripts/documents/build.mjs
           node scripts/documents/verify.mjs
 

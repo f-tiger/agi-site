@@ -49,3 +49,5 @@ $('result').addEventListener('click',async event=>{const button=event.target.clo
  try{await navigator.clipboard.writeText(output.value);$('copy-status').textContent=c.copied;track(button.dataset.verifyCopy==='embed'?'doc_verify_embed':'doc_verify_share');}
  catch{$('copy-status').textContent=c.copyError;output.focus();output.select();}
 });
+
+$('workflow-download').addEventListener('click',()=>track('doc_workflow_download'));

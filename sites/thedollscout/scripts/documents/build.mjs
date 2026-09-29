@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs, guideSlugs, references } from './copy.mjs';
 import { fixture } from './fixtures.mjs';
 import { deliveryCopy, deliveryPage } from './delivery-copy.mjs';
-import { verifyCopy, verifyPage } from './verify-copy.mjs';
+import { verifyCopy, verifyPage, workflowCopy } from './verify-copy.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url)), root = path.resolve(here, '../..');
 const args = process.argv.slice(2), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
 const origin = 'https://thedollscout.com', edition = '2026-09-25.8', updated = '2026-09-27';
@@ -133,7 +133,7 @@ const texts = records.map(r => {
   else if (i >= 0) paragraphs = [c.forLabel + ': ' + c.useCases[i], c.outputLabel + ': ' + c.outputs[i], c.limitLabel + ': ' + c.limitations[i], c.local, c.resultScope, ...c.methodology, ...exampleCopy[r.lang].faq[i].flat(), ...workedText(r.lang,i,publicExamples,c,r.url)];
   else if (gi >= 0) paragraphs = c.guideBodies[gi];
   else if (r.slug === 'delivery-evidence') { const dc=deliveryCopy[r.lang]; paragraphs=[dc.intro,dc.limits,...dc.steps,dc.scopeBody,dc.sourceBody,dc.plansBody]; }
-  else if (r.slug === 'verify-file') { const vc=verifyCopy[r.lang]; paragraphs=[vc.intro,vc.limits,...vc.steps,vc.scope,vc.privacy,vc.independentBody,vc.bitcoinBody,...evidenceText(r.lang)]; }
+  else if (r.slug === 'verify-file') { const vc=verifyCopy[r.lang]; paragraphs=[vc.intro,vc.limits,...vc.steps,vc.scope,vc.privacy,vc.independentBody,workflowCopy[r.lang].body,...workflowCopy[r.lang].steps,workflowCopy[r.lang].privacy,vc.bitcoinBody,...evidenceText(r.lang)]; }
   else if (r.slug === 'methodology') paragraphs = c.methodology;
   else if (r.slug === 'document-privacy') paragraphs = [...c.privacyBody,videoPrivacy[r.lang]];
   else if (!r.slug) paragraphs = [...hubText(r.lang,route),...['open-source','videos'].flatMap(slug=>[growthDescription(r.lang,slug),'https://thedollscout.com'+route(r.lang,slug)])];

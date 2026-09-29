@@ -1,0 +1,25 @@
+# TDS file handoff check — runnable starter
+
+Purpose: check whether a delivered file matches a separately obtained TDS SHA-256 + byte-length reference. No account, npm dependency, API key or TDS server call.
+
+## Run locally first
+
+Unzip into a new folder. Install Node.js 20 or later. From that folder run:
+
+    node tools/run-file-check.mjs
+
+The included asset is exactly the three bytes `abc`. Expect `match` and exit code 0. Edit `delivery/asset.bin`, keeping the reference unchanged, then rerun: expect `different` and exit code 1. An invalid reference or unreadable file returns 2. Files up to 20 MiB.
+
+## Use your own file
+
+Replace `delivery/asset.bin` with the exact bytes to check (the extension does not matter). Put the sender's trusted TDS reference URL in `delivery/reference.txt`, one line. Obtain the reference independently through a channel you trust; creating a reference from an already altered file cannot detect that alteration. Protect the reference: changing both asset and reference can pass.
+
+Create or inspect references at https://thedollscout.com/verify-file?via=workflow-kit . The browser tool processes your file locally. No result is reported back to TDS by these scripts.
+
+## Optional GitHub Actions
+
+Copy the kit's `delivery`, `tools`, and `.github/workflows/tds-file-check.yml` into a repository you control. Preserve the hidden `.github` folder. The template runs after relevant pushes or a manual Actions trigger, with read-only contents permission. It does not create releases, send messages, or deploy anything. Review third-party action versions before adopting it; account Actions limits still apply.
+
+Uploading the kit or your real files to GitHub is optional and uploads those files to GitHub. Public repositories expose their contents and workflow logs. Keep confidential files offline or use an appropriately restricted repository. The verifier prints the hash, size and comparison result, not the file contents.
+
+A match is only file equality. It does NOT establish sender identity, authorship, malware safety, receipt, acceptance, trusted time or legal evidence. This is a runnable template, not an n8n integration or a hosted API. Downloads do not prove installation, execution or paying users.

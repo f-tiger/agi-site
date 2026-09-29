@@ -32,6 +32,7 @@ def used_names():
         names |= set(re.findall(r'\bn:\s*["\']([a-z_0-9]+)["\']', text))
         # component-local helpers: function ev(n,m){gtag("event",n,m)} then ev("x")
         names |= set(re.findall(r'\bev\(\s*["\']([a-z_0-9]+)["\']', text))
+    for name in re.findall(r"distribution\(\s*[\"\']([a-z_0-9]+)[\"\']", open(os.path.join(SITE,"assets","energy-workbench.mjs"),encoding="utf-8").read()): names.add(name)
     return names
 
 
@@ -40,7 +41,8 @@ def whitelisted():
     block = re.search(r"const EV_NAMES = new Set\(\[(.*?)\]\)", text, re.S)
     if not block:
         sys.exit("check_events: EV_NAMES not found in src/worker.js")
-    return set(re.findall(r'"([a-z_0-9]+)"', block.group(1)))
+    extra=open(os.path.join(ROOT,'src','distribution-growth.mjs'),encoding='utf-8').read().split(';',1)[0]
+    return set(re.findall(r'"([a-z_0-9]+)"', block.group(1))) | set(re.findall(r"'([a-z_0-9]+)'",extra))
 
 
 def main():

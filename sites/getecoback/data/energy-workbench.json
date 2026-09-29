@@ -86,7 +86,12 @@
         "hint": "Compare electricity use before choosing equipment.",
         "path": "/en/solution-calculator.html"
       }
-    ]
+    ],
+    "embedTitle": "Embed this calculator",
+    "embedCopy": "Copy HTML embed code",
+    "embedHelp": "Paste this code into your website. It starts with example values, never your current bill. Visitors connect to EcoBack and anonymous interaction counts; your site privacy notice should explain this.",
+    "fullTool": "Open full calculator",
+    "embedPrivacy": "Figures stay in this browser. Shared links disclose the entered numbers. A comparison is not a supplier quote."
   },
   "de": {
     "title": "Stromtarif-Werkstatt",
@@ -181,7 +186,12 @@
         "hint": "Kaufpreis und Stromersparnis mit deinen Zahlen vergleichen.",
         "path": "/geraete-austausch-rechner.html"
       }
-    ]
+    ],
+    "embedTitle": "Diesen Rechner einbinden",
+    "embedCopy": "HTML-Code kopieren",
+    "embedHelp": "Diesen Code auf Ihrer Website einfügen. Er startet mit Beispielwerten, niemals Ihrer aktuellen Rechnung. Besucher verbinden sich mit EcoBack; anonyme Interaktionen werden gezählt. Erläutern Sie dies in Ihrem Datenschutzhinweis.",
+    "fullTool": "Vollständigen Rechner öffnen",
+    "embedPrivacy": "Zahlen bleiben im Browser. Geteilte Links enthalten die eingegebenen Zahlen. Der Vergleich ist kein Anbieterangebot."
   },
   "fr": {
     "title": "Comparateur de tarifs d’électricité",
@@ -270,7 +280,12 @@
         "hint": "Comparez la consommation avant de choisir un appareil.",
         "path": "/fr/calculateur.html"
       }
-    ]
+    ],
+    "embedTitle": "Intégrer ce calculateur",
+    "embedCopy": "Copier le code HTML",
+    "embedHelp": "Collez ce code sur votre site. Il démarre avec des exemples, jamais votre facture actuelle. Les visiteurs se connectent à EcoBack et des interactions anonymes sont comptées ; expliquez-le dans votre notice de confidentialité.",
+    "fullTool": "Ouvrir le calculateur complet",
+    "embedPrivacy": "Les chiffres restent dans le navigateur. Les liens partagés contiennent les valeurs saisies. Ce calcul ne constitue pas une offre fournisseur."
   },
   "es": {
     "title": "Comparador de tarifas de luz",
@@ -359,7 +374,12 @@
         "hint": "Compara el consumo antes de elegir un aparato.",
         "path": "/es/calculadora.html"
       }
-    ]
+    ],
+    "embedTitle": "Insertar esta calculadora",
+    "embedCopy": "Copiar código HTML",
+    "embedHelp": "Pegue este código en su web. Empieza con ejemplos, nunca con su factura actual. Los visitantes se conectan a EcoBack y se cuentan interacciones anónimas; explíquelo en su aviso de privacidad.",
+    "fullTool": "Abrir calculadora completa",
+    "embedPrivacy": "Los datos quedan en el navegador. Los enlaces compartidos contienen las cifras introducidas. El cálculo no es una oferta de un proveedor."
   },
   "it": {
     "title": "Confronto delle tariffe luce",
@@ -448,6 +468,11 @@
         "hint": "Confronta i consumi prima di scegliere un apparecchio.",
         "path": "/it/calcolatore.html"
       }
-    ]
+    ],
+    "embedTitle": "Incorpora questo calcolatore",
+    "embedCopy": "Copia codice HTML",
+    "embedHelp": "Incolla questo codice nel tuo sito. Inizia con esempi, mai con la tua bolletta attuale. I visitatori si collegano a EcoBack e vengono contate interazioni anonime; spiegalo nella tua informativa sulla privacy.",
+    "fullTool": "Apri il calcolatore completo",
+    "embedPrivacy": "I dati restano nel browser. I link condivisi contengono le cifre inserite. Il calcolo non è un’offerta di un fornitore."
   }
 }
