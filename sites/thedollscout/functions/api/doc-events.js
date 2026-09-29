@@ -1,3 +1,4 @@
+import {validCampaign,videoEventName} from '../../document-assets/video-campaign.mjs';
 // Deliberately bounded metadata only. PDF bytes, names, text, titles, review
 // answers, user/session IDs and full referrer URLs are never stored here.
 import {GROWTH_EVENTS,growthEventAllowed} from '../../document-assets/growth-core.mjs';
@@ -41,7 +42,9 @@ export async function onRequestPost({ request, env }) {
     if (raw.length > 2048) return new Response(null, { status:413 });
     const body = JSON.parse(raw);
     // Extra keys are rejected, preventing accidental document data collection.
-    if (!body || typeof body !== 'object' || Object.keys(body).some(k => !['p','e','r'].includes(k))) return new Response(null, { status:400 });
+    if (!body || typeof body !== 'object' || Object.keys(body).some(k => !['p','e','r','c','s'].includes(k))) return new Response(null, { status:400 });
+    const tagged = body.c !== undefined || body.s !== undefined;
+    if(tagged&&!validCampaign(body))return new Response(null,{status:400});
     const ci = body.e === 'doc_ci' && body.p === '/__ci/documents';
     if (!ci && (typeof body.p !== 'string' || !PAGE.test(body.p) || !EVENTS.has(body.e))) return new Response(null, { status:400 });
     if(GROWTH_EVENTS.has(body.e)&&!growthEventAllowed(body.e,body.p))return new Response(null,{status:400});
@@ -49,12 +52,15 @@ export async function onRequestPost({ request, env }) {
     if(UTILITY_EVENTS.has(body.e) && body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')!==UTILITY_EVENTS.get(body.e))return new Response(null,{status:400});
     if(body.e==='doc_utility_export' && !['image','json','meeting'].some(k=>body.p.replace(/^\/(?:(?:de|zh)\/)?/,'')===HUB_TASKS[k]))return new Response(null,{status:400});
     const ua = request.headers.get('user-agent') || '';
-    if (!ci && (request.headers.get('x-probe') || request.headers.get('dnt') === '1' || /bot|crawler|spider|headless|playwright|puppeteer|release-check|document-probe/i.test(ua))) return new Response(null, { status:204 });
+    if (!ci && (request.headers.get('x-probe') || request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1' || url.searchParams.has('ci') || url.searchParams.has('__probe') || url.searchParams.get('utm_source') === 'verify' || /bot|crawler|spider|headless|playwright|puppeteer|release-check|document-probe/i.test(ua))) return new Response(null, { status:204 });
     const day = new Date().toISOString().slice(0, 10), lang = /^\/(de|zh)\//.exec(body.p)?.[1] || 'en';
     const country = (request.headers.get('cf-ipcountry') || '').toUpperCase();
     writing = true;
-    await env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-      .bind(day, body.p, lang, /^[A-Z]{2}$/.test(country) ? country : '', ci ? '' : safeRef(body.r), body.e).run();
+    const insert=event=>env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
+      .bind(day, body.p, lang, /^[A-Z]{2}$/.test(country) ? country : '', ci ? '' : safeRef(body.r), event);
+    // Atomic mirror uses a separate fixed namespace, never doc_* or legacy PV.
+    if(tagged)await env.HITS.batch([insert(body.e),insert(videoEventName(body.e,body.s))]);
+    else await insert(body.e).run();
     return new Response(null, { status:204 });
   } catch (error) {
     return json({ ok:false, error:writing ? 'storage_unavailable' : 'invalid_event', ...(writing ? {reason:databaseFailure(error)} : {}) }, writing ? 503 : 400);

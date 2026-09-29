@@ -198,6 +198,16 @@ jobs:
           done
           exit 1
 
+      - name: Verify organic video measurement report
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        run: |
+          node --input-type=module -e '
+            const r = await fetch("https://thedollscout.com/api/video-growth?ci=1", {headers:{"user-agent":"tds-deploy-qa"}});
+            const j = await r.json();
+            if (!r.ok || !j.ok || j.campaign !== "tds-image-01" || j.metric !== "browser_events_not_users" || !Array.isArray(j.rows) || j.window?.complete_utc_days !== 14) throw Error("Invalid video measurement report");
+            console.log("Video measurement report verified");
+          '
+
       - name: Verify independent membership after deployment
         if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         working-directory: ${{ github.workspace }}

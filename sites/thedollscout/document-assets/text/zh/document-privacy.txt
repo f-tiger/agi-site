@@ -24,6 +24,8 @@ AI 工具仅在你点击加载模型后下载固定版本的本地模型。程�
 
 开源页面链接到独立项目。视频页面仅在主动加载播放器后连接 YouTube／Google，并向其发送连接信息；增强隐私模式不保证匿名观看。可选设备链接会打开带联盟标识的 Amazon 页面。我们只统计固定资源操作，不记录访客输入的视频标题或购买明细。
 
+图片工具的视频实验会将匹配的网址标签转换为固定活动名和 YouTube 或 TikTok 来源，加入动作计数。我们不保存完整查询字符串，也不用它识别个人；没有匹配引荐的标签只算较弱的来源证据。DNT 和 Global Privacy Control 会抑制这些第一方浏览器事件。
+
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
