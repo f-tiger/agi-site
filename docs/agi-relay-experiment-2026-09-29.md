@@ -54,9 +54,9 @@ Cloudflare Workers AI 官方依据：
 - https://developers.cloudflare.com/workers-ai/features/json-mode/
 - https://developers.cloudflare.com/workers-ai/platform/pricing/
 
-模型 `@cf/meta/llama-3.1-8b-instruct-fp8`，最大输出2200 tokens，每IP哈希滚动24小时3次，全站滚动24小时12次。失败也占额度，避免重试绕过预算。IP原文不落库，限流hash按UTC日加盐轮换；全站硬上限独立于IP，不能靠换IP突破。发布每IP每天5次、全站100次；匿名事件全站2000次/日；每条版本链深度最多20。
+模型 `@cf/meta/llama-3.3-70b-instruct-fp8-fast`，最大输出2200 tokens，每IP哈希按UTC日3次，全站滚动24小时12次。失败也占额度，避免重试绕过预算。IP原文不落库，限流hash按UTC日加盐轮换；全站硬上限独立于IP，不能靠换IP突破。发布每IP每天5次、全站100次；匿名事件全站2000次/日；每条版本链深度最多20。
 
-不承诺绝对零费用：Workers AI 有账号共享10000 neurons/日免费额度，本模块不升级方案；已有付费账号若其他应用用尽免费额度，有限调用可能计费。按 FP8 模型页当日 $0.152/M input、$0.287/M output，假设每请求1000输入+2200输出，12次全部落付费区约$0.0094/日。输入token量是估算；真实用量以账单为准。此预算不包含现有 Worker/D1 成本，不对账号全局免费额度做虚假保证。
+不承诺绝对零费用：Workers AI 有账号共享10000 neurons/日免费额度，本模块不升级方案；已有付费账号若其他应用用尽免费额度，有限调用可能计费。按 Llama 3.3 FP8 Fast 模型页当日 $0.293/M input、$2.253/M output，假设每请求1000输入+2200输出，12次全部落付费区约$0.063/日。输入token量是估算；真实用量以账单为准。此预算不包含现有 Worker/D1 成本，不对账号全局免费额度做虚假保证。
 
 ## 实验指标、反证与停止条件
 
@@ -80,3 +80,5 @@ Cloudflare Workers AI 官方依据：
 私有维护：`node sites/agiscorecard/tools/create/ops.mjs stats`；`queue PRIVATE_PATH_OUTSIDE_REPO`；`remove STORY_ID`。需要既有部署环境密钥。不得将queue文件、恢复密钥、用户原文提交公开仓。
 
 上线修正：实测旧 `@cf/meta/llama-3.1-8b-instruct` 返回5028，已于2026-05-30退役。改用官方仍列出的FP8版本，并在部署版本确认后测试中英文真实调用。依据：https://developers.cloudflare.com/changelog/post/2026-05-08-planned-model-deprecations/ 及 https://developers.cloudflare.com/workers-ai/models/llama-3.1-8b-instruct-fp8/ 。真实生成检查消耗同一全站/IP限额，不重置、不豁免限流；测试不发布作品、不产生用户统计。
+
+第二次模型核对：8B FP8 可以推理，但真实请求返回5025、不支持JSON Schema。最终选择JSON Mode官方支持列表中的 `@cf/meta/llama-3.3-70b-instruct-fp8-fast`；不靠降低校验标准接受缺字段故事。当前定价与容量计算以上文最终模型为准。依据：https://developers.cloudflare.com/workers-ai/features/json-mode/ 与 https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/ 。

@@ -1,5 +1,5 @@
-export const VERSION='relay-20260929-5';
-export const MODEL='@cf/meta/llama-3.1-8b-instruct-fp8';
+export const VERSION='relay-20260929-6';
+export const MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 export const validID=id=>typeof id==='string'&&/^[a-f0-9]{32}$/.test(id);
 const clean=(s,max,field)=>{if(typeof s!=='string'||!s.trim()||s.length>max||/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>]/u.test(s))throw Object.assign(Error('invalid_story'),{field});return s.trim();};
 export function validateStory(s){
