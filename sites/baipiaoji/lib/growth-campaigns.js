@@ -6,7 +6,7 @@ export const CAMPAIGNS = [{
   state: 'awaiting_distribution',
 }, {
   id: 'bpj-ai-service-01',
-  paths: ['/en/studio/video'],
+  paths: ['/en/video'],
   sources: ['youtube', 'tiktok'],
   state: 'awaiting_distribution',
 }];
