@@ -18,8 +18,10 @@ UTM：utm_source=youtube 或 tiktok；utm_medium=organic_video；utm_campaign=bp
 
 渲染源码：tools/marketing/bpj-ai-service-01/render.py。
 
-## 发布状态追加
+## 发布状态历史
 
-2026-09-30 07:33 Asia/Shanghai：两条已提交自动发布，TikTok 回执为 PUBLISHING、YouTube 为 PENDING；尚无平台公开链接，发布未核实。未重复发布。
+07:29 已提交两条，排期 2026-09-30 07:33 Asia/Shanghai。
+07:33 TikTok PUBLISHING、YouTube PENDING。
+随后最新读回：YouTube PUBLISHED，平台 ID GRVGTdvz6wM，公开链接 https://www.youtube.com/watch?v=GRVGTdvz6wM 。TikTok AWAITING_CONFIRMATION，detailedStatus 为 Published:7691104304308078605；最终公开状态尚待确认，不将其写为完全核实。
 
-上线核验：/en/video/ 已读回 bpj-ai-service-01 埋点；来源分别为 youtube、tiktok。托管 MP4 哈希与本地验收成片一致。增长统计只覆盖完整 UTC 日，暂不覆盖本次发布。
+/en/video/页面已读回 bpj-ai-service-01 埋点；两平台上传 MP4 哈希与本地验收成片一致。平台成片音画未人工听看。分析指标 rows 为空，播放量未知，不是零。完整 UTC 日统计尚不覆盖本次发布。
