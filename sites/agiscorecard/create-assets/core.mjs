@@ -1,21 +1,21 @@
-export const VERSION='relay-20260929-4';
+export const VERSION='relay-20260929-5';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fp8';
 export const validID=id=>typeof id==='string'&&/^[a-f0-9]{32}$/.test(id);
-const clean=(s,max)=>{if(typeof s!=='string'||!s.trim()||s.length>max||/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>]/u.test(s))throw Error('invalid_story');return s.trim();};
+const clean=(s,max,field)=>{if(typeof s!=='string'||!s.trim()||s.length>max||/[\u0000-\u001f\u202a-\u202e\u2066-\u2069<>]/u.test(s))throw Object.assign(Error('invalid_story'),{field});return s.trim();};
 export function validateStory(s){
  if(!s||!['en','zh'].includes(s.lang)||!Array.isArray(s.rounds)||s.rounds.length!==3||!Array.isArray(s.endings)||s.endings.length!==4)throw Error('invalid_story');
- return {lang:s.lang,title:clean(s.title,70),intro:clean(s.intro,240),author:clean(s.author,30),rounds:s.rounds.map(r=>{
+ return {lang:s.lang,title:clean(s.title,70,"title"),intro:clean(s.intro,240,"intro"),author:clean(s.author,30,"author"),rounds:s.rounds.map((r,i)=>{
   if(!r||!Array.isArray(r.choices)||r.choices.length!==2)throw Error('invalid_story');
-  const choices=r.choices.map(c=>({label:clean(c.label,90),consequence:clean(c.consequence,180),points:c.points}));
+  const choices=r.choices.map((c,j)=>({label:clean(c.label,90,`rounds.${i}.choices.${j}.label`),consequence:clean(c.consequence,180,`rounds.${i}.choices.${j}.consequence`),points:c.points}));
   if(choices[0].points!==0||choices[1].points!==1||choices[0].label===choices[1].label)throw Error('invalid_story');
-  return {scene:clean(r.scene,240),choices};
- }),endings:s.endings.map(e=>({title:clean(e.title,60),text:clean(e.text,240)}))};
+  return {scene:clean(r.scene,240,`rounds.${i}.scene`),choices};
+ }),endings:s.endings.map((e,i)=>({title:clean(e.title,60,`endings.${i}.title`),text:clean(e.text,240,`endings.${i}.text`)}))};
 }
 export function outcome(story,picks){const s=validateStory(story);if(!Array.isArray(picks)||picks.length!==3||picks.some(p=>p!==0&&p!==1))throw Error('invalid_choices');return s.endings[picks.reduce((n,p,i)=>n+s.rounds[i].choices[p].points,0)];}
 const object = properties => ({type:'object',properties,required:Object.keys(properties)});
 const array = (items,n) => ({type:'array',items,minItems:n,maxItems:n});
-const string = {type:'string'};
-export const storySchema=object({title:string,intro:string,rounds:array(object({scene:string,choices:array(object({label:string,consequence:string,points:{type:'integer',enum:[0,1]}}),2)}),3),endings:array(object({title:string,text:string}),4)});
+const string = maxLength => ({type:'string',minLength:1,maxLength});
+export const storySchema=object({title:string(70),intro:string(160),rounds:array(object({scene:string(160),choices:array(object({label:string(55),consequence:string(100),points:{type:'integer',enum:[0,1]}}),2)}),3),endings:array(object({title:string(45),text:string(130)}),4)});
 
 const round=(scene,a,ac,b,bc)=>({scene,choices:[{label:a,consequence:ac,points:0},{label:b,consequence:bc,points:1}]});
 export function sample(lang='en',theme='island'){
