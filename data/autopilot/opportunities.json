@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-28",
- "radar_fetched": "2026-09-28",
+ "generated": "2026-09-29",
+ "radar_fetched": "2026-09-29",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -17,7 +17,7 @@
   "demand_confirmed": 0,
   "recurring": 0,
   "scout": 6,
-  "supplied": 1
+  "supplied": 0
  },
  "opportunities": [
   {
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.27,
+   "score": 2.34,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -46,6 +46,36 @@
    "state": "scout",
    "supplied": false,
    "score": 2.14,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "anybody has experience with maintaining self hosted git",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-26"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.12,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "how apply for position",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-28"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.12,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -78,47 +108,6 @@
    "score": 2.0,
    "demand": [],
    "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "editor with doxygen preview",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-09-20"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "anybody has experience with maintaining self hosted git",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-26"
-   ],
-   "state": "scout",
-   "supplied": true,
-   "score": 1.12,
-   "demand": [],
-   "supply": [
-    {
-     "title": "Show HN: Aldine. Self-hosted Overleaf alternative. Every paper = 1 Git Repo",
-     "url": "https://github.com/trahloff/Aldine",
-     "src": "hn_show",
-     "shared": [
-      "git",
-      "hosted",
-      "self"
-     ]
-    }
-   ],
    "fleet_pages": []
   }
  ]
