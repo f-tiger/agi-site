@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-26",
+  "generated": "2026-09-29",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 33,
+    "candidate": 31,
     "category_hot": 3,
     "stale": 5,
     "demand": 0
@@ -40,17 +40,17 @@
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×12、www.perplexity.ai×5、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×8、www.perplexity.ai×6、copilot.microsoft.com×1、kagi.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
         "/c/api",
         "/en/c/image",
         "/tools/qingying",
+        "/en/tools/ms-copilot",
         "/en/tools/guojia-fanzha",
         "/",
-        "/en/is-google-flow-still-free",
-        "/en/vs/google-ai-studio-vs-openrouter"
+        "/en/is-google-flow-still-free"
       ],
       "score": 70
     },
@@ -59,7 +59,7 @@
       "type": "category_hot",
       "title": "类目异动：coding（14 天内 3 个工具实质变更）",
       "why": "Cursor、Windsurf、Bolt.new接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
-      "action": "提前复核 coding 类尚未跟进的 18 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-22）），重点看定价页与帮助中心",
+      "action": "提前复核 coding 类尚未跟进的 20 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-26）），重点看定价页与帮助中心",
       "refs": [
         "github-copilot",
         "tongyi-lingma",
@@ -171,7 +171,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 32 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 39 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
