@@ -1,8 +1,8 @@
-# Does Copying 13F Filings Actually Work? We Tested It
+# Does copying 13F filings work? A revised historical simulation | AGI Scorecard
 
-_Last updated: August 29, 2026 · Recomputed each 13F season · Not investment advice_
+_2026-09-28 · 13f-next-session-v2_
 
-**Answer:** Over 8 rebalance periods, copying the right investor's disclosed AI book beat the index badly — and copying Buffett's AI slice lost to it. The question is not whether copying works; it is who you copy. Everyone else answers this question with a quarter-end backtest, which quietly assumes you traded 45 days before you could have read the filing. Ours buys at the closing price of the day the 13F was filed — the first price a real person opening EDGAR could actually pay — and holds to the next filing. Winners and the loser are published together, with the caveats on the same screen.
+**Answer:** A historical simulation does not prove future profits. Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.
 
 ---
 Canonical page: https://agiscorecard.com/does-copying-13f-work

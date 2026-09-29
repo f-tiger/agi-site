@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
+const fontCss = process.env.CJK_FONT_PATH ? `@font-face{font-family:'Noto Sans CJK SC';src:url(data:font/otf;base64,${fs.readFileSync(process.env.CJK_FONT_PATH).toString('base64')})}` : '';
 const d = JSON.parse(fs.readFileSync(path.join(ROOT, 'invest-data.json'), 'utf8')).copyHomework;
 if (!d || !Array.isArray(d.returns) || d.returns.length < 2 || !d.benchmark || !d.asOf) {
   console.error('invest-data.json copyHomework missing or malformed — refusing to render a card without its numbers');
@@ -18,23 +19,23 @@ const ZH_NAMES = { 'Stanley Druckenmiller': '德鲁肯米勒', 'Cathie Wood': '�
 const L = {
   en: {
     q: 'Does copying 13F filings actually work?',
-    sub: `AI holdings bought at each filing-day close, ${d.rebalances} rebalances since ${d.since}`,
+    sub: `Next-session closes · ${d.rebalances} rebalances · gross historical simulation`,
     bench: `${d.benchmark.name}, same window`,
-    foot: `AI slice only, not whole portfolios · as of ${d.asOf} · agiscorecard.com`,
+    foot: `${d.benchmark.from} → ${d.benchmark.to} · AI slice only · agiscorecard.com`,
     name: (n) => n,
   },
   zh: {
     q: '抄大佬的 13F 作业，到底赚不赚钱？',
-    sub: `按申报日收盘价买入 AI 持仓，${d.rebalances} 次调仓（自 ${d.since.replace('August', '8 月')}）`,
+    sub: `申报后次交易日收盘 · ${d.rebalances} 次换仓 · 历史毛收益模拟`,
     bench: `${d.benchmark.name}（同一窗口）`,
-    foot: `只算 AI 切片，不是整个组合 · 截至 ${d.asOf} · agiscorecard.com`,
+    foot: `${d.benchmark.from} → ${d.benchmark.to} · 仅 AI 切片 · agiscorecard.com`,
     name: (n) => ZH_NAMES[n] || n,
   },
 };
 
 function card(lang) {
   const x = L[lang];
-  const rows = [...d.returns.map((r) => ({ n: x.name(r.investor), v: r.pct, bench: false })), { n: x.bench, v: d.benchmark.pct, bench: true }]
+  const rows = [...d.returns.filter(r => r.from === d.benchmark.from && r.to === d.benchmark.to).map((r) => ({ n: x.name(r.investor), v: r.pct, bench: false })), { n: x.bench, v: d.benchmark.pct, bench: true }]
     .sort((a, b) => b.v - a.v);
   const max = Math.max(...rows.map((r) => r.v));
   const bars = rows
@@ -60,20 +61,22 @@ function card(lang) {
 }
 
 (async () => {
-  const b = await chromium.launch({ executablePath: fs.existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined });
+  const b = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || (fs.existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined), args: ['--no-sandbox'] });
   const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
   fs.mkdirSync(path.join(ROOT, 'share'), { recursive: true });
   for (const lang of ['en', 'zh']) {
     await p.setContent(card(lang), { waitUntil: 'load' });
     const out = path.join(ROOT, 'share', `copy-13f-${lang}.png`);
+    if (fontCss) await p.addStyleTag({content:fontCss});
+    await p.evaluate(() => document.fonts.ready);
     await p.screenshot({ path: out });
     console.log('wrote', path.relative(ROOT, out));
   }
   // SunWatch（invest.agiscorecard.com）的分享卡：只放品牌与它自己公开的承诺原话，不放任何会过期的数字。
   // SunWatch worker 在出口给没有 og:image 的页面统一补这两张图（sunPredition src/index.js addShareTags）。
   const SW = {
-    en: { h: 'SunWatch', s: 'AI-cycle market calls you can audit', l: ['Every call logged before the outcome', 'Misses stay published', 'Not investment advice'], f: 'invest.agiscorecard.com · AGI Scorecard Invest' },
-    zh: { h: 'SunWatch', s: 'AI 周期市场判断，公开可查', l: ['每条判断在结果出来之前入档', '失误照样公开，不删', '研究框架，非投资建议'], f: 'invest.agiscorecard.com · AGI 记分牌 · 投资' },
+    en: { h: 'SunWatch', s: 'AI-cycle market calls you can audit', l: ['Publication evidence shown separately', 'Misses stay published', 'Not investment advice'], f: 'invest.agiscorecard.com · AGI Scorecard Invest' },
+    zh: { h: 'SunWatch', s: 'AI 周期市场判断，公开可查', l: ['事前公开证据单独核对', '失误照样公开，不删', '研究框架，非投资建议'], f: 'invest.agiscorecard.com · AGI 记分牌 · 投资' },
   };
   for (const lang of ['en', 'zh']) {
     const x = SW[lang];
@@ -86,6 +89,8 @@ function card(lang) {
     .f{font-size:22px;color:#8f8ba8}</style></head><body><div class="w"><div><h1>${x.h}</h1><div class="s">${x.s}</div></div>
     <ul>${x.l.map((t) => `<li>${t}</li>`).join('')}</ul><div class="f">${x.f}</div></div></body></html>`, { waitUntil: 'load' });
     const out = path.join(ROOT, 'share', `sunwatch-${lang}.png`);
+    if (fontCss) await p.addStyleTag({content:fontCss});
+    await p.evaluate(() => document.fonts.ready);
     await p.screenshot({ path: out });
     console.log('wrote', path.relative(ROOT, out));
   }
