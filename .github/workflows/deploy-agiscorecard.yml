@@ -185,6 +185,9 @@ jobs:
       - name: Verify Relay live release
         run: node sites/agiscorecard/tools/create/verify.mjs
 
+      - name: Verify real Relay AI generation within the existing quota
+        run: node sites/agiscorecard/tools/create/ai-check.mjs
+
       - name: Read Relay experiment aggregates and report backlog
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

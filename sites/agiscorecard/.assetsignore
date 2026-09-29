@@ -42,3 +42,9 @@ NEXT-ACTIONS.md
 docs-picks-leaderboard-spec.md
 future-bet-sponsor.json
 README.md
+
+# Wrangler deploy bundles and source maps are build products, never public assets.
+.wrangler
+.wrangler/**
+**/.wrangler
+**/.wrangler/**
