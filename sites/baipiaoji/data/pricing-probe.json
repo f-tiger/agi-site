@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-27",
+ "generated": "2026-09-29",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "metaso",
-  "mistral",
-  "motiff",
-  "n8n",
-  "napkin",
-  "notebooklm",
-  "notion-ai",
-  "nvidia-nim"
+  "ollama",
+  "opusclip",
+  "perplexity",
+  "phind",
+  "pika",
+  "pixlr",
+  "playground-ai",
+  "poe"
  ],
- "cursor": "nvidia-nim",
+ "cursor": "poe",
  "summary": {
-  "ready": 29,
+  "ready": 35,
   "empty": 26,
-  "blocked": 22,
-  "probed_total": 77
+  "blocked": 24,
+  "probed_total": 85
  },
  "tools": {
   "kimi": {
@@ -2238,6 +2238,198 @@
     "url": "https://build.nvidia.com/pricing",
     "tokens": 0,
     "excerpt": ""
+   }
+  },
+  "ollama": {
+   "slug": "ollama",
+   "name": "Ollama",
+   "cat": "local",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://ollama.com/pricing",
+     "status": 200,
+     "bytes": 50899,
+     "tokens": 76
+    }
+   ],
+   "best": {
+    "url": "https://ollama.com/pricing",
+    "tokens": 76,
+    "excerpt": "tasks $100 / mo. For power users who run multiple agents simultaneously Everything in Free, plus: $60 of usage credits per month Access to larger pro models Run multiple models concurrently Fast mode (coming soon) Get Pro Everything in Pro, plus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything "
+   }
+  },
+  "opusclip": {
+   "slug": "opusclip",
+   "name": "OpusClip",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://help.opus.pro/docs/article/plans-and-credits",
+     "status": 200,
+     "bytes": 453016,
+     "tokens": 4
+    }
+   ],
+   "best": {
+    "url": "https://help.opus.pro/docs/article/plans-and-credits",
+    "tokens": 4,
+    "excerpt": "is free forever! You can take advantage of the following benefits without needing to pay such as: 60 processing minutes per month AI Captions with emojis and keyword highlighter Importing video sources from YouTube and local files 1 Brand Template ​ Starter Our Starter Plan is our mid level plan just above the Free Forever Plan but below the Pro Plan. With the Starter Plan you can enjoy benefits such as: 150 processing minutes per month Faster processing time compared to Free and Trial users Additional importing video sources from Google Drive, Vimeo, Zoom, Rumble, StreamYard Editing capability Social media posting to YouTube, TikTok, and Instagram And much more! ​ Pro Our Pro Plan is our to"
+   }
+  },
+  "perplexity": {
+   "slug": "perplexity",
+   "name": "Perplexity",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.perplexity.ai/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.perplexity.ai/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.perplexity.ai/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "phind": {
+   "slug": "phind",
+   "name": "Phind",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.phind.com/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.phind.com/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.phind.com/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "pika": {
+   "slug": "pika",
+   "name": "Pika",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://pika.art/pricing",
+     "status": 200,
+     "bytes": 215685,
+     "tokens": 40
+    }
+   ],
+   "best": {
+    "url": "https://pika.art/pricing",
+    "tokens": 40,
+    "excerpt": "uded: Priority queue Not included: Early access to new models Learn more about Starter Creator Best Value 3,150 credits / month $35 $ 3 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly Subscribe to Creator Included: All models Included: 8 video · 32 image + audio in parallel Included: No watermark Included: Commercial license Not included: Priority queue Not included: Early access to new models Learn more about Creator Fancy 8,550 credits / month 8.6k 26k 44k 62k 79k $95 $ 9 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly Subscribe to Fancy Included: All models Included: Unlimited parallel generations Included: No watermark Included: Commercial license Included: Prio"
+   }
+  },
+  "pixlr": {
+   "slug": "pixlr",
+   "name": "Pixlr",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://pixlr.com/pricing",
+     "status": 200,
+     "bytes": 372475,
+     "tokens": 18
+    }
+   ],
+   "best": {
+    "url": "https://pixlr.com/pricing",
+    "tokens": 18,
+    "excerpt": "yearly. Cancel whenever you feel like it - no fuss and no hoops. Monthly Yearly + Save 20% Plus I just need the basics! $2.49 per month $2.49 Save 20% $1.99 per month Subscribe Now! Ad-Free Unlimited saves 1 concurrent AI generation 80 monthly AI Credits 960 AI Credits valid for the year Credits valid for 1 month All credits valid for 1 year Estimated monthly usage ~80 AI images (fast) ~16 AI images (pro) ~80 AI edits (fast) ~4 AI videos (fast) Popular Premium Full access to all the premium features across all platforms with a nice chunk of AI credits. $9.99 per month $9.99 Save 20% $7.99 per month Subscribe Now! Everything in Plus, plus: Access to all image, video &amp; audio models 4 concu"
+   }
+  },
+  "playground-ai": {
+   "slug": "playground-ai",
+   "name": "Playground AI",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://playgroundai.com/design/pricing",
+     "status": 200,
+     "bytes": 173635,
+     "tokens": 8
+    }
+   ],
+   "best": {
+    "url": "https://playgroundai.com/design/pricing",
+    "tokens": 8,
+    "excerpt": "d images up to 2048×2048 with GPT Image 2 and GPT Image 2.5 Commercial use World-wide, royalty free license Annual -20% $ 15 $ 12 /mo $ 144 will be charged in total annually Upgrade to Pro Pro Plus BEST VALUE For professionals who need the best Unlimited image generations No generation caps Advanced model access 1,000 monthly credits across all models including Nano Banana Pro. Standard models use 1 credit per generation, Nano Banana Pro uses 4 Premium templates Unlimited access to the full premium template library Enhanced image editing Unlimited upscaling and background removal Up to 4K AI image editing Generate, resize, and AI-extend images up to 3840×2160 with GPT Image 2 and GPT Image 2"
+   }
+  },
+  "poe": {
+   "slug": "poe",
+   "name": "Poe",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-29",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://poe.com/subscription_plans",
+     "status": 200,
+     "bytes": 120651,
+     "tokens": 10
+    }
+   ],
+   "best": {
+    "url": "https://poe.com/subscription_plans",
+    "tokens": 10,
+    "excerpt": "nnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 · 加入我们的Discord 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 $49.99/年 ( $4.17/月 ) 开始使用 66万积分/月 $199.99/年 ( $16.67/月 ) 开始使用 165万积分/月 $499.99/年 ( $41.67/月 ) 开始使用 330万积分/月 $999.99/年 ( $83.33/月 ) 开始使用 825万积分/月 $2,499.99/年 ( $208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
    }
   }
  }

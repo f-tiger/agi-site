@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-27",
+ "checked": "2026-09-29",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -480,6 +480,70 @@
    "source_http": 200,
    "repo_http": 404,
    "last_attempt": "2026-09-27"
+  },
+  "qorpiq-mca": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-09-29"
+  },
+  "br-oportunidados-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 404,
+   "last_attempt": "2026-09-29"
+  },
+  "a2awire-data-aws-news-cloud-service-update-announcement": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 404,
+   "last_attempt": "2026-09-29"
+  },
+  "accuracite-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-29"
+  },
+  "apick-all": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-29"
+  },
+  "microsoft-esrp-oss-mcp-test": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-29"
+  },
+  "answeringservicecare-public": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-09-29"
+  },
+  "rubiic-rubiic": {
+   "attempts": 1,
+   "first_attempt": "2026-09-29",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-29"
   }
  },
  "admitted": [
@@ -6161,6 +6225,266 @@
   {
    "slug": "warmerly-warmerly",
    "date": "2026-09-27",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "policyforge-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "asianrecs-asianrecs",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "citestamp-citestamp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "syncso-syncso",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "uicapsule-components",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "liquidagent-api-liquid-agent",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "twelvetake-gimp-studio-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cooperemail-cooper-email",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dinglebear-unraid-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "myspaice-spaces",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "twelvetake-reaper-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tradestarinsider-edgar-insider-signals",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "polyxd-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clawfight-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aicdapi-records",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ghostviralai-ghostviral",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "seamark-seamark",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "crossingkeyintelligence-crossingkey-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aviansuite-stellar-jay",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gtm-api-linkedin-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ai-rete-rag-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "furringline-mcp-furringline",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "relvato-relvato",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "boothcheck-boothcheck",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tlders-domain-prices",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "senzii-scheduling",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tokonomix-council",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "growingupvideo-growingupvideo",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rillsoft-project",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-eresourcescheduler-eresource-scheduler",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ludo-game-assets",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "voicecapture-voice-capture",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "telesherpa-ontology-platform",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "humanuscrit-happ",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sketchxflow-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "random-profiles-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hunchsheet-hunch",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "arkrel-arkrel",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dondego-wikidata-google-knowledge-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "markifact-meta-ads",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "markifact-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "markifact-google-ads",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "flaim-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "securessmtp-securessmtp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "claudeforcompliance-mortgage-regs",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "refd-refd",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "irkumo-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oxfordledge-oxford-ledge",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "netapi-mcp",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "repofuse-repofuse",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "metabind-banking-assistant",
+   "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "apmzoom-dongdaemun",
+   "date": "2026-09-29",
    "origin": "mcp-registry"
   }
  ],

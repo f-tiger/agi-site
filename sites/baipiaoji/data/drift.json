@@ -1,35 +1,10 @@
 {
-  "generated": "2026-09-27",
+  "generated": "2026-09-29",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 101,
-  "fetched_fail": 26,
-  "pending": 7,
+  "fetched_ok": 103,
+  "fetched_fail": 24,
+  "pending": 12,
   "items": [
-    {
-      "slug": "cursor",
-      "url": "https://cursor.com/pricing",
-      "confirmed": "2026-09-27",
-      "first_seen": "2026-09-26",
-      "added": [
-        "$20/mo",
-        "$40/user"
-      ],
-      "removed": [
-        "$3,000",
-        "0032b",
-        "00810b",
-        "00b",
-        "011b",
-        "01237b",
-        "01358061b",
-        "01b",
-        "03024b",
-        "031b",
-        "03b",
-        "04380b"
-      ],
-      "checked_then": "2026-09-25"
-    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",

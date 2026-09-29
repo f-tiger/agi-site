@@ -1,25 +1,25 @@
 {
-  "generated": "2026-09-27",
+  "generated": "2026-09-29",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-30",
-  "until": "2026-09-27",
-  "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 396,
-  "per_day": 14.1,
+  "since": "2026-09-01",
+  "until": "2026-09-29",
+  "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
+  "humans_referred": 413,
+  "per_day": 14.8,
   "by_kind": {
-    "tool": 307,
-    "category": 47,
-    "page": 35,
+    "tool": 316,
+    "category": 46,
+    "page": 45,
     "alternatives": 2,
     "judgement": 1,
-    "plans": 1,
-    "vs": 3
+    "solutions": 1,
+    "vs": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 136
+      "n": 144
     },
     {
       "cat": "coding",
@@ -27,22 +27,22 @@
     },
     {
       "cat": "video",
-      "n": 43
-    },
-    {
-      "cat": "api",
       "n": 41
     },
     {
-      "cat": "office",
-      "n": 18
+      "cat": "api",
+      "n": 37
     },
     {
-      "cat": "writing",
-      "n": 15
+      "cat": "office",
+      "n": 21
     },
     {
       "cat": "image",
+      "n": 17
+    },
+    {
+      "cat": "writing",
       "n": 15
     },
     {
@@ -79,12 +79,12 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 34
+      "n": 39
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 16
+      "n": 17
     },
     {
       "slug": "cline",
@@ -94,17 +94,22 @@
     {
       "slug": "fireworks",
       "cat": "api",
-      "n": 15
+      "n": 14
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 15
+      "n": 14
     },
     {
       "slug": "google-flow",
       "cat": "video",
       "n": 7
+    },
+    {
+      "slug": "tongyi",
+      "cat": "chat",
+      "n": 6
     },
     {
       "slug": "deepl",
@@ -117,23 +122,13 @@
       "n": 5
     },
     {
-      "slug": "tongyi",
-      "cat": "chat",
-      "n": 5
-    },
-    {
       "slug": "pixverse",
       "cat": "video",
-      "n": 5
+      "n": 4
     },
     {
       "slug": "immersive-translate",
       "cat": "writing",
-      "n": 4
-    },
-    {
-      "slug": "liblib",
-      "cat": "image",
       "n": 4
     },
     {
@@ -142,8 +137,18 @@
       "n": 4
     },
     {
+      "slug": "qwen-chat",
+      "cat": "chat",
+      "n": 3
+    },
+    {
       "slug": "fish-audio",
       "cat": "audio",
+      "n": 3
+    },
+    {
+      "slug": "liblib",
+      "cat": "image",
       "n": 3
     },
     {
@@ -222,7 +227,17 @@
       "n": 2
     },
     {
-      "slug": "openrouter",
+      "slug": "ima",
+      "cat": "office",
+      "n": 2
+    },
+    {
+      "slug": "marscode",
+      "cat": "coding",
+      "n": 2
+    },
+    {
+      "slug": "mistral",
       "cat": "api",
       "n": 2
     },
@@ -255,21 +270,6 @@
       "slug": "elevenlabs",
       "cat": "audio",
       "n": 2
-    },
-    {
-      "slug": "bailian",
-      "cat": "api",
-      "n": 1
-    },
-    {
-      "slug": "github-models",
-      "cat": "coding",
-      "n": 1
-    },
-    {
-      "slug": "goose",
-      "cat": "coding",
-      "n": 1
     }
   ],
   "judgement": [
@@ -284,20 +284,20 @@
       "n": 91
     },
     {
-      "path": "coding",
-      "n": 35
+      "path": "kimi",
+      "n": 39
     },
     {
-      "path": "kimi",
+      "path": "coding",
       "n": 34
     },
     {
       "path": "/",
-      "n": 26
+      "n": 29
     },
     {
       "path": "feishu-miaoji",
-      "n": 16
+      "n": 17
     },
     {
       "path": "cline",
@@ -305,23 +305,27 @@
     },
     {
       "path": "fireworks",
-      "n": 15
+      "n": 14
     },
     {
       "path": "haiper",
-      "n": 15
-    },
-    {
-      "path": "api",
-      "n": 9
+      "n": 14
     },
     {
       "path": "/report",
       "n": 8
     },
     {
+      "path": "api",
+      "n": 7
+    },
+    {
       "path": "google-flow",
       "n": 7
+    },
+    {
+      "path": "tongyi",
+      "n": 6
     },
     {
       "path": "deepl",
@@ -332,19 +336,15 @@
       "n": 5
     },
     {
-      "path": "tongyi",
-      "n": 5
-    },
-    {
-      "path": "pixverse",
-      "n": 5
-    },
-    {
-      "path": "immersive-translate",
+      "path": "image",
       "n": 4
     },
     {
-      "path": "liblib",
+      "path": "pixverse",
+      "n": 4
+    },
+    {
+      "path": "immersive-translate",
       "n": 4
     },
     {
@@ -352,7 +352,15 @@
       "n": 4
     },
     {
+      "path": "qwen-chat",
+      "n": 3
+    },
+    {
       "path": "fish-audio",
+      "n": 3
+    },
+    {
+      "path": "liblib",
       "n": 3
     },
     {
@@ -388,10 +396,6 @@
       "n": 3
     },
     {
-      "path": "image",
-      "n": 2
-    },
-    {
       "path": "ms-copilot",
       "n": 2
     },
@@ -420,7 +424,15 @@
       "n": 2
     },
     {
-      "path": "openrouter",
+      "path": "ima",
+      "n": 2
+    },
+    {
+      "path": "marscode",
+      "n": 2
+    },
+    {
+      "path": "mistral",
       "n": 2
     },
     {
@@ -448,6 +460,26 @@
       "n": 2
     },
     {
+      "path": "/agents/agentverse",
+      "n": 1
+    },
+    {
+      "path": "/agents/c/browser",
+      "n": 1
+    },
+    {
+      "path": "/agents/c/research",
+      "n": 1
+    },
+    {
+      "path": "/agents/chatdev",
+      "n": 1
+    },
+    {
+      "path": "/agents/mirascope",
+      "n": 1
+    },
+    {
       "path": "/alternatives/grammarly",
       "n": 1
     },
@@ -460,11 +492,15 @@
       "n": 1
     },
     {
+      "path": "/agents/apify-mcp",
+      "n": 1
+    },
+    {
       "path": "/is-google-flow-still-free",
       "n": 1
     },
     {
-      "path": "/plans/free-video-gen",
+      "path": "/solutions/coding",
       "n": 1
     },
     {
@@ -482,60 +518,24 @@
     {
       "path": "guojia-fanzha",
       "n": 1
-    },
-    {
-      "path": "qwen-chat",
-      "n": 1
-    },
-    {
-      "path": "tongyi-lingma",
-      "n": 1
-    },
-    {
-      "path": "windsurf",
-      "n": 1
-    },
-    {
-      "path": "zed",
-      "n": 1
-    },
-    {
-      "path": "/vs/google-ai-studio-vs-openrouter",
-      "n": 1
-    },
-    {
-      "path": "/llm-api-calculator",
-      "n": 1
-    },
-    {
-      "path": "cerebras",
-      "n": 1
-    },
-    {
-      "path": "cherry-studio",
-      "n": 1
-    },
-    {
-      "path": "cohere",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 176
+      "n": 182
     },
     {
       "ref": "cn.bing.com",
-      "n": 133
+      "n": 140
     },
     {
       "ref": "www.bing.com",
-      "n": 22
+      "n": 23
     },
     {
       "ref": "chatgpt.com",
-      "n": 10
+      "n": 8
     },
     {
       "ref": "m.facebook.com",
@@ -546,15 +546,19 @@
       "n": 8
     },
     {
+      "ref": "m.baidu.com",
+      "n": 7
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 6
+    },
+    {
       "ref": "duckduckgo.com",
       "n": 5
     },
     {
-      "ref": "m.baidu.com",
-      "n": 5
-    },
-    {
-      "ref": "www.perplexity.ai",
+      "ref": "www.baidu.com",
       "n": 5
     },
     {
@@ -566,16 +570,16 @@
       "n": 4
     },
     {
-      "ref": "www.baidu.com",
-      "n": 4
-    },
-    {
       "ref": "yandex.com",
       "n": 4
     },
     {
       "ref": "www.doubao.com",
       "n": 2
+    },
+    {
+      "ref": "39.107.254.8",
+      "n": 1
     },
     {
       "ref": "copilot.microsoft.com",
@@ -587,10 +591,6 @@
     },
     {
       "ref": "search.brave.com",
-      "n": 1
-    },
-    {
-      "ref": "www.google.com.hk",
       "n": 1
     },
     {
@@ -606,12 +606,12 @@
     {
       "ref": "chatgpt.com",
       "path": "/c/api",
-      "n": 9
+      "n": 7
     },
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 2
+      "n": 4
     },
     {
       "ref": "chatgpt.com",
@@ -637,29 +637,25 @@
       "ref": "www.perplexity.ai",
       "path": "/en/is-google-flow-still-free",
       "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/google-ai-studio-vs-openrouter",
-      "n": 1
     }
   ],
   "events": {
-    "sub_view": 427,
-    "go": 117,
-    "home": 15,
-    "biz": 12,
-    "star": 10,
-    "calc": 9,
+    "sub_view": 425,
+    "go": 116,
+    "home": 20,
+    "calc": 18,
+    "biz": 15,
+    "star": 11,
     "sheet_dl": 5,
     "sub_submit": 5,
+    "video": 5,
     "sub_ok": 4,
     "gate": 3,
     "sub_dup": 1
   },
   "submissions": {
-    "new": 9,
-    "total": 9
+    "new": 10,
+    "total": 10
   },
   "ads": {},
   "commercial_triggers": {
@@ -675,5 +671,40 @@
       "ad-later": 0
     },
     "definition": "First event per action per page load, QA excluded at emitter. Not unique people, a linked funnel, verified vendors or paid conversions. Client events can be blocked or spoofed."
+  },
+  "conversion_stages": {
+    "ok": true,
+    "window": {
+      "start": "2026-09-01",
+      "end_exclusive": "2026-09-29",
+      "complete_days": 28,
+      "date_basis": "UTC"
+    },
+    "events": {
+      "tool_results_own": 0,
+      "tool_results_demo": 0,
+      "tool_download_actions_own": 0,
+      "tool_download_actions_demo": 0,
+      "other_calc_events": 18,
+      "directory_outbound_clicks": 116,
+      "homepage_limit_navigation": 0,
+      "video_exports_own": 0,
+      "video_exports_demo": 0
+    },
+    "accounts": {
+      "created": 1,
+      "new_accounts_currently_email_verified": 0
+    },
+    "missing": [],
+    "definitions": {
+      "acquisition": "Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.",
+      "usage": "Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.",
+      "other_calc_events": "Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.",
+      "quote_results": "A rendered quote comparison can contain blocked or unverified quotes; it is an analysis action, not an accepted quote or purchase.",
+      "video_exports": "Successful video or batch export actions; one batch is one action, not a clip count or unique user.",
+      "accounts": "Surviving server-side accounts created within this UTC window with qa=0. Verified is their current email-ownership state, not a verification event during this window. Deleted accounts are absent; accounts are not unique humans.",
+      "attribution": "Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.",
+      "quality": "Known CI excluded; unlabelled automation and lost browser events remain possible. Missing tables/read failures return null, never zero."
+    }
   }
 }

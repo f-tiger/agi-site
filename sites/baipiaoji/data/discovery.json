@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "TinyAIArena watch AI agents battle it out",
+      "url": "https://tinyaiarena.com/",
+      "host": "tinyaiarena.com",
+      "src": "https://news.ycombinator.com/item?id=49867775",
+      "points": 117,
+      "comments": 45,
+      "found": "2026-09-29",
+      "status": "candidate"
+    },
+    {
       "name": "Doom or Bloom, map your AI worldview",
       "url": "https://www.doom-or-bloom.com",
       "host": "doom-or-bloom.com",
@@ -299,37 +309,7 @@
       "comments": 62,
       "found": "2026-08-17",
       "status": "candidate"
-    },
-    {
-      "name": "Deltix – AI Driven Testing",
-      "url": "https://app.deltix.ai",
-      "host": "app.deltix.ai",
-      "src": "https://news.ycombinator.com/item?id=49307099",
-      "points": 48,
-      "comments": 11,
-      "found": "2026-08-15",
-      "status": "candidate"
-    },
-    {
-      "name": "Mole – Deep research agent for your terminal",
-      "url": "https://github.com/lajosdeme/mole",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49303046",
-      "points": 46,
-      "comments": 8,
-      "found": "2026-08-15",
-      "status": "candidate"
-    },
-    {
-      "name": "MCP Memory – Fast Agent Memory Using Google's OKF and SQLite FTS5",
-      "url": "https://github.com/fellowgeek/mcp-memory",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49286073",
-      "points": 56,
-      "comments": 35,
-      "found": "2026-08-14",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-09-27"
+  "updated": "2026-09-29"
 }
