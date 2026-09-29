@@ -96,7 +96,9 @@ jobs:
 
       - name: Test analytics field sanitisers
         working-directory: sites/agiscorecard
-        run: node tools/test_analytics_sanitiser.mjs
+        run: |
+          node tools/test_analytics_sanitiser.mjs
+          node --test tools/test_video_growth.mjs
 
       # D1 read budget (2026-09-26): the account-wide free tier (5M rows read/day) ran out three days
       # running; /api/pulse + /api/trends were ~46% of 09-26. This pins the fix: every pageviews query
@@ -242,6 +244,7 @@ jobs:
             *'"ok":true'*) echo "OK /api/trends" ;;
             *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
           esac
+          check "https://agiscorecard.com/api/video-growth?ci=1" '"metric":"browser_events_not_users"'
           # /api/crowd (2026-09-27): the /agi-test crowd reveal reads this; five buckets, cached.
           c=$(curl -s --max-time 20 "https://agiscorecard.com/api/crowd" || echo "")
           case "$c" in

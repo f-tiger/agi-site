@@ -1,6 +1,7 @@
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
+import {videoGrowth} from './video-growth.js';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -429,6 +430,9 @@ export default {
     if (url.pathname === '/api/pulse' && request.method === 'GET') {
       return aggregateCache(request, ctx, 'pulse', 3600, () => pulseResponse(env, url));
     }
+    if (url.pathname === '/api/video-growth' && request.method === 'GET') {
+      return aggregateCache(request, ctx, 'video-growth', 3600, () => videoGrowth(env));
+    }
 
     // /api/crowd (2026-09-27): how readers answered the one question the site asks —
     // "when does AGI arrive?" — as five bucket counts. Shown only AFTER a reader answers
@@ -604,6 +608,12 @@ export default {
       let body;
       try { body = await request.json(); } catch (e) { return new Response('bad json', { status: 400 }); }
 
+      // Keep QA out before the UA audit and event write; client suppression also covers GPC/DNT.
+      const qaQuery = new URLSearchParams(String(body.u || ''));
+      if (qaQuery.get('ci') === '1' || qaQuery.get('__probe') === '1' || qaQuery.get('utm_source') === 'verify' ||
+          request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1') {
+        return new Response(null, {status:204,headers:CORS});
+      }
       const name = clean(body.n, 40);
       // UA 审计的第二维(2026-08-11):page_view 走到这里意味着 JS 真的跑了。
       // 用同一个 UA 前缀记一行 ua_class='js',即可与服务端记录的 human/bot 对账——
@@ -882,6 +892,7 @@ const slideinFor = (pathname) => {
 // wrapped and errors are swallowed. Pageviews do not depend on this script at all.
 const BEACON = '<script>(function(){' +
   'var send=function(n,p){try{' +
+    'var q=new URLSearchParams(location.search);if(q.get("ci")==="1"||q.get("__probe")==="1"||q.get("utm_source")==="verify"||navigator.doNotTrack==="1"||navigator.globalPrivacyControl===true)return;' +
     'var d=JSON.stringify({n:n,l:(p&&p.location)||null,b:(p&&p.label)||null,' +
       'p:location.pathname,u:location.search,r:document.referrer||null,g:navigator.language||null});' +
     "if(navigator.sendBeacon){navigator.sendBeacon('/api/e',new Blob([d],{type:'application/json'}));}" +

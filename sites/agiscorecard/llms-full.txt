@@ -1448,15 +1448,15 @@ A: Prediction markets price announcement events (e.g. 'OpenAI announces AGI'). T
 ## AGI Consensus Board: What Forecasters Put on AGI by 2027–2040
 
 URL: https://agiscorecard.com/agi-prediction-markets
-Last updated: September 26, 2026 · Updated as verdicts change
+Last updated: September 28, 2026 · Updated as verdicts change
 
-Snapshot 2026-09-26 11:40 UTC — median across 2 series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). A median over independent venues, not an opinion: venues read polymarket, kalshi, manifold; each series resolves on its own rules, the spread is shown, and the formula is published.
+Snapshot 2026-09-28 10:02 UTC — median across 2 series: before 2027: 13% (spread 22%); before 2028: 42% (spread 38%); before 2030: 64% (spread 29%). A median over independent venues, not an opinion: venues read polymarket, kalshi, manifold; each series resolves on its own rules, the spread is shown, and the formula is published.
 
 Q: Is this the AGI Scorecard's own forecast?
 A: No. It is a median over independent public forecasting venues, computed by a published formula that anyone can rerun on the same snapshot. The scorecard's own position is the Thesis Tracker, which grades evidence, not expectations.
 
 Q: What do forecasters put on AGI right now?
-A: Snapshot 2026-09-26 11:40 UTC, median across kalshi-any-company-announce, manifold-we-get-agi series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). Each series resolves on its own rules, so treat the spread as part of the answer.
+A: Snapshot 2026-09-28 10:02 UTC, median across kalshi-any-company-announce, manifold-we-get-agi series: before 2027: 13% (spread 22%); before 2028: 42% (spread 38%); before 2030: 64% (spread 29%). Each series resolves on its own rules, so treat the spread as part of the answer.
 
 Q: Are these live odds?
 A: No. Each run records a snapshot with an exact UTC timestamp and links to the market so you can check the current price yourself. A quoted price that pretends to be live is the single most common way odds coverage misleads people.
@@ -1475,9 +1475,9 @@ A: By a fixed keyword filter applied to whatever the venues' own search and seri
 ## AGI Timeline: Prediction Markets vs Evidence
 
 URL: https://agiscorecard.com/agi-odds-vs-evidence
-Last updated: September 14, 2026 · Updated as verdicts change
+Last updated: September 21, 2026 · Updated as verdicts change
 
-Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #4 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
+Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #5 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
 
 Q: Is the Thesis Tracker score a probability of AGI?
 A: No. 62.5/100 is the mean of 8 graded verdict weights — an auditable evidence composite, not a forecast. Prediction-market prices are crowd probabilities of specific contract wordings. The two answer different questions.
@@ -1486,7 +1486,7 @@ Q: Why compare them at all?
 A: Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes.
 
 Q: How current are the odds shown?
-A: Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-09-14 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
+A: Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. The odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
 
 ---
 
@@ -1546,7 +1546,7 @@ A: Because a scorecard graded by one editor is only as trustworthy as that edito
 ## Calibration: We Score Our Own Predictions in Public
 
 URL: https://agiscorecard.com/calibration
-Last updated: September 27, 2026 · Updated as verdicts change
+Last updated: September 28, 2026 · Updated as verdicts change
 
 We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes, states how many of them can actually be Brier-scored today ( 0), and pre-commits to publishing a Brier score and calibration curve once scored probability calls reach n≥20. We would rather show a small honest n than a big fake curve.
 

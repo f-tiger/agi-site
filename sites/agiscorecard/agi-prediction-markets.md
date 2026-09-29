@@ -1,8 +1,8 @@
 # AGI Consensus Board: What Forecasters Put on AGI by 2027–2040
 
-_Last updated: September 26, 2026 · Updated as verdicts change_
+_Last updated: September 28, 2026 · Updated as verdicts change_
 
-**Answer:** Snapshot 2026-09-26 11:40 UTC — median across 2 series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). A median over independent venues, not an opinion: venues read polymarket, kalshi, manifold; each series resolves on its own rules, the spread is shown, and the formula is published.
+**Answer:** Snapshot 2026-09-28 10:02 UTC — median across 2 series: before 2027: 13% (spread 22%); before 2028: 42% (spread 38%); before 2030: 64% (spread 29%). A median over independent venues, not an opinion: venues read polymarket, kalshi, manifold; each series resolves on its own rules, the spread is shown, and the formula is published.
 
 ## FAQ
 
@@ -12,7 +12,7 @@ No. It is a median over independent public forecasting venues, computed by a pub
 
 **What do forecasters put on AGI right now?**
 
-Snapshot 2026-09-26 11:40 UTC, median across kalshi-any-company-announce, manifold-we-get-agi series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). Each series resolves on its own rules, so treat the spread as part of the answer.
+Snapshot 2026-09-28 10:02 UTC, median across kalshi-any-company-announce, manifold-we-get-agi series: before 2027: 13% (spread 22%); before 2028: 42% (spread 38%); before 2030: 64% (spread 29%). Each series resolves on its own rules, so treat the spread as part of the answer.
 
 **Are these live odds?**
 

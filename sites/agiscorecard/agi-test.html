@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="What's your AGI type?">
 <meta name="twitter:image" content="https://agiscorecard.com/share/agi-test.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"What's your AGI type?","item":"https://agiscorecard.com/agi-test"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the AGI type test?","acceptedAnswer":{"@type":"Answer","text":"A 30-second test: you pick when you think AGI will arrive, and it maps you onto the real forecaster spectrum (Musk ~2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus ~2033, academic survey ~2047) and gives you an archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with the case and the risk for your position."}},{"@type":"Question","name":"Are the AGI types based on real data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each archetype is anchored to a public forecaster position and to benchmark evidence tracked on the AGI Scorecard (compute scaling, SWE-Bench, GDPval). No invented statistics."}},{"@type":"Question","name":"When does the AGI-by-2027 prediction resolve?","acceptedAnswer":{"@type":"Answer","text":"The headline claim from Aschenbrenner's Situational Awareness resolves January 1, 2028. The AGI Scorecard grades it and the other predictions against public evidence with pre-registered flip conditions."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the AGI type test?","acceptedAnswer":{"@type":"Answer","text":"A 30-second timeline choice: pick when you think AGI might arrive and get one of five editorial labels — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with a case and a risk for that view. Historical comparisons are context, not current forecasts or scientifically validated types."}},{"@type":"Question","name":"Are the AGI types based on real data?","acceptedAnswer":{"@type":"Answer","text":"The labels are editorial, not scientifically validated types. Historical forecaster comparisons are context, not live forecasts or endorsements. The separate Thesis Tracker publishes dated evidence and a scoring method; its score is not an AGI probability."}},{"@type":"Question","name":"When does the AGI-by-2027 prediction resolve?","acceptedAnswer":{"@type":"Answer","text":"The headline claim from Aschenbrenner's Situational Awareness resolves January 1, 2028. The AGI Scorecard grades it and the other predictions against public evidence with pre-registered flip conditions."}}]}</script>
 <style>
 :root{--bg:#0e0e14;--bg2:#16151f;--bg3:#1e1c28;--border:#26232f;--text:#f4f4f8;--muted:#a8a4c4;--accent:#7c6af5;--accent2:#4fc3a1}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -68,7 +68,8 @@ footer a{color:var(--muted)}
 <header><a class="brand" href="/">◆ AGI Scorecard</a><span class="kicker"><a href="/zh/agi-test" style="color:var(--muted)">中文</a></span></header>
 <div class="kicker">The AGI Test 🎯</div>
 <h1>What's your <em>AGI type</em>?</h1>
-<p class="lead">When do you think AGI arrives? Pick one — get your archetype and see exactly where you land versus Musk, Aschenbrenner, Hassabis and Metaculus. Takes 30 seconds.</p>
+<p class="lead">When do you think AGI arrives? Pick a time frame, get a playful viewpoint label, then check the evidence behind your reasoning. Takes 30 seconds.</p>
+<p style="color:var(--muted);font-size:14px">This is a playful timeline choice, not a validated personality test or an AGI probability forecast. Named comparisons and share cards are historical editorial reference points, not live forecasts. Check the <a href="/progress-index">dated evidence and scoring method</a> before drawing conclusions.</p>
 <div id="locked-banner" style="display:none;background:var(--bg2);border:1px solid rgba(124,106,245,.3);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:14px"></div>
 <div class="q">When do you think AGI arrives?</div>
 <div class="opts" id="opts">
@@ -116,8 +117,8 @@ footer a{color:var(--muted)}
 <p style="color:var(--muted);font-size:14px">Every archetype is anchored to a public forecaster position and to the evidence graded on the <a href="/">AGI Scorecard</a> — the independent tracker of the falsifiable predictions in Aschenbrenner's <em>Situational Awareness</em>. The headline AGI-by-2027 claim resolves January 1, 2028. <a href="/progress-index">See the live score →</a></p>
 <h2>FAQ</h2>
 <div class="types">
-  <div><b>What is the AGI type test?</b><br><span style="color:var(--muted)">A 30-second test: you pick when you think AGI will arrive, and it maps you onto the real forecaster spectrum (Musk ~2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus ~2033, academic survey ~2047) and gives you an archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with the case and the risk for your position.</span></div>
-  <div><b>Are the AGI types based on real data?</b><br><span style="color:var(--muted)">Yes. Each archetype is anchored to a public forecaster position and to benchmark evidence tracked on the AGI Scorecard (compute scaling, SWE-Bench, GDPval). No invented statistics.</span></div>
+  <div><b>What is the AGI type test?</b><br><span style="color:var(--muted)">A 30-second timeline choice: pick when you think AGI might arrive and get one of five editorial labels — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with a case and a risk for that view. Historical comparisons are context, not current forecasts or scientifically validated types.</span></div>
+  <div><b>Are the AGI types based on real data?</b><br><span style="color:var(--muted)">The labels are editorial, not scientifically validated types. Historical forecaster comparisons are context, not live forecasts or endorsements. The separate Thesis Tracker publishes dated evidence and a scoring method; its score is not an AGI probability.</span></div>
   <div><b>When does the AGI-by-2027 prediction resolve?</b><br><span style="color:var(--muted)">The headline claim from Aschenbrenner's Situational Awareness resolves January 1, 2028. The AGI Scorecard grades it and the other predictions against public evidence with pre-registered flip conditions.</span></div>
 </div>
 <h2>Put this test on your site</h2>
@@ -156,7 +157,7 @@ function castVote(slug){
   window.__quietPick=false;
   // Put the pick in the URL so the edge-injected signup form can name the reader's type
   // (it reads ?pick=). self=1 keeps a reload from counting as an article deep-link.
-  if(Date.now()>=LOCK_SUB_FROM){try{history.replaceState(null,'',location.pathname+'?pick='+slug+'&self=1');}catch(e){}}
+  if(Date.now()>=LOCK_SUB_FROM){try{var next=new URL(location.href);next.searchParams.set('pick',slug);next.searchParams.set('self','1');history.replaceState(null,'',next.pathname+next.search+next.hash);}catch(e){}}
 }
 // Crowd reveal (2026-09-27; dormant until LOCK_SUB_FROM with the lock form, so the 09-30 line
 // settles on the funnel it was registered against). Shown only after the reader answers:

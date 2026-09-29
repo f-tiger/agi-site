@@ -1,6 +1,6 @@
 # Calibration: We Score Our Own Predictions in Public
 
-_Last updated: September 27, 2026 · Updated as verdicts change_
+_Last updated: September 28, 2026 · Updated as verdicts change_
 
 **Answer:** We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes, states how many of them can actually be Brier-scored today ( 0), and pre-commits to publishing a Brier score and calibration curve once scored probability calls reach n≥20. We would rather show a small honest n than a big fake curve.
 

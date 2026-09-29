@@ -18,11 +18,25 @@
     <summary>Eight free AI tools, no sign-up: find your AGI type, check your job&#x27;s AI exposure, score your AI stock basket against the 2027 thesis, and read the live 0-100 score.</summary>
   </entry>
   <entry>
+    <title>AGI Consensus Board: What Forecasters Put on AGI by 2027–2040</title>
+    <link href="https://agiscorecard.com/agi-prediction-markets"/>
+    <id>https://agiscorecard.com/agi-prediction-markets</id>
+    <updated>2026-09-28T00:00:00Z</updated>
+    <summary>Snapshot 2026-09-28: median across 2 forecasting series on &#x27;AGI before 2027/2028/2030/2035/2040&#x27; — before 2027: 13% (spread 22%); before 2028: 42% (spread 38%); before 2030: 64% (spread 29% — with spread, each series&#x27; resolution basis and a published recompute formula. No bets, no affiliate links.</summary>
+  </entry>
+  <entry>
     <title>How Are Top Investors Positioned on AI? (Q2 2026 13F)</title>
     <link href="https://agiscorecard.com/invest"/>
     <id>https://agiscorecard.com/invest</id>
     <updated>2026-09-28T00:00:00Z</updated>
     <summary>Eight investing legends, graded from line-by-line Q2 2026 13F filings: 3 bull, 4 cautious, 1 bear. Filed August 14. Plus Aschenbrenner&#x27;s own blown-up fund.</summary>
+  </entry>
+  <entry>
+    <title>Does copying 13F filings work? A revised historical simulation | AGI Scorecard</title>
+    <link href="https://agiscorecard.com/does-copying-13f-work"/>
+    <id>https://agiscorecard.com/does-copying-13f-work</id>
+    <updated>2026-09-28T00:00:00Z</updated>
+    <summary>Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.</summary>
   </entry>
   <entry>
     <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
@@ -58,13 +72,6 @@
     <id>https://agiscorecard.com/calibration</id>
     <updated>2026-09-27T00:00:00Z</updated>
     <summary>How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here.</summary>
-  </entry>
-  <entry>
-    <title>AGI Consensus Board: What Forecasters Put on AGI by 2027–2040</title>
-    <link href="https://agiscorecard.com/agi-prediction-markets"/>
-    <id>https://agiscorecard.com/agi-prediction-markets</id>
-    <updated>2026-09-26T00:00:00Z</updated>
-    <summary>Snapshot 2026-09-26: median across 2 forecasting series on &#x27;AGI before 2027/2028/2030/2035/2040&#x27; — before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%) — with spread, each series&#x27; resolution basis and a published recompute formula. No bets, no affiliate links.</summary>
   </entry>
   <entry>
     <title>预言 AGI 2027 的基金，7 月爆仓了 | AGI 记分牌</title>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/amodei-white-collar-bloodbath-prediction</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>Dario Amodei&#x27;s May 2025 call: half of entry-level white-collar jobs gone, 10–20% unemployment, in 1–5 years. Graded against the data as of Sept 2026.</summary>
-  </entry>
-  <entry>
-    <title>Will AI Cause Mass Unemployment? What the Data Shows (2026)</title>
-    <link href="https://agiscorecard.com/will-ai-cause-mass-unemployment"/>
-    <id>https://agiscorecard.com/will-ai-cause-mass-unemployment</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>Not the overnight jobs cliff the headlines predict. AI has crossed capability thresholds (~83% GDPval) but reliable unsupervised job replacement is undemonstrated.</summary>
   </entry>
 </feed>
