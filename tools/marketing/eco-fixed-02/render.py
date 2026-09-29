@@ -1,5 +1,6 @@
-"""ECO launch: original vector artwork, real calculator capture, English voice/captions.
-Run with /tmp/bpj-voice-env/bin/python create_video.py
+"""ECO fixed-fee experiment: original infographics, English synthetic voice/captions.
+Requires Pillow, numpy, soundfile, onnxruntime, kokoro_onnx and ffmpeg.
+Set ECO_OUTPUT and KOKORO_MODEL_DIR to existing local directories.
 """
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
@@ -9,7 +10,7 @@ import soundfile as sf
 import onnxruntime as ort
 from kokoro_onnx import Kokoro
 import os
-R=Path(os.environ.get('ECO_OUTPUT', '/workspace/scratch/031696b11ddb/eco-fixed-media'));R.mkdir(parents=True,exist_ok=True);W=R/'work';W.mkdir(exist_ok=True)
+R=Path(os.environ.get('ECO_OUTPUT', 'eco-fixed-media'));R.mkdir(parents=True,exist_ok=True);W=R/'work';W.mkdir(exist_ok=True)
 FONT='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf';BOLD='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
 BG='#F4F2E9';INK='#153D31';GREEN='#237452';MINT='#D9E9D9';PEACH='#F5CBB0';GRAY='#52635A'
 SCENES=[('THE FIXED-FEE TRAP', 'Lower rate. Higher bill.', 'Compare the whole annual cost, not just the price per kWh.', 'A lower electricity unit price can still mean a higher annual bill.', 6, 'hook'), ('INVENTED OFFERS', 'Three cents cheaper?', 'A: EUR 0.30/kWh + EUR 120/year. B: EUR 0.27/kWh + EUR 240/year.', 'In this invented example, A charges thirty cents per kilowatt hour. B charges twenty seven, but doubles the annual fixed fee.', 11, 'inputs'), ('AT 3,500 KWH / YEAR', 'B costs EUR 15 more.', 'A = EUR 1,170. B = EUR 1,185. No bonuses or switching costs.', 'At three thousand five hundred kilowatt hours, A costs eleven seventy euros. B costs eleven eighty five. The cheaper unit rate loses.', 11, 'costs'), ('THE BREAK-EVEN', '4,000 kWh per year', 'EUR 120 extra fixed fee / EUR 0.03 unit saving = 4,000 kWh.', 'The extra fixed fee is one hundred twenty euros. Divide by the three cent saving. Both offers cost the same at four thousand kilowatt hours.', 12, 'saving'), ('USE YOUR OWN BILL', 'Your usage decides.', 'Below 4,000: A costs less. Above 4,000: B costs less.', 'Below that usage, A costs less. Above it, B costs less. These are fictional constant prices, not a savings forecast.', 10, 'terms'), ('FREE TOOL · NO ACCOUNT', 'Compare your two offers.', 'Type the address shown below into your browser.', 'Use your own annual usage and both offers in the free EcoBack electricity workbench. Type the address on screen into your browser.', 11, 'cta')]
@@ -76,7 +77,7 @@ def frames():
 
 def voice():
  opts=ort.SessionOptions();opts.intra_op_num_threads=4;opts.inter_op_num_threads=1
- model=Kokoro.from_session(ort.InferenceSession('/tmp/bpj-voice-models/kokoro-v1.0.int8.onnx',sess_options=opts,providers=['CPUExecutionProvider']),'/tmp/bpj-voice-models/voices-v1.0.bin')
+ model=Kokoro.from_session(ort.InferenceSession(str(Path(os.environ.get('KOKORO_MODEL_DIR','/tmp/bpj-voice-models'))/'kokoro-v1.0.int8.onnx'),sess_options=opts,providers=['CPUExecutionProvider']),str(Path(os.environ.get('KOKORO_MODEL_DIR','/tmp/bpj-voice-models'))/'voices-v1.0.bin'))
  sr=24000;total=sum(s[4] for s in SCENES);audio=np.zeros(int((total+.1)*sr),dtype=np.float32);start=0;records=[]
  for i,(_,_,_,spoken,sec,_) in enumerate(SCENES):
   raw=W/f'voice-{i:02d}.wav'
