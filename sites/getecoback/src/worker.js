@@ -1,4 +1,5 @@
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
+import {videoGrowth} from './video-growth.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -1570,6 +1571,9 @@ export default {
     // /api/pulse:见 pulseCompute;从 Cache API 出(1 小时,键含部署版本),错误永不入缓存。
     if (url.pathname === "/api/pulse" && request.method === "GET") {
       return cachedJson(request, env, ctx, 3600, () => pulseCompute(url, env));
+    }
+    if (url.pathname === "/api/video-growth" && request.method === "GET") {
+      return cachedJson(request, env, ctx, 3600, () => videoGrowth(env));
     }
 
     if (url.pathname === "/api/trend") {

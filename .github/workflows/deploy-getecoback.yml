@@ -222,7 +222,9 @@ jobs:
         run: node tools/test_eu_evidence.cjs --discovery
 
       - name: Check every fired event is accepted by /api/ev
-        run: python3 tools/check_events.py
+        run: |
+          python3 tools/check_events.py
+          node --test tools/test_video_campaign.mjs
 
       - name: Check every affiliate block carries a Werbekennzeichnung
         run: python3 tools/check_adlabel.py
@@ -443,6 +445,7 @@ jobs:
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
+          check "https://getecoback.com/api/video-growth" '"metric":"events_not_users"'
           check "https://getecoback.com/api/pulse" '"ai_ref"' 
           check "https://getecoback.com/api/pulse" '"by_source"' 
           # 钱线(2026-09-21):money 必须是对象;查询坏了 worker 会回 null,这里就红
