@@ -1,0 +1,118 @@
+{
+  "en": {
+    "title": "AI interactive story maker — create, play & remix | Relay",
+    "capsule": "Relay is a free experimental AI interactive story maker for adults. Create a fictional story with three decisions, two options per decision and four possible endings. Edit an editorial starter or request an AI draft, preview it, then create an unlisted link that friends can play and remix without an account.",
+    "how": "How to make a choose-your-own-adventure story",
+    "steps": [
+      "Pick a starter or describe a fictional situation. AI requests are limited; editing a starter does not require AI.",
+      "Give each option a distinct consequence. Review all three scenes and four endings, then preview your story.",
+      "Create a share link and keep your recovery-key backup private. Send the link to a friend; they can play and publish their own remix."
+    ],
+    "faq": [
+      [
+        "Is Relay free?",
+        "Relay is a free experimental beta with no paid plan. AI generation is limited to three requests per network per UTC day and twelve requests across the site in a rolling 24-hour window, including failed calls. You can edit starters when AI is unavailable."
+      ],
+      [
+        "Do friends need an account?",
+        "No account is needed to play, edit or publish. Creation and publication are intended for adults aged 18 or older. Local recovery keys let the publisher remove their own links; keep a private backup."
+      ],
+      [
+        "What makes it an interactive story?",
+        "The reader makes three decisions and sees an immediate consequence after each one. The final ending depends on how many second options were chosen. This is a fictional game, not a personality assessment or a full branching game engine."
+      ],
+      [
+        "Are my stories private?",
+        "No. Stories are unlisted and are not placed in a public feed, but anyone with a link can read and copy them. Do not include personal information. Deleting your original does not remove remixes other people have already made."
+      ],
+      [
+        "Can I use AI or write everything myself?",
+        "Both. AI produces a draft that needs your review. You can also edit the title, scenes, choices, consequences and endings manually. This demo uses an editorial starter and manual edits; it does not pretend a preset is AI output."
+      ],
+      [
+        "What should I make for a group chat?",
+        "Try a fictional robot café, a friendly space expedition or an impossible dinner party. Ask one concrete question: what would you choose? Invite friends to change one scene and pass their version on. These are suggested uses, not tested customer results."
+      ]
+    ],
+    "watch": "Watch the 36-second demo",
+    "watchTitle": "Make a story your friends can change — Relay demo",
+    "watchDesc": "Watch a real Relay starter being played and edited. Three choices, four endings, and a link your friends can remix. Free experimental beta.",
+    "sceneTitles": [
+      "Coffee that tastes like Friday?",
+      "Three choices. One small adventure.",
+      "Your choices lead to an ending.",
+      "Change the story. Make it yours.",
+      "Play it. Remix it. Pass it on."
+    ],
+    "captions": [
+      "Your robot customer wants coffee that tastes like Friday. Ask questions, or improvise?",
+      "Pick an option and see what happens next. Your friend can choose differently.",
+      "Three decisions lead to one of four endings. It’s a fictional game, not a personality test.",
+      "Edit a starter, or ask AI for a draft. Review the scenes and endings before sharing.",
+      "Create an unlisted link for friends to play and remix. Try Relay free. AI requests are limited."
+    ],
+    "disclosure": "Real product screens, editorial starter and manual edits. Animated storytelling, original background music and synthetic English narration. No customer results or generation speed claims.",
+    "cta": "Try the robot café",
+    "transcript": "Video transcript",
+    "download": "Download the vertical video",
+    "guide": "Read the creation guide"
+  },
+  "zh": {
+    "title": "AI 互动故事生成器：创作、试玩、分享与改编 | 接力",
+    "capsule": "接力是面向成年用户的免费 AI 互动故事创作实验。每个故事包含三次决定、每次两个选项和四种可能结局。你可以改写编辑示例，也可以请求 AI 草稿，检查并试玩后生成不进入公开列表的链接；朋友无需注册即可游玩和改编。",
+    "how": "怎样制作一个朋友能玩的互动故事",
+    "steps": [
+      "选择示例，或描述一个虚构情景。AI 调用有额度限制；直接编辑示例无需调用 AI。",
+      "给每个选项写出不同的即时后果。检查三轮情景和四种结局，再试玩自己的版本。",
+      "创建分享链接，私密保存恢复密钥。把作品链接发给朋友；朋友可以游玩，再发布自己的改编版。"
+    ],
+    "faq": [
+      [
+        "接力免费吗？",
+        "当前是免费实验版，没有付费套餐。AI 每个网络按 UTC 日最多调用 3 次，全站滚动 24 小时最多 12 次，失败也计入额度。AI 不可用时，仍可直接编辑示例。"
+      ],
+      [
+        "朋友需要注册账号吗？",
+        "游玩、编辑和发布都不需要注册。创作与发布面向年满 18 岁的用户。本机保存的恢复密钥用于移除自己的作品链接，请私密备份。"
+      ],
+      [
+        "故事怎样根据选择变化？",
+        "读者做三次决定，每次看到即时后果；最终按选择第二个选项的次数显示四种结局之一。这是虚构游戏，不是人格测评，也不是完整的分支游戏引擎。"
+      ],
+      [
+        "作品链接是私密的吗？",
+        "不是。作品不进入公开信息流，但任何获得链接的人都能阅读和复制。请勿放入个人信息。删除原作不会删除他人已经完成的改编。"
+      ],
+      [
+        "可以自己写，也可以用 AI 写吗？",
+        "都可以。AI 只生成需要你审核的草稿；你也可以手动修改标题、情景、选项、后果和结局。演示视频使用编辑示例及手动修改，没有把预设冒充 AI 输出。"
+      ],
+      [
+        "适合给群聊做什么故事？",
+        "可以尝试机器人咖啡馆、友好的太空探险或不可能的晚餐聚会。先问一个具体问题：你会怎么选？再邀请朋友改写一个情景并接力分享。这些是建议场景，不是已验证的客户案例。"
+      ]
+    ],
+    "watch": "观看 36 秒演示",
+    "watchTitle": "做一个朋友愿意改编的故事：接力演示",
+    "watchDesc": "观看接力真实示例的游玩和编辑过程。三个选择、四种结局，让朋友无需注册就能游玩和改编。免费实验版。",
+    "sceneTitles": [
+      "“像周五一样的咖啡”？",
+      "三个选择，一次小冒险。",
+      "选到你自己的结局。",
+      "改写故事，成为你的版本。",
+      "玩完，改编，再传给朋友。"
+    ],
+    "captions": [
+      "机器人客人点了一杯“像周五一样的咖啡”。先问口味，还是自由发挥？",
+      "选择一个选项，看接下来发生什么。朋友也许会选另一条路。",
+      "三次决定，对应四种可能结局。这是虚构游戏，不是人格测评。",
+      "改写示例，或请 AI 生成草稿。分享前，检查情景和每一种结局。",
+      "创建链接，让朋友游玩并接力改编。免费实验版，AI 调用有额度限制。"
+    ],
+    "disclosure": "真实产品画面；编辑示例与手动修改。中文字幕、原创背景音乐，无配音。未展示虚构用户或生成速度。",
+    "cta": "试玩机器人咖啡馆",
+    "transcript": "视频文字稿",
+    "download": "下载竖屏视频",
+    "guide": "阅读创作指南"
+  }
+}

@@ -34,7 +34,7 @@ export async function createRoute(request,env){
     if(!validID(b.id))throw Error('invalid_request');await db.batch([db.prepare("UPDATE relay_stories SET status='deleted',story='{}',owner_hash='' WHERE id=?").bind(b.id),db.prepare('DELETE FROM relay_reports WHERE story=?').bind(b.id)]);return json({ok:true});
    }
    if(b.operation==='queue')return json({ok:true,reports:(await db.prepare("SELECT r.story,r.reason,r.created,s.story content FROM relay_reports r JOIN relay_stories s ON s.id=r.story WHERE s.status='unlisted' ORDER BY r.created DESC LIMIT 50").all()).results});
-   await cleanup(db);return json({ok:true,version:VERSION,stories:(await db.prepare("SELECT depth,COUNT(*) n FROM relay_stories WHERE created>=? AND test=0 AND status='unlisted' GROUP BY depth").bind(now()-28*86400).all()).results,events:(await db.prepare("SELECT action,COUNT(*) browser_story_days,COUNT(DISTINCT actor) browsers FROM relay_events WHERE day>=date('now','-27 days') GROUP BY action").all()).results,reports:await db.prepare('SELECT COUNT(*) n FROM relay_reports').first()});
+   await cleanup(db);return json({ok:true,version:VERSION,stories:(await db.prepare("SELECT depth,COUNT(*) n FROM relay_stories WHERE created>=? AND test=0 AND status='unlisted' GROUP BY depth").bind(now()-28*86400).all()).results,events:(await db.prepare("SELECT action,COUNT(*) browser_story_days,COUNT(DISTINCT actor) browsers FROM relay_events WHERE day>=date('now','-27 days') GROUP BY action").all()).results,acquisition:(await db.prepare("SELECT day,campaign,source,evidence,action,COUNT(*) browser_days FROM relay_acquisition WHERE day>=date('now','-27 days') GROUP BY day,campaign,source,evidence,action").all()).results,reports:await db.prepare('SELECT COUNT(*) n FROM relay_reports').first()});
   }
   if(b.action==='generate'){
    if(b.consent!==true||typeof b.prompt!=='string'||b.prompt.trim().length<8||b.prompt.length>400||!['zh','en'].includes(b.lang))throw Error('invalid_request');
@@ -70,6 +70,11 @@ export async function createRoute(request,env){
   }
   if(b.action==='report'){
    if(!validID(b.id)||!['privacy','abuse','spam','rights'].includes(b.reason)||!await storyRow(db,b.id))throw Error('invalid_request');await limit(db,'report:'+ip,5);await db.prepare('INSERT OR IGNORE INTO relay_reports(story,actor,reason,created) VALUES(?,?,?,?)').bind(b.id,ip,b.reason,now()).run();return json({ok:true});
+  }
+  if(b.action==='acquisition'){
+   if(b.consent!==true||!validID(b.actor)||!['organic','relay-friends-01'].includes(b.campaign)||!['youtube','tiktok','google','bing','ai','owned','direct','other'].includes(b.source)||!['referrer','tag_only','unattributed'].includes(b.evidence)||!['open','start','complete','remix','publish'].includes(b.event))throw Error('invalid_request');
+   await limit(db,'events:'+ip,60);await limit(db,'events-global',2000);
+   await db.prepare("INSERT OR IGNORE INTO relay_acquisition(day,actor,campaign,source,evidence,action) VALUES(date('now'),?,?,?,?,?)").bind(await hash(env.MEMBER_WATCH_SECRET+':relay-actor:'+b.actor),b.campaign,b.source,b.evidence,b.event).run();return json({ok:true});
   }
   if(b.action==='event'){
    if(b.consent!==true||!validID(b.actor)||!['open','complete','remix','share_intent','publish'].includes(b.event)||!validID(b.id))throw Error('invalid_request');

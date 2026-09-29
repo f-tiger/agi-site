@@ -7,11 +7,18 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-29T00:00:00Z</updated>
+  <updated>2026-09-30T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
   <entry>
-    <title>Relay — make a story your friends can change</title>
+    <title>Make a story your friends can change — Relay demo</title>
+    <link href="https://agiscorecard.com/relay-demo"/>
+    <id>https://agiscorecard.com/relay-demo</id>
+    <updated>2026-09-30T00:00:00Z</updated>
+    <summary>Watch a real Relay starter being played and edited. Three choices, four endings, and a link your friends can remix. Free experimental beta.</summary>
+  </entry>
+  <entry>
+    <title>AI interactive story maker — create, play &amp; remix | Relay</title>
     <link href="https://agiscorecard.com/create"/>
     <id>https://agiscorecard.com/create</id>
     <updated>2026-09-29T00:00:00Z</updated>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/can-ai-replace-knowledge-workers</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>Aschenbrenner predicted frontier AI would outpace college graduates on knowledge work by 2025/26.</summary>
-  </entry>
-  <entry>
-    <title>Should You Worry About AI Taking Your Job? (Sep 2026)</title>
-    <link href="https://agiscorecard.com/ai-and-your-job"/>
-    <id>https://agiscorecard.com/ai-and-your-job</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>A dated verdict: fear (79%) vs the economy-wide record (4.2% unemployment, no discernible disruption) vs one real early signal: ages 22–25 in exposed jobs.</summary>
   </entry>
 </feed>
