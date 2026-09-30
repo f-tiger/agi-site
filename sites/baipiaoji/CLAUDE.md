@@ -965,3 +965,11 @@ Owner要求调用技能改善商业触发。协议见根仓 `docs/bpj-commercial
 - **判定线**:`bpj-claim-first-1026`(≥1 真实认领)、`bpj-claim-layer-1125`(≥5 host 且 ≥1 更正上站)。t0 全 0。
 - **处理排队更正的规矩**:读 `data/claims.json`(或 `/api/claim?export=1`)的 `attestations`,逐条打开 `official_url` 核对;对的走 limits-edit,
   错的不理;处理完把 D1 里对应行 status 改成 `applied` / `rejected`(会话带 Cloudflare MCP 时做)。
+
+## 2026-09-30 Codex Efficiency Skill / Pro implementation
+
+Owner explicitly approved the v5 Skill-first, paid-from-launch design and instructed execution. This is an exception to the historical Studio expansion hold for this product only. PRD: `docs/PRD-codex-efficiency-2026-09-30.md`; operations: `docs/codex-efficiency-operations.md`; distribution: `products/codex-efficiency/`.
+
+Free local Skill and explicit numeric-summary trial; Pro offer 19 USDT / 30 days, three projects and 100 evaluations, manual renewal. Dedicated `ce_*` tables and device-scoped credentials; no inherited 9-USDT member entitlement. Existing BPJ member-watch also runs the bounded product watcher; other sites remain excluded. Never upload raw session logs or print the CLI credential file. Code/CI tests use fixtures, not customer savings or live payment evidence.
+
+Checkout defaults closed until owner enablement and live readiness; do not silently flip `CODEX_EFFICIENCY_ENABLED` or treat development tests as paid-service acceptance. Support/refunds require operator handling; the admin endpoint verifies a completed external refund and never sends money. Install and pricing are discoverable through bilingual Studio/coding/search/sitemap/llms. No new schedule or external marketing post. Checkpoints: `bpj-codex-efficiency-ready-1007`, `bpj-codex-efficiency-paid-1030`; commercial day 0 starts when checkout actually opens.

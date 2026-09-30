@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-28",
+ "updated": "2026-09-30",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -2398,6 +2398,28 @@
    "win": "冬季读者会播视频 → 给下一批有搜索访问的冬季页补核实视频",
    "lose": "0–1 次 → 视频只在夏季高流量页有人看,冬季页不再加视频(保留不撤,零维护)",
    "source": "sites/getecoback/docs/growth-benchmark-2026-09-27.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-codex-efficiency-ready-1007",
+   "site": "baipiaoji",
+   "due": "2026-10-07",
+   "metric": "Codex Efficiency local/CI/browser/security gates plus live CLI trial and operator payment/refund readiness",
+   "threshold": "All technical gates and explicit operator readiness; do not count mocked chain as real payment acceptance",
+   "win": "Owner may enable product checkout; record commercial day 0 and cohort denominators",
+   "lose": "Keep checkout closed; fix concrete delivery blocker; no expansion or revenue claims",
+   "source": "sites/baipiaoji/docs/PRD-codex-efficiency-2026-09-30.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-codex-efficiency-paid-1030",
+   "site": "baipiaoji",
+   "due": "2026-10-30",
+   "metric": "Qualified-offer cohort and server-confirmed non-QA/nonrefunded purchases with Pro usage, measured from actual checkout opening",
+   "threshold": "At 14 live days:20 qualified offers/3 paying users all using Pro. At30 live days:50 qualified offers/10 paid/7 repeat. First10 eligible renewals:6; cost<=3 USDT equivalent/cycle. If launch delayed, insufficient and reset dates explicitly.",
+   "win": "Improve repeat project value and distribution using measured buyer feedback",
+   "lose": "50 qualified offers and fewer than3 buyers:stop feature expansion and revisit offer; low distribution alone is insufficient evidence of no demand",
+   "source": "sites/baipiaoji/docs/PRD-codex-efficiency-2026-09-30.md",
    "status": "open"
   }
  ]

@@ -13,6 +13,7 @@ import { lmHashOf } from './lastmod-hash.mjs';
 import { toolEvidence, evidenceSummary } from './tool-evidence.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
+import {efficiencyEntry} from './codex-efficiency-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
@@ -2265,7 +2266,7 @@ function categoryPage(key, label) {
         return `<p class="coverage"><a href="#limits">${line}</a></p>${key === 'api' && APIQ ? `
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html"><b>${LOCALE.code === 'zh' ? '新：输入你的用量，一算便知哪家免费档扛得住 →' : 'New: enter your usage and see which free tier holds →'}</b></a></p>` : ''}${key === 'video' && VIDQ ? `
     <p class="coverage"><a href="${BASE}/video-quota-planner.html"><b>${LOCALE.code === 'zh' ? '新：13 家给多少、换多少、能不能商用，一页对照 →' : 'New: what 13 vendors grant, what it buys, and whether you may publish — one board →'}</b></a></p>` : ''}${key === 'video' && PIPES ? `
-    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' ? pilotEntry(BASE,LOCALE.code === 'zh','coding') : ''}${key === 'coding' && CODQ ? `
+    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' ? efficiencyEntry(BASE,LOCALE.code === 'zh') + pilotEntry(BASE,LOCALE.code === 'zh','coding') : ''}${key === 'coding' && CODQ ? `
     <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '新：你在付的这几个订阅，哪个可以先停？一页体检 →' : 'New: which of the AI subscriptions you pay for can go? One-page audit →'}</b></a></p>
     <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：19 家扣的是补全、请求还是 Credits？一页对照 →' : 'New: do these 19 meter completions, requests or credits? One board →'}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
     <p class="coverage"><a href="${BASE}/chat-limits-board.html"><b>${LOCALE.code === 'zh' ? '新：「每天能聊几条」问错了——10 家里 8 家不公布条数，该问墙在哪 →' : 'New: "how many messages a day" is the wrong question — 8 of 10 publish no count →'}</b></a></p>` : ''}${key === 'image' && IMGQ ? `
@@ -8175,6 +8176,7 @@ ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：$
 ## BPJ 自研工具 / First-party BPJ tools
 
 - [收费应用验收试点 / Paid app review pilot](${site.base_url}/studio/release-check): 准备清单、虚构报告示例、拟议 $299 单次范围。只收申请，不收款、不执行应用测试。EN: ${site.base_url}/en/studio/release-check
+- [Codex 效率 Skill / Codex Efficiency](https://baipiaoji.com/studio/codex-efficiency): 免费本地诊断；可选 Pro 项目规则和反复评估，19 USDT / 30 天，首次一次完整评估免费，无节省保证。EN: https://baipiaoji.com/en/studio/codex-efficiency
 - [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
 - [PDF 整理 / PDF workbench](${site.base_url}/studio/pdf-tools): 本地合并、选页重排、旋转和图片转 PDF，免费导出；无 OCR、Word 转换或 PDF 压缩。EN: ${site.base_url}/en/studio/pdf-tools
 - [商品图批处理 / Product image batch tools](${site.base_url}/studio/product-images): 本地批量改尺寸、裁切、格式转换、压缩和图片 / ZIP 导出；纯色背景处理不是 AI 抠图。EN: ${site.base_url}/en/studio/product-images
