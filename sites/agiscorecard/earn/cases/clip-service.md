@@ -1,112 +1,14 @@
- Earn with AI / Video services Video services
+# Turn one client recording into three useful clips | AGI Scorecard
 
-Turn one client recording into three useful clips
+_Source review：2026-09-30_
 
 Learn the editing workflow, then scope a small repurposing service around material the client already owns.
 
-Build my project plan Save Share this case What is verified?
+---
+Canonical page: https://agiscorecard.com/earn/cases/clip-service
+Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)
+This Markdown mirror is generated from the page; the HTML page is canonical.
 
-Source link and published description reviewed. No independent workflow test or earnings audit.
+## Delivery guidance
 
-The project brief below is AGI editorial guidance, not the creator’s offer.
-
-Source review：2026-09-30 
-
-Watch the source
-
-YouTube Source Review Deliver Turn one client recording into three useful clips Kevin Stratvert / David DeWinter ▶ Load YouTube player Loading connects to YouTube and shares device/network data. No autoplay. Playback may be unavailable by region or creator settings.
-
-Open original on YouTube 
-
-Descript Tutorial: Master AI Video Editing in 15 Minutes! By Kevin Stratvert / David DeWinter · Original source is in English
-
-Creator’s accompanying article 
-
-
-
-The business brief
-
-Potential buyer
-
-A consultant or podcast team with existing recordings and no regular editing capacity.
-
-Defined delivery
-
-Three captioned vertical clips, one revision round and a source-to-clip timecode sheet.
-
-Where you add value
-
-Select a complete idea and preserve its context. Automatic highlight selection alone is not the service.
-
-What could fail
-
-The client may already have a capable editor. Revisions, caption correction and finding usable moments can consume the margin.
-
-Demand test
-
-Prepare one permissioned sample. Ask a relevant buyer whether they would pay for the defined three-clip delivery, and record the reason if not.
-
-
-
-A delivery you can check
-
-Confirm rights to the source, speakers, music and distribution channels.
-
-Choose three self-contained ideas and record their source timecodes.
-
-Edit the clips; check names, subtitles, framing and audio on a phone.
-
-Agree revision limits and deliver exports with the source mapping.
-
-Acceptance gate
-
-Pass only when all three clips preserve the meaning and the buyer accepts the scope. Views are not evidence of a sale.
-
-Visit the tool’s official site Ordinary source link; no affiliate commission is configured here. Check current tool pricing before buying.
-
-
-
-Build your project plan
-
-Illustrative numbers, not market prices. Replace every assumption. Inputs stay in this browser.
-
-Use this case as a starting point Your target customer What you will deliver Your next demand test Your notes / acceptance criteria Before you promise delivery I have permission to use the inputs, likenesses and music. I have defined deliverables, revision limits and acceptance criteria. I have tested the output and recorded the failures. A relevant buyer has responded to the scope and price. Price the actual work
-
-Currency (no conversion) USD CNY EUR GBP Production hours Review & revision hours Labor cost per hour Allocated tools & materials Payment/platform fee (%) Target contribution margin (%) Price you want to test Cost = labor + revisions + allocated expenses. Target price = cost ÷ (1 − fee rate − target margin). Contribution includes your entered labor cost, but excludes taxes and any omitted overhead. This is not a revenue forecast.
-
-Download my project plan Save on this device Export backup Restore backup Delete local plan Device storage can be cleared. Export a backup. Nothing is uploaded by this planner. Completing checkboxes is self-report, not certification.
-
-Embed this planner on your site The embedded planner has the same free local features. No creator video loads automatically.
-
-<iframe src="https://agiscorecard.com/earn/cases/clip-service?embed=1" title="Turn one client recording into three useful clips" width="100%" height="1000" loading="lazy"></iframe> Copy embed code 
-
-Continue your workflow
-
-WorkflowCost Calculate retries, review and recurring operating costs. EvidenceBrief Record buyer evidence and reasons to stop. AGI cloud membership Cloud saves for these workbench tools. This planner stays local. 
-
-Try another delivery
-
-YouTube Source Review Deliver Make a product tutorial a customer can follow Descript ▶ Video services · Getting started
-
-Make a product tutorial a customer can follow 
-
-Use a vendor tutorial as a learning reference; sell a clear walkthrough of a real customer task.
-
-Watch & plan Save YouTube Source Review Deliver Prototype a narrowly scoped FAQ assistant n8n ▶ Automation · Some setup required
-
-Prototype a narrowly scoped FAQ assistant 
-
-Start with the official n8n introduction, then test one bounded support task with a human fallback.
-
-Watch & plan Save YouTube Source Review Deliver Deliver a checked set of product-image variations Business Automated ▶ Product visuals · Some setup required
-
-Deliver a checked set of product-image variations 
-
-A creator’s workflow connects Airtable, Make and image generation. Our project brief adds product-accuracy checks and a bounded delivery scope.
-
-Watch & plan Save 
-
-
-
-Canonical: https://agiscorecard.com/earn/cases/clip-service
-Generated from the HTML page. Original media belongs to its creators.
+Earn with AI / Video services Video services Turn one client recording into three useful clips Learn the editing workflow, then scope a small repurposing service around material the client already owns. Build my project plan Save Share this case What is verified? Source link and published description reviewed. No independent workflow test or earnings audit. The project brief below is AGI editorial guidance, not the creator’s offer. Source review：2026-09-30 Watch the source YouTube Source Review Deliver Turn one client recording into three useful clips Kevin Stratvert / David DeWinter ▶ Load YouTube player Loading connects to YouTube and shares device/network data. No autoplay. Playback may be unavailable by region or creator settings. Open original on YouTube Descript Tutorial: Master AI Video Editing in 15 Minutes! By Kevin Stratvert / David DeWinter · Original source is in English Creator’s accompanying article The business brief Potential buyer A consultant or podcast team with existing recordings and no regular editing capacity. Defined delivery Three captioned vertical clips, one revision round and a source-to-clip timecode sheet. Where you add value Select a complete idea and preserve its context. Automatic highlight selection alone is not the service. What could fail The client may already have a capable editor. Revisions, caption correction and finding usable moments can consume the margin. Demand test Prepare one permissioned sample. Ask a relevant buyer whether they would pay for the defined three-clip delivery, and record the reason if not. A delivery you can check Confirm rights to the source, speakers, music and distribution channels. Choose three self-contained ideas and record their source timecodes. Edit the clips; check names, subtitles, framing and audio on a phone. Agree revision limits and deliver exports with the source mapping. Acceptance gate Pass only when all three clips preserve the meaning and the buyer accepts the scope. Views are not evidence of a sale. Visit the tool’s official site Ordinary source link; no affiliate commission is configured here. Check current tool pricing before buying. Build your project plan Illustrative numbers, not market prices. Replace every assumption. Inputs stay in this browser. Use this case as a starting point Your target customer What you will deliver Your next demand test Your notes / acceptance criteria Before you promise delivery I have permission to use the inputs, likenesses and music. I have defined deliverables, revision limits and acceptance criteria. I have tested the output and recorded the failures. A relevant buyer has responded to the scope and price. Price the actual work Currency (no conversion) USD CNY EUR GBP Production hours Review & revision hours Labor cost per hour Allocated tools & materials Payment/platform fee (%) Target contribution margin (%) Price you want to test Cost = labor + revisions + allocated expenses. Target price = cost ÷ (1 − fee rate − target margin). Contribution includes your entered labor cost, but excludes taxes and any omitted overhead. This is not a revenue forecast. Download my project plan Save on this device Export backup Restore backup Delete local plan Device storage can be cleared. Export a backup. Nothing is uploaded by this planner. Completing checkboxes is self-report, not certification. Embed this planner on your site The embedded planner has the same free local features. No creator video loads automatically. <iframe src="https://agiscorecard.com/earn/cases/clip-service?embed=1" title="Turn one client recording into three useful clips" width="100%" height="1000" loading="lazy"></iframe> Copy embed code Continue your workflow WorkflowCost Calculate retries, review and recurring operating costs. EvidenceBrief Record buyer evidence and reasons to stop. AGI cloud membership Cloud saves for these workbench tools. This planner stays local. Try another delivery GitHub · project reference Source Review Deliver Find silent failures in an existing workflow healthchecks/healthchecks Read Automation · Some setup required Find silent failures in an existing workflow Use job monitoring and output reconciliation to scope a bounded maintenance service. HTTP uptime alone cannot prove a business job completed. Watch & plan Save GitHub · project reference Source Review Deliver Check an AI-built website before launch microsoft/playwright Read Automation · Some setup required Check an AI-built website before launch Run a small browser baseline, then review three customer journeys. Sell reproducible findings and agreed fixes, not a universal quality score. Watch & plan Save GitHub · project reference Source Review Deliver Deliver reviewed subtitles for one product tutorial SubtitleEdit/subtitleedit Read Video services · Some setup required Deliver reviewed subtitles for one product tutorial Start with a client-owned SRT and one target language. Check timing locally, then review names, numbers and meaning with a qualified reader. Watch & plan Save

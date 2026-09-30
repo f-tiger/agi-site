@@ -1,110 +1,14 @@
- Earn with AI / Interactive design Interactive design
+# Build a small AI effect prototype for a brand | AGI Scorecard
 
-Build a small AI effect prototype for a brand
+_Source review：2026-09-30_
 
 Use the official Effect House guide to explore an effect concept. This is a guide reference, not a verified earnings case.
 
-Build my project plan Save Share this case What is verified?
+---
+Canonical page: https://agiscorecard.com/earn/cases/tiktok-effect-prototype
+Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)
+This Markdown mirror is generated from the page; the HTML page is canonical.
 
-Source link and published description reviewed. No independent workflow test or earnings audit.
+## Delivery guidance
 
-The project brief below is AGI editorial guidance, not the creator’s offer.
-
-Source review：2026-09-30 
-
-Read the official guide
-
-TikTok · official guide Source Review Deliver Build a small AI effect prototype for a brand TikTok Effect House Read This entry is an official written guide. No verified TikTok creator video is attached.
-
-Open original on TikTok 
-
-Create an AI Effect Using AI Editor By TikTok Effect House · Original source is in English
-
-
-
-The business brief
-
-Potential buyer
-
-A brand or creative studio with a specific interactive concept and a review contact.
-
-Defined delivery
-
-One effect prototype, a device-test checklist and a handover note.
-
-Where you add value
-
-Match the effect to a concrete brand interaction and test whether a new user understands it without explanation.
-
-What could fail
-
-Publication and reward eligibility are platform decisions. An effect can work technically and attract no buyers or usage.
-
-Demand test
-
-Get concept approval before building. Test on representative devices and confirm the brand wants the defined delivery.
-
-
-
-A delivery you can check
-
-Define one interaction and obtain permission for all brand assets.
-
-Customize a small effect in Effect House; keep the first version narrow.
-
-Test appearance, responsiveness and usability on real devices.
-
-Document limitations and submission requirements before handing it over.
-
-Acceptance gate
-
-The prototype passes agreed device tests. No reward amount, platform approval or audience size is promised.
-
-Visit the tool’s official site Ordinary source link; no affiliate commission is configured here. Check current tool pricing before buying.
-
-
-
-Build your project plan
-
-Illustrative numbers, not market prices. Replace every assumption. Inputs stay in this browser.
-
-Use this case as a starting point Your target customer What you will deliver Your next demand test Your notes / acceptance criteria Before you promise delivery I have permission to use the inputs, likenesses and music. I have defined deliverables, revision limits and acceptance criteria. I have tested the output and recorded the failures. A relevant buyer has responded to the scope and price. Price the actual work
-
-Currency (no conversion) USD CNY EUR GBP Production hours Review & revision hours Labor cost per hour Allocated tools & materials Payment/platform fee (%) Target contribution margin (%) Price you want to test Cost = labor + revisions + allocated expenses. Target price = cost ÷ (1 − fee rate − target margin). Contribution includes your entered labor cost, but excludes taxes and any omitted overhead. This is not a revenue forecast.
-
-Download my project plan Save on this device Export backup Restore backup Delete local plan Device storage can be cleared. Export a backup. Nothing is uploaded by this planner. Completing checkboxes is self-report, not certification.
-
-Embed this planner on your site The embedded planner has the same free local features. No creator video loads automatically.
-
-<iframe src="https://agiscorecard.com/earn/cases/tiktok-effect-prototype?embed=1" title="Build a small AI effect prototype for a brand" width="100%" height="1000" loading="lazy"></iframe> Copy embed code 
-
-Continue your workflow
-
-WorkflowCost Calculate retries, review and recurring operating costs. EvidenceBrief Record buyer evidence and reasons to stop. AGI cloud membership Cloud saves for these workbench tools. This planner stays local. 
-
-Try another delivery
-
-YouTube Source Review Deliver Turn one client recording into three useful clips Kevin Stratvert / David DeWinter ▶ Video services · Getting started
-
-Turn one client recording into three useful clips 
-
-Learn the editing workflow, then scope a small repurposing service around material the client already owns.
-
-Watch & plan Save YouTube Source Review Deliver Make a product tutorial a customer can follow Descript ▶ Video services · Getting started
-
-Make a product tutorial a customer can follow 
-
-Use a vendor tutorial as a learning reference; sell a clear walkthrough of a real customer task.
-
-Watch & plan Save YouTube Source Review Deliver Prototype a narrowly scoped FAQ assistant n8n ▶ Automation · Some setup required
-
-Prototype a narrowly scoped FAQ assistant 
-
-Start with the official n8n introduction, then test one bounded support task with a human fallback.
-
-Watch & plan Save 
-
-
-
-Canonical: https://agiscorecard.com/earn/cases/tiktok-effect-prototype
-Generated from the HTML page. Original media belongs to its creators.
+Earn with AI / Interactive design Interactive design Build a small AI effect prototype for a brand Use the official Effect House guide to explore an effect concept. This is a guide reference, not a verified earnings case. Build my project plan Save Share this case What is verified? Source link and published description reviewed. No independent workflow test or earnings audit. The project brief below is AGI editorial guidance, not the creator’s offer. Source review：2026-09-30 Read the official guide TikTok · official guide Source Review Deliver Build a small AI effect prototype for a brand TikTok Effect House Read This entry is an official written guide. No verified TikTok creator video is attached. Open original on TikTok Create an AI Effect Using AI Editor By TikTok Effect House · Original source is in English The business brief Potential buyer A brand or creative studio with a specific interactive concept and a review contact. Defined delivery One effect prototype, a device-test checklist and a handover note. Where you add value Match the effect to a concrete brand interaction and test whether a new user understands it without explanation. What could fail Publication and reward eligibility are platform decisions. An effect can work technically and attract no buyers or usage. Demand test Get concept approval before building. Test on representative devices and confirm the brand wants the defined delivery. A delivery you can check Define one interaction and obtain permission for all brand assets. Customize a small effect in Effect House; keep the first version narrow. Test appearance, responsiveness and usability on real devices. Document limitations and submission requirements before handing it over. Acceptance gate The prototype passes agreed device tests. No reward amount, platform approval or audience size is promised. Visit the tool’s official site Ordinary source link; no affiliate commission is configured here. Check current tool pricing before buying. Build your project plan Illustrative numbers, not market prices. Replace every assumption. Inputs stay in this browser. Use this case as a starting point Your target customer What you will deliver Your next demand test Your notes / acceptance criteria Before you promise delivery I have permission to use the inputs, likenesses and music. I have defined deliverables, revision limits and acceptance criteria. I have tested the output and recorded the failures. A relevant buyer has responded to the scope and price. Price the actual work Currency (no conversion) USD CNY EUR GBP Production hours Review & revision hours Labor cost per hour Allocated tools & materials Payment/platform fee (%) Target contribution margin (%) Price you want to test Cost = labor + revisions + allocated expenses. Target price = cost ÷ (1 − fee rate − target margin). Contribution includes your entered labor cost, but excludes taxes and any omitted overhead. This is not a revenue forecast. Download my project plan Save on this device Export backup Restore backup Delete local plan Device storage can be cleared. Export a backup. Nothing is uploaded by this planner. Completing checkboxes is self-report, not certification. Embed this planner on your site The embedded planner has the same free local features. No creator video loads automatically. <iframe src="https://agiscorecard.com/earn/cases/tiktok-effect-prototype?embed=1" title="Build a small AI effect prototype for a brand" width="100%" height="1000" loading="lazy"></iframe> Copy embed code Continue your workflow WorkflowCost Calculate retries, review and recurring operating costs. EvidenceBrief Record buyer evidence and reasons to stop. AGI cloud membership Cloud saves for these workbench tools. This planner stays local. Try another delivery GitHub · project reference Source Review Deliver Find silent failures in an existing workflow healthchecks/healthchecks Read Automation · Some setup required Find silent failures in an existing workflow Use job monitoring and output reconciliation to scope a bounded maintenance service. HTTP uptime alone cannot prove a business job completed. Watch & plan Save GitHub · project reference Source Review Deliver Check an AI-built website before launch microsoft/playwright Read Automation · Some setup required Check an AI-built website before launch Run a small browser baseline, then review three customer journeys. Sell reproducible findings and agreed fixes, not a universal quality score. Watch & plan Save GitHub · project reference Source Review Deliver Deliver reviewed subtitles for one product tutorial SubtitleEdit/subtitleedit Read Video services · Some setup required Deliver reviewed subtitles for one product tutorial Start with a client-owned SRT and one target language. Check timing locally, then review names, numbers and meaning with a qualified reader. Watch & plan Save

@@ -18,7 +18,7 @@
 
 只有用户主动操作后才加载官方播放器，并会向平台发送网络及设备信息，适用平台条款与隐私政策。保留播放器控件和原站入口，不镜像或绕过被限制的视频。本地收藏链接不会提交公开审核。
 
-Google 隐私政策 · TikTok 隐私政策 
+Google 隐私政策 · TikTok 隐私政策
 
 商业关系
 
@@ -28,19 +28,19 @@ Google 隐私政策 · TikTok 隐私政策
 
 失效链接或事实问题可在 AGI 讨论区反馈。权利人可通过下方仓库问题入口提供案例网址和不含敏感信息的说明，不要公开身份证件。人工处理，不承诺响应时限；争议嵌入可在复核期间停用。
 
-AGI 讨论区 · 报告来源或权利问题 
+AGI 讨论区 · 报告来源或权利问题
 
 平台规则来源
 
-YouTube API policies 
+YouTube API policies
 
-YouTube embedding 
+YouTube embedding
 
-TikTok embeds 
+TikTok embeds
 
-TikTok player 
+TikTok player
 
-Google Search spam policies 
+Google Search spam policies
 
 上次编辑复核：2026-09-30
 

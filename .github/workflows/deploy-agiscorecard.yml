@@ -74,7 +74,7 @@ jobs:
       - name: Build and test Earn video project library
         run: |
           node sites/agiscorecard/tools/earn/build.mjs
-          node --test sites/agiscorecard/tools/earn/test.mjs
+          node --test sites/agiscorecard/tools/earn/test.mjs sites/agiscorecard/tools/earn/checks-test.mjs
 
 
       - name: Refresh bounded SEC annual snapshots and validate research contracts
