@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-29",
+ "fetched": "2026-09-30",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -152,44 +152,84 @@
    "fetched": "2026-09-29"
   },
   "mini massage gun": {
+   "auto": [
+    "mini massage gun",
+    "mini massage gun nearby",
+    "mini massage gun amazon",
+    "mini massage gun near me",
+    "mini massage gun for travel",
+    "mini massage gun walmart",
+    "mini massage gun reviews",
+    "mini massage gun price",
+    "mini massage gun with heat",
+    "mini massage gun ztech"
+   ],
    "rising": [
     {
-     "q": "massage gun near me",
-     "v": 350
+     "q": "mini massage gun nearby",
+     "v": "new"
     },
     {
-     "q": "sharper image massage gun",
-     "v": 100
+     "q": "mini massage gun amazon",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun near me",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun for travel",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun walmart",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun reviews",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun price",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun with heat",
+     "v": "new"
+    },
+    {
+     "q": "mini massage gun ztech",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-29"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-30"
   },
   "leg compression boots": {
    "rising": [
     {
-     "q": "quinear leg compression",
-     "v": 180
-    },
-    {
-     "q": "therabody leg compression",
-     "v": 110
+     "q": "anaconda",
+     "v": 1200
     },
     {
      "q": "therabody",
-     "v": 80
+     "v": 250
     },
     {
-     "q": "best leg compression sleeves",
-     "v": 70
+     "q": "therabody leg compression",
+     "v": 250
     },
     {
-     "q": "therabody compression boots",
+     "q": "costco compression boots",
+     "v": 190
+    },
+    {
+     "q": "best leg compression boots",
      "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-31"
+   "fetched": "2026-09-30"
   },
   "solar camping lights": {
    "auto": [
