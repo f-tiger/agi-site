@@ -38,3 +38,13 @@ Deployment is `f-tiger/agi-site` main via `deploy-agiscorecard.yml`. Public page
 ## Commercial review
 
 Review after thirty days (2026-10-30) or one hundred relevant landing visits, whichever is earlier. These are operational thresholds, not statistical claims. Low traffic means distribution remains untested. Treat cloud-save intents, pageviews and AI calls separately from paid orders and repeat research use. Continue investment only with concrete repeat-task evidence, completed paid orders and support/model costs that leave positive contribution. No outreach, promotion into third-party communities, synthetic testimonials or claimed revenue was performed by this release.
+
+## Verified release evidence
+
+- Published source commit: `5e79eaeacb236c83f9f2ff08933fd5f9e8d382c7`; local and remote source trees matched before publication.
+- Cloudflare version: `0a426bc7-f7e1-4e77-a6d5-4aa84605af10`, deployed on 2026-09-30. Run: https://github.com/f-tiger/agi-site/actions/runs/36693393699 .
+- All pre-deployment checks passed, including fresh SEC acquisition, both new browser flows, existing workbench tests and independent membership isolation. New live research checks and live membership readiness/protected-endpoint checks passed.
+- The overall workflow is red because its existing, separate Relay inference check returned `429 rate_limited`. Relay limits and that gate were preserved. Later workflow steps were skipped; a green overall workflow is not claimed.
+- Independent post-deployment requests returned HTTP 200 for both EN and ZH research pages, both investment-hub links, source snapshot `99add8cb0a52379cec8c`, and the membership catalog. The member public API reported `ready: true` for `agi`; no real order or paid grant was created.
+- Two real production inference requests (EN and ZH) each returned HTTP 200 and three research questions with valid IDs from that deployed snapshot. Chinese output was checked for Chinese text. This verifies a working model path and citation contract, not investment accuracy or reliable reasoning across all companies.
+- No customer purchase, revenue, retained user or market validation is claimed by these release checks.
