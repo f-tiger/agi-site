@@ -1,0 +1,112 @@
+ Earn with AI / Product visuals Product visuals
+
+Deliver a checked set of product-image variations
+
+A creator’s workflow connects Airtable, Make and image generation. Our project brief adds product-accuracy checks and a bounded delivery scope.
+
+Build my project plan Save Share this case What is verified?
+
+Source link and published description reviewed. No independent workflow test or earnings audit.
+
+The project brief below is AGI editorial guidance, not the creator’s offer.
+
+Source review：2026-09-30 
+
+Watch the source
+
+YouTube Source Review Deliver Deliver a checked set of product-image variations Business Automated ▶ Load YouTube player Loading connects to YouTube and shares device/network data. No autoplay. Playback may be unavailable by region or creator settings.
+
+Open original on YouTube 
+
+AI Product Packshots with Airtable + OpenAI By Business Automated · Original source is in English
+
+Creator’s accompanying article 
+
+
+
+The business brief
+
+Potential buyer
+
+A small shop needing secondary lifestyle images for existing products.
+
+Defined delivery
+
+Three approved variations for one SKU, a source register and a rejection log.
+
+Where you add value
+
+Preserve the actual product. Check labels, proportions, texture and included accessories against the source photograph.
+
+What could fail
+
+Generation may alter product facts. Tool costs rise with rejected outputs; beautiful but inaccurate images are not acceptable delivery.
+
+Demand test
+
+Try one SKU using authorized images. Ask the buyer to compare each output with the physical item before approving any publication.
+
+
+
+A delivery you can check
+
+Obtain product images and brand permission; list facts that cannot change.
+
+Produce a small batch, recording all attempts and paid generation costs.
+
+Reject changed labels, dimensions, materials or misleading use scenes.
+
+Deliver only approved assets with size specifications and usage notes.
+
+Acceptance gate
+
+No factual product mismatch in delivered images. Review the destination marketplace’s current image rules before publishing.
+
+Visit the tool’s official site Ordinary source link; no affiliate commission is configured here. Check current tool pricing before buying.
+
+
+
+Build your project plan
+
+Illustrative numbers, not market prices. Replace every assumption. Inputs stay in this browser.
+
+Use this case as a starting point Your target customer What you will deliver Your next demand test Your notes / acceptance criteria Before you promise delivery I have permission to use the inputs, likenesses and music. I have defined deliverables, revision limits and acceptance criteria. I have tested the output and recorded the failures. A relevant buyer has responded to the scope and price. Price the actual work
+
+Currency (no conversion) USD CNY EUR GBP Production hours Review & revision hours Labor cost per hour Allocated tools & materials Payment/platform fee (%) Target contribution margin (%) Price you want to test Cost = labor + revisions + allocated expenses. Target price = cost ÷ (1 − fee rate − target margin). Contribution includes your entered labor cost, but excludes taxes and any omitted overhead. This is not a revenue forecast.
+
+Download my project plan Save on this device Export backup Restore backup Delete local plan Device storage can be cleared. Export a backup. Nothing is uploaded by this planner. Completing checkboxes is self-report, not certification.
+
+Embed this planner on your site The embedded planner has the same free local features. No creator video loads automatically.
+
+<iframe src="https://agiscorecard.com/earn/cases/product-visuals?embed=1" title="Deliver a checked set of product-image variations" width="100%" height="1000" loading="lazy"></iframe> Copy embed code 
+
+Continue your workflow
+
+WorkflowCost Calculate retries, review and recurring operating costs. EvidenceBrief Record buyer evidence and reasons to stop. AGI cloud membership Cloud saves for these workbench tools. This planner stays local. 
+
+Try another delivery
+
+YouTube Source Review Deliver Turn one client recording into three useful clips Kevin Stratvert / David DeWinter ▶ Video services · Getting started
+
+Turn one client recording into three useful clips 
+
+Learn the editing workflow, then scope a small repurposing service around material the client already owns.
+
+Watch & plan Save YouTube Source Review Deliver Make a product tutorial a customer can follow Descript ▶ Video services · Getting started
+
+Make a product tutorial a customer can follow 
+
+Use a vendor tutorial as a learning reference; sell a clear walkthrough of a real customer task.
+
+Watch & plan Save YouTube Source Review Deliver Prototype a narrowly scoped FAQ assistant n8n ▶ Automation · Some setup required
+
+Prototype a narrowly scoped FAQ assistant 
+
+Start with the official n8n introduction, then test one bounded support task with a human fallback.
+
+Watch & plan Save 
+
+
+
+Canonical: https://agiscorecard.com/earn/cases/product-visuals
+Generated from the HTML page. Original media belongs to its creators.

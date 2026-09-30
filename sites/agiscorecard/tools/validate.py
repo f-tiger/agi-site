@@ -40,6 +40,8 @@ PAGES = sorted(
 )
 PAGES = [p for p in PAGES if os.sep + "tools" + os.sep not in p and os.sep + "." not in p]
 
+PAGES = sorted(set(PAGES + glob.glob(os.path.join(ROOT, "zh", "earn", "cases", "*.html"))))
+
 for f in PAGES:
     name = os.path.relpath(f, ROOT)
     html = open(f, encoding="utf-8").read()

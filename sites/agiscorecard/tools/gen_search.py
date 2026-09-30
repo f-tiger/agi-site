@@ -29,6 +29,8 @@ def field(pattern, html):
     m = re.search(pattern, html, re.S | re.I)
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", m.group(1))).strip() if m else ""
 
+PAGES = sorted(set(PAGES + glob.glob(os.path.join(ROOT, "earn", "cases", "*.html")) + glob.glob(os.path.join(ROOT, "zh", "earn", "*.html")) + glob.glob(os.path.join(ROOT, "zh", "earn", "cases", "*.html"))))
+
 entries = []
 for f in PAGES:
     html = open(f, encoding="utf-8").read()

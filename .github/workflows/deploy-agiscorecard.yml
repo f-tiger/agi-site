@@ -71,6 +71,12 @@ jobs:
           # grader consensus: selftest + committed JSON must equal a recompute from data.json + independent-grades.json
           python3 tools/gen_grader_consensus.py --selftest
           python3 tools/gen_grader_consensus.py --check
+      - name: Build and test Earn video project library
+        run: |
+          node sites/agiscorecard/tools/earn/build.mjs
+          node --test sites/agiscorecard/tools/earn/test.mjs
+
+
       - name: Refresh bounded SEC annual snapshots and validate research contracts
         run: |
           python3 sites/agiscorecard/tools/infrastructure/refresh.py
@@ -140,6 +146,7 @@ jobs:
           node tools/revenue-studio/browser-test.mjs
           node sites/agiscorecard/tools/browser_invest_research.cjs
           node sites/agiscorecard/tools/create/browser-test.mjs
+          node sites/agiscorecard/tools/earn/browser-test.mjs
           node tools/member-studio/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
@@ -187,6 +194,9 @@ jobs:
             if [ "$attempt" != "3" ]; then sleep 8; fi
           done
           exit 1
+
+      - name: Verify Earn library live release
+        run: node sites/agiscorecard/tools/earn/verify.mjs
 
       - name: Verify Relay live release
         run: node sites/agiscorecard/tools/create/verify.mjs
