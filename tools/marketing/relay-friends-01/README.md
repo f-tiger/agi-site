@@ -31,3 +31,6 @@ UTM-only evidence stays explicitly tag_only. Self-reported client events are not
 - https://developers.google.com/search/docs/fundamentals/ai-optimization-guide — grounded crawlable content, no special AI schema shortcut.
 - https://developers.google.com/search/docs/appearance/video — video-first watch pages and accurate metadata.
 These are published creative/search principles, not a measured sample of competitor viral clips or a guarantee of reach.
+
+## Storage correction — 2026-09-30
+Owner requested deletion of videos from the code repository. The three MP4s and hosted video manifest/sitemap were removed. Watch URLs now serve a text walkthrough and playable-app link. Rendering now defaults to /tmp/relay-marketing/exports (override RELAY_MEDIA_OUT), and video extensions are ignored by Git. Previous release descriptions above are historical, not current hosting claims. This normal deletion does not rewrite existing Git history.

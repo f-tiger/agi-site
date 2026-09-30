@@ -2,7 +2,7 @@
 
 _Reviewed: September 30, 2026_
 
-**Answer:** Watch a real Relay starter being played and edited. Three choices, four endings, and a link your friends can remix. Free experimental beta.
+**Answer:** Explore the robot café story: three choices, four endings and a version your friends can remix. Free experimental beta.
 
 ## FAQ
 

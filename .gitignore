@@ -10,3 +10,11 @@ node_modules/
 # TDS browser dependencies and assembled release are rebuilt from the lockfile.
 sites/thedollscout/document-assets/vendor/
 sites/thedollscout/dist/
+
+# Marketing videos belong in external media storage, not source control.
+*.mp4
+*.mov
+*.webm
+*.m4v
+*.avi
+*.mkv

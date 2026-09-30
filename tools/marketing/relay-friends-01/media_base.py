@@ -9,7 +9,7 @@ import numpy as np
 import soundfile as sf
 import onnxruntime as ort
 from kokoro_onnx import Kokoro
-HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2];OUT=ROOT/'sites/agiscorecard/create-assets/media';WORK=Path(os.getenv('RELAY_MEDIA_WORK','/tmp/relay-marketing'));OUT.mkdir(exist_ok=True);WORK.mkdir(exist_ok=True)
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2];WORK=Path(os.getenv('RELAY_MEDIA_WORK','/tmp/relay-marketing'));OUT=Path(os.getenv('RELAY_MEDIA_OUT',str(WORK/'exports')));OUT.mkdir(parents=True,exist_ok=True);WORK.mkdir(parents=True,exist_ok=True)
 COPY=json.loads((HERE/'content.json').read_text());DURS=[6,7,7,8,8];TOTAL=sum(DURS)
 BLUE='#002FA7';INK='#172641';BG='#FFFFFF';MUTED='#5A6476'
 ZH='/root/.local/share/fonts/NotoSansSC-700.ttf';EN='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';REG='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
