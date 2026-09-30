@@ -76,6 +76,12 @@ jobs:
           node sites/agiscorecard/tools/earn/build.mjs
           node --test sites/agiscorecard/tools/earn/test.mjs
 
+
+      - name: Refresh bounded SEC annual snapshots and validate research contracts
+        run: |
+          python3 sites/agiscorecard/tools/infrastructure/refresh.py
+          python3 sites/agiscorecard/tools/infrastructure/test_data.py
+          node --test sites/agiscorecard/tools/infrastructure/test.mjs
       - name: Validate Relay stories, permissions and cost caps
         run: node --test sites/agiscorecard/tools/create/test.mjs
 
@@ -144,6 +150,7 @@ jobs:
           node tools/member-studio/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          node sites/agiscorecard/tools/infrastructure/browser-test.mjs
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
@@ -194,7 +201,11 @@ jobs:
       - name: Verify Relay live release
         run: node sites/agiscorecard/tools/create/verify.mjs
 
+      - name: Verify live infrastructure research and membership catalog
+        run: node sites/agiscorecard/tools/infrastructure/verify.mjs
+
       - name: Verify real Relay AI generation within the existing quota
+        # A quota refusal remains a failed AI check; do not bypass or increase its budget.
         run: node sites/agiscorecard/tools/create/ai-check.mjs
 
       - name: Read Relay experiment aggregates and report backlog
@@ -294,5 +305,3 @@ jobs:
               || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
           done
           exit $fail
-
-

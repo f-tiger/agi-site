@@ -58,6 +58,7 @@ for zh in [False,True]:
  teaser='<div class="research-entry"><p>'+('用一条财报证据，写下你的 AI 投资假设；再看增长、估值和仓位如何影响结果。' if zh else 'Start with one disclosed fact. Test your AI thesis against growth, valuation and portfolio exposure.')+'</p><a href="#research-workbench">'+('开始研究' if zh else 'Open research workbench')+'</a></div>'
  # Keep historical headline and holdings dataset untouched; current feature has its own date.
  marker='<div class="capsule">' if zh else '<div style="margin:0 0 1.5rem;'
+ teaser+='<div class="research-entry"><p>'+('新：20 家 AI 产业链公司的年度财务数据、带来源 AI 研究问题与云端笔记。' if zh else 'New: annual SEC facts for 20 AI infrastructure companies, source-linked AI research questions and cloud notes.')+'</p><a href="'+('/zh' if zh else '')+'/ai-infrastructure">'+('打开产业链工作台' if zh else 'Open infrastructure research')+'</a></div>'
  s=replace_block(s,'invest-research-entry',teaser,marker)
  s=replace_block(s,'invest-research-body',section(zh),'<h2>本板块的工具</h2>' if zh else '<h2>Tools in this section</h2>')
  p.write_text(s)
