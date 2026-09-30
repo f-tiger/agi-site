@@ -31,7 +31,7 @@ for loc, lastmod in rows:
     d = re.search(r'<meta name="description" content="([^"]*)"', page)
     if not (t and d):
         continue
-    entries.append({"url": f"{SITE}/{base}", "title": t.group(1), "summary": d.group(1), "date": lastmod})
+    entries.append({"url": f"{SITE}/{base}", "title": html.unescape(t.group(1)), "summary": html.unescape(d.group(1)), "date": lastmod})
 
 entries.sort(key=lambda e: e["date"], reverse=True)
 entries = entries[:MAX_ENTRIES]

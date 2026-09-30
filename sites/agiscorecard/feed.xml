@@ -7,22 +7,22 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-30T00:00:00Z</updated>
+  <updated>2026-10-01T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Earn with AI — videos, project briefs &amp; cost planner | AGI Scorecard</title>
+    <link href="https://agiscorecard.com/earn"/>
+    <id>https://agiscorecard.com/earn</id>
+    <updated>2026-10-01T00:00:00Z</updated>
+    <summary>Sourced AI workflow videos, original client-delivery briefs and a free cost planner. No guaranteed income.</summary>
+  </entry>
   <entry>
     <title>Make a story your friends can change — Relay demo</title>
     <link href="https://agiscorecard.com/relay-demo"/>
     <id>https://agiscorecard.com/relay-demo</id>
     <updated>2026-09-30T00:00:00Z</updated>
     <summary>Explore the robot café story: three choices, four endings and a version your friends can remix. Free experimental beta.</summary>
-  </entry>
-  <entry>
-    <title>Earn with AI — videos, project briefs &amp; cost planner | AGI Scorecard</title>
-    <link href="https://agiscorecard.com/earn"/>
-    <id>https://agiscorecard.com/earn</id>
-    <updated>2026-09-30T00:00:00Z</updated>
-    <summary>Sourced AI workflow videos, original client-delivery briefs and a free cost planner. No guaranteed income.</summary>
   </entry>
   <entry>
     <title>AI infrastructure research | AGI Scorecard</title>
@@ -78,7 +78,7 @@
     <link href="https://agiscorecard.com/situational-awareness-predictions"/>
     <id>https://agiscorecard.com/situational-awareness-predictions</id>
     <updated>2026-09-27T00:00:00Z</updated>
-    <summary>Every major prediction in Aschenbrenner&amp;#x27;s Situational Awareness, tracked against reality: AGI 2027, compute scaling, open source, the Project, and more.</summary>
+    <summary>Every major prediction in Aschenbrenner&#x27;s Situational Awareness, tracked against reality: AGI 2027, compute scaling, open source, the Project, and more.</summary>
   </entry>
   <entry>
     <title>Changelog — What Changed on the AGI Scorecard</title>
@@ -149,12 +149,5 @@
     <id>https://agiscorecard.com/aschenbrenner-vs-metaculus</id>
     <updated>2026-09-13T00:00:00Z</updated>
     <summary>Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033. A side-by-side of how the two forecasts differ and why — updated mid-2026.</summary>
-  </entry>
-  <entry>
-    <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
-    <link href="https://agiscorecard.com/when-will-agi-arrive"/>
-    <id>https://agiscorecard.com/when-will-agi-arrive</id>
-    <updated>2026-09-06T00:00:00Z</updated>
-    <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
   </entry>
 </feed>

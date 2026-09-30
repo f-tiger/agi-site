@@ -10,13 +10,13 @@
 
 下方项目方案由 AGI 编辑设计，不代表作者的服务或承诺。
 
-来源复核：2026-09-30 
+来源复核：2026-09-30
 
 阅读官方指南
 
 TikTok · 官方指南 素材 审核 交付 先做三种 TikTok 广告创意，再决定制作 TikTok for Business 阅读 此条目为官方图文指南，尚未附上经过核验的 TikTok 博主视频。
 
-在原站查看： TikTok 
+在原站查看： TikTok
 
 From design to launch: How to create TikTok ads in Canva 作者： TikTok for Business · 原始资料为英文
 
@@ -76,33 +76,33 @@ From design to launch: How to create TikTok ads in Canva 作者： TikTok for Bu
 
 在你的网站嵌入规划器 嵌入版同样免费、在本地处理，不会自动加载创作者视频。
 
-<iframe src="https://agiscorecard.com/zh/earn/cases/tiktok-ad-brief?embed=1" title="先做三种 TikTok 广告创意，再决定制作" width="100%" height="1000" loading="lazy"></iframe> 复制嵌入代码 
+<iframe src="https://agiscorecard.com/zh/earn/cases/tiktok-ad-brief?embed=1" title="先做三种 TikTok 广告创意，再决定制作" width="100%" height="1000" loading="lazy"></iframe> 复制嵌入代码
 
 继续完成项目
 
-WorkflowCost 计算重试、人工审核及持续运营成本。 EvidenceBrief 记录买家证据与停止条件。 AGI 云端会员 为上述工作台工具保存云端记录；本页规划器仍在本地。 
+WorkflowCost 计算重试、人工审核及持续运营成本。 EvidenceBrief 记录买家证据与停止条件。 AGI 云端会员 为上述工作台工具保存云端记录；本页规划器仍在本地。
 
 看看其他交付方向
 
-YouTube 素材 审核 交付 把客户的一段长视频做成三条有用的短片 Kevin Stratvert / David DeWinter ▶ 视频交付 · 适合入门
+GitHub · 项目资料 素材 审核 交付 检查已有自动化流程中的静默失败 healthchecks/healthchecks 阅读 自动化服务 · 需要基础配置
 
-把客户的一段长视频做成三条有用的短片 
+检查已有自动化流程中的静默失败
 
-从剪辑教程出发，为已有素材的客户设计一个范围清楚的小型交付服务。
+从任务监控和输出对账出发，设计范围明确的维护服务；网址在线不能证明业务任务完成。
 
-查看并制定计划 收藏 YouTube 素材 审核 交付 做一条客户真的能跟着完成操作的产品教程 Descript ▶ 视频交付 · 适合入门
+查看并制定计划 收藏 GitHub · 项目资料 素材 审核 交付 为 AI 生成的网站做上线前验收 microsoft/playwright 阅读 自动化服务 · 需要基础配置
 
-做一条客户真的能跟着完成操作的产品教程 
+为 AI 生成的网站做上线前验收
 
-参考厂商教程，把真实客户任务做成清晰的操作视频。
+先做小范围浏览器基线检查，再核验三条客户流程；交付可复现缺陷与约定修复。
 
-查看并制定计划 收藏 YouTube 素材 审核 交付 为一个明确场景做 FAQ 助手原型 n8n ▶ 自动化服务 · 需要基础配置
+查看并制定计划 收藏 GitHub · 项目资料 素材 审核 交付 交付一条产品教程的审核字幕 SubtitleEdit/subtitleedit 阅读 视频交付 · 需要基础配置
 
-为一个明确场景做 FAQ 助手原型 
+交付一条产品教程的审核字幕
 
-从 n8n 官方入门开始，围绕有限的客服问题做测试，并保留人工接管。
+从客户自有 SRT 和一个目标语言开始；本地检查时间码，再由合适的审核者校对专名、数字与含义。
 
-查看并制定计划 收藏 
+查看并制定计划 收藏
 
 
 

@@ -67,7 +67,7 @@ def main():
     pages = []
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
-        if not slug or '/' in slug:          # top-level EN only; skip zh/, invest/, agi-type/ etc.
+        if not slug or ('/' in slug and not slug.startswith('earn/')):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -95,6 +95,11 @@ def main():
         if not title:
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)
+        if slug == 'earn' or slug.startswith('earn/'):
+            source_html = open(fpath, encoding='utf-8').read()
+            body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)
+            if body:
+                md += '\n## Delivery guidance\n\n' + text_of(body.group(1)) + '\n'
         if slug == 'invest':
             source_html = open(fpath, encoding='utf-8').read()
             workbench = re.search(r'<!-- invest-research-body:start -->(.*?)<!-- invest-research-body:end -->', source_html, re.S)
