@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-29",
+ "fetched": "2026-09-30",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -114,58 +114,51 @@
    "polluted": false
   },
   "luftentfeuchter": {
-   "auto": [
-    "luftentfeuchter",
-    "luftentfeuchter keller",
-    "luftentfeuchter elektrisch",
-    "luftentfeuchter test",
-    "luftentfeuchter granulat",
-    "luftentfeuchter wohnung",
-    "luftentfeuchter obi",
-    "luftentfeuchter media markt",
-    "luftentfeuchter ohne strom",
-    "luftentfeuchter testsieger"
-   ],
    "rising": [
     {
-     "q": "luftentfeuchter keller",
-     "v": "new"
+     "q": "luftentfeuchter badezimmer testsieger",
+     "v": 19750
     },
     {
-     "q": "luftentfeuchter elektrisch",
-     "v": "new"
+     "q": "avreno",
+     "v": 16350
     },
     {
-     "q": "luftentfeuchter test",
-     "v": "new"
+     "q": "luftentfeuchter keller dauerbetrieb",
+     "v": 14650
+    },
+    {
+     "q": "trotec ttk 66 e",
+     "v": 12600
+    },
+    {
+     "q": "kondenstrockner",
+     "v": 6400
+    },
+    {
+     "q": "luftentfeuchter selber bauen",
+     "v": 6350
+    },
+    {
+     "q": "luftentfeuchter wohnung ohne strom",
+     "v": 2300
+    },
+    {
+     "q": "luftentfeuchter nachfüllpack",
+     "v": 130
+    },
+    {
+     "q": "mini luftentfeuchter",
+     "v": 60
     },
     {
      "q": "luftentfeuchter granulat",
-     "v": "new"
-    },
-    {
-     "q": "luftentfeuchter wohnung",
-     "v": "new"
-    },
-    {
-     "q": "luftentfeuchter obi",
-     "v": "new"
-    },
-    {
-     "q": "luftentfeuchter media markt",
-     "v": "new"
-    },
-    {
-     "q": "luftentfeuchter ohne strom",
-     "v": "new"
-    },
-    {
-     "q": "luftentfeuchter testsieger",
-     "v": "new"
+     "v": 50
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-21"
+   "source": "related-queries",
+   "fetched": "2026-09-30",
+   "polluted": false
   },
   "heizlüfter": {
    "rising": [
@@ -350,33 +343,25 @@
   "saugwischer": {
    "rising": [
     {
-     "q": "akku saugwischer testsieger stiftung warentest",
-     "v": 100400
-    },
-    {
      "q": "dyson wischsauger",
-     "v": 38200
+     "v": 73900
     },
     {
-     "q": "vorwerk saugwischer angebot",
-     "v": 250
+     "q": "roborock f25 ultra",
+     "v": 4250
     },
     {
      "q": "tineco floor one stretch s6",
-     "v": 200
+     "v": 250
     },
     {
-     "q": "leifheit saugwischer",
-     "v": 160
-    },
-    {
-     "q": "bester saugwischer",
-     "v": 60
+     "q": "vorwerk saugwischer akku",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-29",
-   "polluted": false
+   "fetched": "2026-09-30",
+   "polluted": true
   }
  }
 }
