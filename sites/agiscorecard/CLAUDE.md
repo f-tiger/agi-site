@@ -1112,3 +1112,13 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
 使用 Workers AI binding `AI` 和原 EVENTS D1 `relay_*` 表。模型最多12次/滚动24小时、每IP3次、max_tokens2200；失败计入预算。不得自动提高额度、把预设冒充AI、把生成/分享次数叫真实用户/营收。公共作品流未开放，作品unlisted+noindex；恢复密钥仅本机，数据库只存hash。原作删除后不泄露原作正文或署名，已有改编可保留。
 
 修改必须跑 `tools/create/test.mjs` 和 `tools/create/browser-test.mjs`（从仓库根），再跑原站validate/hreflang。live verify只读不生成用户内容。私有维护 `tools/create/ops.mjs stats|queue PRIVATE_PATH|remove STORY_ID`；禁止公开输出原文/密钥。模型在线验收与真实商业验证分开报告。
+
+## 2026-09-30 AI 产业链研究（Owner：执行可以上线的方案）
+
+`/ai-infrastructure`、`/zh/ai-infrastructure`，源码 `infrastructure-assets/` 与 `tools/infrastructure/`；完整范围见根仓 `docs/agi-infrastructure-launch-2026-09-30.md`。20 家公司，SEC 10-K 标准 US GAAP、USD、年度公司整体口径；不是实时行情、季度数据或 AI 分部收入。各指标必须与公司最新年度截至日一致，旧标签不能混入；缺失/冲突不填零。每日现有部署尝试刷新，失败保留原核对时间。
+
+AI 接口 `/api/infrastructure-review` 只用服务端快照，生成带合法事实 ID 的待核实研究问题。独立 `infra-*` 预算：全站每 24 小时窗口 12 次、每 IP 密钥哈希 2 次、输出最多 1400 token，失败计数；不得提高 Relay 额度或把模型问题称为已核验结论。输入笔记不发给模型。过期/失败快照不生成问题。
+
+本机保存/导出免费；云端保存通过既有独立 AGI 会员，产品 ID `ai-infrastructure`，不改变 9 USDT + 尾数/30 天的规则，也不承诺付费 AI 额度。真正上传须在会员页再次点击保存。进口记录/基线未经真实性核验。没有自动邮件/Telegram 提醒。研究结果与模型准确率、真实付款、复用/续费分开报告。
+
+修改后运行 `python3 tools/infrastructure/test_data.py`、`node --test tools/infrastructure/test.mjs` 和 `node tools/infrastructure/browser-test.mjs`（浏览器检查前在根仓运行 revenue-studio build 生成真实会员页），再跑 validate/hreflang。页面生成用 `tools/infrastructure/build.py`；旧研究区继续用其原生成器。

@@ -1,3 +1,4 @@
+import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
@@ -243,6 +244,7 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    const infrastructureResponse=await infrastructureRoute(request,env);if(infrastructureResponse)return infrastructureResponse;
     const createResponse=await createRoute(request,env);if(createResponse)return createResponse;
     const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
     const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
