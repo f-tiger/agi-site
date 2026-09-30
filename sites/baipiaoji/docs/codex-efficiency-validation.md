@@ -2,7 +2,7 @@
 
 Implementation v1.0.0. No real funds transferred, no buyer cohort, no paired model-quality/savings experiment.
 
-- 21 targeted suites: real SQLite constraints/transactions, mocked finalized-chain RPC, synthetic session logs, CLI install/uninstall. Includes price/receipt isolation, trial, idempotency after history pruning, parallel final-quota requests, project cap, queued renewals, expiry, device revocation, wrong-account/cross-origin/mixed-auth rejection, verified outgoing refund and failure rollback.
+- 22 targeted suites: real SQLite constraints/transactions, mocked finalized-chain RPC, synthetic session logs, CLI install/uninstall. Includes price/receipt isolation, trial, idempotency after history pruning, parallel final-quota requests, project cap, queued renewals, expiry, device revocation, wrong-account/cross-origin/mixed-auth rejection, verified outgoing refund and failure rollback.
 - Four deliberate source mutations caught: quota removal, project-limit off-by-one, refund revocation removal, expired-device acceptance. Originals restored after each test.
 - 37 existing BPJ push-path scripts passed, including member/account/commerce, Studio, schema/cache and built discovery checks. The two account suites also passed actual local workerd/D1 runtime checks.
 - All nine existing push-path browser suites also passed with the local fallback engine.
@@ -11,3 +11,7 @@ Implementation v1.0.0. No real funds transferred, no buyer cohort, no paired mod
 - A separate fresh-thread Skill exercise with two ambiguous concurrent projects asked for project/session selection and preserved release safety checks. It did not read credentials or run diagnostics. One behavioral exercise is not a trigger-accuracy benchmark.
 
 Source-level privacy checks and CI/live deployment results are recorded in the release completion below. The operator must still validate a real local-client install/trial and payment/refund readiness before enabling checkout. Unit tests do not justify claiming customer value, guaranteed savings, 90% trigger accuracy, renewal or revenue.
+
+## Shared-runtime correction
+
+The first deployment attempt revealed a transitive `node:crypto` import in the shared member watcher, which prevented two non-Node-compatible sibling sites from publishing. Moved account schema initialization to the BPJ-only product API, gave the product a Web-Crypto rate limiter, and added a shared dependency-graph regression test. The complete shared watcher also bundles successfully for the browser platform with esbuild. Existing member tests and product browser tests were rerun. No sibling site configuration or account behavior was changed.

@@ -10,7 +10,7 @@ Before opening purchase, confirm the live browser/CLI installation and trial pat
 
 ## Storage and idempotency
 
-`ce_orders`, `ce_periods`, `ce_projects`, `ce_evaluations`, `ce_evaluation_receipts`, `ce_devices`, `ce_refunds`, `ce_support`, `ce_health` are product-scoped. They never write `wb_members` or `wb_orders`. Existing `bpj_ad_chain_receipts` arbitrates transaction uniqueness across products. Schema is created idempotently against BPJ's existing HITS D1 binding. No other site's DB is used.
+`ce_orders`, `ce_periods`, `ce_projects`, `ce_evaluations`, `ce_evaluation_receipts`, `ce_devices`, `ce_rates`, `ce_refunds`, `ce_support`, `ce_health` are product-scoped. They never write `wb_members` or `wb_orders`. Existing `bpj_ad_chain_receipts` arbitrates transaction uniqueness across products. Schema is created idempotently against BPJ's existing HITS D1 binding. No other site's DB is used.
 
 One evaluation is <=30 runs / 16 KiB of strictly validated numeric/pseudonymous data. SQL triggers atomically check current entitlement, quota and project capacity, insert the durable idempotency receipt and increment usage. A duplicate succeeds without recharging; an altered payload under the same nonce is rejected. After result retention expires, its durable receipt returns `result_expired`, rather than charging again. The client can retain its downloaded result.
 

@@ -2,10 +2,10 @@ import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {mkdtemp,writeFile,readFile,mkdir,symlink,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join,resolve} from 'node:path';
+import {join,resolve,dirname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {digest,seconds} from '../lib/ad-commerce.js';
-import {hash,issueSession,cookie} from '../lib/free-account.js';
+import {hash,issueSession,cookie,ensureAccounts} from '../lib/free-account.js';
 import {ensureEfficiency,startDevice,approveDevice,deviceUser,evaluate,checkout,deliver,checkOrder,requestRefund,completeRefund,ready,watchEfficiency} from '../lib/codex-efficiency.js';
 import {watchWeb3,verifyTransfer} from '../lib/ad-web3.js';
 import {onRequestGet,onRequestPost} from '../functions/api/codex-efficiency.js';
@@ -17,7 +17,7 @@ const merchant='0x'+'1'.repeat(40),destination='0x'+'2'.repeat(40),tx='0x'+'a'.r
 let receipt=null,logs=[],offline=false;
 const originalFetch=globalThis.fetch;
 globalThis.fetch=async(url,opts)=>{if(offline)throw Error('offline');const b=JSON.parse(opts.body);let result;if(b.method==='eth_chainId')result='0x38';else if(b.method==='eth_call')result='0x12';else if(b.method==='eth_getBlockByNumber')result={number:'0x3e8',timestamp:'0x'+seconds().toString(16),hash:blockhash};else if(b.method==='eth_getTransactionReceipt')result=receipt;else if(b.method==='eth_getLogs')result=logs;else throw Error('unexpected RPC');return Response.json({result});};
-export async function setup(){receipt=null;logs=[];offline=false;const d=database(),env={HITS:d,CODEX_EFFICIENCY_ENABLED:'true',ADS_WEB3_ENABLED:'true',ADS_WALLET_CHAIN:'bsc',ADS_WALLET:merchant,ADS_WEB3_PRICE_USD:'49.00',ADS_WEB3_RPC_URL:'https://rpc.example.test',ADS_WATCH_SECRET:'s'.repeat(64),ADS_DAYS:'30'};await ensureEfficiency(env);for(const id of ['alice','bob'])d.sql.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated) VALUES(?,?,?,?,?,?)').run(id,id,'test','test',seconds(),seconds());await watchWeb3(env);await watchEfficiency(env);return {env,d,user:{id:'alice',session_version:1,qa:0}};}
+export async function setup(){receipt=null;logs=[];offline=false;const d=database(),env={HITS:d,CODEX_EFFICIENCY_ENABLED:'true',ADS_WEB3_ENABLED:'true',ADS_WALLET_CHAIN:'bsc',ADS_WALLET:merchant,ADS_WEB3_PRICE_USD:'49.00',ADS_WEB3_RPC_URL:'https://rpc.example.test',ADS_WATCH_SECRET:'s'.repeat(64),ADS_DAYS:'30'};await ensureAccounts(env);await ensureEfficiency(env);for(const id of ['alice','bob'])d.sql.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated) VALUES(?,?,?,?,?,?)').run(id,id,'test','test',seconds(),seconds());await watchWeb3(env);await watchEfficiency(env);return {env,d,user:{id:'alice',session_version:1,qa:0}};}
 const nonce=n=>n.toString(16).padStart(32,'0');
 const summary=(p=1)=>({version:1,project:nonce(p),runs:[{id:nonce(7),tokens:1000,elapsed_ms:10000,interventions:1,failures:2,accepted:true}]});
 const body=(n=1,p=1)=>({nonce:nonce(n),summary:summary(p),consent:true});
@@ -27,6 +27,7 @@ async function paid(env,user,n=1,t=tx){const o=await create(env,user,n);receipt=
 const request=(b,headers={})=>new Request('https://baipiaoji.com/api/codex-efficiency',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://baipiaoji.com','CF-Connecting-IP':'192.0.2.1',...headers},body:JSON.stringify(b)});
 let count=0;async function test(name,fn){await fn();count++;console.log('PASS',name);}
 try{
+await test('shared watcher dependency graph uses only browser-compatible modules',async()=>{const seen=new Set();async function visit(file){if(seen.has(file))return;seen.add(file);const source=await readFile(file,'utf8');for(const m of source.matchAll(/(?:from\s*|import\s*(?:\(\s*)?)["']([^"']+)["']/g)){assert.ok(!m[1].startsWith('node:'),'Node-only dependency in shared watcher: '+m[1]);if(m[1].startsWith('.'))await visit(resolve(dirname(file),m[1]));}}await visit(resolve('functions/api/member-watch.js'));});
 await test('readiness closed by default, unavailable without health, public config leaks no wallet',async()=>{const {env,d}=await setup();assert.equal(await ready(env),true);assert.equal(await ready({...env,CODEX_EFFICIENCY_ENABLED:'false'}),false);d.sql.exec('DELETE FROM ce_health');assert.equal(await ready(env),false);const r=await (await onRequestGet({env})).text();assert.ok(!r.includes(merchant));assert.ok(!r.includes(env.ADS_WATCH_SECRET));});
 await test('numeric-only summary rejects text, duplicate runs and malformed counters',async()=>{for(const s of [{...summary(),code:'secret'},{...summary(),runs:[...summary().runs,...summary().runs]},{...summary(),runs:[{...summary().runs[0],tokens:-1}]},{...summary(),runs:[{...summary().runs[0],tokens:NaN}]}])assert.throws(()=>validateSummary(s));assert.equal(compilePolicy(summary()).conclusion,'insufficient_evidence');});
 await test('one trial per account; successful retry free; changed retry refused',async()=>{const {env,d,user}=await setup();await evaluate(env,user,body());assert.equal((await evaluate(env,user,body())).replayed,true);assert.equal(d.sql.prepare('SELECT used FROM ce_periods').get().used,1);await assert.rejects(evaluate(env,user,body(1,2)),/idempotency_conflict/);await assert.rejects(evaluate(env,user,body(2)),/evaluation_quota/);});

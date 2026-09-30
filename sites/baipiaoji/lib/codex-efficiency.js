@@ -1,11 +1,11 @@
 import {digest,seconds} from './ad-commerce.js';
-import {ensureAccounts,consumeRate} from './free-account.js';
 import {ensureWeb3,web3Health,web3Settings,probeChain,verifyTransfer,chainRpc,matchesTransfer,formatUnits} from './ad-web3.js';
 import {validateSummary,compilePolicy,VERSION} from './codex-policy.js';
 
 export const PRODUCT='codex-efficiency-pro';
 export const PLAN={product:PRODUCT,version:VERSION,price_usdt:19,days:30,projects:3,evaluations:100,history_days:30,auto_renew:false};
 export const SCHEMA=[
+ `CREATE TABLE IF NOT EXISTS ce_rates (key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires INTEGER NOT NULL)`,
  `CREATE TABLE IF NOT EXISTS ce_support (order_id TEXT PRIMARY KEY REFERENCES ce_orders(id),account_id TEXT NOT NULL,created INTEGER NOT NULL,resolved INTEGER NOT NULL DEFAULT 0)`,
  `CREATE TABLE IF NOT EXISTS ce_devices (hash TEXT PRIMARY KEY,code TEXT NOT NULL UNIQUE,account_id TEXT,account_version INTEGER,created INTEGER NOT NULL,expires INTEGER NOT NULL,revoked INTEGER NOT NULL DEFAULT 0)`,
  `CREATE INDEX IF NOT EXISTS ce_devices_owner ON ce_devices(account_id)`,
@@ -30,8 +30,9 @@ export const SCHEMA=[
  `CREATE TRIGGER IF NOT EXISTS ce_refunded AFTER UPDATE OF state ON ce_refunds WHEN NEW.state='completed' AND OLD.state='requested' BEGIN UPDATE ce_periods SET revoked=1 WHERE id=NEW.order_id; UPDATE ce_orders SET state='refunded' WHERE id=NEW.order_id; END`,
  `CREATE TABLE IF NOT EXISTS ce_health (id INTEGER PRIMARY KEY,checked_at INTEGER NOT NULL)`
 ];
-export async function ensureEfficiency(env){if((env.MEMBER_SITE||'bpj')!=='bpj')throw Error('wrong_site');await ensureAccounts(env);await ensureWeb3(env.HITS);await env.HITS.batch(SCHEMA.map(s=>env.HITS.prepare(s)));}
-export async function cleanup(env){const t=seconds();await env.HITS.batch([env.HITS.prepare('DELETE FROM ce_evaluations WHERE created<=?').bind(t-30*86400),env.HITS.prepare('DELETE FROM ce_devices WHERE expires<=?').bind(t)]);}
+export async function ensureEfficiency(env){if((env.MEMBER_SITE||'bpj')!=='bpj')throw Error('wrong_site');await ensureWeb3(env.HITS);await env.HITS.batch(SCHEMA.map(s=>env.HITS.prepare(s)));}
+async function consumeRate(env,scope,identity,limit,ttl){const t=seconds(),bucket=Math.floor(t/ttl),key=await digest('ce:'+scope+':'+bucket+':'+identity);const row=await env.HITS.prepare('INSERT INTO ce_rates(key,count,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 WHERE count<? RETURNING count').bind(key,(bucket+1)*ttl,limit).first();return !!row;}
+export async function cleanup(env){const t=seconds();await env.HITS.batch([env.HITS.prepare('DELETE FROM ce_rates WHERE expires<=?').bind(t),env.HITS.prepare('DELETE FROM ce_evaluations WHERE created<=?').bind(t-30*86400),env.HITS.prepare('DELETE FROM ce_devices WHERE expires<=?').bind(t)]);}
 export async function ready(env){
  const w=await web3Health(env);let h=null;try{h=await env.HITS.prepare('SELECT checked_at FROM ce_health WHERE id=1').first();}catch{}
  return env.CODEX_EFFICIENCY_ENABLED==='true'&&w.ready&&w.chain==='bsc'&&w.network.live===1&&w.baseUnits>=19010000&&!!h&&seconds()-h.checked_at<14400;

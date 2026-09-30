@@ -1,5 +1,5 @@
 import {json} from '../../lib/ad-commerce.js';
-import {getAccount,consumeRate} from '../../lib/free-account.js';
+import {getAccount,consumeRate,ensureAccounts} from '../../lib/free-account.js';
 import {PLAN,ensureEfficiency,cleanup,ready,startDevice,approveDevice,deviceUser,status,evaluate,checkout,checkOrder,orderView,requestRefund} from '../../lib/codex-efficiency.js';
 const fail=(code,status=400)=>json({ok:false,code},status);
 const CLIENT_ACTIONS=new Set(['status','evaluate','history']);
@@ -12,14 +12,14 @@ async function body(request){
  const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}
  try{const b=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));if(!b||typeof b!=='object'||Array.isArray(b))throw Error();return b;}catch{throw Error('bad_summary');}
 }
-export async function onRequestGet({env}){try{if(!env.HITS)return fail('not_ready',503);await ensureEfficiency(env);return json({ok:true,plan:PLAN,ready:await ready(env),trial:true});}catch{return fail('not_ready',503);}}
+export async function onRequestGet({env}){try{if(!env.HITS)return fail('not_ready',503);await ensureAccounts(env);await ensureEfficiency(env);return json({ok:true,plan:PLAN,ready:await ready(env),trial:true});}catch{return fail('not_ready',503);}}
 export async function onRequestPost({request,env}){
  try{
   if(!env.HITS)return fail('not_ready',503);
   const u=new URL(request.url),origin=request.headers.get('Origin'),bearer=request.headers.get('Authorization');
   if(u.protocol!=='https:'||origin&&origin!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site')return fail('origin',403);
   if(bearer&&request.headers.has('Cookie'))return fail('mixed_authentication');
-  const b=await body(request);await ensureEfficiency(env);
+  const b=await body(request);await ensureAccounts(env);await ensureEfficiency(env);
   const ip=request.headers.get('CF-Connecting-IP');if(!ip||ip.length>64)return fail('not_ready',503);
   if(b.action==='device_start'){
    if(bearer)return fail('mixed_authentication');
