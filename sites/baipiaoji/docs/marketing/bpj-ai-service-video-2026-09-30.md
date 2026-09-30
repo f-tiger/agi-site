@@ -41,3 +41,5 @@ UTM：utm_source=youtube 或 tiktok；utm_medium=organic_video；utm_campaign=bp
 入口仍为 /en/video/；沿用 bpj-ai-service-01，增加 utm_content=motion-v4。现有聚合不按 utm_content 分组，不能声称独立测得版本提升或随机 A/B 效果。播放量、留存和满意度暂无本版数据。
 
 以后制作规范已写入根 CLAUDE.md 的 2026-09-30 营销视频默认制作标准。
+
+最终状态追加：TikTok 已读回 PUBLISHED，最终平台 ID 7691112697366187277，公开链接 https://www.tiktok.com/@agifuturelife/video/7691112697366187277 。此最终 ID 取代上面的处理中编号。两平台均已有发布成功回执。
