@@ -83,6 +83,20 @@ def render(today, trend, peak, peak_city, peak_day, next_season, days_left):
         lines.append(f"- → 提前 4 周窗口已开：{next_season} 簇的薄页深化该排上日程")
     lines.append("")
 
+    # A failed fetch / 503 / incomplete payload is unknown, never evidence of no
+    # visits, no searches or no MCP use. The old `trend or {}` hid this distinction.
+    required = ("pages", "zero_hits", "events", "refs", "mcp")
+    available = (isinstance(trend, dict) and trend.get("ok") is not False
+                 and all(isinstance(trend.get(k), list) for k in required))
+    if not available:
+        lines.extend([
+            "## 3–6. 自有漏斗、搜索需求与发现层", "",
+            "- 数据状态：**不可用 / 未知**（/api/trend 取数失败或返回不完整）。",
+            "- 本轮不能判断访问、联盟点击、搜索零命中、AI 引荐或 MCP 调用是否为零，也不能判断增长或下滑。",
+            "- 保留既有实验状态；恢复有效数据后再作判断，不因这次缺数停掉渠道或内容。",
+        ])
+        return "\n".join(lines) + f"\n\n---\n_生成于 {today.isoformat()}（UTC 日界）_\n"
+
     lines.append("## 3. 自有漏斗：周环比加速中的页面（n7 vs 前 7 天）")
     pages = (trend or {}).get("pages", [])
     accel = [p for p in pages if p.get("n7", 0) >= 2 and p.get("n7", 0) > (p.get("p7") or 0)]

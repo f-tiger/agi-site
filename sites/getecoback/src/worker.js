@@ -2,6 +2,7 @@ import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distri
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
+import {affiliateMetrics} from './affiliate-metrics.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -1474,14 +1475,14 @@ async function pulseCompute(url, env) {
     const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
     // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
     // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
-    // 三段 affiliate_click 都已限 28 天窗(idx_ev_name 只扫该事件的行);subs / wb_orders 是小表全量计数。
+    // 联盟分项共享一次过滤扫描;完整 UTC 周窗与包含当天的历史键分开。subs / wb_orders 是小表。
     let money = null;
     try {
-      const m = await env.EVENTS.prepare(
-        "SELECT 'affiliate_click_28d' AS k, COUNT(*) AS n FROM ev WHERE name='affiliate_click' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT 'affiliate_click_us_market_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%us-market%' UNION ALL SELECT 'affiliate_click_amazon_com_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%amazon.com%' UNION ALL SELECT 'subs_total', COUNT(*) FROM subs"
-      ).all();
-      money = { days: 28 };
-      for (const r of (m.results || [])) money[r.k] = r.n | 0;
+      money = { days: 28, ...await affiliateMetrics(env.EVENTS) };
+      try {
+        const s = await env.EVENTS.prepare("SELECT COUNT(*) AS n FROM subs").all();
+        money.subs_total = s.results?.[0]?.n ?? null;
+      } catch (e) { money.subs_total = null; }
       try {
         const o = await env.EVENTS.prepare("SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state").all();
         money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));

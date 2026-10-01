@@ -35,10 +35,15 @@ jobs:
           node --test tools/test_energy_tariffs.mjs
           node --test tools/test_video_campaign.mjs
           node --test tools/test_pulse_cache.mjs
+          node --test tools/test_affiliate_metrics.mjs
+          python3 tools/test_trend_radar.py
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
-          python3 tools/build_revenue_guide.py
+          # Storage pages and their generator were removed by the owner on 09-27.
+          # Match deployment: assert the takedown instead of recreating a guide.
+          node tools/test_gone.mjs
+          python3 tools/check_gone.py
           python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
           python3 tools/check_events.py

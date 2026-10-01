@@ -26,7 +26,7 @@ export function createPulseCache({getCache = () => globalThis.caches?.default, n
     try { cache = getCache(); } catch { return compute(); }
     if (!cache) return compute();
     // Queries do not change this endpoint's aggregate. A random query cannot bust it.
-    url.pathname = '/__eco-cache/pulse-v1'; url.search = ''; url.hash = '';
+    url.pathname = '/__eco-cache/pulse-v2'; url.search = ''; url.hash = '';
     const key = new Request(url.toString());
     try {
       const hit = await cache.match(key);
