@@ -1,30 +1,19 @@
 {
- "generated": "2026-09-30T14:28:38+00:00",
+ "generated": "2026-10-01T14:58:27+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 3,
- "covered": 1,
- "coverage_share": 0.333,
+ "sampled": 2,
+ "covered": 0,
+ "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 45868,
-   "title": "What will be the highest intraday value of the VIX between October 1 and December 24, 2026?",
+   "post_id": 45846,
+   "title": "What will be the total spending by all Senate candidates in the 2026 US election cycle?",
    "hosts": [
-    "au.finance.yahoo.com",
-    "www.cboe.com",
-    "www.metaculus.com"
-   ],
-   "covered_by": "finance.yahoo.com",
-   "tournament": "33121"
-  },
-  {
-   "post_id": 45845,
-   "title": "How many politicians will leave their cabinet positions in the UK government before 2027?",
-   "hosts": [
-    "members.parliament.uk",
+    "www.fec.gov",
     "www.metaculus.com"
    ],
    "covered_by": null,
