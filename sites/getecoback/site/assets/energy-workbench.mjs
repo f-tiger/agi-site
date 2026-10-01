@@ -13,7 +13,7 @@ const campaign=campaignTags(location.href,document.referrer);
 function ev(n,extra={}){if(probe)return;try{const b=JSON.stringify({n,p:location.pathname,r:document.referrer.split('#')[0].split('?')[0],m:{lang,market:field('market').value,input:field('purpose').value,...campaign,...extra}});if(navigator.sendBeacon)navigator.sendBeacon('/api/ev',new Blob([b],{type:'text/plain'}));else fetch('/api/ev',{method:'POST',body:b,keepalive:true}).catch(()=>{});}catch{}}
 function show(node,on){node.hidden=!on;for(const e of node.querySelectorAll('input,select'))e.disabled=!on;}
 function layout(){const m=MARKETS[field('market').value];document.querySelectorAll('[data-band]').forEach(e=>show(e,Number(e.dataset.band)<m.bands));document.querySelectorAll('[data-power]').forEach(e=>show(e,Number(e.dataset.power)<m.power));for(const k of ['A','B'])document.querySelectorAll(`[data-rate^="${k}"]`).forEach(e=>show(e,Number(e.dataset.rate.slice(1))<(field(k+'mode').value==='flat'?1:m.bands)));show($('shift-field'),m.bands>1);$('band-labels').textContent={de:'1 · kWh',fr:'1 · Heures pleines / HP · 2 · Heures creuses / HC',es:'1 · Punta · 2 · Llano · 3 · Valle',it:'1 · F1 · 2 · F2 · 3 · F3'}[field('market').value];}
-function clear(){current=null;$('results').hidden=true;$('next-steps').hidden=true;$('share-box').hidden=true;if(location.hash)history.replaceState(null,'',location.pathname+location.search);$('status').textContent=t.stale;}
+function clear(){current=null;$('results').hidden=true;$('next-steps').hidden=true;$('share-box').hidden=true;$('result-card').hidden=true;if(location.hash)history.replaceState(null,'',location.pathname+location.search);$('status').textContent=t.stale;}
 function fill(input){const s=normalize(input);set('market',s.market);set('purpose',s.own?'own':'example');for(let i=0;i<3;i++)set('kwh'+i,s.kwh[i]??0);for(const k of ['A','B']){set(k+'mode',s[k].mode);set(k+'fixed',s[k].fixed);set(k+'bonus',s[k].bonus);for(let i=0;i<3;i++)set(k+'rate'+i,s[k].rates[i]??0);for(let i=0;i<2;i++){set(k+'kw'+i,s[k].powerKW[i]??0);set(k+'power'+i,s[k].powerRates[i]??0);}}for(const k of ['switchCost','shift','stress'])set(k,s[k]);field('confirm').checked=false;layout();clear();}
 function read(){const market=field('market').value,m=MARKETS[market],offer=k=>({mode:field(k+'mode').value,rates:Array.from({length:m.bands},(_,i)=>value(k+'rate'+(field(k+'mode').value==='flat'?0:i))),fixed:value(k+'fixed'),bonus:value(k+'bonus'),powerKW:Array.from({length:m.power},(_,i)=>value(k+'kw'+i)),powerRates:Array.from({length:m.power},(_,i)=>value(k+'power'+i))});return normalize({version:VERSION,market,own:field('purpose').value==='own',kwh:Array.from({length:m.bands},(_,i)=>value('kwh'+i)),A:offer('A'),B:offer('B'),switchCost:value('switchCost'),shift:m.bands>1?value('shift'):0,stress:value('stress')});}
 function paragraph(title,text){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=title+': ';p.append(strong,document.createTextNode(text));return p;}
@@ -32,7 +32,7 @@ $('template').onclick=()=>{const n=MARKETS[field('market').value].bands;download
 function importFile(id,apply){$(id).onchange=async e=>{const f=e.target.files[0];if(!f)return;try{if(f.size>100000)throw Error();apply(await f.text());$(id+'-status').textContent=t.fileImported.replace('{name}',()=>f.name);$('status').textContent=t.importOK;}catch{$(id+'-status').textContent=t.error;$('status').textContent=t.error;}finally{e.target.value='';}};}
 importFile('import-file',text=>{const x=JSON.parse(text);fill(x.scenario??x);});
 importFile('csv-file',text=>{const q=parseCSV(text,field('market').value);q.forEach((v,i)=>set('kwh'+i,v));set('purpose','own');field('confirm').checked=false;clear();});
-function loadFragment(hash){if(!hash.startsWith('#tariff='))return;try{fill(decode(hash.slice(8)));$('status').textContent=t.importOK;}catch{$('status').textContent=t.error;}}
+function loadFragment(hash){if(!hash.startsWith('#tariff='))return;try{const shared=decode(hash.slice(8));shared.own=false;fill(shared);$('status').textContent=t.sharedScenario;}catch{$('status').textContent=t.error;}}
 const initialHash=location.hash;fill(example(lang==='en'?'de':lang));$('status').textContent='';loadFragment(initialHash);window.addEventListener('hashchange',()=>loadFragment(location.hash));listSaved();ev('page_view');
 
 document.querySelectorAll("[data-next-step]").forEach(a=>a.addEventListener("click",()=>{if(current?.own)ev("outbound_choice",{source:"energy-next",choice:a.dataset.nextStep});}));
@@ -45,3 +45,15 @@ $('embed-copy').onclick=async()=>{try{await navigator.clipboard.writeText($('emb
 $('embed-open').onclick=()=>{const url=new URL(canonical);url.search='?via=tariff-embed';if(current)url.hash='tariff='+encode(current);$('embed-open').href=url.href;distribution('tariff_embed_open');};
 if(embedded)distribution('tariff_embed_view');
 if(placement==='shared'&&initialHash.startsWith('#tariff=')) {try{decode(initialHash.slice(8));distribution('tariff_share_visit');}catch{}}
+
+// Export a reviewed summary locally; no bill values or images go to analytics.
+$('card-preview').onclick=()=>{if(!current)return;const r=calculate(current),c=$('card-canvas'),x=c.getContext('2d');
+ x.fillStyle='#f4f7f2';x.fillRect(0,0,1200,900);x.fillStyle='#174d3a';x.fillRect(0,0,18,900);
+ const line=(text,y,size=30,color='#172b24')=>{x.fillStyle=color;x.font=`${size>=40?'bold ':''}${size}px sans-serif`;x.fillText(text,70,y,1060);};
+ line('EcoBack / '+current.market.toUpperCase(),85,30);line(t.title,155,44);
+ line(current.own?t.own:t.sample,215,28);line(t.first,295,30);
+ line('A  '+money(r.A.first),375,60);line('B  '+money(r.B.first),455,60);
+ line(t.recurring,535,30);line('A  '+money(r.A.recurring)+'     B  '+money(r.B.recurring),595,40);
+ line(t.cardEstimate,680,27);line(t.cardCTA,755,32);line('getecoback.com/'+t.path,820,24);line(new Date().toISOString().slice(0,10),860,22);
+ $('result-card').hidden=false;distribution('tariff_card_preview');};
+$('card-download').onclick=()=>{if(!current||$('result-card').hidden)return;$('card-canvas').toBlob(blob=>{if(blob){download(blob,'image/png','ecoback-comparison.png');distribution('tariff_card_download');}},'image/png');};

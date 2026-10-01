@@ -1,5 +1,5 @@
 // Bounded experiment: interactions, never confirmed installs or unique people.
-export const DISTRIBUTION_EVENTS=['tariff_embed_view','tariff_embed_copy','tariff_embed_calc','tariff_embed_open','tariff_share_visit','tariff_share_calc'];
+export const DISTRIBUTION_EVENTS=['tariff_embed_view','tariff_embed_copy','tariff_embed_calc','tariff_embed_open','tariff_share_visit','tariff_share_calc','tariff_card_preview','tariff_card_download'];
 export const TARIFF_PATHS={de:'/stromtarif-werkstatt.html',en:'/en/energy-tariff-workbench.html',fr:'/fr/comparateur-electricite.html',es:'/es/comparar-tarifas-luz.html',it:'/it/confronto-tariffe-luce.html'};
 export function validDistribution(body){const m=body.m;return !!m&&typeof m==='object'&&!Array.isArray(m)&&Object.keys(m).every(k=>['lang','input','placement'].includes(k))&&Object.hasOwn(TARIFF_PATHS,m.lang)&&body.p===TARIFF_PATHS[m.lang]&&['own','example'].includes(m.input)&&['frame','preview','shared','direct'].includes(m.placement);}
 export function evidence(host){const h=String(host||'').toLowerCase().replace(/\.$/,'');if(!h)return 'unknown';return ['getecoback.com','baipiaoji.com','thedollscout.com','agiscorecard.com','pages.dev','workers.dev'].some(d=>h===d||h.endsWith('.'+d))?'internal':'external_host';}

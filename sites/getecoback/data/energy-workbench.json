@@ -91,7 +91,13 @@
     "embedCopy": "Copy HTML embed code",
     "embedHelp": "Paste this code into your website. It starts with example values, never your current bill. Visitors connect to EcoBack and anonymous interaction counts; your site privacy notice should explain this.",
     "fullTool": "Open full calculator",
-    "embedPrivacy": "Figures stay in this browser. Shared links disclose the entered numbers. A comparison is not a supplier quote."
+    "embedPrivacy": "Figures stay in this browser. Shared links disclose the entered numbers. A comparison is not a supplier quote.",
+    "cardPreview": "Preview result card",
+    "cardDownload": "Download PNG",
+    "cardPrivacy": "This card shows annual costs and your input label. Review it before sharing. It excludes consumption, rates and files.",
+    "sharedScenario": "Shared scenario loaded. These are someone else’s inputs. Review or replace them, then choose your input source and calculate.",
+    "cardCTA": "Compare your own offers",
+    "cardEstimate": "Calculated estimate · not a supplier quote"
   },
   "de": {
     "title": "Stromtarif-Werkstatt",
@@ -191,7 +197,13 @@
     "embedCopy": "HTML-Code kopieren",
     "embedHelp": "Diesen Code auf Ihrer Website einfügen. Er startet mit Beispielwerten, niemals Ihrer aktuellen Rechnung. Besucher verbinden sich mit EcoBack; anonyme Interaktionen werden gezählt. Erläutern Sie dies in Ihrem Datenschutzhinweis.",
     "fullTool": "Vollständigen Rechner öffnen",
-    "embedPrivacy": "Zahlen bleiben im Browser. Geteilte Links enthalten die eingegebenen Zahlen. Der Vergleich ist kein Anbieterangebot."
+    "embedPrivacy": "Zahlen bleiben im Browser. Geteilte Links enthalten die eingegebenen Zahlen. Der Vergleich ist kein Anbieterangebot.",
+    "cardPreview": "Ergebniskarte ansehen",
+    "cardDownload": "PNG herunterladen",
+    "cardPrivacy": "Die Karte zeigt Jahreskosten und die Eingabeart. Vor dem Teilen prüfen. Verbrauch, Tarife und Dateien fehlen.",
+    "sharedScenario": "Geteiltes Szenario geladen. Dies sind fremde Eingaben. Prüfen oder ersetzen, Eingabequelle wählen und neu berechnen.",
+    "cardCTA": "Eigene Angebote vergleichen",
+    "cardEstimate": "Berechnete Schätzung · kein Anbieterangebot"
   },
   "fr": {
     "title": "Comparateur de tarifs d’électricité",
@@ -285,7 +297,13 @@
     "embedCopy": "Copier le code HTML",
     "embedHelp": "Collez ce code sur votre site. Il démarre avec des exemples, jamais votre facture actuelle. Les visiteurs se connectent à EcoBack et des interactions anonymes sont comptées ; expliquez-le dans votre notice de confidentialité.",
     "fullTool": "Ouvrir le calculateur complet",
-    "embedPrivacy": "Les chiffres restent dans le navigateur. Les liens partagés contiennent les valeurs saisies. Ce calcul ne constitue pas une offre fournisseur."
+    "embedPrivacy": "Les chiffres restent dans le navigateur. Les liens partagés contiennent les valeurs saisies. Ce calcul ne constitue pas une offre fournisseur.",
+    "cardPreview": "Aperçu de la carte",
+    "cardDownload": "Télécharger le PNG",
+    "cardPrivacy": "La carte montre les coûts annuels et le type de données. Vérifiez avant de partager. Consommation, tarifs et fichiers sont exclus.",
+    "sharedScenario": "Scénario partagé chargé. Ce sont les données d’une autre personne. Vérifiez ou remplacez-les, choisissez la source et recalculez.",
+    "cardCTA": "Comparez vos propres offres",
+    "cardEstimate": "Estimation calculée · pas un devis fournisseur"
   },
   "es": {
     "title": "Comparador de tarifas de luz",
@@ -379,7 +397,13 @@
     "embedCopy": "Copiar código HTML",
     "embedHelp": "Pegue este código en su web. Empieza con ejemplos, nunca con su factura actual. Los visitantes se conectan a EcoBack y se cuentan interacciones anónimas; explíquelo en su aviso de privacidad.",
     "fullTool": "Abrir calculadora completa",
-    "embedPrivacy": "Los datos quedan en el navegador. Los enlaces compartidos contienen las cifras introducidas. El cálculo no es una oferta de un proveedor."
+    "embedPrivacy": "Los datos quedan en el navegador. Los enlaces compartidos contienen las cifras introducidas. El cálculo no es una oferta de un proveedor.",
+    "cardPreview": "Vista previa de la tarjeta",
+    "cardDownload": "Descargar PNG",
+    "cardPrivacy": "La tarjeta muestra costes anuales y el tipo de datos. Revísela antes de compartir. No incluye consumo, tarifas ni archivos.",
+    "sharedScenario": "Escenario compartido cargado. Son datos de otra persona. Revise o sustituya los datos, elija la fuente y calcule.",
+    "cardCTA": "Compare sus propias ofertas",
+    "cardEstimate": "Estimación calculada · no es una oferta"
   },
   "it": {
     "title": "Confronto delle tariffe luce",
@@ -473,6 +497,12 @@
     "embedCopy": "Copia codice HTML",
     "embedHelp": "Incolla questo codice nel tuo sito. Inizia con esempi, mai con la tua bolletta attuale. I visitatori si collegano a EcoBack e vengono contate interazioni anonime; spiegalo nella tua informativa sulla privacy.",
     "fullTool": "Apri il calcolatore completo",
-    "embedPrivacy": "I dati restano nel browser. I link condivisi contengono le cifre inserite. Il calcolo non è un’offerta di un fornitore."
+    "embedPrivacy": "I dati restano nel browser. I link condivisi contengono le cifre inserite. Il calcolo non è un’offerta di un fornitore.",
+    "cardPreview": "Anteprima della scheda",
+    "cardDownload": "Scarica PNG",
+    "cardPrivacy": "La scheda mostra costi annui e tipo di dati. Verifica prima di condividere. Consumi, tariffe e file sono esclusi.",
+    "sharedScenario": "Scenario condiviso caricato. Sono dati di un’altra persona. Verifica o sostituisci i dati, scegli la fonte e ricalcola.",
+    "cardCTA": "Confronta le tue offerte",
+    "cardEstimate": "Stima calcolata · non è un preventivo"
   }
 }

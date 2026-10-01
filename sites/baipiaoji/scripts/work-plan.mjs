@@ -297,7 +297,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     <div id="wpMsg" aria-live="polite"></div>
     <div id="wpDiff" class="calc-row calc-warn" hidden></div>
     <div id="wpOut" class="calc-out" aria-live="polite"></div>
-    <div id="wpActions" class="wp-actions" hidden><button type="button" id="wpCopy">${esc(L.copyMd)}</button> <button type="button" id="wpLink">${esc(L.link)}</button> <button type="button" id="wpJson">${esc(L.exportJ)}</button> <button type="button" id="wpSave">${esc(L.save)}</button>
+    <div id="wpActions" class="wp-actions" hidden><button type="button" id="wpCopy">${esc(L.copyMd)}</button> <button type="button" id="wpLink">${esc(L.link)}</button> <button type="button" id="wpCard">${zh ? "预览结果卡" : "Preview result card"}</button> <button type="button" id="wpJson">${esc(L.exportJ)}</button> <button type="button" id="wpSave">${esc(L.save)}</button>
       <p class="sub-note">${esc(L.saveNote)} <a href="${BASE}/members">${zh ? '会员说明 →' : 'About membership →'}</a></p></div>
   </section>
   <section class="limits-table" id="roles">
@@ -322,6 +322,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     ${FAQ.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
   </section>
 </main>
+<section id="wpCardPreview" hidden><h2>${zh ? '分享前检查' : 'Review before sharing'}</h2><p>${zh ? '图片只含任务判定汇总，不含岗位、任务名称、工作量或文件。分享链接会包含你的任务参数。' : 'The image contains only verdict totals: no role, task names, volumes or files. A share link includes your task settings.'}</p><canvas id="wpCardCanvas" width="1200" height="900" role="img" aria-label="${zh ? 'AI 方案判定汇总' : 'AI plan verdict summary'}" style="width:100%;max-width:600px;height:auto"></canvas><p><button type="button" id="wpCardDownload">${zh ? '下载 PNG' : 'Download PNG'}</button></p></section>
 <script>
 (function(){
   var ZH=${zh}, BASE=${JSON.stringify(BASE)}, PID=${JSON.stringify(PRODUCT_ID)}, L=${safeJson(L)}, DAYS=${DEFAULT_DAYS};
@@ -329,7 +330,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   var PER=${safeJson(perW)};
   var BIZ=${safeJson(zh ? { yes: '可商用', no: '不可商用', conditional: '有条件商用', depends: '看模型', unstated: '官方没说', '': '未判定' } : { yes: 'commercial OK', no: 'no commercial use', conditional: 'conditional', depends: 'depends on model', unstated: 'terms silent', '': 'not checked' })};
   var STATUS=${safeJson(zh ? { ok: '够用', short: '不够', partial: '说不准', unknown: '无同单位数字', blocked: '约束排除了全部工具' } : { ok: 'covered', short: 'short', partial: 'uncertain', unknown: 'no same-unit figure', blocked: 'every tool excluded' })};
-  var st={role:'',tasks:{},cn:false,biz:false,days:DAYS}, last=null;
+  var st={role:'',tasks:{},cn:false,biz:false,days:DAYS}, last=null, sharedInitial=null, sharedMeasured=false;
   function $(id){return document.getElementById(id)}
   function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
@@ -339,7 +340,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   function selRoles(){Array.prototype.forEach.call(document.querySelectorAll('#wpRoles button'),function(b){b.classList.toggle('is-sel',b.dataset.role===st.role)})}
   function setRole(id){
     var r=D.roles.filter(function(x){return x.id===id})[0]; if(!r)return;
-    st.role=id; st.tasks={}; r.tasks.forEach(function(s){st.tasks[s]=D.tasks[s].example});
+    $('wpCardPreview').hidden=true;st.role=id; st.tasks={}; r.tasks.forEach(function(s){st.tasks[s]=D.tasks[s].example});
     selRoles(); drawTasks(); $('wpOut').innerHTML=''; $('wpActions').hidden=true; $('wpDiff').hidden=true; last=null;
   }
   function drawTasks(){
@@ -354,7 +355,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     Array.prototype.forEach.call(document.querySelectorAll('#wpTasks .wp-x'),function(b){b.addEventListener('click',function(){delete st.tasks[b.dataset.x];drawTasks();live()})});
   }
   // 结果已经显示时，改任何输入都静默重算——不然屏幕上是旧数字。事件只在点「算」时记一次。
-  function live(){if(!$('wpActions').hidden)compute(true)}
+  function live(){$('wpCardPreview').hidden=true;if(!$('wpActions').hidden)compute(true)}
   var fitTask=${fitTask.toString()};
   var hashText=${hashText.toString()};
   var sigOf=${sigOf.toString()};
@@ -375,7 +376,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     if(f.status==='partial')return ZH?'说不准：有官方数字的工具每周合计约 '+fmt(f.rec)+' '+u+'，不到你的 '+fmt(f.need)+'；另外 '+f.nofig.length+' 个工具没有同单位的官方数字，能否补足看它们各自的原话':'Uncertain: tools with a published figure add up to about '+fmt(f.rec)+' '+u+' a week, below your '+fmt(f.need)+'; '+f.nofig.length+' other tool(s) have no figure in this unit, so whether they close the gap depends on their own wording';
     return ZH?'没有同单位的官方数字：按步骤用，额度见每个工具下面的原话':'No official figure in this unit: follow the steps; each tool\\'s own wording is below it'}
   function compute(silent){
-    var ks=Object.keys(st.tasks); if(!ks.length){$('wpOut').innerHTML='<p class="gs-none">'+E(L.none)+'</p>';return null}
+    $('wpCardPreview').hidden=true;var ks=Object.keys(st.tasks); if(!ks.length){last=null;$('wpActions').hidden=true;$('wpOut').innerHTML='<p class="gs-none">'+E(L.none)+'</p>';return null}
     var res=ks.map(function(s){var t=D.tasks[s];return {t:t,vol:st.tasks[s],f:fitTask(t,st.tasks[s],st.cn,st.biz,st.days)}});
     var n={ok:0,short:0,partial:0,unknown:0,blocked:0}; res.forEach(function(r){n[r.f.status]++});
     var H='<p class="answer">'+(ZH?('你选的 '+res.length+' 个任务里（每周工作 '+st.days+' 天）：<b>'+n.ok+'</b> 个免费额度够用；<b>'+n.short+'</b> 个按官方数字不够；<b>'+n.partial+'</b> 个说不准；<b>'+n.unknown+'</b> 个没有同单位的官方数字，只给步骤与原话'+(n.blocked?'；<b>'+n.blocked+'</b> 个被你的约束排除了全部工具':'')+'。')
@@ -395,11 +396,12 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
       H+='</ol>'+(t.prompt?'<details><summary>'+(ZH?'可以直接用的提示词':'A prompt you can use as is')+'</summary><p>'+E(t.prompt)+'</p></details>':'')+'</div>';
     });
     $('wpOut').innerHTML=H; $('wpActions').hidden=false; last=res;
+    if(!silent&&sharedInitial!==null&&!sharedMeasured){EV('calc','/plan-share-calc/'+(planHash(st)===sharedInitial?'unchanged':'edited'));sharedMeasured=true;}
     if(!silent){EV('calc','/plan/'+(st.role||'custom')+'/'+ks.length+(st.cn?'+cn':'')+(st.biz?'+biz':''));remember()}
     return res;
   }
   function remember(){try{history.replaceState(null,'',location.pathname+location.search+'#'+planHash(st))}catch(e){}}
-  function shareUrl(){return location.origin+location.pathname+'#'+planHash(st)}
+  function shareUrl(){return location.origin+location.pathname+'?via=plan-share#'+planHash(st)}
   function markdown(){var res=last||compute(true);if(!res)return '';var m=['# '+(ZH?'我的 AI 工作方案':'My AI work plan'),'',(ZH?'每周工作 '+st.days+' 天':st.days+' working days a week')+(st.cn?(ZH?' · 只要国内直连':' · mainland-China reachable only'):'')+(st.biz?(ZH?' · 产出要商用':' · commercial use'):''),''];
     res.forEach(function(r){m.push('## '+r.t.label+' — '+fmt(r.vol)+' '+D.units[r.t.unit]+' '+PER[r.t.per]);m.push((ZH?'判定：':'Verdict: ')+STATUS[r.f.status]+(ZH?'。':'. ')+verdictOf(r.t,r.f),'');r.t.steps.forEach(function(s,i){m.push((i+1)+'. '+s.name+': '+s.action)});if(r.t.prompt)m.push('','> '+r.t.prompt);m.push('')});
     m.push((ZH?'在线重算：':'Recalculate online: ')+shareUrl(),'',ZH?'来源：白嫖计 baipiaoji.com/work-plan（额度带核实日期，以官方页为准）':'Source: Baipiaoji baipiaoji.com/en/work-plan (allowances carry check dates; the official page wins)');return m.join('\\n')}
@@ -438,7 +440,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   function fromHash(){
     var p=parsePlanHash(location.hash,D); if(!p)return;
     if(p.select){setRole(p.select);return}
-    apply(p); msg('');
+    apply(p); if(new URLSearchParams(location.search).get('via')==='plan-share'){sharedInitial=planHash(st);sharedMeasured=false;} msg(ZH?'链接中的任务参数已载入。请按自己的工作量修改，再点击计算。结果会使用当前额度重新计算。':'Task settings from the link are loaded. Enter your own workload, then calculate. Results use current allowance data.');
     EV('calc','/plan-link/'+(p.role||'custom')+'/'+Object.keys(p.tasks).length);
     $('planner').scrollIntoView();
   }
@@ -449,7 +451,17 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   $('wpDays').addEventListener('input',function(){var d=Number(this.value);if(d>=1&&d<=7){st.days=Math.round(d);live()}});
   $('wpGo').addEventListener('click',function(){compute(false)});
   $('wpCopy').addEventListener('click',function(){var b=this,m=markdown();try{navigator.clipboard.writeText(m).then(function(){flash(b)})}catch(e){}});
-  $('wpLink').addEventListener('click',function(){var b=this,u=shareUrl();remember();try{navigator.clipboard.writeText(u).then(function(){flash(b)})}catch(e){}EV('calc','/plan-share/'+(st.role||'custom'))});
+  $('wpLink').addEventListener('click',async function(){var b=this,u=shareUrl();remember();try{await navigator.clipboard.writeText(u);flash(b)}catch(e){msg((ZH?'请复制链接：':'Copy this link: ')+u)}EV('calc','/plan-share/'+(st.role||'custom'))});
+  $('wpCard').addEventListener('click',function(){if(!last||!last.length)return;var n={ok:0,short:0,partial:0,unknown:0,blocked:0};last.forEach(function(r){n[r.f.status]++});var c=$('wpCardCanvas'),x=c.getContext('2d');x.fillStyle='#f1efe8';x.fillRect(0,0,1200,900);x.fillStyle='#294c3c';x.fillRect(0,0,18,900);
+    function line(text,y,size){x.fillStyle='#171916';x.font=(size>=40?'bold ':'')+size+'px sans-serif';x.fillText(text,70,y,1060)}
+    line('BPJ / AI WORK PLAN',85,30);line(ZH?'免费额度，够完成工作吗？':'Do free tiers cover the work?',160,48);
+    line(ZH?'按输入参数计算 · 非实际使用证明':'Calculated from inputs · not proof of usage',225,28);
+    ['ok','short','partial','unknown','blocked'].forEach(function(k,i){line(n[k]+'  '+STATUS[k],320+i*75,42)});
+    line(ZH?'额度可能变化；查看各工具核实日期。':'Allowances can change. Check each tool’s review date.',715,25);
+    line(ZH?'按你的工作量重新计算 →':'Recalculate for your own workload →',780,32);
+    line('baipiaoji.com'+(ZH?'':'/en')+'/work-plan',835,30);line(new Date().toISOString().slice(0,10),875,22);$('wpCardPreview').hidden=false;EV('calc','/plan-card/preview');
+  });
+  $('wpCardDownload').addEventListener('click',function(){if(!last||$('wpCardPreview').hidden)return;$('wpCardCanvas').toBlob(function(b){if(!b)return;var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='bpj-work-plan.png';a.click();setTimeout(function(){URL.revokeObjectURL(u)},1000);EV('calc','/plan-card/download')},'image/png')});
   $('wpJson').addEventListener('click',function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'}));a.download=PID+'.json';a.click();EV('calc','/plan-export/json')});
   $('wpImport').addEventListener('click',function(){$('wpFile').click()});
   $('wpFile').addEventListener('change',function(){var f=this.files&&this.files[0];this.value='';if(!f)return;if(f.size>200000){msg(L.badFile);return}
