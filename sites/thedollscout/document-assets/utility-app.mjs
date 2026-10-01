@@ -10,7 +10,7 @@ function reset(){epoch++;result.hidden=true;result.replaceChildren();for(const u
 function setBusy(value){busy=value;for(const control of form.querySelectorAll('input,select,textarea,button'))control.disabled=value&&control.id!=='utility-clear';if(!value&&task==='image')$('image-quality').disabled=$('image-format').value==='image/png';form.setAttribute('aria-busy',String(value));}
 function setSample(value){isSample=value;$('utility-sample-note').hidden=!value;}
 function download(text,name,type='application/json'){const a=document.createElement('a');a.href=urlFor(new Blob([text],{type}));a.download=name;a.className='button';a.textContent=task==='meeting'?u.calendar:u.export;a.addEventListener('click',()=>{if(!isSample)track('doc_utility_export');});result.append(a);}
-function show(){result.hidden=false;result.focus({preventScroll:true});status(u.done);}
+function show(complete){if(isSample){const button=document.createElement('button');button.type='button';button.textContent=u.onward.useOwn;button.className='primary';button.addEventListener('click',()=>{$('utility-clear').click();form.scrollIntoView({block:'start'});form.querySelector('input,textarea,select')?.focus({preventScroll:true});});result.append(button);}else if(task==='image'&&complete){const next=document.createElement('aside');next.className='notice utility-next';next.innerHTML=`<h3>${esc(u.onward.next)}</h3><p>${esc(u.onward.nextBody)}</p><a class="button" href="${esc(u.onward.url)}${new URLSearchParams(location.search).has('ci')?'?ci=1':''}">${esc(u.onward.nextLink)} →</a>`;result.append(next);}result.hidden=false;result.focus({preventScroll:true});status(u.done);}
 function meetingDefaults(){if(task!=='meeting')return;const tomorrow=new Date(Date.now()+86400000);$('time-date').value=[tomorrow.getFullYear(),String(tomorrow.getMonth()+1).padStart(2,'0'),String(tomorrow.getDate()).padStart(2,'0')].join('-')+'T09:00';const z=Intl.DateTimeFormat().resolvedOptions().timeZone;$('time-zone').value=u.zoneNames[z]?z:'UTC';}
 meetingDefaults();
 form.addEventListener('input',()=>{if(!busy){reset();status(u.ready);}});
@@ -40,7 +40,7 @@ async function perform(operation){if(busy)return;reset();const current=epoch;set
    result.innerHTML+=`<p>${esc(new Date(plan.start).toISOString())} → ${esc(new Date(plan.end).toISOString())}</p><div class="table-scroll"><table><thead><tr>${[u.zone,u.start,u.end,u.hours].map(s=>`<th scope="col">${esc(s)}</th>`).join('')}</tr></thead><tbody>${plan.rows.map(r=>`<tr><th scope="row">${esc(u.zoneNames[r.zone])}<br><small>${esc(r.zone)}</small></th><td>${display(r.start)}</td><td>${display(r.end)}</td><td>${esc(r.outside?u.outside:u.inside)}</td></tr>`).join('')}</tbody></table></div>`;
    download(calendarFile({...plan,title:$('time-title').value,description:$('time-notes').value,uid:crypto.randomUUID()}),'tds-meeting.ics','text/calendar;charset=utf-8');complete=true;
   }
-  if(current!==epoch)return;show();if(isSample)track('doc_'+task+'_sample');else if(complete)track('doc_'+task+'_complete');
+  if(current!==epoch)return;show(complete);if(new URLSearchParams(location.search).get('example')==='1')result.scrollIntoView({block:'start'});if(isSample)track('doc_'+task+'_sample');else if(complete)track('doc_'+task+'_complete');
  }catch(e){if(current===epoch){reset();status(errorText(e),true);}}
  finally{if(current===epoch||!result.hasChildNodes())setBusy(false);}
 }
@@ -50,3 +50,6 @@ async function images(current){if(!files.length||files.length>UTILITY_LIMITS.ima
  }catch(e){if(current!==epoch)return false;const p=document.createElement('p');p.className='notice error';p.textContent=file.name+' — '+u.failed+': '+errorText(e);result.append(p);}finally{bitmap?.close();if(canvas)canvas.width=canvas.height=1;}}
  return succeeded===files.length;
 }
+
+// The visitor explicitly requested this public, local example. No AI model is fetched.
+if(new URLSearchParams(location.search).get('example')==='1')$('utility-sample').click();

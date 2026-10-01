@@ -42,7 +42,7 @@ Twelve free browser tools across AI, images, JSON data, time zones, file deliver
   Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free AI tools, image tools, JSON & PDF utilities](https://thedollscout.com/) (en): Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
+- [Free image, PDF & file tools for everyday work](https://thedollscout.com/) (en): For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.
   Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
   Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
@@ -104,7 +104,7 @@ Twelve free browser tools across AI, images, JSON data, time zones, file deliver
   Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF](https://thedollscout.com/de/) (de): Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
+- [Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag](https://thedollscout.com/de/) (de): Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.
   Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
   Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
@@ -166,7 +166,7 @@ Twelve free browser tools across AI, images, JSON data, time zones, file deliver
   Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费 AI 工具：人像抠图、语音转写、摘要与日常工具](https://thedollscout.com/zh/) (zh): 用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
+- [免费图片、PDF 与文件工具：从处理到交付](https://thedollscout.com/zh/) (zh): 为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。
   Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
   Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
@@ -1007,13 +1007,33 @@ Reference material
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Free AI tools, image tools, JSON & PDF utilities
+# Free image, PDF & file tools for everyday work
 
 https://thedollscout.com/
 Published by TDS Document Scout
 Updated: 2026-09-27
 
-Remove portrait backgrounds with AI, transcribe English audio, extract text highlights, prepare images or work with data and PDFs. Twelve free tools, with processing on your device.
+For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.
+
+What do you need to finish?
+
+Prepare images for a website
+
+Resize JPEG, PNG or WebP, inspect the result and download the files.
+
+Resized images with their actual output sizes.
+
+Check what changed in a PDF
+
+Compare the text in two versions before sending the final document. Scanned pages need OCR elsewhere.
+
+Page-level text changes and an exportable report.
+
+Record a file handover
+
+List the final files and add your notes. Create a checksum link if the recipient needs to check a copy.
+
+A downloadable file inventory. It does not prove delivery or acceptance.
 
 Image compressor & converter
 
@@ -2367,13 +2387,33 @@ Referenzen
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# Kostenlose KI-Tools, Bildwerkzeuge, JSON & PDF
+# Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Mit KI Porträts freistellen, englische Aufnahmen transkribieren und Textauszüge finden. Dazu Bilder, Daten und PDFs bearbeiten: zwölf kostenlose Werkzeuge auf Ihrem Gerät.
+Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.
+
+Was möchten Sie erledigen?
+
+Bilder für eine Website vorbereiten
+
+JPEG, PNG oder WebP verkleinern, das Ergebnis prüfen und Dateien herunterladen.
+
+Verkleinerte Bilder mit den tatsächlichen Ausgabegrößen.
+
+Änderungen in einem PDF prüfen
+
+Vor dem Versand den Text zweier Fassungen vergleichen. Gescannte Seiten benötigen eine externe OCR.
+
+Textänderungen nach Seiten und einen exportierbaren Bericht.
+
+Eine Dateiübergabe dokumentieren
+
+Finale Dateien auflisten und Notizen ergänzen. Bei Bedarf einen Prüfsummen-Link für den Empfänger erstellen.
+
+Eine herunterladbare Dateiliste. Sie belegt weder Zustellung noch Abnahme.
 
 Bilder komprimieren & umwandeln
 
@@ -3727,13 +3767,33 @@ SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的�
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
-# 免费 AI 工具：人像抠图、语音转写、摘要与日常工具
+# 免费图片、PDF 与文件工具：从处理到交付
 
 https://thedollscout.com/zh/
 由 TDS 文档侦察站发布
 更新日期: 2026-09-27
 
-用 AI 抠出人像、转写英文音频、提取原文要点，也能处理图片、数据、时区与 PDF。十二个免费工具，按任务分类，在你的设备上完成处理。
+为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。
+
+你现在要完成什么？
+
+把图片准备好再发布
+
+调整 JPEG、PNG、WebP 的尺寸与格式，查看结果后下载。
+
+可下载的图片，以及实际输出文件大小。
+
+发出 PDF 前，确认改了哪里
+
+比较两个版本中已有的文字，定位改动。扫描件需要先在其他工具中做 OCR。
+
+按页定位的文字差异，以及可导出的报告。
+
+记录这次交付了哪些文件
+
+列出最终文件、补充备注；需要核对副本时，再创建校验链接。
+
+可下载的文件清单；它不证明送达或验收。
 
 图片压缩、缩放与格式转换
 

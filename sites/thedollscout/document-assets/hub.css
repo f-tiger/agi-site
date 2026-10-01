@@ -1,4 +1,4 @@
-/* TDS's existing white / black / red identity, with a task directory in front. */
+/* TDS's existing white / black / red identity, with concrete outcomes first. */
 .hub-hero{padding:48px 0 36px;display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
 .hub-hero h1{font-size:clamp(36px,4.3vw,56px);line-height:1.09;letter-spacing:-.035em;margin:0;font-weight:800}
 .hub-hero h1 span{display:block}
@@ -43,3 +43,27 @@ html[lang="de"] .hub-hero h1{font-size:clamp(32px,3.4vw,44px)}
 /* AI is a full-width category; model cards remain ordinary crawlable links. */
 .hub-group-ai{grid-column:1/-1;padding:24px 0!important;border-left:0!important}.hub-group-ai header{min-height:0;padding-bottom:12px}.hub-group-ai header p{max-width:none}.hub-group-ai .hub-task-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.hub-group:nth-child(3n+2){border-left:0;padding-left:0}.hub-group:nth-child(3n+1):not(:first-child){border-left:1px solid var(--line);padding-left:24px;padding-right:0}.hub-group:nth-child(3){padding-right:24px}.hub-group:nth-child(n+2){border-top:1px solid var(--line)}.hub-group-wide{border-left:1px solid var(--line)!important;padding-left:24px!important}
 @media(max-width:680px){.hub-group-ai .hub-task-list{grid-template-columns:1fr;gap:0}.hub-group-ai{grid-column:auto}.hub-group:nth-child(3n+1):not(:first-child),.hub-group-wide{border-left:0!important;padding-left:0!important;padding-right:0!important}.hub-group:nth-child(3){padding-right:0}}
+
+/* Outcome-first entry: real sample dimensions, then three concrete tasks. */
+.outcome-hero{grid-template-columns:1.2fr 1fr;gap:48px;padding:54px 0 44px;align-items:center}
+.outcome-eyebrow{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.06em;margin:0 0 18px;text-transform:uppercase}
+.outcome-intro{font-size:17px;color:var(--muted);margin:22px 0;max-width:51ch}
+.outcome-hero .actions{gap:10px;margin:0 0 18px}.outcome-hero .button{font-size:14px;padding:.75rem 1rem}
+.outcome-browse{font-size:14px;color:var(--ink)}
+.outcome-preview{margin:0;padding:28px;background:var(--wash);border:1px solid var(--line);border-radius:12px;min-width:0}
+.outcome-preview figcaption{font-size:14px;font-weight:600;margin-bottom:30px}
+.outcome-images{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:end}
+.outcome-images span{display:block;font-size:12px;color:var(--muted);margin-bottom:10px}
+.outcome-images strong{display:block;font-size:15px;margin-top:14px;font-variant-numeric:tabular-nums}
+.outcome-image{aspect-ratio:3/2;background:linear-gradient(135deg,#e4002b,#111114);display:flex;align-items:center;padding:12%;border-radius:4px;box-shadow:0 6px 12px #11111410}
+.outcome-image b{color:var(--accent);font-size:24px;background:#fff;width:65%;height:75%;display:grid;place-items:center;font-weight:800}
+.outcome-image.resized{width:67%}.outcome-image.resized b{font-size:16px}
+.outcome-preview>p{font-size:12px;color:var(--muted);margin:24px 0 0;line-height:1.6}
+.outcome-tasks{padding:0 0 48px}.outcome-tasks>h2{font-size:24px;margin-bottom:24px}
+.outcome-task-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.outcome-task-grid article{border-top:2px solid var(--ink);padding-top:17px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.outcome-step{color:var(--accent);font-size:13px;font-weight:700}.outcome-task-grid h3{font-size:21px;margin:12px 0 0}.outcome-task-grid p{font-size:14px;color:var(--muted);margin:14px 0}
+.outcome-task-grid .outcome-output{border-left:2px solid var(--line);padding-left:12px;margin:0 0 20px;flex:1}.outcome-output strong{display:block;color:var(--ink);font-size:12px;margin-bottom:5px}
+.outcome-task-grid a{font-size:14px;font-weight:600;min-height:35px}.outcome-task-grid .outcome-demo{font-weight:400;font-size:13px}
+@media(max-width:900px){.outcome-hero{gap:28px}.outcome-preview{padding:20px}.outcome-task-grid{gap:20px}}
+@media(max-width:680px){.outcome-hero{grid-template-columns:1fr;padding:30px 0;gap:26px}.outcome-hero h1{font-size:34px}.outcome-intro{font-size:16px}.outcome-eyebrow{margin-bottom:14px}.outcome-preview{padding:20px}.outcome-preview figcaption{margin-bottom:20px}.outcome-images{max-width:360px}.outcome-task-grid{grid-template-columns:1fr;gap:28px}.outcome-task-grid p{max-width:none}.outcome-tasks{padding-bottom:38px}}
