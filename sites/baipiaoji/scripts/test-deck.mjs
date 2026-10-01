@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {sample,validate,blank,pages,parseOutline,agentPrompt,PRODUCT} from '../assets/studio/deck-core.mjs';
+import {allowedProduct} from '../lib/membership.js';
+for(const lang of ['zh','en'])for(const kind of ['proposal','review','report']){const p=sample(lang,kind);assert.deepEqual(validate(p),p);assert(pages(p).length>=p.values.slides.length);assert.equal(allowedProduct('bpj',PRODUCT),true);assert.equal(allowedProduct('agi',PRODUCT),false);}
+const p=blank('en');p.values.slides[0].body='长'.repeat(600);const output=pages(p);assert(output.length>1);assert.equal(output.map(s=>s.body.replaceAll('\n','')).join(''),'长'.repeat(600));
+const table=sample('zh').values.slides[2];table.rows=Array.from({length:5},()=>table.columns.map(()=> '例'.repeat(60)));p.values.slides=[table];assert(pages(p).length>1);assert.equal(pages(p).flatMap(s=>s.rows).length,5);
+for(const bad of [{...sample(),product:'other'}, {...sample(),version:2}, {...sample(),values:{...sample().values,slides:[]}}, {...sample(),values:{...sample().values,theme:'__proto__'}}])assert.throws(()=>validate(bad));
+const chart=sample('en','review');chart.values.slides[2].data[0].value=Infinity;assert.throws(()=>validate(chart));chart.values.slides[2].data[0].value=-1;assert.throws(()=>validate(chart));
+const imported=parseOutline('## One\nBody\nSource: supplied document\nNotes: Talk track\n\n## Two\nSecond slide',blank('en'));assert.equal(imported.values.slides.length,2);assert.equal(imported.values.slides[0].notes,'Talk track');assert.equal(imported.values.demo,false);assert.throws(()=>parseOutline('No headings',blank()));
+assert.deepEqual(parseOutline('```json\n'+JSON.stringify(sample())+'\n```',blank()),sample());assert(agentPrompt(sample('en')).includes('Do not invent'));
+if(process.argv.includes('--dist')){for(const prefix of ['','en/']){const root=new URL('../dist/'+prefix,import.meta.url);const html=readFileSync(new URL('studio/proposal-deck.html',root),'utf8');for(const token of ['deck-workspace','dk-export','dk-cloud','dk-source','dk-notes','proposal-deck/guide'])assert(html.includes(token));assert(readFileSync(new URL('search-index.json',root),'utf8').includes('/studio/proposal-deck'));assert(readFileSync(new URL('index.html',root),'utf8').includes('/studio/proposal-deck'));}const products=JSON.parse(readFileSync(new URL('../dist/member-assets/products.json',import.meta.url)));assert(products.some(x=>x.id===PRODUCT));}
+console.log('PASS deck validation, pagination without loss, structured/Markdown import, source preservation, product isolation and discovery');

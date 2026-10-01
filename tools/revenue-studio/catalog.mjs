@@ -34,6 +34,7 @@ p('embedpuzzles','EmbedPuzzles','agi',7,'Generate a self-contained interactive p
 // Tools a site builds itself (not by this workbench builder) that can still be saved to that site's member workspace.
 // Only id/name/site/urls: the member page lists them, the member API accepts them for saving, nothing here builds a page.
 export const externalProducts=[
+{id:'bpj-proposal-deck',name:'BPJ ProposalDeck',site:'bpj',urls:{zh:'https://baipiaoji.com/studio/proposal-deck',en:'https://baipiaoji.com/en/studio/proposal-deck'}},
 {id:'work-mentor',name:'Work Mentor',site:'agi',urls:{zh:'https://agiscorecard.com/zh/mentor',en:'https://agiscorecard.com/mentor'}},
 {id:'ai-infrastructure',name:'AI Infrastructure Research',site:'agi',urls:{zh:'https://agiscorecard.com/zh/ai-infrastructure',en:'https://agiscorecard.com/ai-infrastructure'}},
 {id:'ai-work-plan',name:'AI Work Plan',site:'bpj',urls:{zh:'https://baipiaoji.com/work-plan',en:'https://baipiaoji.com/en/work-plan'}},
