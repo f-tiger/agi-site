@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-01",
+  "sites": [
+    "bpj",
+    "eco"
+  ],
+  "posts": [
+    {
+      "site": "eco",
+      "network": "youtube",
+      "date": "2026-10-01T16:00:00",
+      "timezone": "Asia/Shanghai",
+      "id": 385553661,
+      "uuid": "-7827161335222024161",
+      "status": "PENDING",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=-7827161335222024161"
+    },
+    {
+      "site": "eco",
+      "network": "tiktok",
+      "date": "2026-10-01T18:00:00",
+      "timezone": "Asia/Shanghai",
+      "id": 385553715,
+      "uuid": "4667115799322183823",
+      "status": "PENDING",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=4667115799322183823"
+    },
+    {
+      "site": "bpj",
+      "network": "youtube",
+      "date": "2026-10-02T16:00:00",
+      "timezone": "Asia/Shanghai",
+      "id": 385553775,
+      "uuid": "-1558963424987234179",
+      "status": "PENDING",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=-1558963424987234179"
+    },
+    {
+      "site": "bpj",
+      "network": "tiktok",
+      "date": "2026-10-02T12:00:00",
+      "timezone": "Asia/Shanghai",
+      "id": 385553820,
+      "uuid": "8138336353717014294",
+      "status": "PENDING",
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7132930&openWithPostUuid=8138336353717014294"
+    }
+  ],
+  "videos": [
+    "eco-result-card-a.mp4",
+    "eco-result-card-b.mp4",
+    "bpj-result-card-a.mp4",
+    "bpj-result-card-b.mp4"
+  ],
+  "notes": [
+    "Status is PENDING, not published.",
+    "Only A variants scheduled; B retained as creative alternatives.",
+    "All timestamps Asia/Shanghai.",
+    "ECO descriptions reuse eco-fixed-02; utm_content is not isolated by the current report. BPJ UTM campaign is not wired to a new campaign-specific backend report.",
+    "34s, 1080x1920, 30fps, H264/AAC, original score, AI narration, illustrative inputs; four complete browser playbacks and full decodes passed. No human audio review."
+  ]
+}

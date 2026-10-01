@@ -24,3 +24,13 @@ Adversarial pass 2 (self-review): a sender's `own` flag previously survived the 
 BPJ: 2,351-page HTML gates, canonical targets, work-plan arithmetic/roundtrip/dist, studio and agent-watch gates passed locally. ECO: tariff model and distribution collector/SQL tests passed (10 tests). Browser: 34 assertions, all five ECO languages and both BPJ languages, PNG downloads, mobile width, stale-result invalidation and recipient reset. Browser QA uses local fixtures and emits no production events.
 
 Deployment status and video publication receipts must be recorded after confirmation. These checks are not traffic results.
+
+
+## Confirmed release and publication queue
+
+- Code: `373b3f7`, followed by BPJ layout/browser-fixture correction `1a02a76`. ECO workflow `36819208931` and BPJ final workflow `36819769696` completed successfully. Deployment post-checks passed. Local browser checks verified ECO card export + recipient reset and BPJ card preview inside main content. A separate local-runner urllib live page read returned HTTP 403; no additional independent live-browser assertion is claimed.
+- Four 34-second, 1080×1920, 30fps H.264/AAC videos completed. Each had 1,020 displayed frames in uninterrupted browser playback; only initial loading waits, no playback errors. Full FFmpeg decode passed. Selected A audio: ECO -16.4 LUFS / -1.5 dBTP; BPJ -16.1 LUFS / -1.5 dBTP. AI narration, original synthesized score, complete English narration subtitles; real local tool recording with illustrative inputs. No human listening assessment and no claim of industry-leading performance.
+- Media is saved separately, not checked into this repository. Both A and B opening variants are deliverable; only A is scheduled.
+- Metricool recommended-hour scores informed the schedule; they are not guaranteed performance or audience-size estimates. ECO: October 1, YouTube 16:00 and TikTok 18:00. BPJ: October 2, YouTube 16:00 and TikTok 12:00. All Asia/Shanghai. All four were acknowledged as `PENDING`, not published; receipts in the companion JSON.
+- Acquisition limitation: ECO YouTube copy reuses `eco-fixed-02`; existing aggregate reporting does not split `utm_content`, so this post cannot be isolated from prior posts using that campaign. BPJ campaign URL tags do not add a campaign-specific backend report. Typed hub URLs and missing referrers remain unassigned; do not manufacture source-level conversion rates.
+- Growth, retention and revenue remain unmeasured for these queued posts. Observe the existing fleet reporting cadence; no new cron, ad spend or outreach.
