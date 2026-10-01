@@ -50,3 +50,11 @@ An earlier browser pass caught the lack of fragment-change handling. The impleme
 - These fixtures are technical tests, not campaign reach, actual client usage or retention. Published edition and deployment/index submission evidence belong to the associated PR/run; a merge alone does not establish launch or indexing.
 
 Run `node tools/quote-page-lab/build.mjs`, then the browser test described in README. Generated previews and screenshots are reproducible and are not committed.
+
+## Growth round 2 — 2026-10-01.4
+
+- Direct-demo visits emit a public entry independently of entering the editor; SQLite tests cover the new source totals, unchanged legacy counts, null on failure and indexed execution. Native-share requests are not deliveries.
+- All 20 video-tool records in both locales and the video category expose a contextual quote link. Tests reject this CTA on non-video tool pages. A generated Google Flow link opens the correct localized demo with an allowlisted source.
+- Browser verification covers mobile-visible start, focus into the creator form, preserved defaults, fixed recommendation payloads, native-share canceled/blocked/resolved stubs, clipboard failure with selectable fallback and no false copy event. No external app receives a test message. Actual iOS/Android OS share delivery remains unverified.
+- Existing BPJ core/workerd, dist/member/revenue and ten browser suites pass. The final GA4 coverage installer/checker passes and explicitly excludes both quote routes; no global tracking is introduced into quote content.
+- Live edition and deployment status are recorded in the release PR. No visitors, delivered messages, qualified creators, retention or revenue are inferred from technical QA.

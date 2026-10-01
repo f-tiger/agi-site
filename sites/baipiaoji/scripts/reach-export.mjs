@@ -72,7 +72,7 @@ function summarise(api) {
     ads: api.ads || {},
     commercial_triggers: api.commercial_triggers || {ok:false,counts:null,reason:"not_reported"},
     conversion_stages: api.conversion_stages || {ok:false,events:null,accounts:null,reason:'not_reported'},
-    quote_signals: api.quote_signals || {ok:false,actions:null,builder_entries:null,reason:'not_reported'},
+    quote_signals: api.quote_signals || {ok:false,actions:null,builder_entries:null,entry_sources:null,reason:'not_reported'},
   };
 }
 

@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {safeJSON,template,escapeHTML} from './core.mjs';
 
-export const EDITION='2026-10-01.3';
+export const EDITION='2026-10-01.4';
 export const ROUTE='/studio/quote-builder';
 const css=readFileSync(new URL('./style.css',import.meta.url),'utf8');
 const core=readFileSync(new URL('./core.mjs',import.meta.url),'utf8').replace(/^export /gm,'');

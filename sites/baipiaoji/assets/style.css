@@ -239,6 +239,7 @@ body.has-rail .stage { margin-left: var(--rail-w); max-width: none; }
   color: var(--ink-2); text-decoration: none; max-width: 74ch;
 }
 .coverage a:hover { border-color: var(--ink-2); color: var(--ink); }
+.evidence-panel a { overflow-wrap: anywhere; }
 /* 拒绝清单在对比表下方，用小标题分隔，不另起一节——「为什么空着」和「填了什么」是一件事 */
 .nsrc-h { margin: 22px 0 6px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
 .money + .plans, .rules + .money { margin-top: 26px; }
