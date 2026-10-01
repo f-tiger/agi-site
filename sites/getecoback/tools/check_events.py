@@ -22,6 +22,7 @@ def used_names():
     files += glob.glob(os.path.join(SITE, "js", "*.js"))
     files += glob.glob(os.path.join(SITE, "assets", "energy-workbench.mjs"))
     files += glob.glob(os.path.join(SITE, "assets", "moisture-decision.mjs"))
+    files += glob.glob(os.path.join(SITE, "assets", "laundry-check.mjs"))
     # Edge-injected snippets (SUB2_SNIPPET, popup_view) live in the Worker, not
     # in any page file, and must be counted as fired too.
     files.append(WORKER)
@@ -35,6 +36,7 @@ def used_names():
         names |= set(re.findall(r'\bev\(\s*["\']([a-z_0-9]+)["\']', text))
         names |= set(re.findall(r'\bevent\(\s*["\']([a-z_0-9]+)["\']', text))
     for name in re.findall(r"distribution\(\s*[\"\']([a-z_0-9]+)[\"\']", open(os.path.join(SITE,"assets","energy-workbench.mjs"),encoding="utf-8").read()): names.add(name)
+    names |= set(re.findall(r"emit\(\s*'([a-z_0-9]+)'",open(os.path.join(SITE,"assets","laundry-check.mjs"),encoding="utf-8").read()))
     return names
 
 
@@ -45,7 +47,7 @@ def whitelisted():
         sys.exit("check_events: EV_NAMES not found in src/worker.js")
     extra=open(os.path.join(ROOT,'src','distribution-growth.mjs'),encoding='utf-8').read().split(';',1)[0]
     buyer=open(os.path.join(ROOT,'src','buyer-events.mjs'),encoding='utf-8').read().split(';',1)[0]
-    return set(re.findall(r'"([a-z_0-9]+)"', block.group(1))) | set(re.findall(r"'([a-z_0-9]+)'",extra+buyer))
+    return set(re.findall(r'"([a-z_0-9]+)"', block.group(1))) | set(re.findall(r"'([a-z_0-9]+)'",extra+buyer+open(os.path.join(ROOT,"src","laundry-events.mjs"),encoding="utf-8").read().split(";",1)[0]))
 
 
 def main():

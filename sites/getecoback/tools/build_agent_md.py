@@ -63,6 +63,11 @@ def to_markdown(src_html, path_url, lang):
             heading = 'Herstellerdaten vor dem Kauf prüfen' if lang == 'de' else 'Check manufacturer data before buying'
             source = re.search(r'<small>(?:Quellen geprüft|Sources checked).*?</small>', buyer.group(1), re.S)
             body += f'<h2>{heading}</h2>' + evidence.group(1) + (source.group(0) if source else '')
+    laundry = re.search(r'<!--EB_LAUNDRY-->(.*?)<!--/EB_LAUNDRY-->', src_html, re.S)
+    if laundry:
+        protocol = re.search(r'<details><summary>Measure one load fairly: checklist</summary>(.*?)</details>', laundry.group(1), re.S)
+        if protocol:
+            body += '<h2>Reproducible laundry cost comparison</h2><p>Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.</p>' + protocol.group(1)
     # Detect the live-number bands BEFORE they are stripped below. They are
     # JavaScript-rendered, so a crawler or this Markdown view sees an empty
     # div — and the whole point of a live number (citation-growth item six:
