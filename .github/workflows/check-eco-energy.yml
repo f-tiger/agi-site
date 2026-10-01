@@ -42,6 +42,9 @@ jobs:
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
           python3 tools/build_structure.py
+          # Match deployment: this regenerates the isolated workbench pages
+          # after generic chrome, keeping their probe/event contract intact.
+          python3 tools/link_energy_workbench.py
           python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
           # Match deployment: assert the takedown instead of recreating a guide.
