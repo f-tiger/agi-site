@@ -22,7 +22,8 @@ assert.throws(()=>decodeConfig('!bad'));
 assert.throws(()=>decodeConfig('a'.repeat(14001)));
 assert(!safeJSON({value:'</script><img onerror=alert(1)>'}).includes('<'));
 console.log('Core: money precision, scope totals, invalid values, schema and Unicode round trip passed.');
-const require=createRequire(import.meta.url),{chromium}=require('playwright');
+const require=createRequire(import.meta.url);
+let chromium;try{({chromium}=require('playwright'));}catch{({chromium}=require('../revenue-studio/node_modules/playwright'));}
 const browser=await chromium.launch({headless:true,executablePath:process.env.QUOTE_STUDIO_CHROMIUM||undefined,args:['--no-sandbox']});
 const context=await browser.newContext({viewport:{width:1360,height:1000},acceptDownloads:true});
 const page=await context.newPage();
@@ -74,7 +75,7 @@ try{
  await page.goto(pathToFileURL(join(root,'dist','quote-studio-en.html')).href);
  assert(!(await page.locator('#app').textContent()).match(/[\u4e00-\u9fff]/g)?.filter(c=>!['中','文'].includes(c)).length);
  await page.getByRole('button',{name:'Save, restore and back up'}).count();
- await page.locator('summary').click();
+ await page.locator('.secondary summary').click();
  await page.getByRole('button',{name:'Save local draft',exact:true}).click();
  assert((await page.locator('#status').textContent()).includes('saved'));
  await page.getByRole('button',{name:'Import JSON',exact:true}).click().catch(()=>{});
