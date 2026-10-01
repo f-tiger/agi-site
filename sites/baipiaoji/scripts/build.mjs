@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {buildSkillDiscovery} from './skill-discovery.mjs';
 import {buildReleaseCheckAssets} from './release-check-assets.mjs';
 import {buildAccountPages} from './account-pages.mjs';
 import {growthMarkup,growthNotice} from '../lib/growth-campaigns.js';
@@ -5969,6 +5970,7 @@ if (OFFQ) {
   const r = buildWorkPlan({
     root, layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site, toolsBySlug: bySlug, planBySlug, licence: LICENCE || {},
     write: (s) => writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'work-plan.html'), s),
+    writeEmbed: (s) => { const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),'embed/work-plan.html');mkdirSync(dirname(target),{recursive:true});writeFileSync(target,s); },
     pushPage: (u, pr) => allPages.push({ u, pr }),
   });
   console.log(`🧭 work-plan (${LOCALE.code}): ${r.roles} roles · ${r.tasks} tasks · ${r.tools} tools, ${r.withCap} with a same-unit official figure · data as of ${r.asOf}`);
@@ -7795,6 +7797,8 @@ writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css
 for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
+buildSkillDiscovery(root,dist);
+for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
 // CORS + 缓存策略：MCP/Agent 面早已 ACAO:*，它指向的静态数据文件此前没有——
 // 浏览器侧 agent 拿到链接却抓不动。thedollscout/_headers 的同一修法。
@@ -8176,6 +8180,9 @@ ${hustles.map((h) => `- [${h.title}](${site.base_url}/money/${h.slug}.html)：${
 ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：${s.steps.length} 步，等价付费方案约 ${s.saving || '需订阅费'}｜EN: ${site.base_url}/en/plans/${s.slug}.html`).join('\n')}
 
 ## BPJ 自研工具 / First-party BPJ tools
+
+- [嵌入工作量规划器 / Embed the work planner](https://baipiaoji.com/en/work-plan#embed): free website widget, no account, local calculation; cloud saving is 9 USDT / 30 days.
+- [Installable Skills index](https://baipiaoji.com/.well-known/agent-skills/index.json): BPJ Codex Efficiency Lite 1.0.0; explicit file allowlist, local use without an account. Discovery is not proof of installation or marketplace approval.
 
 - [收费应用验收试点 / Paid app review pilot](${site.base_url}/studio/release-check): 准备清单、虚构报告示例、拟议 $299 单次范围。只收申请，不收款、不执行应用测试。EN: ${site.base_url}/en/studio/release-check
 - [Codex 效率 Skill / Codex Efficiency](https://baipiaoji.com/studio/codex-efficiency): 免费本地诊断；可选 Pro 项目规则和反复评估，19 USDT / 30 天，首次一次完整评估免费，无节省保证。EN: https://baipiaoji.com/en/studio/codex-efficiency

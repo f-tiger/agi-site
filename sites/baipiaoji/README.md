@@ -14,6 +14,19 @@
 
 中文在根路径，英文在 `/en/`。
 
+## 在你的内容和项目中使用 BPJ
+
+- **教程 / 工具目录**：[免费嵌入工作量规划器](https://baipiaoji.com/work-plan#embed) · [English](https://baipiaoji.com/en/work-plan#embed)。读者填写自己的工作量，查看有来源和日期的免费额度。无需账号，计算在本地完成；可继续到本站导出，云端保存为 9 USDT / 30 天。
+- **本地 Codex 项目**：[查看 Codex Efficiency Lite 的源码与安装说明](https://baipiaoji.com/en/studio/codex-efficiency#install)。免费复盘指定会话的计数与重复失败；不保证省量，不把 Token 换算成剩余订阅额度。
+
+支持 Skills CLI 的单独发现与项目安装。先审阅源码，并备份已有同名 Skill；此命令不安装 monorepo 的其他技能：
+
+```sh
+npx skills@1.7.0 add https://baipiaoji.com --skill bpj-codex-efficiency --agent codex --copy
+```
+
+[机器可读 Skill 索引](https://baipiaoji.com/.well-known/agent-skills/index.json) 发布 Lite 1.0.0。Pro 为独立的拟议 19 USDT / 30 天服务，购买以页面实时状态为准，目前保持关闭。命令复制、下载和安装测试都不是客户收入。
+
 ## 快速开始
 
 ```bash

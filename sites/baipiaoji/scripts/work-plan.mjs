@@ -1,3 +1,4 @@
+import {publisherKit,plannerWidget} from './work-plan-distribution.mjs';
 // /work-plan — 「按你的岗位，算一套 AI 方案」（2026-09-24，owner：「根据自己的实际工作…自动化计算，然后推荐 ai 的一整套解决方案…试用免费，高阶收费」）。
 // PRD：docs/PRD-work-plan-2026-09-24.md。
 //
@@ -220,7 +221,7 @@ export function workPlanLinks(root) {
   return new Map(Object.entries(roles.tasks).map(([slug, t]) => [slug, `/work-plan.html#${slug}=${t.example}`]));
 }
 
-export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site, toolsBySlug, planBySlug, licence, write, pushPage }) {
+export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site, toolsBySlug, planBySlug, licence, write, writeEmbed, pushPage }) {
   const zh = LOCALE.code === 'zh';
   const roles = JSON.parse(readFileSync(join(root, 'data/work-roles.json'), 'utf8'));
   const quotas = loadQuotas(root);
@@ -275,15 +276,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     importQ: 'Downloaded this page\'s JSON before?', importB: 'Import it and compare allowances', badFile: 'That is not a plan file exported from this page.',
   };
 
-  const body = `${railOf()}
-<main class="stage">
-  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/studio/">${zh ? '自研工具' : 'Built by BPJ'}</a><i>/</i><span>${zh ? '按岗位算方案' : 'Plan by job'}</span></nav>
-  <header class="hero"><div class="hero-inner">
-    <h1>${esc(h1)}</h1>
-    <p class="answer">${esc(answer)}</p>
-    <p class="coverage">${zh ? '只想按任务配工具？' : 'Just want tools by task?'} <a href="${BASE}/stack-builder.html">${zh ? '免费工具栈组装器 →' : 'Free stack builder →'}</a></p>
-  </div></header>
-  <section class="limits-table" id="planner" data-home-block="work-plan">
+  const calculator = `  <section class="limits-table" id="planner" data-home-block="work-plan">
     <h2 class="group-title">${L.s1}</h2>
     <div class="ask-hint" id="wpRoles">${D.roles.map((r) => `<button type="button" data-role="${esc(r.id)}">${esc(r.name)}</button>`).join('')}</div>
     <p class="sub-note wp-import">${esc(L.importQ)} <button type="button" id="wpImport" class="wp-link">${esc(L.importB)}</button><input type="file" id="wpFile" accept=".json,application/json" hidden></p>
@@ -299,32 +292,8 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     <div id="wpOut" class="calc-out" aria-live="polite"></div>
     <div id="wpActions" class="wp-actions" hidden><button type="button" id="wpCopy">${esc(L.copyMd)}</button> <button type="button" id="wpLink">${esc(L.link)}</button> <button type="button" id="wpCard">${zh ? "预览结果卡" : "Preview result card"}</button> <button type="button" id="wpJson">${esc(L.exportJ)}</button> <button type="button" id="wpSave">${esc(L.save)}</button>
       <p class="sub-note">${esc(L.saveNote)} <a href="${BASE}/members">${zh ? '会员说明 →' : 'About membership →'}</a></p></div>
-  </section>
-<section class="limits-table" id="wpCardPreview" hidden><h2>${zh ? '分享前检查' : 'Review before sharing'}</h2><p>${zh ? '图片只含任务判定汇总，不含岗位、任务名称、工作量或文件。分享链接会包含你的任务参数。' : 'The image contains only verdict totals: no role, task names, volumes or files. A share link includes your task settings.'}</p><canvas id="wpCardCanvas" width="1200" height="900" role="img" aria-label="${zh ? 'AI 方案判定汇总' : 'AI plan verdict summary'}" style="width:100%;max-width:600px;height:auto"></canvas><p class="wp-actions"><button type="button" id="wpCardDownload">${zh ? '下载 PNG' : 'Download PNG'}</button></p></section>
-  <section class="limits-table" id="roles">
-    <h2 class="group-title">${zh ? '12 个岗位的默认方案（不开 JS 也能看）' : 'Default plans for 12 roles (readable without JavaScript)'}</h2>
-    <p class="sub-note">${zh ? '岗位与任务是编辑整理的默认值；工具与步骤来自 0 元方案；数字来自官方公布并带核实日期。' : 'Roles and tasks are editorial defaults; tools and steps come from the zero-cost plans; figures are officially published and carry check dates.'}</p>
-    ${staticRoles}
-  </section>
-  <section class="limits-table" id="method">
-    <h2 class="group-title">${zh ? '怎么算的（不怎么算的也写上）' : 'How it is calculated — and what it will not do'}</h2>
-    <ul class="wp-method">
-      <li>${zh ? '容量只取厂商公布的、与任务同单位的数字：每天的 × 你每周的工作天数（每日额度不结转），每月的 ×7/30 折成每周；一次性额度单独算「能撑几周」。' : 'Capacity uses only figures the vendor publishes in the same unit as the task: daily figures × your working days a week (daily allowances do not carry over), monthly ×7/30 to get a week; one-off grants are shown as how many weeks they last.'}</li>
-      <li>${zh ? '同一任务里可用工具的免费容量相加——这是「一整套」的意思：一家不够，几家叠起来可能够。' : 'Free capacity of the usable tools in a task is added up — that is what a whole plan means: one vendor may fall short where several together do not.'}</li>
-      <li>${zh ? '约束分三种情况：明确不满足的排除；明确满足的计入；可达性没标注、商用条款没写明的不计入确定容量，结论写「说不准」并列出是哪几个工具。' : 'Constraints have three outcomes: tools that clearly fail are left out, tools that clearly pass are counted, and tools with unrecorded reachability or silent terms stay out of the firm total, so the verdict says uncertain and names them.'}</li>
-      <li>${zh ? '不做单位换算：tokens、积分、字符不折成张数或分钟。没有同单位数字的工具，照录厂商原话，并标明是否逐家核实过。' : 'No unit conversion: tokens, credits and characters are never turned into images or minutes. Tools without a same-unit figure get the vendor wording, marked verified or not.'}</li>
-      <li>${zh ? '保存的方案会记下每个工具当时的数字与核实日期；以后从云端或 JSON 恢复，页面逐条列出变了什么——额度每个月都在变，方案也会过期。' : 'A saved plan records each tool\'s figure and check date; when it is restored later, from the cloud or a JSON file, the page lists what changed. Allowances move every month, and plans go stale with them.'}</li>
-      <li>${zh ? '不算「能省几小时」：那要看你的工作，本站没有可核实的数字。' : 'No "hours saved" figure: that depends on your work and there is no verifiable number for it.'}</li>
-      <li>${zh ? '厂商随时会改额度；每个数字旁都有核实日期，本站每天巡检官方页。' : 'Vendors change allowances at any time; every figure carries its check date and the official pages are re-checked daily.'}</li>
-    </ul>
-  </section>
-  <section class="faq">
-    <h2>${zh ? '常见问题' : 'FAQ'}</h2>
-    ${FAQ.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
-  </section>
-</main>
-
-<script>
+  </section>`;
+  const client = `<script>
 (function(){
   var ZH=${zh}, BASE=${JSON.stringify(BASE)}, PID=${JSON.stringify(PRODUCT_ID)}, L=${safeJson(L)}, DAYS=${DEFAULT_DAYS};
   var D=${safeJson(D)};
@@ -334,7 +303,11 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   var st={role:'',tasks:{},cn:false,biz:false,days:DAYS}, last=null, sharedInitial=null, sharedMeasured=false;
   function $(id){return document.getElementById(id)}
   function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
+  var EMBED=document.body.dataset.workPlanEmbed==='1';
+  function EV(n,p){try{if(!EMBED&&window.bpjEv)window.bpjEv(n,p)}catch(e){}}
+  function inputKind(){var r=D.roles.filter(function(x){return x.id===st.role})[0];return r&&!st.cn&&!st.biz&&st.days===DAYS&&Object.keys(st.tasks).length===r.tasks.length&&r.tasks.every(function(k){return st.tasks[k]===D.tasks[k].example})?'example':'edited'}
+  function DE(action,mode){if(window.bpjDistribution)window.bpjDistribution('/distribution/work-plan/'+action+'/'+mode+'/'+inputKind())}
+  function updateFull(){if(EMBED&&$('wpFull'))$('wpFull').href=BASE+'/work-plan?via=embed#'+planHash(st)}
   function fmt(n){return (Math.round(n*10)/10).toLocaleString(ZH?'zh-CN':'en-US')}
   function flash(b){var t=b.textContent;b.textContent=L.copied;setTimeout(function(){b.textContent=t},1800)}
   function msg(t){$('wpMsg').innerHTML=t?'<p class="sub-note">'+E(t)+'</p>':''}
@@ -342,7 +315,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   function setRole(id){
     var r=D.roles.filter(function(x){return x.id===id})[0]; if(!r)return;
     $('wpCardPreview').hidden=true;st.role=id; st.tasks={}; r.tasks.forEach(function(s){st.tasks[s]=D.tasks[s].example});
-    selRoles(); drawTasks(); $('wpOut').innerHTML=''; $('wpActions').hidden=true; $('wpDiff').hidden=true; last=null;
+    selRoles(); drawTasks(); $('wpOut').innerHTML=''; $('wpActions').hidden=true; $('wpDiff').hidden=true; last=null;updateFull();
   }
   function drawTasks(){
     var ks=Object.keys(st.tasks);
@@ -356,7 +329,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     Array.prototype.forEach.call(document.querySelectorAll('#wpTasks .wp-x'),function(b){b.addEventListener('click',function(){delete st.tasks[b.dataset.x];drawTasks();live()})});
   }
   // 结果已经显示时，改任何输入都静默重算——不然屏幕上是旧数字。事件只在点「算」时记一次。
-  function live(){$('wpCardPreview').hidden=true;if(!$('wpActions').hidden)compute(true)}
+  function live(){updateFull();$('wpCardPreview').hidden=true;if(!$('wpActions').hidden)compute(true)}
   var fitTask=${fitTask.toString()};
   var hashText=${hashText.toString()};
   var sigOf=${sigOf.toString()};
@@ -399,10 +372,11 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     $('wpOut').innerHTML=H; $('wpActions').hidden=false; last=res;
     if(!silent&&sharedInitial!==null&&!sharedMeasured){EV('calc','/plan-share-calc/'+(planHash(st)===sharedInitial?'unchanged':'edited'));sharedMeasured=true;}
     if(!silent){EV('calc','/plan/'+(st.role||'custom')+'/'+ks.length+(st.cn?'+cn':'')+(st.biz?'+biz':''));remember()}
+    updateFull();if(!silent){if(EMBED)DE('calculate',window.bpjEmbedMode);else if(new URLSearchParams(location.search).get('via')==='embed')DE('calculate','page');}
     return res;
   }
   function remember(){try{history.replaceState(null,'',location.pathname+location.search+'#'+planHash(st))}catch(e){}}
-  function shareUrl(){return location.origin+location.pathname+'?via=plan-share#'+planHash(st)}
+  function shareUrl(){return (EMBED?BASE+'/work-plan':location.origin+location.pathname)+'?via=plan-share#'+planHash(st)}
   function markdown(){var res=last||compute(true);if(!res)return '';var m=['# '+(ZH?'我的 AI 工作方案':'My AI work plan'),'',(ZH?'每周工作 '+st.days+' 天':st.days+' working days a week')+(st.cn?(ZH?' · 只要国内直连':' · mainland-China reachable only'):'')+(st.biz?(ZH?' · 产出要商用':' · commercial use'):''),''];
     res.forEach(function(r){m.push('## '+r.t.label+' — '+fmt(r.vol)+' '+D.units[r.t.unit]+' '+PER[r.t.per]);m.push((ZH?'判定：':'Verdict: ')+STATUS[r.f.status]+(ZH?'。':'. ')+verdictOf(r.t,r.f),'');r.t.steps.forEach(function(s,i){m.push((i+1)+'. '+s.name+': '+s.action)});if(r.t.prompt)m.push('','> '+r.t.prompt);m.push('')});
     m.push((ZH?'在线重算：':'Recalculate online: ')+shareUrl(),'',ZH?'来源：白嫖计 baipiaoji.com/work-plan（额度带核实日期，以官方页为准）':'Source: Baipiaoji baipiaoji.com/en/work-plan (allowances carry check dates; the official page wins)');return m.join('\\n')}
@@ -468,7 +442,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
   $('wpFile').addEventListener('change',function(){var f=this.files&&this.files[0];this.value='';if(!f)return;if(f.size>200000){msg(L.badFile);return}
     var rd=new FileReader();rd.onload=function(){var d=null;try{d=JSON.parse(rd.result)}catch(e){}if(!restore(d,'file'))msg(L.badFile)};rd.readAsText(f)});
   // 会员云端保存：沿用 BPJ 工作区的同源 postMessage 协议（tools/member-studio）。
-  $('wpSave').addEventListener('click',function(){
+  $('wpSave').addEventListener('click',function(){if(EMBED)return;
     var data=snapshot(), u=new URL(BASE+'/members'); u.searchParams.set('tool',PID); u.searchParams.set('from',location.origin);
     var win=window.open(u.href,'_blank'); if(!win){alert(L.popup);return}
     EV('calc','/plan-save/'+(st.role||'custom'));
@@ -476,12 +450,51 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     window.addEventListener('message',h); setTimeout(function(){window.removeEventListener('message',h)},1800000);
   });
   window.addEventListener('hashchange',function(){fromHash()});
-  if(window.opener&&new URLSearchParams(location.search).get('restore')==='1'){
+  if(!EMBED&&window.opener&&new URLSearchParams(location.search).get('restore')==='1'){
     var rh=function(e){if(e.source!==window.opener||e.origin!==location.origin||!e.data||e.data.kind!=='workbench-restore')return;restore(e.data.data,'cloud');window.removeEventListener('message',rh)};
     window.addEventListener('message',rh); window.opener.postMessage({kind:'workbench-ready'},location.origin);
   } else fromHash();
+  if(EMBED){if(!Object.keys(st.tasks).length)setRole(D.roles[0].id);updateFull();$('wpFull').addEventListener('click',function(){updateFull();DE('open',window.bpjEmbedMode)});DE('view',window.bpjEmbedMode);}
+  else if(new URLSearchParams(location.search).get('via')==='embed')DE('arrive','page');
 })();
 </script>`;
+
+  const body = `${railOf()}
+<main class="stage">
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/studio/">${zh ? '自研工具' : 'Built by BPJ'}</a><i>/</i><span>${zh ? '按岗位算方案' : 'Plan by job'}</span></nav>
+  <header class="hero"><div class="hero-inner">
+    <h1>${esc(h1)}</h1>
+    <p class="answer">${esc(answer)}</p>
+    <p class="coverage">${zh ? '只想按任务配工具？' : 'Just want tools by task?'} <a href="${BASE}/stack-builder.html">${zh ? '免费工具栈组装器 →' : 'Free stack builder →'}</a></p>
+    <p class="coverage"><a href="#embed">${zh?'把规划器嵌入你的教程或网站 →':'Embed the planner in your tutorial or website →'}</a></p>
+  </div></header>
+${calculator}
+<section class="limits-table" id="wpCardPreview" hidden><h2>${zh ? '分享前检查' : 'Review before sharing'}</h2><p>${zh ? '图片只含任务判定汇总，不含岗位、任务名称、工作量或文件。分享链接会包含你的任务参数。' : 'The image contains only verdict totals: no role, task names, volumes or files. A share link includes your task settings.'}</p><canvas id="wpCardCanvas" width="1200" height="900" role="img" aria-label="${zh ? 'AI 方案判定汇总' : 'AI plan verdict summary'}" style="width:100%;max-width:600px;height:auto"></canvas><p class="wp-actions"><button type="button" id="wpCardDownload">${zh ? '下载 PNG' : 'Download PNG'}</button></p></section>
+  <section class="limits-table" id="roles">
+    <h2 class="group-title">${zh ? '12 个岗位的默认方案（不开 JS 也能看）' : 'Default plans for 12 roles (readable without JavaScript)'}</h2>
+    <p class="sub-note">${zh ? '岗位与任务是编辑整理的默认值；工具与步骤来自 0 元方案；数字来自官方公布并带核实日期。' : 'Roles and tasks are editorial defaults; tools and steps come from the zero-cost plans; figures are officially published and carry check dates.'}</p>
+    ${staticRoles}
+  </section>
+  <section class="limits-table" id="method">
+    <h2 class="group-title">${zh ? '怎么算的（不怎么算的也写上）' : 'How it is calculated — and what it will not do'}</h2>
+    <ul class="wp-method">
+      <li>${zh ? '容量只取厂商公布的、与任务同单位的数字：每天的 × 你每周的工作天数（每日额度不结转），每月的 ×7/30 折成每周；一次性额度单独算「能撑几周」。' : 'Capacity uses only figures the vendor publishes in the same unit as the task: daily figures × your working days a week (daily allowances do not carry over), monthly ×7/30 to get a week; one-off grants are shown as how many weeks they last.'}</li>
+      <li>${zh ? '同一任务里可用工具的免费容量相加——这是「一整套」的意思：一家不够，几家叠起来可能够。' : 'Free capacity of the usable tools in a task is added up — that is what a whole plan means: one vendor may fall short where several together do not.'}</li>
+      <li>${zh ? '约束分三种情况：明确不满足的排除；明确满足的计入；可达性没标注、商用条款没写明的不计入确定容量，结论写「说不准」并列出是哪几个工具。' : 'Constraints have three outcomes: tools that clearly fail are left out, tools that clearly pass are counted, and tools with unrecorded reachability or silent terms stay out of the firm total, so the verdict says uncertain and names them.'}</li>
+      <li>${zh ? '不做单位换算：tokens、积分、字符不折成张数或分钟。没有同单位数字的工具，照录厂商原话，并标明是否逐家核实过。' : 'No unit conversion: tokens, credits and characters are never turned into images or minutes. Tools without a same-unit figure get the vendor wording, marked verified or not.'}</li>
+      <li>${zh ? '保存的方案会记下每个工具当时的数字与核实日期；以后从云端或 JSON 恢复，页面逐条列出变了什么——额度每个月都在变，方案也会过期。' : 'A saved plan records each tool\'s figure and check date; when it is restored later, from the cloud or a JSON file, the page lists what changed. Allowances move every month, and plans go stale with them.'}</li>
+      <li>${zh ? '不算「能省几小时」：那要看你的工作，本站没有可核实的数字。' : 'No "hours saved" figure: that depends on your work and there is no verifiable number for it.'}</li>
+      <li>${zh ? '厂商随时会改额度；每个数字旁都有核实日期，本站每天巡检官方页。' : 'Vendors change allowances at any time; every figure carries its check date and the official pages are re-checked daily.'}</li>
+    </ul>
+  </section>
+  ${publisherKit(BASE,zh,esc)}
+  <section class="faq">
+    <h2>${zh ? '常见问题' : 'FAQ'}</h2>
+    ${FAQ.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
+  </section>
+</main>
+
+<script src="/work-plan-distribution.js"></script>${client}`;
 
   write(layout({
     title: zh ? `按岗位算 AI 方案：你的工作量，免费额度够不够（带核实日期） - ${NAME}` : `AI plan by job: do free tiers cover your workload? (verified limits) - ${NAME}`,
@@ -496,6 +509,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
       faqLd(FAQ),
     ],
   }));
+  if(writeEmbed)writeEmbed(plannerWidget({BASE,zh,calculator,client}));
   pushPage(url, '0.9');
   return { tasks: Object.keys(D.tasks).length, roles: D.roles.length, tools: nTools, withCap: nCap, asOf };
 }

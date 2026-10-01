@@ -11,6 +11,7 @@ import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'distribution', // Bounded action counts; never installations, unique users or revenue.
   'quote',       // Quote builder action counts, separate from calc/paid conversion. No quote content or unique user identifier.
   'home',        // 首页区块级点击（2026-09-22）：路径 /home/<区块 id>/<目标路径>。首页 243 pv/28d 是全站第一页，
                  // 此前没有任何一个区块知道自己被点过几次——「要不要把某区块换成 agents」在 D1 里根本答不了。
@@ -59,6 +60,11 @@ export async function onRequestPost({ request, env }) {
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
     if (ev === 'quote' && (!parseQuoteEvent(path) || !['zh','en'].includes(lang))) return new Response(null, { status: 204 });
+    if(ev==='distribution'){
+      if(!['zh','en'].includes(lang)||!/^\/distribution\/(?:work-plan\/(?:view|calculate|open|arrive|copy)\/(?:external|owned|frame-unknown|direct|preview|page)\/(?:example|edited|none)|skill\/(?:copy|source)\/page\/none)$/.test(path))return new Response(null,{status:204});
+      const referer=request.headers.get('referer')||'';
+      if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa)(?:=|&|$)/.test(referer)||/bot|spider|crawler|bpj-ci|playwright/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
+    }
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源

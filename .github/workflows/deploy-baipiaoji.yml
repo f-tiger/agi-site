@@ -317,6 +317,7 @@ jobs:
         run: |
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
+          node scripts/test-distribution.mjs --dist
           node scripts/test-studio.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
           node ../../tools/quote-page-lab/test-growth.mjs --dist
@@ -393,6 +394,7 @@ jobs:
           node tools/quote-page-lab/build.mjs
           node tools/quote-page-lab/test.mjs
           node tools/quote-page-lab/test-hosted.mjs
+          node tools/fleet/browser-distribution.mjs
 
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}

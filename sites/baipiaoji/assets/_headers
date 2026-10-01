@@ -68,3 +68,17 @@
   Cache-Control: no-store
   Referrer-Policy: no-referrer
   X-Robots-Tag: noindex, nofollow
+
+# Public, version-checked Skill sources. Browser clients may fetch this catalog.
+/.well-known/agent-skills/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600
+/.well-known/skills/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600
+/embed/*
+  X-Robots-Tag: noindex, follow
+  Referrer-Policy: no-referrer
+/en/embed/*
+  X-Robots-Tag: noindex, follow
+  Referrer-Policy: no-referrer
