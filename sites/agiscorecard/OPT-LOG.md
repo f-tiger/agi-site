@@ -3139,3 +3139,8 @@ Owner explicitly asked to continue expanding the newly launched Web3 × AI tool.
 - **事件**:`index_click{predictions_graders_live}`(活数字点击)、`verify_run{calibration}`(按钮运行,label = 匹配数/总数|score)。
 - **判定线**:`agi-grader-consensus-1127` won(② 4 ≥ 3;① 外部访问 0);新 `agi-verify-run-1127`、`fe-commitments-preclose-0215`。
 - 全文根仓 `docs/ai-consensus-faith-2026-09-26.md` §九。
+
+
+## 2026-10-01 — 首页聚焦与完成事件（owner：继续推进流量诊断）
+
+中英文首页先给证据、工作影响和投资研究三个入口；八项评分在本地计算，提供失败重试和手动复制。更正首页与中文 tracker 的日期展示，网站更新从 changelog 生成，判定和历史原值不动。四个证据页区分文章版本与台账日期；when-will-agi-arrive 的未结实验保持原样。固定 focus_entry/task_start/task_complete/result_copy 事件接入 GA4 + 既有 D1，pulse 仅返回聚合，失败保持未知。手机/桌面交互、真实 SQLite 查询和隐私过滤均有发布门禁。详见 ../../docs/agi-home-focus-2026-10-01.md；本次发布不能证明流量或收入增长。

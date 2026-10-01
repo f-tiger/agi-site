@@ -284,7 +284,7 @@ zh_html = f"""<!DOCTYPE html>
 <article>
   <div class="eyebrow">原创指数</div>
   <h1>AGI-2027 命题追踪指数：一个分数看懂整场赌局</h1>
-  <div class="updated">最后更新：2026年7月12日 · 随判定变化更新</div>
+  <div class="updated">最后更新：{DATE[:4]}年{int(DATE[5:7])}月{int(DATE[8:])}日 · 随判定变化更新</div>
   <div class="capsule"><span class="verdict">当前，AGI-2027 命题的追踪分数为 <strong>{score}/100</strong>。</span> 这个指数用一个数字表示阿申布伦纳《态势感知》当前的成立程度——8 项判定权重的透明平均值。它只在某项判定变化时移动，且每项判定都带预先登记的翻转条件。不声称任何概率；它是可逐行审计的编辑性合成。</div>
 <h2>此刻的分数：{score}/100</h2>
 {spark}

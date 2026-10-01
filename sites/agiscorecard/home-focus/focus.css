@@ -1,0 +1,38 @@
+.focus-intro,.focus-grade,.focus-changes{max-width:960px;margin:0 auto 36px;padding:0 24px}
+.focus-intro{padding-top:48px;border:0}
+.focus-opening{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(230px,1fr);gap:40px;align-items:start}
+.focus-intro h1{font:700 clamp(32px,4.5vw,52px)/1.12 var(--font,var(--sans,sans-serif));letter-spacing:-.035em;max-width:16ch;margin:0 0 22px;color:var(--text)}
+.focus-intro p,.focus-grade p,.focus-changes p{color:var(--muted);margin:0 0 14px}
+.focus-lead{max-width:57ch;font-size:17px;line-height:1.65}
+.focus-actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.focus-primary,.focus-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 17px;border:1px solid var(--border2,var(--border));border-radius:7px;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;cursor:pointer;text-decoration:none;max-width:100%}
+.focus-primary{background:var(--accent,#002fa7);color:#fff;border-color:var(--accent,#002fa7)}
+.focus-secondary{background:var(--bg2);color:var(--text)}
+.focus-reading{border-left:2px solid var(--accent,#002fa7);padding:4px 0 4px 22px}
+.focus-reading p{font-size:13px;line-height:1.6}.focus-reading a{font-size:13px;text-decoration:underline}
+.focus-reading .focus-score{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:10px}
+.focus-score span{font-size:19px;letter-spacing:0;color:var(--muted);margin-left:6px}
+.focus-routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--border2,var(--border));border-bottom:1px solid var(--border2,var(--border));margin:30px 0 16px;padding:19px 0}
+.focus-route{display:block;color:var(--text);line-height:1.55}.focus-route strong{display:block;font-size:16px;margin-bottom:5px;color:var(--text)}.focus-route span{display:block;font-size:13px;color:var(--muted)}
+.focus-boundary{font-size:12px;line-height:1.65!important;color:var(--muted)}
+.focus-grade{border:0;border-top:1px solid var(--border2,var(--border));padding-top:25px}
+.focus-grade h2,.focus-changes h2{font:700 24px/1.3 var(--font,var(--sans,sans-serif));letter-spacing:-.015em;margin:0 0 14px;color:var(--text)}
+.focus-grade [hidden]{display:none!important}
+.focus-grade #gg-start{margin:5px 0 16px}
+.grade-row{border:0;border-bottom:1px solid var(--border2,var(--border));padding:17px 0;margin:0;min-width:0}
+.grade-row legend{font-weight:600;font-size:15px;line-height:1.6;padding:0;padding-top:14px;max-width:100%}
+.grade-evidence{display:inline-block;font-size:12px;margin:4px 0 10px;text-decoration:underline}
+.grade-options{display:flex;gap:7px;flex-wrap:wrap}.grade-options button{min-height:42px;padding:8px 13px;border-radius:6px;border:1px solid var(--border2,var(--border));background:var(--bg2);color:var(--text);font:inherit;font-size:13px;cursor:pointer}
+.grade-options button[aria-pressed=true]{background:var(--accent,#002fa7);color:#fff;border-color:var(--accent,#002fa7)}
+#gg-live{padding-top:15px}#gg-result{padding:22px;background:var(--bg2);border:1px solid var(--border2,var(--border));border-radius:8px}#gg-result h3{font-size:25px;margin:0 0 14px}#gg-diffs ul{padding-left:20px;font-size:14px}#gg-diffs li{margin:8px 0}#gg-copy-fallback{width:100%;min-height:95px;padding:12px;background:var(--bg);color:var(--text);border:1px solid var(--border2,var(--border))}
+.focus-changes{padding-top:24px;border-top:1px solid var(--border2,var(--border))}.focus-changes ol{list-style:none;padding:0;margin:18px 0}.focus-changes li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}.focus-changes time{color:var(--muted);font-size:13px}.focus-changes li span{font-size:14px;color:var(--text)}
+.evidence-context{padding:15px 18px;border-left:2px solid var(--accent,#002fa7);background:var(--bg2);margin:14px 0 24px;font-size:13px}.evidence-context p{margin:0 0 8px}.evidence-context nav{display:flex;gap:8px 18px;flex-wrap:wrap}.evidence-context a{text-decoration:underline}
+.focus-home :is(a,button,summary,textarea):focus-visible{outline:3px solid var(--accent,#002fa7);outline-offset:4px}
+.focus-home [id]{scroll-margin-top:85px}.focus-home .desktop-nav{flex-wrap:wrap}.focus-home header{height:auto;min-height:60px;gap:15px}
+.focus-home input[type=search]{min-width:0}
+.focus-zh{--bg:#fff;--bg2:#f7f7f8;--bg3:#eeeef1;--accent:#002fa7;--text:#1c1f26;--muted:#626671;--border:rgba(0,0,0,.10);--border2:rgba(0,0,0,.18);background:#fff;font-family:'Noto Sans SC','PingFang SC',sans-serif}
+.focus-zh .wrap,.focus-zh .header-inner{max-width:1040px}.focus-zh .focus-intro{padding-left:0;padding-right:0}.focus-zh .focus-grade,.focus-zh .focus-changes{padding-left:0;padding-right:0}.focus-zh .focus-intro h1{max-width:none;letter-spacing:-.025em}.focus-zh .header-inner{gap:15px;flex-wrap:wrap}.focus-zh .header-inner>a{font-size:14px}
+.focus-zh .history-record{margin:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0}.history-record summary{cursor:pointer;font-weight:600;line-height:1.6}.history-record .hero{padding:30px 0}.history-record .hero h2{font-size:27px}
+@media(max-width:760px){.focus-opening{grid-template-columns:1fr;gap:22px}.focus-intro{padding-top:32px}.focus-reading{padding-left:16px}.focus-reading .focus-score{font-size:40px}.focus-reading p{margin-bottom:6px}.focus-routes{gap:14px}.focus-home .desktop-nav{display:none}.focus-home .mobile-menu{display:block}.focus-home header>.subscribe-btn{display:none}.focus-intro h1{max-width:20ch}.focus-changes li{grid-template-columns:1fr;gap:4px}}
+@media(max-width:460px){.focus-routes{grid-template-columns:1fr;gap:0;margin-top:24px}.focus-route{padding:12px 0;border-bottom:1px solid var(--border)}.focus-route:last-child{border:0}.focus-route strong{font-size:15px}.focus-routes{padding:0}.focus-intro,.focus-grade,.focus-changes{padding-left:20px;padding-right:20px}.focus-home .section{margin-left:16px;margin-right:16px}.focus-zh .section{margin-left:0;margin-right:0}.focus-zh .header-inner{gap:11px}.focus-zh .header-inner>a{font-size:12px}.focus-zh .header-inner .logo{flex-basis:100%}.focus-grade h2{font-size:23px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation:none!important;transition:none!important}}

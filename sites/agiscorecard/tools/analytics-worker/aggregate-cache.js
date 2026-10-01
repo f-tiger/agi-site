@@ -11,7 +11,7 @@
 //   · 同一 isolate 里同时到的未命中只算一次；
 //   · 只缓存 ok:true、不带 partial:true、带 generated 的 200；失败与部分失败不缓存；缓存本身出错照常现算；
 //   · 命中时返回剩余的新鲜时间。
-export const AGG_CACHE_VERSION = 'v1';
+export const AGG_CACHE_VERSION = 'v2';
 
 const pending = new Map();
 
