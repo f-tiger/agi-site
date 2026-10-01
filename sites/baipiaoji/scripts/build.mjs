@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {buildReleaseCheckAssets} from './release-check-assets.mjs';
 import {buildAccountPages} from './account-pages.mjs';
 import {growthMarkup,growthNotice} from '../lib/growth-campaigns.js';
 import {experimentDescription,limitCheckEntry} from './search-experiment.mjs';
@@ -7793,6 +7794,7 @@ useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
 for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
+buildReleaseCheckAssets(root,dist);
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
 // CORS + 缓存策略：MCP/Agent 面早已 ACAO:*，它指向的静态数据文件此前没有——
 // 浏览器侧 agent 拿到链接却抓不动。thedollscout/_headers 的同一修法。

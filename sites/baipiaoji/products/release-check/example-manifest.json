@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "project": "Replace with reviewed project",
+  "revision": "Replace with exact revision",
+  "origin": "http://127.0.0.1:8765",
+  "environment": "isolated-test",
+  "synthetic_data": true,
+  "cases": [
+    {
+      "id": "anonymous",
+      "name": "Anonymous access",
+      "request": {
+        "method": "GET",
+        "path": "/premium"
+      },
+      "expect": {
+        "status": 401,
+        "json": [
+          {
+            "pointer": "/error",
+            "equals": "unauthorized"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unpaid",
+      "name": "Unpaid account",
+      "request": {
+        "method": "GET",
+        "path": "/premium",
+        "headersEnv": {
+          "Authorization": "RELEASECHECK_UNPAID"
+        }
+      },
+      "expect": {
+        "status": 403,
+        "json": [
+          {
+            "pointer": "/error",
+            "equals": "no_entitlement"
+          }
+        ]
+      }
+    },
+    {
+      "id": "paid",
+      "name": "Paid account",
+      "request": {
+        "method": "GET",
+        "path": "/premium",
+        "headersEnv": {
+          "Authorization": "RELEASECHECK_PAID"
+        }
+      },
+      "expect": {
+        "status": 200,
+        "json": [
+          {
+            "pointer": "/access",
+            "equals": true
+          },
+          {
+            "pointer": "/plan",
+            "equals": "pro"
+          }
+        ]
+      }
+    },
+    {
+      "id": "expired",
+      "name": "Expired account",
+      "request": {
+        "method": "GET",
+        "path": "/premium",
+        "headersEnv": {
+          "Authorization": "RELEASECHECK_EXPIRED"
+        }
+      },
+      "expect": {
+        "status": 403,
+        "json": [
+          {
+            "pointer": "/error",
+            "equals": "no_entitlement"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tenant-isolation",
+      "name": "Other tenant",
+      "request": {
+        "method": "GET",
+        "path": "/tenant/beta",
+        "headersEnv": {
+          "Authorization": "RELEASECHECK_PAID"
+        }
+      },
+      "expect": {
+        "status": 403,
+        "json": [
+          {
+            "pointer": "/error",
+            "equals": "tenant_denied"
+          }
+        ]
+      }
+    },
+    {
+      "id": "unsigned-webhook",
+      "name": "Unsigned webhook",
+      "request": {
+        "method": "POST",
+        "path": "/webhook",
+        "body": "{\"id\":\"evt_demo_1\"}"
+      },
+      "expect": {
+        "status": 400,
+        "json": [
+          {
+            "pointer": "/error",
+            "equals": "invalid_signature"
+          }
+        ]
+      }
+    },
+    {
+      "id": "signed-webhook",
+      "name": "Signed synthetic event",
+      "request": {
+        "method": "POST",
+        "path": "/webhook",
+        "body": "{\"id\":\"evt_demo_1\"}",
+        "sign": {
+          "kind": "stripe-hmac-sha256",
+          "secretEnv": "RELEASECHECK_WEBHOOK_SECRET"
+        }
+      },
+      "expect": {
+        "status": 200,
+        "json": [
+          {
+            "pointer": "/received",
+            "equals": true
+          },
+          {
+            "pointer": "/grants",
+            "equals": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "duplicate-webhook",
+      "name": "Duplicate synthetic event",
+      "request": {
+        "method": "POST",
+        "path": "/webhook",
+        "body": "{\"id\":\"evt_demo_1\"}",
+        "sign": {
+          "kind": "stripe-hmac-sha256",
+          "secretEnv": "RELEASECHECK_WEBHOOK_SECRET"
+        }
+      },
+      "expect": {
+        "status": 200,
+        "json": [
+          {
+            "pointer": "/received",
+            "equals": true
+          },
+          {
+            "pointer": "/grants",
+            "equals": 1
+          }
+        ]
+      },
+      "effect_pointer": "/grants"
+    }
+  ]
+}

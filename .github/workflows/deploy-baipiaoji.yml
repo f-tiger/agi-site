@@ -253,6 +253,7 @@ jobs:
           node scripts/test-work-plan.mjs
           node scripts/test-studio.mjs
           node scripts/test-release-pilot.mjs
+          node --test scripts/test-release-check-kit.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页

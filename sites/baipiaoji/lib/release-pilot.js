@@ -1,7 +1,7 @@
 export const OFFER='release-check-299-v1';
 export const CLOSES='2026-10-10T15:59:59Z';
 export const ENUMS={role:['owner','developer','other'],task:['launch','plans','auth','other'],frequency:['zero','one','two-plus'],timing:['14days','30days','later'],stack:['stripe-external','other','unknown'],budget:['299','discuss','no'],hours:['under1','1to3','over3','unknown']};
-export const EVENTS=['view','price_seen','checklist_export','apply_open'];
+export const EVENTS=['view','price_seen','checklist_export','apply_open','kit_download'];
 export const uuid=v=>typeof v==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
 export function validApplication(b){return Object.entries(ENUMS).every(([k,v])=>v.includes(b[k]))&&typeof b.email==='string'&&b.email.length<=254&&/^[^\s@]+@[^\s@.]+(\.[^\s@.]+)+$/.test(b.email)&&b.consent===true&&uuid(b.receipt);}
 export function qualified(b){return b.role==='owner'&&b.stack==='stripe-external'&&b.frequency==='two-plus'&&['14days','30days'].includes(b.timing)&&b.task!=='other'&&b.budget==='299';}
