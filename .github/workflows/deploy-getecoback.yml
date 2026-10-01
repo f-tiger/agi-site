@@ -229,6 +229,7 @@ jobs:
       - name: Check affiliate windows and unavailable-data reporting
         run: |
           node --test tools/test_affiliate_metrics.mjs
+          node --test tools/test_affiliate_audit.mjs
           python3 tools/test_trend_radar.py
 
       - name: Check every affiliate block carries a Werbekennzeichnung
@@ -974,6 +975,8 @@ jobs:
             [ "$attempt" -lt 3 ] && sleep 5
           done
           echo "trend endpoint said: HTTP $tcode ${trend:0:150}"
+          # Reuse the bounded, cached response; no extra production query.
+          python3 -c 'import json,sys; d=json.load(sys.stdin)["affiliate_audit"]; assert len(d["daily"])==56; assert len(d["weeks"])==8; assert sum(x["affiliate_clicks"] for x in d["daily"])==sum(x["affiliate_clicks"] for x in d["weeks"]); assert d["amazon_orders"] is None; print("ECO_AFFILIATE_AUDIT " + json.dumps(d))' <<< "$trend"
           case "$trend" in
             *'"events"'*) echo "OK trend endpoint" ;;
             *) echo "::error::trend endpoint broken (HTTP $tcode): '$trend'"; fail=1 ;;

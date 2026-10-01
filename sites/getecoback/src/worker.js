@@ -3,6 +3,7 @@ import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-stu
 import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
+import {affiliateAudit} from './affiliate-audit.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -879,6 +880,7 @@ async function trendCompute(env) {
     return new Response(JSON.stringify({
       events: ev.results || [], pages: pg.results || [], zero_hits: zh.results || [],
       refs: refs.results || [], mcp: mcp.results || [],
+      affiliate_audit: await affiliateAudit(env.EVENTS, ref => srcBucket(srcHost(ref), 'getecoback.com')),
     }), { headers });
   } catch (e) {
     return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 503, headers: noStore });

@@ -36,6 +36,7 @@ jobs:
           node --test tools/test_video_campaign.mjs
           node --test tools/test_pulse_cache.mjs
           node --test tools/test_affiliate_metrics.mjs
+          node --test tools/test_affiliate_audit.mjs
           python3 tools/test_trend_radar.py
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
@@ -54,6 +55,8 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: Fetch fixed pre-shelf-change baseline for the affiliate audit
+        run: git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
       - name: Exercise five languages, mobile, files and privacy
         run: |
           python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &
@@ -64,6 +67,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
+          AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
