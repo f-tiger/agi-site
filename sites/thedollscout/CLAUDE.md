@@ -1,3 +1,7 @@
+## 2026-10-01 GA4 全页面覆盖修复
+
+最终生成产物在部署前运行根仓 `tools/fleet-analytics/coverage.py`，补齐缺失的本站 GA4 同意入口，并检查重复加载和串站 ID。此步骤必须位于所有页面生成器之后；发布后跑 `verify-live.mjs`。已有 GA4 与 D1 通道保留；账户、报价客户页、嵌入组件和探针按显式名单隔离，不能批量补挂。新统计只在同意后启动，使用构建时的公开地址/标题，Google 标签在空白同源 frame 内运行，避免自动测量工具表单。历史断档不补造。契约与验证见根仓 `docs/fleet-ga4-recovery-2026-10-01.md`。
+
 ## 2026-10-01 GA4 断采修复（owner：你帮我修复）
 
 09-25 文档改版遗漏 GA4；旧首页 config/analytics 被删除，新页只有 D1 `doc_view`。本轮在公共生成模板恢复原测量 ID `G-2SEHFY33H8`，93 个 EN/DE/ZH 页面均加载 `js/config.js` 和 `document-assets/analytics.mjs`。不要重新接入旧 `js/main.js` 或把新事件写入旧 `ev=''` 桶。
