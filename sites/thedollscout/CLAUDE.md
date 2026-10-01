@@ -1,3 +1,11 @@
+## 2026-10-01 GA4 断采修复（owner：你帮我修复）
+
+09-25 文档改版遗漏 GA4；旧首页 config/analytics 被删除，新页只有 D1 `doc_view`。本轮在公共生成模板恢复原测量 ID `G-2SEHFY33H8`，93 个 EN/DE/ZH 页面均加载 `js/config.js` 和 `document-assets/analytics.mjs`。不要重新接入旧 `js/main.js` 或把新事件写入旧 `ev=''` 桶。
+
+新版 GA4 仅在访客明确允许后启动；旧 loader 的 `client_storage:none` 经真实 Google 脚本浏览器测试仍写 Cookie，不能沿用“无需同意且无 Cookie”的错误保证。新模块支持拒绝、撤回、重新允许，关闭广告用途，尊重 DNT/GPC，过滤 CI/自动化/预览访问。文件、输入、网址查询和指纹片段不进入页面浏览参数；引荐仅保留来源域。第一方匿名计数继续独立运行；GA4 用户数只覆盖同意统计的访客，不能与 D1 动作数直接相加。
+
+`analytics-tests.mjs` 已接入原 npm test；`verify.mjs` 在本地与部署后检查每个生成页各一个入口及正确测量 ID。浏览器用真实 Google 标签生成并拦截 collect 请求，避免把 QA 写入生产报表；请求生成验证不等于后台入库验证。验收与舰队抽查见根目录 `docs/tds-ga4-recovery-2026-10-01.md`。
+
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
 ## 2026-09-27 AI 工具扩展（owner：ai 工具呢？）

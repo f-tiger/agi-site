@@ -28,6 +28,8 @@ async function read(route, binary = false) {
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
 assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,57+growthSlugs.length*3);
+const analyticsConfig = await read('/js/config.js?v=2026-10-01.1');
+assert.ok(/ga4Id:\s*"G-2SEHFY33H8"/.test(analyticsConfig),'TDS retains its own existing GA4 stream');
 const sitemap = await read('/sitemap.xml');
 const documentSitemap = await read('/document-sitemap.xml');
 assert.equal((documentSitemap.match(/<loc>/g)||[]).length,54+growthSlugs.length*3);
@@ -37,7 +39,9 @@ for (const record of manifest.records) {
   assert.ok(html.includes(`data-document-edition="${edition}"`),'Old edition ' + route);
   assert.ok(html.includes(`rel="canonical" href="${record.url}"`),'Canonical ' + route);
   assert.equal((html.match(/<h1[ >]/g) || []).length,1,'One visible h1: ' + route);
-  assert.ok(!/noindex|googletagmanager|\/js\/main\.js/.test(html),'Unexpected analytics or indexing block ' + route);
+  assert.ok(!/noindex|googletagmanager|\/js\/main\.js/.test(html),'Unexpected direct Google loader or indexing block ' + route);
+  assert.equal((html.match(/src="\/js\/config\.js\?v=2026-10-01\.1"/g)||[]).length,1,'GA4 configuration: '+route);
+  assert.equal((html.match(/src="\/document-assets\/analytics\.mjs\?v=2026-10-01\.1"/g)||[]).length,1,'One consent-gated GA4 loader: '+route);
   assert.ok(html.includes(`lang="${languages[record.lang].tag}"`));
   for (const [lang, data] of Object.entries(languages)) assert.ok(html.includes(`hreflang="${data.tag}" href="${origin + data.prefix}/${record.slug}"`),'Hreflang ' + route + ' ' + lang);
   assert.ok(html.includes('hreflang="x-default"'));
@@ -91,7 +95,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['tds-file-check-kit.zip','tds-file-check-kit.txt','growth.css','growth-app.mjs','growth-core.mjs','resource-library.json','ai-evaluation.json','ai-app.mjs','ai-core.mjs','ai-worker.mjs','ai.css','telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['analytics.mjs','tds-file-check-kit.zip','tds-file-check-kit.txt','growth.css','growth-app.mjs','growth-core.mjs','resource-library.json','ai-evaluation.json','ai-app.mjs','ai-core.mjs','ai-worker.mjs','ai.css','telemetry.mjs','utility-core.mjs','utility-app.mjs','utility.css','app.mjs','core.mjs','hub-core.mjs','hub.css','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 const examples = JSON.parse(await read('/document-assets/sample-results.json'));
 assert.equal(examples.documents.length,3);

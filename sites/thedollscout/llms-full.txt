@@ -1518,7 +1518,7 @@ Selected PDFs, filenames, titles, extracted text, comparisons and manual review 
 
 When you download a report, your browser saves it to your device. JSON and CSV reports can contain filenames and document titles. JSON comparison reports and text downloads also contain extracted document text. No report is made public by this site.
 
-We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. No analytics cookies or cross-session user identifier are used on these document pages.
+We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. These first-party counts do not use cookies or cross-session identifiers. Separately, optional Google Analytics starts only after you allow it. It uses analytics cookies and receives the public page address, page title, referring origin and technical connection data, never your selected files or entered text. Advertising features are disabled. Change or withdraw your choice using Analytics settings in the footer; we store only that choice in local storage. DNT and Global Privacy Control prevent Google Analytics from loading.
 
 Legacy collector pages and the separate member area have their own behavior, described in the existing privacy notice. Document tools do not require membership, and membership does not add paid document features.
 
@@ -2878,7 +2878,7 @@ PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspe
 
 Heruntergeladene Berichte werden auf Ihrem Gerät gespeichert. CSV und JSON können Dateinamen und Titel enthalten. JSON-Vergleichsberichte und Textexporte enthalten auch Dokumenttext. Nichts wird öffentlich bereitgestellt.
 
-Wir erfassen begrenzte Nutzungszähler: Werkzeugseite, Ereignistyp, Tag, grobes Land und verweisenden Hostnamen. Keine Dateinamen, Inhalte oder Prüfnotizen. Beispiele werden getrennt gezählt. Diese Dokumentseiten verwenden keine Analyse-Cookies oder wiederkehrende Nutzerkennung.
+Wir erfassen begrenzte Nutzungszähler: Werkzeugseite, Ereignistyp, Tag, grobes Land und verweisenden Hostnamen. Keine Dateinamen, Inhalte oder Prüfnotizen. Beispiele werden getrennt gezählt. Diese eigenen Zählungen verwenden keine Cookies oder wiederkehrende Nutzerkennung. Optionales Google Analytics startet erst nach Ihrer Zustimmung. Es verwendet Analyse-Cookies und erhält die öffentliche Seitenadresse, den Seitentitel, die verweisende Herkunft und technische Verbindungsdaten, niemals ausgewählte Dateien oder eingegebenen Text. Werbefunktionen sind deaktiviert. Über Analyse-Einstellungen im Fußbereich können Sie Ihre Wahl ändern oder widerrufen; nur diese Wahl wird lokal gespeichert. DNT und Global Privacy Control verhindern das Laden von Google Analytics.
 
 Für alte Sammlerseiten und den getrennten Mitgliederbereich gilt die bestehende Datenschutzerklärung. Dokumentwerkzeuge benötigen keine Mitgliedschaft. Diese schaltet keine bezahlten Dokumentfunktionen frei.
 
@@ -4238,7 +4238,7 @@ https://thedollscout.com/zh/document-privacy
 
 下载报告时，浏览器把文件保存到你的设备。CSV 和 JSON 可能包含文件名、文档标题；JSON 比较报告和文本导出还包含提取的正文。本站不会公开你的报告。
 
-我们记录有限的第一方使用计数：工具页面、事件类型、日期、粗略国家和来源域名，不记录文件名、正文或复核内容。示例使用单独计数。文档工具页不使用分析 Cookie 或跨会话用户标识。
+我们记录有限的第一方使用计数：工具页面、事件类型、日期、粗略国家和来源域名，不记录文件名、正文或复核内容。示例使用单独计数。上述第一方计数不使用 Cookie 或跨会话用户标识。可选的 Google Analytics 仅在您允许后加载，使用统计 Cookie，并接收公开页面地址、页面标题、引荐来源域及技术连接信息，不接收所选文件或输入的文本；广告功能关闭。可通过页脚“统计设置”更改或撤回选择，本机仅保存该选择。DNT 和 Global Privacy Control 会阻止 Google Analytics 加载。
 
 历史收藏品页面和独立会员区另有行为，见既有隐私说明。文档工具不要求会员，会员也不包含额外付费文档功能。
 
