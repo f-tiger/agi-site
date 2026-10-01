@@ -1,3 +1,4 @@
+import {parseHomepageClick} from '../../lib/homepage-signals.js';
 import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 // 第一方访问打点：无 Cookie、无 IP、无指纹——只存 日期/路径/语言/国家/外部来源域/事件名。
 // 比 GA4 干净，且不依赖任何外部账号；查询走 Cloudflare D1（会话内 MCP 可直读）。
@@ -64,6 +65,11 @@ export async function onRequestPost({ request, env }) {
       if(!['zh','en'].includes(lang)||!/^\/distribution\/(?:work-plan\/(?:view|calculate|open|arrive|copy)\/(?:external|owned|frame-unknown|direct|preview|page)\/(?:example|edited|none)|skill\/(?:copy|source)\/page\/none)$/.test(path))return new Response(null,{status:204});
       const referer=request.headers.get('referer')||'';
       if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa)(?:=|&|$)/.test(referer)||/bot|spider|crawler|bpj-ci|playwright/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
+    }
+    if(ev==='home'){
+      if(path.startsWith('/home/') && !parseHomepageClick(path))return new Response(null,{status:204});
+      const referer=request.headers.get('referer')||'';
+      if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa|ci)(?:=|&|$)/.test(referer)||/bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent')||'')||lang==='ci')return new Response(null,{status:204});
     }
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}

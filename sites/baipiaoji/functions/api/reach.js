@@ -1,3 +1,4 @@
+import {readHomepageSignals} from '../../lib/homepage-signals.js';
 import {readQuoteSignals} from '../../lib/quote-signals.js';
 // 触达聚合端点（2026-09-11，owner:「让 bpj 站点可以自我扩展…为站点构建算法的后端能力」）。
 //
@@ -111,6 +112,7 @@ export async function computeReach(env, days) {
     const commercial = await readCommercialTriggers(env.HITS, since);
     const conversionStages = await readConversionStages(env.HITS, days);
     const quoteSignals = await readQuoteSignals(env.HITS, since);
+    const homepageSignals = await readHomepageSignals(env.HITS, since, today);
     return json({
       ok: true,
       generated: new Date().toISOString(),
@@ -125,9 +127,10 @@ export async function computeReach(env, days) {
       commercial_triggers: commercial,
       conversion_stages: conversionStages,
       quote_signals: quoteSignals,
+      homepage_signals: homepageSignals,
       // 有一块没读出来(09-26 额度边缘时实见:主查询成功、商业触发那条被拒)就标 partial,
       // lib/reach-cache.js 不缓存它——否则缺一块的结果会被原样挂一小时。
-      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok ? { partial: true } : {}),
+      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok ? { partial: true } : {}),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),

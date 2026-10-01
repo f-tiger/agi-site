@@ -283,6 +283,8 @@ jobs:
         run: |
           node scripts/test-hits-schema.mjs
           node scripts/test-reach-cache.mjs
+          node scripts/test-homepage-signals.mjs
+          node scripts/reach-export.mjs --selftest
           node scripts/test-conversion-stages.mjs
           node scripts/test-growth-measurement.mjs
 
@@ -396,6 +398,7 @@ jobs:
           node tools/quote-page-lab/build.mjs
           node tools/quote-page-lab/test.mjs
           node tools/quote-page-lab/test-hosted.mjs
+          node sites/baipiaoji/scripts/test-homepage-clicks-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
       - name: Complete and verify GA4 coverage after all page generators
@@ -417,6 +420,9 @@ jobs:
       - name: Verify published quote builder
         working-directory: ${{ github.workspace }}
         run: node tools/quote-page-lab/verify.mjs --live
+
+      - name: Verify homepage click breakdown and labels
+        run: node scripts/verify-homepage-live.mjs
 
       - name: Codex Efficiency live surface
         run: node scripts/verify-codex-efficiency-live.mjs
