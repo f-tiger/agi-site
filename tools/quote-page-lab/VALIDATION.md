@@ -24,10 +24,19 @@ Isolated temporary copies were mutated; production source was not changed:
 
 An earlier browser pass caught the lack of fragment-change handling. The implementation now handles it, and the final browser run passed.
 
+## Production integration — 2026-10-01
+
+- Three prompt refinements: finish the creator/client loop; integrate both languages into existing BPJ discovery and deployment; require real browser and published-route acceptance rather than treating a merged prototype as launched.
+- Two adversarial self-checks (not independent reviewers): (1) sample prices, stale/non-revocable links and client misunderstanding; (2) untrusted text, fragment privacy, exported analytics isolation and QA inflation. The release adds explicit sample confirmation, link limitations, fixed anonymous action labels, customer noindex and isolated portable exports.
+- Hosted-origin browser fixture: real clipboard copy of the generated link, open customer page, choose quantities, copy summary, export customer HTML, remix, mobile jump controls and preservation of creator defaults. Chinese and English both pass; no page errors. The fixture intercepts all network, so these are technical tests, not real client deliveries.
+- Verify zero quote content in event bodies, fixed server event paths, CI and DNT suppression, no third-party scripts, and no analytics configuration or host SEO in downloaded files. Event counts are neither unique users nor demand validation.
+- BPJ push-path local gates pass: core business/account/measurement checks, actual workerd+D1 account tests, 840 tokenizer assertions, build/discovery/canonical checks, site-wide HTML gates, member/revenue isolation and all ten existing browser suites.
+- Full site HTML verification covers 2,353 pages with zero broken links, invalid structured data, language leaks, placeholders, empty content or hreflang failures. An initial static-link gate caught interpolated URL literals inside the inline script; navigation now uses a computed home URL and the full gate passes without weakening the checker.
+- New quote tests run in the existing deployment workflow before release. `verify.mjs --live` runs after Pages deploy to verify the published edition, both languages and discovery routes. Live browser QA uses `__ci=1`, with no event writes.
+
 ## Scope not verified
 
-- No production host, checkout, server analytics, cloud storage, account system or actual customer handover.
-- The public clipboard-share path is unavailable in the local preview; payload encoding and recipient rendering were tested, but a public deployed URL was not tested.
+- No actual customer handover, retention, real user count, revenue, checkout or cloud quote storage. Production rollout status is evidenced by the associated GitHub Actions run; pre-deploy local results alone do not prove the live deployment.
 - Chromium desktop/mobile viewport tests do not establish Safari/iOS compatibility. There is no actual iOS-device test.
 - No paid-model generation, third-party builder integration, market demand, retained users, sales or valuation was established.
 

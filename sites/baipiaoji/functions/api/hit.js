@@ -10,6 +10,7 @@
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'quote',       // Quote builder action counts, separate from calc/paid conversion. No quote content or unique user identifier.
   'home',        // 首页区块级点击（2026-09-22）：路径 /home/<区块 id>/<目标路径>。首页 243 pv/28d 是全站第一页，
                  // 此前没有任何一个区块知道自己被点过几次——「要不要把某区块换成 agents」在 D1 里根本答不了。
                  // 只在 / 与 /en/ 上发；导出 EVENTS 供 scripts/test-agent-watch.mjs 断言它没有从白名单里掉出去
@@ -56,6 +57,7 @@ export async function onRequestPost({ request, env }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    if (ev === 'quote' && (!/^\/quote-builder\/(builder_open|client_open|file_generated|link_copied|summary_copied|summary_generated|remix)$/.test(path) || !['zh','en'].includes(lang))) return new Response(null, { status: 204 });
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源

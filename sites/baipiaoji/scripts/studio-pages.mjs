@@ -1,3 +1,4 @@
+import {renderQuoteStudio,ROUTE as QUOTE_BUILDER_ROUTE} from '../../../tools/quote-page-lab/render.mjs';
 import {buildAiTools} from './ai-tool-pages.mjs';
 import {buildEfficiency,efficiencyEntry} from './codex-efficiency-pages.mjs';
 import {buildReleasePilot,pilotEntry} from './release-pilot-pages.mjs';
@@ -10,6 +11,7 @@ import {buildFileStudio} from './file-pages.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:QUOTE_BUILDER_ROUTE,zh:'互动报价工坊',en:'Interactive quote builder',zhDesc:'用自己的服务和单价制作客户报价页，客户调整数量后复制需求摘要。无需注册，免费分享。',enDesc:'Turn your services and rates into a client quote page. Clients adjust quantities and copy their scope. Free, without an account.',zhOutput:'客户链接 · 离线报价页 · 需求摘要',enOutput:'Client link · offline quote page · scope summary',search:'quote builder estimate freelance service pricing client scope 报价 生成器 服务 自由职业 客户 需求摘要'},
   {path:'/studio/codex-efficiency',zh:'Codex 效率 Skill',en:'Codex Efficiency Skill',zhDesc:'免费本地用量复盘；Pro 提供项目规则与反复评估，19 USDT / 30 天。',enDesc:'Free local usage review; Pro project rules and repeated evaluation, 19 USDT / 30 days.',search:'codex skill efficiency token usage quota pricing retry repeated failures local cli 用量 额度 技能 付费 重试 失败 复盘'},
   {featured:true,path:'/studio/ai/',zh:'AI 工作工具',en:'AI workflow tools',zhDesc:'任务回溯、预测记录与免费 MCP，自研 AI 工具的统一入口。',enDesc:'Task review, prediction records and free MCP in one first-party hub.',search:'ai agent mcp task loop forecast 任务 回溯 预测'},
   {path:'/studio/task-loop',zh:'任务回溯与预测',en:'Task Loop',zhDesc:'记录事前预期与事后证据，发现阻塞并导出任务时间线。',enDesc:'Record expectations and evidence, surface blockers and export a task timeline.',search:'ai agent task loop forecast 任务 回溯 预测 纠偏'},
@@ -45,6 +47,8 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   const quoteBody=`${railOf()}<link rel="stylesheet" href="${asset}/studio.css?v=${EDITION}"><main class="stage studio-main" id="main-content"><nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${hub}">${L.back}</a><i>/</i><span>${L.title}</span></nav><header class="studio-hero"><span class="studio-sign">${ownership}</span><h1>${L.title}</h1><p>${L.intro}</p></header><noscript><p class="quote-notice">${zh?'请启用 JavaScript 进行本地计算。下方仍可阅读规则与适用范围。':'Enable JavaScript for local calculations. The rules and scope remain readable below.'}</p></noscript>${renderWorkspace(lang)}<section class="studio-info">${FAQ.map(f=>`<h2>${f.q}</h2><p>${f.a}</p>`).join('')}</section></main><script type="module" src="${asset}/quote-app.mjs?v=${EDITION}"></script>`;
   write('studio/quote-compare.html',layout({title:`${L.title} - BPJ ${zh?'自研工具':'original tools'}`,description:L.intro,path:qpath,body:quoteBody,wide:true,schema:[crumbLd([{name:NAME,url:BASE+'/'},{name:L.back,url:hub},{name:L.title,url}]),{'@context':'https://schema.org','@type':'WebApplication',name:L.title,url,description:L.intro,applicationCategory:'BusinessApplication',operatingSystem:'Web browser',inLanguage:lang,softwareVersion:EDITION,creator:{'@type':'Organization',name:'BPJ',url:site.base_url},isAccessibleForFree:true,offers:{'@type':'Offer',price:'0',priceCurrency:'USD'}},faqLd(FAQ)]}));
   pushPage(url+'.html','0.9');
+  write('studio/quote-builder.html',renderQuoteStudio(lang,{origin:site.base_url}));
+  pushPage(BASE+QUOTE_BUILDER_ROUTE+'.html','0.9');
   buildAiTools({layout,esc,BASE,LOCALE,write,pushPage});
   buildEfficiency({layout,railOf,BASE,LOCALE,site,write,pushPage});
   buildReleasePilot({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
