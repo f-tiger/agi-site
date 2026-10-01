@@ -796,8 +796,10 @@ jobs:
           fi
           # A European-location page must carry NO US surface: a US portable AC
           # is 115 V and will not run on a 230 V socket in Spain.
-          es_body=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html" || true)
-          if echo "$es_body" | grep -q "eb-ustop\|eb-usshelf"; then
+          # Match rendered surface attributes, not harmless JS selectors that
+          # query these optional nodes. Include the delayed purchase popup.
+          es_body=$(curl --fail -sL --retry 2 --max-time 20 "https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html")
+          if echo "$es_body" | grep -qE 'id="eb-(ustop|usshelf)"|data-eb-popup-market="us"'; then
             echo "::error::Spain page carries a US surface (115 V goods for 230 V readers)"; fail=1
           else
             echo "OK Spain page carries no US surface"
