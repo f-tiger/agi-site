@@ -30,6 +30,7 @@ import {videoGrowth} from './video-growth.js';
 // identify a person or link one visit to another. /privacy says all of this in prose.
 
 const ALLOWED_EVENTS = new Set([
+  'focus_entry', 'task_start', 'task_complete', 'result_copy',
   'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
   'deeplink_pick', 'vote_cast', 'challenge_share', 'x_share', 'embed_copy',
@@ -616,11 +617,14 @@ export default {
 
       // Keep QA out before the UA audit and event write; client suppression also covers GPC/DNT.
       const qaQuery = new URLSearchParams(String(body.u || ''));
-      if (qaQuery.get('ci') === '1' || qaQuery.get('__probe') === '1' || qaQuery.get('utm_source') === 'verify' ||
+      if (qaQuery.get('ci') === '1' || qaQuery.get('__qa') === '1' || qaQuery.get('__probe') === '1' || qaQuery.get('utm_source') === 'verify' ||
           request.headers.get('dnt') === '1' || request.headers.get('sec-gpc') === '1') {
         return new Response(null, {status:204,headers:CORS});
       }
       const name = clean(body.n, 40);
+      // The assessment accepts fixed action labels only; no grades or free text.
+      if (['focus_entry','task_start','task_complete','result_copy'].includes(name) &&
+          !validFocusEvent(name, body.l, body.b)) return new Response(null, {status:204,headers:CORS});
       // UA 审计的第二维(2026-08-11):page_view 走到这里意味着 JS 真的跑了。
       // 用同一个 UA 前缀记一行 ua_class='js',即可与服务端记录的 human/bot 对账——
       // 服务端 human 数高、js 数近零的 UA 就是伪装成浏览器的爬虫,证据确凿才动正则。
@@ -1242,8 +1246,13 @@ export async function pulseResponse(env, url) {
         money.discuss_profiles = ((d.results || [])[0] || {}).n | 0;
       } catch (e) { money.discuss_profiles = null; }
     } catch (e) { money = null; }
+    let focus = null;
+    try {
+      const rows = await env.EVENTS.prepare(FOCUS_SQL).all();
+      focus = { metric: 'browser_events_not_users', days: 28, since: '2026-10-01', rows: rows.results || [] };
+    } catch {}
     // money 的主查询失败时标 partial:缓存层(aggregate-cache.js)不收缺一块的结果,否则它会被原样挂一小时。
-    return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, ...(money === null ? { partial: true } : {}), generated: new Date().toISOString() }), { headers });
+    return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, focus, ...(money === null || focus === null ? { partial: true } : {}), generated: new Date().toISOString() }), { headers });
   } catch (e) {
     return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers: errH });
   }
@@ -1280,3 +1289,16 @@ export async function trendsResponse(env) {
 // functions decide what survives into D1, and a silent mistake in them looks exactly
 // like "nobody searched" — which is the failure that shipped for a month.
 export const __test = { clean, cleanText, LABEL_MAX };
+
+// Fixed assessment action contract. Aggregate uses the existing event-name index,
+// shares pulse's one-hour cache, and exposes no individual choices or identifiers.
+const FOCUS_LABELS = new Set(['hero_evidence','hero_grade','route_evidence','route_work','route_invest','nav_evidence','nav_work','nav_invest','nav_tools','nav_discuss','nav_directory','nav_language','grade_source','grade_evidence','changelog','context_method','context_data','context_history']);
+export function validFocusEvent(name, location, label) {
+  if (name === 'focus_entry') return /^(home_focus|evidence_context)_(en|zh)$/.test(location || '') && FOCUS_LABELS.has(label);
+  return ['task_start','task_complete','result_copy'].includes(name) && /^grade_game_(en|zh)$/.test(location || '') && label === 'assessment';
+}
+export const FOCUS_SQL = `SELECT name AS event, location, label, COUNT(*) AS n FROM events
+  WHERE name IN ('focus_entry','task_start','task_complete','result_copy')
+  AND ua_class='human' AND day >= date('now','-28 days') AND day >= '2026-10-01'
+  AND location IN ('home_focus_en','home_focus_zh','evidence_context_en','evidence_context_zh','grade_game_en','grade_game_zh')
+  GROUP BY name, location, label ORDER BY name, location, label`;

@@ -1126,3 +1126,8 @@ AI 接口 `/api/infrastructure-review` 只用服务端快照，生成带合法�
 本机保存/导出免费；云端保存通过既有独立 AGI 会员，产品 ID `ai-infrastructure`，不改变 9 USDT + 尾数/30 天的规则，也不承诺付费 AI 额度。真正上传须在会员页再次点击保存。进口记录/基线未经真实性核验。没有自动邮件/Telegram 提醒。研究结果与模型准确率、真实付款、复用/续费分开报告。
 
 修改后运行 `python3 tools/infrastructure/test_data.py`、`node --test tools/infrastructure/test.mjs` 和 `node tools/infrastructure/browser-test.mjs`（浏览器检查前在根仓运行 revenue-studio build 生成真实会员页），再跑 validate/hreflang。页面生成用 `tools/infrastructure/build.py`；旧研究区继续用其原生成器。
+
+
+### 2026-10-01 homepage focus source ownership
+
+`tools/build_home_focus.py` owns the marked home-focus/home-grade/home-changes and evidence-context fragments, plus their homepage metadata and source-derived dates. Run after page generators, before feed/agent mirrors; then `--check`. Latest three changelog entries need `title_zh`. Do not run gen_index.py to make a date look current: its argument changes ledger/history. Assessment grades stay local; only fixed action names reach analytics. New completion events must not be spliced into old calc_use totals. Preserve active experiment surfaces (including when-will-agi-arrive) until their gate. See ../../docs/agi-home-focus-2026-10-01.md for audience, commercial uncertainty and measurement contract.
