@@ -7,28 +7,31 @@ const assert=require('node:assert/strict');
 const path=require('node:path');
 const root=path.resolve('site'), origin='https://getecoback.com';
 const baseline=process.env.BUYING_BASELINE_SHA;
+const preShelf='902485034ee0598aed3dd8b21e718c9fca5569f7';
 const cases=[
  ['/guide/luftentfeuchter-25-qm.html','Europe/Berlin',false],
  ['/guide/heizluefter-stromverbrauch.html','Europe/Berlin',false],
  ['/en/guide/dehumidifier-20-sqm.html','America/New_York',false],
  ['/en/guide/dehumidifier-20-sqm.html','Europe/Berlin',false],
  ['/guide/klimaanlage-40-qm.html','Europe/Berlin',true],
+ ['/en/guide/best-portable-air-conditioner-for-bedroom.html','America/New_York',true],
 ];
 (async()=>{
  const results=[],dir=process.env.QA_DIR||'/tmp/eco-energy-qa';await fs.mkdir(dir,{recursive:true});
  for(const [engine,type] of [['chromium',chromium],['webkit',webkit]]){
   const browser=await type.launch();
-  try{for(const revision of baseline?[baseline,'current']:['current'])for(const width of [320,390])for(const [url,tz,cooling] of cases){
+  try{for(const revision of baseline?[preShelf,baseline,'current']:['current'])for(const width of [320,390])for(const [url,tz,cooling] of cases){
+   if(revision===preShelf&&!url.includes('best-portable-air-conditioner-for-bedroom'))continue;
    const context=await browser.newContext({viewport:{width,height:844},timezoneId:tz,isMobile:true,hasTouch:true});
-   await context.addInitScript(()=>{
+   await context.addInitScript(saveRoom=>{
     // Exercise ordinary first-visit consent behaviour with every network call mocked.
     Object.defineProperty(navigator,'webdriver',{get:()=>false});
     window.__events=[];
     navigator.sendBeacon=function(url,body){if(String(url).includes('/api/ev')){
      Promise.resolve(body instanceof Blob?body.text():String(body)).then(s=>window.__events.push(JSON.parse(s)));
     }return true;};
-    localStorage.setItem('eb_room',JSON.stringify({qm:20,qp:20,btu:7000,model:'Comfee MPPH-09CRN7',term:'Comfee+MPPH-09CRN7'}));
-   });
+    if(saveRoom)localStorage.setItem('eb_room',JSON.stringify({qm:20,qp:20,btu:7000,model:'Comfee MPPH-09CRN7',term:'Comfee+MPPH-09CRN7'}));
+   },!tz.startsWith('America/'));
    const old=revision==='current'?null:execFileSync('git',['show',revision+':sites/getecoback/site'+url],{encoding:'utf8',maxBuffer:3e6});
    const errors=[];
    await context.route('**/*',async route=>{
@@ -71,7 +74,7 @@ const cases=[
     assert.equal(metrics.picks.length,3,JSON.stringify(record));
     assert(metrics.popupOverflow<=1,JSON.stringify(record));assert(metrics.panelTop>=70,JSON.stringify(record));
     assert.equal(metrics.calc,cooling,JSON.stringify(record));
-    assert.equal(metrics.savedCooling,cooling,JSON.stringify(record));
+    assert.equal(metrics.savedCooling,cooling&&!tz.startsWith('America/'),JSON.stringify(record));
     assert.equal(metrics.stickyVisible,false,'Floating CTAs must not stack');
     for(const pick of metrics.picks){const u=new URL(pick.href);assert.equal(u.hostname,'www.amazon.'+market);assert.equal(u.searchParams.get('tag'),market==='de'?'getecoback-21':'ecoback0d-20');}
     if(market==='com')assert(!metrics.picks.some(p=>/Comfee|Meaco/i.test(p.text)),'US popup must name the same US models as its shelf');
@@ -87,6 +90,7 @@ const cases=[
  }
  await fs.writeFile(dir+'/buying-friction.json',JSON.stringify(results,null,2));
  const old=results.filter(r=>r.revision!=='current');
+ console.log('BUYING_TIMELINE='+JSON.stringify(results.filter(r=>r.engine==='chromium'&&r.width===390&&r.url.includes('best-portable-air-conditioner-for-bedroom')).map(r=>({revision:r.revision,sticky:r.stickyUrl,popup:r.picks}))));
  console.log('BUYING_BASELINE='+JSON.stringify({cases:old.length,overflow:old.filter(r=>r.popupOverflow>1).length,nonCoolingBtu:old.filter(r=>r.calc&&!r.url.includes('klimaanlage-40')).length,usWrongSticky:old.filter(r=>r.tz.startsWith('America/')&&new URL(r.stickyUrl).hostname!=='www.amazon.com').length,usMixedPopup:old.filter(r=>r.tz.startsWith('America/')&&r.picks.some(p=>new URL(p.href).hostname!=='www.amazon.com')).length}));
  console.log(`PASS: ${results.filter(r=>r.revision==='current').length} mobile delayed-purchase scenarios; two engines, two widths, DE/US, correct markets, no BTU detours or popup overflow, one beacon per click. No production requests.`);
 })().catch(e=>{console.error(e);process.exit(1);});
