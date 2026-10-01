@@ -40,4 +40,13 @@ An earlier browser pass caught the lack of fragment-change handling. The impleme
 - Chromium desktop/mobile viewport tests do not establish Safari/iOS compatibility. There is no actual iOS-device test.
 - No paid-model generation, third-party builder integration, market demand, retained users, sales or valuation was established.
 
+## Growth release — 2026-10-01.3
+
+- Localized video-quote pages pass canonical, sitemap/search/discovery/llms and 1200×630 social-image checks. Chinese and English images and mobile page screenshots were visually inspected. Existing layout lacked image metadata; the new pages explicitly supply it.
+- Actual Chromium at 390px and 1360px verifies no landing-page horizontal overflow, an immediately visible demo CTA, and navigation from the intent page into the customer example. The example changes three edits to five and the displayed total from $390 to $630; returning preserves the creator's default three.
+- Builder clipboard and exported HTML checks pass in both languages. Clean recommendation links contain only the public builder URL and allowlisted source, with no quote fragment or synthetic brand. Downloaded customer files omit hosted social metadata and measurement configuration.
+- Actual SQLite + handler tests reject arbitrary event paths, preserve legacy events, exclude CI/old dates, distinguish missing reads from zero, and verify use of the existing partial event index. The daily reach-export self-test verifies both signal passthrough and missing-data semantics.
+- Local BPJ core gates, workerd+D1 account suites, canonical/discovery/build gates, member/revenue checks, all ten existing BPJ browser suites and portable/hosted quote browser suites pass. Site-wide HTML verification covers 2,355 pages with zero broken links, invalid structured data, language leaks, placeholders, empty content or hreflang failures.
+- These fixtures are technical tests, not campaign reach, actual client usage or retention. Published edition and deployment/index submission evidence belong to the associated PR/run; a merge alone does not establish launch or indexing.
+
 Run `node tools/quote-page-lab/build.mjs`, then the browser test described in README. Generated previews and screenshots are reproducible and are not committed.

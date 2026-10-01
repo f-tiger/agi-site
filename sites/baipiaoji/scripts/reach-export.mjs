@@ -72,6 +72,7 @@ function summarise(api) {
     ads: api.ads || {},
     commercial_triggers: api.commercial_triggers || {ok:false,counts:null,reason:"not_reported"},
     conversion_stages: api.conversion_stages || {ok:false,events:null,accounts:null,reason:'not_reported'},
+    quote_signals: api.quote_signals || {ok:false,actions:null,builder_entries:null,reason:'not_reported'},
   };
 }
 
@@ -84,6 +85,7 @@ if (SELFTEST) {
   };
   fixture.commercial_triggers={ok:true,counts:{'vendor-view':3,'ad-wallet':1}};
   fixture.conversion_stages={ok:true,events:{tool_results_own:2},accounts:{created:1}};
+  fixture.quote_signals={ok:true,actions:{builder_open:3,own_ready:1},builder_entries:{'video-guide':3}};
   const s = summarise(fixture);
   const grokCat = catOf.get('grok');
   const assert = (c, m) => { if (!c) { console.error('❌ selftest:', m); process.exit(1); } };
@@ -95,6 +97,8 @@ if (SELFTEST) {
   assert(summarise({...fixture,commercial_triggers:null}).commercial_triggers.counts===null,'缺失的新字段不能伪装成零');
   assert(s.conversion_stages.accounts.created===1 && s.conversion_stages.events.tool_results_own===2,'分层指标必须进入每日快照');
   assert(summarise({...fixture,conversion_stages:null}).conversion_stages.accounts===null,'缺失的注册数据不能伪装成零');
+  assert(s.quote_signals.actions.own_ready===1 && s.quote_signals.builder_entries['video-guide']===3,'报价使用信号必须进入每日快照');
+  assert(summarise({...fixture,quote_signals:null}).quote_signals.actions===null,'缺失报价信号不能伪装成零');
   assert(s.per_day === 0.4, 'per_day 应四舍五入到一位小数');
   console.log('✅ reach-export selftest 通过（映射与合并计数正确）');
   process.exit(0);

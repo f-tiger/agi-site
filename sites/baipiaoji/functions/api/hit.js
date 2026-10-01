@@ -1,3 +1,4 @@
+import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 // 第一方访问打点：无 Cookie、无 IP、无指纹——只存 日期/路径/语言/国家/外部来源域/事件名。
 // 比 GA4 干净，且不依赖任何外部账号；查询走 Cloudflare D1（会话内 MCP 可直读）。
 // 任何异常都吞掉并返回 204：统计永远不能影响正常访问。
@@ -57,7 +58,7 @@ export async function onRequestPost({ request, env }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
-    if (ev === 'quote' && (!/^\/quote-builder\/(builder_open|client_open|file_generated|link_copied|summary_copied|summary_generated|remix)$/.test(path) || !['zh','en'].includes(lang))) return new Response(null, { status: 204 });
+    if (ev === 'quote' && (!parseQuoteEvent(path) || !['zh','en'].includes(lang))) return new Response(null, { status: 204 });
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源
