@@ -1,6 +1,6 @@
 # Product Marketing Context
 
-**Document version:** v2
+**Document version:** v3
 **Last updated:** 2026-10-01
 
 ## Product and category
@@ -37,11 +37,14 @@ Lead with the specific objection: “Can we add another version?” Show the sco
 
 2026-09-01–09-28 settled GSC baseline for the entire BPJ property: 704 impressions, 1 click, 0.142% CTR. The quote tool launched October 1, so this is the existing distribution baseline, not product demand evidence. First-party `/api/reach` counts use a different window and event definition. Do not derive a conversion rate by dividing them.
 
-Observe anonymous action counts: entry, preview, own edit/confirmation, generated file/copied link, client open, copied summary, remix and clean tool-link copy. Campaign labels are allowlisted but user-editable. These are neither people nor a joined funnel. The existing daily reach snapshot preserves these signals; failures are null, not zero. Qualified creator, actual handover and second-task evidence remain separate from telemetry. No community post, direct outreach, advertisement or customer recruitment is claimed as completed.
+Observe anonymous action counts: public entry (including direct demo), explicit demo-to-editor start, preview, own edit/confirmation, generated file/copied link, client open, copied summary, remix and clean tool-link copy. Campaign labels are allowlisted but user-editable. These are neither people nor a joined funnel. The existing daily reach snapshot preserves these signals; failures are null, not zero. Qualified creator, actual handover and second-task evidence remain separate from telemetry. No community post, direct outreach, advertisement or customer recruitment is claimed as completed.
 
 Campaign links, draft copy, stop/continue rules and sources: `docs/bpj-quote-growth-2026-10-01.md`.
+
+Round 2 routes existing video-tool/category visitors directly to the sample and makes starting an own quote explicit. The recommendation panel supports a localized public introduction and optional native sharing with cancellation/fallback handling; no quote configuration is included. `entry_sources` now includes direct demos, while legacy `builder_entries` keeps its editor-only meaning. A native share request is not confirmed delivery. At 19:33 Shanghai time on launch day, action counters were still zero; no acquisition or demand success is claimed. See `docs/bpj-quote-growth-round2-2026-10-01.md`.
 
 ## Changelog
 
 - v1 (2026-10-01) — Initial scoped context from repository and public case research; records all commercial gaps and distinguishes the prototype from future platform scope.
 - v2 (2026-10-01) — Production and acquisition context: video-scoping entry, instant demo, safe recommendation links, source labels, honest baseline and unchanged handover/retention gates.
+- v3 (2026-10-01) — Contextual video discovery, direct-demo activation, public recommendation text/native sharing, corrected entry denominator and unchanged real-task gate.

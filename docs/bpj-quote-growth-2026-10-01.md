@@ -74,3 +74,5 @@ A future video should show continuous real interaction: scope 3 → 5, total 390
 - Connected GSC property summary and live BPJ `/api/reach`, retrieved October 1. Raw customer or account records are not committed.
 
 The choice to focus on video scope changes is a product/distribution hypothesis, supported by the existing video surface and a concrete workflow. It is not a measured market-size or validated demand claim. Search submission and an HTTP 200/202 response do not prove indexing or traffic.
+
+Follow-up: [round 2](bpj-quote-growth-round2-2026-10-01.md) records the same-day zero-action baseline, contextual video entries, explicit demo activation, safe recommendation text and a correction to direct-demo entry measurement. The qualified-creator decision gate is unchanged.

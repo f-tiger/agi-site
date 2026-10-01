@@ -66,6 +66,9 @@ try{
     assert(!html.includes('rel="canonical"')&&!html.includes('hreflang='),'portable customer file has no host SEO');
     await page.locator('[data-action="recommend"]').click();
     const cleanLink=await page.evaluate(()=>navigator.clipboard.readText());assert.equal(cleanLink,url+'?source=share');assert(!cleanLink.includes('QA Studio')&&!cleanLink.includes('#quote='));
+    await page.locator('[data-action="recommend-message"]').click();
+    const intro=await page.evaluate(()=>navigator.clipboard.readText());assert(intro.includes(url+'?source=share')&&!intro.includes('QA Studio')&&!intro.includes('#quote='));
+    assert.equal(await client.locator('.demo-intro,.recommend').count(),0,'real customer view stays focused on the quote');
     assert.equal(events.length,before,'CI traffic must not be counted');
     client.once('dialog',d=>d.accept());await client.locator('[data-action="remix"]').click();
     assert(!(await client.locator('[name="confirmed"]').isChecked()));
@@ -76,7 +79,10 @@ try{
   const demo=await context.newPage();await demo.goto(origin+'/en/studio/quote-builder?template=video&demo=1&source=video-guide&__ci=1');
   assert.equal(await demo.locator('#editor').count(),0);assert.equal(await demo.locator('#total').textContent(),'$390.00');
   await demo.locator('[data-qty="0"]').fill('5');assert.equal(await demo.locator('#total').textContent(),'$630.00');
-  await demo.locator('[data-action="back"]').click();assert.equal(await demo.locator('[name="quantity-0"]').inputValue(),'3');
+  const start=await demo.locator('[data-action="demo-start"]').boundingBox();assert(start&&start.y+start.height<844,'demo-to-creator action is immediately visible');
+  await demo.screenshot({path:new URL('public-demo-en.png',out).pathname,fullPage:true});
+  await demo.locator('[data-action="demo-start"]').click();
+  assert(await demo.locator('[name="brand"]').evaluate(el=>el===document.activeElement));assert.equal(await demo.locator('[name="quantity-0"]').inputValue(),'3');
   await demo.close();
   if(!live){
     for(const lang of ['zh','en']){
@@ -92,8 +98,47 @@ try{
       assert.equal(await landing.locator('#editor').count(),0);
       assert.equal(await landing.locator('[data-qty="0"]').inputValue(),'3');
       assert(new URL(landing.url()).searchParams.get('source')==='video-guide');
+      await landing.setViewportSize({width:390,height:844});
+      const start=await landing.locator('[data-action="demo-start"]').boundingBox();assert(start&&start.y+start.height<844);
+      assert(await landing.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      await landing.screenshot({path:new URL(`public-demo-${lang}.png`,out).pathname,fullPage:true});
       await landing.close();
     }
+    // Native share is stubbed: the test must never send a message to an external app.
+    const referral=await context.newPage();
+    await referral.addInitScript(()=>{window.shareCalls=[];Object.defineProperty(navigator,'share',{configurable:true,writable:true,value:async data=>{window.shareCalls.push(data);throw new DOMException('canceled','AbortError');}});});
+    await referral.goto(origin+'/en/studio/quote-builder?demo=1&source=video-tool');
+    await referral.locator('[data-action="recommend-share"]').click();
+    assert((await referral.locator('[data-recommend-status]').textContent()).includes('canceled'));
+    assert.deepEqual(await referral.evaluate(()=>window.shareCalls[0]),{title:'BPJ Quote Studio',text:'A free interactive quote tool: set your own services and rates, let clients adjust quantities, and copy an itemized scope. Try the sample first. No signup; no payments or contracts.',url:origin+'/en/studio/quote-builder?source=share'});
+    assert(events.some(x=>x.p==='/quote-builder/entry_open/video-tool'));assert(!events.some(x=>x.p==='/quote-builder/builder_open/video-tool'));
+    assert(!events.some(x=>x.p==='/quote-builder/tool_message_copied/video-tool'),'cancel is not a copy');
+    await referral.evaluate(()=>{navigator.share=async()=>{throw new DOMException('blocked','NotAllowedError');};});
+    await referral.locator('[data-action="recommend-share"]').click();
+    assert((await referral.evaluate(()=>navigator.clipboard.readText())).includes('No signup'));
+    await referral.evaluate(()=>{navigator.share=async()=>{};});
+    await referral.locator('[data-action="recommend-share"]').click();
+    assert((await referral.locator('[data-recommend-status]').textContent()).includes('Check the selected app'));
+    await referral.locator('[data-action="demo-start"]').click();
+    assert(events.some(x=>x.p==='/quote-builder/demo_start/video-tool'));assert(events.some(x=>x.p==='/quote-builder/builder_open/video-tool'));
+    assert.equal(events.filter(x=>x.p==='/quote-builder/entry_open/video-tool').length,1,'entry does not repeat on mode changes');
+    await referral.close();
+    const fallback=await context.newPage();await fallback.goto(origin+'/en/studio/quote-builder?demo=1&source=community');
+    await fallback.evaluate(()=>{Object.defineProperty(navigator.clipboard,'writeText',{value:async()=>{throw Error('blocked');}});});
+    assert(!events.some(x=>x.p==='/quote-builder/tool_message_copied/community'));
+    await fallback.locator('[data-action="recommend-message"]').click();assert(await fallback.locator('#text-dialog').isVisible());
+    assert((await fallback.locator('#dialog-text').inputValue()).includes('No signup'));
+    assert(!events.some(x=>x.p==='/quote-builder/tool_message_copied/community'),'manual fallback is not a successful copy');
+    await fallback.locator('[data-action="close-dialog"]').click();
+    fallback.once('dialog',d=>d.accept());await fallback.locator('[data-action="remix"]').click();
+    await fallback.locator('.intro-actions [data-action="preview"]').click();
+    assert.equal(await fallback.locator('.demo-intro').count(),0,'own preview does not inherit the public-demo prompt');
+    await fallback.close();
+    // A real related directory link reaches the demo with a bounded label.
+    const source=await context.newPage();await source.goto(origin+'/en/tools/google-flow?__ci=1');
+    assert(await source.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'related tool page fits mobile');
+    await source.locator('[data-quote-entry]').click();assert(await source.locator('.demo-intro').isVisible());
+    assert.equal(new URL(source.url()).searchParams.get('source'),'video-tool');await source.close();
     const page=await context.newPage();await page.goto(origin+'/studio/quote-builder');
     await page.locator('[name="brand"]').fill('DO NOT SEND THIS');await page.locator('[name="confirmed"]').check();
     await page.locator('[data-action="share"]').click();
