@@ -58,9 +58,13 @@ const cases=[
     const box=document.querySelector('#eb-pu'),panel=box.firstElementChild;
     const visible=e=>!!e.getClientRects().length;
     const picks=[...box.querySelectorAll('[data-eb-pu="pick"]')].filter(visible);
+    const shelf=document.querySelector('#eb-usshelf:not([hidden]),#eb-models:not([hidden])');
+    const top=document.querySelector('#eb-ustop:not([hidden]),#eb-toppick:not([hidden])');
     return {width:innerWidth,popupOverflow:panel.scrollWidth-panel.clientWidth,
      panelTop:panel.getBoundingClientRect().top,
      picks:picks.map(a=>({href:a.href,text:a.innerText})),
+     shelfPicks:[...shelf.querySelectorAll('a[href*="amazon."]')].slice(0,3).map(a=>a.href),
+     topPick:top.querySelector('a[href*="amazon."]').href,
      calc:!!box.querySelector('[data-eb-pu="calc"]'),
      savedCooling:visible(document.getElementById('eb-pu-room')),
      stickyVisible:visible(document.getElementById('eb-sticky'))};
@@ -72,7 +76,9 @@ const cases=[
     await page.screenshot({path:dir+'/buying-popup-'+revision+'.png'});
    if(revision==='current'){
     assert.equal(new URL(stickyUrl).hostname,'www.amazon.'+market,JSON.stringify(record));
-    assert.equal(metrics.picks.length,3,JSON.stringify(record));
+    assert(metrics.picks.length>0,JSON.stringify(record));
+    assert.deepEqual(metrics.picks.map(p=>p.href),metrics.shelfPicks,'Popup picks must match the visible shelf, including a two-model shelf');
+    assert.equal(stickyUrl,metrics.topPick,'Sticky must follow this page and market, not a saved cooling result');
     assert(metrics.popupOverflow<=1,JSON.stringify(record));assert(metrics.panelTop>=70,JSON.stringify(record));
     assert.equal(metrics.calc,cooling,JSON.stringify(record));
     assert.equal(metrics.savedCooling,cooling&&!tz.startsWith('America/'),JSON.stringify(record));
