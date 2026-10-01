@@ -9,7 +9,7 @@ const launch=process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH
  fs.mkdirSync(dir,{recursive:true});const browser=await chromium.launch({headless:true,...launch});let checks=0;
  try{
   for(const [lang,pathname] of [['de','/guide/luftentfeuchter-ratgeber.html'],['en','/en/guide/dehumidifier-20-sqm.html']]){
-   const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],events=[];page.on('pageerror',e=>errors.push(e.message));
+   const page=await browser.newPage({viewport:{width:390,height:844},timezoneId:'America/New_York'}),errors=[],events=[];page.on('pageerror',e=>errors.push(e.message));
    await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin!==new URL(base).origin)return route.abort();if(u.pathname.startsWith('/api/')){try{events.push(JSON.parse(route.request().postData()));}catch{}return route.fulfill({body:'{"ok":true}',contentType:'application/json'});}return route.continue();});
    await page.goto(base+pathname+'?__probe=1');const root=page.locator('#eb-moisture-choice');await root.scrollIntoViewIfNeeded();
    const choose=async(purpose,humidity,temperature,expected)=>{
@@ -19,6 +19,8 @@ const launch=process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH
    await choose('room','unknown','unknown','measure');await choose('room','normal','warm','wait');await choose('damage','high','warm','cause');await choose('room','high','cold','cold');await choose('laundry','high','warm','laundry');await choose('room','high','warm','compare');
    assert.equal(await root.locator('[data-choice-action=shop]:visible').count(),lang==='de'?2:0);checks++;
    await root.locator('[name=market]').selectOption('de');assert.equal(await root.locator('[data-results]').isVisible(),false);await root.locator('[type=submit]').click();assert.equal(await root.locator('[data-choice-action=shop]:visible').count(),2);checks++;
+   const shops=await root.locator('[data-choice-action=shop]').evaluateAll(links=>links.map(a=>a.href));
+   assert.ok(shops.every(href=>new URL(href).hostname==='www.amazon.de'));assert.ok(shops.some(href=>new URL(href).searchParams.get('k')==='MeacoDry Arete One 20L'));checks++;
    await root.locator('summary').click();await root.locator('[data-copy]').click();assert.equal(await root.locator('[data-share]').inputValue(),'https://getecoback.com'+pathname+'#eb-moisture-choice');checks++;
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);checks++;
    await root.screenshot({path:path.join(dir,'buyer-'+lang+'.png')});assert.deepEqual(errors,[]);checks++;

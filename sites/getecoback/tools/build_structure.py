@@ -3283,7 +3283,7 @@ USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
             # reads the Python list, so a second copy would be a gate that lies.
             'var R=' + json.dumps([[a, b] for a, b in US_SWITCH_RULES],
                                   ensure_ascii=True, separators=(',', ':')) + ';'
-            'var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;'
+            'var sw=function(a){if(!a||!a.href||a.closest("#eb-moisture-choice")||a.href.indexOf("amazon.de/s?k=")<0)return;'
             'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'
             'for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){'
             'a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";'
