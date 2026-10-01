@@ -17,7 +17,12 @@ on:
       - "sites/baipiaoji/scripts/ad-runner-config.mjs"
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      check_relay_ai:
+        description: "Run real Relay inference after deploy (uses the existing quota)"
+        type: boolean
+        default: false
   # 每日兜底部署(2026-09-11)。本站此前**没有自己的 schedule**——它每天能重新部署
   # 纯属副作用:fleet-trends.yml 每天把 trends-us.json 提交进 sites/agiscorecard/,
   # 撞上了本工作流的 path 过滤。那条链一停(09-08 GitHub 整天丢掉了全部计划运行),
@@ -33,6 +38,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      deployed_sha: ${{ steps.release.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -60,6 +67,10 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
+      - name: Record the effective release after the stale-run guard
+        id: release
+        run: printf 'sha=%s\n' "$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Build and validate Work Mentor
         run: |
           node sites/agiscorecard/tools/mentor/build.mjs
@@ -96,7 +107,7 @@ jobs:
           python3 sites/agiscorecard/tools/infrastructure/test_data.py
           node --test sites/agiscorecard/tools/infrastructure/test.mjs
       - name: Validate Relay stories, permissions and cost caps
-        run: node --test sites/agiscorecard/tools/create/test.mjs
+        run: node --test sites/agiscorecard/tools/create/test.mjs sites/agiscorecard/tools/create/ai-check-test.mjs
 
       - name: Validate investment research arithmetic and portable records
         run: node --test sites/agiscorecard/tools/test_invest_research.mjs
@@ -238,10 +249,6 @@ jobs:
       - name: Verify live infrastructure research and membership catalog
         run: node sites/agiscorecard/tools/infrastructure/verify.mjs
 
-      - name: Verify real Relay AI generation within the existing quota
-        # A quota refusal remains a failed AI check; do not bypass or increase its budget.
-        run: node sites/agiscorecard/tools/create/ai-check.mjs
-
       - name: Read Relay experiment aggregates and report backlog
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -339,3 +346,35 @@ jobs:
               || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
           done
           exit $fail
+
+      - name: Summarize deployment and the separate AI check
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          Deployment and all live release checks passed.
+
+          Real Relay inference is checked by the separate **Relay AI availability** job
+          on the existing daily schedule, or an explicit manual run with
+          `check_relay_ai=true`. A skipped AI job means **not tested**, never healthy.
+          Ordinary pushes do not consume the production inference allowance.
+          EOF
+
+  relay-ai:
+    name: Relay AI availability (existing quota)
+    needs: deploy
+    # Root CI policy: external model calls belong to the daily path or explicit
+    # manual verification, not every content/analytics push. No new cron.
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.check_relay_ai == true) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The stale-run guard may have deployed a newer main than github.sha.
+          ref: ${{ needs.deploy.outputs.deployed_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Verify real Relay AI generation within the existing quota
+        # 429 and all other inference failures remain red. No retries, bypass,
+        # extra identities, synthetic-success fallback or increased allowance.
+        run: node sites/agiscorecard/tools/create/ai-check.mjs
