@@ -58,3 +58,17 @@ Expand to further adult work tasks only after repeated-use evidence. Family and 
 ## Verification record
 
 Local checks cover 1,000 independently recalculated datasets, malformed input, level conditions, import score recomputation, origin and consent enforcement, shared AI limits, failure behavior, privacy and attribution; bilingual mobile/desktop interaction tests cover correction, fresh-case progression, persistence, exports and the member-page handoff. The member integration tests unpaid denial, product attribution, mock payment activation, storage retrieval, stale revision and other-user rejection. Deployment and real-model results are appended to the release receipt after execution, never inferred from fixtures.
+
+## Production and distribution receipt — 2026-10-01
+
+Released through [PR #55](https://github.com/f-tiger/agi-site/pull/55), with clean-checkout generation order fixed in [#56](https://github.com/f-tiger/agi-site/pull/56) and a browser-test listener race removed in [#57](https://github.com/f-tiger/agi-site/pull/57).
+
+- Live practice: [English](https://agiscorecard.com/mentor) and [Chinese](https://agiscorecard.com/zh/mentor). The deployed pages, assets, schema, member readiness, product registration and unauthorized admin rejection passed.
+- Real production browser checks passed in both languages at mobile and desktop widths: incorrect 4/5 result, corrected 5/5 result, new-case L2, reload persistence, exported backup and draft received by the actual member page. No real payment was made by these checks.
+- The [deployment run](https://github.com/f-tiger/agi-site/actions/runs/36856222963) published the code successfully, but its overall result remains **failure**: the existing Relay real-AI check returned HTTP 429. A separate real Work Mentor English inference attempt also returned `rate_limited`; Chinese inference was not reached. Binding presence and local fixtures are not successful model verification. No quota was increased or reset. Free deterministic practice remains available.
+- YouTube returned `PUBLISHED`: [The $800 mistake hiding in a weekly sales report](https://www.youtube.com/watch?v=ZjiKp6A5GIQ).
+- TikTok returned `PUBLISHED`: [Can you spot the $800 mistake?](https://www.tiktok.com/@agifuturelife/video/7691663768874519822).
+- Both posts were scheduled for 19:44 Asia/Shanghai and publication receipts were checked after that time. Their copy discloses fictional data, synthetic narration, own-product promotion, optional paid cloud history and the shared AI preview limit. Initial analytics returned no rows; reach and conversion cannot yet be inferred.
+- IndexNow accepted the four canonical practice/checklist URLs with HTTP 200 at 11:40 UTC. Search indexing remains unknown.
+
+The outstanding release check is a real model response after the existing allowance becomes available. Customer demand and actual paid conversion remain separate business questions; a successful deployment or published video does not establish either.
