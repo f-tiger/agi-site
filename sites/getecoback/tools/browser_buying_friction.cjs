@@ -66,7 +66,7 @@ const cases=[
      stickyVisible:visible(document.getElementById('eb-sticky'))};
    });
    const market=tz.startsWith('America/')?'com':'de';
-   const record={engine,revision,width,url,tz,consentShown,stickyUrl,...metrics};results.push(record);
+   const record={engine,revision,width,url,tz,cooling,consentShown,stickyUrl,...metrics};results.push(record);
    if(engine==='chromium'&&width===390&&tz==='Europe/Berlin'&&url.includes('luftentfeuchter-25'))
     await page.screenshot({path:dir+'/buying-popup-'+revision+'.png'});
    if(revision==='current'){
@@ -91,6 +91,6 @@ const cases=[
  await fs.writeFile(dir+'/buying-friction.json',JSON.stringify(results,null,2));
  const old=results.filter(r=>r.revision!=='current');
  console.log('BUYING_TIMELINE='+JSON.stringify(results.filter(r=>r.engine==='chromium'&&r.width===390&&r.url.includes('best-portable-air-conditioner-for-bedroom')).map(r=>({revision:r.revision,sticky:r.stickyUrl,popup:r.picks}))));
- console.log('BUYING_BASELINE='+JSON.stringify({cases:old.length,overflow:old.filter(r=>r.popupOverflow>1).length,nonCoolingBtu:old.filter(r=>r.calc&&!r.url.includes('klimaanlage-40')).length,usWrongSticky:old.filter(r=>r.tz.startsWith('America/')&&new URL(r.stickyUrl).hostname!=='www.amazon.com').length,usMixedPopup:old.filter(r=>r.tz.startsWith('America/')&&r.picks.some(p=>new URL(p.href).hostname!=='www.amazon.com')).length}));
+ console.log('BUYING_BASELINE='+JSON.stringify({cases:old.length,overflow:old.filter(r=>r.popupOverflow>1).length,nonCoolingBtu:old.filter(r=>r.calc&&!r.cooling).length,usWrongSticky:old.filter(r=>r.tz.startsWith('America/')&&new URL(r.stickyUrl).hostname!=='www.amazon.com').length,usMixedPopup:old.filter(r=>r.tz.startsWith('America/')&&r.picks.some(p=>new URL(p.href).hostname!=='www.amazon.com')).length}));
  console.log(`PASS: ${results.filter(r=>r.revision==='current').length} mobile delayed-purchase scenarios; two engines, two widths, DE/US, correct markets, no BTU detours or popup overflow, one beacon per click. No production requests.`);
 })().catch(e=>{console.error(e);process.exit(1);});
