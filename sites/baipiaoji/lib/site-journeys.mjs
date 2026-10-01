@@ -8,6 +8,7 @@ export const JOURNEY_GROUPS = [
 const REGISTERED_TOOL_PATHS = new Set(['/llm-api-calculator','/publish-check','/stack-builder','/video-quota-planner','/subscription-audit','/tokenizer','/pipeline/video','/free-for-you']);
 const entry=(id,path,group,type,zh,en,zhDesc,enDesc,next=[],extra={})=>({id,path,group,type,title:{zh,en},description:{zh:zhDesc,en:enDesc},requiresRegistration:REGISTERED_TOOL_PATHS.has(path),next,...extra});
 export const SITE_JOURNEYS = [
+  entry('proposal-deck','/studio/proposal-deck','create','tool','客户提案演示工作台','Client proposal deck studio','把客户需求与 AI 草稿整理成可编辑 PPTX、讲稿与项目备份。','Turn client requirements and AI drafts into editable PPTX, speaker notes and project backups.',['quote-builder','video','workbench'],{featured:true,optionalRegistration:{zh:'编辑与导出无需注册；云项目和版本使用会员账户。',en:'Editing and export need no signup; cloud projects and versions use a member account.'}}),
   entry('ai-tools','/studio/ai/','connect','hub','AI 工作工具','AI workflow tools','BPJ 自研 AI 工具与免费 MCP 接入。','First-party BPJ AI tools and free MCP access.',['task-loop','mcp','studio']),
   entry('task-loop','/studio/task-loop','create','tool','任务回溯与预测','Task Loop','记录目标、预测和结果，导出本地任务时间线。','Record goals, predictions and outcomes, and export a local timeline.',['ai-tools','tokens','account']),
   entry('account','/account','connect','membership','免费会员与我的清单','Free membership & my list','注册用户名和密码，跨设备同步关注清单，查看站内变更并使用免费会员工具。','Create a username and password, sync followed tools, review in-account changes and use free member tools.',['directory','work-plan','members']),

@@ -367,6 +367,7 @@ jobs:
           node tools/member-studio/build.mjs --out sites/baipiaoji/dist
           node sites/baipiaoji/scripts/finish-experience.mjs --out sites/baipiaoji/dist
           node sites/baipiaoji/scripts/test-site-journeys.mjs --dist
+          node sites/baipiaoji/scripts/test-deck.mjs --dist
           (cd sites/baipiaoji && node scripts/verify-dist.mjs && node scripts/check-canonical-routes.mjs)
           node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
@@ -382,6 +383,7 @@ jobs:
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
+          node sites/baipiaoji/scripts/test-deck-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
           node sites/baipiaoji/scripts/test-codex-efficiency-browser.mjs
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
@@ -455,6 +457,9 @@ jobs:
 
       - name: Verify published BPJ first-party tools
         run: node scripts/verify-studio-live.mjs
+
+      - name: Verify live ProposalDeck and cloud readiness without creating orders
+        run: node scripts/verify-deck-live.mjs
 
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}

@@ -1,4 +1,5 @@
 import {buildQuoteGrowth} from './quote-growth-pages.mjs';
+import {buildDeck} from './deck-pages.mjs';
 import {renderQuoteStudio,ROUTE as QUOTE_BUILDER_ROUTE} from '../../../tools/quote-page-lab/render.mjs';
 import {buildAiTools} from './ai-tool-pages.mjs';
 import {buildEfficiency,efficiencyEntry} from './codex-efficiency-pages.mjs';
@@ -12,6 +13,7 @@ import {buildFileStudio} from './file-pages.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:'/studio/proposal-deck',zh:'客户提案演示工作台',en:'Client proposal deck studio',zhDesc:'把客户需求与 AI 草稿整理成可编辑 PowerPoint，保留来源、讲稿和改稿版本。',enDesc:'Turn client requirements and AI drafts into editable PowerPoint with sources, speaker notes and revision history.',zhOutput:'原生 PPTX · 讲稿 · 项目备份',enOutput:'Editable PPTX · speaker notes · project backup',search:'presentation powerpoint pptx deck proposal agent 客户 提案 演示 幻灯片 讲稿'},
   {featured:true,path:QUOTE_BUILDER_ROUTE,zh:'互动报价工坊',en:'Interactive quote builder',zhDesc:'用自己的服务和单价制作客户报价页，客户调整数量后复制需求摘要。无需注册，免费分享。',enDesc:'Turn your services and rates into a client quote page. Clients adjust quantities and copy their scope. Free, without an account.',zhOutput:'客户链接 · 离线报价页 · 需求摘要',enOutput:'Client link · offline quote page · scope summary',search:'quote builder estimate freelance service pricing client scope 报价 生成器 服务 自由职业 客户 需求摘要'},
   {path:'/studio/codex-efficiency',zh:'Codex 效率 Skill',en:'Codex Efficiency Skill',zhDesc:'免费本地用量复盘；Pro 提供项目规则与反复评估，19 USDT / 30 天。',enDesc:'Free local usage review; Pro project rules and repeated evaluation, 19 USDT / 30 days.',search:'codex skill efficiency token usage quota pricing retry repeated failures local cli 用量 额度 技能 付费 重试 失败 复盘'},
   {featured:true,path:'/studio/ai/',zh:'AI 工作工具',en:'AI workflow tools',zhDesc:'任务回溯、预测记录与免费 MCP，自研 AI 工具的统一入口。',enDesc:'Task review, prediction records and free MCP in one first-party hub.',search:'ai agent mcp task loop forecast 任务 回溯 预测'},
@@ -51,6 +53,7 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   write('studio/quote-builder.html',renderQuoteStudio(lang,{origin:site.base_url}));
   pushPage(BASE+QUOTE_BUILDER_ROUTE+'.html','0.9');
   buildQuoteGrowth({layout,railOf,BASE,LOCALE,site,write,pushPage,faqLd});
+  buildDeck({layout,railOf,BASE,LOCALE,site,write,pushPage,faqLd});
   buildAiTools({layout,esc,BASE,LOCALE,write,pushPage});
   buildEfficiency({layout,railOf,BASE,LOCALE,site,write,pushPage});
   buildReleasePilot({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
