@@ -38,7 +38,7 @@ def extract(path):
     cap = m1(r'<(?:div|p)[^>]*class="capsule"[^>]*>(.*?)</(?:div|p)>')
     capsule = text_of(cap) if cap else ''
     faqs = []
-    for q, a in re.findall(r'<div class="faq-q">(.*?)</div>\s*<p>(.*?)</p>', s, re.S):
+    for q, a in re.findall(r'<(?:div|h3) class="faq-q">(.*?)</(?:div|h3)>\s*<p>(.*?)</p>', s, re.S):
         faqs.append((text_of(q), text_of(a)))
     return title, html.unescape(desc), updated, capsule, faqs
 
@@ -67,7 +67,8 @@ def main():
     pages = []
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
-        if not slug or ('/' in slug and not slug.startswith('earn/')):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
+        if not slug: slug = 'index'
+        if '/' in slug and not slug.startswith('earn/') and slug not in ('zh/progress-index','zh/ai-and-your-job'):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -84,7 +85,7 @@ def main():
         '> verdicts, evidence and flip conditions: https://agiscorecard.com/data.json (CC BY 4.0).',
         '> Thesis Tracker: %s/100 as of %s. Index: https://agiscorecard.com/llms.txt' % (
             tracker.get('score', ''), tracker.get('asOf', '')),
-        '> Each page also has a Markdown mirror at its URL + ".md"',
+        '> Homepage mirror: https://agiscorecard.com/index.md; selected other pages use their URL + ".md".',
         '> (e.g. https://agiscorecard.com/what-is-agi.md).',
         '',
     ]

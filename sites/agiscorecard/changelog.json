@@ -3,6 +3,12 @@
   "entries": [
     {
       "date": "2026-10-01",
+      "title": "Source-matched homepage answers and incremental search notifications",
+      "title_zh": "首页问答、结构化数据与 AI 摘要同源生成，搜索通知改为增量提交",
+      "note": "English and Chinese homepage FAQs, citation guidance and structured data now use the published ledger. Agent mirrors include the homepage and two Chinese evidence pages; mirror responses identify their canonical HTML. Shared crawler rules apply operational exclusions consistently and advertise the video sitemap. IndexNow uses real source changes and new sitemap URLs, validates canonical pages and the public key, preserves failures, and distinguishes receipt from indexing. The weekly job retains its existing cadence; redundant per-deployment tool submissions were removed. No evidence verdict or reading date changed."
+    },
+    {
+      "date": "2026-10-01",
       "title": "Focused bilingual homepage and private, measurable assessments",
       "title_zh": "中英文首页聚焦证据、工作与投资研究，评分完成可独立统计",
       "note": "The homepage now leads with evidence, work implications and investment research. Both languages offer an eight-prediction assessment with local-only grades and clipboard fallback. Site changes are generated from this log; four evidence pages distinguish their article date from the ledger reading date. Fixed action events count entries, starts, completions and successful copies without sending grades. No verdict, ledger date or historical score was changed."

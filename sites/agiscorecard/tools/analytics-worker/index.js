@@ -833,6 +833,8 @@ export default {
         try {
           const h = new Headers(res.headers);
           h.set('x-robots-tag', 'noindex');
+          const target = markdownCanonical(url.pathname);
+          if (target) h.set('link', '<https://agiscorecard.com' + target + '>; rel="canonical"');
           return new Response(res.body, { status: res.status, headers: h });
         } catch (e) {}
       }
@@ -1302,3 +1304,9 @@ export const FOCUS_SQL = `SELECT name AS event, location, label, COUNT(*) AS n F
   AND ua_class='human' AND day >= date('now','-28 days') AND day >= '2026-10-01'
   AND location IN ('home_focus_en','home_focus_zh','evidence_context_en','evidence_context_zh','grade_game_en','grade_game_zh')
   GROUP BY name, location, label ORDER BY name, location, label`;
+
+// /skill.md is an installable skill, not a mirror of /skill.
+export function markdownCanonical(pathname) {
+  if (pathname === '/skill.md' || !pathname.endsWith('.md')) return null;
+  return pathname === '/index.md' ? '/' : pathname.slice(0,-3);
+}

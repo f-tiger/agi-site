@@ -1,29 +1,17 @@
+# One shared policy: public pages allowed, operational files excluded for every crawler.
+# Search crawlers and training crawlers have different roles; allowing either is not a ranking guarantee.
 User-agent: *
-Allow: /
-
-# AI search & assistant crawlers — explicitly welcome (citations are traffic)
-User-agent: GPTBot
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: Claude-SearchBot
-Allow: /
-User-agent: Claude-User
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: Perplexity-User
-Allow: /
-User-agent: Google-Extended
-Allow: /
+User-agent: Googlebot
 User-agent: Bingbot
-Allow: /
-
-User-agent: *
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
 Disallow: /content-backlog.md
 Disallow: /OPT-LOG.md
 Disallow: /analytics-notes.md
@@ -46,6 +34,8 @@ Disallow: /revenue-experiments.md
 Disallow: /analytics-setup.md
 Disallow: /invest-prd-2026-08.md
 
-Sitemap: https://agiscorecard.com/sitemap.xml
+Allow: /
 
+Sitemap: https://agiscorecard.com/sitemap.xml
 Sitemap: https://agiscorecard.com/discuss-sitemap.xml
+Sitemap: https://agiscorecard.com/video-sitemap.xml

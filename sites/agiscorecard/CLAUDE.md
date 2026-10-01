@@ -1131,3 +1131,10 @@ AI 接口 `/api/infrastructure-review` 只用服务端快照，生成带合法�
 ### 2026-10-01 homepage focus source ownership
 
 `tools/build_home_focus.py` owns the marked home-focus/home-grade/home-changes and evidence-context fragments, plus their homepage metadata and source-derived dates. Run after page generators, before feed/agent mirrors; then `--check`. Latest three changelog entries need `title_zh`. Do not run gen_index.py to make a date look current: its argument changes ledger/history. Assessment grades stay local; only fixed action names reach analytics. New completion events must not be spliced into old calc_use totals. Preserve active experiment surfaces (including when-will-agi-arrive) until their gate. See ../../docs/agi-home-focus-2026-10-01.md for audience, commercial uncertainty and measurement contract.
+
+
+### 2026-10-01 discovery source ownership and submission semantics
+
+Run `tools/build_discovery.py` after build_home_focus.py and before feed/agent mirrors. It owns discovery-schema, discovery-faq, discovery-citation and the llms.txt opening facts. Use the published ledger date, never a deployment date. `test_discovery.py` verifies visible/schema agreement and crawler rules; `test_indexnow.mjs` verifies incremental selection and receipt semantics. The root homepage mirror is /index.md; /skill.md remains an installable skill.
+
+IndexNow main-host submissions run only in the existing weekly/manual workflow, after a successful release, with cursor/receipt at ../../data/indexnow/agi.json. HTTP 200/202 is receipt, not indexing; failures do not advance the cursor. No unchanged whole-site or per-deploy tool resubmission. The bootstrap cursor is not a historical receipt. GSC sitemap `indexed=0` fields are not an indexing census; use URL inspections. Google requires no special GEO schema or llms.txt; do not turn older research percentages or crawler access into promised visibility gains. Search crawlers and training crawlers have different roles. See ../../docs/agi-discovery-2026-10-01.md.
