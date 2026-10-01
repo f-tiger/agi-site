@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-30",
+ "fetched": "2026-10-01",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -208,45 +208,37 @@
   "leg compression boots": {
    "rising": [
     {
-     "q": "anaconda",
-     "v": 1200
-    },
-    {
-     "q": "therabody",
-     "v": 250
-    },
-    {
      "q": "therabody leg compression",
-     "v": 250
+     "v": 200
     },
     {
      "q": "costco compression boots",
-     "v": 190
+     "v": 200
     },
     {
      "q": "best leg compression boots",
-     "v": 60
+     "v": 80
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-30"
+   "fetched": "2026-10-01"
   },
   "solar camping lights": {
    "auto": [
     "solar camping lights",
     "solar camping lights string",
     "solar camping lights amazon",
-    "solar camping lights - bunnings",
-    "solar camping lights nz",
-    "solar camping lights kmart",
-    "solar camping lights anaconda",
     "solar camping lights south africa",
+    "solar camping lights kmart",
+    "solar camping lights nz",
+    "solar camping lights anaconda",
+    "solar camping lights - bunnings",
     "solar camping lights nearby",
     "solar camping lights bcf"
    ],
    "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-01"
+   "fetched": "2026-10-01"
   },
   "camping moon chair": {
    "auto": [
