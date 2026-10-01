@@ -114,6 +114,7 @@ async function analyze() {
   } else if (!sample && reports.length) track('doc_partial');
   if (!sample && failures.length) track('doc_error');
   $('results').focus({ preventScroll: true });
+  if (sample && new URLSearchParams(location.search).get('example') === '1') $('results').scrollIntoView({block:'start'});
 }
 $('run')?.addEventListener('click', analyze);
 $('sample')?.addEventListener('click', async () => {
@@ -226,3 +227,6 @@ document.addEventListener('click', async event => {
     output.focus(); output.select();
   }
 });
+
+// Example links run the existing sample path, which is excluded from real completions.
+if(new URLSearchParams(location.search).get('example')==='1')$('sample')?.click();

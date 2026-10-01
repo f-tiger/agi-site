@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v7** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v8** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -104,3 +104,13 @@ Alternatives include staying on Reddit/Hugging Face, embedded GitHub comments, a
 ## BPJ paid-app review pilot — 2026-09-26
 
 Hypothesis: studios maintaining at least two paid apps may pay to reduce payment/access acceptance labor before a release. User/payer authority, actual task, current alternative and buyer net value remain unverified. Existing coding-category visits provide a distribution entry, not proof of buyer fit. Proposed one-time $299 scope is public; no checkout or reserved delivery. Avoid claims of bug-free releases, security audit, saved hours or real customer findings. A sample report is fictional; checklist export prepares work and does not execute tests. Structured applications include a no-budget choice, private email consent and withdrawal. Full protocol and subsequent paid-delivery gates: docs/bpj-release-pilot-2026-09-26.md. This is a specific current-owner exception to historical expansion freezes, not a fleetwide repositioning.
+
+## v8: Fleet outcome audit — 2026-10-01
+
+TDS targets creators and small teams preparing files for publication or handover. This is a segment hypothesis, not validated customer research. Its first three jobs are resizing images, reviewing PDF text changes and recording delivered files. The homepage now demonstrates an actual runnable local sample before the complete twelve-tool directory. AI, JSON, time-zone, PDF and collector routes remain available. Model download and supported-input limitations remain explicit.
+
+Free value is a downloadable processed file or report, without registration. TDS has no validated paid upgrade for this same job; do not map the unrelated membership checkout to document-tool willingness to pay. Consider paid collaboration only after repeated, independently observed requests for history or approvals. No pricing or checkout is being opened in this audit.
+
+AGI retains the evidence-tracking identity and dated verdicts; BPJ retains tool selection and work planning; ECO retains room-climate calculations and purchase research, with affiliate disclosure; Web3 Workbench retains bounded free-beta utilities. Audit changes do not revoke the owner's existing continuous-expansion instructions or restart unrelated experiments. ECO examples must be labelled illustrative unless actual reader evidence exists.
+
+Measurement: GSC 2026-09-01–28 gives AGI 1/143, BPJ 1/704, ECO 0/77, TDS 5/328 (clicks/impressions). TDS public document metrics at 2026-10-01T15:13:27.955Z show 39 anonymous view events and no recorded non-sample completion. These are neither total site users nor proof of no demand. GA4 remains unavailable through the connected reporting scope, and coverage was repaired today. Review the dated audit in docs/fleet-outcome-audit-2026-10-01.md before interpreting growth.

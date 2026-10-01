@@ -61,6 +61,10 @@ for (const record of manifest.records) {
   const ld = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
   assert.ok(ld[0]['@graph'].some(s => s['@type'] === (record.slug ? 'WebPage' : 'CollectionPage')));
   if (!record.slug) {
+    assert.ok(html.includes('class="hub-hero outcome-hero"'), 'Outcome entry exists');
+    assert.ok(html.includes('id="outcome-tasks-title"') && html.indexOf('id="outcome-tasks-title"') < html.indexOf('id="tools"'), 'Concrete tasks precede the full directory');
+    assert.ok(html.includes(`${route}image-compressor?example=1#utility-result`), 'Localized runnable image example');
+    assert.ok(html.includes(`${route}compare-pdf-text?example=1#results`), 'Localized runnable PDF example');
     assert.ok(!html.includes('type="file"') && !html.includes('id="workspace"'), 'Homepage is a directory: '+route);
     assert.ok(html.includes('data-document-mode="hub"'), 'Homepage mode: '+route);
     assert.ok(!ld[0]['@graph'].some(s=>s['@type']==='WebApplication'), 'Directory is not one application');
