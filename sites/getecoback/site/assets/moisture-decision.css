@@ -1,0 +1,23 @@
+#eb-moisture-choice{--choice-ink:#16394c;--choice-blue:#0a4d7a;--choice-line:#cbdce5;max-width:960px;margin:24px auto;padding:22px;background:#f3f8fa;color:var(--choice-ink);border-left:5px solid var(--choice-blue);border-radius:8px;font-family:inherit;scroll-margin-top:110px}
+#eb-moisture-choice *{box-sizing:border-box}
+#eb-moisture-choice h2{font-size:1.45rem;line-height:1.25;margin:0 0 10px}
+#eb-moisture-choice h3{font-size:1.16rem;line-height:1.35;margin:0 0 10px}
+#eb-moisture-choice p{line-height:1.6;margin:10px 0;max-width:72ch}
+#eb-moisture-choice form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+#eb-moisture-choice label{display:grid;gap:7px;font-size:15px;font-weight:700;min-width:0}
+#eb-moisture-choice select,#eb-moisture-choice input{font:inherit;width:100%;min-width:0;background:#fff;border:1px solid #7895a4;color:#16394c;border-radius:6px;padding:11px}
+#eb-moisture-choice button{font:inherit;font-weight:700;background:#0a4d7a;color:#fff;border:0;border-radius:6px;padding:12px 16px;cursor:pointer;min-height:44px;justify-self:start}
+#eb-moisture-choice [data-copy]{background:transparent;color:#0a4d7a;border:1px solid #7895a4;margin:14px 0 0}
+#eb-moisture-choice a{color:#06466d;text-underline-offset:3px}
+#eb-moisture-choice a[data-choice-action=shop]{display:inline-block;background:#ffce71;color:#25333c;padding:10px 13px;border-radius:6px;font-weight:700;margin-top:8px}
+#eb-moisture-choice [data-results]{padding:20px;background:#fff;border:1px solid var(--choice-line);border-radius:6px}
+#eb-moisture-choice [data-results]:focus{outline:2px solid #0a4d7a;outline-offset:3px}
+#eb-moisture-choice :focus-visible{outline:3px solid #0a4d7a;outline-offset:3px}
+#eb-moisture-choice [hidden]{display:none!important}
+#eb-moisture-choice .choice-products{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
+#eb-moisture-choice .choice-products>div{padding-top:12px;border-top:2px solid #cadbe5;min-width:0}
+#eb-moisture-choice .choice-table{overflow:auto;margin:16px 0}
+#eb-moisture-choice table{width:100%;border-collapse:collapse;background:#fff;font-size:15px}
+#eb-moisture-choice th,#eb-moisture-choice td{text-align:left;padding:10px;border-bottom:1px solid var(--choice-line)}
+#eb-moisture-choice small{display:block;font-size:13px;line-height:1.5;margin-top:12px;color:#466172}
+@media(max-width:600px){#eb-moisture-choice{margin:20px 10px;padding:17px}#eb-moisture-choice form,#eb-moisture-choice .choice-products{grid-template-columns:1fr}#eb-moisture-choice h2{font-size:1.35rem}#eb-moisture-choice [data-results]{padding:15px}}
