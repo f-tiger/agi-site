@@ -35,6 +35,8 @@ SITE = os.path.join(ROOT, "site")
 BASE = "https://getecoback.com"
 
 DISCLOSURE = {
+    "nl": "Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.",
+    "en-AU": "Editorial buying guidance, not hands-on product testing. The HTML page contains ordinary retailer links; this text view does not.",
     "de": ("Hinweis: EcoBack testet nicht selbst; Empfehlungen fassen öffentliche Tests "
            "zusammen. Die Website finanziert sich über Amazon-Affiliate-Links auf den "
            "HTML-Seiten — diese Markdown-Ansicht enthält bewusst keine."),
@@ -213,7 +215,7 @@ def build_dataset():
 def main():
     n_md, n_link, bad = 0, 0, []
     for sub, lang in (("guide", "de"), (os.path.join("en", "guide"), "en"),
-                      (os.path.join("it", "guide"), "it")):
+                      (os.path.join("it", "guide"), "it"), ("nl", "nl"), ("au", "en-AU")):
         d = os.path.join(SITE, sub)
         if not os.path.isdir(d):
             continue

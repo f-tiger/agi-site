@@ -38,6 +38,7 @@ jobs:
           node --test tools/test_affiliate_metrics.mjs
           node --test tools/test_affiliate_audit.mjs
           python3 tools/test_trend_radar.py
+          python3 tools/test_affiliate_growth.py
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
@@ -48,6 +49,8 @@ jobs:
           # Match deployment: this regenerates the isolated workbench pages
           # after generic chrome, keeping their probe/event contract intact.
           python3 tools/link_energy_workbench.py
+          python3 tools/build_country_categories.py
+          python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
           # Match deployment: assert the takedown instead of recreating a guide.
@@ -55,6 +58,10 @@ jobs:
           python3 tools/check_gone.py
           python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
+          python3 tools/build_sitemap.py
+          python3 tools/build_llmstxt.py
+          python3 tools/build_agent_md.py
+          python3 tools/check_country_categories.py
           python3 tools/check_events.py
           python3 tools/check_tools_hub.py
           python3 tools/check_meta.py
@@ -74,6 +81,7 @@ jobs:
           trap 'kill "$preview_pid"' EXIT
           for i in 1 2 3 4 5; do curl -sf http://127.0.0.1:8765/stromtarif-werkstatt.html > /dev/null && break; sleep 1; done
           BUYING_BASELINE_SHA=270ed3253a1941a15e0dee45e53554dbadbca6b2 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buying_friction.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_country_categories.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs

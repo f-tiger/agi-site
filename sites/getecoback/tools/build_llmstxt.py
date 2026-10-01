@@ -96,7 +96,7 @@ def main():
         "",
         "## Interaktive Tools & Widgets",
         "",
-        f"- [Alle Rechner & Checks (Tool-Übersicht)]({BASE}/tools.html): BTU-Rechner, Hitze-Check, Stromkosten-, Heizkosten- und Balkonkraftwerk-Rechner, Taupunkt- und Standort-Check.",
+        f"- [Alle Rechner & Checks (Tool-Übersicht)]({BASE}/tools.html): BTU-Rechner, Hitze-Check, Stromkosten- und Heizkostenvergleich, Taupunkt- und Wäsche-Checks.",
         f"- [Kostenlose Rechner-Widgets zum Einbinden]({BASE}/widgets.html): Stromkosten-, BTU- und Taupunkt-Rechner als kostenloses iframe-Widget für fremde Websites — ohne Registrierung, mit eigener Akzentfarbe und eigenem Ergebnis-Button; einzige Bedingung ist der Quellenlink.",
         "",
         "## Für KI-Agenten (MCP & offene APIs)",
@@ -154,6 +154,11 @@ def main():
         lines += ["", "## Calculadora (Español)", ""]
         for url, t, d in es:
             lines.append(f"- [{t}]({url}): {d}")
+    for sub, label in (("nl", "Wonen in Nederland"), ("au", "Australian home comfort")):
+        lines += ["", "## " + label, ""]
+        for url, t, d in pages(sub):
+            lines.append(f"- [{t}]({url}): {d}")
+    lines += ["", f"- [Wohnen in Deutschland]({BASE}/wohnen.html): Messen, Wäsche und Wärme — lokale Kauf-Checklisten.", ""]
     lines += ["", "## Kategorien", ""]
     for url, t, d in kat:
         lines.append(f"- [{t}]({url}): {d}")
@@ -187,7 +192,7 @@ def main():
             "> zitierfähige URL steht über jedem Abschnitt. Stand: siehe sitemap.xml.",
             ""]
     n = 0
-    for subdir in ("guide", "en/guide", "fr", "es", "it/guide", "en/agents", "zh/agents"):
+    for subdir in ("guide", "en/guide", "fr", "es", "it/guide", "nl", "au", "en/agents", "zh/agents"):
         for url, t, d in pages(subdir):
             if subdir.endswith("agents") and not any(slug in url for slug in ("cbam-supplier-data", "eudr-geolocation-evidence")):
                 continue
