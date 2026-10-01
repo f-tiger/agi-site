@@ -801,6 +801,9 @@ export default {
     // working, so the measurement call below is wrapped: an unbound EVENTS binding
     // would otherwise take the whole site down on the very first request.
     const res = await env.ASSETS.fetch(request);
+    // Internal consent-created GA4 frame is an asset, not another visitor/page.
+    // It must receive neither a D1 pageview nor the legacy event/form injectors.
+    if (url.pathname.startsWith('/analytics-assets/')) return res;
     const type = res.headers.get('content-type') || '';
     if (!type.includes('text/html')) {
       // Markdown mirrors (gen_agent_surfaces.py) are an agent-fetch surface: count

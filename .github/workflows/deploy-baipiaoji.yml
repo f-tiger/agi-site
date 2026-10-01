@@ -14,6 +14,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/fleet-analytics/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "tools/quote-page-lab/**"
@@ -393,10 +394,21 @@ jobs:
           node tools/quote-page-lab/test.mjs
           node tools/quote-page-lab/test-hosted.mjs
 
+      - name: Complete and verify GA4 coverage after all page generators
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/test_coverage.py
+          python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist --write
+          python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify live GA4 coverage and analytics asset version
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs bpj
 
       - name: Verify published quote builder
         working-directory: ${{ github.workspace }}

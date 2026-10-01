@@ -14,6 +14,7 @@ on:
     branches:
       - main
     paths:
+      - "tools/fleet-analytics/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -352,6 +353,13 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure eco
 
+      - name: Complete and verify GA4 coverage after all page generators
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/test_coverage.py
+          python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site --write
+          python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site
+
       - name: Deploy to Cloudflare Workers
         id: deploy
         uses: cloudflare/wrangler-action@v3
@@ -361,6 +369,10 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/getecoback
           command: deploy
+
+      - name: Verify live GA4 coverage and analytics asset version
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs eco
 
       - name: Verify independent membership after deployment
         working-directory: ${{ github.workspace }}

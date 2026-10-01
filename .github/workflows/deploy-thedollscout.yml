@@ -9,6 +9,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/fleet-analytics/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -170,6 +171,13 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure tds
 
+      - name: Complete and verify GA4 coverage after all page generators
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/test_coverage.py
+          python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist --write
+          python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist
+
       - name: Deploy to Cloudflare Pages
         id: publish
         env:
@@ -189,6 +197,11 @@ jobs:
       # 部署后自检(根仓 CLAUDE.md 2026-08-27 审计要求:断言事故的形状)。
       # 本站的事故形状:①新页 404(部署没生效)②旧成人页仍 200(下架没生效)
       # ③重定向环(gridlings 教训)。三样都测。
+      - name: Verify live GA4 coverage and analytics asset version
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs tds
+
       - name: Verify live document pages and assets
         id: document_pages
         # Pages can briefly serve the previous manifest during deployment propagation.

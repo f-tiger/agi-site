@@ -9,6 +9,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/fleet-analytics/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -166,6 +167,15 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure agi
 
+      - name: Complete and verify GA4 coverage after all page generators
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/test_coverage.py
+          node --test tools/fleet-analytics/test-worker.mjs
+          python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard --write
+          python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard
+          node tools/fleet-analytics/browser-test.mjs --site agi --out sites/agiscorecard
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
@@ -174,6 +184,10 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/agiscorecard
           command: deploy
+
+      - name: Verify live GA4 coverage and analytics asset version
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs agi
 
       - name: Verify independent membership after deployment
         working-directory: ${{ github.workspace }}
