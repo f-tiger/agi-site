@@ -1,6 +1,6 @@
-# How to check an AI-generated weekly sales report
+# How to check an ecommerce weekly report with AI
 
-A practical five-point checklist: paid orders, refunds, channel revenue, weekly growth and unsupported causal claims. Includes a free fictional-data practice.
+A five-point checklist for junior ecommerce operators: paid orders, refunds, channel revenue, weekly growth and evidence for claims. Includes free fictional-store practice.
 
 ---
 Canonical page: https://agiscorecard.com/ai-weekly-report

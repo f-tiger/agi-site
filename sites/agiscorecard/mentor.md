@@ -1,6 +1,6 @@
-# Work Mentor — check your AI-assisted weekly report
+# Ecommerce Reporting Coach — check your weekly store report
 
-Practice on fictional sales data. Check five report decisions, get limited AI coaching, and retry with new data. Free in your browser; optional paid cloud history.
+For junior ecommerce operators: check orders, refunds, channels and weekly growth. Free fictional-data practice; optional paid cloud history.
 
 ---
 Canonical page: https://agiscorecard.com/mentor
