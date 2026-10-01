@@ -3,6 +3,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {readHomepageSignals,HOMEPAGE_SQL,parseHomepageClick} from '../lib/homepage-signals.js';
 import {HITS_INDEXES} from '../lib/hits-schema.js';
 import {onRequestPost} from '../functions/api/hit.js';
+import {verifyHomepageLive} from './verify-homepage-live.mjs';
 const db=new DatabaseSync(':memory:');
 db.exec(`CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,ev TEXT,ref TEXT,country TEXT);${HITS_INDEXES.join(';')}`);
 const binding={prepare(sql){let args=[];return{bind(...x){args=x;return this},async all(){return{results:db.prepare(sql).all(...args)}},async run(){return db.prepare(sql).run(...args)}}}};
@@ -33,3 +34,23 @@ for(const headers of [{'referer':'https://baipiaoji.com/?__ci=1'},{'referer':'ht
 await post({},'/home/hero/account?secret=1');assert.equal(db.prepare('SELECT count(*) n FROM hits').get().n,before);
 await post();await post({},'/discovery/share/copy');assert.equal(db.prepare('SELECT count(*) n FROM hits').get().n,before+2);
 console.log('PASS homepage daily/language/block/destination aggregates, legacy labels, partial day, privacy, missing≠zero, indexed SQL, QA/bot/DNT/GPC ingestion.');
+
+const liveHTML=`data-home-block="hero" sec.classList.contains('bpj-site-header') !navigator.webdriver`;
+for(const failures of [0,1,5]){
+ let reads=0,waits=0;
+ const verify=()=>verifyHomepageLive({
+  fetchImpl:async url=>new Response(url.includes('/api/reach')?JSON.stringify(++reads<=failures?{}:{homepage_signals:r}):liveHTML),
+  wait:async ms=>{assert.equal(ms,10000);waits++;},onRetry:()=>{},
+ });
+ if(failures===5)await assert.rejects(verify,/homepage detail available/);else await verify();
+ assert.equal(reads,Math.min(failures+1,5));assert.equal(waits,Math.min(failures,4));
+}
+for(const broken of ['sum','html']){
+ let reads=0;
+ await assert.rejects(()=>verifyHomepageLive({
+  fetchImpl:async url=>{if(url.includes('/api/reach')){reads++;return Response.json({homepage_signals:broken==='sum'?{...r,clicks:r.clicks+1}:r});}return new Response('missing deployment labels');},
+  wait:async()=>{},onRetry:()=>{},
+ }));
+ assert.equal(reads,5);
+}
+console.log('PASS live verifier bounded retries: current response, stale then current, persistent stale, bad totals and missing HTML labels.');
