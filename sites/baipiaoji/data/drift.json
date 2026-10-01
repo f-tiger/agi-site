@@ -1,10 +1,80 @@
 {
-  "generated": "2026-09-29",
+  "generated": "2026-10-01",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 103,
-  "fetched_fail": 24,
-  "pending": 12,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
+  "pending": 15,
   "items": [
+    {
+      "slug": "gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
+      "confirmed": "2026-10-01",
+      "first_seen": "2026-09-29",
+      "added": [
+        "14.7k"
+      ],
+      "removed": [
+        "14.6k"
+      ],
+      "checked_then": "2026-08-05"
+    },
+    {
+      "slug": "ragflow",
+      "url": "https://ragflow.io/docs/faq",
+      "confirmed": "2026-10-01",
+      "first_seen": "2026-09-29",
+      "added": [
+        "1%",
+        "100k",
+        "30seconds"
+      ],
+      "removed": [
+        "0%",
+        "0.27.2image",
+        "11hours",
+        "1gb",
+        "6047b"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-10-01",
+      "first_seen": "2026-09-29",
+      "added": [
+        "36.1k"
+      ],
+      "removed": [
+        "36.0k",
+        "36k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-10-01",
+      "first_seen": "2026-09-29",
+      "added": [
+        "$15",
+        "0.5credit",
+        "0.5credits",
+        "0026video",
+        "10000credits",
+        "1000characters",
+        "1000credits",
+        "100minutes",
+        "100words",
+        "10minutes",
+        "11minutes",
+        "12,500seconds"
+      ],
+      "removed": [
+        "294b"
+      ],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",
@@ -97,30 +167,6 @@
         "90%"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [
-        "294b"
-      ],
-      "removed": [
-        "$15",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11,000minutes",
-        "11minutes"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "cline",
@@ -246,20 +292,6 @@
         "70k"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-09-20",
-      "first_seen": "2026-09-19",
-      "added": [
-        "36.0k",
-        "36k"
-      ],
-      "removed": [
-        "35.9k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "elicit",

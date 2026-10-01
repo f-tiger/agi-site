@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-29",
+ "generated": "2026-10-01",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "ollama",
-  "opusclip",
-  "perplexity",
-  "phind",
-  "pika",
-  "pixlr",
-  "playground-ai",
-  "poe"
+  "processon",
+  "qoder",
+  "quark-ai",
+  "ragflow",
+  "recraft",
+  "removebg",
+  "scispace",
+  "suno"
  ],
- "cursor": "poe",
+ "cursor": "suno",
  "summary": {
-  "ready": 35,
-  "empty": 26,
-  "blocked": 24,
-  "probed_total": 85
+  "ready": 36,
+  "empty": 30,
+  "blocked": 27,
+  "probed_total": 93
  },
  "tools": {
   "kimi": {
@@ -2430,6 +2430,254 @@
     "url": "https://poe.com/subscription_plans",
     "tokens": 10,
     "excerpt": "nnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 · 加入我们的Discord 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 $49.99/年 ( $4.17/月 ) 开始使用 66万积分/月 $199.99/年 ( $16.67/月 ) 开始使用 165万积分/月 $499.99/年 ( $41.67/月 ) 开始使用 330万积分/月 $999.99/年 ( $83.33/月 ) 开始使用 825万积分/月 $2,499.99/年 ( $208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
+   }
+  },
+  "processon": {
+   "slug": "processon",
+   "name": "ProcessOn",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.processon.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.processon.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.processon.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "qoder": {
+   "slug": "qoder",
+   "name": "Qoder（阿里）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://qoder.com/pricing",
+     "status": 200,
+     "bytes": 8578,
+     "tokens": 0
+    },
+    {
+     "url": "https://qoder.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://qoder.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://qoder.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "quark-ai": {
+   "slug": "quark-ai",
+   "name": "夸克 AI",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.quark.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.quark.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.quark.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "ragflow": {
+   "slug": "ragflow",
+   "name": "RAGFlow",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ragflow.io/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ragflow.io/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ragflow.io/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "recraft": {
+   "slug": "recraft",
+   "name": "Recraft",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://recraft.ai/pricing",
+     "status": 200,
+     "bytes": 52828,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.recraft.ai/pricing",
+     "status": 200,
+     "bytes": 52828,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.recraft.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://recraft.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "removebg": {
+   "slug": "removebg",
+   "name": "remove.bg",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://remove.bg/pricing",
+     "status": 200,
+     "bytes": 63584,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.remove.bg/pricing",
+     "status": 200,
+     "bytes": 63584,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.remove.bg/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://remove.bg/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "scispace": {
+   "slug": "scispace",
+   "name": "SciSpace",
+   "cat": "study",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://typeset.io/pricing",
+     "status": 200,
+     "bytes": 135437,
+     "tokens": 0
+    },
+    {
+     "url": "https://typeset.io/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://typeset.io/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://typeset.io/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "suno": {
+   "slug": "suno",
+   "name": "Suno",
+   "cat": "audio",
+   "reach": 0,
+   "probed": "2026-10-01",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://suno.com/pricing",
+     "status": 200,
+     "bytes": 274424,
+     "tokens": 12
+    }
+   ],
+   "best": {
+    "url": "https://suno.com/pricing",
+    "tokens": 12,
+    "excerpt": "ens if I exhaust my monthly credits? Can I upgrade or downgrade my plan? Monthly Annual save 20% Free Our starter plan. $0 /month Sign Up Access to our free models 50 credits per day Standard features only Upload up to 8 min of audio Shared creation queue No monthly song downloads No commercial rights No add-on credit purchases No stem separation Pro Most Popular Access to our best models and editing tools. $8 /month Saves $24 by billing yearly! Taxes calculated at checkout Subscribe Access to our best models 2,500 credits per month 20 song downloads per month Commercial use rights Standard + Pro features 2 stem separation types (Auto; Split from mix) Early access to new features Ability to "
    }
   }
  }

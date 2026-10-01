@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-29",
+ "checked": "2026-10-01",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -544,6 +544,38 @@
    "source_http": 200,
    "repo_http": 200,
    "last_attempt": "2026-09-29"
+  },
+  "userintuition-research": {
+   "attempts": 1,
+   "first_attempt": "2026-10-01",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-10-01"
+  },
+  "apick-convert": {
+   "attempts": 1,
+   "first_attempt": "2026-10-01",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-10-01"
+  },
+  "avasis-quant-research": {
+   "attempts": 1,
+   "first_attempt": "2026-10-01",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-10-01"
+  },
+  "vulx-watch": {
+   "attempts": 1,
+   "first_attempt": "2026-10-01",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-10-01"
   }
  },
  "admitted": [
@@ -6485,6 +6517,286 @@
   {
    "slug": "apmzoom-dongdaemun",
    "date": "2026-09-29",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "forkmate-forkmate",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aimentiontracker-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mailsocket-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "needtofind-needtofind",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "skylit-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "telofy-telofy",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "analyticslegends-sap-analytics",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pixeldojo-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ae-datadubai-dubai-real-estate",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oceantoken-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sendar-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ambernotes-amber-notes",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nauro-nauro",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bithuman-docs",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mcpcap-mcpcap",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "posteverywhere-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "satohub-kit",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pigeonrelay-pigeonrelay",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "markettrace-agent-feed",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kanonik-kanonik",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "joinlayer-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "zihin-mcp-server",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sealgate-gateway",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "adtest-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "giljo-hq",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "am-sublime-sublime",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cerebrium-docs",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gridar-gridar",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "easykanb-easykanban",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "causely-causely",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "feedback1-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cralo-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "igoyal-public-context",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gency-lite",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "offendersearch-offendersearch",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "manilo-manilo",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "file2markdown-file2markdown",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "smry-r-smry-product",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "abmeter-abmeter",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mcpjunction-directory",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentrendezvous-rendezvous",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "crayonz-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dxpert-uns-tools",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "levelfour-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "geometry-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "immopix-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "qcdatabase-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vercel-flightsweeper-webmcp-public",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dynt-api-dynt",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "theona-linkedin-content-planner",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "citybook-citybook",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "neocapital-neo",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "motiblog-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "doublespeed-mcp",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rcll-fleet-memory",
+   "date": "2026-10-01",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "taskfolk-mcp",
+   "date": "2026-10-01",
    "origin": "mcp-registry"
   }
  ],

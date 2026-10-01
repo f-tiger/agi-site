@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "name": "Lathoa, a math app for kids where the AI is wrong on purpose",
+      "url": "https://lathoa.ai/en",
+      "host": "lathoa.ai",
+      "src": "https://news.ycombinator.com/item?id=49909648",
+      "points": 47,
+      "comments": 22,
+      "found": "2026-10-01",
+      "status": "candidate"
+    },
+    {
+      "name": "A working 3D model of an Enigma machine",
+      "url": "https://enigma.design",
+      "host": "enigma.design",
+      "src": "https://news.ycombinator.com/item?id=49896757",
+      "points": 95,
+      "comments": 40,
+      "found": "2026-10-01",
+      "status": "candidate"
+    },
+    {
+      "name": "Jevstiller – Distill Jev into a local model, with a disagreement bound",
+      "url": "https://jevstiller.pages.dev/posts/the-guarantee/",
+      "host": "jevstiller.pages.dev",
+      "src": "https://news.ycombinator.com/item?id=49891769",
+      "points": 65,
+      "comments": 15,
+      "found": "2026-10-01",
+      "status": "candidate"
+    },
+    {
       "name": "TinyAIArena watch AI agents battle it out",
       "url": "https://tinyaiarena.com/",
       "host": "tinyaiarena.com",
@@ -299,17 +329,7 @@
       "comments": 67,
       "found": "2026-08-20",
       "status": "candidate"
-    },
-    {
-      "name": "A public AI whose memory is shared across all users",
-      "url": "https://wildstatic.com/",
-      "host": "wildstatic.com",
-      "src": "https://news.ycombinator.com/item?id=49319814",
-      "points": 69,
-      "comments": 62,
-      "found": "2026-08-17",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-09-29"
+  "updated": "2026-10-01"
 }
