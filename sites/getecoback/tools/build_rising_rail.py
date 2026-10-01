@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""首页「Meistgesucht diese Woche」爆品轨(2026-08-25,owner:「eco的爆品方向需要
+"""首页「Suchtrends aus der letzten Abfrage」趋势轨(2026-08-25,owner:「eco的爆品方向需要
 增加,扩大联盟点击」)。
 
 数据源 = data/trends-rising.json(每日 04:30 runner 实抓的德区 rising 关联查询,
 一手、带日期)。该文件每日提交会触发本站 deploy → 本脚本在部署链里重跑 → 轨道
-**每天自动换新**,不需要任何人工选品。首页是全站流量第一(53 pv/28d)却只有 2 次
+成功获取新数据后自动更新；失败时保留真实数据日期，不宣称是本周最多搜索。首页是全站流量第一(53 pv/28d)却只有 2 次
 联盟点击的最大漏水面——这个轨就是补它的。
 
 诚实规则(比选品逻辑更重要,红线):
-1. 标注写明「Nachfrage-Signale aus unserer täglichen Google-Trends-Abfrage,
-   keine Testurteile」+ 数据日期 + Affiliate 披露。热度是需求事实,不是推荐结论。
+1. 标注写明「Gespeicherte Google-Trends-Signale, keine Testurteile」
+   + 数据日期 + Affiliate 披露。rising 增长信号不是绝对搜索量排名，也不是推荐结论。
 2. **警示映射优先于购买链接**:查询命中本站已发 Faktencheck/科普判定的主题时,
    chip 链到那篇文章而不是 Amazon——一边警告 EpiCooler 一边挂它的购买链是自打脸。
 3. 促销/短保质期词(lidl/angebot)直接丢弃——快反规则 08-23 已判过这类。
@@ -166,9 +166,9 @@ def main():
         block = (
             '<!--EB_RISING_RAIL--><section id="eb-rising" style="border-top:1px solid #eef2f5;">'
             '<div style="max-width:1000px;margin:0 auto;padding:26px 20px;">'
-            '<h2 style="margin:0 0 4px;">🔥 Meistgesucht diese Woche</h2>'
-            f'<p style="margin:0 0 12px;font-size:13.5px;color:#5b6b78;max-width:74ch;">Nachfrage-Signale aus unserer '
-            f'täglichen Google-Trends-Abfrage (Stand {stand_de}) — keine Testurteile, nicht selbst getestet. '
+            '<h2 style="margin:0 0 4px;">Suchtrends aus der letzten Abfrage</h2>'
+            f'<p style="margin:0 0 12px;font-size:13.5px;color:#5b6b78;max-width:74ch;">Gespeicherte '
+            f'Google-Trends-Signale (Stand {stand_de}) — keine Testurteile, nicht selbst getestet. '
             'Wo wir zu einem Suchbegriff einen Faktencheck haben, verlinken wir den statt eines Kauf-Links. '
             'Anzeige · Kauf-Links sind Affiliate-Links — für dich derselbe Preis.</p>'
             '<div>' + "".join(chips) + '</div></div></section>'
