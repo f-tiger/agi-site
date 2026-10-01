@@ -9,3 +9,5 @@ if(health.accepting){
  assert.equal((await post(b)).ok,true);assert.equal((await post(b)).ok,true);assert.equal((await post({action:'withdraw',id,receipt})).ok,true);
 }
 console.log(health.accepting?'PASS deployed pilot pages, closed checkout, QA application persistence and withdrawal; QA excluded.':'PASS deployed pages and healthy API; intake SKIPPED because paused/closed, persistence not tested.');
+
+const kit=await fetch(base+'/downloads/release-check/release-check.mjs',{headers,signal:AbortSignal.timeout(20000)});assert.equal(kit.status,200);assert.ok((await kit.text()).includes("export const VERSION='0.1.0'"));

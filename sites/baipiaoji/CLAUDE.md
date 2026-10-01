@@ -1,3 +1,16 @@
+## 2026-10-01 GitHub 案例 → 发布验收执行工具包
+
+本轮承接 owner「调研 github 成功案例，复制想法推进 AI Agent 商业化」。研究见根仓
+`docs/github-agent-commercialization-2026-10-01.md`。扩展原有 ReleaseCheck 试点，
+不新开域名或收费 SKU。`products/release-check/` 是免费 MIT 原创 Node.js 22+ HTTP
+证据执行器；现有助手可协助适配与解释，不调用模型，不是托管 Agent 或完整支付验收。
+故障/修复 demo 均为合成应用，八项检查不能冒充真实客户、付款、浏览器结账或安全认证。
+双语原入口增加下载；`scripts/release-check-assets.mjs` 只复制明确文件清单并生成哈希。
+门禁 `node --test scripts/test-release-check-kit.mjs`、既有页面浏览器测试与线上下载检查。
+原 $299 申请范围与 10-10 截止不变，checkout 仍关闭；日常统计原样保留，零新 cron。
+私有适配配置、凭据和报告不入公开仓。许可注意：n8n/Dify 有额外商业限制，
+Firecrawl/Skyvern AGPL，Browser Use/OpenHands 核心 MIT；本轮没有复制第三方源码。
+
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/baipiaoji/`。**
 > 部署分支由 claude/prompt-optimization-workflow-7f3vg2 改为 agi-site 的
