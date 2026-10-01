@@ -549,10 +549,12 @@ def sticky_bar(label, cta, en=False):
         "<script>(function(){var b=document.getElementById('eb-sticky');if(!b)return;"
         "var l=document.querySelectorAll('a[href*=\"amazon.\"]');if(!l.length)return;"
         "var c=document.getElementById('eb-sticky-cta');c.href=l[0].href;"
+        "function sync(){var p=document.querySelector('#eb-ustop:not([hidden]) a[href*=\"amazon.\"],#eb-toppick:not([hidden]) a[href*=\"amazon.\"]');if(p)c.href=p.href;}"
+        "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();"
         "document.body.classList.add('eb-has-sticky');var off=false;"
         "document.getElementById('eb-sticky-x').addEventListener('click',function(){b.classList.remove('on');off=true;});"
-        "c.addEventListener('click',function(){if(window.gtag)gtag('event','affiliate_click',{link_url:c.href,source:'sticky'});});"
-        "function k(){if(off)return;if(window.scrollY>600)b.classList.add('on');else b.classList.remove('on');}"
+        "c.addEventListener('click',function(){sync();if(window.gtag)gtag('event','affiliate_click',{link_url:c.href,source:'sticky'});});"
+        "function k(){sync();if(off)return;var p=document.getElementById('eb-pu');if(window.scrollY>600&&(!p||p.style.display!=='block'))b.classList.add('on');else b.classList.remove('on');}"
         "window.addEventListener('scroll',k,{passive:true});k();})();</script><!--/EB_STICKY-->\n")
 
 STICKY = sticky_bar("Passendes Gerät finden", "Preis auf Amazon prüfen →")
@@ -887,7 +889,7 @@ DEVICE_MODELS = {
    # unter 600 W. Der ehrliche Eintrag ist nicht "hier ist ein billiger Heizer",
    # sondern was 300 W leisten und was nicht — das kann diese Seite mit ihrer
    # eigenen veröffentlichten Rechnung beantworten.
-   ("Heizlüfter 300 Watt", "Die meistgesuchte Kleinstklasse", "Meistgesuchte Leistungsklasse dieser Woche in unserer Google-Trends-Abfrage (Stand 11.09.) — Nachfrage-Signal, kein Testurteil, nicht selbst getestet. Ehrlich dazu: 300 W wärmen die Person davor, keinen Raum.", "Preis vor Ort prüfen", "heizl%C3%BCfter+300+watt", "heater"),
+   ("Heizlüfter 300 Watt", "Für die Person davor", "300 W sind für lokale Wärme gedacht, nicht zum Heizen eines ganzen Raums. Nicht selbst getestet; Leistung, Thermostat und Sicherheitshinweise am konkreten Modell prüfen.", "Preis vor Ort prüfen", "heizl%C3%BCfter+300+watt", "heater"),
    ("Midea NTH20-17BR", "Schnell warm, nicht sparsam", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb. Zur zweitgrößten Anfrage der Woche, „energiesparender Heizlüfter“ (48.600): sparsam macht ihn nicht das Gerät, sondern die Abschaltung — 2.000 W kosten 2.000 W, solange sie laufen.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
@@ -1288,7 +1290,7 @@ CONTEXT_MODELS = {
    ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft das Panel durch — egal, ob es an der Wand oder an der Decke hängt.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
  ],
  "infrarotheizung-ratgeber": [
-   ("Schmidbauer Infrarotheizung", "Meistgesucht diese Woche", "Die aktuell meistgesuchte Marke in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
+   ("Schmidbauer Infrarotheizung", "Markenvergleich", "Vor dem Kauf Wattzahl, Thermostat und Montageart des konkreten Modells vergleichen. Nicht selbst getestet; die Marke allein entscheidet nicht über die Heizkosten.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
    ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft die Paneele durch — mit schaltet sie nur, wenn der Raum es braucht.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
    ("Energiekostenmessgerät", "Erst messen, dann glauben", "Steckdosen-Messgerät zeigt, was die Heizung wirklich zieht — glaub keiner Rechnung, auch unserer nicht.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
  ],
@@ -1298,13 +1300,13 @@ CONTEXT_MODELS = {
    ("Infrarotheizung", "Die Alternative für längere Laufzeiten", "Wer täglich stundenlang heizt, fährt mit Strahlungswärme oft besser — der Vergleich steht im Ratgeber.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
  ],
  "luftentfeuchter-ratgeber": [
-   ("Pro Breeze Luftentfeuchter 20 L", "Meistgesucht diese Woche", "Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
+   ("Pro Breeze Luftentfeuchter 20 L", "20-Liter-Klasse vergleichen", "Liter/Tag, Leistungsaufnahme und Einsatztemperatur am konkreten Modell prüfen. Nicht selbst getestet; die Nennleistung ist kein Versprechen für einen kalten Keller.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
    ("Comfee MDDF-20DEN7", "Der Keller-Favorit", "In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.", "Preis vor Ort prüfen", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
    ("Hygrometer", "Erst messen", "Ob und wie stark du entfeuchten musst, entscheidet der Messwert — über 60 % wird es kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
  ],
  "luftentfeuchter-gegen-schimmel": [
    ("Luftentfeuchter mit Hygrostat", "Das eigentliche Werkzeug", "Hält die Luftfeuchte automatisch unter der Schimmelschwelle — genau das, was dieser Ratgeber erklärt.", "Preis vor Ort prüfen", "luftentfeuchter+mit+hygrostat", "dehum"),
-   ("Pro Breeze Luftentfeuchter 20 L", "Meistgesucht diese Woche", "Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
+   ("Pro Breeze Luftentfeuchter 20 L", "20-Liter-Klasse vergleichen", "Liter/Tag, Leistungsaufnahme und Einsatztemperatur am konkreten Modell prüfen. Nicht selbst getestet; die Nennleistung ist kein Versprechen für einen kalten Keller.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
    ("Hygrometer", "Kontrolle statt Hoffnung", "Nach der Entfernung zeigt nur der Messwert, ob die Ursache wirklich weg ist.", "Preis vor Ort prüfen", "hygrometer+luftfeuchtigkeit+innen", "purifier"),
  ],
  "luftentfeuchter-granulat-oder-elektrisch": [
@@ -1501,14 +1503,14 @@ CONTEXT_SUB = {
                             "zuerst. Nicht selbst getestet. Symbolbilder."),
  "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
                                   "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
- "infrarotheizung-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer Trends-Abfrage, kein "
-                              "Testurteil. Nicht selbst getestet. Symbolbilder."),
+ "infrarotheizung-ratgeber": ("Raumgröße, Wattzahl und Thermostat vor der Marke vergleichen. "
+                              "Nicht selbst getestet. Symbolbilder."),
  "heizluefter-stromsparend": ("Das Sparmerkmal ist die Abschaltung, nicht die Marke — deshalb stehen hier "
                               "Merkmale und Messgerät. Nicht selbst getestet. Symbolbilder."),
- "luftentfeuchter-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-"
-                              "Abfrage, kein Testurteil. Nicht selbst getestet. Symbolbilder."),
- "luftentfeuchter-gegen-schimmel": ("Das Werkzeug gegen die Ursache zuerst — „meistgesucht“ ist ein Nachfrage-"
-                                    "Signal, kein Testurteil. Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-ratgeber": ("Raumtemperatur und gemessene Feuchte entscheiden über den Gerätetyp. "
+                              "Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-gegen-schimmel": ("Das Werkzeug gegen die Ursache zuerst; die Feuchte vor und nach "
+                                    "dem Einsatz messen. Nicht selbst getestet. Symbolbilder."),
  "mobile-klimaanlage-stinkt-schimmel": ("Der Geruch ist ein Reinigungsproblem, kein Kaufgrund — deshalb "
                                         "stehen hier Mittel gegen die Ursache statt neuer Geräte. Produkttypen, "
                                         "nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder."),
@@ -2210,21 +2212,36 @@ CLIMATE_SKIP = {"btu-rechner", "stromkosten-rechner", "hitze-check", "was-bedeut
 # what they themselves calculated if they saved a room, and stays gone for a
 # week once dismissed. No countdown and no invented stock number — the only
 # urgency claimed is the one that is true, that waves empty the shelves. ---
+def popup_rows(entries, us=False):
+    """Keep roles and prices readable inside a narrow mobile sheet."""
+    rows = ""
+    for name, role, _why, price, q, _svg in entries:
+        url = (f"https://www.amazon.com/s?k={urllib.parse.quote_plus(name)}&tag={US_TAG}"
+               if us else amazon_url(q, name))
+        rows += ('<a href="' + url + '" target="_blank" rel="sponsored noopener" data-eb-pu="pick" '
+                 'style="display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 10px;padding:9px 11px;border:1px solid #e4ebf0;'
+                 'border-radius:10px;margin-bottom:7px;text-decoration:none;background:#fff;">'
+                 '<span style="background:#0f6ba8;color:#fff;font-size:10.5px;font-weight:800;border-radius:12px;'
+                 f'padding:3px 8px;grid-column:1/-1;justify-self:start;overflow-wrap:anywhere;">{role}</span>'
+                 f'<span style="min-width:0;color:#1a2733;font-weight:700;font-size:13.5px;overflow-wrap:anywhere;">{name}</span>'
+                 f'<span style="grid-column:1;color:#7a8b98;font-size:11.5px;">{price}</span>'
+                 '<span style="grid-column:2;grid-row:2/4;color:#0f6ba8;font-weight:800;">→</span></a>')
+    return rows
+
+
 def popup_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
     ctx = context_entries(slug, en)
     entries = (ctx or table.get(device) or table["ac"])[:3]
-    rows = ""
-    for name, role, _why, price, q, _svg in entries:
-        url = amazon_url(q, name)
-        rows += ('<a href="' + url + '" target="_blank" rel="sponsored noopener" data-eb-pu="pick" '
-                 'style="display:flex;align-items:center;gap:10px;padding:9px 11px;border:1px solid #e4ebf0;'
-                 'border-radius:10px;margin-bottom:7px;text-decoration:none;background:#fff;">'
-                 '<span style="background:#0f6ba8;color:#fff;font-size:10.5px;font-weight:800;border-radius:12px;'
-                 f'padding:3px 8px;white-space:nowrap;">{role}</span>'
-                 f'<span style="flex:1;color:#1a2733;font-weight:700;font-size:13.5px;">{name}</span>'
-                 f'<span style="color:#7a8b98;font-size:11.5px;white-space:nowrap;">{price}</span>'
-                 '<span style="color:#0f6ba8;font-weight:800;">→</span></a>')
+    rows = popup_rows(entries)
+    # The US top strip and grid already use these named models. The floating
+    # surfaces must follow the same visible market, including verified /dp/
+    # links that the generic search-link rewriter intentionally cannot change.
+    us_picks = (US_MODELS.get(US_SHELF_TERM.get(device)) or [])[:3] if en and not ctx and not any(w in (slug or "") for w in US_SWAP_NEVER) else []
+    if us_picks:
+        us_entries = [(n, r, note, "Check the current price", "", device) for n, r, note in us_picks]
+        rows = ('<div data-eb-popup-market="eu">' + rows + '</div>'
+                '<div data-eb-popup-market="us" hidden>' + popup_rows(us_entries, us=True) + '</div>')
     if en:
         head = "Before you go: which one actually fits?"
         sub = ("Picked from public tests, not tested by us. Links are affiliate links — "
@@ -2239,12 +2256,15 @@ def popup_block(device, en=False, slug=None):
     if ctx:
         # A BTU-per-square-metre calculator answers nothing for a camper, a car
         # or a dog — drop the line rather than send the reader somewhere useless.
-        head, calc = "Bevor du gehst: Was hier wirklich hilft", ""
+        head = "Before you go: what actually helps here" if en else "Bevor du gehst: Was hier wirklich hilft"
+    cooling = device == "ac" and not ctx
+    if not cooling:
+        calc = ""
     return ('<!--EB_POPUP--><div id="eb-pu" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:210;'
             'padding:0 10px 10px;pointer-events:none;">'
             '<div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid #cfe0ea;'
             'border-radius:14px 14px 12px 12px;box-shadow:0 -6px 28px rgba(10,45,70,.22);padding:15px 16px 13px;'
-            'pointer-events:auto;">'
+            'pointer-events:auto;max-height:calc(100dvh - 100px);overflow-y:auto;box-sizing:border-box;">'
             '<div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:4px;">'
             f'<strong style="flex:1;font-size:15.5px;line-height:1.3;">{head}</strong>'
             f'<button type="button" id="eb-pu-x" aria-label="{close}" style="background:none;border:none;'
@@ -2259,6 +2279,10 @@ def popup_block(device, en=False, slug=None):
             'try{var t=parseInt(localStorage.getItem(K)||"0",10);'
             'if(t&&(Date.now()-t)<604800000)return;}catch(e){}'
             'var shown=false,start=Date.now();'
+            'function syncMarket(){var us=document.getElementById("eb-ustop"),eu=box.querySelector("[data-eb-popup-market=eu]"),u=box.querySelector("[data-eb-popup-market=us]");'
+            'if(us&&eu&&u){eu.hidden=!us.hidden;u.hidden=us.hidden;}}'
+            'var usTop=document.getElementById("eb-ustop");if(usTop)new MutationObserver(syncMarket).observe(usTop,{attributes:true,attributeFilter:["hidden"]});'
+            'syncMarket();'
             # The sticky CTA is also pinned to the bottom edge; two of them would
             # sit on top of each other. The popup wins while it is open, the bar
             # comes back the moment it is dismissed.
@@ -2267,8 +2291,8 @@ def popup_block(device, en=False, slug=None):
             'if(sticky&&window.scrollY>600)sticky.classList.add("on");'
             'try{localStorage.setItem(K,String(Date.now()));}catch(e){}'
             'if(window.gtag)gtag("event","popup_close",{reason:reason});}'
-            'function show(trigger){if(shown)return;shown=true;'
-            'var r=window.ebReadRoom&&window.ebReadRoom();'
+            'function show(trigger){if(shown)return;shown=true;syncMarket();'
+            f'var r={"window.ebReadRoom&&window.ebReadRoom()" if cooling else "null"};'
             'if(r&&r.qm){var p=document.getElementById("eb-pu-room");if(p){'
             'p.textContent=(document.documentElement.lang==="en"?("Your room: "+r.qm+" m² · approx. "+r.btu+" BTU")'
             ':("Dein Raum: "+r.qm+" m² · ca. "+Number(r.btu).toLocaleString("de-DE")+" BTU"));'

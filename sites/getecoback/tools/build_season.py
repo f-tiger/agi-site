@@ -232,6 +232,10 @@ def rotate_de(season):
                 lambda m: f'<meta property="og:title" content="{cfg["title"]}"', "og:title")
     html = swap(html, r'<meta property="og:description" content="[^"]*"',
                 lambda m: f'<meta property="og:description" content="{cfg["desc"]}"', "og:description")
+    html = swap(html, r'<meta name="twitter:title" content="[^"]*"',
+                lambda m: f'<meta name="twitter:title" content="{cfg["title"]}"', "twitter:title")
+    html = swap(html, r'<meta name="twitter:description" content="[^"]*"',
+                lambda m: f'<meta name="twitter:description" content="{cfg["desc"]}"', "twitter:description")
     html = swap(html, r'(<header class="hero">.*?)<h1>.*?</h1>',
                 lambda m: m.group(1) + f'<h1>{cfg["h1"]}</h1>', "hero h1")
     html = swap(html, r'<p class="sub">.*?</p>', lambda m: f'<p class="sub">{cfg["sub"]}</p>', "hero sub")

@@ -41,6 +41,8 @@ jobs:
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
+          python3 tools/build_structure.py
+          python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
           # Match deployment: assert the takedown instead of recreating a guide.
           node tools/test_gone.mjs
@@ -56,7 +58,9 @@ jobs:
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
       - name: Fetch fixed pre-shelf-change baseline for the affiliate audit
-        run: git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
+        run: |
+          git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
+          git fetch --depth=1 origin 270ed3253a1941a15e0dee45e53554dbadbca6b2
       - name: Exercise five languages, mobile, files and privacy
         run: |
           python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &
@@ -68,6 +72,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
+          BUYING_BASELINE_SHA=270ed3253a1941a15e0dee45e53554dbadbca6b2 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buying_friction.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
