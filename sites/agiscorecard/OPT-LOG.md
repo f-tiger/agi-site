@@ -3144,3 +3144,8 @@ Owner explicitly asked to continue expanding the newly launched Web3 × AI tool.
 ## 2026-10-01 — 首页聚焦与完成事件（owner：继续推进流量诊断）
 
 中英文首页先给证据、工作影响和投资研究三个入口；八项评分在本地计算，提供失败重试和手动复制。更正首页与中文 tracker 的日期展示，网站更新从 changelog 生成，判定和历史原值不动。四个证据页区分文章版本与台账日期；when-will-agi-arrive 的未结实验保持原样。固定 focus_entry/task_start/task_complete/result_copy 事件接入 GA4 + 既有 D1，pulse 仅返回聚合，失败保持未知。手机/桌面交互、真实 SQLite 查询和隐私过滤均有发布门禁。详见 ../../docs/agi-home-focus-2026-10-01.md；本次发布不能证明流量或收入增长。
+
+
+## 2026-10-01 — SEO / GEO / IndexNow（owner 同名请求）
+
+GSC 抽查首页、中英文 tracker、中文首页、就业文章和 for-agents 共 6 URL 均已收录。完善同源 FAQ/JSON-LD/台账引用、首页与中文 Markdown 镜像、HTTP canonical、llms 生成摘要和统一爬虫规则。删除每次部署重复推工具页；既有周任务改为真实源文件差异与新 sitemap URL 的增量 IndexNow，校验规范网址/密钥，持久化收到/待验证回执，失败不推进游标。首次真实提交仍待周任务执行，不把就绪测试当作提交。完整基线与验收见 ../../docs/agi-discovery-2026-10-01.md。

@@ -9,16 +9,48 @@ on:
 
 concurrency:
   group: agi-indexnow
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   submit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node sites/agiscorecard/tools/indexnow.mjs
+      - name: Require the current AGI source to have a successful deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          deployed_sha=$(gh api 'repos/f-tiger/agi-site/actions/workflows/deploy-agiscorecard.yml/runs?status=success&per_page=1' --jq '.workflow_runs[0].head_sha')
+          test -n "$deployed_sha" && test "$deployed_sha" != null
+          git diff --exit-code "$deployed_sha" HEAD -- sites/agiscorecard tools/revenue-studio tools/member-studio tools/fleet-analytics
+      - name: Test and submit changed canonical AGI URLs
+        run: |
+          node --test sites/agiscorecard/tools/test_indexnow.mjs
+          node sites/agiscorecard/tools/indexnow.mjs
+      - name: Save the receipt and advance only the successful cursor
+        run: |
+          cat indexnow-agi-receipt.json >> "$GITHUB_STEP_SUMMARY"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/indexnow/agi.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(agi): record IndexNow receipt, indexing remains unknown'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agi-indexnow-receipt
+          path: indexnow-agi-receipt.json
+          retention-days: 30
       - name: Submit new subdomains (play. / source.) — added 2026-08-22
         run: node tools/indexnow-subdomains.mjs
       - name: Submit Web3 Workbench sitemaps after per-host validation

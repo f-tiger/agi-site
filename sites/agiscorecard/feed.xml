@@ -11,6 +11,13 @@
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
   <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-10-01T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
+  </entry>
+  <entry>
     <title>AGI-2027 Thesis Tracker: One Score for the 2027 Bet</title>
     <link href="https://agiscorecard.com/progress-index"/>
     <id>https://agiscorecard.com/progress-index</id>
@@ -107,13 +114,6 @@
     <id>https://agiscorecard.com/does-copying-13f-work</id>
     <updated>2026-09-28T00:00:00Z</updated>
     <summary>Version 13f-next-session-v2 uses the first completed trading-session close after the filing date, excludes Put/Call and principal rows, and requires complete adjusted prices on matching dates and contiguous quarters. These are gross historical simulations before costs, taxes and slippage, not live returns. Current-universe selection and survivorship bias remain; original filings do not reconstruct all amendments or confidential disclosures.</summary>
-  </entry>
-  <entry>
-    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
-    <link href="https://agiscorecard.com/for-agents"/>
-    <id>https://agiscorecard.com/for-agents</id>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
   <entry>
     <title>Situational Awareness Predictions: Full Tracker</title>

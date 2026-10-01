@@ -1,17 +1,17 @@
 # The AGI Scorecard
 
-> An independent, continuously-updated scorecard that grades every major prediction from Leopold Aschenbrenner's 2024 essay *Situational Awareness* against real-world AI progress. As of mid-2026: 3 predictions on track, 1 wrong, 2 open, 2 too early. The headline "AGI by 2027" claim resolves by January 1, 2028.
+> It summarizes 8 Situational Awareness predictions in our published ledger. The 2026-09-06 reading is 62.5/100: 3 supportive, 4 unresolved and 1 refuted. It is not a general benchmark of all AI capabilities.
 
-Each verdict is one of: On track, Wrong, Open, or Pending, and carries a pre-registered condition that would flip it. Data is recombined across pages from the same verified evidence base. Not affiliated with any AI lab.
+The score is an editorial composite, not a probability. Cite the ledger date and source URL; preserve unresolved verdicts. Method and history: https://agiscorecard.com/progress-index · Original source data: https://agiscorecard.com/data.json (CC BY 4.0).
 
-Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every top-level English page has a Markdown mirror at its URL + ".md" (e.g. https://agiscorecard.com/what-is-agi.md). MCP endpoint (Streamable HTTP, no auth): https://agiscorecard.com/mcp — docs at https://agiscorecard.com/for-agents
+Full content in one fetch: https://agiscorecard.com/llms-full.txt — with homepage mirrors at /index.md and /cn.md, top-level English mirrors at each URL + ".md", and selected Chinese evidence mirrors (e.g. https://agiscorecard.com/what-is-agi.md). MCP endpoint (Streamable HTTP, no auth): https://agiscorecard.com/mcp — docs at https://agiscorecard.com/for-agents
 
 ## Data
 - [Revenue experiment log (public, pre-registered)](https://agiscorecard.com/experiments): Ten attempts to monetise a ~200-user site, each with success AND kill thresholds published before the result; machine-readable at /experiments.json (CC BY 4.0). Includes a negative control arm and a registered self-falsification condition. Revenue to date: $0.
 
 - [Atom feed (newest pages & updates)](https://agiscorecard.com/feed.xml): Subscribe for every new verdict page and update.
 - [Machine-readable verdicts (JSON, CC BY 4.0)](https://agiscorecard.com/data.json): All 8 predictions with verdicts, evidence, primary-source links, forecaster timelines, and the Thesis Tracker score — free to cite with attribution.
-- [AGI-2027 Thesis Tracker](https://agiscorecard.com/progress-index): A single auditable 0–100 score (currently 62.5) of how much of Aschenbrenner's thesis is holding up, computed from the 8 verdicts; score history at /index-history.json.
+- [AGI-2027 Thesis Tracker](https://agiscorecard.com/progress-index): 62.5/100, ledger dated 2026-09-06; equal-weight verdict composite, not a probability. History: /index-history.json.
 - [US trending-searches trigger snapshot](https://agiscorecard.com/trends-us.json): daily Google Trends US matches against AGI entities, with 14-day history — the site's demand-trigger dataset, machine-readable
 - [Free AI & AGI tools (hub)](https://agiscorecard.com/ai-tools): All nine free, no-sign-up interactive tools in one place — Your AGI Timeline, AGI Type Test, AI Job Risk Check, The Future Bet, Thesis Tracker, Prediction Receipts, Forecaster Leaderboard, AI Stock Exposure Check, Matrix Odds Calculator. Five are embeddable via ?embed=1; copy-paste iframe code on the page.
 - [Machine-readable Invest dataset (JSON, CC BY 4.0)](https://agiscorecard.com/invest-data.json): The 8 verdicts mapped onto 17 listed AI equities, 8 investors' stances as filed (SEC 13F), and versioned gross historical copy-homework simulations. Generated from the site's own sources — the generator refuses to publish a number it cannot read.

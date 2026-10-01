@@ -88,6 +88,10 @@ jobs:
         run: |
           python3 tools/build_home_focus.py
           python3 tools/build_home_focus.py --check
+          python3 tools/build_discovery.py
+          python3 tools/build_discovery.py --check
+          python3 tools/test_discovery.py
+          node --test tools/test_indexnow.mjs
           python3 tools/gen_feed.py
           python3 tools/gen_agent_surfaces.py
           # /changelog was 2 entries behind its own JSON on 2026-09-26 because nothing regenerated it.
@@ -222,6 +226,9 @@ jobs:
       - name: Verify live homepage focus and evidence versions
         run: node sites/agiscorecard/tools/verify_home_focus.mjs
 
+      - name: Verify live SEO and agent discovery contracts
+        run: node sites/agiscorecard/tools/verify_discovery.mjs
+
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
         run: node tools/fleet-analytics/verify-live.mjs agi
@@ -277,12 +284,6 @@ jobs:
             if [ "$attempt" != "4" ]; then sleep 8; fi
           done
           exit 1
-
-      - name: Notify verified localized tool URLs to IndexNow
-        if: github.event_name == 'push'
-        continue-on-error: true
-        working-directory: ${{ github.workspace }}
-        run: node tools/revenue-studio/indexnow.mjs --site agi --out sites/agiscorecard
 
       - name: Post-deploy smoke (live site serves key surfaces)
         run: |

@@ -4,8 +4,25 @@
 > Awareness". Every page below: title, dated answer capsule, FAQ. Full dataset with
 > verdicts, evidence and flip conditions: https://agiscorecard.com/data.json (CC BY 4.0).
 > Thesis Tracker: 62.5/100 as of 2026-09-06. Index: https://agiscorecard.com/llms.txt
-> Each page also has a Markdown mirror at its URL + ".md"
+> Homepage mirror: https://agiscorecard.com/index.md; selected other pages use their URL + ".md".
 > (e.g. https://agiscorecard.com/what-is-agi.md).
+
+## AGI Progress & Prediction Evidence | AGI Scorecard
+
+URL: https://agiscorecard.com/
+
+It summarizes 8 Situational Awareness predictions in our published ledger. The 2026-09-06 reading is 62.5/100: 3 supportive, 4 unresolved and 1 refuted. It is not a general benchmark of all AI capabilities.
+
+Q: What does the AGI Thesis Tracker measure?
+A: It summarizes 8 Situational Awareness predictions in our published ledger. The 2026-09-06 reading is 62.5/100: 3 supportive, 4 unresolved and 1 refuted. It is not a general benchmark of all AI capabilities.
+
+Q: Does 62.5/100 mean a 62.5% probability of AGI?
+A: No. Each verdict has equal weight: supportive = 1, unresolved = 0.5 and refuted = 0. The mean is multiplied by 100. This is an editorial composite, not a probability forecast or a finding that AGI has arrived.
+
+Q: How can I reproduce or cite the score?
+A: Read predictions and thesisTracker in data.json, recompute the published weights, and inspect index-history.json for past readings. Cite AGI Scorecard, the ledger date 2026-09-06 and the original data URL. The dataset is CC BY 4.0; a site redesign date is not an evidence date.
+
+---
 
 ## Situational Awareness: A Two-Year Scorecard — Full Analysis
 
@@ -78,7 +95,7 @@ A: Because every verdict has a published flip condition tied to observable evide
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
-Last updated: September 27, 2026 · Updated as verdicts change
+Last updated: October 1, 2026 · Updated as verdicts change
 
 Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, sources and, for each, a written flip condition, a resolution date, a watch item or the stated blocker, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
@@ -533,6 +550,27 @@ A: Not in the aggregate data as of September 2026. US unemployment was 4.2% in J
 
 Q: Is the entry-level job market getting worse?
 A: For one slice, yes. Stanford's Canaries in the Coal Mine (ADP payroll data, August 2026 update, data through June 2026) finds a relative employment gap of about 19% for workers aged 22–25 in the most AI-exposed occupations, up from −13% in August 2025 and −16% in November 2025. Older workers and less-exposed occupations show no comparable decline. That is a concentrated early signal, not half of entry-level white-collar jobs gone.
+
+---
+
+## AI 会抢走你的工作吗？该不该担心（2026年9月判定）
+
+URL: https://agiscorecard.com/zh/ai-and-your-job
+最后更新：2026年9月5日 · 随证据变化更新
+
+截至 2026 年 9 月 5 日的判定：按比例担心，不必恐慌 ——AI 造成的经济整体岗位流失尚未出现在数据里，但对最高 AI 暴露职业里职业早期劳动者的一次真实、集中的冲击已经出现。 恐惧 79% 的美国人预期 AI 会在未来 10 年减少美国岗位； 18% 的劳动者认为自己的岗位可能在 5 年内消失（ Gallup，2026 ）。 经济整体·观察值 美国失业率 4.2% ，汇总数据里 AI 暴露职业没有相对恶化（Anthropic 经济学家 Peter McCrory， 《财富》，2026-07-24 ）； 无可辨 的经济整体扰动（ 耶鲁预算实验室追踪器 ）。 集中的早期信号 最高 AI 暴露职业里 22–25 岁 劳动者的相对就业： −13% （2025 年 8 月）→ −16% （2025 年 11 月）→ 差距 约 19% （2026 年 8 月更新，数据截至 2026 年 6 月）（ 斯坦福数字经济实验室，“金丝雀” ）。
+
+Q: AI 现在真的在抢工作了吗？
+A: 截至 2026 年 9 月，经济整体层面没有：美国失业率 4.2%，耶鲁预算实验室的追踪器未发现 AI 造成可辨的整体劳动力市场扰动。唯一的硬信号是集中的——斯坦福“金丝雀”研究发现，最高 AI 暴露职业里 22–25 岁劳动者的相对就业差距约为 19%（数据截至 2026 年 6 月），年长劳动者没有可比的下降。
+
+Q: 哪些工作对 AI 暴露最高？
+A: 按观察到的使用，微软《Working with AI》研究（2025 年 7 月）为 785 个职业打分，口译员与笔译员最高，为 0.49。按理论暴露，Eloundou 等人（《科学》，2024）估计约 80% 的美国劳动者有 10% 以上的任务暴露于大语言模型，约 19% 有 50% 以上。暴露度衡量的是 AI 能触及哪些任务，不是失业。
+
+Q: 现在还该读计算机专业吗？
+A: 数据分裂的是行业内部，不是这个学位。美国劳工统计局 2024–34 年预测：计算机程序员 −6%，但软件开发者 +15%、数据科学家 +33.5%。据引用纽约联储应届毕业生数据的二手报道，计算机科学专业失业率 6.1%、计算机工程 7.5%；据引用 National Student Clearinghouse 数据的报道，2025–26 学年计算机科学入学人数下降约 8–11%。
+
+Q: 我该有多担心？
+A: 按你自己的处境，而不是按头条。57% 的美国成年人称 AI 的兴起是显著的压力来源（APA，2025），但经济整体就业数据迄今没有可辨的 AI 扰动。如果你处于职业早期、身在高暴露职业、做的是系统已经能做的无监督端到端判断，就多担心一点；如果你的角色是监督、决策或必须在场，就少担心一点。2026-10-03 复核。
 
 ---
 
@@ -1361,11 +1399,38 @@ What data agiscorecard.com collects - GA4, a cookieless first-party log, and the
 
 ---
 
+## AGI-2027 命题追踪指数：一个分数看懂 2027 赌局
+
+URL: https://agiscorecard.com/zh/progress-index
+最后更新：2026年9月6日 · 随判定变化更新
+
+当前，AGI-2027 命题的追踪分数为 62.5/100 。 这个指数用一个数字表示阿申布伦纳《态势感知》当前的成立程度——8 项判定权重的透明平均值。它只在某项判定变化时移动，且每项判定都带预先登记的翻转条件。不声称任何概率；它是可逐行审计的编辑性合成。
+
+Q: 什么是 AGI-2027 命题追踪指数？
+A: 一个 0-100 的单一分数，衡量阿申布伦纳《态势感知》命题当前的成立程度，由 8 项判定的权重取平均算出。截至 2026-09-06 为 62.5/100。它是已发布判定的编辑性合成，不是 AGI 发生的概率。
+
+Q: 分数怎么计算？
+A: 8 项预测各按判定贡献分数：支持性（符合进度/超出/维持）=1.0，未决（悬而未决/待定）=0.5，被证伪（落空）=0.0。取平均再乘 100 即为分数。完整拆解与机器可读数据公开。
+
+Q: 分数什么时候会变？
+A: 只有当某项判定变化时才变，且每项判定都带预先登记的翻转条件。头条的“2027 年 AGI”将于 2028 年 1 月 1 日前见分晓，是最可能的近期变量。
+
+---
+
 ## AI 进展与 AGI 预测证据 | AGI 记分牌
 
 URL: https://agiscorecard.com/cn
 
-追踪《态势感知》的 8 项 AGI 预测，核对来源、判定与翻转条件。自行评分，并查看 AI 对工作和投资研究的影响。
+它汇总《态势感知》的 8 项预测在本站公开台账中的判定。2026-09-06 的记录为 62.5/100：3 项支持、4 项未决、1 项反驳。它不是衡量所有 AI 能力的通用基准。
+
+Q: AGI 命题追踪指数衡量什么？
+A: 它汇总《态势感知》的 8 项预测在本站公开台账中的判定。2026-09-06 的记录为 62.5/100：3 项支持、4 项未决、1 项反驳。它不是衡量所有 AI 能力的通用基准。
+
+Q: 62.5 分代表 AGI 有 62.5% 的发生概率吗？
+A: 不是。每项判定等权计算：支持取 1、未决取 0.5、反驳取 0，平均值乘以 100。这是编辑判定的综合分数，不是概率预测，也不表示 AGI 已经实现。
+
+Q: 怎样复算或引用这个分数？
+A: 读取 data.json 中的 predictions 与 thesisTracker，按公开权重复算；用 index-history.json 核对历史。引用时写明 AGI Scorecard、台账日期 2026-09-06 和原始数据链接。数据采用 CC BY 4.0；网站改版日期不能替代证据日期。
 
 ---
 
