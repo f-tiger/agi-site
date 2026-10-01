@@ -318,6 +318,7 @@ jobs:
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
+          node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
           node scripts/test-tool-evidence.mjs
           node scripts/test-search-experiment.mjs

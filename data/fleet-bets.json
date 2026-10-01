@@ -2433,7 +2433,8 @@
    "source": "docs/base44-build-grow-exit-2026-10-01.md",
    "status": "open",
    "launch_surface": "https://baipiaoji.com/studio/quote-builder; https://baipiaoji.com/en/studio/quote-builder",
-   "measurement": "2026-10-01 production integration: anonymous quote events use fixed /quote-builder/<action> paths, no IDs or quote content, CI/DNT/GPC excluded. Counts are action signals only; real handover and repeat-use gates still require qualified creator evidence. No users, handovers or payments claimed from QA."
+   "measurement": "2026-10-01 growth release: fixed /quote-builder/<action>/<source> labels with legacy support; anonymous counts and entry-source labels appear in /api/reach.quote_signals and daily reach snapshots. No IDs, quote content or verified channel attribution; CI/DNT/GPC excluded. Counts do not prove real handover or recurrence. Existing qualified-creator thresholds and due date unchanged.",
+   "distribution_record": "docs/bpj-quote-growth-2026-10-01.md"
   },
   {
    "id": "bpj-release-check-1010",

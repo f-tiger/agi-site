@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
-import {mkdirSync,readFileSync} from 'node:fs';
+import {mkdirSync,readFileSync,existsSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {decodeConfig} from './core.mjs';
+import {parseQuoteEvent} from './growth.mjs';
 
 const require=createRequire(import.meta.url);
 let chromium;try{({chromium}=require('playwright'));}catch{({chromium}=require('../revenue-studio/node_modules/playwright'));}
@@ -18,15 +19,18 @@ if(!live){
     const r=route.request(),url=new URL(r.url());requests.push({url:r.url(),method:r.method()});
     if(url.pathname==='/api/hit'){events.push(r.postDataJSON());return route.fulfill({status:204});}
     assert.equal(url.origin,origin,'no third-party requests');
-    if(!['/studio/quote-builder','/en/studio/quote-builder'].includes(url.pathname))return route.fulfill({status:404});
-    const body=readFileSync(new URL('../../sites/baipiaoji/dist'+url.pathname+'.html',import.meta.url),'utf8');
-    return route.fulfill({status:200,contentType:'text/html',body});
+    const path=url.pathname.endsWith('/')?url.pathname+'index.html':/\.[a-z0-9]+$/i.test(url.pathname)?url.pathname:url.pathname+'.html';
+    const file=new URL('../../sites/baipiaoji/dist'+path,import.meta.url);
+    if(!existsSync(file))return route.fulfill({status:404});
+    const contentType=path.endsWith('.css')?'text/css':path.endsWith('.js')?'text/javascript':path.endsWith('.json')?'application/json':path.endsWith('.png')?'image/png':'text/html';
+    return route.fulfill({status:200,contentType,body:readFileSync(file)});
   });
 }
 try{
   for(const lang of ['zh','en']){
     const page=await context.newPage(),prefix=lang==='en'?'/en':'',url=origin+prefix+'/studio/quote-builder';
     await page.goto(url+'?__ci=1');await page.locator('#editor').waitFor();
+    const firstTry=await page.locator('.intro-actions [data-action=preview]').boundingBox();assert(firstTry&&firstTry.y+firstTry.height<844,'first useful action visible on mobile');
     const before=events.length;
     await page.locator('[name="brand"]').fill('QA Studio — synthetic');
     await page.locator('[name="price-0"]').fill('199.99');
@@ -58,7 +62,10 @@ try{
     const html=readFileSync(artifact,'utf8');
     const state=JSON.parse(html.match(/id="initial-state">(.*?)<\/script>/s)[1]);
     assert.equal(state.mode,'customer');assert(!state.measure);
+    assert(!html.includes('property="og:image"'));
     assert(!html.includes('rel="canonical"')&&!html.includes('hreflang='),'portable customer file has no host SEO');
+    await page.locator('[data-action="recommend"]').click();
+    const cleanLink=await page.evaluate(()=>navigator.clipboard.readText());assert.equal(cleanLink,url+'?source=share');assert(!cleanLink.includes('QA Studio')&&!cleanLink.includes('#quote='));
     assert.equal(events.length,before,'CI traffic must not be counted');
     client.once('dialog',d=>d.accept());await client.locator('[data-action="remix"]').click();
     assert(!(await client.locator('[name="confirmed"]').isChecked()));
@@ -66,14 +73,34 @@ try{
     await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:new URL(`hosted-builder-${lang}.png`,out).pathname,fullPage:true});
     await page.close();await client.close();
   }
+  const demo=await context.newPage();await demo.goto(origin+'/en/studio/quote-builder?template=video&demo=1&source=video-guide&__ci=1');
+  assert.equal(await demo.locator('#editor').count(),0);assert.equal(await demo.locator('#total').textContent(),'$390.00');
+  await demo.locator('[data-qty="0"]').fill('5');assert.equal(await demo.locator('#total').textContent(),'$630.00');
+  await demo.locator('[data-action="back"]').click();assert.equal(await demo.locator('[name="quantity-0"]').inputValue(),'3');
+  await demo.close();
   if(!live){
+    for(const lang of ['zh','en']){
+      const landing=await context.newPage(),prefix=lang==='en'?'/en':'';
+      await landing.goto(origin+prefix+'/studio/video-quote?__ci=1');
+      for(const width of [390,1360]){
+        await landing.setViewportSize({width,height:844});
+        assert(await landing.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'landing fits mobile and desktop');
+        const cta=await landing.locator('.studio-hero a.primary').boundingBox();assert(cta&&cta.y+cta.height<844,'landing demo action visible immediately');
+        await landing.screenshot({path:new URL(`video-landing-${lang}-${width}.png`,out).pathname,fullPage:true});
+      }
+      await landing.locator('.studio-hero a.primary').click();
+      assert.equal(await landing.locator('#editor').count(),0);
+      assert.equal(await landing.locator('[data-qty="0"]').inputValue(),'3');
+      assert(new URL(landing.url()).searchParams.get('source')==='video-guide');
+      await landing.close();
+    }
     const page=await context.newPage();await page.goto(origin+'/studio/quote-builder');
     await page.locator('[name="brand"]').fill('DO NOT SEND THIS');await page.locator('[name="confirmed"]').check();
     await page.locator('[data-action="share"]').click();
     await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('已复制'));
-    assert(events.some(x=>x.p==='/quote-builder/builder_open'));
-    assert(events.some(x=>x.p==='/quote-builder/link_copied'));
-    for(const event of events){assert.deepEqual(Object.keys(event).sort(),['e','l','p']);assert.equal(event.e,'quote');assert(/^\/quote-builder\/[a-z_]+$/.test(event.p));}
+    assert(events.some(x=>x.p==='/quote-builder/builder_open/direct'));
+    assert(events.some(x=>x.p==='/quote-builder/link_copied/direct'));
+    for(const event of events){assert.deepEqual(Object.keys(event).sort(),['e','l','p']);assert.equal(event.e,'quote');assert(parseQuoteEvent(event.p));}
     assert(!JSON.stringify(events).includes('DO NOT SEND THIS'));
     assert(requests.every(r=>!r.url.includes('#quote=')),'fragment stays on device');
     await page.close();

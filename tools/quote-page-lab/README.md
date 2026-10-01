@@ -28,6 +28,7 @@ QUOTE_STUDIO_CHROMIUM=/path/to/chromium node tools/quote-page-lab/test.mjs
 # After the BPJ site build:
 node tools/quote-page-lab/verify.mjs --dist
 node tools/quote-page-lab/test-hosted.mjs
+node tools/quote-page-lab/test-growth.mjs --dist
 # After production deployment:
 node tools/quote-page-lab/verify.mjs --live
 node tools/quote-page-lab/test-hosted.mjs --live
@@ -48,3 +49,11 @@ The test builds no hidden network dependency. Run `build.mjs` before the browser
 ## Files
 
 `core.mjs` validates configuration and computes integer-money totals. `app.js` provides the bilingual editor and customer view. `style.css` follows BPJ's paper/ink workspace. `render.mjs` is the shared production/portable renderer. `test.mjs` covers calculation and actual browser export flows; `test-hosted.mjs` covers clipboard handover, mobile actions and measurement privacy. `verify.mjs` checks discovery and production identity.
+
+## Acquisition experiment
+
+[视频剪辑报价模板](https://baipiaoji.com/studio/video-quote) · [Video editing quote template](https://baipiaoji.com/en/studio/video-quote) lead into the live customer demo. Builder query parameters accept only `template=video|web|content`, `demo=1` and fixed `source` labels from `growth.mjs`. Customer configuration fragments take precedence over these template parameters.
+
+Recommend-tool links omit the current quote configuration. The social PNGs are reproducible with `node tools/quote-page-lab/social-card.mjs` using Playwright/Chromium and a CJK-capable font; no runtime image-generation dependency is needed.
+
+`/api/reach.quote_signals` reports bounded anonymous actions and entry-source labels. The daily `reach-export.mjs` snapshot preserves them. It does not join a user funnel or verify clients. `test-growth.mjs` exercises actual SQLite queries, ingestion allowlists and failure/legacy/QA boundaries. See [the acquisition decision record](../../docs/bpj-quote-growth-2026-10-01.md) for baseline, attribution limits and unposted campaign drafts.

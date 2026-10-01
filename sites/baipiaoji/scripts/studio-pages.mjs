@@ -1,3 +1,4 @@
+import {buildQuoteGrowth} from './quote-growth-pages.mjs';
 import {renderQuoteStudio,ROUTE as QUOTE_BUILDER_ROUTE} from '../../../tools/quote-page-lab/render.mjs';
 import {buildAiTools} from './ai-tool-pages.mjs';
 import {buildEfficiency,efficiencyEntry} from './codex-efficiency-pages.mjs';
@@ -49,6 +50,7 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   pushPage(url+'.html','0.9');
   write('studio/quote-builder.html',renderQuoteStudio(lang,{origin:site.base_url}));
   pushPage(BASE+QUOTE_BUILDER_ROUTE+'.html','0.9');
+  buildQuoteGrowth({layout,railOf,BASE,LOCALE,site,write,pushPage,faqLd});
   buildAiTools({layout,esc,BASE,LOCALE,write,pushPage});
   buildEfficiency({layout,railOf,BASE,LOCALE,site,write,pushPage});
   buildReleasePilot({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
