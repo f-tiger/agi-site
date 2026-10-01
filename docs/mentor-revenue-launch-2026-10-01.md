@@ -1,0 +1,60 @@
+# Work Mentor: revenue-oriented launch
+
+Owner requested an AI mentor business that turns passive conversation into actions with measurable outcomes, comparison with mature education products, high-quality deployment and actual marketing. The owner accepted reuse of existing Cloudflare Workers AI. No new domain, provider subscription or advertising spend is introduced.
+
+## Three refinements of the execution brief
+
+1. Define the business: adult learners who need an explainable AI-assisted weekly sales report; first prove a bounded task, not a marketplace of impressive personas.
+2. Define evidence and the offer: five reproducible decisions, a fresh-case first attempt, delayed same-tool recheck; free local practice and existing paid AGI cloud history. A score is not a degree, a productivity estimate or income.
+3. Define delivery: bilingual mobile product, working membership handoff, origin/privacy/cost controls, live inference verification, relevant internal links, useful search content, real-product marketing footage and aggregate reporting inside the existing daily deployment.
+
+## Positioning and education-site comparison
+
+| Reference | Verified product pattern | Decision for this launch |
+|---|---|---|
+| Duolingo | A course path, progressive exercises and personalized review; game mechanics encourage return | Give the next task instead of a blank prompt. Keep activity separate from first-attempt success. |
+| DataCamp Projects | Guided and unguided projects apply skills to datasets | Start with fictional sales rows, explicit acceptance rules and a new dataset. Do not call our five checks a validated occupational assessment. |
+| Generic AI + spreadsheet | A capable substitute for report generation | The product must earn its place through structure, explainable checks and continuity. A persona alone is not a defensible advantage. |
+
+Primary sources rechecked 2026-10-01: [Duolingo learning guide](https://blog.duolingo.com/duolingo-101-how-to-learn-a-language-on-duolingo/), [DataCamp project overview](https://support.datacamp.com/hc/en-us/articles/360006091334-DataCamp-Projects-An-Overview). These are vendor descriptions, not evidence that this product improves learning or will sell. The earlier broader competitive report remains background research.
+
+## Product and revenue contract
+
+- `/mentor` and `/zh/mentor`: baseline, CSV practice, five deterministic checks, targeted hints, optional real AI explanations, fresh cases, local history, portable backup and calendar recheck.
+- Stages: L0 no pass; L1 complete report; L2 first attempt on a new transfer case without mentor help; L3 another case at least three days after an independent pass with the same allowed tools. Learners may use their selected workplace AI. Local records and work-application claims are self-reported and editable; no credential is issued.
+- Every amount is calculated in cents. Paid current-week orders only; refunds deducted; cancelled rows excluded. Channel ties are accepted. Growth uses previous-week paid net revenue. Two totals do not establish advertising causation.
+- Free checks remain usable if the model, network or database is unavailable. Model text does not set the grade. Changed answers invalidate the visible result and must be checked again.
+- Existing AGI membership: 9 USDT/30 days, BSC only, matching decimal and network fees disclosed before checkout; 50 workspaces, 10 versions each, 64 KB per workspace and 5 MB total. No auto-renewal. The earlier CNY49/14-day proposal was a pricing hypothesis, not a live product. Membership adds portable versioned records, not extra AI calls or human mentoring.
+- Reuse the existing Relay budget keys: at most 12 model attempts site-wide and 3 per IP/UTC day (the global window is 24 hours). Mentor requests cap at 700 output tokens; failures count. [Cloudflare model documentation](https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/). This capacity is a bounded preview and cannot support a promise of unrestricted paid tutoring.
+- Primary commercial hypothesis: repeated learners will pay for continuity. Counter-case: free JSON export suffices, the task is too simple, or crypto checkout deters buyers. No demand, learning efficacy or revenue is assumed.
+
+## Two adversarial checks
+
+**Round 1 — correctness and entitlement.** Check cancelled/refunded rows, rounding, tied channels, malformed imported records, forged scores, hint-assisted retries, stale answers, mismatched cloud messages, unpaid saves, another identity, old revisions and a shared exhausted AI budget. Fix identified stale-result display and the model's cents-unit ambiguity. The payment integration uses a mock-chain test, not actual funds. A readiness response is not a verified customer payment.
+
+**Round 2 — privacy, claims and distribution.** Check both mobile languages, keyboard labels/focus, local-first persistence, explicit AI consent, text-only rendering, exact origin checks, bounded bodies, category-only feedback, optional event capture and QA exclusions. Treat links and browser-day counts as imperfect evidence. Marketing shows a real interface with fictional inputs, synthetic narration and original music; no earnings or speed claims. Human listening, indexing, platform publication and sales must each be reported only with their own evidence.
+
+## Distribution already wired into the product
+
+1. Relevant entry links from the EN/ZH homepage directory, tools table, Earn navigation and Workbench hub, without changing AGI's main research positioning.
+2. Useful bilingual `/ai-weekly-report` checklist with a concrete example and direct practice CTA. Canonical, hreflang, breadcrumbs, WebApplication structured data, sitemap and generated readable mirrors.
+3. Campaign `mentor-report-01`: one original 34-second vertical demo. Hook: an $800 cancelled-order mistake; body: checker, correction, fresh data; close: free practice URL and optional paid cloud history. Adapt native captions and own-brand/AI disclosure for connected YouTube/TikTok accounts. Do not upload video binaries to the repository.
+4. Do not describe a scheduled post as published. Store sanitized provider receipts in a separate release record after the actual operation. Site links are actual owned-channel distribution; organic reach remains to be observed.
+
+## Measurement and next decisions
+
+`tools/mentor/metrics.mjs` runs after live verification in the existing daily AGI deployment and writes a GitHub Actions summary. The operator-only API reports 28 UTC days of opted-in browser-day event categories, feedback and `work-mentor` order attribution. No free-text questions, answers or raw referrer URLs are stored in these tables. Records are cleaned after 90 days. Counts are not verified people, and tagged links are distinguished from observed referrers. Payment attribution is product-level; it is not proof of a campaign causing a sale. Gross receipts are not profit or net revenue after refunds/tax/costs.
+
+The following are operating hypotheses, not statistical significance thresholds:
+
+- Fewer than 30 opted-in starts: reach and sampling are inconclusive; improve relevant distribution before judging demand.
+- At least 30 starts but few completions: inspect task clarity and first-failure categories before adding more agents.
+- At least 20 passes and no membership intent: revisit the value of continuity; do not add persona tiers to disguise weak value.
+- Membership intent without paid receipts, especially payment-method feedback: investigate checkout friction. A fiat processor would require separate configuration, availability and terms review.
+- First paid receipts: inspect retention, support burden and contribution after costs before increasing AI capacity or spending on acquisition.
+
+Expand to further adult work tasks only after repeated-use evidence. Family and health tracks require their own validated tasks, specialist safeguards and a separate product decision; they are not included in this release.
+
+## Verification record
+
+Local checks cover 1,000 independently recalculated datasets, malformed input, level conditions, import score recomputation, origin and consent enforcement, shared AI limits, failure behavior, privacy and attribution; bilingual mobile/desktop interaction tests cover correction, fresh-case progression, persistence, exports and the member-page handoff. The member integration tests unpaid denial, product attribution, mock payment activation, storage retrieval, stale revision and other-user rejection. Deployment and real-model results are appended to the release receipt after execution, never inferred from fixtures.
