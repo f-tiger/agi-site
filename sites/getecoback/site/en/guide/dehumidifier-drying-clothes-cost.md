@@ -6,7 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-dry
 
 **Short answer:** compare whole-run kWh for the same amount of equally dry laundry. Low wattage does not guarantee a cheaper load: 250 W for eight hours uses 2 kWh. A dryer using 1.5 kWh costs less at the same tariff. These are fictional inputs, not a product test. Try your own comparison below.
 
-EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves — the figures below are arithmetic from the wattage on the machine and the rate you pay, so you can check every one of them.
+EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves. The examples use stated assumptions; your comparison uses the energy, runtime and tariff you enter. The formulas are shown so you can check the calculation.
 
 ## What does a dehumidifier cost per load?
 
