@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-30",
+ "updated": "2026-10-01",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -2420,6 +2420,17 @@
    "win": "Improve repeat project value and distribution using measured buyer feedback",
    "lose": "50 qualified offers and fewer than3 buyers:stop feature expansion and revisit offer; low distribution alone is insufficient evidence of no demand",
    "source": "sites/baipiaoji/docs/PRD-codex-efficiency-2026-09-30.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-quote-studio-handover-1029",
+   "site": "baipiaoji",
+   "due": "2026-10-29",
+   "metric": "Qualified service-provider creators completing their own quote tool, verified real-client handover and second-task reuse; prototype/QA/example views excluded",
+   "threshold": "10 qualified trial creators: >=5 own configurations, >=3 real client handovers, >=3 second-task reuses within 30 days of first real trials. No launch or insufficient qualified reach => insufficient, not failed demand. Later paid gate requires >=3 independent paying users using actually delivered features; no payment feature exists at registration.",
+   "win": "Test the same buyer’s repeated cloud/brand/version-management need and reachable distribution before platform expansion",
+   "lose": "With 10 qualified trials and <3 real handovers, stop feature expansion and revisit task; absent recurrence, pause subscription thesis. Do not infer virality from recipient views.",
+   "source": "docs/base44-build-grow-exit-2026-10-01.md",
    "status": "open"
   }
  ]
