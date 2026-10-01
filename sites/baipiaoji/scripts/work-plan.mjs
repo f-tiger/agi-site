@@ -300,6 +300,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     <div id="wpActions" class="wp-actions" hidden><button type="button" id="wpCopy">${esc(L.copyMd)}</button> <button type="button" id="wpLink">${esc(L.link)}</button> <button type="button" id="wpCard">${zh ? "预览结果卡" : "Preview result card"}</button> <button type="button" id="wpJson">${esc(L.exportJ)}</button> <button type="button" id="wpSave">${esc(L.save)}</button>
       <p class="sub-note">${esc(L.saveNote)} <a href="${BASE}/members">${zh ? '会员说明 →' : 'About membership →'}</a></p></div>
   </section>
+<section class="limits-table" id="wpCardPreview" hidden><h2>${zh ? '分享前检查' : 'Review before sharing'}</h2><p>${zh ? '图片只含任务判定汇总，不含岗位、任务名称、工作量或文件。分享链接会包含你的任务参数。' : 'The image contains only verdict totals: no role, task names, volumes or files. A share link includes your task settings.'}</p><canvas id="wpCardCanvas" width="1200" height="900" role="img" aria-label="${zh ? 'AI 方案判定汇总' : 'AI plan verdict summary'}" style="width:100%;max-width:600px;height:auto"></canvas><p class="wp-actions"><button type="button" id="wpCardDownload">${zh ? '下载 PNG' : 'Download PNG'}</button></p></section>
   <section class="limits-table" id="roles">
     <h2 class="group-title">${zh ? '12 个岗位的默认方案（不开 JS 也能看）' : 'Default plans for 12 roles (readable without JavaScript)'}</h2>
     <p class="sub-note">${zh ? '岗位与任务是编辑整理的默认值；工具与步骤来自 0 元方案；数字来自官方公布并带核实日期。' : 'Roles and tasks are editorial defaults; tools and steps come from the zero-cost plans; figures are officially published and carry check dates.'}</p>
@@ -322,7 +323,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
     ${FAQ.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
   </section>
 </main>
-<section id="wpCardPreview" hidden><h2>${zh ? '分享前检查' : 'Review before sharing'}</h2><p>${zh ? '图片只含任务判定汇总，不含岗位、任务名称、工作量或文件。分享链接会包含你的任务参数。' : 'The image contains only verdict totals: no role, task names, volumes or files. A share link includes your task settings.'}</p><canvas id="wpCardCanvas" width="1200" height="900" role="img" aria-label="${zh ? 'AI 方案判定汇总' : 'AI plan verdict summary'}" style="width:100%;max-width:600px;height:auto"></canvas><p><button type="button" id="wpCardDownload">${zh ? '下载 PNG' : 'Download PNG'}</button></p></section>
+
 <script>
 (function(){
   var ZH=${zh}, BASE=${JSON.stringify(BASE)}, PID=${JSON.stringify(PRODUCT_ID)}, L=${safeJson(L)}, DAYS=${DEFAULT_DAYS};
