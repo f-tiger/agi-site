@@ -11,3 +11,8 @@ Campaign: `mentor-report-01`. CTA: `https://agiscorecard.com/mentor?utm_source=y
 Creative sources checked 2026-10-01: [TikTok Creative Codes](https://ads.tiktok.com/business/en/creative-codes) (hook, body, close and motion/sound), [YouTube Shorts discussion](https://blog.youtube/creator-and-artist-stories/youtube-shorts-deep-dive/) (early hook and concise story). These are platform guidance, not a forecast of this video's reach or conversion.
 
 Video exports, intermediate captures and audio belong outside the repository. Persist the final MP4 and caption file; upload the video through the authorized marketing connector. Record the returned platform state and URL, distinguishing pending from published.
+
+
+## Focus update — 2026-10-01
+
+The current landing page is Ecommerce Reporting Coach / 电商运营周报导师, for junior ecommerce operators preparing a weekly store report. Keep future hooks, examples and CTA within that task. The already-published first video used the earlier Work Mentor umbrella name; its $800 cancelled-order demonstration remains a fictional exercise, not platform reconciliation or an observed customer error. Do not silently replace or duplicate that published cut. Current social-preview source is `social-card.html`.

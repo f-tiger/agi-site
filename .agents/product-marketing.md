@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v6** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v7** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -38,10 +38,13 @@ Separate sample use, own-data use, exercises and QA. Opt-in anonymous page-visit
 
 No new paid features for the three discovery probes until repeated task evidence and a reachable buyer segment are documented. After 100 relevant landing visits, 20 own-task completions and five contextual price-interest visits, investigate manually; this operating gate is not statistical proof or automatic permission to charge. Missing distribution is an inconclusive market result. Before scaling: three independent actual buyers, positive contribution after delivery/support and repeat buying evidence appropriate to the model. No advertising spend, purchased domains or new recurring provider expense in this release.
 
-## Work Mentor: revenue pilot, owner-authorized 2026-10-01
+## Ecommerce Reporting Coach: single mentor focus, owner steering 2026-10-01
 
-- Adult learners who need to check an AI-assisted weekly sales report. First reachable segment is English/Chinese readers of AGI tools, Earn and Workbench plus existing owned YouTube/TikTok audiences; relevance and demand remain unverified.
-- Job: turn an ambiguous spreadsheet task into a correct, explainable five-decision report, then repeat on fresh data under consistent tool conditions. Alternative: generic AI plus a spreadsheet and manual checking.
+- One coach for one audience: adult junior ecommerce operators preparing a weekly store report. Public name: Ecommerce Reporting Coach / 电商运营周报导师. Initial user and proposed payer are the individual learner; team buying is unverified. Reach through relevant English/Chinese AGI entries and existing owned channels remains an acquisition hypothesis.
+- Job: deliver an explainable weekly store report to an operations lead: paid orders, refunds, channel totals, week-over-week change and evidence for claims. Repeat on fresh data under consistent tool conditions. The practice groups refunds with their order week and omits discounts, tax, shipping, fees and cross-period reconciliation. It is not a replacement for Shopify or another platform’s sales/payment reporting policy.
+- Competitive evidence: DataCamp offers fictional-store ecommerce analysis case studies; Yoodli offers individual and team communication roleplay; Shopify provides native sales reports and Sidekick. Their availability supports category comparisons, not demand or revenue for this product. Choose the narrower reporting practice for independently checkable answers and a bounded learner outcome.
+- First-track boundary: all visible tasks, prompts and acquisition copy serve this same junior ecommerce-reporting learner. Do not launch a general workplace coach, other industries or unrelated age-based mentors until separately selected. Next depth, if observed learners need it, stays inside this reporting job.
+- Editorial hook: “Your first store report has an $800 cancelled order in the total. Can you catch it before the weekly review?” This is marketing copy with fictional data, not an actual customer quotation.
 - Promise: specific next actions and reproducible checks. Do not promise earnings, productivity gains, credentials, verified competence or human coaching. Fictional examples are labeled.
 - Free: local practice, deterministic checks, targeted hints, backup export and limited Workers AI explanations. Paid: existing AGI cloud membership, 9 USDT/30 days plus matching decimal and network fees, 50 spaces/10 versions/64 KB per space/5 MB total. No auto-renewal and no additional AI quota. The earlier CNY49/14-day offer was a hypothesis, not a live checkout.
 - AI reuses Relay's existing 12 site-wide attempts/24-hour window and 3 per-IP/UTC day; no budget expansion. This is a bounded pilot, not a scalable paid AI tutoring promise.
@@ -51,6 +54,8 @@ No new paid features for the three discovery probes until repeated task evidence
 - Standing delivery preference: website work includes marketing design, authorized execution, live verification and measurement; deployment alone is incomplete.
 
 ## Changelog
+
+- v7 (2026-10-01): Narrowed Work Mentor to Ecommerce Reporting Coach for junior ecommerce operators; aligned audience, task, report-policy boundaries and acquisition message with the owner’s single-type focus. Retained current paid entitlement and treated willingness to pay as unverified.
 
 - v6 (2026-10-01): Added the owner-requested task-led Work Mentor pilot, concrete existing payment entitlement, AI cost boundary, marketing delivery requirement and daily aggregate review.
 

@@ -1,4 +1,4 @@
-export const VERSION='mentor-20261001-1';
+export const VERSION='mentor-20261001-2';
 export const PRODUCT='work-mentor';
 export const MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 export const DAY=86400000;

@@ -1,6 +1,31 @@
-# Work Mentor: revenue-oriented launch
+# Ecommerce Reporting Coach: focused revenue pilot
 
 Owner requested an AI mentor business that turns passive conversation into actions with measurable outcomes, comparison with mature education products, high-quality deployment and actual marketing. The owner accepted reuse of existing Cloudflare Workers AI. No new domain, provider subscription or advertising spend is introduced.
+
+
+## Single-type focus — owner steering at 22:03 Asia/Shanghai, 2026-10-01
+
+The owner asked to focus on one mentor type first. The selected public product is **Ecommerce Reporting Coach / 电商运营周报导师**, for adult junior ecommerce operators who need to submit a weekly store report to their lead. The stable `/mentor` routes and `work-mentor` storage/payment identifier remain so existing practice records, links and order attribution continue to work.
+
+Three brief refinements: choose one learner and one recurring report; measure error correction, fresh-case success and delayed recheck; align the landing page, task brief, coach instruction, export, membership label and discovery links. No additional persona marketplace or paid course is implied.
+
+| Candidate | Current primary evidence | Decision for this pilot |
+|---|---|---|
+| Ecommerce reporting coach | DataCamp offers fictional-store analysis projects; the work has explicit data and reporting decisions | Select a beginner weekly-report task with independently checkable answers; whether learners pay remains unknown |
+| Sales conversation coach | Yoodli offers individual and team roleplay, including custom rubrics and manager features | Defer: a credible result needs conversation evaluation and validation against sales behavior; no sales outcome can be inferred from a model score |
+| General Excel/AI workplace coach | DataCamp already offers an Excel fundamentals track; generic AI and spreadsheets are substitutes | Defer the broad category: learner, task and buying trigger would be less specific |
+
+Sources checked 2026-10-01: [DataCamp ecommerce case study](https://www.datacamp.com/courses/case-study-ecommerce-analysis-in-power-bi), [Excel Fundamentals](https://www.datacamp.com/tracks/excel-fundamentals), [Yoodli plans](https://yoodli.ai/pricing), [Shopify reporting definitions](https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/default-reports/sales-report). Vendor product descriptions establish available alternatives, not this pilot's market size, revenue or validated learning effects.
+
+Adversarial check 1: a rename alone is insufficient. The hero, learner label, manager brief, AI scope, report export and discovery entries must all use ecommerce reporting. Existing deterministic behavior and portable records remain functional.
+
+Adversarial check 2: native platforms already report sales, and their definitions differ. The practice groups paid orders and their refunds by order week; it omits discounts, tax, shipping, fees and cross-period refund accounting. Display that boundary before the exercise and in the checklist. Do not present the checker as Shopify reconciliation, profit analysis, advertising ROI or a credential. Paid cloud-history value, crypto-payment friction and AI availability remain unverified commercial constraints.
+
+Marketing execution for this focusing pass is the live bilingual landing page, useful checklist, updated owned navigation and a focused social preview. The earlier published $800-error videos still demonstrate this same report task; do not duplicate them or call their existing reach a test of the narrower positioning. Future copy addresses the junior ecommerce operator. The next already-scheduled review should assess this focused version and keep unknown analytics and quota failures explicit.
+
+### Focus release checks
+
+Local verification for `mentor-20261001-2`: 21 existing mentor/revenue tests pass, including the independent dataset oracle; bilingual mobile/desktop mentor browser checks and the actual member-page draft handoff pass; bilingual Earn navigation/browser checks pass; 307 pages validate, 78 hreflang clusters close and all 123 expected breadcrumbs are present. The new share card is rendered from checked-in HTML. Exported reports carry the same simplified reporting policy as the practice. These checks do not establish real-model availability, demand or revenue. No production AI request was spent on this copy-and-scope release; the existing scheduled verification remains responsible for a real response within the unchanged quota.
 
 ## Three refinements of the execution brief
 
@@ -53,7 +78,7 @@ The following are operating hypotheses, not statistical significance thresholds:
 - Membership intent without paid receipts, especially payment-method feedback: investigate checkout friction. A fiat processor would require separate configuration, availability and terms review.
 - First paid receipts: inspect retention, support burden and contribution after costs before increasing AI capacity or spending on acquisition.
 
-Expand to further adult work tasks only after repeated-use evidence. Family and health tracks require their own validated tasks, specialist safeguards and a separate product decision; they are not included in this release.
+Deepen this same ecommerce-reporting track only after repeated-use evidence. Any additional mentor type requires a separate product decision.
 
 ## Verification record
 
