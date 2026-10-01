@@ -1,63 +1,60 @@
 # Dehumidifier to Dry Clothes: Real Running Cost (2026)
 
-> What a dehumidifier actually costs to dry laundry indoors: cost per load at 200–500 W, how to compare it with your tumble dryer, and when it is the cheaper option.
+> Compare laundry drying costs with your own kWh, runtime and tariff. Check energy-label units, equal dryness and purchase cost, then export your result.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html
 
-**Short answer:** the sum is watts ÷ 1,000 × hours × your unit rate. At **€0.30/kWh** and six hours, one load costs about **€0.36** on a 200 W dehumidifier, **€0.54** at 300 W and **€0.90** at 500 W. A tumble dryer cycle at 2 kWh costs €0.60 at the same rate. The dehumidifier is usually cheaper, but it takes half a day rather than an hour.
+**Short answer:** compare whole-run kWh for the same amount of equally dry laundry. Low wattage does not guarantee a cheaper load: 250 W for eight hours uses 2 kWh. A dryer using 1.5 kWh costs less at the same tariff. These are fictional inputs, not a product test. Try your own comparison below.
 
 EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves — the figures below are arithmetic from the wattage on the machine and the rate you pay, so you can check every one of them.
 
 ## What does a dehumidifier cost per load?
 
-Drying a load indoors typically takes four to eight hours. The table below uses six hours and a rate of **€0.30/kWh** — substitute your own rate, because that is the only figure that applies to you.
+The table below assumes six hours at a constant average power and **€0.30/kWh**. These are arithmetic examples. They do not establish how long your laundry takes to dry. Replace both runtime and unit price with your own values.
 
-Machine | Power | Per hour | 6 hours (1 load) | 3 loads a week, 1 month |
+Machine | Power | Per hour | 6 hours (assumed run) | 3 runs a week, 4 weeks |
 
-Small compressor unit | 200 W | 6.0 ct | €0.36 | €4.32 |
+Example A | 200 W | 6.0 ct | €0.36 | €4.32 |
 
-Typical household unit | 300 W | 9.0 ct | €0.54 | €6.48 |
+Example B | 300 W | 9.0 ct | €0.54 | €6.48 |
 
-Large unit / laundry mode | 500 W | 15.0 ct | €0.90 | €10.80 |
+Example C | 500 W | 15.0 ct | €0.90 | €10.80 |
 
-Treat these as ceilings. Almost every machine has a humidistat and cuts the compressor once the target humidity is reached, so it spends part of the run drawing far less than its rated power. Your real bill lands under the table, not over it.
+These are neither guaranteed upper limits nor measurements. Compressor cycling, fan operation, temperature and the selected programme affect average power and runtime. Read total kWh over a complete run for a more useful comparison.
 
 ## Is it cheaper than a tumble dryer?
 
-Only your own dryer can answer that, and the number is printed on its energy label: **consumption per cycle in kWh**. Multiply it by your unit rate. At €0.30/kWh a 2 kWh cycle costs **€0.60** and a 3.5 kWh cycle costs **€1.05** — against the €0.36 to €0.90 above.
+Use your dryer’s whole-cycle kWh or its energy label. New EU dryer labels state **kWh per 100 cycles**: divide that figure by 100. The label programme is a reference, not a measurement of your chosen programme. Multiply kWh by the same unit price for both methods.
 
-Then be honest about the rest of the comparison, or the number misleads you. The dryer is finished in an hour or two; the dehumidifier needs half a day and ties up a room while it works. In exchange it lowers the humidity of the whole room, so it is working against damp and mould at the same time — something the dryer does not do at all. **It is not a replacement for a dryer. It is a cheap replacement for heating the room to dry washing.**
+Match the laundry mass, spin speed and final dryness before deciding which costs less. Space, elapsed time and additional room heating can change the practical choice. A dehumidifier’s water tank also collects existing room moisture, so the water collected is not a direct measure of how dry the clothes are.
 
 ## Where do I find my electricity rate?
 
-On your own bill or in your supplier's app, as the unit rate per kWh. That is the only figure that decides your cost, and it varies a lot by country and by tariff — a fixed contract, a standard variable one and a time-of-use tariff can be far apart. The €0.30 used above is a round number to make the arithmetic checkable, not a claim about what you pay. Substitute your own rate and the table still works, whatever your currency.
+On your own bill or in your supplier's app, as the unit rate per kWh. Together with actual kWh, it determines direct electricity cost, and it varies a lot by country and by tariff — a fixed contract, a standard variable one and a time-of-use tariff can be far apart. The €0.30 used above is a round number to make the arithmetic checkable, not a claim about what you pay. Substitute your own rate and the table still works, whatever your currency.
 
 ## The humidity rule that matters more than the cost
 
-A spun load still holds one to two litres of water, and every drop of it ends up in the room air. In a small closed room that is enough to push relative humidity past 70 per cent, and above roughly 60 per cent at a cool wall surface mould starts to grow. So the point of the dehumidifier is not only speed — it is that the water leaves in the tank instead of ending up behind the wardrobe.
+Indoor drying adds moisture to room air. The Verbraucherzentrale guidance on heating and ventilation gives roughly 40–60% relative humidity as a general room range. Cooler walls can still be at risk even when the room reading looks acceptable.
 
-- Dry in one room with the door shut, not spread through the flat.
+- Measure room humidity and temperature; a single reading does not diagnose a building.
+- Use a suitable room and appropriate ventilation. Follow the device instructions.
+- Choose a spin speed compatible with the care labels to reduce the water left in the load.
+- Investigate leaks, condensation and persistent damp separately from electricity cost.
 
-- Avoid the bedroom: it is cooler, and overnight breathing adds more moisture.
-
-- Put a cheap hygrometer in the room. Under 60 per cent is the target.
-
-- Spin at a high speed first — less water in the load means less water in your air.
-
-**Looking at machines?** Check the rated power in watts on the label and the tank size — those two numbers decide running cost and how often you empty it.
+**Looking at machines?** Check the operating temperature range, extraction test conditions, noise data and drainage options. Rated watts and tank size alone do not establish laundry drying cost.
 
 Dehumidifiers with laundry mode →
   Indoor hygrometers →
 
 ## Frequently asked questions
 
-**How much does it cost to dry clothes with a dehumidifier?**At 0.30 EUR per kWh and six hours of running time, one load costs about 0.36 EUR on a 200 W unit, 0.54 EUR on a 300 W unit and 0.90 EUR on a 500 W unit. Those are upper limits, because the humidistat switches the compressor off once the target humidity is reached, so the machine rarely draws full power the whole time.
+**How much does it cost to dry clothes with a dehumidifier?**Multiply the energy for the whole run in kWh by your unit price. As a fictional example, 250 W average power for eight hours uses 2 kWh and costs EUR 0.70 at EUR 0.35/kWh. Rated watts and an assumed runtime are estimates, not a measured cost per dry load.
 
-**Is a dehumidifier cheaper than a tumble dryer?**It depends on your dryer, and the number you need is on its energy label: consumption per cycle in kWh. Multiply that by your unit rate. At 0.30 EUR per kWh a 2 kWh cycle costs 0.60 EUR and a 3.5 kWh cycle costs 1.05 EUR, against roughly 0.36 to 0.90 EUR for the dehumidifier. The dehumidifier usually wins on cost but takes half a day instead of an hour.
+**Is a dehumidifier cheaper than a tumble dryer?**Either can cost less. Compare the same amount of equally dry laundry using whole-run kWh and the same tariff. For a dryer label showing kWh per 100 cycles, divide by 100. The label programme may differ from your actual use; a meter reading is more specific to your run.
 
-**Does a dehumidifier replace a tumble dryer?**No. It is slower and it needs a room it can occupy for several hours. What it does that a dryer does not is pull the moisture out of the room air, so it protects the walls while it works. Treat it as a cheaper alternative to heating the room, not as a replacement for the dryer.
+**Does a dehumidifier replace a tumble dryer?**That depends on your space, acceptable drying time and laundry needs. A dehumidifier removes moisture from room air; that does not prove clothes have reached the same dryness as a dryer programme. This electricity comparison does not include room heating, ventilation heat or your time.
 
-**What humidity level should I stay under when drying laundry indoors?**Keep relative humidity under 60 per cent. A spun load still holds one to two litres of water and all of it evaporates into the room, which is enough to push a small closed room past 70 per cent. Above roughly 60 per cent at a cool wall surface, mould starts to grow.
+**What humidity level should I stay under when drying laundry indoors?**Verbraucherzentrale gives roughly 40 to 60 per cent relative humidity as a general room range. Cold surfaces can still have condensation or mould risk at a lower room reading. Monitor temperature and humidity, ventilate appropriately, and investigate persistent damp; a room reading is not a building diagnosis.
 
 **Related guides**
 [What a portable air conditioner costs to run →](https://getecoback.com/en/guide/portable-ac-running-cost.html)
@@ -72,6 +69,14 @@ Condition | Water per day | Power |
 
 Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
 Sources checked on 1 October 2026: Meaco · Comfee manual · Verbraucherzentrale. No hands-on tests. Guidance, not a remote diagnosis.
+
+## Reproducible laundry cost comparison
+Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.
+
+- Use the same laundry mass, spin speed and desired final dryness.
+- Record start/end energy readings and runtime using a suitable meter. Follow its instructions and electrical rating.
+- Use the kWh difference for the whole run. Rated watts are not measured average power.
+- For a label per 100 cycles, divide by 100. Its test programme may differ from your actual use.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

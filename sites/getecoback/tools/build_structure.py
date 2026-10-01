@@ -15,6 +15,7 @@ English pages under /en/ and the standalone 404 are left untouched.
 Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 """
 import os, re, glob, json, urllib.parse, html as htmllib
+from laundry_decision import inject as inject_laundry
 from moisture_decision import inject as inject_moisture_decision, creator_entry
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -4054,6 +4055,7 @@ def inject_quickpick(html, slug, en=False):
     flagship pages, and those are exactly the pages that convert. Size-series
     pages stay out: build_xlinks already gives them sibling navigation.
     """
+    html = inject_laundry(html, slug, en)
     moisture = inject_moisture_decision(html, slug, en)
     if moisture is not None:
         return moisture
@@ -4722,7 +4724,8 @@ def main():
                + glob.glob(os.path.join(KAT, "*.html")))
     for path in targets:
         html = open(path, encoding="utf-8").read()
-        new = inject_chrome(html)
+        new = inject_laundry(html, os.path.basename(path)[:-5])
+        new = inject_chrome(new)
         new = inject_search(new)
         new = inject_track(new)
         new = inject_profile(new)

@@ -1,4 +1,5 @@
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
+import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
 import {BUYER_EVENTS,validBuyerEvent} from './buyer-events.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 import {videoGrowth} from './video-growth.mjs';
@@ -398,6 +399,7 @@ async function serveAsset(request, env, pathname, ctx) {
 const EV_NAMES = new Set([
   ...DISTRIBUTION_EVENTS,
   ...BUYER_EVENTS,
+  ...LAUNDRY_EVENTS,
   "crawl",
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "feuchte_now",
@@ -767,6 +769,10 @@ async function handleEvent(request, env, ctx) {
   }
   if(BUYER_EVENTS.includes(name)) {
     if(!validBuyerEvent(body))return json({ok:false,error:'invalid_buyer_event'},400,cors);
+    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
+  }
+  if(LAUNDRY_EVENTS.includes(name)) {
+    if(!validLaundryEvent(body))return json({ok:false,error:'invalid_laundry_event'},400,cors);
     if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
   }
   const page = String(body.p || "").slice(0, 200);
