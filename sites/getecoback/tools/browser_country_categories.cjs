@@ -26,7 +26,9 @@ const origin='https://getecoback.com', root=path.resolve('site');
    });
    const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('popup',p=>p.close().catch(()=>{}));
    await page.goto(origin+url);assert.equal(await page.locator('html').getAttribute('lang'),c.lang);
-   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${url} overflow at ${width}`);
+   const layout=await page.evaluate(()=>({fits:document.documentElement.scrollWidth<=innerWidth+1,overflow:[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).map(e=>({tag:e.tagName,cls:e.className,text:e.textContent.slice(0,100),right:e.getBoundingClientRect().right})).slice(0,12)}));
+   if(!layout.fits)await page.screenshot({path:path.join(dir,`overflow-${engine}-${c.market}-${width}-${url===c.path?'hub':'guide'}.png`),fullPage:true});
+   assert(layout.fits,`${url} overflow at ${width}: ${JSON.stringify(layout.overflow)}`);
    if(url===c.path){
     for(const cat of c.categories){
      await page.locator('#country-need').selectOption(cat.id);
