@@ -265,6 +265,8 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 
 
 
+
+
 <!-- earn:start -->
 ## Earn with AI — editorial project briefs, not verified earnings
 - https://agiscorecard.com/earn
@@ -282,3 +284,37 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 - https://agiscorecard.com/earn/cases/tiktok-effect-prototype
 Video sources reviewed 2026-09-30; added repository references checked 2026-10-01. Videos and official guides labeled separately. Free local planner; paid cloud workspaces are separate.
 <!-- earn:end -->
+
+<!-- workbench:start -->
+## Practical browser tools — localized methods and examples
+- [Source review tracker and calendar](https://agiscorecard.com/workbench/evidencewatch) [en]: Keep claim-level source references and export due dates to your calendar. Text: https://agiscorecard.com/workbench/evidencewatch.md
+- [AI agent workflow and acceptance planner](https://agiscorecard.com/workbench/agentfit) [en]: Choose an execution pattern and write testable acceptance criteria before deploying an agent. Text: https://agiscorecard.com/workbench/agentfit.md
+- [Financial metrics and source workbook](https://agiscorecard.com/workbench/filinglens-workspace) [en]: Preserve same-period research inputs, source URLs and calculated changes. Text: https://agiscorecard.com/workbench/filinglens-workspace.md
+- [Invoice and purchase order checker](https://agiscorecard.com/workbench/tradecheck-team) [en]: Compare invoice lines to purchase orders and flag duplicate invoice IDs. Text: https://agiscorecard.com/workbench/tradecheck-team.md
+- [Translation CSV quality checker](https://agiscorecard.com/workbench/localebatch-qa) [en]: Find missing translations, changed placeholders and import-field duplicates. Text: https://agiscorecard.com/workbench/localebatch-qa.md
+- [Supplier quote comparison workbook](https://agiscorecard.com/workbench/rfq-roundbook) [en]: Compare one-currency quote rounds and save the assumptions behind each decision. Text: https://agiscorecard.com/workbench/rfq-roundbook.md
+- [Business opportunity evidence brief](https://agiscorecard.com/workbench/evidencebrief) [en]: Build a sourced opportunity memo with alternatives, counterevidence and a stop condition. Text: https://agiscorecard.com/workbench/evidencebrief.md
+- [AI billing reconciliation checker](https://agiscorecard.com/workbench/modelmeter-reconcile) [en]: Reconcile normalized expected AI costs against billing entries without connecting an account. Text: https://agiscorecard.com/workbench/modelmeter-reconcile.md
+- [AI workflow delivery cost calculator](https://agiscorecard.com/workbench/workflowcost) [en]: Model retries, human review and fixed costs before quoting an automated workflow. Text: https://agiscorecard.com/workbench/workflowcost.md
+- [SQL practice projects in your browser](https://agiscorecard.com/workbench/querysprint-projects) [en]: Run original SQLite projects in your browser and compare results with explained solutions. Text: https://agiscorecard.com/workbench/querysprint-projects.md
+- [Job requirements and portfolio evidence](https://agiscorecard.com/workbench/job-evidence) [en]: Map role requirements to real projects, sources and observed results. Text: https://agiscorecard.com/workbench/job-evidence.md
+- [Suspicious message verification checklist](https://agiscorecard.com/workbench/scamchecklist) [en]: Create a verification checklist from observable warning signals. Text: https://agiscorecard.com/workbench/scamchecklist.md
+- [Original daily 4 by 4 number puzzle](https://agiscorecard.com/workbench/puzzleclub) [en]: Play an original daily 4 × 4 puzzle with one verified solution and share your result. Text: https://agiscorecard.com/workbench/puzzleclub.md
+- [Printable number puzzles and answers](https://agiscorecard.com/workbench/classroompuzzles) [en]: Generate original printable number puzzles and a separate answer sheet for your class. Text: https://agiscorecard.com/workbench/classroompuzzles.md
+- [Interactive number puzzle embed builder](https://agiscorecard.com/workbench/embedpuzzles) [en]: Generate a self-contained interactive puzzle embed for a website or classroom page. Text: https://agiscorecard.com/workbench/embedpuzzles.md
+- [来源证据复核与日历提醒](https://agiscorecard.com/zh/workbench/evidencewatch) [zh]: 保存每条结论的来源与复核时间，将待办日期导出到日历。 Text: https://agiscorecard.com/zh/workbench/evidencewatch.md
+- [AI Agent 任务架构与验收规划](https://agiscorecard.com/zh/workbench/agentfit) [zh]: 部署 Agent 前，按任务与权限选择执行方式并定义可复现的验收条件。 Text: https://agiscorecard.com/zh/workbench/agentfit.md
+- [财报指标变化与证据工作台](https://agiscorecard.com/zh/workbench/filinglens-workspace) [zh]: 保留同口径研究输入、来源网址和指标变化计算结果。 Text: https://agiscorecard.com/zh/workbench/filinglens-workspace.md
+- [采购单与发票差异核对](https://agiscorecard.com/zh/workbench/tradecheck-team) [zh]: 比较发票明细和采购单，标记本批次或历史中重复的发票编号。 Text: https://agiscorecard.com/zh/workbench/tradecheck-team.md
+- [商品翻译 CSV 字段检查](https://agiscorecard.com/zh/workbench/localebatch-qa) [zh]: 查找空译文、占位符变化、数字差异及重复导入字段。 Text: https://agiscorecard.com/zh/workbench/localebatch-qa.md
+- [供应商报价比较与轮次记录](https://agiscorecard.com/zh/workbench/rfq-roundbook) [zh]: 比较同币种同数量的报价，保存每轮决策所用的输入与假设。 Text: https://agiscorecard.com/zh/workbench/rfq-roundbook.md
+- [商业机会证据与反证简报](https://agiscorecard.com/zh/workbench/evidencebrief) [zh]: 用来源、替代方案、反面证据及停止条件组织商业机会判断。 Text: https://agiscorecard.com/zh/workbench/evidencebrief.md
+- [AI 账单预期与实付对账](https://agiscorecard.com/zh/workbench/modelmeter-reconcile) [zh]: 无需连接厂商账户，对照标准化预期成本与账单明细。 Text: https://agiscorecard.com/zh/workbench/modelmeter-reconcile.md
+- [自动化工作流成本计算](https://agiscorecard.com/zh/workbench/workflowcost) [zh]: 为自动化服务报价前，计算重试、人工复核和固定成本。 Text: https://agiscorecard.com/zh/workbench/workflowcost.md
+- [SQL 实战项目与浏览器练习](https://agiscorecard.com/zh/workbench/querysprint-projects) [zh]: 在浏览器中运行原创 SQLite 项目，对照结果和带解释的参考答案。 Text: https://agiscorecard.com/zh/workbench/querysprint-projects.md
+- [求职要求与真实项目证据匹配](https://agiscorecard.com/zh/workbench/job-evidence) [zh]: 把岗位要求对应到自己的真实项目、可核验材料和观察到的结果。 Text: https://agiscorecard.com/zh/workbench/job-evidence.md
+- [可疑信息核实清单](https://agiscorecard.com/zh/workbench/scamchecklist) [zh]: 根据可观察的风险信号生成核实步骤，不把未发现信号当作安全保证。 Text: https://agiscorecard.com/zh/workbench/scamchecklist.md
+- [每日原创 4×4 数字谜题](https://agiscorecard.com/zh/workbench/puzzleclub) [zh]: 挑战每日原创且唯一解的 4×4 谜题，检查答案并分享完成结果。 Text: https://agiscorecard.com/zh/workbench/puzzleclub.md
+- [课堂数字谜题与答案打印](https://agiscorecard.com/zh/workbench/classroompuzzles) [zh]: 生成原创数字谜题练习纸及独立答案页，用于课堂教学。 Text: https://agiscorecard.com/zh/workbench/classroompuzzles.md
+- [网站数字谜题嵌入生成器](https://agiscorecard.com/zh/workbench/embedpuzzles) [zh]: 生成可配置、可独立运行的交互谜题，嵌入网站或教学页面。 Text: https://agiscorecard.com/zh/workbench/embedpuzzles.md
+<!-- workbench:end -->

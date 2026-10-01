@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v5** — **Last updated: 2026-09-26**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v6** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -38,7 +38,22 @@ Separate sample use, own-data use, exercises and QA. Opt-in anonymous page-visit
 
 No new paid features for the three discovery probes until repeated task evidence and a reachable buyer segment are documented. After 100 relevant landing visits, 20 own-task completions and five contextual price-interest visits, investigate manually; this operating gate is not statistical proof or automatic permission to charge. Missing distribution is an inconclusive market result. Before scaling: three independent actual buyers, positive contribution after delivery/support and repeat buying evidence appropriate to the model. No advertising spend, purchased domains or new recurring provider expense in this release.
 
+## Work Mentor: revenue pilot, owner-authorized 2026-10-01
+
+- Adult learners who need to check an AI-assisted weekly sales report. First reachable segment is English/Chinese readers of AGI tools, Earn and Workbench plus existing owned YouTube/TikTok audiences; relevance and demand remain unverified.
+- Job: turn an ambiguous spreadsheet task into a correct, explainable five-decision report, then repeat on fresh data under consistent tool conditions. Alternative: generic AI plus a spreadsheet and manual checking.
+- Promise: specific next actions and reproducible checks. Do not promise earnings, productivity gains, credentials, verified competence or human coaching. Fictional examples are labeled.
+- Free: local practice, deterministic checks, targeted hints, backup export and limited Workers AI explanations. Paid: existing AGI cloud membership, 9 USDT/30 days plus matching decimal and network fees, 50 spaces/10 versions/64 KB per space/5 MB total. No auto-renewal and no additional AI quota. The earlier CNY49/14-day offer was a hypothesis, not a live checkout.
+- AI reuses Relay's existing 12 site-wide attempts/24-hour window and 3 per-IP/UTC day; no budget expansion. This is a bounded pilot, not a scalable paid AI tutoring promise.
+- Revenue hypothesis: repeat learners value portable versioned practice records enough to pay. Strong counter-case: local export is sufficient and crypto-only checkout deters the audience. Record payment-method/no-need feedback before adding scope.
+- Distribution: useful report-checklist page, relevant site navigation and an original real-product demo on authorized owned channels. No fabricated outcomes, testimonials or promotional DMs.
+- Measure actual product-attributed paid receipts separately from opt-in browser-day events, link tags and platform reach. Do not infer a person-level conversion rate from these incompatible denominators. Follow docs/mentor-revenue-launch-2026-10-01.md.
+- Standing delivery preference: website work includes marketing design, authorized execution, live verification and measurement; deployment alone is incomplete.
+
 ## Changelog
+
+- v6 (2026-10-01): Added the owner-requested task-led Work Mentor pilot, concrete existing payment entitlement, AI cost boundary, marketing delivery requirement and daily aggregate review.
+
 
 - v5 (2026-09-26): Audited BPJ current reach and payment readiness; optional sponsorship decision support after free submission, explicit buyer fit and rejection reasons. Keep video expansion on hold and the $299 pilot independent. See docs/bpj-commercial-triggers-2026-09-26.md.
 

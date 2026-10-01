@@ -1,5 +1,6 @@
 import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
+import {mentorRoute} from '../mentor/server.mjs';
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
@@ -244,6 +245,7 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    const mentorResponse=await mentorRoute(request,env);if(mentorResponse)return mentorResponse;
     const infrastructureResponse=await infrastructureRoute(request,env);if(infrastructureResponse)return infrastructureResponse;
     const createResponse=await createRoute(request,env);if(createResponse)return createResponse;
     const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
