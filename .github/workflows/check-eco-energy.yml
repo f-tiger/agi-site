@@ -70,12 +70,12 @@ jobs:
           preview_pid=$!
           trap 'kill "$preview_pid"' EXIT
           for i in 1 2 3 4 5; do curl -sf http://127.0.0.1:8765/stromtarif-werkstatt.html > /dev/null && break; sleep 1; done
+          BUYING_BASELINE_SHA=270ed3253a1941a15e0dee45e53554dbadbca6b2 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buying_friction.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
-          BUYING_BASELINE_SHA=270ed3253a1941a15e0dee45e53554dbadbca6b2 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buying_friction.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

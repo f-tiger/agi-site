@@ -67,6 +67,7 @@ const cases=[
    });
    const market=tz.startsWith('America/')?'com':'de';
    const record={engine,revision,width,url,tz,cooling,consentShown,stickyUrl,...metrics};results.push(record);
+   await fs.writeFile(dir+'/buying-friction.json',JSON.stringify(results,null,2));
    if(engine==='chromium'&&width===390&&tz==='Europe/Berlin'&&url.includes('luftentfeuchter-25'))
     await page.screenshot({path:dir+'/buying-popup-'+revision+'.png'});
    if(revision==='current'){
@@ -79,9 +80,12 @@ const cases=[
     for(const pick of metrics.picks){const u=new URL(pick.href);assert.equal(u.hostname,'www.amazon.'+market);assert.equal(u.searchParams.get('tag'),market==='de'?'getecoback-21':'ecoback0d-20');}
     if(market==='com')assert(!metrics.picks.some(p=>/Comfee|Meaco/i.test(p.text)),'US popup must name the same US models as its shelf');
     const before=await page.evaluate(()=>window.__events.filter(e=>e.n==='affiliate_click').length);
-    await page.locator('#eb-pu [data-eb-pu="pick"]:visible').first().click();await page.waitForTimeout(250);
+    await page.locator('#eb-pu [data-eb-pu="pick"]:visible').first().click();
+    // The real tracker coalesces reports for 700 ms. Advance its timer before
+    // asserting delivery; a 250 ms check incorrectly reads a pending click as zero.
+    await page.clock.runFor(1000);await page.waitForTimeout(50);
     const clicks=(await page.evaluate(()=>window.__events.filter(e=>e.n==='affiliate_click'))).slice(before);
-    assert.equal(clicks.length,1,JSON.stringify(clicks));assert.equal(clicks[0].m.link_url,metrics.picks[0].href);
+    assert.equal(clicks.length,1,JSON.stringify({record,clicks}));assert.equal(clicks[0].m.link_url,metrics.picks[0].href);
     await page.locator('#eb-pu-x').click();assert.equal(await page.locator('#eb-pu').isVisible(),false);
     assert.equal(errors.length,0,errors.join(';'));
    }
