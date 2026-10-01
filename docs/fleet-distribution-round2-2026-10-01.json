@@ -1,0 +1,90 @@
+{
+  "checked_at": "2026-10-01T13:38:54.661275+00:00",
+  "release": "1dc2c1a0b267b4b1cc9431cd7ccc46e5b7986515",
+  "checks": [
+    {
+      "route": "/embed/work-plan",
+      "result": "widget-isolated-and-frameable"
+    },
+    {
+      "route": "/work-plan",
+      "result": "publisher-kit-present"
+    },
+    {
+      "route": "/studio/codex-efficiency",
+      "result": "install-surface-present",
+      "plain_command": false
+    },
+    {
+      "route": "/en/embed/work-plan",
+      "result": "widget-isolated-and-frameable"
+    },
+    {
+      "route": "/en/work-plan",
+      "result": "publisher-kit-present"
+    },
+    {
+      "route": "/en/studio/codex-efficiency",
+      "result": "install-surface-present",
+      "plain_command": false
+    },
+    {
+      "route": "/work-plan-distribution.js",
+      "result": "source-bytes-matched"
+    },
+    {
+      "route": "/work-plan-embed.css",
+      "result": "source-bytes-matched"
+    },
+    {
+      "route": "/.well-known/agent-skills/index.json",
+      "result": "single-skill-6-release-files-matched",
+      "cors": "*"
+    },
+    {
+      "route": "/.well-known/skills/index.json",
+      "result": "single-skill-6-release-files-matched",
+      "cors": "*"
+    },
+    {
+      "route": "/api/codex-efficiency",
+      "ready": false,
+      "trial": true
+    }
+  ],
+  "claim": "HTTP artifacts verified; no real customer, payment or external adoption inferred",
+  "deployment_commit": "dc75bc477642daaae7b8329bd0cef2bed013c6f8",
+  "workflow_run": 36868968765,
+  "workflow_conclusion": "success",
+  "production_cli": {
+    "version": "1.7.0",
+    "operation": "list",
+    "result": "one skill; six files",
+    "telemetry_disabled": true,
+    "customer_install": false
+  },
+  "correction": {
+    "checked_at": "2026-10-01T13:44:17.581837+00:00",
+    "commit": "fbc87edc9699224ee6de7156e4caadd2be09c85b",
+    "workflow_run": 36870234022,
+    "checks": [
+      {
+        "route": "/studio/codex-efficiency",
+        "plain_command": "exact-match",
+        "email_obfuscation_in_command": false
+      },
+      {
+        "route": "/en/studio/codex-efficiency",
+        "plain_command": "exact-match",
+        "email_obfuscation_in_command": false
+      },
+      {
+        "route": "/api/codex-efficiency",
+        "ready": false,
+        "trial": true
+      }
+    ],
+    "workflow_conclusion": "success"
+  },
+  "outcome": "Launched and verified; external adoption, incremental traffic and revenue remain unverified."
+}
