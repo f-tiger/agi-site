@@ -58,3 +58,12 @@ Run `node tools/quote-page-lab/build.mjs`, then the browser test described in RE
 - Browser verification covers mobile-visible start, focus into the creator form, preserved defaults, fixed recommendation payloads, native-share canceled/blocked/resolved stubs, clipboard failure with selectable fallback and no false copy event. No external app receives a test message. Actual iOS/Android OS share delivery remains unverified.
 - Existing BPJ core/workerd, dist/member/revenue and ten browser suites pass. The final GA4 coverage installer/checker passes and explicitly excludes both quote routes; no global tracking is introduced into quote content.
 - Live edition and deployment status are recorded in the release PR. No visitors, delivered messages, qualified creators, retention or revenue are inferred from technical QA.
+
+
+## BPJ visual alignment — 2026-10-01.5
+
+Owner feedback: the quote studio did not match BPJ. Prompt refinement 1: align with the current site shell, not the obsolete paper/Unigrid CSS. Refinement 2: match the brand, typography, surfaces, forms and mobile navigation while preserving portable customer files. Refinement 3: verify bilingual desktop/mobile, system dark mode, real clipboard/export flows and deployed bytes.
+
+Adversarial self-review 1: recoloring alone would leave a different logo and page structure; replaced the document icon with BPJ's b. symbol, added the studio breadcrumb and editing card, and aligned social previews. Self-review 2: importing the full site shell would attach account/analytics runtime to customer quotes; the visual adapter remains inline. Dark input foreground/background colors are paired, print forces a light palette, and mobile editing keeps the existing sticky actions.
+
+Local validation passed: the current BPJ landing page and quote page have identical computed background, text color and font family in light/dark mode. Both languages fit 320/390/1024/1440 px; dark-mode printing returns to legible light paper. Screenshots reviewed for desktop, mobile, customer view and social previews. Existing portable/hosted quote flows, growth/privacy contracts, 38 core gates, 14 distribution/build gates, 10 existing browser suites, ProposalDeck suites and actual workerd account checks passed. Final analytics coverage preserves quote isolation. These are technical checks, not user or revenue evidence.

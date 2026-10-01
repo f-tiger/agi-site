@@ -48,7 +48,7 @@ The test builds no hidden network dependency. Run `build.mjs` before the browser
 
 ## Files
 
-`core.mjs` validates configuration and computes integer-money totals. `app.js` provides the bilingual editor and customer view. `style.css` follows BPJ's paper/ink workspace. `render.mjs` is the shared production/portable renderer. `test.mjs` covers calculation and actual browser export flows; `test-hosted.mjs` covers clipboard handover, mobile actions and measurement privacy. `verify.mjs` checks discovery and production identity.
+`core.mjs` validates configuration and computes integer-money totals. `app.js` provides the bilingual editor and customer view. `style.css` matches BPJ's current `assets/site-shell.css`: blue brand, cool-gray workspace, system font stack, rounded white cards and system dark mode. The visual adapter stays inline so exported quotes need no account, analytics or stylesheet requests. `render.mjs` is the shared production/portable renderer. `test.mjs` covers calculation and actual browser export flows; `test-hosted.mjs` covers clipboard handover, mobile actions and measurement privacy. `verify.mjs` checks discovery and production identity.
 
 ## Acquisition experiment
 
