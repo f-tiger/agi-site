@@ -1,0 +1,26 @@
+{
+  "description": "Public experiment definitions only. Keep merchant exports and private operational readings outside the repository.",
+  "bets": [
+    {
+      "id": "eco-country-category-1031",
+      "site": "getecoback",
+      "due": "2026-10-31",
+      "metric": "Per DE/NL/AU category cohort: human page_view events, need_selected, need_result, merchant outbound. Exclude QA, bots and DNT/GPC. Merchant-confirmed net commissions remain a separate source.",
+      "threshold": "First 30 live days: at least 100 qualified visits per market before judging content; then >=10 guide-result clicks and >=5 merchant clicks is a continuation signal, not statistical proof or revenue. No reach = distribution inconclusive.",
+      "win": "Deepen the market/constraint with measured demand. Monetize NL/AU only after verified local affiliate enrollment and tracking ID. Validate EPC from matched merchant reports before scaling.",
+      "lose": "If >=100 qualified visits and no guide-result or merchant clicks, revise entry intent and buying fit once; do not add more pages to that cluster. Unknown attribution or commissions blocks revenue claims.",
+      "source": "sites/getecoback/docs/country-category-expansion-2026-10-01.md",
+      "status": "open",
+      "supersedes_queue_topic": "hygrometer-testen-salz",
+      "built_pages": [
+        "/wohnen.html",
+        "/guide/luftfeuchtigkeit-richtig-messen.html",
+        "/nl/wonen.html",
+        "/nl/ventilatie-of-luchtontvochtiger.html",
+        "/au/home-comfort.html",
+        "/au/portable-air-conditioner-window-kit.html"
+      ],
+      "queue_note": "The measurement/placement part of this older unbuilt topic is delivered by this public pilot. Recheck cannibalization before any separate calibration page; do not duplicate the measurement guide."
+    }
+  ]
+}

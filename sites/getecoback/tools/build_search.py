@@ -24,7 +24,7 @@ def field(h, pattern):
 
 def collect():
     out = []
-    pats = ["*.html", "guide/*.html", "en/*.html", "en/guide/*.html", "fr/*.html", "es/*.html", "it/*.html", "it/guide/*.html", "kategorie/*.html", "agents/*.html", "en/agents/*.html", "zh/agents/*.html"]
+    pats = ["*.html", "guide/*.html", "en/*.html", "en/guide/*.html", "fr/*.html", "es/*.html", "it/*.html", "it/guide/*.html", "nl/*.html", "au/*.html", "kategorie/*.html", "agents/*.html", "en/agents/*.html", "zh/agents/*.html"]
     for pat in pats:
         for path in sorted(glob.glob(os.path.join(SITE, pat))):
             rel = os.path.relpath(path, SITE).replace(os.sep, "/")
@@ -41,7 +41,7 @@ def collect():
             if url.endswith("/index.html"):
                 url = url[: -len("index.html")]
             out.append({"u": url, "t": title, "d": desc[:160],
-                        "l": "zh-CN" if rel.startswith("zh/") else "en" if rel.startswith("en/") else "fr" if rel.startswith("fr/") else "es" if rel.startswith("es/") else "it" if rel.startswith("it/") else "de"})
+                        "l": "nl" if rel.startswith("nl/") else "en-AU" if rel.startswith("au/") else "zh-CN" if rel.startswith("zh/") else "en" if rel.startswith("en/") else "fr" if rel.startswith("fr/") else "es" if rel.startswith("es/") else "it" if rel.startswith("it/") else "de"})
     return out
 
 

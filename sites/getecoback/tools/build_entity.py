@@ -57,6 +57,10 @@ def main():
     if f'"@id":"{ORG_ID}"' not in s:
         print("build_entity: canonical #org node not found on the homepage")
         return 1
+    # Owner withdrew balcony PV; stale publisher metadata must not advertise it.
+    clean = s.replace("Kühlen, Heizen, Luftqualität und Balkon-Solar.", "Kühlen, Heizen, Luftqualität und Energie sparen.")
+    metadata_changed = clean != s
+    s = clean
     added = []
     for prop, url, _ in CANON_EXTRA:
         if f'"{prop}"' in s:
@@ -67,7 +71,7 @@ def main():
             return 1
         s = s.replace(anchor, anchor + f',"{prop}":"{url}"', 1)
         added.append(prop)
-    if added:
+    if added or metadata_changed:
         open(home, "w", encoding="utf-8").write(s)
 
     # 2. point every anonymous mention at it

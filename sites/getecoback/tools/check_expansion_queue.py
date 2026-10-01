@@ -9,7 +9,7 @@ a page that was never shipped. So this checks the shape of those accidents:
 
   * every item has the fields the daily run reads, and a known status;
   * 'built' means the page file exists, carries the recorded datePublished, and
-    its bet is in data/fleet-bets.json (a page without a bet is not pre-registered);
+    its bet is registered in the fleet ledger or site public experiment definitions;
   * anything not 'built' must NOT have a page yet (else it is built and the flag
     is stale, or the slug collides with an unrelated page);
   * 'rejected' carries the SERP verdict that rejected it, with a date — the point
@@ -72,7 +72,7 @@ def check(queue, page_exists, page_date, bet_ids):
             elif it.get("built") and page_date(slug) != it["built"]:
                 errors.append(f"{where}: built {it.get('built')} but the page's datePublished is {page_date(slug)}")
             if it.get("bet") not in bet_ids:
-                errors.append(f"{where}: built without a bet in data/fleet-bets.json ({it.get('bet')!r})")
+                errors.append(f"{where}: built without a registered fleet or site experiment ({it.get('bet')!r})")
         elif page_exists(slug):
             if st == "removed":
                 errors.append(f"{where}: marked removed but site/guide/{slug}.html still exists")
@@ -152,6 +152,22 @@ def main():
         return selftest()
     queue = json.load(open(QUEUE, encoding="utf-8"))
     bet_ids = {b["id"] for b in json.load(open(BETS, encoding="utf-8"))["bets"]}
+    # New public definitions can be registered without rewriting an unrelated
+    # fleet operations ledger. Existing fleet experiments remain supported.
+    public_bets = os.path.join(SITE_ROOT, "data", "growth-experiments.json")
+    if os.path.exists(public_bets):
+        records = json.load(open(public_bets, encoding="utf-8"))["bets"]
+        for b in records:
+            for key in ("id", "site", "due", "metric", "threshold", "win", "lose", "source", "status"):
+                if not b.get(key):
+                    raise ValueError(f"Public experiment {b.get('id')}: missing {key}")
+            if b["site"] != "getecoback":
+                raise ValueError("Site experiment belongs to a different site")
+            if b["id"] in bet_ids:
+                raise ValueError("Duplicate experiment id: " + b["id"])
+            bet_ids.add(b["id"])
+            if b.get("supersedes_queue_topic"):
+                print("::warning::public experiment supersedes queued topic " + b["supersedes_queue_topic"] + "; check cannibalization before building it")
     errs, warns = check(queue, lambda s: os.path.exists(os.path.join(GUIDE, s + ".html")), _page_date, bet_ids)
     for w in warns:
         print(f"::warning::expansion queue: {w}")
