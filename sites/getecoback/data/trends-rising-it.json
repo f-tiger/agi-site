@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-30",
+ "fetched": "2026-10-01",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
@@ -49,58 +49,50 @@
    "fetched": "2026-09-30"
   },
   "deumidificatore": {
-   "auto": [
-    "deumidificatore",
-    "deumidificatore portatile",
-    "deumidificatore casa",
-    "deumidificatore dyson",
-    "deumidificatore in inglese",
-    "deumidificatore condizionatore",
-    "deumidificatore a parete",
-    "deumidificatore o condizionatore",
-    "deumidificatore vs condizionatore",
-    "deumidificatore come funziona"
-   ],
    "rising": [
     {
-     "q": "deumidificatore portatile",
-     "v": "new"
+     "q": "il climatizzatore consuma di piu in modalita deumidificatore",
+     "v": 8100
     },
     {
-     "q": "deumidificatore casa",
-     "v": "new"
+     "q": "deumidificatore argo dry nature 11",
+     "v": 5800
     },
     {
-     "q": "deumidificatore dyson",
-     "v": "new"
+     "q": "miglior deumidificatore portatile silenzioso",
+     "v": 4300
     },
     {
-     "q": "deumidificatore in inglese",
-     "v": "new"
+     "q": "deumidificatore de longhi vecchio modello",
+     "v": 3750
     },
     {
-     "q": "deumidificatore condizionatore",
-     "v": "new"
+     "q": "consuma di piu aria condizionata o deumidificatore",
+     "v": 250
     },
     {
-     "q": "deumidificatore a parete",
-     "v": "new"
+     "q": "meglio deumidificatore o condizionatore di notte",
+     "v": 150
     },
     {
-     "q": "deumidificatore o condizionatore",
-     "v": "new"
+     "q": "il condizionatore a deumidificatore consuma meno",
+     "v": 150
     },
     {
-     "q": "deumidificatore vs condizionatore",
-     "v": "new"
+     "q": "come funziona il deumidificatore del condizionatore",
+     "v": 120
     },
     {
-     "q": "deumidificatore come funziona",
-     "v": "new"
+     "q": "il deumidificatore fa male",
+     "v": 100
+    },
+    {
+     "q": "dyson deumidificatore e condizionatore",
+     "v": 100
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-18"
+   "source": "related-queries",
+   "fetched": "2026-10-01"
   }
  }
 }
