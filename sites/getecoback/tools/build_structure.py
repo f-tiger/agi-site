@@ -15,6 +15,7 @@ English pages under /en/ and the standalone 404 are left untouched.
 Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 """
 import os, re, glob, json, urllib.parse, html as htmllib
+from moisture_decision import inject as inject_moisture_decision, creator_entry
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -4053,6 +4054,9 @@ def inject_quickpick(html, slug, en=False):
     flagship pages, and those are exactly the pages that convert. Size-series
     pages stay out: build_xlinks already gives them sibling navigation.
     """
+    moisture = inject_moisture_decision(html, slug, en)
+    if moisture is not None:
+        return moisture
     table = QUICKPICK_EN if en else QUICKPICK
     # device_of() reads German keywords, so English slugs fall through to "ac".
     # Catch the ones that are not about buying a cooling unit before that happens.
@@ -4833,6 +4837,14 @@ def main():
             open(path, "w", encoding="utf-8").write(new)
             en_processed += 1
     print(f"English chrome injected/updated on {en_processed} /en/ pages")
+    for en, relative in ((False, 'creator-kit.html'), (True, 'en/creator-kit.html')):
+        path = os.path.join(SITE, relative)
+        with open(path, encoding='utf-8') as f:
+            html = f.read()
+        new = creator_entry(html, en)
+        if new != html:
+            with open(path, 'w', encoding='utf-8') as f:
+                f.write(new)
 
 if __name__ == "__main__":
     main()

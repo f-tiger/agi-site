@@ -54,6 +54,15 @@ def to_markdown(src_html, path_url, lang):
     desc = H.unescape(m.group(1)).strip() if m else ""
     m = re.search(r"<article[^>]*>(.*?)</article>", src_html, re.S)
     body = m.group(1) if m else ""
+    # Preserve the sourced performance explanation from the decision guide,
+    # while keeping its form, hidden shopping results and affiliate URLs out.
+    buyer = re.search(r'<!--EB_BUYER-->(.*?)<!--/EB_BUYER-->', src_html, re.S)
+    if buyer:
+        evidence = re.search(r'<details>(.*?)</details>', buyer.group(1), re.S)
+        if evidence:
+            heading = 'Herstellerdaten vor dem Kauf prüfen' if lang == 'de' else 'Check manufacturer data before buying'
+            source = re.search(r'<small>(?:Quellen geprüft|Sources checked).*?</small>', buyer.group(1), re.S)
+            body += f'<h2>{heading}</h2>' + evidence.group(1) + (source.group(0) if source else '')
     # Detect the live-number bands BEFORE they are stripped below. They are
     # JavaScript-rendered, so a crawler or this Markdown view sees an empty
     # div — and the whole point of a live number (citation-growth item six:

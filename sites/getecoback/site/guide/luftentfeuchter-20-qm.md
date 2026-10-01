@@ -46,6 +46,15 @@ Luftentfeuchter ansehen →
 [Klimaanlage vs. Luftkühler →](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html)
 [Was kostet der Betrieb an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
 
+## Herstellerdaten vor dem Kauf prüfen
+Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
+Bedingung | Wasser pro Tag | Leistung |
+10 °C / 60 % RH | 3.4 L | 180 W |
+20 °C / 60 % RH | 8.5 L | 216 W |
+
+Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
+Quellen geprüft am 01.10.2026: Meaco · Comfee Handbuch · Verbraucherzentrale. Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

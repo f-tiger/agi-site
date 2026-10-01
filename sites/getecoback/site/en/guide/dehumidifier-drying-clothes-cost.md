@@ -64,6 +64,15 @@ Dehumidifiers with laundry mode →
 [Portable AC leaking water: why it happens →](https://getecoback.com/en/guide/portable-ac-leaking-water.html)
 [Auf Deutsch: Wäsche in der Wohnung trocknen ohne Schimmel →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
 
+## Check manufacturer data before buying
+Why “20 litres” does not always mean 20 litresExample: MeacoDry Arete One 20L. Manufacturer figures, not an EcoBack test. Different room conditions are not a controlled efficiency comparison.
+Condition | Water per day | Power |
+10 °C / 60 % RH | 3.4 L | 180 W |
+20 °C / 60 % RH | 8.5 L | 216 W |
+
+Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
+Sources checked on 1 October 2026: Meaco · Comfee manual · Verbraucherzentrale. No hands-on tests. Guidance, not a remote diagnosis.
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
