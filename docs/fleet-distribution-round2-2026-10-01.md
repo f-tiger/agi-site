@@ -90,3 +90,10 @@ If there are no verified external placements, refine the publisher message and p
 - 36 browser checks cover both widget languages at phone width, explicit example/edited actions, coarse referral, full-tool state handoff, no opener, safe publisher snippet, copy feedback and QA separation. Browser requests were intercepted; they are not production usage.
 - Skills CLI 1.7.0 discovered the served catalog and installed only the selected skill in an isolated compatibility-test project. All six installed release files matched their expected SHA-256 digests. The test did not invoke the skill against user logs, enroll an account or purchase Pro.
 - Production deployment receipt and live checks will be appended after release.
+
+### First production verification and correction
+
+- Feature commit: `1dc2c1a0b267b4b1cc9431cd7ccc46e5b7986515`. Its first workflow was superseded by another main-branch release. The descendant deployment `dc75bc477642daaae7b8329bd0cef2bed013c6f8` completed successfully in [run 36868968765](https://github.com/f-tiger/agi-site/actions/runs/36868968765).
+- Skills CLI 1.7.0 successfully discovered exactly one skill and six files from the **production** `https://baipiaoji.com` endpoint using `--list`. This read did not install a customer skill, enable telemetry or count as customer adoption.
+- HTTP inspection found Cloudflare email obfuscation rewriting `skills@1.7.0` inside the public install command. Browsers may decode it, but machine readers receive altered text. The correction wraps only this non-email command in the supported `email_off` HTML markers; no zone-wide protection setting changes. [Cloudflare primary documentation](https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/#prevent-cloudflare-from-obfuscating-email).
+- Final raw-command and asset verification is pending the corrective deployment.
