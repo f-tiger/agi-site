@@ -69,3 +69,7 @@ existing-property regressions from intentional independent counters; round three
 made full-build/live coverage the acceptance gate. Two adversarial self-checks
 challenged false positives/double-counting and input disclosure/QA contamination.
 These were self-checks, not independent reviewers.
+
+## Initial production rollout
+
+ECO and TDS passed all release checks. AGI and BPJ first returned HTTP 404 for the new coverage manifest immediately after successful deployment, then served the correct manifest. Live verification now allows bounded transport/status retries and a short manifest-version transition window. Wrong property IDs, invalid page markup, asset-byte mismatches and persistently stale versions still fail. This reads only static assets/pages, not repeated D1 aggregate queries.
