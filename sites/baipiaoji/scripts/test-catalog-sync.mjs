@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {syncGithub,pullRegistry,syncMcp,summarize,REGISTRY} from './catalog-sync.mjs';
+import {syncGithub,pullRegistry,syncMcp,summarize,REGISTRY,repoKey,admissionQueue,topicFromTags,eligibleRepo} from './catalog-sync.mjs';
 import {safeURL,publicIP,requestURL} from './catalog-network.mjs';
 import {candidateOf} from './agent-watch-registry-pull.mjs';
 import {mergeCatalog,discoveryCard} from '../lib/github-catalog.mjs';
@@ -37,6 +37,14 @@ const result=await syncMcp({registry:reg,pool:{candidates:[a,alias,b]},seeds:{ca
 check('MCP reserves duplicate repositories within each batch and rejects unavailable official pages',()=>{assert.equal(result.admitted,1);assert.equal(reg.agents.length,1);assert.equal(adm.rejected[b.slug].last_attempt,'2026-10-02');assert.equal(reg.agents[0].keys.pricing,'unstated');});
 await pullRegistry({state:{checked:{}},pool:{candidates:[]},agents:reg.agents,now:tomorrow,maxPages:1,get:async()=>({status:200,data:{servers:[entry('a',{}, {status:'deleted'})],metadata:{}}})});
 check('an official deletion retires the matching automatic listing',()=>{assert.equal(reg.agents[0].status,'retired');assert.equal(reg.agents[0].registry.status,'deleted');});
+const web=candidateOf(entry('website-only',{repository:undefined,websiteUrl:'https://example.com/mcp'}),now);
+const webReg={agents:[{slug:'other-web',source_url:'https://other.example/',repo_url:null,first_seen:'2026-10-01',keys:{},origin:'curated'}]};
+const webResult=await syncMcp({registry:webReg,pool:{candidates:[web]},seeds:{candidates:[]},admissions:{rejected:{},admitted:[]},vocab,state:{checked:{}},now,limits:{pages:0,verify:0},get:async()=>({status:200})});
+check('website-only MCP servers are not collapsed into one empty repository key',()=>{assert.equal(repoKey(''),'');assert.equal(webResult.admitted,1);});
+const collisionPool={candidates:[]};await pullRegistry({state:{checked:{}},pool:collisionPool,agents:[{slug:'acme-collide',repo_url:'https://github.com/other/existing'}],now,maxPages:1,get:async()=>({status:200,data:{servers:[entry('collide')],metadata:{}}})});
+check('namespace slugs cannot collide with already-published records',()=>{assert.equal(collisionPool.candidates[0].slug,'acme-collide-2');});
+check('daily admission mixes topic queues rather than letting one broad search fill every slot',()=>{const q=admissionQueue([{repo:'a',topic:'ai'},{repo:'b',topic:'ai'},{repo:'c',topic:'coding'},{repo:'d',topic:'audio'}],now,3);assert.deepEqual(q.map(x=>x.repo),['a','c','d']);});
+check('publisher topics keep agents and coding out of model-training labels',()=>{assert.equal(topicFromTags(['llm','agents'],'models'),'agents');assert.equal(topicFromTags(['llm'],'models'),'ai');assert.equal(topicFromTags(['fine-tuning'],'ai'),'models');assert.equal(eligibleRepo(repo('autogen',{full_name:'microsoft/autogen'}),now),false);});
 const source=readFileSync(new URL('../../../.github/workflows/deploy-baipiaoji.yml',import.meta.url),'utf8');
 check('daily discovery, durable commit and failure gate belong to the site workflow',()=>{assert.match(source,/cron: '30 0 \* \* \*'/);assert.match(source,/run: node scripts\/catalog-sync.mjs/);assert.match(source,/steps.catalog_sync.outcome/);assert.match(source,/steps.catalog_commit.outcome/);assert.match(source,/cancel-in-progress: false/);});
 if(process.argv.includes('--dist')){

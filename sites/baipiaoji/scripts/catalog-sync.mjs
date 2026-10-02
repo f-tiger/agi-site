@@ -10,33 +10,45 @@ import {recordFrom,validateCandidate,renderFields} from './agent-watch-admit.mjs
 import {applyCheck} from './agent-watch-verify.mjs';
 
 export const REGISTRY='https://registry.modelcontextprotocol.io/v0.1/servers';
-export const QUERIES=[['llm','models'],['rag','knowledge'],['ai-agent','agents'],['ai-coding','coding'],['text-to-image','image'],['text-to-speech','audio'],['local-llm','local'],['chatbot','chat'],['text-to-video','video'],['ocr','documents'],['fine-tuning','models'],['productivity','everyday'],['inference','local'],['retrieval-augmented-generation','knowledge'],['agents','agents'],['coding-assistant','coding'],['image-generation','image'],['speech-recognition','audio'],['large-language-models','models'],['mcp','agents'],['video-generation','video'],['document-parsing','documents'],['computer-use','agents'],['self-hosted','everyday']];
+export const QUERIES=[['llm','ai'],['rag','knowledge'],['ai-agent','agents'],['ai-coding','coding'],['text-to-image','image'],['text-to-speech','audio'],['local-llm','local'],['chatbot','chat'],['text-to-video','video'],['ocr','documents'],['fine-tuning','models'],['productivity','everyday'],['inference','local'],['retrieval-augmented-generation','knowledge'],['agents','agents'],['coding-assistant','coding'],['image-generation','image'],['speech-recognition','audio'],['large-language-models','models'],['mcp','agents'],['video-generation','video'],['document-parsing','documents'],['computer-use','agents'],['self-hosted','everyday']];
+const EXCLUDED_REPOS=new Set(['flowiseai/flowise','roocodeinc/roo-code','microsoft/autogen']);
+export function topicFromTags(tags=[],fallback='ai') {
+  const has=terms=>terms.some(t=>tags.includes(t));
+  for(const [topic,terms] of [['coding',['ai-coding','coding-assistant','claude-code','codex','code-generation']],['agents',['ai-agent','ai-agents','agents','agent','multi-agent','agent-framework','mcp']],['knowledge',['rag','retrieval-augmented-generation','knowledge-graph','web-crawler']],['video',['text-to-video','video-generation','video-editing']],['image',['text-to-image','image-generation','stable-diffusion']],['audio',['text-to-speech','speech-recognition','speech-to-text']],['documents',['ocr','document-parsing']],['local',['inference','local-llm','llm-inference']],['models',['fine-tuning','pretrained-models','model-training']]])if(has(terms))return topic;
+  return fallback==='models'&&has(['llm','large-language-models'])?'ai':fallback;
+}
+export function admissionQueue(pending,now,cap) {
+  const ordered=[...pending].filter(t=>!t.attemptedAt||new Date(now)-new Date(t.attemptedAt)>86400000).sort((a,b)=>String(a.attemptedAt||'').localeCompare(String(b.attemptedAt||'')));
+  const groups=new Map();for(const c of ordered){if(!groups.has(c.topic))groups.set(c.topic,[]);groups.get(c.topic).push(c);}
+  const out=[];while(out.length<cap&&[...groups.values()].some(q=>q.length))for(const q of groups.values())if(q.length&&out.length<cap)out.push(q.shift());return out;
+}
 const iso=()=>new Date().toISOString();
 const good=s=>Number.isInteger(s)&&s>=200&&s<300;
 const day=s=>s.slice(0,10);
 const read=(root,file,fallback)=>existsSync(join(root,'data',file))?JSON.parse(readFileSync(join(root,'data',file),'utf8')):fallback;
 const write=(root,file,value)=>{const p=join(root,'data',file);writeFileSync(p+'.tmp',JSON.stringify(value,null,1)+'\n');renameSync(p+'.tmp',p);};
-export const repoKey=value=>{try{const u=new URL(value.startsWith('https:')?value:'https://github.com/'+value);return (u.hostname+u.pathname.replace(/\.git\/?$/,'').replace(/\/+$/,'')).toLowerCase();}catch{return '';}};
+export const repoKey=value=>{if(!value)return '';try{const u=new URL(value.startsWith('https:')?value:'https://github.com/'+value);return (u.hostname+u.pathname.replace(/\.git\/?$/,'').replace(/\/+$/,'')).toLowerCase();}catch{return '';}};
 const compactError=e=>/unsafe/.test(String(e.message))?'unsafe-url':/timeout/.test(String(e.message))?'timeout':/body-limit/.test(String(e.message))?'body-limit':'network-or-response-error';
 async function batch(items,fn,n=4){const out=[];let index=0;await Promise.all(Array.from({length:Math.min(n,items.length)},async()=>{while(index<items.length){const i=index++;out[i]=await fn(items[i],i);}}));return out;}
 export function eligibleRepo(r,now) {
-  return !!r&&/^[\w.-]+\/[\w.-]+$/.test(r.full_name||'')&&!r.fork&&!r.archived&&!r.disabled&&r.visibility!=='private'&&r.stargazers_count>=500&&new Date(r.pushed_at)>=new Date(new Date(now)-180*86400000)&&!/(^|[-_])(awesome|tutorials?|courses?|interview|cheatsheet|roadmap|resources)([-_]|$)/i.test(r.name||'')&&!!String(r.description||'').trim();
+  return !!r&&!EXCLUDED_REPOS.has(String(r.full_name).toLowerCase())&&/^[\w.-]+\/[\w.-]+$/.test(r.full_name||'')&&!r.fork&&!r.archived&&!r.disabled&&r.visibility!=='private'&&r.stargazers_count>=500&&new Date(r.pushed_at)>=new Date(new Date(now)-180*86400000)&&!/(^|[-_])(awesome|tutorials?|courses?|interview|cheatsheet|roadmap|resources)([-_]|$)/i.test(r.name||'')&&!!String(r.description||'').trim();
 }
-function metaRecord(r,topic,now,previous){return {id:previous?.id||'gh-'+r.full_name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+createHash('sha256').update(r.full_name.toLowerCase()).digest('hex').slice(0,6),name:/[一-鿿]/.test(r.name)?r.full_name:r.name,repo:r.full_name,topic,topics:(r.topics||[]).slice(0,12),description:String(r.description||'').slice(0,500),stars:r.stargazers_count,pushedAt:r.pushed_at,license:r.license?.spdx_id||null,homepage:r.homepage||'',checkedAt:now,discoveredAt:previous?.discoveredAt||now,active:true,readmeCheckedAt:now};}
+function metaRecord(r,topic,now,previous){return {id:previous?.id||'gh-'+r.full_name.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'-'+createHash('sha256').update(r.full_name.toLowerCase()).digest('hex').slice(0,6),name:/[一-鿿]/.test(r.name)?r.full_name:r.name,repo:r.full_name,topic:topicFromTags(r.topics,topic),topics:(r.topics||[]).slice(0,12),description:String(r.description||'').slice(0,500),stars:r.stargazers_count,pushedAt:r.pushed_at,license:r.license?.spdx_id||null,homepage:r.homepage||'',checkedAt:now,discoveredAt:previous?.discoveredAt||now,active:true,readmeCheckedAt:now};}
 
 export async function syncGithub({curated,discovery,state,get,now,limits={}}) {
   const cap=limits.admit??12,queries=limits.queries??6,result={status:'ok',discovered:0,admitted:0,checked:0,rejected:0,errors:[]};
+  for(const r of discovery.tools)r.topic=topicFromTags(r.topics,r.topic);
   state.pending??=[];state.checked??={};state.queryIndex??=0;state.page??=1;
   const have=new Set([...curated.tools,...discovery.tools].map(t=>repoKey(t.repo))),pending=new Map(state.pending.map(t=>[repoKey(t.repo),t]));
   for(let i=0;i<queries;i++){
     const [topic,category]=QUERIES[state.queryIndex%QUERIES.length],cutoff=day(new Date(new Date(now)-180*86400000).toISOString());
     const u=new URL('https://api.github.com/search/repositories');u.searchParams.set('q',`topic:${topic} stars:>=500 pushed:>=${cutoff} archived:false fork:false`);u.searchParams.set('sort',state.page%2?'stars':'updated');u.searchParams.set('order','desc');u.searchParams.set('per_page','30');u.searchParams.set('page',String(state.page));
     try{const r=await get(u.href,{json:true,github:true});if(!good(r.status)||!Array.isArray(r.data?.items)||r.data.incomplete_results)throw new Error('search-unavailable');
-      for(const x of r.data.items)if(eligibleRepo(x,now)&&!have.has(repoKey(x.full_name))&&!pending.has(repoKey(x.full_name))){pending.set(repoKey(x.full_name),{repo:x.full_name,topic:category,foundAt:now});result.discovered++;}
+      for(const x of r.data.items)if(eligibleRepo(x,now)&&!have.has(repoKey(x.full_name))&&!pending.has(repoKey(x.full_name))){pending.set(repoKey(x.full_name),{repo:x.full_name,topic:topicFromTags(x.topics,category),foundAt:now});result.discovered++;}
       state.queryIndex=(state.queryIndex+1)%QUERIES.length;if(state.queryIndex===0)state.page=state.page%3+1;
     }catch(e){result.errors.push('github-search-'+compactError(e));break;}
   }
-  const queue=[...pending.values()].filter(t=>!t.attemptedAt||new Date(now)-new Date(t.attemptedAt)>86400000).sort((a,b)=>String(a.attemptedAt||'').localeCompare(String(b.attemptedAt||''))).slice(0,cap);
+  const queue=admissionQueue(pending.values(),now,cap);
   for(const candidate of queue){
     candidate.attemptedAt=now;
     try{
@@ -50,7 +62,7 @@ export async function syncGithub({curated,discovery,state,get,now,limits={}}) {
   // Rotate by last ATTEMPT, so a blocked repository cannot starve the rest.
   const old=discovery.tools.filter(r=>r.discoveredAt!==now).sort((a,b)=>String(state.checked[a.id]||'').localeCompare(String(state.checked[b.id]||''))).slice(0,limits.verify??6);
   for(const r of old){state.checked[r.id]=now;result.checked++;
-    try{const res=await get('https://api.github.com/repos/'+r.repo,{json:true,github:true});if(good(res.status)){r.checkedAt=now;r.active=!res.data.archived&&!res.data.disabled;r.archived=!!res.data.archived;r.stars=res.data.stargazers_count;r.pushedAt=res.data.pushed_at;}else if([404,410].includes(res.status))r.active=false;else result.errors.push('github-recheck-http-'+res.status);}catch(e){result.errors.push('github-recheck-'+compactError(e));}
+    try{const res=await get('https://api.github.com/repos/'+r.repo,{json:true,github:true});if(good(res.status)){r.checkedAt=now;r.active=!res.data.archived&&!res.data.disabled;r.archived=!!res.data.archived;r.stars=res.data.stargazers_count;r.pushedAt=res.data.pushed_at;r.topics=res.data.topics||r.topics;r.topic=topicFromTags(r.topics,r.topic);}else if([404,410].includes(res.status))r.active=false;else result.errors.push('github-recheck-http-'+res.status);}catch(e){result.errors.push('github-recheck-'+compactError(e));}
   }
   // No fixed catalogue cap; only the unreviewed queue is bounded.
   state.pending=[...pending.values()].slice(0,600);
@@ -84,7 +96,7 @@ export async function pullRegistry({state,pool,agents,get,now,maxPages=12}) {
     state.cursor=next;
     if(!next){state.watermark=state.scanStarted;state.since=new Date(new Date(state.watermark)-86400000).toISOString();state.scanStarted=null;break;}
   }
-  const used=new Set();pool.candidates=[...byName.values()].map(c=>{let slug=c.slug,n=2;while(used.has(slug))slug=c.slug+'-'+n++;used.add(slug);return {...c,slug};});pool.source=REGISTRY;pool.pulled=day(now);pool.pages=result.pages;pool.seen=result.seen;pool.eligible=pool.candidates.length;pool.error=result.errors.join(', ')||null;pool.cap=null;
+  const used=new Set(agents.map(a=>a.slug));pool.candidates=[...byName.values()].map(c=>{let slug=c.slug,n=2;while(used.has(slug))slug=c.slug+'-'+n++;used.add(slug);return {...c,slug};});pool.source=REGISTRY;pool.pulled=day(now);pool.pages=result.pages;pool.seen=result.seen;pool.eligible=pool.candidates.length;pool.error=result.errors.join(', ')||null;pool.cap=null;
   return result;
 }
 
