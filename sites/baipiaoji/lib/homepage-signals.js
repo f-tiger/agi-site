@@ -1,10 +1,11 @@
 import {EVENT_ROWS} from './hits-schema.js';
 
 export const HOME_TRACKING_START = '2026-09-22';
-export const HOME_BLOCKS = ['hero','site-header','site-footer','featured-tools','task-lanes','directory','dirs','money','agents','agent-watch','limit-check','plans','studio','video','agent','nav','footer','header','other'];
+export const HOME_BLOCKS = ['github-tools','hero','site-header','site-footer','featured-tools','task-lanes','directory','dirs','money','agents','agent-watch','limit-check','plans','studio','video','agent','nav','footer','header','other'];
 // Only public, fixed destination labels leave the read API. Unknown URLs, query
 // strings, fragments, search terms and external hostnames are never returned.
 export const HOME_DESTINATIONS = {
+  '/github-tools':'github-tools',
   '/directory':'tool-directory','/':'homepage','/studio':'toolbox','/account':'free-account','/members':'membership',
   '/studio/pdf-tools':'pdf-tools','/studio/product-images':'product-images',
   '/studio/video-variants':'video-variants','/studio/quote-builder':'quote-builder',

@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v8** — **Last updated: 2026-10-01**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v9** — **Last updated: 2026-10-02**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -54,6 +54,8 @@ No new paid features for the three discovery probes until repeated task evidence
 - Standing delivery preference: website work includes marketing design, authorized execution, live verification and measurement; deployment alone is incomplete.
 
 ## Changelog
+
+- v9 (2026-10-02): Added BPJ GitHub tool discovery for nontechnical task seekers; free source-backed guidance, existing separately labeled vendor services, and a closed USD29 onboarding-service hypothesis. No validated new buyer or revenue.
 
 - v7 (2026-10-01): Narrowed Work Mentor to Ecommerce Reporting Coach for junior ecommerce operators; aligned audience, task, report-policy boundaries and acquisition message with the owner’s single-type focus. Retained current paid entitlement and treated willingness to pay as unverified.
 
@@ -114,3 +116,9 @@ Free value is a downloadable processed file or report, without registration. TDS
 AGI retains the evidence-tracking identity and dated verdicts; BPJ retains tool selection and work planning; ECO retains room-climate calculations and purchase research, with affiliate disclosure; Web3 Workbench retains bounded free-beta utilities. Audit changes do not revoke the owner's existing continuous-expansion instructions or restart unrelated experiments. ECO examples must be labelled illustrative unless actual reader evidence exists.
 
 Measurement: GSC 2026-09-01–28 gives AGI 1/143, BPJ 1/704, ECO 0/77, TDS 5/328 (clicks/impressions). TDS public document metrics at 2026-10-01T15:13:27.955Z show 39 anonymous view events and no recorded non-sample completion. These are neither total site users nor proof of no demand. GA4 remains unavailable through the connected reporting scope, and coverage was repaired today. Review the dated audit in docs/fleet-outcome-audit-2026-10-01.md before interpreting growth.
+
+## BPJ GitHub tools for everyday tasks — 2026-10-02
+
+Owner language: “普通人根本不了解 github 的工具 … github 离普通人太远”. Audience hypothesis: nontechnical office workers, students and creators with a concrete file/media/organization job. The free product translates a task into a usable official entry, setup steps, device fit and cost boundaries. Twelve curated projects and dated GitHub stars are not live whole-GitHub search or hands-on safety certification.
+
+Buyer candidates are commercial maintainers or hosting providers using the existing vendor/sponsorship funnel, separate from organic recommendations. A scoped USD29/application/device onboarding service is a closed hypothesis requiring real requests, fulfillment/support/refund scope and positive delivery margin before sale. Free-source access is never presented as BPJ-owned software or a paid download. Marketing entry: “不用懂代码，先找到能用的工具。” Owned homepage, contextual Agents links, search, feature map, bilingual JSON and llms distribution. Guide opens and official link opens are actions, not users, installations or revenue. PRD: sites/baipiaoji/docs/PRD-github-tools-2026-10-02.md.

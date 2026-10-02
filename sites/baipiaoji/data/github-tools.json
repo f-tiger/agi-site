@@ -1,0 +1,666 @@
+{
+  "version": 1,
+  "reviewed": "2026-10-02",
+  "scope": "Editorial starter catalogue; GitHub star snapshots, not a live trending ranking. Source review is not an installation or security audit.",
+  "tools": [
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "repo": "excalidraw/excalidraw",
+      "mode": "web",
+      "platforms": [
+        "browser"
+      ],
+      "category": "diagram",
+      "url": "https://excalidraw.com/",
+      "sources": [
+        "https://github.com/excalidraw/excalidraw"
+      ],
+      "task": {
+        "zh": "画一张手绘风格流程图",
+        "en": "Sketch a hand-drawn diagram"
+      },
+      "description": {
+        "zh": "把想法画成白板、流程图或线框图，导出图片。",
+        "en": "Turn an idea into a whiteboard, flowchart or wireframe and export an image."
+      },
+      "cost": {
+        "zh": "基础在线画板免费；Excalidraw+ 是另一个付费产品。",
+        "en": "The basic web editor is free; Excalidraw+ is a separate paid product."
+      },
+      "caution": {
+        "zh": "浏览器保存不能代替备份；离开前导出可编辑文件。",
+        "en": "Browser storage is not a backup. Export an editable file before leaving."
+      },
+      "steps": {
+        "zh": [
+          "打开官方画板，无需 GitHub 账户。",
+          "用方框、箭头和文字说明一个流程。",
+          "导出 PNG / SVG，并保存 .excalidraw 源文件。"
+        ],
+        "en": [
+          "Open the official editor; no GitHub account needed.",
+          "Use boxes, arrows and text to explain a process.",
+          "Export PNG / SVG and save the editable .excalidraw file."
+        ]
+      },
+      "keywords": "白板 流程图 思维导图 画图 diagram flowchart whiteboard wireframe",
+      "github": {
+        "repo": "excalidraw/excalidraw",
+        "stars": 133398,
+        "archived": false,
+        "pushedAt": "2026-10-01T15:08:43Z",
+        "license": "MIT",
+        "homepage": "https://excalidraw.com",
+        "source": "https://github.com/excalidraw/excalidraw",
+        "checkedAt": "2026-10-02T10:52:57.880Z"
+      }
+    },
+    {
+      "id": "drawio",
+      "name": "draw.io",
+      "repo": "jgraph/drawio",
+      "mode": "web",
+      "platforms": [
+        "browser"
+      ],
+      "category": "diagram",
+      "url": "https://app.diagrams.net/",
+      "sources": [
+        "https://www.drawio.com/"
+      ],
+      "task": {
+        "zh": "画工作流程和组织结构图",
+        "en": "Draw a workflow or organization chart"
+      },
+      "description": {
+        "zh": "从图形和模板开始，整理步骤、关系与系统结构。",
+        "en": "Start with shapes and templates to organize steps, relationships and systems."
+      },
+      "cost": {
+        "zh": "在线编辑器免费；部分平台集成另收费。",
+        "en": "The web editor is free; some platform integrations are paid."
+      },
+      "caution": {
+        "zh": "存储位置由你选择；先确认文件保存在设备还是所选云盘。",
+        "en": "Choose where the file lives: your device or your selected cloud storage."
+      },
+      "steps": {
+        "zh": [
+          "打开编辑器，选择保存到设备或自己的存储。",
+          "创建空白图或选模板，拖动图形并连接。",
+          "保存可编辑图，再导出 PNG 或 PDF。"
+        ],
+        "en": [
+          "Open the editor and choose device or your own storage.",
+          "Create a blank diagram or template; connect shapes.",
+          "Save the editable diagram, then export PNG or PDF."
+        ]
+      },
+      "keywords": "流程图 组织架构 架构图 画图 diagram flowchart chart visio",
+      "github": {
+        "repo": "jgraph/drawio",
+        "stars": 8530,
+        "archived": false,
+        "pushedAt": "2026-10-01T15:37:02Z",
+        "license": "Apache-2.0",
+        "homepage": "https://www.drawio.com",
+        "source": "https://github.com/jgraph/drawio",
+        "checkedAt": "2026-10-02T10:52:57.889Z"
+      }
+    },
+    {
+      "id": "squoosh",
+      "name": "Squoosh",
+      "repo": "GoogleChromeLabs/squoosh",
+      "mode": "web",
+      "platforms": [
+        "browser"
+      ],
+      "category": "image",
+      "url": "https://squoosh.app/",
+      "sources": [
+        "https://github.com/GoogleChromeLabs/squoosh"
+      ],
+      "task": {
+        "zh": "把图片压小，比较清晰度",
+        "en": "Shrink an image and compare quality"
+      },
+      "description": {
+        "zh": "在浏览器中压缩、转换图片，用分屏预览比较处理前后。",
+        "en": "Compress and convert an image in the browser, comparing before and after."
+      },
+      "cost": {
+        "zh": "网页工具免费，无需服务器部署。",
+        "en": "Free web tool; no server deployment needed."
+      },
+      "caution": {
+        "zh": "官方说明图片在本地处理，但会收集部分使用统计；不是零遥测。",
+        "en": "The project says images are processed locally, but some usage analytics are collected."
+      },
+      "steps": {
+        "zh": [
+          "打开官网，选择一张图片。",
+          "选择格式与质量，比较预览和体积。",
+          "下载结果，确认细节仍符合用途。"
+        ],
+        "en": [
+          "Open the app and choose one image.",
+          "Choose a format and quality; compare preview and size.",
+          "Download the result and check the details."
+        ]
+      },
+      "keywords": "图片压缩 压缩图片 图片太大 照片 转格式 jpg png webp compress image photo",
+      "github": {
+        "repo": "GoogleChromeLabs/squoosh",
+        "stars": 25979,
+        "archived": false,
+        "pushedAt": "2026-09-23T14:22:01Z",
+        "license": "Apache-2.0",
+        "homepage": "https://squoosh.app",
+        "source": "https://github.com/GoogleChromeLabs/squoosh",
+        "checkedAt": "2026-10-02T10:52:57.846Z"
+      }
+    },
+    {
+      "id": "localsend",
+      "name": "LocalSend",
+      "repo": "localsend/localsend",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux",
+        "android",
+        "ios"
+      ],
+      "category": "files",
+      "url": "https://localsend.org/download",
+      "sources": [
+        "https://localsend.org/download",
+        "https://github.com/localsend/localsend"
+      ],
+      "task": {
+        "zh": "手机和电脑互传文件",
+        "en": "Send files between phone and computer"
+      },
+      "description": {
+        "zh": "通过同一个本地网络向附近设备发送文件，不依赖云盘中转。",
+        "en": "Send files to nearby devices on the same local network without cloud storage."
+      },
+      "cost": {
+        "zh": "应用免费；不包含跨互联网远程传输服务。",
+        "en": "Free app; this does not include a remote internet transfer service."
+      },
+      "caution": {
+        "zh": "两台设备需可互相访问；访客 Wi-Fi 隔离或防火墙可能阻止发现。",
+        "en": "Devices must reach each other; guest Wi-Fi isolation or a firewall can block discovery."
+      },
+      "steps": {
+        "zh": [
+          "在两台设备安装对应系统的官方版本。",
+          "连接同一个本地网络，在发送端选择文件和接收设备。",
+          "在接收端确认，再检查收到的文件。"
+        ],
+        "en": [
+          "Install the official app on both devices.",
+          "Join the same local network; choose files and the receiving device.",
+          "Accept on the receiving device and check the files."
+        ]
+      },
+      "keywords": "传文件 文件传输 手机电脑互传 安卓 苹果 airdrop transfer send files",
+      "github": {
+        "repo": "localsend/localsend",
+        "stars": 93188,
+        "archived": false,
+        "pushedAt": "2026-10-02T00:43:28Z",
+        "license": "Apache-2.0",
+        "homepage": "https://localsend.org",
+        "source": "https://github.com/localsend/localsend",
+        "checkedAt": "2026-10-02T10:52:57.956Z"
+      }
+    },
+    {
+      "id": "handbrake",
+      "name": "HandBrake",
+      "repo": "HandBrake/HandBrake",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "video",
+      "url": "https://handbrake.fr/downloads.php",
+      "sources": [
+        "https://handbrake.fr/features.php",
+        "https://handbrake.fr/docs/en/latest/technical/source-formats.html"
+      ],
+      "task": {
+        "zh": "压缩视频，转换播放格式",
+        "en": "Compress a video or change its format"
+      },
+      "description": {
+        "zh": "把已有视频转成 MP4、MKV 或 WebM，调整画质与体积。",
+        "en": "Convert an existing video to MP4, MKV or WebM and adjust quality and file size."
+      },
+      "cost": {
+        "zh": "桌面工具免费；编码消耗本机时间与算力。",
+        "en": "Free desktop app; encoding uses your computer and takes time."
+      },
+      "caution": {
+        "zh": "不处理 DRM 保护的视频；压缩不保证无损，也不是剪辑软件。",
+        "en": "Does not process DRM-protected video. Compression may lose quality; this is not a video editor."
+      },
+      "steps": {
+        "zh": [
+          "下载正式版并打开一段自己的视频。",
+          "先选适合用途的预设，指定新的输出文件名。",
+          "开始编码，检查画质和声音后再处理更多文件。"
+        ],
+        "en": [
+          "Install the stable release and open your video.",
+          "Choose a suitable preset and a new output filename.",
+          "Encode, then check picture and sound before processing more files."
+        ]
+      },
+      "keywords": "视频压缩 压缩视频 视频太大 转码 mp4 compress video convert",
+      "github": {
+        "repo": "HandBrake/HandBrake",
+        "stars": 24546,
+        "archived": false,
+        "pushedAt": "2026-10-02T10:11:29Z",
+        "license": "NOASSERTION",
+        "homepage": "https://handbrake.fr",
+        "source": "https://github.com/HandBrake/HandBrake",
+        "checkedAt": "2026-10-02T10:52:57.827Z"
+      }
+    },
+    {
+      "id": "shotcut",
+      "name": "Shotcut",
+      "repo": "mltframework/shotcut",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "video",
+      "url": "https://shotcut.org/download/",
+      "sources": [
+        "https://shotcut.org/"
+      ],
+      "task": {
+        "zh": "剪一段视频，添加字幕和声音",
+        "en": "Edit a video with text and sound"
+      },
+      "description": {
+        "zh": "用时间线拼接片段、剪掉多余部分，再导出成片。",
+        "en": "Arrange clips on a timeline, trim unwanted parts and export a video."
+      },
+      "cost": {
+        "zh": "本地应用免费；下载渠道或可选服务可能另收费。",
+        "en": "The local app is free; distribution channels or optional services may charge separately."
+      },
+      "caution": {
+        "zh": "需要学习时间线与导出设置；长视频的流畅度取决于设备。",
+        "en": "Expect to learn the timeline and export settings; long projects depend on your hardware."
+      },
+      "steps": {
+        "zh": [
+          "从官方下载页选择系统版本。",
+          "导入素材到时间线，先完成一次简单剪切。",
+          "保存项目，再用导出功能生成视频文件。"
+        ],
+        "en": [
+          "Choose your operating system on the official download page.",
+          "Add clips to the timeline and make a simple cut.",
+          "Save the project, then export a video file."
+        ]
+      },
+      "keywords": "剪辑 视频剪辑 剪视频 字幕 capcut video editor trim",
+      "github": {
+        "repo": "mltframework/shotcut",
+        "stars": 15330,
+        "archived": false,
+        "pushedAt": "2026-10-02T00:31:00Z",
+        "license": "GPL-3.0",
+        "homepage": "https://www.shotcut.org",
+        "source": "https://github.com/mltframework/shotcut",
+        "checkedAt": "2026-10-02T10:52:58.082Z"
+      }
+    },
+    {
+      "id": "obs",
+      "name": "OBS Studio",
+      "repo": "obsproject/obs-studio",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "video",
+      "url": "https://obsproject.com/download",
+      "sources": [
+        "https://obsproject.com/"
+      ],
+      "task": {
+        "zh": "录屏讲解，制作操作演示",
+        "en": "Record your screen for a tutorial"
+      },
+      "description": {
+        "zh": "把屏幕、窗口、摄像头和麦克风组合成录屏或直播。",
+        "en": "Combine screen, window, camera and microphone sources for recording or streaming."
+      },
+      "cost": {
+        "zh": "录制软件免费；直播平台及第三方服务另算。",
+        "en": "The recorder is free; streaming platforms and third-party services have their own terms."
+      },
+      "caution": {
+        "zh": "先检查系统录屏与麦克风权限，避免录入无关窗口或声音。",
+        "en": "Check capture and microphone permissions, and keep unrelated windows or audio out of the recording."
+      },
+      "steps": {
+        "zh": [
+          "安装官方版本，运行自动配置向导。",
+          "添加窗口或显示器来源，检查麦克风电平。",
+          "先录一小段，回放确认画面与声音。"
+        ],
+        "en": [
+          "Install the official version and run the configuration wizard.",
+          "Add a window or display source and check microphone levels.",
+          "Make a short recording and play it back to check video and audio."
+        ]
+      },
+      "keywords": "录屏 屏幕录制 直播 教程 screen recording record streaming",
+      "github": {
+        "repo": "obsproject/obs-studio",
+        "stars": 76872,
+        "archived": false,
+        "pushedAt": "2026-10-02T01:09:53Z",
+        "license": "GPL-2.0",
+        "homepage": "https://obsproject.com",
+        "source": "https://github.com/obsproject/obs-studio",
+        "checkedAt": "2026-10-02T10:52:57.825Z"
+      }
+    },
+    {
+      "id": "audacity",
+      "name": "Audacity",
+      "repo": "audacity/audacity",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "audio",
+      "url": "https://www.audacityteam.org/download/",
+      "sources": [
+        "https://www.audacityteam.org/"
+      ],
+      "task": {
+        "zh": "剪音频，整理录音和播客",
+        "en": "Edit a recording or podcast"
+      },
+      "description": {
+        "zh": "录制声音、剪掉片段，调整音量并导出音频。",
+        "en": "Record sound, cut sections, adjust levels and export an audio file."
+      },
+      "cost": {
+        "zh": "基础录音与编辑免费；插件和云服务按各自条件。",
+        "en": "Basic recording and editing are free; plugins and cloud services have separate terms."
+      },
+      "caution": {
+        "zh": "工程文件与成品音频不同；交付前需要导出并试听。",
+        "en": "A project file is not the finished audio; export and listen before delivery."
+      },
+      "steps": {
+        "zh": [
+          "选择适合系统的官方安装包。",
+          "导入录音或开始录制，选择不需要的片段剪除。",
+          "保存工程，再导出音频并试听。"
+        ],
+        "en": [
+          "Choose the official installer for your system.",
+          "Import or record audio; select and remove unwanted sections.",
+          "Save the project, export audio and listen to the result."
+        ]
+      },
+      "keywords": "剪音频 录音 音频剪辑 播客 降噪 audio podcast recording edit",
+      "github": {
+        "repo": "audacity/audacity",
+        "stars": 18630,
+        "archived": false,
+        "pushedAt": "2026-10-02T09:11:24Z",
+        "license": "NOASSERTION",
+        "homepage": "https://wiki.audacityteam.org/wiki/For_Developers",
+        "source": "https://github.com/audacity/audacity",
+        "checkedAt": "2026-10-02T10:52:57.949Z"
+      }
+    },
+    {
+      "id": "joplin",
+      "name": "Joplin",
+      "repo": "laurent22/joplin",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux",
+        "android",
+        "ios"
+      ],
+      "category": "notes",
+      "url": "https://joplinapp.org/help/install/",
+      "sources": [
+        "https://joplinapp.org/",
+        "https://joplinapp.org/plans/"
+      ],
+      "task": {
+        "zh": "整理笔记，保存资料",
+        "en": "Organize notes and reference material"
+      },
+      "description": {
+        "zh": "创建笔记本，保存文字与附件，并选择自己的同步方式。",
+        "en": "Create notebooks, keep text and attachments, and choose a synchronization service."
+      },
+      "cost": {
+        "zh": "本地笔记应用免费；Joplin Cloud 订阅另收费。",
+        "en": "The local notes app is free; Joplin Cloud requires a separate subscription."
+      },
+      "caution": {
+        "zh": "跨设备同步需要配置同步目标；云空间不随开源应用免费附送。",
+        "en": "Cross-device sync needs a configured target; cloud storage is not included merely because the app is open source."
+      },
+      "steps": {
+        "zh": [
+          "安装应用，创建一个笔记本和测试笔记。",
+          "加入文字与附件，确认本机可再次打开。",
+          "需要同步时再选择服务，并先做备份。"
+        ],
+        "en": [
+          "Install the app and create a notebook and test note.",
+          "Add text and an attachment; reopen it locally.",
+          "If you need sync, choose a service and make a backup first."
+        ]
+      },
+      "keywords": "笔记 记事 待办 知识库 印象笔记 notion evernote notes notebook",
+      "github": {
+        "repo": "laurent22/joplin",
+        "stars": 56557,
+        "archived": false,
+        "pushedAt": "2026-10-01T09:32:26Z",
+        "license": "NOASSERTION",
+        "homepage": "https://joplinapp.org",
+        "source": "https://github.com/laurent22/joplin",
+        "checkedAt": "2026-10-02T10:52:57.878Z"
+      }
+    },
+    {
+      "id": "keepassxc",
+      "name": "KeePassXC",
+      "repo": "keepassxreboot/keepassxc",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "privacy",
+      "url": "https://keepassxc.org/download/",
+      "sources": [
+        "https://keepassxc.org/",
+        "https://keepassxc.org/docs/KeePassXC_GettingStarted"
+      ],
+      "task": {
+        "zh": "在本机管理密码",
+        "en": "Manage passwords on your computer"
+      },
+      "description": {
+        "zh": "把登录资料保存在由你掌管的加密数据库文件中。",
+        "en": "Keep login details in an encrypted database file you control."
+      },
+      "cost": {
+        "zh": "桌面软件免费，不包含代管与密码恢复服务。",
+        "en": "Free desktop software; no managed storage or password-recovery service is included."
+      },
+      "caution": {
+        "zh": "牢记主密码并备份数据库；忘记解锁信息可能无法恢复。",
+        "en": "Keep the master password and a database backup safe; losing unlock credentials can mean losing access."
+      },
+      "steps": {
+        "zh": [
+          "安装正式版，按入门指南创建数据库。",
+          "设置可靠的主密码，先添加一个测试条目。",
+          "确认能重新打开，并把数据库备份到合适位置。"
+        ],
+        "en": [
+          "Install a stable release and create a database using the guide.",
+          "Set a strong master password and add a test entry.",
+          "Confirm you can reopen it and back up the database appropriately."
+        ]
+      },
+      "keywords": "密码 密码管理 本地 隐私 password manager vault",
+      "github": {
+        "repo": "keepassxreboot/keepassxc",
+        "stars": 29047,
+        "archived": false,
+        "pushedAt": "2026-09-30T04:25:51Z",
+        "license": "NOASSERTION",
+        "homepage": "https://keepassxc.org/",
+        "source": "https://github.com/keepassxreboot/keepassxc",
+        "checkedAt": "2026-10-02T10:52:57.972Z"
+      }
+    },
+    {
+      "id": "sharex",
+      "name": "ShareX",
+      "repo": "ShareX/ShareX",
+      "mode": "download",
+      "platforms": [
+        "windows"
+      ],
+      "category": "image",
+      "url": "https://getsharex.com/",
+      "sources": [
+        "https://getsharex.com/"
+      ],
+      "task": {
+        "zh": "截图标注，做操作说明",
+        "en": "Capture and annotate a screenshot"
+      },
+      "description": {
+        "zh": "在 Windows 上截图、添加标注并保存操作素材。",
+        "en": "Capture and annotate screenshots on Windows for instructions and handovers."
+      },
+      "cost": {
+        "zh": "应用免费；所选外部上传服务按各自条件。",
+        "en": "The app is free; external upload services have their own terms."
+      },
+      "caution": {
+        "zh": "检查截图后的任务设置；启用上传会把内容发送到所选服务。",
+        "en": "Check after-capture tasks: enabling upload sends content to the selected service."
+      },
+      "steps": {
+        "zh": [
+          "从官网安装 Windows 版本。",
+          "先检查截图后任务，按需要关闭自动上传。",
+          "截取区域，标注后保存到本机。"
+        ],
+        "en": [
+          "Install the Windows version from the official site.",
+          "Review after-capture tasks and disable automatic upload if unwanted.",
+          "Capture a region, annotate it and save locally."
+        ]
+      },
+      "keywords": "截图 截屏 标注 长截图 screenshot capture annotate windows",
+      "github": {
+        "repo": "ShareX/ShareX",
+        "stars": 39841,
+        "archived": false,
+        "pushedAt": "2026-10-02T10:33:46Z",
+        "license": "GPL-3.0",
+        "homepage": "https://getsharex.com",
+        "source": "https://github.com/ShareX/ShareX",
+        "checkedAt": "2026-10-02T10:52:57.842Z"
+      }
+    },
+    {
+      "id": "immich",
+      "name": "Immich",
+      "repo": "immich-app/immich",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "photos",
+      "url": "https://docs.immich.app/overview/quick-start",
+      "sources": [
+        "https://docs.immich.app/overview/quick-start",
+        "https://docs.immich.app/install/requirements"
+      ],
+      "task": {
+        "zh": "搭建自己的照片库",
+        "en": "Run your own photo library"
+      },
+      "description": {
+        "zh": "在自己的服务器上管理照片，并配合手机应用上传。",
+        "en": "Manage photos on your own server and upload from the mobile app."
+      },
+      "cost": {
+        "zh": "软件可自托管；硬件、存储、电力和维护需要自行承担。",
+        "en": "Self-hostable software; you pay for hardware, storage, electricity and maintenance."
+      },
+      "caution": {
+        "zh": "进阶项：需要 Docker 和服务器维护能力；先设计备份，不要把它当唯一副本。",
+        "en": "Advanced: requires Docker and server maintenance. Plan backups and do not use it as your only copy."
+      },
+      "steps": {
+        "zh": [
+          "先核对官方服务器和存储要求。",
+          "按官方快速入门配置服务器，再连接手机应用。",
+          "用测试照片验证上传、导出和备份恢复后再迁移。"
+        ],
+        "en": [
+          "Check the official server and storage requirements.",
+          "Follow the server quick start, then connect the mobile app.",
+          "Test upload, export and backup recovery before migrating photos."
+        ]
+      },
+      "keywords": "相册 照片备份 照片管理 私有云 google photos photo backup library",
+      "github": {
+        "repo": "immich-app/immich",
+        "stars": 115454,
+        "archived": false,
+        "pushedAt": "2026-10-02T10:52:17Z",
+        "license": "AGPL-3.0",
+        "homepage": "https://immich.app",
+        "source": "https://github.com/immich-app/immich",
+        "checkedAt": "2026-10-02T10:52:57.954Z"
+      }
+    }
+  ]
+}

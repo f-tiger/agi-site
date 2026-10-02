@@ -1,3 +1,7 @@
+## 2026-10-02 GitHub 工具上手（owner 明确增加 BPJ 板块）
+
+`/github-tools/` 与英文页按任务、设备、门槛检索人工整理的第三方项目；官方入口、费用边界、三步上手与日期来自 `data/github-tools.json`。Stars 是累计快照，不叫实时热榜、安全评分或安装实测。范围外搜索明确跳 GitHub，本站不拉取或执行任意仓库。首页、站内搜索、功能地图、现有 MCP 功能地图资源和 llms/JSON 已连通；搜索须保留本目录项目锚点。免费发现与现有厂商收费服务独立，USD29 代上手仅为文档中的关闭假设。`github_tools` 事件只收固定动作/项目 ID，不收搜索词，不算安装或收入；QA/DNT/GPC 排除。按现有部署 IndexNow 实质变更机制，不加新定时任务。PRD 和两轮对抗自检见 `docs/PRD-github-tools-2026-10-02.md`。
+
 ## 2026-10-02 首页审计落地
 
 首页以额度目录为主入口，BPJ 自研工具为第二入口。首页 GA4 通过同意后的隔离 frame 记录 `home_view` 与可重复的 `home_click`，固定区块/目标标签，不传输入；D1 保留独立口径。搜索先全量匹配再按规范地址去重。push 的 IndexNow 只读本次构建实质变更清单并核验线上 canonical。验收、历史断点与限制见 `docs/homepage-audit-release-2026-10-02.md`。

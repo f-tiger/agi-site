@@ -82,3 +82,10 @@
 /en/embed/*
   X-Robots-Tag: noindex, follow
   Referrer-Policy: no-referrer
+
+/github-tools.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/en/github-tools.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600

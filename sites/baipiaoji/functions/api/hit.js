@@ -1,4 +1,5 @@
 import {parseHomepageClick} from '../../lib/homepage-signals.js';
+import {parseGithubToolEvent,GITHUB_TOOL_IDS} from '../../lib/github-tools.mjs';
 import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 // 第一方访问打点：无 Cookie、无 IP、无指纹——只存 日期/路径/语言/国家/外部来源域/事件名。
 // 比 GA4 干净，且不依赖任何外部账号；查询走 Cloudflare D1（会话内 MCP 可直读）。
@@ -12,6 +13,7 @@ import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'github_tools', // Bounded catalogue actions; no query text, installations or revenue.
   'distribution', // Bounded action counts; never installations, unique users or revenue.
   'quote',       // Quote builder action counts, separate from calc/paid conversion. No quote content or unique user identifier.
   'home',        // 首页区块级点击（2026-09-22）：路径 /home/<区块 id>/<目标路径>。首页 243 pv/28d 是全站第一页，
@@ -60,6 +62,12 @@ export async function onRequestPost({ request, env }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    if(ev==='github_tools'){
+      if(!['zh','en'].includes(lang)||!parseGithubToolEvent(path,GITHUB_TOOL_IDS))return new Response(null,{status:204});
+      const referer=request.headers.get('referer')||'';
+      if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa)(?:=|&|$)/.test(referer)||/bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
+      b.r=''; // Do not store search context or a potentially identifying referrer.
+    }
     if (ev === 'quote' && (!parseQuoteEvent(path) || !['zh','en'].includes(lang))) return new Response(null, { status: 204 });
     if(ev==='distribution'){
       if(!['zh','en'].includes(lang)||!/^\/distribution\/(?:work-plan\/(?:view|calculate|open|arrive|copy)\/(?:external|owned|frame-unknown|direct|preview|page)\/(?:example|edited|none)|skill\/(?:copy|source)\/page\/none)$/.test(path))return new Response(null,{status:204});
