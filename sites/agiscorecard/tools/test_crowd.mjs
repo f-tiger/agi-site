@@ -16,6 +16,8 @@ const rows = [
   ['vote_cast', '202830', '/', 'human'], ['vote_cast', '2028–30', '/', 'human'], ['vote_cast', 'realist', '/agi-test', 'human'],
   ['vote_cast', 'Never / 2040+', '/', 'human'], ['vote_cast', 'Never/2040', '/', 'human'],
   ['vote_cast', '2030s', '/', 'human'], ['vote_cast', '2025–26', '/', 'human'],
+  ['vote_cast', 'true-believer', '/cn', 'human'], ['vote_cast', 'skeptic', '/zh/agi-test', 'human'],
+  ['vote_cast', 'skeptic', '/cn', 'bot'],
   ['vote_cast', 'realist', '/agi-test', 'bot'],               // bot: excluded
   ['vote_cast', 'the-project', '/progress-index', 'human'],   // other question: excluded
   ['vote_cast', 'garbage', '/', 'human'],                      // unknown label: dropped, not guessed
@@ -28,8 +30,9 @@ const env = { EVENTS: { prepare(q) { let a = []; const st = { bind(...v) { a = v
 
 const body = await (await crowdResponse(env)).json();
 assert.equal(body.ok, true);
-assert.deepEqual(body.buckets, { accelerationist: 1, 'true-believer': 2, realist: 3, skeptic: 1, contrarian: 2 });
-assert.equal(body.n, 9);
+assert.deepEqual(body.buckets, { accelerationist: 1, 'true-believer': 3, realist: 3, skeptic: 2, contrarian: 2 });
+assert.equal(body.n, 11);
+assert.match(body.scope,/\/zh\/agi-test.*not unique people/);
 assert.ok(body.generated && !Number.isNaN(Date.parse(body.generated)));
 for (const q of log) {
   const plan = db.prepare('EXPLAIN QUERY PLAN ' + q).all().map((r) => r.detail).join(' | ');

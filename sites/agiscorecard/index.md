@@ -20,6 +20,10 @@ Read predictions and thesisTracker in data.json, recompute the published weights
 
 No. It counts down to January 1, 2027 at 00:00 UTC, the start of the observation window, not a promised AGI arrival. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028, and still requires public evidence.
 
+**How can I vote on when AGI arrives?**
+
+Choose a time window below the homepage countdown to see your prediction type and historical answers, then copy, share or save your prediction on this device. No account is needed. Counts are answers, may repeat, and are not unique people or a representative survey.
+
 ---
 Canonical page: https://agiscorecard.com/
 Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)

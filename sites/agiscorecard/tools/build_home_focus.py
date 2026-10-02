@@ -39,9 +39,24 @@ def countdown(zh):
 <div class="focus-clock" role="timer" aria-live="off" aria-label="{'距离 2027 年元旦的剩余时间' if zh else 'Time remaining until the start of 2027'}">{cells}</div>
 <p class="focus-clock-date">{'观察节点：' if zh else 'Observation point: '}<time datetime="2027-01-01T00:00:00Z">2027-01-01 00:00 UTC</time></p>
 <p class="focus-clock-note">{'追踪 2027 年窗口的开启，不代表 AGI 会在当天到来。本站对“2027 年底前实现”预测的判定截止为 2028-01-01。' if zh else 'Counting down to the start of the 2027 window, not a promised AGI arrival date. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028.'}</p>
-<div class="focus-clock-links"><a href="{base}/will-agi-arrive-2027#cite-evidence">{'查看预测与判定条件' if zh else 'Read the prediction and criteria'}</a><button type="button" id="cd-pause" aria-pressed="false" hidden>{'暂停计时' if zh else 'Pause clock'}</button></div>
+<div class="focus-clock-links"><a href="#vote">{'你认为哪年实现？参与投票' if zh else 'When do you think AGI arrives? Vote'}</a><button type="button" id="cd-pause" aria-pressed="false" hidden>{'暂停计时' if zh else 'Pause clock'}</button></div>
 <details class="focus-clock-embed"><summary>{'把倒计时嵌入你的网站（英文组件）' if zh else 'Embed the countdown on your site'}</summary><p><a href="/widget">{'预览嵌入组件' if zh else 'Preview the widget'}</a></p><code>&lt;iframe src="https://agiscorecard.com/widget" width="360" height="200" style="border:0;border-radius:12px" title="AGI 2027 countdown" loading="lazy"&gt;&lt;/iframe&gt;</code></details>
 <noscript><p class="focus-clock-note">{'启用 JavaScript 可显示实时倒计时；观察节点如上。' if zh else 'Enable JavaScript for the live clock; the observation date is shown above.'}</p></noscript>
+</section>'''
+
+def poll(zh):
+    options=[('accelerationist','2025–26','2025–26'),('true-believer','2027','2027'),('realist','2028–30','2028–30'),('skeptic','2030 年代','2030s'),('contrarian','永不 / 2040+','Never / 2040+')]
+    buttons=''.join(f'<button type="button" data-vote="{slug}" aria-pressed="false">{cn if zh else en}</button>' for slug,cn,en in options)
+    return f'''<section class="focus-poll" id="vote" aria-labelledby="vote-title" data-home-vote="{'zh' if zh else 'en'}" data-release="agi-vote-20261002">
+<h2 id="vote-title">{'你认为 AGI 会在哪年到来？' if zh else 'When do you think AGI arrives?'}</h2>
+<p>{'投下一票，看看你的 AGI 类型与大家的选择。无需注册。' if zh else 'Make your call. See your AGI type and how others answered. No account needed.'}</p>
+<div class="focus-vote-options" role="group" aria-label="{'选择时间' if zh else 'Choose a time window'}">{buttons}</div>
+<div id="vote-result" hidden><h3 id="vote-verdict" aria-live="polite"></h3><div id="vote-crowd" aria-live="polite"></div>
+<div class="focus-vote-actions"><button type="button" id="vote-share">{'邀请朋友投票' if zh else 'Invite a friend'}</button><button type="button" id="vote-copy">{'复制我的判断' if zh else 'Copy my prediction'}</button><button type="button" id="vote-lock">{'保存判断（本机）' if zh else 'Save on this device'}</button></div>
+<p id="vote-status" role="status"></p><textarea id="vote-copy-fallback" readonly hidden aria-label="{'手动复制的分享内容' if zh else 'Share text to copy manually'}"></textarea>
+<p><a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=post_vote" id="vote-subscribe">{'关注预测是否兑现' if zh else 'Follow whether the predictions hold up'}</a> · <a href="{'/zh' if zh else ''}/will-agi-arrive-2027#cite-evidence">{'核对判定条件' if zh else 'Inspect the criteria'}</a></p></div>
+<p id="vote-saved" hidden></p><p class="focus-vote-note">{'统计为已记录的匿名作答次数，可能包含重复，不代表独立人数或民意调查。' if zh else 'Counts are recorded anonymous answers, may include repeats, and are not unique people or a representative survey.'}</p>
+<noscript><p>{'请启用 JavaScript 参与投票。' if zh else 'Enable JavaScript to take part.'}</p></noscript>
 </section>'''
 
 def hero(d, zh):
@@ -59,7 +74,7 @@ def hero(d, zh):
     routes=''.join(action(href,f'<strong>{title}</strong><span>{desc}</span>','route_'+key,'focus-route') for href,title,desc,key in cases)
     desk=evidence_desk(d,zh)
     return f'''<section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
-  <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1>{countdown(zh)}<p class="focus-lead">{intro}</p>
+  <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1>{countdown(zh)}{poll(zh)}<p class="focus-lead">{intro}</p>
   <div class="focus-actions">{action(base+'/progress-index#cite-evidence','查看证据与变化' if zh else 'Inspect evidence and changes','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
   <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
   {desk}
@@ -107,10 +122,15 @@ def render():
         p=ROOT/name;s=assets(p.read_text())
         if '/home-focus/countdown.js' not in s:
             s=s.replace('</head>', '<script type="module" src="/home-focus/countdown.js"></script>\n</head>')
+        if '/home-focus/vote.js' not in s:
+            s=s.replace('</head>', '<script type="module" src="/home-focus/vote.js"></script>\n</head>')
         if not zh:
             # Migrate the buried clock to the generated hero; keep its old anchor.
             s=re.sub(r'  <!-- MAIN COUNTDOWN -->.*?(?=  <!-- VOTE WIDGET -->)', '', s, count=1, flags=re.S)
             s=re.sub(r'const pageOpenTime = Date.now\(\);.*?setInterval\(updateCountdown, 1000\);\n', '', s, count=1, flags=re.S)
+            s=re.sub(r'  <!-- VOTE WIDGET -->.*?(?=  <!-- MILESTONE CARDS -->)', '', s, count=1, flags=re.S)
+            s=re.sub(r'let myVote = null, myArchetype = null;.*?(?=// Per-prediction actions,)', '', s, count=1, flags=re.S)
+            s=re.sub(r'// Crowd reveal \(2026-09-27.*?try \{ renderLocked\(\); \} catch \(e\) \{\}', '', s, count=1, flags=re.S)
         s=region(s,'home-focus',hero(d,zh));s=region(s,'home-grade',grade(zh));s=region(s,'home-changes',changes(cl,zh))
         title='AGI 倒计时、进展与预测证据 | AGI 记分牌' if zh else 'AGI Countdown, Progress & Prediction Evidence | AGI Scorecard'
         desc='查看 2027 年观察节点倒计时，追踪《态势感知》的 8 项 AGI 预测。核对来源与判定条件，自行评分，了解 AI 对工作与投资研究的影响。' if zh else 'Watch the countdown to the 2027 observation window and track 8 AGI predictions against evidence. Check sources and verdicts, make your own assessment, and explore work and investment impacts.'

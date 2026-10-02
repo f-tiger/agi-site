@@ -10,11 +10,15 @@ for(let attempt=1;attempt<=4;attempt++){
         assert.ok(hero.includes('agi-countdown-20261002'),route+' prominent countdown');
         assert.ok(hero.includes('data-countdown-target="2027-01-01T00:00:00Z"'),route+' correct UTC target');
         assert.equal((body.match(/id="cd-days"/g)||[]).length,1,route+' no duplicate clock');
+        assert.ok(hero.includes('agi-vote-20261002'),route+' prominent poll');
+        assert.equal((body.match(/id="vote"/g)||[]).length,1,route+' no duplicate poll');
+        assert.equal((hero.match(/data-vote="/g)||[]).length,5,route+' all five choices');
       }
     }
-    for(const file of ['home-focus/focus.css','home-focus/focus.js','home-focus/countdown.js','data.json','index-history.json']){
+    for(const file of ['home-focus/focus.css','home-focus/focus.js','home-focus/countdown.js','home-focus/vote.js','data.json','index-history.json']){
       const r=await fetch(base+'/'+file+'?ci=1',{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,file);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(fs.readFileSync(new URL(file,root))),file+' bytes');
     }
-    console.log('Live home focus: six routes, visible bilingual countdown, exact JS/CSS assets and unchanged ledger/history verified.');break;
+    const crowd=await fetch(base+'/api/crowd?ci=1',{signal:AbortSignal.timeout(20000)});assert.equal(crowd.status,200);const d=await crowd.json();assert.equal(d.ok,true);assert.match(d.scope,/\/cn.*\/zh\/agi-test.*not unique people/);
+    console.log('Live home focus: six routes, bilingual countdown and five-choice poll, exact scripts, Chinese-inclusive crowd and unchanged ledger/history verified.');break;
   }catch(e){if(attempt===4)throw e;console.log('Waiting for release propagation: '+e.message);await new Promise(r=>setTimeout(r,8000));}
 }

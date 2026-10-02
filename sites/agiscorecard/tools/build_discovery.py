@@ -17,12 +17,14 @@ def answers(d, zh):
             ('AGI 命题追踪指数衡量什么？',f'它汇总《态势感知》的 {n} 项预测在本站公开台账中的判定。{date} 的记录为 {score}/100：{counts[0]} 项支持、{counts[1]} 项未决、{counts[2]} 项反驳。它不是衡量所有 AI 能力的通用基准。'),
             (f'{score} 分代表 AGI 有 {score}% 的发生概率吗？','不是。每项判定等权计算：支持取 1、未决取 0.5、反驳取 0，平均值乘以 100。这是编辑判定的综合分数，不是概率预测，也不表示 AGI 已经实现。'),
             ('怎样复算或引用这个分数？',f'读取 data.json 中的 predictions 与 thesisTracker，按公开权重复算；用 index-history.json 核对历史。引用时写明 AGI Scorecard、台账日期 {date} 和原始数据链接。数据采用 CC BY 4.0；网站改版日期不能替代证据日期。'),
-            ('AGI 倒计时到零就代表 AGI 实现了吗？','不是。倒计时指向 2027 年 1 月 1 日 00:00 UTC，即观察窗口的开始，不是 AGI 到来的保证。本站对“2027 年底前实现”预测的判定截止为 2028 年 1 月 1 日，仍需核对公开证据。')]
+            ('AGI 倒计时到零就代表 AGI 实现了吗？','不是。倒计时指向 2027 年 1 月 1 日 00:00 UTC，即观察窗口的开始，不是 AGI 到来的保证。本站对“2027 年底前实现”预测的判定截止为 2028 年 1 月 1 日，仍需核对公开证据。'),
+            ('怎样参与 AGI 时间投票？','在首页倒计时下方选择一个时间段，即可查看预测类型与历史作答分布，并复制、分享或在本机保存判断。无需注册。分布统计的是作答次数，可能重复，不代表独立人数或民意调查。')]
     return [
         ('What does the AGI Thesis Tracker measure?',f'It summarizes {n} Situational Awareness predictions in our published ledger. The {date} reading is {score}/100: {counts[0]} supportive, {counts[1]} unresolved and {counts[2]} refuted. It is not a general benchmark of all AI capabilities.'),
         (f'Does {score}/100 mean a {score}% probability of AGI?','No. Each verdict has equal weight: supportive = 1, unresolved = 0.5 and refuted = 0. The mean is multiplied by 100. This is an editorial composite, not a probability forecast or a finding that AGI has arrived.'),
         ('How can I reproduce or cite the score?',f'Read predictions and thesisTracker in data.json, recompute the published weights, and inspect index-history.json for past readings. Cite AGI Scorecard, the ledger date {date} and the original data URL. The dataset is CC BY 4.0; a site redesign date is not an evidence date.'),
-        ('Does the AGI countdown reaching zero mean AGI has arrived?','No. It counts down to January 1, 2027 at 00:00 UTC, the start of the observation window, not a promised AGI arrival. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028, and still requires public evidence.')]
+        ('Does the AGI countdown reaching zero mean AGI has arrived?','No. It counts down to January 1, 2027 at 00:00 UTC, the start of the observation window, not a promised AGI arrival. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028, and still requires public evidence.'),
+        ('How can I vote on when AGI arrives?','Choose a time window below the homepage countdown to see your prediction type and historical answers, then copy, share or save your prediction on this device. No account is needed. Counts are answers, may repeat, and are not unique people or a representative survey.')]
 
 def render():
     d=json.loads((ROOT/'data.json').read_text());out={}
