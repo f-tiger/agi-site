@@ -1,74 +1,10 @@
-/* An MCP endpoint, so this site's evidence can be CALLED rather than only
-   read (rebuilt 2026-08-30 for the Labubu site; the retired site's endpoint
-   established the pattern and the load-bearing decision below).
+/* Public, read-only collecting MCP. Evidence is loaded from published site data;
+   display planning imports the browser calculator's actual core. Probability
+   returns its explicit independent-draw assumption. No affiliate links,
+   user collections, accounts, uploads or paid actions are exposed here. */
 
-   THE LOAD-BEARING DECISION: every answer is read from the published JSON at
-   request time. No rule is reimplemented here. A second copy of the odds
-   table would be a third source of truth — after the page and the dataset —
-   and that failure mode is the one this fleet keeps paying to remove. If
-   /data/rarity-odds.json changes, this changes with it, or it stops
-   answering. It never quietly disagrees.
-
-   Every result carries the recording date and the limitations that travel
-   with the data. A tool that returns a bare number strips the caveats a
-   careful page spent paragraphs establishing.
-
-   COMPLIANCE (fleet iron rule): affiliate links never appear in MCP output.
-   Sources returned here are our own pages and the named public sources only.
-
-   Runs as a Cloudflare Pages Function at /mcp. Transport is the JSON-RPC
-   POST half of streamable HTTP — stateless, no session, no SSE. */
-
-const PROTOCOL_VERSION = "2025-06-18";
-const SERVER = { name: "dollscout", version: "2.1.0" };
-
-const TOOLS = [
-  {
-    name: "labubu_rarity_odds",
-    description:
-      "Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format " +
-      "(6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a " +
-      "specific series outrank every row returned here, and the result says so.",
-    inputSchema: { type: "object", properties: {} },
-  },
-  {
-    name: "labubu_fake_signals",
-    description:
-      "The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, " +
-      "anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with " +
-      "its named public sources. Compiled signals, not a guarantee; limitations are included.",
-    inputSchema: { type: "object", properties: {} },
-  },
-  {
-    name: "secret_pull_probability",
-    description:
-      "Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, " +
-      "plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case " +
-      "allocation can differ, and the result carries that caveat.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        oddsN: { type: "number", description: "The N in printed odds 1:N, e.g. 72" },
-        boxes: { type: "number", description: "Number of blind boxes to be opened, e.g. 12" },
-      },
-      required: ["oddsN", "boxes"],
-    },
-  },
-  {
-    name: "define_labubu_term",
-    description:
-      "Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, " +
-      "secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). " +
-      "Matches the term or its aliases; an unknown term returns the list of available terms, honestly.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        term: { type: "string", description: "The term to define, e.g. 'lafufu' or 'printed odds'" },
-      },
-      required: ["term"],
-    },
-  },
-];
+import {SERVER,PROTOCOL_VERSION,TOOLS,RESOURCES} from '../collector-assets/mcp-contract.mjs';
+import '../js/collector-core.js';
 
 async function load(env, request, path) {
   const res = await env.ASSETS.fetch(new URL(path, request.url));
@@ -77,6 +13,21 @@ async function load(env, request, path) {
 }
 
 async function callTool(name, args, ctx) {
+  if(name==='find_collector_tools'){
+    const data=await ctx.load('/collector-assets/tool-capabilities.json');
+    const lang=args.language||'en';
+    return {tools:data.tools.filter(t=>!args.task||args.task==='all'||t.task===args.task).map(t=>({...t,selectedUrl:t.urls[lang]||t.urls.en,requestedLanguage:lang,languageFallback:!t.urls[lang]})),otherCatalog:data.digitalTools,limitations:data.limitations};
+  }
+  if(name==='get_collecting_guide'){
+    const data=await ctx.load('/collector-assets/brand-guides.json');
+    const guide=data.guides.find(g=>g.brand===args.brand&&g.language===(args.language||'en'));
+    if(!guide)throw new Error('Published guide is unavailable');
+    return guide;
+  }
+  if(name==='plan_display_fit'){
+    const result=globalThis.DSCollector.fit({...args,rotate:args.rotate??true});
+    return {found:true,input:{...args,rotate:args.rotate??true},...result,method:'Uniform rectangular footprint grid in one layer, comparing an optional 90-degree rotation.',limitations:['Use internal case dimensions and the largest actual footprint, including base and accessories.','No stacking, mixed orientations, material tolerances, weight limits or stability check.','Check physical measurements before buying.'],source:'https://thedollscout.com/display-calculator'};
+  }
   if (name === "labubu_rarity_odds") {
     const data = await ctx.load("/data/rarity-odds.json");
     return {
@@ -168,12 +119,15 @@ const CORS = {
 };
 
 export async function onRequest({ request, env }) {
+  const origin=request.headers.get('origin');
+  if(origin&&!['https://thedollscout.com','https://chatgpt.com','https://claude.ai','https://www.perplexity.ai'].includes(origin))return new Response('Origin not allowed',{status:403,headers:CORS});
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
 
   /* GET/HEAD are people, crawlers or HEAD-probes — answer with the discovery
      document, and answer HEAD with GET's status and headers (the retired
      site's crawl log showed every AI crawler reading a 405 here as a broken
      endpoint). */
+  if(request.method==='GET'&&request.headers.get('accept')==='text/event-stream')return new Response(null,{status:405,headers:{...CORS,Allow:'POST, OPTIONS'}});
   if (request.method === "GET" || request.method === "HEAD") {
     if (request.method === "HEAD") {
       return new Response(null, { status: 200, headers: { ...CORS, "content-type": "application/json" } });
@@ -183,11 +137,9 @@ export async function onRequest({ request, env }) {
         server: SERVER,
         protocolVersion: PROTOCOL_VERSION,
         transport: "Streamable HTTP — POST JSON-RPC to this same URL",
-        tools: TOOLS.map((t) => ({ name: t.name, description: t.description })),
+        tools: TOOLS, resources: RESOURCES, documentation: "https://thedollscout.com/for-agents",
         note:
-          "Every answer is read from the published CC-BY datasets at request time and carries their " +
-          "recording date and limitations. No rule is reimplemented in this endpoint. No affiliate " +
-          "links appear in tool output.",
+          "Published evidence carries dates and limitations. Display math uses the same core as the browser tool. No affiliate links or private collection access.",
         datasets: ["https://thedollscout.com/data/rarity-odds.json", "https://thedollscout.com/data/labubu-fake-signals.json", "https://thedollscout.com/data/labubu-glossary.json", "https://thedollscout.com/data/pull-math.json"],
       },
       { headers: CORS }
@@ -198,32 +150,57 @@ export async function onRequest({ request, env }) {
     return new Response("Method not allowed", { status: 405, headers: CORS });
   }
 
+  if(Number(request.headers.get('content-length')||0)>16384)return new Response('Request too large',{status:413,headers:CORS});
   let body;
   try {
-    body = await request.json();
+    const text=await request.text();if(text.length>16384)return new Response('Request too large',{status:413,headers:CORS});body=JSON.parse(text);
   } catch {
     return Response.json(rpcError(null, -32700, "Parse error"), { headers: CORS });
   }
 
-  const { id = null, method, params } = body || {};
+  if(!body||Array.isArray(body)||body.jsonrpc!=='2.0'||typeof body.method!=='string')return Response.json(rpcError(null,-32600,'Invalid Request'),{headers:CORS});
+  const { id = null, method, params } = body;
   const ctx = { load: (p) => load(env, request, p) };
 
   try {
     if (method === "initialize") {
       return Response.json(
-        rpc(id, { protocolVersion: PROTOCOL_VERSION, capabilities: { tools: {} }, serverInfo: SERVER }),
+        rpc(id, { protocolVersion: PROTOCOL_VERSION, capabilities: { tools: {}, resources: {} }, serverInfo: SERVER }),
         { headers: CORS }
       );
     }
-    if (method === "notifications/initialized") return new Response(null, { status: 202, headers: CORS });
+    if (method === "ping")return Response.json(rpc(id,{}),{headers:CORS});
+    if (id===null && method.startsWith("notifications/")) return new Response(null, { status: 202, headers: CORS });
 
     if (method === "tools/list") return Response.json(rpc(id, { tools: TOOLS }), { headers: CORS });
 
+    if(method==='resources/list')return Response.json(rpc(id,{resources:RESOURCES}),{headers:CORS});
+    if(method==='resources/read'){
+      const resource=RESOURCES.find(r=>r.uri===params?.uri);
+      if(!resource)return Response.json(rpcError(id,-32602,'Unknown public resource'),{headers:CORS});
+      const value=await ctx.load(new URL(resource.uri).pathname);
+      return Response.json(rpc(id,{contents:[{uri:resource.uri,mimeType:resource.mimeType,text:JSON.stringify(value)}]}),{headers:CORS});
+    }
     if (method === "tools/call") {
-      const result = await callTool(params?.name, params?.arguments || {}, ctx);
+      const tool=TOOLS.find(t=>t.name===params?.name);
+      if(!tool)return Response.json(rpcError(id,-32602,'Unknown tool'),{headers:CORS});
+      const args=params?.arguments??{}; const schema=tool.inputSchema;
+      let invalid=!args||typeof args!=='object'||Array.isArray(args);
+      if(!invalid){
+        invalid=(schema.required||[]).some(k=>!(k in args))||Object.keys(args).some(k=>!(k in schema.properties));
+        for(const [k,v]of Object.entries(args)){
+          const spec=schema.properties[k];if(!spec)continue;
+          if(spec.type==='integer'&&!Number.isInteger(v)||spec.type!=='integer'&&typeof v!==spec.type)invalid=true;
+          if(spec.enum&&!spec.enum.includes(v)||spec.maxLength&&v.length>spec.maxLength)invalid=true;
+          if(typeof v==='number'&&(!Number.isFinite(v)||spec.minimum!==undefined&&v<spec.minimum||spec.exclusiveMinimum!==undefined&&v<=spec.exclusiveMinimum||spec.maximum!==undefined&&v>spec.maximum))invalid=true;
+        }
+      }
+      if(invalid)return Response.json(rpc(id,{isError:true,content:[{type:'text',text:'Invalid arguments. Use the types, required fields and bounds published by tools/list.'}]}),{headers:CORS});
+      const result = await callTool(tool.name,args,ctx);
       return Response.json(
         rpc(id, {
           content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          structuredContent: result,
           /* isError only for genuine failure — a correct "unknown tool"
              answer succeeded. */
           isError: false,

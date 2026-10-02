@@ -32,6 +32,20 @@ Independent collectible-toy guides and free collection tools. Focus: Labubu / TH
   Text: https://thedollscout.com/collector-assets/text/zh/brands/jellycat.txt
 - [Sonny Angel — 迷你公仔与盲盒](https://thedollscout.com/zh/brands/sonny-angel) (zh): 先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。
   Text: https://thedollscout.com/collector-assets/text/zh/brands/sonny-angel.txt
+- [Collector tools for AI assistants](https://thedollscout.com/for-agents) (en): Find, read and call TDS collecting tools from an MCP-compatible assistant.
+  Text: https://thedollscout.com/collector-assets/text/en/for-agents.txt
+- [Sammelwerkzeuge für KI-Assistenten](https://thedollscout.com/de/for-agents) (de): TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.
+  Text: https://thedollscout.com/collector-assets/text/de/for-agents.txt
+- [供 AI 助手使用的收藏工具](https://thedollscout.com/zh/for-agents) (zh): 通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
+  Text: https://thedollscout.com/collector-assets/text/zh/for-agents.txt
+
+## MCP and assistant discovery
+
+- [Connect and inspect tools](https://thedollscout.com/for-agents)
+- Endpoint: https://thedollscout.com/mcp (Streamable HTTP, read-only, no API key)
+- [Tool capability catalog](https://thedollscout.com/collector-assets/tool-capabilities.json)
+- [Published brand guides](https://thedollscout.com/collector-assets/brand-guides.json)
+- [MCP discovery](https://thedollscout.com/.well-known/mcp.json)
 
 ## Existing collecting tools
 
