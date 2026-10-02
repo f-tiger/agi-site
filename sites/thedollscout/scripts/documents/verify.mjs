@@ -43,7 +43,7 @@ for (const record of manifest.records) {
   assert.equal((html.match(/src="\/js\/config\.js\?v=2026-10-01\.1"/g)||[]).length,1,'GA4 configuration: '+route);
   assert.equal((html.match(/src="\/document-assets\/analytics\.mjs\?v=2026-10-02\.1"/g)||[]).length,1,'One consent-gated GA4 loader: '+route);
   assert.ok(html.includes(`lang="${languages[record.lang].tag}"`));
-  for (const [lang, data] of Object.entries(languages)) assert.ok(html.includes(`hreflang="${data.tag}" href="${origin + data.prefix}/${record.slug}"`),'Hreflang ' + route + ' ' + lang);
+  for (const [lang, data] of Object.entries(languages)) assert.ok(html.includes(`hreflang="${data.tag}" href="${origin + data.prefix}/${record.slug || 'document-tools'}"`),'Hreflang ' + route + ' ' + lang);
   assert.ok(html.includes('hreflang="x-default"'));
   assert.ok(sitemap.includes('<loc>' + record.url + '</loc>'),'Sitemap ' + route);
   assert.equal(sitemap.split('<loc>' + record.url + '</loc>').length - 1,1,'One sitemap entry: ' + route);
@@ -61,19 +61,20 @@ for (const record of manifest.records) {
   const ld = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
   assert.ok(ld[0]['@graph'].some(s => s['@type'] === (record.slug ? 'WebPage' : 'CollectionPage')));
   if (!record.slug) {
+    const hubPrefix = route.replace(/document-tools$/, '');
     assert.ok(html.includes('class="hub-hero outcome-hero"'), 'Outcome entry exists');
     assert.ok(html.includes('id="outcome-tasks-title"') && html.indexOf('id="outcome-tasks-title"') < html.indexOf('id="tools"'), 'Concrete tasks precede the full directory');
-    assert.ok(html.includes(`${route}image-compressor?example=1#utility-result`), 'Localized runnable image example');
-    assert.ok(html.includes(`${route}compare-pdf-text?example=1#results`), 'Localized runnable PDF example');
+    assert.ok(html.includes(`${hubPrefix}image-compressor?example=1#utility-result`), 'Localized runnable image example');
+    assert.ok(html.includes(`${hubPrefix}compare-pdf-text?example=1#results`), 'Localized runnable PDF example');
     assert.ok(!html.includes('type="file"') && !html.includes('id="workspace"'), 'Homepage is a directory: '+route);
     assert.ok(html.includes('data-document-mode="hub"'), 'Homepage mode: '+route);
     assert.ok(!ld[0]['@graph'].some(s=>s['@type']==='WebApplication'), 'Directory is not one application');
     const list=ld[0]['@graph'].find(s=>s['@type']==='ItemList');
     assert.equal(list.numberOfItems,Object.keys(HUB_TASKS).length);
-    assert.deepEqual(list.itemListElement.map(s=>s.url),Object.values(HUB_TASKS).map(slug=>origin+route+slug));
+    assert.deepEqual(list.itemListElement.map(s=>s.url),Object.values(HUB_TASKS).map(slug=>origin+hubPrefix+slug));
     for (const [task,slug] of Object.entries(HUB_TASKS)) {
-      assert.ok(html.includes(`data-hub-task="${task}" href="${route+slug}"`), 'Visible task destination: '+task);
-      assert.ok(plain.includes(origin+route+slug), 'Same task in text: '+task);
+      assert.ok(html.includes(`data-hub-task="${task}" href="${hubPrefix+slug}"`), 'Visible task destination: '+task);
+      assert.ok(plain.includes(origin+hubPrefix+slug), 'Same task in text: '+task);
     }
   }
   if (record.slug) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'BreadcrumbList'));
@@ -128,7 +129,7 @@ for (const css of ['/document-assets/style.css','/document-assets/archive.css','
   assert.ok(!/#116a72|#173c50|#f3f8fa/.test(text), 'Retired document palette: ' + css);
 }
 assert.ok((await read('/document-assets/favicon.svg')).includes('#e4002b'), 'Brand-matched document icon');
-for (const file of ['/llms.txt','/llms-full.txt']) {
+for (const file of ['/document-assets/llms.txt','/document-assets/llms-full.txt']) {
   const text = await read(file); assert.ok(text.startsWith('# TDS Document Scout')); assert.ok(text.includes('/pdf-batch-audit'));
 }
 if (live && !args.includes('--skip-events')) await import('./verify-events.mjs');

@@ -5,7 +5,7 @@ export const HUB_TASKS = Object.freeze({
  verify:'verify-file', delivery:'delivery-evidence', audit:'pdf-accessibility-checker',
  batch:'pdf-batch-audit', text:'pdf-to-text', compare:'compare-pdf-text',
 });
-export const isHubPath = value => /^\/(?:(?:de|zh)\/)?$/.test(value);
+export const isHubPath = value => /^\/(?:(?:de|zh)\/)?(?:document-tools)?$/.test(value);
 export function hubEvent(task) {
  return Object.hasOwn(HUB_TASKS,task) ? 'doc_hub_open_'+task : null;
 }

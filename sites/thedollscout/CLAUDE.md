@@ -1,3 +1,14 @@
+## 2026-10-02 当前方向：多品牌潮玩收藏 + 活泼的视觉首页
+
+Owner 已明确接受：TDS 聚焦潮玩/收藏决策与垂直工具，不限 Labubu；BPJ 汇总通用数字工具。又明确要求首页参考五个高流量同类站，要潮流、活泼。本节优先于下方 09-25 至 09-27 的文档首页方向。保留白黑红导航，以原创彩色场景和系列卡片加强视觉，不恢复成人内容。
+
+- `scripts/collecting/build.mjs` 拥有 EN/DE/ZH 主首页、品牌指南、根 llms；`scripts/documents/build.mjs` 只生成 /document-tools 总览及原有数字工具，独立数字工具 URL 不变。末段順序：workbench → documents → collecting → fleet-analytics coverage。
+- 不能再对收藏内容注入 archive 横幅。BPJ `/studio/toolkit` 中英入口标明 BPJ/TDS 运行站点，不声称完成跨域迁移。后续迁移逐 URL 验证功能与 canonical，再做精确重定向。
+- `functions/retired-paths.mjs` 保护旧路径大小写、语言前缀与编码变体。404/410 均是有效移除信号，不承诺哪一个一定更快；不做无关首页跳转、不用 robots 阻止抓到移除响应。静态扫描与线上检查都进部署。
+- `node --test scripts/collecting/tests.mjs`、`node scripts/collecting/verify.mjs --out dist`、`--live`；英文默认首页不变，语言显式切换。现有 collector workbench 只有 EN/DE，中文链接明确标注英文，不能构造 /zh/workbench。
+- 五站参考和搜索检查见根仓 `docs/tds-collector-relaunch-2026-10-02.md`。大站访问量是 Similarweb 三个月估算，不是 TDS 已获流量，也不是全行业统一 Top 5。不假造热榜、上新/库存或收入。源码与生成 HTML 一起提交。
+- `collector-assets/collector-world.webp` 为原创 AI 视觉，页面明确非品牌商品照片。真实品牌判断使用官方来源。支持 reduced-motion，先验移动端，再发布。
+
 ## 2026-10-01 GA4 全页面覆盖修复
 
 最终生成产物在部署前运行根仓 `tools/fleet-analytics/coverage.py`，补齐缺失的本站 GA4 同意入口，并检查重复加载和串站 ID。此步骤必须位于所有页面生成器之后；发布后跑 `verify-live.mjs`。已有 GA4 与 D1 通道保留；账户、报价客户页、嵌入组件和探针按显式名单隔离，不能批量补挂。新统计只在同意后启动，使用构建时的公开地址/标题，Google 标签在空白同源 frame 内运行，避免自动测量工具表单。历史断档不补造。契约与验证见根仓 `docs/fleet-ga4-recovery-2026-10-01.md`。

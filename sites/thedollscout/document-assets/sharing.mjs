@@ -1,7 +1,7 @@
 import {isGrowthPath} from './growth-core.mjs?v=2026-09-27.1';
 // Explicit allowlist: document strings must never enter a public share payload.
 const ORIGIN = 'https://thedollscout.com';
-const PAGE = /^\/(?:(?:de|zh)\/)?(?:(?:ai-portrait-background-remover|ai-audio-to-text|ai-text-summarizer|image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors)|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
+const PAGE = /^\/(?:(?:de|zh)\/)?(?:(?:document-tools|ai-portrait-background-remover|ai-audio-to-text|ai-text-summarizer|image-compressor|json-compare|time-zone-planner|verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors)|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 export function shareUrl(canonical) {
   const url = new URL(canonical, ORIGIN);
   if (url.origin !== ORIGIN || (!PAGE.test(url.pathname) && !isGrowthPath(url.pathname))) throw new Error('Unrecognized public page');

@@ -1,5 +1,5 @@
-# thedollscout.com — TDS Document Scout (2026-09-25 document pivot).
-# Historical collector content is linked from /collectors.
+# thedollscout.com — The Doll Scout: collectible toys and collection tools.
+# General digital tools remain available at /document-tools.
 # AI crawlers are welcome by name: being read and cited by assistants is a
 # distribution channel we court, not a cost.
 
@@ -44,8 +44,8 @@ Allow: /
 #   Site index for AI:      https://thedollscout.com/llms.txt
 #   Full site text:         https://thedollscout.com/llms-full.txt
 #   PDF tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
-#   Historical collector MCP only: https://thedollscout.com/mcp
-#   Historical collector data:     https://thedollscout.com/data/
+#   Collector MCP: https://thedollscout.com/mcp
+#   Collector data:     https://thedollscout.com/data/
 
 Sitemap: https://thedollscout.com/sitemap.xml
 
