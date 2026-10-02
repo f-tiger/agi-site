@@ -20,6 +20,12 @@ test('assessment collector accepts fixed actions, drops arbitrary scores, QA and
   for(const headers of [{dnt:'1'},{'sec-gpc':'1'}])await send({n:'task_complete',l:'grade_game_en',b:'assessment'},headers);
   assert.equal(writes.length,4);
   assert.ok(validFocusEvent('focus_entry','evidence_context_en','context_data'));
+  await send({n:'vote_cast',l:'home_vote_en',b:'true-believer',p:'/'});
+  await send({n:'vote_cast',l:'home_vote_zh',b:'true-believer',p:'/cn'});
+  assert.equal(writes.length,6,'both homepages can record the existing poll event');
+  assert.ok(writes[5].args.includes('/cn'));
+  await send({n:'vote_cast',l:'home_vote_zh',b:'true-believer',p:'/cn'},{dnt:'1'});
+  assert.equal(writes.length,6,'privacy opt-out also suppresses a vote event');
 });
 
 test('focus aggregate uses the existing name index and excludes bots, old dates and unrelated events',()=>{

@@ -7,10 +7,10 @@ const launch={headless:true};
 if(process.env.AGI_CHROMIUM){const c=require(process.env.AGI_CHROMIUM);launch.executablePath=await c.executablePath();launch.args=c.args.filter(a=>!['--disable-web-security','--single-process'].includes(a));}
 const browser=await chromium.launch(launch);
 const focused=new Set(['focus_entry','task_start','task_complete','result_copy']);
-async function fixture(url,{failData=false,privacy=false,copyFail=false,width=390,now=null,timezoneId='UTC'}={}){
+async function fixture(url,{failData=false,privacy=false,copyFail=false,crowdFail=false,width=390,now=null,timezoneId='UTC'}={}){
   const ctx=await browser.newContext({viewport:{width,height:900},timezoneId}),p=await ctx.newPage();
   if(now){await p.clock.install({time:new Date(Date.parse(now)-60000)});await p.clock.pauseAt(new Date(now));}
-  let failed=false;
+  let failed=false,crowdRequests=0;
   await p.addInitScript(({privacy,copyFail})=>{
     window.__copied='';
     Object.defineProperty(navigator,'clipboard',{value:{writeText:async s=>{if(copyFail)throw Error('blocked');window.__copied=s;}}});
@@ -18,6 +18,10 @@ async function fixture(url,{failData=false,privacy=false,copyFail=false,width=39
   },{privacy,copyFail});
   await p.route('**/*',async r=>{
     const u=new URL(r.request().url());if(u.origin!=='https://agiscorecard.com')return r.abort();
+    if(u.pathname==='/api/crowd'){
+      crowdRequests++;
+      return r.fulfill({status:crowdFail?503:200,contentType:'application/json',body:JSON.stringify(crowdFail?{ok:false}:{ok:true,n:30,buckets:{accelerationist:2,'true-believer':10,realist:8,skeptic:6,contrarian:4}})});
+    }
     if(u.pathname==='/data.json'&&failData&&!failed){failed=true;return r.fulfill({status:503,body:'unavailable'});}
     const slug=u.pathname==='/'?'/index.html':u.pathname;
     const f=path.join(root,path.extname(slug)?slug:slug+'.html');
@@ -31,10 +35,12 @@ async function fixture(url,{failData=false,privacy=false,copyFail=false,width=39
   await p.waitForFunction(()=>/^\d+$/.test(document.getElementById('cd-days')?.textContent||''));
   assert.equal(await p.locator('#milestones').count(),1,'one countdown, in the hero');
   assert.equal(await p.locator('.focus-intro #milestones').count(),1);
+  assert.equal(await p.locator('#vote').count(),1);
+  assert.equal(await p.locator('#milestones + #vote').count(),1,'poll follows the countdown directly');
   const clockBox=await p.locator('.focus-clock').boundingBox();
   assert.ok(clockBox.y+clockBox.height<640,'clock digits visible without scrolling on a short phone');
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no horizontal overflow');
-  return {ctx,p};
+  return {ctx,p,crowdRequests:()=>crowdRequests};
 }
 const events=p=>p.evaluate(()=>Array.from(window.dataLayer||[]).filter(x=>x[0]==='event').map(x=>({name:x[1],params:x[2]})));
 const count=async(p,n)=>(await events(p)).filter(x=>x.name===n).length;
@@ -73,5 +79,22 @@ try{
     await p.clock.fastForward(86400000);assert.equal(await p.locator('#cd-days').textContent(),'0','expired clock never resets to a new deadline');
     await ctx.close();
   }
-  console.log('Home focus: EN/ZH mobile and desktop, visible UTC countdown with ticking/pause/expiry, scoring, retry, edit/reset deduplication, privacy, clipboard fallback and all evidence links passed.');
+  for(const route of ['/','/cn']){
+    const {ctx,p,crowdRequests}=await fixture(route);
+    assert.equal(crowdRequests(),0,'no crowd priming before a choice');
+    await p.locator('[data-vote="true-believer"]').click();
+    await p.waitForFunction(()=>document.querySelectorAll('.focus-vote-bar').length===5);
+    assert.equal(await count(p,'vote_cast'),1);assert.match(await p.locator('#vote-crowd').textContent(),/30/);
+    assert.equal(await p.locator('.focus-vote-bar').nth(1).locator('span').last().textContent(),'10 (33%)','never fabricate an extra answer');
+    await p.locator('[data-vote="true-believer"]').click();assert.equal(await count(p,'vote_cast'),1);assert.equal(crowdRequests(),1);
+    await p.locator('#vote-copy').click();assert.match(await p.evaluate(()=>window.__copied),/2027.*\nhttps:\/\/agiscorecard.com\/.*#vote/s);
+    await p.locator('#vote-lock').click();assert.match(await p.locator('#vote-saved').textContent(),/2027/);
+    await p.reload();await p.locator('#vote-saved').waitFor();assert.equal(await count(p,'vote_cast'),0,'restoring saved choice is not a vote');
+    await ctx.close();
+  }
+  for(const options of [{url:'/?ci=1'},{url:'/?__qa=1'},{url:'/cn',privacy:true}]){
+    const {ctx,p}=await fixture(options.url,options);await p.locator('[data-vote="realist"]').click();await p.waitForFunction(()=>document.querySelectorAll('.focus-vote-bar').length===5);assert.equal(await count(p,'vote_cast'),0);assert.equal(await count(p,'crowd_view'),0);await ctx.close();
+  }
+  {const {ctx,p}=await fixture('/cn',{crowdFail:true,copyFail:true});await p.locator('[data-vote="skeptic"]').click();await p.getByText('暂时无法读取历史统计；你的选择仍可查看和分享。').waitFor();await p.locator('#vote-copy').click();assert.ok(await p.locator('#vote-copy-fallback').isVisible());assert.equal(await p.locator('.focus-vote-bar').count(),0);await ctx.close();}
+  console.log('Home focus: EN/ZH countdown, poll choices/events, honest crowd totals, sharing/storage, privacy/failure fallbacks, assessment and mobile/desktop checks passed.');
 }finally{await browser.close();}

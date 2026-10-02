@@ -20,6 +20,10 @@
 
 不是。倒计时指向 2027 年 1 月 1 日 00:00 UTC，即观察窗口的开始，不是 AGI 到来的保证。本站对“2027 年底前实现”预测的判定截止为 2028 年 1 月 1 日，仍需核对公开证据。
 
+**怎样参与 AGI 时间投票？**
+
+在首页倒计时下方选择一个时间段，即可查看预测类型与历史作答分布，并复制、分享或在本机保存判断。无需注册。分布统计的是作答次数，可能重复，不代表独立人数或民意调查。
+
 ---
 Canonical page: https://agiscorecard.com/cn
 Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)

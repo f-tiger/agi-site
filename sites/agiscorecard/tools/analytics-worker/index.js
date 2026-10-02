@@ -1184,14 +1184,14 @@ export async function crowdResponse(env) {
   const H = { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*' };
   try {
     const { results } = await env.EVENTS.prepare(
-      "SELECT label, COUNT(*) AS n FROM events WHERE name = 'vote_cast' AND path IN ('/', '/agi-test')" +
+      "SELECT label, COUNT(*) AS n FROM events WHERE name = 'vote_cast' AND path IN ('/', '/cn', '/agi-test', '/zh/agi-test')" +
       " AND (ua_class = 'human' OR ua_class IS NULL) GROUP BY label"
     ).all();
     const buckets = Object.fromEntries(CROWD_BUCKETS.map((b) => [b, 0]));
     for (const r of results || []) { const b = crowdBucket(r.label); if (b) buckets[b] += r.n; }
     const n = Object.values(buckets).reduce((a, b) => a + b, 0);
     return new Response(JSON.stringify({ ok: true, generated: new Date().toISOString(),
-      question: 'When does AGI arrive?', scope: 'all-time answers on / and /agi-test, bots excluded',
+      question: 'When does AGI arrive?', scope: 'all-time recorded answers on /, /cn, /agi-test and /zh/agi-test; bots excluded; not unique people',
       n, buckets }), { headers: H });
   } catch (e) {
     return new Response(JSON.stringify({ ok: false, error: 'unavailable' }), { status: 503, headers: Object.assign({ 'cache-control': 'no-store' }, H) });
