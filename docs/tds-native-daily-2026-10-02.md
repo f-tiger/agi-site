@@ -46,3 +46,9 @@ Distribution in this release: internal homepage/brand/assistant-directory links,
 - Final assembled build: 69 localized collector pages pass source/link/sitemap/canonical/hreflang/retired-content verification. 191 structured FAQ/DefinedTerm records agree with visible content. GA4 coverage: 217 HTML pages, 212 public pages covered and five explicit exclusions.
 - Native commit integration passed against a temporary bare Git remote: scoped push, unrelated-file preservation, exact SHA export, repeated no-op and concurrent-main stale-build stop. This test runs in the scheduled workflow.
 - Remote merge, deployment and IndexNow outcomes are appended after verification; this paragraph does not claim a scheduled run has already fired.
+
+## Production confirmation and cache correction
+
+PR87 merged and deployment run 37027495697 passed on attempt2. The first attempt hit an old analytics asset-version reference at one edge; read-only live verification then passed all77 consent pages before retry. Retired-content, marketplace, odds-sync and actual deployment gates had passed on attempt1; their printed shell error branches were not execution failures. Production collector verification passed all69 pages; MCP2.4.0 returned10 tools and4 resources, including the new series catalog through find_collector_tools.
+
+A real returning-browser interaction confirmed checkbox counts and27.1% /72.9% output, but reused the previous field-guide CSS query version. The collector edition is bumped to2026-10-02.6 to invalidate both stylesheet and entry-module caches for existing visitors. No source facts or MCP protocol version change. Native scheduled execution first occurs at the next existing daily slot; no claim of a completed first scheduled source run is made.
