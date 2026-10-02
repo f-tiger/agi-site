@@ -19,6 +19,17 @@ for name,(title,url,desc) in TARGETS.items():
  p=SITE/name
  if not p.exists():raise SystemExit('Missing source page: '+name)
  s=p.read_text();block=f'<!--EB_HOUSEHOLD_LINK--><aside style="margin:24px 0;padding:20px;border-left:5px solid #075f88;background:#eff7fb;"><strong><a href="{url}">{title}</a></strong><p style="margin:6px 0 0;">{desc}</p></aside><!--/EB_HOUSEHOLD_LINK-->\n'
+ if name=='index.html':
+  block='''<!--EB_HOUSEHOLD_LINK--><section id="eb-household-entry" aria-labelledby="eb-household-title" style="max-width:1000px;margin:20px auto;padding:18px 20px;background:#eff7fb;border-left:5px solid #075f88;box-sizing:border-box;">
+<h2 id="eb-household-title" style="margin:0 0 8px;">Erst prüfen, dann kaufen</h2>
+<p style="margin:0 0 12px;">Drei kostenlose Entscheidungshilfen mit deinen Werten. Ohne Anmeldung.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;">
+<a href="/guide/luftfeuchtigkeit-richtig-messen.html" style="flex:1 1 220px;padding:12px;background:#fff;border:1px solid #cfe0ea;border-radius:8px;">Fenster feucht?<br><strong>Messung und nächsten Schritt klären →</strong></a>
+<a href="/waeschetrockner-oder-luftentfeuchter.html#laundry-check" style="flex:1 1 220px;padding:12px;background:#fff;border:1px solid #cfe0ea;border-radius:8px;">Wäsche drinnen trocknen?<br><strong>Trockner und Entfeuchter durchrechnen →</strong></a>
+<a href="/guide/heizkosten-vergleich-rechner.html" style="flex:1 1 220px;padding:12px;background:#fff;border:1px solid #cfe0ea;border-radius:8px;">Zusätzlich heizen?<br><strong>Betriebskosten vergleichen →</strong></a>
+</div><p style="margin:12px 0 0;font-size:14px;"><a href="/wohnkosten-werkstatt.html">Zur Haushaltswerkstatt: Strom messen und Geräteaustausch prüfen →</a></p>
+</section><!--/EB_HOUSEHOLD_LINK-->
+'''
  if '<!--EB_HOUSEHOLD_LINK-->' in s:s=re.sub(r'<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->\n?',lambda m:block,s,flags=re.S)
  else:
   s,n=re.subn(r'(<h2\b)',lambda m:block+m.group(1),s,count=1)

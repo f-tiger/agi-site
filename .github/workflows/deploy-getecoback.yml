@@ -244,6 +244,7 @@ jobs:
         run: |
           python3 tools/check_adlabel.py
           python3 tools/check_purchase_intent.py
+          python3 tools/test_conversion_routes.py
 
       - name: Check FAQ JSON-LD matches visible text verbatim
         run: python3 tools/check_faq_parity.py
