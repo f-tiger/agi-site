@@ -1,3 +1,4 @@
+import {buildToolkit} from './toolkit-pages.mjs';
 import {buildQuoteGrowth} from './quote-growth-pages.mjs';
 import {buildDeck} from './deck-pages.mjs';
 import {renderQuoteStudio,ROUTE as QUOTE_BUILDER_ROUTE} from '../../../tools/quote-page-lab/render.mjs';
@@ -13,6 +14,7 @@ import {buildFileStudio} from './file-pages.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:'/studio/toolkit',zh:'通用工具导航',en:'Everyday toolkit',zhDesc:'按任务找到 AI、图片、PDF、数据与协作工具，标明本站与 TDS 原站入口。',enDesc:'Find AI, image, PDF, data and collaboration tools, with clear BPJ and TDS destinations.',zhOutput:'任务分类 · 免费基础工具 · 原站入口',enOutput:'Task categories · free core tools · clear origins',search:'toolkit ai image pdf json timezone file utilities 工具 汇总 导航 图片 文件 时区'},
   {featured:true,path:'/studio/proposal-deck',zh:'客户提案演示工作台',en:'Client proposal deck studio',zhDesc:'把客户需求与 AI 草稿整理成可编辑 PowerPoint，保留来源、讲稿和改稿版本。',enDesc:'Turn client requirements and AI drafts into editable PowerPoint with sources, speaker notes and revision history.',zhOutput:'原生 PPTX · 讲稿 · 项目备份',enOutput:'Editable PPTX · speaker notes · project backup',search:'presentation powerpoint pptx deck proposal agent 客户 提案 演示 幻灯片 讲稿'},
   {featured:true,path:QUOTE_BUILDER_ROUTE,zh:'互动报价工坊',en:'Interactive quote builder',zhDesc:'用自己的服务和单价制作客户报价页，客户调整数量后复制需求摘要。无需注册，免费分享。',enDesc:'Turn your services and rates into a client quote page. Clients adjust quantities and copy their scope. Free, without an account.',zhOutput:'客户链接 · 离线报价页 · 需求摘要',enOutput:'Client link · offline quote page · scope summary',search:'quote builder estimate freelance service pricing client scope 报价 生成器 服务 自由职业 客户 需求摘要'},
   {path:'/studio/codex-efficiency',zh:'Codex 效率 Skill',en:'Codex Efficiency Skill',zhDesc:'免费本地用量复盘；Pro 提供项目规则与反复评估，19 USDT / 30 天。',enDesc:'Free local usage review; Pro project rules and repeated evaluation, 19 USDT / 30 days.',search:'codex skill efficiency token usage quota pricing retry repeated failures local cli 用量 额度 技能 付费 重试 失败 复盘'},
@@ -32,6 +34,7 @@ export const STUDIO_TOOLS=[
 export function studioHome(BASE,zh){return `<section class="studio-home" id="studio"><h2><a href="${BASE}/studio/">${zh?'BPJ 自研工具':'Built by BPJ'}</a></h2><p>${zh?'由白嫖计自主设计和开发。输入你的工作要求，得到可以核对、计算和导出的结果。':'Designed and built by BPJ. Bring your work requirements and leave with a result you can inspect, calculate and export.'}</p><div class="studio-home-links">${STUDIO_TOOLS.filter(t=>t.featured).map(t=>`<a href="${BASE}${t.path}">${zh?t.zh:t.en}</a>`).join('')}<a href="${BASE}/studio/">${zh?'浏览自研工具':'Explore BPJ tools'}</a></div></section>`;}
 export function studioSearch(BASE,zh){return [{u:BASE+'/studio/release-check',n:zh?'收费应用验收试点':'Paid app review pilot',k:zh?'试点申请':'Pilot application',q:'Stripe subscription payment access release check 订阅 支付 权限 验收'}, {u:BASE+'/video/',n:zh?'BPJ 视频工作室':'BPJ Video Studio',k:zh?'自研视频业务':'BPJ video studio',q:zh?'视频 案例 对比 上新 改稿 画幅 商品 广告 接单 创作者 云项目 会员 字幕 分镜':'video examples comparison launch revision formats product ads creator client cloud projects membership subtitles'}, {u:BASE+'/studio/',n:zh?'BPJ 自研工具':'Built by BPJ',k:zh?'自研工具':'BPJ tool',q:zh?'自研 原创 bpj 工作 自动化 计算 工具':'bpj first party built original work tools'},...STUDIO_TOOLS.filter(t=>t.path.startsWith('/studio/')).map(t=>({u:BASE+t.path,n:zh?t.zh:t.en,k:zh?'自研工具':'BPJ tool',q:t.search|| (t.path.includes('video')?(zh?'视频 商品 广告 素材 变体 字幕 分镜 导出 配音':'video product ads variant subtitles storyboard export audio'):(zh?'供应商 报价 比价 采购 税 运费 箱规 起订量 报价单 对比':'supplier quote comparison procurement tax freight moq pack size'))}))];}
 export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage}){
+  buildToolkit({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write,pushPage});
   const zh=LOCALE.code==='zh',lang=zh?'zh':'en',L=COPY[lang];
   const hub=BASE+'/studio/',asset=site.base_url+'/studio-assets';
   const tools=STUDIO_TOOLS.map(t=>({...t,title:zh?t.zh:t.en,desc:zh?t.zhDesc:t.enDesc}));

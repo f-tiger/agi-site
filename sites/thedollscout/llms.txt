@@ -1,196 +1,48 @@
-# TDS Document Scout
+# The Doll Scout
 
-Twelve free browser tools across AI, images, JSON data, time zones, file delivery and PDF. Three real local AI tools: portrait background removal with MODNet, English audio transcription with Whisper Tiny English, and extractive English summaries using MiniLM sentence embeddings. AI models download from Hugging Face and jsDelivr on explicit load; first-run download, network and memory requirements apply. Inputs remain on the device. AI results require review and are not factual guarantees. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. Separate open-source and video sections link six external projects and three credited English YouTube tutorials to practical workflows. These are not TDS-hosted applications. Licenses and limitations are listed per project. Videos connect to YouTube only after the user loads the player. Optional equipment affiliate links do not unlock AI features. Resource index: https://thedollscout.com/document-assets/resource-library.json. The home page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+Independent collectible-toy guides and free collection tools. Focus: Labubu / THE MONSTERS, SKULLPANDA, Jellycat and Sonny Angel. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
 
-- [Open-source tools](https://thedollscout.com/open-source) (en): Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source.txt
-- [Upscayl: Enlarge a small image with local AI.](https://thedollscout.com/open-source/upscayl) (en): Use it when you need a larger raster image, then compare the result at full size. Desktop processing needs a compatible Vulkan-capable GPU; a CPU alone is not the normal supported path. Upscayl Cloud is separate.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/upscayl.txt
-- [Whisper: Transcribe longer or multilingual audio locally.](https://thedollscout.com/open-source/whisper) (en): Choose the Python project for its model choices and language coverage. Setup needs Python, FFmpeg and enough resources for the selected model. For a short English clip, the TDS browser tool has a smaller setup.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/whisper.txt
-- [Ollama: Run a selected language model on your own computer.](https://thedollscout.com/open-source/ollama) (en): Useful when you want a local model workflow and can manage model downloads and memory use. Select a local model and check the current documentation; hosted/cloud features have separate behavior.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/ollama.txt
-- [OBS Studio: Record a screen demonstration.](https://thedollscout.com/open-source/obs) (en): OBS Studio fits screen recording, scenes and audio sources. Start with its auto-configuration wizard and make a short recording on your actual computer. No streaming account is needed just to record.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/obs.txt
-- [Audacity: Record and edit speech before transcription.](https://thedollscout.com/open-source/audacity) (en): Audacity is a desktop audio editor for recording, trimming and mixing. It is useful for preparing a short speech clip and listening closely to mistakes.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/audacity.txt
-- [Shotcut: Edit a screen recording into a short tutorial.](https://thedollscout.com/open-source/shotcut) (en): Shotcut provides a desktop timeline for cutting clips, adding titles and exporting video. The selected introductory video is linked by Shotcut’s official tutorial page.
-  Plain text: https://thedollscout.com/document-assets/text/en/open-source/shotcut.txt
-- [Video tutorials](https://thedollscout.com/videos) (en): Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.
-  Plain text: https://thedollscout.com/document-assets/text/en/videos.txt
-- [Upscayl: your first AI image upscale](https://thedollscout.com/videos/upscayl) (en): Make one enlarged image, inspect the result, then prepare a smaller web export.
-  Plain text: https://thedollscout.com/document-assets/text/en/videos/upscayl.txt
-- [Audacity: record, edit and prepare speech](https://thedollscout.com/videos/audacity) (en): Record a clear short clip and prepare it for an English transcript.
-  Plain text: https://thedollscout.com/document-assets/text/en/videos/audacity.txt
-- [Shotcut: a first edit and export](https://thedollscout.com/videos/shotcut) (en): Turn one raw recording into a short edited tutorial and prepare its thumbnail.
-  Plain text: https://thedollscout.com/document-assets/text/en/videos/shotcut.txt
-- [Creator setup](https://thedollscout.com/creator-kit) (en): Start with the computer and equipment you already own. Upgrade only when a recording or editing test reveals a specific problem.
-  Plain text: https://thedollscout.com/document-assets/text/en/creator-kit.txt
-- [AI portrait background remover](https://thedollscout.com/ai-portrait-background-remover) (en): Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
-  Plain text: https://thedollscout.com/document-assets/text/en/ai-portrait-background-remover.txt
-- [AI audio to text — English](https://thedollscout.com/ai-audio-to-text) (en): Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
-  Plain text: https://thedollscout.com/document-assets/text/en/ai-audio-to-text.txt
-- [AI extractive text summarizer](https://thedollscout.com/ai-text-summarizer) (en): Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
-  Plain text: https://thedollscout.com/document-assets/text/en/ai-text-summarizer.txt
-- [Image compressor & converter](https://thedollscout.com/image-compressor) (en): Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
-  Plain text: https://thedollscout.com/document-assets/text/en/image-compressor.txt
-- [JSON validator, formatter & comparison](https://thedollscout.com/json-compare) (en): Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
-  Plain text: https://thedollscout.com/document-assets/text/en/json-compare.txt
-- [Time zone meeting planner](https://thedollscout.com/time-zone-planner) (en): Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
-  Plain text: https://thedollscout.com/document-assets/text/en/time-zone-planner.txt
-- [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
-  Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
-- [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
-  Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
-- [Free image, PDF & file tools for everyday work](https://thedollscout.com/) (en): For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.
-  Plain text: https://thedollscout.com/document-assets/text/en/home.txt
-- [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
-  Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
-- [Batch PDF audit](https://thedollscout.com/pdf-batch-audit) (en): Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
-  Plain text: https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt
-- [PDF to text](https://thedollscout.com/pdf-to-text) (en): Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
-  Plain text: https://thedollscout.com/document-assets/text/en/pdf-to-text.txt
-- [Compare PDF text](https://thedollscout.com/compare-pdf-text) (en): Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
-  Plain text: https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt
-- [PDF accessibility checklist before you publish](https://thedollscout.com/learn/pdf-accessibility-checklist) (en): Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
-  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt
-- [Scanned PDF or text PDF: choose the right next step](https://thedollscout.com/learn/scanned-pdf-vs-text-pdf) (en): A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
-  Plain text: https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt
-- [How to review PDF reading order](https://thedollscout.com/learn/pdf-reading-order) (en): Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
-  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt
-- [How checks work](https://thedollscout.com/methodology) (en): The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
-  Plain text: https://thedollscout.com/document-assets/text/en/methodology.txt
-- [File privacy](https://thedollscout.com/document-privacy) (en): Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
-  Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
-- [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
-  Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
-- [Open Source](https://thedollscout.com/de/open-source) (de): Open-Source-Software für konkrete Aufgaben. Einrichtung, Grenzen und den nächsten Schritt vor der Installation vergleichen.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source.txt
-- [Upscayl: Ein kleines Bild mit lokaler KI vergrößern.](https://thedollscout.com/de/open-source/upscayl) (de): Für größere Rasterbilder mit anschließender Sichtprüfung. Desktop-Verarbeitung erfordert eine kompatible Vulkan-GPU; reine CPU-Verarbeitung ist kein regulärer unterstützter Weg. Upscayl Cloud ist separat.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/upscayl.txt
-- [Whisper: Längere oder mehrsprachige Audiodateien lokal transkribieren.](https://thedollscout.com/de/open-source/whisper) (de): Das Python-Projekt bietet verschiedene Modelle und Sprachen. Python, FFmpeg und passende Hardware sind nötig. Für einen kurzen englischen Clip ist das TDS-Browserwerkzeug einfacher.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/whisper.txt
-- [Ollama: Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.](https://thedollscout.com/de/open-source/ollama) (de): Für lokale Modellabläufe mit eigener Verwaltung von Downloads und Speicher. Ein lokales Modell wählen und aktuelle Dokumentation lesen; Cloud-Funktionen verhalten sich anders.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/ollama.txt
-- [OBS Studio: Eine Bildschirmvorführung aufzeichnen.](https://thedollscout.com/de/open-source/obs) (de): OBS Studio bietet Bildschirmaufnahme, Szenen und Audioquellen. Mit dem Assistenten und einer kurzen Aufnahme auf dem eigenen Rechner beginnen. Für lokale Aufnahmen ist kein Streaming-Konto nötig.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/obs.txt
-- [Audacity: Sprache vor der Transkription aufnehmen und schneiden.](https://thedollscout.com/de/open-source/audacity) (de): Desktop-Audioeditor zum Aufnehmen, Kürzen und Mischen. Gut zum Vorbereiten eines kurzen Sprachclips und zum genauen Abhören.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/audacity.txt
-- [Shotcut: Eine Aufnahme zu einem kurzen Tutorial schneiden.](https://thedollscout.com/de/open-source/shotcut) (de): Desktop-Zeitleiste für Schnitt, Titel und Videoexport. Das ausgewählte Einführungsvideo wird auf der offiziellen Tutorial-Seite verlinkt.
-  Plain text: https://thedollscout.com/document-assets/text/de/open-source/shotcut.txt
-- [Video-Anleitungen](https://thedollscout.com/de/videos) (de): Einführungen in Bild-, Audio- und Videowerkzeuge mit Urheberangaben und einer praktischen Folgeaufgabe.
-  Plain text: https://thedollscout.com/document-assets/text/de/videos.txt
-- [Upscayl: das erste Bild mit KI vergrößern](https://thedollscout.com/de/videos/upscayl) (de): Ein Bild vergrößern, Details prüfen und einen kleineren Webexport vorbereiten.
-  Plain text: https://thedollscout.com/document-assets/text/de/videos/upscayl.txt
-- [Audacity: Sprache aufnehmen und vorbereiten](https://thedollscout.com/de/videos/audacity) (de): Einen klaren Sprachclip für ein englisches Transkript vorbereiten.
-  Plain text: https://thedollscout.com/document-assets/text/de/videos/audacity.txt
-- [Shotcut: erster Schnitt und Export](https://thedollscout.com/de/videos/shotcut) (de): Eine Aufnahme zu einem kurzen Tutorial schneiden und ein Vorschaubild vorbereiten.
-  Plain text: https://thedollscout.com/document-assets/text/de/videos/shotcut.txt
-- [Creator-Ausrüstung](https://thedollscout.com/de/creator-kit) (de): Zuerst mit dem vorhandenen Computer und Zubehör arbeiten. Nur aufrüsten, wenn ein konkretes Problem bei einer Testaufnahme sichtbar wird.
-  Plain text: https://thedollscout.com/document-assets/text/de/creator-kit.txt
-- [KI-Hintergrundentfernung für Porträts](https://thedollscout.com/de/ai-portrait-background-remover) (de): Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
-  Plain text: https://thedollscout.com/document-assets/text/de/ai-portrait-background-remover.txt
-- [KI-Audio in Text — Englisch](https://thedollscout.com/de/ai-audio-to-text) (de): Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
-  Plain text: https://thedollscout.com/document-assets/text/de/ai-audio-to-text.txt
-- [KI-Textzusammenfassung mit Original-Sätzen](https://thedollscout.com/de/ai-text-summarizer) (de): Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
-  Plain text: https://thedollscout.com/document-assets/text/de/ai-text-summarizer.txt
-- [Bilder komprimieren & umwandeln](https://thedollscout.com/de/image-compressor) (de): Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
-  Plain text: https://thedollscout.com/document-assets/text/de/image-compressor.txt
-- [JSON prüfen, formatieren & vergleichen](https://thedollscout.com/de/json-compare) (de): JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
-  Plain text: https://thedollscout.com/document-assets/text/de/json-compare.txt
-- [Zeitzonen-Terminplaner](https://thedollscout.com/de/time-zone-planner) (de): Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
-  Plain text: https://thedollscout.com/document-assets/text/de/time-zone-planner.txt
-- [Empfangene Datei prüfen](https://thedollscout.com/de/verify-file) (de): Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
-  Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
-- [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
-  Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
-- [Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag](https://thedollscout.com/de/) (de): Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.
-  Plain text: https://thedollscout.com/document-assets/text/de/home.txt
-- [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
-  Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
-- [PDF-Stapelprüfung](https://thedollscout.com/de/pdf-batch-audit) (de): Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
-  Plain text: https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt
-- [PDF in Text umwandeln](https://thedollscout.com/de/pdf-to-text) (de): Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
-  Plain text: https://thedollscout.com/document-assets/text/de/pdf-to-text.txt
-- [PDF-Texte vergleichen](https://thedollscout.com/de/compare-pdf-text) (de): Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
-  Plain text: https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt
-- [PDF-Barrierefreiheit vor der Veröffentlichung prüfen](https://thedollscout.com/de/learn/pdf-accessibility-checklist) (de): Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
-  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt
-- [Scan oder Text-PDF: den nächsten Schritt wählen](https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf) (de): PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
-  Plain text: https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt
-- [Die PDF-Lesereihenfolge prüfen](https://thedollscout.com/de/learn/pdf-reading-order) (de): Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
-  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt
-- [Prüfmethode](https://thedollscout.com/de/methodology) (de): Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
-  Plain text: https://thedollscout.com/document-assets/text/de/methodology.txt
-- [Dateidatenschutz](https://thedollscout.com/de/document-privacy) (de): PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
-  Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
-- [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
-  Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
-- [开源工具](https://thedollscout.com/zh/open-source) (zh): 按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source.txt
-- [Upscayl: 用本地 AI 放大小图片。](https://thedollscout.com/zh/open-source/upscayl) (zh): 适合需要更大尺寸并愿意逐项检查结果的图片任务。桌面版需要兼容 Vulkan 的 GPU，只有 CPU 不是常规支持方式；Upscayl Cloud 为独立服务。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/upscayl.txt
-- [Whisper: 在本地转录较长或多语言音频。](https://thedollscout.com/zh/open-source/whisper) (zh): Python 项目适合需要更多模型与语言选择的人。安装需 Python、FFmpeg 以及适配所选模型的硬件资源；短英文片段可以先用 TDS 浏览器工具。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/whisper.txt
-- [Ollama: 在自己的电脑上运行选定的语言模型。](https://thedollscout.com/zh/open-source/ollama) (zh): 适合愿意管理模型下载与内存用量的本地 AI 工作流。选择本地模型并参考当前文档；云模型等功能有不同的数据处理方式。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/ollama.txt
-- [OBS Studio: 录制屏幕操作演示。](https://thedollscout.com/zh/open-source/obs) (zh): OBS Studio 可配置屏幕录制、场景和音频来源。先运行自动配置向导，再在自己的设备上试录；仅本地录制不需要直播账号。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/obs.txt
-- [Audacity: 录制并整理适合转录的人声。](https://thedollscout.com/zh/open-source/audacity) (zh): 桌面音频编辑器，可录音、裁剪与混音。适合制作一小段语音素材，并仔细试听错误。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/audacity.txt
-- [Shotcut: 把录屏剪成一段工具演示。](https://thedollscout.com/zh/open-source/shotcut) (zh): 桌面时间线适合裁剪、加标题与导出视频。所选入门视频来自 Shotcut 官方教程页的推荐链接。
-  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/shotcut.txt
-- [视频教程](https://thedollscout.com/zh/videos) (zh): 精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。
-  Plain text: https://thedollscout.com/document-assets/text/zh/videos.txt
-- [Upscayl：第一次用 AI 放大图片](https://thedollscout.com/zh/videos/upscayl) (zh): 放大一张图片，检查细节，再准备更小的网页导出版本。
-  Plain text: https://thedollscout.com/document-assets/text/zh/videos/upscayl.txt
-- [Audacity：录制、剪辑与准备人声](https://thedollscout.com/zh/videos/audacity) (zh): 录制清楚的短片段，准备进行英文音频转文字。
-  Plain text: https://thedollscout.com/document-assets/text/zh/videos/audacity.txt
-- [Shotcut：第一次剪辑与导出](https://thedollscout.com/zh/videos/shotcut) (zh): 把原始录屏剪成一段简短教程，并准备独立缩略图。
-  Plain text: https://thedollscout.com/document-assets/text/zh/videos/shotcut.txt
-- [创作设备指南](https://thedollscout.com/zh/creator-kit) (zh): 先用手边的电脑和设备做一次测试。只有录音或制作中出现了具体问题，再考虑购买。
-  Plain text: https://thedollscout.com/document-assets/text/zh/creator-kit.txt
-- [AI 人像抠图](https://thedollscout.com/zh/ai-portrait-background-remover) (zh): 用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
-  Plain text: https://thedollscout.com/document-assets/text/zh/ai-portrait-background-remover.txt
-- [AI 英文音频转文字](https://thedollscout.com/zh/ai-audio-to-text) (zh): 在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
-  Plain text: https://thedollscout.com/document-assets/text/zh/ai-audio-to-text.txt
-- [AI 原文摘要](https://thedollscout.com/zh/ai-text-summarizer) (zh): 用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
-  Plain text: https://thedollscout.com/document-assets/text/zh/ai-text-summarizer.txt
-- [图片压缩、缩放与格式转换](https://thedollscout.com/zh/image-compressor) (zh): 调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
-  Plain text: https://thedollscout.com/document-assets/text/zh/image-compressor.txt
-- [JSON 校验、格式化与结构对比](https://thedollscout.com/zh/json-compare) (zh): 校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
-  Plain text: https://thedollscout.com/document-assets/text/zh/json-compare.txt
-- [跨时区会议与日历导出](https://thedollscout.com/zh/time-zone-planner) (zh): 查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。
-  Plain text: https://thedollscout.com/document-assets/text/zh/time-zone-planner.txt
-- [核对收到的文件](https://thedollscout.com/zh/verify-file) (zh): 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
-  Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
-- [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
-  Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
-- [免费图片、PDF 与文件工具：从处理到交付](https://thedollscout.com/zh/) (zh): 为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。
-  Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
-- [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
-  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
-- [PDF 批量审查](https://thedollscout.com/zh/pdf-batch-audit) (zh): 一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
-  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt
-- [PDF 文本提取](https://thedollscout.com/zh/pdf-to-text) (zh): 提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
-  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt
-- [PDF 文本版本对比](https://thedollscout.com/zh/compare-pdf-text) (zh): 比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
-  Plain text: https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt
-- [PDF 发布前的无障碍检查清单](https://thedollscout.com/zh/learn/pdf-accessibility-checklist) (zh): 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
-  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt
-- [扫描件还是文本 PDF：下一步怎么处理](https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf) (zh): PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
-  Plain text: https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt
-- [如何检查 PDF 阅读顺序](https://thedollscout.com/zh/learn/pdf-reading-order) (zh): 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
-  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt
-- [检查方法](https://thedollscout.com/zh/methodology) (zh): 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
-  Plain text: https://thedollscout.com/document-assets/text/zh/methodology.txt
-- [文件隐私](https://thedollscout.com/zh/document-privacy) (zh): 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
-  Plain text: https://thedollscout.com/document-assets/text/zh/document-privacy.txt
-- [收藏品历史资料](https://thedollscout.com/zh/collectors) (zh): 原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
-  Plain text: https://thedollscout.com/document-assets/text/zh/collectors.txt
+- [Collectible toy guides & free collection tools](https://thedollscout.com/) (en): Explore Labubu, SKULLPANDA, Jellycat and Sonny Angel. Choose a series, understand what you are buying and make room for the pieces you love.
+  Text: https://thedollscout.com/collector-assets/text/en/home.txt
+- [Labubu / THE MONSTERS — Blind boxes & plush](https://thedollscout.com/brands/labubu) (en): Start with the exact series and format. THE MONSTERS figures, vinyl plush and pendants are different products.
+  Text: https://thedollscout.com/collector-assets/text/en/brands/labubu.txt
+- [SKULLPANDA — Designer figures & pendants](https://thedollscout.com/brands/skullpanda) (en): Explore the design, then check the format. A figure series and a plush pendant series need separate size and contents checks.
+  Text: https://thedollscout.com/collector-assets/text/en/brands/skullpanda.txt
+- [Jellycat — Plush & gifts](https://thedollscout.com/brands/jellycat) (en): Choose a character, size and use. The same name can appear in several sizes, so compare the full product details before buying.
+  Text: https://thedollscout.com/collector-assets/text/en/brands/jellycat.txt
+- [Sonny Angel — Mini figures & blind boxes](https://thedollscout.com/brands/sonny-angel) (en): Find the series you like, then use the official regional store and retailer directory to check where you buy.
+  Text: https://thedollscout.com/collector-assets/text/en/brands/sonny-angel.txt
+- [Sammelfiguren: Ratgeber und kostenlose Werkzeuge](https://thedollscout.com/de/) (de): Labubu, SKULLPANDA, Jellycat und Sonny Angel entdecken. Serie auswählen, den Kauf verstehen und Platz für die Lieblingsstücke schaffen.
+  Text: https://thedollscout.com/collector-assets/text/de/home.txt
+- [Labubu / THE MONSTERS — Blindboxen & Plüsch](https://thedollscout.com/de/brands/labubu) (de): Zuerst Serie und Format bestimmen. Figuren, Vinyl-Plüsch und Anhänger von THE MONSTERS sind unterschiedliche Produkte.
+  Text: https://thedollscout.com/collector-assets/text/de/brands/labubu.txt
+- [SKULLPANDA — Designerfiguren & Anhänger](https://thedollscout.com/de/brands/skullpanda) (de): Design entdecken, dann Format prüfen. Figurenserien und Plüschanhänger benötigen eigene Maß- und Lieferumfangsprüfungen.
+  Text: https://thedollscout.com/collector-assets/text/de/brands/skullpanda.txt
+- [Jellycat — Plüsch & Geschenke](https://thedollscout.com/de/brands/jellycat) (de): Figur, Größe und Verwendungszweck auswählen. Derselbe Name kann mehrere Größen bezeichnen; vor dem Kauf alle Produktangaben vergleichen.
+  Text: https://thedollscout.com/collector-assets/text/de/brands/jellycat.txt
+- [Sonny Angel — Mini-Figuren & Blindboxen](https://thedollscout.com/de/brands/sonny-angel) (de): Eine passende Serie wählen und anschließend den regionalen Händler über das offizielle Verzeichnis prüfen.
+  Text: https://thedollscout.com/collector-assets/text/de/brands/sonny-angel.txt
+- [潮玩收藏指南与免费收藏工具](https://thedollscout.com/zh/) (zh): 探索 Labubu、SKULLPANDA、Jellycat 与 Sonny Angel。挑选系列、读懂购买规则，也为喜欢的收藏留好位置。
+  Text: https://thedollscout.com/collector-assets/text/zh/home.txt
+- [Labubu / THE MONSTERS — 盲盒与毛绒](https://thedollscout.com/zh/brands/labubu) (zh): 先确认具体系列和形态。THE MONSTERS 的手办、搪胶毛绒和挂件是不同产品。
+  Text: https://thedollscout.com/collector-assets/text/zh/brands/labubu.txt
+- [SKULLPANDA — 设计师手办与挂件](https://thedollscout.com/zh/brands/skullpanda) (zh): 先选喜欢的设计，再核对产品形态。手办系列和毛绒挂件需要分别确认尺寸与包装内容。
+  Text: https://thedollscout.com/collector-assets/text/zh/brands/skullpanda.txt
+- [Jellycat — 毛绒与礼物](https://thedollscout.com/zh/brands/jellycat) (zh): 按角色、尺寸和用途选择。同一个名字可能有多个尺寸，购买前需要核对完整产品信息。
+  Text: https://thedollscout.com/collector-assets/text/zh/brands/jellycat.txt
+- [Sonny Angel — 迷你公仔与盲盒](https://thedollscout.com/zh/brands/sonny-angel) (zh): 先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。
+  Text: https://thedollscout.com/collector-assets/text/zh/brands/sonny-angel.txt
 
-Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
+## Existing collecting tools
 
-## Historical collector material
+- [Labubu odds reference and calculator](https://thedollscout.com/rarity)
+- [Collection tracker](https://thedollscout.com/collection-tracker)
+- [Display fit calculator](https://thedollscout.com/display-calculator)
+- [Collection ledger](https://thedollscout.com/workbench/collectorledger)
+- [Collector data and MCP](https://thedollscout.com/data/)
 
-The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors
+## Digital tools, separate scope
+
+- [BPJ general work toolkit](https://baipiaoji.com/en/studio/toolkit)
+- [Existing TDS digital tools](https://thedollscout.com/document-tools)
+- [Digital tool index](https://thedollscout.com/document-assets/llms.txt)

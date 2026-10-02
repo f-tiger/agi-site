@@ -1,8 +1,8 @@
 import {track,isProbe} from './telemetry.mjs?v=2026-10-02.1';
 export {track};
 import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.8';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-27.4';
-import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-09-27.3';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-10-02.2';
+import { HUB_TASKS, isHubPath, hubEvent } from './hub-core.mjs?v=2026-10-02.2';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);

@@ -1,0 +1,4342 @@
+# TDS Document Scout
+
+Twelve free browser tools across AI, images, JSON data, time zones, file delivery and PDF. Three real local AI tools: portrait background removal with MODNet, English audio transcription with Whisper Tiny English, and extractive English summaries using MiniLM sentence embeddings. AI models download from Hugging Face and jsDelivr on explicit load; first-run download, network and memory requirements apply. Inputs remain on the device. AI results require review and are not factual guarantees. Includes image resizing and conversion, lossless-number JSON validation and comparison, and an international meeting planner with local calendar export. Files stay on your device. Separate open-source and video sections link six external projects and three credited English YouTube tutorials to practical workflows. These are not TDS-hosted applications. Licenses and limitations are listed per project. Videos connect to YouTube only after the user loads the player. Optional equipment affiliate links do not unlock AI features. Resource index: https://thedollscout.com/document-assets/resource-library.json. The /document-tools page is a task directory; each tool has its own stable URL. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
+
+- [Open-source tools](https://thedollscout.com/open-source) (en): Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source.txt
+- [Upscayl: Enlarge a small image with local AI.](https://thedollscout.com/open-source/upscayl) (en): Use it when you need a larger raster image, then compare the result at full size. Desktop processing needs a compatible Vulkan-capable GPU; a CPU alone is not the normal supported path. Upscayl Cloud is separate.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/upscayl.txt
+- [Whisper: Transcribe longer or multilingual audio locally.](https://thedollscout.com/open-source/whisper) (en): Choose the Python project for its model choices and language coverage. Setup needs Python, FFmpeg and enough resources for the selected model. For a short English clip, the TDS browser tool has a smaller setup.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/whisper.txt
+- [Ollama: Run a selected language model on your own computer.](https://thedollscout.com/open-source/ollama) (en): Useful when you want a local model workflow and can manage model downloads and memory use. Select a local model and check the current documentation; hosted/cloud features have separate behavior.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/ollama.txt
+- [OBS Studio: Record a screen demonstration.](https://thedollscout.com/open-source/obs) (en): OBS Studio fits screen recording, scenes and audio sources. Start with its auto-configuration wizard and make a short recording on your actual computer. No streaming account is needed just to record.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/obs.txt
+- [Audacity: Record and edit speech before transcription.](https://thedollscout.com/open-source/audacity) (en): Audacity is a desktop audio editor for recording, trimming and mixing. It is useful for preparing a short speech clip and listening closely to mistakes.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/audacity.txt
+- [Shotcut: Edit a screen recording into a short tutorial.](https://thedollscout.com/open-source/shotcut) (en): Shotcut provides a desktop timeline for cutting clips, adding titles and exporting video. The selected introductory video is linked by Shotcut’s official tutorial page.
+  Plain text: https://thedollscout.com/document-assets/text/en/open-source/shotcut.txt
+- [Video tutorials](https://thedollscout.com/videos) (en): Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.
+  Plain text: https://thedollscout.com/document-assets/text/en/videos.txt
+- [Upscayl: your first AI image upscale](https://thedollscout.com/videos/upscayl) (en): Make one enlarged image, inspect the result, then prepare a smaller web export.
+  Plain text: https://thedollscout.com/document-assets/text/en/videos/upscayl.txt
+- [Audacity: record, edit and prepare speech](https://thedollscout.com/videos/audacity) (en): Record a clear short clip and prepare it for an English transcript.
+  Plain text: https://thedollscout.com/document-assets/text/en/videos/audacity.txt
+- [Shotcut: a first edit and export](https://thedollscout.com/videos/shotcut) (en): Turn one raw recording into a short edited tutorial and prepare its thumbnail.
+  Plain text: https://thedollscout.com/document-assets/text/en/videos/shotcut.txt
+- [Creator setup](https://thedollscout.com/creator-kit) (en): Start with the computer and equipment you already own. Upgrade only when a recording or editing test reveals a specific problem.
+  Plain text: https://thedollscout.com/document-assets/text/en/creator-kit.txt
+- [AI portrait background remover](https://thedollscout.com/ai-portrait-background-remover) (en): Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-portrait-background-remover.txt
+- [AI audio to text — English](https://thedollscout.com/ai-audio-to-text) (en): Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-audio-to-text.txt
+- [AI extractive text summarizer](https://thedollscout.com/ai-text-summarizer) (en): Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+  Plain text: https://thedollscout.com/document-assets/text/en/ai-text-summarizer.txt
+- [Image compressor & converter](https://thedollscout.com/image-compressor) (en): Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
+  Plain text: https://thedollscout.com/document-assets/text/en/image-compressor.txt
+- [JSON validator, formatter & comparison](https://thedollscout.com/json-compare) (en): Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
+  Plain text: https://thedollscout.com/document-assets/text/en/json-compare.txt
+- [Time zone meeting planner](https://thedollscout.com/time-zone-planner) (en): Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
+  Plain text: https://thedollscout.com/document-assets/text/en/time-zone-planner.txt
+- [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+  Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
+- [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
+  Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
+- [Free image, PDF & file tools for everyday work](https://thedollscout.com/document-tools) (en): For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.
+  Plain text: https://thedollscout.com/document-assets/text/en/home.txt
+- [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
+- [Batch PDF audit](https://thedollscout.com/pdf-batch-audit) (en): Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt
+- [PDF to text](https://thedollscout.com/pdf-to-text) (en): Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-to-text.txt
+- [Compare PDF text](https://thedollscout.com/compare-pdf-text) (en): Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+  Plain text: https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt
+- [PDF accessibility checklist before you publish](https://thedollscout.com/learn/pdf-accessibility-checklist) (en): Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt
+- [Scanned PDF or text PDF: choose the right next step](https://thedollscout.com/learn/scanned-pdf-vs-text-pdf) (en): A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt
+- [How to review PDF reading order](https://thedollscout.com/learn/pdf-reading-order) (en): Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt
+- [How checks work](https://thedollscout.com/methodology) (en): The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+  Plain text: https://thedollscout.com/document-assets/text/en/methodology.txt
+- [File privacy](https://thedollscout.com/document-privacy) (en): Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+  Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
+- [Collector guides](https://thedollscout.com/collectors) (en): Explore collectible toys, buying guides and collection tools. Start with the brand guides on the TDS homepage.
+  Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [Open Source](https://thedollscout.com/de/open-source) (de): Open-Source-Software für konkrete Aufgaben. Einrichtung, Grenzen und den nächsten Schritt vor der Installation vergleichen.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source.txt
+- [Upscayl: Ein kleines Bild mit lokaler KI vergrößern.](https://thedollscout.com/de/open-source/upscayl) (de): Für größere Rasterbilder mit anschließender Sichtprüfung. Desktop-Verarbeitung erfordert eine kompatible Vulkan-GPU; reine CPU-Verarbeitung ist kein regulärer unterstützter Weg. Upscayl Cloud ist separat.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/upscayl.txt
+- [Whisper: Längere oder mehrsprachige Audiodateien lokal transkribieren.](https://thedollscout.com/de/open-source/whisper) (de): Das Python-Projekt bietet verschiedene Modelle und Sprachen. Python, FFmpeg und passende Hardware sind nötig. Für einen kurzen englischen Clip ist das TDS-Browserwerkzeug einfacher.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/whisper.txt
+- [Ollama: Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.](https://thedollscout.com/de/open-source/ollama) (de): Für lokale Modellabläufe mit eigener Verwaltung von Downloads und Speicher. Ein lokales Modell wählen und aktuelle Dokumentation lesen; Cloud-Funktionen verhalten sich anders.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/ollama.txt
+- [OBS Studio: Eine Bildschirmvorführung aufzeichnen.](https://thedollscout.com/de/open-source/obs) (de): OBS Studio bietet Bildschirmaufnahme, Szenen und Audioquellen. Mit dem Assistenten und einer kurzen Aufnahme auf dem eigenen Rechner beginnen. Für lokale Aufnahmen ist kein Streaming-Konto nötig.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/obs.txt
+- [Audacity: Sprache vor der Transkription aufnehmen und schneiden.](https://thedollscout.com/de/open-source/audacity) (de): Desktop-Audioeditor zum Aufnehmen, Kürzen und Mischen. Gut zum Vorbereiten eines kurzen Sprachclips und zum genauen Abhören.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/audacity.txt
+- [Shotcut: Eine Aufnahme zu einem kurzen Tutorial schneiden.](https://thedollscout.com/de/open-source/shotcut) (de): Desktop-Zeitleiste für Schnitt, Titel und Videoexport. Das ausgewählte Einführungsvideo wird auf der offiziellen Tutorial-Seite verlinkt.
+  Plain text: https://thedollscout.com/document-assets/text/de/open-source/shotcut.txt
+- [Video-Anleitungen](https://thedollscout.com/de/videos) (de): Einführungen in Bild-, Audio- und Videowerkzeuge mit Urheberangaben und einer praktischen Folgeaufgabe.
+  Plain text: https://thedollscout.com/document-assets/text/de/videos.txt
+- [Upscayl: das erste Bild mit KI vergrößern](https://thedollscout.com/de/videos/upscayl) (de): Ein Bild vergrößern, Details prüfen und einen kleineren Webexport vorbereiten.
+  Plain text: https://thedollscout.com/document-assets/text/de/videos/upscayl.txt
+- [Audacity: Sprache aufnehmen und vorbereiten](https://thedollscout.com/de/videos/audacity) (de): Einen klaren Sprachclip für ein englisches Transkript vorbereiten.
+  Plain text: https://thedollscout.com/document-assets/text/de/videos/audacity.txt
+- [Shotcut: erster Schnitt und Export](https://thedollscout.com/de/videos/shotcut) (de): Eine Aufnahme zu einem kurzen Tutorial schneiden und ein Vorschaubild vorbereiten.
+  Plain text: https://thedollscout.com/document-assets/text/de/videos/shotcut.txt
+- [Creator-Ausrüstung](https://thedollscout.com/de/creator-kit) (de): Zuerst mit dem vorhandenen Computer und Zubehör arbeiten. Nur aufrüsten, wenn ein konkretes Problem bei einer Testaufnahme sichtbar wird.
+  Plain text: https://thedollscout.com/document-assets/text/de/creator-kit.txt
+- [KI-Hintergrundentfernung für Porträts](https://thedollscout.com/de/ai-portrait-background-remover) (de): Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-portrait-background-remover.txt
+- [KI-Audio in Text — Englisch](https://thedollscout.com/de/ai-audio-to-text) (de): Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-audio-to-text.txt
+- [KI-Textzusammenfassung mit Original-Sätzen](https://thedollscout.com/de/ai-text-summarizer) (de): Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/ai-text-summarizer.txt
+- [Bilder komprimieren & umwandeln](https://thedollscout.com/de/image-compressor) (de): Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
+  Plain text: https://thedollscout.com/document-assets/text/de/image-compressor.txt
+- [JSON prüfen, formatieren & vergleichen](https://thedollscout.com/de/json-compare) (de): JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/json-compare.txt
+- [Zeitzonen-Terminplaner](https://thedollscout.com/de/time-zone-planner) (de): Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
+  Plain text: https://thedollscout.com/document-assets/text/de/time-zone-planner.txt
+- [Empfangene Datei prüfen](https://thedollscout.com/de/verify-file) (de): Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
+  Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
+- [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
+  Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
+- [Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag](https://thedollscout.com/de/document-tools) (de): Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.
+  Plain text: https://thedollscout.com/document-assets/text/de/home.txt
+- [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
+- [PDF-Stapelprüfung](https://thedollscout.com/de/pdf-batch-audit) (de): Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt
+- [PDF in Text umwandeln](https://thedollscout.com/de/pdf-to-text) (de): Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-to-text.txt
+- [PDF-Texte vergleichen](https://thedollscout.com/de/compare-pdf-text) (de): Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+  Plain text: https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt
+- [PDF-Barrierefreiheit vor der Veröffentlichung prüfen](https://thedollscout.com/de/learn/pdf-accessibility-checklist) (de): Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt
+- [Scan oder Text-PDF: den nächsten Schritt wählen](https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf) (de): PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt
+- [Die PDF-Lesereihenfolge prüfen](https://thedollscout.com/de/learn/pdf-reading-order) (de): Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt
+- [Prüfmethode](https://thedollscout.com/de/methodology) (de): Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+  Plain text: https://thedollscout.com/document-assets/text/de/methodology.txt
+- [Dateidatenschutz](https://thedollscout.com/de/document-privacy) (de): PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+  Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
+- [Sammlerratgeber](https://thedollscout.com/de/collectors) (de): Sammelfiguren, Kaufratgeber und Sammlungswerkzeuge. Die Markenratgeber finden Sie auf der TDS-Startseite.
+  Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [开源工具](https://thedollscout.com/zh/open-source) (zh): 按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source.txt
+- [Upscayl: 用本地 AI 放大小图片。](https://thedollscout.com/zh/open-source/upscayl) (zh): 适合需要更大尺寸并愿意逐项检查结果的图片任务。桌面版需要兼容 Vulkan 的 GPU，只有 CPU 不是常规支持方式；Upscayl Cloud 为独立服务。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/upscayl.txt
+- [Whisper: 在本地转录较长或多语言音频。](https://thedollscout.com/zh/open-source/whisper) (zh): Python 项目适合需要更多模型与语言选择的人。安装需 Python、FFmpeg 以及适配所选模型的硬件资源；短英文片段可以先用 TDS 浏览器工具。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/whisper.txt
+- [Ollama: 在自己的电脑上运行选定的语言模型。](https://thedollscout.com/zh/open-source/ollama) (zh): 适合愿意管理模型下载与内存用量的本地 AI 工作流。选择本地模型并参考当前文档；云模型等功能有不同的数据处理方式。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/ollama.txt
+- [OBS Studio: 录制屏幕操作演示。](https://thedollscout.com/zh/open-source/obs) (zh): OBS Studio 可配置屏幕录制、场景和音频来源。先运行自动配置向导，再在自己的设备上试录；仅本地录制不需要直播账号。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/obs.txt
+- [Audacity: 录制并整理适合转录的人声。](https://thedollscout.com/zh/open-source/audacity) (zh): 桌面音频编辑器，可录音、裁剪与混音。适合制作一小段语音素材，并仔细试听错误。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/audacity.txt
+- [Shotcut: 把录屏剪成一段工具演示。](https://thedollscout.com/zh/open-source/shotcut) (zh): 桌面时间线适合裁剪、加标题与导出视频。所选入门视频来自 Shotcut 官方教程页的推荐链接。
+  Plain text: https://thedollscout.com/document-assets/text/zh/open-source/shotcut.txt
+- [视频教程](https://thedollscout.com/zh/videos) (zh): 精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。
+  Plain text: https://thedollscout.com/document-assets/text/zh/videos.txt
+- [Upscayl：第一次用 AI 放大图片](https://thedollscout.com/zh/videos/upscayl) (zh): 放大一张图片，检查细节，再准备更小的网页导出版本。
+  Plain text: https://thedollscout.com/document-assets/text/zh/videos/upscayl.txt
+- [Audacity：录制、剪辑与准备人声](https://thedollscout.com/zh/videos/audacity) (zh): 录制清楚的短片段，准备进行英文音频转文字。
+  Plain text: https://thedollscout.com/document-assets/text/zh/videos/audacity.txt
+- [Shotcut：第一次剪辑与导出](https://thedollscout.com/zh/videos/shotcut) (zh): 把原始录屏剪成一段简短教程，并准备独立缩略图。
+  Plain text: https://thedollscout.com/document-assets/text/zh/videos/shotcut.txt
+- [创作设备指南](https://thedollscout.com/zh/creator-kit) (zh): 先用手边的电脑和设备做一次测试。只有录音或制作中出现了具体问题，再考虑购买。
+  Plain text: https://thedollscout.com/document-assets/text/zh/creator-kit.txt
+- [AI 人像抠图](https://thedollscout.com/zh/ai-portrait-background-remover) (zh): 用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-portrait-background-remover.txt
+- [AI 英文音频转文字](https://thedollscout.com/zh/ai-audio-to-text) (zh): 在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-audio-to-text.txt
+- [AI 原文摘要](https://thedollscout.com/zh/ai-text-summarizer) (zh): 用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+  Plain text: https://thedollscout.com/document-assets/text/zh/ai-text-summarizer.txt
+- [图片压缩、缩放与格式转换](https://thedollscout.com/zh/image-compressor) (zh): 调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
+  Plain text: https://thedollscout.com/document-assets/text/zh/image-compressor.txt
+- [JSON 校验、格式化与结构对比](https://thedollscout.com/zh/json-compare) (zh): 校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
+  Plain text: https://thedollscout.com/document-assets/text/zh/json-compare.txt
+- [跨时区会议与日历导出](https://thedollscout.com/zh/time-zone-planner) (zh): 查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。
+  Plain text: https://thedollscout.com/document-assets/text/zh/time-zone-planner.txt
+- [核对收到的文件](https://thedollscout.com/zh/verify-file) (zh): 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+  Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
+- [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
+  Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
+- [免费图片、PDF 与文件工具：从处理到交付](https://thedollscout.com/zh/document-tools) (zh): 为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。
+  Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
+- [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
+- [PDF 批量审查](https://thedollscout.com/zh/pdf-batch-audit) (zh): 一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt
+- [PDF 文本提取](https://thedollscout.com/zh/pdf-to-text) (zh): 提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt
+- [PDF 文本版本对比](https://thedollscout.com/zh/compare-pdf-text) (zh): 比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+  Plain text: https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt
+- [PDF 发布前的无障碍检查清单](https://thedollscout.com/zh/learn/pdf-accessibility-checklist) (zh): 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt
+- [扫描件还是文本 PDF：下一步怎么处理](https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf) (zh): PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt
+- [如何检查 PDF 阅读顺序](https://thedollscout.com/zh/learn/pdf-reading-order) (zh): 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt
+- [检查方法](https://thedollscout.com/zh/methodology) (zh): 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+  Plain text: https://thedollscout.com/document-assets/text/zh/methodology.txt
+- [文件隐私](https://thedollscout.com/zh/document-privacy) (zh): 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+  Plain text: https://thedollscout.com/document-assets/text/zh/document-privacy.txt
+- [收藏指南](https://thedollscout.com/zh/collectors) (zh): 探索潮玩、购买指南与收藏管理工具，从 TDS 首页选择品牌与任务。
+  Plain text: https://thedollscout.com/document-assets/text/zh/collectors.txt
+
+Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
+
+## Collector guides
+
+Collectible toys and collection tools are the main site focus. Their MCP has a separate scope: https://thedollscout.com/collectors
+
+
+# Open-source tools
+
+https://thedollscout.com/open-source
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.
+
+Upscayl
+
+Enlarge a small image with local AI.
+
+AGPL-3.0
+
+https://thedollscout.com/open-source/upscayl
+
+Whisper
+
+Transcribe longer or multilingual audio locally.
+
+MIT
+
+https://thedollscout.com/open-source/whisper
+
+Ollama
+
+Run a selected language model on your own computer.
+
+MIT (runtime)
+
+https://thedollscout.com/open-source/ollama
+
+OBS Studio
+
+Record a screen demonstration.
+
+GPL-2.0-or-later
+
+https://thedollscout.com/open-source/obs
+
+Audacity
+
+Record and edit speech before transcription.
+
+GPL-3.0 (distribution)
+
+https://thedollscout.com/open-source/audacity
+
+Shotcut
+
+Edit a screen recording into a short tutorial.
+
+GPL-3.0
+
+https://thedollscout.com/open-source/shotcut
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Are these TDS tools?
+
+No. These are independently maintained open-source projects. TDS supplies selection notes and links to the original maintainers; downloads and support come from those projects.
+
+Does open source mean every model or cloud service is free?
+
+No. Check the specific code license, model license and service terms. Ollama models can have separate licenses; Upscayl Desktop and Upscayl Cloud are different products.
+
+Reference material
+
+
+
+# Upscayl: Enlarge a small image with local AI.
+
+https://thedollscout.com/open-source/upscayl
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Enlarge a small image with local AI.
+
+Use it when you need a larger raster image, then compare the result at full size. Desktop processing needs a compatible Vulkan-capable GPU; a CPU alone is not the normal supported path. Upscayl Cloud is separate.
+
+Upscaling estimates detail; it cannot recover an authoritative original. Faces, lettering and textures can change. Larger dimensions usually increase file size.
+
+Install from the official desktop download and check GPU support.
+
+Keep the original and upscale a copy of one image.
+
+Inspect faces and text at 100%; reject invented details.
+
+Use TDS image compression to compare export size for the web.
+
+Windows · macOS · Linux
+
+AGPL-3.0
+
+https://github.com/upscayl/upscayl/blob/main/LICENSE
+
+https://upscayl.org/download
+
+https://docs.upscayl.org/
+
+https://github.com/upscayl/upscayl
+
+https://thedollscout.com/image-compressor
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# Whisper: Transcribe longer or multilingual audio locally.
+
+https://thedollscout.com/open-source/whisper
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Transcribe longer or multilingual audio locally.
+
+Choose the Python project for its model choices and language coverage. Setup needs Python, FFmpeg and enough resources for the selected model. For a short English clip, the TDS browser tool has a smaller setup.
+
+Transcription can hallucinate, especially with silence or background noise. Check language, names and times against the recording. TDS currently accepts English audio up to 60 seconds.
+
+Install using the upstream setup instructions.
+
+Choose the audio language and a model that fits your hardware.
+
+Test one clip with clear speech before a long job.
+
+Review the transcript and timing against the original.
+
+Python · FFmpeg
+
+MIT
+
+https://github.com/openai/whisper/blob/main/LICENSE
+
+https://github.com/openai/whisper
+
+https://github.com/openai/whisper#setup
+
+https://github.com/openai/whisper
+
+https://thedollscout.com/ai-audio-to-text
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# Ollama: Run a selected language model on your own computer.
+
+https://thedollscout.com/open-source/ollama
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Run a selected language model on your own computer.
+
+Useful when you want a local model workflow and can manage model downloads and memory use. Select a local model and check the current documentation; hosted/cloud features have separate behavior.
+
+The runtime MIT license does not grant rights to every model. Check each model license and keep the service private unless you deliberately secure network access. Generated answers require verification.
+
+Install from the official download page.
+
+Choose a local model whose license and size fit your task.
+
+Test with public sample text before sensitive material.
+
+If you only need source sentences, try the TDS extractive summarizer.
+
+Windows · macOS · Linux
+
+MIT (runtime)
+
+https://github.com/ollama/ollama/blob/main/LICENSE
+
+https://ollama.com/download
+
+https://docs.ollama.com/
+
+https://github.com/ollama/ollama
+
+https://thedollscout.com/ai-text-summarizer
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# OBS Studio: Record a screen demonstration.
+
+https://thedollscout.com/open-source/obs
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Record a screen demonstration.
+
+OBS Studio fits screen recording, scenes and audio sources. Start with its auto-configuration wizard and make a short recording on your actual computer. No streaming account is needed just to record.
+
+Screen recording may capture notifications, private windows and other audio. Preview the frame and listen to the exported file before recording a full tutorial.
+
+Run the auto-configuration wizard for recording.
+
+Add the intended screen/window and microphone sources.
+
+Record 20 seconds and check framing, sound and file size.
+
+Use an audio editor to export a short WAV/MP3 for transcription.
+
+Windows · macOS · Linux
+
+GPL-2.0-or-later
+
+https://github.com/obsproject/obs-studio/blob/master/COPYING
+
+https://obsproject.com/download
+
+https://obsproject.com/kb/quick-start-guide
+
+https://github.com/obsproject/obs-studio
+
+https://thedollscout.com/ai-audio-to-text
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# Audacity: Record and edit speech before transcription.
+
+https://thedollscout.com/open-source/audacity
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Record and edit speech before transcription.
+
+Audacity is a desktop audio editor for recording, trimming and mixing. It is useful for preparing a short speech clip and listening closely to mistakes.
+
+The linked tutorial was published in 2023; current controls can differ. Review current project documentation. Audacity’s distribution is GPLv3; individual files and components may have other licenses.
+
+Select the intended microphone and make a short recording.
+
+Listen for clipping and room noise; adjust the source first.
+
+Trim an English sample to 60 seconds or less and export WAV/MP3.
+
+Try the TDS transcript and compare it with the recording.
+
+Windows · macOS · Linux
+
+GPL-3.0 (distribution)
+
+https://github.com/audacity/audacity/blob/master/LICENSE.txt
+
+https://www.audacityteam.org/download/
+
+https://support.audacityteam.org/
+
+https://github.com/audacity/audacity
+
+https://thedollscout.com/ai-audio-to-text
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# Shotcut: Edit a screen recording into a short tutorial.
+
+https://thedollscout.com/open-source/shotcut
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Edit a screen recording into a short tutorial.
+
+Shotcut provides a desktop timeline for cutting clips, adding titles and exporting video. The selected introductory video is linked by Shotcut’s official tutorial page.
+
+The tutorial is from 2019 and demonstrates fundamentals, not the latest interface. Check current documentation for menus and export options. TDS does not provide a browser video editor.
+
+Import a short recording and make a copy of the project.
+
+Remove an unwanted beginning or ending on the timeline.
+
+Add a clear title and test a short export.
+
+Prepare a separate web thumbnail with the TDS image compressor.
+
+Windows · macOS · Linux
+
+GPL-3.0
+
+https://github.com/mltframework/shotcut/blob/master/COPYING
+
+https://shotcut.org/download/
+
+https://shotcut.org/tutorials/
+
+https://github.com/mltframework/shotcut
+
+https://thedollscout.com/image-compressor
+
+A curated directory of independent projects. External software has its own requirements and privacy practices. Listed licenses describe the upstream code; model weights, bundled components and hosted services may have different terms.
+
+Reference material
+
+
+
+# Video tutorials
+
+https://thedollscout.com/videos
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.
+
+Upscayl: your first AI image upscale
+
+Make one enlarged image, inspect the result, then prepare a smaller web export.
+
+Upscayl
+
+https://thedollscout.com/videos/upscayl
+
+Audacity: record, edit and prepare speech
+
+Record a clear short clip and prepare it for an English transcript.
+
+Kyle Stedman
+
+https://thedollscout.com/videos/audacity
+
+Shotcut: a first edit and export
+
+Turn one raw recording into a short edited tutorial and prepare its thumbnail.
+
+James Woo
+
+https://thedollscout.com/videos/shotcut
+
+English-language video by the credited creator. TDS adds the task checklist below; we did not produce this video. Older interfaces may differ from current releases.
+
+Reference material
+
+
+
+# Upscayl: your first AI image upscale
+
+https://thedollscout.com/videos/upscayl
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Make one enlarged image, inspect the result, then prepare a smaller web export.
+
+Upscayl Tutorial - How to use Upscayl? | Best Free AI Image Upscaler for Linux, Mac and Windows
+
+Upscayl
+
+https://www.youtube.com/@upscayl
+
+2024-12-04T01:04:58-08:00
+
+4:07
+
+https://www.youtube.com/watch?v=3M77flVZlVY
+
+English-language video by the credited creator. TDS adds the task checklist below; we did not produce this video. Older interfaces may differ from current releases.
+
+Install from the official desktop download and check GPU support.
+
+Keep the original and upscale a copy of one image.
+
+Inspect faces and text at 100%; reject invented details.
+
+Use TDS image compression to compare export size for the web.
+
+https://thedollscout.com/image-compressor
+
+Loading connects your browser to YouTube and Google and sends connection information. Privacy-enhanced mode does not mean anonymous viewing. No autoplay.
+
+Reference material
+
+
+
+# Audacity: record, edit and prepare speech
+
+https://thedollscout.com/videos/audacity
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Record a clear short clip and prepare it for an English transcript.
+
+Audacity Basics (NEW in 2023): Recording, Editing, Mixing
+
+Kyle Stedman
+
+https://www.youtube.com/@kylestedman
+
+2023-07-10T14:14:51-07:00
+
+18:21
+
+https://www.youtube.com/watch?v=Im2W7pokfpw
+
+English-language video by the credited creator. TDS adds the task checklist below; we did not produce this video. Older interfaces may differ from current releases.
+
+Select the intended microphone and make a short recording.
+
+Listen for clipping and room noise; adjust the source first.
+
+Trim an English sample to 60 seconds or less and export WAV/MP3.
+
+Try the TDS transcript and compare it with the recording.
+
+https://thedollscout.com/ai-audio-to-text
+
+Loading connects your browser to YouTube and Google and sends connection information. Privacy-enhanced mode does not mean anonymous viewing. No autoplay.
+
+Reference material
+
+
+
+# Shotcut: a first edit and export
+
+https://thedollscout.com/videos/shotcut
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Turn one raw recording into a short edited tutorial and prepare its thumbnail.
+
+Shotcut Video Editor Tutorial For Beginners - Fast Start
+
+James Woo
+
+https://www.youtube.com/@JamesWoo
+
+2019-09-13T04:07:14-07:00
+
+15:30
+
+https://www.youtube.com/watch?v=JtsB2iZRb9c
+
+English-language video by the credited creator. TDS adds the task checklist below; we did not produce this video. Older interfaces may differ from current releases.
+
+Import a short recording and make a copy of the project.
+
+Remove an unwanted beginning or ending on the timeline.
+
+Add a clear title and test a short export.
+
+Prepare a separate web thumbnail with the TDS image compressor.
+
+https://thedollscout.com/image-compressor
+
+Loading connects your browser to YouTube and Google and sends connection information. Privacy-enhanced mode does not mean anonymous viewing. No autoplay.
+
+Reference material
+
+
+
+# Creator setup
+
+https://thedollscout.com/creator-kit
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Start with the computer and equipment you already own. Upgrade only when a recording or editing test reveals a specific problem.
+
+As an Amazon Associate, TDS earns from qualifying purchases. The links below open Amazon search results, not a tested product ranking. Prices, compatibility and delivery must be checked on the retailer page. EN and ZH links use Amazon US; DE links use Amazon Germany.
+
+Clearer speech
+
+Move closer to your existing microphone, reduce room noise and record a short sample in Audacity.
+
+Check the connector, operating-system support, return policy and whether direct headphone monitoring is included. A microphone cannot guarantee accurate transcription.
+
+More consistent portraits
+
+Face a window and use a plain background. Try the portrait cutout with your existing photo first.
+
+Check power supply, brightness control, stand inclusion and available space. Lighting is optional; the cutout tool does not require special equipment.
+
+Room for video projects
+
+Remove disposable exports and check free disk space before adding another drive.
+
+Check your computer’s ports, usable capacity and cable inclusion. Keep a separate backup; an external drive alone is not a backup plan.
+
+Do I need to buy equipment to use TDS?
+
+No. TDS browser tools and these checklists are free. Equipment links are optional.
+
+Does a purchase unlock AI features?
+
+No. Equipment purchases are made with the retailer and do not unlock TDS features. The separate collector membership does not include paid AI tools.
+
+Reference material
+
+
+
+# AI portrait background remover
+
+https://thedollscout.com/ai-portrait-background-remover
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Static JPEG, PNG or WebP; 10 MiB, 20 megapixels. Output is resized to at most 1,600 pixels on its longest side. Designed for people; not a general product, pet or scene cutout tool. Fine hair, transparent objects and difficult lighting can fail.
+
+MODNet predicts a foreground alpha matte. The mask is applied to the resized portrait and exported as PNG with transparency. This tool uses the quantized model and keeps the photo on your device.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Can I remove a product background?
+
+This model is trained for portrait matting. Product-only photos, animals and complex scenes may produce poor masks. Use it for people and inspect the exported edges.
+
+What resolution do I get?
+
+The longest side is capped at 1,600 pixels, without enlarging smaller inputs. The output is a transparent PNG.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# AI audio to text — English
+
+https://thedollscout.com/ai-audio-to-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English speech only; WAV or MP3 up to 10 MiB and 60 seconds. No speaker identification, translation or live recording. Whisper Tiny can miss speech or invent words, especially with noise or silence. Review every transcript.
+
+Your browser decodes the file to mono audio at 16 kHz. Whisper Tiny English predicts text and segment timestamps. TXT and SRT downloads are created locally. Subtitle timing is approximate.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Can it transcribe Chinese or German?
+
+This first version uses an English-only model. The page has English, German and Chinese interfaces, but the recording must contain English speech.
+
+Are subtitles and names always accurate?
+
+No. This small model can mishear names, numbers, accents or background sounds. Replay the original and edit the draft before publication.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# AI extractive text summarizer
+
+https://thedollscout.com/ai-text-summarizer
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text: 80–12,000 characters, 3–60 sentences, maximum 256 model tokens per sentence. Select up to 3 or 5 sentences, always fewer than the source. No rewriting, translation or fact-checking. Selections can miss important context.
+
+MiniLM creates a semantic vector for each sentence. Code ranks sentences by their similarity to the document average while reducing repetition: 70% centrality, 30% similarity to already selected sentences. The selected original sentences are shown in source order. These weights are a product heuristic, not a validated accuracy score.
+
+AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Does the AI write new sentences?
+
+It selects existing sentences using neural sentence embeddings. It does not generate or paraphrase text. Each highlight links to its original sentence so you can inspect the context.
+
+Does the result prove the source is correct?
+
+No. The model estimates semantic similarity; it does not verify facts or guarantee that every important point is included. Read the source before relying on a summary.
+
+Load the model, insert the example text and keep the three-sentence option. On 27 September 2026, the pinned model selected sentences 1, 3 and 6 in our Chromium check. This is one smoke test, not a quality benchmark. Other browsers may produce small numerical differences.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Reference material
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+
+
+# Image compressor & converter
+
+https://thedollscout.com/image-compressor
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Resize images and export JPEG, PNG or WebP. Compare actual dimensions and file sizes before downloading each result.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+Up to 8 still JPEG, PNG or WebP images; 20 MiB each, 50 MiB total, 20 megapixels each. No GIF, HEIC, SVG or animation. Output is limited to 4096 × 4096 pixels and never enlarged.
+
+The browser decodes and redraws each image, preserving proportions. JPEG uses a white background for transparency. PNG ignores the quality setting. Re-encoding can change colours or increase file size; this is not a print-quality or metadata-erasure guarantee.
+
+A 1500 × 1000 image fitted within 1000 × 1000 becomes 1000 × 667. The original stays unchanged. The interactive sample measures its actual exported size.
+
+1500 × 1000 → 1000 × 667
+
+Does compression always make an image smaller?
+
+No. Output size depends on the source, chosen format, dimensions and browser encoder. The result shows both byte counts, including an increase when the output is larger.
+
+Are transparent images supported?
+
+PNG and WebP can preserve transparency. JPEG cannot; transparent pixels are placed on a white background. Animated files are rejected.
+
+Reference material
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON validator, formatter & comparison
+
+https://thedollscout.com/json-compare
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Validate JSON, format it without rounding large numbers, and compare two versions by field path. Export formatted JSON or a change report.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+UTF-8 JSON only, up to 512 KiB per input, 60 nesting levels, 20,000 values and 1,000 differences. Duplicate keys are rejected. Numeric exponents are limited to ±100,000. No JSON5, comments, schema validation or executable code.
+
+Object key order and whitespace do not count as changes. Arrays are compared by index, so an insertion may produce several changes. Number tokens remain exact; equivalent decimal values such as 1 and 1.0 compare equal. Paths use JSON Pointer escaping.
+
+Change enabled from false to true and add a third region. Reordering the object keys leaves the large numeric ID untouched.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Will a long numeric ID be rounded?
+
+No. The formatter preserves number tokens and comparison normalizes decimal strings without converting them to JavaScript floating-point numbers.
+
+What happens to duplicate JSON keys?
+
+This tool rejects them and reports the location. It does not silently discard an earlier value. Object order is ignored during comparison, but array order matters.
+
+Reference material
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# Time zone meeting planner
+
+https://thedollscout.com/time-zone-planner
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Compare a meeting in several cities, catch daylight-saving clock changes, and download a calendar file with one unambiguous UTC start and end.
+
+Your files, pasted data and meeting details are processed in this browser. No account or upload is needed. Downloaded results can contain your input; review them before sharing.
+
+One meeting, 5–480 minutes, dates from 1970 to 2100, 16 available time zones. Uses your browser’s time-zone rules. No recurring events, attendee availability, holiday calendar or invitations.
+
+Choose the date and the organiser’s time zone. Nonexistent spring-forward times are rejected. Repeated fall-back times require an explicit earlier/later choice. Work-hour hints assume weekdays 09:00–18:00, not local holidays or personal schedules.
+
+A 60-minute meeting on 15 October 2026 at 09:00 in New York starts at 13:00 UTC, 14:00 in London, 15:00 in Berlin and 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Does the calendar download send invitations?
+
+No. It creates an .ics file on your device. You choose whether to import or share it; the tool contacts no attendees or calendar accounts.
+
+Why can a local time be invalid or occur twice?
+
+Daylight-saving changes can skip a clock interval or repeat it. The tool rejects skipped times and asks you to choose the earlier or later occurrence for repeated times.
+
+Reference material
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
+
+
+# Check the file you received
+
+https://thedollscout.com/verify-file
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+
+One file, up to 20 MiB. File contents stay in this tab.
+
+Select the exact file you plan to send.
+
+Create a link and send it alongside the file through your usual channel.
+
+The recipient selects their copy and checks its fingerprint.
+
+A match means the SHA-256 fingerprint and byte length agree with the supplied reference. It does not establish sender identity, authorship, safe content, delivery, acceptance or a trusted time. Get the reference through a channel you trust.
+
+The link contains a fingerprint and file size, but no file name, notes or contents. Anyone with it can test a candidate file. The link may be retained by the app you share it through. TDS does not send its fingerprint to analytics.
+
+The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
+
+Download a working starter with a known example, an offline runner and an optional GitHub Actions template. No npm dependencies or API keys.
+
+Unzip and run: node tools/run-file-check.mjs. The example must match.
+
+Change the example file while keeping its reference. Run again: the check must fail.
+
+Replace both with your own file and a separately trusted reference.
+
+The scripts never contact TDS. Optional GitHub use uploads files to your repository and prints fingerprints in logs; keep confidential files offline or in an appropriately restricted repository. A match proves only file equality, not delivery or acceptance.
+
+OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
+
+How to verify a file checksum independently
+
+A SHA-256 checksum describes file contents. In TDS, a match requires both the same SHA-256 digest and the same byte count as the sender’s reference. Compare the exact downloaded file, not a screenshot or an exported copy.
+
+Why do two PDFs that look the same have different hashes?
+
+A saved PDF can contain changed metadata, compression or other bytes even when the visible pages look unchanged. For wording changes use Compare PDF text; use a checksum for exact-byte comparison.
+
+Does a matching checksum prove a file is safe?
+
+No. A malicious file can match its own checksum. Obtain the reference through a trusted channel; this tool does not scan for malware, verify identity or certify delivery.
+
+Can I paste any published SHA-256 digest here?
+
+This interface accepts a complete TDS reference link, which also includes the byte count. For a raw digest, use the commands below and compare it manually.
+
+A reproducible three-byte example
+
+Create a plain file containing exactly abc with no newline. It has 3 bytes and this SHA-256 digest. Renaming it leaves the digest unchanged; changing its contents or adding a newline changes it. The built-in known example uses these same bytes.
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+Replace document.pdf with your own file path. These commands read the file locally. Compare the digest and byte count with the TDS reference; uppercase and lowercase hexadecimal letters represent the same digest.
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Build a client delivery record
+
+https://thedollscout.com/delivery-evidence
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
+
+Up to 10 files, 20 MB each, 100 MB total. Files and notes stay in this tab; nothing is uploaded or saved automatically.
+
+Save the agreed scope and its original email or contract.
+
+Keep the exact delivered files and the original delivery message.
+
+Record the client’s actual response, including changes requested.
+
+Keep missing or disputed facts visible; never fill them in from a guess.
+
+A SHA-256 fingerprint identifies file bytes. Notes and creation time come from you and your device. TDS does not verify authorship, recipient identity, receipt, acceptance or payment authorization. No Bitcoin timestamp or signature is created.
+
+For payment disputes, relevant evidence depends on the dispute reason. Delivery evidence alone does not establish that a cardholder authorized a purchase. Check your processor’s current requirements.
+
+We are researching a $79/month team plan for shared review history and branded handoffs. It is not available to purchase. These anonymous answers help us decide what to build; they do not create an account or reservation.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Free image, PDF & file tools for everyday work
+
+https://thedollscout.com/document-tools
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.
+
+What do you need to finish?
+
+Prepare images for a website
+
+Resize JPEG, PNG or WebP, inspect the result and download the files.
+
+Resized images with their actual output sizes.
+
+Check what changed in a PDF
+
+Compare the text in two versions before sending the final document. Scanned pages need OCR elsewhere.
+
+Page-level text changes and an exportable report.
+
+Record a file handover
+
+List the final files and add your notes. Create a checksum link if the recipient needs to check a copy.
+
+A downloadable file inventory. It does not prove delivery or acceptance.
+
+Image compressor & converter
+
+Resize and convert JPEG, PNG and WebP; compare actual output size.
+
+Images
+
+https://thedollscout.com/image-compressor
+
+JSON validator, formatter & comparison
+
+Validate, format and compare fields without rounding large numbers.
+
+Structured data
+
+https://thedollscout.com/json-compare
+
+Time zone meeting planner
+
+Compare city times and export a calendar file with DST checks.
+
+Time zones + .ics
+
+https://thedollscout.com/time-zone-planner
+
+PDF accessibility checker
+
+Find missing titles, language declarations, tags and page-level issues.
+
+PDF preflight
+
+https://thedollscout.com/pdf-accessibility-checker
+
+Batch PDF audit
+
+Review up to 10 PDFs and export one combined findings list.
+
+Up to 10 PDFs
+
+https://thedollscout.com/pdf-batch-audit
+
+PDF to text
+
+Extract existing text by page and save a TXT file.
+
+Text extraction
+
+https://thedollscout.com/pdf-to-text
+
+Compare PDF text
+
+Locate changed, added and removed text pages across two versions.
+
+Two PDF versions
+
+https://thedollscout.com/compare-pdf-text
+
+File verification
+
+Create a checksum link or check a received copy against one.
+
+SHA-256 + file size
+
+https://thedollscout.com/verify-file
+
+Delivery record
+
+List delivered files, add your notes and export a portable record.
+
+File inventory
+
+https://thedollscout.com/delivery-evidence
+
+AI portrait background remover
+
+Remove the background from a portrait with an AI model in your browser. Download a transparent PNG without uploading the photo.
+
+Portraits → PNG
+
+https://thedollscout.com/ai-portrait-background-remover
+
+AI audio to text — English
+
+Transcribe a short English WAV or MP3 locally with Whisper. Download a text draft and approximate SRT subtitles without uploading the recording.
+
+English audio → TXT / SRT
+
+https://thedollscout.com/ai-audio-to-text
+
+AI extractive text summarizer
+
+Find key sentences in English text with a local AI model. Keep the original wording, trace each selection to its source and download the highlights.
+
+English text → source-linked highlights
+
+https://thedollscout.com/ai-text-summarizer
+
+My images are too large to publish.
+
+Resize and inspect the exported images, then record the final files you hand over.
+
+An API response or configuration changed.
+
+Compare JSON fields and download the change report. Object key order will not create noise.
+
+My team works in different time zones.
+
+Check the local times and download one calendar file. Import it into your calendar when ready.
+
+Free tools. Files stay on your device.
+
+No account or file upload is needed. Keep your original files unchanged and download the results you need. Each tool explains its limits before you start. First use downloads the model plus the inference runtime. Allow extra time and data. A recent desktop browser is recommended; older phones and restricted networks may fail.
+
+Are all twelve tools free?
+
+Yes. The three local AI tools and nine everyday utilities are free, without an account. AI tools download model files before first use.
+
+Do you upload or store my files?
+
+File processing runs in your browser. Files and document text are not uploaded. If you choose to share a verification link, it contains a SHA-256 fingerprint and byte count; full exports can contain filenames and your notes. AI processing runs on your device. When you load a model, your browser contacts jsDelivr and Hugging Face to download software and model files. Those services receive connection information such as your IP address; your selected files and text are not sent to them. Model files may stay in browser cache. Clear site data to remove the cache.
+
+Which tool checks whether a file has changed?
+
+File verification compares SHA-256 and byte count with a sender-provided reference. Text comparison checks extracted wording instead. Neither tool proves identity, delivery, acceptance or malware safety.
+
+Find the right open-source tool for a real task. Compare setup, limits and the next step before installing.
+
+https://thedollscout.com/open-source
+
+Short introductions to image, audio and video tools, with creator credits and a practical task you can finish afterwards.
+
+https://thedollscout.com/videos
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF accessibility checker
+
+https://thedollscout.com/pdf-accessibility-checker
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: Before publishing a report, handout or client deliverable.
+
+What you get: Page-level findings, manual review prompts, and CSV or JSON exports.
+
+What to check yourself: Reading order, image descriptions and the accuracy of tags require human review. This tool does not certify conformance.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+What does a detected PDF tag tell me?
+
+It reports a tagged declaration or structure exposed by the PDF reader. A detected tag does not prove correct reading order, useful image descriptions or accessible tables. Review those separately.
+
+Can this checker certify WCAG or PDF/UA compliance?
+
+No. It is an automated preflight plus a record of your manual review. It does not certify compliance, repair tags or produce a percentage accessibility score.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+Check | Observed result | What to do next
+
+Document title | Fictional workshop handout | Check that the title describes the document; the tool does not test the viewer title setting.
+
+Default language declaration | en-US | Check that the declared language matches the content.
+
+Tagged-document declaration | Not detected | Inspect structure and reading order in an authoring or remediation tool.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-accessibility-checker#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Batch PDF audit
+
+https://thedollscout.com/pdf-batch-audit
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: When a team needs one review list for several PDF deliverables.
+
+What you get: One combined findings list for up to 10 PDFs, with partial inspections labelled.
+
+What to check yourself: Each PDF is limited to 20 MB and 200 inspected pages; each batch to 100 MB and 600 inspected pages.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+How many PDFs can I audit together?
+
+Up to 10 PDFs, 20 MB each and 100 MB in total. Inspection is limited to 200 pages per PDF and 600 pages per batch. Partial or unreadable results must stay visible in the handover.
+
+What happens if one PDF cannot be read?
+
+Readable files keep their findings. The failed file is reported separately and the batch is partial. Obtain a readable copy and check it before treating the batch as finished.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The batch includes a text PDF with missing metadata, a revised text PDF and a page with only a drawn shape. Processing all pages does not mean that every accessibility requirement passes.
+
+Document | Pages | All pages processed | Check
+
+Original handout | 2 | Yes | Document title; Default language declaration; Tagged-document declaration; No page structure tree found (1); No page structure tree found (2)
+
+Revised handout | 3 | Yes | Tagged-document declaration; No page structure tree found (1); No page structure tree found (2); No page structure tree found (3)
+
+Image-only sample | 1 | Yes | Document title; Default language declaration; Tagged-document declaration; No extractable text (1)
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-batch-audit#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF to text
+
+https://thedollscout.com/pdf-to-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: When you need to reuse existing PDF text or check whether text extraction works.
+
+What you get: Readable text grouped by page, with a local TXT download.
+
+What to check yourself: Image-only pages need a separate OCR workflow. Extracted text may have an incorrect reading order.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+Why does my scanned PDF produce no text?
+
+A scan may contain page images without a text layer. This tool extracts existing text only. Use OCR separately, check its accuracy, then extract the resulting text again.
+
+Will PDF to text preserve tables and reading order?
+
+It returns text separated by page. It does not reconstruct table cells or guarantee visual or assistive-technology reading order. Inspect columns, tables and special characters in the original.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The original handout produces the page text below. The image-only sample produces zero text characters; OCR is outside this tool. Check the text against the source before reusing it.
+
+Pages | Extracted text
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/pdf-to-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Compare PDF text
+
+https://thedollscout.com/compare-pdf-text
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+When to use it: When a revised PDF arrives and you need to find text changes.
+
+What you get: Aligned text pages and changed, added, removed or unknown pages.
+
+What to check yourself: Images, layout and annotations are not compared. Suggested page pairings need review.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+Can I compare PDF versions after a page is inserted?
+
+The tool aligns pages using normalized text and proposes pairings around insertions. Review added, removed and changed pages; pairings are suggestions and can be ambiguous for repeated content.
+
+Does identical extracted text mean two PDF files are identical?
+
+No. Images, tags, layout and other bytes can differ. Use file verification for a SHA-256 and byte-count comparison, and review visual changes in the original PDFs.
+
+A result you can reproduce
+
+Download these fictional PDFs and run them in the tool above. The results below are generated from the same PDF reader used by the tool, so you can check the example yourself.
+
+The revision changes the workshop time, inserts a page and changes the materials list. Suggested text pairings do not compare visual layout, images or PDF tags.
+
+Text changes | Original page | Revised page
+
+Changed | 1 | 1
+
+Added | — | 2
+
+Changed | 2 | 3
+
+Original handout: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Revised handout: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Image-only sample: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Link to this example: https://thedollscout.com/compare-pdf-text#worked-example
+
+Download all sample results (JSON): https://thedollscout.com/document-assets/sample-results.json
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF accessibility checklist before you publish
+
+https://thedollscout.com/learn/pdf-accessibility-checklist
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
+
+Check the exported PDF. Inspect its title and language declarations, then look for text-bearing pages without a structure tree. A tagged-document flag alone is insufficient.
+
+Complete the manual checks. Read representative pages with a screen reader. Check multi-column order, tables, form fields, keyboard navigation and content that depends on color.
+
+Keep an explicit record. Export the automatic findings, record what you reviewed, and send both with the exact PDF version. Unchecked items remain unchecked.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Scanned PDF or text PDF: choose the right next step
+
+https://thedollscout.com/learn/scanned-pdf-vs-text-pdf
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
+
+Extract a page of text. If the result is empty, inspect the page visually: it may be scanned, blank or contain unsupported content. Empty extraction alone does not prove it is a scan.
+
+For a scan, run OCR in a suitable editor, then check names, numbers, punctuation and reading order. OCR output can contain convincing errors.
+
+A text layer is only the first step. Review headings, alternatives and structure separately. This tool does not perform OCR or certify the resulting PDF.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# How to review PDF reading order
+
+https://thedollscout.com/learn/pdf-reading-order
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+
+Start with a simple page, then test a multi-column page, a table and any form. Listen to the full reading sequence and check keyboard focus separately.
+
+Compare what you hear with the intended meaning. Watch for footnotes inserted mid-sentence, unrelated columns interleaved and form labels separated from their controls.
+
+Fix the source or use a PDF remediation editor. Export a new version and repeat the checks. Use text comparison to find content changes, then do the visual and assistive-technology review again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# How checks work
+
+https://thedollscout.com/methodology
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+The image, JSON and time-zone tools publish their own methods, limits and worked examples on each tool page. Image output depends on the browser encoder; JSON comparisons preserve numeric text and compare arrays by index; meeting times use the browser’s time-zone database.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# File privacy
+
+https://thedollscout.com/document-privacy
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+
+When you download a report, your browser saves it to your device. JSON and CSV reports can contain filenames and document titles. JSON comparison reports and text downloads also contain extracted document text. No report is made public by this site.
+
+We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. These first-party counts do not use cookies or cross-session identifiers. Separately, optional Google Analytics starts only after you allow it. It uses analytics cookies and receives the public page address, page title, referring origin and technical connection data, never your selected files or entered text. Advertising features are disabled. Change or withdraw your choice using Analytics settings in the footer; we store only that choice in local storage. DNT and Global Privacy Control prevent Google Analytics from loading.
+
+Legacy collector pages and the separate member area have their own behavior, described in the existing privacy notice. Document tools do not require membership, and membership does not add paid document features.
+
+Sharing a page sends only its public link. Sharing a summary sends the previewed counts and limitations to the destination you choose, or copies them to your clipboard. It does not include filenames, titles, document text or manual notes. Downloaded full reports have different contents, described above.
+
+Delivery records are processed locally. Downloads include file names and entered notes. Optional team-plan research records only a fixed handoff-frequency range and plan preference; it collects no email, account, file hash or source notes. An answer is not an order.
+
+File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
+
+Image processing, JSON comparison and meeting planning also run locally. Images, JSON values, event titles, notes and selected times are not sent to the event endpoint. Only fixed action names and public page paths are counted. Downloads contain the chosen output; calendar exports do not send invitations. Clear removes this page’s inputs and temporary download links, not files already downloaded to your device.
+
+AI tools run fixed models locally after you click Load AI model. Software and model downloads contact jsDelivr and Hugging Face, which receive connection information such as your IP address. Your selected photos, recordings and text are not uploaded. Model files may be cached by your browser; clear website data to remove them. Results and inputs stay in memory unless you download them. AI outputs can be wrong; each tool explains its language and task limits.
+
+Open-source pages link to independent projects. Video pages connect to YouTube/Google only after you load the embedded player; connection information is then sent to those providers. The privacy-enhanced player does not guarantee anonymous viewing. Optional equipment links open Amazon and include an affiliate tag. We count fixed resource actions, never video titles supplied by visitors or purchase details.
+
+If you allow Google Analytics, it also counts fixed tool actions such as starting a task, completing processing and requesting an export. Examples are counted separately. Each action is counted at most once per page load. These counts do not prove a saved download, a purchase or a unique person. No file content, filenames, inputs or result details are included.
+
+For the image-tool video experiment, matching URL tags add a fixed campaign label and a YouTube or TikTok source to action counts. We do not store the full query string or use it to identify you. Tags without a matching referrer are weaker source evidence. DNT and Global Privacy Control suppress these first-party browser events.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Collector guides
+
+https://thedollscout.com/collectors
+Published by TDS Document Scout
+Updated: 2026-09-27
+
+Explore collectible toys, buying guides and collection tools. Start with the brand guides on the TDS homepage.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Open Source
+
+https://thedollscout.com/de/open-source
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Open-Source-Software für konkrete Aufgaben. Einrichtung, Grenzen und den nächsten Schritt vor der Installation vergleichen.
+
+Upscayl
+
+Ein kleines Bild mit lokaler KI vergrößern.
+
+AGPL-3.0
+
+https://thedollscout.com/de/open-source/upscayl
+
+Whisper
+
+Längere oder mehrsprachige Audiodateien lokal transkribieren.
+
+MIT
+
+https://thedollscout.com/de/open-source/whisper
+
+Ollama
+
+Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.
+
+MIT (runtime)
+
+https://thedollscout.com/de/open-source/ollama
+
+OBS Studio
+
+Eine Bildschirmvorführung aufzeichnen.
+
+GPL-2.0-or-later
+
+https://thedollscout.com/de/open-source/obs
+
+Audacity
+
+Sprache vor der Transkription aufnehmen und schneiden.
+
+GPL-3.0 (distribution)
+
+https://thedollscout.com/de/open-source/audacity
+
+Shotcut
+
+Eine Aufnahme zu einem kurzen Tutorial schneiden.
+
+GPL-3.0
+
+https://thedollscout.com/de/open-source/shotcut
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Sind das TDS-Werkzeuge?
+
+Nein. Die Open-Source-Projekte werden unabhängig gepflegt. TDS liefert Auswahlhinweise und Links; Downloads und Support kommen von den Projekten.
+
+Sind alle Modelle und Cloud-Dienste ebenfalls frei?
+
+Nein. Code-, Modell- und Dienstbedingungen getrennt prüfen. Ollama-Modelle können eigene Lizenzen haben. Upscayl Desktop und Upscayl Cloud sind verschiedene Produkte.
+
+Referenzen
+
+
+
+# Upscayl: Ein kleines Bild mit lokaler KI vergrößern.
+
+https://thedollscout.com/de/open-source/upscayl
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Ein kleines Bild mit lokaler KI vergrößern.
+
+Für größere Rasterbilder mit anschließender Sichtprüfung. Desktop-Verarbeitung erfordert eine kompatible Vulkan-GPU; reine CPU-Verarbeitung ist kein regulärer unterstützter Weg. Upscayl Cloud ist separat.
+
+Neue Details sind Schätzungen. Gesichter, Schrift und Texturen können verändert werden; größere Abmessungen erhöhen häufig die Dateigröße.
+
+Offiziellen Desktop-Download und GPU-Unterstützung prüfen.
+
+Original behalten und eine Kopie vergrößern.
+
+Gesichter und Schrift bei 100 % prüfen.
+
+Mit der TDS-Bildkomprimierung die Exportgröße vergleichen.
+
+Windows · macOS · Linux
+
+AGPL-3.0
+
+https://github.com/upscayl/upscayl/blob/main/LICENSE
+
+https://upscayl.org/download
+
+https://docs.upscayl.org/
+
+https://github.com/upscayl/upscayl
+
+https://thedollscout.com/de/image-compressor
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# Whisper: Längere oder mehrsprachige Audiodateien lokal transkribieren.
+
+https://thedollscout.com/de/open-source/whisper
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Längere oder mehrsprachige Audiodateien lokal transkribieren.
+
+Das Python-Projekt bietet verschiedene Modelle und Sprachen. Python, FFmpeg und passende Hardware sind nötig. Für einen kurzen englischen Clip ist das TDS-Browserwerkzeug einfacher.
+
+Bei Stille und Störgeräuschen kann falscher Text entstehen. Namen, Sprache und Zeiten am Original prüfen. TDS verarbeitet derzeit maximal 60 Sekunden englische Sprache.
+
+Offizielle Einrichtungsanleitung befolgen.
+
+Sprache und ein zur Hardware passendes Modell wählen.
+
+Zunächst einen Clip mit klarer Sprache testen.
+
+Text und Zeiten mit der Aufnahme vergleichen.
+
+Python · FFmpeg
+
+MIT
+
+https://github.com/openai/whisper/blob/main/LICENSE
+
+https://github.com/openai/whisper
+
+https://github.com/openai/whisper#setup
+
+https://github.com/openai/whisper
+
+https://thedollscout.com/de/ai-audio-to-text
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# Ollama: Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.
+
+https://thedollscout.com/de/open-source/ollama
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Ein gewähltes Sprachmodell auf dem eigenen Rechner ausführen.
+
+Für lokale Modellabläufe mit eigener Verwaltung von Downloads und Speicher. Ein lokales Modell wählen und aktuelle Dokumentation lesen; Cloud-Funktionen verhalten sich anders.
+
+Die MIT-Lizenz des Programms gilt nicht automatisch für Modelle. Modelllizenz prüfen und den Dienst nur mit bewusster Absicherung im Netzwerk freigeben. Antworten müssen geprüft werden.
+
+Offizielle Installation nutzen.
+
+Ein passendes lokales Modell nach Lizenz und Größe wählen.
+
+Zunächst öffentliche Beispieltexte testen.
+
+Für reine Originalsatz-Auswahl den TDS-Zusammenfasser ausprobieren.
+
+Windows · macOS · Linux
+
+MIT (runtime)
+
+https://github.com/ollama/ollama/blob/main/LICENSE
+
+https://ollama.com/download
+
+https://docs.ollama.com/
+
+https://github.com/ollama/ollama
+
+https://thedollscout.com/de/ai-text-summarizer
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# OBS Studio: Eine Bildschirmvorführung aufzeichnen.
+
+https://thedollscout.com/de/open-source/obs
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Eine Bildschirmvorführung aufzeichnen.
+
+OBS Studio bietet Bildschirmaufnahme, Szenen und Audioquellen. Mit dem Assistenten und einer kurzen Aufnahme auf dem eigenen Rechner beginnen. Für lokale Aufnahmen ist kein Streaming-Konto nötig.
+
+Benachrichtigungen, private Fenster und weitere Tonquellen können mitgeschnitten werden. Vor einer langen Aufnahme Bild und exportierten Ton prüfen.
+
+Assistenten für Aufnahme ausführen.
+
+Gewünschtes Fenster und Mikrofon hinzufügen.
+
+20 Sekunden aufnehmen und Bild, Ton und Größe prüfen.
+
+Im Audioeditor einen kurzen WAV/MP3-Ausschnitt für die Transkription exportieren.
+
+Windows · macOS · Linux
+
+GPL-2.0-or-later
+
+https://github.com/obsproject/obs-studio/blob/master/COPYING
+
+https://obsproject.com/download
+
+https://obsproject.com/kb/quick-start-guide
+
+https://github.com/obsproject/obs-studio
+
+https://thedollscout.com/de/ai-audio-to-text
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# Audacity: Sprache vor der Transkription aufnehmen und schneiden.
+
+https://thedollscout.com/de/open-source/audacity
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Sprache vor der Transkription aufnehmen und schneiden.
+
+Desktop-Audioeditor zum Aufnehmen, Kürzen und Mischen. Gut zum Vorbereiten eines kurzen Sprachclips und zum genauen Abhören.
+
+Das Video erschien 2023; aktuelle Bedienelemente können abweichen. Dokumentation beachten. Die Distribution ist GPLv3; einzelne Dateien und Komponenten können andere Lizenzen haben.
+
+Mikrofon auswählen und kurz aufnehmen.
+
+Auf Übersteuerung und Raumgeräusche hören.
+
+Englischen Ausschnitt auf höchstens 60 Sekunden kürzen und WAV/MP3 exportieren.
+
+TDS-Transkript mit dem Original vergleichen.
+
+Windows · macOS · Linux
+
+GPL-3.0 (distribution)
+
+https://github.com/audacity/audacity/blob/master/LICENSE.txt
+
+https://www.audacityteam.org/download/
+
+https://support.audacityteam.org/
+
+https://github.com/audacity/audacity
+
+https://thedollscout.com/de/ai-audio-to-text
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# Shotcut: Eine Aufnahme zu einem kurzen Tutorial schneiden.
+
+https://thedollscout.com/de/open-source/shotcut
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Eine Aufnahme zu einem kurzen Tutorial schneiden.
+
+Desktop-Zeitleiste für Schnitt, Titel und Videoexport. Das ausgewählte Einführungsvideo wird auf der offiziellen Tutorial-Seite verlinkt.
+
+Das Video von 2019 zeigt Grundlagen, nicht die aktuelle Oberfläche. Aktuelle Menüs in der Dokumentation prüfen. TDS bietet keinen Browser-Videoschnitt.
+
+Kurze Aufnahme importieren und Projektkopie erstellen.
+
+Ungewünschten Anfang oder Schluss entfernen.
+
+Titel ergänzen und kurzen Test exportieren.
+
+Ein separates Vorschaubild mit TDS für das Web vorbereiten.
+
+Windows · macOS · Linux
+
+GPL-3.0
+
+https://github.com/mltframework/shotcut/blob/master/COPYING
+
+https://shotcut.org/download/
+
+https://shotcut.org/tutorials/
+
+https://github.com/mltframework/shotcut
+
+https://thedollscout.com/de/image-compressor
+
+Eine kuratierte Auswahl unabhängiger Projekte. Externe Software hat eigene Anforderungen und Datenschutzregeln. Die genannten Lizenzen betreffen den Projektcode; Modelle, Komponenten und Cloud-Dienste können andere Bedingungen haben.
+
+Referenzen
+
+
+
+# Video-Anleitungen
+
+https://thedollscout.com/de/videos
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Einführungen in Bild-, Audio- und Videowerkzeuge mit Urheberangaben und einer praktischen Folgeaufgabe.
+
+Upscayl: das erste Bild mit KI vergrößern
+
+Ein Bild vergrößern, Details prüfen und einen kleineren Webexport vorbereiten.
+
+Upscayl
+
+https://thedollscout.com/de/videos/upscayl
+
+Audacity: Sprache aufnehmen und vorbereiten
+
+Einen klaren Sprachclip für ein englisches Transkript vorbereiten.
+
+Kyle Stedman
+
+https://thedollscout.com/de/videos/audacity
+
+Shotcut: erster Schnitt und Export
+
+Eine Aufnahme zu einem kurzen Tutorial schneiden und ein Vorschaubild vorbereiten.
+
+James Woo
+
+https://thedollscout.com/de/videos/shotcut
+
+Englischsprachiges Video des genannten Urhebers. TDS ergänzt die Aufgabenliste; das Video stammt nicht von uns. Ältere Oberflächen können von aktuellen Versionen abweichen.
+
+Referenzen
+
+
+
+# Upscayl: das erste Bild mit KI vergrößern
+
+https://thedollscout.com/de/videos/upscayl
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Ein Bild vergrößern, Details prüfen und einen kleineren Webexport vorbereiten.
+
+Upscayl Tutorial - How to use Upscayl? | Best Free AI Image Upscaler for Linux, Mac and Windows
+
+Upscayl
+
+https://www.youtube.com/@upscayl
+
+2024-12-04T01:04:58-08:00
+
+4:07
+
+https://www.youtube.com/watch?v=3M77flVZlVY
+
+Englischsprachiges Video des genannten Urhebers. TDS ergänzt die Aufgabenliste; das Video stammt nicht von uns. Ältere Oberflächen können von aktuellen Versionen abweichen.
+
+Offiziellen Desktop-Download und GPU-Unterstützung prüfen.
+
+Original behalten und eine Kopie vergrößern.
+
+Gesichter und Schrift bei 100 % prüfen.
+
+Mit der TDS-Bildkomprimierung die Exportgröße vergleichen.
+
+https://thedollscout.com/de/image-compressor
+
+Beim Laden verbindet sich Ihr Browser mit YouTube und Google und übermittelt Verbindungsdaten. Der erweiterte Datenschutzmodus bedeutet keine anonyme Nutzung. Kein Autoplay.
+
+Referenzen
+
+
+
+# Audacity: Sprache aufnehmen und vorbereiten
+
+https://thedollscout.com/de/videos/audacity
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Einen klaren Sprachclip für ein englisches Transkript vorbereiten.
+
+Audacity Basics (NEW in 2023): Recording, Editing, Mixing
+
+Kyle Stedman
+
+https://www.youtube.com/@kylestedman
+
+2023-07-10T14:14:51-07:00
+
+18:21
+
+https://www.youtube.com/watch?v=Im2W7pokfpw
+
+Englischsprachiges Video des genannten Urhebers. TDS ergänzt die Aufgabenliste; das Video stammt nicht von uns. Ältere Oberflächen können von aktuellen Versionen abweichen.
+
+Mikrofon auswählen und kurz aufnehmen.
+
+Auf Übersteuerung und Raumgeräusche hören.
+
+Englischen Ausschnitt auf höchstens 60 Sekunden kürzen und WAV/MP3 exportieren.
+
+TDS-Transkript mit dem Original vergleichen.
+
+https://thedollscout.com/de/ai-audio-to-text
+
+Beim Laden verbindet sich Ihr Browser mit YouTube und Google und übermittelt Verbindungsdaten. Der erweiterte Datenschutzmodus bedeutet keine anonyme Nutzung. Kein Autoplay.
+
+Referenzen
+
+
+
+# Shotcut: erster Schnitt und Export
+
+https://thedollscout.com/de/videos/shotcut
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Eine Aufnahme zu einem kurzen Tutorial schneiden und ein Vorschaubild vorbereiten.
+
+Shotcut Video Editor Tutorial For Beginners - Fast Start
+
+James Woo
+
+https://www.youtube.com/@JamesWoo
+
+2019-09-13T04:07:14-07:00
+
+15:30
+
+https://www.youtube.com/watch?v=JtsB2iZRb9c
+
+Englischsprachiges Video des genannten Urhebers. TDS ergänzt die Aufgabenliste; das Video stammt nicht von uns. Ältere Oberflächen können von aktuellen Versionen abweichen.
+
+Kurze Aufnahme importieren und Projektkopie erstellen.
+
+Ungewünschten Anfang oder Schluss entfernen.
+
+Titel ergänzen und kurzen Test exportieren.
+
+Ein separates Vorschaubild mit TDS für das Web vorbereiten.
+
+https://thedollscout.com/de/image-compressor
+
+Beim Laden verbindet sich Ihr Browser mit YouTube und Google und übermittelt Verbindungsdaten. Der erweiterte Datenschutzmodus bedeutet keine anonyme Nutzung. Kein Autoplay.
+
+Referenzen
+
+
+
+# Creator-Ausrüstung
+
+https://thedollscout.com/de/creator-kit
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Zuerst mit dem vorhandenen Computer und Zubehör arbeiten. Nur aufrüsten, wenn ein konkretes Problem bei einer Testaufnahme sichtbar wird.
+
+Als Amazon-Partner verdient TDS an qualifizierten Verkäufen. Die Links öffnen Amazon-Suchergebnisse, keine getestete Produktrangliste. Preis, Kompatibilität und Lieferung beim Händler prüfen. DE verlinkt Amazon Deutschland; EN und ZH verlinken Amazon USA.
+
+Verständlichere Sprache
+
+Näher an das vorhandene Mikrofon gehen, Raumgeräusche reduzieren und eine kurze Audacity-Aufnahme prüfen.
+
+Anschluss, Betriebssystem, Rückgabe und direktes Kopfhörer-Monitoring prüfen. Ein Mikrofon garantiert keine richtige Transkription.
+
+Gleichmäßigere Porträts
+
+Zum Fenster wenden, ruhigen Hintergrund wählen und zuerst ein vorhandenes Foto freistellen.
+
+Stromversorgung, Helligkeitsregelung, Stativ und Platz prüfen. Spezielle Beleuchtung ist für das Freistellen nicht erforderlich.
+
+Platz für Videoprojekte
+
+Entbehrliche Exporte entfernen und freien Speicher prüfen, bevor ein weiteres Laufwerk gekauft wird.
+
+Anschlüsse, nutzbare Kapazität und Kabel prüfen. Eine separate Sicherung behalten; ein externes Laufwerk allein ist kein Sicherungsplan.
+
+Muss ich Zubehör kaufen, um TDS zu nutzen?
+
+Nein. Browser-Werkzeuge und Aufgabenlisten sind kostenlos. Zubehörlinks sind optional.
+
+Schaltet ein Kauf KI-Funktionen frei?
+
+Nein. Der Kauf erfolgt beim Händler und schaltet keine TDS-Funktionen frei. Die getrennte Sammlermitgliedschaft enthält keine bezahlten KI-Werkzeuge.
+
+Referenzen
+
+
+
+# KI-Hintergrundentfernung für Porträts
+
+https://thedollscout.com/de/ai-portrait-background-remover
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Statisches JPEG, PNG oder WebP; 10 MiB, 20 Megapixel. Ausgabe auf maximal 1.600 Pixel an der längsten Seite begrenzt. Für Personen gedacht; nicht für beliebige Produkte, Tiere oder Szenen. Haare, transparente Objekte und schwieriges Licht können Probleme verursachen.
+
+MODNet schätzt eine Vordergrund-Alpha-Maske. Diese wird auf das verkleinerte Porträt angewendet und als transparentes PNG exportiert. Das quantisierte Modell verarbeitet Ihr Foto lokal.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+Kann ich Produkthintergründe entfernen?
+
+Das Modell wurde für Porträt-Matting trainiert. Reine Produktbilder, Tiere oder komplexe Szenen können schlechte Masken liefern. Für Personen verwenden und Kanten prüfen.
+
+Welche Auflösung bekomme ich?
+
+Die längste Seite ist auf 1.600 Pixel begrenzt. Kleinere Bilder werden nicht vergrößert. Das Ergebnis ist ein transparentes PNG.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# KI-Audio in Text — Englisch
+
+https://thedollscout.com/de/ai-audio-to-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Nur englische Sprache; WAV oder MP3 bis 10 MiB und 60 Sekunden. Keine Sprechererkennung, Übersetzung oder Live-Aufnahme. Whisper Tiny kann Sprache auslassen oder Wörter erfinden, besonders bei Rauschen oder Stille. Jeden Entwurf prüfen.
+
+Der Browser dekodiert die Datei zu Mono-Audio mit 16 kHz. Whisper Tiny English schätzt Text und Segmentzeiten. TXT und SRT werden lokal erzeugt. Zeitangaben sind Näherungen.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+Kann es Deutsch oder Chinesisch transkribieren?
+
+Diese erste Version verwendet ein rein englisches Modell. Die Oberfläche ist dreisprachig, die Aufnahme muss englische Sprache enthalten.
+
+Sind Namen und Untertitel immer korrekt?
+
+Nein. Das kleine Modell kann Namen, Zahlen, Akzente oder Geräusche falsch erkennen. Original abspielen und Entwurf vor Veröffentlichung bearbeiten.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# KI-Textzusammenfassung mit Original-Sätzen
+
+https://thedollscout.com/de/ai-text-summarizer
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englischer Text: 80–12.000 Zeichen, 3–60 Sätze, höchstens 256 Modell-Tokens pro Satz. Bis zu 3 oder 5 Sätze, immer weniger als im Original. Keine Umformulierung, Übersetzung oder Faktenprüfung. Wichtiger Kontext kann fehlen.
+
+MiniLM bildet für jeden Satz einen semantischen Vektor. Code bewertet die Nähe zum Durchschnitt des Dokuments und verringert Wiederholungen: 70 % Zentralität, 30 % Ähnlichkeit zu bereits gewählten Sätzen. Die Auswahl erscheint in Originalreihenfolge. Diese Gewichte sind eine Produktheuristik, kein validierter Genauigkeitswert.
+
+Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+Schreibt die KI neue Sätze?
+
+Sie wählt vorhandene Sätze über neuronale Embeddings aus, ohne neue Formulierungen zu erzeugen. Jeder Auszug verlinkt seinen Originalsatz zur Kontextprüfung.
+
+Beweist das Ergebnis die Richtigkeit der Quelle?
+
+Nein. Das Modell schätzt semantische Ähnlichkeit. Es prüft keine Fakten und garantiert keine vollständige Auswahl. Lesen Sie die Quelle.
+
+Modell laden, Beispieltext einsetzen und drei Sätze wählen. Am 27. September 2026 wählte das feste Modell in Chromium die Sätze 1, 3 und 6. Dies ist ein einzelner Funktionstest, kein Qualitätsbenchmark. Andere Browser können kleine numerische Unterschiede zeigen.
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+Referenzen
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+
+
+# Bilder komprimieren & umwandeln
+
+https://thedollscout.com/de/image-compressor
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Bilder verkleinern und als JPEG, PNG oder WebP speichern. Abmessungen und tatsächliche Dateigrößen vor jedem Download vergleichen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Bis zu 8 statische JPEG-, PNG- oder WebP-Bilder; je 20 MiB, zusammen 50 MiB, je 20 Megapixel. Kein GIF, HEIC, SVG oder Animation. Ausgabe höchstens 4096 × 4096 Pixel, ohne Vergrößerung.
+
+Der Browser dekodiert und zeichnet jedes Bild mit erhaltenem Seitenverhältnis neu. JPEG erhält bei Transparenz einen weißen Hintergrund. PNG ignoriert die Qualitätseinstellung. Farben und Dateigröße können sich ändern; keine Garantie für Druckqualität oder vollständige Metadatenbereinigung.
+
+Ein Bild mit 1500 × 1000 Pixeln wird innerhalb von 1000 × 1000 auf 1000 × 667 verkleinert. Das Original bleibt unverändert. Das interaktive Beispiel misst die tatsächliche Exportgröße.
+
+1500 × 1000 → 1000 × 667
+
+Wird die Datei immer kleiner?
+
+Nein. Die Größe hängt von Quelle, Format, Abmessungen und Browser-Encoder ab. Beide Bytezahlen werden angezeigt, auch wenn die Ausgabe größer ist.
+
+Bleibt Transparenz erhalten?
+
+PNG und WebP können Transparenz erhalten. JPEG verwendet dafür einen weißen Hintergrund. Animierte Dateien werden abgelehnt.
+
+Referenzen
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON prüfen, formatieren & vergleichen
+
+https://thedollscout.com/de/json-compare
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+JSON validieren, ohne Rundung großer Zahlen formatieren und zwei Fassungen nach Feldpfaden vergleichen. JSON oder Änderungsbericht herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+UTF-8-JSON, höchstens 512 KiB je Eingabe, 60 Ebenen, 20.000 Werte und 1.000 Unterschiede. Doppelte Schlüssel werden abgelehnt. Exponenten höchstens ±100.000. Kein JSON5, keine Kommentare, Schema-Validierung oder Code-Ausführung.
+
+Leerzeichen und Objektschlüssel-Reihenfolge zählen nicht als Änderung. Arrays werden nach Index verglichen; Einfügungen können mehrere Änderungen auslösen. Zahlentexte bleiben exakt; 1 und 1.0 gelten als gleich. Pfade verwenden JSON-Pointer-Escaping.
+
+enabled von false zu true ändern und eine dritte Region ergänzen. Eine neue Reihenfolge der Objektschlüssel ändert die große numerische ID nicht.
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+Werden lange numerische IDs gerundet?
+
+Nein. Zahlentexte werden beim Formatieren erhalten und für Vergleiche als Dezimaltext normalisiert, ohne Umwandlung in JavaScript-Gleitkommazahlen.
+
+Was passiert mit doppelten Schlüsseln?
+
+Das Werkzeug lehnt sie mit Positionsangabe ab, statt frühere Werte zu verwerfen. Objektreihenfolge wird ignoriert, Arrayreihenfolge bleibt relevant.
+
+Referenzen
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# Zeitzonen-Terminplaner
+
+https://thedollscout.com/de/time-zone-planner
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Einen Termin in mehreren Städten vergleichen, Zeitumstellungen erkennen und eine Kalenderdatei mit eindeutigem UTC-Beginn und -Ende herunterladen.
+
+Dateien, eingefügte Daten und Termindetails werden in diesem Browser verarbeitet. Kein Konto und kein Upload nötig. Downloads können Ihre Eingaben enthalten; vor dem Teilen prüfen.
+
+Ein Termin, 5–480 Minuten, Jahre 1970–2100, 16 Zeitzonen. Verwendet Zeitzonenregeln des Browsers. Keine Serien, Verfügbarkeitsabfrage, Feiertage oder Einladungen.
+
+Datum und Zeitzone der organisierenden Person wählen. Übersprungene Uhrzeiten werden abgelehnt. Bei doppelten Uhrzeiten muss die frühere oder spätere gewählt werden. Arbeitszeithinweise nehmen Montag bis Freitag 09:00–18:00 an, ohne Feiertage oder persönliche Pläne.
+
+Ein 60-minütiger Termin am 15. Oktober 2026 um 09:00 in New York beginnt um 13:00 UTC, 14:00 in London, 15:00 in Berlin und 21:00 in Shanghai.
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+Verschickt der Kalender-Download Einladungen?
+
+Nein. Er erstellt lokal eine .ics-Datei. Sie entscheiden über Import und Weitergabe; das Werkzeug kontaktiert weder Teilnehmende noch Kalenderkonten.
+
+Warum fehlt eine Uhrzeit oder kommt zweimal vor?
+
+Zeitumstellungen können eine Zeitspanne überspringen oder wiederholen. Fehlende Uhrzeiten werden abgelehnt; bei doppelten müssen Sie die frühere oder spätere wählen.
+
+Referenzen
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
+
+
+# Empfangene Datei prüfen
+
+https://thedollscout.com/de/verify-file
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
+
+Eine Datei, bis zu 20 MiB. Der Inhalt bleibt in diesem Tab.
+
+Die exakt zu versendende Datei wählen.
+
+Link erstellen und zusammen mit der Datei über den üblichen Kanal senden.
+
+Der Empfänger wählt seine Kopie und prüft den Fingerabdruck.
+
+SHA-256-Fingerabdruck und Bytezahl stimmen mit der angegebenen Referenz überein. Das belegt weder Absender, Urheberschaft, sicheren Inhalt, Zustellung, Abnahme noch vertrauenswürdige Zeit. Die Referenz über einen vertrauenswürdigen Kanal beziehen.
+
+Der Link enthält Fingerabdruck und Dateigröße, aber keinen Dateinamen, Inhalt oder Notizen. Wer ihn besitzt, kann eine Datei damit abgleichen. Die zum Teilen verwendete App kann den Link speichern. TDS übermittelt den Fingerabdruck nicht an die Statistik.
+
+Das Format ist offen. Link aufbewahren und SHA-256 sowie Bytezahl mit eigener Software prüfen. Das herunterladbare Prüfprogramm läuft mit Node.js offline.
+
+Startpaket mit bekanntem Beispiel, Offline-Prüfung und optionaler GitHub-Actions-Vorlage. Keine npm-Abhängigkeiten oder API-Schlüssel.
+
+Entpacken und ausführen: node tools/run-file-check.mjs. Das Beispiel muss übereinstimmen.
+
+Beispieldatei ändern, Referenz beibehalten. Erneut prüfen: Die Prüfung muss fehlschlagen.
+
+Eigene Datei und eine separat vertrauenswürdig erhaltene Referenz einsetzen.
+
+Die Skripte kontaktieren TDS nicht. Die optionale GitHub-Nutzung lädt Dateien in Ihr Repository und schreibt Fingerabdrücke in Protokolle. Vertrauliche Dateien offline oder in einem geeignet geschützten Repository halten. Übereinstimmung belegt nur Dateigleichheit, nicht Zustellung oder Abnahme.
+
+OpenTimestamps ist ein separater Dienst und ein Protokoll für Zeitnachweise. Ein TDS-Prüf-Link erzeugt keinen Bitcoin-Zeitstempel.
+
+Eine Datei-Prüfsumme unabhängig prüfen
+
+Eine SHA-256-Prüfsumme beschreibt den Dateiinhalt. TDS verlangt sowohl denselben SHA-256-Wert als auch dieselbe Byteanzahl wie die Referenz des Absenders. Prüfen Sie die tatsächlich heruntergeladene Datei, keinen Screenshot oder neu exportierten Stand.
+
+Warum haben optisch gleiche PDFs unterschiedliche Prüfsummen?
+
+Metadaten, Kompression oder andere Bytes können beim Speichern geändert werden. Für Textänderungen verwenden Sie den PDF-Textvergleich; Prüfsummen vergleichen die exakten Bytes.
+
+Beweist eine passende Prüfsumme, dass die Datei sicher ist?
+
+Nein. Auch Schadsoftware hat eine Prüfsumme. Beziehen Sie die Referenz über einen vertrauenswürdigen Kanal. TDS prüft weder Schadsoftware noch Identität oder Zustellung.
+
+Kann ich einen beliebigen SHA-256-Wert einfügen?
+
+Dieses Formular erwartet einen vollständigen TDS-Link einschließlich Byteanzahl. Einen einzelnen Hash vergleichen Sie manuell mit den unten genannten Befehlen.
+
+Ein reproduzierbares Beispiel mit drei Bytes
+
+Eine Textdatei mit genau abc ohne Zeilenumbruch hat 3 Bytes und den folgenden SHA-256-Wert. Umbenennen ändert ihn nicht, ein geänderter Inhalt oder zusätzlicher Zeilenumbruch schon. Das integrierte Beispiel verwendet diese Bytes.
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+Ersetzen Sie document.pdf durch Ihren Dateipfad. Die Befehle lesen lokal. Vergleichen Sie Prüfsumme und Byteanzahl mit der TDS-Referenz; Groß- und Kleinschreibung der Hexadezimalzeichen ändert den Wert nicht.
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Eine Übergabe dokumentieren
+
+https://thedollscout.com/de/delivery-evidence
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
+
+Bis zu 10 Dateien, je 20 MB, insgesamt 100 MB. Dateien und Notizen bleiben in diesem Tab; kein Upload und kein automatisches Speichern.
+
+Vereinbarten Umfang mit ursprünglicher E-Mail oder Vertrag aufbewahren.
+
+Exakte Dateien und ursprüngliche Versandnachricht behalten.
+
+Tatsächliche Kundenantwort einschließlich Änderungswünschen festhalten.
+
+Fehlende oder strittige Angaben kennzeichnen, niemals erraten.
+
+SHA-256 identifiziert Datei-Bytes. Notizen und Erstellungszeit stammen von Ihnen und Ihrem Gerät. TDS prüft weder Urheberschaft, Empfängeridentität, Empfang, Abnahme noch Zahlungsautorisierung. Kein Bitcoin-Zeitstempel und keine Signatur werden erstellt.
+
+Bei Zahlungsstreitigkeiten hängt die relevante Dokumentation vom Grund ab. Zustellung allein belegt keine Zahlungsautorisierung. Aktuelle Anforderungen des Zahlungsanbieters prüfen.
+
+Wir prüfen einen Teamtarif für 79 USD/Monat mit gemeinsamer Prüfungshistorie und Übergaben im eigenen Design. Noch nicht kaufbar. Antworten sind anonym und begründen weder Konto noch Reservierung.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag
+
+https://thedollscout.com/de/document-tools
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.
+
+Was möchten Sie erledigen?
+
+Bilder für eine Website vorbereiten
+
+JPEG, PNG oder WebP verkleinern, das Ergebnis prüfen und Dateien herunterladen.
+
+Verkleinerte Bilder mit den tatsächlichen Ausgabegrößen.
+
+Änderungen in einem PDF prüfen
+
+Vor dem Versand den Text zweier Fassungen vergleichen. Gescannte Seiten benötigen eine externe OCR.
+
+Textänderungen nach Seiten und einen exportierbaren Bericht.
+
+Eine Dateiübergabe dokumentieren
+
+Finale Dateien auflisten und Notizen ergänzen. Bei Bedarf einen Prüfsummen-Link für den Empfänger erstellen.
+
+Eine herunterladbare Dateiliste. Sie belegt weder Zustellung noch Abnahme.
+
+Bilder komprimieren & umwandeln
+
+JPEG, PNG und WebP verkleinern, umwandeln und die Ausgabegröße prüfen.
+
+Bilder
+
+https://thedollscout.com/de/image-compressor
+
+JSON prüfen, formatieren & vergleichen
+
+Felder validieren, formatieren und ohne Rundung großer Zahlen vergleichen.
+
+Strukturierte Daten
+
+https://thedollscout.com/de/json-compare
+
+Zeitzonen-Terminplaner
+
+Stadtzeiten vergleichen, Zeitumstellungen prüfen und Kalender exportieren.
+
+Zeitzonen + .ics
+
+https://thedollscout.com/de/time-zone-planner
+
+PDF-Barrierefreiheit prüfen
+
+Fehlende Titel, Sprachangaben, Tags und seitenbezogene Hinweise finden.
+
+PDF-Vorprüfung
+
+https://thedollscout.com/de/pdf-accessibility-checker
+
+PDF-Stapelprüfung
+
+Bis zu 10 PDFs prüfen und eine gemeinsame Befundliste exportieren.
+
+Bis zu 10 PDFs
+
+https://thedollscout.com/de/pdf-batch-audit
+
+PDF in Text umwandeln
+
+Vorhandenen Text nach Seiten extrahieren und als TXT speichern.
+
+Textextraktion
+
+https://thedollscout.com/de/pdf-to-text
+
+PDF-Text vergleichen
+
+Geänderte, ergänzte und entfernte Textseiten zweier Fassungen erkennen.
+
+Zwei PDF-Fassungen
+
+https://thedollscout.com/de/compare-pdf-text
+
+Datei verifizieren
+
+Einen Prüfsummen-Link erstellen oder eine empfangene Datei abgleichen.
+
+SHA-256 + Dateigröße
+
+https://thedollscout.com/de/verify-file
+
+Dateiübergabe dokumentieren
+
+Dateien auflisten, Notizen ergänzen und eine portable Aufzeichnung exportieren.
+
+Dateiliste
+
+https://thedollscout.com/de/delivery-evidence
+
+KI-Hintergrundentfernung für Porträts
+
+Den Hintergrund eines Porträts mit KI im Browser entfernen. Ein transparentes PNG herunterladen, ohne das Foto hochzuladen.
+
+Porträt → PNG
+
+https://thedollscout.com/de/ai-portrait-background-remover
+
+KI-Audio in Text — Englisch
+
+Kurze englische WAV- oder MP3-Aufnahmen lokal mit Whisper transkribieren. Text und ungefähre SRT-Untertitel ohne Audio-Upload herunterladen.
+
+Englisches Audio → TXT / SRT
+
+https://thedollscout.com/de/ai-audio-to-text
+
+KI-Textzusammenfassung mit Original-Sätzen
+
+Wichtige Sätze in englischem Text mit lokaler KI finden. Wortlaut erhalten, Auswahl zur Quelle zurückverfolgen und herunterladen.
+
+Englisch → belegbare Textauswahl
+
+https://thedollscout.com/de/ai-text-summarizer
+
+Meine Bilder sind zu groß für die Veröffentlichung.
+
+Bilder verkleinern, Exporte prüfen und die übergebenen Dateien dokumentieren.
+
+Eine API-Antwort oder Konfiguration wurde geändert.
+
+JSON-Felder vergleichen und den Bericht herunterladen. Schlüsselreihenfolge erzeugt keine Unterschiede.
+
+Mein Team arbeitet in mehreren Zeitzonen.
+
+Lokale Uhrzeiten prüfen und eine Kalenderdatei herunterladen, die Sie anschließend importieren können.
+
+Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
+
+Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen. Beim ersten Start werden Modell und Laufzeit heruntergeladen. Planen Sie Zeit und Datenvolumen ein. Ein aktueller Desktop-Browser wird empfohlen; ältere Handys und eingeschränkte Netzwerke können scheitern.
+
+Sind alle zwölf Werkzeuge kostenlos?
+
+Ja. Drei lokale KI-Werkzeuge und neun Alltagswerkzeuge sind kostenlos und ohne Konto nutzbar. KI-Modelle werden vor dem ersten Start heruntergeladen.
+
+Werden meine Dateien hochgeladen oder gespeichert?
+
+Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten. Die KI-Verarbeitung läuft auf Ihrem Gerät. Beim Laden des Modells kontaktiert Ihr Browser jsDelivr und Hugging Face, um Software und Modelldateien herunterzuladen. Diese Dienste erhalten Verbindungsdaten wie Ihre IP-Adresse; gewählte Dateien und Texte werden nicht übertragen. Modelle können im Browser-Cache bleiben. Website-Daten löschen, um den Cache zu entfernen.
+
+Welches Werkzeug prüft eine unveränderte Datei?
+
+Die Dateiverifizierung vergleicht SHA-256 und Bytezahl mit einer Referenz des Absenders. Der Textvergleich prüft extrahierten Wortlaut. Beide belegen weder Identität noch Zustellung, Abnahme oder Freiheit von Schadsoftware.
+
+Open-Source-Software für konkrete Aufgaben. Einrichtung, Grenzen und den nächsten Schritt vor der Installation vergleichen.
+
+https://thedollscout.com/de/open-source
+
+Einführungen in Bild-, Audio- und Videowerkzeuge mit Urheberangaben und einer praktischen Folgeaufgabe.
+
+https://thedollscout.com/de/videos
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Barrierefreiheit prüfen
+
+https://thedollscout.com/de/pdf-accessibility-checker
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.
+
+Ihr Ergebnis: Seitenbezogene Hinweise, manuelle Prüfpunkte und CSV- oder JSON-Exporte.
+
+Was Sie selbst prüfen müssen: Lesereihenfolge, Bildbeschreibungen und die Richtigkeit der Tags brauchen eine manuelle Prüfung. Keine Konformitätszertifizierung.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Was bedeutet ein erkanntes PDF-Tag?
+
+Erkannt wird eine Tag-Deklaration oder eine vom Parser zugängliche Struktur. Das beweist keine korrekte Lesereihenfolge, Bildbeschreibungen oder barrierefreien Tabellen. Diese Punkte brauchen eine eigene Prüfung.
+
+Zertifiziert dieses Werkzeug WCAG oder PDF/UA?
+
+Nein. Es bietet eine automatisierte Vorprüfung und dokumentiert Ihre manuelle Prüfung. Es zertifiziert keine Konformität, repariert keine Tags und berechnet keinen prozentualen Barrierefreiheitswert.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Prüfung | Beobachtung | Nächster Schritt
+
+Dokumenttitel | Fictional workshop handout | Prüfen Sie, ob der Titel das Dokument beschreibt. Die Titelleisten-Einstellung wird nicht geprüft.
+
+Standard-Dokumentsprache | en-US | Prüfen Sie, ob die Sprachangabe zum Inhalt passt.
+
+Deklaration als getaggtes PDF | Nicht erkannt | Struktur und Lesereihenfolge in einem Autoren- oder Reparaturwerkzeug prüfen.
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-accessibility-checker#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Stapelprüfung
+
+https://thedollscout.com/de/pdf-batch-audit
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.
+
+Ihr Ergebnis: Eine gemeinsame Liste für bis zu 10 PDFs, mit gekennzeichneten Teilprüfungen.
+
+Was Sie selbst prüfen müssen: Je PDF höchstens 20 MB und 200 geprüfte Seiten; je Stapel 100 MB und 600 geprüfte Seiten.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Wie viele PDFs kann ich gemeinsam prüfen?
+
+Bis zu 10 PDFs, höchstens 20 MB je Datei und 100 MB insgesamt. Die Prüfung erfasst maximal 200 Seiten je PDF und 600 je Stapel. Teilprüfungen und unlesbare Dateien bleiben im Übergabebericht sichtbar.
+
+Was passiert bei einer unlesbaren Datei?
+
+Die Befunde lesbarer Dateien bleiben erhalten. Die fehlerhafte Datei wird getrennt ausgewiesen; der Stapel gilt als teilweise geprüft. Fordern Sie eine lesbare Kopie an und prüfen Sie diese nach.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Der Stapel enthält ein Text-PDF mit fehlenden Metadaten, eine überarbeitete Textfassung und eine Seite nur mit einer gezeichneten Form. Vollständig verarbeitet bedeutet nicht barrierefrei.
+
+Dokument | Seiten | Alle Seiten verarbeitet | Prüfung
+
+Ursprüngliche Unterlage | 2 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2)
+
+Überarbeitete Unterlage | 3 | Ja | Deklaration als getaggtes PDF; Kein Strukturbaum für die Seite gefunden (1); Kein Strukturbaum für die Seite gefunden (2); Kein Strukturbaum für die Seite gefunden (3)
+
+Beispiel ohne Textebene | 1 | Ja | Dokumenttitel; Standard-Dokumentsprache; Deklaration als getaggtes PDF; Kein auslesbarer Text (1)
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-batch-audit#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF in Text umwandeln
+
+https://thedollscout.com/de/pdf-to-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Wenn Sie vorhandenen PDF-Text weiterverwenden oder die Textextraktion prüfen möchten.
+
+Ihr Ergebnis: Text nach Seiten gegliedert, als lokale TXT-Datei speicherbar.
+
+Was Sie selbst prüfen müssen: Reine Bildseiten benötigen eine separate OCR-Lösung. Extrahierter Text kann eine falsche Lesereihenfolge haben.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Warum liefert ein gescanntes PDF keinen Text?
+
+Ein Scan kann nur Seitenbilder ohne Textebene enthalten. Das Werkzeug extrahiert vorhandenen Text. Führen Sie OCR separat aus, prüfen Sie die Erkennung und extrahieren Sie danach erneut.
+
+Bleiben Tabellen und Lesereihenfolge erhalten?
+
+Die Ausgabe trennt Text nach Seiten. Tabellenzellen werden nicht rekonstruiert, und die visuelle oder assistive Lesereihenfolge wird nicht garantiert. Spalten, Tabellen und Sonderzeichen am Original prüfen.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die ursprüngliche Unterlage ergibt den folgenden Seitentext. Das Beispiel ohne Textebene ergibt null Textzeichen. Dieses Werkzeug führt keine OCR aus; prüfen Sie den Text am Original.
+
+Seiten | Extrahierter Text
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/pdf-to-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Texte vergleichen
+
+https://thedollscout.com/de/compare-pdf-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Wann es hilft: Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.
+
+Ihr Ergebnis: Zugeordnete Textseiten und geänderte, hinzugefügte, entfernte oder unklare Seiten.
+
+Was Sie selbst prüfen müssen: Bilder, Layout und Anmerkungen werden nicht verglichen. Vorgeschlagene Seitenzuordnungen müssen geprüft werden.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Funktioniert der Vergleich nach eingefügten Seiten?
+
+Das Werkzeug ordnet Seiten anhand normalisierten Texts zu und schlägt Paare um Einfügungen herum vor. Prüfen Sie Ergänzungen, Löschungen und Änderungen. Wiederholter Inhalt kann die Zuordnung mehrdeutig machen.
+
+Bedeutet gleicher Text identische Dateien?
+
+Nein. Bilder, Tags, Layout und andere Bytes können abweichen. Für SHA-256 und Bytezahl nutzen Sie die Dateiprüfung; visuelle Änderungen prüfen Sie in den Original-PDFs.
+
+Ein Ergebnis zum Nachprüfen
+
+Laden Sie die fiktiven PDFs herunter und prüfen Sie diese mit dem Werkzeug oben. Die folgenden Ergebnisse stammen aus demselben PDF-Parser wie das Werkzeug.
+
+Die neue Fassung ändert die Uhrzeit, fügt eine Seite ein und ändert die Materialliste. Die Textzuordnung vergleicht keine Bilder, Tags oder Layouts.
+
+Textänderungen | Alte Seite | Neue Seite
+
+Geändert | 1 | 1
+
+Ergänzt | — | 2
+
+Geändert | 2 | 3
+
+Ursprüngliche Unterlage: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+Überarbeitete Unterlage: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+Beispiel ohne Textebene: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+Dieses Beispiel verlinken: https://thedollscout.com/de/compare-pdf-text#worked-example
+
+Alle Beispielergebnisse als JSON: https://thedollscout.com/document-assets/sample-results.json
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Barrierefreiheit vor der Veröffentlichung prüfen
+
+https://thedollscout.com/de/learn/pdf-accessibility-checklist
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+
+Exportierte PDF prüfen: Titel, Sprache und Strukturbaum kontrollieren. Das Kennzeichen für Tags reicht allein nicht aus.
+
+Repräsentative Seiten mit einem Screenreader lesen. Spalten, Tabellen, Formulare, Tastatur und Farbinformationen prüfen.
+
+Befunde und manuelle Prüfung zusammen mit der genauen Dokumentversion festhalten. Nicht geprüfte Punkte offen lassen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Scan oder Text-PDF: den nächsten Schritt wählen
+
+https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+
+Eine Seite auslesen und bei leerem Ergebnis visuell prüfen. Es kann ein Scan, eine leere Seite oder nicht unterstützter Inhalt sein.
+
+Scans mit geeigneter OCR verarbeiten. Namen, Zahlen, Satzzeichen und Reihenfolge sorgfältig nachprüfen.
+
+Die Textebene ist nur der Anfang. Überschriften, Alternativen und Struktur separat prüfen. Dieses Werkzeug bietet keine OCR.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Die PDF-Lesereihenfolge prüfen
+
+https://thedollscout.com/de/learn/pdf-reading-order
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
+
+Einfache Seiten, mehrspaltige Seiten, Tabellen und Formulare testen. Lesefolge und Tastaturfokus getrennt prüfen.
+
+Auf eingeschobene Fußnoten, vermischte Spalten und vom Formularfeld getrennte Beschriftungen achten.
+
+Quelle oder PDF-Tags korrigieren, erneut exportieren und die manuelle Prüfung wiederholen. Ein Textvergleich ersetzt sie nicht.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Prüfmethode
+
+https://thedollscout.com/de/methodology
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Bild-, JSON- und Zeitzonen-Werkzeuge veröffentlichen Methoden, Grenzen und Beispiele auf ihren eigenen Seiten. Bildausgaben hängen vom Browser-Encoder ab; JSON-Vergleiche erhalten Zahlentexte und vergleichen Arrays nach Index; Termine nutzen die Zeitzonendatenbank des Browsers.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Dateidatenschutz
+
+https://thedollscout.com/de/document-privacy
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+
+Heruntergeladene Berichte werden auf Ihrem Gerät gespeichert. CSV und JSON können Dateinamen und Titel enthalten. JSON-Vergleichsberichte und Textexporte enthalten auch Dokumenttext. Nichts wird öffentlich bereitgestellt.
+
+Wir erfassen begrenzte Nutzungszähler: Werkzeugseite, Ereignistyp, Tag, grobes Land und verweisenden Hostnamen. Keine Dateinamen, Inhalte oder Prüfnotizen. Beispiele werden getrennt gezählt. Diese eigenen Zählungen verwenden keine Cookies oder wiederkehrende Nutzerkennung. Optionales Google Analytics startet erst nach Ihrer Zustimmung. Es verwendet Analyse-Cookies und erhält die öffentliche Seitenadresse, den Seitentitel, die verweisende Herkunft und technische Verbindungsdaten, niemals ausgewählte Dateien oder eingegebenen Text. Werbefunktionen sind deaktiviert. Über Analyse-Einstellungen im Fußbereich können Sie Ihre Wahl ändern oder widerrufen; nur diese Wahl wird lokal gespeichert. DNT und Global Privacy Control verhindern das Laden von Google Analytics.
+
+Für alte Sammlerseiten und den getrennten Mitgliederbereich gilt die bestehende Datenschutzerklärung. Dokumentwerkzeuge benötigen keine Mitgliedschaft. Diese schaltet keine bezahlten Dokumentfunktionen frei.
+
+Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teilen einer Zusammenfassung werden die angezeigten Zähler und Grenzen an Ihr gewähltes Ziel übergeben oder in die Zwischenablage kopiert. Dateinamen, Titel, Dokumenttexte und Prüfnotizen sind nicht enthalten. Vollständige Downloads enthalten die oben beschriebenen Daten.
+
+Übergabenachweise werden lokal verarbeitet. Downloads enthalten Dateinamen und Notizen. Die freiwillige Tarifumfrage erfasst nur feste Häufigkeitsbereiche und Tarifpräferenzen, keine E-Mail, Konten, Datei-Hashes oder Quellenangaben. Eine Antwort ist keine Bestellung.
+
+Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine Namen, Inhalte oder Notizen. Wer den Link besitzt, kann eine Datei abgleichen. Apps und Browserverlauf können die URL speichern. TDS sendet den Fingerabdruck nicht an die Statistik. Prüfungen bleiben lokal und benachrichtigen den Absender nicht; sie belegen keinen Empfang.
+
+Auch Bildverarbeitung, JSON-Vergleich und Terminplanung laufen lokal. Bilder, JSON-Werte, Termintitel, Notizen und gewählte Uhrzeiten werden nicht an die Statistik gesendet. Erfasst werden nur feste Aktionsnamen und öffentliche Seitenpfade. Downloads enthalten die gewählte Ausgabe; Kalenderexporte versenden keine Einladungen. Leeren entfernt Eingaben und temporäre Download-Links dieser Seite, keine bereits heruntergeladenen Dateien.
+
+KI-Werkzeuge laden feste Modelle erst nach Klick auf KI-Modell laden. Software- und Modelldownloads kontaktieren jsDelivr und Hugging Face; dabei erhalten diese Dienste Verbindungsdaten wie Ihre IP-Adresse. Fotos, Aufnahmen und Text werden nicht hochgeladen. Modelle können im Browser-Cache bleiben; Website-Daten löschen, um sie zu entfernen. Eingaben und Ergebnisse bleiben ohne Download im Speicher. KI kann Fehler machen; Sprach- und Aufgabengrenzen stehen auf jeder Werkzeugseite.
+
+Open-Source-Seiten verlinken unabhängige Projekte. Videoseiten verbinden sich erst beim Laden des Players mit YouTube/Google; dabei werden Verbindungsdaten übermittelt. Der erweiterte Datenschutzmodus garantiert keine Anonymität. Optionale Zubehörlinks öffnen Amazon mit einer Partnerkennung. Wir zählen feste Ressourcenaktionen, keine eingegebenen Videotitel oder Kaufdetails.
+
+Wenn Sie Google Analytics erlauben, werden auch feste Werkzeugaktionen gezählt: Aufgabenstart, abgeschlossene Verarbeitung und angeforderter Export. Beispiele werden getrennt gezählt; jede Aktion höchstens einmal pro Seitenaufruf. Die Zählungen belegen weder einen gespeicherten Download noch einen Kauf oder eine eindeutige Person. Dateiinhalte, Dateinamen, Eingaben und Ergebnisdetails werden nicht übertragen.
+
+Beim Video-Test für das Bildwerkzeug ergänzen passende URL-Tags die Aktionszählung um eine feste Kampagnenkennung und YouTube oder TikTok als Quelle. Die vollständige Abfragezeichenfolge wird nicht gespeichert und dient nicht Ihrer Identifizierung. Tags ohne passenden Referrer sind ein schwächerer Herkunftshinweis. DNT und Global Privacy Control unterdrücken diese eigenen Browser-Ereignisse.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Sammlerratgeber
+
+https://thedollscout.com/de/collectors
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-27
+
+Sammelfiguren, Kaufratgeber und Sammlungswerkzeuge. Die Markenratgeber finden Sie auf der TDS-Startseite.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 开源工具
+
+https://thedollscout.com/zh/open-source
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。
+
+Upscayl
+
+用本地 AI 放大小图片。
+
+AGPL-3.0
+
+https://thedollscout.com/zh/open-source/upscayl
+
+Whisper
+
+在本地转录较长或多语言音频。
+
+MIT
+
+https://thedollscout.com/zh/open-source/whisper
+
+Ollama
+
+在自己的电脑上运行选定的语言模型。
+
+MIT (runtime)
+
+https://thedollscout.com/zh/open-source/ollama
+
+OBS Studio
+
+录制屏幕操作演示。
+
+GPL-2.0-or-later
+
+https://thedollscout.com/zh/open-source/obs
+
+Audacity
+
+录制并整理适合转录的人声。
+
+GPL-3.0 (distribution)
+
+https://thedollscout.com/zh/open-source/audacity
+
+Shotcut
+
+把录屏剪成一段工具演示。
+
+GPL-3.0
+
+https://thedollscout.com/zh/open-source/shotcut
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+这些项目是 TDS 开发的吗？
+
+不是。这些是独立维护的开源项目；TDS 提供选择说明和原作者链接，下载与支持由相应项目提供。
+
+开源是否代表所有模型和云服务都免费？
+
+不是。代码、模型与服务条款需要分别检查。Ollama 的模型可能另有许可证；Upscayl 桌面版与云服务是不同产品。
+
+参考资料
+
+
+
+# Upscayl: 用本地 AI 放大小图片。
+
+https://thedollscout.com/zh/open-source/upscayl
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用本地 AI 放大小图片。
+
+适合需要更大尺寸并愿意逐项检查结果的图片任务。桌面版需要兼容 Vulkan 的 GPU，只有 CPU 不是常规支持方式；Upscayl Cloud 为独立服务。
+
+放大生成的是估计细节，不是恢复可靠原件。人脸、文字和纹理都可能变化；尺寸增大通常也会增加文件体积。
+
+通过官方下载桌面版，检查 GPU 支持。
+
+保留原图，仅对副本进行放大。
+
+按 100% 大小检查脸部与文字，舍弃虚构细节。
+
+用 TDS 图片压缩比较适合网页的导出体积。
+
+Windows · macOS · Linux
+
+AGPL-3.0
+
+https://github.com/upscayl/upscayl/blob/main/LICENSE
+
+https://upscayl.org/download
+
+https://docs.upscayl.org/
+
+https://github.com/upscayl/upscayl
+
+https://thedollscout.com/zh/image-compressor
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# Whisper: 在本地转录较长或多语言音频。
+
+https://thedollscout.com/zh/open-source/whisper
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在本地转录较长或多语言音频。
+
+Python 项目适合需要更多模型与语言选择的人。安装需 Python、FFmpeg 以及适配所选模型的硬件资源；短英文片段可以先用 TDS 浏览器工具。
+
+静音或背景噪声可能导致虚构转录。请对照录音核实语言、人名与时间。TDS 当前仅处理最多 60 秒英文音频。
+
+按项目官方说明安装。
+
+选择音频语言与适合设备的模型。
+
+先用一段清晰语音测试，再跑长任务。
+
+对照原音频复核文字与时间。
+
+Python · FFmpeg
+
+MIT
+
+https://github.com/openai/whisper/blob/main/LICENSE
+
+https://github.com/openai/whisper
+
+https://github.com/openai/whisper#setup
+
+https://github.com/openai/whisper
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# Ollama: 在自己的电脑上运行选定的语言模型。
+
+https://thedollscout.com/zh/open-source/ollama
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在自己的电脑上运行选定的语言模型。
+
+适合愿意管理模型下载与内存用量的本地 AI 工作流。选择本地模型并参考当前文档；云模型等功能有不同的数据处理方式。
+
+运行程序的 MIT 许可证不覆盖所有模型。分别核实模型许可证；不要在未配置安全措施时把服务暴露给网络。生成答案需要复核。
+
+从官方页面安装。
+
+按许可证和大小选择合适的本地模型。
+
+先用公开示例测试，再考虑敏感内容。
+
+如果只需保留原句，可尝试 TDS 原文摘要。
+
+Windows · macOS · Linux
+
+MIT (runtime)
+
+https://github.com/ollama/ollama/blob/main/LICENSE
+
+https://ollama.com/download
+
+https://docs.ollama.com/
+
+https://github.com/ollama/ollama
+
+https://thedollscout.com/zh/ai-text-summarizer
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# OBS Studio: 录制屏幕操作演示。
+
+https://thedollscout.com/zh/open-source/obs
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+录制屏幕操作演示。
+
+OBS Studio 可配置屏幕录制、场景和音频来源。先运行自动配置向导，再在自己的设备上试录；仅本地录制不需要直播账号。
+
+录屏可能同时收进通知、私人窗口与其它声音。录完整教程之前，先检查画面范围并试听导出文件。
+
+运行面向录制的自动配置向导。
+
+添加目标窗口及麦克风来源。
+
+试录 20 秒，检查画面、声音和文件大小。
+
+在音频编辑器导出一段 WAV/MP3，再进行转录。
+
+Windows · macOS · Linux
+
+GPL-2.0-or-later
+
+https://github.com/obsproject/obs-studio/blob/master/COPYING
+
+https://obsproject.com/download
+
+https://obsproject.com/kb/quick-start-guide
+
+https://github.com/obsproject/obs-studio
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# Audacity: 录制并整理适合转录的人声。
+
+https://thedollscout.com/zh/open-source/audacity
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+录制并整理适合转录的人声。
+
+桌面音频编辑器，可录音、裁剪与混音。适合制作一小段语音素材，并仔细试听错误。
+
+所选教程发布于 2023 年，操作界面可能变化，请结合当前项目文档。发行版为 GPLv3，个别文件或组件可能有其它许可证。
+
+选择目标麦克风并录一小段。
+
+试听削波与房间噪声，优先调整声源。
+
+裁出不超过 60 秒的英文片段，导出 WAV/MP3。
+
+在 TDS 转录后，对照原录音检查。
+
+Windows · macOS · Linux
+
+GPL-3.0 (distribution)
+
+https://github.com/audacity/audacity/blob/master/LICENSE.txt
+
+https://www.audacityteam.org/download/
+
+https://support.audacityteam.org/
+
+https://github.com/audacity/audacity
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# Shotcut: 把录屏剪成一段工具演示。
+
+https://thedollscout.com/zh/open-source/shotcut
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+把录屏剪成一段工具演示。
+
+桌面时间线适合裁剪、加标题与导出视频。所选入门视频来自 Shotcut 官方教程页的推荐链接。
+
+教程发布于 2019 年，用于学习基本流程，不代表新版界面；具体菜单请查当前文档。TDS 没有浏览器视频剪辑器。
+
+导入一段录屏并另存项目副本。
+
+在时间线上去掉多余的开头或结尾。
+
+加上清晰标题，先导出一小段测试。
+
+另备一张缩略图，用 TDS 图片压缩处理网页体积。
+
+Windows · macOS · Linux
+
+GPL-3.0
+
+https://github.com/mltframework/shotcut/blob/master/COPYING
+
+https://shotcut.org/download/
+
+https://shotcut.org/tutorials/
+
+https://github.com/mltframework/shotcut
+
+https://thedollscout.com/zh/image-compressor
+
+这里收录独立维护的开源项目。外部软件有自己的设备要求与隐私规则；所列许可证针对项目代码，模型权重、组件及云服务可能另有条款。
+
+参考资料
+
+
+
+# 视频教程
+
+https://thedollscout.com/zh/videos
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。
+
+Upscayl：第一次用 AI 放大图片
+
+放大一张图片，检查细节，再准备更小的网页导出版本。
+
+Upscayl
+
+https://thedollscout.com/zh/videos/upscayl
+
+Audacity：录制、剪辑与准备人声
+
+录制清楚的短片段，准备进行英文音频转文字。
+
+Kyle Stedman
+
+https://thedollscout.com/zh/videos/audacity
+
+Shotcut：第一次剪辑与导出
+
+把原始录屏剪成一段简短教程，并准备独立缩略图。
+
+James Woo
+
+https://thedollscout.com/zh/videos/shotcut
+
+视频为英文，版权与内容归署名创作者所有；TDS 提供下方练习清单，并非视频制作方。较早的视频界面可能与新版不同。
+
+参考资料
+
+
+
+# Upscayl：第一次用 AI 放大图片
+
+https://thedollscout.com/zh/videos/upscayl
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+放大一张图片，检查细节，再准备更小的网页导出版本。
+
+Upscayl Tutorial - How to use Upscayl? | Best Free AI Image Upscaler for Linux, Mac and Windows
+
+Upscayl
+
+https://www.youtube.com/@upscayl
+
+2024-12-04T01:04:58-08:00
+
+4:07
+
+https://www.youtube.com/watch?v=3M77flVZlVY
+
+视频为英文，版权与内容归署名创作者所有；TDS 提供下方练习清单，并非视频制作方。较早的视频界面可能与新版不同。
+
+通过官方下载桌面版，检查 GPU 支持。
+
+保留原图，仅对副本进行放大。
+
+按 100% 大小检查脸部与文字，舍弃虚构细节。
+
+用 TDS 图片压缩比较适合网页的导出体积。
+
+https://thedollscout.com/zh/image-compressor
+
+加载后，浏览器会连接 YouTube 与 Google 并发送连接信息。增强隐私模式不代表匿名观看。不会自动播放。
+
+参考资料
+
+
+
+# Audacity：录制、剪辑与准备人声
+
+https://thedollscout.com/zh/videos/audacity
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+录制清楚的短片段，准备进行英文音频转文字。
+
+Audacity Basics (NEW in 2023): Recording, Editing, Mixing
+
+Kyle Stedman
+
+https://www.youtube.com/@kylestedman
+
+2023-07-10T14:14:51-07:00
+
+18:21
+
+https://www.youtube.com/watch?v=Im2W7pokfpw
+
+视频为英文，版权与内容归署名创作者所有；TDS 提供下方练习清单，并非视频制作方。较早的视频界面可能与新版不同。
+
+选择目标麦克风并录一小段。
+
+试听削波与房间噪声，优先调整声源。
+
+裁出不超过 60 秒的英文片段，导出 WAV/MP3。
+
+在 TDS 转录后，对照原录音检查。
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+加载后，浏览器会连接 YouTube 与 Google 并发送连接信息。增强隐私模式不代表匿名观看。不会自动播放。
+
+参考资料
+
+
+
+# Shotcut：第一次剪辑与导出
+
+https://thedollscout.com/zh/videos/shotcut
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+把原始录屏剪成一段简短教程，并准备独立缩略图。
+
+Shotcut Video Editor Tutorial For Beginners - Fast Start
+
+James Woo
+
+https://www.youtube.com/@JamesWoo
+
+2019-09-13T04:07:14-07:00
+
+15:30
+
+https://www.youtube.com/watch?v=JtsB2iZRb9c
+
+视频为英文，版权与内容归署名创作者所有；TDS 提供下方练习清单，并非视频制作方。较早的视频界面可能与新版不同。
+
+导入一段录屏并另存项目副本。
+
+在时间线上去掉多余的开头或结尾。
+
+加上清晰标题，先导出一小段测试。
+
+另备一张缩略图，用 TDS 图片压缩处理网页体积。
+
+https://thedollscout.com/zh/image-compressor
+
+加载后，浏览器会连接 YouTube 与 Google 并发送连接信息。增强隐私模式不代表匿名观看。不会自动播放。
+
+参考资料
+
+
+
+# 创作设备指南
+
+https://thedollscout.com/zh/creator-kit
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+先用手边的电脑和设备做一次测试。只有录音或制作中出现了具体问题，再考虑购买。
+
+TDS 作为 Amazon 联盟成员，从符合条件的购买中获得佣金。下方链接打开商品搜索结果，并非实测产品排名；请在商家页面核实价格、兼容性和配送。英文及中文链接指向美国 Amazon，德文链接指向德国 Amazon。
+
+更清楚的人声
+
+靠近现有麦克风，减少房间噪声，用 Audacity 录一小段并试听。
+
+核对接口、操作系统支持、退货条件和耳机实时监听。购买麦克风不能保证转录准确。
+
+更稳定的人像光线
+
+面对窗户，选择简单背景，先用现有照片试一次人像抠图。
+
+核对供电、亮度调节、是否含支架及摆放空间。抠图工具不要求购买专用灯具。
+
+给视频项目留出空间
+
+先清理不需要的导出副本，检查剩余空间，再决定是否增加硬盘。
+
+核对电脑接口、可用容量和随附线材。保留另一份备份；单独一块移动硬盘不等于备份方案。
+
+使用 TDS 必须买设备吗？
+
+不需要。浏览器工具和任务清单都免费，设备链接只是可选项。
+
+购买会解锁 AI 功能吗？
+
+不会。购买发生在商家平台，不解锁 TDS 功能；独立收藏品会员也不包含付费 AI 工具。
+
+参考资料
+
+
+
+# AI 人像抠图
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+支持静态 JPEG、PNG、WebP，最大 10 MiB、2000 万像素。输出最长边不超过 1600 像素。适用于人物，不是通用商品、宠物或场景抠图。发丝、透明物体和复杂光照可能处理不佳。
+
+MODNet 预测人物前景的透明度蒙版，将蒙版应用到缩放后的人像并导出透明 PNG。本工具使用量化模型，照片始终在本机处理。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/modnet · fa2fa546052fba4c08921230a26cc69a333fca12 · q8 · Apache-2.0 · 6632188 bytes of weights
+
+可以给商品图片去背景吗？
+
+该模型针对人像抠图训练。纯商品、动物或复杂场景可能产生较差的蒙版。建议用于人物，并检查导出的边缘。
+
+输出图片是什么分辨率？
+
+最长边最多 1600 像素，小图片不会放大。导出格式是带透明背景的 PNG。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/modnet: https://huggingface.co/Xenova/modnet
+- MODNet authors and license: https://github.com/ZHKKKe/MODNet
+
+
+# AI 英文音频转文字
+
+https://thedollscout.com/zh/ai-audio-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+仅支持英语语音；WAV 或 MP3 最大 10 MiB、60 秒。不区分说话人，不翻译，不实时录音。Whisper Tiny 可能漏词或产生原音频没有的文字，尤其在噪声或静音时，请逐条复核。
+
+浏览器把音频解码为 16 kHz 单声道数据，再用 Whisper Tiny English 预测文字和分段时间，在本机生成 TXT 和 SRT。字幕时间仅为近似值。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/whisper-tiny.en · 79fb389fc764e7c395bd330e9531d9d32ada7049 · q8 · Apache-2.0 · 40852295 bytes of weights
+
+能识别中文或德语吗？
+
+首版使用英语专用模型。页面提供英、德、中三种界面，但输入录音必须是英语。
+
+字幕和人名一定准确吗？
+
+不一定。小模型可能听错人名、数字、口音或背景声音。发布前请重听原录音并修改草稿。
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/whisper-tiny.en: https://huggingface.co/Xenova/whisper-tiny.en
+- Whisper model card: https://github.com/openai/whisper/blob/main/model-card.md
+
+
+# AI 原文摘要
+
+https://thedollscout.com/zh/ai-text-summarizer
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+
+支持 80–12,000 字符、3–60 句英文文本，每句最多 256 个模型 token。最多选 3 或 5 句，且少于原文句数。不改写、不翻译、不核查事实，可能遗漏重要背景。
+
+MiniLM 为每个句子生成语义向量，再由代码按句子与全文平均向量的相似度排序，同时减少重复：70% 中心相关性，30% 与已选句子的相似度。选出的原句按原文顺序展示。权重属于产品规则，不是经过验证的准确率。
+
+AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+Xenova/all-MiniLM-L6-v2 · 751bff37182d3f1213fa05d7196b954e230abad9 · q8 · Apache-2.0 · 22972370 bytes of weights
+
+AI 会生成新的句子吗？
+
+模型通过神经网络语义向量选取已有句子，不生成或改写文字。每条要点会链接到原句，方便你检查上下文。
+
+摘要能证明原文正确吗？
+
+不能。模型只估计语义相似度，不核查事实，也不保证选中全部重点。使用摘要前请阅读原文。
+
+加载模型，填入示例文本，保留最多三句。2026 年 9 月 27 日，我们在 Chromium 中用固定模型选出了第 1、3、6 句。这只是一次功能验收，不是质量基准；不同浏览器可能存在细小数值差异。
+
+Our library will open a quiet study room next month. The new room will provide twenty desks and reliable Wi-Fi for local students. Visitors can reserve a desk online for up to two hours each day. The library will keep its existing opening hours. Volunteers will offer a weekly workshop on finding trustworthy research sources. The workshop is free, but visitors need to book a place. Staff will review feedback after three months before deciding whether to add more desks.
+
+[1] Our library will open a quiet study room next month.
+
+[3] Visitors can reserve a desk online for up to two hours each day.
+
+[6] The workshop is free, but visitors need to book a place.
+
+参考资料
+- Transformers.js 3.8.1: https://huggingface.co/docs/transformers.js/v3.8.1/index
+- Xenova/all-MiniLM-L6-v2: https://huggingface.co/Xenova/all-MiniLM-L6-v2
+- MiniLM model card: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+
+
+# 图片压缩、缩放与格式转换
+
+https://thedollscout.com/zh/image-compressor
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+调整图片尺寸，导出 JPEG、PNG 或 WebP。下载前直接比较原图与结果的实际尺寸和文件大小。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+最多 8 张静态 JPEG、PNG 或 WebP；单张 20 MiB、合计 50 MiB、单张 2000 万像素。暂不支持 GIF、HEIC、SVG 或动画。输出最大 4096 × 4096 像素，不放大小图。
+
+浏览器解码并按比例重新绘制图片。转 JPEG 时透明部分填充白色，PNG 不使用质量参数。重新编码可能改变颜色或使文件变大，不保证印刷色彩或彻底清除所有元数据。
+
+1500 × 1000 的图片限制在 1000 × 1000 内，会变成 1000 × 667。原图不变，交互示例会测量导出文件的实际大小。
+
+1500 × 1000 → 1000 × 667
+
+压缩后一定更小吗？
+
+不一定。结果取决于原图、格式、尺寸和浏览器编码器。页面会显示处理前后的实际字节数，变大时也会如实提示。
+
+透明背景能保留吗？
+
+PNG 和 WebP 可以保留透明度；JPEG 不支持透明，透明部分会填充白色。动画文件会被拒绝处理。
+
+参考资料
+- Canvas image export: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+- WebP container format: https://developers.google.com/speed/webp/docs/riff_container
+
+
+# JSON 校验、格式化与结构对比
+
+https://thedollscout.com/zh/json-compare
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+校验 JSON，在不舍入长数字的情况下格式化，并按字段路径比较两个版本。可下载格式化结果或变更报告。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+仅支持 UTF-8 JSON；每份最多 512 KiB、60 层嵌套、20,000 个值、1,000 处差异。拒绝重复键，数字指数限 ±100,000。不支持 JSON5、注释、Schema 校验或代码执行。
+
+忽略空白和对象键顺序；数组按下标比较，插入一项可能产生多处变化。数字保留原始写法，比较时 1 和 1.0 等价。字段路径采用 JSON Pointer 转义。
+
+把 enabled 从 false 改为 true，并增加第三个地区。对象键换序不会改变长数字 ID，也不会被误报为修改。
+
+{"id":9007199254740993,"enabled":false,"regions":["EU","US"]}
+
+{"regions":["EU","US","APAC"],"enabled":true,"id":9007199254740993}
+
+[{"path":"/enabled","kind":"changed","before":"false","after":"true"},{"path":"/regions/2","kind":"added","before":null,"after":"\"APAC\""}]
+
+很长的数字 ID 会被舍入吗？
+
+不会。格式化保留数字原文，比较时按十进制文本归一化，不转换成 JavaScript 浮点数。
+
+同一对象里有重复键怎么办？
+
+工具会拒绝处理并提示位置，不会悄悄丢掉前面的值。对象键顺序不影响比较，数组顺序会影响比较。
+
+参考资料
+- JSON — RFC 8259: https://www.rfc-editor.org/rfc/rfc8259
+- JSON Pointer — RFC 6901: https://www.rfc-editor.org/rfc/rfc6901
+
+
+# 跨时区会议与日历导出
+
+https://thedollscout.com/zh/time-zone-planner
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+查看同一场会议在多个城市的时间，识别夏令时跳时或重复时刻，并导出起止时刻明确的日历文件。
+
+文件、粘贴的数据和会议详情都在浏览器内处理，无需注册或上传。下载结果可能包含你的输入，分享前请先核对。
+
+单次会议，时长 5–480 分钟，年份 1970–2100，提供 16 个时区。使用浏览器的时区规则。不包含周期会议、参会者忙闲、节假日或邀请发送。
+
+选择日期和组织者时区。春季跳过的时间会被拒绝，秋季重复的时间必须选择较早或较晚一次。工作时段提示按周一至周五 09:00–18:00 计算，不包含各地节假日和个人日程。
+
+2026 年 10 月 15 日纽约 09:00 开始的一小时会议，对应 UTC 13:00、伦敦 14:00、柏林 15:00、上海 21:00。
+
+2026-10-15T13:00:00Z → 2026-10-15T14:00:00Z
+
+导出日历会自动发送邀请吗？
+
+不会。工具只在本地生成 .ics 文件，由你决定导入或分享，不联系参会者或访问日历账户。
+
+为什么某个时间不存在，或者出现两次？
+
+夏令时切换可能跳过一段时间，也可能让一段时间重复。工具会拒绝不存在的时刻，并要求你明确选择重复时刻中的较早或较晚一次。
+
+参考资料
+- Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+- iCalendar — RFC 5545: https://www.rfc-editor.org/rfc/rfc5545
+
+
+# 核对收到的文件
+
+https://thedollscout.com/zh/verify-file
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+
+一次选择一个文件，最大20 MiB。文件内容仅留在当前标签页。
+
+选择实际准备发送的那份文件。
+
+生成链接，通过日常使用的渠道与文件一起发送。
+
+收件人选择自己的副本，核对指纹。
+
+匹配表示文件的SHA-256指纹和字节数与所提供的依据一致，不证明发送者身份、作者身份、内容安全、送达、验收或可信时间。请通过你信任的渠道取得核验依据。
+
+链接包含文件指纹和大小，不包含文件名、备注或内容。持有链接的人可以用候选文件进行比对；分享使用的应用可能保存链接。TDS不会将指纹发送到统计系统。
+
+格式公开。保留链接，使用自己的软件计算SHA-256和字节数即可比较。可下载的独立核验程序使用Node.js离线运行。
+
+下载包含已知示例、离线运行程序及可选 GitHub Actions 模板的入门包，无需 npm 依赖或 API 密钥。
+
+解压后运行：node tools/run-file-check.mjs。示例应当匹配。
+
+修改示例文件，保留核验依据，再运行一次：应当检测出不一致。
+
+换成自己的文件及通过可信渠道独立取得的核验依据。
+
+脚本不会连接 TDS。可选 GitHub 用法会把文件上传到你的仓库，并在日志中输出指纹；机密文件请留在本地或使用访问受限的仓库。匹配只证明文件一致，不证明送达或验收。
+
+OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
+
+如何独立核对文件校验值
+
+SHA-256 校验值根据文件内容计算。TDS 的匹配要求文件指纹和字节数均与发送者的核验依据一致。请选择实际下载的文件，而不是截图或重新导出的副本。
+
+看起来相同的 PDF，为什么指纹不同？
+
+保存 PDF 可能改变元数据、压缩方式或其他字节，即使页面外观没变。检查文字修改请使用 PDF 文本比较；指纹用于比较文件字节是否一致。
+
+指纹匹配是否说明文件安全？
+
+不能。恶意文件也有自己的指纹。请从可信渠道取得核验依据；此工具不扫描病毒，也不证明身份或送达。
+
+能粘贴任意 SHA-256 校验值吗？
+
+这个界面接受包含字节数的完整 TDS 核验链接。只有原始指纹时，请使用下方命令计算并手动比对。
+
+可复现的三个字节示例
+
+建立只包含 abc、末尾没有换行的纯文本文件：大小为 3 字节，SHA-256 如下。只改文件名不会改变指纹；修改内容或增加换行会改变指纹。工具内置的已知示例使用相同字节。
+
+ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+
+将 document.pdf 替换为你的文件路径。命令只在本地读取文件。把指纹和字节数与 TDS 核验依据比较；十六进制字母的大小写不影响指纹值。
+
+Get-FileHash -LiteralPath 'document.pdf' -Algorithm SHA256
+
+(Get-Item -LiteralPath 'document.pdf').Length
+
+sha256sum -- 'document.pdf'
+
+wc -c < 'document.pdf'
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash
+
+https://www.gnu.org/software/coreutils/manual/coreutils.html
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 整理客户交付记录
+
+https://thedollscout.com/zh/delivery-evidence
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
+
+最多10个文件，每个20 MB，总计100 MB。文件与备注仅留在当前标签页，不上传、不自动保存。
+
+保存约定范围及对应的原始邮件或合同。
+
+保留实际交付文件和原始发送消息。
+
+记录客户实际回复，包括修改要求。
+
+明确标出缺失或争议事实，不用猜测补齐。
+
+SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的设备。TDS不验证作者身份、收件人、送达、验收或支付授权，也不生成比特币时间戳或签名。
+
+支付争议需要的证据取决于争议原因。交付记录本身不能证明持卡人授权购买，请核对支付服务商的现行要求。
+
+我们正在调研79美元/月的团队方案，包括共享审查历史和品牌化交付。目前不能购买。以下匿名回答仅用于产品判断，不创建账户或预订。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 免费图片、PDF 与文件工具：从处理到交付
+
+https://thedollscout.com/zh/document-tools
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。
+
+你现在要完成什么？
+
+把图片准备好再发布
+
+调整 JPEG、PNG、WebP 的尺寸与格式，查看结果后下载。
+
+可下载的图片，以及实际输出文件大小。
+
+发出 PDF 前，确认改了哪里
+
+比较两个版本中已有的文字，定位改动。扫描件需要先在其他工具中做 OCR。
+
+按页定位的文字差异，以及可导出的报告。
+
+记录这次交付了哪些文件
+
+列出最终文件、补充备注；需要核对副本时，再创建校验链接。
+
+可下载的文件清单；它不证明送达或验收。
+
+图片压缩、缩放与格式转换
+
+批量调整 JPEG、PNG、WebP 尺寸与格式，查看实际输出大小。
+
+图片处理
+
+https://thedollscout.com/zh/image-compressor
+
+JSON 校验、格式化与结构对比
+
+校验与格式化数据，按字段比较版本，保留长数字精度。
+
+结构化数据
+
+https://thedollscout.com/zh/json-compare
+
+跨时区会议与日历导出
+
+对照多地时间，识别夏令时变化，导出日历文件。
+
+时区与 .ics
+
+https://thedollscout.com/zh/time-zone-planner
+
+PDF 无障碍检查
+
+检查标题、语言声明、标签结构，并按页定位问题线索。
+
+PDF 发布前预检
+
+https://thedollscout.com/zh/pdf-accessibility-checker
+
+PDF 批量审查
+
+一次检查最多 10 份 PDF，导出一张合并的问题清单。
+
+最多 10 份 PDF
+
+https://thedollscout.com/zh/pdf-batch-audit
+
+PDF 转文字
+
+按页提取 PDF 中已有文字，保存为 TXT 文件。
+
+提取已有文本
+
+https://thedollscout.com/zh/pdf-to-text
+
+PDF 文本对比
+
+比较两个版本，定位修改、新增和删除的文字页面。
+
+比较两个 PDF 版本
+
+https://thedollscout.com/zh/compare-pdf-text
+
+文件核验
+
+创建校验链接，或核对收到的文件是否与参考版本一致。
+
+SHA-256 与文件大小
+
+https://thedollscout.com/zh/verify-file
+
+文件交付记录
+
+列出交付文件，填写备注，导出可携带的记录。
+
+文件清单与备注
+
+https://thedollscout.com/zh/delivery-evidence
+
+AI 人像抠图
+
+用浏览器内的 AI 模型去除人像背景，下载透明 PNG，无需上传照片。
+
+人像 → 透明 PNG
+
+https://thedollscout.com/zh/ai-portrait-background-remover
+
+AI 英文音频转文字
+
+在本机用 Whisper 转写短英文 WAV 或 MP3，下载文本草稿与近似时间轴 SRT 字幕，无需上传录音。
+
+英文音频 → TXT / SRT
+
+https://thedollscout.com/zh/ai-audio-to-text
+
+AI 原文摘要
+
+用本地 AI 模型找出英文文本的关键句，保留原文措辞，每条要点可回看原句，并可下载。
+
+英文文本 → 可回看原句的要点
+
+https://thedollscout.com/zh/ai-text-summarizer
+
+图片太大，网页或附件不好发。
+
+先调整尺寸并检查导出效果，再把最终文件整理成交付记录。
+
+接口返回或配置文件改了。
+
+按字段比较 JSON，下载变更报告，避免把键顺序变化当成内容变化。
+
+团队分布在不同国家。
+
+先确认各地对应时间，再导出一份日历文件，按需导入自己的日历。
+
+工具免费，文件留在你的设备上。
+
+无需注册，也无需上传文件。原文件保持不变，结果可按需下载。每个工具都会明确说明适用范围与限制。 首次使用需要下载模型及推理程序，请预留时间和流量。建议使用较新的桌面浏览器；旧手机或受限网络可能无法运行。
+
+十二个工具都能免费使用吗？
+
+可以。三个本地 AI 工具和九个日常工具均可免费使用，无需注册。AI 工具首次使用前需要下载模型文件。
+
+我的文件会被上传或保存吗？
+
+文件处理在浏览器内完成，不上传文件或文档正文。若你主动分享核验链接，链接包含 SHA-256 指纹和字节数；完整导出文件可能含文件名和你填写的备注。 AI 处理在你的设备上进行。点击加载模型后，浏览器会从 jsDelivr 和 Hugging Face 下载程序与模型文件；这些服务会收到 IP 地址等连接信息，但不会收到你选择的文件或输入的文字。模型可能保留在浏览器缓存中，可清除网站数据来移除缓存。
+
+用哪个工具确认文件没有变化？
+
+文件核验会把 SHA-256 和字节数与发送者提供的参考值比较；文本对比则检查提取后的文字。这些工具都不证明身份、送达、验收或文件安全。
+
+按具体任务选择开源工具。先看安装要求、适用范围和下一步，再决定是否下载。
+
+https://thedollscout.com/zh/open-source
+
+精选图片、音频与视频工具的 YouTube 入门介绍，保留作者署名，并配上看完就能做的练习。
+
+https://thedollscout.com/zh/videos
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 无障碍检查
+
+https://thedollscout.com/zh/pdf-accessibility-checker
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+适用场景: 发布报告、讲义或向客户交付 PDF 之前。
+
+你会得到: 按页定位的检查线索、人工复核提示，以及 CSV 或 JSON 报告。
+
+仍需确认: 阅读顺序、图片描述和标签的正确性仍需人工判断；本工具不提供合规认证。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+检测到 PDF 标签，说明了什么？
+
+它表示解析器发现了已标记声明或可访问的结构，并不证明阅读顺序、图片说明或表格正确。这些项目仍需单独检查。
+
+这个工具能认证 WCAG 或 PDF/UA 合规吗？
+
+不能。它提供自动预检并记录你的人工复核，不提供合规认证，不修复标签，也不计算百分比无障碍评分。
+
+你可以复现的检查结果
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+检查项 | 实际结果 | 下一步
+
+文档标题 | Fictional workshop handout | 核对标题是否准确描述文档；本工具不检查阅读器标题栏设置。
+
+默认语言声明 | en-US | 核对语言声明是否与正文一致。
+
+已标记文档声明 | 未检测到 | 在编辑或修复工具中检查标签结构和阅读顺序。
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-accessibility-checker#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+W3C PDF18 — document title: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF18
+
+W3C PDF16 — document language: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF16
+
+W3C PDF3 — reading and tab order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 批量审查
+
+https://thedollscout.com/zh/pdf-batch-audit
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+适用场景: 团队需要把多份待交付 PDF 汇总成一张处理清单时。
+
+你会得到: 最多 10 份 PDF 的合并问题清单，明确标记未完成的检查。
+
+仍需确认: 每份 PDF 最多 20 MB、检查 200 页；每批最多 100 MB、检查 600 页。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+一次能检查多少份 PDF？
+
+最多 10 份，每份不超过 20 MB，总计不超过 100 MB。每份最多检查 200 页，每批最多 600 页。部分结果和无法读取的文件会在交接中保留。
+
+某一份 PDF 无法读取时会怎样？
+
+可读取文件的结果会保留，失败文件单独显示，整批视为部分完成。取得可读副本并重新检查后，再完成交接。
+
+你可以复现的检查结果
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+这批样本包含缺少元数据的文本 PDF、修订后的文本 PDF，以及只有绘制图形的页面。全部页面已处理，不代表所有无障碍要求均已通过。
+
+文档 | 页数 | 全部页面已处理 | 检查项
+
+原版讲义 | 2 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2)
+
+修订版讲义 | 3 | 是 | 已标记文档声明; 未找到页面结构树 (1); 未找到页面结构树 (2); 未找到页面结构树 (3)
+
+无文本层示例 | 1 | 是 | 文档标题; 默认语言声明; 已标记文档声明; 没有可提取文本 (1)
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-batch-audit#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 文本提取
+
+https://thedollscout.com/zh/pdf-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+适用场景: 需要复用 PDF 已有文字，或先判断能否提取文本时。
+
+你会得到: 按页分组的可提取文字，以及保存在本地的 TXT 文件。
+
+仍需确认: 纯图片页面需要另外使用 OCR；提取的文字顺序也可能需要修正。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+扫描 PDF 为什么提取不出文字？
+
+扫描件可能只有页面图片，没有文本层。此工具只提取已有文字。请另行进行 OCR，检查识别准确性后，再提取新文件的文本。
+
+提取文本能保留表格和阅读顺序吗？
+
+输出按页分隔的文字，不重建表格单元格，也不保证视觉或辅助技术的阅读顺序。分栏、表格和特殊字符需要对照原件检查。
+
+你可以复现的检查结果
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+原版讲义会产生下面按页分开的文本。无文本层示例的文本字符数为零；这个工具不做 OCR，复用前请对照原件核对。
+
+页数 | 提取的文本
+
+1 | Fictional workshop handout
+Session starts at 09:30.
+Bring a notebook.
+
+2 | Materials checklist
+Notebook and pencil.
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/pdf-to-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 文本版本对比
+
+https://thedollscout.com/zh/compare-pdf-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+适用场景: 收到修订版 PDF，需要找出文字变化时。
+
+你会得到: 对齐的文本页面，以及修改、新增、删除或无法比较的页面。
+
+仍需确认: 不比较图片、版式和批注；相似页面的配对结果需要复核。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+插入新页面后，还能比较 PDF 版本吗？
+
+工具用规范化文本对齐页面，并在新增页面前后建议配对。请复核新增、删除和修改项；重复内容可能让配对存在歧义。
+
+提取文字相同，就代表 PDF 文件相同吗？
+
+不代表。图片、标签、版式及其他字节仍可能不同。检查完整文件请使用 SHA-256 和字节数核验；视觉变化仍需查看原 PDF。
+
+你可以复现的检查结果
+
+下载这些虚构示例 PDF，在上方工具中运行。下面的结果由工具所用的同一个 PDF 解析器生成，你可以自行核对。
+
+修订版更改了活动时间，插入一页，并修改了材料清单。文本配对不比较版式、图片或 PDF 标签。
+
+文字变更 | 原版页码 | 修订版页码
+
+修改 | 1 | 1
+
+新增 | — | 2
+
+修改 | 2 | 3
+
+原版讲义: https://thedollscout.com/document-assets/samples/sample-before.pdf
+
+修订版讲义: https://thedollscout.com/document-assets/samples/sample-after.pdf
+
+无文本层示例: https://thedollscout.com/document-assets/samples/sample-image.pdf
+
+引用这个示例: https://thedollscout.com/zh/compare-pdf-text#worked-example
+
+下载全部示例结果（JSON）: https://thedollscout.com/document-assets/sample-results.json
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 发布前的无障碍检查清单
+
+https://thedollscout.com/zh/learn/pdf-accessibility-checklist
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
+
+检查导出的文件：核对标题和语言声明，找出有文字但没有结构树的页面。只有“已标记”声明还不够。
+
+完成人工复核：用屏幕阅读器阅读代表性页面，检查多栏、表格、表单、键盘导航和仅靠颜色表达的信息。
+
+保留明确记录：导出自动检查结果，记录人工检查范围，并与对应 PDF 版本一起交接。未检查项继续标为未检查。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 扫描件还是文本 PDF：下一步怎么处理
+
+https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+
+先提取一页文字。结果为空时查看原页，判断它是扫描图、空白页还是不支持的内容。空结果本身不能证明是扫描件。
+
+扫描件可用合适的 OCR 工具处理，再逐项核对人名、数字、标点和阅读顺序。识别出的文字也可能出错。
+
+文本层只是第一步，标题结构和替代文本仍需单独检查。本工具不执行 OCR，也不认证处理后的 PDF。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 如何检查 PDF 阅读顺序
+
+https://thedollscout.com/zh/learn/pdf-reading-order
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
+
+先检查简单页面，再覆盖多栏、表格和表单。完整听取阅读顺序，并单独检查键盘焦点。
+
+把听到的内容与文档含义对照，注意脚注插入句中、不同栏交错，以及标签与表单控件分离等情况。
+
+在源文件或 PDF 修复编辑器中调整，重新导出后再测。版本比较帮助发现文本变化，不能替代视觉和辅助技术复核。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 检查方法
+
+https://thedollscout.com/zh/methodology
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+图片、JSON 和时区工具分别在各自页面说明方法、限制并提供可复核示例。图片输出取决于浏览器编码器；JSON 比较保留数字原文，数组按下标比较；会议时间使用浏览器内的时区数据库。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 文件隐私
+
+https://thedollscout.com/zh/document-privacy
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+
+下载报告时，浏览器把文件保存到你的设备。CSV 和 JSON 可能包含文件名、文档标题；JSON 比较报告和文本导出还包含提取的正文。本站不会公开你的报告。
+
+我们记录有限的第一方使用计数：工具页面、事件类型、日期、粗略国家和来源域名，不记录文件名、正文或复核内容。示例使用单独计数。上述第一方计数不使用 Cookie 或跨会话用户标识。可选的 Google Analytics 仅在您允许后加载，使用统计 Cookie，并接收公开页面地址、页面标题、引荐来源域及技术连接信息，不接收所选文件或输入的文本；广告功能关闭。可通过页脚“统计设置”更改或撤回选择，本机仅保存该选择。DNT 和 Global Privacy Control 会阻止 Google Analytics 加载。
+
+历史收藏品页面和独立会员区另有行为，见既有隐私说明。文档工具不要求会员，会员也不包含额外付费文档功能。
+
+分享页面只发送公开链接。分享摘要会把预览中的数量和边界说明交给你选择的目标应用，或复制到剪贴板，不包含文件名、标题、正文和人工笔记。完整下载报告包含的数据与此不同，见上方说明。
+
+交付记录在本地处理，下载包含文件名和填写的备注。可选团队方案调研只记录固定的交付次数档位和方案偏好，不收集邮箱、账户、文件指纹或来源备注。回答不是订单。
+
+文件核验链接会主动在网址片段中分享SHA-256指纹和字节数，不包含文件名、内容或备注。持有链接的人可以比对候选文件；分享应用和浏览器历史可能保存链接。TDS不会将指纹发送到统计系统。收件人的核对仅在本地进行，不通知发送者，也不证明已收件。
+
+图片处理、JSON 对比和会议规划同样在本地运行。图片、JSON 内容、会议标题、备注和所选时间不会发送到统计接口；仅统计固定动作名与公开页面路径。下载包含你选择的输出，日历导出不会发送邀请。清空会移除本页输入和临时下载链接，不删除已下载到设备的文件。
+
+AI 工具仅在你点击加载模型后下载固定版本的本地模型。程序与模型下载会联系 jsDelivr、Hugging Face，这些服务会收到 IP 地址等连接信息；你选择的照片、录音和文字不会上传。模型可能被浏览器缓存，可清除网站数据来移除。输入和结果保留在内存，除非你主动下载。AI 结果可能出错，各工具页面会说明语言和任务限制。
+
+开源页面链接到独立项目。视频页面仅在主动加载播放器后连接 YouTube／Google，并向其发送连接信息；增强隐私模式不保证匿名观看。可选设备链接会打开带联盟标识的 Amazon 页面。我们只统计固定资源操作，不记录访客输入的视频标题或购买明细。
+
+允许 Google Analytics 后，还会统计任务开始、处理完成、发起导出等固定操作。示例单独计数，每种操作每次页面加载最多记录一次。这些计数不证明文件已经保存、发生购买或独立人数，不包含文件内容、文件名、输入或结果明细。
+
+图片工具的视频实验会将匹配的网址标签转换为固定活动名和 YouTube 或 TikTok 来源，加入动作计数。我们不保存完整查询字符串，也不用它识别个人；没有匹配引荐的标签只算较弱的来源证据。DNT 和 Global Privacy Control 会抑制这些第一方浏览器事件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 收藏指南
+
+https://thedollscout.com/zh/collectors
+由 TDS 文档侦察站发布
+更新日期: 2026-09-27
+
+探索潮玩、购买指南与收藏管理工具，从 TDS 首页选择品牌与任务。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

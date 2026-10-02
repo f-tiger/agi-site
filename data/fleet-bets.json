@@ -1968,7 +1968,8 @@
    "win": "核实重复交付任务、免费替代不足和支持成本，才试团队复核/报告历史；收费验证仍需 3 位无关联实际买家及正贡献，订阅扩张需真实续费。",
    "lose": "访问 <100 → insufficient，先查抓取、索引、查询与落地匹配；访问够但完成少 → 查文件失败和入口承诺；完成够但导出少 → 查交付价值，不用更多页面掩盖问题。",
    "source": "sites/thedollscout/docs/document-scout-release-2026-09-25.md；owner 2026-09-25 明确要求全站转型并落地。",
-   "status": "open"
+   "status": "open",
+   "owner_update_2026-10-02": "数字工具降为保留的侧线实验，通用入口在 BPJ 汇总；不得据此自动恢复文档首页。原事件独立观察，不与新收藏动作合并。"
   },
   {
    "id": "eco-named-model-cards-1025",
@@ -2447,6 +2448,17 @@
    "source": "docs/bpj-release-pilot-2026-09-26.md; docs/github-agent-commercialization-2026-10-01.md",
    "status": "open",
    "reading_20261001": "Repo aggregate generated 2026-10-01T06:37:30Z: view=2, price_seen=1, applications=0, paid_orders=null, revenue=null. Pseudonymous event counts, not verified buyers. Original close date and threshold unchanged; adding executable kit does not reset the window."
+  },
+  {
+   "id": "tds-collector-relaunch-1113",
+   "site": "thedollscout",
+   "due": "2026-11-13",
+   "metric": "GSC 按品牌指南/现有收藏/数字工具分组；GA4 已同意且剔除 CI/示例的 collector workbench tool_complete；D1 收藏导购 affiliate_click；商家报告单列佣金。",
+   "threshold": "先确认 ≥100 次相关非 QA 访问，再检视 ≥20 次自带输入工具完成与 ≥10 次收藏导购出站。动作不是独立买家；为运营学习门槛，不是统计显著性或营收承诺。",
+   "win": "先核实重复用户、来源和实际佣金，再考虑扩大同类指南或付费层。",
+   "lose": "访问不足修复具体查询与落地匹配/分发；访问足够但使用不足修复任务流程。42 天内不因低样本反复换整站方向。",
+   "source": "docs/tds-collector-relaunch-2026-10-02.md",
+   "status": "open"
   }
  ]
 }

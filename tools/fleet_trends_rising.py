@@ -45,10 +45,10 @@ FLEET = [
     # 一轮覆盖从约 10 天变约 11 天;零新 cron。判定线 agi-invest-demand-1115。
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
      "seeds": ["artificial general intelligence", "agi timeline", "13f filings", "ai stocks"]},
-    # 2026-09-25 owner: reject a collector-only direction and implement the PDF pivot.
+    # 2026-10-02 owner: restore multi-brand collecting; digital utilities aggregate on BPJ.
     # Keep the same three seeds and existing shared request budget; no new cron.
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
-     "seeds": ["pdf accessibility", "pdf remediation", "compare pdf"]},
+     "seeds": ["labubu", "jellycat", "sonny angel"]},
     # eco 的美国面(2026-08-28,owner:「分别扩展德国与美国不同的热点」)。此前 eco 只有
     # 德国需求信号——sites/getecoback/tools/fetch_trends_rising.py 写死 GEO="DE",而
     # 「按美国趋势扩展」在没有美国数据时只能靠猜,那是本站明令禁止的。故先建数据面。

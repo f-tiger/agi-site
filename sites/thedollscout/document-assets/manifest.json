@@ -21,7 +21,7 @@
     "https://thedollscout.com/time-zone-planner",
     "https://thedollscout.com/verify-file",
     "https://thedollscout.com/delivery-evidence",
-    "https://thedollscout.com/",
+    "https://thedollscout.com/document-tools",
     "https://thedollscout.com/pdf-accessibility-checker",
     "https://thedollscout.com/pdf-batch-audit",
     "https://thedollscout.com/pdf-to-text",
@@ -52,7 +52,7 @@
     "https://thedollscout.com/de/time-zone-planner",
     "https://thedollscout.com/de/verify-file",
     "https://thedollscout.com/de/delivery-evidence",
-    "https://thedollscout.com/de/",
+    "https://thedollscout.com/de/document-tools",
     "https://thedollscout.com/de/pdf-accessibility-checker",
     "https://thedollscout.com/de/pdf-batch-audit",
     "https://thedollscout.com/de/pdf-to-text",
@@ -83,7 +83,7 @@
     "https://thedollscout.com/zh/time-zone-planner",
     "https://thedollscout.com/zh/verify-file",
     "https://thedollscout.com/zh/delivery-evidence",
-    "https://thedollscout.com/zh/",
+    "https://thedollscout.com/zh/document-tools",
     "https://thedollscout.com/zh/pdf-accessibility-checker",
     "https://thedollscout.com/zh/pdf-batch-audit",
     "https://thedollscout.com/zh/pdf-to-text",
@@ -257,7 +257,7 @@
       "textUrl": "https://thedollscout.com/document-assets/text/en/delivery-evidence.txt"
     },
     {
-      "url": "https://thedollscout.com/",
+      "url": "https://thedollscout.com/document-tools",
       "lang": "en",
       "title": "Free image, PDF & file tools for everyday work",
       "description": "For creators and small teams: prepare images for publishing, check document changes and keep a clear record of the files you hand over. Free, in your browser, without an account.",
@@ -339,8 +339,8 @@
     {
       "url": "https://thedollscout.com/collectors",
       "lang": "en",
-      "title": "Collector archive",
-      "description": "The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.",
+      "title": "Collector guides",
+      "description": "Explore collectible toys, buying guides and collection tools. Start with the brand guides on the TDS homepage.",
       "slug": "collectors",
       "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
     },
@@ -505,7 +505,7 @@
       "textUrl": "https://thedollscout.com/document-assets/text/de/delivery-evidence.txt"
     },
     {
-      "url": "https://thedollscout.com/de/",
+      "url": "https://thedollscout.com/de/document-tools",
       "lang": "de",
       "title": "Kostenlose Bild-, PDF- und Dateiwerkzeuge für den Alltag",
       "description": "Für Kreative und kleine Teams: Bilder für die Veröffentlichung vorbereiten, Dokumentänderungen prüfen und übergebene Dateien dokumentieren. Kostenlos im Browser, ohne Konto.",
@@ -587,8 +587,8 @@
     {
       "url": "https://thedollscout.com/de/collectors",
       "lang": "de",
-      "title": "Sammlerarchiv",
-      "description": "Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.",
+      "title": "Sammlerratgeber",
+      "description": "Sammelfiguren, Kaufratgeber und Sammlungswerkzeuge. Die Markenratgeber finden Sie auf der TDS-Startseite.",
       "slug": "collectors",
       "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
     },
@@ -753,7 +753,7 @@
       "textUrl": "https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt"
     },
     {
-      "url": "https://thedollscout.com/zh/",
+      "url": "https://thedollscout.com/zh/document-tools",
       "lang": "zh",
       "title": "免费图片、PDF 与文件工具：从处理到交付",
       "description": "为内容创作者和小团队准备：处理要发布的图片，检查文档改动，记录最后交付了哪些文件。免费在浏览器内完成，无需注册。",
@@ -835,8 +835,8 @@
     {
       "url": "https://thedollscout.com/zh/collectors",
       "lang": "zh",
-      "title": "收藏品历史资料",
-      "description": "原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。",
+      "title": "收藏指南",
+      "description": "探索潮玩、购买指南与收藏管理工具，从 TDS 首页选择品牌与任务。",
       "slug": "collectors",
       "textUrl": "https://thedollscout.com/document-assets/text/zh/collectors.txt"
     }
