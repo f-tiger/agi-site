@@ -1,24 +1,14 @@
 {
- "generated": "2026-10-01T14:58:27+00:00",
+ "generated": "2026-10-02T14:21:29+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 1,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
-  {
-   "post_id": 45846,
-   "title": "What will be the total spending by all Senate candidates in the 2026 US election cycle?",
-   "hosts": [
-    "www.fec.gov",
-    "www.metaculus.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
