@@ -1,9 +1,25 @@
-# Sonny Angel — 迷你公仔与盲盒
+# Sonny Angel — 计算想要款式的概率
 
 https://thedollscout.com/zh/brands/sonny-angel
 Source review: 2026-10-02
 
 先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。
+
+你想抽中哪一款？
+
+先选目标，再填这一系列的概率。本站不预填未经核实的品牌概率。
+
+Fruit Series: Raspberry, Peach, Orange, Pear, Strawberry, Grape, Watermelon, Melon, Durian, DragonFruit, Pineapple, Apple
+
+演算示例，非品牌概率：单盒概率为 5% 时，独立抽 6 盒至少抽中一次的概率为 26.49%。
+
+常规款模式假设：一个隐藏款替换一个常规款，K 个常规款等概率，p = (1 − 1/N) ÷ K。请填写 K 与包装上的隐藏款分母 N。这个模型不代表官方确认的品牌概率；多个隐藏款不能将合计概率当作某一个隐藏款的概率；有单款百分比时请直接输入。
+
+若包装直接标注某一款的概率，请选“输入包装标注的单款概率”。
+
+只适用于概率不变的独立抽盒。整箱不重复配货、POP NOW 提示或剩余盒排除，需要另外的信息。之前没抽中不会提高下一盒概率，购买前先设预算。
+
+核对官方系列信息: https://www.sonnyangel.com/en/products/
 
 选好系列，核对商家。
 
@@ -16,7 +32,7 @@ Source review: 2026-10-02
 先处理重复款与愿望单
 购买前记录已拥有和想要的角色，为随机盲盒或确认款分别设预算，不把隐藏款当作必得结果。
 
-整理收藏与愿望单（英文）: https://thedollscout.com/collection-tracker
+计算想要款式的概率: https://thedollscout.com/zh/brands/sonny-angel#style-probability
 
 官方来源: https://www.sonnyangel.com/en/store/
 
