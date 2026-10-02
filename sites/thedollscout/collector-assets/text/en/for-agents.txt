@@ -25,13 +25,19 @@ calculate_style_probability: Calculate independent-box chances for one regular s
 {"type":"object","properties":{"target":{"type":"string","enum":["regular","secret","printed"]},"boxes":{"type":"integer","minimum":1,"maximum":100000},"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"secretOddsN":{"type":"integer","minimum":2,"maximum":100000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["target","boxes"],"additionalProperties":false}
 
 find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
-{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
 
-get_collecting_guide: Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.
-{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
+get_collecting_guide: Read a published guide for one of eight collectible brands with official source links, review date and limitations. Not current stock, resale valuation or authentication.
+{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel","smiski","hirono","dimoo","molly"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
 
 plan_display_fit: Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.
 {"type":"object","properties":{"width":{"type":"number","exclusiveMinimum":0,"maximum":100000},"depth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"height":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemWidth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemDepth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemHeight":{"type":"number","exclusiveMinimum":0,"maximum":100000},"gap":{"type":"number","minimum":0,"maximum":100000,"description":"Space between adjacent items; same unit as all dimensions."},"rotate":{"type":"boolean","default":true}},"required":["width","depth","height","itemWidth","itemDepth","itemHeight","gap"],"additionalProperties":false}
+
+compare_blind_box_budget: Compare a capped independent blind-box budget with a user-supplied all-in confirmed-figure quote. Returns success and failure chances, maximum spend and expected spend when stopping at the first target. One currency, costs rounded to cents; not a purchase recommendation or price lookup.
+{"type":"object","properties":{"budget":{"type":"number","minimum":0,"maximum":1000000},"boxCost":{"type":"number","minimum":0.01,"maximum":1000000},"fixedCost":{"type":"number","minimum":0,"maximum":1000000},"confirmedCost":{"type":"number","minimum":0,"maximum":1000000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["budget","boxCost","fixedCost","confirmedCost","probabilityPercent"],"additionalProperties":false}
+
+estimate_collection_progress: Estimate new distinct regular styles, repeated regular draws and secret draws from independent boxes. Assumes equally likely regular styles after combined secret probability is removed. Owned means distinct regular styles from this exact series. Not sealed-case allocation or completion probability.
+{"type":"object","properties":{"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"ownedStyles":{"type":"integer","minimum":0,"maximum":1000},"boxes":{"type":"integer","minimum":0,"maximum":100000},"secretPercent":{"type":"number","minimum":0,"maximum":100}},"required":["regularStyles","ownedStyles","boxes","secretPercent"],"additionalProperties":false}
 
 Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 cm gaps. Explain the limits.
 
@@ -40,6 +46,8 @@ Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations
 The server cannot read your local collection, cloud account, private files or membership. Collection tracking and digital file tools run in their own browser pages; the catalog returns links and requirements. It does not claim to execute them remotely.
 
 Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.
+
+https://thedollscout.com/collector-assets/learning-guides.json
 
 https://thedollscout.com/collector-assets/tool-capabilities.json
 

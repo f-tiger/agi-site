@@ -1,3 +1,4 @@
+import {compareBlindBoxBudget,estimateCollectionProgress} from '../collector-assets/planning-core.mjs';
 /* Public, read-only collecting MCP. Evidence is loaded from published site data;
    display planning imports the browser calculator's actual core. Probability
    returns its explicit independent-draw assumption. No affiliate links,
@@ -14,6 +15,8 @@ async function load(env, request, path) {
 }
 
 async function callTool(name, args, ctx) {
+  if(name==='compare_blind_box_budget')return {...compareBlindBoxBudget(args),source:'https://thedollscout.com/collecting/budget'};
+  if(name==='estimate_collection_progress')return {...estimateCollectionProgress(args),source:'https://thedollscout.com/collecting/duplicates'};
   if(name==='calculate_style_probability')return {...styleProbability(args),source:'https://thedollscout.com/brands/labubu#style-probability'};
   if(name==='find_collector_tools'){
     const data=await ctx.load('/collector-assets/tool-capabilities.json');
