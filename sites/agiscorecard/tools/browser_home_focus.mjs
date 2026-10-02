@@ -7,8 +7,9 @@ const launch={headless:true};
 if(process.env.AGI_CHROMIUM){const c=require(process.env.AGI_CHROMIUM);launch.executablePath=await c.executablePath();launch.args=c.args.filter(a=>!['--disable-web-security','--single-process'].includes(a));}
 const browser=await chromium.launch(launch);
 const focused=new Set(['focus_entry','task_start','task_complete','result_copy']);
-async function fixture(url,{failData=false,privacy=false,copyFail=false,width=390}={}){
-  const ctx=await browser.newContext({viewport:{width,height:900}}),p=await ctx.newPage();
+async function fixture(url,{failData=false,privacy=false,copyFail=false,width=390,now=null,timezoneId='UTC'}={}){
+  const ctx=await browser.newContext({viewport:{width,height:900},timezoneId}),p=await ctx.newPage();
+  if(now){await p.clock.install({time:new Date(Date.parse(now)-60000)});await p.clock.pauseAt(new Date(now));}
   let failed=false;
   await p.addInitScript(({privacy,copyFail})=>{
     window.__copied='';
@@ -27,6 +28,11 @@ async function fixture(url,{failData=false,privacy=false,copyFail=false,width=39
   await p.goto('https://agiscorecard.com'+url);
   await p.waitForFunction(()=>document.querySelector('.focus-intro'));
   assert.equal(await p.locator('h1').count(),1);
+  await p.waitForFunction(()=>/^\d+$/.test(document.getElementById('cd-days')?.textContent||''));
+  assert.equal(await p.locator('#milestones').count(),1,'one countdown, in the hero');
+  assert.equal(await p.locator('.focus-intro #milestones').count(),1);
+  const clockBox=await p.locator('.focus-clock').boundingBox();
+  assert.ok(clockBox.y+clockBox.height<640,'clock digits visible without scrolling on a short phone');
   assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'no horizontal overflow');
   return {ctx,p};
 }
@@ -56,5 +62,16 @@ try{
     const {ctx,p}=await fixture(options.url,options);await assess(p);await p.locator('#gg-copy').click();assert.equal((await events(p)).filter(x=>focused.has(x.name)).length,0);await ctx.close();
   }
   {const {ctx,p}=await fixture('/',{failData:true,copyFail:true});await p.locator('#gg-start').click();await p.getByRole('button',{name:'Retry loading'}).waitFor();assert.equal(await count(p,'task_start'),0);await assess(p);await p.locator('#gg-copy').click();assert.ok(await p.locator('#gg-copy-fallback').isVisible());assert.equal(await count(p,'result_copy'),0);await ctx.close();}
-  console.log('Home focus: EN/ZH mobile and desktop, scoring, retry, edit/reset deduplication, privacy, clipboard fallback and all evidence links passed.');
+  for(const [route,timezoneId] of [['/','America/Los_Angeles'],['/cn','Asia/Shanghai']]){
+    const {ctx,p}=await fixture(route,{width:360,now:'2026-12-31T23:59:55Z',timezoneId});
+    assert.equal(await p.locator('#cd-sec').textContent(),'05');
+    await p.clock.runFor(1000);assert.equal(await p.locator('#cd-sec').textContent(),'04');
+    await p.locator('#cd-pause').click();await p.clock.runFor(2000);assert.equal(await p.locator('#cd-sec').textContent(),'04','pause freezes the display');
+    await p.locator('#cd-pause').click();assert.equal(await p.locator('#cd-sec').textContent(),'02','resume catches up to wall time');
+    await p.clock.runFor(5000);assert.equal(await p.locator('#cd-sec').textContent(),'00');assert.equal(await p.locator('#cd-days').textContent(),'0');
+    assert.match(await p.locator('.focus-clock-date').textContent(),/opened|已开启/);assert.ok(await p.locator('#cd-pause').isHidden());
+    await p.clock.fastForward(86400000);assert.equal(await p.locator('#cd-days').textContent(),'0','expired clock never resets to a new deadline');
+    await ctx.close();
+  }
+  console.log('Home focus: EN/ZH mobile and desktop, visible UTC countdown with ticking/pause/expiry, scoring, retry, edit/reset deduplication, privacy, clipboard fallback and all evidence links passed.');
 }finally{await browser.close();}

@@ -7,7 +7,7 @@
 > Homepage mirror: https://agiscorecard.com/index.md; selected other pages use their URL + ".md".
 > (e.g. https://agiscorecard.com/what-is-agi.md).
 
-## AGI Progress & Prediction Evidence | AGI Scorecard
+## AGI Countdown, Progress & Prediction Evidence | AGI Scorecard
 
 URL: https://agiscorecard.com/
 
@@ -21,6 +21,9 @@ A: No. Each verdict has equal weight: supportive = 1, unresolved = 0.5 and refut
 
 Q: How can I reproduce or cite the score?
 A: Read predictions and thesisTracker in data.json, recompute the published weights, and inspect index-history.json for past readings. Cite AGI Scorecard, the ledger date 2026-09-06 and the original data URL. The dataset is CC BY 4.0; a site redesign date is not an evidence date.
+
+Q: Does the AGI countdown reaching zero mean AGI has arrived?
+A: No. It counts down to January 1, 2027 at 00:00 UTC, the start of the observation window, not a promised AGI arrival. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028, and still requires public evidence.
 
 ---
 
@@ -1453,7 +1456,7 @@ A: 只有当某项判定变化时才变，且每项判定都带预先登记的�
 
 ---
 
-## AI 进展与 AGI 预测证据 | AGI 记分牌
+## AGI 倒计时、进展与预测证据 | AGI 记分牌
 
 URL: https://agiscorecard.com/cn
 
@@ -1467,6 +1470,9 @@ A: 不是。每项判定等权计算：支持取 1、未决取 0.5、反驳取 0
 
 Q: 怎样复算或引用这个分数？
 A: 读取 data.json 中的 predictions 与 thesisTracker，按公开权重复算；用 index-history.json 核对历史。引用时写明 AGI Scorecard、台账日期 2026-09-06 和原始数据链接。数据采用 CC BY 4.0；网站改版日期不能替代证据日期。
+
+Q: AGI 倒计时到零就代表 AGI 实现了吗？
+A: 不是。倒计时指向 2027 年 1 月 1 日 00:00 UTC，即观察窗口的开始，不是 AGI 到来的保证。本站对“2027 年底前实现”预测的判定截止为 2028 年 1 月 1 日，仍需核对公开证据。
 
 ---
 

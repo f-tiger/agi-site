@@ -30,6 +30,20 @@ def assets(text):
         text=text.replace('</head>', '<script type="module" src="/evidence-assets/evidence.js"></script>\n</head>')
     return text
 
+def countdown(zh):
+    base='/zh' if zh else ''
+    units=[('days','天','Days'),('hours','时','Hours'),('min','分','Minutes'),('sec','秒','Seconds')]
+    cells=''.join(f'<div class="focus-clock-unit"><span id="cd-{key}" class="focus-clock-number">—</span><span class="focus-clock-unit-label">{cn if zh else en}</span></div>' for key,cn,en in units)
+    return f'''<section class="focus-countdown" id="milestones" aria-labelledby="countdown-title" data-release="agi-countdown-20261002" data-countdown-target="2027-01-01T00:00:00Z" data-countdown-lang="{'zh' if zh else 'en'}">
+<h2 id="countdown-title">{'AGI 2027 倒计时' if zh else 'AGI 2027 countdown'}</h2>
+<div class="focus-clock" role="timer" aria-live="off" aria-label="{'距离 2027 年元旦的剩余时间' if zh else 'Time remaining until the start of 2027'}">{cells}</div>
+<p class="focus-clock-date">{'观察节点：' if zh else 'Observation point: '}<time datetime="2027-01-01T00:00:00Z">2027-01-01 00:00 UTC</time></p>
+<p class="focus-clock-note">{'追踪 2027 年窗口的开启，不代表 AGI 会在当天到来。本站对“2027 年底前实现”预测的判定截止为 2028-01-01。' if zh else 'Counting down to the start of the 2027 window, not a promised AGI arrival date. Our deadline for judging the by-end-of-2027 prediction is January 1, 2028.'}</p>
+<div class="focus-clock-links"><a href="{base}/will-agi-arrive-2027#cite-evidence">{'查看预测与判定条件' if zh else 'Read the prediction and criteria'}</a><button type="button" id="cd-pause" aria-pressed="false" hidden>{'暂停计时' if zh else 'Pause clock'}</button></div>
+<details class="focus-clock-embed"><summary>{'把倒计时嵌入你的网站（英文组件）' if zh else 'Embed the countdown on your site'}</summary><p><a href="/widget">{'预览嵌入组件' if zh else 'Preview the widget'}</a></p><code>&lt;iframe src="https://agiscorecard.com/widget" width="360" height="200" style="border:0;border-radius:12px" title="AGI 2027 countdown" loading="lazy"&gt;&lt;/iframe&gt;</code></details>
+<noscript><p class="focus-clock-note">{'启用 JavaScript 可显示实时倒计时；观察节点如上。' if zh else 'Enable JavaScript for the live clock; the observation date is shown above.'}</p></noscript>
+</section>'''
+
 def hero(d, zh):
     score=d['thesisTracker']['score']; date=d['thesisTracker']['asOf']; n=len(d['predictions'])
     base='/zh' if zh else ''
@@ -45,7 +59,7 @@ def hero(d, zh):
     routes=''.join(action(href,f'<strong>{title}</strong><span>{desc}</span>','route_'+key,'focus-route') for href,title,desc,key in cases)
     desk=evidence_desk(d,zh)
     return f'''<section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
-  <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1><p class="focus-lead">{intro}</p>
+  <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1>{countdown(zh)}<p class="focus-lead">{intro}</p>
   <div class="focus-actions">{action(base+'/progress-index#cite-evidence','查看证据与变化' if zh else 'Inspect evidence and changes','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
   <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
   {desk}
@@ -91,9 +105,15 @@ def render():
     out={}
     for name,zh in [('index.html',False),('cn.html',True)]:
         p=ROOT/name;s=assets(p.read_text())
+        if '/home-focus/countdown.js' not in s:
+            s=s.replace('</head>', '<script type="module" src="/home-focus/countdown.js"></script>\n</head>')
+        if not zh:
+            # Migrate the buried clock to the generated hero; keep its old anchor.
+            s=re.sub(r'  <!-- MAIN COUNTDOWN -->.*?(?=  <!-- VOTE WIDGET -->)', '', s, count=1, flags=re.S)
+            s=re.sub(r'const pageOpenTime = Date.now\(\);.*?setInterval\(updateCountdown, 1000\);\n', '', s, count=1, flags=re.S)
         s=region(s,'home-focus',hero(d,zh));s=region(s,'home-grade',grade(zh));s=region(s,'home-changes',changes(cl,zh))
-        title='AI 进展与 AGI 预测证据 | AGI 记分牌' if zh else 'AGI Progress & Prediction Evidence | AGI Scorecard'
-        desc='追踪《态势感知》的 8 项 AGI 预测，核对来源、判定与翻转条件。自行评分，并查看 AI 对工作和投资研究的影响。' if zh else 'Track 8 AGI predictions against sourced evidence. Check verdicts, dates and flip conditions, make your own assessment, and explore work and investment impacts.'
+        title='AGI 倒计时、进展与预测证据 | AGI 记分牌' if zh else 'AGI Countdown, Progress & Prediction Evidence | AGI Scorecard'
+        desc='查看 2027 年观察节点倒计时，追踪《态势感知》的 8 项 AGI 预测。核对来源与判定条件，自行评分，了解 AI 对工作与投资研究的影响。' if zh else 'Watch the countdown to the 2027 observation window and track 8 AGI predictions against evidence. Check sources and verdicts, make your own assessment, and explore work and investment impacts.'
         s=re.sub(r'<title>.*?</title>',f'<title>{title}</title>',s,flags=re.S)
         for attr,key,val in [('name','description',desc),('property','og:title',title),('property','og:description',desc),('name','twitter:title',title),('name','twitter:description',desc)]:
             s=re.sub(rf'<meta {attr}="{key}" content="[^"]*">',f'<meta {attr}="{key}" content="{escape(val,quote=True)}">',s)

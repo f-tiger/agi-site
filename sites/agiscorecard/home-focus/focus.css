@@ -12,6 +12,17 @@
 .focus-reading p{font-size:13px;line-height:1.6}.focus-reading a{font-size:13px;text-decoration:underline}
 .focus-reading .focus-score{font-size:52px;font-weight:700;letter-spacing:-.04em;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--text);margin-bottom:10px}
 .focus-score span{font-size:19px;letter-spacing:0;color:var(--muted);margin-left:6px}
+.focus-countdown{margin:0 0 24px;padding:20px;border:1px solid var(--border2,var(--border));border-radius:12px;background:var(--bg2);color:var(--text)}
+.focus-countdown h2{margin:0 0 14px;font:600 17px/1.4 var(--font,var(--sans,sans-serif));color:var(--text)}
+.focus-clock{display:grid;grid-template-columns:1.25fr repeat(3,1fr);gap:8px;margin:0 0 16px;font-variant-numeric:tabular-nums}
+.focus-clock-unit{text-align:center;min-width:0;border-right:1px solid var(--border2,var(--border))}.focus-clock-unit:last-child{border:0}
+.focus-clock-number{display:block;font:700 clamp(32px,4.5vw,56px)/1.1 var(--mono,monospace);letter-spacing:-.055em;color:var(--accent)}
+.focus-clock-unit-label{display:block;margin-top:6px;font-size:11px;color:var(--muted)}
+.focus-countdown .focus-clock-date{font-size:12px;line-height:1.5;margin:0 0 8px}.focus-countdown .focus-clock-note{font-size:12px;line-height:1.65;margin:0 0 10px}
+.focus-clock-links{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px}.focus-clock-links a{text-decoration:underline}
+.focus-clock-links button{font:inherit;color:var(--muted);padding:8px 10px;min-height:44px;border:1px solid var(--border2,var(--border));border-radius:6px;background:var(--bg);cursor:pointer}
+.focus-clock-links [hidden]{display:none!important}.focus-clock-embed{font-size:11px;line-height:1.6;margin-top:8px;color:var(--muted)}.focus-clock-embed summary{cursor:pointer;min-height:28px}.focus-clock-embed code{display:block;overflow-wrap:anywhere;margin-top:8px}.focus-clock-embed p{margin:8px 0}
+@media(max-width:460px){.focus-countdown{padding:16px 13px}.focus-clock-number{font-size:42px}.focus-clock{gap:5px}.focus-countdown h2{font-size:16px}}
 .focus-routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border-top:1px solid var(--border2,var(--border));border-bottom:1px solid var(--border2,var(--border));margin:30px 0 16px;padding:19px 0}
 .focus-route{display:block;color:var(--text);line-height:1.55}.focus-route strong{display:block;font-size:16px;margin-bottom:5px;color:var(--text)}.focus-route span{display:block;font-size:13px;color:var(--muted)}
 .focus-boundary{font-size:12px;line-height:1.65!important;color:var(--muted)}
