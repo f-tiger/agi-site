@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-01",
+ "fetched": "2026-10-02",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -224,38 +224,36 @@
    "fetched": "2026-10-01"
   },
   "solar camping lights": {
-   "auto": [
-    "solar camping lights",
-    "solar camping lights string",
-    "solar camping lights amazon",
-    "solar camping lights south africa",
-    "solar camping lights kmart",
-    "solar camping lights nz",
-    "solar camping lights anaconda",
-    "solar camping lights - bunnings",
-    "solar camping lights nearby",
-    "solar camping lights bcf"
+   "rising": [
+    {
+     "q": "solar powered camping lights",
+     "v": 50
+    }
    ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-01"
+   "source": "related-queries",
+   "fetched": "2026-10-02"
   },
   "camping moon chair": {
    "auto": [
     "camping moon chair",
     "camping moon chair with cup holder",
-    "camping moon chair home bargains",
     "camping moon chair halfords",
     "camping moon chairs for adults",
+    "camping moon chair home bargains",
     "camping moon chair go outdoors",
     "camping moon chair nz",
     "camping moon chairs uk",
     "camping moon chair kids",
-    "camping moon chair sale"
+    "camping moon chair review"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "camping moon chair review",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-02"
+   "fetched": "2026-10-02"
   },
   "portable blender": {
    "auto": [
