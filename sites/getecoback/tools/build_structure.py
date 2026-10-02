@@ -1169,10 +1169,10 @@ CONTEXT_MODELS = {
  # while its own text names two specific alternatives and a fallback. 11 views,
  # zero clicks. Every model and figure below is quoted from the article itself.
  "midea-portasplit-ausverkauft-alternativen": [
-   ("Clima Butler Split 2 (CB-3500)", "Option 1: gleiches Prinzip", "Split ohne Bohren, ca. 3,5 kW, Inverter — die direkteste Entsprechung zur PortaSplit.", "Preis vor Ort prüfen", "Clima+Butler+Split+2+CB-3500", "ac"),
-   ("Remko RKL-DC-Serie", "Option 2: die stärkere", "Ca. 4,3 kW laut Datenblatt, ebenfalls Split ohne Festinstallation — für größere Räume.", "Preis vor Ort prüfen", "Remko+RKL+DC+Klimaanlage", "ac"),
-   ("Midea PortaSplit", "Falls wieder lieferbar", "Midea hat die Produktion laut Branchenberichten auf 6.000 Geräte/Tag verdoppelt — Verfügbarkeit schwankt täglich.", "Preis vor Ort prüfen", "Midea+PortaSplit", "ac"),
-   ("Fensterabdichtung", "Option 3: Monoblock sofort", "Der Monoblock ist sofort lieferbar und günstiger — aber nur, wenn die Abdichtung stimmt. Ohne sie verpufft der Unterschied.", "Preis vor Ort prüfen", "klimaanlage+fensterabdichtung", "shade"),
+   ("Clima Butler Split 2 (CB-3500)", "Split-Kandidat", "Fischer führt 3,5 kW Kühlleistung. Fensterhalterung, Leitung und Lieferumfang für das genaue Modell prüfen.", "Preis und Bestand prüfen", "Clima+Butler+Split+2+CB-3500", "ac"),
+   ("Remko RKL 495 DC", "Andere Leistungsklasse", "4,3 kW laut Hersteller. Außenteil, Leitungsweg und Aufstellung vor dem Kauf prüfen; keine pauschale Raumfreigabe.", "Preis und Bestand prüfen", "Remko+RKL+495+DC", "ac"),
+   ("Midea PortaSplit", "Original vergleichen", "3,5 kW Kühlleistung laut Hersteller. Wir bestätigen keinen Live-Bestand: genaue Variante und Lieferdatum beim Händler prüfen.", "Preis und Bestand prüfen", "Midea+PortaSplit", "ac"),
+   ("Fensterabdichtung", "Falls du Monoblock wählst", "Fensterbauart und Schlauchanschluss prüfen. Zubehör ersetzt weder ein passendes Gerät noch einen sicheren Abluftweg.", "Preis vor Ort prüfen", "klimaanlage+fensterabdichtung", "shade"),
  ],
  # ---- Autumn/first-sale iteration (2026-08-17) -------------------------------
  # Driven by three findings that survived adversarial review: the PartnerNet
@@ -1473,8 +1473,8 @@ CONTEXT_MODELS = {
 # flat, meaningless in a camper or a car. One honest sentence per context page.
 CONTEXT_SUB = {
  "midea-portasplit-ausverkauft-alternativen": ("Genau die Optionen aus dem Text oben, in derselben "
-                                              "Reihenfolge — keine anderen Geräte. Verfügbarkeit schwankt "
-                                              "täglich. Nicht selbst getestet. Symbolbilder."),
+                                              "Reihenfolge. Herstellerangaben, kein Live-Bestand und kein "
+                                              "eigener Produkttest. Symbolbilder."),
  "klimaanlage-kippfenster": ("Zubehör statt neuem Gerät: Wer hier landet, hat das Klimagerät schon und "
                              "scheitert am Fenster. Produkttypen, nicht selbst getestet. Symbolbilder."),
  "klimaanlage-dachfenster": ("Für schräge Fenster gilt anderes Zubehör als für Schiebefenster — deshalb "

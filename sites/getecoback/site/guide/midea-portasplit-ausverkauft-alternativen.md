@@ -1,55 +1,64 @@
 # PortaSplit ausverkauft? Alternativen ohne Bohren 2026
 
-> Midea PortaSplit wieder ausverkauft: Produktion auf 6.000 Geräte/Tag verdoppelt, trotzdem knapp. 2 geprüfte Alternativen ohne Bohren — und wann Warten sich lohnt.
+> PortaSplit nicht verfügbar? Vergleiche mobile Split-Geräte und Monoblock nach Fenster, Aufstellung und Kühlleistung. Bestand beim Händler prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
 
-**Kurzantwort:** Die PortaSplit ist wegen extremer Nachfrage immer wieder ausverkauft — Midea hat die Produktion laut Branchenberichten auf 6.000 Geräte/Tag verdoppelt. Deine Optionen: **1)** **Clima Butler Split 2 (CB-3500)** — gleiches Prinzip ohne Bohren, ca. 3,5 kW, Inverter; **2)** **Remko RKL-DC-Serie** — stärker (ca. 4,3 kW laut Datenblatt), ebenfalls Split ohne Festinstallation; **3)** **Monoblock als Sofortlösung** — sofort lieferbar und günstiger, wenn die [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) stimmt; **4)** **warten**, wenn dein Raum nachts erträglich bleibt — Nachschub ist unterwegs.
+**Kurzantwort:** Wenn dein Händler die PortaSplit nicht liefern kann, sind **Clima Butler Split 2 CB-3500** und **Remko RKL 495 DC** Vergleichskandidaten. Sie sind kein automatisch passender Ersatz: Aufstellung, Leitungsweg und Kühlleistung müssen zu deinem Raum passen. Ohne Platz für ein Außenteil kommt ein Monoblock mit sicherem Abluftweg infrage. **Diese Seite bestätigt keine aktuelle Lieferbarkeit.** Prüfe Modell, Verkäufer und Lieferdatum direkt beim Händler.
 
-Wir haben die Geräte nicht selbst getestet; diese Seite fasst öffentliche Tests und Verfügbarkeits-Berichte zusammen (ETM Testmagazin, home&smart, giga.de, smarthomeassistent.de). Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.
+Herstellerangaben geprüft am 02.10.2026. Kein eigener Produkttest, kein vollständiger Marktvergleich und keine Live-Bestandsabfrage. Amazon-Links sind Partnerlinks: Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.
 
-## Warum die PortaSplit ständig weg ist
+## Welche Alternative passt zu deiner Aufstellung?
 
-📈 **Nachfrage-Fakten:** Die PortaSplit erreichte im ETM-Testmagazin-Test 97,2 % („sehr gut"), und home&smart berichtet, dass Midea die Produktion von 3.000 auf 6.000 Geräte pro Tag verdoppelt hat — und das Gerät in Deutschland trotzdem immer wieder ausverkauft ist.
+Ein ausverkauftes Angebot sagt nichts über andere Händler oder Varianten aus. Bestätige zuerst das genaue Modell und das Lieferdatum. Ein Suchergebnis bei Amazon ist noch kein passendes oder verfügbares Angebot.
 
-Der Grund ist einfach: Sie ist die erste bezahlbare Split-Klimaanlage, die ein Mieter komplett ohne Bohren, ohne Fachbetrieb und ohne Kältemittel-Arbeiten montieren darf. Innen- und Außeneinheit verbindet ein flacher Schlauch (ca. 2,7 cm), der durchs gekippte Fenster passt — Split-Effizienz und Split-Ruhe, ohne Loch in der Wand. Genau die Lücke, in der Monoblock-Geräte immer Kompromiss waren.
+- **Außenteil möglich?** Prüfe Halterung, Aufstellfläche und Sicherung anhand der Anleitung. „Mobil“ bedeutet nicht, dass jedes Fenster und jeder Balkon geeignet ist.
 
-## Option 1: Clima Butler Split 2 (CB-3500) — gleiches Prinzip, lieferbar
+- **Leitungsweg passt?** Miss den Weg zwischen Innen- und Außenteil. Die PortaSplit-Leitung ist laut Midea 2 m lang und nicht trennbar; daraus lässt sich keine Freigabe für andere Modelle ableiten.
 
-Der **Clima Butler Split 2** von Kälte Fischer arbeitet nach demselben Prinzip: getrennte Innen- und Außeneinheit, Verbindung durchs gekippte Fenster, keine Festinstallation. giga.de führt ihn mit rund 3,5 kW Kühlleistung und Inverter-Technik — also PortaSplit-Klasse. Er ist meist teurer, dafür verfügbar; erhältlich vor allem direkt beim Hersteller und im Fachhandel.
+- **Welche Kühlleistung?** Nutze den [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) als grobe Orientierung. Sonne, Dachlage und Raumhöhe mitdenken; anschließend mit den Herstellerbedingungen vergleichen.
 
-## Option 2: Remko RKL-DC-Serie — die stärkere Wahl
+- **Gesamtkosten statt nur Kaufpreis:** Vergleiche Anschaffung und Betrieb mit deinen Werten im [Lösungsrechner](https://getecoback.com/rechner.html). Kühlleistung in kW ist nicht die elektrische Leistungsaufnahme.
 
-Die **Remko RKL-DC-Serie** (deutscher Klimatechnik-Hersteller) nutzt ebenfalls das Zwei-Einheiten-Prinzip ohne Festinstallation und liegt laut Datenblatt bei rund **4,3 kW** — spürbar mehr Reserve für große oder dachnahe Räume, in denen die 3,5-kW-Klasse an die Grenze kommt. Preislich spielt sie über der PortaSplit; wer sie erwägt, sollte vorher die nötige Kühlleistung fürs eigene Zimmer mit dem [BTU-Rechner](https://getecoback.com/guide/btu-rechner.html) prüfen.
+## Clima Butler Split 2 CB-3500: genaue Variante prüfen
 
-**Verfügbarkeit heute prüfen**
-Bestand und Preise ändern sich derzeit täglich — aktuelle Angebote nach Modellname suchen:
+Der Fischer-Katalog führt den CB-3500 mit 3,5 kW Kühlleistung und R32. Prüfe Halterung, Leitungsführung und Lieferumfang für genau dieses Gerät. Ältere Geräte mit „Climabutler 2“ im Namen sind nicht automatisch dasselbe Modell. Kläre beim Fachhandel, ob das Angebot für dich bestellbar ist und wann es geliefert werden kann.
 
-Midea PortaSplit auf Amazon prüfen →
+## Remko RKL 495 DC: andere Leistung und Aufstellung
 
-Remko RKL-Serie auf Amazon suchen → · alle Split-Geräte ohne Bohren →
+REMKO nennt für den RKL 495 DC 4,3 kW Kühlleistung und eine insgesamt 3 m lange Kältemittelleitung. Prüfe deren nutzbaren Weg und die Aufstellung in der Anleitung. Die höhere Nennleistung allein belegt weder einen leiseren Betrieb noch eine passende Lösung für dein Zimmer. Bestand und Preis sind hier nicht bestätigt.
 
-## Option 3: Monoblock als Sofortlösung — ehrlich gerechnet
+**Passendes Angebot prüfen**Wähle erst die geeignete Bauart. Vergleiche dann genaue Modellbezeichnung, Lieferdatum, Zubehör, Verkäufer und Rückgabebedingungen.
 
-Wenn es jetzt kühl werden muss, ist ein gutes Monoblock-Gerät die pragmatische Antwort: sofort lieferbar, deutlich günstiger, keine Außeneinheit. Die zwei ehrlichen Nachteile: Der Kompressor steht mit im Raum (lauter, gerade nachts) und der Wirkungsgrad ist niedriger. Was den Unterschied in der Praxis klein macht, ist eine saubere [Fensterabdichtung am Kippfenster](https://getecoback.com/guide/klimaanlage-kippfenster.html) — ohne sie zieht die warme Luft direkt wieder herein. Unsere erprobten Empfehlungen nach Raumgröße stehen im [großen Monoblock-Vergleich](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html).
+Midea PortaSplit auf Amazon.de suchen →
 
-## Option 4: Warten — wann das die richtige Wahl ist
+CB-3500 auf Amazon.de suchen → · Remko RKL 495 DC auf Amazon.de suchen →
 
-- **Warten lohnt sich**, wenn dein Schlafzimmer nachts unter ~26 °C bleibt, du flexibel bist und das beste Preis-Leistungs-Verhältnis der Kategorie willst: Nachschub ist laut Fachblogs unterwegs und die verdoppelte Produktion wird die Verfügbarkeit im Lauf der Saison verbessern.
+Anzeige · Affiliate-Links. Suche nach Modell, keine Zusage über Treffer, Preis oder Lagerbestand. Wenn der passende Artikel fehlt, nutze den Hersteller- oder Fachhandelsweg oben.
 
-- **Nicht warten** solltest du bei akuter Hitze im Dachgeschoss, mit Baby/Senioren im Haushalt oder im Homeoffice unterm Dach — da zählt jede Woche, und ein Monoblock oder eine der zwei Alternativen löst das Problem sofort.
+## Ohne Außenteil: Monoblock prüfen
+
+Ein Monoblock benötigt einen geeigneten Abluftweg. Der Kompressor steht im Raum; Lautstärke und elektrische Leistungsaufnahme anhand konkreter Geräte vergleichen. Prüfe vorher die [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html). Unser [Monoblock-Vergleich](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html) ordnet Bauarten und Auswahlkriterien ein; wir haben diese Geräte nicht selbst getestet.
+
+## Kein passendes Angebot: bewusst warten
+
+Wenn du aktuell keine Kühlung brauchst oder die Aufstellung ungeklärt ist, ist ein späterer Kauf eine mögliche Entscheidung. Wir nennen keinen gesicherten Nachliefertermin. Wenn du kurzfristig kühlen musst, zählt ein bestätigtes, zu deinem Raum passendes Angebot; der Text dieser Seite ersetzt diese Prüfung nicht.
+
+## Quellen und Prüfstand
+
+Technische Angaben zuletzt am 02.10.2026 geprüft: Midea Produktdaten, Midea Aufstellung, Fischer CB-3500 und REMKO RKL DC. Herstellerwerte sind keine vergleichende Messung unter gleichen Bedingungen.
 
 ## Häufige Fragen
 
-**Warum ist die Midea PortaSplit ständig ausverkauft?**Sie ist die erste bezahlbare Split-Klimaanlage, die sich ohne Bohren, Fachbetrieb und Kältemittel-Arbeiten montieren lässt — genau das, was Mieter seit Jahren suchen. Die Nachfrage ist so hoch, dass Midea die Produktion laut Branchenberichten von 3.000 auf 6.000 Geräte pro Tag verdoppelt hat und das Gerät trotzdem immer wieder vergriffen ist.
+**Ist die PortaSplit aktuell ausverkauft?**Das bestätigt diese Seite nicht. Verfügbarkeit kann nach Händler, Variante und Lieferort abweichen. Prüfe das konkrete Angebot und Lieferdatum.
 
-**Welche Alternativen ohne Bohren gibt es zur PortaSplit?**Dokumentiert sind vor allem zwei Geräte mit demselben Prinzip (Innen- plus Außeneinheit, flacher Verbindungsschlauch durchs gekippte Fenster): der Clima Butler Split 2 (CB-3500) von Kälte Fischer mit rund 3,5 kW und Inverter-Technik sowie die Remko RKL-DC-Serie mit laut Datenblatt rund 4,3 kW. Beide sind meist teurer als die PortaSplit, aber lieferbar.
+**Welche Alternativen kann ich vergleichen?**Clima Butler Split 2 CB-3500 und Remko RKL 495 DC sind mobile Split-Kandidaten. Ohne Platz für ein Außenteil kann ein Monoblock mit geeignetem Abluftweg infrage kommen. Jede Aufstellung muss separat geprüft werden.
 
-**Lohnt es sich, auf PortaSplit-Nachschub zu warten?**Wenn dein Zimmer nachts unter 26 °C bleibt und du nicht akut leidest: ja, Nachschub ist laut Fachblogs unterwegs und die Produktion wurde verdoppelt. Wenn du jetzt kühlen musst, ist ein gutes Monoblock-Gerät mit sauberer Fensterabdichtung sofort verfügbar und deutlich günstiger — nur eben lauter und weniger effizient.
+**Soll ich auf Nachschub warten?**Es gibt hier keinen verifizierten Nachliefertermin. Entscheide anhand deines aktuellen Bedarfs, eines bestätigten Angebots und der passenden Aufstellung.
 
-**Ist eine Monoblock-Klimaanlage eine echte Alternative?**Als Sofortlösung ja: sofort lieferbar, günstiger, keine Außeneinheit nötig. Der Preis dafür ist mehr Lärm im Raum und ein höherer Stromverbrauch pro Kühlleistung. Entscheidend ist die Fensterabdichtung — ohne sie zieht die warme Luft direkt wieder herein.
+**Sind 3,5 kW Kühlleistung auch 3,5 kW Stromverbrauch?**Nein. Kühlleistung und elektrische Leistungsaufnahme beschreiben verschiedene Größen. Verwende für Kostenrechnungen die elektrische Aufnahme beziehungsweise gemessene kWh.
 
 **Weiterlesen**
 [Beste tragbare Klimaanlage 2026: der große Vergleich →](https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html)

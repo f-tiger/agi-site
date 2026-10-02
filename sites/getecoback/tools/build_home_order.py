@@ -23,9 +23,8 @@ does not recognise keep their relative position, attached to the unit before
 them, so a new injector cannot be silently dropped. Nothing is removed and no
 text is changed: the same content, in an order that matches the season.
 
-Tool blocks from other topics (household workshop, electricity workbench, EU
-evidence checks) are moved into one band directly above the footer instead of
-sitting between the hero and the sizing table.
+The household entry is a primary seasonal decision path. Other-topic tools
+(electricity workbench and EU evidence checks) remain in a band near the footer.
 
 Idempotent: a second run is byte-identical. Run: python3 tools/build_home_order.py
 [--month N] [--check]
@@ -50,18 +49,18 @@ EVIDENCE_OPEN, EVIDENCE_CLOSE = "<!--eco-evidence:start-->", "<!--eco-evidence:e
 # first-heading keys assigned in key_of(). Anything not listed keeps its place
 # relative to the unit before it.
 WARM = [
-    "EB_SEASON", "EB_HOMETOOL", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
+    "EB_SEASON", "EB_HOMETOOL", "EB_HOUSEHOLD_LINK", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
     "deals", "disclosure", "EB_RISING_RAIL", "EB_HERBST", "EB_SEASON_VIDEO", "situationen",
     "guide", "how", "faq", "EB_POPULAR", "EB_POPLIVE", "EB_NEWEST", "TOOLS_BAND",
 ]
 COLD = [
-    "EB_SEASON", "EB_HERBST", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
+    "EB_SEASON", "EB_HOUSEHOLD_LINK", "EB_HERBST", "EB_HOMETABLE", "EB_DEVICE_TILES", "shop-categories",
     "EB_NEWEST", "EB_POPULAR", "EB_POPLIVE", "EB_SEASON_VIDEO", "EB_RISING_RAIL",
     "EB_HOMETOOL", "deals", "disclosure", "situationen", "guide", "how", "faq", "TOOLS_BAND",
 ]
 ORDER = {"sommer": WARM, "frühjahr": WARM, "herbst": COLD, "winter": COLD}
 # Units that belong to other topics' tools; they go into one band above the footer.
-TOOLS = ("EB_HOUSEHOLD_LINK", "EB_ENERGY_WORKBENCH", "eu-evidence", "task-workbench")
+TOOLS = ("EB_ENERGY_WORKBENCH", "eu-evidence", "task-workbench")
 WB_OPEN, WB_CLOSE = "<!-- task-workbench:start -->", "<!-- task-workbench:end -->"
 
 
@@ -213,7 +212,11 @@ def compose(html, season):
     out, _ = order_units(units + nested, season)
     if not rest.strip():
         rest = "\n\n"
-    return html[:hero_end] + "".join(out) + rest + html[foot:]
+    result = html[:hero_end] + "".join(out) + rest + html[foot:]
+    # The promoted block is extracted on every build. Normalize its boundary
+    # so adjacent units cannot donate a newline only on the first ordering.
+    return re.sub(r'\n*(<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->)\n*',
+                  lambda m: '\n'+m.group(1)+'\n', result, flags=re.S)
 
 
 def main():

@@ -18,6 +18,7 @@
 """
 import json, os, re, sys, urllib.parse
 from datetime import datetime
+from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "data", "trends-rising.json")
@@ -34,8 +35,14 @@ GUIDE_MAP = [
      "/guide/klimaanlage-ohne-abluftschlauch.html", "Erst die Physik, dann der Kauf"),
     (re.compile(r"schimmel.*keller.*entfernen|keller.*schimmel|schimmel im keller", re.I),
      "/guide/schimmel-im-keller-entfernen.html", "Anleitung mit ehrlicher Grenze"),
-    (re.compile(r"testsieger", re.I),
-     "/guide/luftentfeuchter-keller.html", "Warum wir keinen Testsieger küren"),
+    (re.compile(r"akku.*heizlüfter|akku.*heizluefter", re.I),
+     "/guide/akku-heizluefter.html", "Laufzeit mit dem eigenen Akku berechnen"),
+    (re.compile(r"(?:sparsam|stromspar|energiespar).*heizlüfter|heizlüfter.*(?:sparsam|stromspar|energiespar)", re.I),
+     "/guide/heizluefter-stromsparend.html", "Strombedarf und Einsatzzweck prüfen"),
+    (re.compile(r"infrarot.*(?:test|stiftung|warentest)|(?:test|stiftung|warentest).*infrarot", re.I),
+     "/guide/infrarotheizung-ratgeber.html", "Bauart und Strombedarf einordnen"),
+    (re.compile(r"luftentfeuchter.*(?:test|stiftung|warentest)|(?:test|stiftung|warentest).*luftentfeuchter", re.I),
+     "/guide/luftentfeuchter-ratgeber.html", "Auswahlkriterien statt Testsieger-Versprechen"),
     # 2026-09-05: the strongest signal in the file (luftentfeuchter bei hitze,
     # v=155.800) and its sibling (kühlt ein luftentfeuchter, 41.200) are
     # QUESTIONS, and both were rendering as Amazon search chips on the
@@ -50,6 +57,10 @@ GUIDE_MAP = [
      "/guide/infrarotheizung-garage.html", "Werkbank, Frostschutz oder ganze Garage?"),
 ]
 DROP = re.compile(r"lidl|angebot|aldi|action\b", re.I)
+# No verified rental offer or solar-heater buying path exists here. A shop
+# search cannot fulfil those requests. Test/review terms need a matching guide.
+NON_SHOP = re.compile(r"\b(?:miet\w*|leih\w*|test\w*|stiftung|warentest|erfahrungen|reparatur|anleitung|obi|bauhaus|hornbach|toom)\b", re.I)
+UNSUPPORTED = re.compile(r"\bsolar[ -]?(?:heiz|radiator)|\bheiz\w*.*\bsolar", re.I)
 
 # A question is not a purchase. Any query shaped like one may only ever be
 # routed to a guide; with no GUIDE_MAP match it is dropped, never sold.
@@ -90,6 +101,22 @@ def vetoed_brands():
         if line:
             out.append(line)
     return out
+
+
+def destination_for(q):
+    """Return a useful destination, or None; never turn unmet intent into ads."""
+    if UNSUPPORTED.search(q):
+        return None
+    # A rental request must not be swallowed by a broad device guide match.
+    if re.search(r"\b(?:miet\w*|leih\w*)\b", q, re.I):
+        return None
+    guide = next(((url, note) for pat, url, note in GUIDE_MAP if pat.search(q)), None)
+    if guide:
+        return ('guide', *guide)
+    if QUESTION.search(q) or NON_SHOP.search(q):
+        return None
+    return ('shop', 'https://www.amazon.de/s?k='+urllib.parse.quote_plus(q)+'&tag='+TAG,
+            'Produkte auf Amazon suchen')
 
 
 def main():
@@ -136,24 +163,24 @@ def main():
         if key in seen:
             continue
         seen.add(key)
-        guide = next(((url, note) for pat, url, note in GUIDE_MAP if pat.search(q)), None)
-        if guide:
-            url, note = guide
+        destination = destination_for(q)
+        if not destination:
+            continue
+        kind, url, note = destination
+        label = escape(q)
+        if kind == 'guide':
             chips.append(
                 f'<a href="{url}" style="display:inline-flex;flex-direction:column;gap:2px;background:#fff;'
                 f'border:1px solid #cfe0ea;border-radius:12px;padding:9px 14px;margin:0 8px 8px 0;'
-                f'text-decoration:none;"><span style="font-weight:700;color:#0a4d7a;font-size:13.5px;">{q}</span>'
+                f'text-decoration:none;"><span style="font-weight:700;color:#0a4d7a;font-size:13.5px;">{label}</span>'
                 f'<span style="font-size:11.5px;color:#5b6b78;">📖 {note} →</span></a>')
-        elif QUESTION.search(q):
-            continue  # a question with no answer page is dropped, never sold
         else:
-            k = urllib.parse.quote_plus(q)
             chips.append(
-                f'<a href="https://www.amazon.de/s?k={k}&tag={TAG}" target="_blank" rel="sponsored noopener" '
+                f'<a href="{escape(url, quote=True)}" target="_blank" rel="sponsored noopener" '
                 f'style="display:inline-flex;flex-direction:column;gap:2px;background:#fff;border:1px solid #cfe0ea;'
                 f'border-radius:12px;padding:9px 14px;margin:0 8px 8px 0;text-decoration:none;">'
-                f'<span style="font-weight:700;color:#1a2733;font-size:13.5px;">{q}</span>'
-                f'<span style="font-size:11.5px;color:#c47b08;font-weight:700;">Preis auf Amazon prüfen →</span></a>')
+                f'<span style="font-weight:700;color:#1a2733;font-size:13.5px;">{label}</span>'
+                f'<span style="font-size:11.5px;color:#c47b08;font-weight:700;">{note} →</span></a>')
         if len(chips) == MAX_CHIPS:
             break
 
