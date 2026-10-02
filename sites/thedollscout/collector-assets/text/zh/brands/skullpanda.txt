@@ -1,9 +1,37 @@
-# SKULLPANDA — 设计师手办与挂件
+# SKULLPANDA — 计算款式概率
 
 https://thedollscout.com/zh/brands/skullpanda
 Source review: 2026-10-02
 
 先选喜欢的设计，再核对产品形态。手办系列和毛绒挂件需要分别确认尺寸与包装内容。
+
+你想抽中哪一款？
+
+先选目标，再填这一系列的概率。本站不预填未经核实的品牌概率。
+
+Image Of Reality: The Timelapse, The Paradox, The Pivot, The Merchant, The Soar, The Constraint, The Duality (White), The Duality (Black), The Philosophy, The Imagination, The Disguise, The Antigravity
+
+演算示例，非品牌概率：单盒概率为 5% 时，独立抽 6 盒至少抽中一次的概率为 26.49%。
+
+常规款模式假设：一个隐藏款替换一个常规款，K 个常规款等概率，p = (1 − 1/N) ÷ K。请填写 K 与包装上的隐藏款分母 N。这个模型不代表官方确认的品牌概率；多个隐藏款不能将合计概率当作某一个隐藏款的概率；有单款百分比时请直接输入。
+
+若包装直接标注某一款的概率，请选“输入包装标注的单款概率”。
+
+只适用于概率不变的独立抽盒。整箱不重复配货、POP NOW 提示或剩余盒排除，需要另外的信息。之前没抽中不会提高下一盒概率，购买前先设预算。
+
+核对官方系列信息: https://www.popmart.com/us/products/953
+
+给喜欢的手办安排位置。
+
+填写展示架内部尺寸和单件完整尺寸，比较正常摆放与旋转 90° 后的排布。
+
+可修改的演算尺寸，不是该品牌商品规格。
+
+示例：40 × 25 × 30 厘米的空间，摆放 8 × 6 × 15 厘米的手办，间距 1 厘米，可按 4 列 × 3 行摆放 12 件。
+
+采用统一朝向的矩形排布，不是混合朝向的最大装箱算法。不计算叠放、承重或稳定性。间距只在物件之间，不含展示架边缘。请测量可用内部空间，并自行扣除希望保留的顶部或边缘余量。
+
+到官方来源核对具体商品尺寸: https://www.popmart.com/us/products/953
 
 为喜欢的设计收藏。
 
@@ -16,7 +44,7 @@ Source review: 2026-10-02
 提前安排展示
 测量最宽处、底座和高度，为拿取留出余量，不要把展示架每一厘米都填满。
 
-计算展示空间（英文）: https://thedollscout.com/display-calculator
+计算款式概率: https://thedollscout.com/zh/brands/skullpanda#style-probability
 
 官方来源: https://www.popmart.com/us/products/953
 

@@ -1,3 +1,10 @@
+## 2026-10-02 其他品牌详情页工具补齐
+
+- SKULLPANDA 三语详情页含款式概率和展示排布；Jellycat 含完整姿态尺寸与空间测算；Sonny Angel 含款式概率。主页品牌卡片、Jellycat 视频和 AI 目录直接指向各语言页内工具。
+- SKULLPANDA Image Of Reality 与 Sonny Angel Fruit Series 的常规款名称有官方来源；概率初始留空，不把 Labubu 的 1:72 套到其他系列。多隐藏款不得将合计概率当作单款概率。新增演算按钮不会计入工具完成。
+- `scripts/collecting/display-fit.mjs` 与 `collector-assets/display-fit-ui.mjs` 渲染品牌空间工具，复用现有 `DSCollector.fit` / MCP `plan_display_fit`。测完整外形、内尺寸、间距和高度；不把毛绒压缩、承重或安全性当作可计算结论。初始示例不记完成，修改后有效提交才记 `display_calc`。
+- 版本 2.3.1 沿用八个 MCP 工具，更新目录与已有 Registry 条目；不为品牌重复创建相同接口。具体边界和来源见 `docs/tds-brand-inline-tools-2026-10-02.md`。
+
 ## 2026-10-02 首页视频与 Labubu 款式概率
 
 - 首页三语视频来自 `scripts/collecting/videos.mjs` 的实际 YouTube ID；保留创作者署名、原站链接和关联工具。预览图来自 YouTube，加载失败用本地 CSS 封面；播放器只在点击后创建、禁止自动播放、同时最多一个，支持关闭。不要将可嵌入响应称为完整播放验证。

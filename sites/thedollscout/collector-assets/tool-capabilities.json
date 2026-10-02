@@ -3,11 +3,67 @@
   "updated": "2026-10-02",
   "server": {
     "name": "dollscout",
-    "version": "2.3.0"
+    "version": "2.3.1"
   },
   "endpoint": "https://thedollscout.com/mcp",
   "documentation": "https://thedollscout.com/for-agents",
   "tools": [
+    {
+      "id": "skullpanda-style-odds",
+      "task": "odds",
+      "name": "SKULLPANDA style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/skullpanda#style-probability",
+        "de": "https://thedollscout.com/de/brands/skullpanda#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/skullpanda#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "sonny-angel-style-odds",
+      "task": "odds",
+      "name": "Sonny Angel style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/sonny-angel#style-probability",
+        "de": "https://thedollscout.com/de/brands/sonny-angel#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/sonny-angel#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "skullpanda-display-fit",
+      "task": "display",
+      "name": "SKULLPANDA size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/skullpanda#display-fit",
+        "de": "https://thedollscout.com/de/brands/skullpanda#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/skullpanda#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
+      "id": "jellycat-display-fit",
+      "task": "display",
+      "name": "Jellycat size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/jellycat#display-fit",
+        "de": "https://thedollscout.com/de/brands/jellycat#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/jellycat#display-fit"
+      },
+      "limitations": "Measure full plush in its intended pose without compression. Uniform single-layer grid; no weight, safety or packing guarantee."
+    },
     {
       "id": "style-odds",
       "task": "odds",

@@ -14,9 +14,12 @@ if(measurable){
 }
 const recorded=new Set();
 function recordAction(name){if(!measurable||recorded.has(name))return;recorded.add(name);const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
-import {initStyleOdds} from './style-odds-ui.mjs';
+import {initStyleOdds} from './style-odds-ui.mjs?v=2026-10-02.4';
 const styleTool=document.querySelector('[data-style-tool]');
 if(styleTool)initStyleOdds(styleTool,recordAction);
+
+import {initDisplayFit} from './display-fit-ui.mjs?v=2026-10-02.4';
+for(const fitTool of document.querySelectorAll('[data-fit-tool]'))initDisplayFit(fitTool,recordAction);
 
 // Only one player at a time; creating it is an explicit visitor action, not a play event.
 let activeVideo=null;

@@ -29,3 +29,18 @@ test('style MCP matches browser math and rejects missing mode inputs',async()=>{
  const catalog=(await rpc('tools/call',{name:'find_collector_tools',arguments:{task:'odds',language:'zh'}})).result.structuredContent;
  assert.ok(catalog.tools.some(t=>t.mcpTool==='calculate_style_probability'&&!t.languageFallback&&t.selectedUrl.endsWith('/zh/brands/labubu#style-probability')));
 });
+
+test('every brand page exposes a localized inline calculator to assistants',async()=>{
+ for(const language of ['en','de','zh']){
+  const prefix=language==='en'?'':'/'+language;
+  const all=(await rpc('tools/call',{name:'find_collector_tools',arguments:{language}})).result.structuredContent.tools;
+  for(const [brand,tool,anchor]of [['skullpanda','calculate_style_probability','style-probability'],['sonny-angel','calculate_style_probability','style-probability'],['skullpanda','plan_display_fit','display-fit'],['jellycat','plan_display_fit','display-fit']]){
+   const url='https://thedollscout.com'+prefix+'/brands/'+brand+'#'+anchor;
+   assert.ok(all.some(t=>t.selectedUrl===url&&t.mcpTool===tool&&!t.languageFallback));
+   const guide=(await rpc('tools/call',{name:'get_collecting_guide',arguments:{brand,language}})).result.structuredContent;
+   assert.ok(guide.toolUrls.includes(url));
+  }
+ }
+ const fit=(await rpc('tools/call',{name:'plan_display_fit',arguments:{width:60,depth:30,height:40,itemWidth:20,itemDepth:15,itemHeight:25,gap:2,rotate:true}})).result.structuredContent;
+ assert.equal(fit.count,3);assert.equal(fit.columns,3);assert.equal(fit.rows,1);assert.equal(fit.rotated,true);
+});
