@@ -1,5 +1,5 @@
 import {expandedBrands} from './brand-expansion.mjs';
-export const edition = '2026-10-02.5';
+export const edition = '2026-10-02.6';
 export const updated = '2026-10-02';
 export const origin = 'https://thedollscout.com';
 export const locales = {en:{prefix:'',tag:'en',label:'EN'},de:{prefix:'/de',tag:'de',label:'DE'},zh:{prefix:'/zh',tag:'zh-Hans',label:'中文'}};
