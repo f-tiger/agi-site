@@ -35,14 +35,23 @@ on:
   schedule:
     - cron: "20 7 * * *"
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
+    permissions:
+      contents: write
+    timeout-minutes: 25
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: sites/thedollscout
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       # 防回滚守卫(2026-08-26 事故,根仓 CLAUDE.md 铁律:checkout 后第一步,
       # 永不删除):GitHub 会乱序补发数小时前的 push 事件,旧事件按自己那个历史
@@ -61,9 +70,25 @@ jobs:
             git reset --hard "$TIP"
           fi
 
+      - name: Record checked-out source SHA
+        run: echo "TDS_RELEASE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+
+      # Native daily expansion: zero LLM calls / new secrets / new cron.
+      # Existing 07:20 UTC release does the fetch, commit and deploy itself.
+      # Increment: usually <= 2 min/day = 60 min/month; fetch capped at 6 details.
+      - name: Test autonomous source validation and failure recovery
+        run: |
+          node --test scripts/collecting/daily-tests.mjs
+          python3 scripts/collecting/persist-tests.py
+
+      - name: Discover official series and update bounded checklists
+        id: daily
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node scripts/collecting/daily.mjs
 
       - name: Build and test Document Scout from pinned dependencies
         run: |
@@ -145,7 +170,7 @@ jobs:
           # Build stamp: the self-check below compares it with the live site so a
           # deploy that silently landed on a preview branch (wrangler exits 0
           # either way) can no longer pass on last week's production.
-          echo "$GITHUB_SHA" > dist/__build.txt
+          echo "${TDS_RELEASE_SHA:-$GITHUB_SHA}" > dist/__build.txt
 
       - name: Build and validate practical tool workbench
         working-directory: ${{ github.workspace }}
@@ -182,6 +207,13 @@ jobs:
           python3 tools/fleet-analytics/test_coverage.py
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist --write
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist
+
+      - name: Persist verified daily source snapshot and generated pages
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: node scripts/collecting/commit-daily.mjs
+
+      - name: Stamp the exact source snapshot being released
+        run: echo "${TDS_RELEASE_SHA:-$GITHUB_SHA}" > dist/__build.txt
 
       - name: Deploy to Cloudflare Pages
         id: publish
@@ -272,8 +304,8 @@ jobs:
           sleep 20
           fail=0
           live=$(curl -s --max-time 20 "https://thedollscout.com/__build.txt" | tr -d '[:space:]')
-          if [ "$live" != "$GITHUB_SHA" ]; then
-            echo "::error::live build stamp is '${live:-<none>}', expected $GITHUB_SHA — this deploy did not reach production"; fail=1
+          if [ "$live" != "${TDS_RELEASE_SHA:-$GITHUB_SHA}" ]; then
+            echo "::error::live build stamp is '${live:-<none>}', expected ${TDS_RELEASE_SHA:-$GITHUB_SHA} — this deploy did not reach production"; fail=1
           else
             echo "build stamp ok: $live"
           fi
@@ -331,6 +363,12 @@ jobs:
         if: ${{ !cancelled() && steps.document_pages.outcome == 'success' && steps.workbench_pages.outcome == 'success' }}
         continue-on-error: true
         run: node scripts/indexnow.mjs
+
+      - name: Surface official source failure after serving last verified content
+        if: always() && steps.daily.outcome == 'success' && steps.daily.outputs.health != '' && steps.daily.outputs.health != 'ok'
+        run: |
+          echo "::error::Daily official source coverage was incomplete. Last verified pages were retained; inspect the daily source summary."
+          exit 1
 
       # First-party analytics self-test: one POST to /api/ev must come back 204.
       - name: Self-test the /api/ev beacon endpoint

@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "cursor": 0,
+  "series": [
+    {
+      "id": "sonny-angel-snack-series",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Snack Series",
+      "names": [
+        "Hamburger",
+        "Sandwich",
+        "French Fries",
+        "Ketchup",
+        "Mustard",
+        "Milkshake",
+        "Coffee",
+        "Sugar",
+        "Donut",
+        "Hot Dog",
+        "Fried Chicken",
+        "Fried Chicken Sandwich"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
+      "published": "2026-10-02",
+      "modified": "2026-10-02",
+      "checked": "2026-10-02"
+    },
+    {
+      "id": "sonny-angel-vegetable-series",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Vegetable Series",
+      "names": [
+        "Carrot",
+        "Tomato",
+        "Garlic",
+        "Zucchini",
+        "Onion",
+        "Radish",
+        "GreenPepper",
+        "Eggplant",
+        "BokChoy",
+        "Corn",
+        "Cauliflower",
+        "Cabbage"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
+      "published": "2026-10-02",
+      "modified": "2026-10-02",
+      "checked": "2026-10-02"
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-10-02",
+      "status": "ok",
+      "added": [
+        "sonny-angel-snack-series",
+        "sonny-angel-vegetable-series"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    }
+  ],
+  "lastRun": {
+    "date": "2026-10-02",
+    "status": "ok",
+    "added": [
+      "sonny-angel-snack-series",
+      "sonny-angel-vegetable-series"
+    ],
+    "changed": [],
+    "eligible": 16,
+    "sources": [
+      {
+        "id": "smiski",
+        "status": "ok",
+        "eligible": 6,
+        "url": "https://smiski.com/e/products/"
+      },
+      {
+        "id": "sonny-angel",
+        "status": "ok",
+        "eligible": 10,
+        "url": "https://www.sonnyangel.com/en/products/"
+      }
+    ],
+    "rejected": []
+  }
+}
