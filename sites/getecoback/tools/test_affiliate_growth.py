@@ -1,5 +1,5 @@
 import unittest
-from affiliate_growth import observed, scenario
+from affiliate_growth import observed, scenario, reconcile
 
 
 class EvidenceBoundaries(unittest.TestCase):
@@ -29,6 +29,29 @@ class EvidenceBoundaries(unittest.TestCase):
         self.assertEqual(d['required_monthly_visits'],10000)
         self.assertEqual(d['required_merchant_clicks'],2500)
         self.assertIn('not observed',d['evidence'])
+
+    def test_scope_mismatch_and_shared_tags_do_not_become_site_revenue(self):
+        merchant = self.report(merchant_clicks=100, net_commission=40,
+            store_id='synthetic-store', tracking_id='synthetic-tag', timezone='Europe/Berlin',
+            site_host='getecoback.com', tracking_scope='exclusive_site')
+        site = dict(merchant, source='synthetic GA4 fixture', affiliate_click_events=49)
+        result = reconcile(merchant, site)
+        self.assertEqual(result['site_net_commission'], 40)
+        self.assertEqual(result['merchant_epc'], .4)
+        self.assertIsNone(result['channel_revenue'])
+        for change in ({'period_end':'2026-09-29'}, {'currency':'USD'},
+                       {'timezone':'Asia/Shanghai'}, {'tracking_id':'other-tag'}):
+            result = reconcile(merchant, dict(site, **change))
+            self.assertEqual(result['status'], 'not_comparable')
+            self.assertIsNone(result['site_net_commission'])
+        self.assertIsNone(reconcile(dict(merchant, tracking_scope='shared'), site)['site_net_commission'])
+        self.assertIsNone(reconcile(self.report(net_commission=40), site)['site_net_commission'])
+        with self.assertRaises(ValueError):
+            reconcile(merchant, dict(site, affiliate_click_events=-1))
+        with self.assertRaises(ValueError):
+            observed(dict(merchant, period_end='2026-08-01'))
+        with self.assertRaises(ValueError):
+            observed(dict(merchant, period_start='2026-99-01'))
 
 
 if __name__ == '__main__': unittest.main()

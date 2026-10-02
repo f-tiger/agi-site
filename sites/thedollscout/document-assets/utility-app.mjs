@@ -1,5 +1,5 @@
 import {UTILITY_LIMITS,parseJSONExact,formatJSONExact,diffJSONExact,imageHeader,fitImage,planMeeting,calendarFile} from './utility-core.mjs?v=2026-09-27.2';
-import {track} from './telemetry.mjs?v=2026-09-27.2';
+import {track} from './telemetry.mjs?v=2026-10-02.1';
 const $=id=>document.getElementById(id),form=$('utility-form'),task=form.dataset.utility,u=JSON.parse($('utility-copy').textContent),result=$('utility-result');
 const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 let epoch=0,busy=false,isSample=false,files=[];const urls=new Set();

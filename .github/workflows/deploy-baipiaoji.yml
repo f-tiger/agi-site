@@ -398,12 +398,14 @@ jobs:
           node tools/quote-page-lab/build.mjs
           node tools/quote-page-lab/test.mjs
           node tools/quote-page-lab/test-hosted.mjs
+          node sites/baipiaoji/scripts/test-file-events-browser.mjs
           node sites/baipiaoji/scripts/test-homepage-clicks-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
         run: |
+          node --test tools/fleet-analytics/business.test.mjs
           python3 tools/fleet-analytics/test_coverage.py
           python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist --write
           python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist

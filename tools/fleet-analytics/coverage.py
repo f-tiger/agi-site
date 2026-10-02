@@ -111,9 +111,9 @@ def status(html, root, site):
 def build(root, site, write=False):
     root = Path(root).resolve()
     host, measurement = SITES[site]
-    version = hashlib.sha256(b''.join((HERE / n).read_bytes() for n in ['consent.mjs','collector.mjs','consent.css','frame.html'])).hexdigest()[:12]
+    version = hashlib.sha256(b''.join((HERE / n).read_bytes() for n in ['consent.mjs','collector.mjs','consent.css','frame.html','business.mjs'])).hexdigest()[:12]
     if write:
-        for name in ['consent.mjs', 'collector.mjs', 'consent.css', 'frame.html']:
+        for name in ['consent.mjs', 'collector.mjs', 'consent.css', 'frame.html', 'business.mjs']:
             target = root / 'analytics-assets' / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes((HERE / name).read_bytes())

@@ -200,6 +200,7 @@ jobs:
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
         run: |
+          node --test tools/fleet-analytics/business.test.mjs
           python3 tools/fleet-analytics/test_coverage.py
           node --test tools/fleet-analytics/test-worker.mjs
           python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard --write

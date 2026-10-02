@@ -1,6 +1,6 @@
 import { DELIVERY_LIMITS, validateDeliveryFiles, fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, esc } from './delivery-core.mjs?v=2026-09-25.8';
 import { referenceURL } from './verify-core.mjs?v=2026-09-25.8';
-import { track } from './telemetry.mjs?v=2026-09-27.2';
+import { track } from './telemetry.mjs?v=2026-10-02.1';
 const c=JSON.parse(document.getElementById('delivery-copy').textContent), $=id=>document.getElementById('delivery-'+id);
 let record=null, epoch=0, isSample=false, interestSent=false;
 const downloads=new Set();

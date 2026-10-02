@@ -16,7 +16,7 @@ try{
   if(u.hostname==='www.googletagmanager.com'){
    requests.push({kind:'tag',url:req.url()});
    const real=process.env.REAL_GTAG_DIR&&path.join(process.env.REAL_GTAG_DIR,'gtag-'+site+'-default.js');
-   const mock=`for(const a of window.dataLayer||[]){if(a[0]==='event'&&a[1]==='page_view')fetch('https://www.google-analytics.com/g/collect?tid=${id}&en=page_view&dl='+encodeURIComponent(a[2].page_location),{method:'POST',body:JSON.stringify(a[2])});}`;
+   const mock=`const send=a=>{if(a[0]==='event')fetch('https://www.google-analytics.com/g/collect?tid=${id}&en='+a[1]+'&dl='+encodeURIComponent(a[2].page_location),{method:'POST',body:JSON.stringify(a[2])});};for(const a of window.dataLayer||[])send(a);const original=window.dataLayer.push.bind(window.dataLayer);window.dataLayer.push=(...a)=>{a.forEach(send);return original(...a);}`;
    return route.fulfill({contentType:'application/javascript',body:real?fs.readFileSync(real):mock});
   }
   if(u.hostname.endsWith('google-analytics.com')){requests.push({kind:'collect',url:req.url(),body:req.postData()||'',headers:req.headers()});return route.fulfill({status:204});}
@@ -59,6 +59,24 @@ try{
  await page.goto(target+'?__ci=1');assert.equal(await page.locator('#fleet-analytics-choice').count(),0);
  await page.goto(target+'?__probe=1');assert.equal(await page.locator('#fleet-analytics-choice').count(),0);
  await page.goto(target+'?ci=1');assert.equal(await page.locator('#fleet-analytics-choice').count(),0);
+ // Validate business actions in the consent frame, using intercepted requests only.
+ const tool=report.records.find(r=>r.mode==='consent'&&/\/workbench\/[a-z-]+(?:\.html)?$/.test(new URL(r.url).pathname));assert(tool);
+ await page.goto(tool.url);await page.locator('#fleet-analytics-settings').waitFor();
+ const emit=async name=>page.evaluate(name=>window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}})),name);
+ await emit('workbench_complete');
+ const before=requests.filter(r=>r.kind==='collect').length;
+ await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="granted"]').click();
+ await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
+ await emit('workbench_example_complete');await emit('workbench_complete');await emit('workbench_complete');
+ await page.evaluate(()=>window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'workbench_export',filename:'SECRET_FILE'}})));
+ await page.waitForTimeout(200);
+ const businessHits=requests.filter(r=>r.kind==='collect').slice(before);
+ assert.equal(businessHits.filter(r=>r.url.includes('en=tool_complete&')).length,1);
+ assert.equal(businessHits.filter(r=>r.url.includes('en=tool_example_complete&')).length,1);
+ assert(!JSON.stringify(businessHits).includes('SECRET'));
+ assert.equal(businessHits.filter(r=>r.url.includes('en=tool_export&')).length,0);
+ await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="denied"]').click();
+ const after=requests.length;await emit('workbench_export');await page.waitForTimeout(100);assert.equal(requests.length,after);
  assert.deepEqual(errors,[]);
  console.log(JSON.stringify({site,realGoogleTag:!!process.env.REAL_GTAG_DIR,pageViews:hits.length,privateMarkersLeaked:false,consentAndWithdrawal:true,mobileNoOverflow:true}));
  await context.close();

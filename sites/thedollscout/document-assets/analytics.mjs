@@ -1,18 +1,28 @@
 // GA4 is optional. The existing first-party, cookie-free action counts remain separate.
 // Never load Google on probes, automated visits, DNT/GPC, or before a visitor opts in.
+import {businessEvent} from '/analytics-assets/business.mjs?v=2026-10-02.1';
 const query = new URLSearchParams(location.search);
-const excluded = location.hostname !== 'thedollscout.com' || query.has('ci') || query.has('__probe') || query.get('utm_source') === 'verify' || location.pathname.startsWith('/__ci') || navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+const excluded = location.hostname !== 'thedollscout.com' || query.has('ci') || query.has('__ci') || query.has('__probe') || query.get('utm_source') === 'verify' || location.pathname.startsWith('/__ci') || navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
 const key = 'tds_analytics_choice_v1';
 const id = window.DS_CONFIG?.ga4Id;
 const copy = {
-  en: { title:'Optional usage analytics', body:'Allow Google Analytics to measure page visits using analytics cookies? Your files and inputs stay on this device. Basic anonymous site counts work without Google Analytics.', yes:'Allow analytics', no:'Decline', settings:'Analytics settings' },
-  de: { title:'Optionale Nutzungsanalyse', body:'Darf Google Analytics Seitenbesuche mit Analyse-Cookies messen? Ihre Dateien und Eingaben bleiben auf diesem Gerät. Anonyme Website-Zählungen funktionieren auch ohne Google Analytics.', yes:'Analyse erlauben', no:'Ablehnen', settings:'Analyse-Einstellungen' },
-  zh: { title:'可选的访问统计', body:'是否允许 Google Analytics 使用统计 Cookie 记录页面访问？您的文件和输入仍保留在本机。不启用 Google Analytics，也可进行匿名站内计数。', yes:'允许统计', no:'拒绝', settings:'统计设置' }
+  en: { title:'Optional usage analytics', body:'Allow Google Analytics to measure page visits and fixed tool actions using analytics cookies? Your files and inputs stay on this device. Basic anonymous site counts work without Google Analytics.', yes:'Allow analytics', no:'Decline', settings:'Analytics settings' },
+  de: { title:'Optionale Nutzungsanalyse', body:'Darf Google Analytics Seitenbesuche und festgelegte Werkzeugaktionen mit Analyse-Cookies messen? Ihre Dateien und Eingaben bleiben auf diesem Gerät. Anonyme Website-Zählungen funktionieren auch ohne Google Analytics.', yes:'Analyse erlauben', no:'Ablehnen', settings:'Analyse-Einstellungen' },
+  zh: { title:'可选的访问统计', body:'是否允许 Google Analytics 使用统计 Cookie 记录页面访问与固定工具操作？您的文件和输入仍保留在本机。不启用 Google Analytics，也可进行匿名站内计数。', yes:'允许统计', no:'拒绝', settings:'统计设置' }
 };
 const c = copy[document.documentElement.lang.split('-')[0]] || copy.en;
 let choice = '';
 try { choice = localStorage.getItem(key) || ''; } catch {}
 let started = false;
+let publicPage;
+const sentActions = new Set();
+window.addEventListener('fleet:business', event => {
+  if (excluded || !started || choice !== 'granted' || !publicPage) return;
+  const action = businessEvent(location.hostname, new URL(publicPage.page_location).pathname, event.detail);
+  if (!action || sentActions.has(action.name)) return;
+  sentActions.add(action.name);
+  window.gtag('event', action.name, {...publicPage, send_to:id, tool_id:action.tool_id});
+});
 function start() {
   if (excluded || started || choice !== 'granted' || !/^G-[A-Z0-9]+$/.test(id || '')) return;
   started = true;
@@ -25,6 +35,7 @@ function start() {
   canonical.search = ''; canonical.hash = '';
   let referrer = '';
   try { referrer = new URL(document.referrer).origin + '/'; } catch {}
+  publicPage = {page_location:canonical.href, page_referrer:referrer, page_title:document.title};
   window.gtag('config', id, {
     page_location:canonical.href, page_referrer:referrer, page_title:document.title,
     allow_google_signals:false, allow_ad_personalization_signals:false,

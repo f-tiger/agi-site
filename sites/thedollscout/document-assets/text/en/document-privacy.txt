@@ -24,6 +24,8 @@ AI tools run fixed models locally after you click Load AI model. Software and mo
 
 Open-source pages link to independent projects. Video pages connect to YouTube/Google only after you load the embedded player; connection information is then sent to those providers. The privacy-enhanced player does not guarantee anonymous viewing. Optional equipment links open Amazon and include an affiliate tag. We count fixed resource actions, never video titles supplied by visitors or purchase details.
 
+If you allow Google Analytics, it also counts fixed tool actions such as starting a task, completing processing and requesting an export. Examples are counted separately. Each action is counted at most once per page load. These counts do not prove a saved download, a purchase or a unique person. No file content, filenames, inputs or result details are included.
+
 For the image-tool video experiment, matching URL tags add a fixed campaign label and a YouTube or TikTok source to action counts. We do not store the full query string or use it to identify you. Tags without a matching referrer are weaker source evidence. DNT and Global Privacy Control suppress these first-party browser events.
 
 Reference material
