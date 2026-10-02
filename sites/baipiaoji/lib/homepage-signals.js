@@ -5,7 +5,7 @@ export const HOME_BLOCKS = ['hero','site-header','site-footer','featured-tools',
 // Only public, fixed destination labels leave the read API. Unknown URLs, query
 // strings, fragments, search terms and external hostnames are never returned.
 export const HOME_DESTINATIONS = {
-  '/':'homepage','/studio':'toolbox','/account':'free-account','/members':'membership',
+  '/directory':'tool-directory','/':'homepage','/studio':'toolbox','/account':'free-account','/members':'membership',
   '/studio/pdf-tools':'pdf-tools','/studio/product-images':'product-images',
   '/studio/video-variants':'video-variants','/studio/quote-builder':'quote-builder',
   '/studio/quote-compare':'quote-compare','/studio/proposal-deck':'proposal-deck',
@@ -41,7 +41,7 @@ export async function readHomepageSignals(db, since, today) {
   const definitions = {
     unit:'Recorded homepage link-click actions, not unique people, sessions, completed tasks or conversions. Repeat clicks count again.',
     scope:'Only home events with /home/ paths. /discovery/ recommendations and shares are excluded. Language is the source page language, not the destination language.',
-    history:'Tracking began 2026-09-22. Refined hero/site-header/site-footer labels begin with this release; legacy other/nav/footer records are not reassigned. Missing or previously lost events cannot be reconstructed.',
+    history:'Tracking began 2026-09-22. Refined hero/site-header/site-footer labels begin with this release; legacy other/nav/footer records are not reassigned. Directory anchors receive tool-directory from 2026-10-02; older homepage labels remain unchanged. Missing or previously lost events cannot be reconstructed.',
     quality:'Known QA excluded; unlabelled automation, self-visits, blocked or lost beacons remain possible. Zero means no recorded action, not no human demand. No page-view denominator or CTR is supplied.',
     privacy:'Fixed public block/destination labels and day/language counts only; no user IDs, country, referrer, raw URLs, input values or search terms.',
   };

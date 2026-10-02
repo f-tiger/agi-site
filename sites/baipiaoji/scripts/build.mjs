@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import {searchResults} from '../lib/search-results.mjs';
+import {HOME_BLOCKS,HOME_DESTINATIONS,parseHomepageClick} from '../lib/homepage-signals.js';
 import {buildSkillDiscovery} from './skill-discovery.mjs';
 import {buildReleaseCheckAssets} from './release-check-assets.mjs';
 import {buildAccountPages} from './account-pages.mjs';
@@ -344,7 +346,7 @@ const PROD_HOSTS = (() => {
   return [h, h.startsWith('www.') ? h.slice(4) : `www.${h}`];
 })();
 
-const analyticsOf = () => site.ga_id
+const analyticsOf = (home = false) => site.ga_id
   ? `<script>
 window.SITE_EDITION = '${LOCALE.code}';
 var bpjQaVisit = /^\\/__(?:ci|probe)/.test(location.pathname) || /(?:[?&])__(?:ci|probe)(?:=|&|$)/.test(location.search) || /(?:[?&])qa=1(?:&|$)/.test(location.search);
@@ -354,13 +356,14 @@ function gtag(){dataLayer.push(arguments);}
 // 且行为特征与正式域完全不同——两个域名混在一份报表里，任何结论都是假的。
 // 非正式域名时 gtag 仍然存在（下面的埋点照常调用），只是没有接收端，事件停在 dataLayer 里。
 if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1 && !bpjQaVisit) {
-  var s = document.createElement('script');
+  ${home ? '' : `  var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=${esc(site.ga_id)}';
   document.head.appendChild(s);
   gtag('js', new Date());
   gtag('set', { site_edition: window.SITE_EDITION });
   gtag('config', '${esc(site.ga_id)}', { site_edition: window.SITE_EDITION });
+`}
   // 第一方打点（并行于 GA4，同一域名门槛）：无 Cookie 无指纹，只报 路径/语言/来源域。
   // GA4 读取通道断了也能自证流量——数据落在自家 D1 里。
   try {
@@ -403,14 +406,18 @@ document.addEventListener('click', function (e) {
 // 「把某个区块换成 agents 面」这个问题在 D1 里根本答不了。只在 / 与 /en/ 上挂；
 // 路径 = /home/<区块 id>/<站内目标路径 | /ext/<外域>>；区块 id 取最近的 data-home-block、section id、hero/nav/footer。
 if ((location.pathname === '/' || location.pathname === '/en/' || location.pathname === '/en') && !navigator.webdriver && navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl) {
+  var HOME_BLOCKS=${JSON.stringify(HOME_BLOCKS)}, HOME_DESTINATIONS=${JSON.stringify(HOME_DESTINATIONS)};
+  var parseHomepageClick=${parseHomepageClick.toString()};
   document.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
     var sec = a.closest('[data-home-block]') || a.closest('.bpj-site-header,.bpj-footer') || a.closest('section[id],header.hero,nav,footer');
     var id = sec ? (sec.getAttribute('data-home-block') || (sec.classList.contains('bpj-site-header') ? 'site-header' : sec.classList.contains('bpj-footer') ? 'site-footer' : '') || sec.id || sec.tagName.toLowerCase()) : 'other';
     var t = '/ext';
-    try { var u = new URL(a.getAttribute('href'), location.href); t = (u.hostname === location.hostname) ? u.pathname : '/ext/' + u.hostname; } catch (err) {}
+    try { var u = new URL(a.getAttribute('href'), location.href); t = (u.hostname === location.hostname) ? (u.pathname + (u.hash === '#directory' ? 'directory' : '')) : '/ext/' + u.hostname; } catch (err) {}
     window.bpjEv('home', ('/home/' + id + t).slice(0, 200));
+    var action = parseHomepageClick('/home/' + id + t);
+    if (action) window.dispatchEvent(new CustomEvent('fleet:business', {detail:{name:'home:' + action.block + ':' + action.destination}}));
   });
 }
 </script>`
@@ -497,7 +504,7 @@ function layout({ title, description, path, body, wide, schema, noindex, feed, p
 <link rel="stylesheet" href="${site.base_url}/style.css">
 ${shellHead(site.base_url)}
 ${(schema || []).map(jsonLd).join('\n')}
-${/\/account(?:\.html)?$/.test(path)?'':analyticsOf()}
+${/\/account(?:\.html)?$/.test(path)?'':analyticsOf(path === '/' || path === '/index.html')}
 ${growthMarkup(new URL(canonical).pathname)}
 </head>
 <body class="bpj-shell${(wide || body.includes('class="rail"')) ? ' has-rail' : ''}">
@@ -847,16 +854,7 @@ const SUB_JS_BODY = `(function(){
       var kw=inp.value.trim().toLowerCase();
       if(!kw){drop.hidden=true;drop.textContent='';return}
       loadIdx(g.dataset.idx).then(function(d){
-        // 两轮匹配：名称命中优先于正文命中——搜「kimi」时 Kimi 本尊必须排在
-        // 一堆「对比页里提到 kimi」的结果前面
-        var top=[],rest=[];
-        for(var i=0;i<d.length;i++){
-          if(top.length+rest.length>=30)break;
-          var it=d[i];
-          if(it.n.toLowerCase().indexOf(kw)>=0)top.push(it);
-          else if(it.q.indexOf(kw)>=0)rest.push(it);
-        }
-        var hits=top.concat(rest).slice(0,8);
+        var hits=(${searchResults.toString()})(d,kw);
         // 站内搜索此前零度量(2026-08-30 补):停敲 1.2s 记一次查询词。
         // miss 词是需求信号——没搜到的就是站上缺的,进每日选题输入(仍过三门)。
         if(kw.length>=2){
@@ -1013,7 +1011,7 @@ const indexBodyOf = () => {
  const zh=LOCALE.code==='zh', tr=(a,b)=>zh?a:b;
  const featured=[['/studio/pdf-tools','PDF',tr('PDF 工具','PDF tools'),tr('合并、拆分和整理文档','Merge, split and organize documents')],['/studio/product-images','IMG',tr('商品图片','Product images'),tr('批量调整尺寸与导出','Resize and export a batch of images')],['/studio/video-variants','▶',tr('视频变体','Video variants'),tr('用现有素材制作多版视频','Create video variations from your assets')],['/work-plan','PLAN',tr('AI 工作规划','AI work planner'),tr('按岗位与工作量选择工具','Match tools to your role and workload')]];
  const lanes=[['create',tr('做内容，交付作品','Create and deliver'),tr('从文件处理到制作简报，把素材变成可交付结果。','Move from source files to a deliverable, with a practical production brief.'),[['/studio/quote-builder?source=home',tr('为客户制作报价','Build a client quote')],['/studio/',tr('全部自研工具','All BPJ tools')],['/video/',tr('视频工作室','Video studio')],['/workbench/creatorops','CreatorOps']]],['choose',tr('选工具，算清额度','Choose with confidence'),tr('先核对限制、成本和商用条件，再决定用什么。','Check limits, costs and commercial-use conditions before choosing.'),[['/work-plan',tr('岗位工作方案','Plan your workflow')],['/llm-api-calculator',tr('API 额度计算','API quota calculator')],['/workbench/quotawatch-pro','QuotaWatch Pro']]],['launch',tr('构建产品，检查发布','Build and launch'),tr('发现开发工具，整理发布素材，核对真实交付需求。','Discover development tools, prepare launch materials and check delivery needs.'),[['/coding-quota-board',tr('编程工具对比','Compare coding tools')],['/workbench/launchdesk','LaunchDesk'],['/studio/release-check',tr('收费应用验收试点','Paid-app review pilot')]]]];
- return `${railOf()}<main class="stage bpj-home"><section class="bpj-home-hero" data-home-block="hero"><div class="bpj-home-copy"><p class="bpj-eyebrow">${tr('找到工具 · 开始工作','DISCOVER TOOLS. MAKE PROGRESS.')}</p><h1>${tr('找到合适的 AI 工具，<br>把眼前的工作做完。','Find the right AI tool.<br>Get your work done.')}</h1><p>${tr('直接处理 PDF、商品图和视频；或先查清 AI 工具的免费额度、使用限制与商用条件。','Work with PDFs, product images and video. Or compare AI tools by their free allowances, limits and commercial-use terms.')}</p>${gsOf()}<div class="bpj-quick"><a class="bpj-primary-cta" href="${BASE}/studio/">${tr('开始使用工具','Open the toolbox')} →</a><a class="bpj-home-signup" data-account-entry href="${BASE}/account">${tr('免费注册，保存工具','Join free & save tools')}</a></div><p class="bpj-proof">${tr('无需注册即可试用本地 PDF 与图片工具；云保存另需账户。','Try local PDF and image tools without an account. Cloud saving requires an account.')}</p></div><div class="bpj-feature-stage" id="studio" data-home-block="featured-tools"><div class="bpj-preview-top"><span>${tr('从一件具体的事开始','START WITH ONE TASK')}</span><a href="${BASE}/studio/">${tr('工具箱','Toolbox')} ↗</a></div><div class="bpj-preview-grid">${featured.map(([u,i,n,d])=>`<a class="bpj-feature-tile" href="${BASE}${u}" data-bpj-next><span class="bpj-task-icon" aria-hidden="true">${i}</span><h2>${n}</h2><p>${d}</p><span aria-hidden="true">↗</span></a>`).join('')}</div></div></section>${limitCheckEntry(LOCALE.code,BASE)}<section id="plans" data-home-block="task-lanes"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('你的下一步','YOUR NEXT STEP')}</p><h2>${tr('你今天想完成什么？','What are you working on?')}</h2></div><a href="${BASE}/discover/">${tr('查看功能地图','View the feature map')} →</a></div><div class="bpj-task-lanes">${lanes.map(([id,n,d,links])=>`<article class="bpj-task-lane"><h3>${n}</h3><p>${d}</p>${links.map(([u,t])=>`<a href="${BASE}${u}" data-bpj-next>${t} →</a>`).join('')}</article>`).join('')}</div></section><section id="directory" data-home-block="directory"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('有来源的工具目录','SOURCE-BACKED DIRECTORY')}</p><h2>${tr('先查限制，再选 AI 工具','Know the limits before you choose')}</h2><p>${tr('收录','Explore')} ${tools.length} ${tr('个第三方 AI 工具；核实日期与官方来源见各工具页。','third-party AI tools. See each page for official sources and verification dates.')}</p></div><a href="${BASE}/method">${tr('我们如何核实','How we verify')} ↗</a></div><div class="bpj-directory-grid" id="dirs">${catEntries.map(([k,v])=>`<a href="${BASE}/c/${k}"><strong>${esc(v)}</strong><span>${countOf(k)} ${tr('个工具','tools')} ↗</span></a>`).join('')}</div></section>${agentsHomeBlock()}<section class="bpj-home-agent" id="money"><div><p class="bpj-eyebrow">${tr('可直接引用的数据','DATA YOU CAN REUSE')}</p><h2>${tr('让你的 Agent 也能找到答案','Connect your agent to verified data')}</h2><p>${tr('开放 API、MCP 和功能地图，均保留来源与可检查的使用边界。','Use the open API, MCP server and feature map, with sources and explicit limitations.')}</p></div><div><a href="${BASE}/mcp">MCP →</a><a href="${BASE}/developers">API →</a><a href="${BASE}/money/">${tr('商业工作流','Business workflows')} →</a></div></section><details class="bpj-home-detail"><summary>${tr('展开完整 AI 工具目录','Browse the complete AI tool directory')}</summary>${sectionsOf()}</details>${subscribeOf('/')}</main>`;
+ return `${railOf()}<main class="stage bpj-home"><section class="bpj-home-hero" data-home-block="hero"><div class="bpj-home-copy"><p class="bpj-eyebrow">${tr('白嫖计 · 有来源的 AI 工具目录','BPJ · Source-backed AI tools')}</p><h1>${tr('先查免费额度，<br>再选 AI 工具。','Check the limits.<br>Choose your AI tool.')}</h1><p>${tr('查免费额度、使用限制和商用条件；每条工具资料附核实日期与来源。','Compare free allowances, limits and commercial-use terms, with sources and check dates.')}</p>${gsOf()}<div class="bpj-quick"><a class="bpj-primary-cta" href="${BASE}/#directory">${tr('按类别查免费额度','Browse free-tier limits')}</a><a class="bpj-home-toolbox" href="${BASE}/studio/">${tr('直接用 BPJ 工具','Use BPJ tools')}</a></div><p class="bpj-proof">${tr('目录无需注册。PDF 与图片工具可在本地试用。','Browse without signing up. Try PDF and image tools locally.')}</p></div><div class="bpj-feature-stage" id="studio" data-home-block="featured-tools"><div class="bpj-preview-top"><span>${tr('BPJ 自研工具','Tools made by BPJ')}</span><a href="${BASE}/studio/">${tr('工具箱','Toolbox')} ↗</a></div><div class="bpj-preview-grid">${featured.map(([u,i,n,d])=>`<a class="bpj-feature-tile" href="${BASE}${u}" data-bpj-next><span class="bpj-task-icon" aria-hidden="true">${i}</span><h2>${n}</h2><p>${d}</p><span aria-hidden="true">↗</span></a>`).join('')}</div></div></section><section id="directory" data-home-block="directory"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('有来源的工具目录','SOURCE-BACKED DIRECTORY')}</p><h2>${tr('先查限制，再选 AI 工具','Know the limits before you choose')}</h2><p>${tr('收录','Explore')} ${tools.length} ${tr('个第三方 AI 工具；核实日期与官方来源见各工具页。','third-party AI tools. See each page for official sources and verification dates.')}</p></div><a href="${BASE}/method">${tr('我们如何核实','How we verify')} ↗</a></div><div class="bpj-directory-grid" id="dirs">${catEntries.map(([k,v])=>`<a href="${BASE}/c/${k}"><strong>${esc(v)}</strong><span>${countOf(k)} ${tr('个工具','tools')} ↗</span></a>`).join('')}</div></section>${limitCheckEntry(LOCALE.code,BASE)}<section id="plans" data-home-block="task-lanes"><div class="bpj-section-head"><div><p class="bpj-eyebrow">${tr('你的下一步','YOUR NEXT STEP')}</p><h2>${tr('你今天想完成什么？','What are you working on?')}</h2></div><a href="${BASE}/discover/">${tr('查看功能地图','View the feature map')} →</a></div><div class="bpj-task-lanes">${lanes.map(([id,n,d,links])=>`<article class="bpj-task-lane"><h3>${n}</h3><p>${d}</p>${links.map(([u,t])=>`<a href="${BASE}${u}" data-bpj-next>${t} →</a>`).join('')}</article>`).join('')}</div></section>${agentsHomeBlock()}<section class="bpj-home-agent" id="money"><div><p class="bpj-eyebrow">${tr('可直接引用的数据','DATA YOU CAN REUSE')}</p><h2>${tr('让你的 Agent 也能找到答案','Connect your agent to verified data')}</h2><p>${tr('开放 API、MCP 和功能地图，均保留来源与可检查的使用边界。','Use the open API, MCP server and feature map, with sources and explicit limitations.')}</p></div><div><a href="${BASE}/mcp">MCP →</a><a href="${BASE}/developers">API →</a><a href="${BASE}/money/">${tr('商业工作流','Business workflows')} →</a></div></section><details class="bpj-home-detail"><summary>${tr('展开完整 AI 工具目录','Browse the complete AI tool directory')}</summary>${sectionsOf()}</details>${subscribeOf('/')}</main>`;
 };
 
 // 「额度不够用了怎么办」——同类里同样不会撞墙的工具。
@@ -3684,7 +3682,7 @@ for (const L of LOCALES) {
       const s = (t) => ((t._tags || []).includes('完全免费') ? 4 : 0)
         + (t.limits && t.limits.quota && t.limits.source ? 2 : 0) + (t.hot ? 1 : 0);
       return s(b) - s(a);
-    }).map((t) => ({ u: `${BASE}/tools/${t.slug}.html`, n: t.name, k: UI('gs_k_tool', '工具'),
+    }).map((t) => ({ u: `${BASE}/tools/${t.slug}.html`, n: t.name, k: LOCALE.code==='zh'?'第三方工具资料':'Third-party tool profile',
       q: `${t.name} ${t.slug} ${t.tagline} ${(t.tags || []).join(' ')} ${CATS[t.category] || ''}`.toLowerCase() })),
     ...solutions.map((sl) => ({ u: `${BASE}/plans/${sl.slug}.html`, n: sl.pain, k: UI('gs_k_plan', '方案'),
       q: `${sl.pain} ${sl.scene}`.toLowerCase() })),
@@ -7866,6 +7864,7 @@ writeFileSync(join(root, 'data/earn-packs.generated.js'),
 const lmPath = join(root, 'data/page-lastmod.json');
 const lmPrev = existsSync(lmPath) ? JSON.parse(readFileSync(lmPath, 'utf8')) : {};
 const lmNow = {};
+const changedUrls = [];
 let changedNow = 0;      // 本次构建真正内容有变的页数（不是「最后一次变更在今天」的页数）
 const fileForUrl = (u) => {
   const path = u.slice(site.base_url.length) || '/';
@@ -7886,13 +7885,14 @@ for (const { u } of allPages) {
   const h = lmHashOf(readFileSync(f, 'utf8'));
   const before = lmPrev[u];
   const same = before && before.h === h;
-  if (!same) changedNow++;
+  if (!same) { changedNow++; changedUrls.push(pub(u)); }
   // 变更日期必须用真实时钟：TODAY 是数据侧的「最新核实日期」，push 触发的构建里它常是昨天。
   // 2026-08-08 事故：indexnow.mjs 用时钟日期筛「今天变更的页」，清单却盖着数据日期——
   // 两边对不上时变更页一条都推不出去，「只推变更页」的优化静默失效。
   lmNow[u] = { h, d: same ? before.d : NOW_D };
 }
 writeFileSync(lmPath, JSON.stringify(lmNow) + '\n');
+writeFileSync(join(dist, 'changed-canonical-urls.json'), JSON.stringify(changedUrls) + '\n');
 
 
 writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
