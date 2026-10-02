@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v9** — **Last updated: 2026-10-02**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v10** — **Last updated: 2026-10-02**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -55,6 +55,7 @@ No new paid features for the three discovery probes until repeated task evidence
 
 ## Changelog
 
+- v10 (2026-10-02): Expanded GitHub discovery to 80 projects with 68 AI-related additions, source/license distinctions and task/type filters. See sites/baipiaoji/docs/github-ai-expansion-2026-10-02.md. No new paid service opened.
 - v9 (2026-10-02): Added BPJ GitHub tool discovery for nontechnical task seekers; free source-backed guidance, existing separately labeled vendor services, and a closed USD29 onboarding-service hypothesis. No validated new buyer or revenue.
 
 - v7 (2026-10-01): Narrowed Work Mentor to Ecommerce Reporting Coach for junior ecommerce operators; aligned audience, task, report-policy boundaries and acquisition message with the owner’s single-type focus. Retained current paid entitlement and treated willingness to pay as unverified.
@@ -119,6 +120,6 @@ Measurement: GSC 2026-09-01–28 gives AGI 1/143, BPJ 1/704, ECO 0/77, TDS 5/328
 
 ## BPJ GitHub tools for everyday tasks — 2026-10-02
 
-Owner language: “普通人根本不了解 github 的工具 … github 离普通人太远”. Audience hypothesis: nontechnical office workers, students and creators with a concrete file/media/organization job. The free product translates a task into a usable official entry, setup steps, device fit and cost boundaries. Twelve curated projects and dated GitHub stars are not live whole-GitHub search or hands-on safety certification.
+Owner language: “普通人根本不了解 github 的工具 … github 离普通人太远”. Audience hypothesis: nontechnical office workers, students and creators with a concrete file/media/organization job. The free product translates a task into a usable official entry, setup steps, device fit and cost boundaries. Expanded to 80 curated projects, including 68 AI-related additions, following the owner’s explicit request. Applications, frameworks and model repositories are distinct; category/type/device/setup filters and full-catalogue search keep the collection usable. Dated stars are not live trends or hands-on safety certification. AI emphasis covers local chat, knowledge, agents, coding, media, OCR and model inference.
 
-Buyer candidates are commercial maintainers or hosting providers using the existing vendor/sponsorship funnel, separate from organic recommendations. A scoped USD29/application/device onboarding service is a closed hypothesis requiring real requests, fulfillment/support/refund scope and positive delivery margin before sale. Free-source access is never presented as BPJ-owned software or a paid download. Marketing entry: “不用懂代码，先找到能用的工具。” Owned homepage, contextual Agents links, search, feature map, bilingual JSON and llms distribution. Guide opens and official link opens are actions, not users, installations or revenue. PRD: sites/baipiaoji/docs/PRD-github-tools-2026-10-02.md.
+Buyer candidates are commercial maintainers or hosting providers using the existing vendor/sponsorship funnel, separate from organic recommendations. A scoped USD29/application/device onboarding service is a closed hypothesis requiring real requests, fulfillment/support/refund scope and positive delivery margin before sale. Free-source access is never presented as BPJ-owned software or a paid download. Marketing entry: “从 GitHub 找好工具，先看它能帮你做什么。” Owned homepage, contextual Agents links, search, feature map, bilingual JSON and llms distribution. Guide opens and official link opens are actions, not users, installations or revenue. PRD: sites/baipiaoji/docs/PRD-github-tools-2026-10-02.md.

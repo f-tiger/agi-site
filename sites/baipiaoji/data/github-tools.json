@@ -1,8 +1,928 @@
 {
-  "version": 1,
+  "version": 2,
   "reviewed": "2026-10-02",
-  "scope": "Editorial starter catalogue; GitHub star snapshots, not a live trending ranking. Source review is not an installation or security audit.",
+  "scope": "Curated applications, developer frameworks and model repositories. Dated GitHub star snapshots, not live trends. Official-source review is not installation, security or model-quality testing. Code availability does not imply free APIs, compute or unrestricted model licenses.",
   "tools": [
+    {
+      "id": "jan",
+      "name": "Jan",
+      "repo": "janhq/jan",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "local"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://jan.ai/",
+      "sources": [
+        "https://github.com/janhq/jan/blob/main/README.md",
+        "https://jan.ai/"
+      ],
+      "task": {
+        "zh": "像聊天软件一样使用本地 AI",
+        "en": "Chat with a local AI in a desktop app"
+      },
+      "description": {
+        "zh": "用桌面界面下载模型、管理对话，也可连接远程模型。",
+        "en": "Download models, manage conversations and optionally connect remote providers."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "离线能力取决于使用本地模型；连接外部服务后数据会离开设备。",
+        "en": "Offline operation requires a local model; remote providers receive your requests."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "在模型列表选择适合设备的本地模型。",
+          "下载后创建对话，确认所选模型是本地运行。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Choose a local model that fits your device.",
+          "Create a chat after downloading and confirm local inference is selected."
+        ]
+      },
+      "keywords": "本地聊天 离线聊天 隐私聊天 jan desktop",
+      "github": {
+        "repo": "janhq/jan",
+        "stars": 44760,
+        "archived": false,
+        "pushedAt": "2026-10-02T06:37:34Z",
+        "license": "NOASSERTION",
+        "homepage": "https://jan.ai/",
+        "source": "https://github.com/janhq/jan",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gpt4all",
+      "name": "GPT4All",
+      "repo": "nomic-ai/gpt4all",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "local",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://gpt4all.io/",
+      "sources": [
+        "https://github.com/nomic-ai/gpt4all/blob/main/README.md",
+        "https://gpt4all.io/"
+      ],
+      "task": {
+        "zh": "不用配置 API 也能本地聊天",
+        "en": "Chat locally without setting up an API"
+      },
+      "description": {
+        "zh": "桌面应用支持本地大模型，也提供 LocalDocs 文档问答。",
+        "en": "A desktop app for local models with LocalDocs document chat."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "无需独立显卡不等于所有模型都流畅；文档索引也占内存。",
+        "en": "A dedicated GPU is not mandatory, but model speed and document indexing still depend on RAM and CPU."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "下载适合设备的模型并完成首次加载。",
+          "先问一个简单问题，再用小文件测试 LocalDocs。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Download a suitable model and let it load.",
+          "Ask a simple question, then test LocalDocs with a small file."
+        ]
+      },
+      "keywords": "本地聊天 文档问答 离线聊天 gpt4all localdocs",
+      "github": {
+        "repo": "nomic-ai/gpt4all",
+        "stars": 77389,
+        "archived": false,
+        "pushedAt": "2025-05-27T20:05:19Z",
+        "license": "MIT",
+        "homepage": "https://nomic.ai/gpt4all",
+        "source": "https://github.com/nomic-ai/gpt4all",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "repo": "ollama/ollama",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "chat"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://ollama.com/download",
+      "sources": [
+        "https://github.com/ollama/ollama/blob/main/README.md",
+        "https://ollama.com/download"
+      ],
+      "task": {
+        "zh": "在自己电脑上运行大模型",
+        "en": "Run a language model on your computer"
+      },
+      "description": {
+        "zh": "下载兼容模型，在本地聊天，或给其他 AI 应用提供模型服务。",
+        "en": "Download a compatible model for local chat or serve it to other AI apps."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "本地模型与 Ollama 云模型分开；选择云模型会使用远端服务。",
+        "en": "Local models and Ollama cloud models differ; cloud selections use a remote service."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "先选小型本地模型，确认磁盘和内存足够。",
+          "发送一条问题，确认模型运行位置后再接入其他应用。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Start with a small local model and check RAM and storage.",
+          "Ask a question and confirm where inference runs before connecting other apps."
+        ]
+      },
+      "keywords": "本地模型 本地聊天 离线聊天 ollama local llm offline",
+      "github": {
+        "repo": "ollama/ollama",
+        "stars": 182049,
+        "archived": false,
+        "pushedAt": "2026-10-02T06:12:46Z",
+        "license": "MIT",
+        "homepage": "https://ollama.com",
+        "source": "https://github.com/ollama/ollama",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "anythingllm",
+      "name": "AnythingLLM",
+      "repo": "Mintplex-Labs/anything-llm",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "chat",
+        "local"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://anythingllm.com/download",
+      "sources": [
+        "https://github.com/Mintplex-Labs/anything-llm/blob/master/README.md",
+        "https://anythingllm.com/download"
+      ],
+      "task": {
+        "zh": "把自己的文件变成可提问的知识库",
+        "en": "Ask questions about your own files"
+      },
+      "description": {
+        "zh": "在桌面工作区整理文档，接入本地或云端模型进行问答。",
+        "en": "Organize documents in desktop workspaces and query them with local or cloud models."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "本地界面不保证文件完全本地处理；核对聊天、嵌入模型及遥测设置。",
+        "en": "A local UI does not guarantee local processing; check chat, embedding and telemetry settings."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "选择聊天模型和嵌入模型，创建工作区。",
+          "加入一个样例文件，提问并打开引用核对。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Choose chat and embedding models, then create a workspace.",
+          "Add a sample file, ask a question and check its source references."
+        ]
+      },
+      "keywords": "文档问答 知识库 本地知识库 pdf问答 anythingllm rag",
+      "github": {
+        "repo": "Mintplex-Labs/anything-llm",
+        "stars": 66669,
+        "archived": false,
+        "pushedAt": "2026-10-02T01:52:53Z",
+        "license": "MIT",
+        "homepage": "https://anythingllm.com",
+        "source": "https://github.com/Mintplex-Labs/anything-llm",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "cherry-studio",
+      "name": "Cherry Studio",
+      "repo": "CherryHQ/cherry-studio",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://www.cherry-ai.com/",
+      "sources": [
+        "https://github.com/CherryHQ/cherry-studio/blob/main/README.md",
+        "https://www.cherry-ai.com/"
+      ],
+      "task": {
+        "zh": "在一个桌面客户端切换多个 AI",
+        "en": "Use multiple AI providers in one desktop client"
+      },
+      "description": {
+        "zh": "管理模型、助手和知识库，适合已有多个模型服务的用户。",
+        "en": "Manage models, assistants and knowledge bases across providers."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "客户端不是免费模型套餐；API Key 的消费在各模型提供方发生。",
+        "en": "The client is not a free model subscription; API-key usage is billed by each provider."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "添加一个模型提供方并检查凭据保存位置。",
+          "用同一个问题切换模型，比较回答和调用费用。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Add a model provider and check credential storage.",
+          "Try the same question across models and compare answers and usage cost."
+        ]
+      },
+      "keywords": "多模型聊天 文档问答 桌面助手 cherry studio",
+      "github": {
+        "repo": "CherryHQ/cherry-studio",
+        "stars": 52322,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:13:31Z",
+        "license": "AGPL-3.0",
+        "homepage": "https://cherryai.com",
+        "source": "https://github.com/CherryHQ/cherry-studio",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "chatbox",
+      "name": "Chatbox Community",
+      "repo": "chatboxai/chatbox",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/chatboxai/chatbox/releases",
+      "sources": [
+        "https://github.com/chatboxai/chatbox/blob/main/README.md",
+        "https://github.com/chatboxai/chatbox/releases"
+      ],
+      "task": {
+        "zh": "给模型 API 配一个聊天窗口",
+        "en": "Use a chat window for model APIs"
+      },
+      "description": {
+        "zh": "社区版桌面客户端用于管理 AI 对话和模型连接。",
+        "en": "A community desktop client for AI conversations and model connections."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "社区源码版与官网商业服务不是同一套餐；不要把下载当成购买模型额度。",
+        "en": "The community edition and commercial service are different offerings; downloading does not buy model credits."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "从官方 Releases 选择系统安装包，配置模型连接。",
+          "发送样例问题，并在提供方核对调用记录。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Choose an official release for your OS and configure a model connection.",
+          "Send a sample question and check usage with the provider."
+        ]
+      },
+      "keywords": "多模型聊天 桌面助手 chatbox api client",
+      "github": {
+        "repo": "chatboxai/chatbox",
+        "stars": 41933,
+        "archived": false,
+        "pushedAt": "2026-09-24T14:09:13Z",
+        "license": "GPL-3.0",
+        "homepage": "https://chatboxai.app?utm_medium=github",
+        "source": "https://github.com/chatboxai/chatbox",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "nextchat",
+      "name": "NextChat",
+      "repo": "ChatGPTNextWeb/NextChat",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/ChatGPTNextWeb/NextChat/releases",
+      "sources": [
+        "https://github.com/ChatGPTNextWeb/NextChat/blob/main/README.md",
+        "https://github.com/ChatGPTNextWeb/NextChat/releases"
+      ],
+      "task": {
+        "zh": "用轻量客户端管理 AI 对话",
+        "en": "Manage AI chats in a lightweight client"
+      },
+      "description": {
+        "zh": "提供桌面客户端及自托管方案；也有独立的官方托管服务。",
+        "en": "Offers desktop clients and self-hosting, plus a separate hosted service."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "托管服务的按量付费与自带 API Key 模式不同，选择前核对。",
+        "en": "Hosted pay-as-you-go service differs from bringing your own API key; check which you choose."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "下载正式客户端，选择自带 API 或官方服务。",
+          "完成一段对话，检查实际使用的模型与计费方。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Download a stable client and choose your own API or the hosted service.",
+          "Complete a chat and check the selected model and billing provider."
+        ]
+      },
+      "keywords": "多模型聊天 nextchat chatgpt next web",
+      "github": {
+        "repo": "ChatGPTNextWeb/NextChat",
+        "stars": 88830,
+        "archived": false,
+        "pushedAt": "2026-08-11T02:07:25Z",
+        "license": "MIT",
+        "homepage": "https://nextchat.club",
+        "source": "https://github.com/ChatGPTNextWeb/NextChat",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "upscayl",
+      "name": "Upscayl",
+      "repo": "upscayl/upscayl",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "image",
+      "topics": [
+        "image"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://upscayl.org/",
+      "sources": [
+        "https://github.com/upscayl/upscayl/blob/main/README.md",
+        "https://upscayl.org/"
+      ],
+      "task": {
+        "zh": "把低分辨率图片放大",
+        "en": "Upscale low-resolution images"
+      },
+      "description": {
+        "zh": "桌面工具使用 AI 模型放大图片，适合先做本地样例比较。",
+        "en": "A desktop tool for AI image upscaling and local before/after comparisons."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "需要兼容 Vulkan 的显卡；放大不能恢复原本不存在的真实细节。",
+        "en": "Requires a Vulkan-compatible GPU; upscaling cannot recover authentic detail that was never present."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "安装后选择一张图片及放大模型。",
+          "导出并放大检查文字、边缘和人脸是否失真。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "After installation, choose an image and an upscaling model.",
+          "Export and inspect text, edges and faces for artifacts."
+        ]
+      },
+      "keywords": "图片放大 画质增强 超分辨率 upscayl upscale",
+      "github": {
+        "repo": "upscayl/upscayl",
+        "stars": 50061,
+        "archived": false,
+        "pushedAt": "2026-09-28T23:25:25Z",
+        "license": "AGPL-3.0",
+        "homepage": "https://upscayl.org",
+        "source": "https://github.com/upscayl/upscayl",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "repo": "Comfy-Org/ComfyUI",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "image",
+      "topics": [
+        "image",
+        "video"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://www.comfy.org/download",
+      "sources": [
+        "https://github.com/Comfy-Org/ComfyUI/blob/master/README.md",
+        "https://www.comfy.org/download"
+      ],
+      "task": {
+        "zh": "用节点工作流生成图片和视频",
+        "en": "Generate images and video with node workflows"
+      },
+      "description": {
+        "zh": "可视化连接模型和处理节点，保存可复用生成流程。",
+        "en": "Connect models and processing nodes visually and save reusable generation workflows."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "工作流依赖特定模型与节点；第三方自定义节点会执行代码，安装前核对来源。",
+        "en": "Workflows depend on particular models and nodes; custom nodes execute code, so check their sources."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "按官方方式安装，再下载受支持的模型。",
+          "先运行基础工作流，保存输出和工作流文件。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Install through an official method and download a supported model.",
+          "Run a basic workflow and save both output and workflow files."
+        ]
+      },
+      "keywords": "图片生成 AI绘画 视频生成 comfyui workflow diffusion",
+      "github": {
+        "repo": "Comfy-Org/ComfyUI",
+        "stars": 135848,
+        "archived": false,
+        "pushedAt": "2026-10-02T09:52:03Z",
+        "license": "GPL-3.0",
+        "homepage": "https://www.comfy.org/",
+        "source": "https://github.com/Comfy-Org/ComfyUI",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "invokeai",
+      "name": "Invoke",
+      "repo": "invoke-ai/InvokeAI",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "image",
+      "topics": [
+        "image"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://invoke.ai/start-here/installation/",
+      "sources": [
+        "https://github.com/invoke-ai/InvokeAI/blob/main/README.md",
+        "https://invoke.ai/start-here/installation/"
+      ],
+      "task": {
+        "zh": "用画布控制 AI 图像创作",
+        "en": "Control AI image creation on a canvas"
+      },
+      "description": {
+        "zh": "提供图像生成、画布编辑与模型管理界面。",
+        "en": "An interface for image generation, canvas editing and model management."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "开源本地版和商业产品分开；模型授权决定具体素材的可用范围。",
+        "en": "The local open-source edition and commercial offerings differ; model licenses govern permitted uses."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "安装官方 Launcher，按硬件选择模型。",
+          "从小尺寸图像开始，再尝试画布局部修改。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Install the official launcher and choose a model for your hardware.",
+          "Start with a small image, then try localized canvas edits."
+        ]
+      },
+      "keywords": "图片生成 AI绘画 局部重绘 invokeai canvas",
+      "github": {
+        "repo": "invoke-ai/InvokeAI",
+        "stars": 28329,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:10:53Z",
+        "license": "Apache-2.0",
+        "homepage": "https://invoke-ai.github.io/InvokeAI/",
+        "source": "https://github.com/invoke-ai/InvokeAI",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "repo": "NousResearch/hermes-agent",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://hermes-agent.nousresearch.com/",
+      "sources": [
+        "https://github.com/NousResearch/hermes-agent/blob/main/README.md",
+        "https://hermes-agent.nousresearch.com/"
+      ],
+      "task": {
+        "zh": "使用带记忆和技能的个人 Agent",
+        "en": "Use a personal agent with memory and skills"
+      },
+      "description": {
+        "zh": "支持持久记忆、工具与技能的个人助手。",
+        "en": "A personal assistant with persistent memory, tools and skills."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "工具可能读写本地文件；先检查记忆存储、权限和模型账单。",
+        "en": "Tools may read or write local files; inspect memory storage, permissions and model billing first."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "按官方安装方法配置模型提供方。",
+          "先执行低风险样例，查看工具调用和保存的记忆。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Use an official installation method and configure a model provider.",
+          "Try a low-risk example and inspect tool calls and saved memories."
+        ]
+      },
+      "keywords": "个人助手 智能体 技能 skills hermes agent memory",
+      "github": {
+        "repo": "NousResearch/hermes-agent",
+        "stars": 250704,
+        "archived": false,
+        "pushedAt": "2026-10-02T12:10:10Z",
+        "license": "MIT",
+        "homepage": "https://hermes-agent.nousresearch.com",
+        "source": "https://github.com/NousResearch/hermes-agent",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "cline",
+      "name": "Cline",
+      "repo": "cline/cline",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://cline.bot/",
+      "sources": [
+        "https://github.com/cline/cline/blob/main/README.md",
+        "https://cline.bot/"
+      ],
+      "task": {
+        "zh": "在编辑器里让 AI 协助改代码",
+        "en": "Get AI help editing code in your IDE"
+      },
+      "description": {
+        "zh": "提供编辑器、桌面与命令行入口，协助理解项目和修改代码。",
+        "en": "Offers IDE, desktop and CLI entry points for understanding and modifying code."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "文件修改、命令与 MCP 调用需审阅；长上下文会增加模型费用。",
+        "en": "Review file edits, commands and MCP calls; long contexts can increase model charges."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "从官方入口安装所需版本并配置模型。",
+          "在测试分支请求小修改，逐项审核工具调用。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Install the version you need from the official entry and configure a model.",
+          "Request a small change on a test branch and review tool calls."
+        ]
+      },
+      "keywords": "AI编程 编程助手 cline coding agent",
+      "github": {
+        "repo": "cline/cline",
+        "stars": 69719,
+        "archived": false,
+        "pushedAt": "2026-10-02T09:54:55Z",
+        "license": "Apache-2.0",
+        "homepage": "https://cline.bot",
+        "source": "https://github.com/cline/cline",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "continue",
+      "name": "Continue",
+      "repo": "continuedev/continue",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.continue.dev/",
+      "sources": [
+        "https://github.com/continuedev/continue/blob/main/README.md",
+        "https://docs.continue.dev/"
+      ],
+      "task": {
+        "zh": "把 AI 编程助手接进开发流程",
+        "en": "Add an AI coding assistant to your workflow"
+      },
+      "description": {
+        "zh": "提供代码助手与 Agent 入口，可配置模型和上下文。",
+        "en": "Provides coding-assistant and agent entry points with configurable models and context."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "补全、聊天和 Agent 可能使用不同模型；分别核对数据去向与费用。",
+        "en": "Completion, chat and agents may use different models; check data destinations and cost for each."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "按官方安装文档选择开发入口并配置模型。",
+          "先在样例仓库测试问答、补全或代码修改。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Choose a development entry point in the official docs and configure models.",
+          "Test Q&A, completion or edits in a sample repository."
+        ]
+      },
+      "keywords": "AI编程 代码补全 编程助手 continue coding",
+      "github": {
+        "repo": "continuedev/continue",
+        "stars": 36087,
+        "archived": false,
+        "pushedAt": "2026-10-02T10:41:02Z",
+        "license": "Apache-2.0",
+        "homepage": "https://continue.dev",
+        "source": "https://github.com/continuedev/continue",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "unsloth",
+      "name": "Unsloth",
+      "repo": "unslothai/unsloth",
+      "mode": "download",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "models"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/unslothai/unsloth/releases",
+      "sources": [
+        "https://github.com/unslothai/unsloth/blob/main/README.md",
+        "https://github.com/unslothai/unsloth/releases"
+      ],
+      "task": {
+        "zh": "在桌面运行和训练自己的模型",
+        "en": "Run and train models from a desktop app"
+      },
+      "description": {
+        "zh": "提供本地模型界面和模型微调工具。",
+        "en": "Provides a local-model interface and fine-tuning tools."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "聊天与训练的硬件要求不同；训练数据、基础模型和导出模型许可分别核对。",
+        "en": "Chatting and training need different hardware; review dataset, base-model and export licensing separately."
+      },
+      "steps": {
+        "zh": [
+          "从官方入口选择适合系统的安装方式。",
+          "先安装桌面应用，用适合设备的小模型验证推理。",
+          "确需训练时再检查训练硬件与数据格式要求。"
+        ],
+        "en": [
+          "Choose an installation method for your system at the official entry.",
+          "Install the desktop app and test inference with a small compatible model.",
+          "Check training hardware and data formats before attempting fine-tuning."
+        ]
+      },
+      "keywords": "本地模型 模型微调 模型训练 unsloth finetuning",
+      "github": {
+        "repo": "unslothai/unsloth",
+        "stars": 77138,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:15:58Z",
+        "license": "Apache-2.0",
+        "homepage": "https://unsloth.ai/docs",
+        "source": "https://github.com/unslothai/unsloth",
+        "checkedAt": "2026-10-02"
+      }
+    },
     {
       "id": "excalidraw",
       "name": "Excalidraw",
@@ -54,6 +974,15 @@
         "homepage": "https://excalidraw.com",
         "source": "https://github.com/excalidraw/excalidraw",
         "checkedAt": "2026-10-02T10:52:57.880Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -107,6 +1036,15 @@
         "homepage": "https://www.drawio.com",
         "source": "https://github.com/jgraph/drawio",
         "checkedAt": "2026-10-02T10:52:57.889Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -160,6 +1098,16 @@
         "homepage": "https://squoosh.app",
         "source": "https://github.com/GoogleChromeLabs/squoosh",
         "checkedAt": "2026-10-02T10:52:57.846Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "image"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -218,6 +1166,15 @@
         "homepage": "https://localsend.org",
         "source": "https://github.com/localsend/localsend",
         "checkedAt": "2026-10-02T10:52:57.956Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -274,6 +1231,16 @@
         "homepage": "https://handbrake.fr",
         "source": "https://github.com/HandBrake/HandBrake",
         "checkedAt": "2026-10-02T10:52:57.827Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "video"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -329,6 +1296,16 @@
         "homepage": "https://www.shotcut.org",
         "source": "https://github.com/mltframework/shotcut",
         "checkedAt": "2026-10-02T10:52:58.082Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "video"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -384,6 +1361,16 @@
         "homepage": "https://obsproject.com",
         "source": "https://github.com/obsproject/obs-studio",
         "checkedAt": "2026-10-02T10:52:57.825Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "video"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -439,6 +1426,16 @@
         "homepage": "https://wiki.audacityteam.org/wiki/For_Developers",
         "source": "https://github.com/audacity/audacity",
         "checkedAt": "2026-10-02T10:52:57.949Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "audio"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -497,6 +1494,15 @@
         "homepage": "https://joplinapp.org",
         "source": "https://github.com/laurent22/joplin",
         "checkedAt": "2026-10-02T10:52:57.878Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -553,6 +1559,15 @@
         "homepage": "https://keepassxc.org/",
         "source": "https://github.com/keepassxreboot/keepassxc",
         "checkedAt": "2026-10-02T10:52:57.972Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -606,6 +1621,16 @@
         "homepage": "https://getsharex.com",
         "source": "https://github.com/ShareX/ShareX",
         "checkedAt": "2026-10-02T10:52:57.842Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday",
+        "image"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
       }
     },
     {
@@ -660,6 +1685,3494 @@
         "homepage": "https://immich.app",
         "source": "https://github.com/immich-app/immich",
         "checkedAt": "2026-10-02T10:52:57.954Z"
+      },
+      "kind": "app",
+      "ai": false,
+      "topics": [
+        "everyday"
+      ],
+      "requirements": {
+        "zh": "按官方入口选择支持的设备和安装方式。",
+        "en": "Choose a supported device and setup method at the official entry."
+      }
+    },
+    {
+      "id": "open-webui",
+      "name": "Open WebUI",
+      "repo": "open-webui/open-webui",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "local",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.openwebui.com/",
+      "sources": [
+        "https://github.com/open-webui/open-webui/blob/main/README.md",
+        "https://docs.openwebui.com/"
+      ],
+      "task": {
+        "zh": "给本地大模型加一个聊天界面",
+        "en": "Give local models a chat interface"
+      },
+      "description": {
+        "zh": "连接 Ollama 或兼容 API，统一聊天、文档与模型选择。",
+        "en": "Connect Ollama or a compatible API for chat, documents and model selection."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "网页界面需要自己运行后端；项目许可包含品牌等条款，商用先读许可。",
+        "en": "The web UI needs a backend you operate; read branding and other license terms before commercial use."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方快速开始部署，并连接一个模型提供方。",
+          "确认能回答问题后再配置账号、持久化与文档功能。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy with the official quick start and connect a model provider.",
+          "Verify chat, then configure accounts, persistence and documents."
+        ]
+      },
+      "keywords": "本地聊天 文档问答 open webui ollama chat",
+      "github": {
+        "repo": "open-webui/open-webui",
+        "stars": 153801,
+        "archived": false,
+        "pushedAt": "2026-10-02T04:50:55Z",
+        "license": "NOASSERTION",
+        "homepage": "https://openwebui.com",
+        "source": "https://github.com/open-webui/open-webui",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "librechat",
+      "name": "LibreChat",
+      "repo": "LibreChat-AI/LibreChat",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://www.librechat.ai/docs",
+      "sources": [
+        "https://github.com/LibreChat-AI/LibreChat/blob/main/README.md",
+        "https://www.librechat.ai/docs"
+      ],
+      "task": {
+        "zh": "搭建支持多模型的团队聊天入口",
+        "en": "Host a multi-model chat interface"
+      },
+      "description": {
+        "zh": "自托管聊天界面，支持多个模型提供方、Agent 与工具连接。",
+        "en": "A self-hosted interface for multiple providers, agents and tool connections."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "需要维护账号、数据库和密钥；接入工具前先检查权限。",
+        "en": "You maintain accounts, storage and secrets; review permissions before connecting tools."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按快速开始部署，添加一个模型提供方。",
+          "先验证聊天和用户权限，再启用 Agent 或 MCP。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy with the quick start and add a model provider.",
+          "Verify chat and user permissions before enabling agents or MCP."
+        ]
+      },
+      "keywords": "多模型聊天 团队聊天 librechat mcp",
+      "github": {
+        "repo": "LibreChat-AI/LibreChat",
+        "stars": 45204,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:19:48Z",
+        "license": "MIT",
+        "homepage": "https://librechat.ai/",
+        "source": "https://github.com/LibreChat-AI/LibreChat",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "lobehub",
+      "name": "LobeHub",
+      "repo": "lobehub/lobehub",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "chat",
+      "topics": [
+        "chat",
+        "agents",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://lobehub.com/",
+      "sources": [
+        "https://github.com/lobehub/lobehub/blob/canary/README.md",
+        "https://lobehub.com/"
+      ],
+      "task": {
+        "zh": "把模型、助手和知识组织在一起",
+        "en": "Organize models, assistants and knowledge"
+      },
+      "description": {
+        "zh": "原 LobeChat 项目现为 LobeHub，提供助手协作与自托管入口。",
+        "en": "Formerly LobeChat, LobeHub provides assistant collaboration and self-hosting options."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "官方托管与自托管条件不同；模型消费和商用许可需分别核对。",
+        "en": "Hosted and self-hosted offerings differ; check model costs and commercial license conditions separately."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "从官方 Self Hosting 文档选择部署方式并连接模型。",
+          "建立一个助手，用样例资料验证回答。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a method in the official self-hosting docs and connect a model.",
+          "Create an assistant and test it with sample material."
+        ]
+      },
+      "keywords": "多模型聊天 助手协作 lobechat lobehub",
+      "github": {
+        "repo": "lobehub/lobehub",
+        "stars": 82956,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:15:46Z",
+        "license": "NOASSERTION",
+        "homepage": "https://lobehub.com",
+        "source": "https://github.com/lobehub/lobehub",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "repo": "langgenius/dify",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.dify.ai/",
+      "sources": [
+        "https://github.com/langgenius/dify/blob/main/README.md",
+        "https://docs.dify.ai/"
+      ],
+      "task": {
+        "zh": "可视化搭建知识库与 AI 工作流",
+        "en": "Build knowledge apps and AI workflows visually"
+      },
+      "description": {
+        "zh": "把文档检索、模型和工具组合成可发布的 AI 应用。",
+        "en": "Combine retrieval, models and tools into deployable AI applications."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "Dify 使用自定义许可；多租户、品牌或商业托管场景需核对条款。",
+        "en": "Dify has a custom license; check terms for multi-tenant, branding and commercial-hosting scenarios."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选官方云服务或自托管，再配置模型提供方。",
+          "从文档问答模板开始，用有标准答案的资料测试。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose hosted or self-hosted setup and configure a model provider.",
+          "Start from a document-chat template and test with known-answer material."
+        ]
+      },
+      "keywords": "知识库 文档问答 AI工作流 工作流 自动化 dify rag",
+      "github": {
+        "repo": "langgenius/dify",
+        "stars": 157733,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:19:55Z",
+        "license": "NOASSERTION",
+        "homepage": "https://dify.ai",
+        "source": "https://github.com/langgenius/dify",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "ragflow",
+      "name": "RAGFlow",
+      "repo": "infiniflow/ragflow",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "documents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/infiniflow/ragflow#quick-start",
+      "sources": [
+        "https://github.com/infiniflow/ragflow/blob/main/README.md",
+        "https://github.com/infiniflow/ragflow#quick-start"
+      ],
+      "task": {
+        "zh": "为复杂文档建立检索问答",
+        "en": "Build retrieval-based Q&A for complex documents"
+      },
+      "description": {
+        "zh": "解析文档、建立检索库，并在模型回答中提供来源。",
+        "en": "Parse documents, build a retrieval index and ground answers in sources."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "解析与索引占资源；本地模型需要额外算力，引用也需人工核对。",
+        "en": "Parsing and indexing use resources; local models need extra compute and citations still require checking."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先核对 Docker 部署要求，再配置聊天和嵌入模型。",
+          "导入少量文档，对照原文检查检索结果。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Check Docker requirements, then configure chat and embedding models.",
+          "Import a small collection and compare retrieval results with the originals."
+        ]
+      },
+      "keywords": "知识库 文档问答 pdf问答 ragflow rag",
+      "github": {
+        "repo": "infiniflow/ragflow",
+        "stars": 91601,
+        "archived": false,
+        "pushedAt": "2026-10-01T13:18:58Z",
+        "license": "Apache-2.0",
+        "homepage": "https://ragflow.io",
+        "source": "https://github.com/infiniflow/ragflow",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "fastgpt",
+      "name": "FastGPT",
+      "repo": "labring/FastGPT",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://doc.fastgpt.io/",
+      "sources": [
+        "https://github.com/labring/FastGPT/blob/main/README.md",
+        "https://doc.fastgpt.io/"
+      ],
+      "task": {
+        "zh": "把资料接成可用的问答工作流",
+        "en": "Turn documents into a Q&A workflow"
+      },
+      "description": {
+        "zh": "中文文档友好的知识库与可视化 AI 工作流平台。",
+        "en": "A knowledge-base and visual workflow platform with Chinese documentation."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "项目采用自定义许可；部署平台费用和模型调用另计。",
+        "en": "The project uses a custom license; hosting and model calls are separate expenses."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "部署平台，连接模型并建立测试知识库。",
+          "用有出处的问题检查召回，再发布应用入口。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy, connect a model and create a test knowledge base.",
+          "Check retrieval with source-backed questions before publishing an app entry."
+        ]
+      },
+      "keywords": "知识库 文档问答 AI工作流 fastgpt",
+      "github": {
+        "repo": "labring/FastGPT",
+        "stars": 29781,
+        "archived": false,
+        "pushedAt": "2026-10-01T01:35:56Z",
+        "license": "NOASSERTION",
+        "homepage": "https://fastgpt.io",
+        "source": "https://github.com/labring/FastGPT",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "maxkb",
+      "name": "MaxKB",
+      "repo": "1Panel-dev/MaxKB",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://maxkb.cn/docs/",
+      "sources": [
+        "https://github.com/1Panel-dev/MaxKB/blob/v2/README.md",
+        "https://maxkb.cn/docs/"
+      ],
+      "task": {
+        "zh": "搭建企业资料问答助手",
+        "en": "Build an assistant for company documents"
+      },
+      "description": {
+        "zh": "用知识库、模型和工作流创建企业智能体。",
+        "en": "Create enterprise assistants from knowledge bases, models and workflows."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "需配置访问权限；先用脱敏资料评估，再决定是否接入内部文件。",
+        "en": "Configure access controls; evaluate with sanitized documents before adding internal files."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按照对应版本的安装文档部署并添加模型。",
+          "建立小型知识库，检查回答来源及不同账号权限。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy using version-matched documentation and add a model.",
+          "Build a small knowledge base and check sources and account permissions."
+        ]
+      },
+      "keywords": "企业知识库 知识库 文档问答 maxkb",
+      "github": {
+        "repo": "1Panel-dev/MaxKB",
+        "stars": 22900,
+        "archived": false,
+        "pushedAt": "2026-09-30T08:12:55Z",
+        "license": "GPL-3.0",
+        "homepage": "https://maxkb.cn",
+        "source": "https://github.com/1Panel-dev/MaxKB",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "khoj",
+      "name": "Khoj",
+      "repo": "khoj-ai/khoj",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.khoj.dev/",
+      "sources": [
+        "https://github.com/khoj-ai/khoj/blob/master/README.md",
+        "https://docs.khoj.dev/"
+      ],
+      "task": {
+        "zh": "围绕个人资料建立研究助手",
+        "en": "Build a research assistant around your documents"
+      },
+      "description": {
+        "zh": "整合个人文档、网页搜索和自定义助手。",
+        "en": "Combine personal documents, web search and custom assistants."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "官方托管与自己运行分开；定时任务可能持续消耗模型额度。",
+        "en": "Official hosting and self-hosting differ; scheduled tasks can keep using model credits."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择托管或自托管入口，连接所需模型。",
+          "先加入少量资料，核对来源后再启用自动任务。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose hosted or self-hosted setup and connect a model.",
+          "Add a small document set and verify sources before enabling automations."
+        ]
+      },
+      "keywords": "个人知识库 文档问答 研究助手 khoj second brain",
+      "github": {
+        "repo": "khoj-ai/khoj",
+        "stars": 37562,
+        "archived": false,
+        "pushedAt": "2026-08-02T01:55:40Z",
+        "license": "AGPL-3.0",
+        "homepage": "https://khoj.dev",
+        "source": "https://github.com/khoj-ai/khoj",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "onyx",
+      "name": "Onyx",
+      "repo": "onyx-dot-app/onyx",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge",
+        "chat"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.onyx.app/",
+      "sources": [
+        "https://github.com/onyx-dot-app/onyx/blob/main/README.md",
+        "https://docs.onyx.app/"
+      ],
+      "task": {
+        "zh": "搜索团队文档并向 AI 提问",
+        "en": "Search team documents and ask AI questions"
+      },
+      "description": {
+        "zh": "连接团队知识来源，为聊天和检索提供上下文。",
+        "en": "Connect team knowledge sources to provide context for search and chat."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "社区版与企业功能分开；Lite 模式不提供文档索引，连接器权限需核对。",
+        "en": "Community and enterprise features differ; Lite mode does not index documents. Review connector permissions."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择支持文档索引的部署模式，并配置模型。",
+          "接入一个资料源，检查同步和访问权限。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an indexing-capable deployment and configure a model.",
+          "Connect one source and check synchronization and permissions."
+        ]
+      },
+      "keywords": "团队知识库 企业搜索 文档问答 onyx danswer",
+      "github": {
+        "repo": "onyx-dot-app/onyx",
+        "stars": 32315,
+        "archived": false,
+        "pushedAt": "2026-10-02T12:48:19Z",
+        "license": "NOASSERTION",
+        "homepage": "https://onyx.app",
+        "source": "https://github.com/onyx-dot-app/onyx",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "vane",
+      "name": "Vane (Perplexica)",
+      "repo": "ItzCrazyKns/Vane",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/ItzCrazyKns/Vane#installation",
+      "sources": [
+        "https://github.com/ItzCrazyKns/Vane/blob/master/README.md",
+        "https://github.com/ItzCrazyKns/Vane#installation"
+      ],
+      "task": {
+        "zh": "自己搭建带来源的 AI 搜索",
+        "en": "Host an AI search engine with sources"
+      },
+      "description": {
+        "zh": "原 Perplexica 项目，结合搜索结果与模型生成回答。",
+        "en": "Formerly Perplexica, it combines web search results with model-generated answers."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "搜索来源与回答质量不同；引用链接并不保证结论正确。",
+        "en": "Search-source quality and answer quality differ; a citation does not guarantee a correct conclusion."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方 Docker 方案部署，配置搜索与模型。",
+          "搜索熟悉的问题，逐条打开引用验证。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Use the official Docker setup and configure search and a model.",
+          "Search a familiar topic and open the cited sources to verify it."
+        ]
+      },
+      "keywords": "AI搜索 联网搜索 perplexica vane search research",
+      "github": {
+        "repo": "ItzCrazyKns/Vane",
+        "stars": 36978,
+        "archived": false,
+        "pushedAt": "2026-09-01T14:12:12Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/ItzCrazyKns/Vane",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "open-notebook",
+      "name": "Open Notebook",
+      "repo": "lfnovo/open-notebook",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "knowledge",
+      "topics": [
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/lfnovo/open-notebook#-quick-start",
+      "sources": [
+        "https://github.com/lfnovo/open-notebook/blob/main/README.md",
+        "https://github.com/lfnovo/open-notebook#-quick-start"
+      ],
+      "task": {
+        "zh": "把研究资料放进 AI 笔记本",
+        "en": "Put research material in an AI notebook"
+      },
+      "description": {
+        "zh": "围绕笔记本组织资料、对话与内容处理。",
+        "en": "Organize sources, conversations and content processing in notebooks."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "支持多模型不等于所有功能完全本地；语音与嵌入服务需单独检查。",
+        "en": "Multiple model options do not make every feature local; check speech and embedding services separately."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "部署并更换示例密钥，设置模型提供方。",
+          "创建笔记本，导入样例资料并检验回答。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy, replace example secrets and configure model providers.",
+          "Create a notebook, add sample sources and verify answers."
+        ]
+      },
+      "keywords": "文档问答 研究笔记 notebooklm替代 open notebook",
+      "github": {
+        "repo": "lfnovo/open-notebook",
+        "stars": 39727,
+        "archived": false,
+        "pushedAt": "2026-10-02T11:16:50Z",
+        "license": "MIT",
+        "homepage": "https://www.open-notebook.ai",
+        "source": "https://github.com/lfnovo/open-notebook",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "repo": "n8n-io/n8n",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.n8n.io/",
+      "sources": [
+        "https://github.com/n8n-io/n8n/blob/master/README.md",
+        "https://docs.n8n.io/"
+      ],
+      "task": {
+        "zh": "把重复操作连成自动化流程",
+        "en": "Connect repetitive tasks into automations"
+      },
+      "description": {
+        "zh": "通过可视化节点连接应用、AI 模型和数据处理。",
+        "en": "Use visual nodes to connect apps, AI models and data processing."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "n8n 是 fair-code，许可有限制；不应宣传为任意商业托管都免费。",
+        "en": "n8n is fair-code with license restrictions; unrestricted commercial hosting is not implied."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择官方云版或按文档部署社区版。",
+          "用手动触发的小流程验证，再启用定时和真实写入。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose official hosting or deploy the community edition.",
+          "Test a small manually triggered workflow before enabling schedules or real writes."
+        ]
+      },
+      "keywords": "自动化 工作流 AI工作流 n8n workflow automation",
+      "github": {
+        "repo": "n8n-io/n8n",
+        "stars": 206508,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:17:16Z",
+        "license": "NOASSERTION",
+        "homepage": "https://n8n.io",
+        "source": "https://github.com/n8n-io/n8n",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "langflow",
+      "name": "Langflow",
+      "repo": "langflow-ai/langflow",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.langflow.org/",
+      "sources": [
+        "https://github.com/langflow-ai/langflow/blob/main/README.md",
+        "https://docs.langflow.org/"
+      ],
+      "task": {
+        "zh": "用流程图拼出 AI 应用",
+        "en": "Assemble AI applications with a flow editor"
+      },
+      "description": {
+        "zh": "可视化连接模型、数据源和组件；另有官方桌面安装方案。",
+        "en": "Connect models, data and components visually; an official desktop setup is also available."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "示例能跑不等于生产可用；对外服务还需鉴权、存储和用量控制。",
+        "en": "A working example is not production readiness; public services need authentication, persistence and usage controls."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方安装说明启动，再配置模型凭据。",
+          "从简单聊天流程开始，逐个检查节点输入输出。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Start with the official install guide and configure model credentials.",
+          "Start with a simple chat flow and inspect each node’s inputs and outputs."
+        ]
+      },
+      "keywords": "AI工作流 自动化 知识库 langflow visual flow",
+      "github": {
+        "repo": "langflow-ai/langflow",
+        "stars": 155455,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:21:55Z",
+        "license": "MIT",
+        "homepage": "http://www.langflow.org",
+        "source": "https://github.com/langflow-ai/langflow",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "repo": "crewAIInc/crewAI",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.crewai.com/",
+      "sources": [
+        "https://github.com/crewAIInc/crewAI/blob/main/README.md",
+        "https://docs.crewai.com/"
+      ],
+      "task": {
+        "zh": "编排分工协作的多个 Agent",
+        "en": "Coordinate agents with separate roles"
+      },
+      "description": {
+        "zh": "Python 框架，用任务、角色和流程组织 Agent 工作。",
+        "en": "A Python framework for organizing agents through roles, tasks and flows."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "多 Agent 会叠加调用成本；需要开发和评估，不是自动赚钱工具。",
+        "en": "Multiple agents can multiply API cost; development and evaluation are required."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装框架，配置模型并建立最小任务。",
+          "先检查单个任务的结果和费用，再增加角色。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the framework, configure a model and create a minimal task.",
+          "Check one task’s output and cost before adding more roles."
+        ]
+      },
+      "keywords": "多智能体 Agent框架 自动化 crewai multi agent",
+      "github": {
+        "repo": "crewAIInc/crewAI",
+        "stars": 59287,
+        "archived": false,
+        "pushedAt": "2026-10-01T19:47:51Z",
+        "license": "MIT",
+        "homepage": "https://crewai.com",
+        "source": "https://github.com/crewAIInc/crewAI",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "microsoft-agent-framework",
+      "name": "Microsoft Agent Framework",
+      "repo": "microsoft/agent-framework",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/microsoft/agent-framework#getting-started",
+      "sources": [
+        "https://github.com/microsoft/agent-framework/blob/main/README.md",
+        "https://github.com/microsoft/agent-framework#getting-started",
+        "https://github.com/microsoft/autogen/blob/main/README.md"
+      ],
+      "task": {
+        "zh": "用 Python 或 .NET 构建 Agent 流程",
+        "en": "Build agent workflows in Python or .NET"
+      },
+      "description": {
+        "zh": "微软提供的 Agent 编排框架；AutoGen 官方建议新项目转向此框架。",
+        "en": "Microsoft’s agent orchestration framework, recommended by AutoGen for new projects."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "需要编程与模型连接；迁移旧 AutoGen 项目应逐项核对兼容性。",
+        "en": "Requires programming and a model connection; check compatibility when migrating an AutoGen project."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择 Python 或 .NET 示例，设置模型提供方。",
+          "运行单 Agent 示例，再加入工作流与人工确认节点。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a Python or .NET sample and set up a model provider.",
+          "Run a single-agent example before adding workflows and human approvals."
+        ]
+      },
+      "keywords": "多智能体 Agent框架 autogen microsoft agent framework",
+      "github": {
+        "repo": "microsoft/agent-framework",
+        "stars": 13910,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:23:54Z",
+        "license": "MIT",
+        "homepage": "https://aka.ms/agent-framework",
+        "source": "https://github.com/microsoft/agent-framework",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "openhands",
+      "name": "OpenHands",
+      "repo": "OpenHands/OpenHands",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding",
+        "agents"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://docs.openhands.dev/",
+      "sources": [
+        "https://github.com/OpenHands/OpenHands/blob/main/README.md",
+        "https://docs.openhands.dev/"
+      ],
+      "task": {
+        "zh": "让编程 Agent 在工作环境中处理任务",
+        "en": "Run coding agents in a working environment"
+      },
+      "description": {
+        "zh": "为代码修改与开发任务提供 Agent 界面和执行环境。",
+        "en": "Provides an agent interface and execution environment for development tasks."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "Agent 可执行命令和改文件；先选择隔离沙箱，不要直接给生产权限。",
+        "en": "Agents can execute commands and edit files; start in an isolated sandbox without production access."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方指南配置隔离环境和模型。",
+          "使用副本仓库做小修复，检查差异和测试结果。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Configure an isolated environment and model using the official guide.",
+          "Try a small fix in a repository copy and inspect the diff and tests."
+        ]
+      },
+      "keywords": "AI编程 编程助手 coding agent openhands",
+      "github": {
+        "repo": "OpenHands/OpenHands",
+        "stars": 89798,
+        "archived": false,
+        "pushedAt": "2026-10-02T12:17:40Z",
+        "license": "MIT",
+        "homepage": "https://openhands.dev",
+        "source": "https://github.com/OpenHands/OpenHands",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "repo": "browser-use/browser-use",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.browser-use.com/",
+      "sources": [
+        "https://github.com/browser-use/browser-use/blob/main/README.md",
+        "https://docs.browser-use.com/"
+      ],
+      "task": {
+        "zh": "让 Agent 操作网页完成任务",
+        "en": "Let an agent interact with web pages"
+      },
+      "description": {
+        "zh": "开发者可用模型驱动浏览器导航、读取和操作。",
+        "en": "Developers can use models to drive browser navigation, reading and actions."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "登录会话可能涉及真实操作；先用测试账号，付费或发送动作保留确认。",
+        "en": "Authenticated sessions can perform real actions; use test accounts and retain approval for payments or sending."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方指南安装并连接兼容模型。",
+          "先测试只读网页任务，再为写入操作设置确认。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install from the official guide and connect a compatible model.",
+          "Test a read-only web task before adding approvals for write actions."
+        ]
+      },
+      "keywords": "浏览器自动化 网页操作 browser use agent",
+      "github": {
+        "repo": "browser-use/browser-use",
+        "stars": 116997,
+        "archived": false,
+        "pushedAt": "2026-10-02T02:56:28Z",
+        "license": "MIT",
+        "homepage": "https://browser-use.com",
+        "source": "https://github.com/browser-use/browser-use",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "deerflow",
+      "name": "DeerFlow",
+      "repo": "bytedance/deer-flow",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents",
+        "knowledge"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/bytedance/deer-flow",
+      "sources": [
+        "https://github.com/bytedance/deer-flow/blob/main/README.md",
+        "https://github.com/bytedance/deer-flow"
+      ],
+      "task": {
+        "zh": "让研究 Agent 组合工具完成长任务",
+        "en": "Combine tools for longer research tasks"
+      },
+      "description": {
+        "zh": "提供研究、代码与内容任务的 Agent 运行框架和界面。",
+        "en": "Provides a harness and interface for research, coding and content tasks."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "长任务可能持续消耗模型与沙箱费用；先限制时间和工具权限。",
+        "en": "Long tasks can keep consuming model and sandbox resources; set time and permission limits first."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按照官方安装文档部署，设置模型和沙箱。",
+          "给出小型研究任务，核对来源、产物与调用记录。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Deploy with the official installation docs and configure models and a sandbox.",
+          "Assign a small research task and inspect sources, artifacts and usage."
+        ]
+      },
+      "keywords": "研究助手 多智能体 自动化 deerflow deep research",
+      "github": {
+        "repo": "bytedance/deer-flow",
+        "stars": 83339,
+        "archived": false,
+        "pushedAt": "2026-10-02T11:33:25Z",
+        "license": "MIT",
+        "homepage": "https://deerflow.tech",
+        "source": "https://github.com/bytedance/deer-flow",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "repo": "Aider-AI/aider",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://aider.chat/docs/install.html",
+      "sources": [
+        "https://github.com/Aider-AI/aider/blob/main/README.md",
+        "https://aider.chat/docs/install.html"
+      ],
+      "task": {
+        "zh": "在终端里与 AI 一起修改代码",
+        "en": "Edit code with AI in your terminal"
+      },
+      "description": {
+        "zh": "在 Git 项目中选择文件，让模型协助修改并检查差异。",
+        "en": "Select files in a Git project, ask a model for edits and inspect the diff."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "需要命令行与 Git 基础；模型 API 费用不会被工具消除。",
+        "en": "Requires terminal and Git skills; using the tool does not remove model API charges."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按安装文档配置模型，在测试分支打开项目。",
+          "只添加相关文件，请求小修改并运行测试。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Configure a model and open a project on a test branch.",
+          "Add only relevant files, request a small edit and run tests."
+        ]
+      },
+      "keywords": "AI编程 终端编程 aider pair programming",
+      "github": {
+        "repo": "Aider-AI/aider",
+        "stars": 49334,
+        "archived": false,
+        "pushedAt": "2026-05-22T14:02:20Z",
+        "license": "Apache-2.0",
+        "homepage": "https://aider.chat/",
+        "source": "https://github.com/Aider-AI/aider",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "smolagents",
+      "name": "smolagents",
+      "repo": "huggingface/smolagents",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://huggingface.co/docs/smolagents/",
+      "sources": [
+        "https://github.com/huggingface/smolagents/blob/main/README.md",
+        "https://huggingface.co/docs/smolagents/"
+      ],
+      "task": {
+        "zh": "用少量 Python 代码搭建 Agent",
+        "en": "Build an agent with a small Python program"
+      },
+      "description": {
+        "zh": "提供工具调用和代码执行式 Agent 的开发组件。",
+        "en": "Provides components for tool-using and code-executing agents."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "代码执行必须隔离；模型生成的代码不应直接获得敏感文件权限。",
+        "en": "Isolate code execution; model-generated code should not automatically access sensitive files."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装库，选择模型并配置最少量工具。",
+          "在沙箱执行示例，检查每次工具和代码调用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the library, choose a model and configure minimal tools.",
+          "Run an example in a sandbox and inspect each tool and code call."
+        ]
+      },
+      "keywords": "Agent框架 多智能体 smolagents python",
+      "github": {
+        "repo": "huggingface/smolagents",
+        "stars": 29648,
+        "archived": false,
+        "pushedAt": "2026-09-30T05:07:25Z",
+        "license": "Apache-2.0",
+        "homepage": "https://huggingface.co/docs/smolagents",
+        "source": "https://github.com/huggingface/smolagents",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "repo": "google-gemini/gemini-cli",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://geminicli.com/docs/get-started/installation/",
+      "sources": [
+        "https://github.com/google-gemini/gemini-cli/blob/main/README.md",
+        "https://geminicli.com/docs/get-started/installation/"
+      ],
+      "task": {
+        "zh": "在终端里用 Gemini 处理开发任务",
+        "en": "Use Gemini for development tasks in a terminal"
+      },
+      "description": {
+        "zh": "开源终端 Agent，可读取项目上下文并调用开发工具。",
+        "en": "An open-source terminal agent that can read project context and use development tools."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "账号登录和 API Key 对应不同限额与计费；以当前官方方案为准。",
+        "en": "Account sign-in and API keys have different quotas and billing; check current official terms."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按文档安装，并选择适合的官方认证方式。",
+          "在测试目录运行只读任务，再审核后续写入。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install from the docs and choose an official authentication method.",
+          "Run a read-only task in a test directory before reviewing write operations."
+        ]
+      },
+      "keywords": "AI编程 终端编程 gemini cli",
+      "github": {
+        "repo": "google-gemini/gemini-cli",
+        "stars": 107216,
+        "archived": false,
+        "pushedAt": "2026-10-02T06:42:04Z",
+        "license": "Apache-2.0",
+        "homepage": "https://geminicli.com",
+        "source": "https://github.com/google-gemini/gemini-cli",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "qwen-code",
+      "name": "Qwen Code",
+      "repo": "QwenLM/qwen-code",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "coding",
+      "topics": [
+        "coding"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/QwenLM/qwen-code#installation",
+      "sources": [
+        "https://github.com/QwenLM/qwen-code/blob/main/README.md",
+        "https://github.com/QwenLM/qwen-code#installation"
+      ],
+      "task": {
+        "zh": "使用通义生态的编程 Agent",
+        "en": "Use a coding agent from the Qwen ecosystem"
+      },
+      "description": {
+        "zh": "提供终端及其他开发入口，用于理解项目、修改代码和调用工具。",
+        "en": "Provides terminal and other development entry points for code understanding, edits and tools."
+      },
+      "cost": {
+        "zh": "应用与模型服务分开：模型 API、官方云服务及部分高级功能可能收费。",
+        "en": "The app and model service are separate; model APIs, hosted services and some premium features may cost extra."
+      },
+      "requirements": {
+        "zh": "通常需配置模型服务账号/API Key，或连接兼容的本地模型服务。",
+        "en": "Usually requires a model-service account/API key or a compatible local model server."
+      },
+      "caution": {
+        "zh": "工具开源不表示模型调用无限免费；认证方式和提供方决定费用。",
+        "en": "Open-source tooling does not mean unlimited free inference; authentication and providers determine cost."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择官方安装方式并配置认证或模型提供方。",
+          "在测试分支完成小任务，核对差异与调用记录。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an official installation method and configure authentication or a model provider.",
+          "Complete a small task on a test branch and inspect changes and usage."
+        ]
+      },
+      "keywords": "AI编程 终端编程 通义编程 qwen code",
+      "github": {
+        "repo": "QwenLM/qwen-code",
+        "stars": 28273,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:11:37Z",
+        "license": "Apache-2.0",
+        "homepage": "https://qwenlm.github.io/qwen-code-docs/en/users/overview",
+        "source": "https://github.com/QwenLM/qwen-code",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stable-diffusion-webui",
+      "name": "Stable Diffusion WebUI",
+      "repo": "AUTOMATIC1111/stable-diffusion-webui",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "image",
+      "topics": [
+        "image"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui#installation-and-running",
+      "sources": [
+        "https://github.com/AUTOMATIC1111/stable-diffusion-webui/blob/master/README.md",
+        "https://github.com/AUTOMATIC1111/stable-diffusion-webui#installation-and-running"
+      ],
+      "task": {
+        "zh": "在本地浏览器里生成和修改图片",
+        "en": "Generate and edit images in a local web UI"
+      },
+      "description": {
+        "zh": "提供文生图、图生图等界面，围绕兼容的扩散模型工作。",
+        "en": "Provides text-to-image and image-to-image interfaces for compatible diffusion models."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "需安装依赖和权重；插件兼容性与维护状态要按实际版本检查。",
+        "en": "Install dependencies and weights; check plugin compatibility and maintenance for the version you use."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按照系统和显卡对应的官方安装说明配置。",
+          "加载兼容模型，用基础参数生成一张小图。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Follow the official installation guide for your OS and GPU.",
+          "Load a compatible model and generate a small image with basic settings."
+        ]
+      },
+      "keywords": "图片生成 AI绘画 stable diffusion automatic1111 webui",
+      "github": {
+        "repo": "AUTOMATIC1111/stable-diffusion-webui",
+        "stars": 165185,
+        "archived": false,
+        "pushedAt": "2026-03-02T07:00:53Z",
+        "license": "AGPL-3.0",
+        "homepage": "",
+        "source": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "stable-diffusion-cpp",
+      "name": "stable-diffusion.cpp",
+      "repo": "leejet/stable-diffusion.cpp",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "image",
+      "topics": [
+        "image",
+        "local"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/leejet/stable-diffusion.cpp",
+      "sources": [
+        "https://github.com/leejet/stable-diffusion.cpp/blob/master/README.md",
+        "https://github.com/leejet/stable-diffusion.cpp"
+      ],
+      "task": {
+        "zh": "用轻量推理后端运行图像模型",
+        "en": "Run image models with a lightweight inference backend"
+      },
+      "description": {
+        "zh": "C/C++ 推理项目，支持多种扩散模型与硬件后端。",
+        "en": "A C/C++ inference project supporting multiple diffusion models and hardware backends."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "这是命令行/集成组件；所选模型的支持状态和量化格式要核对。",
+        "en": "This is a CLI/integration component; verify model support and quantization formats."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "下载适合平台的构建或按文档编译，并取得兼容权重。",
+          "用官方最小示例生成图像并记录内存占用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Get a platform build or compile from the docs, then obtain compatible weights.",
+          "Generate an image with the minimal official example and note memory usage."
+        ]
+      },
+      "keywords": "图片生成 本地推理 stable diffusion cpp gguf",
+      "github": {
+        "repo": "leejet/stable-diffusion.cpp",
+        "stars": 7496,
+        "archived": false,
+        "pushedAt": "2026-09-27T18:38:31Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/leejet/stable-diffusion.cpp",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "diffusers",
+      "name": "Diffusers",
+      "repo": "huggingface/diffusers",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "image",
+      "topics": [
+        "image",
+        "video"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://huggingface.co/docs/diffusers/",
+      "sources": [
+        "https://github.com/huggingface/diffusers/blob/main/README.md",
+        "https://huggingface.co/docs/diffusers/"
+      ],
+      "task": {
+        "zh": "在 Python 中接入图像和视频模型",
+        "en": "Use image and video models from Python"
+      },
+      "description": {
+        "zh": "通过 Pipeline 调用扩散模型，面向应用开发和实验。",
+        "en": "Use diffusion pipelines for application development and experimentation."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "库的许可不覆盖所有模型权重；按模型卡核对用途与硬件。",
+        "en": "The library license does not cover every model’s weights; check model cards for use and hardware requirements."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装匹配硬件的 PyTorch 与 Diffusers。",
+          "运行一个官方 Pipeline 示例，核对输出与资源占用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install PyTorch and Diffusers for your hardware.",
+          "Run an official pipeline example and check output and resource use."
+        ]
+      },
+      "keywords": "图片生成 视频生成 diffusion diffusers python",
+      "github": {
+        "repo": "huggingface/diffusers",
+        "stars": 34642,
+        "archived": false,
+        "pushedAt": "2026-10-01T11:07:23Z",
+        "license": "Apache-2.0",
+        "homepage": "https://huggingface.co/docs/diffusers",
+        "source": "https://github.com/huggingface/diffusers",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "wan22",
+      "name": "Wan 2.2",
+      "repo": "Wan-Video/Wan2.2",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "video",
+      "topics": [
+        "video",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/Wan-Video/Wan2.2",
+      "sources": [
+        "https://github.com/Wan-Video/Wan2.2/blob/main/README.md",
+        "https://github.com/Wan-Video/Wan2.2"
+      ],
+      "task": {
+        "zh": "尝试文生视频与图生视频模型",
+        "en": "Try text-to-video and image-to-video models"
+      },
+      "description": {
+        "zh": "提供视频生成模型、权重入口和推理示例。",
+        "en": "Provides video-generation models, weight links and inference examples."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "不同尺寸及任务的显存需求差异大；先选官方支持的较小方案。",
+        "en": "Memory needs vary widely by size and task; start with a smaller officially supported setup."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择具体任务和模型尺寸，按说明准备环境与权重。",
+          "先生成低负载样例，检查时长、分辨率与资源消耗。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a task and model size, then prepare dependencies and weights.",
+          "Generate a low-load sample and check duration, resolution and resource use."
+        ]
+      },
+      "keywords": "视频生成 图生视频 文生视频 wan 万相",
+      "github": {
+        "repo": "Wan-Video/Wan2.2",
+        "stars": 17694,
+        "archived": false,
+        "pushedAt": "2026-09-21T06:16:22Z",
+        "license": "Apache-2.0",
+        "homepage": "https://wan.video",
+        "source": "https://github.com/Wan-Video/Wan2.2",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "hunyuanvideo",
+      "name": "HunyuanVideo",
+      "repo": "Tencent-Hunyuan/HunyuanVideo",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "video",
+      "topics": [
+        "video",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/Tencent-Hunyuan/HunyuanVideo",
+      "sources": [
+        "https://github.com/Tencent-Hunyuan/HunyuanVideo/blob/main/README.md",
+        "https://github.com/Tencent-Hunyuan/HunyuanVideo"
+      ],
+      "task": {
+        "zh": "研究腾讯混元视频生成模型",
+        "en": "Explore Tencent’s Hunyuan video model"
+      },
+      "description": {
+        "zh": "官方仓库提供视频模型推理代码与权重说明。",
+        "en": "The official repository provides video-model inference code and weight documentation."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "原始模型资源要求较高；权重使用受专门许可约束。",
+        "en": "The original model has substantial hardware requirements and a dedicated weight license."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先读 Requirements 和模型许可，再准备匹配的环境。",
+          "使用官方示例测试，不把社区优化版要求当作原版要求。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Read requirements and model licensing before preparing the environment.",
+          "Test an official example without assuming community optimizations apply to the original."
+        ]
+      },
+      "keywords": "视频生成 文生视频 混元 hunyuanvideo",
+      "github": {
+        "repo": "Tencent-Hunyuan/HunyuanVideo",
+        "stars": 12581,
+        "archived": false,
+        "pushedAt": "2026-06-29T09:33:50Z",
+        "license": "NOASSERTION",
+        "homepage": "https://aivideo.hunyuan.tencent.com",
+        "source": "https://github.com/Tencent-Hunyuan/HunyuanVideo",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "ltx-video",
+      "name": "LTX-Video",
+      "repo": "Lightricks/LTX-Video",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "video",
+      "topics": [
+        "video",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/Lightricks/LTX-Video",
+      "sources": [
+        "https://github.com/Lightricks/LTX-Video/blob/main/README.md",
+        "https://github.com/Lightricks/LTX-Video"
+      ],
+      "task": {
+        "zh": "用视频模型把提示变成短片",
+        "en": "Turn prompts into clips with a video model"
+      },
+      "description": {
+        "zh": "提供 LTX-Video 系列模型的推理与集成说明。",
+        "en": "Provides inference and integration instructions for the LTX-Video family."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "这是指定系列仓库，不保证涵盖厂商最新产品；各版本权重许可不同。",
+        "en": "This repository covers a specific family, not necessarily the vendor’s newest products; weight licenses vary by version."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择仓库支持的权重版本和官方推理方式。",
+          "生成小样例后，再调分辨率、时长和算力配置。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a supported weight version and official inference method.",
+          "Generate a small sample before increasing resolution, duration or compute."
+        ]
+      },
+      "keywords": "视频生成 文生视频 ltx video",
+      "github": {
+        "repo": "Lightricks/LTX-Video",
+        "stars": 11004,
+        "archived": false,
+        "pushedAt": "2026-01-05T22:37:07Z",
+        "license": "Apache-2.0",
+        "homepage": "https://ltx.io/model",
+        "source": "https://github.com/Lightricks/LTX-Video",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "cogvideo",
+      "name": "CogVideoX",
+      "repo": "zai-org/CogVideo",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "video",
+      "topics": [
+        "video",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/zai-org/CogVideo",
+      "sources": [
+        "https://github.com/zai-org/CogVideo/blob/main/README.md",
+        "https://github.com/zai-org/CogVideo"
+      ],
+      "task": {
+        "zh": "运行 CogVideoX 视频生成模型",
+        "en": "Run CogVideoX video-generation models"
+      },
+      "description": {
+        "zh": "包含模型说明、推理示例及微调入口。",
+        "en": "Includes model documentation, inference examples and fine-tuning entry points."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "2B、5B 等版本的许可与资源需求不同；不要混用版本说明。",
+        "en": "Licensing and resource needs differ across versions such as 2B and 5B; do not mix their instructions."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按模型版本选择官方推理实现和权重。",
+          "运行示例并核对输出质量，再考虑微调。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an official inference implementation and weights for a specific version.",
+          "Run an example and inspect quality before considering fine-tuning."
+        ]
+      },
+      "keywords": "视频生成 文生视频 cogvideo cogvideox",
+      "github": {
+        "repo": "zai-org/CogVideo",
+        "stars": 13054,
+        "archived": false,
+        "pushedAt": "2025-11-04T11:19:04Z",
+        "license": "Apache-2.0",
+        "homepage": "",
+        "source": "https://github.com/zai-org/CogVideo",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "whisper",
+      "name": "Whisper",
+      "repo": "openai/whisper",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/openai/whisper#setup",
+      "sources": [
+        "https://github.com/openai/whisper/blob/main/README.md",
+        "https://github.com/openai/whisper#setup"
+      ],
+      "task": {
+        "zh": "把语音文件转成文字",
+        "en": "Transcribe audio files into text"
+      },
+      "description": {
+        "zh": "本地语音识别项目，可用于转写与字幕处理。",
+        "en": "A local speech-recognition project for transcription and subtitle workflows."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "需要 Python 和 FFmpeg；口音、噪声和静音可能造成误识别。",
+        "en": "Requires Python and FFmpeg; accents, noise and silence can cause transcription errors."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装官方包和 FFmpeg，选择适合设备的模型。",
+          "转写短录音，对照原音修正人名、数字和静音段。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the official package and FFmpeg, then choose a suitable model.",
+          "Transcribe a short recording and verify names, numbers and silent sections."
+        ]
+      },
+      "keywords": "语音转文字 自动字幕 录音转写 whisper speech recognition",
+      "github": {
+        "repo": "openai/whisper",
+        "stars": 109874,
+        "archived": false,
+        "pushedAt": "2026-08-31T17:19:19Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/openai/whisper",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "faster-whisper",
+      "name": "faster-whisper",
+      "repo": "SYSTRAN/faster-whisper",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/SYSTRAN/faster-whisper#installation",
+      "sources": [
+        "https://github.com/SYSTRAN/faster-whisper/blob/master/README.md",
+        "https://github.com/SYSTRAN/faster-whisper#installation"
+      ],
+      "task": {
+        "zh": "给批量语音转写换一个推理后端",
+        "en": "Use another inference backend for batch transcription"
+      },
+      "description": {
+        "zh": "基于 CTranslate2 的 Whisper 实现，可用于 Python 转写流程。",
+        "en": "A CTranslate2-based Whisper implementation for Python transcription pipelines."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "实际速度依硬件、精度和参数变化；不能把官方某次测试当作通用倍速。",
+        "en": "Speed depends on hardware, precision and settings; a published benchmark is not a universal speedup."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装包并按 CPU 或 GPU 方案核对依赖。",
+          "用同一段音频比较质量、耗时和内存占用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the package and check CPU/GPU dependencies.",
+          "Compare quality, time and memory on the same audio clip."
+        ]
+      },
+      "keywords": "语音转文字 录音转写 faster whisper transcription",
+      "github": {
+        "repo": "SYSTRAN/faster-whisper",
+        "stars": 25674,
+        "archived": false,
+        "pushedAt": "2026-10-01T14:01:34Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/SYSTRAN/faster-whisper",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "whisper-cpp",
+      "name": "whisper.cpp",
+      "repo": "ggml-org/whisper.cpp",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio",
+        "local"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/ggml-org/whisper.cpp#quick-start",
+      "sources": [
+        "https://github.com/ggml-org/whisper.cpp/blob/master/README.md",
+        "https://github.com/ggml-org/whisper.cpp#quick-start"
+      ],
+      "task": {
+        "zh": "在本地设备集成语音转写",
+        "en": "Integrate local speech transcription"
+      },
+      "description": {
+        "zh": "C/C++ 语音推理实现，提供多平台构建与示例。",
+        "en": "A C/C++ speech-inference implementation with cross-platform builds and examples."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "仓库含移动端示例，但不是下载后即可通用安装的手机应用。",
+        "en": "The repository includes mobile examples, not a universal ready-to-install phone app."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按平台编译或选择官方构建，下载兼容模型。",
+          "使用官方示例转写短音频，检查格式与文本。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Build for your platform or use an official build and download a compatible model.",
+          "Transcribe a short clip using an official example and check format and text."
+        ]
+      },
+      "keywords": "语音转文字 离线转写 whisper cpp transcription",
+      "github": {
+        "repo": "ggml-org/whisper.cpp",
+        "stars": 54095,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:21:13Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/ggml-org/whisper.cpp",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "whisperx",
+      "name": "WhisperX",
+      "repo": "m-bain/whisperX",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "linux"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/m-bain/whisperX#setup",
+      "sources": [
+        "https://github.com/m-bain/whisperX/blob/main/README.md",
+        "https://github.com/m-bain/whisperX#setup"
+      ],
+      "task": {
+        "zh": "给转写结果添加词级时间戳和说话人",
+        "en": "Add word timestamps and speaker labels to transcripts"
+      },
+      "description": {
+        "zh": "组合语音识别、对齐与可选说话人分离流程。",
+        "en": "Combines recognition, alignment and optional speaker diarization."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "说话人分离需要相应模型授权/访问令牌；标签不等于真实身份。",
+        "en": "Diarization needs model access/terms and may require a token; labels do not identify real people."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装依赖，按需取得说话人模型访问权限。",
+          "用多说话人的短录音核对时间戳和分组。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install dependencies and obtain diarization-model access if needed.",
+          "Check timestamps and speaker groups on a short multi-speaker recording."
+        ]
+      },
+      "keywords": "语音转文字 自动字幕 说话人分离 whisperx diarization",
+      "github": {
+        "repo": "m-bain/whisperX",
+        "stars": 24334,
+        "archived": false,
+        "pushedAt": "2026-09-26T20:53:59Z",
+        "license": "BSD-2-Clause",
+        "homepage": "",
+        "source": "https://github.com/m-bain/whisperX",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "gpt-sovits",
+      "name": "GPT-SoVITS",
+      "repo": "RVC-Boss/GPT-SoVITS",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://github.com/RVC-Boss/GPT-SoVITS#installation",
+      "sources": [
+        "https://github.com/RVC-Boss/GPT-SoVITS/blob/main/README.md",
+        "https://github.com/RVC-Boss/GPT-SoVITS#installation"
+      ],
+      "task": {
+        "zh": "用授权声音样本制作语音",
+        "en": "Generate speech from authorized voice samples"
+      },
+      "description": {
+        "zh": "提供语音合成、声音适配及相关 WebUI。",
+        "en": "Provides speech synthesis, voice adaptation and related web interfaces."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "只使用已获许可的声音；不要冒充他人，模型与音频素材许可另查。",
+        "en": "Use voices you have permission to use; avoid impersonation and check model/audio licenses separately."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按系统安装官方方案并下载所需模型。",
+          "用授权短音频测试，核对发音并标注合成内容。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install using an official system-specific method and get required models.",
+          "Test with authorized audio, check pronunciation and label synthetic output."
+        ]
+      },
+      "keywords": "语音合成 配音 声音克隆 gpt sovits tts",
+      "github": {
+        "repo": "RVC-Boss/GPT-SoVITS",
+        "stars": 62239,
+        "archived": false,
+        "pushedAt": "2026-08-18T09:16:25Z",
+        "license": "MIT",
+        "homepage": "",
+        "source": "https://github.com/RVC-Boss/GPT-SoVITS",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "cosyvoice",
+      "name": "CosyVoice",
+      "repo": "QwenAudio/CosyVoice",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/QwenAudio/CosyVoice",
+      "sources": [
+        "https://github.com/QwenAudio/CosyVoice/blob/main/README.md",
+        "https://github.com/QwenAudio/CosyVoice"
+      ],
+      "task": {
+        "zh": "尝试多语言语音生成",
+        "en": "Try multilingual speech generation"
+      },
+      "description": {
+        "zh": "提供语音生成模型与推理、训练和部署示例。",
+        "en": "Provides speech-generation models and inference, training and deployment examples."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "仓库已迁到 QwenAudio；不同模型版本的环境与授权需对应核对。",
+        "en": "The repository moved to QwenAudio; match environment and licensing to the selected model version."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按版本安装依赖，下载官方指定权重。",
+          "先做短句合成，用获授权声音测试可选音色功能。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install version-matched dependencies and official weights.",
+          "Synthesize a short sentence and use authorized voices for optional voice features."
+        ]
+      },
+      "keywords": "语音合成 配音 cosyvoice multilingual tts",
+      "github": {
+        "repo": "QwenAudio/CosyVoice",
+        "stars": 23822,
+        "archived": false,
+        "pushedAt": "2026-05-25T18:15:40Z",
+        "license": "Apache-2.0",
+        "homepage": "https://funaudiollm.github.io/cosyvoice3",
+        "source": "https://github.com/QwenAudio/CosyVoice",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "f5-tts",
+      "name": "F5-TTS",
+      "repo": "SWivid/F5-TTS",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/SWivid/F5-TTS",
+      "sources": [
+        "https://github.com/SWivid/F5-TTS/blob/main/README.md",
+        "https://github.com/SWivid/F5-TTS"
+      ],
+      "task": {
+        "zh": "研究基于参考音频的语音合成",
+        "en": "Explore reference-audio speech synthesis"
+      },
+      "description": {
+        "zh": "提供语音合成代码与预训练模型入口。",
+        "en": "Provides speech-synthesis code and links to pretrained models."
+      },
+      "cost": {
+        "zh": "代码 MIT；官方预训练权重为 CC-BY-NC，不能按默认权重免费商用。算力另计。",
+        "en": "Code is MIT; official pretrained weights are CC-BY-NC and are not licensed for commercial use. Compute is separate."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "代码 MIT，但官方预训练权重标为 CC-BY-NC；不能据代码许可承诺可商用。",
+        "en": "Code is MIT, but official pretrained weights are CC-BY-NC; the code license does not grant commercial weight use."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先确认权重的非商业条款，再安装依赖和模型。",
+          "用获许可的样例音频做研究测试，保留模型版本。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Check noncommercial weight terms before installing dependencies and models.",
+          "Run a research test with permitted reference audio and record the model version."
+        ]
+      },
+      "keywords": "语音合成 配音 f5 tts speech synthesis",
+      "github": {
+        "repo": "SWivid/F5-TTS",
+        "stars": 15316,
+        "archived": false,
+        "pushedAt": "2026-09-21T14:21:15Z",
+        "license": "MIT",
+        "homepage": "https://arxiv.org/abs/2410.06885",
+        "source": "https://github.com/SWivid/F5-TTS",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "index-tts",
+      "name": "IndexTTS",
+      "repo": "index-tts/index-tts",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "audio",
+      "topics": [
+        "audio",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/index-tts/index-tts",
+      "sources": [
+        "https://github.com/index-tts/index-tts/blob/main/README.md",
+        "https://github.com/index-tts/index-tts"
+      ],
+      "task": {
+        "zh": "控制语音生成的表达方式",
+        "en": "Control speech-generation delivery"
+      },
+      "description": {
+        "zh": "提供参考声音驱动的语音合成与官方 WebUI。",
+        "en": "Provides reference-voice speech synthesis and an official web UI."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "项目使用专门模型协议；商用、音色授权和合成披露需按实际用途核对。",
+        "en": "Uses a dedicated model agreement; review commercial use, voice rights and disclosure for your use case."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方依赖管理方案准备环境与模型。",
+          "使用授权声音生成短句，逐项检查节奏和发音。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Prepare the environment and model with the official dependency setup.",
+          "Generate a short sentence with an authorized voice and check pacing and pronunciation."
+        ]
+      },
+      "keywords": "语音合成 配音 情绪配音 indextts index tts",
+      "github": {
+        "repo": "index-tts/index-tts",
+        "stars": 24263,
+        "archived": false,
+        "pushedAt": "2026-09-29T16:06:53Z",
+        "license": "NOASSERTION",
+        "homepage": "",
+        "source": "https://github.com/index-tts/index-tts",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen 3.8 / 3.x",
+      "repo": "QwenLM/Qwen3.8",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/QwenLM/Qwen3.8",
+      "sources": [
+        "https://github.com/QwenLM/Qwen3.8/blob/main/README.md",
+        "https://github.com/QwenLM/Qwen3.8"
+      ],
+      "task": {
+        "zh": "选择并运行通义千问开放权重模型",
+        "en": "Choose and run Qwen open-weight models"
+      },
+      "description": {
+        "zh": "官方仓库整理 Qwen 3.8、3.6、3.5 的权重与推理入口。",
+        "en": "The official repository links weights and inference options for Qwen 3.8, 3.6 and 3.5."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "这是模型系列，不是桌面软件；API、聊天网站和下载权重的费用边界不同。",
+        "en": "This is a model family, not a desktop app; API access, chat services and downloaded weights have different costs."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先选择参数规模、权重许可和支持的推理后端。",
+          "按该模型的 Quickstart 运行样例，核对显存和输出。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose model size, weight license and a supported inference backend.",
+          "Run the model-specific quick start and check memory use and output."
+        ]
+      },
+      "keywords": "大模型 开放权重 通义 千问 qwen llm",
+      "github": {
+        "repo": "QwenLM/Qwen3.8",
+        "stars": 4215,
+        "archived": false,
+        "pushedAt": "2026-08-17T05:17:40Z",
+        "license": "Apache-2.0",
+        "homepage": "https://qwen.ai",
+        "source": "https://github.com/QwenLM/Qwen3.8",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "deepseek-r1",
+      "name": "DeepSeek-R1",
+      "repo": "deepseek-ai/DeepSeek-R1",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+      "sources": [
+        "https://github.com/deepseek-ai/DeepSeek-R1/blob/main/README.md",
+        "https://github.com/deepseek-ai/DeepSeek-R1"
+      ],
+      "task": {
+        "zh": "尝试推理模型与蒸馏版本",
+        "en": "Try a reasoning model and distilled variants"
+      },
+      "description": {
+        "zh": "官方提供 R1 系列与蒸馏模型说明、权重入口和使用建议。",
+        "en": "Official documentation, weight links and usage guidance for R1 and distilled models."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "完整模型与蒸馏版硬件需求差异很大；Llama 衍生权重还涉及原模型条款。",
+        "en": "Full and distilled models have very different hardware needs; Llama-derived weights also involve upstream terms."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按设备选择具体版本，核对该版本模型卡。",
+          "在兼容推理工具中测试小任务，不把推理过程当正确性保证。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a version for your hardware and read its model card.",
+          "Test a small task in a compatible runtime; reasoning text does not guarantee correctness."
+        ]
+      },
+      "keywords": "大模型 推理模型 深度求索 deepseek r1 reasoning",
+      "github": {
+        "repo": "deepseek-ai/DeepSeek-R1",
+        "stars": 91945,
+        "archived": false,
+        "pushedAt": "2025-06-27T08:35:54Z",
+        "license": "MIT",
+        "homepage": null,
+        "source": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "deepseek-v3",
+      "name": "DeepSeek-V3",
+      "repo": "deepseek-ai/DeepSeek-V3",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+      "sources": [
+        "https://github.com/deepseek-ai/DeepSeek-V3/blob/main/README.md",
+        "https://github.com/deepseek-ai/DeepSeek-V3"
+      ],
+      "task": {
+        "zh": "了解并部署 DeepSeek-V3 模型",
+        "en": "Explore and deploy the DeepSeek-V3 model"
+      },
+      "description": {
+        "zh": "提供 V3 模型架构、权重与官方部署说明，适合模型研究和服务集成。",
+        "en": "Provides V3 architecture, weights and deployment guidance for model research and service integration."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "这里指 V3 指定仓库，非最新模型榜；原始规模通常不适合普通笔记本。",
+        "en": "This is the specific V3 repository, not a latest-model ranking; the original model is generally unsuitable for ordinary laptops."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "阅读模型许可与部署要求，选择支持的服务框架。",
+          "有足够算力再运行官方示例，否则从官方服务了解能力与费用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Read model licensing and deployment requirements, then choose a supported serving framework.",
+          "Run an official example only with sufficient compute, or inspect official hosted-service capabilities and cost."
+        ]
+      },
+      "keywords": "大模型 深度求索 deepseek v3 moe",
+      "github": {
+        "repo": "deepseek-ai/DeepSeek-V3",
+        "stars": 104511,
+        "archived": false,
+        "pushedAt": "2025-08-28T03:24:37Z",
+        "license": "MIT",
+        "homepage": null,
+        "source": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "llama-models",
+      "name": "Llama models",
+      "repo": "meta-llama/llama-models",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/meta-llama/llama-models",
+      "sources": [
+        "https://github.com/meta-llama/llama-models/blob/main/README.md",
+        "https://github.com/meta-llama/llama-models"
+      ],
+      "task": {
+        "zh": "查找 Meta Llama 模型与使用条款",
+        "en": "Find Meta Llama models and usage terms"
+      },
+      "description": {
+        "zh": "集中提供 Llama 系列模型卡、许可与实用工具。",
+        "en": "Collects model cards, licenses and utilities for the Llama family."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "Llama 使用自定义模型许可与使用政策，不等于所有场景无条件自由使用。",
+        "en": "Llama uses custom model licenses and use policies, not unconditional permission for every scenario."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择具体版本，阅读模型卡并按要求取得权重。",
+          "通过支持该版本的推理工具测试，保留许可记录。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a version, read its model card and obtain weights as required.",
+          "Test with a runtime supporting that version and retain its license record."
+        ]
+      },
+      "keywords": "大模型 开放权重 llama meta",
+      "github": {
+        "repo": "meta-llama/llama-models",
+        "stars": 7707,
+        "archived": false,
+        "pushedAt": "2026-02-11T16:38:31Z",
+        "license": "NOASSERTION",
+        "homepage": null,
+        "source": "https://github.com/meta-llama/llama-models",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "glm",
+      "name": "GLM-5 series",
+      "repo": "zai-org/GLM-5",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/zai-org/GLM-5",
+      "sources": [
+        "https://github.com/zai-org/GLM-5/blob/main/README.md",
+        "https://github.com/zai-org/GLM-5"
+      ],
+      "task": {
+        "zh": "了解智谱 GLM-5 系列及部署入口",
+        "en": "Explore the GLM-5 family and deployment options"
+      },
+      "description": {
+        "zh": "官方仓库提供 GLM-5 系列模型下载和推理部署说明。",
+        "en": "The official repository provides GLM-5-family downloads and serving guidance."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "大型模型需要相应硬件；官方 API 订阅不等于自托管算力。",
+        "en": "Large models require suitable hardware; an official API subscription does not provide self-hosting compute."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择具体型号，核对模型权重许可与硬件支持。",
+          "按照对应推理框架示例部署并监测资源使用。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Select a variant and check weight licensing and hardware support.",
+          "Deploy using the relevant inference-framework example and monitor resource use."
+        ]
+      },
+      "keywords": "大模型 智谱 glm zai coding model",
+      "github": {
+        "repo": "zai-org/GLM-5",
+        "stars": 7268,
+        "archived": false,
+        "pushedAt": "2026-09-24T10:28:33Z",
+        "license": "Apache-2.0",
+        "homepage": "https://z.ai/blog/glm-5.2",
+        "source": "https://github.com/zai-org/GLM-5",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "minicpm",
+      "name": "MiniCPM-V / o",
+      "repo": "OpenBMB/MiniCPM-V",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/OpenBMB/MiniCPM-V",
+      "sources": [
+        "https://github.com/OpenBMB/MiniCPM-V/blob/main/README.md",
+        "https://github.com/OpenBMB/MiniCPM-V"
+      ],
+      "task": {
+        "zh": "尝试图片、视频与语音理解模型",
+        "en": "Try image, video and speech understanding models"
+      },
+      "description": {
+        "zh": "官方仓库包含 MiniCPM 多模态系列及设备端适配说明。",
+        "en": "The official repository covers MiniCPM multimodal models and device adaptations."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "不同 V/o 版本支持的输入输出不同；手机演示源码不是通用安装包。",
+        "en": "Input/output capabilities vary by V/o version; phone-demo source is not a universal installer."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按任务选择具体版本，检查推理后端和设备要求。",
+          "用非敏感图片或音频测试，不混用不同版本的示例。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a version for your task and check backend and device requirements.",
+          "Test with nonsensitive images or audio and keep examples version-matched."
+        ]
+      },
+      "keywords": "大模型 多模态 图像理解 视频理解 minicpm vision",
+      "github": {
+        "repo": "OpenBMB/MiniCPM-V",
+        "stars": 26489,
+        "archived": false,
+        "pushedAt": "2026-09-08T06:05:56Z",
+        "license": "Apache-2.0",
+        "homepage": "",
+        "source": "https://github.com/OpenBMB/MiniCPM-V",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "llama-cpp",
+      "name": "llama.cpp",
+      "repo": "ggml-org/llama.cpp",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "models"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "sources": [
+        "https://github.com/ggml-org/llama.cpp/blob/master/README.md",
+        "https://github.com/ggml-org/llama.cpp"
+      ],
+      "task": {
+        "zh": "在多种硬件上运行量化大模型",
+        "en": "Run quantized models across hardware types"
+      },
+      "description": {
+        "zh": "C/C++ 推理引擎，可用于本地命令行和模型服务。",
+        "en": "A C/C++ inference engine for local CLI use and model serving."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "需要兼容模型与格式；支持 CPU 不代表大模型运行速度有保证。",
+        "en": "Requires compatible models and formats; CPU support does not guarantee fast large-model inference."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按平台选择官方构建并准备兼容 GGUF 模型。",
+          "运行简单提示，核对内存后再启动服务端。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an official build for your platform and a compatible GGUF model.",
+          "Run a simple prompt and check memory before starting a server."
+        ]
+      },
+      "keywords": "本地模型 本地推理 量化 gguf llama cpp",
+      "github": {
+        "repo": "ggml-org/llama.cpp",
+        "stars": 130133,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:06:56Z",
+        "license": "MIT",
+        "homepage": "https://llama.app",
+        "source": "https://github.com/ggml-org/llama.cpp",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM",
+      "repo": "vllm-project/vllm",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "models"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.vllm.ai/",
+      "sources": [
+        "https://github.com/vllm-project/vllm/blob/main/README.md",
+        "https://docs.vllm.ai/"
+      ],
+      "task": {
+        "zh": "为应用搭建大模型推理服务",
+        "en": "Serve language models to applications"
+      },
+      "description": {
+        "zh": "面向模型部署的推理与服务框架，支持兼容接口。",
+        "en": "An inference and serving framework with compatible application interfaces."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "偏服务端和开发者；吞吐量取决于模型、硬件、批量和上下文配置。",
+        "en": "Intended for servers and developers; throughput depends on model, hardware, batching and context."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "核对硬件后端和模型支持，安装对应版本。",
+          "启动测试服务，测量请求延迟、内存和并发。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Check hardware backend and model support, then install the matching version.",
+          "Start a test server and measure latency, memory and concurrency."
+        ]
+      },
+      "keywords": "模型部署 推理服务 vllm inference serving",
+      "github": {
+        "repo": "vllm-project/vllm",
+        "stars": 93061,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:21:43Z",
+        "license": "Apache-2.0",
+        "homepage": "https://vllm.ai",
+        "source": "https://github.com/vllm-project/vllm",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "localai",
+      "name": "LocalAI",
+      "repo": "mudler/LocalAI",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "models"
+      ],
+      "kind": "app",
+      "ai": true,
+      "url": "https://localai.io/",
+      "sources": [
+        "https://github.com/mudler/LocalAI/blob/master/README.md",
+        "https://localai.io/"
+      ],
+      "task": {
+        "zh": "给本地模型提供兼容 API",
+        "en": "Expose a compatible API for local models"
+      },
+      "description": {
+        "zh": "通过不同推理后端运行文本、语音或图像模型。",
+        "en": "Runs text, speech or image models through different inference backends."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "无显卡方案能力因模型而异；客户端接口兼容不代表所有功能等价。",
+        "en": "CPU-only capability varies by model; API compatibility does not imply identical features."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "选择官方部署方式，再选择模型与后端。",
+          "用测试请求验证所需接口，再连接客户端。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an official deployment method, then a model and backend.",
+          "Verify required endpoints with a test request before connecting clients."
+        ]
+      },
+      "keywords": "本地模型 本地API 模型部署 localai api",
+      "github": {
+        "repo": "mudler/LocalAI",
+        "stars": 49369,
+        "archived": false,
+        "pushedAt": "2026-10-02T12:10:25Z",
+        "license": "MIT",
+        "homepage": "https://localai.io",
+        "source": "https://github.com/mudler/LocalAI",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "sglang",
+      "name": "SGLang",
+      "repo": "sgl-project/sglang",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "local",
+      "topics": [
+        "local",
+        "models"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.sglang.io/",
+      "sources": [
+        "https://github.com/sgl-project/sglang/blob/main/README.md",
+        "https://docs.sglang.io/"
+      ],
+      "task": {
+        "zh": "部署高并发模型推理服务",
+        "en": "Deploy a concurrent model-serving system"
+      },
+      "description": {
+        "zh": "面向大模型和多模态模型的推理服务框架。",
+        "en": "A serving framework for language and multimodal models."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "模型和硬件后端各有支持范围；不把基准吞吐当作实际业务承诺。",
+        "en": "Model and hardware support vary; benchmark throughput is not a production guarantee."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按设备选择安装路线并核对模型兼容表。",
+          "运行最小服务，用真实大小的请求评估延迟。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose an installation route for your device and check model compatibility.",
+          "Run a minimal service and evaluate latency with realistically sized requests."
+        ]
+      },
+      "keywords": "模型部署 推理服务 sglang serving",
+      "github": {
+        "repo": "sgl-project/sglang",
+        "stars": 36717,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:10:01Z",
+        "license": "Apache-2.0",
+        "homepage": "https://sglang.io",
+        "source": "https://github.com/sgl-project/sglang",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "mineru",
+      "name": "MinerU",
+      "repo": "opendatalab/MinerU",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "documents",
+      "topics": [
+        "documents",
+        "knowledge"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://github.com/opendatalab/MinerU",
+      "sources": [
+        "https://github.com/opendatalab/MinerU/blob/master/README.md",
+        "https://github.com/opendatalab/MinerU"
+      ],
+      "task": {
+        "zh": "把 PDF 和文档转成模型可读资料",
+        "en": "Convert documents into model-ready material"
+      },
+      "description": {
+        "zh": "将 PDF 等文档解析为 Markdown 或 JSON，便于检索与后续处理。",
+        "en": "Parse documents such as PDFs into Markdown or JSON for retrieval and processing."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "不同解析模式的本地/云端边界和算力要求不同；表格公式需抽样核验。",
+        "en": "Parsing modes differ in local/cloud processing and compute needs; spot-check tables and formulas."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方说明选择解析模式和环境。",
+          "处理样例 PDF，对照页面检查顺序、表格和公式。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose a parsing mode and environment from official instructions.",
+          "Process a sample PDF and compare reading order, tables and formulas."
+        ]
+      },
+      "keywords": "PDF解析 文档解析 OCR 文档转markdown mineru",
+      "github": {
+        "repo": "opendatalab/MinerU",
+        "stars": 80990,
+        "archived": false,
+        "pushedAt": "2026-09-30T09:13:37Z",
+        "license": "NOASSERTION",
+        "homepage": "https://opendatalab.github.io/MinerU/",
+        "source": "https://github.com/opendatalab/MinerU",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "docling",
+      "name": "Docling",
+      "repo": "docling-project/docling",
+      "mode": "code",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "category": "documents",
+      "topics": [
+        "documents",
+        "knowledge"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docling-project.github.io/docling/",
+      "sources": [
+        "https://github.com/docling-project/docling/blob/main/README.md",
+        "https://docling-project.github.io/docling/"
+      ],
+      "task": {
+        "zh": "把不同格式文档整理成结构化内容",
+        "en": "Turn documents into structured content"
+      },
+      "description": {
+        "zh": "提供文档解析与统一格式转换，可接入知识库处理流程。",
+        "en": "Provides document parsing and unified conversion for knowledge pipelines."
+      },
+      "cost": {
+        "zh": "本地运行不产生模型 API 费；硬件、电力和可选云服务另计。",
+        "en": "Local inference has no model API charge; hardware, electricity and optional cloud services cost extra."
+      },
+      "requirements": {
+        "zh": "需下载模型并预留磁盘、内存；能运行的模型大小随设备和上下文变化。",
+        "en": "Download model files and reserve storage/RAM; usable model size depends on device and context length."
+      },
+      "caution": {
+        "zh": "OCR、表格与版面还原并非总是正确；模型首次运行可能下载权重。",
+        "en": "OCR, tables and layout extraction can be wrong; models may download weights on first run."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装 Docling，并准备小型测试文档。",
+          "导出 Markdown 或 JSON，与原文抽样比对。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install Docling and prepare a small test document.",
+          "Export Markdown or JSON and spot-check against the original."
+        ]
+      },
+      "keywords": "文档解析 PDF解析 OCR 文档转markdown docling",
+      "github": {
+        "repo": "docling-project/docling",
+        "stars": 68306,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:02:47Z",
+        "license": "MIT",
+        "homepage": "https://docling-project.github.io/docling",
+        "source": "https://github.com/docling-project/docling",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "paddleocr",
+      "name": "PaddleOCR",
+      "repo": "PaddlePaddle/PaddleOCR",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "documents",
+      "topics": [
+        "documents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://www.paddleocr.ai/",
+      "sources": [
+        "https://github.com/PaddlePaddle/PaddleOCR/blob/main/README.md",
+        "https://www.paddleocr.ai/"
+      ],
+      "task": {
+        "zh": "从图片和扫描文档识别文字",
+        "en": "Recognize text in images and scanned documents"
+      },
+      "description": {
+        "zh": "提供 OCR、文档解析和结构化提取组件。",
+        "en": "Provides OCR, document parsing and structured extraction components."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "核心 OCR 与复杂文档模型的硬件要求不同；识别结果需校对。",
+        "en": "Core OCR and complex document models have different hardware needs; proofread extracted text."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先安装匹配设备的 PaddlePaddle 与所需 OCR 组件。",
+          "用清晰样例图测试，再评估实际扫描件。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install PaddlePaddle for your hardware and the OCR components you need.",
+          "Test a clear sample image before evaluating real scans."
+        ]
+      },
+      "keywords": "OCR 文字识别 扫描件识别 PDF解析 paddleocr",
+      "github": {
+        "repo": "PaddlePaddle/PaddleOCR",
+        "stars": 90516,
+        "archived": false,
+        "pushedAt": "2026-09-16T03:31:50Z",
+        "license": "Apache-2.0",
+        "homepage": "https://www.paddleocr.com",
+        "source": "https://github.com/PaddlePaddle/PaddleOCR",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "deepseek-ocr",
+      "name": "DeepSeek-OCR",
+      "repo": "deepseek-ai/DeepSeek-OCR",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "documents",
+      "topics": [
+        "documents",
+        "models"
+      ],
+      "kind": "model",
+      "ai": true,
+      "url": "https://github.com/deepseek-ai/DeepSeek-OCR",
+      "sources": [
+        "https://github.com/deepseek-ai/DeepSeek-OCR/blob/main/README.md",
+        "https://github.com/deepseek-ai/DeepSeek-OCR"
+      ],
+      "task": {
+        "zh": "研究视觉模型的文档读取能力",
+        "en": "Explore visual-model document reading"
+      },
+      "description": {
+        "zh": "提供文档视觉压缩与 OCR 相关模型推理示例。",
+        "en": "Provides inference examples for document visual compression and OCR."
+      },
+      "cost": {
+        "zh": "本地推理自备算力；租用 GPU 或云服务另付费，权重许可需单独核对。",
+        "en": "Local inference uses your hardware; rented GPUs and cloud services cost extra. Check model-weight licenses separately."
+      },
+      "requirements": {
+        "zh": "先核对所选模型的显存、驱动与推理后端要求；普通笔记本未必能运行。",
+        "en": "Check the selected model’s VRAM, drivers and inference backend; an ordinary laptop may not suffice."
+      },
+      "caution": {
+        "zh": "这是模型与研究代码，不是开箱即用的免费 PDF 网站；输出仍可能漏字。",
+        "en": "This is model/research code, not a ready-to-use free PDF website; output may omit text."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "按官方指定版本准备推理环境与权重。",
+          "用样例页运行，逐段核对文字、表格和阅读顺序。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Prepare inference dependencies and weights with version-matched instructions.",
+          "Run a sample page and check text, tables and reading order."
+        ]
+      },
+      "keywords": "OCR 文档解析 扫描件识别 deepseek ocr",
+      "github": {
+        "repo": "deepseek-ai/DeepSeek-OCR",
+        "stars": 23928,
+        "archived": false,
+        "pushedAt": "2026-01-27T03:45:14Z",
+        "license": "MIT",
+        "homepage": null,
+        "source": "https://github.com/deepseek-ai/DeepSeek-OCR",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "transformers",
+      "name": "Transformers",
+      "repo": "huggingface/transformers",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "models",
+      "topics": [
+        "models"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://huggingface.co/docs/transformers/",
+      "sources": [
+        "https://github.com/huggingface/transformers/blob/main/README.md",
+        "https://huggingface.co/docs/transformers/"
+      ],
+      "task": {
+        "zh": "在 Python 中加载和使用不同模型",
+        "en": "Load and use models in Python"
+      },
+      "description": {
+        "zh": "统一文本、视觉、音频等模型的加载与调用接口。",
+        "en": "Provides loading and usage interfaces for text, vision and audio models."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "这是开发库，不附赠算力；远程自定义模型代码要先审查再信任。",
+        "en": "This is a developer library without included compute; review custom remote model code before trusting it."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装框架与硬件依赖，选择许可合适的模型。",
+          "从官方 Pipeline 示例开始，记录模型和库版本。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the framework and hardware dependencies, then choose a suitably licensed model.",
+          "Start with an official pipeline example and record model/library versions."
+        ]
+      },
+      "keywords": "大模型 模型开发 transformers huggingface python",
+      "github": {
+        "repo": "huggingface/transformers",
+        "stars": 166906,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:11:15Z",
+        "license": "Apache-2.0",
+        "homepage": "https://huggingface.co/transformers",
+        "source": "https://github.com/huggingface/transformers",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "repo": "langchain-ai/langgraph",
+      "mode": "code",
+      "platforms": [
+        "linux",
+        "server"
+      ],
+      "category": "agents",
+      "topics": [
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.langchain.com/oss/python/langgraph/overview",
+      "sources": [
+        "https://github.com/langchain-ai/langgraph/blob/main/README.md",
+        "https://docs.langchain.com/oss/python/langgraph/overview"
+      ],
+      "task": {
+        "zh": "让 Agent 工作流可暂停、恢复和检查",
+        "en": "Build inspectable, resumable agent workflows"
+      },
+      "description": {
+        "zh": "用状态图组织 Agent 任务、持久化和人工参与步骤。",
+        "en": "Organize agent tasks, persistence and human participation with state graphs."
+      },
+      "cost": {
+        "zh": "开发代码可获取；模型调用、部署算力和商业托管另计，不含免费 API 额度。",
+        "en": "Code is available; model calls, deployment compute and commercial hosting are separate. No free API quota is implied."
+      },
+      "requirements": {
+        "zh": "面向开发者：需要命令行/代码环境，硬件和模型服务要求按官方方案确定。",
+        "en": "For developers: requires a terminal/coding environment. Hardware and model-service needs depend on the official setup."
+      },
+      "caution": {
+        "zh": "编排框架不会自动提升模型准确率；持久化与访问控制需要自行设计。",
+        "en": "Orchestration does not automatically improve model accuracy; design persistence and access controls explicitly."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "安装框架，建立最小状态图和模型节点。",
+          "加入检查点，用中断恢复样例验证流程。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Install the framework and create a minimal state graph and model node.",
+          "Add checkpoints and verify interruption/resumption with a sample."
+        ]
+      },
+      "keywords": "Agent框架 工作流 自动化 langgraph state graph",
+      "github": {
+        "repo": "langchain-ai/langgraph",
+        "stars": 42614,
+        "archived": false,
+        "pushedAt": "2026-10-02T01:31:07Z",
+        "license": "MIT",
+        "homepage": "https://docs.langchain.com/oss/python/langgraph/",
+        "source": "https://github.com/langchain-ai/langgraph",
+        "checkedAt": "2026-10-02"
+      }
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "repo": "firecrawl/firecrawl",
+      "mode": "deploy",
+      "platforms": [
+        "server"
+      ],
+      "category": "documents",
+      "topics": [
+        "documents",
+        "agents"
+      ],
+      "kind": "framework",
+      "ai": true,
+      "url": "https://docs.firecrawl.dev/",
+      "sources": [
+        "https://github.com/firecrawl/firecrawl/blob/main/README.md",
+        "https://docs.firecrawl.dev/"
+      ],
+      "task": {
+        "zh": "把网页内容转换成 AI 可读资料",
+        "en": "Turn web content into AI-ready material"
+      },
+      "description": {
+        "zh": "提供网页读取、抓取与结构化提取的服务和自托管代码。",
+        "en": "Provides web reading, crawling and extraction services plus self-hosting code."
+      },
+      "cost": {
+        "zh": "可按项目许可自托管；服务器、模型 API 和官方云服务的费用另计。",
+        "en": "Self-hosting is subject to the project license; servers, model APIs and official hosting have separate costs."
+      },
+      "requirements": {
+        "zh": "需维护本地或云端服务及模型连接；部署不等于模型已经可用。",
+        "en": "Maintain a local/cloud service and connect a model; deploying the interface does not supply inference."
+      },
+      "caution": {
+        "zh": "云服务按方案计费，自托管功能可能不同；仍需遵守目标网站访问规则。",
+        "en": "Hosted plans cost separately and self-hosted features can differ; respect target-site access rules."
+      },
+      "steps": {
+        "zh": [
+          "打开官方文档，先核对环境和依赖要求。",
+          "先选择官方 API 或按文档自托管，核对功能差异。",
+          "从允许访问的一页开始，核对正文、来源和用量。"
+        ],
+        "en": [
+          "Open the official documentation and check environment requirements.",
+          "Choose the official API or self-hosting and check feature differences.",
+          "Start with one permitted page and inspect extracted text, source and usage."
+        ]
+      },
+      "keywords": "网页抓取 网页转markdown 数据提取 firecrawl crawl scrape",
+      "github": {
+        "repo": "firecrawl/firecrawl",
+        "stars": 187779,
+        "archived": false,
+        "pushedAt": "2026-10-02T13:06:17Z",
+        "license": "AGPL-3.0",
+        "homepage": "https://firecrawl.dev",
+        "source": "https://github.com/firecrawl/firecrawl",
+        "checkedAt": "2026-10-02"
       }
     }
   ]

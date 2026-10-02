@@ -8354,7 +8354,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 
 ## GitHub tools for everyday tasks
 
-Task-led, manually curated third-party applications with official app/download links, three-step guidance, platform/setup/cost boundaries and dated GitHub star snapshots. This is not a live trending feed, installation test or security audit. No arbitrary GitHub code runs on BPJ. Chinese: ${site.base_url}/github-tools/ ; English: ${site.base_url}/en/github-tools/ . Structured catalogues: ${site.base_url}/github-tools.json and ${site.base_url}/en/github-tools.json . The existing MCP feature-map resource discovers these pages; it does not install or execute these third-party tools.
+Task-led, manually curated third-party applications, developer frameworks and model repositories, with an AI/LLM focus. Filter by topic (chat, local inference, knowledge, agents, coding, images, audio, video, models, documents), project kind, platform and setup. Official links, three-step guidance, hardware/API/cost boundaries and dated GitHub star snapshots are included. This is not a live trending feed, installation test or security audit. No arbitrary GitHub code runs on BPJ. Chinese: ${site.base_url}/github-tools/ ; English: ${site.base_url}/en/github-tools/ . Structured catalogues: ${site.base_url}/github-tools.json and ${site.base_url}/en/github-tools.json . The existing MCP feature-map resource discovers these pages; it does not install or execute these third-party tools.
 
 ## Agents & MCP directory (${AGENT_N} records)
 
