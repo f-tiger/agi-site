@@ -33,7 +33,7 @@ concurrency:
   # 就是 claude/**,每推一次都跑一次完整构建部署。改成取消被顶替的运行:一串连续
   # push 只有最后一次真正部署,结果完全一样,前面几次的分钟数省下来。
   # 实际部署共享组；无 [deploy] 的 push 使用独立组，不会顶掉部署。
-  cancel-in-progress: true
+  cancel-in-progress: false # Preserve the daily crawler checkpoint and its deployment.
 
 jobs:
   update-build-deploy:
@@ -57,6 +57,8 @@ jobs:
       contains(github.event.head_commit.message, '[deploy]')
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # 防回滚守卫(2026-08-26 事故):GitHub 曾乱序补发数小时前的 push 事件,
       # 每个旧事件都按自己那个历史提交部署,把线上反复滚回旧代码——gridlings 的
@@ -142,35 +144,27 @@ jobs:
         run: node scripts/pricing-probe.mjs
         continue-on-error: true
 
-      # Agent-watch URL 核验（2026-09-22）：账本里每条的官方主页与仓库 URL 每天盖章——只写「哪条 URL 何时答过 2xx」，
-      # 不写任何事实；404/410 只标 stale 永不自动下线；403/超时视为未知不动。首跑 26/28 仓库 200，
-      # 两条第一方仓库链接 404（本仓 09-18 转私有）。~28 条 × 2 URL，串行 0.4s 间隔，通常 <1 分，
-      # 挂已有 schedule 不新增 cron；产出随下面那步一起提交（git add data/ 已覆盖）。
-      # 2026-09-22 扩到 1 000 条后改为三步、总预算 ≈2 分/日（≈60 分/月，仓库已转私有、分钟计费）：
-      #   ① registry-pull：官方 MCP 注册表 → 候选文件（只发现不收录；API 出错保留旧文件）
-      #   ② admit --max 60：候选的官方页当天 2xx 才入账本；被拒的记 reason 次日重试
-      #   ③ verify --max 40：账本里最久未核的 40 条盖章（3 并发，≈1 分），每条约每周轮到一次
-      - name: Pull MCP registry candidates (scheduled runs only)
-        if: github.event_name != 'push'
-        run: node scripts/agent-watch-registry-pull.mjs
-        continue-on-error: true
-      - name: Admit agent-watch candidates (scheduled runs only)
-        if: github.event_name != 'push'
-        run: node scripts/agent-watch-admit.mjs --max 60
-        continue-on-error: true
-      - name: Verify agent-watch URLs (scheduled runs only)
-        if: github.event_name != 'push'
-        run: node scripts/agent-watch-verify.mjs --max 40
+      # Daily discovery belongs to the site. [catalog-sync] exercises this exact path once on release.
+      # Twelve new GitHub records, sixty MCP admission attempts and rotating rechecks per run.
+      - name: Discover, validate and expand GitHub and MCP catalogues
+        id: catalog_sync
+        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]')
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/catalog-sync.mjs
         continue-on-error: true
 
       # MCP 被发现探针（2026-09-22，≈10 秒）：官方注册表登记名 / isLatest / 版本 == server.json（权威，错了这步就红），
       # 五个第三方目录的公开搜索页 grep（只作信息），本站 .well-known 版本对齐。产出 data/mcp-discovery.json 随下面那步提交。
       - name: MCP discovery probe (scheduled runs only)
+        id: mcp_discovery
+        continue-on-error: true
         if: github.event_name != 'push'
         run: node scripts/mcp-discovery-probe.mjs
 
-      - name: Commit refreshed data (scheduled runs only)
-        if: github.event_name != 'push'
+      - name: Commit refreshed data
+        id: catalog_commit
+        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -321,6 +315,7 @@ jobs:
           node scripts/test-work-plan.mjs --dist
           node scripts/test-distribution.mjs --dist
           node scripts/test-github-tools.mjs --dist
+          node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
           node ../../tools/quote-page-lab/test-growth.mjs --dist
@@ -1104,6 +1099,9 @@ jobs:
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           check "触达端点" "${{ steps.st_reach.outcome }}"
           check "广告库存面" "${{ steps.st_ads.outcome }}"
+          check "MCP 发现探针" "${{ steps.mcp_discovery.outcome }}"
+          check "GitHub/MCP 每日目录扩展" "${{ steps.catalog_sync.outcome }}"
+          check "每日目录数据持久化" "${{ steps.catalog_commit.outcome }}"
           check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"

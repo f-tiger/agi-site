@@ -60,7 +60,7 @@ export function candidateOf(entry, today) {
   return {
     slug: slugOf(s.name), name, ...(title && CJK.test(title) ? { zh_name: title } : {}), category: 'mcp',
     source_url: web || repo, repo_url: repo,
-    keys: { transport, capabilities: ['mcp-server'], pricing: repo ? 'open-source' : 'unstated', evidence: web && repo ? 'official-and-repo' : repo ? 'repo-only' : 'official-only' },
+    keys: { transport, capabilities: ['mcp-server'], pricing: 'unstated', evidence: web && repo ? 'official-and-repo' : repo ? 'repo-only' : 'official-only' },
     description: en, zh_description: zh, origin: 'mcp-registry',
     registry: { name: s.name, version: s.version || null, updated: (meta.updatedAt || '').slice(0, 10) || null, packages: (s.packages || []).map((p) => p.registryType).filter(Boolean).slice(0, 4), remotes: hasRemote },
     _updated: meta.updatedAt || '',

@@ -1,5 +1,6 @@
 import {parseHomepageClick} from '../../lib/homepage-signals.js';
-import {parseGithubToolEvent,GITHUB_TOOL_IDS} from '../../lib/github-tools.mjs';
+import {parseGithubToolEvent} from '../../lib/github-tools.mjs';
+import GITHUB_TOOL_IDS from '../../data/github-tool-ids.json' with {type:'json'};
 import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 // 第一方访问打点：无 Cookie、无 IP、无指纹——只存 日期/路径/语言/国家/外部来源域/事件名。
 // 比 GA4 干净，且不依赖任何外部账号；查询走 Cloudflare D1（会话内 MCP 可直读）。

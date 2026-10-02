@@ -30,6 +30,14 @@ for(const [prefix,lang]of [['','zh'],['/en','en']]){
  await page.locator('[data-topic-filter="chat"]').click();assert.equal(await page.locator('#github-topic').inputValue(),'chat');assert.equal(new URL(page.url()).hash,'','changing filters clears obsolete project anchor');
  await page.goto('https://baipiaoji.com'+prefix+'/github-tools/?q=notes&__probe=1');assert.ok(await page.locator('#joplin').isVisible());
  await page.setViewportSize({width:390,height:844});await page.locator('#github-reset').click();await page.screenshot({path:out+'/'+lang+'-mobile.png',fullPage:false});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mobile overflow: '+JSON.stringify(await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&r.right>innerWidth+1}).map(e=>({tag:e.tagName,id:e.id,cls:e.className,width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right})).slice(0,12))));
+ await page.goto('https://baipiaoji.com'+prefix+'/?__probe=1');
+ assert.equal(await page.locator('.bpj-github-pick').count(),6);
+ await page.locator('#home-github-query').fill(lang==='zh'?'本地聊天':'local chat');
+ await page.locator('.bpj-github-search button').click();
+ await page.waitForURL('**/github-tools/?q=*');await page.waitForFunction(()=>document.querySelector('#github-query').value.length>0);
+ assert.ok(await page.locator('#jan').isVisible(),'homepage search must open matching catalogue results');
+ await page.goto('https://baipiaoji.com'+prefix+'/?__probe=1');await page.locator('.bpj-github-pick').first().click();
+ await page.waitForFunction(()=>document.querySelector('#ollama details')?.open);assert.ok(await page.locator('#ollama').isVisible());
  await page.close();
 }
 assert.deepEqual(errors,[]);assert.equal(events.filter(e=>e?.e==='github_tools').length,0,'QA must not emit catalogue actions');

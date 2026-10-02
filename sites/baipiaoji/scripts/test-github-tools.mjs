@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {GITHUB_TOOLS} from './github-tools-pages.mjs';
-import {matchesTool,githubSearchURL,GITHUB_TOOL_IDS,MODES,KINDS,TOPICS,PLATFORMS} from '../lib/github-tools.mjs';
+import {matchesTool,githubSearchURL,MODES,KINDS,TOPICS,PLATFORMS} from '../lib/github-tools.mjs';
+import GITHUB_TOOL_IDS from '../data/github-tool-ids.json' with {type:'json'};
 import {onRequestPost} from '../functions/api/hit.js';
 import {searchResults} from '../lib/search-results.mjs';
 import {githubToolSearch} from './github-tools-pages.mjs';

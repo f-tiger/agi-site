@@ -89,3 +89,10 @@
 /en/github-tools.json
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
+
+/catalog-sync.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+/en/catalog-sync.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300

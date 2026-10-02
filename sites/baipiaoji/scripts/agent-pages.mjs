@@ -1,3 +1,4 @@
+import {catalogStatus} from './catalog-status.mjs';
 // Agents surface (2026-09-22 rebuild, owner: "整体重构下 agents" + "面向不同的用户分类清晰" + "做流量 GEO 优化";
 // third round the same day: "首页不够凸显 agents / 分类样式不够好看、不能突出重点 / 没有搜索").
 // Every page here goes through build.mjs's own layout() — same stylesheet, rail, language switch, footer, beacon —
@@ -130,7 +131,7 @@ export function buildAgentPages(ctx) {
       <div><dt>${T('Categories', '类目')}</dt><dd class="num">${cats.length}</dd></div>
       <div><dt>${T('Last check', '最近核验')}</dt><dd class="num aw-date">${esc(registry.checked)}</dd></div>
     </dl>
-  </div></header>
+  </div></header>${catalogStatus(zh,'mcp')}
   <section class="aw-doors" id="for">
     <h2 class="group-title">${T('Who are you?', '你是谁？')}<span>${AUDIENCES.length}</span></h2>
     <div class="aw-doorgrid">${AUDIENCES.map((k) => `<a class="aw-door" href="${url(`/agents/for/${k}.html`)}"><b>${esc(audLabel(k))}</b><i>${byAud.get(k).length}</i><span>${esc(audLede(k))}</span></a>`).join('')}</div>
