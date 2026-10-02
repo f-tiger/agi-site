@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-01",
+ "checked": "2026-10-02",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -576,6 +576,51 @@
    "source_http": 403,
    "repo_http": 200,
    "last_attempt": "2026-10-01"
+  },
+  "makefx-make-effects": {
+   "attempts": 1,
+   "first_attempt": "2026-10-02",
+   "last_attempt": "2026-10-02",
+   "attemptedAt": "2026-10-02T15:26:40.958Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "signalnodus-sec-filings": {
+   "attempts": 1,
+   "first_attempt": "2026-10-02",
+   "last_attempt": "2026-10-02",
+   "attemptedAt": "2026-10-02T15:26:40.958Z",
+   "source_http": 410,
+   "repo_http": 200,
+   "reason": "source HTTP 410"
+  },
+  "cdbx-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-02",
+   "last_attempt": "2026-10-02",
+   "attemptedAt": "2026-10-02T15:26:40.958Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "clarx-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-02",
+   "last_attempt": "2026-10-02",
+   "attemptedAt": "2026-10-02T15:26:40.958Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "betslipdoctor-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-02",
+   "last_attempt": "2026-10-02",
+   "attemptedAt": "2026-10-02T15:26:40.958Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -6798,6 +6843,336 @@
    "slug": "taskfolk-mcp",
    "date": "2026-10-01",
    "origin": "mcp-registry"
+  },
+  {
+   "slug": "safe4-safe4",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "khwan-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "velvt-velvt",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "lazyads-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dxpert-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "popdot-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bridgeapp-bridgeapp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "robosystems-robosystems",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "thesingulariti-graviti",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "frtracker-regulatory-research",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "wavespeed-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "financegenius-financegenius",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "youtube-transcript-youtube-transcript",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "midplane-midplane",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getfacade-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "turingtap-turingtap",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "atlier-project-desk",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "mangii-manga",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "inxy-seo-audit",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "futbolatlas-futbol-atlas",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nanocorp-invoke-human-tasks",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "spiderbrain-spiderbrain",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "yetty-yetty",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "taskforcehq-taskforce",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "agentroam-agentroam",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "calaf-calaf",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "latticenet-latticenet",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "authoryze-authoryze",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mermail-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "sprkly-sprkly",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "eonik-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "awraiter-telegram",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mainbook-bank-statement-converter",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "al-square-fiskalizimi",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "qualityclouds-norma",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nomadpoint-nomadpoint",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "decimal-registry",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "wpconvert-mcp",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ridedesk-bookings",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "trendsmcp-social-media",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-news-volume",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-news-sentiment",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-app-store",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-npm",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-steam",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-wikipedia",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-amazon",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-reddit",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-tiktok",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-youtube",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsmcp-google-trends",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-social-media",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-news-volume",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-news-sentiment",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-app-store",
+   "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
