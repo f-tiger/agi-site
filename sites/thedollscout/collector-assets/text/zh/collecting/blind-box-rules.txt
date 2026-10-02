@@ -1,0 +1,24 @@
+# 你的盲盒适合哪一种概率模型？
+
+https://thedollscout.com/zh/collecting/blind-box-rules
+Source review: 2026-10-02
+
+只有每盒概率相同、前面结果不会提供下一盒信息时，才适合使用独立抽取模型。
+
+先确认数字指向什么
+包装概率可能描述某个常规款、任意隐藏款或指定隐藏款，它们不是同一个事件。存在多个隐藏款时，不能把合计隐藏率当作其中一款的概率。把具体系列和包装来源与概率一起记录。
+
+整套配货是另一种购买方式
+如果商品保证整套不重复，各盒之间便存在关联。HIRONO Mime 官方描述这样的整套；SMISKI 则提示整盒可能没有隐藏款。两者都不支持将整盒内容直接当作独立抽样，应遵循具体商品条款。
+
+常规款等概率需要依据
+本站常规款模型均分非隐藏概率。MOLLY Series4 这样的分级标签不能证明均分假设成立。若款式概率不同，请使用已核对的单款百分比；不知道就保留为空。
+
+读懂结果的另一面
+假设每个独立盒抽中概率为 5%，六盒至少中一次为 26.49%，没有抽中仍为 73.51%。前面的落空不改变下一次独立抽取。90% 阈值也不是保证，更不是支出建议。
+
+SMISKI Living Series: https://smiski.com/e/products/living/
+
+HIRONO Mime: https://www.popmart.com/us/products/365/hirono-mime-series-figures
+
+MOLLY Series4: https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4

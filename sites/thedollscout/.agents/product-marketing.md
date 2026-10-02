@@ -1,14 +1,16 @@
-# TDS product and commercial context — version 2.0
+# TDS product and commercial context — version 3.0
 
 Updated 2026-10-02. Current owner direction supersedes the historical document-first positioning below.
 
-The Doll Scout is an independent collectible-toy discovery and decision site: Labubu / THE MONSTERS, SKULLPANDA, Jellycat and Sonny Angel are the initial guide set, with free probability, display-fit and collection tools. Audience: collectors and gift buyers. Repeat use and paid demand remain hypotheses. The homepage is playful and visual, benchmarked against five large toy sites; brand color stays white/black/red with colorful original illustrations.
+The Doll Scout is an independent collectible-toy discovery and decision site: Labubu / THE MONSTERS, SKULLPANDA, Jellycat and Sonny Angel plus SMISKI, HIRONO, DIMOO and MOLLY form the eight-brand guide set, with free probability, capped-budget, duplicate-progress, display-fit and collection tools. Audience: collectors and gift buyers. Repeat use and paid demand remain hypotheses. The homepage is playful and visual, benchmarked against five large toy sites; brand color stays white/black/red with colorful original illustrations.
 
 General digital utilities are aggregated at BPJ /studio/toolkit; TDS dedicated digital URLs remain available and the old home directory is /document-tools. No abrupt bulk redirects. Existing official sources, no fabricated rankings/prices/stock, no branded mascot artwork, and the permanent retirement of former explicit content remain release requirements.
 
 Free value: choose a series, compare the purchase mode, find official sources, calculate odds and organize a collection. Revenue path: existing disclosed US/DE affiliate routes. New brand-source links do not earn commissions. No new paid offer or checkout was opened. Existing collector membership and digital tools remain separate. Traffic and tool actions do not establish revenue or profitability.
 
 Evidence: GSC URL inspection on 2026-10-02 reports /, /rarity and /checker indexed; the sampled retired vendor URL is not found. SafeSearch/manual-action/security status remains unverified. Sources, five-site traffic-estimate scope, rollout contracts, actual verification and 42-day learning gate: docs/tds-collector-relaunch-2026-10-02.md at repo root.
+
+Changelog: 3.0 (2026-10-02) expands the brand/task architecture, adds two shared browser/MCP calculators, source methodology and three-language field guides. September GA4 measured 67 production-domain sessions (55 direct, 10 organic search, 1 AI Assistant, 1 unassigned), zero recorded key events/revenue; historic gaps and consent limits prevent a complete traffic or revenue conclusion.
 
 Changelog: 2.0 restores multi-brand collecting and BPJ aggregation by owner instruction; 1.x below records the September digital experiments and must not automatically override current homepage ownership.
 

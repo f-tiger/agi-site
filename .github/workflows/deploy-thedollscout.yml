@@ -74,7 +74,7 @@ jobs:
           node scripts/documents/build.mjs
           node scripts/documents/verify.mjs
           node scripts/collecting/build.mjs
-          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs
+          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。

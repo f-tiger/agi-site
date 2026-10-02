@@ -44,3 +44,13 @@ test('every brand page exposes a localized inline calculator to assistants',asyn
  const fit=(await rpc('tools/call',{name:'plan_display_fit',arguments:{width:60,depth:30,height:40,itemWidth:20,itemDepth:15,itemHeight:25,gap:2,rotate:true}})).result.structuredContent;
  assert.equal(fit.count,3);assert.equal(fit.columns,3);assert.equal(fit.rows,1);assert.equal(fit.rotated,true);
 });
+
+
+test('budget and progress MCP tools execute the browser core and validate cross-field counts',async()=>{
+ const budget=(await rpc('tools/call',{name:'compare_blind_box_budget',arguments:{budget:100,boxCost:15,fixedCost:10,confirmedCost:80,probabilityPercent:5}})).result;
+ assert.equal(budget.isError,false);assert.equal(budget.structuredContent.boxes,6);assert.equal(budget.structuredContent.maxSpend,100);
+ const progress=(await rpc('tools/call',{name:'estimate_collection_progress',arguments:{regularStyles:6,ownedStyles:4,boxes:6,secretPercent:0}})).result;
+ assert.equal(progress.isError,false);assert.ok(Math.abs(progress.structuredContent.expectedNewRegularStyles-2*(1-(5/6)**6))<1e-12);
+ assert.equal((await rpc('tools/call',{name:'estimate_collection_progress',arguments:{regularStyles:6,ownedStyles:7,boxes:6,secretPercent:0}})).result.isError,true);
+ for(const brand of ['smiski','hirono','dimoo','molly'])for(const language of ['en','de','zh']){const g=(await rpc('tools/call',{name:'get_collecting_guide',arguments:{brand,language}})).result.structuredContent;assert.equal(g.brand,brand);assert.equal(g.language,language);assert.ok(g.toolUrls.some(u=>u.endsWith('#display-fit')));}
+});

@@ -1,6 +1,6 @@
 {
   "name": "dollscout",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Read-only collectible toy guides, blind-box math, display planning and browser-tool discovery.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
@@ -13,9 +13,16 @@
     "calculate_style_probability",
     "find_collector_tools",
     "get_collecting_guide",
-    "plan_display_fit"
+    "plan_display_fit",
+    "compare_blind_box_budget",
+    "estimate_collection_progress"
   ],
   "resources": [
+    {
+      "uri": "https://thedollscout.com/collector-assets/learning-guides.json",
+      "name": "Practical collecting guides with sources",
+      "mimeType": "application/json"
+    },
     {
       "uri": "https://thedollscout.com/collector-assets/tool-capabilities.json",
       "name": "Collector tool catalog",

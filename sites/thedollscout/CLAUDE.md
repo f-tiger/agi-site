@@ -1,3 +1,12 @@
+## 2026-10-02 全站收藏任务扩展
+
+- `scripts/collecting/brand-expansion.mjs` 扩至8品牌；`expansion.mjs`、`learning.mjs`、`planning-pages.mjs` 生成品牌/工具/学习枢纽、4篇原创任务指南、2个计算器与编辑说明。收藏主干60个EN/DE/ZH页面；不新增退役 `/guides` 前缀。
+- 每个品牌详情页均有空间计算器；7个盲盒品牌有概率工具。MOLLY分级系列仅用已知单款概率；SMISKI Living名称有官方来源，概率留空。新品牌不复制Labubu概率。
+- `planning-core.mjs` 同供浏览器与MCP：预算上限/首次命中停止模型、等概率常规款新增与重复预期。金额同币种到分；未知率不推测；不计算全套完成概率。样例、CI、隐私退出不算完成。
+- `collector_budget_calc` / `collector_progress_calc` 第一方路径严格绑定；GA4经原同意入口，仅固定事件及工具ID。品牌概率/展示使用不同GA事件名，避免同页两工具被一次去重吞掉。不标记为收入或购买。
+- MCP 2.4.0，10工具4公共资源。Registry读取改为官方精确名称/latest接口，3次有限网络重试；网络不可用不当作未注册成功。发布仍需现有OIDC和实际回读。
+- 发布与两轮自检：根仓 `docs/tds-collecting-expansion-2026-10-02.md`。
+
 ## 2026-10-02 其他品牌详情页工具补齐
 
 - SKULLPANDA 三语详情页含款式概率和展示排布；Jellycat 含完整姿态尺寸与空间测算；Sonny Angel 含款式概率。主页品牌卡片、Jellycat 视频和 AI 目录直接指向各语言页内工具。

@@ -1,0 +1,438 @@
+{
+  "updated": "2026-10-02",
+  "guides": [
+    {
+      "language": "en",
+      "url": "https://thedollscout.com/collecting/blind-box-rules",
+      "title": "Which blind-box probability model fits?",
+      "intro": "Use independent-draw math only when each box has the same chance and previous outcomes give no information about the next one.",
+      "sections": [
+        [
+          "A printed rate needs a target",
+          "First ask what the number describes: one named regular style, any secret, or one particular secret. These are different events. A combined secret rate cannot be reused as the chance of one secret when several exist. Record the exact series and packaging source beside the rate."
+        ],
+        [
+          "A full case is a different purchase",
+          "A stated non-repeating assortment links the boxes together. The HIRONO Mime listing describes such a whole set; SMISKI warns a secret may be absent from an assort box. Neither statement supports treating all case contents as independent. Follow the exact package terms."
+        ],
+        [
+          "Equal styles are an assumption",
+          "Our regular-style model allocates the non-secret probability equally. Tier labels such as those on MOLLY Series4 do not justify that assumption. Use a verified single-style percentage when regular styles differ, and leave an unknown value blank."
+        ],
+        [
+          "What a result means",
+          "With a hypothetical 5% chance per independent box, six boxes give 26.49% for at least one hit. The opposite outcome still has a 73.51% chance. Earlier misses do not change the next independent box. A 90% threshold remains uncertain and is not a spending recommendation."
+        ]
+      ],
+      "sources": [
+        [
+          "SMISKI Living Series",
+          "https://smiski.com/e/products/living/"
+        ],
+        [
+          "HIRONO Mime",
+          "https://www.popmart.com/us/products/365/hirono-mime-series-figures"
+        ],
+        [
+          "MOLLY Series4",
+          "https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "en",
+      "url": "https://thedollscout.com/collecting/check-retailers",
+      "title": "Check a toy retailer before paying",
+      "intro": "Begin with the official regional store or directory, then verify the exact seller and item. Product photos and a familiar logo do not establish authorization.",
+      "sections": [
+        [
+          "Trace the store from the brand",
+          "Open the brand website yourself and follow its store links. For Sonny Angel, the official directory separates regions and store types. For Jellycat, begin at its official site and Store Locator. Check the destination domain before supplying personal details."
+        ],
+        [
+          "Name the seller of record",
+          "On a marketplace, the platform and seller can differ. Save the shop name, product reference, condition and whether the item is sealed or opened. Compare the final seller shown at checkout with the listing."
+        ],
+        [
+          "Ask a question that can be checked",
+          "For a confirmed item, request the exact character, series, included card or accessories and condition photos. For a sealed box, ask which series and package format it is. A checklist helps surface inconsistencies but cannot certify authenticity."
+        ],
+        [
+          "Compare the delivered total",
+          "Include postage and any applicable fees in the quote. Read cancellation and return terms on that seller’s current page; do not assume another store’s terms apply. If material details remain unclear, pause the purchase instead of filling gaps with guesses."
+        ]
+      ],
+      "sources": [
+        [
+          "Sonny Angel official stores",
+          "https://www.sonnyangel.com/en/store/"
+        ],
+        [
+          "Jellycat official site",
+          "https://us.jellycat.com/"
+        ],
+        [
+          "POP MART official site",
+          "https://www.popmart.com/us"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "en",
+      "url": "https://thedollscout.com/collecting/display-checklist",
+      "title": "Measure a display that actually fits",
+      "intro": "Use the empty inside space and the full outline of the object in its intended pose. Outside box dimensions and nominal toy height are not enough.",
+      "sections": [
+        [
+          "Measure the usable opening",
+          "Record inside width, depth and height in one unit. Exclude rails, door hinges and other obstructions. Check the opening you must move the object through as well as the space where it will sit."
+        ],
+        [
+          "Include the whole silhouette",
+          "Measure base, ears, outstretched parts and accessories. For plush, measure the pose you intend to keep without assuming it can be compressed. One dimension from a product title cannot describe its full footprint."
+        ],
+        [
+          "Read the layout honestly",
+          "The calculator compares uniform rows in one orientation with uniform rows rotated 90 degrees. It does not mix rotations or prove the mathematically best packing. Height must fit, and spacing applies between items rather than around the outer border."
+        ],
+        [
+          "Test before committing",
+          "Use paper footprints for a quick physical check. Leave practical handling room beyond a tight mathematical fit. Check the display maker’s load and installation instructions separately; the calculation does not assess weight, anchoring or stability."
+        ]
+      ],
+      "sources": [
+        [
+          "TDS display calculation",
+          "https://thedollscout.com/display-calculator"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "en",
+      "url": "https://thedollscout.com/collecting/start-a-collection",
+      "title": "Start a collection you can keep enjoying",
+      "intro": "Choose a small theme, a spending limit and a place to display it. A clear wish list is more useful than treating every new release as a missing piece.",
+      "sections": [
+        [
+          "Define what belongs",
+          "Write one sentence about the collection: a character, a series or a display theme. Keep a short wanted list and mark optional pieces. Brand identity alone may cover figures, plush and accessories with very different space needs."
+        ],
+        [
+          "Count distinct styles, not boxes",
+          "Separate owned styles from duplicate copies. For each piece, record the exact release and format, condition, purchase date and actual delivered cost. Keep missing fields blank rather than guessing the resale price."
+        ],
+        [
+          "Pick the right next action",
+          "If the desired set is nearly complete, estimate the chance of a new style and compare a confirmed item. If space is the bottleneck, measure before buying. Keeping your current collection can be the right next step too."
+        ],
+        [
+          "Keep a portable record",
+          "Use the tracker’s local records or the ledger’s supported export controls and keep a backup. Browser storage is not a guarantee against data loss. An AI assistant can calculate scenarios but cannot read your private local collection through the public TDS MCP server."
+        ]
+      ],
+      "sources": [
+        [
+          "TDS collection tracker",
+          "https://thedollscout.com/collection-tracker"
+        ],
+        [
+          "TDS collection ledger",
+          "https://thedollscout.com/workbench/collectorledger"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "de",
+      "url": "https://thedollscout.com/de/collecting/blind-box-rules",
+      "title": "Welches Blindbox-Modell passt?",
+      "intro": "Unabhängige Ziehungen nur nutzen, wenn jede Box dieselbe Chance hat und frühere Ergebnisse nichts über die nächste verraten.",
+      "sections": [
+        [
+          "Eine Chance braucht ein klares Ziel",
+          "Beschreibt die Zahl eine bestimmte Standardfigur, irgendein Secret oder ein bestimmtes Secret? Das sind verschiedene Ereignisse. Die gemeinsame Secret-Chance ist bei mehreren Secrets nicht die Chance eines einzelnen. Serie und Verpackungsquelle neben dem Wert notieren."
+        ],
+        [
+          "Ein ganzes Set ist ein anderer Kauf",
+          "Eine zugesicherte Zusammenstellung ohne Wiederholungen verknüpft die Boxen. HIRONO Mime beschreibt ein solches Set; SMISKI weist darauf hin, dass ein Secret fehlen kann. Beides rechtfertigt kein unabhängiges Modell für den Setinhalt."
+        ],
+        [
+          "Gleiche Chancen sind eine Annahme",
+          "Unser Standardmodell verteilt die Wahrscheinlichkeit ohne Secrets gleichmäßig. Stufen wie bei MOLLY Series4 begründen diese Annahme nicht. Bei unterschiedlichen Chancen eine bestätigte Einzelwahrscheinlichkeit nutzen und Unbekanntes leer lassen."
+        ],
+        [
+          "Das Ergebnis richtig lesen",
+          "Bei hypothetischen 5% je unabhängiger Box ergeben sechs Boxen 26,49% Trefferchance. Kein Treffer bleibt mit 73,51% möglich. Frühere Fehlversuche verändern die nächste unabhängige Chance nicht. Auch eine 90%-Schwelle ist unsicher und keine Kaufempfehlung."
+        ]
+      ],
+      "sources": [
+        [
+          "SMISKI Living Series",
+          "https://smiski.com/e/products/living/"
+        ],
+        [
+          "HIRONO Mime",
+          "https://www.popmart.com/us/products/365/hirono-mime-series-figures"
+        ],
+        [
+          "MOLLY Series4",
+          "https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "de",
+      "url": "https://thedollscout.com/de/collecting/check-retailers",
+      "title": "Spielzeughändler vor der Zahlung prüfen",
+      "intro": "Beim offiziellen regionalen Shop oder Verzeichnis beginnen und dann Verkäufer und Artikel abgleichen. Bilder und Logos allein belegen keine Autorisierung.",
+      "sections": [
+        [
+          "Vom Markenauftritt aus starten",
+          "Die Markenwebsite selbst öffnen und deren Händlerlinks folgen. Sonny Angel trennt Regionen und Händlertypen; bei Jellycat mit Website und Store Locator beginnen. Vor persönlichen Angaben die Zieldomain prüfen."
+        ],
+        [
+          "Den tatsächlichen Verkäufer nennen",
+          "Auf Marktplätzen können Plattform und Verkäufer verschieden sein. Shopname, Produktreferenz, Zustand und versiegelten oder geöffneten Status speichern. Verkäufer an der Kasse mit dem Angebot vergleichen."
+        ],
+        [
+          "Eine überprüfbare Frage stellen",
+          "Bei bestätigten Figuren nach genauer Variante, Serie, Zubehör und Zustandsbildern fragen. Bei versiegelten Boxen Serie und Verpackungsformat klären. Eine Checkliste zeigt mögliche Abweichungen, bestätigt aber keine Echtheit."
+        ],
+        [
+          "Gesamtkosten vergleichen",
+          "Versand und mögliche Gebühren einrechnen. Aktuelle Storno- und Rückgabebedingungen dieses Verkäufers lesen. Bleiben wesentliche Angaben unklar, den Kauf pausieren, statt Lücken durch Vermutungen zu füllen."
+        ]
+      ],
+      "sources": [
+        [
+          "Sonny Angel official stores",
+          "https://www.sonnyangel.com/en/store/"
+        ],
+        [
+          "Jellycat official site",
+          "https://us.jellycat.com/"
+        ],
+        [
+          "POP MART official site",
+          "https://www.popmart.com/us"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "de",
+      "url": "https://thedollscout.com/de/collecting/display-checklist",
+      "title": "Eine wirklich passende Vitrine ausmessen",
+      "intro": "Den freien Innenraum und die vollständige Kontur in der gewünschten Pose nutzen. Außenmaße und nominelle Figurenhöhe reichen nicht.",
+      "sections": [
+        [
+          "Nutzbaren Raum messen",
+          "Innere Breite, Tiefe und Höhe in derselben Einheit notieren. Schienen, Scharniere und Hindernisse abziehen. Auch die Öffnung prüfen, durch die die Figur hinein muss."
+        ],
+        [
+          "Die gesamte Kontur erfassen",
+          "Sockel, Ohren, ausladende Teile und Zubehör einbeziehen. Plüsch in der vorgesehenen Pose ohne angenommene Kompression messen. Eine einzelne Höhenangabe beschreibt keine Grundfläche."
+        ],
+        [
+          "Das Raster richtig verstehen",
+          "Der Rechner vergleicht einheitliche Reihen mit um 90 Grad gedrehten einheitlichen Reihen. Er mischt keine Richtungen und beweist keine optimale Packung. Die Höhe muss passen; Abstände gelten zwischen Figuren, nicht am Außenrand."
+        ],
+        [
+          "Vor dem Kauf praktisch prüfen",
+          "Papiergrundflächen helfen beim Test. Über ein rechnerisch knappes Ergebnis hinaus Platz zum Greifen lassen. Belastungs- und Montagehinweise des Herstellers separat prüfen; Gewicht, Befestigung und Stabilität werden nicht berechnet."
+        ]
+      ],
+      "sources": [
+        [
+          "TDS display calculation",
+          "https://thedollscout.com/display-calculator"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "de",
+      "url": "https://thedollscout.com/de/collecting/start-a-collection",
+      "title": "Eine Sammlung beginnen, die Freude macht",
+      "intro": "Ein kleines Thema, eine Ausgabengrenze und einen Ausstellungsplatz wählen. Eine klare Wunschliste hilft mehr, als jede Neuerscheinung als fehlendes Stück zu sehen.",
+      "sections": [
+        [
+          "Festlegen, was dazugehört",
+          "Die Sammlung in einem Satz beschreiben: Figur, Serie oder Thema. Eine kurze Wunschliste mit optionalen Stücken führen. Unter einer Marke können Figuren, Plüsch und Zubehör sehr unterschiedlichen Platz brauchen."
+        ],
+        [
+          "Varianten statt Boxen zählen",
+          "Unterschiedliche vorhandene Varianten und doppelte Exemplare trennen. Genaue Veröffentlichung, Format, Zustand, Kaufdatum und tatsächliche Gesamtkosten erfassen. Fehlende Daten leer lassen, statt Wiederverkaufswerte zu raten."
+        ],
+        [
+          "Den nächsten Schritt wählen",
+          "Ist eine Serie fast vollständig, neue Varianten schätzen und bestätigte Figuren vergleichen. Ist Platz knapp, zuerst messen. Auch die vorhandene Sammlung zu behalten kann die passende Entscheidung sein."
+        ],
+        [
+          "Eine Sicherung behalten",
+          "Lokale Tracker-Daten oder unterstützte Ledger-Exporte nutzen und sichern. Browserspeicher schützt nicht vor Datenverlust. Ein Assistent kann Szenarien berechnen, aber über den öffentlichen TDS-MCP-Server keine private lokale Sammlung lesen."
+        ]
+      ],
+      "sources": [
+        [
+          "TDS collection tracker",
+          "https://thedollscout.com/collection-tracker"
+        ],
+        [
+          "TDS collection ledger",
+          "https://thedollscout.com/workbench/collectorledger"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "zh",
+      "url": "https://thedollscout.com/zh/collecting/blind-box-rules",
+      "title": "你的盲盒适合哪一种概率模型？",
+      "intro": "只有每盒概率相同、前面结果不会提供下一盒信息时，才适合使用独立抽取模型。",
+      "sections": [
+        [
+          "先确认数字指向什么",
+          "包装概率可能描述某个常规款、任意隐藏款或指定隐藏款，它们不是同一个事件。存在多个隐藏款时，不能把合计隐藏率当作其中一款的概率。把具体系列和包装来源与概率一起记录。"
+        ],
+        [
+          "整套配货是另一种购买方式",
+          "如果商品保证整套不重复，各盒之间便存在关联。HIRONO Mime 官方描述这样的整套；SMISKI 则提示整盒可能没有隐藏款。两者都不支持将整盒内容直接当作独立抽样，应遵循具体商品条款。"
+        ],
+        [
+          "常规款等概率需要依据",
+          "本站常规款模型均分非隐藏概率。MOLLY Series4 这样的分级标签不能证明均分假设成立。若款式概率不同，请使用已核对的单款百分比；不知道就保留为空。"
+        ],
+        [
+          "读懂结果的另一面",
+          "假设每个独立盒抽中概率为 5%，六盒至少中一次为 26.49%，没有抽中仍为 73.51%。前面的落空不改变下一次独立抽取。90% 阈值也不是保证，更不是支出建议。"
+        ]
+      ],
+      "sources": [
+        [
+          "SMISKI Living Series",
+          "https://smiski.com/e/products/living/"
+        ],
+        [
+          "HIRONO Mime",
+          "https://www.popmart.com/us/products/365/hirono-mime-series-figures"
+        ],
+        [
+          "MOLLY Series4",
+          "https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "zh",
+      "url": "https://thedollscout.com/zh/collecting/check-retailers",
+      "title": "购买潮玩前，怎样核对零售商？",
+      "intro": "从官方地区商店或目录开始，再核对具体卖家与商品。熟悉的标志和产品照片不能单独证明授权。",
+      "sections": [
+        [
+          "从品牌网站追溯商店",
+          "自行打开品牌官网，再沿官网链接找店。Sonny Angel 官方目录区分地区和店铺类型；Jellycat 从官网与 Store Locator 开始。填写个人信息前，检查最终跳转域名。"
+        ],
+        [
+          "确认实际卖方",
+          "电商平台与商品卖家可能不是同一主体。保存店名、产品编号、品相与已拆或未拆状态；结算时再次对照卖方名称。"
+        ],
+        [
+          "提出可以核对的问题",
+          "购买确认款时，询问具体角色、系列、卡片配件和实物状况照片；购买密封盒时，核对系列与包装形态。检查清单可帮助发现不一致，不能代替官方鉴定。"
+        ],
+        [
+          "比较到手总成本",
+          "报价计入运费与适用费用。阅读该卖家当前页面的取消与退货条件，不能套用其他店铺的规则。关键信息仍不清楚时，先暂停购买，不用猜测补全。"
+        ]
+      ],
+      "sources": [
+        [
+          "Sonny Angel official stores",
+          "https://www.sonnyangel.com/en/store/"
+        ],
+        [
+          "Jellycat official site",
+          "https://us.jellycat.com/"
+        ],
+        [
+          "POP MART official site",
+          "https://www.popmart.com/us"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "zh",
+      "url": "https://thedollscout.com/zh/collecting/display-checklist",
+      "title": "展示柜尺寸，怎样测才真的放得下？",
+      "intro": "测量空柜内部可用空间，以及物品在实际摆放姿态下的完整外形。盒体外尺寸和标称高度都不够。",
+      "sections": [
+        [
+          "量可用空间与入口",
+          "用同一单位记录内部宽、深、高，扣除轨道、门铰与障碍物。还要检查物品进入柜体时经过的开口，不能只看最终摆放位置。"
+        ],
+        [
+          "包含完整轮廓",
+          "底座、耳朵、伸出的部件和配件都要计入。毛绒按打算保留的姿态测量，不预设可以挤压。标题中的一个高度不能代表完整占地。"
+        ],
+        [
+          "正确理解排布结果",
+          "工具比较统一方向的整齐网格与统一旋转 90 度的网格，不混合方向，也不证明最优装箱。高度必须容纳，间距适用于物品之间，不包含柜体外圈预留。"
+        ],
+        [
+          "购买前做实物模拟",
+          "可以剪纸模拟底面；数学上刚好放下时，还要留出拿取余量。承重与安装另查柜体厂商说明，计算不评估重量、固定方式或稳定性。"
+        ]
+      ],
+      "sources": [
+        [
+          "TDS display calculation",
+          "https://thedollscout.com/display-calculator"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    },
+    {
+      "language": "zh",
+      "url": "https://thedollscout.com/zh/collecting/start-a-collection",
+      "title": "建立一份能持续享受的收藏",
+      "intro": "先选一个小主题、支出上限与展示位置。清楚的愿望单，比把每一次上新都视作缺少的一件更实用。",
+      "sections": [
+        [
+          "写清收藏边界",
+          "用一句话描述收藏：一个角色、一个系列或一个场景。保留简短愿望单，标注可选项。同品牌可能同时包含手办、毛绒和配件，空间需求并不相同。"
+        ],
+        [
+          "分清款数与盒数",
+          "不同已拥有款式与重复件数分别记录。每件记下具体系列、形态、品相、购买日期和实际到手支出，缺少的字段留空，不猜转售价格。"
+        ],
+        [
+          "选择合适的下一步",
+          "接近集齐时，先估算新增款式机会，再比较确认款。如果瓶颈是空间，先测量后购买。继续欣赏现有收藏，也可以是合适的选择。"
+        ],
+        [
+          "保留可迁移记录",
+          "使用清单本地记录或账本支持的导出功能并留备份。浏览器存储不能保证不丢失。AI 助手可以演算场景，但公共 TDS MCP 服务不能读取你的私人本地收藏。"
+        ]
+      ],
+      "sources": [
+        [
+          "TDS collection tracker",
+          "https://thedollscout.com/collection-tracker"
+        ],
+        [
+          "TDS collection ledger",
+          "https://thedollscout.com/workbench/collectorledger"
+        ]
+      ],
+      "reviewed": "2026-10-02"
+    }
+  ],
+  "limitations": "Published independent guidance; no live stock, seller certification or search visibility guarantee."
+}

@@ -13,12 +13,12 @@ if(measurable){
  fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});
 }
 const recorded=new Set();
-function recordAction(name){if(!measurable||recorded.has(name))return;recorded.add(name);const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
-import {initStyleOdds} from './style-odds-ui.mjs?v=2026-10-02.4';
+function recordAction(name){if(!measurable||recorded.has(name))return;recorded.add(name);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}}));const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
+import {initStyleOdds} from './style-odds-ui.mjs?v=2026-10-02.5';
 const styleTool=document.querySelector('[data-style-tool]');
 if(styleTool)initStyleOdds(styleTool,recordAction);
 
-import {initDisplayFit} from './display-fit-ui.mjs?v=2026-10-02.4';
+import {initDisplayFit} from './display-fit-ui.mjs?v=2026-10-02.5';
 for(const fitTool of document.querySelectorAll('[data-fit-tool]'))initDisplayFit(fitTool,recordAction);
 
 // Only one player at a time; creating it is an explicit visitor action, not a play event.
@@ -50,3 +50,6 @@ if(demo){
 }
 const mcpCopy=document.querySelector('[data-copy-mcp]');
 if(mcpCopy)mcpCopy.addEventListener('click',async()=>{const status=document.querySelector('[data-mcp-status]');try{await navigator.clipboard.writeText('https://thedollscout.com/mcp');status.textContent=mcpCopy.dataset.success;}catch{status.textContent=mcpCopy.dataset.failure;}});
+
+import {initPlanning} from './planning-ui.mjs?v=2026-10-02.5';
+for(const el of document.querySelectorAll('[data-planning]'))initPlanning(el,recordAction);

@@ -3,11 +3,39 @@
   "updated": "2026-10-02",
   "server": {
     "name": "dollscout",
-    "version": "2.3.1"
+    "version": "2.4.0"
   },
   "endpoint": "https://thedollscout.com/mcp",
   "documentation": "https://thedollscout.com/for-agents",
   "tools": [
+    {
+      "id": "budget",
+      "task": "budget",
+      "name": "Blind-box budget and confirmed-item comparison",
+      "inputs": "Budget, per-box cost, one-time costs, confirmed all-in quote and exact-target probability; one currency",
+      "mcpTool": "compare_blind_box_budget",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/collecting/budget",
+        "de": "https://thedollscout.com/de/collecting/budget",
+        "zh": "https://thedollscout.com/zh/collecting/budget"
+      },
+      "limitations": "Independent draws; expected spend is not a guaranteed target price. No price lookup or purchase advice."
+    },
+    {
+      "id": "progress",
+      "task": "progress",
+      "name": "New styles and duplicate estimate",
+      "inputs": "Regular style count, distinct owned styles, independent box count and combined secret probability",
+      "mcpTool": "estimate_collection_progress",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/collecting/duplicates",
+        "de": "https://thedollscout.com/de/collecting/duplicates",
+        "zh": "https://thedollscout.com/zh/collecting/duplicates"
+      },
+      "limitations": "Equal regular probabilities only; secrets counted separately. Not complete-set probability or case allocation."
+    },
     {
       "id": "skullpanda-style-odds",
       "task": "odds",
@@ -37,6 +65,76 @@
       "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
     },
     {
+      "id": "smiski-style-odds",
+      "task": "odds",
+      "name": "SMISKI style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/smiski#style-probability",
+        "de": "https://thedollscout.com/de/brands/smiski#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/smiski#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "hirono-style-odds",
+      "task": "odds",
+      "name": "HIRONO style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/hirono#style-probability",
+        "de": "https://thedollscout.com/de/brands/hirono#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/hirono#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "dimoo-style-odds",
+      "task": "odds",
+      "name": "DIMOO style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/dimoo#style-probability",
+        "de": "https://thedollscout.com/de/brands/dimoo#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/dimoo#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "molly-style-odds",
+      "task": "odds",
+      "name": "MOLLY style probability",
+      "inputs": "Exact-series user-supplied probability and independent box count; regular mode assumes equal styles and secret replacement",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/molly#style-probability",
+        "de": "https://thedollscout.com/de/brands/molly#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/molly#style-probability"
+      },
+      "limitations": "No brand probability is prefilled. Sealed cases and hint-based remaining-box probabilities are excluded."
+    },
+    {
+      "id": "labubu-display-fit",
+      "task": "display",
+      "name": "Labubu / THE MONSTERS size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/labubu#display-fit",
+        "de": "https://thedollscout.com/de/brands/labubu#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/labubu#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
       "id": "skullpanda-display-fit",
       "task": "display",
       "name": "SKULLPANDA size and display fit",
@@ -63,6 +161,76 @@
         "zh": "https://thedollscout.com/zh/brands/jellycat#display-fit"
       },
       "limitations": "Measure full plush in its intended pose without compression. Uniform single-layer grid; no weight, safety or packing guarantee."
+    },
+    {
+      "id": "sonny-angel-display-fit",
+      "task": "display",
+      "name": "Sonny Angel size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/sonny-angel#display-fit",
+        "de": "https://thedollscout.com/de/brands/sonny-angel#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/sonny-angel#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
+      "id": "smiski-display-fit",
+      "task": "display",
+      "name": "SMISKI size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/smiski#display-fit",
+        "de": "https://thedollscout.com/de/brands/smiski#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/smiski#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
+      "id": "hirono-display-fit",
+      "task": "display",
+      "name": "HIRONO size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/hirono#display-fit",
+        "de": "https://thedollscout.com/de/brands/hirono#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/hirono#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
+      "id": "dimoo-display-fit",
+      "task": "display",
+      "name": "DIMOO size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/dimoo#display-fit",
+        "de": "https://thedollscout.com/de/brands/dimoo#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/dimoo#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
+    },
+    {
+      "id": "molly-display-fit",
+      "task": "display",
+      "name": "MOLLY size and display fit",
+      "inputs": "Inside space dimensions, full item dimensions, gap and optional rotation, all in the same unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/molly#display-fit",
+        "de": "https://thedollscout.com/de/brands/molly#display-fit",
+        "zh": "https://thedollscout.com/zh/brands/molly#display-fit"
+      },
+      "limitations": "Full figure, base and accessories. Uniform single-layer grid; no mixed-orientation maximum, weight or stability check."
     },
     {
       "id": "style-odds",

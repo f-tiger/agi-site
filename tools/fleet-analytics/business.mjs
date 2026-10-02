@@ -37,6 +37,10 @@ export function businessEvent(host, pathname, detail) {
     if (action) return {name:'tool_' + (action[1] || '') + action[2], tool_id:match[1]};
   }
   if (host === 'thedollscout.com') {
+    const planning={'/collecting/budget':'collector_budget_calc','/collecting/duplicates':'collector_progress_calc'};
+    if(planning[route]===name)return {name:'tool_complete',tool_id:route.slice(1).replaceAll('/','-')};
+    const brand=/^\/brands\/(labubu|skullpanda|jellycat|sonny-angel|smiski|hirono|dimoo|molly)$/.exec(route);
+    if(brand&&(name==='display_calc'||name==='odds_calc'&&brand[1]!=='jellycat'))return {name:name==='display_calc'?'collector_display_complete':'collector_odds_complete',tool_id:brand[1]+(name==='display_calc'?'-display-fit':'-style-odds')};
     const tool = route.slice(1);
     if (documents[tool]?.includes(name)) {
       const action = name.endsWith('_sample') ? 'example_run' : name.endsWith('_export') ? 'export' : name.endsWith('_start') ? 'start' : 'complete';
