@@ -53,3 +53,6 @@ if(mcpCopy)mcpCopy.addEventListener('click',async()=>{const status=document.quer
 
 import {initPlanning} from './planning-ui.mjs?v=2026-10-02.5';
 for(const el of document.querySelectorAll('[data-planning]'))initPlanning(el,recordAction);
+
+import {initSeries} from './series-ui.mjs?v=2026-10-02.daily1';
+initSeries(recordAction);

@@ -297,6 +297,35 @@
       "limitations": "MCP has no member or cloud-account access; inspect the workbench for storage options."
     },
     {
+      "id": "series-checklists",
+      "task": "collection",
+      "name": "Official-series collecting checklists",
+      "inputs": "Select owned styles in the browser; names are source-verified, not probabilities",
+      "execution": "browser-only",
+      "urls": {
+        "en": "https://thedollscout.com/series",
+        "de": "https://thedollscout.com/de/series",
+        "zh": "https://thedollscout.com/zh/series"
+      },
+      "seriesCatalog": "https://thedollscout.com/collector-assets/series-catalog.json",
+      "limitations": "Current tab only; resets on navigation. MCP cannot read or edit the checklist."
+    },
+    {
+      "id": "series-style-odds",
+      "task": "odds",
+      "name": "Exact-style probability on daily series pages",
+      "inputs": "target=printed, probabilityPercent from the exact package, and independent box count",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/series",
+        "de": "https://thedollscout.com/de/series",
+        "zh": "https://thedollscout.com/zh/series"
+      },
+      "seriesCatalog": "https://thedollscout.com/collector-assets/series-catalog.json",
+      "limitations": "Names and checklist length do not establish equal probabilities. No inferred rates; no sealed no-repeat case model."
+    },
+    {
       "id": "guides",
       "task": "guides",
       "name": "Source-linked collecting guides",

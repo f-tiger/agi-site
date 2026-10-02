@@ -122,9 +122,29 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/de/for-agents.txt
 - [供 AI 助手使用的收藏工具](https://thedollscout.com/zh/for-agents) (zh): 通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
   Text: https://thedollscout.com/collector-assets/text/zh/for-agents.txt
+- [Find your next series](https://thedollscout.com/series) (en): Official names. Your checklist. A clearer plan before the next box.
+  Text: https://thedollscout.com/collector-assets/text/en/series.txt
+- [Sonny Angel Snack Series — Build your checklist](https://thedollscout.com/series/sonny-angel-snack-series) (en): Sonny Angel Snack Series — Official names. Your checklist. A clearer plan before the next box.
+  Text: https://thedollscout.com/collector-assets/text/en/series/sonny-angel-snack-series.txt
+- [Sonny Angel Vegetable Series — Build your checklist](https://thedollscout.com/series/sonny-angel-vegetable-series) (en): Sonny Angel Vegetable Series — Official names. Your checklist. A clearer plan before the next box.
+  Text: https://thedollscout.com/collector-assets/text/en/series/sonny-angel-vegetable-series.txt
+- [Ihre nächste Serie entdecken](https://thedollscout.com/de/series) (de): Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+  Text: https://thedollscout.com/collector-assets/text/de/series.txt
+- [Sonny Angel Snack Series — Ihre Checkliste](https://thedollscout.com/de/series/sonny-angel-snack-series) (de): Sonny Angel Snack Series — Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+  Text: https://thedollscout.com/collector-assets/text/de/series/sonny-angel-snack-series.txt
+- [Sonny Angel Vegetable Series — Ihre Checkliste](https://thedollscout.com/de/series/sonny-angel-vegetable-series) (de): Sonny Angel Vegetable Series — Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+  Text: https://thedollscout.com/collector-assets/text/de/series/sonny-angel-vegetable-series.txt
+- [下一套，先做功课](https://thedollscout.com/zh/series) (zh): 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+  Text: https://thedollscout.com/collector-assets/text/zh/series.txt
+- [Sonny Angel Snack Series — 建立你的收藏清单](https://thedollscout.com/zh/series/sonny-angel-snack-series) (zh): Sonny Angel Snack Series — 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+  Text: https://thedollscout.com/collector-assets/text/zh/series/sonny-angel-snack-series.txt
+- [Sonny Angel Vegetable Series — 建立你的收藏清单](https://thedollscout.com/zh/series/sonny-angel-vegetable-series) (zh): Sonny Angel Vegetable Series — 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+  Text: https://thedollscout.com/collector-assets/text/zh/series/sonny-angel-vegetable-series.txt
 
 ## MCP and assistant discovery
 
+- [Daily source-backed series and tool inputs](https://thedollscout.com/collector-assets/series-catalog.json)
+- [Series checklist directory](https://thedollscout.com/series)
 - [Connect and inspect tools](https://thedollscout.com/for-agents)
 - Endpoint: https://thedollscout.com/mcp (Streamable HTTP, read-only, no API key)
 - [Tool capability catalog](https://thedollscout.com/collector-assets/tool-capabilities.json)

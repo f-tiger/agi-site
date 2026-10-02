@@ -33,3 +33,8 @@ test('TDS collecting measurements keep exact route/action pairs and exclude inpu
  assert.deepEqual(businessEvent('thedollscout.com','/de/brands/smiski',{name:'odds_calc'}),{name:'collector_odds_complete',tool_id:'smiski-style-odds'});
  for(const [p,d]of [['/collecting/duplicates',{name:'collector_budget_calc'}],['/brands/jellycat',{name:'odds_calc'}],['/collecting/budget',{name:'collector_budget_calc',value:100}],['/brands/unknown',{name:'display_calc'}]])assert.equal(businessEvent('thedollscout.com',p,d),null);
 });
+
+test('TDS daily series calculation has one fixed metric, never collector inputs',()=>{
+ assert.deepEqual(businessEvent('thedollscout.com','/zh/series/sonny-angel-snack-series',{name:'collector_series_calc'}),{name:'collector_series_complete',tool_id:'series-style-probability'});
+ for(const [p,d]of [['/series',{name:'collector_series_calc'}],['/series/unknown-series',{name:'collector_series_calc'}],['/series/smiski-living',{name:'collector_series_calc',probability:10}]])assert.equal(businessEvent('thedollscout.com',p,d),null);
+});

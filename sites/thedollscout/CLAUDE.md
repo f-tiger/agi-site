@@ -1,3 +1,12 @@
+## 2026-10-02 站点原生每日扩展（owner：避免依赖你）
+
+- 复用 `deploy-thedollscout.yml` 的 07:20 UTC（北京时间15:20）计划与手动触发；不新增 cron，不创建聊天任务，不调用模型。`tds-traffic` 06:00 UTC 继续取数。
+- `scripts/collecting/daily.mjs` 检查官方 robots 与目录，SMISKI 每轮轮转最多6个详情、Sonny Angel 常规系列图册。仅提取标题/款式名，不转载描述、不下载图片、不推断概率/库存/价格。白名单HTTPS，无凭据、无重定向绕过、限时限大小。
+- 每UTC日最多2个新系列，每轮最多6项事实更新、总量300。至少6个唯一具名款式，数据写 `content/series-state.json`；同日重跑不突破额度。无法核实保留旧记录并暴露失败，不能假装零变化。
+- `series-pages.mjs` 生成 /series 与 /series/<id> 三语页面、具名勾选清单、仅用户填包装概率的计算器和 JSON/纯文本。目录日期是核对日，不是新品发布日期。其它6品牌仍由既有指南覆盖，不能宣称8品牌全部自主扩展。
+- 发布任务先生成并完成本地闸门，再提交精确文件清单，并在同一run部署（GITHUB_TOKEN push不会自动触发下一个部署）。精确构建SHA与原生diff IndexNow；官方源部分失败可发最后核实内容，最后把工作流打红。并发主干变化时停发而不覆盖，下一次既有日任务重试。分钟预算、证据与维护在根仓 `docs/tds-native-daily-2026-10-02.md`。
+- 现有MCP2.4.0协议保持；find_collector_tools现在可发现系列工具和series-catalog，动态内容更新无需每天重注册。
+
 ## 2026-10-02 全站收藏任务扩展
 
 - `scripts/collecting/brand-expansion.mjs` 扩至8品牌；`expansion.mjs`、`learning.mjs`、`planning-pages.mjs` 生成品牌/工具/学习枢纽、4篇原创任务指南、2个计算器与编辑说明。收藏主干60个EN/DE/ZH页面；不新增退役 `/guides` 前缀。

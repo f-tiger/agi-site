@@ -1,3 +1,9 @@
+## 2026-10-02 native daily series expansion
+
+TDS now owns its scheduled growth through the existing GitHub Actions 07:20 UTC release. No assistant session or paid model is required. Scope starts with official SMISKI figure and Sonny Angel regular-series catalogs. Up to two verified series per UTC day get EN/DE/ZH checklists, user-supplied printed-probability tools and links to budgets/display planning. Other brand guides remain separately curated. Daily checking does not imply daily new products, stock, equal odds or guaranteed search traffic.
+
+Free repeat-use value: a real named checklist and a calculation before the next purchase. Source links remain unmonetized; no new paid offer or checkout. Existing disclosed affiliate paths are unchanged. Anonymous calculator completions are measured separately from purchases, and no checklist selections or probability inputs leave the page. Discovery uses homepage/brand links, sitemap, public JSON/text, the existing registered MCP catalog and post-deploy IndexNow. See root `docs/tds-native-daily-2026-10-02.md`.
+
 # TDS product and commercial context — version 3.0
 
 Updated 2026-10-02. Current owner direction supersedes the historical document-first positioning below.
