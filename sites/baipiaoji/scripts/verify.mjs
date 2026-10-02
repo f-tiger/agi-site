@@ -20,7 +20,8 @@ async function check(url) {
       signal: controller.signal,
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; AIYangmaoBot/1.0; +link-health-check)' },
     });
-    return { ok: res.status < 500, status: res.status };
+    await res.body?.cancel();
+    return { ok: res.status >= 200 && res.status < 300, status: res.status };
   } catch (err) {
     return { ok: false, status: 0, error: String(err?.cause?.code || err?.name || err) };
   } finally {
@@ -28,13 +29,19 @@ async function check(url) {
   }
 }
 
-const results = [];
-for (const tool of tools) {
+const results = new Array(tools.length);
+let cursor = 0;
+await Promise.all(Array.from({ length: Math.min(8, tools.length) }, async () => {
+for (;;) {
+  const index = cursor++;
+  if (index >= tools.length) break;
+  const tool = tools[index];
   const r = await check(tool.url);
-  results.push({ slug: tool.slug, url: tool.url, ...r, checked_at: today });
+  results[index] = { slug: tool.slug, url: tool.url, ...r, checked_at: today };
   if (r.ok) tool.last_verified = today;
   console.log(`${r.ok ? '✅' : '❌'} ${tool.slug} (${r.status}${r.error ? ' ' + r.error : ''})`);
 }
+}));
 
 writeFileSync(toolsPath, JSON.stringify(tools, null, 2) + '\n');
 writeFileSync(join(root, 'data/health.json'), JSON.stringify({ checked_at: today, results }, null, 2) + '\n');

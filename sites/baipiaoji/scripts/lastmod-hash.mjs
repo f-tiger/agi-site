@@ -7,10 +7,11 @@ import { createHash } from 'node:crypto';
 // they restamped all 1 700 pages on 2026-09-25 (two coding agents added, Cursor re-verified), which would re-push the whole site to
 // IndexNow and bury the pages that really changed. The hash ignores them (item 24's "900+" badge fixed one of these by display; the
 // rest are exact numbers readers use, so they stay on the page and leave the hash instead). The manifest committed with this change was migrated once to the new formula (dates kept where only these moved).
-export const FOOTER_COUNT = /(共收录|Listing) \d+ (个真有免费额度的 AI 工具|AI tools with a real free tier)<\/p>/g;
+export const FOOTER_COUNT = /(共收录|Listing) \d+ (个真有免费额度的 AI 工具|AI tools with a real free tier|个 AI 工具；免费额度以单独核实记录为准|AI tools; free allowances require a separate verified record)<\/p>/g;
 export const lmNormalize = (s) => s
       .replace(/(<nav class="rail-(?:jump|nav)">)([\s\S]*?)(<\/nav>)/g, (m, a, b, c) => a + b.replace(/<span>[\d,+]+<\/span>/g, '<span>N</span>') + c)
-      .replace(FOOTER_COUNT, '$1 N $2</p>')
+      // Preserve historical hashes when the shared footer clarifies directory vs price evidence.
+      .replace(FOOTER_COUNT, (_m, lang) => `${lang} N ${lang === '共收录' ? '个真有免费额度的 AI 工具' : 'AI tools with a real free tier'}</p>`)
       .replace(/<p class="sub-proof">[\s\S]*?<\/p>/g, '')
       .replace(/<script>[\s\S]*?<\/script>/g, '')
       // Global discovery chrome does not make every existing article newly updated.

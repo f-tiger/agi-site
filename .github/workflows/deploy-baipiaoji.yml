@@ -326,6 +326,8 @@ jobs:
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
           node scripts/test-tool-evidence.mjs
+          node scripts/test-catalog-expansion.mjs
+          node scripts/test-link-health.mjs
           node scripts/test-search-experiment.mjs
           node scripts/test-search-results.mjs
           node scripts/test-file-studio.mjs --dist
@@ -402,6 +404,7 @@ jobs:
           node tools/quote-page-lab/test-hosted.mjs
           node sites/baipiaoji/scripts/test-file-events-browser.mjs
           node sites/baipiaoji/scripts/test-homepage-clicks-browser.mjs
+          node sites/baipiaoji/scripts/test-catalog-browser.mjs
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
