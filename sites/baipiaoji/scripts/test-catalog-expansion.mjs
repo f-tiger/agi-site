@@ -44,6 +44,10 @@ for(const lang of ['zh','en']) {
  const response2=await onRequestPost({request:new Request('https://baipiaoji.com/api/mcp',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'search_ai_tools',arguments:{query:sample.name,lang}}})}),env});
  const mcp=await response2.json();
  assert.ok(!mcp.result.isError);
- assert.ok(mcp.result.content[0].text.includes(sample.slug));
+ const found=JSON.parse(mcp.result.content[0].text).tools.find(t=>t.slug===sample.slug);
+ assert.ok(found);
+ assert.equal(found.catalog_status,'discovery');
+ assert.equal(found.pricing_status,'unverified');
+ assert.deepEqual(found.catalog_source,sample.catalog_source);
 }
 console.log(`PASS: ${additions.length} discovery records, bilingual search/REST/MCP, price evidence and noindex boundaries`);

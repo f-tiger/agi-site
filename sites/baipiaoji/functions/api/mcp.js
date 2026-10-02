@@ -407,6 +407,8 @@ async function callTool(ctx, name, args = {}) {
       count: xs.length, directory_size: all.length, note: cite,
       tools: xs.slice(0, 10).map((t) => ({
         slug: t.slug, name: t.name, category: t.category, tagline: t.tagline,
+        catalog_status: t.catalog_status || null, pricing_status: t.pricing_status || null,
+        catalog_source: t.catalog_source || null,
         fully_free: t.fully_free, works_in_china: t.works_in_cn, tags: t.tags || [],
         verified_limit: t.verified_limit ? { quota: t.verified_limit.quota, checked: t.verified_limit.checked } : null,
         licence_verdict: t.licence_verdict, page: t.page, official_url: t.official_url,
