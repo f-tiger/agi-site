@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-01",
- "radar_fetched": "2026-10-01",
+ "generated": "2026-10-02",
+ "radar_fetched": "2026-10-02",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,33 +8,18 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": false,
+  "lemmy_wish": true,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 10,
+  "candidates": 8,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 10,
+  "scout": 8,
   "supplied": 0
  },
  "opportunities": [
-  {
-   "theme": "ieee expulsion of fei yue wang",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-24"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.38,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
   {
    "theme": "how apply for position",
    "site": "",
@@ -45,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.32,
+   "score": 2.42,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -66,21 +51,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there word or term for trillion valued companies not having perfect ui",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-24"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.14,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "anybody has experience with maintaining self hosted git",
    "site": "",
    "kind": "request-board",
@@ -96,12 +66,12 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there a program which returns the output of dumpsys window windows as a json",
+   "theme": "is there a program which returns the output of dumpsys activity activities as a ",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-09-29"
+    "2026-10-01"
    ],
    "state": "scout",
    "supplied": false,
@@ -111,12 +81,27 @@
    "fleet_pages": []
   },
   {
-   "theme": "can an android app track a phone s live location using only its phone number",
+   "theme": "is there an app store or user repository from which applications can t be taken ",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-09-23"
+    "2026-10-02"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.05,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "is there a program which returns the output of dumpsys window windows as a json",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-09-29"
    ],
    "state": "scout",
    "supplied": false,
@@ -141,31 +126,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there a program which returns the output of dumpsys activity activities as a ",
+   "theme": "monthly is there a tool for post",
    "site": "",
    "kind": "request-board",
-   "subreddit": "softwarerecs",
+   "subreddit": "lemmy:ai_reddit",
    "days_seen": [
     "2026-10-01"
    ],
    "state": "scout",
    "supplied": false,
    "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "can you migrate just a few slack users instead of the whole workspace",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-01"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 1.98,
    "demand": [],
    "supply": [],
    "fleet_pages": []

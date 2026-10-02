@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-01",
+ "fetched": "2026-10-02",
  "geo": "US",
  "seeds": {
   "mattress fiberglass": {
@@ -60,24 +60,29 @@
    "rising": [
     {
      "q": "tommy bahama furniture",
-     "v": 49850
+     "v": 184550
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-19"
+   "fetched": "2026-10-02"
   },
   "counterfeit makeup": {
    "auto": [
     "counterfeit makeup",
     "counterfeit makeup products",
     "counterfeit makeup documentary",
-    "counterfeit makeup reddit",
+    "counterfeit makeup dangers",
     "netflix documentary counterfeit makeup",
     "counterfeit blonde clown makeup white"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "counterfeit makeup dangers",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-19"
+   "fetched": "2026-10-02"
   }
  }
 }
