@@ -2,6 +2,13 @@
   "note": "Real, dated site changes only — the changelog generator refuses invented entries. Newest first. Maintained by the daily run; every entry must correspond to a shipped commit.",
   "entries": [
     {
+      "date": "2026-10-02",
+      "title": "Four evidence topics now have dated citation notes and downloadable charts",
+      "title_zh": "四个证据主题补齐日期、引用说明和可下载图表",
+      "url": "/progress-index#cite-evidence",
+      "note": "Added bilingual evidence panels and source notes, share-link attribution, and read-only subscription/payment aggregates. Ledger verdicts and score history are unchanged."
+    },
+    {
       "date": "2026-10-01",
       "title": "Source-matched homepage answers and incremental search notifications",
       "title_zh": "首页问答、结构化数据与 AI 摘要同源生成，搜索通知改为增量提交",

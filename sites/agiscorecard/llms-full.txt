@@ -136,7 +136,7 @@ A: Yes — free for any use, commercial or not. The underlying dataset is CC BY 
 URL: https://agiscorecard.com/progress-index
 Last updated: September 6, 2026 · Updated as verdicts change
 
-The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
+The published ledger is 62.5/100, dated 2026-09-06. Eight equally weighted judgments make up this score. It is not the probability that AGI arrives. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Published verdict ledger / 已发布判定台账 — /data.json; Archived score readings / 已存档分数 — /index-history.json Older article summary: The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
 
 Q: What is the AGI-2027 Thesis Tracker?
 A: A single 0-100 score of how much of Aschenbrenner's Situational Awareness thesis is holding up, computed as the mean of the 8 graded verdict weights. As of 2026-09-06 it is 62.5/100. It is an editorial composite of published verdicts, not a probability of AGI.
@@ -183,7 +183,7 @@ A: By January 1, 2028. As of mid-2026 it is graded Open — agentic capability i
 URL: https://agiscorecard.com/will-agi-arrive-2027
 Last updated: August 29, 2026 · Updated as verdicts change
 
-Open — too early to call. Aschenbrenner predicted AGI by 2027 in Situational Awareness. As of mid-2026, agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research. The prediction resolves by January 1, 2028. His 2027 is more aggressive than most forecasters.
+The ledger records this prediction as Open. Its operational test is autonomous AI research, with a site resolution date of 1 January 2028. This is the site’s interpretation, not a universal definition of AGI. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Aschenbrenner, June 2024 — https://situational-awareness.ai/from-gpt-4-to-agi/; Site resolution rule / 本站判定规则 — /data.json Older article summary: Open — too early to call. Aschenbrenner predicted AGI by 2027 in Situational Awareness. As of mid-2026, agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research. The prediction resolves by January 1, 2028. His 2027 is more aggressive than most forecasters.
 
 Q: Will AGI arrive by 2027?
 A: Undecided as of mid-2026. Aschenbrenner predicted AGI by 2027; agentic coding is strong but autonomous AI research is undemonstrated. The prediction resolves by January 1, 2028.
@@ -201,7 +201,7 @@ A: Expert median estimates have compressed from roughly 2060 to roughly 2033 ove
 URL: https://agiscorecard.com/did-open-source-ai-fade
 Last updated: August 15, 2026 · Updated as verdicts change
 
-No — graded Wrong. Aschenbrenner predicted open-source models would fade and proprietary algorithms would form a durable US moat. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max sit roughly 3–6 months behind the frontier — at a fraction of the cost, with genuine architectural innovation.
+Epoch’s January–May 2026 ECI analysis estimates a four-month average open-weight capability lag; a stricter comparison gives six months. Neither estimate measures every capability or proves a durable commercial moat. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Edwards & Emberson, Epoch AI (2026) — https://epoch.ai/data-insights/open-closed-eci-gap; Epoch AI: definitions and earlier research — https://epoch.ai/publications/open-models-report Older article summary: No — graded Wrong. Aschenbrenner predicted open-source models would fade and proprietary algorithms would form a durable US moat. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max sit roughly 3–6 months behind the frontier — at a fraction of the cost, with genuine architectural innovation.
 
 Q: Did open-source AI fade as Aschenbrenner predicted?
 A: No. This is his clearest miss. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max trail the proprietary frontier by only ~3–6 months, at a fraction of the cost, with real architectural innovation.
@@ -519,7 +519,7 @@ A: It flips to Wrong if, by end-2026, frontier models still can't complete a maj
 URL: https://agiscorecard.com/ai-and-your-job
 Last updated: September 5, 2026 · Updated as the evidence moves · 中文
 
-Verdict as of September 5, 2026: worry in proportion, not in panic — economy-wide job loss from AI is not yet visible in the data, but a real, concentrated hit on early-career workers in the most AI-exposed occupations is. Fear 79% of Americans expect AI to reduce US jobs over the next 10 years; 18% of workers think their own job is likely gone within 5 years ( Gallup, 2026). Economy-wide, observed US unemployment 4.2%, no relative deterioration in AI-exposed occupations in aggregate (Anthropic economist Peter McCrory, Fortune, 2026-07-24); no discernible economy-wide disruption ( Yale Budget Lab tracker). Concentrated early signal Workers aged 22–25 in the most AI-exposed occupations: relative employment −13% (Aug 2025) → −16% (Nov 2025) → a gap of about 19% (Aug 2026 update, data through Jun 2026) ( Stanford Digital Economy Lab, Canaries).
+Sentiment, task exposure and observed employment answer different questions. Use the dated studies below to inspect a specific task and cohort; do not convert a task-exposure percentage into a probability of losing your job. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Microsoft Research: Working with AI — https://github.com/microsoft/working-with-ai; Yale Budget Lab: employment tracker — https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs Older article summary: Verdict as of September 5, 2026: worry in proportion, not in panic — economy-wide job loss from AI is not yet visible in the data, but a real, concentrated hit on early-career workers in the most AI-exposed occupations is. Fear 79% of Americans expect AI to reduce US jobs over the next 10 years; 18% of workers think their own job is likely gone within 5 years ( Gallup, 2026). Economy-wide, observed US unemployment 4.2%, no relative deterioration in AI-exposed occupations in aggregate (Anthropic economist Peter McCrory, Fortune, 2026-07-24); no discernible economy-wide disruption ( Yale Budget Lab tracker). Concentrated early signal Workers aged 22–25 in the most AI-exposed occupations: relative employment −13% (Aug 2025) → −16% (Nov 2025) → a gap of about 19% (Aug 2026 update, data through Jun 2026) ( Stanford Digital Economy Lab, Canaries).
 
 Q: Is AI actually taking jobs yet?
 A: Not economy-wide, as of September 2026: US unemployment is 4.2% and the Yale Budget Lab tracker finds no discernible disruption from AI. The one hard signal is concentrated — Stanford's Canaries study puts workers aged 22–25 in the most AI-exposed occupations at a relative employment gap of about 19% (data through June 2026), with no comparable decline for older workers.
@@ -558,7 +558,7 @@ A: For one slice, yes. Stanford's Canaries in the Coal Mine (ADP payroll data, A
 URL: https://agiscorecard.com/zh/ai-and-your-job
 最后更新：2026年9月5日 · 随证据变化更新
 
-截至 2026 年 9 月 5 日的判定：按比例担心，不必恐慌 ——AI 造成的经济整体岗位流失尚未出现在数据里，但对最高 AI 暴露职业里职业早期劳动者的一次真实、集中的冲击已经出现。 恐惧 79% 的美国人预期 AI 会在未来 10 年减少美国岗位； 18% 的劳动者认为自己的岗位可能在 5 年内消失（ Gallup，2026 ）。 经济整体·观察值 美国失业率 4.2% ，汇总数据里 AI 暴露职业没有相对恶化（Anthropic 经济学家 Peter McCrory， 《财富》，2026-07-24 ）； 无可辨 的经济整体扰动（ 耶鲁预算实验室追踪器 ）。 集中的早期信号 最高 AI 暴露职业里 22–25 岁 劳动者的相对就业： −13% （2025 年 8 月）→ −16% （2025 年 11 月）→ 差距 约 19% （2026 年 8 月更新，数据截至 2026 年 6 月）（ 斯坦福数字经济实验室，“金丝雀” ）。
+情绪、任务暴露和实际就业回答不同问题。请按下文研究的日期、任务和人群核对；不要把任务暴露比例当成个人失业概率。 引用说明版本: 2026-10-02 · 台账日期: 2026-09-06 Sources: Microsoft Research: Working with AI — https://github.com/microsoft/working-with-ai; Yale Budget Lab: employment tracker — https://budgetlab.yale.edu/research/evaluating-impact-ai-labor-market-current-state-affairs Older article summary: 截至 2026 年 9 月 5 日的判定：按比例担心，不必恐慌 ——AI 造成的经济整体岗位流失尚未出现在数据里，但对最高 AI 暴露职业里职业早期劳动者的一次真实、集中的冲击已经出现。 恐惧 79% 的美国人预期 AI 会在未来 10 年减少美国岗位； 18% 的劳动者认为自己的岗位可能在 5 年内消失（ Gallup，2026 ）。 经济整体·观察值 美国失业率 4.2% ，汇总数据里 AI 暴露职业没有相对恶化（Anthropic 经济学家 Peter McCrory， 《财富》，2026-07-24 ）； 无可辨 的经济整体扰动（ 耶鲁预算实验室追踪器 ）。 集中的早期信号 最高 AI 暴露职业里 22–25 岁 劳动者的相对就业： −13% （2025 年 8 月）→ −16% （2025 年 11 月）→ 差距 约 19% （2026 年 8 月更新，数据截至 2026 年 6 月）（ 斯坦福数字经济实验室，“金丝雀” ）。
 
 Q: AI 现在真的在抢工作了吗？
 A: 截至 2026 年 9 月，经济整体层面没有：美国失业率 4.2%，耶鲁预算实验室的追踪器未发现 AI 造成可辨的整体劳动力市场扰动。唯一的硬信号是集中的——斯坦福“金丝雀”研究发现，最高 AI 暴露职业里 22–25 岁劳动者的相对就业差距约为 19%（数据截至 2026 年 6 月），年长劳动者没有可比的下降。
@@ -1399,12 +1399,48 @@ What data agiscorecard.com collects - GA4, a cookieless first-party log, and the
 
 ---
 
+## AGI 会在 2027 年到来吗？（判定追踪，2026）
+
+URL: https://agiscorecard.com/zh/will-agi-arrive-2027
+最后更新：2026年6月30日 · 随判定变化持续更新
+
+台账将此预测记为“未决”。本站以自主 AI 研究作为操作性标准，判定期限为 2028 年 1 月 1 日；这是本站口径，不是统一的 AGI 定义。 引用说明版本: 2026-10-02 · 台账日期: 2026-09-06 Sources: Aschenbrenner, June 2024 — https://situational-awareness.ai/from-gpt-4-to-agi/; Site resolution rule / 本站判定规则 — /data.json Older article summary: 未定——尚难下结论。 阿申布伦纳在《态势感知》中预测 AGI 将于 2027 年到来。截至 2026 年中，智能体编码很强（SWE-Bench Pro 约 80%），但还没有系统能自主开展 AI 研究。该预测将在 2028 年 1 月 1 日 前揭晓。他的 2027 比多数预测者都更激进。
+
+Q: AGI 会在 2027 年到来吗？
+A: 截至 2026 年中尚未决。阿申布伦纳预测 AGI 在 2027 年到来；智能体编码很强，但自主 AI 研究尚未实现。该预测在 2028 年 1 月 1 日前揭晓。
+
+Q: 阿申布伦纳的 2027 时间表现实吗？
+A: 比多数人更激进。哈萨比斯称 2030 年约 50%，Metaculus 是 2033 年 50%，学界调查是 2047 年 50%。只有马斯克（2026 年底）更激进。
+
+Q: AGI 时间表是怎么变化的？
+A: 专家中位估计在大约六年里从 2060 左右压缩到了 2033 左右——共识在不断提前。
+
+---
+
+## 开源 AI 衰落了吗？（判定：错误）
+
+URL: https://agiscorecard.com/zh/did-open-source-ai-fade
+最后更新：2026年6月30日 · 随判定变化持续更新
+
+Epoch 对 2026 年 1—5 月的 ECI 分析给出开放权重模型平均约 4 个月的能力时间差；更严格比较规则下约为 6 个月。它们不能代表所有能力，也不能证明持久的商业壁垒。 引用说明版本: 2026-10-02 · 台账日期: 2026-09-06 Sources: Edwards & Emberson, Epoch AI (2026) — https://epoch.ai/data-insights/open-closed-eci-gap; Epoch AI: definitions and earlier research — https://epoch.ai/publications/open-models-report Older article summary: 没有——判定为错误。 阿申布伦纳预测开源模型会衰落、专有算法形成持久的美国护城河。截至 2026 年中， DeepSeek V4 、 Qwen 3.7 Max 等开放权重模型仅落后前沿约 3–6 个月 ，成本却低得多，且有真正的架构创新。
+
+Q: 开源 AI 如阿申布伦纳预测般衰落了吗？
+A: 没有。这是他最明显的失误。截至 2026 年中，DeepSeek V4、Qwen 3.7 Max 等开放权重模型仅落后专有前沿约 3–6 个月，成本低得多，且有真正的架构创新。
+
+Q: DeepSeek 和 Qwen 只是在蒸馏西方模型吗？
+A: 存在蒸馏的质疑，但 Epoch AI 认为 MLA、细粒度 MoE 等是真正的进步。况且一个前沿能被廉价蒸馏的世界，本身就削弱了持久护城河的说法。
+
+Q: 开源这一判定为什么重要？
+A: 《态势感知》约三分之一的政策主张（“锁住实验室”）假设权重和算法是持久护城河。若 AI 廉价扩散，这套地缘逻辑就被削弱。
+
+---
+
 ## AGI-2027 命题追踪指数：一个分数看懂 2027 赌局
 
 URL: https://agiscorecard.com/zh/progress-index
 最后更新：2026年9月6日 · 随判定变化更新
 
-当前，AGI-2027 命题的追踪分数为 62.5/100 。 这个指数用一个数字表示阿申布伦纳《态势感知》当前的成立程度——8 项判定权重的透明平均值。它只在某项判定变化时移动，且每项判定都带预先登记的翻转条件。不声称任何概率；它是可逐行审计的编辑性合成。
+台账读数为 62.5/100，日期 2026-09-06。分数来自 8 项等权判定，不是 AGI 到来的概率。 引用说明版本: 2026-10-02 · 台账日期: 2026-09-06 Sources: Published verdict ledger / 已发布判定台账 — /data.json; Archived score readings / 已存档分数 — /index-history.json Older article summary: 当前，AGI-2027 命题的追踪分数为 62.5/100 。 这个指数用一个数字表示阿申布伦纳《态势感知》当前的成立程度——8 项判定权重的透明平均值。它只在某项判定变化时移动，且每项判定都带预先登记的翻转条件。不声称任何概率；它是可逐行审计的编辑性合成。
 
 Q: 什么是 AGI-2027 命题追踪指数？
 A: 一个 0-100 的单一分数，衡量阿申布伦纳《态势感知》命题当前的成立程度，由 8 项判定的权重取平均算出。截至 2026-09-06 为 62.5/100。它是已发布判定的编辑性合成，不是 AGI 发生的概率。
@@ -1558,7 +1594,7 @@ A: Each issue quotes a dated snapshot with a link to the live market — never a
 ## Changelog — What Changed on the AGI Scorecard
 
 URL: https://agiscorecard.com/changelog
-Last updated: October 1, 2026 · Updated as verdicts change
+Last updated: October 2, 2026 · Updated as verdicts change
 
 Everything that changed on the evidence layer, dated and real. Every entry corresponds to a shipped change; score history is machine-readable. If you would rather not check back: subscribers get one email when something that matters actually changes — a verdict, the score, a new tool — and silence otherwise.
 

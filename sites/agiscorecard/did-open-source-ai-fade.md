@@ -2,7 +2,7 @@
 
 _Last updated: August 15, 2026 · Updated as verdicts change_
 
-**Answer:** No — graded Wrong. Aschenbrenner predicted open-source models would fade and proprietary algorithms would form a durable US moat. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max sit roughly 3–6 months behind the frontier — at a fraction of the cost, with genuine architectural innovation.
+**Answer:** Epoch’s January–May 2026 ECI analysis estimates a four-month average open-weight capability lag; a stricter comparison gives six months. Neither estimate measures every capability or proves a durable commercial moat. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Edwards & Emberson, Epoch AI (2026) — https://epoch.ai/data-insights/open-closed-eci-gap; Epoch AI: definitions and earlier research — https://epoch.ai/publications/open-models-report Older article summary: No — graded Wrong. Aschenbrenner predicted open-source models would fade and proprietary algorithms would form a durable US moat. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max sit roughly 3–6 months behind the frontier — at a fraction of the cost, with genuine architectural innovation.
 
 ## FAQ
 

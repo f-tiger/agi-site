@@ -1,0 +1,7 @@
+import fs from 'node:fs';import {createHash} from 'node:crypto';import {memberSecret} from '../../../tools/member-studio/ops.mjs';
+const key=createHash('sha256').update(memberSecret('agi',process.env)+':evidence-funnel:v1').digest('hex');
+const r=await fetch('https://agiscorecard.com/api/evidence-funnel',{method:'POST',headers:{authorization:'Bearer '+key},signal:AbortSignal.timeout(30000)});
+if(!r.ok)throw Error('Evidence funnel unavailable: HTTP '+r.status);const j=await r.json();if(!j.ok)throw Error('Incomplete evidence funnel');
+console.log(JSON.stringify(j));
+const lines=['## Evidence and assessment funnel','',`Complete UTC days: ${j.window.start} through ${j.window.end_exclusive} (exclusive).`, '', 'Baseline: 2026-10-03 through 2026-10-16 UTC. No growth verdict before the baseline is complete.','','Events count actions, not distinct people. Tagged arrivals are not proven external shares. Stored subscriptions do not prove email delivery. Orders require a matching server receipt; gross USDT is not net revenue. The stages use different units and are not a person-level conversion rate.','','| Day | Event | Location | Label | Count |','|---|---|---|---|---:|',...j.events.map(x=>`| ${x.day} | ${x.event} | ${x.location} | ${x.label} | ${x.n} |`),'','New subscription rows: '+JSON.stringify(j.subscriptions),'','Checkout orders: '+JSON.stringify(j.checkout_orders),'','Receipt-backed paid orders: '+JSON.stringify(j.paid_orders),''];
+if(process.env.GITHUB_STEP_SUMMARY)fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join('\n'));

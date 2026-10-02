@@ -154,6 +154,7 @@
 <meta name="twitter:image" content="https://agiscorecard.com/og-image.png">
 <meta name="twitter:title" content="AI 进展与 AGI 预测证据 | AGI 记分牌">
 <meta name="twitter:description" content="追踪《态势感知》的 8 项 AGI 预测，核对来源、判定与翻转条件。自行评分，并查看 AI 对工作和投资研究的影响。">
+<script type="module" src="/evidence-assets/evidence.js"></script>
 </head>
 <body class="focus-home focus-zh">
 <header>
@@ -168,8 +169,9 @@
 <!-- home-focus:start -->
 <section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
   <div class="focus-opening"><div><h1 id="focus-title">AI 进展到了哪一步？</h1><p class="focus-lead">对照证据，追踪《态势感知》的 8 项预测。看懂已经发生的变化、仍未兑现的承诺，以及它们对工作和投资研究的意义。</p>
-  <div class="focus-actions"><a href="/zh/progress-index" data-focus-action="hero_evidence" class="focus-primary">查看完整证据</a><a href="#grade-game" data-focus-action="hero_grade" class="focus-secondary">给出我的判断</a></div></div>
+  <div class="focus-actions"><a href="/zh/progress-index#cite-evidence" data-focus-action="hero_evidence" class="focus-primary">查看证据与变化</a><a href="#grade-game" data-focus-action="hero_grade" class="focus-secondary">给出我的判断</a></div></div>
   <aside class="focus-reading" aria-label="AGI-2027 命题追踪指数"><p>AGI-2027 命题追踪指数</p><div class="focus-score">62.5<span>/100</span></div><p>已发布判定的综合分数，不是 AGI 发生概率。</p><p class="focus-date">台账记录日期 <time datetime="2026-09-06">2026-09-06</time></p><a href="/zh/progress-index">核对计算方法与历史</a></aside></div>
+  <section class="focus-evidence-desk" id="evidence-desk" aria-labelledby="desk-heading"><h2 id="desk-heading">最新查证补充</h2><p><time datetime="2026-10-02">2026-10-02</time> — 补齐开放权重模型差距的研究区间：2026 年 1—5 月，平均约 4 个月；更严格比较约 6 个月。</p><p class="focus-boundary">最新判定台账仍为 2026-09-06。本次是来源说明与展示更新，不是新的判定。</p><nav aria-label="四个证据主题"><a href="/zh/progress-index#cite-evidence" data-focus-action="asset_progress" class="">分数与历史</a><a href="/zh/will-agi-arrive-2027#cite-evidence" data-focus-action="asset_agi2027" class="">2027 预测怎么判定</a><a href="/zh/did-open-source-ai-fade#cite-evidence" data-focus-action="asset_open" class="">开源与闭源的能力差距</a><a href="/zh/ai-and-your-job#cite-evidence" data-focus-action="asset_work" class="">哪些证据说明工作在变</a></nav></section>
   <nav class="focus-routes" aria-label="选择用途"><a href="/zh/progress-index" data-focus-action="route_evidence" class="focus-route"><strong>查证据</strong><span>逐项核对判定、来源与改变结论的条件。</span></a><a href="/zh/ai-and-your-job" data-focus-action="route_work" class="focus-route"><strong>判断工作影响</strong><span>区分已观测的就业数据与未来预测。</span></a><a href="/zh/invest" data-focus-action="route_invest" class="focus-route"><strong>研究 AI 投资</strong><span>核对公开持仓与研究假设，再看风险。</span></a></nav>
   <p class="focus-boundary">判定记录与网站更新分开标注。页面改版不代表证据重新核验。</p>
 </section>
@@ -187,7 +189,7 @@
 <div id="gg-result" hidden><h3>我的分数 <span id="gg-score"></span>/100</h3><p id="gg-verdict-line"></p><div id="gg-diffs"></div>
 <div class="focus-actions"><button type="button" id="gg-copy" class="focus-primary">复制判断摘要</button><a href="/zh/progress-index" data-focus-action="grade_evidence" class="focus-secondary">核对台账</a><button type="button" id="gg-reset" class="focus-secondary">重新判断</button></div>
 <p id="gg-copy-status" role="status"></p><textarea id="gg-copy-fallback" readonly hidden aria-label="可手动复制的结果"></textarea>
-<p class="focus-boundary">每项选择与分数仅在本页计算；统计只记录开始、完成及复制成功，不包含你的评分。复制内容是文字摘要与页面链接，不会生成公开个人档案。</p></div></div>
+<p class="focus-boundary">每项选择与分数仅在本页计算；统计只记录开始、完成及复制成功，不包含你的评分。复制内容是文字摘要与页面链接，不会生成公开个人档案。</p><p><a href="https://agiscorecard.beehiiv.com/subscribe" onclick="gtag('event','subscribe_click',{location:'grade_result'});">登记邮箱，关注判定变化</a></p></div></div>
 <noscript><p>请启用 JavaScript 使用评分；你仍可阅读 <a href="/zh/progress-index">完整台账与方法</a>。</p></noscript>
 </section>
 <!-- home-grade:end -->
@@ -256,7 +258,7 @@
 <div class="discovery-question"><h3 class="faq-q">怎样复算或引用这个分数？</h3><p>读取 data.json 中的 predictions 与 thesisTracker，按公开权重复算；用 index-history.json 核对历史。引用时写明 AGI Scorecard、台账日期 2026-09-06 和原始数据链接。数据采用 CC BY 4.0；网站改版日期不能替代证据日期。</p></div>
 <!-- discovery-faq:end --></section>
 <!-- home-changes:start -->
-<section class="focus-changes section" id="changelog"><h2>最近的网站更新</h2><p>这些是功能或证据展示的变更；判定日期见上方台账。</p><ol><li><time datetime="2026-10-01">2026-10-01</time><span>首页问答、结构化数据与 AI 摘要同源生成，搜索通知改为增量提交</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>中英文首页聚焦证据、工作与投资研究，评分完成可独立统计</span></li><li><time datetime="2026-09-27">2026-09-27</time><span>并列展示四位独立评审的判定与一处分歧，并可在浏览器核对时间戳记录</span></li></ol><a href="/changelog" data-focus-action="changelog" class="">完整变更记录（英文）</a></section>
+<section class="focus-changes section" id="changelog"><h2>最近的网站更新</h2><p>这些是功能或证据展示的变更；判定日期见上方台账。</p><ol><li><time datetime="2026-10-02">2026-10-02</time><span>四个证据主题补齐日期、引用说明和可下载图表</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>首页问答、结构化数据与 AI 摘要同源生成，搜索通知改为增量提交</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>中英文首页聚焦证据、工作与投资研究，评分完成可独立统计</span></li></ol><a href="/changelog" data-focus-action="changelog" class="">完整变更记录（英文）</a></section>
 <!-- home-changes:end -->
 <details class="history-record"><summary>历史专题：2026年7月，预言与持仓发生了什么？</summary>
   <div class="hero">

@@ -1,3 +1,4 @@
+import {evidenceFunnelRoute} from '../evidence-funnel.mjs';
 import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
 import {mentorRoute} from '../mentor/server.mjs';
@@ -30,7 +31,7 @@ import {videoGrowth} from './video-growth.js';
 // identify a person or link one visit to another. /privacy says all of this in prose.
 
 const ALLOWED_EVENTS = new Set([
-  'focus_entry', 'task_start', 'task_complete', 'result_copy',
+  'focus_entry', 'task_start', 'task_complete', 'result_copy', 'evidence_action', 'share_arrival',
   'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
   'deeplink_pick', 'vote_cast', 'challenge_share', 'x_share', 'embed_copy',
@@ -250,6 +251,7 @@ export default {
     const infrastructureResponse=await infrastructureRoute(request,env);if(infrastructureResponse)return infrastructureResponse;
     const createResponse=await createRoute(request,env);if(createResponse)return createResponse;
     const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
+    const evidenceResponse=await evidenceFunnelRoute(request,env);if(evidenceResponse)return evidenceResponse;
     const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
     if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
@@ -623,7 +625,7 @@ export default {
       }
       const name = clean(body.n, 40);
       // The assessment accepts fixed action labels only; no grades or free text.
-      if (['focus_entry','task_start','task_complete','result_copy'].includes(name) &&
+      if (['focus_entry','task_start','task_complete','result_copy','evidence_action','share_arrival'].includes(name) &&
           !validFocusEvent(name, body.l, body.b)) return new Response(null, {status:204,headers:CORS});
       // UA 审计的第二维(2026-08-11):page_view 走到这里意味着 JS 真的跑了。
       // 用同一个 UA 前缀记一行 ua_class='js',即可与服务端记录的 human/bot 对账——
@@ -1294,8 +1296,10 @@ export const __test = { clean, cleanText, LABEL_MAX };
 
 // Fixed assessment action contract. Aggregate uses the existing event-name index,
 // shares pulse's one-hour cache, and exposes no individual choices or identifiers.
-const FOCUS_LABELS = new Set(['hero_evidence','hero_grade','route_evidence','route_work','route_invest','nav_evidence','nav_work','nav_invest','nav_tools','nav_discuss','nav_directory','nav_language','grade_source','grade_evidence','changelog','context_method','context_data','context_history']);
+const FOCUS_LABELS = new Set(['hero_evidence','hero_grade','route_evidence','route_work','route_invest','nav_evidence','nav_work','nav_invest','nav_tools','nav_discuss','nav_directory','nav_language','grade_source','grade_evidence','changelog','context_method','context_data','context_history','asset_progress','asset_agi2027','asset_open','asset_work']);
 export function validFocusEvent(name, location, label) {
+  if (name === 'evidence_action') return /^evidence_(progress|agi2027|open|work)_(en|zh)$/.test(location || '') && ['source_open','citation_copy','share_copy','chart_download','png_download','assessment_open'].includes(label);
+  if (name === 'share_arrival') return /^reader_share_(en|zh)$/.test(location || '') && ['evidence_link','assessment_link'].includes(label);
   if (name === 'focus_entry') return /^(home_focus|evidence_context)_(en|zh)$/.test(location || '') && FOCUS_LABELS.has(label);
   return ['task_start','task_complete','result_copy'].includes(name) && /^grade_game_(en|zh)$/.test(location || '') && label === 'assessment';
 }

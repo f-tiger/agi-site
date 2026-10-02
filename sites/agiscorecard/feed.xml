@@ -7,36 +7,50 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-10-01T00:00:00Z</updated>
+  <updated>2026-10-02T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
-  <entry>
-    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
-    <link href="https://agiscorecard.com/for-agents"/>
-    <id>https://agiscorecard.com/for-agents</id>
-    <updated>2026-10-01T00:00:00Z</updated>
-    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
-  </entry>
   <entry>
     <title>AGI-2027 Thesis Tracker: One Score for the 2027 Bet</title>
     <link href="https://agiscorecard.com/progress-index"/>
     <id>https://agiscorecard.com/progress-index</id>
-    <updated>2026-10-01T00:00:00Z</updated>
+    <updated>2026-10-02T00:00:00Z</updated>
     <summary>A single auditable 0-100 score of how much of Aschenbrenner&#x27;s Situational Awareness thesis is holding up. Currently 62.5/100, from 8 graded verdicts. CC BY 4.0.</summary>
+  </entry>
+  <entry>
+    <title>Will AGI Arrive by 2027? Aschenbrenner&#x27;s Prediction</title>
+    <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
+    <id>https://agiscorecard.com/will-agi-arrive-2027</id>
+    <updated>2026-10-02T00:00:00Z</updated>
+    <summary>Aschenbrenner predicted AGI by 2027. As of mid-2026 it&#x27;s graded Open — 18 months left. How his timeline compares to Metaculus (2033), Hassabis (2030).</summary>
+  </entry>
+  <entry>
+    <title>Did Open-Source AI Fade? Grading Aschenbrenner&#x27;s Moat</title>
+    <link href="https://agiscorecard.com/did-open-source-ai-fade"/>
+    <id>https://agiscorecard.com/did-open-source-ai-fade</id>
+    <updated>2026-10-02T00:00:00Z</updated>
+    <summary>Aschenbrenner predicted open-source AI would fade behind a proprietary moat. Graded Wrong: DeepSeek V4 and Qwen 3.7 trail the frontier by only ~3–6 months.</summary>
   </entry>
   <entry>
     <title>Should You Worry About AI Taking Your Job? (Sep 2026)</title>
     <link href="https://agiscorecard.com/ai-and-your-job"/>
     <id>https://agiscorecard.com/ai-and-your-job</id>
-    <updated>2026-10-01T00:00:00Z</updated>
+    <updated>2026-10-02T00:00:00Z</updated>
     <summary>A dated verdict: fear (79%) vs the economy-wide record (4.2% unemployment, no discernible disruption) vs one real early signal: ages 22–25 in exposed jobs.</summary>
   </entry>
   <entry>
     <title>AI 进展与 AGI 预测证据 | AGI 记分牌</title>
     <link href="https://agiscorecard.com/cn"/>
     <id>https://agiscorecard.com/cn</id>
-    <updated>2026-10-01T00:00:00Z</updated>
+    <updated>2026-10-02T00:00:00Z</updated>
     <summary>追踪《态势感知》的 8 项 AGI 预测，核对来源、判定与翻转条件。自行评分，并查看 AI 对工作和投资研究的影响。</summary>
+  </entry>
+  <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-10-01T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
   <entry>
     <title>Changelog — What Changed on the AGI Scorecard</title>
@@ -135,19 +149,5 @@
     <id>https://agiscorecard.com/calibration</id>
     <updated>2026-09-27T00:00:00Z</updated>
     <summary>How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here.</summary>
-  </entry>
-  <entry>
-    <title>Is AI music good enough yet?</title>
-    <link href="https://agiscorecard.com/is-ai-music-good-enough"/>
-    <id>https://agiscorecard.com/is-ai-music-good-enough</id>
-    <updated>2026-09-17T00:00:00Z</updated>
-    <summary>97% of 9,000 blind-test listeners could not tell AI music from human. It is over half of Deezer&#x27;s daily uploads and 1-3% of actual listening.</summary>
-  </entry>
-  <entry>
-    <title>EU AI Act: What Applies Now vs. What Got Deferred (2026)</title>
-    <link href="https://agiscorecard.com/eu-ai-act-what-applies-now"/>
-    <id>https://agiscorecard.com/eu-ai-act-what-applies-now</id>
-    <updated>2026-09-16T00:00:00Z</updated>
-    <summary>As of Aug 2026: chatbot disclosure applies (no grace period); the Digital Omnibus deferred high-risk duties to Dec 2027/Aug 2028. The dated ledger.</summary>
   </entry>
 </feed>

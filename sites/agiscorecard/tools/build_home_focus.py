@@ -26,6 +26,8 @@ def action(href, label, key, cls=''):
 def assets(text):
     if '/home-focus/focus.css' not in text:
         text = text.replace('</head>', '<link rel="stylesheet" href="/home-focus/focus.css?v=1">\n<script type="module" src="/home-focus/focus.js?v=1"></script>\n</head>')
+    if '/evidence-assets/evidence.js' not in text:
+        text=text.replace('</head>', '<script type="module" src="/evidence-assets/evidence.js"></script>\n</head>')
     return text
 
 def hero(d, zh):
@@ -41,13 +43,21 @@ def hero(d, zh):
            (base+'/ai-and-your-job','判断工作影响' if zh else 'Understand work changes','区分已观测的就业数据与未来预测。' if zh else 'Separate observed employment data from forecasts.','work'),
            (base+'/invest','研究 AI 投资' if zh else 'Research AI investments','核对公开持仓与研究假设，再看风险。' if zh else 'Check public holdings, assumptions and risks.','invest')]
     routes=''.join(action(href,f'<strong>{title}</strong><span>{desc}</span>','route_'+key,'focus-route') for href,title,desc,key in cases)
+    desk=evidence_desk(d,zh)
     return f'''<section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
   <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1><p class="focus-lead">{intro}</p>
-  <div class="focus-actions">{action(base+'/progress-index','查看完整证据' if zh else 'Explore the evidence','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
+  <div class="focus-actions">{action(base+'/progress-index#cite-evidence','查看证据与变化' if zh else 'Inspect evidence and changes','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
   <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
+  {desk}
   <nav class="focus-routes" aria-label="{'选择用途' if zh else 'Choose your task'}">{routes}</nav>
   <p class="focus-boundary">{'判定记录与网站更新分开标注。页面改版不代表证据重新核验。' if zh else 'Evidence dates and site updates are shown separately. A site update does not mean a verdict was reassessed.'}</p>
 </section>'''
+
+def evidence_desk(d,zh):
+    base='/zh' if zh else ''
+    cases=[('progress','progress-index','分数与历史','Score and history'),('agi2027','will-agi-arrive-2027','2027 预测怎么判定','What resolves the 2027 prediction?'),('open','did-open-source-ai-fade','开源与闭源的能力差距','Open vs closed capability gap'),('work','ai-and-your-job','哪些证据说明工作在变','Which evidence shows work changing?')]
+    links=''.join(action(base+'/'+slug+'#cite-evidence',cn if zh else en,'asset_'+key) for key,slug,cn,en in cases)
+    return f'''<section class="focus-evidence-desk" id="evidence-desk" aria-labelledby="desk-heading"><h2 id="desk-heading">{'最新查证补充' if zh else 'Latest evidence notes'}</h2><p><time datetime="2026-10-02">2026-10-02</time> — {'补齐开放权重模型差距的研究区间：2026 年 1—5 月，平均约 4 个月；更严格比较约 6 个月。' if zh else 'Clarified the open-weight model gap: January–May 2026 study window, about 4 months on average; about 6 under a stricter comparison.'}</p><p class="focus-boundary">{'最新判定台账仍为 ' if zh else 'Latest verdict ledger remains dated '}{d['thesisTracker']['asOf']}{'。本次是来源说明与展示更新，不是新的判定。' if zh else '. This is a source-note and presentation update, not a new verdict.'}</p><nav aria-label="{'四个证据主题' if zh else 'Four evidence topics'}">{links}</nav></section>'''
 
 def grade(zh):
     return f'''<section class="focus-grade section" id="grade-game" aria-labelledby="grade-title" data-grade-lang="{'zh' if zh else 'en'}">
@@ -59,7 +69,7 @@ def grade(zh):
 <div id="gg-result" hidden><h3>{'我的分数' if zh else 'My score'} <span id="gg-score"></span>/100</h3><p id="gg-verdict-line"></p><div id="gg-diffs"></div>
 <div class="focus-actions"><button type="button" id="gg-copy" class="focus-primary">{'复制判断摘要' if zh else 'Copy result summary'}</button>{action('/zh/progress-index' if zh else '/progress-index','核对台账' if zh else 'Inspect the ledger','grade_evidence','focus-secondary')}<button type="button" id="gg-reset" class="focus-secondary">{'重新判断' if zh else 'Start again'}</button></div>
 <p id="gg-copy-status" role="status"></p><textarea id="gg-copy-fallback" readonly hidden aria-label="{'可手动复制的结果' if zh else 'Result to copy manually'}"></textarea>
-<p class="focus-boundary">{'每项选择与分数仅在本页计算；统计只记录开始、完成及复制成功，不包含你的评分。复制内容是文字摘要与页面链接，不会生成公开个人档案。' if zh else 'Choices and scores stay in this page. Analytics counts starts, completions and successful copies without your grades. The copy contains a text summary and a page link; no public profile is created.'}</p></div></div>
+<p class="focus-boundary">{'每项选择与分数仅在本页计算；统计只记录开始、完成及复制成功，不包含你的评分。复制内容是文字摘要与页面链接，不会生成公开个人档案。' if zh else 'Choices and scores stay in this page. Analytics counts starts, completions and successful copies without your grades. The copy contains a text summary and a page link; no public profile is created.'}</p><p><a href="https://agiscorecard.beehiiv.com/subscribe" onclick="gtag('event','subscribe_click',{{location:'grade_result'}});">{'登记邮箱，关注判定变化' if zh else 'Register for verdict-change updates'}</a></p></div></div>
 <noscript><p>{'请启用 JavaScript 使用评分；你仍可阅读' if zh else 'Enable JavaScript for the assessment, or read the'} <a href="{'/zh' if zh else ''}/progress-index">{'完整台账与方法' if zh else 'full ledger and method'}</a>。</p></noscript>
 </section>'''
 
