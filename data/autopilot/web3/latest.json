@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-01T09:24:05.376Z",
+  "asOf": "2026-10-02T08:58:02.692Z",
   "ok": true,
   "checks": [
     {
@@ -15,6 +15,10 @@
       "ok": true
     },
     {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "evidence.agiscorecard.com",
       "ok": true
     },
@@ -27,19 +31,7 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,7 +43,15 @@
       "ok": true
     },
     {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-01T09:24:06.643Z",
+      "retrievedAt": "2026-10-02T08:58:03.168Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 83724.48899813076,
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "price": 86285.60357645282,
+          "sourceUpdatedAt": "2026-10-02T08:55:20.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2690.6144183555366,
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "price": 2754.9340809436126,
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9999003258509837,
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
-          "deviationBps": -0.9967414901634886
+          "price": 0.9998848970626568,
+          "sourceUpdatedAt": "2026-10-02T08:55:20.000Z",
+          "deviationBps": -1.151029373431811
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9996182324295502,
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
-          "deviationBps": -3.8176757044983134
+          "price": 0.9997702369042749,
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
+          "deviationBps": -2.2976309572508846
         }
       ],
       "source": {
@@ -110,25 +110,34 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-01T09:24:06.178Z",
+      "retrievedAt": "2026-10-02T08:58:03.187Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-01T09:24:05.812Z"
+          "checkedAt": "2026-10-02T08:58:02.963Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-10-01T09:24:05.812Z"
+          "checkedAt": "2026-10-02T08:58:02.963Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-10-01T09:24:05.812Z"
+          "checkedAt": "2026-10-02T08:58:02.963Z"
         }
       ],
       "items": [
+        {
+          "title": "Introducing zkAPI: private usage credits for any API",
+          "url": "https://blog.ethereum.org/en/2026/10/01/introducing-zkapi",
+          "publishedAt": "2026-10-01T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
         {
           "title": "chore(go): release (#3629)",
           "url": "https://github.com/x402-foundation/x402/commit/6b6ee91fee027b540faabcb25774e73851006c3b",
@@ -209,148 +218,139 @@
           "sourceId": "ethereum",
           "kind": "rss",
           "task": "protocol-change"
-        },
-        {
-          "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
-          "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
-          "publishedAt": "2026-08-24T00:00:00.000Z",
-          "source": "Ethereum Foundation",
-          "sourceId": "ethereum",
-          "kind": "rss",
-          "task": "protocol-change"
         }
       ]
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-01T09:24:06.906Z",
+      "retrievedAt": "2026-10-02T08:58:03.412Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:20.000Z",
           "day": {
-            "percent": 0.8456479779664239,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 3.4297206472297947,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:20.000Z"
           },
           "week": {
-            "percent": 0.13863583729993856,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 2.676507003175277,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:20.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
           "day": {
-            "percent": 0.7898020589227839,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 2.8996927228702285,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           },
           "week": {
-            "percent": 0.8608048504748167,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 3.120115006861357,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:20.000Z",
           "day": {
-            "percent": 0.008942416458812552,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 0.0017221725328031567,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:20.000Z"
           },
           "week": {
-            "percent": 0.013217668397480509,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 0.005730411795901169,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:20.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
           "day": {
-            "percent": -0.00046044487935770206,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 0.016072144011136658,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           },
           "week": {
-            "percent": -0.00594352183862501,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": -0.001212786367787988,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
           "day": {
-            "percent": 1.6835005738236708,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 2.6293826415732413,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           },
           "week": {
-            "percent": 6.956249610602883,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 5.048071930611719,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:16:40.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:46:50.000Z",
           "day": {
-            "percent": -1.965444770538216,
-            "from": "2026-09-30T09:01:50.000Z",
-            "to": "2026-10-01T09:16:40.000Z"
+            "percent": 4.860369146515087,
+            "from": "2026-10-01T08:01:50.000Z",
+            "to": "2026-10-02T08:46:50.000Z"
           },
           "week": {
-            "percent": 8.336691868882994,
-            "from": "2026-09-24T09:01:40.000Z",
-            "to": "2026-10-01T09:16:40.000Z"
+            "percent": 7.15831974488268,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:46:50.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:22:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:55:40.000Z",
           "day": {
-            "percent": 7.238342312771273,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": -0.07609824880371319,
+            "from": "2026-10-01T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           },
           "week": {
-            "percent": 19.0000456951938,
-            "from": "2026-09-24T09:00:00.000Z",
-            "to": "2026-10-01T09:22:50.000Z"
+            "percent": 1.2377437863367868,
+            "from": "2026-09-25T08:00:00.000Z",
+            "to": "2026-10-02T08:55:40.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-01T09:21:50.000Z",
+          "sourceUpdatedAt": "2026-10-02T08:51:40.000Z",
           "day": {
-            "percent": -1.0378060571454517,
-            "from": "2026-09-30T08:51:40.000Z",
-            "to": "2026-10-01T09:21:50.000Z"
+            "percent": 1.9849606719262836,
+            "from": "2026-10-01T07:51:50.000Z",
+            "to": "2026-10-02T08:51:40.000Z"
           },
           "week": {
-            "percent": -7.363828231433134,
-            "from": "2026-09-24T09:01:40.000Z",
-            "to": "2026-10-01T09:21:50.000Z"
+            "percent": 1.452054400526892,
+            "from": "2026-09-25T07:51:40.000Z",
+            "to": "2026-10-02T08:51:40.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-01T09:24:08.239Z",
+    "asOf": "2026-10-02T08:58:04.260Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -359,7 +359,15 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://blog.ethereum.org/en/2026/10/01/introducing-zkapi",
+      "title": "Introducing zkAPI: private usage credits for any API",
+      "task": "protocol-change",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
