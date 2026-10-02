@@ -23,6 +23,14 @@ export function businessEvent(host, pathname, detail) {
   if (!detail || typeof detail !== 'object' || Object.keys(detail).some(k => k !== 'name') || typeof detail.name !== 'string') return null;
   const name = detail.name;
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
+  // Homepage events use fixed public labels only, never destinations or search input.
+  if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
+    const parts = name.split(':');
+    const blocks = ['hero','site-header','site-footer','featured-tools','task-lanes','directory','dirs','money','agents','agent-watch','limit-check','plans','studio','video','agent','nav','footer','header','other','legacy-other'];
+    const destinations = ['homepage','tool-directory','toolbox','free-account','membership','pdf-tools','product-images','video-variants','quote-builder','quote-compare','proposal-deck','ai-tools','codex-efficiency','work-plan','video-hub','agents','feature-map','mcp','developers','workbench','creatorops','launchdesk','quotawatch','work-plans','business-workflows','workflow-packs','coding-quota','tokenizer','api-calculator','subscription-audit','stack-builder','paid-tiers','comparisons','external-link','tool-profile','tool-category','agent-directory','other-destination'];
+    if (parts.length === 3 && parts[0] === 'home' && blocks.includes(parts[1]) && destinations.includes(parts[2]))
+      return {name:'home_click', home_block:parts[1], home_destination:parts[2], site_edition:pathname.startsWith('/en')?'en':'zh', repeat:true};
+  }
   const match = /^\/workbench\/([a-z0-9-]+)$/.exec(route);
   if (match && workbench[host]?.includes(match[1])) {
     const action = /^workbench_(example_)?(start|complete|export)$/.exec(name);

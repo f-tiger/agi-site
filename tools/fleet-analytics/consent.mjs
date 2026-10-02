@@ -4,7 +4,7 @@ const script = document.querySelector('script[data-ga4-id][data-ga4-host]');
 const id = script?.dataset.ga4Id, host = script?.dataset.ga4Host;
 const query = new URLSearchParams(location.search);
 const excluded = !/^G-[A-Z0-9]+$/.test(id || '') || location.hostname !== host || window.top !== window.self ||
-  ['ci','__ci','__probe'].some(k => query.has(k)) || query.get('utm_source') === 'verify' || location.pathname.startsWith('/__ci') ||
+  ['ci','__ci','__probe'].some(k => query.has(k)) || query.get('qa') === '1' || query.get('utm_source') === 'verify' || location.pathname.startsWith('/__ci') ||
   navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
 const key = host === 'thedollscout.com' ? 'tds_analytics_choice_v1' : 'fleet_ga4_choice_v1';
 const {businessEvent} = await import('./business.mjs' + new URL(import.meta.url).search);
@@ -19,7 +19,7 @@ const copy = {
 let choice = '';
 try { choice = localStorage.getItem(key) || ''; } catch {}
 let frame, frameData, pageViewSent = false, ready = false;
-const sentActions = new Set(), pending = new Map();
+const sentActions = new Set(), pending = [];
 const canonical = script?.dataset.ga4Page;
 function start() {
   if (excluded || frame || choice !== 'granted' || !canonical) return;
@@ -39,7 +39,7 @@ function start() {
   pageViewSent = true;
 }
 function stop() {
-  ready = false; pending.clear();
+  ready = false; pending.length = 0;
   if (frame) {
     try { frame.contentWindow['ga-disable-' + id] = true; } catch {}
     frame.remove(); frame = null;
@@ -54,16 +54,16 @@ if (!excluded && !document.getElementById('fleet-analytics-choice')) {
   window.addEventListener('fleet:business', event => {
     if (choice !== 'granted' || !frame) return;
     const action = businessEvent(host, new URL(canonical).pathname, event.detail);
-    if (!action || sentActions.has(action.name) || pending.has(action.name)) return;
+    if (!action || (!action.repeat && (sentActions.has(action.name) || pending.some(p => p.key === action.name)))) return;
     // Only events occurring after consent can wait for this frame's handshake.
-    if (!ready) pending.set(action.name, {name:event.detail.name});
+    if (!ready) { if (pending.length < 100) pending.push({key:action.name, detail:{name:event.detail.name}}); }
     else { sentActions.add(action.name); frame.contentWindow.postMessage({type:'fleet-ga4-business',detail:{name:event.detail.name}},'https://'+host); }
   });
   window.addEventListener('message', event => {
     if (choice === 'granted' && frame && event.source === frame.contentWindow && event.origin === 'https://'+host && event.data?.type === 'fleet-ga4-started') {
       ready = true;
-      for (const [name,detail] of pending) { sentActions.add(name); frame.contentWindow.postMessage({type:'fleet-ga4-business',detail},'https://'+host); }
-      pending.clear();
+      for (const {key:name,detail} of pending) { sentActions.add(name); frame.contentWindow.postMessage({type:'fleet-ga4-business',detail},'https://'+host); }
+      pending.length = 0;
     }
     if (choice === 'granted' && frame && event.source === frame.contentWindow && event.origin === 'https://'+host && event.data?.type === 'fleet-ga4-ready') {
       frame.contentWindow.postMessage({type:'fleet-ga4-page',data:frameData},'https://'+host);

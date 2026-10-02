@@ -9,12 +9,14 @@ const urls=[...readFileSync(join(root,'dist/sitemap.xml'),'utf8').matchAll(/<loc
 if(!urls.length)throw Error('Empty sitemap');
 const manifest=JSON.parse(readFileSync(join(root,'data/page-lastmod.json'),'utf8'));
 const recent=[Date.now(),Date.now()-86400000].map(t=>new Date(t).toISOString().slice(0,10));
-const selected=selectUrls(urls,manifest,{recent,all:process.argv.includes('--all'),repair:process.argv.includes('--repair-bing-20260919')});
+const changedOnly=process.argv.includes('--changed-only');
+const selected=changedOnly ? JSON.parse(readFileSync(join(root,'dist/changed-canonical-urls.json'),'utf8')) : selectUrls(urls,manifest,{recent,all:process.argv.includes('--all'),repair:process.argv.includes('--repair-bing-20260919')});
+if(!Array.isArray(selected)||selected.some(u=>!urls.includes(u)))throw Error('Change manifest contains a URL outside the canonical sitemap');
 if(!selected.length){console.log('IndexNow: no recent substantive changes; nothing submitted.');process.exit(0);}
 const host='baipiaoji.com',keyLocation=`https://${host}/${key}.txt`;
 const response=await fetch(keyLocation,{signal:AbortSignal.timeout(15000)});
 if(response.status!==200||(await response.text()).trim()!==key)throw Error('IndexNow public verification file unavailable or mismatched');
-if(process.argv.includes('--repair-bing-20260919'))for(const url of selected){
+if(changedOnly||process.argv.includes('--repair-bing-20260919'))for(const url of selected){
  const r=await fetch(url,{signal:AbortSignal.timeout(15000)}),html=await r.text();
  if(r.status!==200||r.url!==url||!html.includes(`rel="canonical" href="${url}"`))throw Error('Repair URL is not live with matching canonical: '+url);
 }

@@ -21,3 +21,8 @@ test('Every form workbench has the correct property and fixed tool id',()=>{
  const forms=products.filter(p=>!p.kind);assert.equal(forms.length,20);
  for(const p of forms)assert.deepEqual(businessEvent(new URL(sites[p.site].origin).hostname,'/workbench/'+p.id,{name:'workbench_complete'}),{name:'tool_complete',tool_id:p.id});
 });
+
+test('BPJ homepage accepts fixed labels only and keeps repeated clicks',()=>{
+ assert.deepEqual(businessEvent('baipiaoji.com','/en/',{name:'home:hero:tool-directory'}),{name:'home_click',home_block:'hero',home_destination:'tool-directory',site_edition:'en',repeat:true});
+ for(const [host,path,detail] of [['baipiaoji.com','/tools/grok',{name:'home:hero:toolbox'}],['getecoback.com','/',{name:'home:hero:toolbox'}],['baipiaoji.com','/',{name:'home:SECRET:toolbox'}],['baipiaoji.com','/',{name:'home:hero:https://private.invalid'}],['baipiaoji.com','/',{name:'home:hero:toolbox',query:'SECRET'}]])assert.equal(businessEvent(host,path,detail),null);
+});

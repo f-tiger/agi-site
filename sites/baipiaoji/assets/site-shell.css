@@ -27,3 +27,13 @@ body.bpj-shell{--paper:var(--bg);--mist:var(--alt)}body.bpj-shell input:not([typ
 @media(max-width:370px){.bpj-logo b{display:none}.bpj-site-header{padding:10px 12px}}
 .bpj-home-hero>*{min-width:0}.bpj-home-copy .gs input{min-width:0;width:100%}@media(max-width:370px){.bpj-home-copy h1{font-size:34px;overflow-wrap:anywhere}.bpj-feature-stage{padding:14px}.bpj-preview-grid{gap:10px}.bpj-feature-tile{min-width:0;padding:12px;overflow-wrap:anywhere}.bpj-home-signup{max-width:100%;white-space:normal}}
 @media(max-width:370px){.bpj-directory-grid{grid-template-columns:1fr}}
+
+/* Homepage: keep search, directory and the BPJ/tool-directory distinction visible on phones. */
+body.bpj-shell .bpj-home-copy h1{font-size:clamp(34px,4.2vw,56px);max-width:22ch;margin-bottom:18px}
+body.bpj-shell .bpj-home-copy .bpj-eyebrow{font-size:13px;margin:0 0 14px}
+body.bpj-shell .bpj-home-copy .bpj-proof{font-size:13px;line-height:1.5;margin:12px 0 0;padding:0;border:0}
+body.bpj-shell .bpj-home-toolbox{display:inline-flex;align-items:center;padding:12px 16px;font-size:14px}
+body.bpj-shell .bpj-home .bpj-primary-cta{font-size:14px}
+body.bpj-shell .bpj-feature-tile h2{font-size:18px;line-height:1.3;margin:0}
+body.bpj-shell .bpj-feature-tile p{font-size:13px;line-height:1.5;margin:0}
+@media(max-width:900px){body.bpj-shell .bpj-home-hero{padding:8px 0 16px;gap:24px}body.bpj-shell .bpj-home-copy .gs{margin:18px 0 12px}body.bpj-shell .bpj-home-copy>p:not(.bpj-eyebrow):not(.bpj-proof){margin:0;font-size:15px;line-height:1.55}body.bpj-shell .bpj-feature-stage{padding:16px}body.bpj-shell .bpj-preview-top{margin-bottom:12px}body.bpj-shell .bpj-feature-tile{padding:14px;min-height:0;gap:8px}body.bpj-shell .bpj-feature-tile .bpj-task-icon,body.bpj-shell .bpj-feature-tile>span:last-child{display:none}body.bpj-shell .bpj-home #directory .bpj-section-head{margin-top:20px}}

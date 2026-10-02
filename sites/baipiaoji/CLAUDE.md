@@ -1,3 +1,7 @@
+## 2026-10-02 首页审计落地
+
+首页以额度目录为主入口，BPJ 自研工具为第二入口。首页 GA4 通过同意后的隔离 frame 记录 `home_view` 与可重复的 `home_click`，固定区块/目标标签，不传输入；D1 保留独立口径。搜索先全量匹配再按规范地址去重。push 的 IndexNow 只读本次构建实质变更清单并核验线上 canonical。验收、历史断点与限制见 `docs/homepage-audit-release-2026-10-02.md`。
+
 ## 2026-10-02 通用工具汇总
 
 Owner 确定 TDS 专注潮玩收藏，通用数字工具由 BPJ 汇总。`scripts/toolkit-pages.mjs` 通过原 layout 生成 `/studio/toolkit` 与 `/en/studio/toolkit`，接入首页、自研工具与站内搜索。明确标注 BPJ 本站和 TDS 原站入口。此轮没有跨域迁移处理器或批量重定向；原 TDS 工具继续运行。后续迁移需逐 URL 验证等价功能、语言与隐私。详见根仓 `docs/tds-collector-relaunch-2026-10-02.md`。
