@@ -1,0 +1,150 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sammelwerkzeuge für KI-Assistenten | The Doll Scout</title><meta name="description" content="TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen."><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#e4002b"><link rel="canonical" href="https://thedollscout.com/de/for-agents"><link rel="alternate" hreflang="en" href="https://thedollscout.com/for-agents"><link rel="alternate" hreflang="de" href="https://thedollscout.com/de/for-agents"><link rel="alternate" hreflang="zh-Hans" href="https://thedollscout.com/zh/for-agents"><link rel="alternate" hreflang="x-default" href="https://thedollscout.com/for-agents"><link rel="alternate" type="text/plain" href="/collector-assets/text/de/for-agents.txt" title="Klartext"><link rel="alternate" type="application/json" href="/collector-assets/tool-capabilities.json" title="TDS tool catalog"><link rel="icon" type="image/svg+xml" href="/collector-assets/icon.svg?v=2026-10-02.2"><meta property="og:type" content="website"><meta property="og:site_name" content="The Doll Scout"><meta property="og:title" content="Sammelwerkzeuge für KI-Assistenten"><meta property="og:description" content="TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen."><meta property="og:url" content="https://thedollscout.com/de/for-agents"><meta property="og:locale" content="de_DE"><meta property="og:image" content="https://thedollscout.com/collector-assets/collection-guide.jpg"><meta property="og:image:alt" content="The Doll Scout: collectible toy guides and collection tools"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/css/brand.css?v=2026-10-02.2"><link rel="stylesheet" href="/collector-assets/collecting.css?v=2026-10-02.2"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedollscout.com/#publisher","name":"The Doll Scout","url":"https://thedollscout.com/","logo":"https://thedollscout.com/collector-assets/icon.svg"},{"@type":"WebSite","@id":"https://thedollscout.com/#website","name":"The Doll Scout","url":"https://thedollscout.com/","inLanguage":["en","de","zh-Hans"],"publisher":{"@id":"https://thedollscout.com/#publisher"}},{"@type":"WebPage","@id":"https://thedollscout.com/de/for-agents#page","name":"Sammelwerkzeuge für KI-Assistenten","description":"TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.","url":"https://thedollscout.com/de/for-agents","inLanguage":"de","dateModified":"2026-10-02","isPartOf":{"@id":"https://thedollscout.com/#website"}}]}</script></head><body data-collector-edition="2026-10-02.2"><a class="skip" href="#main">Zum Inhalt</a><header class="collect-header"><div class="wrap header-inner"><a class="wordmark" href="/" aria-label="The Doll Scout — Startseite"><span class="mark">t<span>d</span>s<span class="dot">.</span></span><span>The Doll Scout</span></a><nav class="site-nav" aria-label="Startseite"><a href="/">Startseite</a><a href="/de/#collections">Marken entdecken</a><a href="/de/#tools">Sammlerwerkzeuge</a><a href="/de/#buying">Kaufratgeber</a></nav><nav class="language-nav" aria-label="Language"><a href="/for-agents" lang="en">EN</a><a href="/de/for-agents" lang="de" aria-current="page">DE</a><a href="/zh/for-agents" lang="zh-Hans">中文</a></nav></div></header><main id="main" class="wrap"><section class="agent-hero"><p class="eyebrow">TDS / MCP</p><h1>Sammelwerkzeuge für KI-Assistenten</h1><p class="brand-lead">TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.</p></section><section class="agent-connect"><h2>Remote-MCP-Server verbinden</h2><p>Diese URL in einem Client mit Remote-MCP-Unterstützung hinzufügen. Für die öffentlichen, nur lesenden Werkzeuge sind weder Konto noch API-Schlüssel nötig. Einrichtung und Verfügbarkeit hängen vom Client ab; der Katalog allein aktiviert keine Verbindung.</p><code class="mcp-url">https://thedollscout.com/mcp</code><button type="button" class="button primary" data-copy-mcp data-success="MCP-URL kopiert." data-failure="Die angezeigte URL manuell kopieren.">MCP-URL kopieren</button><p data-mcp-status role="status"></p></section><section class="agent-catalog"><h2>Was der Assistent nutzen kann</h2><p>Die folgenden englischen Namen und Beschreibungen sind die originalen Protokollfelder.</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {},
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>labubu_fake_signals</code></summary><p lang="en">The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with its named public sources. Compiled signals, not a guarantee; limitations are included.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {},
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>secret_pull_probability</code></summary><p lang="en">Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case allocation can differ, and the result carries that caveat.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;oddsN&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;description&quot;: &quot;The N in printed odds 1:N, e.g. 72&quot;,
+      &quot;minimum&quot;: 2,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;boxes&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;description&quot;: &quot;Number of blind boxes to be opened, e.g. 12&quot;,
+      &quot;minimum&quot;: 1,
+      &quot;maximum&quot;: 100000
+    }
+  },
+  &quot;required&quot;: [
+    &quot;oddsN&quot;,
+    &quot;boxes&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>define_labubu_term</code></summary><p lang="en">Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;term&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;The term to define, e.g. &#39;lafufu&#39; or &#39;printed odds&#39;&quot;,
+      &quot;maxLength&quot;: 120
+    }
+  },
+  &quot;required&quot;: [
+    &quot;term&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>find_collector_tools</code></summary><p lang="en">Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;task&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;all&quot;,
+        &quot;odds&quot;,
+        &quot;display&quot;,
+        &quot;collection&quot;,
+        &quot;guides&quot;
+      ],
+      &quot;default&quot;: &quot;all&quot;
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>get_collecting_guide</code></summary><p lang="en">Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;brand&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;labubu&quot;,
+        &quot;skullpanda&quot;,
+        &quot;jellycat&quot;,
+        &quot;sonny-angel&quot;
+      ]
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;required&quot;: [
+    &quot;brand&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>plan_display_fit</code></summary><p lang="en">Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;width&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;depth&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;height&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;itemWidth&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;itemDepth&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;itemHeight&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;exclusiveMinimum&quot;: 0,
+      &quot;maximum&quot;: 100000
+    },
+    &quot;gap&quot;: {
+      &quot;type&quot;: &quot;number&quot;,
+      &quot;minimum&quot;: 0,
+      &quot;maximum&quot;: 100000,
+      &quot;description&quot;: &quot;Space between adjacent items; same unit as all dimensions.&quot;
+    },
+    &quot;rotate&quot;: {
+      &quot;type&quot;: &quot;boolean&quot;,
+      &quot;default&quot;: true
+    }
+  },
+  &quot;required&quot;: [
+    &quot;width&quot;,
+    &quot;depth&quot;,
+    &quot;height&quot;,
+    &quot;itemWidth&quot;,
+    &quot;itemDepth&quot;,
+    &quot;itemHeight&quot;,
+    &quot;gap&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details></section><section class="agent-example"><h2>Eine konkrete Anfrage testen</h2><blockquote>Mit TDS planen: Figuren von 8 × 6 × 15 cm in einer Vitrine mit 40 × 25 × 30 cm Innenmaß und 1 cm Abstand. Grenzen erklären.</blockquote><p>Beispielergebnis: 12 Figuren in 4 × 3 Positionen, auf einer Ebene. Keine gemischten Ausrichtungen, Stapelung, Gewichts- oder Stabilitätsprüfung.</p><a href="/de/display-calculator">Meine Aufstellung planen →</a></section><section class="agent-limits"><h2>Ihre Sammlung bleibt privat</h2><p>Der Server kann weder lokale Sammlungen noch Cloud-Konten, private Dateien oder Mitgliedschaften lesen. Sammlung und digitale Dateiwerkzeuge laufen auf ihren eigenen Browserseiten. Der Katalog liefert Links und Anforderungen, keine behauptete Remote-Ausführung.</p><h2>Öffentliche Dateien zur Auffindbarkeit</h2><ul><li><a href="/collector-assets/tool-capabilities.json">Collector tool catalog · JSON</a></li><li><a href="/collector-assets/brand-guides.json">Brand guides · JSON</a></li><li><a href="/.well-known/mcp.json">MCP discovery · JSON</a></li><li><a href="/mcp/server.json">MCP Registry manifest · JSON</a></li><li><a href="/document-assets/tool-capabilities.json">Digital tools · JSON</a></li><li><a href="/llms.txt">Site index · text</a></li></ul><h2>Auffindbarkeit ist ein Einstieg</h2><p>Öffentliche Seiten, Klartext und MCP-Katalog helfen kompatiblen Diensten, die Werkzeuge zu finden. Suchaufnahme, Empfehlung und Erlaubnis zum Werkzeugaufruf sind getrennte Schritte und werden hier nicht garantiert.</p></section><aside class="digital-note"><div><h2>KI-, Bild- oder PDF-Werkzeuge gesucht?</h2><p>Allgemeine Arbeitswerkzeuge finden Sie bei BPJ. Bestehende digitale TDS-Werkzeuge bleiben erreichbar.</p></div><div><a href="https://baipiaoji.com/en/studio/toolkit">BPJ-Werkzeuge ansehen (Englisch)</a><a href="/de/document-tools">Digitale TDS-Werkzeuge</a></div></aside></main><footer class="wrap collect-footer"><p>Unabhängig von POP MART, Jellycat und Dreams / Sonny Angel. Markennamen kennzeichnen die besprochenen Produkte. Einige bestehende Kaufratgeber enthalten klar markierte Affiliate-Links.</p><nav><a href="/">Startseite</a><a href="/legal/privacy">Datenschutz</a><a href="/legal/affiliate-disclosure">Affiliate-Hinweis</a><a href="/collector-assets/text/de/for-agents.txt">Klartext</a><a href="/de/for-agents">KI-Assistenten verbinden</a><a href="/data/">Data &amp; MCP</a></nav></footer><script src="/js/collector-core.js?v=2026-10-02.2" defer></script><script type="module" src="/collector-assets/collecting.mjs?v=2026-10-02.2"></script></body></html>

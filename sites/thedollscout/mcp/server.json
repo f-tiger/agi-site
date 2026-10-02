@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/dollscout-collecting",
+  "title": "The Doll Scout · Collecting Tools",
+  "description": "TDS collectible-toy guides, blind-box odds, display fit and read-only tool discovery.",
+  "version": "2.2.0",
+  "websiteUrl": "https://thedollscout.com/for-agents",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://thedollscout.com/mcp"
+    }
+  ]
+}

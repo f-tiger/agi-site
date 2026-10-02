@@ -1,5 +1,5 @@
 {
-  "edition": "2026-10-02.1",
+  "edition": "2026-10-02.2",
   "updated": "2026-10-02",
   "records": [
     {
@@ -121,6 +121,30 @@
       "title": "Sonny Angel — 迷你公仔与盲盒",
       "description": "先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/brands/sonny-angel.txt"
+    },
+    {
+      "lang": "en",
+      "slug": "for-agents",
+      "url": "https://thedollscout.com/for-agents",
+      "title": "Collector tools for AI assistants",
+      "description": "Find, read and call TDS collecting tools from an MCP-compatible assistant.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/for-agents.txt"
+    },
+    {
+      "lang": "de",
+      "slug": "for-agents",
+      "url": "https://thedollscout.com/de/for-agents",
+      "title": "Sammelwerkzeuge für KI-Assistenten",
+      "description": "TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/for-agents.txt"
+    },
+    {
+      "lang": "zh",
+      "slug": "for-agents",
+      "url": "https://thedollscout.com/zh/for-agents",
+      "title": "供 AI 助手使用的收藏工具",
+      "description": "通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/for-agents.txt"
     }
   ]
 }

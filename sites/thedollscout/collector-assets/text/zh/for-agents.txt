@@ -1,0 +1,45 @@
+# 供 AI 助手使用的收藏工具
+
+https://thedollscout.com/zh/for-agents
+Source review: 2026-10-02
+
+通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
+
+在支持远程 MCP 的客户端中添加以下地址。公开只读工具无需账户或 API 密钥；具体添加方式与可用性取决于客户端。目录被收录不代表连接已经自动启用。
+
+https://thedollscout.com/mcp
+
+labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
+{"type":"object","properties":{},"additionalProperties":false}
+
+labubu_fake_signals: The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with its named public sources. Compiled signals, not a guarantee; limitations are included.
+{"type":"object","properties":{},"additionalProperties":false}
+
+secret_pull_probability: Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case allocation can differ, and the result carries that caveat.
+{"type":"object","properties":{"oddsN":{"type":"integer","description":"The N in printed odds 1:N, e.g. 72","minimum":2,"maximum":100000},"boxes":{"type":"integer","description":"Number of blind boxes to be opened, e.g. 12","minimum":1,"maximum":100000}},"required":["oddsN","boxes"],"additionalProperties":false}
+
+define_labubu_term: Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.
+{"type":"object","properties":{"term":{"type":"string","description":"The term to define, e.g. 'lafufu' or 'printed odds'","maxLength":120}},"required":["term"],"additionalProperties":false}
+
+find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+
+get_collecting_guide: Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.
+{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
+
+plan_display_fit: Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.
+{"type":"object","properties":{"width":{"type":"number","exclusiveMinimum":0,"maximum":100000},"depth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"height":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemWidth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemDepth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemHeight":{"type":"number","exclusiveMinimum":0,"maximum":100000},"gap":{"type":"number","minimum":0,"maximum":100000,"description":"Space between adjacent items; same unit as all dimensions."},"rotate":{"type":"boolean","default":true}},"required":["width","depth","height","itemWidth","itemDepth","itemHeight","gap"],"additionalProperties":false}
+
+用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。
+
+示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
+
+此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。
+
+公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。
+
+https://thedollscout.com/collector-assets/tool-capabilities.json
+
+https://thedollscout.com/collector-assets/brand-guides.json
+
+https://thedollscout.com/document-assets/tool-capabilities.json

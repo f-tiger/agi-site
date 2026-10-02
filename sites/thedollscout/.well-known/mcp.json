@@ -1,10 +1,37 @@
 {
   "name": "dollscout",
-  "version": "2.1.0",
-  "description": "Read-only MCP server for Labubu / The Monsters buyer evidence: reported secret odds by series format, the 8-point authenticity checklist, pull-probability math, and plain-language term definitions. Every answer is served from the site's published CC-BY datasets with their recording dates and limitations. No affiliate links in output.",
+  "version": "2.2.0",
+  "description": "Read-only collectible toy guides, blind-box math, display planning and browser-tool discovery.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
   "protocolVersion": "2025-06-18",
-  "tools": ["labubu_rarity_odds", "labubu_fake_signals", "secret_pull_probability", "define_labubu_term"],
-  "documentation": "https://thedollscout.com/llms.txt"
+  "tools": [
+    "labubu_rarity_odds",
+    "labubu_fake_signals",
+    "secret_pull_probability",
+    "define_labubu_term",
+    "find_collector_tools",
+    "get_collecting_guide",
+    "plan_display_fit"
+  ],
+  "resources": [
+    {
+      "uri": "https://thedollscout.com/collector-assets/tool-capabilities.json",
+      "name": "Collector tool catalog",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://thedollscout.com/collector-assets/brand-guides.json",
+      "name": "Published collecting guides",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://thedollscout.com/document-assets/tool-capabilities.json",
+      "name": "Existing browser-only digital tools",
+      "mimeType": "application/json"
+    }
+  ],
+  "documentation": "https://thedollscout.com/for-agents",
+  "catalog": "https://thedollscout.com/collector-assets/tool-capabilities.json",
+  "registryManifest": "https://thedollscout.com/mcp/server.json"
 }

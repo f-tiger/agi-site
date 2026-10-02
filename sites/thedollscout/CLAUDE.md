@@ -1,3 +1,11 @@
+## 2026-10-02 动效与 AI 发现补齐
+
+- 首页演示只在用户点击后运行 6 秒，可暂停，不循环；减少动态效果时改手动分步。固定示例不计入真实工具完成。显示排布与 MCP 共用 `js/collector-core.js`，不伪造商品尺寸或容量。
+- `collector-assets/mcp-contract.mjs` 是 MCP 名称/版本/工具契约源；`scripts/collecting/discovery.mjs` 生成三语言 `/for-agents`、工具目录、品牌指南 JSON、`.well-known/mcp.json` 和 `mcp/server.json`。旧根 `/server.json` 继续退役，不能恢复旧内容。
+- 目录区分可远程调用与仅浏览器运行的工具；MCP 无权读本地收藏、私有文件、账户或会员，不将工具发现等同于自动启用、搜索收录或 AI 推荐。
+- 修改 MCP 契约时同步版本并以 `[mcp-publish]` 合并提交；部署成功且 `verify-mcp.mjs` 实际调用通过后，沿用舰队 GitHub OIDC 身份登记官方 MCP Registry，无新增密钥或定时任务。`registry-check.mjs` 核对名称、版本、isLatest 和端点，不能只看 publish 进程退出。
+- 核心用例：`node --test scripts/collecting/mcp-tests.mjs`；真实客户端 SDK 验证、正常/减少动态效果与小屏浏览器验证详见根仓 `docs/tds-motion-agent-discovery-2026-10-02.md`。
+
 ## 2026-10-02 当前方向：多品牌潮玩收藏 + 活泼的视觉首页
 
 Owner 已明确接受：TDS 聚焦潮玩/收藏决策与垂直工具，不限 Labubu；BPJ 汇总通用数字工具。又明确要求首页参考五个高流量同类站，要潮流、活泼。本节优先于下方 09-25 至 09-27 的文档首页方向。保留白黑红导航，以原创彩色场景和系列卡片加强视觉，不恢复成人内容。

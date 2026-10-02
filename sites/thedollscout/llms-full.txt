@@ -32,6 +32,20 @@ Independent collectible-toy guides and free collection tools. Focus: Labubu / TH
   Text: https://thedollscout.com/collector-assets/text/zh/brands/jellycat.txt
 - [Sonny Angel — 迷你公仔与盲盒](https://thedollscout.com/zh/brands/sonny-angel) (zh): 先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。
   Text: https://thedollscout.com/collector-assets/text/zh/brands/sonny-angel.txt
+- [Collector tools for AI assistants](https://thedollscout.com/for-agents) (en): Find, read and call TDS collecting tools from an MCP-compatible assistant.
+  Text: https://thedollscout.com/collector-assets/text/en/for-agents.txt
+- [Sammelwerkzeuge für KI-Assistenten](https://thedollscout.com/de/for-agents) (de): TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.
+  Text: https://thedollscout.com/collector-assets/text/de/for-agents.txt
+- [供 AI 助手使用的收藏工具](https://thedollscout.com/zh/for-agents) (zh): 通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
+  Text: https://thedollscout.com/collector-assets/text/zh/for-agents.txt
+
+## MCP and assistant discovery
+
+- [Connect and inspect tools](https://thedollscout.com/for-agents)
+- Endpoint: https://thedollscout.com/mcp (Streamable HTTP, read-only, no API key)
+- [Tool capability catalog](https://thedollscout.com/collector-assets/tool-capabilities.json)
+- [Published brand guides](https://thedollscout.com/collector-assets/brand-guides.json)
+- [MCP discovery](https://thedollscout.com/.well-known/mcp.json)
 
 ## Existing collecting tools
 
@@ -53,6 +67,12 @@ https://thedollscout.com/
 Source review: 2026-10-02
 
 Explore Labubu, SKULLPANDA, Jellycat and Sonny Angel. Choose a series, understand what you are buying and make room for the pieces you love.
+
+Give every favourite a place.
+
+Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 cm gaps. Explain the limits.
+
+Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations, stacking, weight or stability check.
 
 Labubu / THE MONSTERS: Start with the exact series and format. THE MONSTERS figures, vinyl plush and pendants are different products.
 https://thedollscout.com/brands/labubu
@@ -210,6 +230,12 @@ Source review: 2026-10-02
 
 Labubu, SKULLPANDA, Jellycat und Sonny Angel entdecken. Serie auswählen, den Kauf verstehen und Platz für die Lieblingsstücke schaffen.
 
+Ein Platz für jedes Lieblingsstück.
+
+Mit TDS planen: Figuren von 8 × 6 × 15 cm in einer Vitrine mit 40 × 25 × 30 cm Innenmaß und 1 cm Abstand. Grenzen erklären.
+
+Beispielergebnis: 12 Figuren in 4 × 3 Positionen, auf einer Ebene. Keine gemischten Ausrichtungen, Stapelung, Gewichts- oder Stabilitätsprüfung.
+
 Labubu / THE MONSTERS: Zuerst Serie und Format bestimmen. Figuren, Vinyl-Plüsch und Anhänger von THE MONSTERS sind unterschiedliche Produkte.
 https://thedollscout.com/de/brands/labubu
 
@@ -366,6 +392,12 @@ Source review: 2026-10-02
 
 探索 Labubu、SKULLPANDA、Jellycat 与 Sonny Angel。挑选系列、读懂购买规则，也为喜欢的收藏留好位置。
 
+让每一份喜欢，都有位置。
+
+用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。
+
+示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
+
 Labubu / THE MONSTERS: 先确认具体系列和形态。THE MONSTERS 的手办、搪胶毛绒和挂件是不同产品。
 https://thedollscout.com/zh/brands/labubu
 
@@ -513,3 +545,144 @@ Source review: 2026-10-02
 官方来源: https://www.sonnyangel.com/en/store/
 
 独立指南、免费工具和官方来源入口。本站不销售玩具，不提供真伪认证，也不保证实时库存或转售价格。
+
+
+# Collector tools for AI assistants
+
+https://thedollscout.com/for-agents
+Source review: 2026-10-02
+
+Find, read and call TDS collecting tools from an MCP-compatible assistant.
+
+In a client that supports remote MCP, add this URL. No account or API key is needed for these read-only public tools. Setup and connector availability depend on your client; adding a catalog does not enable a connection automatically.
+
+https://thedollscout.com/mcp
+
+labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
+{"type":"object","properties":{},"additionalProperties":false}
+
+labubu_fake_signals: The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with its named public sources. Compiled signals, not a guarantee; limitations are included.
+{"type":"object","properties":{},"additionalProperties":false}
+
+secret_pull_probability: Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case allocation can differ, and the result carries that caveat.
+{"type":"object","properties":{"oddsN":{"type":"integer","description":"The N in printed odds 1:N, e.g. 72","minimum":2,"maximum":100000},"boxes":{"type":"integer","description":"Number of blind boxes to be opened, e.g. 12","minimum":1,"maximum":100000}},"required":["oddsN","boxes"],"additionalProperties":false}
+
+define_labubu_term: Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.
+{"type":"object","properties":{"term":{"type":"string","description":"The term to define, e.g. 'lafufu' or 'printed odds'","maxLength":120}},"required":["term"],"additionalProperties":false}
+
+find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+
+get_collecting_guide: Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.
+{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
+
+plan_display_fit: Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.
+{"type":"object","properties":{"width":{"type":"number","exclusiveMinimum":0,"maximum":100000},"depth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"height":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemWidth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemDepth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemHeight":{"type":"number","exclusiveMinimum":0,"maximum":100000},"gap":{"type":"number","minimum":0,"maximum":100000,"description":"Space between adjacent items; same unit as all dimensions."},"rotate":{"type":"boolean","default":true}},"required":["width","depth","height","itemWidth","itemDepth","itemHeight","gap"],"additionalProperties":false}
+
+Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 cm gaps. Explain the limits.
+
+Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations, stacking, weight or stability check.
+
+The server cannot read your local collection, cloud account, private files or membership. Collection tracking and digital file tools run in their own browser pages; the catalog returns links and requirements. It does not claim to execute them remotely.
+
+Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.
+
+https://thedollscout.com/collector-assets/tool-capabilities.json
+
+https://thedollscout.com/collector-assets/brand-guides.json
+
+https://thedollscout.com/document-assets/tool-capabilities.json
+
+
+# Sammelwerkzeuge für KI-Assistenten
+
+https://thedollscout.com/de/for-agents
+Source review: 2026-10-02
+
+TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.
+
+Diese URL in einem Client mit Remote-MCP-Unterstützung hinzufügen. Für die öffentlichen, nur lesenden Werkzeuge sind weder Konto noch API-Schlüssel nötig. Einrichtung und Verfügbarkeit hängen vom Client ab; der Katalog allein aktiviert keine Verbindung.
+
+https://thedollscout.com/mcp
+
+labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
+{"type":"object","properties":{},"additionalProperties":false}
+
+labubu_fake_signals: The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with its named public sources. Compiled signals, not a guarantee; limitations are included.
+{"type":"object","properties":{},"additionalProperties":false}
+
+secret_pull_probability: Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case allocation can differ, and the result carries that caveat.
+{"type":"object","properties":{"oddsN":{"type":"integer","description":"The N in printed odds 1:N, e.g. 72","minimum":2,"maximum":100000},"boxes":{"type":"integer","description":"Number of blind boxes to be opened, e.g. 12","minimum":1,"maximum":100000}},"required":["oddsN","boxes"],"additionalProperties":false}
+
+define_labubu_term: Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.
+{"type":"object","properties":{"term":{"type":"string","description":"The term to define, e.g. 'lafufu' or 'printed odds'","maxLength":120}},"required":["term"],"additionalProperties":false}
+
+find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+
+get_collecting_guide: Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.
+{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
+
+plan_display_fit: Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.
+{"type":"object","properties":{"width":{"type":"number","exclusiveMinimum":0,"maximum":100000},"depth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"height":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemWidth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemDepth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemHeight":{"type":"number","exclusiveMinimum":0,"maximum":100000},"gap":{"type":"number","minimum":0,"maximum":100000,"description":"Space between adjacent items; same unit as all dimensions."},"rotate":{"type":"boolean","default":true}},"required":["width","depth","height","itemWidth","itemDepth","itemHeight","gap"],"additionalProperties":false}
+
+Mit TDS planen: Figuren von 8 × 6 × 15 cm in einer Vitrine mit 40 × 25 × 30 cm Innenmaß und 1 cm Abstand. Grenzen erklären.
+
+Beispielergebnis: 12 Figuren in 4 × 3 Positionen, auf einer Ebene. Keine gemischten Ausrichtungen, Stapelung, Gewichts- oder Stabilitätsprüfung.
+
+Der Server kann weder lokale Sammlungen noch Cloud-Konten, private Dateien oder Mitgliedschaften lesen. Sammlung und digitale Dateiwerkzeuge laufen auf ihren eigenen Browserseiten. Der Katalog liefert Links und Anforderungen, keine behauptete Remote-Ausführung.
+
+Öffentliche Seiten, Klartext und MCP-Katalog helfen kompatiblen Diensten, die Werkzeuge zu finden. Suchaufnahme, Empfehlung und Erlaubnis zum Werkzeugaufruf sind getrennte Schritte und werden hier nicht garantiert.
+
+https://thedollscout.com/collector-assets/tool-capabilities.json
+
+https://thedollscout.com/collector-assets/brand-guides.json
+
+https://thedollscout.com/document-assets/tool-capabilities.json
+
+
+# 供 AI 助手使用的收藏工具
+
+https://thedollscout.com/zh/for-agents
+Source review: 2026-10-02
+
+通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
+
+在支持远程 MCP 的客户端中添加以下地址。公开只读工具无需账户或 API 密钥；具体添加方式与可用性取决于客户端。目录被收录不代表连接已经自动启用。
+
+https://thedollscout.com/mcp
+
+labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
+{"type":"object","properties":{},"additionalProperties":false}
+
+labubu_fake_signals: The eight authenticity checks for a Labubu figure (teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record), each with its named public sources. Compiled signals, not a guarantee; limitations are included.
+{"type":"object","properties":{},"additionalProperties":false}
+
+secret_pull_probability: Probability of pulling at least one secret across N blind boxes at printed odds of 1-in-oddsN, plus the box counts a 50% and 90% chance require. Independent single-box model — sealed whole-case allocation can differ, and the result carries that caveat.
+{"type":"object","properties":{"oddsN":{"type":"integer","description":"The N in printed odds 1:N, e.g. 72","minimum":2,"maximum":100000},"boxes":{"type":"integer","description":"Number of blind boxes to be opened, e.g. 12","minimum":1,"maximum":100000}},"required":["oddsN","boxes"],"additionalProperties":false}
+
+define_labubu_term: Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.
+{"type":"object","properties":{"term":{"type":"string","description":"The term to define, e.g. 'lafufu' or 'printed odds'","maxLength":120}},"required":["term"],"additionalProperties":false}
+
+find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+
+get_collecting_guide: Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.
+{"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
+
+plan_display_fit: Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.
+{"type":"object","properties":{"width":{"type":"number","exclusiveMinimum":0,"maximum":100000},"depth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"height":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemWidth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemDepth":{"type":"number","exclusiveMinimum":0,"maximum":100000},"itemHeight":{"type":"number","exclusiveMinimum":0,"maximum":100000},"gap":{"type":"number","minimum":0,"maximum":100000,"description":"Space between adjacent items; same unit as all dimensions."},"rotate":{"type":"boolean","default":true}},"required":["width","depth","height","itemWidth","itemDepth","itemHeight","gap"],"additionalProperties":false}
+
+用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。
+
+示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
+
+此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。
+
+公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。
+
+https://thedollscout.com/collector-assets/tool-capabilities.json
+
+https://thedollscout.com/collector-assets/brand-guides.json
+
+https://thedollscout.com/document-assets/tool-capabilities.json

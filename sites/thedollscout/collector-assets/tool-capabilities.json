@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-02",
+  "server": {
+    "name": "dollscout",
+    "version": "2.2.0"
+  },
+  "endpoint": "https://thedollscout.com/mcp",
+  "documentation": "https://thedollscout.com/for-agents",
+  "tools": [
+    {
+      "id": "odds",
+      "task": "odds",
+      "name": "Blind-box probability calculator",
+      "inputs": "Printed 1:N odds and integer box count",
+      "mcpTool": "secret_pull_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/rarity",
+        "de": "https://thedollscout.com/de/rarity"
+      },
+      "limitations": "Independent draws only; sealed-case allocation can differ."
+    },
+    {
+      "id": "display",
+      "task": "display",
+      "name": "Display fit calculator",
+      "inputs": "Internal case dimensions, item footprint and height, gap, optional rotation; all in one unit",
+      "mcpTool": "plan_display_fit",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/display-calculator",
+        "de": "https://thedollscout.com/de/display-calculator"
+      },
+      "limitations": "Uniform single-layer grid; no 3D packing or safety certification."
+    },
+    {
+      "id": "collection",
+      "task": "collection",
+      "name": "Local collection tracker",
+      "inputs": "Owned and wanted items entered by the user in their browser",
+      "execution": "browser-only",
+      "urls": {
+        "en": "https://thedollscout.com/collection-tracker",
+        "de": "https://thedollscout.com/de/collection-tracker"
+      },
+      "limitations": "MCP cannot access or edit local storage."
+    },
+    {
+      "id": "ledger",
+      "task": "collection",
+      "name": "Collection ledger",
+      "inputs": "Purchase details entered by the user in the workbench",
+      "execution": "browser-only",
+      "urls": {
+        "en": "https://thedollscout.com/workbench/collectorledger",
+        "de": "https://thedollscout.com/de/workbench/collectorledger"
+      },
+      "limitations": "MCP has no member or cloud-account access; inspect the workbench for storage options."
+    },
+    {
+      "id": "guides",
+      "task": "guides",
+      "name": "Source-linked collecting guides",
+      "inputs": "Brand identifier and preferred language",
+      "mcpTool": "get_collecting_guide",
+      "execution": "read-published-evidence",
+      "urls": {
+        "en": "https://thedollscout.com/#collections",
+        "de": "https://thedollscout.com/de/#collections",
+        "zh": "https://thedollscout.com/zh/#collections"
+      },
+      "limitations": "No live stock, popularity ranking, resale value or authenticity guarantee."
+    }
+  ],
+  "digitalTools": {
+    "catalog": "https://thedollscout.com/document-assets/tool-capabilities.json",
+    "hub": "https://thedollscout.com/document-tools",
+    "bpj": "https://baipiaoji.com/en/studio/toolkit",
+    "execution": "browser-only"
+  },
+  "limitations": [
+    "Read-only public tools; no purchase, private file, account or collection access.",
+    "Listing and crawl access do not guarantee indexing, citation or automatic tool activation."
+  ]
+}
