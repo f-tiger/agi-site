@@ -21,6 +21,9 @@ secret_pull_probability: Probability of pulling at least one secret across N bli
 define_labubu_term: Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). Matches the term or its aliases; an unknown term returns the list of available terms, honestly.
 {"type":"object","properties":{"term":{"type":"string","description":"The term to define, e.g. 'lafufu' or 'printed odds'","maxLength":120}},"required":["term"],"additionalProperties":false}
 
+calculate_style_probability: Calculate independent-box chances for one regular style, a secret, or a user-supplied per-style probability. Required by mode: regular needs regularStyles and secretOddsN; secret needs secretOddsN; printed needs probabilityPercent. Regular mode assumes equally likely regular styles and replacement by a secret; not official series odds or sealed-case allocation.
+{"type":"object","properties":{"target":{"type":"string","enum":["regular","secret","printed"]},"boxes":{"type":"integer","minimum":1,"maximum":100000},"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"secretOddsN":{"type":"integer","minimum":2,"maximum":100000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["target","boxes"],"additionalProperties":false}
+
 find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
 {"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
 

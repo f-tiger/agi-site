@@ -6,6 +6,7 @@ assert.deepEqual((await rpc('initialize',{protocolVersion:'2025-06-18',capabilit
 assert.deepEqual((await rpc('tools/list')).tools,TOOLS);
 assert.deepEqual((await rpc('resources/list')).resources,RESOURCES);
 const fit=await rpc('tools/call',{name:'plan_display_fit',arguments:DEMO_INPUT});assert.equal(fit.isError,false);assert.equal(fit.structuredContent.count,12);assert.equal(fit.structuredContent.columns,4);
+const style=await rpc('tools/call',{name:'calculate_style_probability',arguments:{target:'regular',regularStyles:6,secretOddsN:72,boxes:12}});assert.equal(style.isError,false);assert.ok(Math.abs(style.structuredContent.probabilityPerBox-71/432)<1e-12);assert.match(style.structuredContent.model,/Assumption/);
 const guide=await rpc('tools/call',{name:'get_collecting_guide',arguments:{brand:'jellycat',language:'zh'}});assert.equal(guide.structuredContent.language,'zh');assert.match(guide.structuredContent.officialSource,/jellycat.com/);
 const catalog=await rpc('tools/call',{name:'find_collector_tools',arguments:{task:'collection',language:'zh'}});assert.ok(catalog.structuredContent.tools.every(t=>t.execution==='browser-only'&&t.languageFallback));
 for(const resource of RESOURCES){const r=await rpc('resources/read',{uri:resource.uri});assert.equal(r.contents[0].uri,resource.uri);assert.ok(JSON.parse(r.contents[0].text));}

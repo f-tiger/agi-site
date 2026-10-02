@@ -3,11 +3,25 @@
   "updated": "2026-10-02",
   "server": {
     "name": "dollscout",
-    "version": "2.2.0"
+    "version": "2.3.0"
   },
   "endpoint": "https://thedollscout.com/mcp",
   "documentation": "https://thedollscout.com/for-agents",
   "tools": [
+    {
+      "id": "style-odds",
+      "task": "odds",
+      "name": "Labubu style probability calculator",
+      "inputs": "Target mode, box count and user-supplied odds; regular mode also needs number of equally likely regular styles",
+      "mcpTool": "calculate_style_probability",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/brands/labubu#style-probability",
+        "de": "https://thedollscout.com/de/brands/labubu#style-probability",
+        "zh": "https://thedollscout.com/zh/brands/labubu#style-probability"
+      },
+      "limitations": "Explicit independent-draw assumptions, not official per-style rates, sealed-case or POP NOW hint probabilities."
+    },
     {
       "id": "odds",
       "task": "odds",

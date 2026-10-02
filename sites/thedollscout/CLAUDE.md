@@ -1,3 +1,10 @@
+## 2026-10-02 首页视频与 Labubu 款式概率
+
+- 首页三语视频来自 `scripts/collecting/videos.mjs` 的实际 YouTube ID；保留创作者署名、原站链接和关联工具。预览图来自 YouTube，加载失败用本地 CSS 封面；播放器只在点击后创建、禁止自动播放、同时最多一个，支持关闭。不要将可嵌入响应称为完整播放验证。
+- Labubu 三语品牌页直接含款式概率工具。`style-odds-core.mjs` 同时供浏览器和 MCP `calculate_style_probability` 使用。常规款等概率和隐藏替换是明确假设；1:72 是可修改示例，不能改写成已核实的官方概率。Have a Seat 款式名称有官方来源，整箱/POP NOW 提示不套独立抽盒模型。
+- MCP 版本 2.3.0，沿用已有 Registry 名称和 `[mcp-publish]` 发布流程。工具目录、品牌页工具链接、三语纯文本和 llms 需同步生成。
+- `odds_calc` 仅有效提交计数；`collector_video_request` 表示请求播放器，`collector_video_tool` 表示点击工具入口。没有播放量、完播或收入含义，CI 与隐私退出不发事件。验证见 `docs/tds-video-style-odds-2026-10-02.md`。
+
 ## 2026-10-02 动效与 AI 发现补齐
 
 - 首页演示只在用户点击后运行 6 秒，可暂停，不循环；减少动态效果时改手动分步。固定示例不计入真实工具完成。显示排布与 MCP 共用 `js/collector-core.js`，不伪造商品尺寸或容量。
