@@ -568,6 +568,7 @@
 <!-- discovery-schema:start -->
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://agiscorecard.com/#publisher", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/", "logo": "https://agiscorecard.com/og-image.png"}, {"@type": "WebSite", "@id": "https://agiscorecard.com/#website", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/", "publisher": {"@id": "https://agiscorecard.com/#publisher"}}, {"@type": "WebPage", "@id": "https://agiscorecard.com/#webpage", "url": "https://agiscorecard.com/", "name": "AGI Progress & Prediction Evidence | AGI Scorecard", "description": "Track 8 AGI predictions against sourced evidence. Check verdicts, dates and flip conditions, make your own assessment, and explore work and investment impacts.", "inLanguage": "en", "isPartOf": {"@id": "https://agiscorecard.com/#website"}, "mainEntity": {"@id": "https://agiscorecard.com/#dataset"}}, {"@type": "Dataset", "@id": "https://agiscorecard.com/#dataset", "name": "AGI-2027 Thesis Tracker", "description": "It summarizes 8 Situational Awareness predictions in our published ledger. The 2026-09-06 reading is 62.5/100: 3 supportive, 4 unresolved and 1 refuted. It is not a general benchmark of all AI capabilities.", "url": "https://agiscorecard.com/", "dateModified": "2026-09-06", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": {"@id": "https://agiscorecard.com/#publisher"}, "isAccessibleForFree": true, "measurementTechnique": "Mean of the 8 verdict weights (supportive=1, unresolved/open/pending=0.5, refuted=0) x100. An editorial composite of the published verdicts, not a probability.", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/data.json"}]}, {"@type": "FAQPage", "@id": "https://agiscorecard.com/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What does the AGI Thesis Tracker measure?", "acceptedAnswer": {"@type": "Answer", "text": "It summarizes 8 Situational Awareness predictions in our published ledger. The 2026-09-06 reading is 62.5/100: 3 supportive, 4 unresolved and 1 refuted. It is not a general benchmark of all AI capabilities."}}, {"@type": "Question", "name": "Does 62.5/100 mean a 62.5% probability of AGI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Each verdict has equal weight: supportive = 1, unresolved = 0.5 and refuted = 0. The mean is multiplied by 100. This is an editorial composite, not a probability forecast or a finding that AGI has arrived."}}, {"@type": "Question", "name": "How can I reproduce or cite the score?", "acceptedAnswer": {"@type": "Answer", "text": "Read predictions and thesisTracker in data.json, recompute the published weights, and inspect index-history.json for past readings. Cite AGI Scorecard, the ledger date 2026-09-06 and the original data URL. The dataset is CC BY 4.0; a site redesign date is not an evidence date."}}]}]}</script>
 <!-- discovery-schema:end -->
+<script type="module" src="/evidence-assets/evidence.js"></script>
 </head>
 <body class="focus-home">
 
@@ -610,8 +611,9 @@
 <!-- home-focus:start -->
 <section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
   <div class="focus-opening"><div><h1 id="focus-title">How close are we to AGI?</h1><p class="focus-lead">Track 8 predictions from Situational Awareness against the evidence. See what has held up, what remains unresolved, and what it means for work and investment research.</p>
-  <div class="focus-actions"><a href="/progress-index" data-focus-action="hero_evidence" class="focus-primary">Explore the evidence</a><a href="#grade-game" data-focus-action="hero_grade" class="focus-secondary">Make my own assessment</a></div></div>
+  <div class="focus-actions"><a href="/progress-index#cite-evidence" data-focus-action="hero_evidence" class="focus-primary">Inspect evidence and changes</a><a href="#grade-game" data-focus-action="hero_grade" class="focus-secondary">Make my own assessment</a></div></div>
   <aside class="focus-reading" aria-label="AGI-2027 Thesis Tracker"><p>AGI-2027 Thesis Tracker</p><div class="focus-score">62.5<span>/100</span></div><p>A composite of published verdicts, not the probability of AGI.</p><p class="focus-date">Ledger reading dated <time datetime="2026-09-06">2026-09-06</time></p><a href="/progress-index">Inspect the method and history</a></aside></div>
+  <section class="focus-evidence-desk" id="evidence-desk" aria-labelledby="desk-heading"><h2 id="desk-heading">Latest evidence notes</h2><p><time datetime="2026-10-02">2026-10-02</time> — Clarified the open-weight model gap: January–May 2026 study window, about 4 months on average; about 6 under a stricter comparison.</p><p class="focus-boundary">Latest verdict ledger remains dated 2026-09-06. This is a source-note and presentation update, not a new verdict.</p><nav aria-label="Four evidence topics"><a href="/progress-index#cite-evidence" data-focus-action="asset_progress" class="">Score and history</a><a href="/will-agi-arrive-2027#cite-evidence" data-focus-action="asset_agi2027" class="">What resolves the 2027 prediction?</a><a href="/did-open-source-ai-fade#cite-evidence" data-focus-action="asset_open" class="">Open vs closed capability gap</a><a href="/ai-and-your-job#cite-evidence" data-focus-action="asset_work" class="">Which evidence shows work changing?</a></nav></section>
   <nav class="focus-routes" aria-label="Choose your task"><a href="/progress-index" data-focus-action="route_evidence" class="focus-route"><strong>Check the evidence</strong><span>Inspect each verdict, source and condition for changing it.</span></a><a href="/ai-and-your-job" data-focus-action="route_work" class="focus-route"><strong>Understand work changes</strong><span>Separate observed employment data from forecasts.</span></a><a href="/invest" data-focus-action="route_invest" class="focus-route"><strong>Research AI investments</strong><span>Check public holdings, assumptions and risks.</span></a></nav>
   <p class="focus-boundary">Evidence dates and site updates are shown separately. A site update does not mean a verdict was reassessed.</p>
 </section>
@@ -713,7 +715,7 @@
 <div id="gg-result" hidden><h3>My score <span id="gg-score"></span>/100</h3><p id="gg-verdict-line"></p><div id="gg-diffs"></div>
 <div class="focus-actions"><button type="button" id="gg-copy" class="focus-primary">Copy result summary</button><a href="/progress-index" data-focus-action="grade_evidence" class="focus-secondary">Inspect the ledger</a><button type="button" id="gg-reset" class="focus-secondary">Start again</button></div>
 <p id="gg-copy-status" role="status"></p><textarea id="gg-copy-fallback" readonly hidden aria-label="Result to copy manually"></textarea>
-<p class="focus-boundary">Choices and scores stay in this page. Analytics counts starts, completions and successful copies without your grades. The copy contains a text summary and a page link; no public profile is created.</p></div></div>
+<p class="focus-boundary">Choices and scores stay in this page. Analytics counts starts, completions and successful copies without your grades. The copy contains a text summary and a page link; no public profile is created.</p><p><a href="https://agiscorecard.beehiiv.com/subscribe" onclick="gtag('event','subscribe_click',{location:'grade_result'});">Register for verdict-change updates</a></p></div></div>
 <noscript><p>Enable JavaScript for the assessment, or read the <a href="/progress-index">full ledger and method</a>。</p></noscript>
 </section>
 <!-- home-grade:end -->
@@ -1100,7 +1102,7 @@
   </div>
 
 <!-- home-changes:start -->
-<section class="focus-changes section" id="changelog"><h2>Recent site changes</h2><p>Changes to features and evidence presentation. Verdict dates remain attached to the ledger.</p><ol><li><time datetime="2026-10-01">2026-10-01</time><span>Source-matched homepage answers and incremental search notifications</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>Focused bilingual homepage and private, measurable assessments</span></li><li><time datetime="2026-09-27">2026-09-27</time><span>Four independent graders beside our verdicts, one disagreement; check the records in your browser</span></li></ol><a href="/changelog" data-focus-action="changelog" class="">Full change history</a></section>
+<section class="focus-changes section" id="changelog"><h2>Recent site changes</h2><p>Changes to features and evidence presentation. Verdict dates remain attached to the ledger.</p><ol><li><time datetime="2026-10-02">2026-10-02</time><span>Four evidence topics now have dated citation notes and downloadable charts</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>Source-matched homepage answers and incremental search notifications</span></li><li><time datetime="2026-10-01">2026-10-01</time><span>Focused bilingual homepage and private, measurable assessments</span></li></ol><a href="/changelog" data-focus-action="changelog" class="">Full change history</a></section>
 <!-- home-changes:end -->
   <!-- FAQ -->
   <div class="section" id="faq">
@@ -1217,15 +1219,7 @@
   <p>Predictions shown are third-party forecasts. Nothing here is investment advice. · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/advertise">Advertise</a></p>
 </footer>
 
-<!-- Scroll-triggered subscribe slide-in (once per visitor, dismissible, non-blocking) -->
-<div id="sub-slidein" role="complementary" aria-label="Subscribe" style="position:fixed; right:16px; bottom:16px; max-width:330px; background:var(--bg2,#16151f); border:1px solid rgba(124,106,245,.38); border-radius:14px; padding:16px 18px; box-shadow:0 10px 34px rgba(0,0,0,.45); z-index:9999; display:none; transform:translateY(18px); opacity:0; transition:transform .3s ease, opacity .3s ease;">
-  <button onclick="dismissSlidein()" aria-label="Close" style="position:absolute; top:6px; right:10px; background:none; border:0; color:var(--muted,#a8a4c4); font-size:20px; cursor:pointer; line-height:1;">&times;</button>
-  <p style="margin:0 0 4px; font-weight:700; font-size:15px;">🎲 Which forecaster are you?</p>
-  <p style="margin:0 0 12px; font-size:12.5px; color:var(--muted,#a8a4c4);">Bet on 12 bold futures in 60 seconds — AGI, Mars, fusion. Then subscribe to see if you're right.</p>
-  <a href="/future-bet" onclick="gtag('event','agi_test_click',{location:'slidein'});" style="display:inline-block; background:var(--accent,#7c6af5); color:#fff; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Play The Future Bet →</a>
-  <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=slidein" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'slidein'});" style="display:block; margin-top:9px; font-size:12px; color:var(--muted,#a8a4c4); text-decoration:underline;">or just subscribe to the briefing →</a>
-</div>
-
+<!-- Homepage discovery stays in the evidence flow; no unrelated timed popup. -->
 <script>
 let myVote = null, myArchetype = null;
 function castVote(choice) {
@@ -1450,65 +1444,7 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Scroll-triggered subscribe slide-in — squeeze more subscribe clicks from small traffic
-function dismissSlidein(){
-  var el=document.getElementById('sub-slidein');
-  if(el){ el.style.transform='translateY(18px)'; el.style.opacity='0'; setTimeout(function(){el.style.display='none';},300); }
-  // Timestamp, not a flag: dismissal now cools down for 7 days instead of forever.
-  // A reader who said "not now" once is not a reader who said "never".
-  try{ localStorage.setItem('subDismissed',String(Date.now())); }catch(e){}
-  gtag('event','slidein_dismiss');
-}
-(function(){
-  // Trigger redesign 2026-08-17 (owner 2026-08-06: "下拉到最下面弹窗才出来" — the
-  // backlog `slidein-coverage` item). Show on a READING signal, whichever comes first:
-  //   scroll — 1.5 screens (viewport-relative, page-length-proof) or 40% of the
-  //           document (was 55% ≈ seven screens on this 12,495px page);
-  //   timer  — 20s of VISIBLE dwell (paused while the tab is hidden, so an idle
-  //           background tab never triggers it; readers whose answer sits above the
-  //           fold give no scroll signal at all).
-  // slidein_show carries which one fired, and the subscribe anchor's location becomes
-  // slidein_scroll / slidein_timer, so sub_open can say WHICH timing converts.
-  // At most one show per session; a dismissal within the last 7 days suppresses it
-  // (legacy '1' converts to a timestamp = one more quiet week, then back in the pool).
-  try{
-    var v=localStorage.getItem('subDismissed');
-    if(v==='1'){ localStorage.setItem('subDismissed',String(Date.now())); return; }
-    if(v && Date.now()-parseInt(v,10) < 604800000) return;
-  }catch(e){}
-  try{ if(sessionStorage.getItem('slideinShown')==='1') return; }catch(e){}
-  var shown=false;
-  function show(trg){
-    if(shown) return;
-    shown=true;
-    try{ sessionStorage.setItem('slideinShown','1'); }catch(e){}
-    var el=document.getElementById('sub-slidein');
-    if(el){
-      try{
-        var a=el.querySelector('a[href*="beehiiv.com/subscribe"]');
-        if(a) a.setAttribute('onclick',"gtag('event','subscribe_click',{location:'slidein_"+trg+"'});");
-      }catch(e){}
-      el.style.display='block';
-      requestAnimationFrame(function(){ el.style.transform='translateY(0)'; el.style.opacity='1'; });
-      gtag('event','slidein_show',{location:trg});
-    }
-    window.removeEventListener('scroll',maybeShow);
-  }
-  function maybeShow(){
-    if(shown) return;
-    var frac=(window.scrollY+window.innerHeight)/Math.max(document.body.scrollHeight,1);
-    if(window.scrollY > 1.5*window.innerHeight || frac>0.4) show('scroll');
-  }
-  window.addEventListener('scroll',maybeShow,{passive:true});
-  var left=20000, last=Date.now();
-  var iv=setInterval(function(){
-    var now=Date.now();
-    if(!document.hidden) left-=now-last;
-    last=now;
-    if(shown){ clearInterval(iv); return; }
-    if(left<=0){ clearInterval(iv); show('timer'); }
-  },1000);
-})();
+// Homepage uses the inline evidence/assessment flow.
 
 </script>
 

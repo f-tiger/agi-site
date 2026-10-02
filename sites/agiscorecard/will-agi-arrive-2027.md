@@ -2,7 +2,7 @@
 
 _Last updated: August 29, 2026 · Updated as verdicts change_
 
-**Answer:** Open — too early to call. Aschenbrenner predicted AGI by 2027 in Situational Awareness. As of mid-2026, agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research. The prediction resolves by January 1, 2028. His 2027 is more aggressive than most forecasters.
+**Answer:** The ledger records this prediction as Open. Its operational test is autonomous AI research, with a site resolution date of 1 January 2028. This is the site’s interpretation, not a universal definition of AGI. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Aschenbrenner, June 2024 — https://situational-awareness.ai/from-gpt-4-to-agi/; Site resolution rule / 本站判定规则 — /data.json Older article summary: Open — too early to call. Aschenbrenner predicted AGI by 2027 in Situational Awareness. As of mid-2026, agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research. The prediction resolves by January 1, 2028. His 2027 is more aggressive than most forecasters.
 
 ## FAQ
 

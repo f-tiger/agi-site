@@ -37,6 +37,12 @@ def extract(path):
     updated = text_of(m1(r'<div class="updated">(.*?)</div>'))
     cap = m1(r'<(?:div|p)[^>]*class="capsule"[^>]*>(.*?)</(?:div|p)>')
     capsule = text_of(cap) if cap else ''
+    note=m1(r'<!-- evidence-asset:start -->(.*?)<!-- evidence-asset:end -->')
+    if note:
+        answer=text_of(re.search(r'<p class="evidence-answer">(.*?)</p>',note,re.S)[1])
+        stamp=text_of(re.search(r'<p class="evidence-stamp">(.*?)</p>',note,re.S)[1])
+        links=re.findall(r'<a href="([^"]+)" data-evidence-action="source_open">(.*?)</a>',note,re.S)
+        capsule=answer+' '+stamp+' Sources: '+'; '.join(text_of(label)+' — '+url for url,label in links)+' Older article summary: '+capsule
     faqs = []
     for q, a in re.findall(r'<(?:div|h3) class="faq-q">(.*?)</(?:div|h3)>\s*<p>(.*?)</p>', s, re.S):
         faqs.append((text_of(q), text_of(a)))
@@ -68,7 +74,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith('earn/') and slug not in ('zh/progress-index','zh/ai-and-your-job'):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
+        if '/' in slug and not slug.startswith('earn/') and slug not in ('zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)

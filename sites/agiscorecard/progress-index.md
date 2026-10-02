@@ -2,7 +2,7 @@
 
 _Last updated: September 6, 2026 · Updated as verdicts change_
 
-**Answer:** The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
+**Answer:** The published ledger is 62.5/100, dated 2026-09-06. Eight equally weighted judgments make up this score. It is not the probability that AGI arrives. Citation note version: 2026-10-02 · Ledger date: 2026-09-06 Sources: Published verdict ledger / 已发布判定台账 — /data.json; Archived score readings / 已存档分数 — /index-history.json Older article summary: The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
 
 ## FAQ
 
