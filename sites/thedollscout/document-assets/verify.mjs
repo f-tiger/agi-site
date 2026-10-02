@@ -1,6 +1,6 @@
 import {fingerprint,esc} from './delivery-core.mjs?v=2026-09-25.8';
 import {VERIFY_MAX_BYTES,parseReference,referenceFragment,referenceURL,referenceEmbed,compareReference} from './verify-core.mjs?v=2026-09-25.8';
-import {track} from './telemetry.mjs?v=2026-09-27.2';
+import {track} from './telemetry.mjs?v=2026-10-02.1';
 const c=JSON.parse(document.getElementById('verify-copy').textContent),$=id=>document.getElementById('verify-'+id);
 let epoch=0;
 const controls=()=>document.querySelectorAll('#verify-workspace input,#verify-workspace textarea,#verify-workspace button,#verify-own');

@@ -6,7 +6,7 @@ import {escapeHTML as esc} from './file-view.mjs';
 const root=document.getElementById('ft-workspace'),kind=root.dataset.kind,L=FILE_COPY[root.dataset.lang],pdf=kind==='pdf';
 const $=id=>document.getElementById('ft-'+id),fields=pdf?['paper']:['width','height','fit','format','quality','background','remove','tolerance'];
 let items=[],resultURLs=[],busy=false,serial=0,sequence=0;
-const emit=action=>{const q=new URLSearchParams(location.search);if(window.bpjEv&&!q.has('__ci')&&!q.has('__probe'))window.bpjEv('calc','/studio/'+(pdf?'pdf-tools':'product-images')+'/'+action+'/'+(items.some(i=>i.demo)?'demo':'own'));};
+const emit=action=>{const q=new URLSearchParams(location.search);if(window.bpjEv&&!q.has('__ci')&&!q.has('ci')&&!q.has('__probe')&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&navigator.globalPrivacyControl!==true)window.bpjEv('calc','/studio/'+(pdf?'pdf-tools':'product-images')+'/'+action+'/'+(items.some(i=>i.demo)?'demo':'own'));};
 const status=(message,error=false)=>{$('status').textContent=message;$('status').parentElement.dataset.error=String(error);};
 const message=error=>L.errors[error.message]||L.errors.generic;
 function values(){return settings(Object.fromEntries(fields.map(k=>[k,k==='remove'?$(k).checked:$(k).value])));}
@@ -51,7 +51,7 @@ $('run').addEventListener('click',async()=>{
   if(busy)return;if(!items.length){status(L.errors.empty,true);return;}
   for(const key of fields)if(!$(key).reportValidity())return;
   if(pdf){try{let total=0;for(const item of items)total+=item.type==='pdf'?pages(item.range,item.count).length:1;if(total>LIMITS.pages)throw Error('pages');}catch(e){status(message(e),true);return;}}
-  invalidate(false);setBusy(true);$('cancel').disabled=false;const token=++serial,alive=()=>token===serial,s=values();
+  emit('start');invalidate(false);setBusy(true);$('cancel').disabled=false;const token=++serial,alive=()=>token===serial,s=values();
   try{
     if(pdf){const result=await assemblePDF(items,s,progress,alive);if(!alive())return;
       const href=url(result.blob);$('output').innerHTML=`<div class="file-output-summary"><p>${result.pages} ${L.page} · ${bytes(result.blob.size)}</p><div class="studio-actions"><a class="studio-button primary" download="bpj-document.pdf" href="${href}">${L.downloadPDF}</a><a class="studio-button" target="_blank" rel="noopener" href="${href}">${L.openPDF}</a></div><p class="quote-note">${L.pdfScope}</p></div>`;
@@ -67,7 +67,7 @@ $('run').addEventListener('click',async()=>{
         const zip=new Blob([zipSync(entries,{level:0})],{type:'application/zip'});
         $('output').innerHTML=`<div class="file-output-summary"><p>${outputs.length} / ${items.length} · ${L.total} ${bytes(outputs.reduce((n,o)=>n+o.blob.size,0))}</p>${downloadLink(zip,'bpj-product-images.zip',L.zip)}</div><div class="file-output-grid">${outputs.map(out=>`<article class="file-output-item"><img src="${url(out.blob)}" alt="${esc(L.preview+' — '+out.name)}"><p>${esc(out.name)}<br>${out.width} × ${out.height}<br>${L.before}: ${bytes(out.original)} → ${L.after}: ${bytes(out.blob.size)}</p>${downloadLink(out.blob,out.name,L.download)}</article>`).join('')}</div>`;
       }
-      if(errors.length){const note=document.createElement('p');note.className='file-error';note.textContent=errors.join(' · ');$('output').append(note);$('output-section').hidden=false;status(L.failed,true);if(outputs.length)emit('complete');return;}
+      if(errors.length){const note=document.createElement('p');note.className='file-error';note.textContent=errors.join(' · ');$('output').append(note);$('output-section').hidden=false;status(L.failed,true);if(outputs.length)emit('partial');return;}
     }
     if(alive()){$('output-section').hidden=false;status(L.done);emit('complete');}
   }catch(e){if(alive())status(message(e),true);}

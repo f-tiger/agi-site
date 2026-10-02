@@ -1554,6 +1554,8 @@ AI tools run fixed models locally after you click Load AI model. Software and mo
 
 Open-source pages link to independent projects. Video pages connect to YouTube/Google only after you load the embedded player; connection information is then sent to those providers. The privacy-enhanced player does not guarantee anonymous viewing. Optional equipment links open Amazon and include an affiliate tag. We count fixed resource actions, never video titles supplied by visitors or purchase details.
 
+If you allow Google Analytics, it also counts fixed tool actions such as starting a task, completing processing and requesting an export. Examples are counted separately. Each action is counted at most once per page load. These counts do not prove a saved download, a purchase or a unique person. No file content, filenames, inputs or result details are included.
+
 For the image-tool video experiment, matching URL tags add a fixed campaign label and a YouTube or TikTok source to action counts. We do not store the full query string or use it to identify you. Tags without a matching referrer are weaker source evidence. DNT and Global Privacy Control suppress these first-party browser events.
 
 Reference material
@@ -2934,6 +2936,8 @@ KI-Werkzeuge laden feste Modelle erst nach Klick auf KI-Modell laden. Software- 
 
 Open-Source-Seiten verlinken unabhängige Projekte. Videoseiten verbinden sich erst beim Laden des Players mit YouTube/Google; dabei werden Verbindungsdaten übermittelt. Der erweiterte Datenschutzmodus garantiert keine Anonymität. Optionale Zubehörlinks öffnen Amazon mit einer Partnerkennung. Wir zählen feste Ressourcenaktionen, keine eingegebenen Videotitel oder Kaufdetails.
 
+Wenn Sie Google Analytics erlauben, werden auch feste Werkzeugaktionen gezählt: Aufgabenstart, abgeschlossene Verarbeitung und angeforderter Export. Beispiele werden getrennt gezählt; jede Aktion höchstens einmal pro Seitenaufruf. Die Zählungen belegen weder einen gespeicherten Download noch einen Kauf oder eine eindeutige Person. Dateiinhalte, Dateinamen, Eingaben und Ergebnisdetails werden nicht übertragen.
+
 Beim Video-Test für das Bildwerkzeug ergänzen passende URL-Tags die Aktionszählung um eine feste Kampagnenkennung und YouTube oder TikTok als Quelle. Die vollständige Abfragezeichenfolge wird nicht gespeichert und dient nicht Ihrer Identifizierung. Tags ohne passenden Referrer sind ein schwächerer Herkunftshinweis. DNT und Global Privacy Control unterdrücken diese eigenen Browser-Ereignisse.
 
 Referenzen
@@ -4313,6 +4317,8 @@ https://thedollscout.com/zh/document-privacy
 AI 工具仅在你点击加载模型后下载固定版本的本地模型。程序与模型下载会联系 jsDelivr、Hugging Face，这些服务会收到 IP 地址等连接信息；你选择的照片、录音和文字不会上传。模型可能被浏览器缓存，可清除网站数据来移除。输入和结果保留在内存，除非你主动下载。AI 结果可能出错，各工具页面会说明语言和任务限制。
 
 开源页面链接到独立项目。视频页面仅在主动加载播放器后连接 YouTube／Google，并向其发送连接信息；增强隐私模式不保证匿名观看。可选设备链接会打开带联盟标识的 Amazon 页面。我们只统计固定资源操作，不记录访客输入的视频标题或购买明细。
+
+允许 Google Analytics 后，还会统计任务开始、处理完成、发起导出等固定操作。示例单独计数，每种操作每次页面加载最多记录一次。这些计数不证明文件已经保存、发生购买或独立人数，不包含文件内容、文件名、输入或结果明细。
 
 图片工具的视频实验会将匹配的网址标签转换为固定活动名和 YouTube 或 TikTok 来源，加入动作计数。我们不保存完整查询字符串，也不用它识别个人；没有匹配引荐的标签只算较弱的来源证据。DNT 和 Global Privacy Control 会抑制这些第一方浏览器事件。
 

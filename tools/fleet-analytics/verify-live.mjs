@@ -21,7 +21,7 @@ async function read(path){
 }
 let report=JSON.parse(await read('/analytics-assets/coverage.json'));
 assert.equal(report.site,site);assert.equal(report.measurementId,id);assert(report.records.length>20);
-const names=['consent.mjs','collector.mjs','consent.css','frame.html'];
+const names=['consent.mjs','collector.mjs','consent.css','frame.html','business.mjs'];
 const local=names.map(n=>fs.readFileSync(new URL(n,import.meta.url)));
 const version=createHash('sha256').update(Buffer.concat(local)).digest('hex').slice(0,12);
 // A previous release may still be served briefly. Wait only for the manifest

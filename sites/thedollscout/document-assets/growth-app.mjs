@@ -1,4 +1,4 @@
-import {track} from './telemetry.mjs?v=2026-09-27.2';
+import {track} from './telemetry.mjs?v=2026-10-02.1';
 import {GROWTH_EVENTS,growthEventAllowed,VIDEO_IDS} from './growth-core.mjs?v=2026-09-27.1';
 document.addEventListener('click',ev=>{const target=ev.target.closest('[data-growth-event]');if(!target)return;const name=target.dataset.growthEvent;if(GROWTH_EVENTS.has(name)&&growthEventAllowed(name,location.pathname))track(name);});
 const placeholders=new Map();

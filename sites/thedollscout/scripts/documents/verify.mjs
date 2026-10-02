@@ -41,7 +41,7 @@ for (const record of manifest.records) {
   assert.equal((html.match(/<h1[ >]/g) || []).length,1,'One visible h1: ' + route);
   assert.ok(!/noindex|googletagmanager|\/js\/main\.js/.test(html),'Unexpected direct Google loader or indexing block ' + route);
   assert.equal((html.match(/src="\/js\/config\.js\?v=2026-10-01\.1"/g)||[]).length,1,'GA4 configuration: '+route);
-  assert.equal((html.match(/src="\/document-assets\/analytics\.mjs\?v=2026-10-01\.1"/g)||[]).length,1,'One consent-gated GA4 loader: '+route);
+  assert.equal((html.match(/src="\/document-assets\/analytics\.mjs\?v=2026-10-02\.1"/g)||[]).length,1,'One consent-gated GA4 loader: '+route);
   assert.ok(html.includes(`lang="${languages[record.lang].tag}"`));
   for (const [lang, data] of Object.entries(languages)) assert.ok(html.includes(`hreflang="${data.tag}" href="${origin + data.prefix}/${record.slug}"`),'Hreflang ' + route + ' ' + lang);
   assert.ok(html.includes('hreflang="x-default"'));

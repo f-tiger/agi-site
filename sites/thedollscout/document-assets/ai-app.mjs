@@ -1,4 +1,4 @@
-import {track} from './telemetry.mjs?v=2026-09-27.2';
+import {track} from './telemetry.mjs?v=2026-10-02.1';
 import {SUMMARY_SAMPLE,sentencesForSummary,speechHasSignal,subtitleFile} from './ai-core.mjs?v=2026-09-27.3';
 import {imageHeader,fitImage} from './utility-core.mjs?v=2026-09-27.2';
 const $=id=>document.getElementById(id),{task,ui,errors}=JSON.parse($('ai-copy').textContent);
