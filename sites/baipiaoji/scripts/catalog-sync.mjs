@@ -60,7 +60,7 @@ export async function syncGithub({curated,discovery,state,get,now,limits={}}) {
     }catch(e){result.rejected++;result.errors.push('github-admission-'+compactError(e));}
   }
   // Rotate by last ATTEMPT, so a blocked repository cannot starve the rest.
-  const old=discovery.tools.filter(r=>r.discoveredAt!==now).sort((a,b)=>String(state.checked[a.id]||'').localeCompare(String(state.checked[b.id]||''))).slice(0,limits.verify??6);
+  const old=discovery.tools.filter(r=>r.discoveredAt!==now).sort((a,b)=>String(state.checked[a.id]||a.checkedAt||a.discoveredAt||'').localeCompare(String(state.checked[b.id]||b.checkedAt||b.discoveredAt||''))).slice(0,limits.verify??6);
   for(const r of old){state.checked[r.id]=now;result.checked++;
     try{const res=await get('https://api.github.com/repos/'+r.repo,{json:true,github:true});if(good(res.status)){r.checkedAt=now;r.active=!res.data.archived&&!res.data.disabled;r.archived=!!res.data.archived;r.stars=res.data.stargazers_count;r.pushedAt=res.data.pushed_at;r.topics=res.data.topics||r.topics;r.topic=topicFromTags(r.topics,r.topic);}else if([404,410].includes(res.status))r.active=false;else result.errors.push('github-recheck-http-'+res.status);}catch(e){result.errors.push('github-recheck-'+compactError(e));}
   }
@@ -133,7 +133,7 @@ export async function syncMcp({registry,pool,seeds,admissions,vocab,state,get,no
   }
   const admittedNames=new Set(agents.map(a=>a.registry?.name).filter(Boolean)),admittedRepos=new Set(agents.map(a=>repoKey(a.repo_url||'')).filter(Boolean));
   pool.candidates=pool.candidates.filter(c=>!admittedNames.has(c.registry?.name)&&!admittedRepos.has(repoKey(c.repo_url||'')));
-  const verify=agents.filter(a=>a.status!=='retired'&&a.first_seen!==today).sort((a,b)=>String(state.checked[a.slug]||'').localeCompare(String(state.checked[b.slug]||''))||a.slug.localeCompare(b.slug)).slice(0,limits.verify??40);
+  const verify=agents.filter(a=>a.status!=='retired'&&a.first_seen!==today).sort((a,b)=>String(state.checked[a.slug]||a.source_checked||a.first_seen||'').localeCompare(String(state.checked[b.slug]||b.source_checked||b.first_seen||''))||a.slug.localeCompare(b.slug)).slice(0,limits.verify??40);
   const updates=await batch(verify,async a=>{state.checked[a.slug]=now;try{const s=await get(a.source_url),r=a.repo_url===a.source_url?s:a.repo_url?await get(a.repo_url):null;return {slug:a.slug,res:{source:s.status,repo:r?.status??null}};}catch{return {slug:a.slug,res:{source:null,repo:null}};}});
   for(const u of updates){const i=agents.findIndex(a=>a.slug===u.slug);agents[i]=applyCheck(agents[i],u.res,today);result.checked++;}
   if(checks.length&&checks.every(x=>x.source===null||x.source>=500))result.errors.push('mcp-admission-source-unavailable');
