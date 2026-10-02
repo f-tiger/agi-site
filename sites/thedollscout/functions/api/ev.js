@@ -20,8 +20,10 @@ export async function onRequestPost(ctx) {
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
     // Unknown event names are dropped, not stored — an open-name endpoint is
     // write-anything storage, and the table stays honest by refusing it.
-    const ALLOWED = new Set(['', 'affiliate_click', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc']);
+    const ALLOWED = new Set(['', 'affiliate_click', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc', 'collector_video_request', 'collector_video_tool']);
     if (body.e && !ALLOWED.has(body.e)) return new Response(null, { status: 204 });
+    // These are player requests and tool-link clicks, never watch time or completed plays.
+    if (body.e?.startsWith('collector_video_') && !['/','/de/','/zh/'].includes(path)) return new Response(null, {status:204});
     const ev = body.e || '';
     const lang = langOf(path);
     const d = new Date().toISOString().slice(0, 10);
@@ -34,4 +36,3 @@ export async function onRequestPost(ctx) {
   } catch (e) { /* fail silent by design */ }
   return new Response(null, { status: 204 });
 }
-

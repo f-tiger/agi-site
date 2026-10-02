@@ -1,5 +1,5 @@
 // Shared public contract for the endpoint, human guide and discovery manifests.
-export const SERVER = {name:'dollscout',version:'2.2.0'};
+export const SERVER = {name:'dollscout',version:'2.3.0'};
 export const PROTOCOL_VERSION = '2025-06-18';
 export const REGISTRY_NAME = 'io.github.f-tiger/dollscout-collecting';
 export const TOOLS = [
@@ -52,6 +52,7 @@ export const TOOLS = [
 
 const language={type:'string',enum:['en','de','zh'],default:'en',description:'Interface language; some browser-only tools are available only in EN/DE.'};
 TOOLS.push(
+ {name:'calculate_style_probability',description:'Calculate independent-box chances for one regular style, a secret, or a user-supplied per-style probability. Required by mode: regular needs regularStyles and secretOddsN; secret needs secretOddsN; printed needs probabilityPercent. Regular mode assumes equally likely regular styles and replacement by a secret; not official series odds or sealed-case allocation.',inputSchema:{type:'object',properties:{target:{type:'string',enum:['regular','secret','printed']},boxes:{type:'integer',minimum:1,maximum:100000},regularStyles:{type:'integer',minimum:1,maximum:1000},secretOddsN:{type:'integer',minimum:2,maximum:100000},probabilityPercent:{type:'number',minimum:0,maximum:100}},required:['target','boxes'],additionalProperties:false}},
  {name:'find_collector_tools',description:'Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.',inputSchema:{type:'object',properties:{task:{type:'string',enum:['all','odds','display','collection','guides'],default:'all'},language},additionalProperties:false}},
  {name:'get_collecting_guide',description:'Read a published Labubu, SKULLPANDA, Jellycat or Sonny Angel buying guide with official source links, review date and limitations. Not current stock, resale valuation or authentication.',inputSchema:{type:'object',properties:{brand:{type:'string',enum:['labubu','skullpanda','jellycat','sonny-angel']},language},required:['brand'],additionalProperties:false}},
  {name:'plan_display_fit',description:'Calculate a uniform single-layer rectangular layout for toy footprints inside a display case. All dimensions use the same unit. Tests 90-degree rotation when allowed; not 3D packing or a safety/load certification.',inputSchema:{type:'object',properties:Object.fromEntries([...['width','depth','height','itemWidth','itemDepth','itemHeight'].map(k=>[k,{type:'number',exclusiveMinimum:0,maximum:100000}]),['gap',{type:'number',minimum:0,maximum:100000,description:'Space between adjacent items; same unit as all dimensions.'}],['rotate',{type:'boolean',default:true}]]),required:['width','depth','height','itemWidth','itemDepth','itemHeight','gap'],additionalProperties:false}}

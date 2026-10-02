@@ -5,6 +5,7 @@
 
 import {SERVER,PROTOCOL_VERSION,TOOLS,RESOURCES} from '../collector-assets/mcp-contract.mjs';
 import '../js/collector-core.js';
+import {styleProbability} from '../collector-assets/style-odds-core.mjs';
 
 async function load(env, request, path) {
   const res = await env.ASSETS.fetch(new URL(path, request.url));
@@ -13,6 +14,7 @@ async function load(env, request, path) {
 }
 
 async function callTool(name, args, ctx) {
+  if(name==='calculate_style_probability')return {...styleProbability(args),source:'https://thedollscout.com/brands/labubu#style-probability'};
   if(name==='find_collector_tools'){
     const data=await ctx.load('/collector-assets/tool-capabilities.json');
     const lang=args.language||'en';
@@ -211,6 +213,7 @@ export async function onRequest({ request, env }) {
 
     return Response.json(rpcError(id, -32601, `Method not found: ${method}`), { headers: CORS });
   } catch (e) {
+    if(e instanceof RangeError)return Response.json(rpc(id,{isError:true,content:[{type:"text",text:e.message}]}),{headers:CORS});
     return Response.json(rpcError(id, -32603, `Internal error: ${e.message}`), { headers: CORS });
   }
 }

@@ -6,10 +6,27 @@ if(share)share.addEventListener('click',async()=>{const status=document.querySel
 // Preserve anonymous first-party page counts separately from consented GA4.
 // QA, previews and privacy opt-outs never create production visits.
 const params=new URLSearchParams(location.search);
-if(location.hostname==='thedollscout.com'&&!['ci','__ci','__probe'].some(k=>params.has(k))&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'){
+const measurable=location.hostname==='thedollscout.com'&&!['ci','__ci','__probe'].some(k=>params.has(k))&&params.get('utm_source')!=='verify'&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1';
+if(measurable){
  let ref='';try{ref=new URL(document.referrer).origin;}catch{}
  const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:'',r:ref});
  fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});
+}
+const recorded=new Set();
+function recordAction(name){if(!measurable||recorded.has(name))return;recorded.add(name);const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
+import {initStyleOdds} from './style-odds-ui.mjs';
+const styleTool=document.querySelector('[data-style-tool]');
+if(styleTool)initStyleOdds(styleTool,recordAction);
+
+// Only one player at a time; creating it is an explicit visitor action, not a play event.
+let activeVideo=null;
+function closeVideo(card){if(!card)return;card.querySelector('iframe')?.remove();card.querySelector('.video-poster').hidden=card.querySelector('.video-poster').dataset.failed==='true';card.querySelector('[data-video-load]').hidden=false;card.querySelector('[data-video-close]').hidden=true;if(activeVideo===card)activeVideo=null;}
+for(const card of document.querySelectorAll('[data-video]')){
+ const load=card.querySelector('[data-video-load]'),close=card.querySelector('[data-video-close]'),poster=card.querySelector('.video-poster');load.hidden=false;
+ const posterFailed=()=>{poster.dataset.failed='true';poster.hidden=true;};poster.addEventListener('error',posterFailed);if(poster.complete&&!poster.naturalWidth)posterFailed();
+ load.addEventListener('click',()=>{closeVideo(activeVideo);const id=card.dataset.video;if(!/^[A-Za-z0-9_-]{11}$/.test(id))return;const frame=document.createElement('iframe');frame.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=0&playsinline=1&rel=0&cc_load_policy=1&hl=${document.documentElement.lang.split('-')[0]}`;frame.title=load.dataset.title;frame.allow='encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';card.querySelector('.video-poster').hidden=true;load.hidden=true;card.querySelector('.video-stage').append(frame);close.hidden=false;activeVideo=card;recordAction('collector_video_request');frame.focus();});
+ close.addEventListener('click',()=>{closeVideo(card);load.focus();});
+ card.querySelector('.video-next').addEventListener('click',()=>recordAction('collector_video_tool'));
 }
 
 // The demonstration is local, finite and never counted as a completed user task.

@@ -1,6 +1,6 @@
 {
   "name": "dollscout",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Read-only collectible toy guides, blind-box math, display planning and browser-tool discovery.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
@@ -10,6 +10,7 @@
     "labubu_fake_signals",
     "secret_pull_probability",
     "define_labubu_term",
+    "calculate_style_probability",
     "find_collector_tools",
     "get_collecting_guide",
     "plan_display_fit"
