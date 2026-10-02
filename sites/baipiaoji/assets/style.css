@@ -256,6 +256,7 @@ body.has-rail .stage { margin-left: var(--rail-w); max-width: none; }
 .group { margin-top: 26px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(256px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--line); }
 .ticket {
+  min-width: 0; overflow-wrap: anywhere;
   display: flex; flex-direction: column; position: relative;
   border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
   background: var(--bg); transition: background .12s;

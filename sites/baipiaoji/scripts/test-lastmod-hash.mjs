@@ -32,6 +32,7 @@ const differs = (label, next) => { assert.ok(next !== page, `test setup: ${label
 same('rail category count', page.replace(/(data-cat="all">[^<]*<span>)\d+/, (m, a) => a + '999'));
 same('rail section count', page.replace(/(<nav class="rail-jump">[\s\S]*?<span>)(\d+)(<\/span>)/, (m, a, d, c) => a + (Number(d) + 4) + c));
 same('footer directory size', page.replace(/(共收录|Listing) \d+ /, '$1 888 '));
+assert.equal(lmHashOf('<p>Listing 221 AI tools with a real free tier</p>'),lmHashOf('<p>Listing 700 AI tools; free allowances require a separate verified record</p>'));n++;
 // The account CTA replaced subscription proof. Keep the historical normalizer contract using its fixture.
 assert.equal(lmHashOf(fixture),lmHashOf(fixture.replace(/<p class="sub-proof">[\s\S]*?<\/p>/,'<p class="sub-proof">Changed legacy proof</p>')));n++;
 assert.equal(lmHashOf(page+'<script src="/account.js?v=old"></script>'),lmHashOf(page+'<script src="/account.js?v=new"></script>'));n++;
