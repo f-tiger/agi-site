@@ -1,3 +1,4 @@
+import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {auditCSV,checkTranslation,LANGUAGES,LIMITS} from '../site/core.mjs';
 const PRICE=1900, CURRENCY='eur', DAY=86400000;
 const json=(v,status=200)=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
@@ -179,7 +180,8 @@ async function api(request,env){
   fail('Not found.',404);
 }
 export default {
-  async fetch(request,env){try{if(new URL(request.url).pathname.startsWith('/api/'))return await api(request,env);return env.ASSETS.fetch(request);}catch(error){return json({error:error.status?error.message:'Service unavailable. Your saved batch can be resumed.'},error.status||503);}},
+  async fetch(request,env){
+    if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);try{if(new URL(request.url).pathname.startsWith('/api/'))return await api(request,env);return env.ASSETS.fetch(request);}catch(error){return json({error:error.status?error.message:'Service unavailable. Your saved batch can be resumed.'},error.status||503);}},
   async queue(batch,env){for(const message of batch.messages){try{
     const result=await processOne(env,message.body?.job_id);
     if(result==='idle'){

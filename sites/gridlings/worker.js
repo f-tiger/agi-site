@@ -1,3 +1,4 @@
+import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // Gridlings worker: static assets + /e beacon + server-side pageview log.
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
 // GEO rules/answer pages: extensionless → .html, one set instead of ten else-ifs.
@@ -133,6 +134,8 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    // The isolated analytics document must not create a second first-party visit.
+    if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
     const url = new URL(request.url);
 
     // /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page

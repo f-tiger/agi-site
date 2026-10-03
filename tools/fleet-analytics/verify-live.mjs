@@ -1,45 +1,63 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-const sites={agi:['agiscorecard.com','G-FZXLMBB5QB'],eco:['getecoback.com','G-E2V0Q9SJ9V'],bpj:['baipiaoji.com','G-H79D948F4Z'],tds:['thedollscout.com','G-2SEHFY33H8']};
-const site=process.argv[2];assert(sites[site],'Usage: node verify-live.mjs agi|eco|bpj|tds');
-const [host,id]=sites[site],origin='https://'+host;
-async function read(path){
- const url=new URL(path,origin);assert.equal(url.origin,origin);url.searchParams.set('__probe','1');
- // A successful deploy can precede asset propagation at a particular edge.
- // Retry only transport/non-200 responses; a 200 with bad content still fails.
+const registry=JSON.parse(fs.readFileSync(new URL('registry.json',import.meta.url)));
+const site=process.argv[2],cfg=registry[site];assert(cfg,'Pass a site key from registry.json');
+const names=['consent.mjs','collector.mjs','consent.css','frame.html','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs'];
+const local=names.map(n=>fs.readFileSync(new URL(n,import.meta.url)));
+const version=createHash('sha256').update(Buffer.concat([...local,fs.readFileSync(new URL('registry.json',import.meta.url))])).digest('hex').slice(0,12);
+const allowed=Object.fromEntries(Object.values(registry).flatMap(c=>c.hosts.map(h=>[h,c.id])));
+async function read(host,path){
+ const origin='https://'+host,url=new URL(path,origin);assert.equal(url.origin,origin);url.searchParams.set('__probe','1');
  let failure;
  for(let attempt=0;attempt<4;attempt++){
   try{
    const r=await fetch(url,{headers:{'user-agent':'fleet-analytics-probe/1.0','x-probe':'1'},signal:AbortSignal.timeout(25000)});
-   if(r.status===200)return r.text();
+   if(r.status===200)return {text:await r.text(),headers:r.headers};
    failure=new Error(url.pathname+' returned HTTP '+r.status);
   }catch(error){failure=error;}
-  if(attempt<3)await new Promise(resolve=>setTimeout(resolve,8000));
+  if(attempt<3)await new Promise(resolve=>setTimeout(resolve,5000));
  }
  throw failure;
 }
-let report=JSON.parse(await read('/analytics-assets/coverage.json'));
-assert.equal(report.site,site);assert.equal(report.measurementId,id);assert(report.records.length>20);
-const names=['consent.mjs','collector.mjs','consent.css','frame.html','business.mjs'];
-const local=names.map(n=>fs.readFileSync(new URL(n,import.meta.url)));
-const version=createHash('sha256').update(Buffer.concat(local)).digest('hex').slice(0,12);
-// A previous release may still be served briefly. Wait only for the manifest
-// version transition, never for invalid page markup or mismatched asset bytes.
-for(let attempt=0;report.version!==version&&attempt<3;attempt++){
- await new Promise(resolve=>setTimeout(resolve,8000));
- report=JSON.parse(await read('/analytics-assets/coverage.json'));
- assert.equal(report.site,site);assert.equal(report.measurementId,id);
+const results=[];
+for(const host of cfg.hosts){
+ let report=JSON.parse((await read(host,'/analytics-assets/coverage.json')).text);
+ for(let attempt=0;report.version!==version&&attempt<6;attempt++){
+  await new Promise(resolve=>setTimeout(resolve,5000));
+  report=JSON.parse((await read(host,'/analytics-assets/coverage.json')).text);
+ }
+ assert.equal(report.site,site);assert.equal(report.measurementId,cfg.id);
+ assert.deepEqual(report.hosts,cfg.hosts);assert.equal(report.version,version,'Production analytics release is stale: '+host);
+ await Promise.all(names.map(async(name,i)=>{
+  const live=await read(host,'/analytics-assets/'+name+'?v='+version);
+  assert.equal(live.text,local[i].toString(),host+'/'+name);
+  if(name==='frame.html')assert(live.headers.get('cache-control')?.includes('no-transform'),'Analytics frame must exclude injected third-party beacons');
+ }));
+ const registryText=(await read(host,'/analytics-assets/registry.mjs')).text;
+ assert.deepEqual(JSON.parse(registryText.replace(/^export const allowed = /,'').replace(/;\s*$/,'')),allowed,host+'/registry.mjs');
+ const all=[...new Set(report.records.filter(r=>r.mode==='consent'&&new URL(r.url).hostname===host).map(r=>r.url))].sort();
+ assert(all.length>0,'Empty coverage for '+host);
+ // Build scans every output; live checks every host and shared asset, plus a
+ // bounded deterministic spread of routes and important template families.
+ const chosen=new Set(all.length<=80||process.argv.includes('--all')?all:[]);
+ if(!chosen.size){
+  for(let i=0;i<48;i++)chosen.add(all[Math.floor(i*(all.length-1)/47)]);
+  const groups=new Set();
+  for(const url of all){
+   const path=new URL(url).pathname,group=path.split('/').slice(0,3).join('/');
+   if((/^\/$|\/privacy|\/legal|\/workbench\/?$|\/earn$|stromtarif-werkstatt|\/datenschutz|\/start/.test(path))||(!groups.has(group)&&groups.size<24)){chosen.add(url);groups.add(group);}
+  }
+ }
+ const routes=[...chosen];let next=0;
+ await Promise.all(Array.from({length:6},async()=>{while(next<routes.length){
+  const route=routes[next++],html=(await read(host,route)).text;
+  assert.equal((html.match(/src="\/analytics-assets\/consent\.mjs\?v=/g)||[]).length,1,route);
+  assert(html.includes('data-ga4-id="'+cfg.id+'"'),route);
+  assert(html.includes('data-ga4-host="'+host+'"'),route);
+  assert(html.includes('/analytics-assets/consent.mjs?v='+version),route);
+  assert(!/<script\b[^>]*src=["']https:\/\/(?:www\.)?googletagmanager\.com\/gtag\/js/.test(html),'Legacy Google loader: '+route);
+ }}));
+ results.push({host,buildCoveredRoutes:all.length,liveRoutesVerified:routes.length});
 }
-assert.equal(report.version,version,'Production analytics release is stale');
-for(let i=0;i<names.length;i++)assert.equal(await read('/analytics-assets/'+names[i]+'?v='+version),local[i].toString(),names[i]);
-const routes=[...new Set(report.records.filter(r=>r.mode==='consent').map(r=>r.url))];
-let next=0;
-await Promise.all(Array.from({length:6},async()=>{while(next<routes.length){
- const route=routes[next++],html=await read(route);
- assert.equal((html.match(/src="\/analytics-assets\/consent\.mjs\?v=/g)||[]).length,1,route);
- assert(html.includes('data-ga4-id="'+id+'"'),route);
- assert(html.includes('data-ga4-host="'+host+'"'),route);
- assert(html.includes('/analytics-assets/consent.mjs?v='+version),route);
-}}));
-console.log(JSON.stringify({site,version,repairedCanonicalRoutesVerified:routes.length,ga4BackendReceipt:'not-tested',exceptions:report.records.filter(r=>r.mode==='excluded').length}));
+console.log(JSON.stringify({site,version,hosts:results,ga4BackendReceipt:'not-tested'}));

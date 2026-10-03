@@ -1,3 +1,4 @@
+import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
 import {BUYER_EVENTS,validBuyerEvent} from './buyer-events.mjs';
@@ -1566,6 +1567,7 @@ const DIR_INDEXES = new Set(["/", "/en/", "/it/", "/agents/trade/"]);
 
 export default {
   async fetch(request, env, ctx) {
+    if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
     const memberResponse=await memberRoute(request,env,'eco');if(memberResponse)return memberResponse;
     if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);

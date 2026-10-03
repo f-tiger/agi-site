@@ -15,6 +15,7 @@ on:
     branches: [main]
     paths:
       - "tools/fleet-analytics/**"
+      - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "tools/quote-page-lab/**"
@@ -66,21 +67,14 @@ jobs:
       # 「按当前源码重建并发布」,所以旧事件的正确动作不是发布旧快照,而是发布
       # main 的当前 tip(幂等、绝不倒退)。用 reset --hard 而非 checkout:有 4 条
       # 流水线会 git push 回仓,detached HEAD 会让那一步失败。
-      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
-        if: github.event_name == 'push'
+      - name: Guard — pin current main before building
+        id: release
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
         run: |
-          # Fail-open by design: a network hiccup must never block a deploy —
-          # without a resolvable tip we simply keep the pushed commit, which is
-          # exactly the pre-guard behaviour.
-          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
-          TIP=$(git rev-parse origin/main 2>/dev/null || true)
-          case "$TIP" in
-            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
-          esac
-          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
-            echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
-            git reset --hard "$TIP"
-          fi
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -173,6 +167,11 @@ jobs:
         continue-on-error: true
 
       # 复核队列：把「该重新核实谁」变成每日可见输出（不自动改写数字）
+      - name: Pin committed daily data before the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Recheck queue (limits freshness)
         run: node scripts/recheck-queue.mjs
         continue-on-error: true
@@ -407,6 +406,8 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node --test tools/fleet-analytics/business.test.mjs
+          node --test tools/fleet-analytics/integrity.test.mjs
+          python3 tools/fleet-analytics/check-registry.py
           python3 tools/fleet-analytics/test_coverage.py
           python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist --write
           python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist
@@ -415,6 +416,11 @@ jobs:
         if: github.event_name == 'push'
         working-directory: ${{ github.workspace }}
         run: node sites/baipiaoji/scripts/test-homepage-consent-browser.mjs
+
+      - name: Guard — refuse deployment if main changed during the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: bash .github/scripts/deploy-main-guard.sh check
 
       - name: Deploy to Cloudflare Pages
         env:

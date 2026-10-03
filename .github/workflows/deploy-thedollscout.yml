@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "tools/fleet-analytics/**"
+      - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -56,19 +57,14 @@ jobs:
       # 防回滚守卫(2026-08-26 事故,根仓 CLAUDE.md 铁律:checkout 后第一步,
       # 永不删除):GitHub 会乱序补发数小时前的 push 事件,旧事件按自己那个历史
       # 提交部署会把线上滚回旧代码——在「旧站已下架」的今天,回滚意味着把成人站
-      # 重新发回线上,后果比 gridlings 那次更糟。fail-open:网络抖动不阻断部署。
-      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
-        if: github.event_name == 'push'
+      # 重新发回线上,后果比 gridlings 那次更糟。所有触发类型都使用 fail-closed 新鲜度检查。
+      - name: Guard — pin current main before building
+        id: release
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
         run: |
-          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
-          TIP=$(git rev-parse origin/main 2>/dev/null || true)
-          case "$TIP" in
-            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
-          esac
-          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
-            echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
-            git reset --hard "$TIP"
-          fi
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Record checked-out source SHA
         run: echo "TDS_RELEASE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
@@ -204,16 +200,25 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node --test tools/fleet-analytics/business.test.mjs
+          node --test tools/fleet-analytics/integrity.test.mjs
+          python3 tools/fleet-analytics/check-registry.py
           python3 tools/fleet-analytics/test_coverage.py
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist --write
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist
 
       - name: Persist verified daily source snapshot and generated pages
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: node scripts/collecting/commit-daily.mjs
+        run: |
+          node scripts/collecting/commit-daily.mjs
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Stamp the exact source snapshot being released
         run: echo "${TDS_RELEASE_SHA:-$GITHUB_SHA}" > dist/__build.txt
+
+      - name: Guard — refuse deployment if main changed during the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: bash .github/scripts/deploy-main-guard.sh check
 
       - name: Deploy to Cloudflare Pages
         id: publish
@@ -441,4 +446,4 @@ jobs:
 
 concurrency:
   group: deploy-thedollscout
-  cancel-in-progress: true
+  cancel-in-progress: false

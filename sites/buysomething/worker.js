@@ -1,3 +1,4 @@
+import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import { handleMcp } from "./mcp.js";
 // buysomething(SourceRadar)worker:静态资产透传 + /e 事件白名单 + 服务端 pageview。
 // 舰队模式(同 gridlings/gamesledger):所有 D1 写都 try/catch + waitUntil,埋点永不 500 页面。
@@ -149,6 +150,8 @@ const aiHostHit = (ref) => { const r = String(ref).toLowerCase(); return AI_HOST
 
 export default {
   async fetch(request, env, ctx) {
+    // The isolated analytics document must not create a second first-party visit.
+    if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
     const url = new URL(request.url);
 
     // Beacon truth test (PRD P0-1): the deploy self-check POSTs /e with label "__ci" and reads it back here.

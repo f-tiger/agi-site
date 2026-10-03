@@ -1,3 +1,7 @@
+## 2026-10-03 GA4 计量完整性修复
+
+Owner 要求修复全舰队埋点并上线。最终 coverage 安装器将旧 Google loader 迁到统一 opt-in 隔离通道；原有 D1 回调保留。联盟 GA4 由一个点击监听拥有，旧同名调用不重复转发。只接收固定事件名与已登记营销标签，不转发任意参数。拒绝/撤回、QA/DNT/GPC 和跨页策略统一；新规则覆盖下方“保留旧 Google loader”的历史描述。空白统计页 no-transform，避免 Cloudflare 重复采样；版本与路由完整验收。子站映射以根仓 registry.json 为准，不能扩到未登记域名。
+
 ## 2026-10-02 首页 GitHub 透出与网站自有每日扩展
 
 Owner 要求 GitHub 与 MCP 目录每天自动扩展，不依赖助手会话。复用 `deploy-baipiaoji.yml` 的每日 schedule，`scripts/catalog-sync.mjs` 持久化发现、校验、去重、断点与运行记录。GitHub 的 80 条编辑记录与自动发现记录分开；自动项目不臆测免费、许可、设备或安装门槛。MCP 迁至官方 v0.1 API，游标续跑后按 `updated_since` 增量同步；公开仓库不是开源许可证明。首页前部项目卡片/搜索、导航与两目录状态连通。数据提交及抓取失败必须进最终门禁；不可只凭 cron 配置声称自动化已运行。上线验收与两轮对抗记录见 `docs/catalog-daily-automation-2026-10-02.md`。

@@ -253,6 +253,8 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node --test tools/fleet-analytics/business.test.mjs
+          node --test tools/fleet-analytics/integrity.test.mjs
+          python3 tools/fleet-analytics/check-registry.py
           python3 tools/fleet-analytics/test_coverage.py
           node --test tools/fleet-analytics/test-worker.mjs
           python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard --write

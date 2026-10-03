@@ -1,3 +1,4 @@
+import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import {secConcept} from './sec-api.mjs';
 import discovery from '../../tools/discovery/content.json' with {type:'json'};
 import {schema} from './schema.mjs';
@@ -11,7 +12,7 @@ const modes=new Set(['own','sample','exercise','qa']);
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 async function body(request){const reader=request.body?.getReader();if(!reader)throw Error('body');let size=0,chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>512)throw Error('size');chunks.push(value);}}finally{await reader.cancel();}return JSON.parse(new TextDecoder().decode(Uint8Array.from(chunks.flatMap(x=>[...x]))));}
 export default {
- async fetch(request,env){const url=new URL(request.url),site=routes.get(url.hostname);if(!site)return new Response('Not found',{status:404});const table=site==='filinglens'?'filinglens_events':'venture_events';
+ async fetch(request,env){const url=new URL(request.url),site=routes.get(url.hostname);if(!site)return new Response('Not found',{status:404});if(isAnalyticsPath(url.pathname))return analyticsResponse(request,env,site);const table=site==='filinglens'?'filinglens_events':'venture_events';
  if(url.pathname==='/api/sec-concept')return site==='filinglens'?secConcept(request,env):json({error:'Not found'},404);
  if(url.pathname==='/api/config')return json({site,price:experiments[site].proposed_price,sales_enabled:false,measurement:!!env.DB});
  if(url.pathname==='/api/pulse'){
@@ -41,7 +42,7 @@ export default {
  const guideAsset=guideSlugs.includes(url.pathname);
  const publicFile=/^\/(?:discovery\.(?:css|mjs)|acquisition\.mjs|social\.png|llms\.txt|feed\.xml|[a-f0-9]{32}\.txt)$/.test(path)||discovery.pages.some(p=>p.site===site&&path==='/examples/'+p.download);
  if(!guideAsset&&!publicFile&&!/^\/(?:index\.html|guide\.html|privacy\.html|agent(?:-guide)?\.html|agent\.css|agent-app\.mjs|tables-app\.mjs|filing-engine\.mjs|filinglens-NOTICES\.txt|filing\.css|agent-example\.json|tradecheck\.js|tradecheck-NOTICES\.txt|downloads\/(?:tradecheck-mcp-0\.2\.0\.tar\.gz|filinglens-mcp-0\.1\.0\.tar\.gz|SHA256SUMS)|app\.mjs|onboarding\.mjs|fonts\/manrope-latin-wght-normal\.woff2|fonts\/LICENSE|styles\.css|core\.mjs|ui\.mjs|robots\.txt|sitemap\.xml|project\.mjs|sql-worker\.js|vendor\/sql-wasm\.(?:js|wasm)|vendor\/LICENSE)$/.test(path))return new Response('Not found',{status:404});
- const assetURL=new URL(url.origin+'/'+site+path);let response=await env.ASSETS.fetch(new Request(assetURL,{method:request.method}));response=new Response(response.body,response);response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','no-referrer');if(path.startsWith('/examples/')){response.headers.set('X-Robots-Tag','noindex');response.headers.set('Content-Disposition','attachment');}
+ const assetURL=new URL(url.origin+'/'+site+path);let response=await env.ASSETS.fetch(new Request(assetURL,{method:request.method}));response=new Response(response.body,response);response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; frame-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','no-referrer');if(path.startsWith('/examples/')){response.headers.set('X-Robots-Tag','noindex');response.headers.set('Content-Disposition','attachment');}
  response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');return response;
  },
  async scheduled(_event,env){if(!env.DB)return;await initialize(env.DB);for(const table of ["venture_events","filinglens_events"])await env.DB.prepare(`DELETE FROM ${table} WHERE day < date('now','-34 days')`).run();}

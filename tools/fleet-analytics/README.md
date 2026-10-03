@@ -1,42 +1,63 @@
-# Existing-property GA4 coverage
+# Fleet GA4 release contract
 
-Run `python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard --write`
-after every page generator and before deployment. Without `--write`, the same
-command rejects missing coverage. All four main-site deploy workflows enforce
-this ordering, then run `node tools/fleet-analytics/verify-live.mjs SITE`.
+Owner requirement (2026-10-03): every new website, subdomain, public page and tool
+ships with pageviews and meaningful fixed actions, including scheduled expansion.
+Analytics is part of release acceptance alongside SEO, GEO and applicable IndexNow.
 
-The installer recognizes executable Google tag loaders and existing TDS/BPJ
-assets. It does not treat preconnect hints, JSON-LD, comments, or a first-party
-`gtag` wrapper as Google Analytics coverage. Working tags are left intact.
-The public `analytics-assets/coverage.json` explains each page's implementation
-or explicit exemption. Each site's own existing measurement ID is mandatory.
-Standalone subdomains without an existing property are not silently enrolled.
+`registry.json` is the explicit hostname/property/build-root mapping. The four
+main sites retain their own properties. The 27 registered AGI subdomains share
+AGI's existing property and preserve their hostname. Historical hosts outside
+these build roots are not covered by this release contract.
 
-Newly instrumented pages use explicit, revocable consent. Only build-time public
-URL/title and referrer origin enter a same-origin blank frame after consent.
-Google's enhanced-measurement listeners execute in that empty document, apart
-from the tool's inputs, downloads and history changes. The actual Google tag was
-tested in Chromium on all four site origins. The frame does not proxy analytics
-around content blockers. It stops when consent is withdrawn. It is noindex and
-excluded from AGI's edge pageview/event injection, preventing artificial D1 PVs.
-No existing first-party event callback is replaced. Optional GA4 remains a
-consenting-visitor sample; it is not an exact census or a revenue measure.
+After **all** generators, run:
 
-Private membership/account portals, deliberately isolated quote documents,
-embeds, probes and error pages are explicit exceptions. In particular, never
-add Google to downloaded/customer quote documents or loosen their CSP.
+```sh
+python3 tools/fleet-analytics/coverage.py --site eco --write
+python3 tools/fleet-analytics/coverage.py --site eco
+node tools/fleet-analytics/verify-live.mjs eco
+```
 
-Tests: `python3 tools/fleet-analytics/test_coverage.py` and
-`node --test tools/fleet-analytics/test-worker.mjs` require no network. Browser
-checks use the repository's pinned Playwright dependency:
-`node tools/fleet-analytics/browser-test.mjs --site agi --out sites/agiscorecard`.
-The default mocks Google at the network boundary; optional `REAL_GTAG_DIR` reads
-locally cached, unmodified Google scripts named `gtag-SITE-default.js`. All
-collect requests are intercepted, including in real-tag mode: tests never send
-synthetic visits to production. `CHROMIUM_EXECUTABLE` can select a local browser.
+The final installer removes known legacy Google entrypoints while retaining
+first-party callbacks, then installs exactly one opt-in channel. Every generated
+public HTML page is checked for canonical host, property, assets and duplicate
+loaders. Each deploy workflow executes the installer and rejects a main revision
+change before publication. The live gate checks every hostname/shared asset and
+up to a representative spread of routes; use `--all` for exhaustive live checks.
+`coverage.json` describes full build coverage and explicit exclusions.
 
-Google references: [configuration fields](https://developers.google.com/analytics/devguides/collection/ga4/reference/config)
-and [pageview measurement](https://developers.google.com/analytics/devguides/collection/ga4/views).
-`send_page_view: false` prevents the config command's automatic pageview; one
-explicit pageview carries the sanitized metadata. The empty frame is needed
-because enhanced measurement may otherwise observe form/link/history events.
+Google runs in an empty same-origin document, created only after consent. The
+parent sends build-time public URL/title, referrer origin, fixed actions and
+registered campaign tags. URL queries, fragments, forms, file contents, filenames,
+search terms, prices and arbitrary event parameters are excluded. Host-only,
+prefixed cookies keep subsite consent separate. Withdrawal removes the frame and
+its cookies. Old templates use the same choice as new tools. QA, probes, browser
+automation, DNT and GPC remain excluded. No-transform excludes injected Cloudflare
+beacons from the isolated frame; workers also bypass first-party PV collection
+for analytics assets. Strict tool CSP remains separate from the frame's policy.
+
+One capture listener owns eligible Amazon affiliate clicks; legacy affiliate
+callbacks stay available to first-party counters but cannot double-send GA4.
+Known fixed legacy actions bridge only after consent; pre-consent queues are not
+replayed. New tools should dispatch the strict `fleet:business` contract and add
+meaningful completion/export events to `business.mjs`. Examples must have separate
+events. Do not mark simulated checkout, signup intent or affiliate clicks as sales.
+Register new public campaign identifiers in `campaign.mjs` before distributing links.
+
+Private membership/account portals, purchase delivery, customer quote documents,
+embeds, probes and error pages are explicit exclusions. Do not broaden an
+exclusion just to silence a build failure. Dynamic private/reader-specific pages
+retain their existing first-party handling and need a separate privacy review
+before GA enrollment.
+
+```sh
+python3 tools/fleet-analytics/test_coverage.py
+python3 tools/fleet-analytics/check-registry.py
+node --test tools/fleet-analytics/business.test.mjs tools/fleet-analytics/integrity.test.mjs tools/fleet-analytics/test-worker.mjs
+```
+
+Browser checks use the pinned Playwright dependency and intercept all Google
+collection requests, including real-tag mode (`REAL_GTAG_DIR`). Synthetic tests
+never enter production. `browser-test.mjs --site agi --out sites/agiscorecard`
+checks refusal, withdrawal, one pageview, private-data exclusion and tool events.
+Frontend success is **not** GA4 backend receipt. Read genuine events separately;
+optional GA4 is a consenting sample, not a census, and tool actions are not revenue.

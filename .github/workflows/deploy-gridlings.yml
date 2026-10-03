@@ -6,7 +6,7 @@ name: Deploy gridlings
 on:
   push:
     branches: [main]
-    paths: ["sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
+    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
   workflow_dispatch: {}
   # 每日兜底部署(2026-09-11)。谜题确实每天换,但只换在读者的浏览器里
   # (app.js 的 utcToday 读已提交的 JSON)。服务端可见的那一面——sitemap 的 45 条
@@ -17,7 +17,7 @@ on:
 
 concurrency:
   group: deploy-gridlings
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -33,21 +33,14 @@ jobs:
       # 「按当前源码重建并发布」,所以旧事件的正确动作不是发布旧快照,而是发布
       # main 的当前 tip(幂等、绝不倒退)。用 reset --hard 而非 checkout:有 4 条
       # 流水线会 git push 回仓,detached HEAD 会让那一步失败。
-      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
-        if: github.event_name == 'push'
+      - name: Guard — pin current main before building
+        id: release
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
         run: |
-          # Fail-open by design: a network hiccup must never block a deploy —
-          # without a resolvable tip we simply keep the pushed commit, which is
-          # exactly the pre-guard behaviour.
-          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
-          TIP=$(git rev-parse origin/main 2>/dev/null || true)
-          case "$TIP" in
-            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
-          esac
-          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
-            echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
-            git reset --hard "$TIP"
-          fi
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Gate — files present, JSON valid, puzzles cover today+300d
         working-directory: sites/gridlings
         run: |
@@ -111,6 +104,17 @@ jobs:
               esac
             fi
           done
+      - name: Enforce one consent-controlled GA4 channel on every public page
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/coverage.py --site gridlings --write
+          python3 tools/fleet-analytics/coverage.py --site gridlings
+
+      - name: Guard — refuse deployment if main changed during the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: bash .github/scripts/deploy-main-guard.sh check
+
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -126,6 +130,11 @@ jobs:
       # 断言就是那次事故的形状:worker 改写过的每一类路径都必须 200 且**零重定向**。
       # 每类路径各取一个代表:根 / 英文游戏页 / 中文分支 / GEO 集合 / 一次性改写
       # (archive、download→downloads.html)/ 静态资源。任何一条不满足即让部署变红。
+      - name: Verify deployed analytics version and host mapping
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs gridlings
+
       - name: Post-deploy smoke — the beacon must accept a third-party portal origin
         # sendBeacon is a credentialed request, so a wildcard allow-origin is refused by
         # the browser and every event from a portal is silently dropped. That shipped and

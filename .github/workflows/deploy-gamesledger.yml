@@ -6,14 +6,14 @@ name: Deploy gamesledger
 on:
   push:
     branches: [main]
-    paths: ["sites/gamesledger/**", ".github/workflows/deploy-gamesledger.yml"]
+    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/gamesledger/**", ".github/workflows/deploy-gamesledger.yml"]
   schedule:
     - cron: "10 6 * * *"
   workflow_dispatch: {}
 
 concurrency:
   group: deploy-gamesledger
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -29,21 +29,14 @@ jobs:
       # 「按当前源码重建并发布」,所以旧事件的正确动作不是发布旧快照,而是发布
       # main 的当前 tip(幂等、绝不倒退)。用 reset --hard 而非 checkout:有 4 条
       # 流水线会 git push 回仓,detached HEAD 会让那一步失败。
-      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
-        if: github.event_name == 'push'
+      - name: Guard — pin current main before building
+        id: release
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
         run: |
-          # Fail-open by design: a network hiccup must never block a deploy —
-          # without a resolvable tip we simply keep the pushed commit, which is
-          # exactly the pre-guard behaviour.
-          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
-          TIP=$(git rev-parse origin/main 2>/dev/null || true)
-          case "$TIP" in
-            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
-          esac
-          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
-            echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
-            git reset --hard "$TIP"
-          fi
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Fetch official Steam data (schedule/dispatch only)
         if: github.event_name != 'push'
         working-directory: sites/gamesledger
@@ -67,6 +60,11 @@ jobs:
           git config user.email "noreply@anthropic.com"
           git add sites/gamesledger/data/
           git diff --cached --quiet || { git commit -m "chore(gamesledger): official Steam samples $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
+      - name: Pin committed daily data before the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Build
         working-directory: sites/gamesledger
         run: |
@@ -88,6 +86,17 @@ jobs:
                   json.loads(m)
           print(f"gate ok: {len(pages)} pages ({len(verdicts)} verdicts), all JSON-LD parses")
           PY
+      - name: Enforce one consent-controlled GA4 channel on every public page
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/coverage.py --site gamesledger --write
+          python3 tools/fleet-analytics/coverage.py --site gamesledger
+
+      - name: Guard — refuse deployment if main changed during the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: bash .github/scripts/deploy-main-guard.sh check
+
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -100,6 +109,11 @@ jobs:
       # routing, sitemap/robots, the IndexNow key, JSON feeds, the live API, the badge
       # and a real 404. Runs BEFORE the IndexNow ping so a broken deploy is never pinged.
       # Read-only: never POSTs to /e.
+      - name: Verify deployed analytics version and host mapping
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs gamesledger
+
       - name: Post-deploy self-check
         working-directory: sites/gamesledger
         run: |

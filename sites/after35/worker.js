@@ -1,3 +1,4 @@
+import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // 三十五后 worker — 经验卡 API + 事件白名单 + 服务端 page_view。
 // 舰队铁律:每一次统计类 D1 写都 try/catch + waitUntil,统计永远不能 500 站点;
 // 唯一例外是发卡/撤卡两个写接口,它们的失败要如实返回给用户。
@@ -291,6 +292,8 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    // The isolated analytics document must not create a second first-party visit.
+    if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
     const url = new URL(request.url);
     const p = url.pathname;
     const ci = url.searchParams.get("ci") === "1";

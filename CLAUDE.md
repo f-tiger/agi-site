@@ -1291,3 +1291,13 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   (`eco-ai-twin-1013` 在测)、bpj `/en/c/api` 对齐(早已对齐)。
 - **owner 新卡**:Bing Webmaster → AI Performance 每月截图/导出一次(约 3 分钟)。2026-02 首发即含 Grounding Queries(AI 检索本站用的查询),
   2026-06 加了 Intents / Citation Share —— 舰队能拿到的最接近「人们问 AI 什么时用到了我们」的信号;无官方 API,本会话不做凭据类的变通。
+
+## GA4 is mandatory for every extension (owner, 2026-10-03)
+
+Every new site, subsite, public page and tool includes GA4 pageviews and meaningful
+fixed business actions before release. See root `AGENTS.md` and
+`tools/fleet-analytics/README.md`: registry mapping, final-build coverage gate,
+consent/withdrawal, deduplication and deployed-version verification are required.
+Scheduled page generators must use the same final gate. Keep private-document
+exceptions explicit. Never mistake synthetic tests, clicks or examples for
+actual customers or revenue; validate backend receipt using genuine traffic.

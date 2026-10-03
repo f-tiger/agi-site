@@ -7,14 +7,14 @@ name: Deploy fanzha
 on:
   push:
     branches: [main]
-    paths: ["sites/fanzha/**", ".github/workflows/deploy-fanzha.yml"]
+    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/fanzha/**", ".github/workflows/deploy-fanzha.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "20 8 * * *"
 
 concurrency:
   group: deploy-fanzha
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -24,18 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
-        if: github.event_name == 'push'
+      - name: Guard — pin current main before building
+        id: release
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
         run: |
-          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
-          TIP=$(git rev-parse origin/main 2>/dev/null || true)
-          case "$TIP" in
-            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
-          esac
-          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
-            echo "::warning::stale run — deploying main tip instead of rolling back"
-            git reset --hard "$TIP"
-          fi
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
       - name: Owner kill switch
         run: |
           if [ -f sites/fanzha/KILLED ]; then
@@ -71,6 +67,17 @@ jobs:
               console.log("faq ok",f,vis.length);
             }'
           echo "gate ok"
+      - name: Enforce one consent-controlled GA4 channel on every public page
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 tools/fleet-analytics/coverage.py --site fanzha --write
+          python3 tools/fleet-analytics/coverage.py --site fanzha
+
+      - name: Guard — refuse deployment if main changed during the build
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: bash .github/scripts/deploy-main-guard.sh check
+
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -79,6 +86,11 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/fanzha
           command: deploy
+      - name: Verify deployed analytics version and host mapping
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-analytics/verify-live.mjs fanzha
+
       - name: Post-deploy self-check
         # 全部带 ?ci=1,worker 把自测排除在 D1 之外。/api/pulse 必须回 ok:true——
         # 它是 D1 绑定是否生效的唯一线上证据。

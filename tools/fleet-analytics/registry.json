@@ -1,0 +1,147 @@
+{
+  "agi": {
+    "hosts": [
+      "agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/agiscorecard"
+  },
+  "eco": {
+    "hosts": [
+      "getecoback.com"
+    ],
+    "id": "G-E2V0Q9SJ9V",
+    "root": "sites/getecoback/site"
+  },
+  "bpj": {
+    "hosts": [
+      "baipiaoji.com"
+    ],
+    "id": "G-H79D948F4Z",
+    "root": "sites/baipiaoji/dist"
+  },
+  "tds": {
+    "hosts": [
+      "thedollscout.com"
+    ],
+    "id": "G-2SEHFY33H8",
+    "root": "sites/thedollscout/dist"
+  },
+  "goldrush": {
+    "hosts": [
+      "goldrush.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/goldrush/site"
+  },
+  "gridlings": {
+    "hosts": [
+      "play.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/gridlings/site"
+  },
+  "buysomething": {
+    "hosts": [
+      "source.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/buysomething/site"
+  },
+  "gamesledger": {
+    "hosts": [
+      "games.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/gamesledger/site"
+  },
+  "after35": {
+    "hosts": [
+      "35.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/after35/site"
+  },
+  "learn": {
+    "hosts": [
+      "learn.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/learn/site"
+  },
+  "fanzha": {
+    "hosts": [
+      "fanzha.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/fanzha/site"
+  },
+  "firstjob": {
+    "hosts": [
+      "firstjob.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/firstjob/site"
+  },
+  "codeword": {
+    "hosts": [
+      "codeword.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/codeword/site"
+  },
+  "powerbill": {
+    "hosts": [
+      "powerbill.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/powerbill/site"
+  },
+  "localebatch": {
+    "hosts": [
+      "localebatch.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/localebatch/site"
+  },
+  "agent-delivery-lab": {
+    "hosts": [
+      "verify.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/agent-delivery-lab/dist"
+  },
+  "venture-lab": {
+    "hosts": [
+      "rfqdesk.agiscorecard.com",
+      "modelmeter.agiscorecard.com",
+      "querysprint.agiscorecard.com",
+      "filinglens.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/venture-lab/dist",
+    "assetPrefixes": [
+      "rfqdesk",
+      "modelmeter",
+      "querysprint",
+      "filinglens"
+    ]
+  },
+  "web3-studio": {
+    "hosts": [
+      "web3.agiscorecard.com",
+      "reconcile.agiscorecard.com",
+      "evidence.agiscorecard.com",
+      "route.agiscorecard.com",
+      "protocol.agiscorecard.com",
+      "permit.agiscorecard.com",
+      "compute.agiscorecard.com",
+      "incentives.agiscorecard.com",
+      "proof.agiscorecard.com",
+      "calls.agiscorecard.com",
+      "disclosures.agiscorecard.com"
+    ],
+    "id": "G-FZXLMBB5QB",
+    "root": "sites/web3-studio/dist"
+  }
+}

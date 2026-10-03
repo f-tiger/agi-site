@@ -1,0 +1,26 @@
+name: Configure fleet GA4 dimensions
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: ['tools/fleet-analytics/admin-setup.mjs', '.github/workflows/fleet-ga4-admin.yml']
+permissions:
+  contents: read
+concurrency:
+  group: fleet-ga4-admin
+  cancel-in-progress: false
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Register missing fixed dimensions using the existing service account
+        env:
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+        run: node tools/fleet-analytics/admin-setup.mjs

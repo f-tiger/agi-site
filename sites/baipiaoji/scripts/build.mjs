@@ -358,14 +358,7 @@ function gtag(){dataLayer.push(arguments);}
 // 且行为特征与正式域完全不同——两个域名混在一份报表里，任何结论都是假的。
 // 非正式域名时 gtag 仍然存在（下面的埋点照常调用），只是没有接收端，事件停在 dataLayer 里。
 if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1 && !bpjQaVisit) {
-  ${home ? '' : `  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=${esc(site.ga_id)}';
-  document.head.appendChild(s);
-  gtag('js', new Date());
-  gtag('set', { site_edition: window.SITE_EDITION });
-  gtag('config', '${esc(site.ga_id)}', { site_edition: window.SITE_EDITION });
-`}
+  // Google is loaded only by the final fleet consent installer.
   // 第一方打点（并行于 GA4，同一域名门槛）：无 Cookie 无指纹，只报 路径/语言/来源域。
   // GA4 读取通道断了也能自证流量——数据落在自家 D1 里。
   try {

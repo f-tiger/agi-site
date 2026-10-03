@@ -1,3 +1,7 @@
+## 2026-10-03 GA4 计量完整性修复
+
+Owner 要求修复全舰队埋点并上线。最终 coverage 安装器将旧 Google loader 迁到统一 opt-in 隔离通道；原有 D1 回调保留。联盟 GA4 由一个点击监听拥有，旧同名调用不重复转发。只接收固定事件名与已登记营销标签，不转发任意参数。拒绝/撤回、QA/DNT/GPC 和跨页策略统一；新规则覆盖下方“保留旧 Google loader”的历史描述。空白统计页 no-transform，避免 Cloudflare 重复采样；版本与路由完整验收。子站映射以根仓 registry.json 为准，不能扩到未登记域名。
+
 ## 2026-10-02 站点原生每日扩展（owner：避免依赖你）
 
 - 复用 `deploy-thedollscout.yml` 的 07:20 UTC（北京时间15:20）计划与手动触发；不新增 cron，不创建聊天任务，不调用模型。`tds-traffic` 06:00 UTC 继续取数。

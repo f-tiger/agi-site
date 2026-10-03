@@ -30,7 +30,7 @@ try{
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
  await page.goto(target+'?private=SECRET_QUERY#SECRET_FRAGMENT');
  await page.locator('#fleet-analytics-choice').waitFor();assert.equal(requests.length,0);
- assert.equal((await context.cookies()).filter(c=>c.name.startsWith('_ga')).length,0);
+ assert.equal((await context.cookies()).filter(c=>(c.name.startsWith('_ga')||c.name.startsWith('fleet_'))).length,0);
  await page.evaluate(()=>{document.title='SECRET_DYNAMIC_TITLE';document.querySelector('link[rel="canonical"]').href=location.origin+'/SECRET_DYNAMIC_URL';});
  await page.locator('[data-analytics-choice="granted"]').click();
  await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
@@ -50,7 +50,7 @@ try{
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="denied"]').click();
  assert.equal(await page.locator('iframe[title="Optional analytics"]').count(),0);
- assert.equal((await context.cookies()).filter(c=>c.name.startsWith('_ga')).length,0);
+ assert.equal((await context.cookies()).filter(c=>(c.name.startsWith('_ga')||c.name.startsWith('fleet_'))).length,0);
  await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="granted"]').click();
  await page.waitForTimeout(process.env.REAL_GTAG_DIR?1200:150);
  assert.equal(requests.filter(r=>r.kind==='collect'&&(r.url.includes('en=page_view')||r.body.includes('en=page_view'))).length,1,'Regrant must not double-count the page');

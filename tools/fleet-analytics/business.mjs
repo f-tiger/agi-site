@@ -1,3 +1,4 @@
+import {affiliateEvent, legacyEvent} from './legacy.mjs';
 // Public route + fixed action only. Never accept labels, values or customer data.
 const workbench = {
   'agiscorecard.com': ['evidencewatch','agentfit','filinglens-workspace','tradecheck-team','localebatch-qa','rfq-roundbook','evidencebrief','modelmeter-reconcile','workflowcost','job-evidence','scamchecklist'],
@@ -21,7 +22,10 @@ const documents = {
 };
 export function businessEvent(host, pathname, detail) {
   if (!detail || typeof detail !== 'object' || Object.keys(detail).some(k => k !== 'name') || typeof detail.name !== 'string') return null;
+  const affiliate = affiliateEvent(host, detail);
+  if (affiliate) return affiliate;
   const name = detail.name;
+  if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   // Homepage events use fixed public labels only, never destinations or search input.
   if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
