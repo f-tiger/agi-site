@@ -10,7 +10,7 @@ const idOK=s=>/^[a-f0-9]{32}$/.test(s||'');
 export async function jarvisRoute(request,env,ctx){
  const u=new URL(request.url);if(!['/api/jarvis','/api/jarvis/tasks','/api/jarvis/run'].includes(u.pathname))return null;
  if(!['agiscorecard.com','www.agiscorecard.com','localhost','127.0.0.1'].includes(u.hostname))return json({ok:false,code:'origin'},403);
- if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:120,retentionDays:30,mode:'research_pilot',paid:false});
+ if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerNewRun:1,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:120,retentionDays:30,mode:'research_pilot',paid:false});
  if(!['GET','POST'].includes(request.method))return json({ok:false,code:'method'},405);
  if(request.method==='POST'&&(request.headers.get('origin')!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site'))return json({ok:false,code:'origin'},403);
  try{
