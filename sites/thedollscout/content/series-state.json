@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 0,
+  "cursor": 6,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-02"
+      "checked": "2026-10-03"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,10 +48,76 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-02"
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "smiski-construction",
+      "brand": "smiski",
+      "title": "SMISKI Construction",
+      "names": [
+        "SMISKI Digging a Hole",
+        "SMISKI Crushing Rock",
+        "SMISKI Tightening Bolt",
+        "SMISKI Measuring",
+        "SMISKI Directing Traffic",
+        "SMISKI Loosening Bolt"
+      ],
+      "source": "https://smiski.com/e/products/construction-series/",
+      "hash": "28f98009da31c60825cb66c561cfa26ba61308fb311b0ab0508a3c5ac62a0113",
+      "published": "2026-10-03",
+      "modified": "2026-10-03",
+      "checked": "2026-10-03"
+    },
+    {
+      "id": "smiski-sunday",
+      "brand": "smiski",
+      "title": "SMISKI Sunday",
+      "names": [
+        "SMISKI Blowing Bubbles",
+        "SMISKI Paper Airplane",
+        "SMISKI Sunbathing",
+        "SMISKI Sing-Along",
+        "SMISKI Skateboarding",
+        "SMISKI Gardening"
+      ],
+      "source": "https://smiski.com/e/products/sunday-series/",
+      "hash": "0c4d4655c6c04b1f24895150c9b6cb804a163f7f747b9864d34639bbb74f3a2e",
+      "published": "2026-10-03",
+      "modified": "2026-10-03",
+      "checked": "2026-10-03"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-03",
+      "status": "ok",
+      "added": [
+        "smiski-construction",
+        "smiski-sunday"
+      ],
+      "changed": [],
+      "eligible": 15,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 5,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": [
+        {
+          "source": "https://smiski.com/e/products/hippers-series/",
+          "reason": "No verified six-style SMISKI checklist"
+        }
+      ]
+    },
     {
       "date": "2026-10-02",
       "status": "ok",
@@ -79,19 +145,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-02",
+    "date": "2026-10-03",
     "status": "ok",
     "added": [
-      "sonny-angel-snack-series",
-      "sonny-angel-vegetable-series"
+      "smiski-construction",
+      "smiski-sunday"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -101,6 +167,11 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   }
 }
