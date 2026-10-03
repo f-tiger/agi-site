@@ -9,7 +9,7 @@ class DemandTest(unittest.TestCase):
   for p in SITE.glob('**/*.html'):
    if p.stem not in PROTECTED:continue
    en='/en/' in str(p);s=p.read_text()
-   for marker in ['USSWITCH','USMARKET','USTOP','USSHELF','POPUP']:
+   for marker in ['USSWITCH','USMARKET','USTOP','USSHELF','POPUP','DEALS']:
     self.assertNotIn('<!--EB_'+marker+'-->',s,str(p))
    mutated=B.inject_usswitch(B.inject_usmarket(s,p.stem))
    fixed=inject(mutated,p.stem,en)

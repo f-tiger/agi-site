@@ -46,7 +46,7 @@ if(typeof document!=='undefined'){
       else p(en?'No shop selected. Use the dimensions to check a retailer of your choice.':'Kein Shop gewählt. Mit diesen Maßen kannst du beim Händler deiner Wahl prüfen.');
      }else{
       p(en?(r.route==='roof'?'Roof windows need a model-specific installation check; perimeter alone cannot confirm a suitable kit.':r.route==='panel'?'For a rigid panel, measure the opening, fixing points and hose diameter. Sash perimeter is not a panel specification.':'The perimeter exceeds these 400 / 560 cm examples. Check larger or custom solutions; do not buy a shorter seal.'):(r.route==='roof'?'Dachfenster erfordern eine modellspezifische Montageprüfung; der Umfang allein reicht nicht aus.':r.route==='panel'?'Für eine starre Platte: Öffnung, Befestigungspunkte und Schlauchdurchmesser messen. Der Flügelumfang ist kein Plattenmaß.':'Der Umfang übersteigt die Beispiele mit 400 / 560 cm. Größere oder individuelle Lösungen prüfen, keine kürzere Abdichtung kaufen.'));
-      const roof=r.route==='roof';link(en?(roof?'/en/guide/portable-ac-skylight-roof-window.html':'/en/guide/portable-ac-tilt-and-turn-windows.html'):(roof?'/guide/klimaanlage-dachfenster.html':'/guide/fensterabdichtung-selber-bauen.html'),en?'Read installation checks':'Montage prüfen');
+      const roof=r.route==='roof';link(en?(roof?'/en/guide/portable-ac-skylight-roof-window.html':'/en/guide/portable-ac-tilt-and-turn-windows.html#method-2-cut-panel-best-seal-a-bit-of-diy'):(roof?'/guide/klimaanlage-dachfenster.html':'/guide/fensterabdichtung-selber-bauen.html'),en?'Read installation checks':'Montage prüfen');
      }
      event('seal_fit',{len:r.perimeter,type:fields.window,source:'demand-tool',market:fields.market});
     }else{

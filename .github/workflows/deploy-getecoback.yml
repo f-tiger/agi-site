@@ -634,13 +634,27 @@ jobs:
           if [ "$gm" != "410" ]; then echo "::error::removed page .md mirror answers $gm, expected 410"; fail=1; else echo "OK removed pages answer 410"; fi
           gs=$(curl -s --max-time 20 -A "getecoback-ci" https://getecoback.com/sitemap.xml | grep -c -E "/guide/($(grep -v '^#' tools/gone_pages.txt | grep -v '^$' | paste -sd'|'))\.html" || true)
           if [ "$gs" != "0" ]; then echo "::error::live sitemap still lists $gs removed page(s)"; fail=1; fi
+          # Decision-first pages deliberately have no unconditional product shelf
+          # or Prime trial. Keep the positive deal check on a shelf page below,
+          # and assert the new decision journey independently on its live URL.
+          check "https://getecoback.com/guide/luftentfeuchter-20-qm.html" 'id="eb-moisture-choice"'
+          check "https://getecoback.com/guide/heizluefter-stromverbrauch.html" 'id="eb-heater-cost"'
+          check "https://getecoback.com/en/guide/portable-ac-tilt-and-turn-windows.html" 'id="eb-seal-fit"'
+          check "https://getecoback.com/assets/demand-tools.mjs" "stromkosten_calc"
+          decision=$(curl -fsSL --max-time 20 -A "getecoback-ci" "https://getecoback.com/guide/luftentfeuchter-20-qm.html?__probe=1")
+          if echo "$decision" | grep -qE '<!--EB_(TOPPICK|MODELS|USSWITCH|DEALS)-->'; then
+            echo "::error::20 m² decision guide carries an unconditional or redirected purchase surface"
+            fail=1
+          else
+            echo "OK 20 m² guide preserves conditional advice and explicit market"
+          fi
           # Deal band (2026-09-24). The expectation is computed from the calendar
           # for today's Berlin date, never typed: the accident is a band that is
           # missing while an event is live, or still on the page after it ended.
           deal=$(python3 -c "import sys;sys.path.insert(0,'tools');import build_deals as b,datetime as d;e=b.active_event(b.load_calendar(),d.datetime.now(b.BERLIN).date());print(e['id'] if e else '')")
           # Retried like check(): on the day the band switches on or off, the edge
           # can still answer with the previous build for a few seconds.
-          for u in "https://getecoback.com/" "https://getecoback.com/guide/luftentfeuchter-20-qm.html"; do
+          for u in "https://getecoback.com/" "https://getecoback.com/guide/luftentfeuchter-40-qm.html"; do
             for attempt in 1 2 3 4; do
               has=$(curl -sL --max-time 20 "$u" | grep -c 'id="eb-deals" hidden' || true)
               if { [ -n "$deal" ] && [ "$has" != "0" ]; } || { [ -z "$deal" ] && [ "$has" = "0" ]; }; then break; fi
