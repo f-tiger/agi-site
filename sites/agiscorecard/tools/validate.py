@@ -27,6 +27,8 @@ problems = []
 try:
     DYNAMIC_ROUTES = set(json.loads(subprocess.check_output(
         ['node', os.path.join(ROOT, 'tools/community/validate-routes.mjs')], text=True)))
+    DYNAMIC_ROUTES.update(json.loads(subprocess.check_output(
+        ['node', os.path.join(ROOT, 'tools/portfolio/validate-route.mjs')], text=True)))
 except Exception as exc:
     DYNAMIC_ROUTES = set()
     problems.append('Community route validation failed: %r' % (exc,))
