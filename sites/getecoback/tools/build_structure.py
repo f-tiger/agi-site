@@ -17,6 +17,7 @@ Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 import os, re, glob, json, urllib.parse, html as htmllib
 from laundry_decision import inject as inject_laundry
 from moisture_decision import inject as inject_moisture_decision, creator_entry
+from demand_tools import inject as inject_demand, seal_block
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -3853,62 +3854,7 @@ SEALFIT_EN = ("Will a window seal fit your window?",
 
 
 def sealfit_block(en=False):
-    t = SEALFIT_EN if en else SEALFIT_DE
-    opts = "".join(f'<option value="{v}">{lbl}</option>' for v, lbl in t[5])
-    return ('<!--EB_SEALFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
-            '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
-            f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
-            # The result panel renders an Amazon link, so the label sits on the
-            # box itself (check_adlabel.py inspects this block since 2026-09-04).
-            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
-            f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
-            '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
-            f'<div style="flex:1 1 130px;"><label for="eb-sf-w" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
-            '<input id="eb-sf-w" type="number" value="60" min="20" max="300" inputmode="numeric" style="width:100%;padding:9px 11px;border:1px solid #cfd8e0;border-radius:8px;font-size:16px;background:#fff;color:#1a2733;"></div>'
-            f'<div style="flex:1 1 130px;"><label for="eb-sf-h" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[3]}</label>'
-            '<input id="eb-sf-h" type="number" value="140" min="20" max="300" inputmode="numeric" style="width:100%;padding:9px 11px;border:1px solid #cfd8e0;border-radius:8px;font-size:16px;background:#fff;color:#1a2733;"></div>'
-            f'<div style="flex:1 1 190px;"><label for="eb-sf-t" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[4]}</label>'
-            f'<select id="eb-sf-t" style="width:100%;padding:9px 11px;border:1px solid #cfd8e0;border-radius:8px;font-size:16px;background:#fff;color:#1a2733;font-family:inherit;">{opts}</select></div>'
-            f'<div><button type="button" id="eb-sf-go" style="background:#0f6ba8;color:#fff;border:none;padding:11px 20px;border-radius:8px;font-weight:800;font-size:15px;cursor:pointer;">{t[6] if len(t)>6 else t[-1]}</button></div>'
-            '</div><div id="eb-sf-res" style="display:none;margin-top:14px;background:#eaf6ff;border:1px solid #cfe6fa;border-radius:10px;padding:15px 17px;"></div>'
-            '</div></section>\n<script>(function(){'
-            'var w=document.getElementById("eb-sf-w"),hh=document.getElementById("eb-sf-h"),'
-            'ty=document.getElementById("eb-sf-t"),b=document.getElementById("eb-sf-go"),r=document.getElementById("eb-sf-res");'
-            'if(!b||!r)return;var EN=' + ("true" if en else "false") + ';'
-            'b.addEventListener("click",function(){'
-            'var W=Math.max(20,Math.min(300,parseFloat(w.value)||60));'
-            'var H=Math.max(20,Math.min(300,parseFloat(hh.value)||140));'
-            # A seal is fixed around the whole sash opening, so the length needed
-            # is that perimeter. Sizes are sold in fixed lengths, so round up.
-            'var need=2*(W+H)/100;'
-            'var sizes=[2.0,2.8,3.0,4.0,5.0];var fit=null;'
-            'for(var i=0;i<sizes.length;i++){if(sizes[i]>=need){fit=sizes[i];break;}}'
-            'var t=ty.value;'
-            'var head=EN?("You need at least <strong>"+need.toFixed(2).replace(".",".")+" m</strong> of seal")'
-            ':("Du brauchst mindestens <strong>"+need.toFixed(2).replace(".",",")+" m</strong> Abdichtung");'
-            'var size=fit?(EN?("The common size that fits is <strong>"+(fit*100)+" cm</strong> — anything shorter leaves a gap.")'
-            ':("Die passende Konfektionsgröße ist <strong>"+(fit*100)+" cm</strong> — kürzer lässt eine Lücke offen.")):'
-            '(EN?"Larger than the usual off-the-shelf sizes — look for made-to-measure."'
-            ':"Größer als die üblichen Konfektionsgrößen — hier hilft nur Maßanfertigung.");'
-            'var note=t==="dach"?(EN?"On a roof window the seal also has to shed rain: check that the opening points downward and that water cannot run in along the hose."'
-            ':"Am Dachfenster muss die Abdichtung auch Regen abhalten: Öffnung nach unten führen und prüfen, dass kein Wasser am Schlauch entlangläuft."):'
-            '(t==="dreh"?(EN?"Fully opened, the sash perimeter is what counts — not the tilt gap."'
-            ':"Ganz geöffnet zählt der Flügelumfang — nicht der Kippspalt."):'
-            '(EN?"Tilted, the gap runs around three sides, but the seal is still fixed around the whole sash."'
-            ':"Gekippt läuft der Spalt über drei Seiten, befestigt wird die Abdichtung trotzdem um den ganzen Flügel."));'
-            'var warn=EN?"The usual failure is not the fabric but the adhesive strip: in direct sun it lets go and leaves residue. Where you can, clamp or use the frame rather than relying on glue."'
-            ':"Der übliche Schwachpunkt ist nicht der Stoff, sondern das Klebeband: in der Sonne löst es sich und hinterlässt Rückstände. Wo möglich klemmen statt kleben.";'
-            'r.innerHTML=\'<div style="font-size:17px;">\'+head+\'</div>\'+'
-            '\'<div style="margin:6px 0 0;font-size:14.5px;">\'+size+\'</div>\'+'
-            '\'<div style="margin:8px 0 0;font-size:13.5px;color:#4a5a67;">\'+note+\'</div>\'+'
-            '\'<div style="margin:8px 0 0;font-size:13.5px;color:#8a6410;background:#fff8ec;border:1px solid #f3ddc0;border-radius:8px;padding:9px 11px;">⚠️ \'+warn+\'</div>\'+'
-            '\'<div style="margin:12px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\'+'
-            '\'<a href="https://www.amazon.de/s?k=\'+(fit?("fensterabdichtung+mobile+klimaanlage+"+(fit*100)+"+cm"):"fensterabdichtung+klimaanlage+massanfertigung")+\'&tag=getecoback-21" target="_blank" rel="sponsored noopener" '
-            'style="background:#f59e0b;color:#1a2733;font-weight:800;padding:9px 14px;border-radius:8px;text-decoration:none;font-size:13.5px;">\'+(fit?(EN?"Find this size on Amazon →":"Diese Größe auf Amazon suchen →"):(EN?"Look for made-to-measure →":"Maßanfertigung suchen →"))+\'</a>\'+'
-            '\'<a href="/guide/klimaanlage-zubehoer-guenstig.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:9px 14px;border-radius:8px;text-decoration:none;font-size:13.5px;">\'+(EN?"Cheaper cross-border options →":"Günstigere Bezugswege →")+\'</a></div>\';'
-            'r.style.display="block";'
-            'if(window.gtag)gtag("event","seal_fit",{len:Math.round(need*100),type:t});});'
-            '})();</script><!--/EB_SEALFIT-->\n')
+    return seal_block(en)
 
 
 SEALFIT_PAGES_DE = {"klimaanlage-kippfenster", "klimaanlage-dachfenster", "klimaanlage-zubehoer-guenstig",
@@ -4793,6 +4739,7 @@ def main():
         # directory. Idempotent, and inert on pages without such a link.
         if "amazon.de/s?k=" in new:
             new = inject_usswitch(new)
+        new = inject_demand(new, os.path.basename(path)[:-5], en=False)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1
@@ -4836,6 +4783,7 @@ def main():
         # them and had none of it until 2026-09-09.
         if "amazon.de/s?k=" in new:
             new = inject_usswitch(new)
+        new = inject_demand(new, os.path.basename(path)[:-5], en=True)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             en_processed += 1

@@ -1,65 +1,32 @@
 # What size dehumidifier for 20 m²? (litres per day)
 
-> What size dehumidifier for 20 m²? Recommended: 16–20 litres/day. Capacity, running cost (~€0.09/h) and what to look for in a living room or bedroom.
+> Dehumidifier for a 20 m² room: measure humidity and temperature first, compare real extraction figures and calculate running costs before buying.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-20-sqm.html
 
-Damp air, condensation on the windows or a musty smell in a room of around 20 m²? A dehumidifier fixes that — but only with the right capacity. Too small, and it never catches up. Here is the concrete recommendation for 20 m².
+A 20 m² bedroom with occasional condensation is a different job from a cold basement or a room used to dry laundry. Start with the moisture problem, then decide whether you need a device.
+**Quick answer:** There is no automatic 16–20 litre recommendation for every 20 m² room. Measure relative humidity and temperature over several typical days. A room that stays dry may need no dehumidifier; a leak needs its cause addressed.
 
-As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.
+## Check the room before choosing capacity
 
-**Quick answer:** For 20 m², choose a dehumidifier with **16–20 litres/day** of extraction capacity. Running it costs about €0.09 per hour (at €0.30/kWh) — much less with a humidistat, which switches off at the target humidity.
+- **Volume:** 20 m² with a 2.5 m ceiling is 50 m³. Ceiling height and connected rooms affect the job.
+- **Conditions:** record humidity before and after airing or drying laundry. A single reading does not show the daily pattern.
+- **Cold rooms:** compare extraction figures at your actual temperature. A headline litres/day rating is not the water you will necessarily collect.
+- **Persistent damp:** investigate leaks, wet walls and moisture entry. Increasing capacity is not a repair.
 
-## How many litres per day for 20 m²?
+## What to compare if buying is justified
+Use the decision guide above for a conditional comparison of Comfee MDDF-20DEN7 and MeacoDry Arete One 20L. These are two candidates, not a complete market ranking or an automatic size recommendation. Compare humidistat control, noise in the mode you will use, tank handling and a drain that suits your installation. We have not tested these appliances ourselves.
+Manufacturer ratings need their test conditions. Meaco lists 8.5 L/day at 20°C and 60% RH for the Arete One 20L, versus 3.4 L/day at 10°C and 60% RH. The model name does not guarantee 20 litres in your room. Manufacturer data.
 
-From 20 m² upwards, 16–20 litres/day makes sense — especially in ground-floor or older buildings. Size up for basements, ground floors, lots of indoor laundry drying, or after water damage. The manufacturer's litres/day figure is measured under warm, very humid lab conditions — real-world extraction is lower, which is another reason not to undersize.
-
-## The full size ladder
-
-Room size | Extraction capacity | Typical room |
-[10 m²](https://getecoback.com/en/guide/dehumidifier-10-sqm.html) | 10–12 litres/day | bathroom or small room |
-[15 m²](https://getecoback.com/en/guide/dehumidifier-15-sqm.html) | 12–16 litres/day | bedroom or home office |
-**20 m² (this page)** | 16–20 litres/day | living room or bedroom |
-[25 m²](https://getecoback.com/en/guide/dehumidifier-25-sqm.html) | 20 litres/day | larger living room |
-[30 m²](https://getecoback.com/en/guide/dehumidifier-30-sqm.html) | 20–25 litres/day | open-plan living area |
-[40 m²](https://getecoback.com/en/guide/dehumidifier-40-sqm.html) | 25–30 litres/day | basement or very large room |
-
-## Recommended unit for 20 m²
-
-Dehumidifier · 16–20 l/day
-A **16–20-litre compressor dehumidifier** with a humidistat fits a living room or bedroom. The humidistat switches off automatically at the target humidity — that is where the real electricity saving is. We do not test units ourselves; picks summarise public tests.
-
-✓ Against mould & damp   ✓ Frugal with a humidistat   ✕ Some operating noise
-
-Ad · affiliate link — same price for you. Amazon.de ships to most EU countries, with site and checkout available in English.
-
-Check the price on Amazon.de →
-
-## What does running it cost at 20 m²?
-
-A compressor dehumidifier draws about 300 W, so roughly **€0.09 per hour** (calculated at €0.30/kWh — put in your own tariff). With a humidistat it only runs until the target humidity is reached, so real-world cost is well below continuous operation. Keeping the room below about 60 % relative humidity is what takes away the basis mould needs.
+## Use your tariff and measured runtime
+Example: 300 W ÷ 1,000 × 6 h × €0.30/kWh = €0.54. This is an illustration, not a typical bill or a promised saving. A humidistat can stop extraction when its target is met; the actual runtime depends on the room.
+[Compare laundry drying costs](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html) · [Compare types for cold rooms](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html)
+UBA: moisture and mould
 
 ## Frequently asked questions
-
-**How many litres per day do I need for 20 m²?**As a rule of thumb, 16–20 litres/day. From 20 m² upwards, 16–20 litres/day makes sense — especially in ground-floor or older buildings.
-
-**What does a dehumidifier for 20 m² cost to run?**A typical compressor unit draws about 300 W, so roughly €0.09 per hour (at €0.30/kWh). With a humidistat it only runs until the target humidity is reached, then barely at all.
-
-**Does a dehumidifier help against mould in a 20 m² room?**Yes — by keeping relative humidity below about 60 % it removes the basis mould needs to grow. A humidistat that switches off automatically at the target level is ideal for this.
-
-**When should I size up?**Pick the next capacity class up for basements, ground-floor flats, frequent indoor laundry drying, or after water damage — persistent moisture sources outpace an exactly-sized unit.
-
-**Matching dehumidifiers for 20 m² on Amazon.de** — check litres/day and the humidistat:
-
-Ad · affiliate links — same price for you
-
-See dehumidifiers →
-
-**More guides**
-[What size electric heater for 20 m²? →](https://getecoback.com/en/guide/electric-heater-20-sqm.html)
-[Drying laundry indoors: what a dehumidifier costs →](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html)
-[Portable AC smells musty? Clean it before storing →](https://getecoback.com/en/guide/portable-ac-smells-musty.html)
-[Diese Seite auf Deutsch →](https://getecoback.com/guide/luftentfeuchter-20-qm.html)
+**How many litres per day do I need for 20 m²?**Floor area alone cannot establish the right capacity. Measure humidity and temperature, check room volume and moisture sources, then compare extraction at similar conditions.
+**What does a dehumidifier cost to run?**Example only: 300 W for six hours at €0.30/kWh costs €0.54. A humidistat changes runtime, but savings are not guaranteed; measure the whole operating period.
+**Does a dehumidifier remove mould?**No. It can help control air humidity but does not remove existing mould or fix leaks and structural damp. Find and address the moisture source.
 
 ## Check manufacturer data before buying
 Why “20 litres” does not always mean 20 litresExample: MeacoDry Arete One 20L. Manufacturer figures, not an EcoBack test. Different room conditions are not a controlled efficiency comparison.

@@ -41,7 +41,7 @@ See roof-window versions →
 
 ## What length do you need?
 
-The most common mispurchase is a seal that is too short. The rule: measure the **moving sash** (not the frame), and the seal must wrap its **full perimeter** — so **2 × (width + height)**. A typical 60 × 140 cm window therefore needs 4 m. Common off-the-shelf lengths are ~300, 400 and 560 cm; when in doubt take the next size up — extra length can be gathered, a gap cannot. The calculator at the top of this page does the maths for you and names the size that fits.
+The most common mispurchase is a seal that is too short. The rule: measure the **moving sash** (not the frame), and the seal must wrap its **full perimeter** — so **2 × (width + height)**. A typical 60 × 140 cm window therefore needs 4 m. Examples are 400 and 560 cm (Trotec AirLock 100 and 1000). A sufficient length is only a candidate; follow the exact product’s measuring and mounting instructions. The calculator at the top of this page does the maths for you and names the size that fits.
 
 ## Glue or clamp? The honest weak point
 
@@ -57,7 +57,7 @@ In buyer reviews, fabric seals almost never fail at the fabric — they fail at 
 
 **Which window seal is best for tilt windows?**For occasional use, the universal velcro fabric seal (from around €15–25): it wraps the whole tilted sash and comes off without residue — which is why it is the default for renters. If the unit runs at the same window all summer, a rigid outlet panel seals better and keeps the window nearly closed, but costs more and has to match your window size.
 
-**What length does the window seal need to be?**Measure the moving sash (not the frame) and calculate 2 × (width + height) — that is the perimeter the seal has to wrap. A typical 60 × 140 cm window needs 4 metres. Common off-the-shelf lengths are around 300, 400 and 560 cm; when in doubt take the next size up — extra length can be gathered, a gap cannot.
+**What length does the window seal need to be?**Measure the moving sash (not the frame) and calculate 2 × (width + height) — that is the perimeter the seal has to wrap. A typical 60 × 140 cm window needs 4 metres. Examples are 400 and 560 cm (Trotec AirLock 100 and 1000). A sufficient length is only a candidate; follow the exact product’s measuring and mounting instructions.
 
 **Why does the window seal keep coming off?**The weak point is almost never the fabric but the supplied adhesive tape: in direct sun the frame reaches 50 to 60 degrees Celsius, the glue softens, lets go and leaves residue. Degrease the frame with washing-up liquid before sticking, press firmly and let it rest for 24 hours — or choose a variant that clamps instead of glues.
 

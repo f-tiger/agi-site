@@ -165,14 +165,14 @@ def build_dataset():
                         "nach Raumgröße — identisch mit den Rechnern und Ratgebern auf getecoback.com."),
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "attribution": "EcoBack (getecoback.com)",
-        "dateModified": "2026-08-31",
+        "dateModified": "2026-10-02",
         "rules": {
             "cooling_btu_per_m2": 340,
             "heating_w_per_m2_insulated": [60, 100],
             "mould_threshold_rh_percent": 60,
             "cost_basis_eur_per_kwh": 0.30,
-            "dehumidifier_rating_note": ("Hersteller-Liter/Tag sind bei 30 °C/80 % rF gemessen; "
-                                          "reale Entzugsleistung liegt typisch bei etwa der Hälfte."),
+            "dehumidifier_rating_note": ("Liter/Tag nur zusammen mit der angegebenen Prüftemperatur und Feuchte vergleichen. "
+                                          "Die Grundfläche allein bestimmt keine passende Kapazität; kein pauschaler Umrechnungsfaktor."),
             # Published 2026-08-31. This is the site's own decision rule and it
             # existed only inside the calculator's JavaScript, where nothing
             # could cite it. Above this cooling load no portable monoblock in
@@ -193,7 +193,7 @@ def build_dataset():
                               (25, "10.000–12.000"), (30, "12.000–13.000"), (40, "14.000+ / Split"))
             ],
             "dehumidifier_l_per_day": [
-                {"m2": e["qm"], "liters_per_day": e["liter"], "room": e["raumtyp"],
+                {"m2": e["qm"], "liters_per_day": e["liter"] if e["qm"] != 20 else "Nicht allein aus 20 m² ableitbar: Temperatur, Feuchte und Feuchtelast prüfen", "room": e["raumtyp"],
                  "guide": f"{BASE}/guide/luftentfeuchter-{e['qm']}-qm.html"}
                 for e in dehum["entries"]
             ],

@@ -1,6 +1,6 @@
 # Heizlüfter Stromverbrauch: Kosten pro Stunde berechnen (2026)
 
-> Heizlüfter Stromverbrauch konkret: 2000 Watt = 2 kWh, bei ~40 ct/kWh rund 0,80 € pro Stunde. Kostentabelle nach Wattzahl, Formel zum Selbstrechnen & Spartipps.
+> Heizlüfter-Kosten mit eigener Wattzahl, Strompreis, Laufzeit und Heizanteil berechnen. Kosten pro Tag und Zeitraum; 0,40 €/kWh ist eine Rechenannahme.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromverbrauch.html
 
@@ -12,7 +12,7 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Wie viel Strom verbraucht ein Heizlüfter?
 
-Die meisten Heizlüfter für die Steckdose haben **zwei Stufen um 1000 und 2000 Watt** — mehr gibt eine normale Haushaltssteckdose auch kaum her. Kleine Bad- und Tischgeräte beginnen bei etwa 500 Watt, kompakte Keramikmodelle liegen oft bei 1500 Watt. Der Verbrauch ist dabei brutal ehrlich: Ein Heizlüfter ist eine reine Widerstandsheizung, die Wattzahl auf dem Typenschild fließt eins zu eins als Strom durch den Zähler. 2000 Watt bedeuten 2 Kilowattstunden pro Betriebsstunde — ohne Wenn und Aber.
+Die meisten Heizlüfter für die Steckdose haben **zwei Stufen um 1000 und 2000 Watt** — für Anschluss und zulässige Last gilt die Herstelleranleitung. Kleine Bad- und Tischgeräte beginnen bei etwa 500 Watt, kompakte Keramikmodelle liegen oft bei 1500 Watt. Der Verbrauch ist dabei brutal ehrlich: Ein Heizlüfter ist eine reine Widerstandsheizung, die Wattzahl auf dem Typenschild fließt eins zu eins als Strom durch den Zähler. 2000 Watt bedeuten 2 Kilowattstunden pro Betriebsstunde — ohne Wenn und Aber.
 
 Zum Einordnen: Das ist rund das **40-Fache eines Ventilators** (~50 Watt) und mehr als das Doppelte einer mobilen Klimaanlage im Kühlbetrieb (800–1200 Watt). Unter den typischen Steckdosengeräten im Haushalt spielt der Heizlüfter damit in der obersten Verbrauchsliga — zusammen mit Wasserkocher und Backofen, die aber nur Minuten laufen, nicht Stunden.
 
@@ -26,7 +26,7 @@ Du brauchst nur zwei Angaben: die Wattzahl deines Geräts (steht auf dem Typensc
 
 - **Schritt 3 — Hochrechnen:** mal deine tägliche Laufzeit, mal 30 für den Monat. Beispiel: 4 Stunden täglich = 3,20 € pro Tag ≈ **96 € pro Monat**.
 
-Wir rechnen hier durchgehend mit **~40 ct/kWh** (Strompreis Juli 2026, Haushaltsstrom-Durchschnitt). Dein Tarif kann darüber oder darunter liegen — ältere Verträge liegen teils bei 30 ct, Grundversorgung teils höher. Setz einfach deinen eigenen Arbeitspreis in die Formel ein oder nutz unseren [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html), der die Rechnung für jedes Gerät automatisch macht.
+Wir rechnen hier durchgehend mit **~40 ct/kWh** (frei gewählte Rechenannahme, kein Marktmittelwert). Dein Tarif kann darüber oder darunter liegen — ältere Verträge liegen teils bei 30 ct, Grundversorgung teils höher. Setz einfach deinen eigenen Arbeitspreis in die Formel ein oder nutz unseren [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html), der die Rechnung für jedes Gerät automatisch macht.
 
 ## Kostentabelle nach Wattzahl
 
@@ -45,7 +45,7 @@ Pro Monat (4 h × 30) |
 
 **2000 W** | 0,80 € | 3,20 € | 96 € |
 
-Annahme: 0,40 €/kWh (Haushaltsstrom-Durchschnitt Juli 2026). Bei 0,30 €/kWh sinken alle Werte um ein Viertel — z. B. 2000 W auf 0,60 € pro Stunde und 72 € pro Monat. Ein Gerät mit Thermostat läuft zudem nicht durchgehend auf voller Leistung, sobald der Raum warm ist; die Tabelle zeigt den Dauerbetrieb als Obergrenze.
+Annahme: 0,40 €/kWh (frei gewählte Rechenannahme). Bei 0,30 €/kWh sinken alle Werte um ein Viertel — z. B. 2000 W auf 0,60 € pro Stunde und 72 € pro Monat. Ein Gerät mit Thermostat läuft zudem nicht durchgehend auf voller Leistung, sobald der Raum warm ist; die Tabelle zeigt den Dauerbetrieb als Obergrenze.
 
 ## Wann lohnt sich ein Heizlüfter?
 
@@ -65,11 +65,11 @@ Welche Bauart dabei die bessere ist (Keramik vs. Heizdraht), was beim Thema Sich
 
 Am Verbrauch pro Stunde kannst du nichts ändern — 2000 Watt bleiben 2000 Watt. Sparen heißt beim Heizlüfter deshalb immer: **kürzer, gezielter, kleiner**. Drei Hebel bringen real etwas:
 
-- **Thermostat:** Ein Heizlüfter mit Thermostat schaltet ab, sobald die Zieltemperatur erreicht ist, und taktet danach nur nach — statt stur durchzuheizen. Gerade im kleinen Bad läuft das Gerät so oft nur die halbe Zeit.
+- **Thermostat:** Ein Heizlüfter mit Thermostat schaltet ab, sobald die Zieltemperatur erreicht ist, und taktet danach nur nach — statt stur durchzuheizen. Der tatsächliche Heizanteil hängt von Zieltemperatur, Wärmeverlust und Regelung ab; die halbe Laufzeit ist keine Garantie.
 
-- **Timer oder Zeitschaltuhr:** verhindert den Klassiker „vergessen und drei Stunden weitergeheizt". Bei 0,80 € pro Stunde summiert sich Vergesslichkeit schnell.
+- **Eingebauter Timer:** verhindert den Klassiker „vergessen und drei Stunden weitergeheizt". Bei 0,80 € pro Stunde summiert sich Vergesslichkeit schnell.
 
-- **Kleinere Stufe:** Die halbe Stufe (1000 W) halbiert die Kosten. Zum Warmhalten eines bereits aufgeheizten Raums reicht sie fast immer — die volle Stufe braucht es nur zum schnellen Aufheizen.
+- **Kleinere Stufe:** Bei gleicher Laufzeit halbiert die halbe Stufe (1000 W) die Kosten. Ob das zum Warmhalten reicht, hängt vom Wärmeverlust ab; sie reicht nicht automatisch — die volle Stufe braucht es nur zum schnellen Aufheizen.
 
 Und der einfachste Spartipp von allen: Tür zu. Ein Heizlüfter kämpft gegen jedes offene Türblatt an — je kleiner und geschlossener der Raum, desto kürzer die Laufzeit.
 

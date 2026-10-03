@@ -57,7 +57,7 @@ In Käuferbewertungen scheitern Stoffabdichtungen fast nie am Stoff — sondern 
 
 **Welche Fensterabdichtung ist die beste für Kippfenster?**Für gelegentliche Nutzung der universelle Klett-Stoff (ab ca. 15–25 €): Er umschließt den gekippten Flügel komplett und lässt sich rückstandslos entfernen. Wer das Gerät den ganzen Sommer am selben Fenster betreibt, fährt mit einer starren Platte bzw. einem Auslass-Panel besser — es dichtet besser, das Fenster bleibt fast geschlossen, kostet aber mehr und muss zur Fenstergröße passen.
 
-**Welche Länge muss die Fensterabdichtung haben?**Miss den beweglichen Flügel (nicht den Rahmen) und rechne 2 × (Breite + Höhe) — das ist der Umfang, den die Abdichtung umschließen muss. Bei einem typischen Fenster mit 60 × 140 cm sind das 4 Meter. Gängige Konfektionsgrößen sind etwa 300, 400 und 560 cm; im Zweifel die nächstgrößere nehmen, zu kurz lässt eine Lücke offen.
+**Welche Länge muss die Fensterabdichtung haben?**Miss den beweglichen Flügel (nicht den Rahmen) und rechne 2 × (Breite + Höhe) — das ist der Umfang, den die Abdichtung umschließen muss. Bei einem typischen Fenster mit 60 × 140 cm sind das 4 Meter. Beispiele sind 400 und 560 cm, etwa Trotec AirLock 100 und 1000. Die nächste ausreichende Länge ist nur ein Vergleichskandidat; Montagezeichnung und Messvorgaben des konkreten Produkts prüfen.
 
 **Warum hält die Fensterabdichtung nicht am Fenster?**Der Schwachpunkt ist fast nie der Stoff, sondern das mitgelieferte Klebeband: In direkter Sonne wird der Rahmen 50 bis 60 Grad heiß, der Kleber wird weich, löst sich und hinterlässt Rückstände. Vor dem Kleben den Rahmen mit Spülmittel entfetten, andrücken und 24 Stunden ruhen lassen — oder gleich eine Variante wählen, die geklemmt statt geklebt wird.
 

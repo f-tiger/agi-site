@@ -1,50 +1,34 @@
 # Luftentfeuchter für 20 m²: Wie viel Liter/Tag? (Ratgeber 2026)
 
-> Welcher Luftentfeuchter für 20 m²? Empfohlen: 16–20 Liter/Tag. Kapazität, Stromkosten & Geräte-Tipp für dein Wohnzimmer oder Schlafzimmer (2026).
+> Luftentfeuchter für 20 m²: Feuchte und Temperatur messen, reale Entfeuchtungsleistung vergleichen und Betriebskosten prüfen, bevor du kaufst.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-20-qm.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 20 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 20 m².
+Ein Schlafzimmer mit gelegentlich beschlagenen Fenstern stellt andere Anforderungen als ein kalter Keller oder ein Raum mit täglicher Wäsche. Entscheidend ist die Feuchtequelle, nicht nur die Quadratmeterzahl.
+**Kurz gesagt:** Für 20 m² gibt es keine automatische Empfehlung für 16–20 Liter/Tag. Miss relative Feuchte und Temperatur an mehreren typischen Tagen. Ein trockener Raum braucht möglicherweise kein Gerät; ein Leck braucht eine Ursachenklärung.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+## Den Raum vor dem Kauf prüfen
 
-**Kurz gesagt:** Für 20 m² solltest du einen Luftentfeuchter mit **16–20 Liter/Tag** Entfeuchtungsleistung wählen. Betrieb kostet ca. 0,09 € pro Stunde — mit Hygrostat deutlich weniger, weil er bei Zielfeuchte abschaltet.
+- **Volumen:** 20 m² bei 2,5 m Deckenhöhe entsprechen 50 m³. Deckenhöhe und offene Nachbarräume beeinflussen die Aufgabe.
+- **Bedingungen:** Feuchte vor und nach dem Lüften oder Wäschetrocknen notieren. Ein Einzelwert zeigt keinen Tagesverlauf.
+- **Kälte:** Entfeuchtungsdaten bei deiner Temperatur vergleichen. Die große Literzahl im Produktnamen ist keine Alltagsgarantie.
+- **Dauerhafte Nässe:** Lecks, nasse Wände und Feuchteeintritt prüfen. Mehr Geräteleistung repariert keine Ursache.
 
-## Wie viel Liter/Tag für 20 m²?
+## Was vergleichen, wenn ein Kauf sinnvoll ist?
+Die Entscheidungshilfe oben ordnet Comfee MDDF-20DEN7 und MeacoDry Arete One 20L als zwei mögliche Vergleichskandidaten ein. Das ist weder ein vollständiger Marktvergleich noch eine automatische Größenfreigabe. Hygrostat, Geräusch im geplanten Modus, Tankhandhabung und Ablauf passend zum Aufstellort prüfen. Wir haben die Geräte nicht selbst getestet.
+Herstellerwerte brauchen ihre Messbedingungen: Meaco nennt für den Arete One 20L 8,5 l/Tag bei 20 °C und 60 % relativer Feuchte, bei 10 °C und 60 % dagegen 3,4 l/Tag. Die 20L im Namen versprechen keine 20 Liter in deinem Raum. Herstellerdaten.
 
-Ab 20 m² sind 16–20 Liter/Tag sinnvoll, besonders in Erdgeschoss- oder Altbauwohnungen. Als Orientierung gelten **16–20 Liter/Tag**. Aufschlagen solltest du bei Kellern, Erdgeschoss, viel Wäschetrocknen oder nach einem Wasserschaden. Grundlagen: [Luftentfeuchter-Ratgeber](https://getecoback.com/guide/luftentfeuchter-ratgeber.html).
-
-## Empfohlenes Gerät für 20 m²
-
-Luftentfeuchter · 16–20 L/Tag
-Ein **16–20-Liter-Kompressor-Luftentfeuchter** mit Hygrostat passt für ein Wohnzimmer oder Schlafzimmer. Der Hygrostat schaltet bei Zielfeuchte automatisch ab — das spart am meisten Strom. Wir testen nicht selbst; die Auswahl fasst öffentliche Tests zusammen.
-
-✓ Gegen Schimmel & Feuchte   ✓ Mit Hygrostat sparsam   ✕ Erzeugt etwas Betriebsgeräusch
-
-Preis auf Amazon.de ansehen →
-
-## Was kostet der Betrieb bei 20 m²?
-
-Ein Kompressor-Luftentfeuchter zieht ca. 300 W, also rund **0,09 € pro Stunde** (0,30 €/kWh Rechenbasis). Mit Hygrostat läuft er nur, bis die Zielfeuchte erreicht ist — real also deutlich günstiger als Dauerbetrieb. Mehr: [Stromkosten-Ratgeber](https://getecoback.com/guide/klimaanlage-stromkosten.html).
+## Mit eigenem Tarif und Laufzeit rechnen
+Rechenbeispiel: 300 W ÷ 1.000 × 6 h × 0,30 €/kWh = 0,54 €. Das ist keine typische Rechnung und keine Sparzusage. Ein Hygrostat kann die Entfeuchtung bei erreichter Zielfeuchte stoppen; wie lange das Gerät tatsächlich läuft, hängt vom Raum ab.
+[Kosten je gleich trockener Wäscheladung vergleichen](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html) · [Kalte Keller prüfen](https://getecoback.com/guide/luftentfeuchter-keller.html)
+Umweltbundesamt: Feuchte und Schimmel
 
 ## Häufige Fragen
-
-**Wie viel Liter Entfeuchtungsleistung brauche ich für 20 m²?**Als Orientierung 16–20 Liter/Tag. Ab 20 m² sind 16–20 Liter/Tag sinnvoll, besonders in Erdgeschoss- oder Altbauwohnungen.
-
-**Was kostet ein Luftentfeuchter für 20 m² an Strom?**Ein typisches Kompressor-Gerät zieht ca. 300 W, also rund 0,09 € pro Stunde (0,30 €/kWh). Mit Hygrostat läuft es nur bis zur Zielfeuchte und dann kaum noch.
-
-**Hilft ein Luftentfeuchter gegen Schimmel in 20 m²?**Ja — indem er die Luftfeuchtigkeit unter ~60 % hält, entzieht er Schimmel die Grundlage. Ein Hygrostat, der bei Zielfeuchte automatisch abschaltet, ist dafür ideal.
-
-**Passende Luftentfeuchter für 20 m² auf Amazon.de** — auf Liter/Tag und Hygrostat achten:
-
-Luftentfeuchter ansehen →
-
-**Weitere Ratgeber**
-[Luftentfeuchter gegen Schimmel & feuchte Luft →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)
-[Klimaanlage vs. Luftkühler →](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html)
-[Was kostet der Betrieb an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
+**Wie viel Liter Entfeuchtungsleistung brauche ich für 20 m²?**Die Grundfläche allein bestimmt keine passende Literzahl. Miss Feuchte und Temperatur, prüfe Raumvolumen und Feuchtequellen und vergleiche Herstellerdaten unter ähnlichen Bedingungen.
+**Was kostet ein Luftentfeuchter für 20 m² an Strom?**Nur ein Rechenbeispiel: 300 W für sechs Stunden bei 0,30 €/kWh kosten 0,54 €. Ein Hygrostat verändert die Laufzeit, garantiert aber keine Ersparnis; miss den gesamten Betriebszeitraum.
+**Hilft ein Luftentfeuchter gegen Schimmel in 20 m²?**Er kann die Luftfeuchte senken, entfernt aber weder vorhandenen Schimmel noch repariert er Lecks oder bauliche Feuchteursachen. Die Ursache muss geklärt und behoben werden.
 
 ## Herstellerdaten vor dem Kauf prüfen
 Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
