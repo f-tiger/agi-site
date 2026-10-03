@@ -1,0 +1,59 @@
+export const VERSION='jarvis-20261003-1';
+export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
+export const MAX_RUNS=7;
+export const tools=['catalog_search','github_search','hackernews_search','calculate'];
+const str=(s,n)=>typeof s==='string'&&s.trim().length>0&&s.length<=n;
+export function inputOf(b){
+ if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||!/^[a-f0-9]{32}$/.test(b.nonce||''))throw Error('invalid_request');
+ if(!Array.isArray(b.memory)||b.memory.length>3||b.memory.some(m=>!str(m,300)))throw Error('invalid_request');
+ if(b.web&&!str(b.publicQuery,160))throw Error('invalid_request');
+ return {goal:b.goal.trim(),lang:b.lang,cadence:b.cadence,web:b.web,publicQuery:b.web?b.publicQuery.trim():'',memory:b.memory.map(m=>m.trim()),nonce:b.nonce};
+}
+export function parseObject(raw){
+ if(typeof raw!=='string'||raw.length>14000)throw Error('invalid_model_output');
+ try{return JSON.parse(raw.trim().replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,''));}catch{throw Error('invalid_model_output');}
+}
+export function planOf(raw,web){
+ const p=parseObject(raw);
+ if(!p||!str(p.approach,600)||!Array.isArray(p.actions)||p.actions.length>3)throw Error('invalid_model_output');
+ const seen=new Set();
+ const actions=p.actions.map(a=>{
+  if(!a||!tools.includes(a.tool)||!str(a.query,180)||(!web&&['github_search','hackernews_search'].includes(a.tool)))throw Error('invalid_model_output');
+  const k=a.tool+':'+a.query;if(seen.has(k))throw Error('invalid_model_output');seen.add(k);
+  return {tool:a.tool,query:a.query.trim()};
+ });return {approach:p.approach,actions};
+}
+export function reportOf(raw,sources,lang){
+ const r=parseObject(raw),ids=new Set(sources.map(s=>s.id));
+ if(!r||!str(r.summary,1600)||!Array.isArray(r.findings)||r.findings.length>5||!Array.isArray(r.nextActions)||!r.nextActions.length||r.nextActions.length>4||!Array.isArray(r.uncertainties)||!r.uncertainties.length||r.uncertainties.length>4)throw Error('invalid_model_output');
+ const findings=r.findings.map(f=>{
+  if(!f||!str(f.text,700)||!Array.isArray(f.sourceIds)||!f.sourceIds.length||f.sourceIds.length>4||f.sourceIds.some(id=>!ids.has(id)))throw Error('invalid_model_output');
+  return {text:f.text,sourceIds:[...new Set(f.sourceIds)]};
+ });
+ const nextActions=r.nextActions.map(a=>{if(!a||!str(a.action,400)||!str(a.doneWhen,400))throw Error('invalid_model_output');return {action:a.action,doneWhen:a.doneWhen};});
+ if(r.uncertainties.some(x=>!str(x,400))||lang==='zh'&&!/[\u4e00-\u9fff]/u.test(r.summary))throw Error('invalid_model_output');
+ // Model text is never interpreted as HTML, code, URLs, permissions or task state.
+ return {summary:r.summary,findings,nextActions,uncertainties:r.uncertainties};
+}
+export function safeURL(value){try{const u=new URL(value);if(u.protocol!=='https:'||u.username||u.password||u.port||!u.hostname.includes('.')||/(^|\.)(localhost|local|internal|test)$/.test(u.hostname)||/^\d+[.:]/.test(u.hostname)||u.hostname.includes(':'))return null;return u.href;}catch{return null;}}
+export function tokens(s){return [...new Set((String(s).toLowerCase().match(/[a-z0-9]{2,}|[\u4e00-\u9fff]/gu)||[]).filter(x=>!['the','and','with','for','this','that','what','how','can','want','find','my'].includes(x)))].slice(0,100);}
+export function rank(query,rows,max=6){const words=tokens(query);return rows.map(r=>{const haystack=JSON.stringify(r).toLowerCase();return {r,score:words.reduce((s,w)=>s+(haystack.includes(w)?1:0),0)};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,max).map(x=>x.r);}
+export function relevantMemory(goal,entries){return rank(goal,entries.map((text,i)=>({text,id:String(i)})),3).map(m=>m.text.slice(0,300));}
+export function calculate(expression){
+ if(typeof expression!=='string'||expression.length>120||!/^[\d\s.+\-*/()%]+$/.test(expression))throw Error('invalid_calculation');
+ const ts=expression.match(/\d+(?:\.\d+)?|\.\d+|[()+\-*/%]/g)||[];let at=0,depth=0;
+ if(ts.join('')!==expression.replace(/\s/g,''))throw Error('invalid_calculation');
+ function factor(){if(++depth>15)throw Error('invalid_calculation');let v;const t=ts[at++];if(t==='('){v=sum();if(ts[at++]!==')')throw Error('invalid_calculation');}else if(t==='-')v=-factor();else if(t==='+')v=factor();else if(t&&/^\d|^\./.test(t))v=Number(t);else throw Error('invalid_calculation');if(ts[at]==='%'){at++;v/=100;}depth--;return v;}
+ function product(){let v=factor();while(['*','/'].includes(ts[at])){const op=ts[at++],n=factor();v=op==='*'?v*n:v/n;}return v;}
+ function sum(){let v=product();while(['+','-'].includes(ts[at])){const op=ts[at++],n=product();v=op==='+'?v+n:v-n;}return v;}
+ const value=sum();if(at!==ts.length||!Number.isFinite(value)||Math.abs(value)>1e15)throw Error('invalid_calculation');return {expression,value};
+}
+export function markdown(task){
+ const r=task.result||{},lines=['# '+task.input.goal,'',`Status: ${task.status}`,`Run: ${task.runs}; checked: ${r.checkedAt||'pending'}`,'',r.report?.summary||'Source pack only. AI synthesis was not completed.',''];
+ for(const f of r.report?.findings||[])lines.push('- '+f.text+' ['+f.sourceIds.join(', ')+']');
+ lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+a.action+'\n  Done when: '+a.doneWhen);
+ lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+s);
+ lines.push('','## Sources');for(const s of r.sources||[])lines.push(`- [${s.id}] ${s.title}\n  ${s.url||'Local arithmetic'}\n  ${s.description||''}`);
+ lines.push('','## Execution record');for(const l of r.log||[])lines.push(`- ${l.at}: ${l.step} — ${l.outcome}`);
+ return lines.join('\n');
+}

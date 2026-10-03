@@ -74,7 +74,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -99,6 +99,11 @@ def main():
     n_md = 0
     for slug, url, fpath in pages:
         title, desc, updated, capsule, faqs = extract(fpath)
+        if slug in ('jarvis','zh/jarvis'):
+            source_html = open(fpath, encoding='utf-8').read()
+            faq_section = re.search(r'<section id="faq".*?>(.*?)</section>', source_html, re.S)
+            if faq_section:
+                faqs = [(text_of(q), text_of(a)) for q, a in re.findall(r'<summary>(.*?)</summary><p>(.*?)</p>', faq_section[1], re.S)]
         if not title:
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)

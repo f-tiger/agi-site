@@ -122,6 +122,11 @@ jobs:
           node --test sites/agiscorecard/tools/foresight/test.mjs
           node sites/agiscorecard/tools/foresight/member-test.mjs
 
+      - name: Build and test bounded Jarvis research agent
+        run: |
+          node sites/agiscorecard/tools/jarvis/build.mjs
+          node --test sites/agiscorecard/tools/jarvis/test.mjs
+
       - name: Regenerate feed and agent-readable mirrors from current pages
         working-directory: sites/agiscorecard
         run: |
@@ -233,6 +238,7 @@ jobs:
           node sites/agiscorecard/tools/portfolio/browser-test.mjs
           node sites/agiscorecard/tools/infrastructure/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/browser-test.mjs
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
@@ -309,6 +315,9 @@ jobs:
 
       - name: Verify live future-guide content, assets and member catalog
         run: node sites/agiscorecard/tools/foresight/verify.mjs
+
+      - name: Verify live Jarvis surfaces and private API boundaries
+        run: node sites/agiscorecard/tools/jarvis/verify.mjs
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}

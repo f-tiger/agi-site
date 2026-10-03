@@ -16,6 +16,9 @@
   // is excluded explicitly. Without it the whole repo history ships as public assets.
   "vars": {"MEMBERS_ENABLED":"true"},
   "ai": {"binding":"AI"},
+  // Jarvis durable queue: 96 lightweight checks/day; at most two due tasks/check.
+  // Inference shares the existing 12-attempt global window; no new model allowance.
+  "triggers": {"crons":["*/15 * * * *"]},
   "name": "agiscorecard",
   "main": "tools/analytics-worker/index.js",
   "compatibility_date": "2026-08-01",
