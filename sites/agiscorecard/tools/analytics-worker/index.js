@@ -5,6 +5,7 @@ import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
 import {mentorRoute} from '../mentor/server.mjs';
 import {jarvisRoute} from '../jarvis/server.mjs';
+import {isJarvisPage,secureJarvisPage} from '../jarvis/security.mjs';
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
@@ -822,7 +823,9 @@ export default {
     // Everything else is the static site. Serving must never depend on analytics
     // working, so the measurement call below is wrapped: an unbound EVENTS binding
     // would otherwise take the whole site down on the very first request.
-    const res = await env.ASSETS.fetch(request);
+    const assetRequest = new Request(request);
+    if(isJarvisPage(url.pathname))for(const name of ['if-none-match','if-modified-since'])assetRequest.headers.delete(name);
+    const res = await env.ASSETS.fetch(assetRequest);
     // Internal consent-created GA4 frame is an asset, not another visitor/page.
     // It must receive neither a D1 pageview nor the legacy event/form injectors.
     if (url.pathname.startsWith('/analytics-assets/')) return isAnalyticsPath(url.pathname) ? protectAnalyticsResponse(res,request.method) : res;
@@ -888,10 +891,14 @@ export default {
     // never take a page down.
     let extra = '';
     try { extra = slideinFor(url.pathname); } catch (e) {}
-    const inject = BEACON + SUBFORM + extra;
-    return new HTMLRewriter()
-      .on('body', { element: function (el) { el.append(inject, { html: true }); } })
-      .transform(res);
+    const nonce = isJarvisPage(url.pathname) ? crypto.randomUUID().replaceAll('-','') : null;
+    const inject = (BEACON + SUBFORM + extra).replace(/<script>/g,nonce?'<script nonce="'+nonce+'">':'<script>');
+    const rewriter = new HTMLRewriter()
+      .on('body', { element: function (el) { el.append(inject, { html: true }); } });
+    // These scripts come from trusted static assets; private/model text is never HTML.
+    if(nonce)rewriter.on('script',{element(el){el.setAttribute('nonce',nonce);}});
+    const page = rewriter.transform(res);
+    return nonce ? secureJarvisPage(page,nonce) : page;
   },
 };
 

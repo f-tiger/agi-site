@@ -1,5 +1,5 @@
 import {VERSION,MODEL,MAX_RUNS,inputOf} from '../../jarvis-assets/core.mjs';
-import {bodyOf} from '../create/server.mjs';
+import {bodyOf} from './security.mjs';
 import {hash,now,limit} from '../create/store.mjs';
 import {ensure,owned,publicTask} from './store.mjs';
 import {execute,tick} from './engine.mjs';
@@ -7,7 +7,7 @@ import {runTool} from './sources.mjs';
 export {tick};
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; frame-ancestors 'none'"};
 const json=(data,status=200)=>Response.json(data,{status,headers});
-const idOK=s=>/^[a-f0-9]{32}$/.test(s||'');
+const idOK=s=>typeof s==='string'&&/^[a-f0-9]{32}$/.test(s);
 export async function jarvisRoute(request,env,ctx){
  const u=new URL(request.url);if(!['/api/jarvis','/api/jarvis/tasks','/api/jarvis/run'].includes(u.pathname))return null;
  if(!['agiscorecard.com','www.agiscorecard.com','localhost','127.0.0.1'].includes(u.hostname))return json({ok:false,code:'origin'},403);
@@ -15,7 +15,7 @@ export async function jarvisRoute(request,env,ctx){
  if(!['GET','POST'].includes(request.method))return json({ok:false,code:'method'},405);
  if(request.method==='POST'&&(request.headers.get('origin')!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site'))return json({ok:false,code:'origin'},403);
  try{
-  const token=(request.headers.get('authorization')||'').replace(/^Bearer /,'');if(!/^[a-f0-9]{64}$/.test(token))throw Error('unauthorized');
+  const token=/^Bearer ([a-f0-9]{64})$/i.exec(request.headers.get('authorization')||'')?.[1];if(!token||token!==token.toLowerCase())throw Error('unauthorized');
   const db=env.EVENTS;if(!db||!env.MEMBER_WATCH_SECRET)throw Error('unavailable');
   if(u.pathname==='/api/jarvis/run'){
    const expected=await hash(env.MEMBER_WATCH_SECRET+':jarvis-runner:v1');if(await hash(token)!==await hash(expected))throw Error('unauthorized');
@@ -55,13 +55,16 @@ export async function jarvisRoute(request,env,ctx){
    await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='paused',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND owner=?").bind(now(),b.id,owner).run();return json({ok:true});
   }
   if(b.action==='resume'){
-   if(task.status==='running'||task.status==='queued'||task.runs>=MAX_RUNS||task.until_at<=now())throw Error('cannot_resume');
+   if(!['paused','limited','completed'].includes(task.status)||task.runs>=MAX_RUNS||task.until_at<=now())throw Error('cannot_resume');
    await limit(db,'jarvis-resume:'+owner,3);
-   await db.prepare("UPDATE jarvis_tasks SET status='queued',stage='queued',next_run=?,updated=? WHERE id=? AND owner=?").bind(now(),now(),b.id,owner).run();
+   const t=now();
+   // Authorization, state transition and active-count admission are one SQL write.
+   const resumed=await db.prepare(`UPDATE jarvis_tasks SET status='queued',stage='queued',next_run=?,updated=?,lease='',lease_until=0 WHERE id=? AND owner=? AND status IN ('paused','limited','completed') AND runs<? AND until_at>? AND expires>? AND (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching'))<3 RETURNING id`).bind(t,t,b.id,owner,MAX_RUNS,t,t,owner,t).first();
+   if(!resumed){const count=await db.prepare("SELECT COUNT(*) n FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching')").bind(owner,t).first();throw Error(count.n>=3?'active_limit':'cannot_resume');}
    if(ctx?.waitUntil)ctx.waitUntil(execute(db,env,b.id,{interactive:true}).catch(()=>{}));return json({ok:true},202);
   }
   if(b.action==='feedback'){
    if(!['useful','not_useful'].includes(b.value))throw Error('invalid_request');await db.prepare('UPDATE jarvis_tasks SET feedback=? WHERE id=? AND owner=?').bind(b.value,b.id,owner).run();return json({ok:true});
   }throw Error('invalid_request');
- }catch(e){const codes={unauthorized:401,unavailable:503,invalid_request:400,too_large:413,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
+ }catch(e){const codes={unauthorized:401,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
 }

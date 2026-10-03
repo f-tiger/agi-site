@@ -35,11 +35,18 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
   const plan=result.plan||evidencePlan(input);
   result.plan=plan;
   result.approach=plan.approach;log('plan',`${plan.actions.length} allowed tool actions; fixed evidence workflow, no new planning inference`);await save('tools');
+  if(!result.publicSearchReserved&&plan.actions.slice(result.toolIndex||0).some(a=>['github_search','hackernews_search'].includes(a.tool))){
+   if(!await active())throw Error('cancelled');
+   // Search can still run when AI is exhausted, but retries and watches must not
+   // create an unbounded external fetch path. Persist one reservation per run.
+   try{await limit(db,'jarvis-search-ip:'+row.ip_key,6);await limit(db,'jarvis-search-global',24);}catch(e){if(e.message==='rate_limited')throw Error('search_rate_limited');throw e;}
+   result.publicSearchReserved=true;await save('tools');
+  }
   for(let i=result.toolIndex||0;i<plan.actions.length;i++){
    const action=plan.actions[i];
    if(!await active())throw Error('cancelled');
    if(deadline-Date.now()<10000)throw Error('yielded');
-   try{const found=await runTool(action,input,env.JARVIS_FETCH||fetch,library.rows);for(const source of found)if(!result.sources.some(s=>s.id===source.id)&&result.sources.length<14)result.sources.push(source);log(action.tool,`${found.length} results`);}catch(e){const code=/^source_(?:network_error|redirect_blocked|invalid|too_large|http_\d{3})$/.test(e.message)?e.message:'source_unavailable';log(action.tool,'unavailable: '+code+'; not treated as an empty successful search');}
+   try{const found=await runTool(action,input,env.JARVIS_FETCH||fetch,library.rows);for(const source of found)if(!result.sources.some(s=>s.id===source.id)&&result.sources.length<14)result.sources.push(source);log(action.tool,`${found.length} results`);}catch(e){const code=/^source_(?:network_error|redirect_blocked|invalid|too_large|timeout|http_\d{3})$/.test(e.message)?e.message:'source_unavailable';log(action.tool,'unavailable: '+code+'; not treated as an empty successful search');}
    result.toolIndex=i+1;await save('tools');
   }
   // Never replace requested public repository evidence with loosely matching
@@ -54,7 +61,7 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
    result.continuation=true;log('checkpoint','Saved for the background runner; completed tool work will not repeat');
    await db.prepare("UPDATE jarvis_tasks SET status='queued',result=?,next_run=?,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(JSON.stringify(result),now(),now(),id,lease).run();return false;
   }
-  result.reason=['rate_limited','ai_unavailable','model_timeout','model_unavailable','invalid_model_output','evidence_unavailable'].includes(e.message)?e.message:'run_failed';
+  result.reason=['rate_limited','search_rate_limited','ai_unavailable','model_timeout','model_unavailable','invalid_model_output','evidence_unavailable'].includes(e.message)?e.message:'run_failed';
   log('synthesis',result.reason+'; source pack retained without fabricated AI output');
  }
  if(!await active())return false;

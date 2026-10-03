@@ -1,10 +1,10 @@
-export const VERSION='jarvis-20261003-4';
+export const VERSION='jarvis-20261003-5';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
 const str=(s,n)=>typeof s==='string'&&s.trim().length>0&&s.length<=n;
 export function inputOf(b){
- if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||!/^[a-f0-9]{32}$/.test(b.nonce||''))throw Error('invalid_request');
+ if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||typeof b.nonce!=='string'||!/^[a-f0-9]{32}$/.test(b.nonce))throw Error('invalid_request');
  if(!Array.isArray(b.memory)||b.memory.length>3||b.memory.some(m=>!str(m,300)))throw Error('invalid_request');
  if(b.web&&!str(b.publicQuery,160))throw Error('invalid_request');
  return {goal:b.goal.trim(),lang:b.lang,cadence:b.cadence,web:b.web,publicQuery:b.web?b.publicQuery.trim():'',memory:b.memory.map(m=>m.trim()),nonce:b.nonce};
@@ -49,12 +49,15 @@ export function calculate(expression){
  function sum(){let v=product();while(['+','-'].includes(ts[at])){const op=ts[at++],n=product();v=op==='+'?v+n:v-n;}return v;}
  const value=sum();if(at!==ts.length||!Number.isFinite(value)||Math.abs(value)>1e15)throw Error('invalid_calculation');return {expression,value};
 }
+// Export is another rendering boundary. Only validated source URLs become links;
+// user, model and retrieved text must remain literal text in Markdown readers.
+export function markdownText(value){return String(value??'').replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,' ').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/[\\`*_{}\[\]()#+.!|~:\-]/g,'\\$&');}
 export function markdown(task){
- const r=task.result||{},lines=['# '+task.input.goal,'',`Status: ${task.status}`,`Run: ${task.runs}; checked: ${r.checkedAt||'pending'}`,'',r.report?.summary||'Source pack only. AI synthesis was not completed.',''];
- for(const f of r.report?.findings||[])lines.push('- '+f.text+' ['+f.sourceIds.join(', ')+']');
- lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+a.action+'\n  Done when: '+a.doneWhen);
- lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+s);
- lines.push('','## Sources');for(const s of r.sources||[])lines.push(`- [${s.id}] ${s.title}\n  ${s.url||'Local arithmetic'}\n  ${s.description||''}`);
- lines.push('','## Execution record');for(const l of r.log||[])lines.push(`- ${l.at}: ${l.step} — ${l.outcome}`);
+ const m=markdownText,r=task.result||{},lines=['# '+m(task.input.goal),'',`Status: ${m(task.status)}`,`Run: ${m(task.runs)}; checked: ${m(r.checkedAt||'pending')}`,'',m(r.report?.summary||'Source pack only. AI synthesis was not completed.'),''];
+ for(const f of r.report?.findings||[])lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');
+ lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));
+ lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+m(s));
+ lines.push('','## Sources');for(const s of r.sources||[]){const url=safeURL(s.url);lines.push(`- [${m(s.id)}] ${m(s.title)}\n  ${url?'<'+url.replace(/</g,'%3C').replace(/>/g,'%3E')+'>':'Local arithmetic / unavailable link'}\n  ${m(s.description||'')}`);}
+ lines.push('','## Execution record');for(const l of r.log||[])lines.push(`- ${m(l.at)}: ${m(l.step)} — ${m(l.outcome)}`);
  return lines.join('\n');
 }
