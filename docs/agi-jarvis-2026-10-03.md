@@ -59,3 +59,11 @@ Continue from latest main, preserve concurrent site changes, and select one evid
 4. Measure repeat use before developing a paid offer. Register an MCP or installable skill if one is actually developed; this release does not add either.
 
 Required checks: `node --test sites/agiscorecard/tools/jarvis/test.mjs`; `node sites/agiscorecard/tools/jarvis/browser-test.mjs`; normal site validate/hreflang/home-focus and fleet GA4 checks. After generators run analytics coverage write/check. Live read-only `verify.mjs`; a separate deliberate live task checks actual inference. Do not reset the production quota to make a test pass.
+
+## Release preflight evidence
+
+- 18 Jarvis unit/SQLite tests passed. EN/ZH Jarvis and Future Guide browser journeys passed, including 360px layouts, source export, memory escaping, pause/delete and the new homepage entry. Model responses in these tests are fixtures.
+- Real public GitHub and Hacker News metadata searches each returned four records. The deployed model and Cloudflare-side searches still require a separate live mission.
+- Run 37115007321 passed all predeployment build, browser, site, SEO and GA4 checks. It did not deploy: the current-main guard detected the unrelated German trends update `f0ed85e0` during the build. Keep that update and launch a fresh build from current main; do not weaken the guard.
+- New Jarvis event receipt, distinct customers, retention and revenue remain unverified. Keep private analytics account identifiers and reporting data out of this public repository.
+- The hosted development automation is enabled daily at 08:00 Asia/Shanghai starting October 4. It performs one bounded iteration from latest main; it does not promise continuous sandbox execution or a successful improvement every day.
