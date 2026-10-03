@@ -2939,7 +2939,7 @@ Q: What can Jarvis do today?
 A: Research AI work, learning and product ideas using our editorial catalog. With your choice, it can search GitHub and Hacker News metadata. It can calculate, compare findings and draft concrete next steps. It cannot control your computer, access your accounts, send messages or buy things.
 
 Q: Does it continue when I leave?
-A: Submitted tasks are stored on the server. A background runner checks the queue every 15 minutes. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task.
+A: Submitted tasks are stored on the server. A background runner checks the queue about every two hours; scheduled checks can be delayed. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task.
 
 Q: What happens when AI is unavailable?
 A: You get the matching source pack and an explicit limited status. No preset is passed off as AI output. Each run uses at most two model calls, sharing the existing site allowance of 12 attempts per 24-hour window and 3 per IP window. Failed attempts count too.
@@ -2962,7 +2962,7 @@ Q: 现在可以做什么？
 A: 可以检索站内 AI 工作、学习与产品观点；经你选择后，可检索 GitHub 和 Hacker News 的公开元数据。支持算术、比较发现与制定下一步。当前不能控制电脑、访问你的账户、发消息或购买商品。
 
 Q: 关闭网页后会继续吗？
-A: 提交的任务会保存到服务器，后台每 15 分钟检查队列。每日跟踪最多运行 7 次，持续 7 天；结果在这里查看，暂无邮件或推送通知。你可以暂停或删除任务。
+A: 提交的任务会保存到服务器，后台约每两小时检查队列，调度可能延迟。每日跟踪最多运行 7 次，持续 7 天；结果在这里查看，暂无邮件或推送通知。你可以暂停或删除任务。
 
 Q: AI 额度不足时怎么办？
 A: 保留匹配的资料包，并明确标记受限状态，不把预设文案冒充 AI 输出。每次运行最多调用模型两次，与站点共享现有每 24 小时窗口 12 次、每 IP 窗口 3 次的额度；失败也计数。

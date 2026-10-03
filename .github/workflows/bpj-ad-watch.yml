@@ -87,3 +87,16 @@ jobs:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tools/member-studio/ops.mjs watch-all
+
+      # Reuse this existing schedule; no extra jobs/cron slots. Up to two due
+      # Jarvis tasks, under the unchanged shared 12-attempt model window.
+      # At the two-request timeout ceiling: <=36 extra runner minutes/day;
+      # typical empty queue does no inference. No new paid service.
+      - name: Continue bounded Jarvis missions
+        if: always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'watch')
+        timeout-minutes: 4
+        working-directory: ${{ github.workspace }}
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node sites/agiscorecard/tools/jarvis/ops.mjs run

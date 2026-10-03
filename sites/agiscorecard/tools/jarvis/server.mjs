@@ -8,14 +8,20 @@ const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-
 const json=(data,status=200)=>Response.json(data,{status,headers});
 const idOK=s=>/^[a-f0-9]{32}$/.test(s||'');
 export async function jarvisRoute(request,env,ctx){
- const u=new URL(request.url);if(!['/api/jarvis','/api/jarvis/tasks'].includes(u.pathname))return null;
+ const u=new URL(request.url);if(!['/api/jarvis','/api/jarvis/tasks','/api/jarvis/run'].includes(u.pathname))return null;
  if(!['agiscorecard.com','www.agiscorecard.com','localhost','127.0.0.1'].includes(u.hostname))return json({ok:false,code:'origin'},403);
- if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:15,retentionDays:30,mode:'research_pilot',paid:false});
+ if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:120,retentionDays:30,mode:'research_pilot',paid:false});
  if(!['GET','POST'].includes(request.method))return json({ok:false,code:'method'},405);
  if(request.method==='POST'&&(request.headers.get('origin')!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site'))return json({ok:false,code:'origin'},403);
  try{
   const token=(request.headers.get('authorization')||'').replace(/^Bearer /,'');if(!/^[a-f0-9]{64}$/.test(token))throw Error('unauthorized');
   const db=env.EVENTS;if(!db||!env.MEMBER_WATCH_SECRET)throw Error('unavailable');
+  if(u.pathname==='/api/jarvis/run'){
+   const expected=await hash(env.MEMBER_WATCH_SECRET+':jarvis-runner:v1');if(await hash(token)!==await hash(expected))throw Error('unauthorized');
+   if(request.method==='GET')return json({ok:true,version:VERSION,runner:'bounded_private_queue',maxTasksPerRequest:1});
+   await ensure(db);await limit(db,'jarvis-runner',4,60);
+   return json(await tick(env,{maxTasks:1}));
+  }
   await ensure(db);const owner=await hash('jarvis-owner:v1:'+token);
   const ip=await hash(env.MEMBER_WATCH_SECRET+':relay:'+new Date().toISOString().slice(0,10)+':'+(request.headers.get('CF-Connecting-IP')||'unknown'));
   await limit(db,'jarvis-request:'+ip,60,60);

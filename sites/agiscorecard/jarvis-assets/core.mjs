@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261003-1';
+export const VERSION='jarvis-20261003-2';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -10,6 +10,7 @@ export function inputOf(b){
  return {goal:b.goal.trim(),lang:b.lang,cadence:b.cadence,web:b.web,publicQuery:b.web?b.publicQuery.trim():'',memory:b.memory.map(m=>m.trim()),nonce:b.nonce};
 }
 export function parseObject(raw){
+ if(raw&&typeof raw==='object'&&!Array.isArray(raw)){try{raw=JSON.stringify(raw);}catch{throw Error('invalid_model_output');}}
  if(typeof raw!=='string'||raw.length>14000)throw Error('invalid_model_output');
  try{return JSON.parse(raw.trim().replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,''));}catch{throw Error('invalid_model_output');}
 }

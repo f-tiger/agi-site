@@ -10,7 +10,7 @@ Research AI work, learning and product ideas using our editorial catalog. With y
 
 **Does it continue when I leave?**
 
-Submitted tasks are stored on the server. A background runner checks the queue every 15 minutes. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task.
+Submitted tasks are stored on the server. A background runner checks the queue about every two hours; scheduled checks can be delayed. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task.
 
 **What happens when AI is unavailable?**
 

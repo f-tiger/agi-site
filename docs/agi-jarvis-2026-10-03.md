@@ -5,7 +5,7 @@ Owner instruction on 2026-10-03: autonomously explore a useful personal agent in
 ## Three refinement passes
 
 1. Outcome: a person can bring a real AI work, learning or product-research goal and leave with sources, a specific next action and a completion criterion. The long-term ambition is a persistent assistant; first-user segment and willingness to pay remain hypotheses.
-2. Constraints: current sandbox has 9 CPU cores and roughly 10 GB RAM, no observed GPU. Reuse the existing Worker, D1 and AI binding. Do not train a foundation model, add a provider subscription or treat transient sandbox processes as persistent hosting. Preserve the existing AGI content, countdown, poll and the separate ecommerce-reporting mentor.
+2. Constraints: current sandbox has 9 CPU cores and an 8 GiB cgroup memory cap, no observed GPU. Reuse the existing Worker, D1 and AI binding. Do not train a foundation model, add a provider subscription or treat transient sandbox processes as persistent hosting. Preserve the existing AGI content, countdown, poll and the separate ecommerce-reporting mentor.
 3. Acceptance: real persisted tasks, bounded allowed tools, user-controlled memory, evidence-bearing results, clear model failures, bilingual mobile flows, privacy controls, analytics, live deployment checks and a continuing development job.
 
 ## Product evidence and decision
@@ -27,11 +27,11 @@ Execution: durable request → catalog observation → model plan → at most th
 
 Persistence: random 256-bit browser capability; only its SHA-256 hash is stored on the server. Owner-filtered reads/writes, same-origin mutations, no CORS, no-store/noindex private APIs, no keys in URLs. Editable memories stay local unless selected for a submitted task. Cloud tasks and selected context have 30-day retention; deletion removes the active task. No cross-device recovery is provided; clearing the browser key loses access. Maximum 3 active and 20 saved tasks per owner, 3 admissions per IP window and 24 site-wide admissions/day. Saved inputs are not encrypted at the application layer; do not submit sensitive data.
 
-Continuity: Worker cron every 15 minutes selects at most two due tasks through an index. HTTP runs checkpoint before exceeding their time budget; completed planning/tool work is reused. Explicit pause/delete prevents subsequent tool calls or stale completion writes. Interrupted leases remain visibly interrupted, available for manual retry. Daily watches run up to seven occurrences in seven days. Results are visible in the workspace; no email, Telegram or push notifications are promised.
+Continuity: The existing two-hourly maintenance workflow selects at most two due tasks through an authenticated bounded runner. Scheduling may be delayed. HTTP runs checkpoint before exceeding their time budget; completed planning/tool work is reused. Explicit pause/delete prevents subsequent tool calls or stale completion writes. Interrupted leases remain visibly interrupted, available for manual retry. Daily watches run up to seven occurrences in seven days. Results are visible in the workspace; no email, Telegram or push notifications are promised.
 
 Compute: smaller 8B model for this pilot; maximum 2 model calls/run, 550 planning and 1,400 synthesis output tokens. It shares Relay/Mentor's existing 12-attempt global window and 3-attempt IP window; failed attempts count and no limit is raised. Source retrieval survives model failure with an explicit source-pack label. This does not establish equivalence to a larger model or savings relative to a measured baseline. Actual provider usage is stored when returned; unknown usage remains null.
 
-New scheduler accounting: 96 lightweight Worker triggers/day = 2,880 in a 30-day month. This is not a GitHub Actions cron and adds zero scheduled Actions minutes. At most 2 due tasks/check; global model budget remains unchanged. Indexed empty-queue checks and bounded cleanup avoid scanning analytics tables. Existing hosting resource usage may change; no new subscription, paid compute purchase or unbounded API spending is authorized by this release.
+Revised scheduler accounting: reuse the existing two-hourly maintenance job (12 existing runs/day); add zero job starts and zero Worker cron slots. The new step has a four-minute timeout ceiling: 48 added runner minutes/day or 1,440/30 days is a configuration ceiling, not measured consumption. Empty queues do not infer. At most 2 due tasks/check; global model budget remains unchanged. Indexed empty-queue checks and bounded cleanup avoid scanning analytics tables. Existing hosting resource usage may change; no new subscription, paid compute purchase or unbounded API spending is authorized by this release.
 
 ## Two adversarial self-checks
 
@@ -67,3 +67,7 @@ Required checks: `node --test sites/agiscorecard/tools/jarvis/test.mjs`; `node s
 - Run 37115007321 passed all predeployment build, browser, site, SEO and GA4 checks. It did not deploy: the current-main guard detected the unrelated German trends update `f0ed85e0` during the build. Keep that update and launch a fresh build from current main; do not weaken the guard.
 - New Jarvis event receipt, distinct customers, retention and revenue remain unverified. Keep private analytics account identifiers and reporting data out of this public repository.
 - The hosted development automation is enabled daily at 08:00 Asia/Shanghai starting October 4. It performs one bounded iteration from latest main; it does not promise continuous sandbox execution or a successful improvement every day.
+
+## Expanded research and runtime revision
+
+See [the expanded research and revised experiment plan](agi-jarvis-expanded-research-2026-10-03.md), requested by the owner before further optimization. The initial live plan failed output validation, and cron registration hit the account limit; neither is counted as successful delivery. Revision 2 uses structured schemas/native JSON compatibility and the existing maintenance schedule. Twenty unit/SQLite tests cover these boundaries; actual inference must be retested separately.

@@ -4,7 +4,7 @@ import {evidenceFunnelRoute} from '../evidence-funnel.mjs';
 import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
 import {mentorRoute} from '../mentor/server.mjs';
-import {jarvisRoute,tick as jarvisTick} from '../jarvis/server.mjs';
+import {jarvisRoute} from '../jarvis/server.mjs';
 import {communityRoute} from '../community/server.mjs';
 import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 import {aggregateCache} from './aggregate-cache.js';
@@ -249,9 +249,6 @@ const srcBucket = (host, self) => {
 };
 
 export default {
-  async scheduled(_event,env,ctx) {
-    ctx.waitUntil(jarvisTick(env));
-  },
   async fetch(request, env, ctx) {
     const jarvisResponse=await jarvisRoute(request,env,ctx);if(jarvisResponse)return jarvisResponse;
     const portfolioResponse=await portfolioRoute(request,env);if(portfolioResponse)return portfolioResponse;

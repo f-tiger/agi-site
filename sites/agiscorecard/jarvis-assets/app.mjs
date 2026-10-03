@@ -27,7 +27,7 @@ function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#com
  const r=task.result||{},top=el('div',undefined,'status-line');top.append(el('span',labels[task.status]||task.status,'status-pill'),el('span',t('Run ','已运行 ')+task.runs+(task.input.cadence==='daily'?' / 7':'')));d.append(top,el('h2',task.input.goal,'mission-title'));
  const pipeline=el('ol',undefined,'pipeline'),steps=[['observe',t('Observe','观察')],['plan',t('Plan','规划')],['tools',t('Use tools','调用工具')],['verify',t('Check','检查')],['complete',t('Deliver','交付')]],stage=task.stage==='thinking'?'plan':task.stage;
  for(const [id,label] of steps)pipeline.append(el('li',label,(id===stage||stage==='complete')?'active':''));d.append(pipeline);
- if(task.status==='queued'||task.status==='running')d.append(el('p',t('This task is saved. You can leave this page; the background runner checks queued work every 15 minutes.','任务已保存。你可以离开页面，后台每 15 分钟检查待执行任务。'),'notice'));
+ if(task.status==='queued'||task.status==='running')d.append(el('p',t('This task is saved. You can leave this page; the background runner checks queued work about every two hours; scheduled checks can be delayed.','任务已保存。你可以离开页面，后台约每两小时检查待执行任务，调度可能延迟。'),'notice'));
  if(task.stage==='interrupted')d.append(el('p',t('The previous worker stopped before completion. Review the retained record, then choose Run again.','上次运行在完成前中断。请查看保留的记录，再点击重新运行。'),'notice'));
  if(r.reason)d.append(el('p',(reasons[r.reason]||reasons.run_failed)+' '+t('These are retrieved sources, not a completed AI report.','以下是检索到的资料，不是已完成的 AI 报告。'),'notice'));
  if(r.report){d.append(el('p',r.report.summary,'report-summary'));if(r.report.findings.length)d.append(el('h3',t('What the evidence says','证据说明了什么')));
