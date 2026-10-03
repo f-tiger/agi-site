@@ -23,3 +23,11 @@ Nine isolated local Git tests cover stale checkout refresh, initial fetch failur
 Two adversarial checks informed the repair: (1) a cached remote ref after network failure cannot serve as evidence of freshness; (2) resetting to main after validation would publish untested source, while cancelling an active upload can produce an ordering race. Both now stop or serialize the operation rather than relaxing quality gates.
 
 No new scheduled task, model call, account, secret, content template or MCP contract. Existing SEO/GEO verification and changed-URL IndexNow policies remain active. No blanket indexing submission is warranted by a workflow-only repair. Production results belong in the merged PR's deployment receipts; do not report a pending run as successful.
+
+## First replacement runs and follow-up
+
+PR #89 merged at `0463a46b27d692171bd764418f77d323fd0607d9`. ECO run `37096005315` passed every step; both source checks recorded this SHA, live GA4 verified 47 consent routes, and IndexNow calculated zero changed URLs. AGI run `37096005398` passed both source checks and deployed this same SHA. Its live paper-ledger JSON exactly matched the latest repository content (semantic SHA-256 `930cca09d1a6cae73d17e64232e17fa3baf789028a612759394e29325a6b1cc4`), confirming the newer ledger was preserved.
+
+AGI then stopped at Work Mentor's member-ready assertion. The public member API returned `ready:false`; membership readiness requires a health record younger than four hours. The last successful independent watcher run was over four hours earlier. The deployment already had a watcher/health refresh, but placed it *after* Mentor's readiness assertion, making recovery unreachable when readiness had expired. This is an ordering defect, not a reason to relax readiness or payment checks.
+
+The follow-up moves that existing bounded watcher plus full membership verification immediately after deployment and before Work Mentor verification. It adds no new watcher invocation, credentials, schedule or payment behavior. Failure still blocks subsequent acceptance. The deployment SHA guards and serialization remain intact. YAML dependency order and all nine rollback fixtures pass; final production results must be checked on the follow-up run.
