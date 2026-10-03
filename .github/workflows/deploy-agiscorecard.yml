@@ -24,6 +24,10 @@ on:
         description: "Run real Relay inference after deploy (uses the existing quota)"
         type: boolean
         default: false
+      refresh_future:
+        description: "Refresh public interview and creator feeds before deploying"
+        type: boolean
+        default: false
   # 每日兜底部署(2026-09-11)。本站此前**没有自己的 schedule**——它每天能重新部署
   # 纯属副作用:fleet-trends.yml 每天把 trends-us.json 提交进 sites/agiscorecard/,
   # 撞上了本工作流的 path 过滤。那条链一停(09-08 GitHub 整天丢掉了全部计划运行),
@@ -37,7 +41,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  future-discovery:
+    name: Discover interviews and creator videos
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh_future == true) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Validate discovery failure and freshness handling
+        run: python3 sites/agiscorecard/tools/foresight/test_refresh.py
+      - name: Read bounded public publisher feeds
+        run: python3 sites/agiscorecard/tools/foresight/refresh.py
+      - name: Preserve the current snapshot and visible source status
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sites/agiscorecard/foresight-assets/discovery.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(agi): refresh public interview discovery and source health'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Report any unavailable source after preserving its last good content
+        run: |
+          python3 - <<'PY'
+          import json
+          s=json.load(open('sites/agiscorecard/foresight-assets/discovery.json'))
+          print(s['checkedAt'], len(s['items']), 'items')
+          bad=[x['id'] for x in s['sources'] if x['status']!='ok']
+          assert not bad, 'Sources unavailable (cached content retained): '+', '.join(bad)
+          PY
   deploy:
+    needs: future-discovery
+    # A source outage must remain visible but must not stop the site deploying
+    # its last good content. Push runs skip discovery and only build/test/deploy.
+    if: ${{ always() && !cancelled() }}
     runs-on: ubuntu-latest
     outputs:
       deployed_sha: ${{ steps.release.outputs.sha }}
@@ -74,6 +116,7 @@ jobs:
 
       - name: Build and validate need-led future guide
         run: |
+          python3 sites/agiscorecard/tools/foresight/test_refresh.py
           node sites/agiscorecard/tools/foresight/build.mjs
           node sites/agiscorecard/tools/foresight/build.mjs --check
           node --test sites/agiscorecard/tools/foresight/test.mjs

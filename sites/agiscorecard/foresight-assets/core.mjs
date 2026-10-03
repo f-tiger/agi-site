@@ -1,4 +1,4 @@
-import {claims,goals,interviews} from './catalog.mjs';
+import {claims,goals,interviews,reviewed} from './catalog.mjs';
 export const PRODUCT='future-guide';
 export const blank=()=>({goal:'work',saved:[],notes:{}});
 const ids=new Set(claims.map(c=>c.id)),goalIds=new Set(goals.map(g=>g.id));
@@ -17,4 +17,12 @@ export function normalize(raw){
   }
   return {version:1,product:PRODUCT,values:out};
 }
-export function selectClaims(goal,query='',saved=null){const q=query.trim().toLowerCase();return claims.filter(c=>(!goal||goal==='all'||c.goals.includes(goal))&&(!saved||saved.includes(c.id))&&JSON.stringify([c.en,c.zh,interviews[c.interview].speaker]).toLowerCase().includes(q));}
+export const mediaLabel=(i,lang)=>({video:{en:'Video',zh:'视频'},audio:{en:'Audio',zh:'音频'},text:{en:'Written interview',zh:'文字访谈'}}[i.kind][lang]);
+export const sourceUrl=(i,start=null)=>i.video?'https://www.youtube.com/watch?v='+i.video+(Number.isInteger(start)?'&t='+start+'s':''):i.watch||i.source;
+export const ageDays=(date,asOf=new Date().toISOString().slice(0,10))=>Math.floor((Date.parse(asOf)-Date.parse(date))/86400000);
+export function inWindow(date,window='all',asOf){const age=ageDays(date,asOf);return Number.isFinite(age)&&age>=0&&(window==='all'||window==='archive'&&age>90||['30','90'].includes(window)&&age<Number(window));}
+export function selectClaims(goal,query='',saved=null,options={}){
+ const q=query.trim().toLowerCase();
+ return claims.filter(c=>{const i=interviews[c.interview];return (!goal||goal==='all'||c.goals.includes(goal))&&(!saved||saved.includes(c.id))&&(!options.interview||options.interview===c.interview)&&inWindow(i.date,options.window,options.asOf)&&JSON.stringify([c.en,c.zh,i.speaker,i.label,i.title,i.publisher]).toLowerCase().includes(q);}).sort((a,b)=>interviews[b.interview].date.localeCompare(interviews[a.interview].date)||a.id.localeCompare(b.id));
+}
+export const reviewedCounts={interviews:Object.keys(interviews).length,claims:claims.length,recent:Object.values(interviews).filter(i=>inWindow(i.date,'30',reviewed)).length};

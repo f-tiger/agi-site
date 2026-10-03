@@ -1165,3 +1165,7 @@ The dynamic follow-up uses TradingView cross-origin frames (US quotes explicitly
 行动记录本机保存/导出免费；`future-guide` 复用 AGI 现有会员云端存储目录与配额，会员页必须再次点击保存才上传。未新增模型预算、提醒、报告订阅或账户。新入口由 `build_home_focus.py` 管理，必须保留首屏倒计时和紧随其后的五项投票。新入口改变 10-03–16 原证据实验的展示环境，前后不得视为干净对照。
 
 变更运行 `node --test tools/foresight/test.mjs`、根仓 `node sites/agiscorecard/tools/foresight/member-test.mjs`、`browser-test.mjs`，及原站 validate/hreflang/home-focus；上线跑只读 `verify.mjs`。固定动作仅主动同意统计后记录，搜索词/笔记/立场值不进入统计，付款按已核验订单单独计量。设计、对标与商业假设见根仓 `docs/agi-future-guide-design-2026-10-03.md`。
+
+### 2026-10-03 Future Guide 持续内容发现
+
+Owner 要求知名播客/科技博主/视频解说和站点自主刷新。扩充后为 16 场已核对访谈、30 条观点、64 张双语页；`foresight-assets/recent.mjs` 为新增编辑记录，`sources.json` 为 10 个公开订阅源，`discovery.json` 为自动发现快照。自动发现不等于核对观点；发布、首次发现、最近检查分别记时。`tools/foresight/refresh.py` 每源最多 12 条、总计 120 条、180 天窗，保留失败源上次内容。原部署 daily schedule 先执行独立 discovery job，再从 main 构建；push 不抓外部源，手动 `refresh_future=true` 可刷新。不要把 job 失败悄悄变成全绿。来源复核日期仅真实编辑核阅后改变。详情见 `docs/agi-future-discovery-2026-10-03.md`；新增 `test_refresh.py` 与 browser-test 中的来源/语言/时间/分页检查。原收藏格式、会员配额和首页倒计时保持兼容。
