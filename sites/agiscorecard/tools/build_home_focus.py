@@ -79,6 +79,7 @@ def hero(d, zh):
   <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
   {desk}
   <nav class="focus-routes" aria-label="{'选择用途' if zh else 'Choose your task'}">{routes}</nav>
+  <p>{action(base+'/portfolio-tracker','公开追踪：12 股组合能跑赢标普和 TQQQ 吗？' if zh else 'Public tracker: can twelve popular stocks beat SPY and TQQQ?', 'portfolio_tracker')}</p>
   <p class="focus-boundary">{'判定记录与网站更新分开标注。页面改版不代表证据重新核验。' if zh else 'Evidence dates and site updates are shown separately. A site update does not mean a verdict was reassessed.'}</p>
 </section>'''
 

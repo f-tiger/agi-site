@@ -80,3 +80,43 @@ jobs:
         # 故意放在 commit 之后:测试红了要告警(GitHub 失败邮件),但执行器的 bug 不该
         # 连坐让当天台账发不出去 —— 「一条流水线死 = 整站冻结」是 09-04 已经吃过的亏。
         run: python3 tools/trader/test_mirror.py
+
+  public-portfolio:
+    # Isolated from experimental LLM/trading arms; no broker or paid model access.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Validate and refresh the forward-registered public portfolio
+        run: |
+          python3 sites/agiscorecard/tools/portfolio/test_data.py
+          python3 sites/agiscorecard/tools/portfolio/refresh.py
+      - name: Preserve the dated record and request the current-main deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sites/agiscorecard/portfolio-assets/snapshot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(agi): update registered portfolio observation'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          # GITHUB_TOKEN pushes do not start push workflows; explicitly dispatch once.
+          gh workflow run deploy-agiscorecard.yml --ref main
+      - name: Report incomplete market data after preserving its visible status
+        run: |
+          python3 - <<'PY'
+          import json
+          s=json.load(open('sites/agiscorecard/portfolio-assets/snapshot.json'))
+          assert s['status'] in ('awaiting_entry','tracking'), 'Public portfolio data incomplete; last complete record retained'
+          print(s['status'],s['as_of'])
+          PY

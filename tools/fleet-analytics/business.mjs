@@ -31,6 +31,9 @@ export function businessEvent(host, pathname, detail) {
     if (parts.length === 3 && parts[0] === 'home' && blocks.includes(parts[1]) && destinations.includes(parts[2]))
       return {name:'home_click', home_block:parts[1], home_destination:parts[2], site_edition:pathname.startsWith('/en')?'en':'zh', repeat:true};
   }
+  if (host === 'agiscorecard.com' && route === '/portfolio-tracker' && ['stress','dca','leverage','save_local','export','share','performance_export','cloud_intent'].some(a => name === 'portfolio_' + a)) {
+    return {name, tool_id:'portfolio-tracker'};
+  }
   const match = /^\/workbench\/([a-z0-9-]+)$/.exec(route);
   if (match && workbench[host]?.includes(match[1])) {
     const action = /^workbench_(example_)?(start|complete|export)$/.exec(name);

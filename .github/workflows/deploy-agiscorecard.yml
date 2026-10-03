@@ -108,6 +108,12 @@ jobs:
       - name: Validate Relay stories, permissions and cost caps
         run: node --test sites/agiscorecard/tools/create/test.mjs sites/agiscorecard/tools/create/ai-check-test.mjs
 
+      - name: Build and verify registered portfolio tracker
+        run: |
+          python3 sites/agiscorecard/tools/portfolio/build.py
+          python3 sites/agiscorecard/tools/portfolio/test_data.py
+          node --test sites/agiscorecard/tools/portfolio/test.mjs
+
       - name: Validate investment research arithmetic and portable records
         run: node --test sites/agiscorecard/tools/test_invest_research.mjs
 
@@ -173,6 +179,7 @@ jobs:
           node sites/agiscorecard/tools/earn/browser-test.mjs
           node tools/member-studio/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
+          node sites/agiscorecard/tools/portfolio/browser-test.mjs
           node sites/agiscorecard/tools/infrastructure/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard

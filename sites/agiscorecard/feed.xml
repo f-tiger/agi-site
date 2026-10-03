@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-10-02T00:00:00Z</updated>
+  <updated>2026-10-03T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Can a popular stock basket beat the market? | AGI Scorecard</title>
+    <link href="https://agiscorecard.com/portfolio-tracker"/>
+    <id>https://agiscorecard.com/portfolio-tracker</id>
+    <updated>2026-10-03T00:00:00Z</updated>
+    <summary>A forward-registered twelve-stock paper portfolio versus SPY, QQQ and TQQQ. Follow matched returns and drawdowns, test position risk and save your review.</summary>
+  </entry>
   <entry>
     <title>AGI-2027 Thesis Tracker: One Score for the 2027 Bet</title>
     <link href="https://agiscorecard.com/progress-index"/>
@@ -39,11 +46,11 @@
     <summary>A dated verdict: fear (79%) vs the economy-wide record (4.2% unemployment, no discernible disruption) vs one real early signal: ages 22–25 in exposed jobs.</summary>
   </entry>
   <entry>
-    <title>AI 进展与 AGI 预测证据 | AGI 记分牌</title>
+    <title>AGI 倒计时、进展与预测证据 | AGI 记分牌</title>
     <link href="https://agiscorecard.com/cn"/>
     <id>https://agiscorecard.com/cn</id>
     <updated>2026-10-02T00:00:00Z</updated>
-    <summary>追踪《态势感知》的 8 项 AGI 预测，核对来源、判定与翻转条件。自行评分，并查看 AI 对工作和投资研究的影响。</summary>
+    <summary>查看 2027 年观察节点倒计时，追踪《态势感知》的 8 项 AGI 预测。核对来源与判定条件，自行评分，了解 AI 对工作与投资研究的影响。</summary>
   </entry>
   <entry>
     <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/grader-consensus</id>
     <updated>2026-09-27T00:00:00Z</updated>
     <summary>Our 8 Situational Awareness verdicts beside four independent public gradings, quoted verbatim: 9 agree, 6 same direction, 1 disagreement.</summary>
-  </entry>
-  <entry>
-    <title>Calibration: We Score Our Own Predictions in Public</title>
-    <link href="https://agiscorecard.com/calibration"/>
-    <id>https://agiscorecard.com/calibration</id>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <summary>How we score our own calls: 8 graded verdicts, 8 scored market calls (5 hits), Brier-eligible n=0, timestamp proofs you can check here.</summary>
   </entry>
 </feed>
