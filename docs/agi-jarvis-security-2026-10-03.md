@@ -14,7 +14,7 @@ Three refinements: identify the permission and cost boundaries; reproduce failur
 | Markdown export interpreted untrusted markup | A synthetic report exported raw image HTML and executable Markdown links | Escape user/model/source text, fold line breaks and controls, and create links only for validated source URLs. UI output continues to use text nodes. |
 | Workspace lacked browser containment headers | Live English and Chinese responses had no CSP or frame-denial headers | Fresh per-response script nonces, same-origin script/connect/frame policies, no framing, no objects/workers, no referrer, restricted browser capabilities, no conditional HTML reuse. Existing navigation, first-party measurement and opt-in GA4 are retained. |
 | Byte limits did not provide a read deadline | Existing JSON reader stopped at 16,000 bytes but could wait indefinitely for a stalled stream | A 5-second request-body deadline and the same byte limit; cancellation cannot block the response. Public source reads have an 8-second overall fetch/body allowance and a 350,000-byte cap. |
-| Public retrieval had no separate execution allowance | Creation/resume limits existed, but retrieval ran before model-quota admission | Atomic public-search reservations: at most 24 runs per shared 24-hour window and 6 per IP-key window; up to two fixed public searches per run. Checkpoints retain a reservation instead of charging it again. This does not alter AI quotas. |
+| Public retrieval had no separate execution allowance | Creation/resume limits existed, but retrieval ran before model-quota admission | Atomic public-search reservations: at most 24 runs per shared 24-hour window and 6 per IP-key window. New runs use two fixed public searches; older checkpoints retain their existing maximum of three tool actions. Checkpoints retain a reservation instead of charging it again. This does not alter AI quotas. |
 | Upstream metadata had uneven type/length validation | IDs, stars and dates were less constrained than titles/descriptions | Restrict identifier shape/size, URLs, numeric stars and date strings before storing or building model schemas. Reject array-valued request IDs and nonces. |
 
 The review did not reproduce cross-owner task access, an unauthenticated runner, arbitrary URL fetching, model-selected external tools or model-to-HTML execution. These boundaries are pinned by regression tests. A source redirect is rejected without following it.
@@ -28,6 +28,16 @@ The review did not reproduce cross-owner task access, an unauthenticated runner,
 - The release workflow runs both engineering and security test files, then checks live response nonces, CSP, frame denial, metadata, private API boundaries, navigation and analytics assets. The workflow receipt is the evidence for deployment completion; a local test alone does not establish a live result.
 
 No production inference allowance was consumed by this review. No live burst test, identity rotation or limit reset was used. The shared AI limits remain 12 attempts per 24-hour window and 3 per IP-key window; unsuccessful calls still consume quota.
+
+## Deployment receipt
+
+The security patch is commit `c4cc7348f7ada1f6c2f1c10399e91f730c766f56`. Its first build passed validation but correctly refused deployment when main advanced. The subsequent main commit `e9f4dc3a33a1675df0ae5a9beffa4c486ab0bd42` includes the unchanged patch plus a separate homepage update.
+
+[Deployment 37122955439](https://github.com/f-tiger/agi-site/actions/runs/37122955439) completed successfully at 2026-10-03 12:33 UTC. Deploy job `111202720985` completed 50 steps successfully, including the new security tests, bilingual browser journeys, live Jarvis policies, private runner/source checks, navigation and GA4 coverage. The optional live model job was skipped as intended; it is not counted as a model-quality pass.
+
+Independent post-deploy checks returned HTTP 200 and `jarvis-20261003-5` for both public pages, matching script nonces and CSP headers, denied unauthorized private APIs, and unchanged model limits. Chromium loaded the actual production responses for both languages at 390 px with zero JavaScript or CSP console errors and no private API calls. The sandbox proxy's CA is not trusted directly by Chromium, so this browser check used Node's TLS-verified managed transport to deliver the production responses; certificate verification was not disabled. Local attack fixtures ran separately.
+
+GA4 tag/asset/consent integration checks passed. No new GA4 backend receipt or genuine-user conversion was claimed from these excluded QA visits.
 
 ## Remaining boundaries
 
