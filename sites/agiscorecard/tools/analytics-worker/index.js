@@ -1,3 +1,4 @@
+import {portfolioData,portfolioRoute} from '../portfolio/api.mjs';
 import {evidenceFunnelRoute} from '../evidence-funnel.mjs';
 import {infrastructureRoute} from '../infrastructure/server.mjs';
 import {createRoute} from '../create/server.mjs';
@@ -247,6 +248,7 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    const portfolioResponse=await portfolioRoute(request,env);if(portfolioResponse)return portfolioResponse;
     const mentorResponse=await mentorRoute(request,env);if(mentorResponse)return mentorResponse;
     const infrastructureResponse=await infrastructureRoute(request,env);if(infrastructureResponse)return infrastructureResponse;
     const createResponse=await createRoute(request,env);if(createResponse)return createResponse;
@@ -272,7 +274,7 @@ export default {
           return mcpOk(id, {
             protocolVersion: (rpc.params && rpc.params.protocolVersion) || '2025-06-18',
             capabilities: { tools: {} },
-            serverInfo: { name: 'agiscorecard', version: '0.1.0' },
+            serverInfo: { name: 'agiscorecard', version: '0.2.0' },
             instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, the AI Gold Rush claim ledger (Claim Ledger Protocol v0.1), and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
           });
         }
@@ -282,6 +284,10 @@ export default {
         if (rpc.method === 'ping') return mcpOk(id, {});
         if (rpc.method === 'tools/list') {
           return mcpOk(id, { tools: [
+            { name: 'get_portfolio_returns',
+              description: 'Read the public twelve-stock model portfolio versus SPY (S&P 500 ETF proxy), QQQ and TQQQ. Fixed entry: 2026-10-02 NY close. Returns dated adjusted-close returns, drawdowns, excess SPY percentage points, entry prices, freshness and source links. No trading or return promises. Set include_history for normalized daily series.',
+              annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+              inputSchema: { type: 'object', properties: { include_history: { type: 'boolean', default: false } }, additionalProperties: false } },
             { name: 'get_thesis_tracker',
               description: 'The AGI-2027 Thesis Tracker: a single auditable 0-100 score of how much of Aschenbrenner\'s Situational Awareness thesis is holding up, with method and full score history.',
               inputSchema: { type: 'object', properties: {} } },
@@ -289,7 +295,7 @@ export default {
               description: 'All 8 graded Situational Awareness predictions with current verdict, evidence summary and primary sources, plus how independent public graders scored the same predictions (verbatim quotes, links, agreement counts under a published rule, including where they disagree with us). The dataset AI assistants cite for "was Aschenbrenner right" questions.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_sunwatch_track_record',
-              description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
+              description: 'The SunWatch editorial market-call ledger (invest.agiscorecard.com), outcome labels and evidence audit. These labels are not a trade win rate or verified net return; inspect registration and return evidence before making performance claims.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_claim_ledger',
               description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
@@ -320,6 +326,11 @@ export default {
             ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:' + name).slice(0, 48), '/mcp', 'bot')
               .run().catch(function () {}));
           };
+          if (tool === 'get_portfolio_returns') {
+            if (Object.keys(args).some(k=>k!=='include_history') || ('include_history' in args && typeof args.include_history!=='boolean')) return mcpErr(id,-32602,'include_history must be boolean; no other arguments accepted');
+            try { const data=await portfolioData(env,{include_history:args.include_history===true});logTool('portfolio_returns');return mcpText(id,data); }
+            catch { return mcpOk(id,{content:[{type:'text',text:'Validated portfolio data unavailable; no return inferred.'}],isError:true}); }
+          }
           if (tool === 'get_thesis_tracker') {
             const [d, h] = await Promise.all([asset('/data.json'), asset('/index-history.json')]);
             logTool('thesis_tracker');

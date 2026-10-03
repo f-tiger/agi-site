@@ -119,7 +119,7 @@ jobs:
         run: |
           python3 sites/agiscorecard/tools/portfolio/build.py
           python3 sites/agiscorecard/tools/portfolio/test_data.py
-          node --test sites/agiscorecard/tools/portfolio/test.mjs
+          node --test sites/agiscorecard/tools/portfolio/test.mjs sites/agiscorecard/tools/portfolio/api-test.mjs
 
       - name: Validate investment research arithmetic and portable records
         run: node --test sites/agiscorecard/tools/test_invest_research.mjs
