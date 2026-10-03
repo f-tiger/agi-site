@@ -1,3 +1,4 @@
+import {isAnalyticsPath,protectAnalyticsResponse} from '../../../../tools/fleet-analytics/edge.mjs';
 import {portfolioData,portfolioRoute} from '../portfolio/api.mjs';
 import {evidenceFunnelRoute} from '../evidence-funnel.mjs';
 import {infrastructureRoute} from '../infrastructure/server.mjs';
@@ -822,7 +823,7 @@ export default {
     const res = await env.ASSETS.fetch(request);
     // Internal consent-created GA4 frame is an asset, not another visitor/page.
     // It must receive neither a D1 pageview nor the legacy event/form injectors.
-    if (url.pathname.startsWith('/analytics-assets/')) return res;
+    if (url.pathname.startsWith('/analytics-assets/')) return isAnalyticsPath(url.pathname) ? protectAnalyticsResponse(res,request.method) : res;
     const type = res.headers.get('content-type') || '';
     if (!type.includes('text/html')) {
       // Markdown mirrors (gen_agent_surfaces.py) are an agent-fetch surface: count

@@ -152,7 +152,7 @@ def install_assets(root, site):
         headers = root / prefix / '_headers'
         text = headers.read_text() if headers.exists() else ''
         text = re.sub(r'\n?# FLEET-GA4-HEADERS\n[\s\S]*?# /FLEET-GA4-HEADERS\n?', '', text)
-        text += '\n# FLEET-GA4-HEADERS\n/analytics-assets/frame.html\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Robots-Tag: noindex, nofollow\n# /FLEET-GA4-HEADERS\n'
+        text += '\n# FLEET-GA4-HEADERS\n/analytics-assets/frame.html\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Robots-Tag: noindex, nofollow\n/analytics-assets/frame\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n  X-Robots-Tag: noindex, nofollow\n# /FLEET-GA4-HEADERS\n'
         headers.write_text(text)
 
 def build(root, site, write=False):

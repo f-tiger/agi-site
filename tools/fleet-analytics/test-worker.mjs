@@ -18,3 +18,11 @@ for (const site of ['goldrush','gridlings','buysomething','gamesledger','after35
   assert.match(response.headers.get('cache-control'),/no-transform/);
  });
 }
+
+for(const site of ['baipiaoji','thedollscout'])test(site+': Pages clean frame alias receives isolation headers without crawler writes',async()=>{
+ const {onRequest}=await import('../../sites/'+site+'/functions/_middleware.js');
+ for(const path of ['frame','frame.html']){
+  const response=await onRequest({request:new Request('https://'+site+'.com/analytics-assets/'+path),next:async()=>new Response('frame'),env:{},waitUntil(){throw Error('Unexpected analytics asset count');}});
+  assert.equal(await response.text(),'frame');assert.match(response.headers.get('cache-control'),/no-transform/);assert.match(response.headers.get('content-security-policy'),/frame-ancestors 'self'/);
+ }
+});

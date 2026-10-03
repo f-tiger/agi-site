@@ -68,6 +68,7 @@ test('Stored decline and every probe/privacy signal prevent the Google frame',()
  for(const privacy of [{webdriver:true},{doNotTrack:'1'},{globalPrivacyControl:true}])assert.equal(fixture({choice:'granted',privacy}).frame(),undefined);
 });
 test('Analytics edge assets bypass private tool policies narrowly, not for arbitrary files',async()=>{
+ assert(isAnalyticsPath('/analytics-assets/frame'));
  assert(!isAnalyticsPath('/analytics-assets/../../members.html'));assert(!isAnalyticsPath('/analytics-assets/private.json'));
  let requested;
  const response=await analyticsResponse(new Request('https://rfqdesk.agiscorecard.com/analytics-assets/frame.html?v=1'),{ASSETS:{fetch:async r=>{requested=r.url;return new Response('empty frame');}}},'rfqdesk');

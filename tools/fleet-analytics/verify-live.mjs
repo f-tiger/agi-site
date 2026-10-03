@@ -51,7 +51,14 @@ for(const host of cfg.hosts){
  }
  const routes=[...chosen];let next=0;
  await Promise.all(Array.from({length:6},async()=>{while(next<routes.length){
-  const route=routes[next++],html=(await read(host,route)).text;
+  const route=routes[next++];let html=(await read(host,route)).text;
+  // An edge may serve the new manifest before replacing a cached HTML page.
+  // Retry that version transition briefly; never accept missing/wrong tags.
+  for(let attempt=0;!html.includes('/analytics-assets/consent.mjs?v='+version)&&attempt<6;attempt++){
+   if((html.match(/src="\/analytics-assets\/consent\.mjs\?v=/g)||[]).length>1)break;
+   await new Promise(resolve=>setTimeout(resolve,5000));
+   html=(await read(host,route)).text;
+  }
   assert.equal((html.match(/src="\/analytics-assets\/consent\.mjs\?v=/g)||[]).length,1,route);
   assert(html.includes('data-ga4-id="'+cfg.id+'"'),route);
   assert(html.includes('data-ga4-host="'+host+'"'),route);

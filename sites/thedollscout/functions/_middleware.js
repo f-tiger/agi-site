@@ -1,3 +1,4 @@
+import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {isRetiredPath} from './retired-paths.mjs';
 import {memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 // Server-side crawler visibility (added 2026-08-19, pattern proven on
@@ -47,6 +48,7 @@ function botOf(ua) {
 }
 
 export async function onRequest(ctx) {
+  if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   if(memberPage(new URL(ctx.request.url).pathname))return secureMemberPage(await ctx.next());
   try {
     const path = new URL(ctx.request.url).pathname;
