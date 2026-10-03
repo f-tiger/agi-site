@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-02",
- "radar_fetched": "2026-10-02",
+ "generated": "2026-10-03",
+ "radar_fetched": "2026-10-03",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -51,16 +51,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "anybody has experience with maintaining self hosted git",
+   "theme": "what tools do you wish existed",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-26"
+    "2026-10-02"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.12,
+   "score": 2.07,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -81,27 +81,27 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there an app store or user repository from which applications can t be taken ",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-02"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "is there a program which returns the output of dumpsys window windows as a json",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-09-29"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.03,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "is there an app store or user repository from which applications can t be taken ",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-02"
    ],
    "state": "scout",
    "supplied": false,
