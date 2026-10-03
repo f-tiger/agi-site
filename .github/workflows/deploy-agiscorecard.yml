@@ -119,7 +119,7 @@ jobs:
           python3 sites/agiscorecard/tools/foresight/test_refresh.py
           node sites/agiscorecard/tools/foresight/build.mjs
           node sites/agiscorecard/tools/foresight/build.mjs --check
-          node --test sites/agiscorecard/tools/foresight/test.mjs
+          node --test sites/agiscorecard/tools/foresight/test.mjs sites/agiscorecard/tools/foresight/home-rotation.test.mjs
           node sites/agiscorecard/tools/foresight/member-test.mjs
 
       - name: Build and test bounded Jarvis research agent
@@ -234,6 +234,7 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node sites/agiscorecard/tools/navigation/browser-test.mjs
           node sites/agiscorecard/tools/browser_home_focus.mjs
+          node sites/agiscorecard/tools/foresight/home-rotation.browser.mjs
           node sites/agiscorecard/tools/browser_evidence.mjs
           node sites/agiscorecard/tools/foresight/browser-test.mjs
           node tools/revenue-studio/browser-test.mjs

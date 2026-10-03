@@ -116,7 +116,8 @@ def render():
         s=re.sub(r'<header.*?</header>',lambda _:snapshot['locales']['zh' if zh else 'en']['header'],s,count=1,flags=re.S)
         s=re.sub(r'/home-focus/nav\.css\?v=[^\"]+', '/home-focus/nav.css?v=20261003-nav2', s)
         if '/site-nav/app.mjs' not in s:s=s.replace('</head>','<script type="module" src="/site-nav/app.mjs?v=20261003-nav2"></script>\n</head>')
-        if '/home-focus/media.mjs' not in s:s=s.replace('</head>','<script type="module" src="/home-focus/media.mjs?v=20261003"></script>\n</head>')
+        s=re.sub(r'/home-focus/media\.mjs\?v=[^\"]+', '/home-focus/media.mjs?v=20261003-daily1', s)
+        if '/home-focus/media.mjs' not in s:s=s.replace('</head>','<script type="module" src="/home-focus/media.mjs?v=20261003-daily1"></script>\n</head>')
         if '/home-focus/nav.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/home-focus/nav.css?v=20261003-nav2">\n</head>')
         s=s.replace('/home-focus/focus.css?v=1','/home-focus/focus.css?v=20261003')
         if '/home-focus/countdown.js' not in s:
