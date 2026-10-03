@@ -20,13 +20,17 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2] / 'foresight-assets'
 UTC = dt.timezone.utc
 LIMIT = 5_000_000
+RETENTION_DAYS = 730
+MAX_SOURCE_ITEMS = 120
+MAX_ITEMS = 3000
 AI = re.compile(r'\b(?:AI|AGI|LLM|GPT|OpenAI|Anthropic|Claude|Jev|Gemini|agentic|agents?|deepmind|machine learning|artificial intelligence)\b|人工智能|大模型|智能体|具身|人工智慧|模型训练|模型訓練', re.I)
 TOPICS = {
- 'work':r'work|job|code|coding|programming|software|workflow|agent|工作|職業|职业|编程|軟體|软件|智能体',
- 'learn':r'learn|education|research|science|skill|学习|教育|研究|技能|科学',
- 'earn':r'business|startup|founder|creat|company|distribution|inference|商业|创业|公司|创作|收入|产业',
- 'family':r'child|kid|tutor|education|school|teacher|孩子|儿童|学校|教育|老师',
- 'forecast':r'AGI|future|recursive|progress|superintelligen|forecast|未来|预测|进展|自我改进'
+ 'work':r'\b(?:work|workers?|jobs?|code|coding|programming|software|workflows?|agents?|agentic)\b|工作|職業|职业|编程|軟體|软件|智能体|智能體',
+ 'learn':r'\b(?:learn\w*|education|research|science|skills?|training|teach\w*)\b|学习|學習|教育|研究|技能|科学|科學|教學|教程',
+ 'earn':r'\b(?:business\w*|startups?|founders?|creators?|creativity|companies|company|distribution|inference|entrepreneur\w*)\b|商业|商業|创业|創業|公司|创作|創作|收入|产业|產業',
+ 'family':r'\b(?:child\w*|kids?|tutor\w*|education|schools?|teachers?|parent\w*)\b|孩子|儿童|兒童|学校|學校|教育|老师|老師|家長',
+ 'understand':r'\b(?:models?|LLMs?|GPT\w*|Gemini|Claude|benchmark\w*|reasoning|robot\w*)\b|模型|推理|機器人|机器人|评测|評測',
+ 'forecast':r'\b(?:AGI|future|recursive|progress|superintelligen\w*|forecast\w*|prediction\w*)\b|未来|未來|预测|預測|进展|進展|自我改进|自我成長'
 }
 
 def clean(value):
@@ -65,11 +69,33 @@ def stamp(value):
 
 def iso(value): return value.astimezone(UTC).isoformat(timespec='seconds').replace('+00:00','Z')
 
+def video_id(link):
+    try:
+        u=urllib.parse.urlsplit(link)
+        value=urllib.parse.parse_qs(u.query).get('v',[''])[0] if u.hostname in ('youtube.com','www.youtube.com','m.youtube.com') else u.path.lstrip('/') if u.hostname=='youtu.be' else ''
+        return value if re.fullmatch(r'[\w-]{11}',value) else None
+    except (TypeError,ValueError): return None
+
+def identity(item):
+    video=item.get('videoId') or video_id(item.get('url',''))
+    return 'video:'+video if video else item['url']
+
+def retained(item,now):
+    published=stamp(item.get('publishedAt'))
+    return bool(published and now-dt.timedelta(days=RETENTION_DAYS)<=published<=now+dt.timedelta(minutes=5)
+        and safe_url(item.get('url')) and '/shorts/' not in item['url']
+        and not re.search(r'#shorts\b',item.get('title',''),re.I))
+
 def parse_feed(data, source, now):
     if len(data)>LIMIT or b'<!DOCTYPE' in data.upper() or b'<!ENTITY' in data.upper():
         raise ValueError('unsafe_or_oversize_feed')
     root=ET.fromstring(data)
     if root.tag.split('}')[-1] not in ('rss','feed'): raise ValueError('not_a_feed')
+    if source.get('channelId'):
+        channel=next((x.text for x in root if x.tag.split('}')[-1]=='channelId'),None)
+        # YouTube's feed-level ID omits UC; entry-level IDs include it.
+        if channel not in (source['channelId'],source['channelId'].removeprefix('UC')):
+            raise ValueError('channel_identity_mismatch')
     entries=[e for e in root.iter() if e.tag.split('}')[-1] in ('item','entry')]
     if not entries: raise ValueError('empty_feed')
     out=[]
@@ -79,7 +105,7 @@ def parse_feed(data, source, now):
         title=clean(fields.get('title'))
         # Never use an updated timestamp as the original publication date.
         published=stamp(fields.get('pubDate') or fields.get('published'))
-        if not title or not published or published>now+dt.timedelta(minutes=5) or now-published>dt.timedelta(days=180): continue
+        if not title or not published or published>now+dt.timedelta(minutes=5) or now-published>dt.timedelta(days=RETENTION_DAYS): continue
         if title.lower().startswith(('[ainews]','ainews:')): continue
         description=clean(fields.get('description') or fields.get('summary') or fields.get('encoded') or next((x.text for x in e.iter() if x.tag.split('}')[-1]=='description'), ''))
         if not source['aiFocused'] and not AI.search(title+' '+description[:600]): continue
@@ -89,7 +115,12 @@ def parse_feed(data, source, now):
         media=next((x for x in enclosures if x.get('type','').startswith(('audio/','video/'))),None)
         link=link or (safe_url(media.get('url')) if media is not None else None)
         if not link: continue
-        video=fields.get('videoId')
+        # Shorts are separate uploads, often excerpts of the same interview.
+        # Do not count them toward the full video collection.
+        if '/shorts/' in link or re.search(r'#shorts\b',title,re.I): continue
+        video=fields.get('videoId') or video_id(link)
+        if video and re.fullmatch(r'[\w-]{11}',video):
+            link='https://www.youtube.com/watch?v='+video
         medium='video' if video and re.fullmatch(r'[\w-]{11}',video) else 'audio' if media is not None and media.get('type','').startswith('audio/') else 'video' if media is not None else 'text'
         tags=[k for k,pattern in TOPICS.items() if re.search(pattern,title+' '+description[:600],re.I)]
         if not tags: tags=['understand']
@@ -98,7 +129,7 @@ def parse_feed(data, source, now):
           'publisherExcerpt':excerpt(description),
           **({'audioUrl':safe_url(media.get('url'))} if medium=='audio' and media is not None and safe_url(media.get('url')) else {}),
           **({'videoId':video} if video and re.fullmatch(r'[\w-]{11}',video) else {})})
-    return sorted(out,key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:12]
+    return sorted(out,key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:MAX_SOURCE_ITEMS]
 
 def fetch(source):
     req=urllib.request.Request(source['feed'],headers={'User-Agent':'AGI-Future-Guide/1.0 (+https://agiscorecard.com/future-guide)','Accept':'application/rss+xml, application/atom+xml, application/xml, text/xml'})
@@ -108,29 +139,34 @@ def fetch(source):
 
 def refresh(sources,previous,loader=fetch,now=None):
     now=now or dt.datetime.now(UTC)
-    previous_items={x['id']:x for x in previous.get('items',[])}
+    previous_items={identity(x):x for x in previous.get('items',[]) if retained(x,now)}
     previous_sources={x['id']:x for x in previous.get('sources',[])}
     items=[]; states=[]
     def one(source):
         old=previous_sources.get(source['id'],{})
         state={**source,'lastAttemptAt':iso(now),'lastSuccessAt':old.get('lastSuccessAt')}
+        saved={key:x for key,x in previous_items.items() if x['sourceId']==source['id']}
         try:
             current=parse_feed(loader(source),source,now)
-            state.update(status='ok',lastSuccessAt=iso(now),count=len(current))
-            for item in current: item['firstSeenAt']=previous_items.get(item['id'],{}).get('firstSeenAt',iso(now))
+            state.update(status='ok',lastSuccessAt=iso(now),fetchedCount=len(current))
+            for item in current:
+                key=identity(item)
+                item['firstSeenAt']=previous_items.get(key,{}).get('firstSeenAt',iso(now))
+                saved[key]=item
         except Exception as exc:
             # Never publish network exception strings: they may contain request data.
             state.update(status='error',errorCode=type(exc).__name__)
-            current=[x for x in previous_items.values() if x['sourceId']==source['id'] and stamp(x['publishedAt']) and now-stamp(x['publishedAt'])<=dt.timedelta(days=180)]
-            state['count']=len(current)
+        current=sorted(saved.values(),key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:MAX_SOURCE_ITEMS]
+        state['count']=len(current)
         return state,current
-    with cf.ThreadPoolExecutor(max_workers=4) as pool:
+    with cf.ThreadPoolExecutor(max_workers=6) as pool:
         for state,current in pool.map(one,sources): states.append(state);items.extend(current)
-    # Exact canonical URL identity deduplicates cross-feed references.
+    # Video identity also deduplicates watch/share links across publishers.
     unique={}
-    for item in items: unique.setdefault(item['id'],item)
-    items=sorted(unique.values(),key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:120]
-    return {'version':1,'checkedAt':iso(now),'cadence':'daily','status':'ok' if all(x['status']=='ok' for x in states) else 'partial' if any(x['status']=='ok' for x in states) else 'unavailable','sources':states,'items':items}
+    for item in items: unique.setdefault(identity(item),item)
+    items=sorted(unique.values(),key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:MAX_ITEMS]
+    for state in states: state['count']=sum(x['sourceId']==state['id'] for x in items)
+    return {'version':1,'checkedAt':iso(now),'cadence':'daily','retentionDays':RETENTION_DAYS,'maxItems':MAX_ITEMS,'status':'ok' if all(x['status']=='ok' for x in states) else 'partial' if any(x['status']=='ok' for x in states) else 'unavailable','sources':states,'items':items}
 
 def main():
     sources=json.loads((ROOT/'sources.json').read_text())

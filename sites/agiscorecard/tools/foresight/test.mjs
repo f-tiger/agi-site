@@ -29,6 +29,10 @@ import {contentItems,selectedItems,discoveryCards,videoId} from '../../foresight
 test('media classification overrides podcast syndication, preserves reviewed views and deduplicates videos',()=>{
  const data=JSON.parse(fs.readFileSync(new URL('../../foresight-assets/discovery.json',import.meta.url)));
  const items=contentItems(data);assert.equal(items.filter(i=>i.interview==='devday').length,1);assert.equal(items.find(i=>i.interview==='devday').medium,'video');
+ const videos=items.filter(i=>i.medium==='video'&&i.video);assert.ok(videos.length>=300);assert.equal(new Set(videos.map(i=>i.video)).size,videos.length);
+ assert.ok(new Set(videos.map(i=>i.publisher)).size>=30);assert.ok(videos.some(i=>i.language==='zh'));
+ const creator=selectedItems(data,{creator:'Matt Wolfe',asOf:'2026-10-03'});assert.ok(creator.length);assert.ok(creator.every(i=>i.publisher==='Matt Wolfe'));
+ assert.ok(data.items.every(i=>!i.url.includes('/shorts/')));
  assert.equal(items.filter(i=>i.views.length).length,16);assert.equal(items.reduce((n,i)=>n+i.views.length,0),30);
  for(const medium of ['video','audio','text']){const matches=selectedItems(data,{medium,asOf:'2026-10-03'});assert.ok(matches.length);assert.ok(matches.every(i=>i.medium===medium));}
  assert.equal(selectedItems(data,{medium:'audio',goal:'family',query:'Belsky',asOf:'2026-10-03'})[0].id,'leah');

@@ -1,6 +1,6 @@
 import datetime as dt
 import unittest
-from refresh import parse_feed, refresh, safe_url, excerpt, UTC
+from refresh import parse_feed, refresh, safe_url, excerpt, UTC, RETENTION_DAYS
 
 NOW=dt.datetime(2026,10,3,8,tzinfo=UTC)
 SOURCE={'id':'test','name':'Publisher','feed':'https://example.com/feed','home':'https://example.com','language':'en','category':'interview','aiFocused':False}
@@ -47,5 +47,32 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual(row['medium'],'audio');self.assertEqual(row['audioUrl'],'https://example.com/audio.mp3')
         self.assertLessEqual(len(row['publisherExcerpt'].split()),24)
         self.assertNotIn('<b>',excerpt('<b>AI helps</b> https://example.com'))
+
+    def test_successful_refresh_accumulates_when_feed_rolls_over(self):
+        first=refresh([SOURCE],{},lambda s:feed(item(link='https://example.com/old')),NOW)
+        second=refresh([SOURCE],first,lambda s:feed(item(link='https://example.com/new')),NOW+dt.timedelta(days=1))
+        self.assertEqual(len(second['items']),2)
+        old=next(x for x in second['items'] if x['url'].endswith('/old'))
+        self.assertEqual(old['firstSeenAt'],first['checkedAt'])
+        self.assertEqual(old['publishedAt'],'2026-10-02T10:00:00Z')
+        expired=refresh([SOURCE],second,lambda s:feed(item()),NOW+dt.timedelta(days=RETENTION_DAYS+1))
+        self.assertEqual(expired['items'],[])
+
+    def test_video_dedup_and_shorts_exclusion(self):
+        rows=refresh([SOURCE],{},lambda s:feed(item(link='https://youtu.be/abcdefghijk')+item(link='https://www.youtube.com/watch?v=abcdefghijk&amp;t=120')+item(link='https://www.youtube.com/shorts/12345678901')),NOW)
+        self.assertEqual(len(rows['items']),1)
+        self.assertEqual(rows['items'][0]['videoId'],'abcdefghijk')
+        self.assertEqual(rows['items'][0]['url'],'https://www.youtube.com/watch?v=abcdefghijk')
+
+    def test_expected_channel_identity_is_checked(self):
+        with self.assertRaisesRegex(ValueError,'channel_identity_mismatch'):
+            parse_feed(feed(item()),{**SOURCE,'channelId':'UCwrong'},NOW)
+
+    def test_beyond_twelve_items_and_no_network_work_topic(self):
+        data=feed(''.join(item(title='AI model network',link=f'https://example.com/{n}') for n in range(50)))
+        rows=parse_feed(data,SOURCE,NOW)
+        self.assertEqual(len(rows),50)
+        self.assertNotIn('work',rows[0]['goals'])
+        self.assertIn('understand',rows[0]['goals'])
 
 if __name__=='__main__':unittest.main()

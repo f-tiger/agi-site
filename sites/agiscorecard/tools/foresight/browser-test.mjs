@@ -24,7 +24,11 @@ try{for(const lang of ['en','zh']){
  await page.locator('[data-topic=family]').click();assert.ok(await page.locator('[data-discovery-card]').count()>0);assert.equal(await page.locator('audio').count(),0);
  await page.locator('[data-media-tab=text]').click();await page.locator('[data-topic=all]').click();assert.equal(await page.locator('#fresh-feed [data-medium]:not([data-medium=text])').count(),0);
  await page.locator('[data-media-tab=video]').click();await page.locator('.more-filters summary').click();await page.locator('#feed-category').selectOption('commentary');assert.ok(await page.locator('[data-discovery-card]').count()>0);
- await page.locator('#feed-language').selectOption('zh');assert.equal(await page.locator('#feed-empty').isVisible(),true);await page.locator('#feed-reset').click();
+ await page.locator('#feed-language').selectOption('zh');assert.ok(await page.locator('[data-discovery-card]').count()>0);await page.locator('#feed-language').selectOption('all');await page.locator('#feed-category').selectOption('all');
+ await page.locator('#feed-creator').selectOption('Matt Wolfe');assert.ok(await page.locator('[data-discovery-card]').count()>0);assert.match(await page.locator('#fresh-feed').textContent(),/Matt Wolfe/);assert.match(page.url(),/creator=Matt/);
+ const discoveredVideo=await page.locator('[data-play-video]').first().getAttribute('data-play-video');await page.locator('[data-play-video]').first().click();assert.ok((await page.locator('#fresh-feed iframe').getAttribute('src')).includes('/embed/'+discoveredVideo));
+ await page.setViewportSize({width:360,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'expanded creator filters fit mobile');await page.setViewportSize({width:1440,height:1100});
+ await page.reload();await page.waitForFunction(()=>document.body.dataset.ready==='true');assert.equal(await page.locator('#feed-creator').inputValue(),'Matt Wolfe');await page.locator('.more-filters summary').click();await page.locator('#feed-creator').selectOption('all');
  await page.locator('#feed-search').fill('Fireship');assert.ok(await page.locator('[data-discovery-card]').count()>0);assert.match(await page.locator('#fresh-feed').textContent(),/Fireship/);
  await page.locator('#feed-search').fill('no matching thing');assert.equal(await page.locator('#feed-empty').isVisible(),true);await page.locator('#feed-reset').click();
  await page.locator('#feed-more').click();assert.equal(await page.locator('[data-discovery-card]').count(),10);

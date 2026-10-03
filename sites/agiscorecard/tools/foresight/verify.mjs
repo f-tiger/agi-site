@@ -1,6 +1,7 @@
 // Read-only live checks. No test votes, plans, orders or model calls are created.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
 import {claims} from '../../foresight-assets/catalog.mjs';
+import {contentItems} from '../../foresight-assets/discovery.mjs';
 const root=new URL('../../',import.meta.url),base='https://agiscorecard.com',hash=b=>createHash('sha256').update(b).digest('hex');
 const get=async route=>{const r=await fetch(base+route+(route.includes('?')?'&':'?')+'ci=1',{headers:{'user-agent':'agi-future-guide-verify/1.0'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,route);return r;};
 for(const prefix of ['','/zh']){
@@ -10,6 +11,6 @@ for(const prefix of ['','/zh']){
 for(const f of ['foresight-assets/catalog.mjs','foresight-assets/recent.mjs','foresight-assets/discovery.mjs','foresight-assets/discovery.json','foresight-assets/sources.json','foresight-assets/core.mjs','foresight-assets/app.mjs','foresight-assets/style.css','foresight-assets/share-en.png','foresight-assets/share-zh.png']){const r=await get('/'+f);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(fs.readFileSync(new URL(f,root))),f);}
 const catalog=await (await get('/member-assets/products.json')).json();assert.ok(catalog.some(p=>p.id==='future-guide'&&p.urls?.en===base+'/future-guide'&&p.urls?.zh===base+'/zh/future-guide'));
 const sitemap=await (await get('/sitemap.xml')).text();assert.ok(sitemap.includes('<loc>'+base+'/zh/future-guide</loc>'));
-const feed=await (await get('/foresight-assets/discovery.json')).json();assert.ok(feed.items.length);assert.equal(feed.sources.length,10);const zhHub=await (await get('/zh/future-guide')).text();assert.ok(zhHub.includes('id="fresh-feed"'));assert.ok(zhHub.includes('id="time-window"'));assert.ok(zhHub.includes('data-media-tab="video"'));assert.ok(zhHub.includes('data-play-video="z9OkBD2-MDU"'));assert.ok(zhHub.includes('观点重点'));assert.ok(zhHub.includes('data-release="agi-future-guide-20261003-media"'));assert.ok(!zhHub.includes('<iframe'));
+const feed=await (await get('/foresight-assets/discovery.json')).json();assert.ok(feed.items.length);assert.equal(feed.sources.length,JSON.parse(fs.readFileSync(new URL('foresight-assets/sources.json',root))).length);assert.ok(contentItems(feed).filter(i=>i.medium==='video'&&i.video).length>=300,'at least 300 distinct YouTube video references');const zhHub=await (await get('/zh/future-guide')).text();assert.ok(zhHub.includes('id="fresh-feed"'));assert.ok(zhHub.includes('id="time-window"'));assert.ok(zhHub.includes('data-media-tab="video"'));assert.ok(zhHub.includes('data-play-video="z9OkBD2-MDU"'));assert.ok(zhHub.includes('观点重点'));assert.ok(zhHub.includes('data-release="agi-future-guide-20261003-media"'));assert.ok(!zhHub.includes('<iframe'));
 const md=await (await get('/zh/future-guide.md')).text();assert.match(md,/未来导航|下一步/);
 console.log('Live future guide: '+((claims.length+2)*2)+' bilingual routes, home entry/countdown/poll, exact assets, member catalog, sitemap and Markdown verified. No write requests or payments.');

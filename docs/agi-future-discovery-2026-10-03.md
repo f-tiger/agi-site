@@ -40,3 +40,22 @@ Local real feed run succeeded; deterministic RSS/Atom tests cover publication vs
 Existing site validation and hreflang pass. SEO/GEO: canonical URLs, metadata, structured data, internal links, sitemap and Markdown/llms mirrors are generated from the same content. IndexNow remains on existing authorized workflows; this change does not submit per push or claim indexing.
 
 The first scheduled run after deployment is still future execution. The initial snapshot was fetched with the production refresh script locally; this is not represented as a successful GitHub scheduled run.
+
+
+## 2026-10-03 video library expansion
+
+The owner's next acceptance criterion is hundreds of distinct videos, while keeping the video-first homepage simple. Three planning passes narrowed this to: (1) at least 300 actual videos, (2) direct publisher channel verification and exclusion of Shorts, (3) retained history and creator filtering without a new service or cron.
+
+The production refresh script checked 46/46 sources at 2026-10-03T09:00:29Z and produced 682 raw records. After merging reviewed sources and deduplicating the visible library: 381 videos, 289 audio episodes and 10 text items. There are 379 unique YouTube IDs plus two publisher-hosted videos. Of the videos, 231 fall in the previous 30 days and 300 in the previous 90 days; 25 are Chinese-language. These counts are metadata references, not a claim to have watched every video or reviewed hundreds of viewpoints. The reviewed catalog remains 16 interviews and 30 bilingual viewpoints.
+
+The 38 YouTube feed channels include creator commentary, full interviews, academic talks and company channels. Each new channel ID was read from the public channel page, then checked against the corresponding official Atom feed. Empty/mismatched or unverified candidate channels were not added. Shorts URLs and explicit #shorts titles are excluded. Original dates, publisher titles and short attributed introductions are retained. Company channels are explicitly distinguished from independent creators in the source filter.
+
+The prior feed limits (12 per source, 120 total and replacement on every success) are removed. Successful refreshes now merge by canonical video ID or URL, preserve firstSeenAt, and keep entries after they roll off a feed. Retention is bounded to 730 days, 120 entries per source and 3,000 overall; failed sources preserve eligible cached entries and their original lastSuccessAt. Counts are computed after deduplication. A six-worker pool makes 46 bounded requests/day (20 seconds and 5 MB maximum each), inside the existing five-minute discovery job. Estimated normal incremental runner time is 0.5–2 minutes/day (15–60 minutes/month), not a billing measurement. No API key, paid model call, additional cron or new recurring service was introduced.
+
+The existing daily 02:50 UTC schedule remains. The initial expanded snapshot is a real local run of the same production script; the next scheduled run with the expanded list has not yet occurred. Browser refresh reads the published snapshot and preserves an active player.
+
+The homepage still starts with four video cards and six topic chips. A creator selector helps navigate the larger collection and persists in the URL. Media remain separated, source counts follow the selected filters, and reviewed viewpoints retain their priority. More videos do not inflate the reviewed viewpoint count. Existing free access, source opening, local notes and exports feed into the established cloud workspace offering; no report subscription or new payment claim was added.
+
+First adversarial self-check: video identity, original dates, Shorts, duplicate publisher syndication and misleading summary labels. Second self-check: feed rollover, source failure, two-year retention, mobile overflow, creator query persistence and a sampled inline video player. These are self-checks, not independent reviewers. Targeted regression coverage enforces at least 300 distinct YouTube references, 30 creator sources, Chinese videos, rolling retention, cross-URL deduplication and channel identity validation.
+
+SEO/GEO use the existing canonical pages, metadata, sitemap and Markdown/agent mirrors. Existing GA4 consent-gated media/source actions are preserved, and the shared coverage check runs after generators. Creator names and search terms are not sent to GA4. IndexNow uses the existing weekly workflow; no per-push submission or search indexing result is claimed.

@@ -1,6 +1,6 @@
 import {goals,claims,interviews,reviewed} from './catalog.mjs';
 import {PRODUCT,blank,emptyNote,normalize,selectClaims,sourceUrl,reviewedCounts} from './core.mjs';
-import {initDiscovery} from './discovery.mjs';
+import {initDiscovery} from './discovery.mjs?v=20261003d';
 const $=id=>document.getElementById(id),zh=document.body.dataset.lang==='zh',lang=zh?'zh':'en',t=(a,b)=>zh?b:a,prefix=zh?'/zh':'',hub=prefix+'/future-guide',slot='agi-future-guide-v1',params=new URLSearchParams(location.search);
 const current=claims.find(c=>c.id===document.body.dataset.claim),goalIds=new Set(goals.map(g=>g.id));
 let state=blank(),filter='work',interviewFilter='',viewLimit=6,savedOnly=false,cloudContext=null,cloudHandler=null,toastTimer;
