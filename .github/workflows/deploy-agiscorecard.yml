@@ -125,7 +125,7 @@ jobs:
       - name: Build and test bounded Jarvis research agent
         run: |
           node sites/agiscorecard/tools/jarvis/build.mjs
-          node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs
+          node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs
 
       - name: Regenerate feed and agent-readable mirrors from current pages
         working-directory: sites/agiscorecard

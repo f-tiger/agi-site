@@ -1,11 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';
+import {memberOwner} from './membership.mjs';import {memberID} from './test-support.mjs';
 import {jarvisRoute} from './server.mjs';import {ensure} from './store.mjs';import {execute} from './engine.mjs';
 import {bodyOf,isJarvisPage,secureJarvisPage} from './security.mjs';import {boundedJSON,runTool} from './sources.mjs';
-import {inputOf,markdown} from '../../jarvis-assets/core.mjs';import {database} from '../create/test-support.mjs';import {hash,now,limit} from '../create/store.mjs';
+import {inputOf,markdown} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {hash,now,limit} from '../create/store.mjs';
 const origin='https://agiscorecard.com',key='a'.repeat(64),other='b'.repeat(64),uid=()=>crypto.randomUUID().replaceAll('-','');
 const input=(extra={})=>({goal:'Research AI agents for one weekly task',lang:'en',cadence:'once',web:true,publicQuery:'AI agents',consent:true,memory:[],nonce:uid(),...extra});
 async function fixture(t){const e={EVENTS:database(),MEMBER_WATCH_SECRET:'synthetic-security-fixture',AI:{run(){throw Error('unexpected inference');}},JARVIS_FETCH(){throw Error('unexpected network');}};await ensure(e.EVENTS);t.after(()=>e.EVENTS.sqlite.close());return e;}
-async function seed(e,status='paused',extra={}){const id=uid(),stamp=now(),owner=await hash('jarvis-owner:v1:'+key),b=input(extra);e.EVENTS.sqlite.prepare('INSERT INTO jarvis_tasks(id,owner,nonce,ip_key,input,status,created,updated,next_run,until_at,expires) VALUES(?,?,?,?,?,?,?,?,?,?,?)').run(id,owner,b.nonce,'fixture-ip',JSON.stringify(b),status,stamp,stamp,stamp,stamp+7*86400,stamp+30*86400);return id;}
+async function seed(e,status='paused',extra={}){const id=uid(),stamp=now(),owner=await memberOwner(memberID(key)),b=input(extra);e.EVENTS.sqlite.prepare('INSERT INTO jarvis_tasks(id,owner,member_id,nonce,ip_key,input,status,created,updated,next_run,until_at,expires) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)').run(id,owner,memberID(key),b.nonce,'fixture-ip',JSON.stringify(b),status,stamp,stamp,stamp,stamp+7*86400,stamp+30*86400);return id;}
 async function call(e,b,token=key,headers={}){return jarvisRoute(new Request(origin+'/api/jarvis',{method:'POST',headers:{origin,authorization:'Bearer '+token,'content-type':'application/json','CF-Connecting-IP':'fixture-ip',...headers},body:JSON.stringify(b)}),e);}
 function gateOwnedReads(db){const prepare=db.prepare.bind(db);let count=0,release;const barrier=new Promise(r=>release=r);db.prepare=sql=>{const s=prepare(sql);if(sql.startsWith('SELECT * FROM jarvis_tasks WHERE owner=? AND id=?')){const first=s.first.bind(s);s.first=async()=>{const row=await first();if(++count<=2){if(count===2)release();await barrier;}return row;};}return s;};}
 

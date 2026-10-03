@@ -34,6 +34,7 @@ p('embedpuzzles','EmbedPuzzles','agi',7,'Generate a self-contained interactive p
 // Tools a site builds itself (not by this workbench builder) that can still be saved to that site's member workspace.
 // Only id/name/site/urls: the member page lists them, the member API accepts them for saving, nothing here builds a page.
 export const externalProducts=[
+{id:'jarvis',name:'Jarvis member research agent',site:'agi',urls:{zh:'https://agiscorecard.com/zh/jarvis',en:'https://agiscorecard.com/jarvis'}},
 {id:'portfolio-tracker',name:'Portfolio Tracker & Review',site:'agi',urls:{zh:'https://agiscorecard.com/zh/portfolio-tracker',en:'https://agiscorecard.com/portfolio-tracker'}},
 
 {id:'future-guide',name:'AI Future Guide',site:'agi',urls:{zh:'https://agiscorecard.com/zh/future-guide',en:'https://agiscorecard.com/future-guide'}},

@@ -4,6 +4,7 @@ import {hash,now,limit} from '../create/store.mjs';
 import {ensure,owned,publicTask} from './store.mjs';
 import {execute,tick} from './engine.mjs';
 import {runTool} from './sources.mjs';
+import {requireMember} from './membership.mjs';
 export {tick};
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; frame-ancestors 'none'"};
 const json=(data,status=200)=>Response.json(data,{status,headers});
@@ -11,7 +12,7 @@ const idOK=s=>typeof s==='string'&&/^[a-f0-9]{32}$/.test(s);
 export async function jarvisRoute(request,env,ctx){
  const u=new URL(request.url);if(!['/api/jarvis','/api/jarvis/tasks','/api/jarvis/run'].includes(u.pathname))return null;
  if(!['agiscorecard.com','www.agiscorecard.com','localhost','127.0.0.1'].includes(u.hostname))return json({ok:false,code:'origin'},403);
- if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerNewRun:1,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:120,retentionDays:30,mode:'research_pilot',paid:false});
+ if(request.method==='GET'&&u.pathname==='/api/jarvis')return json({ok:true,version:VERSION,model:MODEL,aiBound:!!env.AI,sharedAttemptsPer24h:12,ipAttemptsPerWindow:3,maxModelCallsPerNewRun:1,maxModelCallsPerRun:2,maxRuns:MAX_RUNS,backgroundIntervalMinutes:120,retentionDays:30,mode:'research_pilot',paid:true,membershipRequired:true,membershipSite:'agi'});
  if(!['GET','POST'].includes(request.method))return json({ok:false,code:'method'},405);
  if(request.method==='POST'&&(request.headers.get('origin')!==u.origin||request.headers.get('Sec-Fetch-Site')==='cross-site'))return json({ok:false,code:'origin'},403);
  try{
@@ -29,20 +30,26 @@ export async function jarvisRoute(request,env,ctx){
    }
    return json(await tick(env,{maxTasks:1}));
   }
-  await ensure(db);const owner=await hash('jarvis-owner:v1:'+token);
+  await ensure(db);
   const ip=await hash(env.MEMBER_WATCH_SECRET+':relay:'+new Date().toISOString().slice(0,10)+':'+(request.headers.get('CF-Connecting-IP')||'unknown'));
   await limit(db,'jarvis-request:'+ip,60,60);
+  const member=await requireMember(env,token),owner=member.owner;
+  // A valid member may recover this browser's old private records, never start
+  // them implicitly. The old capability is separate from the membership key.
+  const legacy=request.headers.get('x-jarvis-legacy-key');
+  if(typeof legacy==='string'&&/^[a-f0-9]{64}$/.test(legacy))await db.prepare("UPDATE OR IGNORE jarvis_tasks SET owner=?,member_id=?,status='paused',stage='membership_required',next_run=0,lease='',lease_until=0,updated=? WHERE owner=? AND member_id='' AND expires>?").bind(owner,member.id,now(),await hash('jarvis-owner:v1:'+legacy),now()).run();
   if(request.method==='GET'){
    const rows=(await db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND expires>? ORDER BY created DESC LIMIT 20').bind(owner,now()).all()).results;
-   return json({ok:true,tasks:rows.map(publicTask)});
+   return json({ok:true,tasks:rows.map(publicTask),membership:{endsAt:member.endsAt,scope:owner}});
   }
   const b=await bodyOf(request);
+  await requireMember(env,token);
   if(b.action==='create'){
    const input=inputOf(b);const existing=await db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND nonce=? AND expires>?').bind(owner,input.nonce,now()).first();
    if(existing)return json({ok:true,task:publicTask(existing),reused:true});
    await limit(db,'jarvis-create-ip:'+ip,3);await limit(db,'jarvis-create-global',24);
    const id=crypto.randomUUID().replaceAll('-',''),t=now();
-   const inserted=await db.prepare(`INSERT OR IGNORE INTO jarvis_tasks(id,owner,nonce,ip_key,input,status,created,updated,next_run,until_at,expires) SELECT ?,?,?,?,?,?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching'))<3 AND (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>?)<20 RETURNING id`).bind(id,owner,input.nonce,ip,JSON.stringify(input),'queued',t,t,t,t+7*86400,t+30*86400,owner,t,owner,t).first();
+   const inserted=await db.prepare(`INSERT OR IGNORE INTO jarvis_tasks(id,owner,member_id,nonce,ip_key,input,status,created,updated,next_run,until_at,expires) SELECT ?,?,?,?,?,?,?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching'))<3 AND (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>?)<20 RETURNING id`).bind(id,owner,member.id,input.nonce,ip,JSON.stringify(input),'queued',t,t,t,t+7*86400,t+30*86400,owner,t,owner,t).first();
    if(!inserted){const prior=await db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND nonce=? AND expires>?').bind(owner,input.nonce,t).first();if(prior)return json({ok:true,task:publicTask(prior),reused:true});throw Error('active_limit');}
    const task=publicTask(await owned(db,owner,id));
    // Durable state is committed before the response; the scheduled handler picks up queued work.
@@ -66,5 +73,5 @@ export async function jarvisRoute(request,env,ctx){
   if(b.action==='feedback'){
    if(!['useful','not_useful'].includes(b.value))throw Error('invalid_request');await db.prepare('UPDATE jarvis_tasks SET feedback=? WHERE id=? AND owner=?').bind(b.value,b.id,owner).run();return json({ok:true});
   }throw Error('invalid_request');
- }catch(e){const codes={unauthorized:401,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
+ }catch(e){const codes={unauthorized:401,membership_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
 }

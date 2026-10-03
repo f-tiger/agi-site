@@ -5,6 +5,7 @@ import {now,limit} from '../create/store.mjs';
 import {reportSchema} from './schema.mjs';
 import {evidencePlan} from './plan.mjs';
 import {modelOutput} from './model.mjs';
+import {memberActive} from './membership.mjs';
 const uid=()=>crypto.randomUUID().replaceAll('-','');
 async function timed(promise,ms){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('model_timeout')),ms);})]);}finally{clearTimeout(timer);}}
 export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
@@ -12,10 +13,16 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
  const lease=uid(),t=now();
  const row=await db.prepare(`UPDATE jarvis_tasks SET status='running',stage='observe',lease=?,lease_until=?,updated=? WHERE id=? AND status IN ('queued','watching') AND next_run<=? AND lease_until<=? AND expires>? AND runs<? RETURNING *`).bind(lease,t+180,t,id,t,t,t,MAX_RUNS).first();
  if(!row)return false;
+ async function entitled(){
+  let active=false;try{active=await memberActive(env,row.member_id);}catch{}
+  if(!active)await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='membership_required',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(now(),id,lease).run();
+  return active;
+ }
+ if(!await entitled())return false;
  const input=JSON.parse(row.input),library=await availableCatalog(input.lang,env.ASSETS),stored=JSON.parse(row.result),result=stored.continuation?stored:{version:VERSION,checkedAt:new Date().toISOString(),sources:rank(input.goal,library.rows),log:[],modelCalls:0,usage:[],report:null,reason:null};
  result.discoveryLoaded=library.discoveryLoaded;
  result.continuation=false;
- const active=async()=>!!await db.prepare("SELECT id FROM jarvis_tasks WHERE id=? AND lease=? AND status='running' AND expires>?").bind(id,lease,now()).first();
+ const active=async()=>!!await db.prepare("SELECT id FROM jarvis_tasks WHERE id=? AND lease=? AND status='running' AND expires>?").bind(id,lease,now()).first()&&await entitled();
  const save=async(stage)=>db.prepare("UPDATE jarvis_tasks SET stage=?,result=?,updated=? WHERE id=? AND lease=? AND status='running'").bind(stage,JSON.stringify(result),now(),id,lease).run();
  const log=(step,outcome)=>result.log.push({at:new Date().toISOString(),step,outcome});
  async function infer(system,data,maxTokens,schema){

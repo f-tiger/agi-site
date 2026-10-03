@@ -28,7 +28,7 @@ export function businessEvent(host, pathname, detail) {
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   if (host === 'agiscorecard.com' && route === '/jarvis' &&
-      ['start','report_ready','source_pack','source_open','export','memory_save','pause','resume','delete','feedback'].some(a => name === 'jarvis_' + a)) {
+      ['start','report_ready','source_pack','source_open','export','memory_save','pause','resume','delete','feedback','membership_open','member_verified'].some(a => name === 'jarvis_' + a)) {
     return {name, tool_id:'jarvis', repeat:true};
   }
   if (host === 'agiscorecard.com' && /^\/future-guide(?:\/[a-z0-9-]+)?$/.test(route) &&

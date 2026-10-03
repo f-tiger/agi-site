@@ -4,9 +4,13 @@ for(const path of ['/jarvis','/zh/jarvis']){const r=await fetch(origin+path+'?ci
  const csp=r.headers.get('content-security-policy')||'',nonce=/script-src 'self' 'nonce-([a-f0-9]{32})'/.exec(csp)?.[1];assert.ok(nonce,path+' missing script nonce policy');assert.match(csp,/frame-ancestors 'none'/);assert.match(csp,/connect-src 'self'/);assert.equal(r.headers.get('x-frame-options'),'DENY');assert.equal(r.headers.get('referrer-policy'),'no-referrer');assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(r.headers.get('etag'),null);
  for(const script of h.matchAll(/<script\b[^>]*>/gi))assert.ok(script[0].includes('nonce="'+nonce+'"'),path+' script without response nonce');assert.ok(h.includes('/api/e'),'first-party measurement preserved');
 }
-const meta=await (await fetch(origin+'/api/jarvis')).json();assert.equal(meta.version,VERSION);assert.equal(meta.sharedAttemptsPer24h,12);assert.equal(meta.paid,false);assert.equal(meta.maxModelCallsPerNewRun,1);
+const meta=await (await fetch(origin+'/api/jarvis')).json();assert.equal(meta.version,VERSION);assert.equal(meta.sharedAttemptsPer24h,12);assert.equal(meta.paid,true);assert.equal(meta.membershipRequired,true);assert.equal(meta.membershipSite,'agi');assert.equal(meta.ipAttemptsPerWindow,3);assert.equal(meta.maxModelCallsPerNewRun,1);
 const denied=await fetch(origin+'/api/jarvis/tasks');assert.equal(denied.status,401);assert.equal(denied.headers.get('cache-control'),'no-store');
+const nonmember=crypto.randomUUID().replaceAll('-','')+crypto.randomUUID().replaceAll('-','');
+const closed=await fetch(origin+'/api/jarvis/tasks',{headers:{authorization:'Bearer '+nonmember}});assert.equal(closed.status,403);assert.equal((await closed.json()).code,'membership_required');
+// Deliberately invalid task input cannot create a task even if a gate regresses.
+const forged=await fetch(origin+'/api/jarvis',{method:'POST',headers:{origin,'content-type':'application/json',authorization:'Bearer '+nonmember},body:JSON.stringify({action:'create',nonce:'invalid-probe',active:true,paid:true})});assert.equal(forged.status,403);assert.equal((await forged.json()).code,'membership_required');
 assert.equal(meta.backgroundIntervalMinutes,120);assert.equal((await fetch(origin+'/api/jarvis/run')).status,401);
 const cross=await fetch(origin+'/api/jarvis',{method:'POST',headers:{origin:'https://wrong.example','content-type':'application/json'},body:'{}'});assert.equal(cross.status,403);
 for(const p of ['/jarvis-assets/app.mjs','/jarvis-assets/core.mjs','/jarvis-assets/style.css'])assert.equal((await fetch(origin+p)).status,200,p);
-console.log('Jarvis live surfaces, version, nonce CSP, frame denial, bilingual canonicals, GA4 marker, API limits and private access boundaries verified. No AI quota used.');
+console.log('Jarvis live surfaces, version, nonce CSP, frame denial, bilingual canonicals, GA4 marker, unchanged limits and nonmember API denial verified. No task, payment or AI call created.');
