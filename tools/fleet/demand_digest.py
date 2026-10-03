@@ -324,7 +324,8 @@ def main():
         out.append(f"- 不可用:{op['__error__']}")
     else:
         oc = op.get("counts") or {}
-        out.append(f"- 候选 {oc.get('candidates', 0)} · 已确认需求 {oc.get('demand_confirmed', 0)} · 重现 {oc.get('recurring', 0)} · 已有人做 {oc.get('supplied', 0)}(生成 {op.get('generated', '?')};Reddit 源 ok:{op.get('reddit_sources_ok')})")
+        out.append(f"- 候选 {oc.get('candidates', 0)} · 趋势主题重合 {oc.get('demand_confirmed', 0)} · 重现 {oc.get('recurring', 0)} · 已有人做 {oc.get('supplied', 0)}(生成 {op.get('generated', '?')};Reddit 源 ok:{op.get('reddit_sources_ok')})")
+        out.append("- 旧字段 demand-confirmed 仅指与 Google Trends 的主题重合，不代表客户确认、独立买家数或付费意愿；以下候选仍须读取原帖和核验客户行动。")
         for o in (op.get("opportunities") or [])[:8]:
             dm = (o.get("demand") or [{}])[0]
             out.append(f"- [{o.get('state')}] {o.get('theme')} · {len(o.get('days_seen') or [])} 天 · 站 {o.get('site') or '-'}"

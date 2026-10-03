@@ -1,10 +1,20 @@
 # Product marketing context
 
-**Document version: v11** — **Last updated: 2026-10-03**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v12** — **Last updated: 2026-10-03**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
-Owner wants a portfolio that can scale from approximately €11 to €110 and €1,100 in trailing-30-day net revenue. Net revenue means receipts less refunds and tax; profit also deducts provider, payment, acquisition, maintenance and human delivery costs. Eco has the only owner-reported revenue. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
+Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
+
+## First service sale validation — owner steering 2026-10-03
+
+The owner requested automation of community problem discovery and validation toward a first sale. The current candidate audience is people already using AI who still cannot complete a specific business workflow. This is an investigation hypothesis, not a validated segment. Start with a recent original request and its existing workarounds; provide useful, task-specific help, seek an actual outcome, and scope a paid follow-on only when an unresolved job and buyer interest are evidenced. Do not require a subscription or invent a replacement price before estimating the actual delivery effort and incremental value over the buyer's existing tools.
+
+The owner challenged the $299 ReleaseCheck proposal relative to AI subscription prices. It is withdrawn as the default first-revenue recommendation, not validated by its historical public listing. This context change does not silently reprice or reopen the existing pilot. Preserve its recorded observation window and report its separate status.
+
+Track discovered request, prepared reply, actually published reply, customer response, customer-confirmed useful outcome, agreed paid scope, payment and acceptance separately. A saved draft is not contact; a request for recommendations is not a service budget. Repeated sightings of one post, votes, comments and Google Trends overlap do not establish independent buyers or willingness to pay. The legacy radar field `demand-confirmed` means topic overlap with Trends only. Community messages and customer records belong in private working records, not this public repository. Automatic outbound posting, unsolicited DMs, new paid tools and ad spend are not authorized by this brief.
+
+Keep the initial run bounded: review a small number of relevant requests, prepare tailored help and an input/acceptance checklist; do not build another monitoring product while awaiting responses. If messages have not been sent, record a distribution blocker rather than failed demand. Quote only a deliverable we can accept and verify, and use a payment route for that exact service; existing membership/advertising checkout must not be repurposed with the wrong entitlement. Count a first service payment only with attributable transaction evidence, distinguish deposits from completed sales and refunds, and report missing access as unknown.
 
 ## Products and provisional buyers
 
@@ -58,6 +68,8 @@ No new paid features for the three discovery probes until repeated task evidence
 Owner rejected founder-only positioning and approved need-led segmentation, leading-site benchmarking and commercial user journeys. New bilingual Future Guide serves work/learning first, with understand/earn/family/forecast entry points. Segment needs and willingness to pay remain hypotheses. Free: source-linked interviews, editorial interpretation, private local judgments, action records and export. Optional paid value: the existing AGI cloud membership stores this same notebook with version history; 9 USDT/30 days plus matching decimal and network fees, unchanged quotas, no auto-renewal or extra AI. No paid video archive, personal-report subscription or autonomous Jarvis forecast is offered. Jarvis currently labels its guidance as editorial. Read `docs/agi-future-guide-design-2026-10-03.md`.
 
 ## Changelog
+
+- v12 (2026-10-03): Applied the owner's USD 1k/5k/10k monthly revenue goals and acceptance of manual selling; withdrew $299 as the default recommendation and added evidence stages for a bounded community-to-first-sale validation run. No public offer or checkout changed.
 
 - v11 (2026-10-03): Added need-led AGI Future Guide, differentiated free content/action records from existing optional cloud storage and future unvalidated report products. Preserved evidence identity and existing mentor scope.
 
