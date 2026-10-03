@@ -43,3 +43,8 @@ test('Future guide media events record fixed actions, never search or media URLs
  assert.deepEqual(businessEvent('agiscorecard.com','/zh/future-guide',{name:'future_video_open'}),{name:'future_video_open',tool_id:'future-guide',repeat:true});
  for(const [host,p,d]of [['baipiaoji.com','/future-guide',{name:'future_audio_open'}],['agiscorecard.com','/members',{name:'future_medium'}],['agiscorecard.com','/future-guide',{name:'future_topic',query:'private'}],['agiscorecard.com','/future-guide',{name:'future_unknown'}]])assert.equal(businessEvent(host,p,d),null);
 });
+
+test('AGI home funnel uses fixed actions and route-derived language only',()=>{
+ for(const path of ['/','/cn'])assert.deepEqual(businessEvent('agiscorecard.com',path,{name:'home_video_open'}),{name:'home_video_open',tool_id:'agi-home',site_edition:path==='/cn'?'zh':'en',repeat:true});
+ for(const [host,path,detail]of [['agiscorecard.com','/members',{name:'home_library'}],['other.example','/',{name:'home_library'}],['agiscorecard.com','/',{name:'home_library',video:'private'}],['agiscorecard.com','/cn',{name:'home_unknown'}]])assert.equal(businessEvent(host,path,detail),null);
+});

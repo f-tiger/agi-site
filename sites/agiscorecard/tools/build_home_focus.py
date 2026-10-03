@@ -60,37 +60,19 @@ def poll(zh):
 </section>'''
 
 def hero(d, zh):
-    score=d['thesisTracker']['score']; date=d['thesisTracker']['asOf']; n=len(d['predictions'])
-    base='/zh' if zh else ''
-    headline='AI 进展到了哪一步？' if zh else 'How close are we to AGI?'
-    intro=('对照证据，追踪《态势感知》的 '+str(n)+' 项预测。看懂已经发生的变化、仍未兑现的承诺，以及它们对工作和投资研究的意义。' if zh else
-           f'Track {n} predictions from Situational Awareness against the evidence. See what has held up, what remains unresolved, and what it means for work and investment research.')
-    score_label='AGI-2027 命题追踪指数' if zh else 'AGI-2027 Thesis Tracker'
-    evidence_note='已发布判定的综合分数，不是 AGI 发生概率。' if zh else 'A composite of published verdicts, not the probability of AGI.'
-    stamp=('台账记录日期' if zh else 'Ledger reading dated')+f' <time datetime="{date}">{date}</time>'
-    cases=[(base+'/progress-index','查证据' if zh else 'Check the evidence','逐项核对判定、来源与改变结论的条件。' if zh else 'Inspect each verdict, source and condition for changing it.','evidence'),
-           (base+'/ai-and-your-job','判断工作影响' if zh else 'Understand work changes','区分已观测的就业数据与未来预测。' if zh else 'Separate observed employment data from forecasts.','work'),
-           (base+'/invest','研究 AI 投资' if zh else 'Research AI investments','核对公开持仓与研究假设，再看风险。' if zh else 'Check public holdings, assumptions and risks.','invest')]
-    routes=''.join(action(href,f'<strong>{title}</strong><span>{desc}</span>','route_'+key,'focus-route') for href,title,desc,key in cases)
-    desk=evidence_desk(d,zh)
-    return f'''<section class="focus-intro" aria-labelledby="focus-title" data-release="agi-focus-20261001">
-  <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1>{countdown(zh)}{poll(zh)}<p class="focus-lead">{intro}</p>
-  <div class="focus-actions">{action(base+'/progress-index#cite-evidence','查看证据与变化' if zh else 'Inspect evidence and changes','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
-  <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
-  {future_entry(zh)}
-  {desk}
-  <nav class="focus-routes" aria-label="{'选择用途' if zh else 'Choose your task'}">{routes}</nav>
-  <p>{action(base+'/portfolio-tracker','公开追踪：12 股组合能跑赢标普和 TQQQ 吗？' if zh else 'Public tracker: can twelve popular stocks beat SPY and TQQQ?', 'portfolio_tracker')}</p>
-  <p class="focus-boundary">{'判定记录与网站更新分开标注。页面改版不代表证据重新核验。' if zh else 'Evidence dates and site updates are shown separately. A site update does not mean a verdict was reassessed.'}</p>
+    score=d['thesisTracker']['score']; date=d['thesisTracker']['asOf']; base='/zh' if zh else ''
+    snapshot=json.loads((ROOT/'foresight-assets/home.json').read_text()); content=snapshot['locales']['zh' if zh else 'en']
+    headline='看懂 AI 的变化，找到你的下一步。' if zh else 'Make sense of AI. Find your next step.'
+    intro='从一条值得看的观点开始，了解工作、学习与未来正在发生什么。' if zh else 'Start with a perspective worth watching. Explore what AI means for work, learning and the future.'
+    return f'''<section class="focus-intro home-editorial" aria-labelledby="focus-title" data-release="agi-focus-20261001">
+<div class="home-opening"><div><h1 id="focus-title">{headline}</h1><p class="home-lead">{intro}</p></div><a class="focus-primary" href="{base}/future-guide" data-home-action="library">{'探索视频与观点' if zh else 'Explore videos & ideas'} ↗</a></div>
+<div class="home-stats" id="home-stats">{content['stats']}</div>
+<div class="home-hero-grid"><div id="home-feature">{content['feature']}</div><aside class="home-outlook" aria-label="{'AGI 倒计时与投票' if zh else 'AGI countdown and poll'}">{countdown(zh)}{poll(zh)}</aside></div>
+<div id="home-feed">{content['feed']}</div>
+<section class="home-next"><div><h2>{'看完之后，继续追问。' if zh else 'Turn a good question into a next step.'}</h2><p>{'收藏观点、核对证据，或让贾维斯围绕你的问题继续研究。' if zh else 'Save a perspective, inspect the evidence, or give Jarvis a question to investigate.'}</p></div><nav><a href="{base}/future-guide#notebook" data-home-action="notebook">{'我的收藏与行动' if zh else 'My saved views & actions'}</a><a href="{base}/jarvis" data-home-action="jarvis">{'让贾维斯继续研究' if zh else 'Research with Jarvis'}</a></nav></section>
+<div class="home-evidence"><div><h2>{'用证据检验未来。' if zh else 'Check the future against the evidence.'}</h2><p>{'追踪《态势感知》的 8 项预测，了解哪些已兑现、哪些仍有待观察。' if zh else 'Track 8 predictions from Situational Awareness: what has held up, and what remains open.'}</p><div class="focus-actions">{action(base+'/progress-index','查看预测证据' if zh else 'Inspect the evidence','hero_evidence','focus-secondary')}{action('#grade-game','给出我的判断' if zh else 'Make my assessment','hero_grade','focus-secondary')}</div></div><aside class="focus-reading"><p>{'AGI-2027 命题追踪指数' if zh else 'AGI-2027 Thesis Tracker'}</p><div class="focus-score">{score}<span>/100</span></div><p>{'判定综合分数，不是 AGI 发生概率。' if zh else 'A composite of verdicts, not an AGI probability.'}</p><p class="focus-date">{'台账日期' if zh else 'Ledger dated'} <time datetime="{date}">{date}</time></p></aside></div>
+{evidence_desk(d,zh)}
 </section>'''
-
-def future_entry(zh):
-    base='/zh' if zh else ''
-    needs=[('work','应对工作变化','Adapt my work'),('learn','找到学习方向','Choose what to learn'),('understand','看懂趋势','Understand the change'),('earn','探索收入机会','Explore income ideas'),('family','思考家庭教育','Think about education'),('forecast','检验我的判断','Test my judgment')]
-    links=''.join(f'<a href="{base}/future-guide?goal={key}#goals">{cn if zh else en} <span aria-hidden="true">↗</span></a>' for key,cn,en in needs)
-    return f'''<section class="focus-future" aria-labelledby="future-guide-heading" data-release="agi-future-entry-20261003">
-<div><p class="focus-future-label">{'AI 未来导航' if zh else 'AI future guide'}</p><h2 id="future-guide-heading">{'AI 在变化，你的下一步是什么？' if zh else 'AI is changing. What is your next step?'}</h2><p>{'从你关心的问题出发，读懂专家访谈、查证据，并带走一个行动计划。' if zh else 'Start with your own question. Explore expert interviews, inspect the evidence and take away an action plan.'}</p><a class="focus-primary" href="{base}/future-guide">{'找到我的下一步' if zh else 'Find my next step'} →</a> <a href="{base}/jarvis">{'把目标交给贾维斯' if zh else 'Give Jarvis a goal'}</a></div>
-<nav aria-label="{'按需求探索访谈' if zh else 'Explore interviews by your needs'}">{links}</nav></section>'''
 
 def evidence_desk(d,zh):
     base='/zh' if zh else ''
@@ -130,6 +112,11 @@ def render():
     out={}
     for name,zh in [('index.html',False),('cn.html',True)]:
         p=ROOT/name;s=assets(p.read_text())
+        snapshot=json.loads((ROOT/'foresight-assets/home.json').read_text())
+        s=re.sub(r'<header.*?</header>',lambda _:snapshot['locales']['zh' if zh else 'en']['header'],s,count=1,flags=re.S)
+        if '/home-focus/media.mjs' not in s:s=s.replace('</head>','<script type="module" src="/home-focus/media.mjs?v=20261003"></script>\n</head>')
+        if '/home-focus/nav.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/home-focus/nav.css?v=20261003">\n</head>')
+        s=s.replace('/home-focus/focus.css?v=1','/home-focus/focus.css?v=20261003')
         if '/home-focus/countdown.js' not in s:
             s=s.replace('</head>', '<script type="module" src="/home-focus/countdown.js"></script>\n</head>')
         if '/home-focus/vote.js' not in s:
@@ -142,8 +129,8 @@ def render():
             s=re.sub(r'let myVote = null, myArchetype = null;.*?(?=// Per-prediction actions,)', '', s, count=1, flags=re.S)
             s=re.sub(r'// Crowd reveal \(2026-09-27.*?try \{ renderLocked\(\); \} catch \(e\) \{\}', '', s, count=1, flags=re.S)
         s=region(s,'home-focus',hero(d,zh));s=region(s,'home-grade',grade(zh));s=region(s,'home-changes',changes(cl,zh))
-        title='AGI 倒计时、进展与预测证据 | AGI 记分牌' if zh else 'AGI Countdown, Progress & Prediction Evidence | AGI Scorecard'
-        desc='查看 2027 年观察节点倒计时，追踪《态势感知》的 8 项 AGI 预测。核对来源与判定条件，自行评分，了解 AI 对工作与投资研究的影响。' if zh else 'Watch the countdown to the 2027 observation window and track 8 AGI predictions against evidence. Check sources and verdicts, make your own assessment, and explore work and investment impacts.'
+        title='AI 视频、观点与 AGI 倒计时 | AGI 记分牌' if zh else 'AI Videos, Ideas & AGI Countdown | AGI Scorecard'
+        desc='按工作、学习、商业与未来预判浏览 AI 访谈和博主视频。阅读观点总结、直接观看原片，追踪 AGI 倒计时与预测证据。' if zh else 'Explore AI interviews and creator videos by work, learning, business and future forecasts. Read takeaways, watch originals, and track the AGI countdown and prediction evidence.'
         s=re.sub(r'<title>.*?</title>',f'<title>{title}</title>',s,flags=re.S)
         for attr,key,val in [('name','description',desc),('property','og:title',title),('property','og:description',desc),('name','twitter:title',title),('name','twitter:description',desc)]:
             s=re.sub(rf'<meta {attr}="{key}" content="[^"]*">',f'<meta {attr}="{key}" content="{escape(val,quote=True)}">',s)

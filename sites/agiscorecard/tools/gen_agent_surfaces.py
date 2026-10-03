@@ -107,6 +107,15 @@ def main():
         if not title:
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)
+        if slug in ('index','cn'):
+            source_html = open(fpath, encoding='utf-8').read()
+            home = re.search(r'<!-- home-focus:start -->(.*?)<!-- home-focus:end -->', source_html, re.S)
+            if home:
+                visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', home[1], flags=re.S|re.I)
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', visible, flags=re.S)
+                readable = text_of(linked)
+                md += '\n## Videos, perspectives and next steps\n\n' + readable + '\n'
+                full += ['## Videos, perspectives and next steps', '', 'URL: '+url, '', readable, '']
         if slug in ('future-guide','zh/future-guide') or slug.startswith(('future-guide/','zh/future-guide/')):
             source_html = open(fpath, encoding='utf-8').read()
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)

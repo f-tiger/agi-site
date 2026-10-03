@@ -35,6 +35,10 @@ export function businessEvent(host, pathname, detail) {
       ['future_medium','future_topic','future_video_open','future_audio_open'].includes(name)) {
     return {name, tool_id:'future-guide', repeat:true};
   }
+  if (host === 'agiscorecard.com' && ['/', '/cn'].includes(route) &&
+      ['home_library','home_audio','home_video_open','home_view','home_topic','home_latest','home_notebook','home_jarvis'].includes(name)) {
+    return {name, tool_id:'agi-home', site_edition:route==='/cn'?'zh':'en', repeat:true};
+  }
   // Homepage events use fixed public labels only, never destinations or search input.
   if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
     const parts = name.split(':');

@@ -2,6 +2,13 @@
   "note": "Real, dated site changes only — the changelog generator refuses invented entries. Newest first. Maintained by the daily run; every entry must correspond to a shipped commit.",
   "entries": [
     {
+      "date": "2026-10-03",
+      "title": "Bilingual homepages now open directly into videos and perspectives",
+      "title_zh": "中英文首页直接呈现精选观点、近期视频与六类主题",
+      "url": "/future-guide",
+      "note": "Shared catalog powers homepage counts and recent videos. One navigation connects both languages, source-linked views, the countdown, public poll and Jarvis. Specific-video links retain the episode across language switches. Existing free notebooks and cloud membership paths remain available; verdict dates are unchanged."
+    },
+    {
       "date": "2026-10-02",
       "title": "Four evidence topics now have dated citation notes and downloadable charts",
       "title_zh": "四个证据主题补齐日期、引用说明和可下载图表",

@@ -26,12 +26,16 @@ async function fixture(url,{failData=false,privacy=false,copyFail=false,crowdFai
     const slug=u.pathname==='/'?'/index.html':u.pathname;
     const f=path.join(root,path.extname(slug)?slug:slug+'.html');
     if(!f.startsWith(root+path.sep)||!fs.existsSync(f))return r.fulfill({status:404,body:'fixture missing'});
-    const type={'.html':'text/html','.css':'text/css','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml'}[path.extname(f)]||'text/plain';
+    const type={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.svg':'image/svg+xml'}[path.extname(f)]||'text/plain';
     return r.fulfill({body:fs.readFileSync(f),contentType:type});
   });
   await p.goto('https://agiscorecard.com'+url);
   await p.waitForFunction(()=>document.querySelector('.focus-intro'));
   assert.equal(await p.locator('h1').count(),1);
+  assert.equal(await p.locator('.home-topics a').count(),6);
+  assert.equal(await p.locator('.home-latest-card').count(),4);
+  assert.equal(await p.locator('#home-feature iframe').count(),0);
+  assert.equal(await p.locator('.agi-header nav a[aria-current=page]').count(),1);
   await p.waitForFunction(()=>/^\d+$/.test(document.getElementById('cd-days')?.textContent||''));
   assert.equal(await p.locator('#milestones').count(),1,'one countdown, in the hero');
   assert.equal(await p.locator('.focus-intro #milestones').count(),1);

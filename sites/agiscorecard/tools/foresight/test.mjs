@@ -41,3 +41,11 @@ test('media classification overrides podcast syndication, preserves reviewed vie
  const evil={sources:[{id:'test',name:'Publisher',language:'en'}],items:[{id:'test',sourceId:'test',url:'https://example.com/source',title:'<script>alert(1)</script>',medium:'audio',publishedAt:'2026-10-03T00:00:00Z',goals:['work'],publisherExcerpt:'<img onerror="evil()">',audioUrl:'javascript:alert(1)'}]};
  const safe=discoveryCards(evil,'en',{medium:'audio',query:'alert'},4);assert.ok(!safe.includes('<script>')&&!safe.includes('data-play-audio'));assert.match(safe,/&lt;script&gt;/);
 });
+
+import {homeSnapshot,siteHeader} from '../../foresight-assets/home.mjs';
+test('bilingual home and library use the same deduplicated collection and exact video destinations',()=>{
+ const data=JSON.parse(fs.readFileSync(new URL('../../foresight-assets/discovery.json',import.meta.url))),snapshot=homeSnapshot(data),items=contentItems(data);
+ assert.equal(snapshot.counts.videos,items.filter(i=>i.medium==='video').length);assert.equal(snapshot.counts.views,claims.length);assert.equal(snapshot.checkedAt,data.checkedAt);
+ for(const lang of ['en','zh']){const home=snapshot.locales[lang],prefix=lang==='zh'?'/zh':'',links=[...home.feed.matchAll(/watch=([\w-]{11})/g)].map(m=>m[1]);assert.equal(new Set(links).size,4);for(const id of links){assert.equal(selectedItems(data,{watch:id,asOf:'2026-10-03'}).length,1);assert.ok(items.find(i=>i.video===id).language===lang);}assert.ok(home.feed.includes(prefix+'/future-guide?topic=work#fresh'));assert.match(home.feature,/data-home-video="[\w-]{11}"/);assert.ok(!home.feature.includes('<iframe'));assert.ok(siteHeader(lang,{slug:'future-guide/test',current:'videos'}).includes('href="'+(lang==='zh'?'':'/zh')+'/future-guide/test"'));}
+ const next=structuredClone(data);next.items.push({id:'test-new-video',sourceId:data.sources[0].id,url:'https://www.youtube.com/watch?v=aNewVideo001',publishedAt:'2026-10-03T00:00:00Z',medium:'video',title:'New source episode',goals:['work']});assert.equal(homeSnapshot(next).counts.videos,snapshot.counts.videos+1);
+});
