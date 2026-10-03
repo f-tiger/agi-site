@@ -3,6 +3,7 @@ import {bodyOf} from '../create/server.mjs';
 import {hash,now,limit} from '../create/store.mjs';
 import {ensure,owned,publicTask} from './store.mjs';
 import {execute,tick} from './engine.mjs';
+import {runTool} from './sources.mjs';
 export {tick};
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex','Referrer-Policy':'no-referrer','Content-Security-Policy':"default-src 'none'; frame-ancestors 'none'"};
 const json=(data,status=200)=>Response.json(data,{status,headers});
@@ -20,6 +21,12 @@ export async function jarvisRoute(request,env,ctx){
    const expected=await hash(env.MEMBER_WATCH_SECRET+':jarvis-runner:v1');if(await hash(token)!==await hash(expected))throw Error('unauthorized');
    if(request.method==='GET')return json({ok:true,version:VERSION,runner:'bounded_private_queue',maxTasksPerRequest:1});
    await ensure(db);await limit(db,'jarvis-runner',4,60);
+   if(request.headers.get('content-type')?.includes('application/json')){
+    const b=await bodyOf(request);if(b.action!=='verify_sources')throw Error('invalid_request');
+    const checks=[];
+    for(const tool of ['github_search','hackernews_search']){try{const rows=await runTool({tool},{web:true,publicQuery:'AI agents'},env.JARVIS_FETCH||fetch);checks.push({tool,ok:rows.length>0,count:rows.length});}catch(e){checks.push({tool,ok:false,code:/^source_[a-z_\d]+$/.test(e.message)?e.message:'source_unavailable'});}}
+    return json({ok:true,version:VERSION,checks,modelCalls:0});
+   }
    return json(await tick(env,{maxTasks:1}));
   }
   await ensure(db);const owner=await hash('jarvis-owner:v1:'+token);

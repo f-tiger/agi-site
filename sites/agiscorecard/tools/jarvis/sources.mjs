@@ -6,8 +6,11 @@ export async function availableCatalog(lang,assets){
  try{const r=await assets.fetch(new Request('https://agiscorecard.com/foresight-assets/discovery.json'));if(!r.ok)throw Error('snapshot_unavailable');const text=await r.text();if(text.length>4000000)throw Error('snapshot_too_large');const j=JSON.parse(text);if(!Array.isArray(j.items))throw Error('snapshot_invalid');for(const x of j.items.slice(0,3000)){if(!safeURL(x.url)||typeof x.title!=='string')continue;rows.push({id:'discovery-'+String(x.id).replace(/[^a-z0-9-]/gi,'').slice(0,50),title:x.title.slice(0,200),description:(lang==='zh'?'自动发现的标题与发布者摘要，未核阅节目全文：':'Discovered title and publisher excerpt; full program not reviewed: ')+String(x.publisherExcerpt||'').slice(0,300),url:x.url,kind:'discovered_metadata',publishedAt:x.publishedAt,checkedAt:x.firstSeenAt});}return {rows,discoveryLoaded:true};}catch{return {rows,discoveryLoaded:false};}
 }
 export async function boundedJSON(url,fetcher=fetch){
- const response=await fetcher(url,{redirect:'error',headers:{accept:'application/json','user-agent':'AGI-Jarvis/0.1 (+https://agiscorecard.com/jarvis)'},signal:AbortSignal.timeout(8000)});
- if(!response.ok)throw Error('source_unavailable');
+ let response;try{response=await fetcher(url,{redirect:'manual',headers:{accept:'application/json','user-agent':'AGI-Jarvis/0.1 (+https://agiscorecard.com/jarvis)'},signal:AbortSignal.timeout(8000)});}catch{throw Error('source_network_error');}
+ // workerd does not implement redirect:error. Manual + status rejection keeps
+ // the no-redirect boundary without relying on Node-only behavior.
+ if(response.status>=300&&response.status<400)throw Error('source_redirect_blocked');
+ if(!response.ok)throw Error('source_http_'+response.status);
  const reader=response.body.getReader();let length=0;const parts=[];
  try{while(true){const {done,value}=await reader.read();if(done)break;length+=value.length;if(length>350000)throw Error('source_too_large');parts.push(value);}}finally{await reader.cancel().catch(()=>{});}
  const all=new Uint8Array(length);let i=0;for(const p of parts){all.set(p,i);i+=p.length;}

@@ -323,7 +323,9 @@ jobs:
         env:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: node sites/agiscorecard/tools/jarvis/ops.mjs verify
+        run: |
+          node sites/agiscorecard/tools/jarvis/ops.mjs verify
+          node sites/agiscorecard/tools/jarvis/ops.mjs verify-sources
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
