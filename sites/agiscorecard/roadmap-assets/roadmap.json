@@ -1,0 +1,1874 @@
+{
+  "schema_version": 1,
+  "revision": "2026-10-03.1",
+  "reviewed_at": "2026-10-03",
+  "review_due": "2026-11-03",
+  "routes": [
+    {
+      "id": "compute",
+      "phase": 0,
+      "name": {
+        "en": "Compute, interconnects & memory",
+        "zh": "算力、互联与存储"
+      },
+      "maturity": "demand",
+      "claims": [
+        "fast-ai-progress",
+        "agent-coordination",
+        "many-models",
+        "agents-take-time"
+      ],
+      "tickers": [
+        "NVDA",
+        "AVGO",
+        "MU"
+      ],
+      "keywords": [
+        "compute",
+        "inference",
+        "gpu",
+        "memory",
+        "hbm",
+        "算力",
+        "推理",
+        "芯片",
+        "存储"
+      ],
+      "thesis": {
+        "en": "More useful inference and parallel agents could raise compute and memory demand, even as each task gets cheaper. Total paid workload must grow faster than efficiency improves.",
+        "zh": "有效推理与并行智能体可能拉动算力和存储，即使单次任务更便宜；前提是付费总工作量增长超过效率提升。"
+      },
+      "bottleneck": {
+        "en": "Useful workload → paid usage → hardware utilization",
+        "zh": "有效任务 → 付费使用 → 硬件利用率"
+      },
+      "confirm": {
+        "en": "Over the next two reported quarters, compare AI revenue, margins and customer spending with the prior guidance.",
+        "zh": "接下来两个已披露季度，核对 AI 收入、利润率和客户开支能否兑现此前指引。"
+      },
+      "invalidate": {
+        "en": "Spending remains high while utilization, pricing or cash generation weaken; customers reduce orders.",
+        "zh": "开支高企，但利用率、定价或现金创造能力恶化；客户削减订单。"
+      },
+      "scenarios": {
+        "slow": {
+          "en": "Watch utilization first. Falling unit costs can reduce hardware spending before new uses absorb supply.",
+          "zh": "先看利用率。单位成本下降可能先压低硬件支出，新用途未必及时吸收供给。"
+        },
+        "base": {
+          "en": "Track paid inference growth and margins together. Favor demonstrable economics over capacity announcements.",
+          "zh": "同时看付费推理增量与利润率，优先验证实际经济回报。"
+        },
+        "fast": {
+          "en": "Capacity and memory become constraints, but customer concentration and forward valuation can still hurt returns.",
+          "zh": "容量与内存成为约束，但客户集中与提前透支的估值仍会损害回报。"
+        }
+      }
+    },
+    {
+      "id": "power",
+      "phase": 0,
+      "name": {
+        "en": "Power delivery & cooling",
+        "zh": "供电与散热"
+      },
+      "maturity": "demand",
+      "claims": [
+        "fast-ai-progress",
+        "ai-work-organization"
+      ],
+      "tickers": [
+        "VRT",
+        "ETN"
+      ],
+      "keywords": [
+        "power",
+        "cooling",
+        "energy",
+        "datacenter",
+        "data center",
+        "电力",
+        "能源",
+        "散热",
+        "数据中心"
+      ],
+      "thesis": {
+        "en": "If compute use expands, physical power delivery and heat removal can limit deployment. This is our economic inference, not a stock recommendation from the speakers.",
+        "zh": "若计算需求扩张，供电和散热可能约束部署。这是本站的产业推演，不是视频嘉宾推荐这些股票。"
+      },
+      "bottleneck": {
+        "en": "Orders → connected facilities → cash collection",
+        "zh": "订单 → 设施接通 → 回款"
+      },
+      "confirm": {
+        "en": "At the next two reports, verify backlog conversion, cancellation rates where disclosed, and cash conversion.",
+        "zh": "后续两次财报检查积压订单兑现、已披露的取消情况和现金回收。"
+      },
+      "invalidate": {
+        "en": "Backlogs rise but deliveries and cash flow stall, or data-center customers delay projects.",
+        "zh": "积压订单上升，但交付和现金流停滞，或数据中心客户推迟项目。"
+      },
+      "scenarios": {
+        "slow": {
+          "en": "Order quality and working capital matter more than announced capacity.",
+          "zh": "订单质量和营运资金比宣布的产能更重要。"
+        },
+        "base": {
+          "en": "Watch delivery schedules and whether revenue converts into cash.",
+          "zh": "关注交付时间及收入能否转成现金。"
+        },
+        "fast": {
+          "en": "Grid connections and cooling constrain deployment; shortage does not make any valuation reasonable.",
+          "zh": "接电与散热约束部署，但短缺不意味着任何估值都合理。"
+        }
+      }
+    },
+    {
+      "id": "agents",
+      "phase": 1,
+      "name": {
+        "en": "Enterprise agents that earn their keep",
+        "zh": "能创造回报的企业智能体"
+      },
+      "maturity": "adoption",
+      "claims": [
+        "software-judgment",
+        "agents-recover",
+        "mutable-software",
+        "agents-take-time",
+        "distribution-opportunity"
+      ],
+      "tickers": [
+        "MSFT",
+        "NOW"
+      ],
+      "keywords": [
+        "agent",
+        "workflow",
+        "copilot",
+        "enterprise",
+        "software",
+        "智能体",
+        "工作流",
+        "企业",
+        "软件"
+      ],
+      "thesis": {
+        "en": "Distribution, workflow data and reliable recovery can turn model capability into paid work. Existing software benefits only if new usage exceeds price and seat erosion.",
+        "zh": "分发、工作流数据和可靠恢复，才能把模型能力转成付费工作。已有软件只有在新收入超过降价和席位流失时才真正受益。"
+      },
+      "bottleneck": {
+        "en": "Reliable completion → renewals → incremental profit",
+        "zh": "可靠完成 → 续约 → 增量利润"
+      },
+      "confirm": {
+        "en": "Check disclosed paid adoption, renewals and incremental AI revenue against serving and review costs.",
+        "zh": "核对披露的付费采用、续约与增量 AI 收入，扣除服务及复核成本。"
+      },
+      "invalidate": {
+        "en": "Demos grow while paid retention stays weak, or agent revenue merely replaces higher-margin seat revenue.",
+        "zh": "演示增加而付费留存弱，或智能体收入只是替代利润率更高的席位收入。"
+      },
+      "scenarios": {
+        "slow": {
+          "en": "Human-supervised workflows may monetize sooner than autonomous workers.",
+          "zh": "需要人监督的工作流可能比完全自主员工更早变现。"
+        },
+        "base": {
+          "en": "Track specific paid tasks and renewals instead of counting launched agents.",
+          "zh": "看具体付费任务和续约，不数发布了多少智能体。"
+        },
+        "fast": {
+          "en": "Usage can accelerate, but incumbents may lose seat pricing and face new competitors.",
+          "zh": "使用量可能加速，但老厂商也可能失去席位定价权并遇到新对手。"
+        }
+      }
+    },
+    {
+      "id": "trust",
+      "phase": 1,
+      "name": {
+        "en": "Permission, identity & trusted deployment",
+        "zh": "权限、身份与可信部署"
+      },
+      "maturity": "adoption",
+      "claims": [
+        "agent-permissions",
+        "safety-is-engineering",
+        "deployable-trust",
+        "test-failure-cases"
+      ],
+      "tickers": [
+        "PANW",
+        "MSFT"
+      ],
+      "keywords": [
+        "security",
+        "permission",
+        "identity",
+        "sandbox",
+        "evaluation",
+        "trust",
+        "安全",
+        "权限",
+        "身份",
+        "评估",
+        "可信"
+      ],
+      "thesis": {
+        "en": "Agents acting across systems create permission, monitoring and incident-response needs. Demand for safeguards does not guarantee a separate paid market for every vendor.",
+        "zh": "跨系统行动的智能体带来权限、监控和响应需求；防护需求不保证每家厂商都能形成独立付费市场。"
+      },
+      "bottleneck": {
+        "en": "Permission controls → safe deployment → paid contracts",
+        "zh": "权限控制 → 安全部署 → 付费合同"
+      },
+      "confirm": {
+        "en": "Look for attributable paid deployments, organic security growth and renewal evidence; separate acquisitions.",
+        "zh": "寻找可归因的付费部署、安全业务有机增长和续约证据，剔除并购影响。"
+      },
+      "invalidate": {
+        "en": "Controls become free bundles, adoption stalls or losses from incidents exceed the expected business value.",
+        "zh": "控制能力被免费捆绑、采用停滞，或事故损失超过预期业务价值。"
+      },
+      "scenarios": {
+        "slow": {
+          "en": "Reliability and compliance remain adoption bottlenecks even if model progress slows.",
+          "zh": "即使模型进展放缓，可靠性与合规仍可能阻碍采用。"
+        },
+        "base": {
+          "en": "Verify customers pay for controls rather than receiving them in existing bundles.",
+          "zh": "确认客户为控制能力额外付费，而非只获得已有套餐的附赠。"
+        },
+        "fast": {
+          "en": "More autonomous activity increases the need for control; verify who captures the spending.",
+          "zh": "自主活动增加会提高控制需求，但要确认谁真正获得支出。"
+        }
+      }
+    },
+    {
+      "id": "worlds",
+      "phase": 2,
+      "name": {
+        "en": "World models & physical AI",
+        "zh": "世界模型与物理 AI"
+      },
+      "maturity": "exploration",
+      "claims": [
+        "interactive-worlds",
+        "creative-control",
+        "simulation-gap",
+        "improvement-bottlenecks"
+      ],
+      "tickers": [
+        "GOOGL",
+        "NVDA"
+      ],
+      "keywords": [
+        "world model",
+        "robot",
+        "simulation",
+        "physical ai",
+        "世界模型",
+        "机器人",
+        "仿真",
+        "物理"
+      ],
+      "thesis": {
+        "en": "Interactive simulation could support creation, training and robotics. A technical leap still needs reliable real-world transfer and paying users.",
+        "zh": "交互仿真可能服务创作、训练和机器人；技术突破仍需可靠的现实迁移和付费用户。"
+      },
+      "bottleneck": {
+        "en": "Simulation → real-world transfer → repeat paid use",
+        "zh": "仿真 → 现实迁移 → 持续付费"
+      },
+      "confirm": {
+        "en": "Require repeat external use, comparable real-world evaluations and separately evidenced economics before upgrading the thesis.",
+        "zh": "升级判断前，需要持续外部使用、可比较的现实测试和单独可核查的商业回报。"
+      },
+      "invalidate": {
+        "en": "Simulation improves while real-world reliability, costs or commercial retention fail to improve.",
+        "zh": "仿真变强，但现实可靠性、成本或商业留存没有改善。"
+      },
+      "scenarios": {
+        "slow": {
+          "en": "Keep this as a research option; avoid assuming a near-term earnings contribution.",
+          "zh": "保持远期观察，不假设短期利润贡献。"
+        },
+        "base": {
+          "en": "Advance only when simulation benefits a measured real task.",
+          "zh": "只有仿真对可测量的现实任务产生收益，才推进判断。"
+        },
+        "fast": {
+          "en": "New markets may form, but the first technical winner need not be the best stock investment.",
+          "zh": "新市场可能形成，但技术领先者未必就是最好的股票投资。"
+        }
+      }
+    }
+  ],
+  "companies": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "tier": "focus",
+      "period": "Q2 FY2027",
+      "source": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Second-Quarter-Fiscal-2027/",
+      "fact": {
+        "en": "Reported Data Center revenue growth; this establishes current demand, not a cheap share price.",
+        "zh": "已披露数据中心收入增长；说明当前需求，不说明股票便宜。"
+      },
+      "role": {
+        "en": "Accelerated compute and networking",
+        "zh": "加速计算与网络"
+      },
+      "check": {
+        "en": "Data Center growth, gross margin, customer concentration and cash conversion.",
+        "zh": "数据中心增速、毛利率、客户集中度、现金回收。"
+      },
+      "risk": {
+        "en": "Custom chips, export limits and customers building ahead of demand.",
+        "zh": "定制芯片替代、出口限制、客户提前扩建。"
+      }
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "tier": "focus",
+      "period": "Q3 FY2026",
+      "source": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-third-quarter-fiscal-year-2026-financial",
+      "fact": {
+        "en": "Reported growth in custom AI accelerators and networking revenue. Customer concentration still matters.",
+        "zh": "披露定制 AI 加速器与网络收入增长，仍需检查客户集中度。"
+      },
+      "role": {
+        "en": "Custom accelerators and interconnects",
+        "zh": "定制加速器与互联"
+      },
+      "check": {
+        "en": "AI revenue, next-quarter guidance, program timing and customer breadth.",
+        "zh": "AI 收入、下季度指引、项目交付节奏、客户广度。"
+      },
+      "risk": {
+        "en": "Few large customers; internal chip programs can shift spending.",
+        "zh": "少数大客户占比较高，自研项目可能改变支出。"
+      }
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron",
+      "tier": "confirm",
+      "period": "Q4 FY2026",
+      "source": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/default.aspx",
+      "fact": {
+        "en": "The September 30 release reports strong AI-led demand and record results. Peak earnings are not normalized earnings.",
+        "zh": "9 月 30 日公告披露 AI 需求与创纪录业绩；高景气利润不能直接当作常态利润。"
+      },
+      "role": {
+        "en": "High-bandwidth memory and memory capacity",
+        "zh": "高带宽内存与存储容量"
+      },
+      "check": {
+        "en": "HBM mix, DRAM supply, inventory days, capital spending and through-cycle cash flow.",
+        "zh": "HBM 占比、DRAM 供给、库存天数、资本开支、跨周期现金流。"
+      },
+      "risk": {
+        "en": "Memory supply can overshoot demand; falling prices compress peak margins.",
+        "zh": "存储扩产可能超过需求，价格回落压缩峰值利润。"
+      }
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv",
+      "tier": "focus",
+      "period": "Q2 2026",
+      "source": "https://investors.vertiv.com/news/news-details/2026/Vertiv-Reports-Strong-Second-Quarter-2026-with-Diluted-EPS-Growth-of-53-Adjusted-Diluted-EPS-Growth-of-60-Raises-Full-Year-2026-Guidance-Across-All-Key-Metrics/default.aspx",
+      "fact": {
+        "en": "Reported rising data-center demand and raised full-year guidance. Orders still need to convert to cash.",
+        "zh": "披露数据中心需求增长并上调全年指引；订单仍需兑现成现金。"
+      },
+      "role": {
+        "en": "Power and thermal management",
+        "zh": "电力与热管理"
+      },
+      "check": {
+        "en": "Orders, backlog conversion, organic growth, working capital and free cash flow.",
+        "zh": "订单、积压订单转收入、有机增长、营运资金、自由现金流。"
+      },
+      "risk": {
+        "en": "Construction delays, order cancellations and capacity expansion costs.",
+        "zh": "建设延期、订单取消、扩产成本。"
+      }
+    },
+    {
+      "ticker": "ETN",
+      "name": "Eaton",
+      "tier": "focus",
+      "period": "Q2 2026",
+      "source": "https://www.eaton.com/cr/en-us/company/news-insights/news-releases/2026/eaton-reports-record-second-quarter-2026-results.html",
+      "fact": {
+        "en": "Reported growth in electrical orders and backlog; data centers are one driver, not the whole company.",
+        "zh": "披露电气业务订单与积压订单增长；数据中心是驱动之一，并非整个公司。"
+      },
+      "role": {
+        "en": "Electrical distribution and power equipment",
+        "zh": "配电与电力设备"
+      },
+      "check": {
+        "en": "Electrical orders, book-to-bill, delivery capacity and segment margins.",
+        "zh": "电气订单、订单收入比、交付能力、分部利润率。"
+      },
+      "risk": {
+        "en": "Industrial cyclicality, grid delays and a valuation that already assumes growth.",
+        "zh": "工业周期、电网延期、估值已提前反映增长。"
+      }
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "tier": "focus",
+      "period": "Q4 FY2026",
+      "source": "https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast",
+      "fact": {
+        "en": "Reported Azure growth and paid Copilot adoption. Revenue must be weighed against infrastructure spending.",
+        "zh": "披露 Azure 增长与 Copilot 付费采用；收入需与基础设施支出一起评估。"
+      },
+      "role": {
+        "en": "Cloud distribution and enterprise workflows",
+        "zh": "云分发与企业工作流"
+      },
+      "check": {
+        "en": "Azure growth, paid usage, AI monetization, capex and free cash flow after investment.",
+        "zh": "Azure 增速、付费使用、AI 变现、资本开支与投资后的自由现金流。"
+      },
+      "risk": {
+        "en": "High capital intensity; monetization can lag infrastructure spending.",
+        "zh": "资本密集，变现可能落后于基建投入。"
+      }
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow",
+      "tier": "confirm",
+      "period": "Q2 2026",
+      "source": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
+      "fact": {
+        "en": "Reported AI annual contract value and subscription growth. Contract value is not recognized revenue.",
+        "zh": "披露 AI 年度合同价值与订阅增长；合同价值不等于已确认收入。"
+      },
+      "role": {
+        "en": "Enterprise workflow and agent orchestration",
+        "zh": "企业流程与智能体编排"
+      },
+      "check": {
+        "en": "AI contract conversion, cRPO, renewals and net gains after seat cannibalization.",
+        "zh": "AI 合同兑现、cRPO、续约、扣除席位替代后的净增量。"
+      },
+      "risk": {
+        "en": "Agents can replace seats as well as sell new products; valuation sensitivity.",
+        "zh": "智能体也可能替代原有席位，且估值敏感。"
+      }
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "tier": "confirm",
+      "period": "Q4 FY2026",
+      "source": "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-reports-fiscal-fourth-quarter-and-fiscal-10",
+      "fact": {
+        "en": "Reports security platform revenue and ARR. These do not isolate revenue from AI-agent security.",
+        "zh": "披露安全平台收入与 ARR，但不能据此分离 AI 智能体安全收入。"
+      },
+      "role": {
+        "en": "Identity, cloud and AI security",
+        "zh": "身份、云与 AI 安全"
+      },
+      "check": {
+        "en": "Organic next-generation security ARR, GAAP profit, cash flow and acquisition effects.",
+        "zh": "下一代安全 ARR 的有机增长、GAAP 利润、现金流及并购影响。"
+      },
+      "risk": {
+        "en": "Bundling by cloud vendors, dilution and acquisitions obscuring organic growth.",
+        "zh": "云厂商捆绑、股权稀释、并购掩盖有机增长。"
+      }
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "tier": "explore",
+      "period": "Genie 3 · 2025-08-05",
+      "source": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/",
+      "fact": {
+        "en": "DeepMind demonstrated an interactive world model. This is dated technical evidence, not verified world-model revenue.",
+        "zh": "DeepMind 展示过交互世界模型；这是带日期的技术证据，不是已核实的世界模型收入。"
+      },
+      "role": {
+        "en": "World models and model distribution",
+        "zh": "世界模型与模型分发"
+      },
+      "check": {
+        "en": "External paid adoption, cost per useful session and real-world transfer tests.",
+        "zh": "外部付费采用、每次有效交互成本、向现实任务迁移的测试。"
+      },
+      "risk": {
+        "en": "A convincing demo may not produce a profitable business; Alphabet is not a pure-play.",
+        "zh": "演示可能无法变成盈利业务，Alphabet 也并非该路线的纯标的。"
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "software-judgment",
+      "summary": {
+        "en": "Almeida argues that AI can strengthen existing software by becoming a small, programmable part of it.",
+        "zh": "Almeida 认为，AI 可以成为软件中可编程的小部件，增强已有软件的能力。"
+      },
+      "speaker": "Diogo Almeida",
+      "date": "2026-09-21",
+      "url": "https://www.latent.space/p/jev",
+      "video": "cFx9Z3ZXca0",
+      "start": 4708,
+      "limit": {
+        "en": "A product thesis does not establish adoption, reliability or an advantage for every software business.",
+        "zh": "产品方向并不能证明已经普及、足够可靠，或对每一家软件公司都有利。"
+      }
+    },
+    {
+      "id": "agents-take-time",
+      "summary": {
+        "en": "Karpathy describes agents as a decade-long engineering effort, pointing to gaps including continual learning.",
+        "zh": "Karpathy 将智能体描述为一项可能持续十年的工程，提到持续学习等尚待解决的问题。"
+      },
+      "speaker": "Andrej Karpathy",
+      "date": "2025-10-17",
+      "url": "https://www.dwarkesh.com/p/andrej-karpathy",
+      "video": "lXUZvyajciY",
+      "start": 0,
+      "limit": {
+        "en": "This is a view recorded in October 2025, not a current capability test or a resolved AGI deadline.",
+        "zh": "这是 2025 年 10 月的观点，不是当前能力测评，也不是已经裁决的 AGI 时间表。"
+      }
+    },
+    {
+      "id": "fast-ai-progress",
+      "summary": {
+        "en": "Amodei expects very powerful AI within a few years and discusses how capability may spread through the economy.",
+        "zh": "Amodei 预期未来几年会出现非常强大的 AI，并讨论能力如何扩散到经济活动中。"
+      },
+      "speaker": "Dario Amodei",
+      "date": "2026-02-13",
+      "url": "https://www.dwarkesh.com/p/dario-amodei-2",
+      "video": "n1E9IZfvGMA",
+      "start": 756,
+      "limit": {
+        "en": "A lab leader’s expectation is not independent confirmation. Technical capability and widespread adoption are different questions.",
+        "zh": "实验室负责人的预期不是独立验证；技术能力与大规模采用是两个不同的问题。"
+      }
+    },
+    {
+      "id": "agents-recover",
+      "summary": {
+        "en": "Weinstein emphasizes agents retrying and debugging after problems, beyond merely starting a task.",
+        "zh": "Weinstein 强调智能体遇到问题后的重试与调试能力，而不只是能启动任务。"
+      },
+      "speaker": "Ari Weinstein & Nikunj Handa",
+      "date": "2026-09-30",
+      "url": "https://www.latent.space/p/devday-2026",
+      "video": "z9OkBD2-MDU",
+      "start": 364,
+      "limit": {
+        "en": "A vendor’s description is not an independent comparison across tasks.",
+        "zh": "供应商描述不等于覆盖不同任务的独立对照测评。"
+      }
+    },
+    {
+      "id": "mutable-software",
+      "summary": {
+        "en": "Shihipar discusses software that users can continually reshape with agents.",
+        "zh": "Shihipar 讨论用户借助智能体不断调整软件的可能性。"
+      },
+      "speaker": "Thariq Shihipar",
+      "date": "2026-09-29",
+      "url": "https://www.latent.space/p/thariq",
+      "video": "IZAlq-V19U8",
+      "start": 2195,
+      "limit": {
+        "en": "A customization vision is not evidence that ongoing maintenance disappears.",
+        "zh": "可定制的愿景不代表持续维护会消失。"
+      }
+    },
+    {
+      "id": "agent-permissions",
+      "summary": {
+        "en": "Huang argues that agentic systems should operate with restrictive rights.",
+        "zh": "Huang 主张智能体系统应在受限制的权限下运行。"
+      },
+      "speaker": "Jensen Huang",
+      "date": "2026-09-28",
+      "url": "https://pressroom.versantmedia.com/cnbc/press-releases/cnbc-excerpts-nvidia-founder-ceo-jensen-huang-speaks-cnbcs-squawk-box-today",
+      "video": null,
+      "start": null,
+      "limit": {
+        "en": "Restricting access reduces exposure but cannot establish that an entire system is safe.",
+        "zh": "限制访问可减少暴露面，但不能证明整个系统已经安全。"
+      }
+    },
+    {
+      "id": "safety-is-engineering",
+      "summary": {
+        "en": "Huang frames AI safety as an engineering problem that can be addressed through system design.",
+        "zh": "Huang 将 AI 安全视为可以通过系统设计处理的工程问题。"
+      },
+      "speaker": "Jensen Huang",
+      "date": "2026-09-28",
+      "url": "https://pressroom.versantmedia.com/cnbc/press-releases/cnbc-excerpts-nvidia-founder-ceo-jensen-huang-speaks-cnbcs-squawk-box-today",
+      "video": null,
+      "start": null,
+      "limit": {
+        "en": "This is an executive’s position, not proof that all safety problems are solved.",
+        "zh": "这是管理者的立场，不是所有安全问题已经解决的证明。"
+      }
+    },
+    {
+      "id": "many-models",
+      "summary": {
+        "en": "Atallah and Midha challenge the idea of a single model winning every use case.",
+        "zh": "Atallah 与 Midha 质疑由单一模型赢下所有用途的想法。"
+      },
+      "speaker": "Alex Atallah & Anjney Midha",
+      "date": "2026-09-25",
+      "url": "https://www.latent.space/p/openrouter",
+      "video": "dCX4PE2HxMs",
+      "start": 868,
+      "limit": {
+        "en": "A marketplace perspective does not establish the best model for your task.",
+        "zh": "模型市场参与者的看法，不能直接决定哪个模型最适合你的任务。"
+      }
+    },
+    {
+      "id": "distribution-opportunity",
+      "summary": {
+        "en": "The discussion highlights distribution and access as important parts of the AI market.",
+        "zh": "这场讨论将分发与访问能力视为 AI 市场的重要部分。"
+      },
+      "speaker": "Alex Atallah & Anjney Midha",
+      "date": "2026-09-25",
+      "url": "https://www.latent.space/p/openrouter",
+      "video": "dCX4PE2HxMs",
+      "start": 1047,
+      "limit": {
+        "en": "Distribution is a business thesis, not evidence of demand or a durable advantage.",
+        "zh": "这是商业方向判断，不能证明付费需求或长期优势已经存在。"
+      }
+    },
+    {
+      "id": "interactive-worlds",
+      "summary": {
+        "en": "Germanidis discusses real-time video and world models as a direction for interactive experiences.",
+        "zh": "Germanidis 讨论实时视频与世界模型通向交互体验的方向。"
+      },
+      "speaker": "Anastasis Germanidis",
+      "date": "2026-09-25",
+      "url": "https://www.latent.space/p/runway",
+      "video": "fGRd5gYhztg",
+      "start": 2379,
+      "limit": {
+        "en": "A research direction does not establish production reliability or demand.",
+        "zh": "研究方向不能证明生产可靠性或市场需求。"
+      }
+    },
+    {
+      "id": "creative-control",
+      "summary": {
+        "en": "Germanidis emphasizes references, steerability and iteration within creative workflows.",
+        "zh": "Germanidis 强调创作流程中的参考、可控性与反复调整。"
+      },
+      "speaker": "Anastasis Germanidis",
+      "date": "2026-09-25",
+      "url": "https://www.latent.space/p/runway",
+      "video": "fGRd5gYhztg",
+      "start": 5088,
+      "limit": {
+        "en": "Creative controls do not guarantee originality, consistency or a commercially usable result.",
+        "zh": "创作控制能力不能保证原创性、一致性或商业可用性。"
+      }
+    },
+    {
+      "id": "agent-coordination",
+      "summary": {
+        "en": "Brown explores parallel agent work and the challenges of coordinating many contributors.",
+        "zh": "Brown 探讨智能体并行工作，以及协调多个参与者的挑战。"
+      },
+      "speaker": "Noam Brown",
+      "date": "2026-09-17",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "video": "6AgOfiZOWiY",
+      "start": 0,
+      "limit": {
+        "en": "Research examples do not establish gains for every workflow or agent count.",
+        "zh": "研究例子不能证明所有流程都能通过增加智能体获益。"
+      }
+    },
+    {
+      "id": "ai-work-organization",
+      "summary": {
+        "en": "Brown considers how more capable models might organize increasingly large groups of agents.",
+        "zh": "Brown 推测更强的模型可能组织越来越大的智能体群体。"
+      },
+      "speaker": "Noam Brown",
+      "date": "2026-09-17",
+      "url": "https://www.dwarkesh.com/p/noam-brown",
+      "video": "6AgOfiZOWiY",
+      "start": 928,
+      "limit": {
+        "en": "This is a forward-looking scenario, not evidence of autonomous firms operating reliably.",
+        "zh": "这是前瞻性情景，不能证明自主公司已经可靠运转。"
+      }
+    },
+    {
+      "id": "deployable-trust",
+      "summary": {
+        "en": "Kvist argues that trust and accountability can constrain adoption even when AI capabilities improve.",
+        "zh": "Kvist 认为，即使 AI 能力提升，信任与责任问题仍可能限制采用。"
+      },
+      "speaker": "Rune Kvist",
+      "date": "2026-09-16",
+      "url": "https://www.latent.space/p/aiuc",
+      "video": "Sc2_LfWgHb4",
+      "start": 478,
+      "limit": {
+        "en": "An assurance vendor’s perspective does not prove its service resolves every adoption barrier.",
+        "zh": "保障服务供应商的观点，不能证明其服务能解决所有采用障碍。"
+      }
+    },
+    {
+      "id": "test-failure-cases",
+      "summary": {
+        "en": "Kvist emphasizes testing failure cases beyond a successful demonstration.",
+        "zh": "Kvist 强调在成功演示之外检验失败案例。"
+      },
+      "speaker": "Rune Kvist",
+      "date": "2026-09-16",
+      "url": "https://www.latent.space/p/aiuc",
+      "video": "Sc2_LfWgHb4",
+      "start": 1132,
+      "limit": {
+        "en": "Passing a test set does not guarantee safe behavior outside its coverage.",
+        "zh": "通过某套测试不能保证覆盖之外的行为也可靠。"
+      }
+    },
+    {
+      "id": "improvement-bottlenecks",
+      "summary": {
+        "en": "The panel debates whether research and engineering bottlenecks could constrain recursive AI improvement.",
+        "zh": "嘉宾讨论研究和工程瓶颈是否会限制 AI 的递归自我改进，并存在分歧。"
+      },
+      "speaker": "John Schulman · Beren Millidge · Charlie O’Neill",
+      "date": "2026-09-11",
+      "url": "https://www.dwarkesh.com/p/john-beren-charlie",
+      "video": "PrSf7IOYu-I",
+      "start": 0,
+      "limit": {
+        "en": "The participants disagree; this is not a shared timetable or a settled result.",
+        "zh": "参与者并未形成一致时间表，这也不是已经解决的结论。"
+      }
+    },
+    {
+      "id": "simulation-gap",
+      "summary": {
+        "en": "The discussion examines the difficulty of transferring simulated success to complex real-world tasks.",
+        "zh": "这场讨论检视模拟中的成功迁移到复杂现实任务时面临的困难。"
+      },
+      "speaker": "John Schulman · Beren Millidge · Charlie O’Neill",
+      "date": "2026-09-11",
+      "url": "https://www.dwarkesh.com/p/john-beren-charlie",
+      "video": "PrSf7IOYu-I",
+      "start": 2724,
+      "limit": {
+        "en": "A simulation gap can vary by task; it does not show that all benchmarks are useless.",
+        "zh": "迁移差距因任务而异，不能据此认定所有基准都没有用。"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "date": "2026-10-03",
+      "revision": "2026-10-03.1",
+      "zh": "建立五条路线与九只美股观察清单。分离嘉宾观点、产业推演和公司证据；全部估值仍待逐股核对。",
+      "en": "Established five routes and nine US-listed watch candidates. Speaker views, economic hypotheses and company evidence are separate; valuation remains unassessed."
+    }
+  ],
+  "discovery": {
+    "checked_at": "2026-10-03T09:00:29Z",
+    "status": "ok",
+    "candidates": [
+      {
+        "id": "c50678f9bb7525f58610",
+        "title": "YOLO Mode, Safely: MicroVM Sandboxes for Any Agent — Rowan Christmas, Docker",
+        "url": "https://www.youtube.com/watch?v=OE_lLNCNfQo",
+        "published_at": "2026-10-03T00:30:06Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents",
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "50b5bd35359f3d42dc47",
+        "title": "Why 99% Accurate Browser Agents Still Fail — Derek Meegan, Browserbase",
+        "url": "https://www.youtube.com/watch?v=5xi_S1f9sDU",
+        "published_at": "2026-10-02T21:30:15Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "2a8e8f7a2894aca970a7",
+        "title": "Accelerating No-Code Enterprise AI: Inside Simplismart’s NVIDIA Inception Journey",
+        "url": "https://www.youtube.com/watch?v=UxOQ2qyY6Qo",
+        "published_at": "2026-10-02T16:00:20Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f081629746225411e4b2",
+        "title": "Your Coding Agent Is 6 Months Out of Date — Jakub Hojsan, Exa",
+        "url": "https://www.youtube.com/watch?v=cKhpeEBnT1o",
+        "published_at": "2026-10-02T15:30:31Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "9b19b40623e6246712d3",
+        "title": "Which GPU Clouds Are Actually Good? | ClusterMAX 3.0",
+        "url": "https://www.youtube.com/watch?v=MWX36ZYnsm0",
+        "published_at": "2026-10-02T15:00:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "9d8756d8e9bf9379cbe7",
+        "title": "What If We Stopped Using GPUs? | YC Paper Club",
+        "url": "https://www.youtube.com/watch?v=xc2FTBGRSJo",
+        "published_at": "2026-10-02T14:00:19Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "1e32e463567e8f624663",
+        "title": "MCP Doesn't Suck. Your Agent Does. — Jan Čurn, Apify",
+        "url": "https://www.youtube.com/watch?v=pAnLpiAG6Es",
+        "published_at": "2026-10-02T14:00:05Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "34cbb8d688bd71b71060",
+        "title": "Stop Renting Your AI's Memory — Dylan Couzon, Qdrant",
+        "url": "https://www.youtube.com/watch?v=apyrzaWj0Z4",
+        "published_at": "2026-10-02T07:00:14Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "5e051860b2e75d5f0749",
+        "title": "OpenAI Security: Controlling Models is Now ‘Hell’",
+        "url": "https://www.youtube.com/watch?v=_rtp1XzaP6Q",
+        "published_at": "2026-10-01T21:20:12Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "eb4c84a3ae3c2c4177d1",
+        "title": "OpenAI Security: Controlling Models is Now ‘Hell’",
+        "url": "https://www.buzzsprout.com/2418777/episodes/19896736-openai-security-controlling-models-is-now-hell.mp3",
+        "published_at": "2026-10-01T21:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "8fd58ae08b7b8a8950bb",
+        "title": "How a Voice Agent Learns the Rhythm of Conversation — Shawn Wen",
+        "url": "https://www.youtube.com/watch?v=VoAPg8Fj6-c",
+        "published_at": "2026-10-01T20:00:18Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "127445b08afd8ad64604",
+        "title": "AI:AM: Was Trump-Xi Anything? What Counts as Utopia? + AWS GPUs Cost 3X & AI Diagnoses Rare Diseases",
+        "url": "https://www.youtube.com/watch?v=4Sc8dSezPa4",
+        "published_at": "2026-10-01T14:52:21Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "fcfe664c0a5ecc25dd0a",
+        "title": "Did a 50 year old military secret just solve agent prompt injection?",
+        "url": "https://www.youtube.com/watch?v=I_KVMFrUtPk",
+        "published_at": "2026-09-30T17:16:43Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "1e1561ce32b8a5bda7d9",
+        "title": "The State of AI in Software Development: Data from 400+ Orgs — Justin Reock, DX",
+        "url": "https://www.youtube.com/watch?v=Se8jHLliLXE",
+        "published_at": "2026-09-30T14:30:20Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "a2845e2de1d9104bbc42",
+        "title": "Your Agents Are in Solitary Confinement: Why MCP & A2A Aren't Enough — Vlad Luzin, Band",
+        "url": "https://www.youtube.com/watch?v=UOcHfR3_tys",
+        "published_at": "2026-09-30T13:00:33Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "eecfdbad75d8b225ae18",
+        "title": "Can you trust your chatbot? Inside three AI-powered cyberattacks",
+        "url": "https://www.youtube.com/watch?v=dHn0qzSDMO0",
+        "published_at": "2026-09-30T10:00:18Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "power",
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "3e34054b2edbaed8b66a",
+        "title": "Built on trust: Why dependable outcomes need trusted context and clear control",
+        "url": "https://www.youtube.com/watch?v=A2eiamwN6tw",
+        "published_at": "2026-09-30T03:00:48Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "6ab05c72f684063d67c9",
+        "title": "How to Build Team Agents",
+        "url": "https://www.youtube.com/watch?v=Gzt74VA8J5Q",
+        "published_at": "2026-09-29T19:38:41Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "57f9027dd62aad22a444",
+        "title": "Introducing dots, always-on agents built to handle everything.",
+        "url": "https://www.youtube.com/watch?v=uXspbC2srEQ",
+        "published_at": "2026-09-29T18:04:41Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "23253ae9bea78d97899f",
+        "title": "We Tested the New Wave of Personal AI Agents",
+        "url": "https://www.youtube.com/watch?v=3T5sij3spWw",
+        "published_at": "2026-09-29T14:30:02Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "77c215dbf7d5bfa878f0",
+        "title": "Context is now the product: Product leadership when software can build itself | Karri Saarinen",
+        "url": "https://www.youtube.com/watch?v=Zn9NZ-r1-C4",
+        "published_at": "2026-09-29T11:00:08Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "371e964fd6ff8488f5cb",
+        "title": "The Defender's Window at enterprise scale with Standard Chartered",
+        "url": "https://www.youtube.com/watch?v=a75xDflRooI",
+        "published_at": "2026-09-29T10:01:43Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "c41aa870c98819903315",
+        "title": "The Real Risks of AI Agents",
+        "url": "https://www.youtube.com/watch?v=fXRagdr-Q34",
+        "published_at": "2026-09-28T23:29:24Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "74abda731427af118157",
+        "title": "GPU Economics + Prospects for US-China Cooperation",
+        "url": "https://www.youtube.com/watch?v=CUFwC8iNTPQ",
+        "published_at": "2026-09-28T19:26:02Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "0ce9d8664378ec96e266",
+        "title": "How Jev Turns AI Into Software That Gets Things Done",
+        "url": "https://www.youtube.com/watch?v=Ut3LOjKNJaE",
+        "published_at": "2026-09-28T14:30:07Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "674c0bbd19cf6077ff9a",
+        "title": "The Defender's Window: Cyber security keynote",
+        "url": "https://www.youtube.com/watch?v=3jDhHA9JGUE",
+        "published_at": "2026-09-28T13:29:06Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "8899cd579bdc8ab4bca1",
+        "title": "Prompt to Production: The Future of AI Code Workflows",
+        "url": "https://www.youtube.com/watch?v=bs1qPy_CWkM",
+        "published_at": "2026-09-28T11:00:25Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f0c58af1926665bc1643",
+        "title": "AI Is Exposing Your Data: An AI Security Problem You Can't See",
+        "url": "https://www.youtube.com/watch?v=kyJ1vd7yEPc",
+        "published_at": "2026-09-27T11:00:22Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "07e20b1c2eed7d46844a",
+        "title": "AI:AM: What If It Works Too Well? Colluding Agents, $200M Safety Orgs, Virtual Cells Saturate at 2%",
+        "url": "https://www.youtube.com/watch?v=WPHfPiz6kkk",
+        "published_at": "2026-09-27T10:42:49Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "056c7e7294aa8e04b209",
+        "title": "Can Rewriting an AI Agent Bend the Intelligence Curve? - Zhengyao Jiang",
+        "url": "https://www.youtube.com/watch?v=yB6_iFGTq9k",
+        "published_at": "2026-09-26T19:32:30Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "b4464e41b5043b35e0f7",
+        "title": "The Next Chapter of AI Is Inside Our Software",
+        "url": "https://www.youtube.com/watch?v=TLJNJDf2XGo",
+        "published_at": "2026-09-26T14:30:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "710d328e3363fda4719a",
+        "title": "Robot-Use Agents: Why General-Purpose Models May Win in Robotics",
+        "url": "https://www.youtube.com/watch?v=Jv5B5CEaPJI",
+        "published_at": "2026-09-26T14:00:37Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents",
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "65d47f595f3aa0ad52a8",
+        "title": "How AI Agents, LLMs & APIs Use Real-Time Data at the US Open",
+        "url": "https://www.youtube.com/watch?v=F3hlZSZc6UI",
+        "published_at": "2026-09-24T11:00:22Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "267e7ad5b432c75c05fe",
+        "title": "Aligning Multi-Agent Systems and Financializing Compute",
+        "url": "https://www.youtube.com/watch?v=q8zCT9I3t-g",
+        "published_at": "2026-09-23T19:01:29Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute",
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "2f1ba92d03b792fd2351",
+        "title": "🔬Bio-security is an AI Arms Race - Eric Nguyen (CEO, Radical Numerics)",
+        "url": "https://www.youtube.com/watch?v=B7DdNj_VjcU",
+        "published_at": "2026-09-23T13:35:08Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "fd16593ef41cf0547fd4",
+        "title": "Building AI Assistants with On-Device Memory",
+        "url": "https://www.youtube.com/watch?v=uRGHx-1CqBQ",
+        "published_at": "2026-09-23T13:30:05Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "131910aff5aad610af6d",
+        "title": "🔬Bio-security is an AI Arms Race - Eric Nguyen (CEO, Radical Numerics)",
+        "url": "https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric",
+        "published_at": "2026-09-23T13:27:18Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "1fd4fd42cb03480ae957",
+        "title": "Are AI labs ignoring cybersecurity experts?",
+        "url": "https://www.youtube.com/watch?v=GvPJY72WhoY",
+        "published_at": "2026-09-23T10:00:03Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "trust"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f3d930d4eb95dd0975b0",
+        "title": "Agent Wars",
+        "url": "https://www.youtube.com/watch?v=WEqCpG206sc",
+        "published_at": "2026-09-22T21:01:28Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "2201d02f45e25e6dbd36",
+        "title": "Full Course: Spec-Driven Development with Coding Agents",
+        "url": "https://www.youtube.com/watch?v=hy8UstR2NEg",
+        "published_at": "2026-09-22T19:32:17Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "990f2b743c668ed0326d",
+        "title": "AI Agents Aren't the Revolution. They're the Catalyst!",
+        "url": "https://www.youtube.com/watch?v=XzL_vtYAO-4",
+        "published_at": "2026-09-22T11:00:08Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "101ef69e628a8da0134f",
+        "title": "Why Everyone is Now Getting Excited About Personal AI Agents",
+        "url": "https://www.youtube.com/watch?v=NmXhFS39ad0",
+        "published_at": "2026-09-18T20:00:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "95a1493fbc63ac947fa8",
+        "title": "Instinct & Muse AI Agents Can Run Your Life. We Let One Try.",
+        "url": "https://www.youtube.com/watch?v=-VL4VKHrnpU",
+        "published_at": "2026-09-18T13:45:17Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "acf05de50e04becfccb6",
+        "title": "Why Diffusion Will Win AI Inference with Inception Co-Founder and CEO Stefano Ermon",
+        "url": "https://www.youtube.com/watch?v=N1rjtDs8blY",
+        "published_at": "2026-09-18T10:00:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "9e9682f84ba8ab5c3168",
+        "title": "Why Diffusion Will Win AI Inference with Inception Co-Founder and CEO Stefano Ermon",
+        "url": "https://traffic.megaphone.fm/PDP7720707490.mp3",
+        "published_at": "2026-09-18T10:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "9c8ec3d543c9ecdff973",
+        "title": "外滩大会线下圆桌｜敢把钱包交给AI吗？聊聊Agent交易爆发前夜的信任基建",
+        "url": "https://www.youtube.com/watch?v=2oIrZM6e8Ro",
+        "published_at": "2026-09-18T00:00:15Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "467bf355dac24bdbd1a5",
+        "title": "外滩大会线下圆桌｜敢把钱包交给AI吗？聊聊Agent交易爆发前夜的信任基建",
+        "url": "https://sv101.fireside.fm/265",
+        "published_at": "2026-09-18T00:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "2b218c43ef4809df73df",
+        "title": "From Voice Agents to AI Avatars",
+        "url": "https://www.youtube.com/watch?v=SvJMvR4NOEM",
+        "published_at": "2026-09-17T05:15:31Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f33ff96bbcde21bf6352",
+        "title": "Advancing Infrastructure for the Era of Agentic AI | Ian Buck at AI Infra Summit 2026",
+        "url": "https://www.youtube.com/watch?v=RuXF7ck32b8",
+        "published_at": "2026-09-16T22:24:54Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "020e19c8ae7238f60827",
+        "title": "Muse review: The personal AI agent that gets consumer UX right",
+        "url": "https://www.lennysnewsletter.com/p/muse-review-the-personal-ai-agent",
+        "published_at": "2026-09-16T12:02:14Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "335858ba55c5dc9a5cb1",
+        "title": "The Balance of AI Power: Anton Leicht on Politics, Pacing Deals, and Muddling Through Well",
+        "url": "https://www.youtube.com/watch?v=rdEn9cpMScA",
+        "published_at": "2026-09-15T18:52:29Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "power"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "e4765e5ff6d9e6b3f11a",
+        "title": "How Physical AI Learns Across Language, Video and Action — Ming-Yu Liu",
+        "url": "https://www.youtube.com/watch?v=L6tLBApQN-g",
+        "published_at": "2026-09-15T16:00:26Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "55cc100b9cd7365f79c8",
+        "title": "Box's Aaron Levie: On Reinventing Yourself in the AI Age and Enterprise Diffusion",
+        "url": "https://www.youtube.com/watch?v=NE4CLThMPGU",
+        "published_at": "2026-09-15T12:00:34Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "14493e4306617c79f9e3",
+        "title": "How Grok Bot designers use AI agents to build personal sites and product prototypes | John Bai & Peng Zheng",
+        "url": "https://www.lennysnewsletter.com/p/how-grok-bot-designers-use-ai-agents",
+        "published_at": "2026-09-14T12:04:39Z",
+        "first_seen_at": "2026-10-03T08:59:16Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "0367812493613f454915",
+        "title": "Training Agents 4: From reward functions to environments.",
+        "url": "https://www.youtube.com/watch?v=nJV3yUuz6DU",
+        "published_at": "2026-09-11T04:27:25Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "08be4c117c9e7c6d9e81",
+        "title": "Coinbase’s Everything Exchange: Agentic Finance, Stablecoins, and Tokenization with CEO Brian Armstrong",
+        "url": "https://traffic.megaphone.fm/PDP7232498988.mp3",
+        "published_at": "2026-09-10T10:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "4968fb986bfab65c2e45",
+        "title": "We shipped 207 WebGPU Kernels for Browser AI",
+        "url": "https://www.youtube.com/watch?v=y9xup6XEP2o",
+        "published_at": "2026-09-04T15:38:19Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "577c023958f27b45f5c3",
+        "title": "机器人触觉的爆发前夜：五大技术路线、数据困局与模型之争｜机器人系列",
+        "url": "https://www.youtube.com/watch?v=BmcoQDwdkeM",
+        "published_at": "2026-09-04T01:00:29Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "545d78ab6cd25094e238",
+        "title": "Nobody Agrees What a 'World Model' Is — Justin Johnson (World Labs) Explains Why",
+        "url": "https://www.youtube.com/watch?v=a_ykX6Q7c_s",
+        "published_at": "2026-09-01T17:08:41Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f1cc0cbef591a20efc40",
+        "title": "Ajeya Cotra – Inside the OpenAI agent swarm that hacked Hugging Face",
+        "url": "https://www.dwarkesh.com/p/ajeya-cotra",
+        "published_at": "2026-09-01T15:41:06Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "e379163ecf1b9eafc54d",
+        "title": "GLM 5.3: Powerful AI Is Becoming Almost Free",
+        "url": "https://www.youtube.com/watch?v=w9RDunJACkc",
+        "published_at": "2026-09-01T09:04:56Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "power"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "dcb566ece7cfb7881e80",
+        "title": "The rise and fall of agent civilizations",
+        "url": "https://www.dwarkesh.com/p/openai-huggingface-narration",
+        "published_at": "2026-08-31T20:36:53Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "5b935510d2b7568d00f2",
+        "title": "#501 – DHH: Future of Programming, AI, Agentic Engineering, Vibe Coding & Linux",
+        "url": "https://lexfridman.com/dhh-2/",
+        "published_at": "2026-08-26T21:47:04Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "19355694799baf7d9f7c",
+        "title": "DHH: Future of Programming, AI, Agentic Engineering, Vibe Coding & Linux | Lex Fridman Podcast #501",
+        "url": "https://www.youtube.com/watch?v=NYFGCESmikA",
+        "published_at": "2026-08-26T21:44:41Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "5396844590b05bdf0683",
+        "title": "Build AI agents that learn from experience",
+        "url": "https://www.youtube.com/watch?v=MbB1gNIj3G0",
+        "published_at": "2026-08-26T13:00:14Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "0b07fafd4cc9952a5512",
+        "title": "Dylan Patel – Anthropic & OpenAI will have most of the world’s compute by 2028",
+        "url": "https://www.dwarkesh.com/p/dylan-patel-3",
+        "published_at": "2026-08-25T15:32:57Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "dd6d9132a42d988f87f1",
+        "title": "I don't prompt agents anymore...",
+        "url": "https://www.youtube.com/watch?v=_9OT25ZvrWs",
+        "published_at": "2026-08-25T10:51:06Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "4c69f80350d058fd7912",
+        "title": "E249｜Token经济转点：OpenClaw、Hermes到本地自研的Agent进化之路",
+        "url": "https://www.youtube.com/watch?v=6FUJbpMrYRA",
+        "published_at": "2026-08-20T00:00:04Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "038ab1f4e70238b7885d",
+        "title": "E249｜Token经济转点：OpenClaw、Hermes到本地自研的Agent进化之路",
+        "url": "https://sv101.fireside.fm/262",
+        "published_at": "2026-08-20T00:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "3b574bb64bfe1d829893",
+        "title": "Agent Memory EXPLAINED - Complete Architecture",
+        "url": "https://www.youtube.com/watch?v=aYfZN8t6AQs",
+        "published_at": "2026-08-17T03:15:35Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute",
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "d10b16860b8974369c84",
+        "title": "Take back control of your AI coding workflow",
+        "url": "https://www.youtube.com/watch?v=xUXJuPC7gz0",
+        "published_at": "2026-08-12T15:30:40Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "bb6bc6d096a2c424cb81",
+        "title": "Prompt Caching Explained: Stop Overpaying for AI Agents",
+        "url": "https://www.youtube.com/watch?v=SkM4k4SKvCM",
+        "published_at": "2026-08-10T03:15:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "0905265b2b67b0c5d8e8",
+        "title": "How AI agents reproduced ICML 2026 papers",
+        "url": "https://www.youtube.com/watch?v=8qpEDpNhzWY",
+        "published_at": "2026-08-08T04:30:48Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "3c1254931605cdf29ae5",
+        "title": "3rd Place Winner: Voice AI Prevents Data Loss. Coding Agent Calls Developer Before Deleting Records",
+        "url": "https://www.youtube.com/watch?v=Z4PB98qZBRU",
+        "published_at": "2026-08-05T14:41:28Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "12c6edbd5afd1beecc70",
+        "title": "2nd Place Winner: Coding Agent Calls Developer to Pitch Launch Strategy",
+        "url": "https://www.youtube.com/watch?v=BHdin6bLGKQ",
+        "published_at": "2026-08-05T14:41:25Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "fce7515eaae31fcd985b",
+        "title": "1st Place Winner: Coding Agent Calls Developer to Resolve Code Block",
+        "url": "https://www.youtube.com/watch?v=7ZOjMnbxJYE",
+        "published_at": "2026-08-05T14:41:22Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "f3e70de4d4ad042f9683",
+        "title": "Why smarter AI models could drive up compute prices 10x",
+        "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive-video",
+        "published_at": "2026-08-03T17:32:13Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "132b0cdfb11f378285f6",
+        "title": "“榨”出硅的极限：怎么让GPU不“闲着”？｜与SGLang、RadixArk深聊AI Infra技术与千亿美元市场",
+        "url": "https://www.youtube.com/watch?v=cB_X6AImPjQ",
+        "published_at": "2026-07-31T13:00:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "compute"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "4067abd7c8aaedffe312",
+        "title": "Building an Autonomous Enterprise for Real-World Services with Netic Founder Melisa Tokmak",
+        "url": "https://traffic.megaphone.fm/PDP6533459307.mp3",
+        "published_at": "2026-07-31T10:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "7c39d8051efb68081620",
+        "title": "Robots working together with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=fo9WirRIaVs",
+        "published_at": "2026-07-30T14:58:16Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "e09cf8b959348c30a906",
+        "title": "Tasks that require whole-body control with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=nBftSI5mmHA",
+        "published_at": "2026-07-30T14:58:12Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "247f2e953b48ea01b457",
+        "title": "Tough dexterity tasks with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=wYVHxw2-DP4",
+        "published_at": "2026-07-30T14:58:10Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "536c5a14fbefcceece0a",
+        "title": "Intelligent whole-body control with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=9MNLEAzA59o",
+        "published_at": "2026-07-30T14:58:07Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "bf0c80cd237458111680",
+        "title": "Multi-robot collaboration with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=CiTPDm7PKW0",
+        "published_at": "2026-07-30T14:58:03Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "26d11884d81d71d0a7f9",
+        "title": "Advanced dexterity with Gemini Robotics 2",
+        "url": "https://www.youtube.com/watch?v=O9-650iHAls",
+        "published_at": "2026-07-30T14:57:59Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "29165cf8aa3fc64e24d1",
+        "title": "147. 和蚂蚁灵波沈宇军聊：机器人原生基础模型、大脑和本体的关系、预训练与数据scale up、老师汤晓鸥",
+        "url": "https://www.xiaoyuzhoufm.com/episode/6a5f79b3a3fec224d5a128cd",
+        "published_at": "2026-07-22T00:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      },
+      {
+        "id": "4dc5235607b911d040a3",
+        "title": "对话Vincent Koc：OpenClaw的反思与进化，中国的“小龙虾”狂热，与Agent的下一步",
+        "url": "https://www.youtube.com/watch?v=tnvyMcmtAiw",
+        "published_at": "2026-07-21T01:07:09Z",
+        "first_seen_at": "2026-10-03T09:00:29Z",
+        "route_ids": [
+          "agents"
+        ],
+        "status": "metadata_only",
+        "medium": "video"
+      },
+      {
+        "id": "13f4f921baec70e309ed",
+        "title": "E244｜机器人走错路了？与苏度韩铮聊聊具身智能的3D数据、路径分野与硅谷竞赛",
+        "url": "https://sv101.fireside.fm/257",
+        "published_at": "2026-07-16T00:00:00Z",
+        "first_seen_at": "2026-10-03T07:26:23Z",
+        "route_ids": [
+          "worlds"
+        ],
+        "status": "metadata_only",
+        "medium": "audio"
+      }
+    ]
+  },
+  "limitations": [
+    "Stock mappings are editorial hypotheses, not speaker endorsements.",
+    "Watch priority is not expected return or a recommendation to buy at the current price.",
+    "Discovery is metadata only and cannot change an investment judgment.",
+    "Local watchlists do not configure the private owner Telegram channel."
+  ],
+  "editorial_hash": "e28e825d603bceb39c7f10861683d48e6fb6484e9eab1f634a2b313ee6c6f4cd"
+}

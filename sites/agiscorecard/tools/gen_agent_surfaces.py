@@ -43,6 +43,10 @@ def extract(path):
         stamp=text_of(re.search(r'<p class="evidence-stamp">(.*?)</p>',note,re.S)[1])
         links=re.findall(r'<a href="([^"]+)" data-evidence-action="source_open">(.*?)</a>',note,re.S)
         capsule=answer+' '+stamp+' Sources: '+'; '.join(text_of(label)+' — '+url for url,label in links)+' Older article summary: '+capsule
+    roadmap = m1(r'<!-- roadmap-body:start -->(.*?)<!-- roadmap-body:end -->')
+    if roadmap:
+        capsule = text_of(re.search(r'<div class="rm-verdict">(.*?)</div>', roadmap, re.S)[1])
+        updated = 'Editorial route review: ' + m1(r'"dateModified":\s*"(20[0-9-]+)"')
     faqs = []
     for q, a in re.findall(r'<(?:div|h3) class="faq-q">(.*?)</(?:div|h3)>\s*<p>(.*?)</p>', s, re.S):
         faqs.append((text_of(q), text_of(a)))
@@ -74,7 +78,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -136,8 +140,14 @@ def main():
             method = re.search(r'<section id="method">(.*?)</section>', source_html, re.S)
             if method:
                 md += '\n## Registered tracking method\n\n' + text_of(method.group(1)) + '\n\nRegistered rules: https://agiscorecard.com/portfolio-assets/manifest.json\nDated performance and corrections: https://agiscorecard.com/portfolio-assets/snapshot.json\n'
-        if slug == 'invest':
+        if slug in ('invest','zh/invest'):
             source_html = open(fpath, encoding='utf-8').read()
+            roadmap = re.search(r'<!-- roadmap-body:start -->(.*?)<!-- roadmap-body:end -->', source_html, re.S)
+            if roadmap:
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', roadmap[1], flags=re.S)
+                readable = text_of(linked)
+                md += '\n## AI industry roadmap and source evidence\n\n' + readable + '\n'
+                full += ['## AI industry roadmap and source evidence', '', 'URL: '+url, '', readable, '']
             workbench = re.search(r'<!-- invest-research-body:start -->(.*?)<!-- invest-research-body:end -->', source_html, re.S)
             if workbench:
                 # Extract only static teaching content; no user-entered browser records exist here.

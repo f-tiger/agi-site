@@ -1184,3 +1184,9 @@ Run Jarvis unit/browser tests, existing site validate/hreflang/home-focus, GA4 c
 Release preflight: 18 Jarvis tests plus EN/ZH Jarvis and Future Guide browser journeys passed, including the eighth homepage link and distinct arithmetic evidence IDs. Run 37115007321 passed every predeploy test but correctly stopped when another site's scheduled update advanced main. Publish through a fresh current-main run; keep the guard and serialization intact. Live inference and new Jarvis GA4 event receipt must be recorded separately from these fixture checks.
 
 Read the owner-requested expanded research before further feature work: `docs/agi-jarvis-expanded-research-2026-10-03.md`. Prioritize validated delivery, provenance-aware memory and measured model routing. JSON schema/native response support follows a failed real plan, not a successful model benchmark. New background schedule is about two hours and may be delayed; do not advertise 15-minute operation.
+
+
+## Investment roadmap hub (2026-10-03)
+Owner clarification: do not modify AGI homepages for this work; `/invest` and `/zh/invest` are the unified investment hub. `tools/roadmap/build.mjs` owns the marked roadmap fragments and `roadmap-assets/roadmap.json`; catalog joins reviewed video claims and issuer evidence. Daily discovery titles stay metadata-only and never revise reviewed hypotheses. Stock priority is conditional research, not an assessed current-price buy recommendation. Preserve the fixed 12-stock cohort, existing workbench and historical material.
+
+Run roadmap unit/browser/live checks and existing investment workbench browser checks when editing. Use fixed opt-in roadmap events only, no local selection values. SunWatch owns private route notifications on its existing cron; browser watchlists do not subscribe. `docs/agi-investment-roadmap-2026-10-03.md` records evidence, constraints and coverage gaps.
