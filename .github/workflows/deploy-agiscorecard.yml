@@ -216,6 +216,20 @@ jobs:
           workingDirectory: sites/agiscorecard
           command: deploy
 
+      # Refresh the existing membership health record before Mentor checks ready.
+      # A delayed scheduled watcher must not make this refresh unreachable.
+      - name: Verify independent membership after deployment
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node tools/member-studio/ops.mjs watch agi && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
       - name: Verify live Work Mentor and revenue counters
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -236,18 +250,6 @@ jobs:
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
         run: node tools/fleet-analytics/verify-live.mjs agi
-
-      - name: Verify independent membership after deployment
-        working-directory: ${{ github.workspace }}
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
-        run: |
-          for attempt in 1 2 3 4; do
-            if node tools/member-studio/ops.mjs watch agi && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
-            if [ "$attempt" != "4" ]; then sleep 8; fi
-          done
-          exit 1
 
       - name: Verify discussion pages and private API boundaries
         run: |
