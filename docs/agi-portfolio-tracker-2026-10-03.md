@@ -52,3 +52,13 @@ Primary sources checked: https://www.tradingview.com/widget-docs/widgets/charts/
 The public record now checks its published JSON every 60 seconds while online and visible, on return to the tab and on reconnection; it also supports manual checks and pause/resume. Fetch timeout is 15 seconds. Atomic validation checks registered identity/hash, dates, complete metrics and all series before display. Network errors and rolled-back snapshots preserve the last complete observation and show a failure. No form value is reset. The existing weekday 22:40 UTC server job remains responsible for valuation and persistence; polling a browser is not a substitute for that job or tick-level portfolio valuation.
 
 Free/paid terms and revenue attribution are unchanged. Dynamic quote retention is a product hypothesis; no new subscriber or payment is inferred. Browser gates use isolated provider responses and a virtual clock for new-data updates, transient failures, pause and rollback; live provider rendering is checked separately after release.
+
+## Returns-first follow-up: October 3
+
+Three-pass brief: prioritize the requested comparative returns; preserve the fixed entry and distinguish published returns from provider quote changes; put all four comparisons in the first mobile viewport, expand the twelve-stock detail table, retain 60-second checks and refresh the record now.
+
+The EN/ZH pages now open with the twelve-stock basket, SPY, QQQ and TQQQ cards. Individual returns are expanded by default, with return and drawdown columns next to the ticker for narrow screens. Market embeds follow the return record. Refresh controls, last-check state, valuation status and update methodology remain visible. The manual refresh on October 3 at 06:52 UTC correctly returned awaiting_entry; the October 5 entry, weights and manifest digest are unchanged.
+
+Self-check A: a refreshed timestamp must not imply a new valuation, so pre-entry returns remain unavailable and the fixed future entry is explicit. Self-check B: moving the section above widgets must actually expose the result on a phone; the browser gate asserts first-section order, all four cards within 390 × 844, and all fifteen stock/benchmark rows expanded. Existing virtual-clock tests continue to verify automatic updates and retention after failures. Titles, descriptions, feed and AI mirrors are regenerated together; only changed canonical URLs are eligible for the manual post-release IndexNow submission.
+
+Free/paid value, payment terms and privacy-preserving attribution remain as documented above. This is a usability improvement; conversion impact is unmeasured.

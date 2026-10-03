@@ -1,6 +1,6 @@
-# Can a popular stock basket beat the market? | AGI Scorecard
+# 12-stock returns vs the market | AGI Scorecard
 
-Dynamically follow 12 stocks, SPY, QQQ and TQQQ with delayed quotes and interactive charts. Compare a registered paper portfolio, test risk and save your review.
+Compare the 12-stock basket with SPY, QQQ and TQQQ first. Automatically check published returns every 60 seconds, inspect each stock and follow delayed market quotes.
 
 ---
 Canonical page: https://agiscorecard.com/portfolio-tracker
