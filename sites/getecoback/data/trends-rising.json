@@ -1,20 +1,24 @@
 {
- "fetched": "2026-10-02",
+ "fetched": "2026-10-03",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "rising": [
     {
      "q": "midea portasplit mobile split klimaanlage inklusive",
-     "v": 4150
+     "v": 10700
     },
     {
      "q": "bgh urteil klimaanlage",
-     "v": 2150
+     "v": 4700
     },
     {
      "q": "tronic klimaanlage 9000 btu",
-     "v": 1750
+     "v": 2000
+    },
+    {
+     "q": "tabaksteuer",
+     "v": 850
     },
     {
      "q": "haier klimaanlage",
@@ -22,7 +26,7 @@
     },
     {
      "q": "kabelkanal klimaanlage",
-     "v": 190
+     "v": 170
     },
     {
      "q": "carrier klimaanlage",
@@ -30,23 +34,19 @@
     },
     {
      "q": "daikin multisplit klimaanlage 2 innengeräte",
-     "v": 160
+     "v": 150
     },
     {
-     "q": "samsung klimaanlage windfree",
+     "q": "klimaanlage kaufland",
      "v": 110
     },
     {
      "q": "multisplit klimaanlage 3 innengeräte",
      "v": 110
-    },
-    {
-     "q": "klimaanlage kaufland",
-     "v": 110
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-02",
+   "fetched": "2026-10-03",
    "polluted": false
   },
   "schimmel entfernen": {
@@ -56,15 +56,20 @@
     "schimmel entfernen hausmittel",
     "schimmel entfernen dusche",
     "schimmel entfernen bad fugen",
-    "schimmel entfernen dm",
     "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
     "schimmel entfernen tapete",
-    "schimmel entfernen mit alkohol",
+    "schimmel entfernen alkohol",
     "schimmel entfernen spray"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "schimmel entfernen alkohol",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-25"
+   "fetched": "2026-10-03"
   },
   "infrarotheizung": {
    "rising": [
