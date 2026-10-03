@@ -9,9 +9,18 @@ export function normalize(html,rel){
  const lang=/^zh/.test(html.match(/<html\b[^>]*\blang=["']([^"']+)/i)[1])?'zh':'en';
  const links=html.match(/<link\b[^>]*>/gi)||[],canonical=links.find(x=>attr(x,'rel')==='canonical');
  const route=canonical?new URL(attr(canonical,'href'),'https://agiscorecard.com').pathname:rel==='index.html'?'/':'/'+rel.replace(/\.html$/,'');
- const counterpart=links.find(x=>attr(x,'rel')==='alternate'&&(lang==='zh'?attr(x,'hreflang')==='en':/^zh(?:-|$)/.test(attr(x,'hreflang')||'')));
+ const counterpart=links.find(x=>attr(x,'rel')==='alternate'&&(lang==='zh'?/^en(?:-|$)/.test(attr(x,'hreflang')||''):/^zh(?:-|$)/.test(attr(x,'hreflang')||'')));
  const candidate=counterpart?new URL(attr(counterpart,'href'),'https://agiscorecard.com'):null;
- const alternate=candidate?.origin==='https://agiscorecard.com'?candidate.pathname:null;
+ let alternate=candidate?.origin==='https://agiscorecard.com'?candidate.pathname:null;
+ // Legacy homepages and articles receive hreflang at the edge. Resolve their
+ // existing static counterpart before considering a language-home fallback.
+ if(!alternate){const sibling=lang==='zh'?(rel==='cn.html'?'index.html':rel.replace(/^zh\//,'')):(rel==='index.html'?'cn.html':'zh/'+rel);const file=path.join(root,sibling);
+  if(sibling!==rel&&fs.existsSync(file)){const target=fs.readFileSync(file,'utf8'),targetLang=target.match(/<html\b[^>]*\blang=["']([^"']+)/i)?.[1];
+   if((lang==='zh'?/^en(?:-|$)/:/^zh(?:-|$)/).test(targetLang||'')){const canon=(target.match(/<link\b[^>]*>/gi)||[]).find(t=>attr(t,'rel')==='canonical'),url=canon?new URL(attr(canon,'href'),'https://agiscorecard.com'):null;
+    alternate=url?.origin==='https://agiscorecard.com'?url.pathname:'/'+sibling.replace(/index\.html$/,'').replace(/\.html$/,'');
+   }
+  }
+ }
  const header=siteHeader(lang,{pathname:route,alternate:alternate||(lang==='zh'?'/':'/cn'),translation:!!alternate});
  // Keep application content; only the old site's first header is replaced.
  // A few legacy articles never had a header; they receive one before their content.
