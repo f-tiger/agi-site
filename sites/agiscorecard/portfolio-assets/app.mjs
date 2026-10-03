@@ -1,4 +1,5 @@
-import {PRODUCT,defaults,normalize,stress,dca,leverage} from './core.mjs';
+import {mountMarkets} from './market.mjs';
+import {PRODUCT,defaults,normalize,stress,dca,leverage,validateSnapshot} from './core.mjs';
 const $=id=>document.getElementById(id),zh=document.body.dataset.language==='zh',t=(en,cn)=>zh?cn:en;
 const slot='agi-portfolio-research-v1',colors={basket:'#e0a951',SPY:'#68c9c2',QQQ:'#909bff',TQQQ:'#ed91b4'};
 let snapshot=null,cloudContext=null,cloudHandler=null;
@@ -39,4 +40,19 @@ $('save-cloud').onclick=protect(()=>{
 });
 const params=new URLSearchParams(location.search);if(params.get('embed')==='1')document.documentElement.classList.add('embed');
 if(params.get('restore')==='1'&&window.opener){const handler=e=>{if(e.source!==window.opener||e.origin!==location.origin||e.data?.kind!=='workbench-restore')return;try{restore(e.data.data);cloudContext=e.data.context;}catch{status(t('Cloud record could not be restored.','云端记录无法恢复。'));}window.removeEventListener('message',handler);};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-ready'},location.origin);setTimeout(()=>window.removeEventListener('message',handler),120000);}
-try{const r=await fetch('/portfolio-assets/snapshot.json',{cache:'no-cache'});if(!r.ok)throw Error('fetch');snapshot=await r.json();render();}catch{$('data-status').textContent=t('Could not load the public record. Check the downloadable snapshot or try again later. Calculators remain available.','公开记录加载失败，请查看数据文件或稍后再试。计算器仍可使用。');}
+mountMarkets();
+let recordPaused=false,recordBusy=false,recordTimer=null;
+const localTime=()=>new Date().toLocaleTimeString(zh?'zh-CN':'en-US',{hour12:false});
+async function refreshRecord(){
+ clearTimeout(recordTimer);
+ if(recordBusy)return;
+ if(recordPaused||document.hidden||!navigator.onLine){$('record-refresh-status').textContent=recordPaused?t('Record checks paused.','记录检查已暂停。'):!navigator.onLine?t('Offline. Keeping the last displayed record.','当前离线，保留上次显示的记录。'):t('Checks resume when this tab is visible.','返回此标签页后恢复检查。');return;}
+ recordBusy=true;$('refresh-record').disabled=true;
+ try{const r=await fetch('/portfolio-assets/snapshot.json',{cache:'no-cache',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('fetch');const next=validateSnapshot(await r.json(),snapshot);snapshot=next;render();$('record-refresh-status').textContent=t('Checked ','已检查 ')+localTime()+t(' · checks every 60s',' · 每 60 秒检查');}
+ catch{if(snapshot){render();$('data-status').textContent+=' '+t('The latest check failed. Last complete record retained.','本次检查失败，保留上次完整记录。');}else $('data-status').textContent=t('Could not load the public record. Calculators remain available.','公开记录暂时加载失败，计算器仍可使用。');$('record-refresh-status').textContent=t('Check failed at ','检查失败于 ')+localTime()+t(' · retrying in 60s',' · 60 秒后重试');}
+ finally{recordBusy=false;$('refresh-record').disabled=false;if(recordPaused)$('record-refresh-status').textContent=t('Record checks paused.','记录检查已暂停。');else if(!navigator.onLine)$('record-refresh-status').textContent=t('Offline. Keeping the last displayed record.','当前离线，保留上次显示的记录。');else if(!document.hidden)recordTimer=setTimeout(refreshRecord,60000);}
+}
+$('refresh-record').onclick=()=>{recordPaused=false;$('toggle-record').textContent=t('Pause record checks','暂停记录检查');refreshRecord();};
+$('toggle-record').onclick=()=>{recordPaused=!recordPaused;clearTimeout(recordTimer);$('toggle-record').textContent=recordPaused?t('Resume record checks','恢复记录检查'):t('Pause record checks','暂停记录检查');if(recordPaused)$('record-refresh-status').textContent=t('Record checks paused.','记录检查已暂停。');else refreshRecord();};
+document.addEventListener('visibilitychange',refreshRecord);window.addEventListener('online',refreshRecord);window.addEventListener('offline',refreshRecord);window.addEventListener('pagehide',()=>clearTimeout(recordTimer));
+refreshRecord();

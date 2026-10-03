@@ -1,6 +1,6 @@
 # Privacy Policy — AGI Scorecard
 
-_Last updated: August 6, 2026_
+_Last updated: October 3, 2026_
 
 What data agiscorecard.com collects - GA4, a cookieless first-party log, and the email address you give a subscribe form - how it is used, and how to remove it.
 

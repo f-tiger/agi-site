@@ -10,3 +10,19 @@ test('actual member handler enforces entitlement, version conflicts and saved re
 
 import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 test('fixed public analytics events accept no private fields',()=>{assert.equal(businessEvent('agiscorecard.com','/zh/portfolio-tracker',{name:'portfolio_cloud_intent'}).tool_id,PRODUCT);assert.equal(businessEvent('agiscorecard.com','/portfolio-tracker',{name:'portfolio_stress',capital:10000}),null);assert.equal(businessEvent('agiscorecard.com','/invest',{name:'portfolio_stress'}),null);});
+
+import {validateSnapshot} from '../../portfolio-assets/core.mjs';
+import {marketSymbols,widgetURL} from '../../portfolio-assets/market.mjs';
+import fs from 'node:fs';
+const registered=JSON.parse(fs.readFileSync(new URL('../../portfolio-assets/snapshot.json',import.meta.url))),manifest=JSON.parse(fs.readFileSync(new URL('../../portfolio-assets/manifest.json',import.meta.url)));
+test('dynamic widgets cover the fixed basket and use isolated provider URLs without private inputs',()=>{
+ assert.deepEqual(marketSymbols.map(x=>x.ticker),[...manifest.stocks,...manifest.benchmarks].map(x=>x.ticker));
+ for(const x of marketSymbols){const u=new URL(widgetURL('symbol-overview',x.ticker,true)),config=JSON.parse(decodeURIComponent(u.hash.slice(1)));assert.equal(u.origin,'https://www.tradingview-widget.com');assert.deepEqual(config.symbols,[[x.ticker,x.symbol+'|1D']]);assert.equal(config.locale,'zh_CN');assert.equal(config['page-uri'],'agiscorecard.com/zh/portfolio-tracker');assert.equal(config.hideMarketStatus,false);}
+ assert.throws(()=>widgetURL('symbol-overview','NVDA?private=1'));assert.throws(()=>widgetURL('unknown','NVDA'));
+});
+test('a refresh rejects corrupt and rollback records before replacing the last complete observation',()=>{
+ assert.equal(validateSnapshot(registered),registered);const keys=marketSymbols.map(x=>x.ticker).concat('basket');
+ const complete={...registered,status:'tracking',dates:['2026-10-05','2026-10-06'],as_of:'2026-10-06',series:Object.fromEntries(keys.map(k=>[k,[100,110]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:10,max_drawdown_pct:0,excess_spy_pp:0}]))};
+ assert.equal(validateSnapshot(complete,registered),complete);assert.throws(()=>validateSnapshot(registered,complete));assert.throws(()=>validateSnapshot({...complete,manifest_sha256:'different'},complete));
+ const bad=structuredClone(complete);delete bad.metrics.SPCX;assert.throws(()=>validateSnapshot(bad,complete));assert.equal(complete.metrics.SPCX.return_pct,10);
+});

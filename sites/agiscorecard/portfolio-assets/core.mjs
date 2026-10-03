@@ -1,4 +1,14 @@
 export const PRODUCT='portfolio-tracker';
+export function validateSnapshot(s, previous=null){
+ const keys=['AMD','TSLA','META','MU','NVDA','PLTR','SPCX','AMZN','GOOGL','MSFT','NOW','PANW','SPY','QQQ','TQQQ','basket'];
+ if(s?.version!==1||s.cohort!=='social-basket-2026-10-03'||s.manifest_sha256!=='8bcc38a0447cea6618ad11298f0dc98df863040a8dde71c8a47b61edd88daff4'||!['awaiting_entry','tracking','stale','data_unavailable'].includes(s.status)||!Array.isArray(s.dates)||!Number.isFinite(Date.parse(s.attempted_at)))throw Error('snapshot');
+ if(previous?.as_of&&(!s.as_of||s.as_of<previous.as_of))throw Error('rollback');
+ if(s.dates.length){
+  if(s.dates[0]!=='2026-10-05'||s.as_of!==s.dates.at(-1)||s.dates.some((d,i)=>!/^\d{4}-\d{2}-\d{2}$/.test(d)||(i&&d<=s.dates[i-1])))throw Error('dates');
+  for(const k of keys){const values=s.series?.[k],m=s.metrics?.[k];if(!Array.isArray(values)||values.length!==s.dates.length||values.some(v=>!Number.isFinite(v)||v<=0)||!m||['return_pct','max_drawdown_pct','excess_spy_pp'].some(p=>!Number.isFinite(m[p])))throw Error('series');}
+ }else if(s.as_of!==null||s.status==='tracking')throw Error('empty');
+ return s;
+}
 export const defaults={capital:10000,weight:20,shock:-50,rest:-10,monthly:200,annual:5,years:5,path:'10,-9.090909',thesis:'',counter:'',review:''};
 function number(v,min,max){if(v===''||v===null||!Number.isFinite(Number(v))||Number(v)<min||Number(v)>max)throw Error('range');return Number(v);}
 export function stress(capital,weight,shock,rest){capital=number(capital,0,1e9);weight=number(weight,0,100)/100;const r=weight*number(shock,-100,500)/100+(1-weight)*number(rest,-100,500)/100;return {returnPct:r*100,loss:capital*r,remaining:capital*(1+r),recovery:r<0?(r===-1?null:-r/(1+r)*100):0};}
