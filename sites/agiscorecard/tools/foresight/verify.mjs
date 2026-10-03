@@ -8,7 +8,7 @@ for(const prefix of ['','/zh']){
  const home=await (await get(prefix?'/cn':'/')).text();assert.ok(home.includes('agi-future-entry-20261003'));assert.ok(home.includes('agi-countdown-20261002'));assert.ok(home.includes('agi-vote-20261002'));
 }
 for(const f of ['foresight-assets/catalog.mjs','foresight-assets/core.mjs','foresight-assets/app.mjs','foresight-assets/style.css','foresight-assets/share-en.png','foresight-assets/share-zh.png']){const r=await get('/'+f);assert.equal(hash(Buffer.from(await r.arrayBuffer())),hash(fs.readFileSync(new URL(f,root))),f);}
-const catalog=await (await get('/member-assets/products.json')).json();assert.ok(catalog.some(p=>p.id==='future-guide'&&p.site==='agi'));
+const catalog=await (await get('/member-assets/products.json')).json();assert.ok(catalog.some(p=>p.id==='future-guide'&&p.urls?.en===base+'/future-guide'&&p.urls?.zh===base+'/zh/future-guide'));
 const sitemap=await (await get('/sitemap.xml')).text();assert.ok(sitemap.includes('<loc>'+base+'/zh/future-guide</loc>'));
 const md=await (await get('/zh/future-guide.md')).text();assert.match(md,/未来导航|下一步/);
 console.log('Live future guide: 12 bilingual routes, home entry/countdown/poll, exact assets, member catalog, sitemap and Markdown verified. No write requests or payments.');
