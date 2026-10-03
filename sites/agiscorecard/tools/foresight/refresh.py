@@ -32,6 +32,16 @@ TOPICS = {
 def clean(value):
     return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]*>', ' ', value or ''))).strip()
 
+def excerpt(value):
+    """A short attributed publisher excerpt, never an inferred viewpoint."""
+    value = clean(value)
+    value = re.sub(r'https?://\S+', '', value).strip()
+    if not value: return ''
+    if re.search(r'[\u4e00-\u9fff]', value):
+        return value[:60].rstrip() + ('…' if len(value)>60 else '')
+    words = value.split()
+    return ' '.join(words[:24]) + ('…' if len(words)>24 else '')
+
 def safe_url(value):
     try:
         u = urllib.parse.urlsplit(html.unescape(value or ''))
@@ -71,7 +81,7 @@ def parse_feed(data, source, now):
         published=stamp(fields.get('pubDate') or fields.get('published'))
         if not title or not published or published>now+dt.timedelta(minutes=5) or now-published>dt.timedelta(days=180): continue
         if title.lower().startswith(('[ainews]','ainews:')): continue
-        description=clean(fields.get('description') or fields.get('summary') or fields.get('encoded'))
+        description=clean(fields.get('description') or fields.get('summary') or fields.get('encoded') or next((x.text for x in e.iter() if x.tag.split('}')[-1]=='description'), ''))
         if not source['aiFocused'] and not AI.search(title+' '+description[:600]): continue
         link=next((safe_url(x.get('href')) for x in e if x.tag.split('}')[-1]=='link' and x.get('rel','alternate')=='alternate' and safe_url(x.get('href'))),None)
         link=link or safe_url(fields.get('link')) or safe_url(fields.get('guid'))
@@ -84,7 +94,10 @@ def parse_feed(data, source, now):
         tags=[k for k,pattern in TOPICS.items() if re.search(pattern,title+' '+description[:600],re.I)]
         if not tags: tags=['understand']
         out.append({'id':hashlib.sha256(link.encode()).hexdigest()[:20],'sourceId':source['id'],'title':title[:220],
-          'url':link,'publishedAt':iso(published),'medium':medium,'goals':tags,'status':'discovered'})
+          'url':link,'publishedAt':iso(published),'medium':medium,'goals':tags,'status':'discovered',
+          'publisherExcerpt':excerpt(description),
+          **({'audioUrl':safe_url(media.get('url'))} if medium=='audio' and media is not None and safe_url(media.get('url')) else {}),
+          **({'videoId':video} if video and re.fullmatch(r'[\w-]{11}',video) else {})})
     return sorted(out,key=lambda x:(x['publishedAt'],x['id']),reverse=True)[:12]
 
 def fetch(source):

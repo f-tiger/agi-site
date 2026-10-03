@@ -107,7 +107,8 @@ def main():
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)
             if body:
                 # Published text only; retain source URLs and the editorial/AI boundary.
-                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', body.group(1), flags=re.S)
+                visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', body.group(1), flags=re.S|re.I)
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', visible, flags=re.S)
                 readable = text_of(linked)
                 md += '\n## Source-linked future guide\n\n' + readable + '\n'
                 full += ['## Source-linked future guide', '', 'URL: '+url, '', readable, '']

@@ -1,6 +1,6 @@
 import datetime as dt
 import unittest
-from refresh import parse_feed, refresh, safe_url, UTC
+from refresh import parse_feed, refresh, safe_url, excerpt, UTC
 
 NOW=dt.datetime(2026,10,3,8,tzinfo=UTC)
 SOURCE={'id':'test','name':'Publisher','feed':'https://example.com/feed','home':'https://example.com','language':'en','category':'interview','aiFocused':False}
@@ -40,5 +40,12 @@ class DiscoveryTests(unittest.TestCase):
         atom=b'<feed xmlns="http://www.w3.org/2005/Atom" xmlns:yt="http://www.youtube.com/xml/schemas/2015"><entry><title>AI explained</title><yt:videoId>abcdefghijk</yt:videoId><link rel="alternate" href="https://www.youtube.com/watch?v=abcdefghijk"/><published>2026-10-01T20:00:00+00:00</published><updated>2026-10-03T01:00:00Z</updated></entry></feed>'
         row=parse_feed(atom,SOURCE,NOW)[0]
         self.assertEqual(row['medium'],'video');self.assertEqual(row['publishedAt'],'2026-10-01T20:00:00Z')
+
+    def test_audio_links_and_short_attributed_excerpts(self):
+        words=' '.join('word'+str(n) for n in range(40))
+        row=parse_feed(feed(item(extra='<description>'+words+'</description><enclosure type="audio/mpeg" url="https://example.com/audio.mp3"/>')),SOURCE,NOW)[0]
+        self.assertEqual(row['medium'],'audio');self.assertEqual(row['audioUrl'],'https://example.com/audio.mp3')
+        self.assertLessEqual(len(row['publisherExcerpt'].split()),24)
+        self.assertNotIn('<b>',excerpt('<b>AI helps</b> https://example.com'))
 
 if __name__=='__main__':unittest.main()

@@ -27,6 +27,10 @@ export function businessEvent(host, pathname, detail) {
   const name = detail.name;
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
+  if (host === 'agiscorecard.com' && /^\/future-guide(?:\/[a-z0-9-]+)?$/.test(route) &&
+      ['future_medium','future_topic','future_video_open','future_audio_open'].includes(name)) {
+    return {name, tool_id:'future-guide', repeat:true};
+  }
   // Homepage events use fixed public labels only, never destinations or search input.
   if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
     const parts = name.split(':');

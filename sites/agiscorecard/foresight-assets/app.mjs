@@ -7,9 +7,9 @@ let state=blank(),filter='work',interviewFilter='',viewLimit=6,savedOnly=false,c
 const status=s=>{clearTimeout(toastTimer);$('status').textContent=s;toastTimer=setTimeout(()=>$('status').textContent='',9000);};
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 function event(action){
- const actions=['goal','open','source','video','save','stance','plan','export','import','cloud','newsletter'];
+ const actions=['goal','open','source','video','save','stance','plan','export','import','cloud','newsletter','medium','topic','audio'];
  if(!actions.includes(action)||['ci','__ci','__qa','__probe'].some(k=>params.has(k))||params.get('utm_source')==='verify'||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true)return;
- try{if(localStorage.getItem('fleet_ga4_choice_v1')!=='granted')return;window.gtag?.('event','tool_click',{location:'future_'+lang+'_'+action,label:current?.id||state.goal});}catch{}
+ try{if(localStorage.getItem('fleet_ga4_choice_v1')!=='granted')return;const mediaEvent={medium:'future_medium',topic:'future_topic',video:'future_video_open',audio:'future_audio_open'}[action];if(mediaEvent){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:mediaEvent}}));return;}window.gtag?.('event','tool_click',{location:'future_'+lang+'_'+action,label:current?.id||state.goal});}catch{}
 }
 function capture(){if(!current||!$('note-action'))return;const n=state.notes[current.id]||emptyNote();for(const k of ['task','action','counter','review'])n[k]=$('note-'+k).value;n.done=$('note-done').checked;state.notes[current.id]=n;}
 const record=()=>{capture();return normalize({version:1,product:PRODUCT,values:state});};
@@ -21,7 +21,7 @@ if(goalIds.has(params.get('goal')))state.goal=params.get('goal');
 filter=state.goal;
 function links(){for(const a of document.querySelectorAll('[data-claim-link]')){const u=new URL(a.href);u.searchParams.set('goal',state.goal);a.href=u.pathname+u.search;}
  const g=goals.find(x=>x.id===state.goal),box=document.querySelector('.guide-box');if(box){let more=$('practical-link');if(!more){more=el('a',undefined,'quiet-link');more.id='practical-link';more.style.cssText='display:block;margin-top:15px';box.querySelector('.button').after(more);}more.href=g[lang][4];more.textContent=g[lang][3]+' →';}
- const a=$('language');if(a){const u=new URL(a.href);u.searchParams.set('goal',state.goal);a.href=u.pathname+u.search;}}
+ const a=$('language');if(a){const u=new URL(a.href);u.searchParams.set('goal',state.goal);const media=document.querySelector('[data-media-tab][aria-pressed=true]'),topic=document.querySelector('[data-topic][aria-pressed=true]');if(media)u.searchParams.set('media',media.dataset.mediaTab);if(topic)u.searchParams.set('topic',topic.dataset.topic);a.href=u.pathname+u.search;}}
 function buttons(){for(const b of document.querySelectorAll('[data-save]')){const active=state.saved.includes(b.dataset.save);b.setAttribute('aria-pressed',String(active));b.textContent=active?t('Saved','已收藏'):t('Save','收藏');}
  for(const b of document.querySelectorAll('[data-stance]'))b.setAttribute('aria-pressed',String(state.notes[current?.id]?.stance===b.dataset.stance));
  for(const b of document.querySelectorAll('[data-cloud]'))b.disabled=!state.saved.length&&!Object.values(state.notes).some(n=>n.action.trim());
@@ -75,4 +75,6 @@ for(const b of document.querySelectorAll('[data-cloud]'))b.onclick=protect(()=>{
  };window.addEventListener('message',cloudHandler);const handler=cloudHandler;setTimeout(()=>window.removeEventListener('message',handler),120000);
 });
 if(window.opener&&params.get('restore')==='1'){const handler=e=>{if(e.origin!==location.origin||e.source!==window.opener||e.data?.kind!=='workbench-restore')return;try{restore(e.data.data);cloudContext=e.data.context||null;if(save())status(t('Cloud record restored and saved on this device.','云端记录已恢复，并保存到本机。'));}catch{status(t('Invalid cloud record. Your existing record was retained.','云端记录无效，原记录已保留。'));}window.removeEventListener('message',handler);};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-ready'},location.origin);setTimeout(()=>window.removeEventListener('message',handler),120000);}
-initDiscovery();render();document.body.dataset.ready='true';
+function openDrawer(){const target=document.getElementById(location.hash.slice(1));if(target?.matches('details'))target.open=true;}
+window.addEventListener('hashchange',openDrawer);openDrawer();
+initDiscovery(event);render();document.body.dataset.ready='true';

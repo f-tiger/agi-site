@@ -23,3 +23,17 @@ test('freshness windows use source publication and preserve the old collection',
  assert.equal(interviews.leah.date,'2026-09-14');assert.ok(interviews.leah.dateNote.zh.includes('9 月 29'));
  assert.ok(!sourceUrl(interviews.airbnb).includes('youtube'));assert.ok(!sourceUrl(interviews.platt,null).includes('&t='));
 });
+
+import fs from 'node:fs';
+import {contentItems,selectedItems,discoveryCards,videoId} from '../../foresight-assets/discovery.mjs';
+test('media classification overrides podcast syndication, preserves reviewed views and deduplicates videos',()=>{
+ const data=JSON.parse(fs.readFileSync(new URL('../../foresight-assets/discovery.json',import.meta.url)));
+ const items=contentItems(data);assert.equal(items.filter(i=>i.interview==='devday').length,1);assert.equal(items.find(i=>i.interview==='devday').medium,'video');
+ assert.equal(items.filter(i=>i.views.length).length,16);assert.equal(items.reduce((n,i)=>n+i.views.length,0),30);
+ for(const medium of ['video','audio','text']){const matches=selectedItems(data,{medium,asOf:'2026-10-03'});assert.ok(matches.length);assert.ok(matches.every(i=>i.medium===medium));}
+ assert.equal(selectedItems(data,{medium:'audio',goal:'family',query:'Belsky',asOf:'2026-10-03'})[0].id,'leah');
+ const html=discoveryCards(data,'zh',{medium:'audio'},4);assert.match(html,/观点重点/);assert.match(html,/学习也需要连接/);assert.ok(!html.includes('media-poster'));assert.match(html,/节目简介（出版方原文）/);
+ assert.equal(videoId('https://evil.test/watch?v=abcdefghijk'),null);assert.equal(videoId('https://www.youtube.com/watch?v=abcdefghijk'),'abcdefghijk');
+ const evil={sources:[{id:'test',name:'Publisher',language:'en'}],items:[{id:'test',sourceId:'test',url:'https://example.com/source',title:'<script>alert(1)</script>',medium:'audio',publishedAt:'2026-10-03T00:00:00Z',goals:['work'],publisherExcerpt:'<img onerror="evil()">',audioUrl:'javascript:alert(1)'}]};
+ const safe=discoveryCards(evil,'en',{medium:'audio',query:'alert'},4);assert.ok(!safe.includes('<script>')&&!safe.includes('data-play-audio'));assert.match(safe,/&lt;script&gt;/);
+});

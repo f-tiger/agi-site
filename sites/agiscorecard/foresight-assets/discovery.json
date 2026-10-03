@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedAt": "2026-10-03T07:26:23Z",
+  "checkedAt": "2026-10-03T08:04:43Z",
   "cadence": "daily",
   "status": "ok",
   "sources": [
@@ -12,8 +12,8 @@
       "home": "https://www.latent.space/",
       "feed": "https://www.latent.space/feed",
       "aiFocused": true,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 10
     },
@@ -25,8 +25,8 @@
       "home": "https://www.dwarkesh.com/",
       "feed": "https://www.dwarkesh.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     },
@@ -38,8 +38,8 @@
       "home": "https://www.lennysnewsletter.com/",
       "feed": "https://www.lennysnewsletter.com/feed",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     },
@@ -51,8 +51,8 @@
       "home": "https://lexfridman.com/podcast/",
       "feed": "https://lexfridman.com/feed/podcast/",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 1
     },
@@ -64,8 +64,8 @@
       "home": "https://www.youtube.com/@NoPriorsPodcast",
       "feed": "https://feeds.megaphone.fm/nopriors",
       "aiFocused": true,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     },
@@ -77,8 +77,8 @@
       "home": "https://aiexplainedopodcast.buzzsprout.com/",
       "feed": "https://rss.buzzsprout.com/2418777.rss",
       "aiFocused": true,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     },
@@ -90,8 +90,8 @@
       "home": "https://www.youtube.com/channel/UCbfYPyITQ-7l4upoX8nvctg",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     },
@@ -103,10 +103,10 @@
       "home": "https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA",
       "feed": "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
-      "count": 8
+      "count": 12
     },
     {
       "id": "sv101",
@@ -116,8 +116,8 @@
       "home": "https://sv101.fireside.fm/",
       "feed": "https://feeds.fireside.fm/sv101/rss",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 10
     },
@@ -129,8 +129,8 @@
       "home": "https://www.xiaoyuzhoufm.com/podcast/626b46ea9cbbf0451cf5a962",
       "feed": "https://feed.xyzfm.space/dk4yh3pkpjp3",
       "aiFocused": false,
-      "lastAttemptAt": "2026-10-03T07:26:23Z",
-      "lastSuccessAt": "2026-10-03T07:26:23Z",
+      "lastAttemptAt": "2026-10-03T08:04:43Z",
+      "lastSuccessAt": "2026-10-03T08:04:43Z",
       "status": "ok",
       "count": 12
     }
@@ -147,6 +147,7 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "After leading Meta’s Llama models, Ahmad Al-Dahle is now transforming Airbnb with AI — from how its teams develop products to how it serves…",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -162,6 +163,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Founder and CEO of full-stack AI chip company Fractile, Walter Goodwin, joins Sarah Guo to discuss the bets he’s made on the future of…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP7579412568.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -175,6 +178,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "We catch up with RLM first author Alex Zhang, MIT PhD, on Jev, PhD masxing, and the future of harnesses.",
+      "audioUrl": "https://api.substack.com/feed/podcast/218414422/044c92ee79bb60914986e42706d74969.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -188,6 +193,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "This video is hard to summarise. A cracked cipher, an OpenAI security warning, Gemini 4 Argon, RSI paper (co-authored by a who’s who of…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19896736-openai-security-controlling-models-is-now-hell.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -198,9 +205,11 @@
       "publishedAt": "2026-10-01T19:34:14Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Try the faster, open-weight version of Jev at Use code: FIRESHIPFIVE to get free credits. In this video we'll cover everything you missed at…",
+      "videoId": "No-JPdFvYWU",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -214,6 +223,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Our DevDay coverage - the first pod on the DevDay lineup - dives in with the leaders of OpenAI’s CUA team and API platform.",
+      "audioUrl": "https://api.substack.com/feed/podcast/218243619/4623bf38297ddb16dba4460b8b439140.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -227,6 +238,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Check out the OpenAPPA repo: A new open source project claims to have fixed the rogue agent problem. Let's dive in. Want more Fireship?…",
+      "videoId": "I_KVMFrUtPk",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -240,6 +253,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (24 mins) | 🎙️ Claire tests OpenAI’s DevDay releases, from Dots, Spaces, and Sites to AI-picked thumbnails and a $97 game, and…",
+      "audioUrl": "https://api.substack.com/feed/podcast/218186983/9c2ff1653183e44db01f0a6716124cf3.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -253,6 +268,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (46 mins) | 🎙️ Educator and developer John Lindquist shares eight Jev demos, from live voice classification and deduplication to agent routing,…",
+      "audioUrl": "https://api.substack.com/feed/podcast/218050591/ad574beedfa0c67fe39e8b4b552ca024.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -266,6 +283,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Shipping Opus/Sonnet 5.5, Mods, Plugins, Projects, Tag while Pacing the Frontier",
+      "audioUrl": "https://api.substack.com/feed/podcast/217893105/b910afe71a4c96e14fd7271715a2cd15.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -279,6 +298,7 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -292,6 +312,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (26 mins) | 🎙️ Jev returns type-safe structured values instead of text, which makes it the fastest, cheapest classification layer I’ve ever…",
+      "audioUrl": "https://api.substack.com/feed/podcast/217276787/bbbdb644d146a9502f51a217a7dcb87a.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -307,6 +329,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "随着AI模型能力提升，训练需求更复杂，一批为模型公司提供训练数据的新公司正在快速增长：AfterQuery今年4月宣布A…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/0a1dd0c4-a1f7-4f7c-b334-bd807ca72a5d.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -320,6 +344,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Listen now (94 mins) | Molly Graham revisits her famous career advice for the AI era, and explains why delegating to a robot is…",
+      "audioUrl": "https://api.substack.com/feed/podcast/214070196/a2fa19b5bc369946869da1db60e349bd.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -333,6 +359,7 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Community Wisdom 300",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -346,6 +373,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "In 2023 most people doubted that there could be more than 1 or 2 frontier model labs. Now there are dozens.... and Stripe just…",
+      "audioUrl": "https://api.substack.com/feed/podcast/217456046/69e6d188059a812b68e47c97b6495374.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -359,6 +388,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "GWM Worlds 2 uses persistent context and timed actions to steer a world model generating video and audio in real time.",
+      "audioUrl": "https://api.substack.com/feed/podcast/217289983/80ecbf8ba268d83a6cde12d5f719e123.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -373,6 +404,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Not only is Opus 5.5 out, pushing the frontier of AI, it also tells us much about what is going on inside the labs,…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19860943-opus-5-5-how-close-are-we-to-automated-ai-research.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -386,6 +419,7 @@
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Guest Post: In science, thinking has gotten cheap but doing has not. This asymmetry is reshaping how research companies operate, largely inconspicuously.",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -400,6 +434,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Can AI transform legacy incumbents rather than replacing them? Sequence Holdings co-founder and CEO Michael Lee joins Sarah Guo to discuss how holding company…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP3274846886.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -410,10 +446,29 @@
       "publishedAt": "2026-09-24T08:40:55Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "learn",
+        "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: Note: in the walking creatures experiment, Astra used a simplified model and…",
+      "videoId": "SA9kdAX2Zj0",
       "firstSeenAt": "2026-10-03T07:26:23Z"
+    },
+    {
+      "id": "12c5a5d853e96757148a",
+      "sourceId": "fireship",
+      "title": "The most expensive 33 hours in WordPress history...",
+      "url": "https://www.youtube.com/watch?v=ylO0DQeVEBQ",
+      "publishedAt": "2026-09-23T17:17:22Z",
+      "medium": "video",
+      "goals": [
+        "work",
+        "earn"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Greptile is the only AI code reviewer that actually runs your code. Try it for free: Automattic's board fired WordPress co-founder Matt Mullenweg while…",
+      "videoId": "ylO0DQeVEBQ",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
     },
     {
       "id": "131910aff5aad610af6d",
@@ -426,6 +481,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Radical Numerics is using biological chain-of-thought and multimodal perception to keep up with the bio-defense arms race, design new genomes and gain insights into…",
+      "audioUrl": "https://api.substack.com/feed/podcast/216723291/8511fc2825689ad610a1ca70864be49f.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -439,6 +496,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (39 mins) | 🎙️ I ran blind evaluations across writing, frontend prototypes, long-running agentic tasks, SVGs, coding, and video editing, then put…",
+      "audioUrl": "https://api.substack.com/feed/podcast/216986081/4e28f684cb755ce703f7e39c9b492e85.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -453,6 +512,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "We talked to Google’s Oscar winning “Giganerd” about automating science, solving climate change, and how future generations can contribute to science in the age…",
+      "audioUrl": "https://api.substack.com/feed/podcast/216845528/5d04ab99938b8bf3aee2b0e2099bfa53.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -466,6 +527,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (25 mins) | 🎙️ I abandoned Claude for months because it drove me insane. Opus 5.5 changed that, and I'll show you…",
+      "audioUrl": "https://api.substack.com/feed/podcast/216949144/18479e36b6288c9b1639e0f61d72a7ab.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -479,6 +542,7 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Why you should never skip error discovery",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -489,9 +553,11 @@
       "publishedAt": "2026-09-22T09:32:13Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 Jev: Full song: Previous papers, implementations, models: Sources: 🙏 We would…",
+      "videoId": "qBBRRsH0rQc",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -505,6 +571,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The definitive Jev podcast with its lead creator.",
+      "audioUrl": "https://api.substack.com/feed/podcast/216783460/cdf8e02436aa264178bb2aa2c85db57c.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -515,9 +583,12 @@
       "publishedAt": "2026-09-21T17:52:29Z",
       "medium": "video",
       "goals": [
+        "work",
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Mux is the video API that translates audio and answers questions about your video. Get $50 in free credits: Ex-OpenAI researcher Diogo Almeida spent…",
+      "videoId": "TbkUKCm3CHQ",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -531,6 +602,7 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Your weekly listens from How I AI, part of the Lenny’s Podcast Network",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -544,6 +616,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (47 mins) | 🎙️ Warp CEO Zach Lloyd shows how his team turns requests from Slack, Linear, and GitHub into tracked, tested…",
+      "audioUrl": "https://api.substack.com/feed/podcast/215710129/8d665b46d4581cf6b5b5d6a46f95ddc6.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -558,7 +632,24 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "As generative AI hits hardware and latency bottlenecks, Stanford professor, diffusion pioneer, and Inception co-founder and CEO Stefano Ermon is betting on a radical…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP7720707490.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
+    },
+    {
+      "id": "39c53512fff97c4d18e6",
+      "sourceId": "twominute",
+      "title": "DeepSeek’s Insane New Architecture",
+      "url": "https://www.youtube.com/watch?v=vIHw_2VjSUw",
+      "publishedAt": "2026-09-18T07:03:46Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The DeepSeek V4.1 Flash paper is available here: Erratum: Opus 5.1…",
+      "videoId": "vIHw_2VjSUw",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
     },
     {
       "id": "467bf355dac24bdbd1a5",
@@ -573,7 +664,24 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "本期节目来自2026 Inclusion·外滩大会主论坛圆桌——“当Agent成为交易主体”。 Agent的爆发不止于应…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/78ec2d74-0ad7-4c6f-9764-728eec0e6e87.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
+    },
+    {
+      "id": "ce2718ffe59a469564c5",
+      "sourceId": "fireship",
+      "title": "Did Google just kickstart the intelligence explosion?",
+      "url": "https://www.youtube.com/watch?v=LoLYw--s-5w",
+      "publishedAt": "2026-09-17T20:33:55Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Run GitHub Actions 2x faster and build with Codesmith at Google DeepMind just published Dream-RSI, a technique that turns an AI's old discovery logs…",
+      "videoId": "LoLYw--s-5w",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
     },
     {
       "id": "5916add02dc8e0c68b1c",
@@ -587,6 +695,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "“We never want to be in a situation again where we underestimate the AI.”",
+      "audioUrl": "https://api.substack.com/feed/podcast/216149332/f2a0b2822d2e56d34cc2d70eda999c70.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -600,6 +710,8 @@
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Why has it been the last few days that the calls to come to pace the frontier AI have come so loudly? The safety…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19818531-what-ai-researchers-saw-before-their-demand-to-pace-ai.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -614,6 +726,8 @@
         "family"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (38 mins) | 🎙️ I gave Meta’s Muse my calendar, my email, and my kids’ chaotic schedule, and it produced a one-shot…",
+      "audioUrl": "https://api.substack.com/feed/podcast/215710078/f0a34674483a4a7ee6a05d4ec88e3ffe.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -624,9 +738,12 @@
       "publishedAt": "2026-09-15T17:45:39Z",
       "medium": "video",
       "goals": [
+        "work",
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Macroscope can auto-approve your team’s PRs safely. Try it here: Anthropic just dropped a 154-page report on how hackers, scientists, and rival AI labs…",
+      "videoId": "7r4ikZHm9AI",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -640,6 +757,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Weights & Biases and sign up for a free demo here: 📝 The papers and sources are available here: 🙏 We…",
+      "videoId": "YoEWjZSwoys",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -650,9 +769,11 @@
       "publishedAt": "2026-09-11T17:24:40Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Railway is the smoothest way to deploy software: OpenAI claims it cracked a 90 year old math problem, but one NYU professor isn't happy…",
+      "videoId": "aspmNhKAFMc",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -667,6 +788,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "“We're nowhere near the ceiling.”",
+      "audioUrl": "https://api.substack.com/feed/podcast/215199144/740d4b3c97ca6d2b2940f58d6447964f.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -683,7 +806,39 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "From the tokenization of real-world assets to funding research on anti-aging therapeutics, Coinbase co-founder and CEO Brian Armstrong is focused on solving meta-problems for…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP7232498988.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
+    },
+    {
+      "id": "3b6281a14d97a58478fb",
+      "sourceId": "twominute",
+      "title": "I Never Thought I’d See This Happen",
+      "url": "https://www.youtube.com/watch?v=mOvtumfyjCs",
+      "publishedAt": "2026-09-10T08:47:23Z",
+      "medium": "video",
+      "goals": [
+        "understand"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The Navier-Stokes solution paper is available here: My fluid simulations and…",
+      "videoId": "mOvtumfyjCs",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
+    },
+    {
+      "id": "2afa44b2c821a7cad785",
+      "sourceId": "fireship",
+      "title": "I built the same game with Astra and Fable 5.1... only one was fun",
+      "url": "https://www.youtube.com/watch?v=2Xiljy4xzbc",
+      "publishedAt": "2026-09-09T16:34:27Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Get 20% off Mobbin Pro to help your agent design UIs that actually convert - Now that Astra is actually available to use, let's…",
+      "videoId": "2Xiljy4xzbc",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
     },
     {
       "id": "eb0dacc5c8a84afc00fc",
@@ -696,6 +851,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: Links / sources: Honey sim: search for \"Variational Stokes: A Unified Pressure-Viscosity…",
+      "videoId": "eVBJIUxv8N8",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -706,9 +863,11 @@
       "publishedAt": "2026-09-07T17:24:51Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Get 67% off VPS hosting with Hostinger's one-click templates. Use code FIRESHIP for an extra discount - In this video we cover 5 free…",
+      "videoId": "Y5rSSvXfL4g",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -719,9 +878,12 @@
       "publishedAt": "2026-09-04T20:14:12Z",
       "medium": "video",
       "goals": [
+        "work",
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "CodeRabbit Security protects your code from AI-driven exploits. Get 10 free code scans here: OpenAI finally announced GPT-6 Astra which they're claiming is AGI...…",
+      "videoId": "FluKUJyeYD8",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -735,6 +897,8 @@
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Where to start? A new era of cost-efficient AI on a day benchmark-makers got humbled, traders got excited, and AI safety researchers got unnerved.…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19753955-gpt-6-astra-so-good-even-openai-are-worried.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -748,6 +912,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "From data center orchestrators to AGI and robotics, CPUs remain the heart of modern computing. Arm CEO Rene Haas joins Elad Gil and Sarah…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP3024512727.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -758,9 +924,11 @@
       "publishedAt": "2026-09-03T08:23:37Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The Claude Fable 5.1 paper is available here: Sources: 🙏 We…",
+      "videoId": "B3LXEW4Pc-w",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -776,7 +944,24 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "今天的嘉宾是战略学家曾鸣教授。曾教授曾经是阿里巴巴集团总参谋长，也参与过两所商学院创建（长江商学院和湖畔），但他更令人熟…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a97f287f03e74ee6b03ea5b/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/luZvhPtdKotbkVR-SHFRKVVUiM2P.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
+    },
+    {
+      "id": "025c1354cbbb4b791b69",
+      "sourceId": "fireship",
+      "title": "The most interesting hack in history just got weirder...",
+      "url": "https://www.youtube.com/watch?v=0Rp9KJCEIvg",
+      "publishedAt": "2026-09-02T19:01:28Z",
+      "medium": "video",
+      "goals": [
+        "work"
+      ],
+      "status": "discovered",
+      "publisherExcerpt": "Namespace is actually the fastest way to run your GitHub Actions (and more). Try it for free - OpenAI finally published the postmortem on…",
+      "videoId": "0Rp9KJCEIvg",
+      "firstSeenAt": "2026-10-03T08:04:43Z"
     },
     {
       "id": "cc896e433fb11d3394a2",
@@ -786,9 +971,11 @@
       "publishedAt": "2026-09-01T17:31:27Z",
       "medium": "video",
       "goals": [
-        "understand"
+        "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Exa gives your agents the largest index of public and private data. Get $20 in credits - An anonymous model called Ox Alpha just…",
+      "videoId": "r-tzcMlQISk",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -802,6 +989,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "\"This might be the clearest warning shot we ever get.\"",
+      "audioUrl": "https://api.substack.com/feed/podcast/213682035/1d3eb74fe75861cd1fd2db2ebb09c1a7.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -815,6 +1004,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 GLM 5.3 Flash: Sources: 🙏 We would like to thank our…",
+      "videoId": "w9RDunJACkc",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -828,6 +1019,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The OpenAI/Hugging Face attack, clearly explained",
+      "audioUrl": "https://api.substack.com/feed/podcast/213603862/d5d65fe19895665329a808914904c59a.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -841,6 +1034,7 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The whole OpenAI/Hugging Face story in plain English",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -854,6 +1048,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Weights & Biases and sign up for a free demo here: 📝 The paper and Qwen3.8-Flash-Next are available here: Sources: 🙏…",
+      "videoId": "LBiNcdGNgrg",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -867,6 +1063,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "First, a Time Magazine spread has Sam Altman declaring AGI is imminent, at the same time as we get two bombshell reports, from OpenAI…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19712922-sam-altman-agi-in-2026-just-as-models-mis-train-themselves.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -880,6 +1078,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Google’s purchase of Spirit Airlines’ data out of bankruptcy signaled a shift in how the tech world values real-world datasets. Although compute and models…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP7982864975.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -895,6 +1095,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "DHH is the creator of Ruby on Rails, Omarchy Linux, CTO of 37signals, and a racecar driver. Thank you for listening ❤ Check out…",
+      "audioUrl": "https://media.blubrry.com/takeituneasy/ins.blubrry.com/takeituneasy/lex_ai_dhh_2.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -908,6 +1110,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 DeepSeek Harness + paper are available here: 🙏 We would like…",
+      "videoId": "L9mMfAFwbl4",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -921,6 +1125,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "\"Every force is screeching towards centralization.\"",
+      "audioUrl": "https://api.substack.com/feed/podcast/212689635/b1d0ec442f2c0207d04925da65c321a2.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -934,6 +1140,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: 📝 The Qwen3.8-27b is available here: Sources: 🙏 We would like to…",
+      "videoId": "wMl6c_r0ubw",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -949,6 +1157,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Max Hodak, co-founder and CEO of Science Corporation, joins Sarah Guo to discuss the future of vision, brain-computer interfaces, and the human experience. Max…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP1497116966.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -964,6 +1174,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "去年年底，硅谷掀起了一股风潮——“Token Maxing”（最大化token使用量），科技公司创始人和工程师们争相晒出…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/6242033d-a14a-44e3-a622-cbfc7d3c3817.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -977,19 +1189,8 @@
         "understand"
       ],
       "status": "discovered",
-      "firstSeenAt": "2026-10-03T07:26:23Z"
-    },
-    {
-      "id": "7199746879f3d0eae3a2",
-      "sourceId": "twominute",
-      "title": "Claude AI Failed 650 Times…Then Beat The Human Record",
-      "url": "https://www.youtube.com/watch?v=QnGNF8k_uoc",
-      "publishedAt": "2026-08-14T08:42:07Z",
-      "medium": "video",
-      "goals": [
-        "understand"
-      ],
-      "status": "discovered",
+      "publisherExcerpt": "❤️ Check out Lambda here and sign up for their GPU Cloud: DeepSeek V4 Pro 0813: DSpark full episode: Sources: 🙏 We would like…",
+      "videoId": "kyYepbhe1g8",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1003,6 +1204,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "In a world of infinite gaming and entertainment possibilities, how does a centuries-old game stay so popular? Chess.com co-founder and CEO Erik Allebest joins…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP3695187109.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1017,19 +1220,8 @@
         "forecast"
       ],
       "status": "discovered",
-      "firstSeenAt": "2026-10-03T07:26:23Z"
-    },
-    {
-      "id": "97b815b25a2317045868",
-      "sourceId": "twominute",
-      "title": "How OpenAI Hacked HuggingFace",
-      "url": "https://www.youtube.com/watch?v=JQ97GiDwPxc",
-      "publishedAt": "2026-08-11T15:35:35Z",
-      "medium": "video",
-      "goals": [
-        "understand"
-      ],
-      "status": "discovered",
+      "publisherExcerpt": "A debate about recursive self-improvement.",
+      "audioUrl": "https://api.substack.com/feed/podcast/210737923/7ebb4a9c27fa436baca3863c225f556e.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1043,6 +1235,8 @@
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Locking in AI safety regulation now is a mistake.",
+      "audioUrl": "https://api.substack.com/feed/podcast/210233020/894c362b5c1abb4be2eb88cb11e97d63.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1057,6 +1251,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Wow. Mathematical breakthroughs that would be called genius if done by humans. A secret message-board w/ AI agent swarms leaving notes read by future…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19609205-ai-is-getting-a-little-out-of-control.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1072,6 +1268,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Is the tech industry moving too quickly, or are founders letting fear of AI labs stunt their ambitions? Sarah and Elad explore the current…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP3190127956.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1086,6 +1284,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "这期播客的嘉宾是盛颖，xAI前推理团队负责人、开源推理引擎SGLang发起人及RadixArk联合创始人/CEO。 在开…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/6c9d13b1-ac9a-4a7a-a35b-99bfb8374668.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1099,6 +1299,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The end of cheap compute?",
+      "audioUrl": "https://api.substack.com/feed/podcast/209664458/61c585baeb7b13bc4b65637ffc2c66b4.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1113,6 +1315,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "When your AC fails in a heatwave, you don’t want a busy signal; you need a solution. Netic founder and CEO Melisa Tokmak joins…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP6533459307.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1128,6 +1332,8 @@
         "family"
       ],
       "status": "discovered",
+      "publisherExcerpt": "我们此前访谈过谢赛宁（AMI）、洪乐潼（Axiom），他（她）们分别来自在欧洲和美国的neo lab。但今天，这个现象已…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a69b07eb581962ce2bd4d97/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lm33Q4N6w8TZcd2fXDBUK9UnC2xv.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1143,6 +1349,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "当你觉得AI“懂你”的那一刻——精准抓住一个你自己都没说清的情绪，问出一个让你陷入沉思的问题——你以为那来自数据中心的芯…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/5aeaeb64-9165-4271-9884-23329b511e11.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1156,6 +1364,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "DoorDash is not just a delivery company. From its inception, co-founders Andy Fang and Stanley Tang operated it as a robotics and autonomy company.…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP3380514610.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1169,6 +1379,8 @@
         "understand"
       ],
       "status": "discovered",
+      "publisherExcerpt": "An unreleased internal OpenAI model, very likely to be called GPT-6, was able to autonomously break out of its sandbox AND break into HugginFace,…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19533413-gpt-6-goes-rogue-the-huggingface-incident-sans-hype.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1184,6 +1396,8 @@
         "family"
       ],
       "status": "discovered",
+      "publisherExcerpt": "进入2026年，中国科技业萌生了一个新现象：出现一批从机器人大脑出发的公司，现阶段重心不在本体上。这个现象是反直觉的——…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a5f79b3a3fec224d5a128cd/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/luXTyuAfi_2ONiM15fW6Lpypo2GA.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1198,6 +1412,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "机器人已经能在舞台上做到翻跟头、表演武术了，但要让它在开放环境里伸手帮你拧开一个瓶盖，难度陡然跃升2到3个量级——因为那…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/fc9a3737-81a9-49cf-a7d6-530c77df836e.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1211,6 +1427,8 @@
         "learn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "What a week in AI, for real. GPT 5.6 may actually beat Claude Fable, in what you get for your money, while the new…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19474361-this-was-not-a-normal-set-of-model-release-sol-ultra-meta-muse-new-grok.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1227,6 +1445,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "When Glenn Fogel joined Priceline in 2000, the business was worth a few hundred million dollars. One week later, the Nasdaq peaked, eventually sending…",
+      "audioUrl": "https://traffic.megaphone.fm/PDP8517369630.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1242,6 +1462,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "从ChatGPT掀起生成式AI浪潮到现在，不过短短两三年，AI能力的进化速度已经让\"AI自我进化\"这件事从科幻走进了现实…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/308f9278-dd48-44d3-a4ce-ee436968fc28.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1256,6 +1478,7 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Abolishing pandemics/ Getting out of the way of AI automation/ Learning from Honk Kong MTR's business model",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1269,6 +1492,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Watch now (94 mins) | Math is where we’ll see superintelligence first. What will it look like?",
+      "audioUrl": "https://api.substack.com/feed/podcast/204275916/96bb07d6147c4ef4193fd586a2c304af.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1282,6 +1507,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "\"We see these AIs as a galaxy glittering with capabilities, but at their center, invisible to the naked eye, holding all the constellations together,…",
+      "audioUrl": "https://api.substack.com/feed/podcast/202734201/8586aab0c95c1b9d772549aae349b176.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1297,6 +1524,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "5月初，OpenAI成立了Deployment Company（部署公司），Anthropic也宣布与包括Blackst…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/47b7778e-1ed6-4dab-b7c9-8b4a6555b867.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1310,6 +1539,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Claude Fable 5 banned, but what’s the bigger story. We go through 11 under-reported details, so you have the context to see what’s coming…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19343412-claude-fable-blocked-11-quiet-details-on-what-s-next.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1324,6 +1555,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "站在今天这个SpaceX IPO的历史性时刻，我们决定加更一集节目。 我邀请了SpaceX前火箭首席制造工程师洪力德（L…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a2be5da43a22a695582ad20/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lua5jan_xOpZ99VwXmLshdTC-gSp.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1337,6 +1570,8 @@
         "work"
       ],
       "status": "discovered",
+      "publisherExcerpt": "Fable 5 is out - and it’s good, very good. But beyond the splashy demos, I want to bring you the 20+ nuggets from…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19327278-claude-fable-5-full-319-page-breakdown.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1351,6 +1586,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "前面几集节目，我和大家一起遇见了许多年轻的面孔——他们是AI时代原生的创业者和技术领袖。但是AI对社会的渗透是全方位的，…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a2543dcb30e1571aea20d0b/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lnjlEQjGjo1TxuPOuvYgmDV7oo8B.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1365,6 +1602,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The ‘best’ generally available AI model just dropped, but there is plenty I bet you missed about what it is, how it performs, and…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19259425-new-claude-244-page-breakdown.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1379,6 +1618,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "今天是我们的系列节目 《雨森的创投观察》 第2集。 在 《雨森的创投观察》第1集（我们节目124集） 中，真格基金管理合…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a15a2cbff7b9a8c0a5b953f/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lg4SPHlAUnrJuULqRaXS_1Gc5ufZ.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1394,6 +1635,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "“Harness Engineering”（挽具工程）正在成为硅谷的新共识，Anthropic、OpenAI等公司都在探…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/51260de8-60ef-4b76-b3e5-2e559c4a0923.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1408,6 +1651,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "The biggest Google AI push of the year, but what is the bigger story? Why is Google pursuing a different fork in the road…",
+      "audioUrl": "https://www.buzzsprout.com/2418777/episodes/19210251-two-rival-bets-on-agi-google-i-o-highlights.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1423,6 +1668,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "今天是我们的系列节目 《Freda的投资札记》 第2集。 可能有听众是第一次听我们的节目，那还是先介绍一下——Freda…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a09d58b1b7bd502955258ab/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lmeczS2JtKzE79rKpVM-RC5yw22M.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1437,6 +1684,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "姚顺宇戴了一副茶色眼镜走过来，这副眼镜会随光线变化而改变颜色。 硅谷AI业界有两位Yao Shunyu，他们曾是清华同一…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/6a00aa051b7bd50295dfe41d/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/ll7qIcIWWGFSsORHr4yY-UuqAe8h.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1452,6 +1701,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "前面在福莉和广密的节目中，我们深入揭示了AI的进化从第一幕Chat走向第二幕Agent。可以说，Agent是2026年的…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/69f3857a5c60a99573fea0c2/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/luffrgudEiiGHQxam49tfQci63NO.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1467,6 +1718,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "2026年，大模型战争全面升级，掀开了第二幕—— 从Pre-train（预训练）主导的Chat时代，转向Post-tra…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/69eae15a1e94ae692107cc50/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lvjthrP5i6nloL64YOJ_JDDRa4WF.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1481,6 +1734,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "最近，《灵魂摆渡·浮生梦》成为中国首部全AI生成的电影，暑期档即将上映。“AI能否替代真人演员”、“真人短剧是不是在被A…",
+      "audioUrl": "https://aphid.fireside.fm/d/1437767933/f0f20376-8faf-4940-b920-84af6c734e2d/b2be7093-3366-4ee2-8a7a-625f06206ae5.mp3",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1496,6 +1751,8 @@
         "earn"
       ],
       "status": "discovered",
+      "publisherExcerpt": "2026年，美国诞生了一系列的Neo Labs（新型研究室）。Neo Labs是近年兴起的一个新概念，专指由顶级AI研究…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/69e4e6951d989496e7fecc7b/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lha_FAiWxTGet0QMbcOSts3cb5Vb.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     },
     {
@@ -1512,6 +1769,8 @@
         "forecast"
       ],
       "status": "discovered",
+      "publisherExcerpt": "今天给大家带来的是全球大模型季报第9集，这一集的情绪十分复杂。 一方面，你会看到正在急速进化的AI革命。 Coding把…",
+      "audioUrl": "https://dts-api.xiaoyuzhoufm.com/track/626b46ea9cbbf0451cf5a962/69de68cfb977fb2c47f1ee14/media.xyzcdn.net/626b46ea9cbbf0451cf5a962/lh_CQyoSs_DztmYB5kmBjaPA6W9V.m4a",
       "firstSeenAt": "2026-10-03T07:26:23Z"
     }
   ]
