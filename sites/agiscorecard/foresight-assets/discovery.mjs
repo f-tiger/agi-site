@@ -70,8 +70,9 @@ export function initDiscovery(onAction=()=>{}){
  let data=JSON.parse(node.textContent),limit=4,lastFetch=Date.now(),medium=['video','audio','text'].includes(params.get('media'))?params.get('media'):'video',goal=topics.some(g=>g.id===params.get('topic'))?params.get('topic'):goals.some(g=>g.id===params.get('goal'))?params.get('goal'):'all';
  const options=()=>({medium,goal,category:$('feed-category').value,language:$('feed-language').value,window:$('feed-window').value,order:$('feed-order').value,query:$('feed-search').value});
  function syncURL(){const u=new URL(location.href);medium==='video'?u.searchParams.delete('media'):u.searchParams.set('media',medium);u.searchParams.set('topic',goal);history.replaceState(null,'',u);const a=$('language');if(a){const v=new URL(a.href);for(const k of ['media','topic'])u.searchParams.has(k)?v.searchParams.set(k,u.searchParams.get(k)):v.searchParams.delete(k);a.href=v.pathname+v.search;}}
+ function stopPlayers(){for(const player of $('fresh-feed').querySelectorAll('iframe,audio')){if(player.tagName==='AUDIO'){player.pause();player.removeAttribute('src');player.load();}player.remove();}}
  function render(){
-  const selected=selectedItems(data,options());$('fresh-feed').innerHTML=discoveryCards(data,lang,options(),limit);
+  stopPlayers();const selected=selectedItems(data,options());$('fresh-feed').innerHTML=discoveryCards(data,lang,options(),limit);
   const name=medium==='video'?t('videos','条视频'):medium==='audio'?t('audio episodes','条音频'):t('articles','篇文字');
   $('feed-count').textContent=selected.length+' '+name+' · '+t('Key takeaways first','先看观点重点');$('feed-empty').hidden=!!selected.length;$('feed-more').hidden=selected.length<=limit;$('feed-more').textContent=medium==='video'?t('More videos','更多视频'):medium==='audio'?t('More audio','更多音频'):t('More reading','更多文字');
   for(const b of document.querySelectorAll('[data-media-tab]'))b.setAttribute('aria-pressed',String(b.dataset.mediaTab===medium));
@@ -90,7 +91,7 @@ export function initDiscovery(onAction=()=>{}){
   if(close){render();return;}
   if(!video&&!audio)return;
   // One active player at a time. No third-party player is loaded on arrival.
-  for(const player of $('fresh-feed').querySelectorAll('iframe,audio')){player.remove();}
+  stopPlayers();
   if(video){const id=video.dataset.playVideo;if(!/^[\w-]{11}$/.test(id))return;const stage=video.closest('.media-poster'),frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&playsinline=1';frame.title=video.dataset.playerTitle;frame.referrerPolicy='strict-origin-when-cross-origin';frame.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';frame.allowFullscreen=true;stage.append(frame);onAction('video');}
   if(audio){const url=safe(audio.dataset.playAudio);if(!url)return;const player=document.createElement('audio');player.controls=true;player.preload='none';player.src=url;player.setAttribute('aria-label',audio.dataset.playerTitle);audio.parentElement.append(player);player.play().catch(()=>{});onAction('audio');}
  });
