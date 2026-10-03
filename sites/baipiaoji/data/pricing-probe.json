@@ -1,24 +1,24 @@
 {
- "generated": "2026-10-01",
+ "generated": "2026-10-03",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "processon",
-  "qoder",
-  "quark-ai",
-  "ragflow",
-  "recraft",
-  "removebg",
-  "scispace",
-  "suno"
+  "tongyi-lingma",
+  "trae",
+  "ttsmaker",
+  "tusiart",
+  "udio",
+  "upscayl",
+  "v0",
+  "wps-ai"
  ],
- "cursor": "suno",
+ "cursor": "wps-ai",
  "summary": {
-  "ready": 36,
-  "empty": 30,
-  "blocked": 27,
-  "probed_total": 93
+  "ready": 39,
+  "empty": 31,
+  "blocked": 29,
+  "probed_total": 99
  },
  "tools": {
   "kimi": {
@@ -531,8 +531,8 @@
    "slug": "ttsmaker",
    "name": "TTSMaker",
    "cat": "audio",
-   "reach": 2,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-10-03",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -759,8 +759,8 @@
    "slug": "tongyi-lingma",
    "name": "通义灵码",
    "cat": "coding",
-   "reach": 1,
-   "probed": "2026-09-21",
+   "reach": 0,
+   "probed": "2026-10-03",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2679,6 +2679,166 @@
     "tokens": 12,
     "excerpt": "ens if I exhaust my monthly credits? Can I upgrade or downgrade my plan? Monthly Annual save 20% Free Our starter plan. $0 /month Sign Up Access to our free models 50 credits per day Standard features only Upload up to 8 min of audio Shared creation queue No monthly song downloads No commercial rights No add-on credit purchases No stem separation Pro Most Popular Access to our best models and editing tools. $8 /month Saves $24 by billing yearly! Taxes calculated at checkout Subscribe Access to our best models 2,500 credits per month 20 song downloads per month Commercial use rights Standard + Pro features 2 stem separation types (Auto; Split from mix) Early access to new features Ability to "
    }
+  },
+  "trae": {
+   "slug": "trae",
+   "name": "Trae（字节跳动）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.trae.cn/pricing",
+     "status": 200,
+     "bytes": 132880,
+     "tokens": 11
+    }
+   ],
+   "best": {
+    "url": "https://www.trae.cn/pricing",
+    "tokens": 11,
+    "excerpt": "定价 | TRAE - The Real AI Engineer TraeCode Hot TraeWork 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥239 包含免费版功能与积分，以及 12,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Ultra 低至 ¥ 629 /月 ¥699 包含免费版功能与积分，以及 40,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 新模型优先使用 20个云端任务同时执行 立即升级 "
+   }
+  },
+  "tusiart": {
+   "slug": "tusiart",
+   "name": "吐司 AI",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://tusiart.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://tusiart.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://tusiart.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "udio": {
+   "slug": "udio",
+   "name": "Udio",
+   "cat": "audio",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.udio.com/pricing",
+     "status": 200,
+     "bytes": 168525,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.udio.com/price",
+     "status": 200,
+     "bytes": 162600,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.udio.com/plans",
+     "status": 200,
+     "bytes": 162600,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.udio.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "upscayl": {
+   "slug": "upscayl",
+   "name": "Upscayl",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://upscayl.org/pricing",
+     "status": 200,
+     "bytes": 48092,
+     "tokens": 5
+    }
+   ],
+   "best": {
+    "url": "https://upscayl.org/pricing",
+    "tokens": 5,
+    "excerpt": "scayl Cloud offers a range of pricing options to suit your needs. Please select the number of credits you expect to use per month. One-Time Purchase NEW! Subscription 300 credits / month 100 credits 300 credits 500 credits 1000 credits 2500 credits 5000 credits Monthly Annual Up to 40% Off! Free Trial $0 10 credits included Try out Upscayl for free! Just login, fill out the trial application and that&#x27;s it! Most popular Pro Plan $24.99 300 credits / month Save unused credits each month (rollover) Priority support 6 months unlimited storage Upscayl up to 256MP Generate AI Images Free access to new features and models Business Business — Not available for 300 credits Save unused credits ea"
+   }
+  },
+  "v0": {
+   "slug": "v0",
+   "name": "v0（Vercel）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://v0.app/pricing",
+     "status": 200,
+     "bytes": 295005,
+     "tokens": 44
+    }
+   ],
+   "best": {
+    "url": "https://v0.app/pricing",
+    "tokens": 44,
+    "excerpt": "ng Plus Popular $30 $ 90 /user/month Everything from Free Access to all models $30 of included monthly credits per user $2 of free daily credits on login per user Purchase additional credits outside of your monthly usage shared across your team Centralized billing on vercel.com Share chats and collaborate with your team Select Plan Business $100 /user/month Everything from Plus Access to all models $30 of included monthly credits per user $2 of free daily credits on login per user Training opt-out by default Purchase additional credits outside of your monthly usage shared across your team Centralized billing on vercel.com Share chats and collaborate with your team Select Plan Enterprise Cust"
+   }
+  },
+  "wps-ai": {
+   "slug": "wps-ai",
+   "name": "WPS AI",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-10-03",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ai.wps.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ai.wps.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ai.wps.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
   }
  }
 }

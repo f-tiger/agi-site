@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-02",
+ "checked": "2026-10-03",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -621,6 +621,87 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "pictomancer-image-processing": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 403,
+   "reason": "source HTTP 403"
+  },
+  "tooldirectory-catalog": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "promptcoin-giveaway-raffle-winner-picker": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "adoraads-beauty": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "kolonie-kolonie": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "dinglebear-soma": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "dinglebear-rytdl": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "dinglebear-rarcane": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "dinglebear-rapprise": {
+   "attempts": 1,
+   "first_attempt": "2026-10-03",
+   "last_attempt": "2026-10-03",
+   "attemptedAt": "2026-10-03T05:42:28.511Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
   }
  },
  "admitted": [
@@ -7171,6 +7252,312 @@
   {
    "slug": "trendsapi-app-store",
    "date": "2026-10-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-npm",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-steam",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-wikipedia",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-amazon",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-reddit",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-tiktok",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-youtube",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trendsapi-google-trends",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "qlane-qlane",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bitroad-bitroad",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trysonar-sonar",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "linkdeal-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "radmail-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mentu-navigator",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "statemind-python-code-validator",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "sentinelx-sentinelx",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "etincel-nonfiction",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "govauctions-govauctions",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "epinu-epinu",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "orchis-nimrod",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "lateos-soar-record-gateway",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "formatika-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "synchronex-mcp-proxy",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "agency-goji-goji",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "portablecontext-pcd",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "framethrower-framethrower",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "plcs-ai",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "verticalmarketplace-vertical-marketplace",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "mirastacklabs-mirastack-redfish-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "sovantica-engrava",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "devglow-noglow",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "devglow-todoglow",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "devglow-devglow",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "hypernatural-hypernatural",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "modelrunner-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fojin-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crawlio-browser",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "pullpush-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-cortex",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "2ools-mcp",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "usestring-web-access",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "idiolect-ai",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "muffed-muffed",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "searcheros-searcher-os",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "frankki-letters",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dablock-visibility-index",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-rgotify",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "omnisignal-omnisignal",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-yarr",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-synapse",
+   "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "kubit-mcp-server",
+   "date": "2026-10-03",
    "source_http": 200,
    "repo_http": 200
   }

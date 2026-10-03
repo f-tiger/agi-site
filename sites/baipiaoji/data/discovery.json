@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Made an open-source Lego AI generator",
+      "url": "https://github.com/anteloc/ldraw-nova",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49937916",
+      "points": 91,
+      "comments": 43,
+      "found": "2026-10-03",
+      "status": "candidate"
+    },
+    {
+      "name": "Breadcrumb, record everything on your mac + context manager for AI",
+      "url": "https://innerloop.works/breadcrumb",
+      "host": "innerloop.works",
+      "src": "https://news.ycombinator.com/item?id=49924943",
+      "points": 44,
+      "comments": 6,
+      "found": "2026-10-03",
+      "status": "candidate"
+    },
+    {
       "name": "Lathoa, a math app for kids where the AI is wrong on purpose",
       "url": "https://lathoa.ai/en",
       "host": "lathoa.ai",
@@ -331,5 +351,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-10-01"
+  "updated": "2026-10-03"
 }

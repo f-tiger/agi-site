@@ -1,10 +1,108 @@
 {
-  "generated": "2026-10-01",
+  "generated": "2026-10-03",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 15,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 14,
   "items": [
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "$4"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [],
+      "removed": [
+        "6秒",
+        "84b"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "188s"
+      ],
+      "removed": [
+        "93%",
+        "94%"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "quark-ai",
+      "url": "https://quark.cn",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "4k"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "notion-ai",
+      "url": "https://notion.com",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "1.4m",
+        "100m",
+        "50%",
+        "62%"
+      ],
+      "removed": [
+        "98%"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "google-ai-studio",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "$1,000",
+        "$10",
+        "$100",
+        "$100,000",
+        "$2,000",
+        "$20,000",
+        "$200",
+        "$250",
+        "10分钟",
+        "20gb",
+        "21个",
+        "2gb"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-29"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-03",
+      "first_seen": "2026-10-01",
+      "added": [
+        "$74",
+        "$75"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "gemini-cli",
       "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
@@ -74,28 +172,6 @@
         "294b"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [
-        "15秒",
-        "16秒",
-        "1个",
-        "1秒",
-        "3207b",
-        "5个",
-        "6秒",
-        "72668b",
-        "786579b",
-        "84b",
-        "9543b",
-        "98b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "ollama",
@@ -187,39 +263,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [
-        "$1",
-        "$10",
-        "$11",
-        "$12",
-        "$15",
-        "$16",
-        "$19",
-        "$5",
-        "$6",
-        "10,m",
-        "1461,m",
-        "1b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "exa",
-      "url": "https://exa.ai/pricing",
-      "confirmed": "2026-09-25",
-      "first_seen": "2026-09-24",
-      "added": [],
-      "removed": [
-        "$20"
-      ],
-      "checked_then": "2026-08-13"
-    },
-    {
       "slug": "dify",
       "url": "https://dify.ai",
       "confirmed": "2026-09-25",
@@ -292,17 +335,6 @@
         "70k"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [],
-      "removed": [
-        "32.448m"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "bailian",
