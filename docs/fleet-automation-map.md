@@ -1,3 +1,7 @@
+## 2026-10-03：ECO/AGI 防回滚补跑
+
+原 cron 不变，新增 0 个任务。仅将这两条部署改为每站串行、全事件从 main 构建、网络失败阻断、部署前精确 SHA 复核。增量为一次额外 git fetch 和约 1 秒本地 Git 夹具测试；估计每次 <0.5 分钟，两站每日运行月增量 <30 runner 分钟（估计，非账单），无付费 API。旧 run 固定旧 YAML，修复前的旧部署不直接重跑；从修复后的 main 新建运行。验收见 `docs/eco-agi-safe-redeploy-2026-10-03.md`。
+
 ## 2026-10-02：TDS 原生每日系列扩展
 
 复用 `deploy-thedollscout.yml` 原 `20 7 * * *`（北京时间15:20），新增0条cron、0个AI任务。06:00 UTC 的 `tds-traffic.yml` 继续独立取数。每日源检查→最多2个系列的三语工具页→原有质量闸门→提交→同一run部署→线上核验→只对实际变化URL发IndexNow。首批适配SMISKI官方手办目录与Sonny Angel常规系列图册，未适配品牌不伪造自动扩展。
