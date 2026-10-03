@@ -1,6 +1,6 @@
 # Jarvis membership requirement — 2026-10-03
 
-Owner instruction: nonmembers must not use Jarvis. This supersedes the earlier free-pilot access policy. Target release: `jarvis-20261003-6`.
+Owner instruction: nonmembers must not use Jarvis. This supersedes the earlier free-pilot access policy. Deployed release: `jarvis-20261003-6`.
 
 ## Policy and implementation
 
@@ -26,6 +26,16 @@ The brief was refined in three passes: make active AGI membership the explicit a
 - Visible metadata, JSON-LD, Markdown mirrors and LLM-readable summaries reflect paid membership access. IndexNow continues through the existing weekly process; no per-push submission or indexing claim is added.
 
 The deployment workflow includes membership tests and live checks for both 401 and 403 boundaries. Its nonmember create probe deliberately uses invalid task input, so a regression cannot create a real task or invoke AI. Production verification does not fabricate an active membership or consume model quota.
+
+## Deployment receipt
+
+Commit `bde81cc0674a00e4a94b36879c58bff975a4ff56` was deployed by [AGI workflow 37125088977](https://github.com/f-tiger/agi-site/actions/runs/37125088977). Deploy job `111208648408` completed all 50 steps successfully. Existing sibling-site deployments triggered by shared catalog, member-template and analytics sources also completed successfully; the unrelated daily-update job was intentionally skipped.
+
+Independent post-deploy checks confirmed both public pages return HTTP 200 with version `jarvis-20261003-6`, nonce CSP and frame-denial headers. Missing private authentication returns 401; a fresh nonmember key and a forged paid-status create probe both return 403 `membership_required`. The probe's task data is deliberately invalid and no task, payment or inference was created.
+
+Chromium checked the actual production responses for English and Chinese at 390 px: the nonmember workspace is hidden, membership entry is visible, the layout fits, and no JavaScript or CSP console errors occurred. Node's TLS-verified managed transport supplied the production responses because the sandbox proxy CA is not directly trusted by Chromium. No certificate verification was disabled and no private task API was called in those fresh browser sessions.
+
+Live GA4 tag/asset checks passed through CI. Excluded QA visits do not establish genuine-user analytics receipt or revenue. Positive membership/payment flows were validated with the shared API and local mocked receipts, not by fabricating a production subscription.
 
 ## Remaining limitations
 
