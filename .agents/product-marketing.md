@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v10** — **Last updated: 2026-10-02**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v11** — **Last updated: 2026-10-03**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -53,7 +53,14 @@ No new paid features for the three discovery probes until repeated task evidence
 - Measure actual product-attributed paid receipts separately from opt-in browser-day events, link tags and platform reach. Do not infer a person-level conversion rate from these incompatible denominators. Follow docs/mentor-revenue-launch-2026-10-01.md.
 - Standing delivery preference: website work includes marketing design, authorized execution, live verification and measurement; deployment alone is incomplete.
 
+## AGI Future Guide — owner steering 2026-10-03
+
+Owner rejected founder-only positioning and approved need-led segmentation, leading-site benchmarking and commercial user journeys. New bilingual Future Guide serves work/learning first, with understand/earn/family/forecast entry points. Segment needs and willingness to pay remain hypotheses. Free: source-linked interviews, editorial interpretation, private local judgments, action records and export. Optional paid value: the existing AGI cloud membership stores this same notebook with version history; 9 USDT/30 days plus matching decimal and network fees, unchanged quotas, no auto-renewal or extra AI. No paid video archive, personal-report subscription or autonomous Jarvis forecast is offered. Jarvis currently labels its guidance as editorial. Read `docs/agi-future-guide-design-2026-10-03.md`.
+
 ## Changelog
+
+- v11 (2026-10-03): Added need-led AGI Future Guide, differentiated free content/action records from existing optional cloud storage and future unvalidated report products. Preserved evidence identity and existing mentor scope.
+
 
 - v10 (2026-10-02): Expanded GitHub discovery to 80 projects with 68 AI-related additions, source/license distinctions and task/type filters. See sites/baipiaoji/docs/github-ai-expansion-2026-10-02.md. No new paid service opened.
 - v9 (2026-10-02): Added BPJ GitHub tool discovery for nontechnical task seekers; free source-backed guidance, existing separately labeled vendor services, and a closed USD29 onboarding-service hypothesis. No validated new buyer or revenue.

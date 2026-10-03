@@ -77,11 +77,20 @@ def hero(d, zh):
   <div class="focus-opening"><div><h1 id="focus-title">{headline}</h1>{countdown(zh)}{poll(zh)}<p class="focus-lead">{intro}</p>
   <div class="focus-actions">{action(base+'/progress-index#cite-evidence','查看证据与变化' if zh else 'Inspect evidence and changes','hero_evidence','focus-primary')}{action('#grade-game','给出我的判断' if zh else 'Make my own assessment','hero_grade','focus-secondary')}</div></div>
   <aside class="focus-reading" aria-label="{score_label}"><p>{score_label}</p><div class="focus-score">{score}<span>/100</span></div><p>{evidence_note}</p><p class="focus-date">{stamp}</p><a href="{base}/progress-index">{'核对计算方法与历史' if zh else 'Inspect the method and history'}</a></aside></div>
+  {future_entry(zh)}
   {desk}
   <nav class="focus-routes" aria-label="{'选择用途' if zh else 'Choose your task'}">{routes}</nav>
   <p>{action(base+'/portfolio-tracker','公开追踪：12 股组合能跑赢标普和 TQQQ 吗？' if zh else 'Public tracker: can twelve popular stocks beat SPY and TQQQ?', 'portfolio_tracker')}</p>
   <p class="focus-boundary">{'判定记录与网站更新分开标注。页面改版不代表证据重新核验。' if zh else 'Evidence dates and site updates are shown separately. A site update does not mean a verdict was reassessed.'}</p>
 </section>'''
+
+def future_entry(zh):
+    base='/zh' if zh else ''
+    needs=[('work','应对工作变化','Adapt my work'),('learn','找到学习方向','Choose what to learn'),('understand','看懂趋势','Understand the change'),('earn','探索收入机会','Explore income ideas'),('family','思考家庭教育','Think about education'),('forecast','检验我的判断','Test my judgment')]
+    links=''.join(f'<a href="{base}/future-guide?goal={key}#goals">{cn if zh else en} <span aria-hidden="true">↗</span></a>' for key,cn,en in needs)
+    return f'''<section class="focus-future" aria-labelledby="future-guide-heading" data-release="agi-future-entry-20261003">
+<div><p class="focus-future-label">{'AI 未来导航' if zh else 'AI future guide'}</p><h2 id="future-guide-heading">{'AI 在变化，你的下一步是什么？' if zh else 'AI is changing. What is your next step?'}</h2><p>{'从你关心的问题出发，读懂专家访谈、查证据，并带走一个行动计划。' if zh else 'Start with your own question. Explore expert interviews, inspect the evidence and take away an action plan.'}</p><a class="focus-primary" href="{base}/future-guide">{'找到我的下一步' if zh else 'Find my next step'} →</a></div>
+<nav aria-label="{'按需求探索访谈' if zh else 'Explore interviews by your needs'}">{links}</nav></section>'''
 
 def evidence_desk(d,zh):
     base='/zh' if zh else ''

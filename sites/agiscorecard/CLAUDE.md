@@ -1157,3 +1157,11 @@ Owner also explicitly requested restoring the participatory poll. Keep `#vote` d
 `/portfolio-tracker` (+ `/zh`) records the screenshot's twelve stocks versus SPY, QQQ and TQQQ. Fixed entry 2026-10-05 NY close; manifest hash pins rules, complete matched series only, no retrospective substitutions, source corrections logged. Data refresh is the isolated `public-portfolio` job in the existing weekday `agi-paper-ledger.yml`; it explicitly dispatches AGI deployment after a GITHUB_TOKEN commit. No broker/LLM access. Free public data/calculators; `portfolio-tracker` saves user assumptions/notes with the existing AGI membership. No automatic alerts. Implementation and source contract: `docs/agi-portfolio-tracker-2026-10-03.md`. New cohorts require distinct manifests and IDs, never edit this cohort to erase outcomes.
 
 The dynamic follow-up uses TradingView cross-origin frames (US quotes explicitly delayed), separate from the registered daily valuation. Do not scrape widget prices into the cohort, imply tick-level total return, or expose research inputs/URL queries to the provider. The page polls the published snapshot every 60 seconds only when visible/online; validate the whole record before replacement and retain the last complete values on errors or rollback. Tests cover virtual-clock refresh and provider configuration; actual provider availability requires live inspection.
+
+### 2026-10-03 Future Guide / 未来导航（Owner：需求分层、对标头部网站、商业动线）
+
+`/future-guide` 与 `/zh/future-guide` 按六类问题组织访谈，首版工作/学习优先。`tools/foresight/build.mjs` 从 `foresight-assets/catalog.mjs` 生成 12 张双语页面；运行在 feed/agent mirrors 之前。原始视频点击后才加载，来源复核日期不自动刷新。Jarvis 当前为编辑研究导览，不是在线模型、真伪评分或未来概率。观点选择是明确标注的本机个人记录，不加入原公共投票。
+
+行动记录本机保存/导出免费；`future-guide` 复用 AGI 现有会员云端存储目录与配额，会员页必须再次点击保存才上传。未新增模型预算、提醒、报告订阅或账户。新入口由 `build_home_focus.py` 管理，必须保留首屏倒计时和紧随其后的五项投票。新入口改变 10-03–16 原证据实验的展示环境，前后不得视为干净对照。
+
+变更运行 `node --test tools/foresight/test.mjs`、根仓 `node sites/agiscorecard/tools/foresight/member-test.mjs`、`browser-test.mjs`，及原站 validate/hreflang/home-focus；上线跑只读 `verify.mjs`。固定动作仅主动同意统计后记录，搜索词/笔记/立场值不进入统计，付款按已核验订单单独计量。设计、对标与商业假设见根仓 `docs/agi-future-guide-design-2026-10-03.md`。

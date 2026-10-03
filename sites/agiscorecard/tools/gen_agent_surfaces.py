@@ -74,7 +74,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith('earn/') and slug not in ('zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # top-level EN only; skip zh/, invest/, agi-type/ etc.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -102,6 +102,15 @@ def main():
         if not title:
             continue
         md = page_md(slug, url, title, desc, updated, capsule, faqs)
+        if slug in ('future-guide','zh/future-guide') or slug.startswith(('future-guide/','zh/future-guide/')):
+            source_html = open(fpath, encoding='utf-8').read()
+            body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)
+            if body:
+                # Published text only; retain source URLs and the editorial/AI boundary.
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', body.group(1), flags=re.S)
+                readable = text_of(linked)
+                md += '\n## Source-linked future guide\n\n' + readable + '\n'
+                full += ['## Source-linked future guide', '', 'URL: '+url, '', readable, '']
         if slug == 'earn' or slug.startswith('earn/'):
             source_html = open(fpath, encoding='utf-8').read()
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)

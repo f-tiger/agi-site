@@ -1,0 +1,73 @@
+import {goals,claims,interviews} from './catalog.mjs';
+import {PRODUCT,blank,emptyNote,normalize,selectClaims} from './core.mjs';
+const $=id=>document.getElementById(id),zh=document.body.dataset.lang==='zh',lang=zh?'zh':'en',t=(a,b)=>zh?b:a,prefix=zh?'/zh':'',hub=prefix+'/future-guide',slot='agi-future-guide-v1',params=new URLSearchParams(location.search);
+const current=claims.find(c=>c.id===document.body.dataset.claim),goalIds=new Set(goals.map(g=>g.id));
+let state=blank(),filter='work',savedOnly=false,cloudContext=null,cloudHandler=null,toastTimer;
+const status=s=>{clearTimeout(toastTimer);$('status').textContent=s;toastTimer=setTimeout(()=>$('status').textContent='',9000);};
+const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
+function event(action){
+ const actions=['goal','open','source','video','save','stance','plan','export','import','cloud','newsletter'];
+ if(!actions.includes(action)||['ci','__ci','__qa','__probe'].some(k=>params.has(k))||params.get('utm_source')==='verify'||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true)return;
+ try{if(localStorage.getItem('fleet_ga4_choice_v1')!=='granted')return;window.gtag?.('event','tool_click',{location:'future_'+lang+'_'+action,label:current?.id||state.goal});}catch{}
+}
+function capture(){if(!current||!$('note-action'))return;const n=state.notes[current.id]||emptyNote();for(const k of ['task','action','counter','review'])n[k]=$('note-'+k).value;n.done=$('note-done').checked;state.notes[current.id]=n;}
+const record=()=>{capture();return normalize({version:1,product:PRODUCT,values:state});};
+function save(){try{const r=record();localStorage.setItem(slot,JSON.stringify(r));return true;}catch{status(t('This browser could not save the record. Export a copy before leaving.','浏览器未能保存记录，请在离开前导出副本。'));return false;}}
+function protect(fn){return (...args)=>{try{const result=fn(...args);if(result?.catch)result.catch(()=>status(t('Could not complete this action. Check the file or browser permissions.','操作未完成，请检查文件或浏览器权限。')));}catch{status(t('Could not complete this action. Check the record format and keep an exported copy.','操作未完成，请检查记录格式并保留导出副本。'));}};}
+function download(name,text,type='application/json'){const u=URL.createObjectURL(new Blob([text],{type})),a=el('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+try{const raw=localStorage.getItem(slot);if(raw)state=normalize(JSON.parse(raw)).values;}catch{status(t('An old local record could not be restored. Import a valid backup or start a new plan.','旧的本机记录无法恢复，可以导入有效备份或重新记录。'));}
+if(goalIds.has(params.get('goal')))state.goal=params.get('goal');
+filter=state.goal;
+function links(){for(const a of document.querySelectorAll('[data-claim-link]')){const u=new URL(a.href);u.searchParams.set('goal',state.goal);a.href=u.pathname+u.search;}
+ const g=goals.find(x=>x.id===state.goal),box=document.querySelector('.guide-box');if(box){let more=$('practical-link');if(!more){more=el('a',undefined,'quiet-link');more.id='practical-link';more.style.cssText='display:block;margin-top:15px';box.querySelector('.button').after(more);}more.href=g[lang][4];more.textContent=g[lang][3]+' →';}
+ const a=$('language');if(a){const u=new URL(a.href);u.searchParams.set('goal',state.goal);a.href=u.pathname+u.search;}}
+function buttons(){for(const b of document.querySelectorAll('[data-save]')){const active=state.saved.includes(b.dataset.save);b.setAttribute('aria-pressed',String(active));b.textContent=active?t('Saved','已收藏'):t('Save','收藏');}
+ for(const b of document.querySelectorAll('[data-stance]'))b.setAttribute('aria-pressed',String(state.notes[current?.id]?.stance===b.dataset.stance));
+ for(const b of document.querySelectorAll('[data-cloud]'))b.disabled=!state.saved.length&&!Object.values(state.notes).some(n=>n.action.trim());
+}
+function notebook(){if(!$('saved-list'))return;const box=$('saved-list');box.replaceChildren();if(!state.saved.length){box.append(el('p',t('Save a view, then record one action you want to try.','收藏一个观点，再写下一个准备尝试的行动。'),'empty'));return;}
+ for(const id of state.saved){const c=claims.find(c=>c.id===id),n=state.notes[id],row=el('div',undefined,'saved-row'),body=el('div'),a=el('a',c[lang].title);a.href=hub+'/'+id+'?goal='+state.goal+'#plan';body.append(a,el('p',n?.action||t('No action recorded yet.','还没有记录行动。')));if(n?.review)body.append(el('p',(n.done?t('Tried · ','已尝试 · '):t('Review · ','复查 · '))+n.review));const b=el('button',t('Remove','移除'));b.type='button';b.onclick=()=>{state.saved=state.saved.filter(x=>x!==id);save();render();};row.append(body,b);box.append(row);}}
+function render(){buttons();notebook();links();if(!$('result-count'))return;
+ const q=$('search').value,selected=selectClaims(filter,q,savedOnly?state.saved:null),ids=new Set(selected.map(c=>c.id));
+ for(const card of document.querySelectorAll('[data-card]'))card.hidden=!ids.has(card.dataset.card);
+ for(const b of document.querySelectorAll('[data-goal]'))b.setAttribute('aria-pressed',String(filter===b.dataset.goal));
+ $('saved-only').setAttribute('aria-pressed',String(savedOnly));$('empty').hidden=selected.length>0;
+ const goal=goals.find(g=>g.id===state.goal);
+ $('topic-title').textContent=filter==='all'?t('Explore every perspective','探索全部观点'):goal[lang][0];
+ $('topic-description').textContent=filter==='all'?t('Different questions, one place to inspect the sources.','不同的问题，都从查证来源开始。'):goal[lang][1];
+ $('result-count').textContent=selected.length+t(' views · 3 interviews in the full collection · Reviewed 2026-10-03',' 个观点 · 全库 3 场访谈 · 来源复核 2026-10-03');
+ $('guide-title').textContent=goal[lang][1];$('guide-copy').textContent=goal[lang][2];const first=claims.find(c=>c.goals.includes(state.goal));$('guide-link').href=hub+'/'+first.id+'?goal='+state.goal+'#plan';
+}
+function restore(raw){const next=normalize(raw).values;state=next;filter=state.goal;cloudContext=null;if(current)fill();render();status(t('Backup opened. Save on this device to keep it. Imported notes are your records, not verified evidence.','备份已打开，请保存到本机以保留。导入内容是个人记录，不是已核验证据。'));}
+function fill(){const n=state.notes[current.id]||emptyNote();$('plan-goal').value=state.goal;for(const k of ['task','action','counter','review'])$('note-'+k).value=n[k];$('note-done').checked=n.done;buttons();links();}
+for(const b of document.querySelectorAll('[data-goal]'))b.onclick=()=>{state.goal=b.dataset.goal;filter=state.goal;const u=new URL(location.href);u.searchParams.set('goal',state.goal);history.replaceState(null,'',u);render();event('goal');};
+for(const b of document.querySelectorAll('[data-save]'))b.onclick=()=>{const id=b.dataset.save;state.saved=state.saved.includes(id)?state.saved.filter(x=>x!==id):[...state.saved,id];const ok=save();render();if(ok){status(t('Updated your saved views on this device.','已更新本机收藏。'));event('save');}};
+for(const b of document.querySelectorAll('[data-stance]'))b.onclick=()=>{capture();if(state.notes[current.id].stance===b.dataset.stance)return;state.notes[current.id].stance=b.dataset.stance;if(!state.saved.includes(current.id))state.saved.push(current.id);const ok=save();buttons();if(ok){status(t('Your personal view was saved on this device.','你的个人判断已保存到本机。'));event('stance');}};
+for(const id of ['search'])$(id)?.addEventListener('input',render);
+$('saved-only')?.addEventListener('click',()=>{savedOnly=!savedOnly;render();});
+$('all-views')?.addEventListener('click',()=>{filter='all';render();});
+$('reset-filters')?.addEventListener('click',()=>{filter='all';savedOnly=false;$('search').value='';render();});
+$('export-backup')?.addEventListener('click',protect(()=>{download('agi-future-notebook.json',JSON.stringify(record(),null,2));event('export');}));
+$('import-backup')?.addEventListener('change',protect(async e=>{const f=e.target.files[0];try{if(!f)return;if(f.size>60000)throw Error('size');const next=normalize(JSON.parse(await f.text()));if((state.saved.length||Object.keys(state.notes).length)&&!confirm(t('Replace the notebook currently open in this tab? Export it first if you need to keep both.','替换当前标签页中的记录？需要保留两份时，请先导出当前记录。')))return;restore(next);if(save())status(t('Backup imported and saved on this device.','备份已导入并保存到本机。'));event('import');}finally{e.target.value='';}}));
+$('clear-local')?.addEventListener('click',protect(()=>{if(!confirm(t('Delete this browser’s future-guide records? Downloads and cloud copies are unchanged.','清除本浏览器的未来导航记录？已下载文件和云端副本不受影响。')))return;localStorage.removeItem(slot);state=blank();filter=state.goal;render();status(t('Local records deleted.','本机记录已清除。'));}));
+document.addEventListener('click',e=>{const a=e.target.closest?.('[data-track],[data-claim-link]');if(a)event(a.dataset.track||'open');});
+if(current){fill();
+ $('plan-goal').onchange=()=>{capture();state.goal=$('plan-goal').value;links();status(t('Direction changed. Save to keep your plan.','方向已更改，请保存以保留计划。'));};
+ $('use-suggestion').onclick=()=>{$('note-action').value=goals.find(g=>g.id===state.goal)[lang][2];capture();buttons();$('plan-status').textContent=t('Starting point added. Edit it for your own situation, then save.','已填入起点建议，请结合实际情况修改后保存。');};
+ for(const e of document.querySelectorAll('#plan-form input,#plan-form textarea'))e.addEventListener('input',()=>{capture();buttons();$('plan-status').textContent=t('Unsaved changes.','有尚未保存的修改。');});
+ $('plan-form').onsubmit=e=>{e.preventDefault();capture();if(!$('note-action').value.trim()){$('note-action').focus();$('plan-status').textContent=t('Write one action first.','请先写下一个行动。');return;}if(!state.saved.includes(current.id))state.saved.push(current.id);if(save()){$('plan-status').textContent=t('Saved on this device. Export it or use the cloud option below to continue elsewhere.','已保存到本机。可导出，或通过下方云端选项换设备继续。');buttons();event('plan');}};
+ $('load-video').onclick=()=>{const i=interviews[current.interview],frame=el('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+i.video+'?autoplay=0&start='+current.start;frame.title=i.speaker+' — '+current[lang].title;frame.referrerPolicy='strict-origin-when-cross-origin';frame.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';frame.allowFullscreen=true;$('video-stage').replaceChildren(frame);$('video-stage').classList.add('loaded');event('video');};
+ $('export-plan').onclick=protect(()=>{const r=record(),n=r.values.notes[current.id],i=interviews[current.interview],g=goals.find(g=>g.id===state.goal);const lines=['# '+t('My AI next step','我的 AI 下一步'),'',current[lang].title,i.speaker+' · '+i.date,i.source,'https://www.youtube.com/watch?v='+i.video+'&t='+current.start+'s','',t('My direction: ','我的方向：')+g[lang][0],t('My private stance: ','我的个人立场：')+({agree:t('lean agree','倾向支持'),disagree:t('lean disagree','倾向反对'),undecided:t('need evidence','还需要证据')}[n.stance]),'',t('Task: ','任务：')+n.task,t('Action: ','行动：')+n.action,t('What would change my view: ','什么会让我改观：')+n.counter,t('Review date: ','复查日期：')+(n.review||'—'),t('Tried: ','已尝试：')+(n.done?t('yes','是'):t('no','否')),'',t('Personal notes and editorial guidance, not an AI prediction or independently verified outcome.','个人记录与编辑指南，不是 AI 预测或独立核验的结果。')];download('agi-next-step-'+current.id+'.md',lines.join('\n'),'text/markdown;charset=utf-8');event('export');});
+ $('export-calendar').onclick=protect(()=>{const n=record().values.notes[current.id];if(!n.review){$('plan-status').textContent=t('Choose a review date first.','请先选择复查日期。');$('note-review').focus();return;}const start=n.review.replaceAll('-',''),end=new Date(Date.parse(n.review)+86400000).toISOString().slice(0,10).replaceAll('-','');const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//AGI Scorecard//Future Guide//EN','BEGIN:VEVENT','UID:'+crypto.randomUUID()+'@agiscorecard.com','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,''),'DTSTART;VALUE=DATE:'+start,'DTEND;VALUE=DATE:'+end,'SUMMARY:'+t('Review my AI next step','复查我的 AI 下一步'),'URL:https://agiscorecard.com'+hub+'/'+current.id+'#plan','END:VEVENT','END:VCALENDAR'];download('agi-review.ics',lines.join('\r\n'),'text/calendar;charset=utf-8');$('plan-status').textContent=t('Import the calendar file to set your own reminder. The site will not send a notification.','导入日历文件后可自行设置提醒，本站不会发送通知。');event('export');});
+ if(params.get('embed')==='1')document.documentElement.classList.add('embed');
+}
+for(const b of document.querySelectorAll('[data-cloud]'))b.onclick=protect(()=>{const data=record(),snapshot=JSON.stringify(data),nonce=[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
+ const target=new URL(prefix+'/members',location.origin);target.searchParams.set('tool',PRODUCT);target.searchParams.set('from',location.origin);if(params.has('__qa'))target.searchParams.set('__qa','1');const win=window.open(target.href,'_blank');if(!win){status(t('Allow the member page to open, or export your notebook and import it there.','请允许打开会员页，或导出记录后在该页导入。'));return;}event('cloud');
+ if(cloudHandler)window.removeEventListener('message',cloudHandler);let delivered=false;
+ cloudHandler=e=>{if(e.origin!==location.origin||e.source!==win)return;
+  if(e.data?.kind==='workbench-member-ready'&&!delivered){delivered=true;win.postMessage({kind:'workbench-save',data,handoff:nonce,context:cloudContext},location.origin);status(t('Plan opened in the member page. Save there explicitly to upload it.','计划已交给会员页，需要在该页主动保存才会上传。'));}
+  if(e.data?.kind==='workbench-saved'&&e.data.handoff===nonce&&e.data.product===PRODUCT){cloudContext=e.data.context;status(e.data.same&&snapshot===JSON.stringify(record())?t('This version was saved to your cloud workspace.','此版本已保存到云端工作区。'):t('A cloud version was saved. Further changes in this tab may be unsaved.','已保存云端版本，当前标签页的后续修改可能尚未保存。'));}
+ };window.addEventListener('message',cloudHandler);const handler=cloudHandler;setTimeout(()=>window.removeEventListener('message',handler),120000);
+});
+if(window.opener&&params.get('restore')==='1'){const handler=e=>{if(e.origin!==location.origin||e.source!==window.opener||e.data?.kind!=='workbench-restore')return;try{restore(e.data.data);cloudContext=e.data.context||null;if(save())status(t('Cloud record restored and saved on this device.','云端记录已恢复，并保存到本机。'));}catch{status(t('Invalid cloud record. Your existing record was retained.','云端记录无效，原记录已保留。'));}window.removeEventListener('message',handler);};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-ready'},location.origin);setTimeout(()=>window.removeEventListener('message',handler),120000);}
+render();

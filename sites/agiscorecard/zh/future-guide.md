@@ -1,0 +1,12 @@
+# AI 未来导航：访谈、证据与我的下一步 | AGI
+
+按工作、学习、收入与教育需求探索 AI 访谈。查看原始来源、记录个人判断，并保存下一步行动。
+
+---
+Canonical page: https://agiscorecard.com/zh/future-guide
+Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)
+This Markdown mirror is generated from the page; the HTML page is canonical.
+
+## Source-linked future guide
+
+所有观点与来源都可直接阅读。筛选、保存及导出个人计划需要启用 JavaScript。 AI 在变化，你的下一步是什么？ 看见 AI 的变化， 找到你的下一步。 从你关心的问题出发，读懂重要访谈。查证据、形成自己的判断，再带走一个有用的行动。 选择我关心的问题 ↓ (#goals)我们如何评判观点 (/zh/future-guide/method) 原始来源免费 保留不同观点 无需注册开始 Latent Space · 2026.09.21 ▶ Jev / 判断力 一个观点 核对证据 我的下一步 从这段访谈开始 · Diogo Almeida AI 会让你正在用的软件变得更有用吗？ ↗ (/zh/future-guide/software-judgment) 从 01:18:28 开始 · 查看编辑解读 今天，你最关心什么？ 不必先给自己贴标签，随时可以换一个问题。 看懂趋势 哪些已经发生，哪些还只是预测？ 应对工作变化 我的哪些工作环节可能先改变？ 找到学习方向 学什么，才能真正用得上？ 探索收入机会 我能做出什么值得付费的成果？ 思考家庭教育 怎样用 AI，又不跳过真正的学习？ 检验我的判断 我相信什么，又会因什么改变？ 理解工作变化 先看具体任务，再看宏大预言。 全部观点 ↗ 搜索观点 只看收藏 3 场访谈，4 个观点 · 来源复核：2026-10-03 Latent Space Jev ▶ 01:18:28 (/zh/future-guide/software-judgment) Diogo Almeida · 2026-09-21 AI 会让你正在用的软件变得更有用吗？ (/zh/future-guide/software-judgment) Almeida 认为，AI 可以成为软件中可编程的小部件，增强已有软件的能力。 看观点与证据 → (/zh/future-guide/software-judgment) 收藏 Dwarkesh Podcast Andrej ▶ 00:00:00 (/zh/future-guide/agents-take-time) Andrej Karpathy · 2025-10-17 · 历史访谈 可靠的 AI 同事，为什么可能还需要时间？ (/zh/future-guide/agents-take-time) Karpathy 将智能体描述为一项可能持续十年的工程，提到持续学习等尚待解决的问题。 看观点与证据 → (/zh/future-guide/agents-take-time) 收藏 Dwarkesh Podcast Dario ▶ 00:12:36 (/zh/future-guide/fast-ai-progress) Dario Amodei · 2026-02-13 如果强大 AI 更早到来，我该做什么准备？ (/zh/future-guide/fast-ai-progress) Amodei 预期未来几年会出现非常强大的 AI，并讨论能力如何扩散到经济活动中。 看观点与证据 → (/zh/future-guide/fast-ai-progress) 收藏 Dwarkesh Podcast Andrej ▶ 01:56:20 (/zh/future-guide/learning-with-ai) Andrej Karpathy · 2025-10-17 · 历史访谈 AI 给出了答案，是否意味着我已经学会？ (/zh/future-guide/learning-with-ai) Karpathy 区分了回答问题与理解学习者、提供合适挑战的辅导体验。 看观点与证据 → (/zh/future-guide/learning-with-ai) 收藏 暂时没有匹配观点，可以换一个问题或清除筛选。 查看全部观点 ✳ JARVIS 研究导览 从你熟悉的一项任务开始。 选一项重复任务，对比人工与 AI 辅助两次完成的结果，计入检查时间和错误。 制定我的下一步 ↗ (/zh/future-guide/agents-take-time?goal=work#plan) 依据公开来源与编辑指南整理，不是 AI 生成的预测，也不是个人能力测评。 我的下一步 在本机保留关心的观点与准备采取的行动。 收藏一个观点，再写下一个准备尝试的行动。 导出我的记录 导入备份 清除本机记录 不会自动发送通知。可在计划中设置复查日期，并导出日历事项。 当你想把思考持续积累下来 让下一次判断，有上一次的依据。 阅读、原视频、本机保存和导出均免费。需要换设备继续时，可使用现有 AGI 云端工作区与版本历史。 当前会员不包含付费访谈合集或自动个人报告订阅。 AGI 云端会员 9 USDT / 30 天 另加订单匹配尾数与网络费用。50 个工作区，每区 10 个版本、64 KB，总计 5 MB。不自动续费，不增加 AI 额度。 带着计划查看会员 会员页会检查可售状态；打开页面不会上传计划或下单，需要在该页主动保存。当前仅支持 USDT 支付。
