@@ -16,7 +16,7 @@ export async function boundedJSON(url,fetcher=fetch){
 export async function runTool(action,input,fetcher=fetch,library=null){
  const checkedAt=new Date().toISOString();
  if(action.tool==='catalog_search')return rank(action.query,library||catalog(input.lang));
- if(action.tool==='calculate'){const result=calculate(action.query);return [{id:'calc-'+action.query.replace(/\W/g,'').slice(0,30),title:result.expression,description:String(result.value),kind:'arithmetic',checkedAt}];}
+ if(action.tool==='calculate'){const result=calculate(action.query);return [{id:'calc-'+result.expression.replace(/\s/g,''),title:result.expression,description:String(result.value),kind:'arithmetic',checkedAt}];}
  if(!input.web)throw Error('tool_not_allowed');
  if(typeof input.publicQuery!=='string'||!input.publicQuery.trim()||input.publicQuery.length>160)throw Error('tool_not_allowed');
  // Only explicitly enabled keyword search. No arbitrary URL fetch, redirect, shell or writes.
