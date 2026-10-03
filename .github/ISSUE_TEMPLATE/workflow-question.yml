@@ -1,0 +1,45 @@
+name: A workflow that is still stuck
+description: Ask a public technical question with a small synthetic example. No private data.
+title: "[Workflow question] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a public repository. Share only a synthetic example you are allowed to publish.
+        Do not include emails, customer records, keys, tokens, private source code or sensitive screenshots.
+        This form is a technical help request, not a paid order. Scope and commercial terms are separate.
+  - type: checkboxes
+    id: public-data
+    attributes:
+      label: Public information only
+      options:
+        - label: I checked that this request contains no private or customer data, and I understand it is public.
+          required: true
+  - type: textarea
+    id: intended-result
+    attributes:
+      label: What single result are you trying to get?
+      description: Name the tools or systems and the expected result. Avoid your actual account details.
+    validations:
+      required: true
+  - type: textarea
+    id: current-blocker
+    attributes:
+      label: Where does it fail, and what have you tried?
+      description: Describe the actual versus expected behavior, and whether the problem is still unresolved.
+    validations:
+      required: true
+  - type: textarea
+    id: synthetic-example
+    attributes:
+      label: A minimal synthetic example
+      description: Use invented names and data. If sharing an example is unsafe, describe the behavior instead.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How would you know it is fixed?
+      description: Give one or two observable checks. Optionally describe how often this task occurs.
+    validations:
+      required: true

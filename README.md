@@ -22,6 +22,14 @@ Privacy rule for this PUBLIC repo: no owner personal archive
 (owner-identity*/owner-trajectory*), no subscriber addresses, no tokens/keys.
 See `CLAUDE.md`.
 
+## One practical workflow check
+
+[Compare coding assistants on a small CRM workflow](tools/workflow-task-check/README.md):
+a free local exercise covering duplicate events, retries, credential errors and
+ambiguous timeouts. Synthetic data only; no account or API key required.
+For a task that remains stuck, use the linked public workflow-question form with
+a sanitized example. This is a technical help entry, not a checkout.
+
 ## Owner TODO (one-time, optional but recommended)
 
 1. Cloudflare dashboard → Workers `agiscorecard` → disconnect the old git
