@@ -39,6 +39,10 @@ export function businessEvent(host, pathname, detail) {
       ['home_library','home_audio','home_video_open','home_view','home_topic','home_latest','home_notebook','home_jarvis'].includes(name)) {
     return {name, tool_id:'agi-home', site_edition:route==='/cn'?'zh':'en', repeat:true};
   }
+  if (host === 'agiscorecard.com' && !/^\/(?:members|discuss\/(?:account|moderate))(?:\/|$)/.test(route) &&
+      ['menu_open','home','videos','evidence','jarvis','tools','invest','discuss','search','workbench','earn','mentor','create','agents','portfolio','infrastructure','exposure','notebook','account','members','newsletter','language'].some(a=>name==='nav_'+a)) {
+    return {name, tool_id:'agi-navigation', site_edition:pathname.startsWith('/zh/')||pathname==='/cn'?'zh':'en',repeat:true};
+  }
   // Homepage events use fixed public labels only, never destinations or search input.
   if (host === 'baipiaoji.com' && ['/', '/en', '/en/'].includes(pathname)) {
     const parts = name.split(':');

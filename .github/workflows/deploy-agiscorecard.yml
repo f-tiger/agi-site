@@ -221,11 +221,18 @@ jobs:
             exit 1
           fi
 
+      - name: Unify English and Chinese navigation after page generators
+        run: |
+          node sites/agiscorecard/tools/navigation/build.mjs
+          node sites/agiscorecard/tools/navigation/build.mjs --check
+          node --test sites/agiscorecard/tools/navigation/test.mjs
+
       - name: Build and validate practical tool workbench
         working-directory: ${{ github.workspace }}
         run: |
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node sites/agiscorecard/tools/navigation/browser-test.mjs
           node sites/agiscorecard/tools/browser_home_focus.mjs
           node sites/agiscorecard/tools/browser_evidence.mjs
           node sites/agiscorecard/tools/foresight/browser-test.mjs
@@ -304,6 +311,9 @@ jobs:
           node sites/agiscorecard/tools/mentor/verify.mjs
           node sites/agiscorecard/tools/mentor/metrics.mjs
           node sites/agiscorecard/tools/evidence-metrics.mjs
+
+      - name: Verify live shared navigation and destinations
+        run: node sites/agiscorecard/tools/navigation/verify.mjs
 
       - name: Verify live homepage focus and evidence versions
         run: node sites/agiscorecard/tools/verify_home_focus.mjs

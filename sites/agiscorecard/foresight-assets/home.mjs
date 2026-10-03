@@ -1,9 +1,7 @@
 import {contentItems,topics} from './discovery.mjs';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function siteHeader(lang,{slug='',current='home'}={}){
- const zh=lang==='zh',t=(en,cn)=>zh?cn:en,p=zh?'/zh':'',home=zh?'/cn':'/',alternate=slug?(zh?'':'/zh')+'/'+slug:(zh?'/':'/cn');
- return `<header class="agi-header"><div class="agi-header-inner"><a class="agi-brand" href="${home}" aria-label="${t('AGI Scorecard home','AGI 记分牌首页')}"><span aria-hidden="true">A</span>${t('AGI Scorecard','AGI 记分牌')}</a><nav aria-label="${t('Main navigation','主导航')}"><a href="${home}" ${current==='home'?'aria-current="page"':''}>${t('Home','首页')}</a><a href="${p}/future-guide" data-home-action="library" ${current==='videos'?'aria-current="page"':''}>${t('Videos & ideas','视频与观点')}</a><a href="${p}/progress-index">${t('Evidence','证据')}</a><a href="${p}/jarvis">${t('Jarvis','贾维斯')}</a><a class="agi-nav-extra" href="${p}/ai-tools">${t('Tools','工具')}</a><a class="agi-nav-extra" href="${p}/invest">${t('Invest','投资')}</a></nav><a class="agi-language" id="language" href="${alternate}" lang="${zh?'en':'zh-Hans'}" aria-label="${zh?'Switch to English':'切换到中文'}">${zh?'EN':'中文'}</a></div></header>`;
-}
+import {siteHeader} from '../site-nav/render.mjs';
+export {siteHeader} from '../site-nav/render.mjs';
 export function homeSnapshot(data){
  const items=contentItems(data),videos=items.filter(i=>i.medium==='video'),feature=videos.find(i=>i.video&&i.views.length);
  if(!feature)throw Error('Homepage requires a sourced, reviewed video');

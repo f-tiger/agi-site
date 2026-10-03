@@ -35,7 +35,7 @@ async function fixture(url,{failData=false,privacy=false,copyFail=false,crowdFai
   assert.equal(await p.locator('.home-topics a').count(),6);
   assert.equal(await p.locator('.home-latest-card').count(),4);
   assert.equal(await p.locator('#home-feature iframe').count(),0);
-  assert.equal(await p.locator('.agi-header nav a[aria-current=page]').count(),1);
+  assert.equal(await p.locator('.agi-primary-nav a[aria-current=page]').count(),1);
   await p.waitForFunction(()=>/^\d+$/.test(document.getElementById('cd-days')?.textContent||''));
   assert.equal(await p.locator('#milestones').count(),1,'one countdown, in the hero');
   assert.equal(await p.locator('.focus-intro #milestones').count(),1);

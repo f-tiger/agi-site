@@ -572,12 +572,10 @@
 <script type="module" src="/home-focus/countdown.js"></script>
 <script type="module" src="/home-focus/vote.js"></script>
 <script type="module" src="/home-focus/media.mjs?v=20261003"></script>
-<link rel="stylesheet" href="/home-focus/nav.css?v=20261003">
+<link rel="stylesheet" href="/home-focus/nav.css?v=20261003-nav2"><script type="module" src="/site-nav/app.mjs?v=20261003-nav2"></script>
 </head>
 <body class="focus-home">
-
-<header class="agi-header"><div class="agi-header-inner"><a class="agi-brand" href="/" aria-label="AGI Scorecard home"><span aria-hidden="true">A</span>AGI Scorecard</a><nav aria-label="Main navigation"><a href="/" aria-current="page">Home</a><a href="/future-guide" data-home-action="library" >Videos & ideas</a><a href="/progress-index">Evidence</a><a href="/jarvis">Jarvis</a><a class="agi-nav-extra" href="/ai-tools">Tools</a><a class="agi-nav-extra" href="/invest">Invest</a></nav><a class="agi-language" id="language" href="/cn" lang="zh-Hans" aria-label="切换到中文">中文</a></div></header>
-
+<header class="agi-header" id="agi-nav" data-nav-version="20261003-nav2" data-nav-language="en"><div class="agi-header-inner"><a class="agi-brand" href="/" aria-label="AGI Scorecard home" data-nav-destination="home"><span aria-hidden="true">A</span>AGI Scorecard</a><nav class="agi-primary-nav" aria-label="Main navigation"><a href="/" data-nav-destination="home" class="" aria-current="page">Home</a><a href="/future-guide" data-nav-destination="videos" class="" >Videos & ideas</a><a href="/progress-index" data-nav-destination="evidence" class="" >Evidence</a><a href="/jarvis" data-nav-destination="jarvis" class="" >Jarvis</a><a href="/ai-tools" data-nav-destination="tools" class="agi-nav-extra" >Tools</a><a href="/invest" data-nav-destination="invest" class="agi-nav-extra" >Invest</a></nav><a class="agi-language" id="language" href="/cn" lang="zh-Hans" aria-label="中文首页（本页暂无中文）" title="中文首页（本页暂无中文）" data-nav-language-link="home">中文</a><details class="agi-menu" id="agi-site-menu"><summary aria-controls="agi-menu-panel"><span class="agi-menu-icon" aria-hidden="true">☰</span><span>All sections</span></summary><div class="agi-menu-panel" id="agi-menu-panel"><div class="agi-menu-groups"><section><h2>Explore AI</h2><nav aria-label="Explore AI"><a href="/future-guide" data-nav-destination="videos" >Videos & ideas</a><a href="/progress-index" data-nav-destination="evidence" >Prediction evidence</a><a href="/jarvis" data-nav-destination="jarvis" >Jarvis research</a><a href="/discuss" data-nav-destination="discuss" >Discussions</a><a href="/search" data-nav-destination="search" >Search the site</a></nav></section><section><h2>Tools & work</h2><nav aria-label="Tools & work"><a href="/ai-tools" data-nav-destination="tools" >AI tools</a><a href="/workbench" data-nav-destination="workbench" >Practical workbench</a><a href="/earn" data-nav-destination="earn" >Earn with AI</a><a href="/mentor" data-nav-destination="mentor" >Work mentor</a><a href="/create" data-nav-destination="create" >Create & share</a><a href="/agents/" data-nav-destination="agents" >Agent directory</a></nav></section><section><h2>Invest & follow</h2><nav aria-label="Invest & follow"><a href="/invest" data-nav-destination="invest" >Investment research</a><a href="/portfolio-tracker" data-nav-destination="portfolio" >12-stock tracker</a><a href="/ai-infrastructure" data-nav-destination="infrastructure" >AI infrastructure</a><a href="/ai-stock-exposure" data-nav-destination="exposure" >Stock exposure tool</a></nav></section><section><h2>Your space</h2><nav aria-label="Your space"><a href="/future-guide#notebook" data-nav-destination="notebook" >Saved views & actions</a><a href="/discuss/account" data-nav-destination="account" >My discussions / join</a><a href="/members" data-nav-destination="members" >Membership workspace</a><a href="https://agiscorecard.beehiiv.com/subscribe" data-nav-destination="newsletter" >Free newsletter</a></nav></section></div></div></details></div></header>
 <main>
 <!-- home-focus:start -->
 <section class="focus-intro home-editorial" aria-labelledby="focus-title" data-release="agi-focus-20261001">
@@ -679,7 +677,7 @@
         </tbody>
       </table>
     </div>
-    <div style="display:flex; align-items:center; gap:12px; margin-top:12px;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:12px;">
       <button class="email-submit" onclick="shareScorecard()">Share the scorecard on 𝕏 →</button>
       <p style="font-size:12px; color: var(--muted); margin:0;">
         Source: <a href="https://situational-awareness.ai" target="_blank">situational-awareness.ai</a> · Verdicts based on public retrospectives & benchmarks
