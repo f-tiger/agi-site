@@ -2,18 +2,24 @@ import copy,datetime as dt,json,unittest
 from refresh import calculate,refresh,parse_chart,MANIFEST
 M=json.loads(MANIFEST.read_text());NOW=dt.datetime(2026,10,7,23,tzinfo=dt.timezone.utc)
 def prices():
- return {x['ticker']:{'2026-10-05':100,'2026-10-06':110,'2026-10-07':99} for x in M['stocks']+M['benchmarks']}
+ return {x['ticker']:{M['entry_session']:100,'2026-10-06':110,'2026-10-07':99} for x in M['stocks']+M['benchmarks']}
 class Tests(unittest.TestCase):
- def test_weekend_has_no_returns_or_price_requests(self):
-  s=refresh(M,None,dt.datetime(2026,10,3,5,tzinfo=dt.timezone.utc),lambda *a:self.fail('fetch before entry'))
+ def test_before_entry_has_no_returns_or_price_requests(self):
+  s=refresh(M,None,dt.datetime(2026,10,2,18,tzinfo=dt.timezone.utc),lambda *a:self.fail('fetch before entry'))
   self.assertEqual(s['status'],'awaiting_entry');self.assertEqual(s['metrics'],{})
+ def test_previous_close_starts_at_zero_with_complete_prices(self):
+  entry=M['entry_session'];p={x['ticker']:{entry:100} for x in M['stocks']+M['benchmarks']}
+  s=refresh(M,None,dt.datetime(2026,10,3,7,tzinfo=dt.timezone.utc),lambda t,*a:p[t])
+  self.assertEqual(s['status'],'tracking');self.assertEqual(s['dates'],[entry])
+  self.assertTrue(all(v['return_pct']==0 for v in s['metrics'].values()))
+  self.assertEqual(len(s['entry_adjusted_close']),15);self.assertEqual(s['entry_adjusted_close']['SPY'],100)
  def test_buy_hold_not_rebalanced(self):
   p=prices();p['AMD']['2026-10-06']=200;p['AMD']['2026-10-07']=100
   r=calculate(M,p);self.assertAlmostEqual(r['series']['basket'][-1],(100+11*99)/12,places=6)
   self.assertEqual(r['metrics']['SPY']['return_pct'],-1);self.assertEqual(r['metrics']['SPY']['max_drawdown_pct'],-10)
   self.assertAlmostEqual(r['metrics']['basket']['excess_spy_pp'],1/12,places=5)
  def test_no_lookahead_baseline(self):
-  p=prices();p['AMD'].pop('2026-10-05')
+  p=prices();p['AMD'].pop(M['entry_session'])
   with self.assertRaisesRegex(ValueError,'missing_entry'):calculate(M,p)
  def test_missing_middle_or_stale_last_day_blocks_all(self):
   for date in ['2026-10-06','2026-10-07']:

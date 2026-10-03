@@ -1,5 +1,7 @@
 # Public portfolio tracker · 2026-10-03
 
+Current contract: owner requested yesterday’s close on October 3 at 15:01 Shanghai. Active entry is now **2026-10-02 NY close**, cohort `social-basket-2026-10-02-close`. The October 5 plan below is historical, archived before any returns existed. See the final amendment.
+
 User request: track the twelve securities in a supplied social-post screenshot alongside TQQQ and the S&P 500 from today, add useful investment tools and grow subscriptions. Implemented inside the existing AGI investment hub, with a contextual entry from Gushen. No brokerage integration or trades.
 
 ## Brief and two self-reviews
@@ -62,3 +64,13 @@ The EN/ZH pages now open with the twelve-stock basket, SPY, QQQ and TQQQ cards. 
 Self-check A: a refreshed timestamp must not imply a new valuation, so pre-entry returns remain unavailable and the fixed future entry is explicit. Self-check B: moving the section above widgets must actually expose the result on a phone; the browser gate asserts first-section order, all four cards within 390 × 844, and all fifteen stock/benchmark rows expanded. Existing virtual-clock tests continue to verify automatic updates and retention after failures. Titles, descriptions, feed and AI mirrors are regenerated together; only changed canonical URLs are eligible for the manual post-release IndexNow submission.
 
 Free/paid value, payment terms and privacy-preserving attribution remain as documented above. This is a usability improvement; conversion impact is unmeasured.
+
+## Owner amendment: use yesterday’s close
+
+Three-pass brief: apply the explicitly requested October 2 US close; use the same session for all twelve stocks and SPY/QQQ/TQQQ and retain the unstarted plan; refresh actual complete source data, update EN/ZH rules and validation, and publish.
+
+The new active manifest has ID `social-basket-2026-10-02-close`; the previous manifest and empty snapshot are preserved under `portfolio-assets/archive/social-basket-2026-10-03/`. Registration remains October 3. The page explicitly describes the previous-close selection, no longer claims pre-entry registration, and links the archive. The selected date and cohort hash remain fixed for future daily runs.
+
+All fifteen provider series returned the completed October 2 session with USD identity checks, including SpaceX. The fresh record contains sixteen normalized series and complete metrics. At that first close each series is 100 and return, drawdown and excess return are zero by construction. These are calculated entry observations, not missing-data zero fills. Entry adjusted close prices are stored and displayed for audit; future total returns use the same adjusted-close basis.
+
+Self-check A: preserve the old empty plan and make the retrospective date selection explicit; never relabel historical investment performance as a pre-registered result. Self-check B: require all fifteen observed entry prices before displaying zero, keep existing failure/rollback guards, and test that a complete first session yields zero while absent data blocks computation. The existing daily schedule, browser refresh and member terms remain unchanged.

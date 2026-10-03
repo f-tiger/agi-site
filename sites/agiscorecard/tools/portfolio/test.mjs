@@ -22,7 +22,7 @@ test('dynamic widgets cover the fixed basket and use isolated provider URLs with
 });
 test('a refresh rejects corrupt and rollback records before replacing the last complete observation',()=>{
  assert.equal(validateSnapshot(registered),registered);const keys=marketSymbols.map(x=>x.ticker).concat('basket');
- const complete={...registered,status:'tracking',dates:['2026-10-05','2026-10-06'],as_of:'2026-10-06',series:Object.fromEntries(keys.map(k=>[k,[100,110]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:10,max_drawdown_pct:0,excess_spy_pp:0}]))};
+ const complete={...registered,status:'tracking',dates:[manifest.entry_session,'2026-10-06'],as_of:'2026-10-06',series:Object.fromEntries(keys.map(k=>[k,[100,110]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:10,max_drawdown_pct:0,excess_spy_pp:0}]))};
  assert.equal(validateSnapshot(complete,registered),complete);assert.throws(()=>validateSnapshot(registered,complete));assert.throws(()=>validateSnapshot({...complete,manifest_sha256:'different'},complete));
  const bad=structuredClone(complete);delete bad.metrics.SPCX;assert.throws(()=>validateSnapshot(bad,complete));assert.equal(complete.metrics.SPCX.return_pct,10);
 });

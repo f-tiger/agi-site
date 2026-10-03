@@ -1,4 +1,4 @@
-"""Forward-registered, same-window paper basket; no trading or model calls."""
+"""Fixed-entry, same-window paper basket; no trading or model calls."""
 import concurrent.futures, datetime as dt, hashlib, json, math, urllib.request
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -52,7 +52,7 @@ def calculate(manifest,prices):
         peak=arr[0]; drawdown=0
         for v in arr: peak=max(peak,v); drawdown=min(drawdown,(v/peak-1)*100)
         metrics[key]={'return_pct':round(arr[-1]-100,6),'max_drawdown_pct':round(drawdown,6),'excess_spy_pp':round(arr[-1]-series['SPY'][-1],6)}
-    return {'dates':dates,'series':{t:[round(v,8) for v in arr] for t,arr in series.items()},'metrics':metrics,'as_of':dates[-1]}
+    return {'entry_adjusted_close':{t:prices[t][entry] for t in tickers},'dates':dates,'series':{t:[round(v,8) for v in arr] for t,arr in series.items()},'metrics':metrics,'as_of':dates[-1]}
 
 def refresh(manifest,previous,now,fetcher=fetch):
     h=digest(manifest)

@@ -95,7 +95,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
-      - name: Validate and refresh the forward-registered public portfolio
+      - name: Validate and refresh the fixed-entry public portfolio
         run: |
           python3 sites/agiscorecard/tools/portfolio/test_data.py
           python3 sites/agiscorecard/tools/portfolio/refresh.py

@@ -1,27 +1,82 @@
 {
   "version": 1,
-  "id": "social-basket-2026-10-03",
+  "id": "social-basket-2026-10-02-close",
   "registered_date": "2026-10-03",
   "registered_timezone": "Asia/Shanghai",
-  "entry_session": "2026-10-05",
-  "entry_rule": "Official regular-session close on 2026-10-05; all symbols must be present. No later substitute entry date.",
+  "entry_session": "2026-10-02",
+  "entry_rule": "Official regular-session close on 2026-10-02, selected on 2026-10-03 at the owner's request. All symbols must be present. No later substitute entry date.",
   "currency": "USD",
   "notional": 10000,
   "weight_rule": "Twelve stocks, equal initial allocations, buy and hold, no rebalancing. Each benchmark starts with the same notional.",
   "return_basis": "Vendor dividend/split-adjusted daily close ratios; modeled gross total-return proxy. No tax, execution costs or FX. ETF operating expenses are reflected in fund prices.",
   "source_claim": "User-supplied screenshot of a social post; original post URL and publication time not verified. This is an editorial test of its listed stocks, not the author's actual portfolio or an endorsement by any person pictured.",
   "stocks": [
-    {"ticker":"AMD","name":"AMD"}, {"ticker":"TSLA","name":"Tesla"},
-    {"ticker":"META","name":"Meta"}, {"ticker":"MU","name":"Micron"},
-    {"ticker":"NVDA","name":"NVIDIA"}, {"ticker":"PLTR","name":"Palantir"},
-    {"ticker":"SPCX","name":"SpaceX","identity_source":"https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Closing-of-Initial-Public-Offering-Including-Full-Exercise-of-Underwriters-Option-to-Purchase-Additional-Shares-2026-RgoR-Y1Vwh/default.aspx"},
-    {"ticker":"AMZN","name":"Amazon"}, {"ticker":"GOOGL","name":"Alphabet"},
-    {"ticker":"MSFT","name":"Microsoft"}, {"ticker":"NOW","name":"ServiceNow"},
-    {"ticker":"PANW","name":"Palo Alto Networks"}
+    {
+      "ticker": "AMD",
+      "name": "AMD"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla"
+    },
+    {
+      "ticker": "META",
+      "name": "Meta"
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir"
+    },
+    {
+      "ticker": "SPCX",
+      "name": "SpaceX",
+      "identity_source": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Closing-of-Initial-Public-Offering-Including-Full-Exercise-of-Underwriters-Option-to-Purchase-Additional-Shares-2026-RgoR-Y1Vwh/default.aspx"
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft"
+    },
+    {
+      "ticker": "NOW",
+      "name": "ServiceNow"
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks"
+    }
   ],
   "benchmarks": [
-    {"ticker":"SPY","name":"S&P 500 ETF proxy","source":"https://www.ssga.com/us/en/institutional/etfs/state-street-spdr-sp-500-etf-trust-spy"},
-    {"ticker":"QQQ","name":"Nasdaq-100 ETF"},
-    {"ticker":"TQQQ","name":"3× daily Nasdaq-100 ETF","source":"https://www.proshares.com/our-etfs/leveraged-and-inverse/tqqq"}
-  ]
+    {
+      "ticker": "SPY",
+      "name": "S&P 500 ETF proxy",
+      "source": "https://www.ssga.com/us/en/institutional/etfs/state-street-spdr-sp-500-etf-trust-spy"
+    },
+    {
+      "ticker": "QQQ",
+      "name": "Nasdaq-100 ETF"
+    },
+    {
+      "ticker": "TQQQ",
+      "name": "3× daily Nasdaq-100 ETF",
+      "source": "https://www.proshares.com/our-etfs/leveraged-and-inverse/tqqq"
+    }
+  ],
+  "supersedes": "social-basket-2026-10-03",
+  "revision_reason": "Owner requested the previous trading day close instead of the next trading day close, before any performance was recorded."
 }

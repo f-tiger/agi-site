@@ -1,10 +1,11 @@
 export const PRODUCT='portfolio-tracker';
 export function validateSnapshot(s, previous=null){
  const keys=['AMD','TSLA','META','MU','NVDA','PLTR','SPCX','AMZN','GOOGL','MSFT','NOW','PANW','SPY','QQQ','TQQQ','basket'];
- if(s?.version!==1||s.cohort!=='social-basket-2026-10-03'||s.manifest_sha256!=='8bcc38a0447cea6618ad11298f0dc98df863040a8dde71c8a47b61edd88daff4'||!['awaiting_entry','tracking','stale','data_unavailable'].includes(s.status)||!Array.isArray(s.dates)||!Number.isFinite(Date.parse(s.attempted_at)))throw Error('snapshot');
+ if(s?.version!==1||s.cohort!=='social-basket-2026-10-02-close'||s.manifest_sha256!=='cdffeaf5be9e7a54ca8a792a1b33d7808c48f6320d65ccd0308655b8040a6912'||!['awaiting_entry','tracking','stale','data_unavailable'].includes(s.status)||!Array.isArray(s.dates)||!Number.isFinite(Date.parse(s.attempted_at)))throw Error('snapshot');
  if(previous?.as_of&&(!s.as_of||s.as_of<previous.as_of))throw Error('rollback');
  if(s.dates.length){
-  if(s.dates[0]!=='2026-10-05'||s.as_of!==s.dates.at(-1)||s.dates.some((d,i)=>!/^\d{4}-\d{2}-\d{2}$/.test(d)||(i&&d<=s.dates[i-1])))throw Error('dates');
+  if(s.dates[0]!=='2026-10-02'||s.as_of!==s.dates.at(-1)||s.dates.some((d,i)=>!/^\d{4}-\d{2}-\d{2}$/.test(d)||(i&&d<=s.dates[i-1])))throw Error('dates');
+  if(s.entry_adjusted_close&&keys.filter(k=>k!=='basket').some(k=>!Number.isFinite(s.entry_adjusted_close[k])||s.entry_adjusted_close[k]<=0))throw Error('entry_prices');
   for(const k of keys){const values=s.series?.[k],m=s.metrics?.[k];if(!Array.isArray(values)||values.length!==s.dates.length||values.some(v=>!Number.isFinite(v)||v<=0)||!m||['return_pct','max_drawdown_pct','excess_spy_pp'].some(p=>!Number.isFinite(m[p])))throw Error('series');}
  }else if(s.as_of!==null||s.status==='tracking')throw Error('empty');
  return s;
