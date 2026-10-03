@@ -107,6 +107,11 @@ def main():
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)
             if body:
                 md += '\n## Delivery guidance\n\n' + text_of(body.group(1)) + '\n'
+        if slug == 'portfolio-tracker':
+            source_html = open(fpath, encoding='utf-8').read()
+            method = re.search(r'<section id="method">(.*?)</section>', source_html, re.S)
+            if method:
+                md += '\n## Registered tracking method\n\n' + text_of(method.group(1)) + '\n\nRegistered rules: https://agiscorecard.com/portfolio-assets/manifest.json\nDated performance and corrections: https://agiscorecard.com/portfolio-assets/snapshot.json\n'
         if slug == 'invest':
             source_html = open(fpath, encoding='utf-8').read()
             workbench = re.search(r'<!-- invest-research-body:start -->(.*?)<!-- invest-research-body:end -->', source_html, re.S)
