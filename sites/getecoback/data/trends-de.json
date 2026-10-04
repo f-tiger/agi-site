@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-10-03",
+ "fetched": "2026-10-04",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "schnee",
+   "traffic": "20000+"
+  }
+ ],
  "top": [
   {
-   "title": "caroline von hannover",
+   "title": "flä­chen­brand",
    "traffic": "2000+"
   },
   {
-   "title": "frau stockl rosenheim cops",
+   "title": "parookaville 2027",
+   "traffic": "500+"
+  },
+  {
+   "title": "ministerium",
+   "traffic": "2000+"
+  },
+  {
+   "title": "veljko paunovic",
    "traffic": "1000+"
   },
   {
-   "title": "bielefeld",
-   "traffic": "1000+"
+   "title": "schnee",
+   "traffic": "20000+"
   },
   {
-   "title": "el niño",
+   "title": "gardasee",
    "traffic": "10000+"
   },
   {
-   "title": "bonn",
-   "traffic": "2000+"
-  },
-  {
-   "title": "disney+",
+   "title": "deutsche bahn familienticket",
    "traffic": "5000+"
   },
   {
-   "title": "ind vs wi",
-   "traffic": "2000+"
+   "title": "dieter schwarz",
+   "traffic": "10000+"
   },
   {
-   "title": "thomas müller neue freundin",
+   "title": "reinhard mey platz 1",
    "traffic": "5000+"
   },
   {
-   "title": "ekd insolvent",
-   "traffic": "5000+"
-  },
-  {
-   "title": "verkaufsoffener sonntag",
+   "title": "zurück in die zukunft",
    "traffic": "2000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-19",
-   "matched": []
-  },
   {
    "d": "2026-09-20",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-10-03",
    "matched": []
+  },
+  {
+   "d": "2026-10-04",
+   "matched": [
+    "schnee"
+   ]
   }
  ]
 }
