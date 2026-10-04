@@ -53,7 +53,10 @@ def build():
  pages={}
  for p in sorted(SITE.rglob('*.html')):
   text=p.read_text(); head=Head(text); route=local(head.canonical)
-  if not route or head.noindex or any(x in route.split('/') for x in ('members','account','api')): continue
+  if not route or head.noindex or any(x in route.split('/') for x in ('members','members.html','account','account.html','api')):
+   clean=ASSET.sub('',BLOCK.sub('',text))
+   if clean!=text:p.write_text(clean)
+   continue
   canonical_file=SITE/(route.lstrip('/')+('index.html' if route.endswith('/') else ''))
   if p!=canonical_file: continue  # Redirect aliases are not public canonical pages.
   lang='en-AU' if route.startswith('/au/') else {'en-GB':'en','de-DE':'de','zh':'zh-CN'}.get(head.lang,head.lang)

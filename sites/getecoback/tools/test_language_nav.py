@@ -12,6 +12,8 @@ class Navigation(HTMLParser):
 before={p:p.read_bytes() for p in SITE.rglob('*.html')}
 rows=build()
 assert all(p.read_bytes()==b for p,b in before.items()), 'Builder must be byte-stable'
+for p in SITE.rglob('members.html'):
+ assert not BLOCK.search(p.read_text()), f'Private member portal must not receive public navigation: {p}'
 for r in rows:
  p=SITE/(r['path'].lstrip('/')+('index.html' if r['path'].endswith('/') else ''))
  s=p.read_text();blocks=BLOCK.findall(s);assert len(blocks)==1,r
