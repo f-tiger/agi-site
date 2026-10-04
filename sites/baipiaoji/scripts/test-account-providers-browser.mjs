@@ -58,7 +58,7 @@ async function fixture({lang='en',user=null,loginUser=USER,google=null,resetFail
     if(body.action==='credential'){
      const result=credentialResult||{state:'signed_in',user:USER,favorites:[]};if(result.state==='signed_in')serverUser=USER;
      entered.resolve();if(holdCredential)await release.promise;
-     return json({ok:true,...result});
+     return json({ok:true,...result},result.error?503:200);
     }
     if(body.action==='link'){
      assert.equal(body.account_id,USER.id);assert.equal(body.password,PASSWORD);assert.equal(body.confirmed,true);
@@ -94,6 +94,14 @@ try{
  const executablePath=process.env.PILOT_CHROMIUM||process.env.WORKBENCH_CHROMIUM;
  browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--disable-gpu']});
  let groups=0;
+ for(const lang of ['zh','en']){
+  const f=await fixture({lang,google:{},credentialResult:{ok:false,error:'google_unavailable'}});await f.open();
+  await f.page.waitForFunction(()=>!!window.__gisOptions);
+  await f.page.evaluate(()=>window.__gisOptions.callback({credential:'synthetic-unavailable-proof'}));
+  assert.match(await f.page.locator('#account-status').textContent(),/Google 身份验证服务|Google identity verification/);
+  assert.equal(await f.page.evaluate(()=>window.bpjAccount.state.user),null);
+  await f.context.close();groups++;
+ }
  for(const lang of ['zh','en']){
   const f=await fixture({lang,user:USER,holdReset:true});await f.open('#email-action=reset&token='+TOKEN);
   assert.deepEqual(await f.page.evaluate(()=>({hash:location.hash,observed:window.__headObservedHash,receipt:window.__headObservedReceipt,remaining:window.__bpjMailReceipt})),{hash:'',observed:'',receipt:{action:'reset',token:TOKEN},remaining:undefined});
