@@ -65,8 +65,15 @@ export async function jarvisRoute(request,env,ctx){
    if(!['paused','limited','completed'].includes(task.status)||task.runs>=MAX_RUNS||task.until_at<=now())throw Error('cannot_resume');
    await limit(db,'jarvis-resume:'+owner,3);
    const t=now();
+   const saved=JSON.parse(task.result);
+   // v6 checkpoints marked continuation only on an intentional yield. Preserve
+   // their saved work too when an occurrence has not reached a terminal stage.
+   if(saved.plan&&!saved.continuation&&/^jarvis-20261003-[1-6]$/.test(saved.version||'')&&!['complete','source_pack'].includes(task.stage)&&!saved.report&&!saved.reason){
+    saved.continuation=true;
+    if(saved.modelCalls>0)saved.synthesisStarted=true;
+   }
    // Authorization, state transition and active-count admission are one SQL write.
-   const resumed=await db.prepare(`UPDATE jarvis_tasks SET status='queued',stage='queued',next_run=?,updated=?,lease='',lease_until=0 WHERE id=? AND owner=? AND status IN ('paused','limited','completed') AND runs<? AND until_at>? AND expires>? AND (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching'))<3 RETURNING id`).bind(t,t,b.id,owner,MAX_RUNS,t,t,owner,t).first();
+   const resumed=await db.prepare(`UPDATE jarvis_tasks SET status='queued',stage='queued',result=?,next_run=?,updated=?,lease='',lease_until=0 WHERE id=? AND owner=? AND result=? AND status IN ('paused','limited','completed') AND runs<? AND until_at>? AND expires>? AND (SELECT COUNT(*) FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching'))<3 RETURNING id`).bind(JSON.stringify(saved),t,t,b.id,owner,task.result,MAX_RUNS,t,t,owner,t).first();
    if(!resumed){const count=await db.prepare("SELECT COUNT(*) n FROM jarvis_tasks WHERE owner=? AND expires>? AND status IN ('queued','running','watching')").bind(owner,t).first();throw Error(count.n>=3?'active_limit':'cannot_resume');}
    if(ctx?.waitUntil)ctx.waitUntil(execute(db,env,b.id,{interactive:true}).catch(()=>{}));return json({ok:true},202);
   }
