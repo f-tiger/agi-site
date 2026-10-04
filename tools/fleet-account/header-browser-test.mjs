@@ -16,7 +16,7 @@ try{
   await context.route('**/*',async route=>{
    const path=new URL(route.request().url()).pathname;
    if(path.startsWith('/api/')||path==='/auth/status')return route.fulfill({status:failed?503:200,contentType:'application/json',body:JSON.stringify(failed?{ok:false,error:'unavailable'}:{ok:true,user,favorites:[]})});
-   return route.fulfill({contentType:'text/html',body:`<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>*{box-sizing:border-box}body{margin:0}${css}${headerCSS}</style></head><body>${header}<script>${script}</script></body></html>`});
+   return route.fulfill({contentType:'text/html',body:`<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>*{box-sizing:border-box}body{margin:0}header.fleet-site-header{height:56px}${css}${headerCSS}</style></head><body>${header}<script>${script}</script></body></html>`});
   });
   await page.goto('https://baipiaoji.com/');const a=page.locator(kind==='bpj'?'.bpj-header-end>.bpj-account':'.fleet-account-entry a');
   await a.filter({hasText:kind==='bpj'?(lang==='zh'?/注册/:/Join/):accountCopy[lang][0]}).waitFor();
@@ -28,7 +28,7 @@ try{
   if(kind==='bpj'){assert.equal(await page.locator('.bpj-login').isVisible(),false);assert((await a.boundingBox()).width<=106);await page.screenshot({path:'/tmp/bpj-header-signed-in.png'});await page.setViewportSize({width:320,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Header must fit narrow mobile');}
   user=null;await refresh();await a.filter({hasText:kind==='bpj'?(lang==='zh'?/注册/:/Join/):accountCopy[lang][0]}).waitFor();
   failed=true;await refresh().catch(()=>{});await a.filter({hasText:kind==='bpj'?(lang==='zh'?/^账户$/:/^Account$/):accountCopy[lang][1]}).waitFor();
-  if(kind==='fleet'){await page.setViewportSize({width:320,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.locator('.fleet-language summary').click();assert(await page.locator('.fleet-language-panel').isVisible());await page.keyboard.press('Escape');assert.equal(await page.locator('.fleet-language-panel').isVisible(),false);assert.equal(await page.locator('header .fleet-account-entry').count(),1);}
+  if(kind==='fleet'){await page.setViewportSize({width:320,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.locator('.fleet-language summary').click();assert(await page.locator('.fleet-language-panel').isVisible());await page.keyboard.press('Escape');assert.equal(await page.locator('.fleet-language-panel').isVisible(),false);assert.equal(await page.locator('header .fleet-account-entry').count(),1);const hb=await page.locator('header').boundingBox(),ab=await a.boundingBox();assert(ab.y+ab.height<=hb.y+hb.height+1,'Wrapped controls stay inside header');}
   assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>localStorage.length),0);await context.close();
  }
  console.log('PASS BPJ/fleet headers EN/ZH: real state transitions, name, logout, unknown service state, mobile truncation, no persisted identity.');
