@@ -3,3 +3,7 @@
 
 /* Long canonical/source URLs must not force a narrow screen wider. */
 article a{overflow-wrap:anywhere}
+
+/* Localized compound words and native form controls must fit narrow screens. */
+main,.country-nav{overflow-wrap:anywhere}
+input,select,button{min-width:0;max-width:100%}
