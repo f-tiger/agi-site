@@ -218,8 +218,8 @@
     var state=srh>=70?2:(srh>=60?1:0);
     var v=$("verdict");
     v.style.color=state===2?"#b23c17":(state===1?"#8a6410":"#2f6b3f");
-    v.textContent=state===2?"❌ That surface is in the mould range":(state===1?"⚠️ Grey zone at that surface":"✅ That surface is fine today");
-    $("sub").textContent="Dew point of your room air: "+td.toFixed(1)+" °C. At a surface of "+tk.toFixed(1)+" °C the humidity right at the wall is about "+Math.round(srh)+" %."+(td>=tk?" Below the dew point, so water condenses there.":"");
+    v.textContent=state===2?"High estimated surface humidity: check its cause and duration":(state===1?"⚠️ Grey zone at that surface":"Lower reading now; not a guarantee against mould");
+    $("sub").textContent="Dew point of your room air: "+td.toFixed(1)+" °C. At a surface of "+tk.toFixed(1)+" °C the humidity right at the wall is about "+Math.round(srh)+" %."+(td>=tk?" At or below the estimated dew point: condensation is possible.":"");
     $("res").style.display="block";
     if(window.gtag)gtag("event","taupunkt_check",{source:"surface-check"});
   });
