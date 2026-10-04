@@ -3,10 +3,11 @@
 const $ = id => document.getElementById(id);
 const ids = ['energy','tender','compliance'];
 let active = 'energy', report = '';
+const reports={};
 const money = n => new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}).format(n);
 function tab(id) {
   if (!ids.includes(id)) return;
-  active = id;
+  active = id;report=reports[id]||'';$('exportResult').disabled=!report;
   document.querySelectorAll('.tab').forEach(t => {const selected=t.dataset.tab===id;t.classList.toggle('active',selected);t.setAttribute('aria-pressed',String(selected));});
   document.querySelectorAll('.workspace').forEach(w=>w.classList.toggle('active',w.id===id));
 }
@@ -16,7 +17,7 @@ tab(ids.includes(location.hash.slice(1))?location.hash.slice(1):'energy');
 // Tools audit 2026-09-22: one beacon per intentional run; probes never count.
 function ev(n,m){try{if(new URLSearchParams(location.search).has('__probe'))return;if(window.ebSend)return window.ebSend(n,m);navigator.sendBeacon('/api/ev',new Blob([JSON.stringify({n:n,p:location.pathname,r:document.referrer,m:m||null})],{type:'text/plain'}));}catch(e){}}
 function value(id) {return $(id).value;}
-function output(id, text) {const el=$(id);el.className='output';el.style.whiteSpace='pre-line';el.setAttribute('role','status');el.textContent=text;report=text;}
+function output(id, text) {const el=$(id);el.className='output';el.style.whiteSpace='pre-line';el.setAttribute('role','status');el.textContent=text;report=text;reports[active]=text;$('exportResult').disabled=false;}
 function persist(ids) {try {localStorage.setItem('eb_pro_tools_v2',JSON.stringify(Object.fromEntries(ids.map(id=>[id,value(id)]))));} catch (_) {}}
 const fields=['eBill','eCost','eType','eSave','eRegion','eYears','tKey','tRegion','tDays','tSize','tSet','tValue','cType','cOrigin','cData','cSales'];
 try {const saved=JSON.parse(localStorage.getItem('eb_pro_tools_v2')||'{}');fields.forEach(id=>{if(typeof saved[id]==='string' && saved[id].length<300) $(id).value=saved[id];});} catch (_) {}
@@ -52,5 +53,7 @@ $('exportResult').addEventListener('click',()=>{
   const text=`EcoBack Projekt-Werkzeuge · Methodik v2026-09-21\nExport: ${new Date().toISOString()}\n${report}\n\nQuelle: https://getecoback.com/pro-werkzeuge.html#methodik\nUnverifizierte Eingaben; keine Empfehlung oder Konformitätsbescheinigung.`;
   const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ecoback-ergebnis.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
+function invalidateWorkspace(workspace){delete reports[workspace];const out=$(workspace+'Out');if(out){out.textContent='Eingaben geändert. Bitte neu berechnen oder prüfen.';out.setAttribute('role','status');}if(active===workspace){report='';$('exportResult').disabled=true;}}
+for(const name of ids){$(name).addEventListener('input',e=>{if(e.target.matches('input,select,textarea'))invalidateWorkspace(name);});$(name).addEventListener('change',e=>{if(e.target.matches('input,select,textarea'))invalidateWorkspace(name);});}
 $('copySource').addEventListener('click',async()=>{const url='https://getecoback.com/pro-werkzeuge.html#'+active;try{await navigator.clipboard.writeText(url);$('shareStatus').textContent='Quellenlink kopiert; keine Eingaben enthalten.';}catch(_){$('shareStatus').textContent='Quellenlink: '+url;}});
 })();

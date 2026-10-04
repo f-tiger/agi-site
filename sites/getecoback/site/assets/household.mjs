@@ -19,5 +19,7 @@ if(form){
    if(!new URLSearchParams(location.search).has('__probe'))window.gtag?.('event','stromkosten_calc',{source:'household-'+kind});
   }catch{out.textContent='Bitte gültige Zahlen innerhalb der angegebenen Grenzen eingeben.';}
  };
+ const invalidate=()=>{out.textContent='Eingaben geändert. Bitte neu berechnen.';};
+ form.addEventListener('input',invalidate);form.addEventListener('change',invalidate);
  form.addEventListener('submit',e=>{e.preventDefault();calc();});
 }
