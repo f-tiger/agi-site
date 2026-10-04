@@ -47,4 +47,11 @@ Separate production checks passed for `/jarvis` and `/zh/jarvis` (v9), private e
 
 The skipped public checks for community access boundaries, Earn, Relay, infrastructure and all localized workbench tools were subsequently run and passed. Authenticated aggregate-growth jobs were not rerun outside their authorized CI context; conversion, user counts and retention remain unknown.
 
-A final copy correction distinguishes 24-hour network admission records from network digests attached to 30-day task records. Functional one-trial enforcement is unchanged. Its deployment receipt follows below when available.
+A final copy correction distinguishes 24-hour network admission records from network digests attached to 30-day task records. Functional one-trial enforcement is unchanged. The complete final deployment passed all 52 steps, as recorded below.
+
+
+### Final deployment receipt
+
+Final source commit: `e24e094e29e26528151a120b168c73ba3be272d3`. [Deployment run 37178611921](https://github.com/f-tiger/agi-site/actions/runs/37178611921), job `111366385252`, completed successfully with all 52 steps passing, including all live checks and the authorized aggregate-report steps. The current-main guard and serialized deployment remained enabled. The earlier transient GA4 failure was retained in this record; the final workflow is fully green.
+
+Official product routes: https://agiscorecard.com/jarvis and https://agiscorecard.com/zh/jarvis. Free account entry: `/discuss/account?from=jarvis` and `/zh/discuss/account?from=jarvis`. No new model quality claim, customer-growth claim, paid plan or extra model allowance follows from these deployment tests.
