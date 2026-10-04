@@ -89,6 +89,7 @@ jobs:
           npm install --prefix /tmp/bpj-account-runtime --no-save miniflare@5.20260925.0-alpha esbuild@0.28.2
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-free-account.mjs --workerd
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-google-account.mjs --workerd
+          FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node ../../tools/fleet-account/runtime-test.mjs
 
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: github.event_name != 'push'
@@ -400,6 +401,7 @@ jobs:
           node sites/baipiaoji/scripts/test-subscription-audit-browser.mjs
           node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node tools/fleet-account/browser-test.mjs
+          node tools/fleet-account/header-browser-test.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
           node tools/quote-page-lab/build.mjs
           node tools/quote-page-lab/test.mjs

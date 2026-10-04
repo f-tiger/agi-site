@@ -9,7 +9,7 @@ const hosts=[{id:'hub',host:hubHost},...sites];
 // The runtime inserts these exact two account elements. Compare against the
 // full expected document, not a stripped/relaxed body: every original byte
 // and the account entry must still match the deployment.
-const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
+const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"><script defer src="/auth/nav.js"></script></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
 const hash=b=>createHash('sha256').update(b).digest('hex');
 let requests=0;
 async function request(host,path,init={}){
