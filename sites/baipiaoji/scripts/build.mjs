@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {auditQuota, assessAudit, auditAdvice} from './subscription-audit.mjs';
 import {searchResults} from '../lib/search-results.mjs';
 import {HOME_BLOCKS,HOME_DESTINATIONS,parseHomepageClick} from '../lib/homepage-signals.js';
 import {catalogStatus} from './catalog-status.mjs';
@@ -2305,7 +2306,7 @@ function categoryPage(key, label) {
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html"><b>${LOCALE.code === 'zh' ? '新：输入你的用量，一算便知哪家免费档扛得住 →' : 'New: enter your usage and see which free tier holds →'}</b></a></p>` : ''}${key === 'video' && VIDQ ? `
     <p class="coverage"><a href="${BASE}/video-quota-planner.html"><b>${LOCALE.code === 'zh' ? '新：13 家给多少、换多少、能不能商用，一页对照 →' : 'New: what 13 vendors grant, what it buys, and whether you may publish — one board →'}</b></a></p>` : ''}${key === 'video' && PIPES ? `
     <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' ? efficiencyEntry(BASE,LOCALE.code === 'zh') + pilotEntry(BASE,LOCALE.code === 'zh','coding') : ''}${key === 'coding' && CODQ ? `
-    <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '新：你在付的这几个订阅，哪个可以先停？一页体检 →' : 'New: which of the AI subscriptions you pay for can go? One-page audit →'}</b></a></p>
+    <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '检查已有订阅：额度、未知项与下一步核查清单 →' : 'Review your subscriptions: allowances, unknowns and a next-step checklist →'}</b></a></p>
     <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：19 家扣的是补全、请求还是 Credits？一页对照 →' : 'New: do these 19 meter completions, requests or credits? One board →'}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
     <p class="coverage"><a href="${BASE}/chat-limits-board.html"><b>${LOCALE.code === 'zh' ? '新：「每天能聊几条」问错了——10 家里 8 家不公布条数，该问墙在哪 →' : 'New: "how many messages a day" is the wrong question — 8 of 10 publish no count →'}</b></a></p>` : ''}${key === 'image' && IMGQ ? `
     <p class="coverage"><a href="${BASE}/image-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：17 家每天到底能出几张图？官方折算逐条核实 →' : 'New: how many images a day across 17 tools, with each conversion verified →'}</b></a></p>` : ''}${key === 'office' && OFFQ ? `
@@ -3749,7 +3750,7 @@ for (const L of LOCALES) {
       ['/work-plan.html', LOCALE.code === 'zh' ? '按岗位算 AI 方案' : 'AI plan by job', 'work plan job role workload 岗位 职业 工作 工作量 方案 规划 电商 自媒体 教师 学生 程序员 设计师 翻译 免费额度 够不够'],
       ['/video-quota-planner.html', LOCALE.code === 'zh' ? '视频免费额度对照板' : 'Video quota board', 'video quota 视频 额度 对照 credits 商用 watermark'],
       ['/coding-quota-board.html', LOCALE.code === 'zh' ? '编程助手额度对照板' : 'Coding assistant quota board', 'coding copilot cursor 编程 补全 completions credits 额度 对照'],
-      ['/subscription-audit.html', LOCALE.code === 'zh' ? 'AI 订阅体检' : 'AI subscription audit', 'subscription audit 订阅 体检 月费 停订阅 cancel 白付 copilot cursor claude chatgpt 值不值'],
+      ['/subscription-audit.html', LOCALE.code === 'zh' ? 'AI 订阅核查' : 'AI subscription review', 'subscription audit review 订阅 核查 月费 额度 copilot cursor claude chatgpt checklist'],
       ['/pricing.html', LOCALE.code === 'zh' ? '定价' : 'Pricing', 'pricing 定价 收费 付费 免费 pro 订阅'],
       ['/chat-limits-board.html', LOCALE.code === 'zh' ? '对话助手墙在哪对照板' : 'Chat assistant limits board', 'chat chatgpt claude gemini 对话 条数 每天几条 limit messages 额度'],
       ['/image-quota-board.html', LOCALE.code === 'zh' ? '出图额度对照板' : 'Image quota board', 'image 出图 张数 积分 credits 每天几张 midjourney 替代 额度'],
@@ -4433,210 +4434,76 @@ if (APIQ) {
   allPages.push({ u: `${BASE}/llm-api-calculator.html`, pr: '0.9' });
 }
 
-// ---- 自建工具 8 号：AI 订阅体检（PRD-paid-tools 的 MVP 工具 A）----
-// 洞察来自两处：站内 /en/c/coding 是断层第一的人流入口；站外 AI 编程工具市场 2026 年
-// $12.8B、85% 开发者在用，且固定月费时代正在被「订阅 + Credits」取代。
-// 那批人已经在付钱了——他们的问题不是「哪个免费」，而是「我同时付的这几个，哪个是白付的」。
-// 各家计量口径互不相同（补全 / 请求 / Credits / Token / 条数），他们自己算不出来。
-// 我们唯一能做而别人做不了的事：把已核实的免费天花板摆上去做除法。
-//
-// 关键设计：**价格与用量都由用户填**。厂商定价页在本会话不可达，我们核实不到价格；
-// 让用户自己填不是妥协，而是唯一不违反「无官方来源不发布数字」的做法——
-// 于是输出的是他自己的钱，我们一个数字都没编。计算全在浏览器里，用量与花费不上传。
+// ---- Existing subscription audit: deliver a sourced check plan, not a cancellation verdict. ----
 if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
-  const h1 = zh ? 'AI 订阅体检：你在付的这几个，哪个可以先停' : 'AI subscription audit: which of the ones you pay for can go';
-  const AFAQ = zh ? [
-    { q: '我该退订哪个 AI 工具？', a: '取决于你的真实用量对不对得上官方免费天花板。本页把你在付的工具逐个对上已核实的官方免费额度（每条带出处与核实日期）：免费档就够的可以停，确实超了的付得值。28 个候选里 13 个官方压根不公布额度——那部分我们不替你决定，也如实告诉你为什么决定不了。' },
-    { q: '为什么要我自己填价格？', a: '因为厂商定价页的数字我们没有核实过，而本站的规矩是无官方来源不发布数字。你自己知道每月付多少——填进来后，输出的省钱金额是你的数字，不是我们编的。计算全在浏览器里完成，价格与用量都不上传。' },
-    { q: 'AI 订阅一个月花多少算多？', a: '没有统一答案，但有一个已核实的判断框架：2026 年 4 月起 Copilot、Claude Code、Cursor 集体从固定月费转向「订阅 + Credits」，价格已不再是决策变量，额度口径才是。先算清各家额度的真实口径，再谈贵不贵。' },
-  ] : [
-    { q: 'Which AI subscription should I cancel?', a: 'It depends on whether your real usage fits the official free ceiling. This page checks each tool you pay for against its verified free-tier allowance, each with a source and check date: where the free tier covers you, cancel; where you are genuinely over, the fee earns its keep. For the 13 of 28 candidates whose vendors publish no figure at all, we say so instead of deciding for you.' },
-    { q: 'Why do I have to enter the prices myself?', a: 'Because we have not verified any vendor price, and this site publishes no figure without an official source. You know what you pay — enter it, and the money the audit says you could save is your number, not one we invented. Everything runs in your browser; neither prices nor usage are uploaded.' },
-    { q: 'How much is too much to spend on AI subscriptions?', a: 'There is no universal number, but there is a verified framing: since April 2026, Copilot, Claude Code and Cursor have all moved from flat monthly fees to subscription-plus-credits, so price is no longer the deciding variable — the metering is. Work out what each allowance actually measures first, then judge the fee.' },
+  const tr = (a, b) => zh ? a : b;
+  const h1 = tr('AI 订阅核查：下一步该验证什么', 'AI subscription review: what to check next');
+  const desc = tr('选已有订阅，填实际用量，得到逐项额度比较、来源记录、未知项与下一步核查清单。数量匹配不代表可以退订；本页不排名模型能力或估算节省。计算与清单留在浏览器里。', 'Select existing subscriptions and enter actual usage to get an allowance comparison, source records, unknowns and a next-step checklist. Matching a quota does not establish that you can cancel. This page does not rank model quality or estimate savings. Calculations and the checklist stay in your browser.');
+  const AFAQ = [
+    { q: tr('结果能告诉我该退订哪个吗？', 'Does this tell me which subscription to cancel?'), a: tr('不能。额度只是一个条件；模型能力、功能、隐私、商用要求和你实际的工作流都可能不同。结果提供可比较的数据、未知项与一个下一步，让你用代表性任务核查后再决定。', 'No. Allowance is only one constraint: models, features, privacy, commercial requirements and your actual workflow can differ. The result provides comparable data, unknowns and a next step to check with a representative task before deciding.') },
+    { q: tr('费用和用量如何处理？', 'How are fees and usage handled?'), a: tr('费用可选，逐项按你实际付款的币种记录，不换算、不跨币种相加，也不把它当成节省。空白用量是未知，不是零。月度比较明确按每日用量乘 30 估算；平均值不证明高峰时也够用。表单值与复制清单不上传。', 'Fees are optional and recorded separately in the currency you actually pay. They are not converted, added across currencies or treated as savings. Blank usage is unknown, not zero. Monthly comparisons explicitly estimate daily usage × 30; an average does not establish peak capacity. Form values and copied checklists are not uploaded.') },
+    { q: tr('能比较 Codex 与 Claude Code 哪个更好吗？', 'Can this rank Codex against Claude Code?'), a: tr('现有记录不足以做性能排名，也没有把不同套餐的动态用量换算成同一价格。先在你可用的账户上对照同一个任务、成功标准、人工修正和账户用量；聊天网页与编程功能的额度不能混为一谈。不要为了比较先购买第二个套餐。', 'These records do not support a performance ranking or a common price for dynamic allowances. Compare the same task, success criteria, manual corrections and account usage on accounts you can already access. Chat-app and coding-feature allowances are not interchangeable. Do not buy a second plan just to run the comparison.') },
   ];
-  const desc = zh
-    ? '勾上你正在付费的 AI 编程与对话工具，填月费和你的实际用量，逐个对上已核实的官方免费天花板——免费档就够的、确实该付的、以及官方压根没公布数字的，分三档摆清楚。价格和用量都由你填，计算在你浏览器里完成，不上传。'
-    : 'Tick the AI coding and chat tools you pay for, enter what you pay and how much you actually use, and each one is checked against its verified official free ceiling — those the free tier already covers, those genuinely worth paying for, and those whose vendor publishes no figure at all. You supply the prices and the usage; the maths runs in your browser and nothing is uploaded.';
-
-  // 归一化：把两份结构化数据压成前端能判定的最小形状。不新增任何事实。
-  const codeRows = CODQ.entries.filter((e) => e.kind !== 'merged').map((e) => {
-    const t = bySlug.get(e.slug);
-    if (!t) return null;
-    let c;
-    if (e.kind === 'byo_model') c = { b: 'byo' };
-    else if (e.kind === 'trial') c = { b: 'trial', td: e.trial_days || 0, tc: e.trial_credits || 0 };
-    else if (e.kind === 'unstated') c = { b: 'un' };
-    else if (e.completions_per_month || e.chat_per_month || e.requests_per_day || e.requests_per_day_low) {
-      c = { b: 'count', cm: e.completions_per_month || 0, chm: e.chat_per_month || 0,
-        rd: e.requests_per_day || e.requests_per_day_high || 0,
-        rdAlt: e.requests_per_day_low || 0 };
-    } else c = { b: 'opaque', unit: e.meter || '' };
-    return { s: e.slug, n: t.name, cat: 'coding', u: `${BASE}/tools/${e.slug}.html`,
-      chk: t.limits?.checked || '', cv: strong(zh ? e.caveat_zh : e.caveat_en),
-      fl: strong(zh ? (e.free_floor_zh || '') : (e.free_floor_en || '')), c };
-  }).filter(Boolean);
-
-  const chatRows = CHATQ.entries.map((e) => {
-    const t = bySlug.get(e.slug);
-    if (!t) return null;
-    let c;
-    if (e.wall_type === 'none_on_text') c = { b: 'uncapped' };
-    else if (e.publishes_count && e.boosts_per_day) c = { b: 'count', md: e.boosts_per_day };
-    else c = { b: 'un' };
-    return { s: e.slug, n: t.name, cat: 'chat', u: `${BASE}/tools/${e.slug}.html`,
-      chk: t.limits?.checked || '', cv: strong(zh ? e.caveat_zh : e.caveat_en), fl: '', c };
-  }).filter(Boolean);
-
+  const normalize = (entry, cat) => {
+    const tool = bySlug.get(entry.slug);
+    if (!tool) return null;
+    return { s: entry.slug, n: tool.name, cat, u: `${BASE}/tools/${entry.slug}.html`,
+      chk: tool.limits?.checked || '', source: plain(tool.limits?.source || ''),
+      quota: plain(tool.limits?.quota || ''), cv: plain(zh ? entry.caveat_zh : entry.caveat_en), c: auditQuota(entry, cat) };
+  };
+  const codeRows = CODQ.entries.filter(e => e.kind !== 'merged').map(e => normalize(e, 'coding')).filter(Boolean);
+  const chatRows = CHATQ.entries.map(e => normalize(e, 'chat')).filter(Boolean);
   const ROWS = [...codeRows, ...chatRows];
-  const pick = (r) => `<label class="au-pick"><input type="checkbox" class="au-on" data-s="${esc(r.s)}">
-    <b>${esc(r.n)}</b><input type="number" class="au-fee" data-s="${esc(r.s)}" min="0" step="1" placeholder="${zh ? '月费' : 'per month'}" inputmode="numeric" aria-label="${esc(r.n)} ${zh ? '月费' : 'monthly fee'}"></label>`;
-
+  const pick = r => `<label class="au-pick"><input type="checkbox" class="au-on" data-s="${esc(r.s)}"><b>${esc(r.n)}</b><input type="number" class="au-fee" data-s="${esc(r.s)}" min="0" step="0.01" placeholder="${tr('月费（可选）', 'Fee (optional)')}" inputmode="decimal" aria-label="${esc(r.n)} ${tr('月费（可选）', 'monthly fee (optional)')}"></label>`;
   const body = `${railOf()}
 <main class="stage">
-  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/c/coding.html">${esc(CATS.coding || 'Coding')}</a><i>/</i><span>${esc(zh ? '订阅体检' : 'Subscription audit')}</span></nav>
-  <header class="hero"><div class="hero-inner">
-    <h1>${esc(h1)}</h1>
-    <p class="answer">${esc(desc)}</p>
-    <p class="coverage"><a href="${BASE}/coding-quota-board.html">${zh ? '这批天花板的原始对照表与核实日期 →' : 'The raw board these ceilings come from →'}</a></p>
-  </div></header>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '① 勾上你在付的，填月费' : '① Tick what you pay for, enter the fee'}<span>${ROWS.length}</span></h2>
-    <p class="money-lede">${zh
-      ? '月费按你实际付的币种填即可——我们不换算、也不猜价格。厂商定价页我们没核实过，所以这一栏的数字只可能来自你自己。'
-      : 'Enter the fee in whatever currency you actually pay — we neither convert nor guess. We have not verified any vendor price, so the only figures in this column are yours.'}</p>
-    <div class="au-grid"><div class="au-col"><h3>${zh ? '编程助手' : 'Coding assistants'}</h3>${codeRows.map(pick).join('')}</div>
-      <div class="au-col"><h3>${zh ? '对话助手' : 'Chat assistants'}</h3>${chatRows.map(pick).join('')}</div></div>
-  </section>
-
-  <section class="limits-table">
-    <h2 class="group-title">${zh ? '② 你的真实用量' : '② What you actually use'}<span>3</span></h2>
-    <div class="pc-form">
-      <label><span>${zh ? '每天代码补全次数' : 'Code completions per day'}</span>
-        <input type="number" id="auComp" value="60" min="0" max="100000" inputmode="numeric"></label>
-      <label><span>${zh ? '每天 Agent / 对话请求次数（编程工具里）' : 'Agent / chat requests per day (in coding tools)'}</span>
-        <input type="number" id="auReq" value="20" min="0" max="100000" inputmode="numeric"></label>
-      <label><span>${zh ? '每天对话助手消息条数' : 'Chat assistant messages per day'}</span>
-        <input type="number" id="auMsg" value="30" min="0" max="100000" inputmode="numeric"></label>
-    </div>
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/c/coding.html">${esc(CATS.coding || 'Coding')}</a><i>/</i><span>${tr('订阅核查', 'Subscription review')}</span></nav>
+  <header class="hero"><div class="hero-inner"><h1>${esc(h1)}</h1><p class="answer">${esc(desc)}</p><p class="coverage"><a href="${BASE}/coding-quota-board.html">${tr('查看编程工具原始额度对照表 →', 'View the source coding-allowance board →')}</a></p></div></header>
+  <section class="limits-table"><h2 class="group-title">${tr('① 选要核查的订阅', '① Select subscriptions to review')}<span>${ROWS.length}</span></h2><p class="money-lede">${tr('费用逐项保留，不汇总为可省金额。同一账号的聊天和编程权益可能共用套餐，不应重复计算账单。', 'Fees stay separate and are not totalled as potential savings. Chat and coding access may share one subscription; do not count the same bill twice.')}</p><div class="au-grid"><div class="au-col"><h3>${tr('编程工具', 'Coding tools')}</h3>${codeRows.map(pick).join('')}</div><div class="au-col"><h3>${tr('聊天工具（不是同名编程套餐）', 'Chat tools (not their coding plans)')}</h3>${chatRows.map(pick).join('')}</div></div></section>
+  <section class="limits-table"><h2 class="group-title">${tr('② 填实际用量，生成核查清单', '② Enter actual usage and make a checklist')}</h2><p class="money-lede">${tr('这些值用于当前所选工具；各工具用量不同时请逐个核查。高级/对话计费请求与底层模型请求是不同单位。只比较相同单位，月度值按 30 天估算；空白保留为未知。聊天工具没有可用于本表比较的固定消息数。', 'These values apply to the selected tools; review them separately if usage differs. Billed chat/premium requests and underlying model requests are different units. Only matching units are compared, with monthly usage estimated over 30 days. Leave unknown values blank. The chat records have no fixed message count suitable for this comparison.')}</p>
+    <div class="pc-form"><label><span>${tr('每天代码补全次数', 'Code completions per day')}</span><input type="number" id="auComp" min="0" step="1" inputmode="numeric" placeholder="${tr('不知道则留空', 'Leave blank if unknown')}"></label><label><span>${tr('每天高级/对话计费请求（账户口径）', 'Billed chat/premium requests per day (account meter)')}</span><input type="number" id="auChatReq" min="0" step="1" inputmode="numeric" placeholder="${tr('查看账户计费记录', 'Check the account meter')}"></label><label><span>${tr('每天模型请求数（不是提问轮数）', 'Model requests per day (not conversation turns)')}</span><input type="number" id="auReq" min="0" step="1" inputmode="numeric" placeholder="${tr('查看账户记录', 'Check account records')}"></label></div>
+    <p class="sub-note">${tr('所有结果仍待核查：模型与功能适用性、隐私/数据保留、商用条款、账号实际额度，以及数据核实日期之后的变化。旧记录不能当作今天重新核实的证据。', 'For every result, still check model and feature fit, privacy/data retention, commercial terms, actual account allowances and changes since the recorded check date. Older records are not a fresh verification today.')}</p>
     <div id="auOut" class="calc-out" aria-live="polite"></div>
+    <button type="button" id="auCopy" hidden>${tr('复制我的核查清单', 'Copy my checklist')}</button><p id="auCopyStatus" role="status"></p><textarea id="auCopyFallback" hidden readonly aria-label="${tr('核查清单：可手动复制', 'Checklist: copy manually')}"></textarea>
   </section>
-  <section class="limits-table">
-    <h2 class="group-title">FAQ<span>3</span></h2>
-    ${AFAQ.map((f) => `<h3 class="calc-h">${esc(f.q)}</h3><p class="money-lede">${esc(f.a)}</p>`).join('')}
-  </section>
-  ${subInlineOf({
-    seed: ROWS.map((r) => r.s),
-    title: zh ? '体检结论只在今天成立——额度变了要不要告诉你？' : 'This verdict holds only today — want to hear when a ceiling moves?',
-    line: zh
-      ? '上面每一条天花板都可能被厂商悄悄改（2026 年 4 月三家同时转 Credits，没有一家发公告）。留个邮箱，哪家变了我们直接写信说哪家。'
-      : 'Every ceiling above can be changed quietly (three vendors moved to credits in April 2026, none announced it). Leave an email and we write to you naming the one that moved.',
-  })}
+  <section class="limits-table"><h2 class="group-title">FAQ<span>3</span></h2>${AFAQ.map(f => `<h3 class="calc-h">${esc(f.q)}</h3><p class="money-lede">${esc(f.a)}</p>`).join('')}</section>
+  ${accountEntry('/subscription-audit.html')}
 </main>
 <script>
 (function(){
-  var ZH=${zh};
-  var D=${JSON.stringify(ROWS)};
-  var comp=document.getElementById('auComp'), req=document.getElementById('auReq'),
-      msg=document.getElementById('auMsg'), out=document.getElementById('auOut');
-  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
-  var evT, feeOf={}, on={};
-  function num(v){return Math.max(0,+v||0)}
-  function row(cls,d,verdict,detail){
-    var fee=on[d.s]&&feeOf[d.s]?' <em class="au-fee-tag">'+(ZH?'你填的月费 ':'you pay ')+feeOf[d.s]+'</em>':'';
-    return '<div class="calc-row calc-'+cls+'"><b><a href="'+d.u+'">'+d.n+'</a></b>'+
-      '<span class="calc-v">'+verdict+fee+'</span><p>'+detail+'</p>'+
-      '<i>'+(ZH?'核实于 ':'Checked ')+d.chk+' · '+d.cv+'</i></div>';
+  var ZH=${zh}, D=${JSON.stringify(ROWS).replace(/</g, '\\u003c')};
+  var assessAudit=${assessAudit.toString()}, auditAdvice=${auditAdvice.toString()};
+  var comp=document.getElementById('auComp'),chatReq=document.getElementById('auChatReq'),req=document.getElementById('auReq'),out=document.getElementById('auOut'),copy=document.getElementById('auCopy'),status=document.getElementById('auCopyStatus'),fallback=document.getElementById('auCopyFallback');
+  var evT, on={}, feeOf={}, report='';
+  function E(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function EV(p){try{if(window.bpjEv)window.bpjEv('audit',p);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:p==='/audit/copy'?'subscription_copy':'subscription_review'}}))}catch(e){}}
+  function render(userAction){
+    var selected=D.filter(function(d){return on[d.s]});
+    copy.hidden=!selected.length;status.textContent='';fallback.hidden=true;fallback.value='';
+    if(!selected.length){out.innerHTML='<p class="sub-note">'+(ZH?'先选一个要核查的工具。':'Select a tool to review.')+'</p>';report='';clearTimeout(evT);return;}
+    out.innerHTML=selected.map(function(d){
+      var result=assessAudit(d.c,{completions:comp.value,chatRequests:chatReq.value,requests:req.value}), advice=auditAdvice(result.status,ZH);
+      var details=result.comparisons.map(function(x){var name=x.unit==='completions'?(ZH?'代码补全':'Code completions'):x.unit==='chatRequests'?(ZH?'高级/对话计费请求':'Billed chat/premium requests'):(ZH?'模型请求':'Model requests');return name+': '+x.need.toLocaleString('en-US')+' / '+x.cap.toLocaleString('en-US')+' '+(x.period==='month'?(ZH?'每月（每日 × 30）':'per month (daily × 30)'):(ZH?'每天':'per day'));});
+      var fee=feeOf[d.s];
+      return '<article class="calc-row calc-un" data-audit-result="'+E(result.status)+'" data-audit-tool="'+E(d.s)+'"><b><a href="'+E(d.u)+'">'+E(d.n)+'</a></b><span class="calc-v">'+E(advice.title)+'</span>'+
+        (fee!=null&&fee!==''&&Number.isFinite(Number(fee))&&Number(fee)>=0?'<p>'+E(ZH?'你记录的月费（原币种，仅作记录）：':'Your monthly fee (original currency, record only): ')+E(fee)+'</p>':'')+
+        (details.length?'<p>'+details.map(E).join('<br>')+'</p>':'')+
+        '<p><b>'+E(ZH?'已有记录：':'Recorded allowance: ')+'</b>'+E(d.quota)+'</p><p>'+E(d.cv)+'</p><p><b>'+E(ZH?'未知与边界：':'Unknowns and limits: ')+'</b>'+E(advice.limitation)+'</p><p><b>'+E(ZH?'下一步：':'Next step: ')+'</b>'+E(advice.next)+'</p><p>'+E(ZH?'核实记录日期：':'Record checked: ')+E(d.chk|| (ZH?'未知':'unknown'))+' · '+E(d.source|| (ZH?'来源未记录':'Source not recorded'))+' <a href="'+E(d.u)+'">'+E(ZH?'查看完整来源记录':'View full source record')+'</a></p></article>';
+    }).join('');
+    report=(ZH?'我的 AI 订阅核查清单':'My AI subscription review checklist')+'\\n\\n'+out.innerText+'\\n\\n'+selected.map(function(d){return d.n+': '+d.u}).join('\\n')+'\\n\\n'+(ZH?'待核查：任务与模型/功能适用性、隐私/数据保留、商用条件、账户当前额度。以上不是取消建议、已验证节省或性能排名。':'Still check task and model/feature fit, privacy/data retention, commercial terms and current account allowances. These results are not cancellation advice, verified savings or a performance ranking.')+'\\n'+location.origin+location.pathname;
+    // Fixed action only: no fee, usage, tool list or report in analytics.
+    if(userAction){clearTimeout(evT);evT=setTimeout(function(){EV('/audit/review')},1500);}
   }
-  function render(){
-    var C=num(comp.value), R=num(req.value), M=num(msg.value);
-    var stop=[],keep=[],opaque=[],un=[],free=[],saved=0,anyFee=false;
-    D.forEach(function(d){
-      if(!on[d.s])return;
-      var f=feeOf[d.s]; if(f)anyFee=true;
-      var c=d.c;
-      if(c.b==='byo'){
-        free.push(row('ok',d,ZH?'本来就不是订阅':'Not a subscription at all',
-          ZH?'它自带模型接口，模型费用是你另外付的——这一项本身没有月费可停，但值得确认你是不是在为它重复买了别的订阅。'
-            :'It brings your own model, so the model cost is paid elsewhere — there is no subscription here to cancel, but it is worth checking you are not paying twice for the same capability.'));
-        return;
-      }
-      if(c.b==='trial'){
-        keep.push(row('warn',d,ZH?'只是试用期':'A trial, not a free tier',
-          (ZH?'官方给的是 '+c.td+' 天试用'+(c.tc?'、共 '+c.tc.toLocaleString('en-US')+' Credits':'')+'——试用期结束就没有免费档了，所以「停订阅」在这里不成立。'
-             :'What the vendor offers is a '+c.td+'-day trial'+(c.tc?' with '+c.tc.toLocaleString('en-US')+' credits':'')+' — once it ends there is no free tier, so "cancel it" does not apply here.')));
-        return;
-      }
-      if(c.b==='un'){
-        un.push(row('un',d,ZH?'官方没公布数字':'No published figure',
-          ZH?'厂商不公布这一档的具体额度，所以我们无法算出你的用量在不在里面——停不停，我们不敢替你决定。能告诉你的只有墙的形态（见下方注意栏）。'
-            :'The vendor publishes no figure for this tier, so we cannot tell whether your usage fits. We will not decide this one for you — all we can give you is the shape of the wall (see the caveat below).'));
-        return;
-      }
-      if(c.b==='uncapped'){
-        stop.push(row('ok',d,ZH?'官方称文本无上限':'Officially uncapped on text',
-          ZH?'纯文本对话官方声明不设上限——如果你付费只是为了「多聊几句」，这笔钱大概率是白付的。但边界要看清：文件上传、图片与工具调用的额度照旧，且同样不公布数字。'
-            :'Plain-text chat is officially uncapped — if you pay merely to keep chatting, that fee is likely wasted. Mind the boundary though: file uploads, images and tool calls keep their own limits, none of them published.'));
-        if(f)saved+=f;
-        return;
-      }
-      if(c.b==='opaque'){
-        opaque.push(row('warn',d,ZH?'官方给了数字，但算的是 '+(c.unit==='credits'?'Credits':c.unit==='tokens'?'Token':c.unit)
-          :'Published, but metered in '+(c.unit==='credits'?'credits':c.unit==='tokens'?'tokens':c.unit),
-          (ZH?'官方公布的是 '+(c.unit==='credits'?'Credits':'Token')+' 数，而你知道的是「一天用几次」。官方没有给出两者的折算口径，我们也不代算——这一项只能你自己去账户页看余量。'
-             :'The published figure is in '+(c.unit==='credits'?'credits':'tokens')+', while what you know is how many times a day you use it. No official conversion exists between the two and we will not invent one — check the remaining balance in your account page instead.')
-          +(d.fl?'<br>'+(ZH?'不过官方明确：':'The vendor does state: ')+d.fl:'')));
-        return;
-      }
-      // c.b==='count'：有可比数字，做除法
-      var lines=[],fits=true,note='';
-      if(c.cm){ var need=C*30; lines.push((ZH?'补全：你约 ':'Completions: you use ≈')+need.toLocaleString('en-US')+(ZH?' 次/月，官方免费 ':'/month vs the free ')+c.cm.toLocaleString('en-US')+(ZH?' 次/月':'/month')); if(need>c.cm)fits=false; }
-      if(c.chm){ var needR=R*30; lines.push((ZH?'对话/Agent：你约 ':'Chat/agent: you use ≈')+needR.toLocaleString('en-US')+(ZH?' 次/月，官方免费 ':'/month vs the free ')+c.chm.toLocaleString('en-US')+(ZH?' 次/月':'/month')); if(needR>c.chm)fits=false; }
-      if(c.rd){ lines.push((ZH?'请求：你 ':'Requests: you use ')+R.toLocaleString('en-US')+(ZH?' 次/天，官方免费 ':'/day vs the free ')+c.rd.toLocaleString('en-US')+(ZH?' 次/天':'/day')); if(R>c.rd){ if(c.rdAlt&&R<=c.rdAlt){ note=(ZH?'（仅在低配模型档下成立：'+c.rdAlt+' 次/天）':' (only on the lower-tier models: '+c.rdAlt+'/day)'); } else fits=false; } }
-      if(c.md){ lines.push((ZH?'消息：你 ':'Messages: you use ')+M.toLocaleString('en-US')+(ZH?' 条/天，官方免费 ':'/day vs the free ')+c.md.toLocaleString('en-US')+(ZH?' 条/天':'/day')); if(M>c.md)fits=false; }
-      if(fits){ stop.push(row('ok',d,(ZH?'免费档就够，可以先停':'The free tier already covers you')+note,lines.join('；'))); if(f)saved+=f; }
-      else keep.push(row('no',d,ZH?'确实超了，这笔付得值':'You are genuinely over — this one earns its fee',lines.join('；')));
-    });
-    var any=stop.length+keep.length+opaque.length+un.length+free.length;
-    if(!any){ out.innerHTML='<p class="sub-note">'+(ZH?'先在上面勾几个你正在付费的工具。':'Tick a few tools you actually pay for above.')+'</p>'; return; }
-    var H='';
-    if(stop.length&&saved>0&&anyFee){
-      H+='<p class="au-sum">'+(ZH?'按你自己填的价格，这 '+stop.length+' 项每月合计 <b>'+saved.toLocaleString('en-US')+'</b> 是可以先停的。'
-        :'At the prices you entered, these '+stop.length+' add up to <b>'+saved.toLocaleString('en-US')+'</b> a month you could stop paying.')+'</p>';
-    }
-    function sec(t,arr){ if(arr.length) H+='<h3 class="calc-h">'+t+'<em>'+arr.length+'</em></h3>'+arr.join(''); }
-    sec(ZH?'免费档就够 —— 可以先停':'The free tier covers you — cancellable',stop);
-    sec(ZH?'确实超了 —— 这笔付得值':'Genuinely over — worth the fee',keep);
-    sec(ZH?'官方给了数字，但和你的用量对不上':'Published, but not comparable to your usage',opaque);
-    sec(ZH?'官方没公布数字 —— 我们不替你决定':'No published figure — we will not decide for you',un);
-    sec(ZH?'本来就不是订阅':'Not subscriptions at all',free);
-    H+='<p class="sub-note">'+(ZH
-      ?'这里只做一件事：把官方公布的免费天花板除以你填的用量。天花板全部来自各工具页的已核实 limits（出处与核实日期以工具页为准），价格与用量全部来自你——我们没有核实过任何厂商的价格，也不猜。额度随时会变，以各家官方页当日为准。'
-      :'This does exactly one thing: divide the officially published free ceiling by the usage you entered. Every ceiling comes from the verified limits on the tool pages (their source and check date govern); every price and usage figure comes from you — we have verified no vendor price and do not guess one. Allowances move; the official page on the day governs.')+'</p>';
-    out.innerHTML=H;
-    clearTimeout(evT); evT=setTimeout(function(){EV('audit','/audit/'+stop.length+'-'+keep.length+'-'+un.length)},1500);
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('.au-on'),function(b){
-    b.addEventListener('change',function(){on[b.dataset.s]=b.checked;render()});
-  });
-  Array.prototype.forEach.call(document.querySelectorAll('.au-fee'),function(b){
-    b.addEventListener('input',function(){feeOf[b.dataset.s]=Math.max(0,+b.value||0);render()});
-  });
-  [comp,req,msg].forEach(function(el){el.addEventListener('input',render)});
-  render();
+  document.querySelectorAll('.au-on').forEach(function(b){b.addEventListener('change',function(){on[b.dataset.s]=b.checked;render(true)})});
+  document.querySelectorAll('.au-fee').forEach(function(b){b.addEventListener('input',function(){feeOf[b.dataset.s]=b.value;render(true)})});
+  [comp,chatReq,req].forEach(function(b){b.addEventListener('input',function(){render(true)})});
+  copy.addEventListener('click',async function(){if(!report)return;try{await navigator.clipboard.writeText(report);status.textContent=ZH?'核查清单已复制。':'Checklist copied.';EV('/audit/copy');}catch(e){fallback.value=report;fallback.hidden=false;fallback.focus();fallback.select();status.textContent=ZH?'自动复制不可用，请手动复制下面的清单。':'Automatic copy is unavailable. Copy the checklist below manually.';}});
+  render(false);
 })();
 </script>`;
-
-  writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'subscription-audit.html'), layout({
-    title: zh ? `AI 订阅体检：你在付的这几个，哪个可以先停 - ${NAME}` : `AI subscription audit: which paid AI tools you can cancel - ${NAME}`,
-    description: desc,
-    path: '/subscription-audit.html',
-    wide: true,
-    body,
-    schema: [faqLd(AFAQ), crumbLd([{ name: NAME, url: `${BASE}/` }, { name: CATS.coding || 'Coding', url: `${BASE}/c/coding.html` }, { name: h1, url: `${BASE}/subscription-audit.html` }])],
-  }));
-  allPages.push({ u: `${BASE}/subscription-audit.html`, pr: '0.9' });
+  writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'subscription-audit.html'), layout({title: `${h1} - ${NAME}`, description: desc, path: '/subscription-audit.html', wide: true, body, schema: [faqLd(AFAQ), crumbLd([{name: NAME, url: `${BASE}/`}, {name: CATS.coding || 'Coding', url: `${BASE}/c/coding.html`}, {name: h1, url: `${BASE}/subscription-audit.html`}])]}));
+  allPages.push({u: `${BASE}/subscription-audit.html`, pr: '0.9'});
 }
 
 // ---- 定价页：付费机制建好，开关默认关闭 ----
@@ -8281,8 +8148,8 @@ ${SRCQ ? `- [AI 搜索「官方到底说没说」对照板 / AI search tools: wh
   Webhook alerts for verified free-tier and licence changes, checked daily against official vendor pages; watching 3 tools is free. Agents can register directly: POST ${site.base_url}/api/watch with {"hook":"https://…","slugs":["kimi","suno"]} — or call the MCP tool watch_free_tier_changes.
 - [Token 计数器 / Token counter](${site.base_url}/tokenizer.html)：本地数真实 token 数（cl100k/o200k），文本不上传，词表加载后可离线；对 GPT 系精确，对 Claude/Gemini/通义为量级参考｜EN: ${site.base_url}/en/tokenizer.html
   Counts tokens locally in the browser (cl100k/o200k), nothing uploaded, works offline once loaded; exact for OpenAI models, indicative for others. Verified by 420 golden cases on every build.
-- [AI 订阅体检 / Subscription audit](${site.base_url}/subscription-audit.html)：把你在付的 AI 订阅逐个对上已核实的官方免费天花板，六档判定；价格由你填，计算不上传｜EN: ${site.base_url}/en/subscription-audit.html
-  Checks each AI subscription you pay for against its verified official free ceiling (six verdict buckets). You supply the prices; 13 of 28 candidate vendors publish no figure at all, and the audit says so instead of guessing.
+- [AI 订阅体检 / Subscription audit](${site.base_url}/subscription-audit.html)：按已有额度记录比较实际用量，列出来源日期、未知项和下一步核查清单；不推断可取消或节省，计算不上传｜EN: ${site.base_url}/en/subscription-audit.html
+  Compares actual usage with recorded allowances and provides source dates, unknowns and a next-step checklist. Optional fees remain separate records; the result does not establish cancellation, savings or model quality.
 - [定价 / Pricing](${site.base_url}/pricing.html)：数据永久免费（CC BY 4.0），将来只卖围绕数据的服务；机器可读版 ${site.base_url}/pricing.md
   The data stays free (CC BY 4.0); only services around it will ever be paid. Machine-readable: ${site.base_url}/pricing.md
 
