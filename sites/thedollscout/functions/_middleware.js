@@ -1,3 +1,4 @@
+import {accountRoute,addAccountEntry} from '../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {isRetiredPath} from './retired-paths.mjs';
 import {memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
@@ -48,6 +49,7 @@ function botOf(ua) {
 }
 
 export async function onRequest(ctx) {
+  const account=await accountRoute(ctx.request,ctx.env);if(account)return account;
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   if(memberPage(new URL(ctx.request.url).pathname))return secureMemberPage(await ctx.next());
   try {
@@ -59,7 +61,7 @@ export async function onRequest(ctx) {
       });
     }
   } catch (e) { /* fall through to normal serving */ }
-  const res = await ctx.next();
+  const res = addAccountEntry(ctx.request,await ctx.next());
   try {
     const url = new URL(ctx.request.url);
     if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;

@@ -2,7 +2,7 @@ name: Validate and deploy Agent Delivery Lab
 on:
   push:
     branches: [main, 'codex/agent-delivery-*']
-    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
+    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -39,6 +39,10 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/prepare.mjs
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Enforce one consent-controlled GA4 channel on every public page
         working-directory: ${{ github.workspace }}
         run: |
@@ -62,7 +66,9 @@ jobs:
       - name: Verify deployed analytics version and host mapping
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs agent-delivery-lab
+        run: |
+          node tools/fleet-analytics/verify-live.mjs agent-delivery-lab
+          node tools/fleet-account/verify-live.mjs agent-delivery-lab
 
       - name: Verify actual deployed revision, assets and feedback
         if: github.ref == 'refs/heads/main'

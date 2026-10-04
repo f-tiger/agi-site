@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import {secConcept} from './sec-api.mjs';
 import discovery from '../../tools/discovery/content.json' with {type:'json'};
@@ -11,7 +12,7 @@ const sources=new Set(['direct','bpj','learn','eco','agi','search','ai','communi
 const modes=new Set(['own','sample','exercise','qa']);
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 async function body(request){const reader=request.body?.getReader();if(!reader)throw Error('body');let size=0,chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>512)throw Error('size');chunks.push(value);}}finally{await reader.cancel();}return JSON.parse(new TextDecoder().decode(Uint8Array.from(chunks.flatMap(x=>[...x]))));}
-export default {
+const fleetWrappedWorker = {
  async fetch(request,env){const url=new URL(request.url),site=routes.get(url.hostname);if(!site)return new Response('Not found',{status:404});if(isAnalyticsPath(url.pathname))return analyticsResponse(request,env,site);const table=site==='filinglens'?'filinglens_events':'venture_events';
  if(url.pathname==='/api/sec-concept')return site==='filinglens'?secConcept(request,env):json({error:'Not found'},404);
  if(url.pathname==='/api/config')return json({site,price:experiments[site].proposed_price,sales_enabled:false,measurement:!!env.DB});
@@ -47,3 +48,5 @@ export default {
  },
  async scheduled(_event,env){if(!env.DB)return;await initialize(env.DB);for(const table of ["venture_events","filinglens_events"])await env.DB.prepare(`DELETE FROM ${table} WHERE day < date('now','-34 days')`).run();}
 };
+
+export default withFleetAccount(fleetWrappedWorker);

@@ -26,3 +26,7 @@ Private account, purchase-delivery and customer-document exceptions must be
 explicitly documented. Do not remove these privacy exclusions to pass a gate.
 Frontend tests are not proof of GA4 backend receipt; verify receipt separately
 with genuine traffic, and report missing access or processing lag honestly.
+
+# Fleet account integration (2026-10-04)
+
+All new canonical fleet sites must support the shared Google registration entry. Follow `tools/fleet-account/README.md`: explicit hub consent, exact host allowlist, per-host sessions and private account routes. Include the shared module in deployment path filters and run account security/live checks. Registration does not grant paid access or subscribe users to marketing.

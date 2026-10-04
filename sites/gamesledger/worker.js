@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // gamesledger worker:静态资产 + /api/live 实时代理 + /badge SVG + D1 转化埋点。
 // 埋点铁律(与 agi 同):写库全部 try/catch + waitUntil,绝不允许把站点打到 500。
@@ -95,7 +96,7 @@ const srcBucket = (host, self) => {
   return "other";
 };
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     // The isolated analytics document must not create a second first-party visit.
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
@@ -223,3 +224,5 @@ export default {
     return res;
   },
 };
+
+export default withFleetAccount(fleetWrappedWorker);

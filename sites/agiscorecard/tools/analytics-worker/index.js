@@ -1,3 +1,5 @@
+import {agiMemberRequest} from '../../../../tools/fleet-account/agi-bridge.mjs';
+import {withFleetAccount} from '../../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../../tools/fleet-analytics/edge.mjs';
 import {portfolioData,portfolioRoute} from '../portfolio/api.mjs';
 import {evidenceFunnelRoute} from '../evidence-funnel.mjs';
@@ -249,7 +251,7 @@ const srcBucket = (host, self) => {
   return 'other';
 };
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     const jarvisResponse=await jarvisRoute(request,env,ctx);if(jarvisResponse)return jarvisResponse;
     const portfolioResponse=await portfolioRoute(request,env);if(portfolioResponse)return portfolioResponse;
@@ -1335,3 +1337,5 @@ export function markdownCanonical(pathname) {
   if (pathname === '/skill.md' || !pathname.endsWith('.md')) return null;
   return pathname === '/index.md' ? '/' : pathname.slice(0,-3);
 }
+
+export default withFleetAccount(fleetWrappedWorker,agiMemberRequest);

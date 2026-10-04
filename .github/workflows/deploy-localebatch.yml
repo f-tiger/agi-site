@@ -5,6 +5,7 @@ on:
     branches: [main, codex/localebatch-launch-2026-09-18]
     paths:
       - "tools/fleet-analytics/**"
+      - "tools/fleet-account/**"
       - ".github/scripts/deploy-main-guard*"
       - "sites/localebatch/**"
       - "tools/discovery/**"
@@ -58,6 +59,10 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/preflight-domain.mjs
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Enforce one consent-controlled GA4 channel on every public page
         working-directory: ${{ github.workspace }}
         run: |
@@ -81,7 +86,9 @@ jobs:
       - name: Verify deployed analytics version and host mapping
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs localebatch
+        run: |
+          node tools/fleet-analytics/verify-live.mjs localebatch
+          node tools/fleet-account/verify-live.mjs localebatch
 
       - name: Verify public pages and closed payment state
         if: github.ref == 'refs/heads/main'

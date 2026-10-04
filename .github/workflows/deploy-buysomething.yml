@@ -7,7 +7,7 @@ name: Deploy buysomething
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
+    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
   schedule:
     - cron: "20 5 * * *"
   workflow_dispatch:
@@ -126,6 +126,14 @@ jobs:
           python3 tools/gen_rule_changes_page.py --check
           node tools/test_mcp.mjs
           echo "gate ok"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Enforce one consent-controlled GA4 channel on every public page
         working-directory: ${{ github.workspace }}
         run: |
@@ -151,7 +159,9 @@ jobs:
       - name: Verify deployed analytics version and host mapping
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs buysomething
+        run: |
+          node tools/fleet-analytics/verify-live.mjs buysomething
+          node tools/fleet-account/verify-live.mjs buysomething
 
       - name: Post-deploy self-check
         run: |

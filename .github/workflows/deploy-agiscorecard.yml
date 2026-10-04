@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "tools/fleet-analytics/**"
+      - "tools/fleet-account/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -270,6 +271,10 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure agi
 
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
         run: |
@@ -350,7 +355,9 @@ jobs:
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs agi
+        run: |
+          node tools/fleet-analytics/verify-live.mjs agi
+          node tools/fleet-account/verify-live.mjs agi
 
       - name: Verify discussion pages and private API boundaries
         run: |

@@ -15,6 +15,7 @@ on:
       - main
     paths:
       - "tools/fleet-analytics/**"
+      - "tools/fleet-account/**"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -365,6 +366,14 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure eco
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
         run: |
@@ -393,7 +402,9 @@ jobs:
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs eco
+        run: |
+          node tools/fleet-analytics/verify-live.mjs eco
+          node tools/fleet-account/verify-live.mjs eco
 
       - name: Verify independent membership after deployment
         working-directory: ${{ github.workspace }}
