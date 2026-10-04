@@ -7053,8 +7053,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '厂商自荐' : 'For vendors';
   const desc = zh
-    ? '把你的 AI 工具提交给白嫖计：免费收录走公开收录标准；加急审核与首页推荐位可询价。付费买不到收录资格，也改不了任何数字——达不到标准，付钱也不收录。'
-    : 'Get your AI tool listed on Baipiaoji: free listing runs on our public criteria; expedited review and a homepage feature slot are available on inquiry. Payment cannot buy inclusion or change a single figure — a tool below the bar stays out, paid or not.';
+    ? '把你的 AI 工具提交给白嫖计：免费收录走公开收录标准；独立赞助位可查看实际触达后自助购买，定制审核与首页合作另行询价。付费买不到收录资格，也改不了任何数字——达不到标准，付钱也不收录。'
+    : 'Get your AI tool listed on Baipiaoji: free listing follows public criteria; review actual reach and buy a separate sponsored placement through self-service, or inquire about custom review and homepage arrangements. Payment cannot buy inclusion or change a single figure — a tool below the bar stays out, paid or not.';
   const TIERS = zh ? [
     ['免费收录（永远免费）', `符合收录标准——官方网址、免费额度真实存在且能在官方页面核实——就可以自荐，走正常核实队列。目录共有 ${N_ALL} 个工具；目录发现条目不代表免费额度已经核实。`, 'free'],
     ['加急审核', '插到核实队列最前，尽快给出「收录」或「不收录」的明确结论。加急的是排队，不是结论：核实口径与免费队列完全相同。', 'expedite'],
@@ -7077,11 +7077,11 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   ];
   const faq = zh ? [
     ['付费能保证收录吗？', '不能。收录只看公开的收录标准：官方网址、免费额度真实存在、数字能在官方页面核实。加急审核买到的是更快的结论，结论本身可能是「不收录」。'],
-    ['为什么不标价格？', '这是一个新开的入口，我们还没有任何可依据的成交数据；编一个数字出来违反本站的零编造规则。留下询价，我们按你的工具与需求单独回复。'],
+    ['赞助需要先询价吗？', '独立赞助位无需先询价：进入自助投放页查看实际触达、当前价格、可用付款方式和排期规则。加急审核与定制首页合作仍需单独询价，不属于自助投放权益。'],
     ['推荐位会标注吗？', '会。推荐位一律带明示「推广」标注，且仅限已通过收录标准的工具；条目里的额度、来源、核实日期与普通条目走同一道核实门。'],
   ] : [
     ['Does paying guarantee a listing?', 'No. Inclusion depends only on the public criteria: an official URL, a free tier that actually exists, and figures verifiable on an official page. Expedited review buys a faster verdict — and that verdict can be "not listed".'],
-    ['Why is there no price list?', 'This channel is new and we have no transaction data to base a price on; inventing a number would break this site’s zero-fabrication rule. Send an inquiry and we reply individually based on your tool and needs.'],
+    ['Do I need a quote before sponsoring?', 'Separate sponsored placements do not require an inquiry. The self-service page shows actual reach, current pricing, available payment methods and scheduling rules. Expedited review and custom homepage arrangements still require an individual inquiry and are not included in a self-service placement.'],
     ['Are feature slots labelled?', 'Yes. Feature slots always carry an explicit sponsored label, are available only to tools that passed the criteria, and their allowances, sources and check dates go through the same verification gate as every other entry.'],
   ];
   const KINDS = zh
@@ -7094,14 +7094,20 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(desc)}</p>
   </div></header>
+  <section class="limits-table" data-vendor-selfserve>
+    <h2>${zh ? '想让正在挑选 AI 工具的人看到你的产品？' : 'Want people choosing AI tools to discover your product?'}</h2>
+    <p>${zh ? '独立赞助位展示在所选分类及该分类的工具页。先查看本站实际触达，再决定是否适合；展示不保证点击、注册或成交。' : 'A separate sponsored placement appears in your selected category and its tool pages. Review actual site reach before deciding whether it fits; placement does not guarantee clicks, registrations or sales.'}</p>
+    <p><a class="btn" data-biz="selfserve" href="${BASE}/advertise.html?source=for-vendors#adDecision">${zh ? '查看触达、价格与自助投放 →' : 'Review reach, pricing and self-service placement →'}</a></p>
+    <p class="sub-note">${zh ? '无需先发邮件询价。通过投放校验并确认付款后自动排期，到期自动下架；这不是付费收录、加急审核或首页推荐。付款方式以投放页实时状态为准，不合适可继续免费投稿。' : 'No quote email is needed. After placement checks and confirmed payment, scheduling and expiry are automatic. This is not paid directory inclusion, expedited review or a homepage recommendation. Check live payment availability; free submission remains available.'}</p>
+  </section>
   <section class="limits-table">
     <h2 class="group-title">${zh ? '三种上站方式' : 'Three ways in'}<span>${TIERS.length}</span></h2>
     <ol class="pc-duties">${TIERS.map(([t, d, k]) => `<li><b>${esc(t)}</b>${esc(d)} ${k === 'free'
       ? `<a href="${BASE}/submit.html" data-biz="free">${zh ? '去提交 →' : 'Submit a tool →'}</a>`
       : `<a href="#vendorForm" data-biz="${k}">${zh ? '询价 →' : 'Ask for a quote →'}</a>`}</li>`).join('')}</ol>
     <p class="sub-note">${zh
-      ? '加急审核与首页推荐位不标价格：这是一个新开的入口，还没有可依据的成交数据，编一个数字出来违反本站的零编造规则。先询价，我们单独回复。'
-      : 'Expedited review and the feature slot carry no price list: this channel is new, we have no transaction data to base a price on, and inventing one would break this site’s zero-fabrication rule. Ask, and we reply individually.'}</p>
+      ? '以下为免费收录和人工合作路径。需要自动排期的独立赞助位，请使用上方自助入口；其价格和可用付款方式以投放页为准。加急审核与定制首页合作仍需人工回复，不保证即时处理。'
+      : 'The paths below cover free listing and individually handled arrangements. For a separately labelled placement with automatic scheduling, use the self-service link above and check its current price and payment methods. Expedited review and custom homepage inquiries require a reply; immediate handling is not guaranteed.'}</p>
   </section>
   <section class="limits-table">
     <h2 class="group-title">${zh ? '付费买不到的东西' : 'What payment cannot buy'}<span>${NOTBUY.length}</span></h2>
@@ -7136,10 +7142,17 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
 <script>
 (function(){
   var ZH=${zh};
-  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
+  var QA=['qa','__qa','ci','__ci','__probe'].some(function(k){return new URLSearchParams(location.search).has(k)});
+  function measurable(){return !QA&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl;}
+  function EV(n,p){try{if(measurable()&&window.bpjEv)window.bpjEv(n,p)}catch(e){}}
   // 三档 CTA 点击 = 探针的核心读数之一（页面浏览由全局 beacon 自动记）
   document.addEventListener('click',function(e){
     var a=e.target.closest?e.target.closest('[data-biz]'):null; if(!a)return;
+    if(a.dataset.biz==='selfserve'){
+      if(QA){var u=new URL(a.href,location.href);u.searchParams.set('__ci','1');a.href=u.href;}
+      if(!a.dataset.tracked){EV('biz','/biz/trigger/vendor-sponsor');if(measurable()&&window.gtag)window.gtag('event','start_plan');a.dataset.tracked='1';}
+      return;
+    }
     EV('biz','/biz/inquiry/'+a.dataset.biz);
     var f=document.getElementById('vendorForm');
     if(f && a.dataset.biz!=='free' && f.kind) f.kind.value=a.dataset.biz;
@@ -7189,7 +7202,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
 </script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'for-vendors.html'), layout({
-    title: zh ? `${h1}：免费收录 / 加急审核 / 首页推荐位 - ${NAME}` : `${h1}: free listing, expedited review, feature slot - ${NAME}`,
+    title: zh ? `${h1}：免费收录 / 自助赞助 / 合作询价 - ${NAME}` : `${h1}: free listing, self-service sponsorship, inquiries - ${NAME}`,
     description: desc,
     path: '/for-vendors.html',
     body,
