@@ -14,3 +14,7 @@ rows.push({n:'OpenAI Codex',q:'codex',u:'/tools/codex.html'});
 assert.equal(searchResults(rows,'codex')[0].n,'OpenAI Codex');
 assert.equal(searchResults([{n:'PDF',q:'pdf',u:'/studio/pdf-tools.html'},{n:'PDF tool',q:'pdf',u:'/studio/pdf-tools/?from=nav#x'}],'pdf').length,1);
 console.log('PASS search: bilingual real index, canonical deduplication, exact tool after >30 body matches, empty results.');
+
+const manjuRows=[{u:'https://baipiaoji.com/manju/#work-mj-012345abcdef',n:'样本甲',q:'选片',k:'漫剧'},{u:'https://baipiaoji.com/manju/#work-mj-abcdef012345',n:'样本乙',q:'选片',k:'漫剧'}];
+assert.deepEqual(searchResults(manjuRows,'选片').map(x=>x.u),manjuRows.map(x=>x.u));
+assert.equal(searchResults(manjuRows,'样本乙')[0].u,manjuRows[1].u);

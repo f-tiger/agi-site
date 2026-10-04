@@ -1,21 +1,26 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
-import {MANJU} from './manju-pages.mjs';
+import {MANJU,MANJU_REVISION} from './manju-pages.mjs';
+import {importFacts,validateManju} from './manju-catalog.mjs';
 import {onRequestPost as inquiry} from '../functions/api/manju-inquiry.js';
 import {onRequestPost as hit} from '../functions/api/hit.js';
 import {businessEvent} from '../../../tools/fleet-analytics/business.mjs';
 import {parseManjuEvent,readManjuSignals} from '../lib/manju.mjs';
 const live=process.argv.includes('--live'),base='https://baipiaoji.com',ids=MANJU.items.map(x=>x.id);
-assert.equal(new Set(ids).size,ids.length);
+assert.equal(new Set(ids).size,ids.length);assert.ok(MANJU.items.length>=300,'Expanded directory must retain at least 300 sourced records');validateManju(MANJU);
+const example=MANJU.items.find(x=>x.recordType==='discovery'),fact={title:example.title,source:example.source,sourceTitle:example.evidence.sourceTitle,sourceClaim:example.evidence.sourceClaim,sourceHash:example.evidence.sourceHash,reportedTags:example.evidence.reportedTags,reportedReleaseDate:example.reportedReleaseDate.replace(/^(\d+)-(\d+)-(\d+)$/,'$1年$2月$3日'),checkedAt:example.checkedAt},empty={...MANJU,items:[]};
+assert.equal(importFacts([fact,fact],empty).items.length,1);
+for(const change of [{sourceTitle:'普通短剧资料'},{source:'https://unknown.example/title'},{sourceHash:''},{reportedTags:['虚构类别']},{reportedReleaseDate:'2030年1月1日'},{title:'桃花簪',sourceTitle:'AI漫剧《桃花簪》-短剧百科'}])assert.equal(importFacts([{...fact,...change}],empty).items.length,0);
+const bad=structuredClone(MANJU);bad.items.find(x=>x.recordType==='discovery').destination='https://unverified.example/watch';assert.throws(()=>validateManju(bad));
 assert.deepEqual(MANJU.items.filter(x=>x.channel==='culture').map(x=>x.id),['qianqiu','dianji']);
-assert.equal(MANJU.items.filter(x=>x.category==='fantasy').length,2);
+assert.ok(MANJU.items.filter(x=>x.category==='fantasy').length>=2);
 assert.ok(MANJU.items.every(x=>MANJU.taxonomy.genres.some(g=>g.id===x.category&&g.label===x.genre)&&x.tags.every(t=>MANJU.taxonomy.tags.includes(t))));
 const js=readFileSync(new URL('../assets/manju.js',import.meta.url),'utf8');
-for(const x of MANJU.items){assert.match(x.id,/^[a-z0-9-]+$/);assert.ok(js.includes("'"+x.id+"'"));assert.ok(x.source&&x.sourceDate&&x.checkedAt&&x.aiEvidence&&x.angle);assert.ok(['collection','intro','search'].includes(x.linkType));assert.equal(x.watched,false);assert.equal(x.sponsored,false);assert.equal(x.affiliate,false);assert.equal(new URL(x.source).protocol,'https:');}
-async function get(path){if(!live)return readFileSync(new URL('../dist/'+path,import.meta.url),'utf8');const u=new URL(path.replace(/index\.html$/,'').replace(/\.html$/,''),base+'/');u.searchParams.set('__probe','1');const r=await fetch(u,{headers:{'user-agent':'bpj-ci-selfcheck'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200,path);return r.text();}
-const home=await get('manju/index.html');assert.ok(home.includes('rel="canonical" href="'+base+'/manju/"'));assert.ok(home.includes('CollectionPage'));assert.ok(home.includes('data-channel-choice="culture"'));assert.ok(home.includes('data-genre-choice="suspense"'));assert.ok(home.includes('data-tag-choice="种田"'));assert.ok(home.includes('mj-platform'));assert.ok(!home.includes('<video')&&!home.includes('<iframe'));assert.equal((home.match(/data-item=/g)||[]).length,ids.length);
-for(const x of MANJU.items){const h=await get('manju/'+x.id+'.html');assert.ok(h.includes(x.title));assert.ok(h.includes(x.sourceDate));assert.ok(h.includes('CreativeWork'));assert.ok(h.includes(x.destination.replaceAll('&','&amp;')));assert.ok(h.includes('没有独立审计'));}
+for(const x of MANJU.items){assert.match(x.id,/^[a-z0-9-]+$/);assert.ok(x.source&&x.sourceDate&&x.checkedAt&&x.aiEvidence&&x.angle);assert.ok(['collection','intro','search'].includes(x.linkType));assert.equal(x.watched,false);assert.equal(x.sponsored,false);assert.equal(x.affiliate,false);assert.equal(new URL(x.source).protocol,'https:');}
+async function get(path){if(!live)return readFileSync(new URL('../dist/'+path,import.meta.url),'utf8');const u=new URL(path.replace(/index\.html$/,'').replace(/\.html$/,''),base+'/');u.searchParams.set('__probe','1');u.searchParams.set('revision',MANJU_REVISION);const r=await fetch(u,{headers:{'user-agent':'bpj-ci-selfcheck'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200,path);return r.text();}
+let home;for(let attempt=0;attempt<(live?12:1);attempt++){home=await get('manju/index.html');if(home.includes('name="manju-catalog-revision" content="'+MANJU_REVISION+'"'))break;if(live&&attempt<11)await new Promise(r=>setTimeout(r,5000));}assert.ok(home.includes('name="manju-catalog-revision" content="'+MANJU_REVISION+'"'),'Published catalogue revision has not propagated');assert.ok(home.includes('rel="canonical" href="'+base+'/manju/"'));assert.ok(home.includes('CollectionPage'));assert.ok(home.includes('data-channel-choice="culture"'));assert.ok(home.includes('data-genre-choice="suspense"'));assert.ok(home.includes('data-tag-choice="种田"'));assert.ok(home.includes('mj-platform'));assert.ok(!home.includes('<video')&&!home.includes('<iframe'));assert.equal((home.match(/data-item=/g)||[]).length,ids.length);assert.ok(home.includes('mj-pagination'));for(const x of MANJU.items){assert.ok(home.includes('id="work-'+x.id+'"'));}assert.ok(js.includes('workMap'));assert.ok(!home.includes('<img '));
+for(const x of MANJU.items.filter(x=>x.recordType!=='discovery')){const h=await get('manju/'+x.id+'.html');assert.ok(h.includes(x.title));assert.ok(h.includes(x.sourceDate));assert.ok(h.includes('CreativeWork'));assert.ok(h.includes(x.destination.replaceAll('&','&amp;')));assert.ok(h.includes('没有独立审计'));}
 assert.equal(JSON.parse(await get('manju/catalog.json')).items.length,ids.length);assert.ok((await get('manju/feed.xml')).includes('不是剧集追更'));assert.ok((await get('index.html')).includes('/manju/'));assert.ok(JSON.parse(await get('search-index.json')).some(x=>x.u===base+'/manju/beipai'));assert.ok((await get('llms.txt')).includes('/manju/catalog.json'));assert.ok((await get('sitemap.xml')).includes(base+'/manju/'));
 for(const action of ['view','open','save','inquiry_ok']){assert.ok(parseManjuEvent('/manju/'+action+'/catalog',ids));assert.ok(businessEvent('baipiaoji.com','/manju/',{name:'manju_'+action}));}
 assert.equal(parseManjuEvent('/manju/open/private@email.test',ids),false);assert.equal(businessEvent('baipiaoji.com','/account',{name:'manju_open'}),null);assert.equal(businessEvent('baipiaoji.com','/manju/',{name:'manju_open',email:'sensitive'}),null);
@@ -23,7 +28,7 @@ const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',ema
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
 else{
  const manifest=JSON.parse(readFileSync(new URL('../data/page-lastmod.json',import.meta.url),'utf8'));
- for(const path of [...ids,'method','cooperate'])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
+ for(const path of [...MANJU.items.filter(x=>x.recordType!=='discovery').map(x=>x.id),'method','cooperate'])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
  const sql=new DatabaseSync(':memory:');sql.exec("CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT); CREATE INDEX hits_events ON hits(d,ev) WHERE ev != '';");
  const env={HITS:{prepare(q){let args=[];const st={bind(...a){args=a;return st;},async run(){const r=sql.prepare(q).run(...args);return {meta:{changes:Number(r.changes)}};},async all(){return {results:sql.prepare(q).all(...args)};}};return st;}}};
  const post=(body=good,headers={},suffix='')=>inquiry({env,request:new Request(base+'/api/manju-inquiry'+suffix,{method:'POST',headers:{origin:base,'content-type':'application/json',...headers},body:JSON.stringify(body)})});
