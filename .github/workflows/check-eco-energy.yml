@@ -90,6 +90,8 @@ jobs:
           npm ci --prefix ../../tools/revenue-studio --ignore-scripts
           node ../../tools/revenue-studio/build.mjs --site eco --out site
           python3 tools/build_tool_experience.py
+          python3 tools/build_language_nav.py
+          python3 tools/test_language_nav.py
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
 
       - name: Install browser test runtime
@@ -117,6 +119,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_language_nav.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs

@@ -1,0 +1,13 @@
+/* Native details: keyboard accessible and usable without JavaScript. */
+.eb-language-nav{position:relative;background:#edf5fa;color:#18394f;border-bottom:1px solid #cbdde9;font:14px/1.5 system-ui,sans-serif;text-align:left;z-index:2}
+.eb-language-nav details{max-width:1120px;margin:auto;padding:0 16px}
+.eb-language-nav summary{cursor:pointer;min-height:44px;box-sizing:border-box;padding:11px 0;font-weight:650;width:fit-content;max-width:100%;overflow-wrap:anywhere}
+.eb-language-nav summary:focus-visible,.eb-language-nav a:focus-visible{outline:3px solid #1672ac;outline-offset:3px}
+.eb-language-panel{padding:0 0 18px;max-width:850px}
+.eb-language-panel p{font-size:14px;line-height:1.5;margin:8px 0;color:#18394f}
+.eb-language-panel .eb-language-heading{font-weight:700;margin-top:12px}
+.eb-language-panel .eb-language-note{color:#425e71}
+.eb-language-links{display:flex;gap:8px;flex-wrap:wrap}
+.eb-language-nav .eb-language-links a{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:8px 12px;max-width:100%;overflow-wrap:anywhere;border:1px solid #9abbd1;border-radius:8px;color:#08496f;background:#fff;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.eb-language-nav .eb-language-links a:hover{background:#dfeef8}
+@media print{.eb-language-nav{display:none}}
