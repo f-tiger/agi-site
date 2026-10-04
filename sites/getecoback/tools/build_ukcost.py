@@ -65,8 +65,8 @@ def block(cap, variant):
     span = "8 hours" if variant != "airer" else "8 hours (one drying session)"
     return (
         f"<!--EB_UKCOST:{variant}-->\n"
-        f"  <p>At the Ofgem price cap for <strong>{cap['period']}</strong>, electricity on a "
-        f"Direct Debit tariff is <strong>{rate}p per kWh</strong>. Scale the hours to your own run.</p>\n"
+        f"  <p>At the Ofgem price cap for <strong>{cap['period']}</strong>, the average electricity unit rate for "
+        f"Direct Debit in England, Scotland and Wales is <strong>{rate}p per kWh</strong>. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.</p>\n"
         f"  <table>\n"
         f"    <tr><th>Machine</th><th>Plate</th><th>Per hour</th><th>{span}</th><th>Cost (£)</th></tr>\n"
         f"    {body}\n"
