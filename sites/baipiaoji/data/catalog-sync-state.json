@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 1,
   "pending": [
-   {
-    "repo": "hiyouga/LlamaFactory",
-    "topic": "models",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "headroomlabs-ai/headroom",
-    "topic": "models",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "asgeirtj/system_prompts_leaks",
     "topic": "models",
@@ -22,11 +12,6 @@
    {
     "repo": "mem0ai/mem0",
     "topic": "models",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "pathwaycom/llm-app",
-    "topic": "knowledge",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -92,11 +77,6 @@
    {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "thedaviddias/Front-End-Checklist",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -212,11 +192,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "tirth8205/code-review-graph",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -340,11 +315,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "HBAI-Ltd/Toonflow-app",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "wuyoscar/GPT-Image2-Skill",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -447,11 +417,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "debpalash/VoiceStudio",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -577,11 +542,6 @@
    {
     "repo": "open-multi-agent/open-multi-agent",
     "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "maziyarpanahi/openmed",
-    "topic": "local",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -715,11 +675,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "python-telegram-bot/python-telegram-bot",
-    "topic": "chat",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "yamadashy/repomix",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -800,11 +755,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "Tencent-Hunyuan/HunyuanVideo-1.5",
-    "topic": "video",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "PKU-YuanGroup/Helios",
     "topic": "video",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -877,11 +827,6 @@
    {
     "repo": "EvoLinkAI/GPT-Image-2-Seedance-2.5-Workflow",
     "topic": "video",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "paperless-ngx/paperless-ngx",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -1120,11 +1065,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "ayghri/i-have-adhd",
-    "topic": "everyday",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "files-community/Files",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -1228,6 +1168,581 @@
     "repo": "espanso/espanso",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
+   },
+   {
+    "repo": "ultralytics/yolov5",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "deepspeedai/DeepSpeed",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "hpcaitech/ColossalAI",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "google-ai-edge/mediapipe",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Tencent/ncnn",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "stas00/ml-engineering",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "GeeeekExplorer/nano-vllm",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "gvergnaud/ts-pattern",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "FlashML-org/FreeToken",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "NVIDIA/TensorRT",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "LMCache/LMCache",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "triton-inference-server/server",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "aws/amazon-sagemaker-examples",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "openvinotoolkit/openvino",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ultralytics/yolov3",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "RunanywhereAI/runanywhere-sdks",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "xorbitsai/inference",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Human-Agent-Society/reef",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vllm-project/vllm-omni",
+    "topic": "video",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "mizorewww/laya-mlx",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "kvcache-ai/Mooncake",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Trusted-AI/adversarial-robustness-toolbox",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vllm-project/semantic-router",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "gpustack/gpustack",
+    "topic": "local",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "NirDiamant/RAG_Techniques",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "deepset-ai/haystack",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "HKUDS/RAG-Anything",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "memvid/memvid",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "llmware-ai/llmware",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "StarTrail-org/LEANN",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "neuml/txtai",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "simular-ai/Agent-S",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "FlagOpen/FlagEmbedding",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "The-Pocket/PocketFlow",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vitali87/code-graph-rag",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Marker-Inc-Korea/AutoRAG",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "GiovanniPasq/agentic-rag-for-dummies",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "NVIDIA/GenerativeAIExamples",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "bragai/bRAG-langchain",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "RUC-NLPIR/FlashRAG",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "superlinked/sie",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "qdrant/fastembed",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "swirlai/swirl-search",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "illuin-tech/colpali",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "genieincodebottle/generative-ai",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vearch/vearch",
+    "topic": "knowledge",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ruvnet/ruflo",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "usestrix/strix",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "rohitg00/ai-engineering-from-scratch",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "elder-plinius/CL4R1T4S",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "kepano/obsidian-skills",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vectorize-io/hindsight",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "agno-agi/agno",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "novuhq/novu",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "mindsdb/mindshub",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Dokploy/dokploy",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "getzep/graphiti",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ComposioHQ/composio",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "openai/openai-agents-python",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "TabbyML/tabby",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Pythagora-io/gpt-pilot",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "coleam00/Archon",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "The-PR-Agent/pr-agent",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "datawhalechina/vibe-vibe",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "the-open-engine/zeroshot",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "HexmosTech/git-lrc",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "kodustech/kodus-ai",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "preset-io/agor",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "proxysoul/Empryo",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "repowise-dev/claude-code-prompts",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ferrislucas/promptr",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "OleksandrChekhovskyi/hax",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "riponcm/projectmem",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "inmve/free-ai-coding",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "juggler-ai/juggler",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "coipond/coi",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "mostafasadeghi97/design2code",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ovh/shai",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "TheDecipherist/claude-code-mastery",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "imbue-ai/vet",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Th0rgal/sandboxed.sh",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ATH-MaaS/Pixelle-Video",
+    "topic": "video",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "vercel/satori",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "krillinai/OpenCreator",
+    "topic": "video",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "helloianneo/ian-xiaohei-illustrations",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "carson-katri/dream-textures",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "op7418/guizang-social-card-skill",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "s1dashu/ip-as-logo-skill",
+    "topic": "coding",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "mcmonkeyprojects/SwarmUI",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "KnpLabs/snappy",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "CookSleep/gpt_image_playground",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "HanaokaYuzu/Gemini-API",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "yanliudesign/mono-color-skill",
+    "topic": "agents",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Tencent-Hunyuan/HunyuanImage-3.0",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "kane50613/takumi",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "elegantapp/pwa-asset-generator",
+    "topic": "image",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "modelscope/FunASR",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "alphacep/vosk-api",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "kmario23/deep-learning-drizzle",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "PaddlePaddle/PaddleSpeech",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "speechbrain/speechbrain",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "QuentinFuxa/WhisperLiveKit",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "QwenAudio/SenseVoice",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Uberi/speech_recognition",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "nl8590687/ASRT_SpeechRecognition",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "TalAter/annyang",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "flashlight/wav2letter",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "modelscope/FunClip",
+    "topic": "video",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "MahmoudAshraf97/whisper-diarization",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "wenet-e2e/wenet",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "Picovoice/porcupine",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "yanshengjia/ml-road",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "cmusphinx/pocketsphinx",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "ahmetoner/whisper-asr-webservice",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
+   },
+   {
+    "repo": "HeyWillow/willow",
+    "topic": "audio",
+    "foundAt": "2026-10-04T06:17:42.048Z"
    }
   ],
   "checked": {
@@ -1236,11 +1751,17 @@
    "gh-f-prompts-chat-f63476": "2026-10-03T05:42:28.511Z",
    "gh-dietrichgebert-ponytail-61b983": "2026-10-03T05:42:28.511Z",
    "gh-langchain-ai-langchain-5d4aa1": "2026-10-03T05:42:28.511Z",
-   "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-03T05:42:28.511Z"
+   "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-03T05:42:28.511Z",
+   "gh-graphify-labs-graphify-6d32f9": "2026-10-04T06:17:42.048Z",
+   "gh-tauricresearch-tradingagents-317caa": "2026-10-04T06:17:42.048Z",
+   "gh-juliusbrussee-caveman-72f8b4": "2026-10-04T06:17:42.048Z",
+   "gh-rasbt-llms-from-scratch-0e357a": "2026-10-04T06:17:42.048Z",
+   "gh-unclecode-crawl4ai-f09556": "2026-10-04T06:17:42.048Z",
+   "gh-rtk-ai-rtk-dc41af": "2026-10-04T06:17:42.048Z"
   }
  },
  "mcp": {
-  "cursor": "bio.untangle/untangle:1.0.0",
+  "cursor": "com.belindoc/belindoc-mcp:0.1.7",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -1324,7 +1845,47 @@
    "arcade": "2026-10-03T05:42:28.511Z",
    "archi-den-den-archi-mcp": "2026-10-03T05:42:28.511Z",
    "arcnautical-mcp": "2026-10-03T05:42:28.511Z",
-   "arize-phoenix": "2026-10-03T05:42:28.511Z"
+   "arize-phoenix": "2026-10-03T05:42:28.511Z",
+   "arsentev-contextburn": "2026-10-04T06:17:42.048Z",
+   "art-maddegen-agent-solsnap": "2026-10-04T06:17:42.048Z",
+   "art-travel-mcp": "2026-10-04T06:17:42.048Z",
+   "artisign-artisign": "2026-10-04T06:17:42.048Z",
+   "askacharge-askacharge": "2026-10-04T06:17:42.048Z",
+   "assistant-ui": "2026-10-04T06:17:42.048Z",
+   "asterwise-mcp": "2026-10-04T06:17:42.048Z",
+   "atagon-kogiqa-mcp": "2026-10-04T06:17:42.048Z",
+   "atlassian-mcp-server": "2026-10-04T06:17:42.048Z",
+   "atomic-agents": "2026-10-04T06:17:42.048Z",
+   "au-ato-mcp-ato-mcp": "2026-10-04T06:17:42.048Z",
+   "audiopod-audiopod": "2026-10-04T06:17:42.048Z",
+   "augment-code": "2026-10-04T06:17:42.048Z",
+   "auraspay-merchant-payments": "2026-10-04T06:17:42.048Z",
+   "aureum-tech-website": "2026-10-04T06:17:42.048Z",
+   "ausca-agent-services": "2026-10-04T06:17:42.048Z",
+   "autogen": "2026-10-04T06:17:42.048Z",
+   "autogpt": "2026-10-04T06:17:42.048Z",
+   "autonomad-computeback": "2026-10-04T06:17:42.048Z",
+   "avagama-openings": "2026-10-04T06:17:42.048Z",
+   "avidquant-optiondesk": "2026-10-04T06:17:42.048Z",
+   "awesome-mcp-servers": "2026-10-04T06:17:42.048Z",
+   "aws-mcp-servers": "2026-10-04T06:17:42.048Z",
+   "azure-ai-foundry": "2026-10-04T06:17:42.048Z",
+   "backpow-pow-mining-oracle": "2026-10-04T06:17:42.048Z",
+   "bailian": "2026-10-04T06:17:42.048Z",
+   "balmasai-balmas-mcp": "2026-10-04T06:17:42.048Z",
+   "baml": "2026-10-04T06:17:42.048Z",
+   "bedrock-agentcore": "2026-10-04T06:17:42.048Z",
+   "bedrock-agents": "2026-10-04T06:17:42.048Z",
+   "bestremotetools-image-resize-convert-compress-crop": "2026-10-04T06:17:42.048Z",
+   "bestremotetools-office-suite-all-servers-one-install": "2026-10-04T06:17:42.048Z",
+   "bigapi-mcp": "2026-10-04T06:17:42.048Z",
+   "bird-mcp": "2026-10-04T06:17:42.048Z",
+   "bisheng": "2026-10-04T06:17:42.048Z",
+   "bitbybit-cad": "2026-10-04T06:17:42.048Z",
+   "bizmoon-regulatory": "2026-10-04T06:17:42.048Z",
+   "blackveilsecurity-dns": "2026-10-04T06:17:42.048Z",
+   "bland": "2026-10-04T06:17:42.048Z",
+   "blender-mcp": "2026-10-04T06:17:42.048Z"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-03",
+ "checked": "2026-10-04",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -702,6 +702,69 @@
    "source_http": 403,
    "repo_http": 200,
    "reason": "source HTTP 403"
+  },
+  "dinglebear-rtailscale": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "deskcrew-agentic": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "gency-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "framebench-framebench": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "spideriq-leads": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "memoket-memoket": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "tekboss-assessment": {
+   "attempts": 1,
+   "first_attempt": "2026-10-04",
+   "last_attempt": "2026-10-04",
+   "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -7558,6 +7621,324 @@
   {
    "slug": "kubit-mcp-server",
    "date": "2026-10-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "loveoracle-tarot",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "miniaccountant-mini-accountant",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getminds-minds",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "turnale-turnale",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-runifi",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "getandiamo-andiamo",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "mindola-lens",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "atlaso-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "thrain-blackout",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mcpanalytics-analytics",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "primateintelligence-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "timothe-growth-calendar",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clelp-clelp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "verificate-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "icemoon-automation-studio",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "thiri-chord-intelligence",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "kernora-agent-sec",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "testiv-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "vanticlabs-vantic",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "connectmachine-connectmachine",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "namewhisper-ens-tools",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "glif-glif",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clicon-lotus",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cardog-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "openarx-openarx",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cabrini-market-data",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "forgeengine-forge",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenticaffiliate-affiliate-networks-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "faqai-mcp-server",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "openaso-openaso",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "miromiro-miromiro",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bloopo-bloopo",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "llmintel-model-lifecycle",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nanocorp-agentarena-agent-coliseum-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "shipeasy-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "entityenricher-enricher",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "zipquote-us-property-hazard-risk",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gtfi-groundtruth",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "firmbrain-x402-services",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "boundaryai-boundaryai",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "bolthub-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ai-akari-agent-trust-receipt",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "wiplash-wiplash",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "featureboard-featureboard",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "onelore-lore",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "spala-public-mcp",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "tradesearcher-mcp-server",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "toffu-toffu",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "syntheticbrew-syntheticbrew",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "verifox-email-verifier",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "creativescope-creative-intelligence",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "maximem-synap",
+   "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "lumify-sports-intelligence",
+   "date": "2026-10-04",
    "source_http": 200,
    "repo_http": 200
   }

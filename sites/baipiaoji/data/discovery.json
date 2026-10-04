@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Offrun – manage every coding agent from one workspace",
+      "url": "https://offrun.dev/",
+      "host": "offrun.dev",
+      "src": "https://news.ycombinator.com/item?id=49942434",
+      "points": 74,
+      "comments": 61,
+      "found": "2026-10-04",
+      "status": "candidate"
+    },
+    {
+      "name": "Pi pod – Run your pi coding agent in sandboxes on your own server",
+      "url": "https://pipod.dev/",
+      "host": "pipod.dev",
+      "src": "https://news.ycombinator.com/item?id=49937304",
+      "points": 89,
+      "comments": 32,
+      "found": "2026-10-04",
+      "status": "candidate"
+    },
+    {
       "name": "Made an open-source Lego AI generator",
       "url": "https://github.com/anteloc/ldraw-nova",
       "host": "github.com",
@@ -329,27 +349,7 @@
       "comments": 106,
       "found": "2026-08-21",
       "status": "candidate"
-    },
-    {
-      "name": "Sokoban AI Solver",
-      "url": "https://mkornreich.me/projects/sokoban/",
-      "host": "mkornreich.me",
-      "src": "https://news.ycombinator.com/item?id=49330215",
-      "points": 71,
-      "comments": 42,
-      "found": "2026-08-20",
-      "status": "candidate"
-    },
-    {
-      "name": "Launch HN: Speko (YC S26) – OpenRouter for Voice AI",
-      "url": "https://speko.ai/",
-      "host": "speko.ai",
-      "src": "https://news.ycombinator.com/item?id=49332751",
-      "points": 117,
-      "comments": 67,
-      "found": "2026-08-20",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-03"
+  "updated": "2026-10-04"
 }

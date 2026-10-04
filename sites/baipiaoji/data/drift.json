@@ -1,10 +1,101 @@
 {
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 105,
-  "fetched_fail": 22,
-  "pending": 14,
+  "fetched_ok": 104,
+  "fetched_fail": 23,
+  "pending": 7,
   "items": [
+    {
+      "slug": "codex",
+      "url": "https://developers.openai.com/codex/pricing",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "$100,",
+        "$200,",
+        "$500",
+        "15credits"
+      ],
+      "removed": [
+        "$100",
+        "1.875credits",
+        "113credits",
+        "18.75credits",
+        "30days",
+        "375credits",
+        "6.250credits",
+        "62.50credits"
+      ],
+      "checked_then": "2026-09-25"
+    },
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "5b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "18.1k",
+        "182.1k"
+      ],
+      "removed": [
+        "18.0k",
+        "181.7k",
+        "18k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "$1",
+        "83%"
+      ],
+      "removed": [
+        "12,500seconds",
+        "152minutes",
+        "500minutes",
+        "80%"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "cerebras",
+      "url": "https://cerebras.ai/pricing",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "$5",
+        "30days"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-05"
+    },
+    {
+      "slug": "cloudflare-workers-ai",
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
+      "confirmed": "2026-10-04",
+      "first_seen": "2026-10-03",
+      "added": [
+        "$0.090",
+        "$0.240"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-16"
+    },
     {
       "slug": "exa",
       "url": "https://exa.ai/pricing",
@@ -146,50 +237,6 @@
       "removed": [
         "36.0k",
         "36k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-10-01",
-      "first_seen": "2026-09-29",
-      "added": [
-        "$15",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11minutes",
-        "12,500seconds"
-      ],
-      "removed": [
-        "294b"
-      ],
-      "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "ollama",
-      "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [
-        "1.6k",
-        "18.0k",
-        "181.7k",
-        "182k",
-        "18k"
-      ],
-      "removed": [
-        "1.5k",
-        "17.9k",
-        "181.3k",
-        "181k"
       ],
       "checked_then": "2026-08-04"
     },

@@ -1,51 +1,51 @@
 {
- "generated": "2026-10-03",
+ "generated": "2026-10-04",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "tongyi-lingma",
-  "trae",
-  "ttsmaker",
-  "tusiart",
-  "udio",
-  "upscayl",
-  "v0",
-  "wps-ai"
+  "wujie",
+  "xinghuo",
+  "yige",
+  "youdao",
+  "zhihu-zhida",
+  "kimi",
+  "feishu-miaoji",
+  "haiper"
  ],
- "cursor": "wps-ai",
+ "cursor": "haiper",
  "summary": {
   "ready": 39,
-  "empty": 31,
-  "blocked": 29,
-  "probed_total": 99
+  "empty": 34,
+  "blocked": 31,
+  "probed_total": 104
  },
  "tools": {
   "kimi": {
    "slug": "kimi",
    "name": "Kimi（月之暗面）",
    "cat": "chat",
-   "reach": 20,
-   "probed": "2026-09-18",
+   "reach": 56,
+   "probed": "2026-10-04",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://kimi.moonshot.cn/pricing",
      "status": 200,
-     "bytes": 477575,
+     "bytes": 143727,
      "tokens": 0
     },
     {
      "url": "https://kimi.moonshot.cn/price",
      "status": 200,
-     "bytes": 477575,
+     "bytes": 143727,
      "tokens": 0
     },
     {
      "url": "https://kimi.moonshot.cn/plans",
      "status": 200,
-     "bytes": 477575,
+     "bytes": 143727,
      "tokens": 0
     }
    ],
@@ -59,8 +59,8 @@
    "slug": "feishu-miaoji",
    "name": "飞书妙记",
    "cat": "office",
-   "reach": 11,
-   "probed": "2026-09-18",
+   "reach": 17,
+   "probed": "2026-10-04",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -93,8 +93,8 @@
    "slug": "haiper",
    "name": "Haiper",
    "cat": "video",
-   "reach": 11,
-   "probed": "2026-09-18",
+   "reach": 10,
+   "probed": "2026-10-04",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2833,6 +2833,168 @@
     },
     {
      "url": "https://ai.wps.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "wujie": {
+   "slug": "wujie",
+   "name": "无界 AI",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-04",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.wujieai.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.wujieai.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.wujieai.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "xinghuo": {
+   "slug": "xinghuo",
+   "name": "讯飞星火",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-10-04",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://xinghuo.xfyun.cn/pricing",
+     "status": 200,
+     "bytes": 3775,
+     "tokens": 0
+    },
+    {
+     "url": "https://xinghuo.xfyun.cn/price",
+     "status": 200,
+     "bytes": 3775,
+     "tokens": 0
+    },
+    {
+     "url": "https://xinghuo.xfyun.cn/plans",
+     "status": 200,
+     "bytes": 3775,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://xinghuo.xfyun.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "yige": {
+   "slug": "yige",
+   "name": "文心一格（百度）",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-10-04",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://yige.baidu.com/pricing",
+     "status": 200,
+     "bytes": 10985,
+     "tokens": 0
+    },
+    {
+     "url": "https://yige.baidu.com/price",
+     "status": 200,
+     "bytes": 10967,
+     "tokens": 0
+    },
+    {
+     "url": "https://yige.baidu.com/plans",
+     "status": 200,
+     "bytes": 11015,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://yige.baidu.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "youdao": {
+   "slug": "youdao",
+   "name": "有道翻译",
+   "cat": "writing",
+   "reach": 0,
+   "probed": "2026-10-04",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://fanyi.youdao.com/pricing",
+     "status": 200,
+     "bytes": 1725,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.youdao.com/price",
+     "status": 200,
+     "bytes": 1725,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.youdao.com/plans",
+     "status": 200,
+     "bytes": 1725,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://fanyi.youdao.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "zhihu-zhida": {
+   "slug": "zhihu-zhida",
+   "name": "知乎直答",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-10-04",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://zhida.zhihu.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://zhida.zhihu.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://zhida.zhihu.com/plans",
      "status": 404,
      "bytes": 0,
      "tokens": 0
