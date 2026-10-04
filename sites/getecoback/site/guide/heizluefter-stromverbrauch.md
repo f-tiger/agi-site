@@ -4,6 +4,13 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromverbrauch.html
 
+## Deine Heizlüfter-Kosten berechnen
+Nutze die eingestellte Leistung und deinen Arbeitspreis. Die Vorgaben sind Rechenbeispiele, kein aktueller Durchschnittstarif.
+
+Heizanteil: 100 % = ununterbrochen mit der eingestellten Leistung. 50 % ist nur eine Annahme für halbe Heizzeit, keine garantierte Thermostat-Ersparnis. Für genaue Kosten den gesamten Verbrauch messen; Standby und Lüfternachlauf sind hier nicht enthalten.
+[Vor einem Neukauf: Heizarten vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html) · Verbraucherzentrale: direkte Elektroheizung
+Formel: W ÷ 1.000 × Stunden × Heizanteil ÷ 100 × €/kWh × Tage. Beispiel: 2.000 W, 4 h, 100 %, 0,40 €/kWh, 30 Tage = 96 €.
+
 Der Heizlüfter ist das klassische „schnell warm"-Gerät: 25 Euro im Baumarkt, einstecken, und nach Sekunden kommt Wärme. Was auf dem Preisschild nicht steht: Er ist eines der stromhungrigsten Geräte im Haushalt. Bevor du ihn im Herbst wieder täglich laufen lässt, lohnt der Blick auf die Zahlen — sie sind einfach zu rechnen und ziemlich eindeutig. Hier bekommst du die Kosten pro Stunde, pro Abend und pro Monat für alle gängigen Wattzahlen, die Formel zum Nachrechnen mit deinem eigenen Tarif und eine ehrliche Antwort auf die Frage, wann sich das Gerät trotzdem lohnt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

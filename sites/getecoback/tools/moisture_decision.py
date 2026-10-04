@@ -4,6 +4,10 @@ No new URLs, inferred product tests, live prices or automatic market routing.
 Manufacturer figures were checked on 2026-10-01; the dated evidence is visible.
 """
 import re
+import hashlib
+from pathlib import Path
+
+ASSET_VERSION = hashlib.sha256((Path(__file__).resolve().parents[1] / "site/assets/moisture-decision.mjs").read_bytes()).hexdigest()[:12]
 from html import escape
 
 PATHS = {
@@ -76,7 +80,7 @@ def block(en=False):
         'Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.')+'</p></details>'
     return '<!--EB_BUYER--><link rel="stylesheet" href="/assets/moisture-decision.css"><section id="eb-moisture-choice" data-lang="'+('en' if en else 'de')+'" aria-labelledby="eb-choice-title"><h2 id="eb-choice-title">'+t('Brauchst du einen Entfeuchter – und welchen Typ?','Do you need a dehumidifier — and which type?')+'</h2><p>'+t(
         'Beantworte drei kurze Fragen. Du erhältst einen nächsten Schritt – vom Weiterbeobachten bis zum gezielten Modellvergleich. Ohne Anmeldung.',
-        'Answer three short questions for a next step, from monitoring the room to comparing models. No account needed.')+'</p><form>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></form><div data-results tabindex="-1" aria-live="polite" hidden>'+answers+'</div>'+evidence+'<small>'+t('Quellen geprüft am 01.10.2026: ','Sources checked on 1 October 2026: ')+f'<a href="{MEACO}">Meaco</a> · <a href="{COMFEE}">Comfee '+t('Handbuch','manual')+f'</a> · <a href="{AIR}">Verbraucherzentrale</a>. '+t('Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.','No hands-on tests. Guidance, not a remote diagnosis.')+'</small><button type="button" data-copy>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p><noscript><p>'+t('Ohne JavaScript: ','Without JavaScript: ')+link(cost,t('Kosten vergleichen','Compare costs'))+' · '+link(cold,t('Kalte Räume prüfen','Read cold-room guidance'))+'</p></noscript></section><script type="module" src="/assets/moisture-decision.mjs"></script><!--/EB_BUYER-->\n'
+        'Answer three short questions for a next step, from monitoring the room to comparing models. No account needed.')+'</p><form>'+fields+'<button type="submit">'+t('Meinen nächsten Schritt zeigen','Show my next step')+'</button></form><div data-results tabindex="-1" aria-live="polite" hidden>'+answers+'</div>'+evidence+'<small>'+t('Quellen geprüft am 01.10.2026: ','Sources checked on 1 October 2026: ')+f'<a href="{MEACO}">Meaco</a> · <a href="{COMFEE}">Comfee '+t('Handbuch','manual')+f'</a> · <a href="{AIR}">Verbraucherzentrale</a>. '+t('Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.','No hands-on tests. Guidance, not a remote diagnosis.')+'</small><button type="button" data-copy>'+t('Diese Entscheidungshilfe teilen','Share this decision guide')+'</button><input data-share aria-label="'+t('Link zum Kopieren','Link to copy')+'" readonly hidden><p data-status role="status"></p><noscript><p>'+t('Ohne JavaScript: ','Without JavaScript: ')+link(cost,t('Kosten vergleichen','Compare costs'))+' · '+link(cold,t('Kalte Räume prüfen','Read cold-room guidance'))+'</p></noscript></section><script type="module" src="/assets/moisture-decision.mjs?v='+ASSET_VERSION+'"></script><!--/EB_BUYER-->\n'
 
 def inject(html, slug, en=False):
     if slug not in PATHS[en]: return None

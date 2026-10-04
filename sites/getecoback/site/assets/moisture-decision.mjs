@@ -16,6 +16,9 @@ if(root){
  const allowed=()=>!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'&&!navigator.webdriver&&!/[?&]__probe(?:=|&|$)/.test(location.search);
  function event(name,choice='none',action='none'){
   const key=[name,choice,action].join(':');if(!allowed()||sent.has(key))return;sent.add(key);
+  // Fixed completion only; the shared channel owns consent and never receives
+  // the reader's humidity, temperature, answers or selected product.
+  if(name==='buyer_result')window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'legacy:buyer_result'}}));
   const body=JSON.stringify({n:name,p:location.pathname,r:document.referrer,m:{lang,choice,action}});
   try{if(navigator.sendBeacon)navigator.sendBeacon('/api/ev',new Blob([body],{type:'text/plain'}));else fetch('/api/ev',{method:'POST',headers:{'Content-Type':'text/plain'},body,keepalive:true}).catch(()=>{});}catch{}
  }

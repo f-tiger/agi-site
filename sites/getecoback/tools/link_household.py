@@ -5,6 +5,11 @@ import re
 import hashlib
 SITE=Path(__file__).resolve().parents[1]/'site'
 TARGETS={
+'guide/fenster-beschlagen-innen.html':('Vor dem Gerätekauf: Feuchte richtig messen','/guide/luftfeuchtigkeit-richtig-messen.html','Temperatur und Luftfeuchte an mehreren typischen Tagen prüfen. Kondenswasser allein legt keine Gerätegröße fest.'),
+'guide/luftentfeuchter-keller.html':('Passt ein Entfeuchter zu deinem Keller?','/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice','Mit Feuchtequelle, Messwert und Temperatur den nächsten Schritt klären. Ein Gerät ersetzt keine Prüfung nasser Wände.'),
+'guide/schimmel-im-keller-entfernen.html':('Feuchte beobachten, Ursache klären','/guide/luftfeuchtigkeit-richtig-messen.html','Messwerte helfen bei der Einordnung; vorhandener Schimmel und bauliche Ursachen brauchen eine eigene Beurteilung.'),
+'guide/heizluefter-stromsparend.html':('Rechne mit deinem Tarif und deiner Laufzeit','/guide/heizluefter-stromverbrauch.html#eb-heater-cost','Die eingestellte Leistung, Heizzeit und dein Strompreis bestimmen die Betriebskosten. Thermostat-Sparen nicht pauschal annehmen.'),
+'guide/heizluefter-stromverbrauch.html':('Welche Zusatzheizung passt zu deiner Nutzung?','/guide/heizkosten-vergleich-rechner.html','Vergleiche den konkreten Betrieb. Ein niedriger Kaufpreis bedeutet nicht automatisch niedrige Gesamtkosten.'),
 'index.html':('Haushaltskosten mit eigenen Zahlen prüfen','/wohnkosten-werkstatt.html','Drei kostenlose Rechner: Trocknen vergleichen, Strom messen und einen Geräteaustausch durchrechnen.'),
 'tools.html':('Neu: die Haushaltswerkstatt','/wohnkosten-werkstatt.html','Messprotokoll, Trocknungsvergleich und Austauschrechner mit nachvollziehbaren Beispielen.'),
 'guide/waesche-trocknen-wohnung.html':('Trockner oder Entfeuchter: Was kostet deine Wäsche?','/waeschetrockner-oder-luftentfeuchter.html','Vergleiche Strom je gleich trockener Ladung statt nur die Wattzahl der Geräte.'),
@@ -35,6 +40,10 @@ for name,(title,url,desc) in TARGETS.items():
   s,n=re.subn(r'(<h2\b)',lambda m:block+m.group(1),s,count=1)
   if n!=1:raise SystemExit('No insertion target: '+name)
  if name=='tools.html':s=s.replace('10 kostenlose Tools','kostenlose Tools')
+ # These existing autumn/winter paths are not heatwave guides. Normalize the
+ # old template label here so later generator runs cannot restore it.
+ if name.startswith('guide/') and not name.startswith('guide/klimaanlage-'):
+  s=s.replace('EcoBack Hitzewelle-Ratgeber','EcoBack Raumklima-Ratgeber')
  p.write_text(s)
 print('Household entry links verified on',len(TARGETS),'existing pages.')
 

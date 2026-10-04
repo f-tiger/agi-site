@@ -30,7 +30,7 @@ test('six built guides retain disclosures, evidence and existing language bounda
  for(const path of BUYER_PATHS){
   const html=readFileSync(new URL('../site'+path,import.meta.url),'utf8');
   assert.equal((html.match(/id="eb-moisture-choice"/g)||[]).length,1,path);
-  assert.equal((html.match(/src="\/assets\/moisture-decision.mjs"/g)||[]).length,1);
+  assert.equal((html.match(/src="\/assets\/moisture-decision.mjs\?v=[a-f0-9]{12}"/g)||[]).length,1);
   assert.ok(html.includes('getecoback-21'));
   assert.ok(html.includes('rel="sponsored nofollow noopener"'));
   assert.ok(html.includes('8.5 L')&&html.includes('180 W'));
