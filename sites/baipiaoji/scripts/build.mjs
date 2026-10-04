@@ -471,6 +471,11 @@ function accountEntry(path='/',seed=[]){
  const zh=LOCALE.code==='zh';
  return `<section class="sub bpj-account-cta" id="sub"><div class="sub-in"><h2>${zh?'把关注清单存进免费账户':'Keep your followed tools in a free account'}</h2><p>${zh?'注册后可跨设备同步关注工具，在个人中心查看已记录的额度变更，并下载带出处的清单。没有邮件通知或营销订阅。':'Sign up to sync followed tools across devices, review recorded allowance changes in your account and download a sourced sheet. No email alerts or marketing subscription.'}</p><a data-account-entry href="${BASE}/account?next=${encodeURIComponent(pub(path))}">${zh?'免费注册 / 登录':'Create free account / Sign in'} →</a><a href="${BASE}/changes">${zh?'先看公开变更记录':'Browse public changes'} →</a><p class="sub-count"></p></div></section>`;
 }
+function saveToolEntry(tool){
+ const zh=LOCALE.code==='zh';
+ const href=`${BASE}/account?save=${encodeURIComponent(tool.slug)}&next=${encodeURIComponent(BASE+'/tools/'+tool.slug)}`;
+ return `<aside class="account-tool-entry" data-account-tool-entry><h2>${zh?`把 ${esc(tool.name)} 加入你的工具清单`:`Keep ${esc(tool.name)} in your tool list`}</h2><p>${zh?'免费账户可跨设备保存清单、查看已记录变更，并下载带官方出处的工具资料。':'A free account syncs your list across devices, shows recorded changes and lets you download a sheet with official sources.'}</p><a data-account-save="${esc(tool.slug)}" href="${esc(href)}">${zh?'保存到免费账户':'Save to a free account'} →</a><small>${zh?'无需付款；不会自动订阅邮件。':'No payment required. No automatic email subscription.'}</small></aside>`;
+}
 function gateOf(path) {
  if(!GATED_TOOLS.has(path))return '';
  const zh=LOCALE.code==='zh';
@@ -1171,6 +1176,7 @@ function toolPage(tool) {
     <p class="answer">${esc(answer)}</p>
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
+    ${saveToolEntry(tool)}
     <p class="coverage">${tool.limits ? `<a href="#free-tier-limits">${LOCALE.code === 'zh' ? '查看完整额度与限制' : 'Read the full allowance and conditions'}</a> · ` : ''}<a href="${BASE}/c/${esc(tool.category)}">${LOCALE.code === 'zh' ? '对比同类工具的额度与限制' : 'Compare limits across this category'} →</a> · <a href="#sources">${LOCALE.code === 'zh' ? '查看来源与内容日期' : 'Check sources and content dates'}</a></p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${tool.category==='video'?'\n    '+videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
     <section class="panel evidence-panel" id="sources">

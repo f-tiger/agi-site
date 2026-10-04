@@ -26,7 +26,11 @@ assert.ok(s.window.end_exclusive<=new Date().toISOString().slice(0,10));
 for(const n of [...Object.values(s.events),...Object.values(s.accounts)])assert.ok(Number.isInteger(n)&&n>=0);
 assert.ok(s.accounts.new_accounts_currently_email_verified<=s.accounts.created);
 console.log('PASS live: English homepage, two snippets, two controls, canonical URLs and complete-day conversion stages.');
-console.log(JSON.stringify(s));
+assert.ok(Number.isInteger(s.accounts.total_non_test));
+assert.ok(s.accounts.total_non_test>=s.accounts.created);
+assert.ok(s.accounts.total_currently_email_verified<=s.accounts.total_non_test);
+assert.ok(Number.isInteger(s.events.account_tool_entries));
+console.log('PASS lifetime non-test account totals and signup-entry metric shape.');
 }
 
 // Pages deployment completion can precede custom-domain propagation. Retry the
