@@ -21,7 +21,7 @@ const origin='https://getecoback.com', root=path.resolve('site');
     const u=new URL(route.request().url());if(u.origin!==origin)return route.abort();
     if(u.pathname.startsWith('/api/'))throw Error('No live telemetry allowed');
     const file=path.join(root,u.pathname+(u.pathname.endsWith('/')?'index.html':''));
-    const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.md':'text/plain'}[path.extname(file)]||'application/octet-stream';
+    const mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.md':'text/plain'}[path.extname(file)]||'application/octet-stream';
     try{return route.fulfill({contentType:mime,body:await fs.readFile(file)});}catch{return route.fulfill({status:404,body:'missing'});}
    });
    const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('popup',p=>p.close().catch(()=>{}));

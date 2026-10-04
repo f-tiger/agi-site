@@ -48,14 +48,27 @@ const cases=[
         page.on('popup',p=>p.close().catch(()=>{}));
         await page.goto(base+path,{waitUntil:'load'});
         await page.waitForTimeout(150);
-        const selectors=path==='/'?['a[data-eb-tp]','#eb-herbst a[href*="amazon."]']:
+        const heaterDecision=revision==='current'&&path==='/guide/heizluefter-stromverbrauch.html';
+        const moistureDecision=revision==='current'&&path==='/en/guide/dehumidifier-20-sqm.html';
+        if(heaterDecision||moistureDecision)assert.equal(await page.locator('#eb-toppick,#eb-ustop,#eb-usshelf').count(),0);
+        if(moistureDecision){
+          const form=page.locator('#eb-moisture-choice form');
+          for(const [name,value] of Object.entries({humidity:'high',temperature:'warm',market:'de'}))await form.locator('[name='+name+']').selectOption(value);
+          await form.locator('[type=submit]').click();
+          assert.equal(await page.locator('#eb-moisture-choice [data-choice-action=shop]:visible').count(),2);
+        }
+        const selectors=heaterDecision?['article a[href*="amazon."]']:moistureDecision?[
+          '#eb-moisture-choice [data-answer=compare] a[data-choice-action=shop][href*="/dp/"]',
+          '#eb-moisture-choice [data-answer=compare] a[data-choice-action=shop][href*="/s?"]'
+        ]:path==='/'?['a[data-eb-tp]','#eb-herbst a[href*="amazon."]']:
           tz.startsWith('America/')?['#eb-ustop a[href*="amazon."]','#eb-usshelf a[href*="amazon."]']:
           ['a[data-eb-tp]','article a[href*="amazon."]'];
         for(const selector of selectors) {
           const link=page.locator(selector+':visible').first();
           assert.equal(await link.count(),1,`${engine}/${revision}/${path}: ${selector} exists`);
           const href=await link.getAttribute('href'),u=new URL(href);
-          const isUS=tz.startsWith('America/');
+          // A reader's explicit German-store choice overrides browser timezone.
+          const isUS=tz.startsWith('America/')&&!moistureDecision;
           assert.equal(u.hostname,'www.amazon.'+(isUS?'com':'de'));
           assert.equal(u.searchParams.get('tag'),isUS?'ecoback0d-20':'getecoback-21');
           const before=await page.evaluate(()=>window.__affiliateQA.filter(x=>x.n==='affiliate_click').length);
