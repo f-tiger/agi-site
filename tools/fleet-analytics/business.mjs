@@ -27,6 +27,7 @@ export function businessEvent(host, pathname, detail) {
   const name = detail.name;
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
+  if (host === 'baipiaoji.com' && /^\/tools\/[a-z0-9-]+$/.test(route) && name === 'account_entry') return {name, tool_id:'free-account', repeat:true};
   if (host === 'baipiaoji.com' && route === '/subscription-audit' &&
       ['subscription_review','subscription_copy'].includes(name)) {
     return {name, tool_id:'subscription-audit', repeat:true};

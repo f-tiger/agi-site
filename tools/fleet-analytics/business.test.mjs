@@ -61,3 +61,8 @@ test('AGI home funnel uses fixed actions and route-derived language only',()=>{
  for(const path of ['/','/cn'])assert.deepEqual(businessEvent('agiscorecard.com',path,{name:'home_video_open'}),{name:'home_video_open',tool_id:'agi-home',site_edition:path==='/cn'?'zh':'en',repeat:true});
  for(const [host,path,detail]of [['agiscorecard.com','/members',{name:'home_library'}],['other.example','/',{name:'home_library'}],['agiscorecard.com','/',{name:'home_library',video:'private'}],['agiscorecard.com','/cn',{name:'home_unknown'}]])assert.equal(businessEvent(host,path,detail),null);
 });
+
+ test('BPJ tool signup intent accepts no private context',()=>{
+ for(const path of ['/tools/grok','/en/tools/kimi.html']) assert.deepEqual(businessEvent('baipiaoji.com',path,{name:'account_entry'}),{name:'account_entry',tool_id:'free-account',repeat:true});
+ for(const [host,path,detail] of [['getecoback.com','/tools/grok',{name:'account_entry'}],['baipiaoji.com','/account',{name:'account_entry'}],['baipiaoji.com','/tools/grok',{name:'account_entry',email:'private'}]]) assert.equal(businessEvent(host,path,detail),null);
+});

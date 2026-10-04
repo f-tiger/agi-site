@@ -11,7 +11,7 @@
 //   · 同一 isolate 里同时到的未命中只算一次；
 //   · 只缓存 ok:true 且不带 partial:true 的 200；失败、部分失败、缓存本身出错都照原样现算或返回，不缓存错误；
 //   · 命中时返回剩余的新鲜时间，不把一小时重新算起。
-export const REACH_CACHE_VERSION = 'v8';   // v8: distinguish fixed directory anchors from homepage links (2026-10-02)
+export const REACH_CACHE_VERSION = 'v9';   // v9: current non-test account totals and tool-to-account entry actions
 export const REACH_TTL = 3600;
 
 export function createReachCache({ getCache = () => globalThis.caches?.default, now = Date.now, cachePath = `/__bpj-cache/reach/${REACH_CACHE_VERSION}` } = {}) {
