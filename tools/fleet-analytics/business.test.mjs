@@ -27,6 +27,19 @@ test('BPJ homepage accepts fixed labels only and keeps repeated clicks',()=>{
  for(const [host,path,detail] of [['baipiaoji.com','/tools/grok',{name:'home:hero:toolbox'}],['getecoback.com','/',{name:'home:hero:toolbox'}],['baipiaoji.com','/',{name:'home:SECRET:toolbox'}],['baipiaoji.com','/',{name:'home:hero:https://private.invalid'}],['baipiaoji.com','/',{name:'home:hero:toolbox',query:'SECRET'}]])assert.equal(businessEvent(host,path,detail),null);
 });
 
+test('BPJ subscription checklist measures review and successful copy without form values',()=>{
+ for(const path of ['/subscription-audit','/en/subscription-audit.html'])
+  for(const name of ['subscription_review','subscription_copy'])
+   assert.deepEqual(businessEvent('baipiaoji.com',path,{name}),{name,tool_id:'subscription-audit',repeat:true});
+ for(const [host,path,detail] of [
+  ['baipiaoji.com','/members',{name:'subscription_copy'}],
+  ['getecoback.com','/subscription-audit',{name:'subscription_copy'}],
+  ['baipiaoji.com','/subscription-audit',{name:'subscription_copy',fee:200}],
+  ['baipiaoji.com','/subscription-audit',{name:'subscription_review',usage:30}],
+  ['baipiaoji.com','/subscription-audit',{name:'subscription_purchase'}]
+ ])assert.equal(businessEvent(host,path,detail),null);
+});
+
 
 test('TDS collecting measurements keep exact route/action pairs and exclude input values',()=>{
  assert.deepEqual(businessEvent('thedollscout.com','/zh/collecting/budget',{name:'collector_budget_calc'}),{name:'tool_complete',tool_id:'collecting-budget'});

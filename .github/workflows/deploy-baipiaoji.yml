@@ -245,6 +245,7 @@ jobs:
           node scripts/test-agent-watch.mjs
           # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
           node scripts/test-work-plan.mjs
+          node scripts/test-subscription-audit.mjs
           node scripts/test-studio.mjs
           node scripts/test-release-pilot.mjs
           node --test scripts/test-release-check-kit.mjs
@@ -312,6 +313,7 @@ jobs:
         run: |
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
+          node scripts/test-subscription-audit.mjs --dist
           node scripts/test-distribution.mjs --dist
           node scripts/test-github-tools.mjs --dist
           node scripts/test-catalog-sync.mjs --dist
@@ -391,6 +393,7 @@ jobs:
           node sites/baipiaoji/scripts/test-ai-tools-browser.mjs
           node sites/baipiaoji/scripts/test-growth-browser.mjs
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
+          node sites/baipiaoji/scripts/test-subscription-audit-browser.mjs
           node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
           node tools/quote-page-lab/build.mjs
@@ -430,6 +433,9 @@ jobs:
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
         run: node tools/fleet-analytics/verify-live.mjs bpj
+
+      - name: Verify published subscription review and checklist
+        run: node scripts/test-subscription-audit.mjs --live
 
       - name: Verify published quote builder
         working-directory: ${{ github.workspace }}
