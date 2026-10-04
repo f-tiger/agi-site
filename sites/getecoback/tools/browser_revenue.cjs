@@ -35,9 +35,12 @@ const http=require('node:http');
   try{
    const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),errors=[];events=[];
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+   // A rapid next navigation can abort WebKit's pending dynamic imports.
+   // Await the actual module, including its dependencies, before leaving a page.
+   const analyticsReady=()=>page.evaluate(async()=>{const script=document.querySelector('script[data-ga4-id]');if(script)await import(script.src);});
    for(const [lang,t]of Object.entries(copy)){
     console.log('Checking revenue next steps: '+name+' / '+lang);
-    await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);
+    await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);await analyticsReady();
     assert.equal(await page.locator('#next-steps').isVisible(),false);checks++;
     await page.locator('[name=confirm]').check();await page.locator('button[type=submit]').click();
     assert.equal(await page.locator('#next-steps').isVisible(),false);checks++;
@@ -47,12 +50,12 @@ const http=require('node:http');
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);checks++;
     const before=events.filter(e=>e.n==='outbound_choice').length;
     await page.locator('[data-next-step]').first().click();
-    await page.waitForURL(base+t.nextLinks[0].path);
+    await page.waitForURL(base+t.nextLinks[0].path);await analyticsReady();
     await received('outbound_choice',before+1);
     assert.equal(events.filter(e=>e.n==='outbound_choice').length,before+1);checks++;
     assert.deepEqual(events.filter(e=>e.n==='outbound_choice').at(-1).m,{lang,market:lang==='en'?'de':lang,input:'own',source:'energy-next',choice:'consumption'});checks++;
    }
-   await page.goto(base+'/'+copy.de.path+'?__probe=1');await page.waitForFunction(()=>document.querySelector('#reset').onclick);
+   await page.goto(base+'/'+copy.de.path+'?__probe=1');await page.waitForFunction(()=>document.querySelector('#reset').onclick);await analyticsReady();
    await page.locator('[name=purpose][value=own]').check();await page.locator('[name=confirm]').check();await page.locator('button[type=submit]').click();
    await page.locator('#next-steps').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/revenue-next-'+name+'.png'});
    await page.locator('[name=kwh0]').fill('4000');assert.equal(await page.locator('#next-steps').isVisible(),false);checks++;
