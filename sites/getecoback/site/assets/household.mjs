@@ -14,9 +14,9 @@ if(form){
    }else{
     const r=replacement(data);text=`Stromkosten-Differenz: ${eur(r.saving)} pro Jahr. ${r.payback===null?'Kein Rückfluss des Kaufpreises durch Stromersparnis.':`Rechnerischer Rückfluss des Kaufpreises nach ${num(r.payback)} Jahren.`} Über ${num(data.years)} Jahre: vorhandenes Gerät ${eur(r.keep)}, neues Gerät einschließlich Kauf ${eur(r.buy)}. Reparaturen, Finanzierung, Restwert und graue Energie sind nicht eingerechnet.`;
    }
-   out.textContent=text;out.focus();
+   out.textContent=text;if(!window.__ecoToolExample)out.focus();
    // Only an intentional successful calculation, no inputs or result sent.
-   if(!new URLSearchParams(location.search).has('__probe'))window.gtag?.('event','stromkosten_calc',{source:'household-'+kind});
+   if(!window.__ecoToolExample&&!new URLSearchParams(location.search).has('__probe'))window.gtag?.('event','stromkosten_calc',{source:'household-'+kind});
   }catch{out.textContent='Bitte gültige Zahlen innerhalb der angegebenen Grenzen eingeben.';}
  };
  const invalidate=()=>{out.textContent='Eingaben geändert. Bitte neu berechnen.';};

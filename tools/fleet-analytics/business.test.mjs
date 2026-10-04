@@ -74,3 +74,11 @@ for (const name of ['search_suggestions','search_results','search_empty','search
  assert.equal(businessEvent('baipiaoji.com','/',{name,query:'private@example.test'}),null);
  assert.equal(businessEvent('getecoback.com','/',{name}),null);
 }
+
+test('Eco tool distribution measures fixed preparation actions without input payloads',()=>{
+ for(const action of ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'])assert.equal(businessEvent('getecoback.com','/guide/stromkosten-rechner.html',{name:'eco_tool_'+action}).name,'eco_tool_'+action);
+ for(const pathname of ['/members.html','/account/session','/en/members.html','/it/account.html','/api/private','/zh/account.html'])assert.equal(businessEvent('getecoback.com',pathname,{name:'eco_tool_copy'}),null);
+ assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_tool_share_prepare',values:{rate:0.4}}),null);
+ assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_tool_published'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/rechner.html',{name:'eco_tool_copy'}),null);
+});
