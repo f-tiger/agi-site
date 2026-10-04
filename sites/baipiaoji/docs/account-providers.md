@@ -62,3 +62,17 @@ regression requires rejection without following another host. The release's
 existing live account check also sends an intentionally invalid signature using
 a current Google key ID: it must receive a token rejection, not a transport 503.
 This creates no account and does not claim a successful real-user Google consent.
+# Google callback lifecycle — 2026-10-04
+
+Google credential exchange consumes a browser nonce. Repeated callbacks or
+clicking the still-rendered Google button after successful onboarding previously
+submitted that consumed challenge again, allowing `google_nonce_required` to
+overwrite the successful result. Each frontend flow now accepts one callback,
+hides its button as soon as exchange starts, and ignores stale/duplicate replies.
+An explicit retry creates a new challenge and a new button. Existing pending
+proof restoration and password-confirmed account linking remain unchanged.
+
+Browser regression tests reproduce the duplicate POST before the fix, then check
+concurrent and late duplicates, preserved onboarding, and explicit fresh retries
+in both languages. This establishes a reproducible defect matching the reported
+message; a screenshot alone cannot exclude cookie expiry or browser restrictions.

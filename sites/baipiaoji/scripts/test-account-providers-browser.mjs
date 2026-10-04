@@ -21,7 +21,7 @@ const gis=`window.__gisInitializations=[];window.google={accounts:{id:{initializ
 let browser;const errors=[];
 async function fixture({lang='en',user=null,loginUser=USER,google=null,resetFailure=false,holdReset=false,holdCredential=false,credentialResult=null}={}){
  const context=await browser.newContext({acceptDownloads:true}),calls=[],release=deferred(),entered=deferred();
- let serverUser=user,resetDone=false;
+ let serverUser=user,resetDone=false,googleNonceActive=false;
  context.on('page',p=>p.on('pageerror',e=>errors.push(e.message)));
  await context.route('**/*',async route=>{
   const request=route.request(),url=new URL(request.url());
@@ -54,8 +54,10 @@ async function fixture({lang='en',user=null,loginUser=USER,google=null,resetFail
    }
    if(url.pathname==='/api/account-google'){
     if(!body)return json({ok:true,available:!!google,...(google?.onboarding?{onboarding:google.onboarding}:{})});
-    if(body.action==='start')return json({ok:true,client_id:'test-client.apps.googleusercontent.com',nonce:String(calls.filter(x=>x.body?.action==='start').length).padStart(43,'N')});
+    if(body.action==='start'){googleNonceActive=true;return json({ok:true,client_id:'test-client.apps.googleusercontent.com',nonce:String(calls.filter(x=>x.body?.action==='start').length).padStart(43,'N')});}
     if(body.action==='credential'){
+     if(!googleNonceActive)return json({ok:false,error:'google_nonce_required'},401);
+     googleNonceActive=false;
      const result=credentialResult||{state:'signed_in',user:USER,favorites:[]};if(result.state==='signed_in')serverUser=USER;
      entered.resolve();if(holdCredential)await release.promise;
      return json({ok:true,...result},result.error?503:200);
@@ -94,6 +96,27 @@ try{
  const executablePath=process.env.PILOT_CHROMIUM||process.env.WORKBENCH_CHROMIUM;
  browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{}),args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote','--disable-gpu']});
  let groups=0;
+ for(const lang of ['zh','en']){
+  const f=await fixture({lang,google:{},holdCredential:true,credentialResult:{state:'onboarding',email:USER.email}});await f.open();
+  await f.page.waitForFunction(()=>!!window.__gisOptions);
+  await f.page.evaluate(()=>{window.__savedCallback=window.__gisOptions.callback;window.__first=window.__savedCallback({credential:'same-proof'});});
+  await f.entered.promise;
+  await f.page.evaluate(()=>window.__savedCallback({credential:'same-proof'}));
+  assert.equal(f.posts('credential').length,1,'A pending Google exchange must not submit twice');
+  f.release.resolve();await f.page.evaluate(()=>window.__first);
+  await f.page.evaluate(()=>window.__savedCallback({credential:'same-proof'}));
+  assert.equal(f.posts('credential').length,1,'A successful exchange must not resubmit its consumed nonce');
+  assert.match(await f.page.locator('#account-status').textContent(),/Google 身份已确认|Google identity confirmed/);
+  assert.equal(await f.page.locator('#register-email').inputValue(),USER.email);
+  assert.equal(await f.page.locator('#account-google-button').isVisible(),false);
+  await f.page.locator('#account-google-retry').click();
+  await f.page.waitForFunction(()=>window.__gisOptions.callback!==window.__savedCallback);
+  assert.equal(await f.page.locator('#account-google-button').isVisible(),true);
+  await f.page.evaluate(()=>window.__gisOptions.callback({credential:'fresh-proof'}));
+  assert.equal(f.posts('credential').length,2,'Explicit retry obtains and consumes a fresh nonce');
+  assert.match(await f.page.locator('#account-status').textContent(),/Google 身份已确认|Google identity confirmed/);
+  await f.context.close();groups++;
+ }
  for(const lang of ['zh','en']){
   const f=await fixture({lang,google:{},credentialResult:{ok:false,error:'google_unavailable'}});await f.open();
   await f.page.waitForFunction(()=>!!window.__gisOptions);
