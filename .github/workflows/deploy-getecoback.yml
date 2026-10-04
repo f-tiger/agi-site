@@ -170,8 +170,6 @@ jobs:
       - name: Link household decision tools from relevant existing pages
         run: |
           python3 tools/link_household.py
-          python3 tools/link_winter_guides.py
-          python3 tools/check_winter_guides.py
       - name: Link electricity workbenches from existing content
         run: |
           python3 tools/link_energy_workbench.py
@@ -193,6 +191,8 @@ jobs:
       - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
         run: |
           python3 tools/build_country_categories.py
+          python3 tools/link_winter_guides.py
+          python3 tools/check_winter_guides.py
           python3 tools/build_hreflang.py
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)

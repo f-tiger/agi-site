@@ -52,9 +52,9 @@ jobs:
           # after generic chrome, keeping their probe/event contract intact.
           python3 tools/link_energy_workbench.py
           python3 tools/link_household.py
+          python3 tools/build_country_categories.py
           python3 tools/link_winter_guides.py
           python3 tools/check_winter_guides.py
-          python3 tools/build_country_categories.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
