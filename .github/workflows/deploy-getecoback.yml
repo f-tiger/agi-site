@@ -548,10 +548,14 @@ jobs:
           # one computed figure; a page that renders without it is intact and
           # useless, which is the accident worth asserting.
           check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" "61 g"
-          # The infrared/mould page exists for one counter-marketing figure: above
-          # ~62% room RH the surface cannot reach the threshold at any wall
-          # temperature. A page that lost that number would read as an endorsement.
-          check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "62 %"
+          # Heated surfaces can exceed room-air temperature. Do not require the old,
+          # false 62% impossibility claim. The browser audit checks 20 C / 65% RH /
+          # 24 C wall => 51% surface RH; live copy must retain the model's limits.
+          check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "Beheizte Flächen dürfen wärmer als die Raumluft sein"
+          check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "keine Garantie gegen Schimmel"
+          if grep -Fq 'tw>=tr' <<<"$body"; then
+            echo "::error::surface calculator again rejects a wall warmer than room air"; fail=1
+          fi
           # Country pages (2026-09-18). Each exists for one fact a reader in that
           # market cannot get from the German original, so that is what is asserted:
           # the Austrian page is worthless without the two-month deemed-consent
