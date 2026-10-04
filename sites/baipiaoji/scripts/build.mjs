@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import {auditQuota, assessAudit, auditAdvice} from './subscription-audit.mjs';
 import {searchResults} from '../lib/search-results.mjs';
+import {installSearch} from '../lib/search-ui.mjs';
 import {HOME_BLOCKS,HOME_DESTINATIONS,parseHomepageClick} from '../lib/homepage-signals.js';
 import {catalogStatus} from './catalog-status.mjs';
 import {buildGithubTools,githubToolsHome,githubToolSearch} from './github-tools-pages.mjs';
@@ -842,56 +843,7 @@ const SUB_JS_BODY = `(function(){
   // 索引懒加载：聚焦才拉取，不聚焦的访客不花这份流量。
   // 索引按 URL 缓存（2026-09-22）：同一页现在可能有两个搜索框指向不同索引（全站 search-index.json 与
   // agents-index.json）；此前单个全局缓存会让第二个框拿到第一个框的索引。
-  var IDX={}, IDXP={};
-  function loadIdx(u){
-    if(IDX[u])return Promise.resolve(IDX[u]);
-    if(!IDXP[u])IDXP[u]=fetch(u).then(function(r){return r.json()}).then(function(d){IDX[u]=d;return d});
-    return IDXP[u];
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('.gs'),function(g){
-    var inp=g.querySelector('input'), drop=g.querySelector('.gs-drop'); if(!inp||!drop)return;
-    var tm,evT;
-    inp.addEventListener('focus',function(){loadIdx(g.dataset.idx)});
-    function render(){
-      var kw=inp.value.trim().toLowerCase();
-      if(!kw){drop.hidden=true;drop.textContent='';return}
-      loadIdx(g.dataset.idx).then(function(d){
-        var hits=(${searchResults.toString()})(d,kw);
-        // 站内搜索此前零度量(2026-08-30 补):停敲 1.2s 记一次查询词。
-        // miss 词是需求信号——没搜到的就是站上缺的,进每日选题输入(仍过三门)。
-        if(kw.length>=2){
-          clearTimeout(evT);
-          evT=setTimeout(function(){
-            if(window.bpjEv)bpjEv('gs','/gs/'+(g.dataset.tag?g.dataset.tag+'/':'')+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
-          },1200);
-        }
-        drop.textContent='';
-        if(!hits.length){
-          var e=document.createElement('p'); e.className='gs-none';
-          e.textContent=ZH?'没有匹配——换个更短的词试试':'No match — try a shorter term';
-          drop.appendChild(e);
-        }
-        hits.forEach(function(h){
-          var a=document.createElement('a'); a.href=h.u;
-          var b=document.createElement('b'); b.textContent=h.n; a.appendChild(b);
-          var k=document.createElement('span'); k.textContent=h.k; a.appendChild(k);
-          // 点进 = 搜索唯一的成功指标;sendBeacon 不怕跳转打断
-          a.addEventListener('click',function(){
-            if(window.bpjEv)bpjEv('gs_go','/gs_go'+h.u.replace(/^https?:\\/\\/[^/]+/,''));
-          });
-          drop.appendChild(a);
-        });
-        drop.hidden=false;
-      }).catch(function(){});
-    }
-    if(g.closest('.bpj-home-copy')){var initial=new URLSearchParams(location.search).get('q');if(initial){inp.value=initial.slice(0,200);render();}}
-    inp.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(render,120)});
-    inp.addEventListener('keydown',function(e){
-      if(e.key==='Escape'){drop.hidden=true}
-      else if(e.key==='Enter'){var a=drop.querySelector('a');if(a){e.preventDefault();if(window.bpjEv)bpjEv('gs_go','/gs_go'+a.href.replace(/^https?:\\/\\/[^/]+/,''));location.href=a.href}}
-    });
-    document.addEventListener('click',function(e){if(!g.contains(e.target))drop.hidden=true});
-  });
+  (${installSearch.toString()})(${searchResults.toString()}, ZH);
 
 })();
 `;
