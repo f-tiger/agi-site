@@ -360,6 +360,8 @@ jobs:
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/build.mjs --site eco --out sites/getecoback/site
           python3 sites/getecoback/tools/build_tool_experience.py
+          python3 sites/getecoback/tools/build_language_nav.py
+          python3 sites/getecoback/tools/test_language_nav.py
           node tools/revenue-studio/verify.mjs --site eco --out sites/getecoback/site
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/test-failure.mjs
