@@ -25,6 +25,10 @@ export function businessEvent(host, pathname, detail) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'getecoback.com' && /^\//.test(pathname) && !/^\/(?:(?:en|it|fr|es|zh)\/)?(?:members|account|api|private)(?:[/.]|$)/.test(pathname) &&
+      ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'].some(action=>name==='eco_tool_'+action))
+    return {name,tool_id:'eco-tool-experience',repeat:true};
+
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   if (host === 'baipiaoji.com' && !/^\/(?:account|members)(?:\/|$)/.test(route) && ['search_suggestions','search_results','search_empty','search_suggestion_select','search_result_select','search_error'].includes(name)) return {name, tool_id:'site-search', repeat:true};
