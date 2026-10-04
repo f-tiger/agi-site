@@ -8,7 +8,9 @@ export const HOSTS=new Map([
  ['localebatch.agiscorecard.com','LocaleBatch'],['verify.agiscorecard.com','Agent Delivery Lab'],
  ['rfqdesk.agiscorecard.com','RFQ Desk'],['modelmeter.agiscorecard.com','ModelMeter'],['querysprint.agiscorecard.com','QuerySprint'],['filinglens.agiscorecard.com','FilingLens'],
  ...['web3','reconcile','evidence','route','protocol','permit','compute','incentives','proof','calls','disclosures'].map(x=>[x+'.agiscorecard.com',x]),
- ['invest.agiscorecard.com','SunWatch']
+ ['invest.agiscorecard.com','SunWatch'],
+ ['compass.agiscorecard.com','AI Investing Compass'],['gushen.agiscorecard.com','Gushen'],
+ ['agents.agiscorecard.com','Agentic Finance'],['index.agiscorecard.com','Agentic Finance Index'],['x402.agiscorecard.com','x402 Watch'],['wallets.agiscorecard.com','Agent Wallets'],['pay.agiscorecard.com','Agent Settlement']
 ]);
 export const TOKEN=/^[A-Za-z0-9_-]{43}$/;
 export const SESSION_COOKIE='__Host-fleet_account';

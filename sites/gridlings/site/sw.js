@@ -3,7 +3,7 @@
    Static assets + puzzle JSON: stale-while-revalidate (dailies are pre-baked,
    so yesterday's cache still contains today's board).
    Bump VERSION on breaking asset changes. */
-const VERSION = "gl-v2"; // v2: 2026-08-27 Star Battle region-line CSS rewrite was never bumped — returning PWA readers kept the old, unsolvable board
+const VERSION = "gl-v3"; // Purge older caches; account responses must never persist offline.
 self.addEventListener("install", (e) => { self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
@@ -17,7 +17,7 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
-  if (url.pathname === "/e" || url.pathname === "/sub") return;
+  if (url.pathname === "/e" || url.pathname === "/sub" || /^\/(?:auth|api|analytics-assets|members)(?:\/|\.|$)/.test(url.pathname) || req.cache === "no-store") return;
   const isHTML = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
   if (isHTML) {
     e.respondWith((async () => {
