@@ -1,52 +1,52 @@
 {
- "fetched": "2026-10-03",
+ "fetched": "2026-10-04",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "rising": [
     {
      "q": "deepseek v4 flash 0731",
-     "v": 91850
-    },
-    {
-     "q": "deepseek flash v4.1",
-     "v": 58900
-    },
-    {
-     "q": "dsh",
-     "v": 41750
+     "v": 106450
     },
     {
      "q": "dsh deepseek",
-     "v": 40600
+     "v": 53150
+    },
+    {
+     "q": "dsh",
+     "v": 52900
     },
     {
      "q": "deepseek v4 pro 0813",
-     "v": 32600
+     "v": 37600
     },
     {
-     "q": "deepseek v4 正式 版",
-     "v": 31600
-    },
-    {
-     "q": "qwen 3.8",
-     "v": 28400
+     "q": "glm 5.3 flash",
+     "v": 22600
     },
     {
      "q": "kimi k3",
-     "v": 14050
+     "v": 14150
     },
     {
-     "q": "deepseek harness 插件",
-     "v": 13000
+     "q": "qwen 3.8 27b",
+     "v": 12700
+    },
+    {
+     "q": "deepseek harness 安装",
+     "v": 10700
     },
     {
      "q": "deepseek v4 pro 正式 版",
-     "v": 8850
+     "v": 10350
+    },
+    {
+     "q": "deepseek harness desktop",
+     "v": 9750
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-21"
+   "fetched": "2026-10-04"
   },
   "midjourney": {
    "rising": [
@@ -277,6 +277,52 @@
    ],
    "source": "related-queries",
    "fetched": "2026-09-23"
+  },
+  "cursor": {
+   "rising": [
+    {
+     "q": "lurker",
+     "v": 36950
+    },
+    {
+     "q": "openai ends cursor contract spacex",
+     "v": 31100
+    },
+    {
+     "q": "grokbot",
+     "v": 20550
+    },
+    {
+     "q": "cursor grok bot",
+     "v": 17300
+    },
+    {
+     "q": "kimi k3 cursor",
+     "v": 16000
+    },
+    {
+     "q": "grok bot",
+     "v": 11500
+    },
+    {
+     "q": "cursor grok 4.6",
+     "v": 10450
+    },
+    {
+     "q": "spammer",
+     "v": 9900
+    },
+    {
+     "q": "grok 4.5",
+     "v": 9050
+    },
+    {
+     "q": "spammer meaning",
+     "v": 8900
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-10-04"
   }
  }
 }
