@@ -11,7 +11,7 @@ export function installSearch(searchResults, ZH) {
   const live=document.createElement('span');live.className='gs-status';live.setAttribute('role','status');g.append(live);
   const privatePage=/^\/(?:en\/)?(?:account|members)(?:\.html|\/|$)/.test(location.pathname);
   const suppressed=()=>privatePage||navigator.webdriver||navigator.doNotTrack==='1'||navigator.globalPrivacyControl||/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search);
-  function track(action,destination=''){if(suppressed())return;window.bpjEv?.(action.endsWith('select')?'gs_go':'gs','/search-ui/'+(g.dataset.tag?'agents':'site')+'/'+action+destination);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'search_'+action}}))}
+  function track(action,destination=''){if(suppressed())return;const label='/search-ui/'+(g.dataset.tag?'agents':'site')+'/'+action+destination;if(window.bpjEv){if(action.endsWith('select'))window.bpjEv('gs_go',label);else window.bpjEv('gs',label);}window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'search_'+action}}))}
   function close(){revision++;clearTimeout(timer);clearTimeout(measurement);drop.hidden=true;input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');active=-1}
   function highlight(n){const options=[...drop.querySelectorAll('[role=option]')];if(!options.length)return;active=(n+options.length)%options.length;options.forEach((a,i)=>a.setAttribute('aria-selected',String(i===active)));input.setAttribute('aria-activedescendant',options[active].id);options[active].scrollIntoView({block:'nearest'})}
   async function render(){
@@ -31,7 +31,7 @@ export function installSearch(searchResults, ZH) {
   input.addEventListener('focus',render);
   input.addEventListener('compositionstart',()=>{composing=true;clearTimeout(timer);close()});input.addEventListener('compositionend',()=>{composing=false;render()});
   input.addEventListener('input',()=>{clearTimeout(timer);close();if(!composing)timer=setTimeout(render,120)});
-  input.addEventListener('keydown',e=>{if(e.isComposing||composing)return;if(e.key==='Escape'||e.key==='Tab'){if(e.key==='Escape')e.preventDefault();close();return}if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(drop.hidden){render();return}highlight(active+(e.key==='ArrowDown'?1:-1))}if(e.key==='Enter'&&!drop.hidden){const a=drop.querySelectorAll('[role=option]')[Math.max(0,active)];if(a){e.preventDefault();a.click()}}});
+  input.addEventListener('keydown',e=>{if(e.isComposing||composing)return;if(e.key==='Escape'||e.key==='Tab'){if(e.key==='Escape')e.preventDefault();close();return}if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(drop.hidden){render();return}highlight(active<0?(e.key==='ArrowDown'?0:drop.querySelectorAll('[role=option]').length-1):active+(e.key==='ArrowDown'?1:-1))}if(e.key==='Enter'&&!drop.hidden){const a=drop.querySelectorAll('[role=option]')[Math.max(0,active)];if(a){e.preventDefault();a.click()}}});
   g.addEventListener('focusout',e=>{if(!g.contains(e.relatedTarget))setTimeout(()=>{if(!g.contains(document.activeElement))close()},150)});document.addEventListener('click',e=>{if(!g.contains(e.target))close()});
   if(g.closest('.bpj-home-copy')){const q=new URLSearchParams(location.search).get('q');if(q){input.value=q.slice(0,200);input.focus()}}
  });
