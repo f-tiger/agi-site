@@ -65,6 +65,10 @@ jobs:
           python3 tools/check_events.py
           python3 tools/check_tools_hub.py
           python3 tools/check_meta.py
+          # Match the deployed opt-in channel after all page generators.
+          python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
+          python3 ../../tools/fleet-analytics/coverage.py --site eco --out site
+          python3 -c "import json; r=json.load(open('site/analytics-assets/coverage.json')); assert any(x['mode']=='consent' for x in r['records']), 'No public pages covered'"
       - name: Install browser test runtime
         run: |
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
@@ -87,6 +91,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
       - uses: actions/upload-artifact@v4

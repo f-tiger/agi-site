@@ -61,7 +61,7 @@ def main():
     for m2 in sizes:
         g = guide.get(m2, {})
         c = f'<a href="{g["cool"]}">{cool[m2]}</a>' if m2 in cool else "—"
-        dh = f'<a href="{g["dehum"]}">{dehum[m2]} l/Tag</a>' if m2 in dehum else "—"
+        dh = f'<a href="{g["dehum"]}">Temperatur &amp; Feuchte prüfen</a>' if m2 in dehum else "—"
         ht = f'<a href="{g["heat"]}">{heat[m2]} W</a>' if m2 in heat else "—"
         rows.append(f"<tr><th scope=\"row\" style=\"text-align:left;\">{m2} m²</th>"
                     f"<td>{c}</td><td>{dh}</td><td>{ht}</td></tr>")
@@ -74,14 +74,15 @@ def main():
         f'Die Zahlen, mit denen unsere Rechner arbeiten — '
         f'{rules["cooling_btu_per_m2"]} BTU/h je m² zum Kühlen, '
         f'{rules["heating_w_per_m2_insulated"][0]}–{rules["heating_w_per_m2_insulated"][1]} W je m² zum Heizen, '
-        f'Schimmelgefahr ab {rules["mould_threshold_rh_percent"]} % relativer Luftfeuchte. '
+        f'Wiederholt über {rules["mould_threshold_rh_percent"]} % relative Luftfeuchte ist ein Prüfsignal, keine feste Schimmelgrenze. '
         f'Stand {d["dateModified"]}, frei nachnutzbar als '
         f'<a href="/daten.html">offener Datensatz</a>.</p>'
         f'<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;'
         f'font-size:14.5px;background:#fff;">'
         f'<caption style="caption-side:bottom;text-align:left;font-size:12.5px;color:#5b6b78;'
-        f'padding-top:8px;">Faustregeln, keine Norm. Hersteller-Liter/Tag sind bei 30 °C/80 % rF '
-        f'gemessen; real liegt der Entzug oft bei etwa der Hälfte.</caption>'
+        f'padding-top:8px;">Kühl- und Heizwerte sind Faustregeln, keine Auslegung. '
+        f'{rules["dehumidifier_rating_note"]} '
+        f'<a href="/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice">Entfeuchter-Bedarf prüfen</a>.</caption>'
         f'<tr><th style="text-align:left;background:#f0f5f9;padding:8px 10px;border:1px solid #e4ebf0;">Raum</th>'
         f'<th style="text-align:left;background:#f0f5f9;padding:8px 10px;border:1px solid #e4ebf0;">Kühlen</th>'
         f'<th style="text-align:left;background:#f0f5f9;padding:8px 10px;border:1px solid #e4ebf0;">Entfeuchten</th>'

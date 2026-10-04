@@ -45,14 +45,41 @@ const cases=[
    });
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('popup',p=>p.close().catch(()=>{}));
    await page.clock.install();await page.goto(origin+url,{waitUntil:'load'});
+   // Dynamic module imports can finish after load. Do not race the consent UI
+   // and later mistake it for an unclickable purchase surface.
+   if(await page.locator('script[data-ga4-id]').count())await page.locator('#fleet-analytics-settings').waitFor();
    const consent=page.locator('#fleet-analytics-choice:visible');
    const consentShown=await consent.count()>0;
    if(consentShown)await page.locator('[data-analytics-choice="denied"]').click();
-   await page.evaluate(()=>window.scrollTo(0,650));await page.waitForTimeout(100);
+   // These routes were deliberately changed to tool-first decisions in the
+   // existing demand_tools generator. Requiring the removed sales popup here
+   // would undo that product contract, not detect a regression.
+   const decisionRoute=url==='/guide/heizluefter-stromverbrauch.html'||url==='/en/guide/dehumidifier-20-sqm.html';
+   if(revision==='current'&&decisionRoute){
+    assert.equal(await page.locator('#eb-pu,#eb-toppick,#eb-models,#eb-ustop,#eb-usshelf').count(),0,'No unconditional sales surfaces on decision routes');
+    if(url.includes('heizluefter')){
+     await page.locator('#eb-heater-cost [type=submit]').click();
+     await page.locator('#eb-heater-cost [data-result]').waitFor({state:'visible'});
+    }else{
+     await page.locator('#eb-moisture-choice [type=submit]').click();
+     assert.equal(await page.locator('#eb-moisture-choice [data-answer]:visible').getAttribute('data-answer'),'measure');
+     assert.equal(await page.locator('#eb-moisture-choice [data-choice-action=shop]:visible').count(),0);
+    }
+    await page.clock.fastForward(30000);
+    await page.evaluate(()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+    await page.clock.runFor(1000);
+    assert.equal(await page.locator('#eb-pu').count(),0);
+    assert.deepEqual(errors,[]);
+    results.push({engine,revision,width,url,tz,cooling,consentShown,decisionRoute:true,picks:[],calc:false});
+    await context.close();continue;
+   }
+   await page.evaluate(()=>window.scrollTo({top:650,behavior:'instant'}));await page.clock.runFor(100);
    const sticky=page.locator('#eb-sticky-cta');
    const stickyUrl=await sticky.getAttribute('href');
    await page.clock.fastForward(30000);
-   await page.evaluate(()=>window.scrollTo(0,Math.max(700,document.documentElement.scrollHeight*0.7)));
+   await page.evaluate(()=>window.scrollTo({top:Math.max(700,document.documentElement.scrollHeight*0.7),behavior:'instant'}));
+   // Deliver native scroll/animation callbacks with the mocked clock running.
+   await page.clock.runFor(1000);
    await page.locator('#eb-pu').waitFor({state:'visible'});
    const metrics=await page.evaluate(()=>{
     const box=document.querySelector('#eb-pu'),panel=box.firstElementChild;
