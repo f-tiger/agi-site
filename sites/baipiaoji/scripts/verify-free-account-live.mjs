@@ -7,7 +7,16 @@ let password=randomBytes(24).toString('base64url'),cookie='',owner='',created=fa
 async function request(body,session=cookie){const r=await fetch(base+'/api/account',{method:body?'POST':'GET',headers:{'User-Agent':'bpj-ci-selftest','Origin':base,...(body?{'Content-Type':'application/json'}:{}),...(session?{Cookie:session}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(25000)});const j=await r.json();return {r,j};}
 const takeCookie=r=>(r.headers.get('set-cookie')||'').split(';')[0];
 try{
- for(const provider of ['account-google','account-email']){const r=await fetch(base+'/api/'+provider,{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});const j=await r.json();console.log(JSON.stringify({provider,status:r.status,available:j.available===true}));}
+ for(const provider of ['account-google','account-email']){
+  const r=await fetch(base+'/api/'+provider,{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)}),j=await r.json();
+  const expectedGoogleClient=(process.env.GOOGLE_CLIENT_ID||'').trim();
+  if(provider==='account-google'&&expectedGoogleClient){
+   assert.equal(r.status,200,'Google configuration endpoint must be available');
+   assert.equal(j.available,true,'Google sign-in must be configured after deployment');
+   assert.equal(j.client_id,expectedGoogleClient,'Production must use the configured Google client');
+  }
+  console.log(JSON.stringify({provider,status:r.status,available:j.available===true,...(provider==='account-google'&&expectedGoogleClient?{configuredClientMatches:true}:{})}));
+ }
  for(const route of ['/account','/en/account']){const r=await fetch(base+route+'?__ci=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200);const h=await r.text();assert(h.includes('account-register')&&h.includes('account-login')&&h.includes('account-recover'));}
  const readiness=await fetch(base+'/api/account?readiness=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});const ready=await readiness.json();assert.equal(readiness.status,200,'Account readiness: '+(['database_limit','unavailable'].includes(ready.error)?ready.error:'not_ready'));
  const anon=await request(null,'');assert.equal(anon.j.user,null);
