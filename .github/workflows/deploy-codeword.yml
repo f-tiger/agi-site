@@ -8,7 +8,7 @@ name: Deploy codeword
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/codeword/**", ".github/workflows/deploy-codeword.yml"]
+    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/codeword/**", ".github/workflows/deploy-codeword.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "50 8 * * *"
@@ -75,6 +75,10 @@ jobs:
               console.log("faq ok",f,vis.length);
             }'
           echo "gate ok"
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Enforce one consent-controlled GA4 channel on every public page
         working-directory: ${{ github.workspace }}
         run: |
@@ -97,7 +101,9 @@ jobs:
       - name: Verify deployed analytics version and host mapping
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs codeword
+        run: |
+          node tools/fleet-analytics/verify-live.mjs codeword
+          node tools/fleet-account/verify-live.mjs codeword
 
       - name: Post-deploy self-check
         # Every probe carries ?ci=1 so the worker keeps smoke traffic out of D1.

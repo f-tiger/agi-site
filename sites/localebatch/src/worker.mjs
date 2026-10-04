@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {auditCSV,checkTranslation,LANGUAGES,LIMITS} from '../site/core.mjs';
 const PRICE=1900, CURRENCY='eur', DAY=86400000;
@@ -179,7 +180,7 @@ async function api(request,env){
   }
   fail('Not found.',404);
 }
-export default {
+const fleetWrappedWorker = {
   async fetch(request,env){
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);try{if(new URL(request.url).pathname.startsWith('/api/'))return await api(request,env);return env.ASSETS.fetch(request);}catch(error){return json({error:error.status?error.message:'Service unavailable. Your saved batch can be resumed.'},error.status||503);}},
   async queue(batch,env){for(const message of batch.messages){try{
@@ -196,3 +197,5 @@ export default {
     await env.DB.batch([stmt(env,'DELETE FROM items WHERE job_id IN (SELECT id FROM jobs WHERE expires_at<?)',Date.now()),stmt(env,'DELETE FROM jobs WHERE expires_at<?',Date.now()),stmt(env,'DELETE FROM rate_limits WHERE expires_at<?',Date.now())]);
   }
 };
+
+export default withFleetAccount(fleetWrappedWorker);

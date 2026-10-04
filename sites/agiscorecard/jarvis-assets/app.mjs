@@ -40,9 +40,9 @@ function registerHere(e){
  if(!membership?.member)event('registration_open');
 }
 async function api(body){
- const token=memberKey(),epoch=authEpoch;if(!/^[a-f0-9]{64}$/.test(token))throw Error('unauthorized');
+ const token=memberKey(),epoch=authEpoch;if(token!=='fleet'&&!/^[a-f0-9]{64}$/.test(token))throw Error('unauthorized');
  const link=registrationLink();
- const r=await fetch('/api/jarvis'+(body?'':'/tasks'),{method:body?'POST':'GET',headers:{authorization:'Bearer '+token,...(!body&&link&&link.key!==token?{'x-jarvis-legacy-key':link.key}:{}),...(body?{'content-type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});
+ const r=await fetch('/api/jarvis'+(body?'':'/tasks'),{method:body?'POST':'GET',headers:{authorization:token==='fleet'?'Fleet':'Bearer '+token,...(!body&&link&&link.key!==token?{'x-jarvis-legacy-key':link.key}:{}),...(body?{'content-type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});
  let j;try{j=await r.json();}catch{throw Error('unavailable');}if(epoch!==authEpoch||token!==memberKey())throw Error('auth_changed');if(!r.ok||!j.ok)throw Error(j.code||'unavailable');
  if(!body&&link&&j.membership?.member){const old=storageGet(MEM+':'+link.scope),next=MEM+':'+j.membership.scope;if(old&&!storageGet(next))storageSet(next,old);try{sessionStorage.removeItem(LINK);}catch{}event('member_verified');}
  return j;
@@ -102,5 +102,6 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeou
 $('#workspace').addEventListener('click',e=>{if(!permitted()){e.preventDefault();e.stopImmediatePropagation();}},true);
 async function openBrowser(){lock();try{sessionStorage.removeItem(MEMBER_KEY);}catch{}let token=storageGet(KEY);if(!/^[a-f0-9]{64}$/.test(token||'')){token=uid(32);if(!storageSet(KEY,token))return fail(Error('storage_unavailable'));}credential=token;await refresh();}
 $('#continue-free').onclick=()=>openBrowser();
+const googleEntry=el('a',t('Register / sign in with Google','使用 Google 注册 / 登录'));googleEntry.href='/auth/account';$('#member-gate').prepend(googleEntry);
 document.body.dataset.ready='true';credential=memberKey();if(credential)refresh();else openBrowser();
 export {VERSION};

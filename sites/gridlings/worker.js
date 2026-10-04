@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // Gridlings worker: static assets + /e beacon + server-side pageview log.
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
@@ -132,7 +133,7 @@ const srcBucket = (host, self) => {
   return "other";
 };
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     // The isolated analytics document must not create a second first-party visit.
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
@@ -338,3 +339,5 @@ export default {
     return res;
   }
 };
+
+export default withFleetAccount(fleetWrappedWorker);

@@ -15,6 +15,7 @@ on:
     branches: [main]
     paths:
       - "tools/fleet-analytics/**"
+      - "tools/fleet-account/**"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -398,6 +399,7 @@ jobs:
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
           node sites/baipiaoji/scripts/test-subscription-audit-browser.mjs
           node sites/baipiaoji/scripts/test-account-providers-browser.mjs
+          node tools/fleet-account/browser-test.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
           node tools/quote-page-lab/build.mjs
           node tools/quote-page-lab/test.mjs
@@ -407,6 +409,10 @@ jobs:
           node sites/baipiaoji/scripts/test-catalog-browser.mjs
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node tools/fleet/browser-distribution.mjs
+
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
 
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
@@ -435,7 +441,9 @@ jobs:
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs bpj
+        run: |
+          node tools/fleet-analytics/verify-live.mjs bpj
+          node tools/fleet-account/verify-live.mjs bpj
 
       - name: Verify published subscription review and checklist
         run: node scripts/test-subscription-audit.mjs --live

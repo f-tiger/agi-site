@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // goldrush worker: static assets + /e event whitelist + server-side pageview.
 // Fleet pattern (same as buysomething/gridlings): every D1 write is try/catch +
@@ -163,7 +164,7 @@ export function summarizeFetchlog(template, classRows, evidenceRows, today) {
   return out;
 }
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     // The isolated analytics document must not create a second first-party visit.
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
@@ -284,3 +285,5 @@ export default {
     return res;
   },
 };
+
+export default withFleetAccount(fleetWrappedWorker);

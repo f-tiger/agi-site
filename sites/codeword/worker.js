@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 // Code Word worker:静态资产 + /e 白名单事件 + 服务端 page_view + ua_audit + /api/pulse。
 // 舰队铁律:每次 D1 写都 try/catch + waitUntil,统计永远不能 500 站点。表名带前缀 f——本站与 after35、learn 共用一个 D1 库
@@ -93,7 +94,7 @@ const srcBucket = (host, self) => {
   return "other";
 };
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     // The isolated analytics document must not create a second first-party visit.
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
@@ -162,3 +163,5 @@ export default {
     return res;
   },
 };
+
+export default withFleetAccount(fleetWrappedWorker);

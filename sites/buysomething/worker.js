@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import { handleMcp } from "./mcp.js";
 // buysomething(SourceRadar)worker:静态资产透传 + /e 事件白名单 + 服务端 pageview。
@@ -148,7 +149,7 @@ async function cachedJson(request, env, ctx, ttl, compute, params = []) {
 const AI_HOST_LIKE = ["chatgpt", "chat.openai", "perplexity", "claude.ai", "copilot", "gemini.google", "you.com", "kagi", "poe.com", "mistral", "deepseek", "kimi", "doubao", "yiyan", "metaso"];
 const aiHostHit = (ref) => { const r = String(ref).toLowerCase(); return AI_HOST_LIKE.some((t) => r.includes(t)); };
 
-export default {
+const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
     // The isolated analytics document must not create a second first-party visit.
     if (isAnalyticsPath(new URL(request.url).pathname)) return analyticsResponse(request, env);
@@ -417,3 +418,5 @@ export default {
     return res;
   }
 };
+
+export default withFleetAccount(fleetWrappedWorker);

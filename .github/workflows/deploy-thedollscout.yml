@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "tools/fleet-analytics/**"
+      - "tools/fleet-account/**"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -196,6 +197,10 @@ jobs:
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure tds
 
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Complete and verify GA4 coverage after all page generators
         working-directory: ${{ github.workspace }}
         run: |
@@ -242,7 +247,9 @@ jobs:
       - name: Verify live GA4 coverage and analytics asset version
         if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs tds
+        run: |
+          node tools/fleet-analytics/verify-live.mjs tds
+          node tools/fleet-account/verify-live.mjs tds
 
       - name: Verify live collector homepage, guides and retired URLs
         run: node scripts/collecting/verify.mjs --live

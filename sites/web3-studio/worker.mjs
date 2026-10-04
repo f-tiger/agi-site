@@ -1,3 +1,4 @@
+import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import {researchSnapshot,researchMarkup} from './research.mjs';
 import {snapshot,marketMarkup,briefsMarkup,rss} from './market.mjs';
@@ -73,5 +74,7 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
  if(u.pathname.endsWith('.json')||u.pathname==='/guide.md'||u.pathname==='/llms-full.txt')headers.set('X-Robots-Tag','noindex');
  return new Response(response.body,{status:response.status,headers});
 }
-export default {async fetch(request,env){const u=new URL(request.url);if(hosts.has(u.hostname)&&isAnalyticsPath(u.pathname))return analyticsResponse(request,env);let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
+const fleetWrappedWorker = {async fetch(request,env){const u=new URL(request.url);if(hosts.has(u.hostname)&&isAnalyticsPath(u.pathname))return analyticsResponse(request,env);let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
 
+
+export default withFleetAccount(fleetWrappedWorker);

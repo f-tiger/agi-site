@@ -7,7 +7,7 @@ name: Deploy after35
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', '.github/scripts/deploy-main-guard*', "sites/after35/**", ".github/workflows/deploy-after35.yml"]
+    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/after35/**", ".github/workflows/deploy-after35.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "50 7 * * *"
@@ -67,6 +67,10 @@ jobs:
               console.log("faq ok",f,vis.length);
             }'
           echo "gate ok"
+      - name: Verify fleet account security
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet-account/test.mjs
+
       - name: Enforce one consent-controlled GA4 channel on every public page
         working-directory: ${{ github.workspace }}
         run: |
@@ -89,7 +93,9 @@ jobs:
       - name: Verify deployed analytics version and host mapping
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet-analytics/verify-live.mjs after35
+        run: |
+          node tools/fleet-analytics/verify-live.mjs after35
+          node tools/fleet-account/verify-live.mjs after35
 
       - name: Post-deploy self-check
         # 全部带 ?ci=1,worker 把自测排除在 D1 之外。/api/cards 与 /api/stats 必须回 ok:true——
