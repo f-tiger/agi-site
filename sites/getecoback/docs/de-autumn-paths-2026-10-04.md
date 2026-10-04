@@ -55,3 +55,16 @@ Do not infer a causal funnel from unrelated event totals. Merchant-confirmed
 items, commissions, reversals and matching date/store scopes determine revenue;
 shared store tags do not establish a site's income. No new recurring job or
 external promotional messages are part of this release.
+
+The PR browser gate also needed to match the final analytics installation.
+Its old `load`-then-count consent check raced dynamic module imports, and smooth
+scrolling under a mocked clock could miss the popup threshold callback. It now
+waits for the installed consent UI, uses instantaneous native scroll positions,
+and advances the clock for callbacks; purchase and one-click assertions remain.
+The new isolated result-event browser case is part of that gate.
+The remaining deterministic failure was a stale assertion: the heater-cost and
+English 20 m² moisture routes intentionally remove unconditional product shelves
+and popups in `demand_tools.py`. The browser gate now explicitly requires those
+surfaces to be absent, exercises the actual tool result and verifies that an
+unknown-moisture result does not show shopping links. Historical baselines and
+all non-protected popup scenarios keep their original market/click checks.
