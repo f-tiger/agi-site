@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {calculate} from '../site/assets/au-cooling-math.mjs';
+const x={watts:1000,hours1:4,cents1:40,hours2:2,cents2:25,days:30};
+assert.deepEqual(calculate(x),{dailyKwh:6,dailyAud:2.1,periodKwh:180,periodAud:63});
+assert(Math.abs(calculate({...x,watts:50}).periodAud-3.15)<1e-10);
+assert.equal(calculate({...x,watts:0}).periodAud,0);
+assert.equal(calculate({...x,cents1:0,cents2:0}).periodAud,0);
+assert.equal(calculate({...x,hours1:12,hours2:12}).dailyKwh,24);
+assert.equal(calculate({...x,hours1:6,hours2:0,cents1:35}).periodAud,63);
+for(const input of [{hours1:23,hours2:2},{hours1:-1},{days:0},{cents1:Infinity},{watts:''},{watts:null},{watts:true},{watts:NaN}])assert.throws(()=>calculate({...x,...input}),RangeError);
+console.log('PASS Australian cooling math: cents-to-AUD, time blocks, fan/AC, zero, 24-hour boundary, invalid inputs.');

@@ -38,7 +38,7 @@ FAMILIES = [
     ("heizen", "🔥 Heizen", "🔥", r"heiz|thermostat|infrarot|watt|stromausfall|heater|radiator-valves|valvole-termostatiche"),
     ("strom", "⚡ Stromkosten & Haushalt", "⚡", r"strom|energie|kosten|duschen|lichterkette|geraete|messprot|waesche|trockner|austausch|shower-cost|costo-doccia|fairy-lights|luci-natalizie"),
     ("solar", "☀️ Balkon-Solar & Speicher", "☀️", r"balkon|speicher|solar|standort|bkw|kraftwerk"),
-    ("kuehlen", "❄️ Kühlen & Hitze", "❄️", r"btu|klima|hitze|heat|cool|fenster|panel|abdicht"),
+    ("kuehlen", "❄️ Kühlen & Hitze", "❄️", r"btu|klima|hitze|heat|cool|fenster|panel|abdicht|/au/(fan-running-cost|portable-air-conditioner-running-cost)"),
     ("laender", "🌍 Länder-Vergleichsrechner (DE · EN · ES · FR · IT)", "🌍", r"^/(rechner\.html|en/solution-calculator\.html|es/calculadora\.html|fr/calculateur\.html|it/calcolatore\.html)$"),
     ("pro", "🧰 Pro-Werkzeuge & Agenten", "🧰", r"pro-werkzeuge|/agents/"),
     ("english", "🇬🇧 English tools", "🇬🇧", r"^/en/"),
