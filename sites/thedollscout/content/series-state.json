@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 6,
+  "cursor": 12,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-03"
+      "checked": "2026-10-04"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-03"
+      "checked": "2026-10-04"
     },
     {
       "id": "smiski-construction",
@@ -85,9 +85,70 @@
       "published": "2026-10-03",
       "modified": "2026-10-03",
       "checked": "2026-10-03"
+    },
+    {
+      "id": "smiski-work",
+      "brand": "smiski",
+      "title": "SMISKI @Work",
+      "names": [
+        "SMISKI Approving",
+        "SMISKI Researching",
+        "SMISKI Presenting",
+        "SMISKI Good Idea",
+        "SMISKI On the Rord",
+        "Little SMISKI Group Think"
+      ],
+      "source": "https://smiski.com/e/products/work-series/",
+      "hash": "1a4bf4ab73b798c67d0a053ff7666f6f97942990baf42a4fa208a0cde621a824",
+      "published": "2026-10-04",
+      "modified": "2026-10-04",
+      "checked": "2026-10-04"
+    },
+    {
+      "id": "smiski-museum",
+      "brand": "smiski",
+      "title": "SMISKI Museum",
+      "names": [
+        "Smiski The Source",
+        "Smiski Fuzin&Raijin",
+        "Smiski Bacchus",
+        "Smiski Vela’zquez",
+        "Smiski Dali",
+        "Smiski Pearl Earring"
+      ],
+      "source": "https://smiski.com/e/products/museumseries/",
+      "hash": "2cc938a6186ac007c469530ba759f29a3f246002f3904e4f9741be8eff5aea0d",
+      "published": "2026-10-04",
+      "modified": "2026-10-04",
+      "checked": "2026-10-04"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-04",
+      "status": "ok",
+      "added": [
+        "smiski-work",
+        "smiski-museum"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-03",
       "status": "ok",
@@ -145,19 +206,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "status": "ok",
     "added": [
-      "smiski-construction",
-      "smiski-sunday"
+      "smiski-work",
+      "smiski-museum"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -167,11 +228,6 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   }
 }

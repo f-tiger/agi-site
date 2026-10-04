@@ -1,19 +1,19 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "status": "ok",
     "added": [
-      "smiski-construction",
-      "smiski-sunday"
+      "smiski-work",
+      "smiski-museum"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -23,12 +23,7 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -53,7 +48,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-03",
+      "checked": "2026-10-04",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -83,7 +78,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-03",
+      "checked": "2026-10-04",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -136,6 +131,54 @@
         "en": "https://thedollscout.com/series/smiski-sunday",
         "de": "https://thedollscout.com/de/series/smiski-sunday",
         "zh": "https://thedollscout.com/zh/series/smiski-sunday"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-work",
+      "brand": "smiski",
+      "title": "SMISKI @Work",
+      "names": [
+        "SMISKI Approving",
+        "SMISKI Researching",
+        "SMISKI Presenting",
+        "SMISKI Good Idea",
+        "SMISKI On the Rord",
+        "Little SMISKI Group Think"
+      ],
+      "source": "https://smiski.com/e/products/work-series/",
+      "published": "2026-10-04",
+      "modified": "2026-10-04",
+      "checked": "2026-10-04",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-work",
+        "de": "https://thedollscout.com/de/series/smiski-work",
+        "zh": "https://thedollscout.com/zh/series/smiski-work"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-museum",
+      "brand": "smiski",
+      "title": "SMISKI Museum",
+      "names": [
+        "Smiski The Source",
+        "Smiski Fuzin&Raijin",
+        "Smiski Bacchus",
+        "Smiski Vela’zquez",
+        "Smiski Dali",
+        "Smiski Pearl Earring"
+      ],
+      "source": "https://smiski.com/e/products/museumseries/",
+      "published": "2026-10-04",
+      "modified": "2026-10-04",
+      "checked": "2026-10-04",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-museum",
+        "de": "https://thedollscout.com/de/series/smiski-museum",
+        "zh": "https://thedollscout.com/zh/series/smiski-museum"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
