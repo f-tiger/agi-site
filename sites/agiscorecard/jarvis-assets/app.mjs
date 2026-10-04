@@ -1,6 +1,6 @@
 import {VERSION,relevantMemory,markdown,safeURL} from './core.mjs';
 const zh=document.body.dataset.lang==='zh',lang=zh?'zh':'en',t=(en,cn)=>zh?cn:en,$=s=>document.querySelector(s);
-const KEY='agi-jarvis-key-v1',MEM='agi-jarvis-memory-v1',MEMBER_KEY='workbench-member-key:agi';let tasks=[],selected=null,busy=false,poll=null,membership=null,credential='',authEpoch=0,accessTimer=null;
+const KEY='agi-jarvis-key-v1',MEM='agi-jarvis-memory-v1',MEMBER_KEY='workbench-member-key:agi';let tasks=[],selected=null,busy=false,poll=null,membership=null,credential='',authEpoch=0;
 const observed=new Set();
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const uid=bytes=>[...crypto.getRandomValues(new Uint8Array(bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
@@ -8,29 +8,29 @@ const event=name=>{if(!new URL(location.href).searchParams.has('__qa'))dispatchE
 const status=text=>{$('#status').textContent=text;};
 function storageGet(k){try{return localStorage.getItem(k);}catch{return null;}}
 function storageSet(k,v){try{localStorage.setItem(k,v);return localStorage.getItem(k)===v;}catch{return false;}}
-function memberKey(){try{return sessionStorage.getItem(MEMBER_KEY)||'';}catch{return '';}}
+function memberKey(){try{return sessionStorage.getItem(MEMBER_KEY)||storageGet(KEY)||'';}catch{return storageGet(KEY)||'';}}
 function memorySlot(){return membership?MEM+':'+membership.scope:null;}
 function memories(){if(!membership)return [];try{const m=JSON.parse(storageGet(memorySlot())||'[]');return Array.isArray(m)?m.filter(s=>typeof s==='string'&&s.length<=300).slice(0,8):[];}catch{return [];}}
 function lock(message=''){
- authEpoch++;membership=null;tasks=[];selected=null;observed.clear();clearTimeout(poll);clearTimeout(accessTimer);
+ authEpoch++;membership=null;tasks=[];selected=null;observed.clear();clearTimeout(poll);
  $('#workspace').hidden=true;$('#member-bar').hidden=true;$('#member-gate').hidden=false;$('#member-status').textContent=message;
  $('#task-detail').replaceChildren();$('#task-list').replaceChildren();$('#memory').value='';$('#goal').value='';$('#selected-memories').replaceChildren();$('#public-query').value='';$('#cloud-consent').checked=false;
  $('#task-form').reset();$('#public-query-label').hidden=true;$('#public-query').required=false;status('');
 }
-function permitted(){if(membership&&membership.endsAt*1000>Date.now()&&credential===memberKey())return true;lock(t('An active AGI membership is required.','需要有效的 AGI 会员资格。'));return false;}
+function permitted(){if(membership&&credential===memberKey())return true;lock(t('Open your private workspace to continue.','请打开私有工作区后继续。'));return false;}
 function unlock(value){
  const changed=membership?.scope!==value.scope;membership=value;$('#workspace').hidden=false;$('#member-gate').hidden=true;$('#member-bar').hidden=false;$('#member-key').value='';
- $('#member-until').textContent=t('AGI member · valid until ','AGI 会员 · 有效至 ')+new Date(value.endsAt*1000).toLocaleDateString(zh?'zh-CN':'en-US');
+ $('#member-until').textContent=value.member?t('Existing member workspace · free Jarvis access','原会员工作区 · 贾维斯免费开放'):t('Private browser workspace · free access','浏览器私有工作区 · 免费使用');
  if(changed){const legacy=storageGet(MEM);if(legacy&&storageGet(KEY)&&!storageGet(memorySlot())&&storageSet(memorySlot(),legacy)){try{localStorage.removeItem(MEM);}catch{}}$('#memory').value=memories().join('\n');renderMemories();}
- clearTimeout(accessTimer);accessTimer=setTimeout(()=>{if(value.endsAt*1000<=Date.now())lock(t('Your membership expired. Renew to continue.','会员已到期，续费后可继续使用。'));else refresh();},Math.max(1,Math.min(value.endsAt*1000-Date.now(),2147483647)));
+
 }
 async function api(body){
- const token=memberKey(),epoch=authEpoch;if(!/^[a-f0-9]{64}$/.test(token))throw Error('membership_required');const legacy=storageGet(KEY);
- const r=await fetch('/api/jarvis'+(body?'':'/tasks'),{method:body?'POST':'GET',headers:{authorization:'Bearer '+token,...(legacy&&/^[a-f0-9]{64}$/.test(legacy)?{'x-jarvis-legacy-key':legacy}:{}),...(body?{'content-type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});
+ const token=memberKey(),epoch=authEpoch;if(!/^[a-f0-9]{64}$/.test(token))throw Error('unauthorized');
+ const r=await fetch('/api/jarvis'+(body?'':'/tasks'),{method:body?'POST':'GET',headers:{authorization:'Bearer '+token,...(body?{'content-type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});
  let j;try{j=await r.json();}catch{throw Error('unavailable');}if(epoch!==authEpoch||token!==memberKey())throw Error('auth_changed');if(!r.ok||!j.ok)throw Error(j.code||'unavailable');return j;
 }
 const errors={request_timeout:t('The upload timed out. Please try again.','上传超时，请重试。'),rate_limited:t('The shared limit is reached. Your existing results are safe. Try again after the quota window resets.','已达到共享额度，现有结果仍保留。请在额度窗口重置后再试。'),active_limit:t('Pause an active mission or delete an old task (3 active, 20 saved maximum).','请先暂停正在执行的任务或删除旧记录（最多 3 个活动任务、20 条记录）。'),storage_unavailable:t('Browser storage is unavailable. Enable it before submitting so you can return to your private tasks.','浏览器存储不可用。请先启用存储，再提交任务，以便回来查看私有记录。'),cannot_resume:t('This task cannot resume. Start a new mission for another seven-day window.','本任务已不能恢复，可新建任务开始下一轮跟踪。'),unauthorized:t('The private browser key is missing or invalid.','本浏览器的私有访问密钥缺失或无效。'),invalid_request:t('Check the goal, language, memories and cloud consent.','请检查目标、记忆与云端执行选项。')};
-function fail(e){if(e.message==='auth_changed')return;if(['membership_required','unauthorized'].includes(e.message)){lock(t('No active AGI membership was found for this key. Check the key or open / renew membership.','此密钥没有有效的 AGI 会员资格，请检查密钥，或开通／续费会员。'));return;}const message=errors[e.message]||t('Could not verify access. Please try again.','暂时无法验证访问权限，请重试。');if(!membership)$('#member-status').textContent=message;else status(message);}
+function fail(e){if(e.message==='auth_changed')return;if(['access_blocked','unauthorized'].includes(e.message)){lock(t('This workspace key is unavailable. Try your saved key or continue with this browser.','此工作区密钥暂不可用。请检查已保存的密钥，或使用本浏览器继续。'));return;}const message=errors[e.message]||t('Could not verify access. Please try again.','暂时无法验证访问权限，请重试。');if(!membership)$('#member-status').textContent=message;else status(message);}
 const labels={queued:t('Queued','等待执行'),running:t('Working','执行中'),watching:t('Daily watch active','每日跟踪中'),completed:t('Draft ready','草稿已生成'),limited:t('Source pack only','仅资料包'),paused:t('Paused','已暂停')};
 const reasons={model_interrupted:t('The previous model call has an unknown outcome. Its attempt is retained and was not repeated.','上次模型调用的结果未知。已保留调用次数，未重复调用。'),search_rate_limited:t('The public search allowance is exhausted. Try again after the quota window resets.','公开检索额度已耗尽，请在额度窗口重置后重试。'),evidence_unavailable:t('The requested public evidence was not retrieved. AI synthesis was skipped.','未取得本次需要的公开证据，已跳过 AI 综合。'),rate_limited:t('The shared model allowance is exhausted.','共享模型额度已耗尽。'),ai_unavailable:t('The model is unavailable.','模型暂不可用。'),model_unavailable:t('The model provider did not return a usable response.','模型服务未返回可用结果。'),model_timeout:t('The model response timed out.','模型响应超时。'),invalid_model_output:t('The model output did not pass format or citation checks.','模型输出未通过格式或引用检查。'),run_failed:t('The run could not finish.','本次运行未完成。')};
 function date(n){return new Date(n*1000).toLocaleString(zh?'zh-CN':'en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}
@@ -44,7 +44,7 @@ function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#com
  for(const [id,label] of steps)pipeline.append(el('li',label,(id===stage||stage==='complete')?'active':''));d.append(pipeline);
  if(task.status==='queued'||task.status==='running')d.append(el('p',t('This task is saved. You can leave this page; the background runner checks queued work about every two hours; scheduled checks can be delayed.','任务已保存。你可以离开页面，后台约每两小时检查待执行任务，调度可能延迟。'),'notice'));
  if(task.stage==='interrupted')d.append(el('p',t('The previous worker stopped before completion. Run again resumes saved steps; an uncertain model call will not repeat.','上次运行中断。重新运行将接续已保存步骤；结果未知的模型调用不会重复执行。'),'notice'));
- if(task.stage==='membership_required')d.append(el('p',t('Paused for membership verification. Review this task and choose Run again to continue.','任务因会员权限验证而暂停。请核对任务，再点击重新运行。'),'notice'));
+ if(['membership_required','access_blocked'].includes(task.stage))d.append(el('p',t('Previously paused for access verification. Review this task and choose Run again to continue.','任务此前因访问验证而暂停。请核对任务，再点击重新运行。'),'notice'));
  if(r.reason)d.append(el('p',(reasons[r.reason]||reasons.run_failed)+' '+t('These are retrieved sources, not a completed AI report.','以下是检索到的资料，不是已完成的 AI 报告。'),'notice'));
  if(r.report){d.append(el('p',t('AI draft · check the original sources before relying on it.','AI 草稿 · 使用前请核对原始来源。'),'notice'),el('p',r.report.summary,'report-summary'));if(r.report.findings.length)d.append(el('h3',t('AI interpretations to check','AI 解读（待核对）')));
   for(const f of r.report.findings){const n=el('div',undefined,'finding');n.append(el('p',f.text));for(const id of f.sourceIds){const a=el('a','['+id+'] ');a.href='#source-'+id;n.append(a);}d.append(n);}
@@ -65,7 +65,7 @@ function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#com
  const ex=el('details',undefined,'execution');ex.append(el('summary',t('Execution record','执行记录')+' · '+(r.modelCalls||0)+t(' model calls',' 次模型调用')));const ol=el('ol');for(const x of r.log||[])ol.append(el('li',x.step+': '+x.outcome));ex.append(ol,el('p',t('Only the listed tools ran. Proposed actions are not completed actions.','仅执行了记录中的工具，建议行动不等于已完成行动。'),'quiet small'));d.append(ex);
  d.append(el('p',t('Task expires: ','任务记录到期：')+date(task.expires),'quiet small'));
 }
-async function refresh(){try{const j=await api();if(!j.membership||!/^[a-f0-9]{64}$/.test(j.membership.scope)||j.membership.endsAt*1000<=Date.now())throw Error('membership_required');unlock(j.membership);tasks=j.tasks;for(const task of tasks){const k=task.id+':'+task.runs;if(task.runs&&!observed.has(k)){observed.add(k);if(task.result?.report)event('report_ready');else if(task.stage==='source_pack')event('source_pack');}}
+async function refresh(){try{const j=await api();if(!j.membership||!/^[a-f0-9]{64}$/.test(j.membership.scope))throw Error('unauthorized');unlock(j.membership);tasks=j.tasks;for(const task of tasks){const k=task.id+':'+task.runs;if(task.runs&&!observed.has(k)){observed.add(k);if(task.result?.report)event('report_ready');else if(task.stage==='source_pack')event('source_pack');}}
  if(selected&&!tasks.some(x=>x.id===selected))selected=null;render();status('');schedulePoll();}catch(e){fail(e);schedulePoll();}}
 function schedulePoll(){clearTimeout(poll);if(!document.hidden&&tasks.some(x=>['queued','running'].includes(x.status)))poll=setTimeout(refresh,10000);}
 function renderMemories(){const selectedTexts=new Set([...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value)),m=memories(),suggested=relevantMemory($('#goal').value,m);const box=$('#selected-memories');box.replaceChildren();if(!m.length)return;box.append(el('p',t('Include up to 3 memories in this task:','为本次任务选择最多 3 条记忆：'),'quiet'));const sorted=[...suggested,...m.filter(x=>!suggested.includes(x))];for(const text of sorted){const label=el('label',undefined,'check'),input=el('input');input.type='checkbox';input.dataset.memory='';input.value=text;input.checked=selectedTexts.has(text);input.onchange=()=>{if(document.querySelectorAll('[data-memory]:checked').length>3){input.checked=false;status(t('Choose at most 3 memories.','最多选择 3 条记忆。'));}};label.append(input,document.createTextNode(text));box.append(label);}}
@@ -75,11 +75,14 @@ const examples=zh?['我每周花两小时整理工作报告。研究可以采用
 $('#web').onchange=()=>{$('#public-query-label').hidden=!$('#web').checked;$('#public-query').required=$('#web').checked;};
 for(const b of document.querySelectorAll('[data-example]'))b.onclick=()=>{if(!permitted())return;$('#goal').value=examples[Number(b.dataset.example)];$('#public-query').value=['AI workflow','personal AI agent','AI agent tutorial'][Number(b.dataset.example)];renderMemories();$('#goal').focus();};
 $('#task-form').onsubmit=async e=>{e.preventDefault();if(busy||!permitted())return;busy=true;$('#start').disabled=true;status(t('Saving your mission…','正在保存任务…'));try{const j=await api({action:'create',goal:$('#goal').value,lang,cadence:$('#cadence').value,web:$('#web').checked,publicQuery:$('#public-query').value,consent:$('#cloud-consent').checked,memory:[...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value),nonce:uid(16)});selected=j.task.id;tasks.unshift(j.task);render();event('start');schedulePoll();status(t('Saved. Your mission is queued.','已保存，任务正在等待执行。'));}catch(e){fail(e);}finally{busy=false;$('#start').disabled=false;}};
-$('#member-form').onsubmit=async e=>{e.preventDefault();if(busy)return;const token=$('#member-key').value.trim();if(!/^[a-f0-9]{64}$/.test(token))return;lock();try{sessionStorage.setItem(MEMBER_KEY,token);credential=token;}catch{return fail(Error('storage_unavailable'));}$('#member-login').disabled=true;try{await refresh();if(membership)event('member_verified');}finally{$('#member-login').disabled=false;}};
+$('#member-form').onsubmit=async e=>{e.preventDefault();if(busy)return;const token=$('#member-key').value.trim();if(!/^[a-f0-9]{64}$/.test(token))return;lock();try{sessionStorage.setItem(MEMBER_KEY,token);credential=token;}catch{return fail(Error('storage_unavailable'));}$('#member-login').disabled=true;try{await refresh();if(membership?.member)event('member_verified');}finally{$('#member-login').disabled=false;}};
+$('#restore-workspace').onclick=()=>lock();
 $('#member-open').onclick=()=>event('membership_open');
 $('#member-logout').onclick=()=>{try{sessionStorage.removeItem(MEMBER_KEY);}catch{}credential='';lock();};
-document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(poll);else{if(memberKey()!==credential){lock();credential=memberKey();}if(credential)refresh();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(poll);else if(credential){if(memberKey()!==credential){lock();credential=memberKey();}if(credential)refresh();}});
 // DOM visibility is fail-closed; the server independently verifies every request.
 $('#workspace').addEventListener('click',e=>{if(!permitted()){e.preventDefault();e.stopImmediatePropagation();}},true);
-document.body.dataset.ready='true';credential=memberKey();if(credential)refresh();
+async function openBrowser(){lock();try{sessionStorage.removeItem(MEMBER_KEY);}catch{}let token=storageGet(KEY);if(!/^[a-f0-9]{64}$/.test(token||'')){token=uid(32);if(!storageSet(KEY,token))return fail(Error('storage_unavailable'));}credential=token;await refresh();}
+$('#continue-free').onclick=()=>openBrowser();
+document.body.dataset.ready='true';credential=memberKey();if(credential)refresh();else openBrowser();
 export {VERSION};

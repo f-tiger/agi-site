@@ -5,7 +5,7 @@ import {now,limit} from '../create/store.mjs';
 import {reportSchema} from './schema.mjs';
 import {evidencePlan} from './plan.mjs';
 import {modelOutput} from './model.mjs';
-import {memberActive} from './membership.mjs';
+import {accessActive} from './membership.mjs';
 const uid=()=>crypto.randomUUID().replaceAll('-','');
 async function timed(promise,ms){let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('model_timeout')),ms);})]);}finally{clearTimeout(timer);}}
 export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
@@ -14,8 +14,8 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
  const row=await db.prepare(`UPDATE jarvis_tasks SET status='running',stage='observe',lease=?,lease_until=?,updated=? WHERE id=? AND status IN ('queued','watching') AND next_run<=? AND lease_until<=? AND expires>? AND runs<? RETURNING *`).bind(lease,t+180,t,id,t,t,t,MAX_RUNS).first();
  if(!row)return false;
  async function entitled(){
-  let active=false;try{active=await memberActive(env,row.member_id);}catch{}
-  if(!active)await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='membership_required',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(now(),id,lease).run();
+  let active=false;try{active=await accessActive(env,row.member_id);}catch{}
+  if(!active)await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='access_blocked',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(now(),id,lease).run();
   return active;
  }
  if(!await entitled())return false;

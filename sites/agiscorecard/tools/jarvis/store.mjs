@@ -9,8 +9,8 @@ export async function ensure(db){
  ]).then(async()=>{
   const columns=(await db.prepare('PRAGMA table_info(jarvis_tasks)').all()).results;
   if(!columns.some(c=>c.name==='member_id')){try{await db.prepare("ALTER TABLE jarvis_tasks ADD COLUMN member_id TEXT NOT NULL DEFAULT ''").run();}catch(e){if(!(await db.prepare('PRAGMA table_info(jarvis_tasks)').all()).results.some(c=>c.name==='member_id'))throw e;}}
-  // Pre-membership work must never run under the private maintenance credential.
-  await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='membership_required',next_run=0,lease='',lease_until=0,updated=? WHERE member_id='' AND status IN ('queued','running','watching')").bind(now()).run();
+  // Free browser tasks are eligible too. Previously paused work stays paused.
+
  }).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);
 }
 export function publicTask(r){return {id:r.id,input:JSON.parse(r.input),status:r.status,stage:r.stage,result:JSON.parse(r.result),previous:JSON.parse(r.previous),runs:r.runs,created:r.created,updated:r.updated,nextRun:r.next_run,until:r.until_at,expires:r.expires,feedback:r.feedback};}

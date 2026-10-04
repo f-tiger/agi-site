@@ -1,6 +1,6 @@
 # Jarvis — turn an AI goal into a useful next step
 
-Give Jarvis a research goal. Get source-linked findings, practical next steps and a private task history. Active AGI membership required. Shared usage limits apply.
+Give Jarvis a research goal. Get source-linked findings, practical next steps and a private task history. Free to use without membership. Shared usage limits apply.
 
 ## FAQ
 
@@ -10,7 +10,7 @@ Research AI work, learning and product ideas using our editorial catalog. With y
 
 **Does it continue when I leave?**
 
-Submitted tasks are stored on the server. A background runner checks the queue about every two hours; scheduled checks can be delayed. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task. Resuming an interrupted run reuses saved steps; a model call with an unknown outcome is not silently repeated. Every background run rechecks membership; expired or suspended access pauses the task.
+Submitted tasks are stored on the server. A background runner checks the queue about every two hours; scheduled checks can be delayed. Daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task. Resuming an interrupted run reuses saved steps; a model call with an unknown outcome is not silently repeated. Membership is not required for background runs. Previously paused tasks need an explicit resume.
 
 **What happens when AI is unavailable?**
 
@@ -18,11 +18,11 @@ You get the matching source pack and an explicit limited status. No preset is pa
 
 **Where are my goals and memories stored?**
 
-Editable memories stay in this browser; only the relevant memories you select are sent with a task. Submitted tasks and their selected context are stored in Cloudflare D1 for 30 days and sent to Workers AI for inference. Enabled public searches send only your explicit public search keywords to GitHub or Hacker News. Your AGI membership key protects task access. Keep its private backup to sign in on another device. Device memories are separated by membership. Do not submit sensitive data. Delete a task to remove it from our active store.
+Editable memories stay in this browser; only the relevant memories you select are sent with a task. Submitted tasks and their selected context are stored in Cloudflare D1 for 30 days and sent to Workers AI for inference. Enabled public searches send only your explicit public search keywords to GitHub or Hacker News. A private key saved in this browser protects task access; clearing it can lose access. Existing member keys still open their original task history, even after membership expiry. Device memories are separated by workspace. Do not submit sensitive data. Delete a task to remove it from our active store.
 
 **Is this AGI, and is it a paid product?**
 
-No AGI capability has been established. This bounded research-agent pilot requires an active membership on AGI Scorecard. Creating an unpaid key is not enough; memberships from other sites do not apply. There is no separate Jarvis plan, and membership does not increase model quotas or guarantee availability. We are testing whether people find these results useful and return with real tasks.
+No AGI capability has been established. This bounded research-agent pilot is currently free and does not require membership or payment. There is no separate Jarvis plan. Shared model and search limits still apply, and availability is not guaranteed. We are testing whether people find these results useful and return with real tasks.
 
 ---
 Canonical page: https://agiscorecard.com/jarvis
