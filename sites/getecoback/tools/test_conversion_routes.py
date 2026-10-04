@@ -62,5 +62,13 @@ class ConversionRoutes(unittest.TestCase):
             self.assertLess(result.index('<!--EB_HOMETOOL-->'),result.index('<!--EB_HOUSEHOLD_LINK-->'))
             self.assertEqual(compose(result,season),result)
 
+class CalculatorIsolation(unittest.TestCase):
+    def test_moisture_choice_stays_outside_laundry_calculator(self):
+        from moisture_decision import inject
+        html='<article><!--EB_LAUNDRY--><section id="laundry-check"><h2>Laundry</h2><form data-laundry></form></section><!--/EB_LAUNDRY--></article>'
+        result=inject(html,'dehumidifier-drying-clothes-cost',True)
+        self.assertLess(result.index('<!--/EB_BUYER-->'),result.index('<!--EB_LAUNDRY-->'))
+        self.assertEqual(inject(result,'dehumidifier-drying-clothes-cost',True),result)
+
 if __name__=='__main__':
     unittest.main()

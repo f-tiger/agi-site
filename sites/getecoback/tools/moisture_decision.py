@@ -94,6 +94,9 @@ def inject(html, slug, en=False):
     match = re.search(r'<h2\b', html[start:])
     if not match: raise ValueError('No content heading for '+slug)
     pos=start+match.start()
+    # Keep independent calculators as siblings, never wrap another tool's form.
+    laundry = html.find('<!--EB_LAUNDRY-->', start)
+    if start <= laundry < pos: pos = laundry
     return html[:pos]+block(en)+html[pos:]
 
 def creator_entry(html, en=False):

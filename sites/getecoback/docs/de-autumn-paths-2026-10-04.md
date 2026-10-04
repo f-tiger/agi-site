@@ -68,3 +68,10 @@ and popups in `demand_tools.py`. The browser gate now explicitly requires those
 surfaces to be absent, exercises the actual tool result and verifies that an
 unknown-moisture result does not show shopping links. Historical baselines and
 all non-protected popup scenarios keep their original market/click checks.
+
+Full regression also exposed a real composition defect: on the English laundry
+cost guide the first content H2 belonged to the laundry calculator, so the buyer
+injector nested its own form inside that calculator's section. The laundry script
+then selected the wrong form. The injector now places the decision guide before
+the complete laundry block. An idempotence/nesting regression and the existing
+30 browser assertions cover both language calculators, results and downloads.
