@@ -6,6 +6,10 @@ import {profiles} from '../public/profiles.mjs';
 import {release} from '../release.generated.mjs';
 
 const hosts=[{id:'hub',host:hubHost},...sites];
+// The runtime inserts these exact two account elements. Compare against the
+// full expected document, not a stripped/relaxed body: every original byte
+// and the account entry must still match the deployment.
+const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
 const hash=b=>createHash('sha256').update(b).digest('hex');
 let requests=0;
 async function request(host,path,init={}){
@@ -29,7 +33,7 @@ await Promise.all(hosts.map(async s=>{
   assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.match(r.headers.get('content-security-policy')||'',/frame-ancestors 'none'/);
   const bytes=Buffer.from(await r.arrayBuffer());const local=await readFile('dist/'+file);
   const stable=b=>['/market.html','/briefs.html','/zh/market.html'].includes(path)?Buffer.from(b.toString().replace(/<!-- LIVE:(market|briefs):start -->[\s\S]*?<!-- LIVE:\1:end -->/g,'<!-- LIVE -->')):b;
-  assert.equal(hash(stable(bytes)),hash(stable(local)),'Deployed content differs: '+s.host+path);
+  assert.equal(hash(stable(bytes)),hash(stable(file.endsWith('.html')&&!/noindex/i.test(r.headers.get('X-Robots-Tag')||'')?accountHTML(local):local)),'Deployed content differs: '+s.host+path);
   if(file.endsWith('.mjs'))assert.match(r.headers.get('content-type')||'',/(?:java|ecma)script/i,'Module MIME: '+file);
  }
  const redirect=await request(s.host,'/index.html');assert.equal(redirect.status,308);assert.equal(redirect.headers.get('location'),'https://'+s.host+'/');

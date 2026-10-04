@@ -44,3 +44,7 @@ Verification is visible beside the account onboarding panel. Email-verification 
 Account links on public content pages retain a same-origin path back to the tool. Saving the recovery code exposes a prominent return action without automatic navigation. Query strings and fragments are not copied from the source page.
 
 These features improve the implemented usage path. They do not establish conversion, revenue or paid-retention results, and do not remove the production provider or database requirements above.
+
+## Fleet registration and GIS origin headers (2026-10-04)
+
+Fleet sites return through the BPJ identity hub. Account HTML uses `Referrer-Policy: strict-origin`: Google receives only `https://baipiaoji.com/`, never private paths, query parameters or email-action fragments. This avoids suppressing the origin needed by GIS. Account APIs and fleet callbacks retain `no-referrer`. Google recommends permitting cross-origin origin referrers in its [client setup guide](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid). Cloud client Authorized JavaScript origins must still include the BPJ origin. Neither this header nor readiness proves real Google consent.

@@ -52,21 +52,22 @@
   Cache-Control: public, max-age=3600
 
 # Account pages may receive one-time credentials in URL fragments.
+# GIS must see the origin; strict-origin omits all paths, queries and fragments.
 /account
   Cache-Control: no-store
-  Referrer-Policy: no-referrer
+  Referrer-Policy: strict-origin
   X-Robots-Tag: noindex, nofollow
 /account.html
   Cache-Control: no-store
-  Referrer-Policy: no-referrer
+  Referrer-Policy: strict-origin
   X-Robots-Tag: noindex, nofollow
 /en/account
   Cache-Control: no-store
-  Referrer-Policy: no-referrer
+  Referrer-Policy: strict-origin
   X-Robots-Tag: noindex, nofollow
 /en/account.html
   Cache-Control: no-store
-  Referrer-Policy: no-referrer
+  Referrer-Policy: strict-origin
   X-Robots-Tag: noindex, nofollow
 
 # Public, version-checked Skill sources. Browser clients may fetch this catalog.
