@@ -17,7 +17,7 @@ Self-check 2: hiding the submit button would be insufficient. Admission, task in
 - A guest trial is consumed when a valid task is durably saved, even if inference later fails or returns only a source pack. Invalid submissions and failed task persistence do not consume it. Duplicate nonces return the existing task.
 - Guest daily scheduling is denied before any model work. Registered accounts retain bounded daily watches and the original 3 active / 20 saved task limits. Model limits remain 12 shared attempts per 24-hour window, 3 per IP window and at most 2 per legacy occurrence; new occurrences use one synthesis call. No quota is reset or enlarged.
 - The registration invitation records an explicit, short-lived same-tab handoff. The key stays out of URLs and analytics. After successful free registration or sign-in, a fixed same-origin return path restores the trial to that account; in-flight tasks pause for explicit recovery. Completed results keep their status. Other accounts cannot claim the migrated history. Selected local memories move only as part of this explicit handoff.
-- Task content still expires after 30 days. The separate retained trial receipt contains only the workspace digest, opaque task ID and creation time. Network admission digests stop applying after 24 hours and are removed during bounded maintenance. No task body, memory, key, raw IP, customer report or analytics account data is included in this document.
+- Task content still expires after 30 days. The separate retained trial receipt contains only the workspace digest, opaque task ID and creation time. Network admission records stop applying after 24 hours and are removed during bounded maintenance. Routing and trial-network digests attached to individual tasks remain private and are removed with the task at deletion or 30-day expiry. The public privacy FAQ explicitly distinguishes these retention rules. No task body, memory, key, raw IP, customer report or analytics account data is included in this document.
 - The existing free-account page remains noindex and excluded from GA4. Jarvis adds only a fixed `jarvis_registration_open` event through the existing opt-in channel. `jarvis_member_verified` means a server-recognized account, not a new registration, unique human, paid conversion or revenue.
 
 ## Evidence and falsifiable experiment
@@ -37,4 +37,14 @@ Hypothesis: two simultaneous submissions cannot create two guest tasks, and dele
 
 Latest-main integration preserves concurrent BPJ registration-journey updates, including its new fixed analytics event. The integrated Jarvis/shared-event suite passes all 75 tests.
 
-Publication and official-site receipts will be appended after deployment; prepublication checks alone do not establish that production changed.
+## Production verification
+
+The functional release was committed as `5477418937a8e52ef1511b907815ff355b3a1c1f` and deployed by [run 37178016336](https://github.com/f-tiger/agi-site/actions/runs/37178016336). All predeployment tests, the current-main guard, upload, Jarvis live API checks, private runner authentication and fixed public source probes passed. The job then stopped because a statistics module briefly served the previous version while the new coverage manifest was already visible. This is recorded as a failed postdeployment check, not an all-green workflow.
+
+A later execution of the same strict `verify-live.mjs agi` passed: analytics release `f55725f277dc`, 369 covered public routes, 72 live routes checked, and exact shared-asset contents. GA4 backend receipt is still untested. No quota was reset and no acceptance check was weakened.
+
+Separate production checks passed for `/jarvis` and `/zh/jarvis` (v9), private empty guest reads, forged guest daily requests returning `403 registration_required`, missing credentials returning 401, no-store/nonce CSP, EN/ZH free-registration entry pages with noindex and no GA4, and unchanged 12/3 model limits. Live 390px browser reads for both languages confirmed one private-workspace read, working registration links, disabled guest daily scheduling, no horizontal overflow and no JavaScript errors. These live checks created no accounts or tasks and made no model calls.
+
+The skipped public checks for community access boundaries, Earn, Relay, infrastructure and all localized workbench tools were subsequently run and passed. Authenticated aggregate-growth jobs were not rerun outside their authorized CI context; conversion, user counts and retention remain unknown.
+
+A final copy correction distinguishes 24-hour network admission records from network digests attached to 30-day task records. Functional one-trial enforcement is unchanged. Its deployment receipt follows below when available.
