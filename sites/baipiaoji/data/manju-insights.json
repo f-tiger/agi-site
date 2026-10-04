@@ -1,0 +1,439 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-04",
+  "reports": [
+    {
+      "id": "dataeye-2026-08",
+      "publisher": "DataEye研究院（澎湃号发布）",
+      "url": "https://www.thepaper.cn/newsDetail_forward_34022517",
+      "publishedAt": "2026-09-07",
+      "periodStart": "2026-08-01",
+      "periodEnd": "2026-08-31",
+      "checkedAt": "2026-10-04",
+      "method": "抖音端原生播放增量；红果免费短剧 APP 峰值热度。数值为 DataEye 报告快照，本站没有平台后台权限。",
+      "scope": "原报告两份百强榜；本站选取抖音前 10 与红果前 3 作指标示例，不是实时全网排名。"
+    }
+  ],
+  "cohorts": [
+    {
+      "id": "douyin-2026-08",
+      "platform": "抖音",
+      "metric": "play_increment",
+      "label": "2026年8月 · 抖音播放增量",
+      "unit": "次",
+      "reportId": "dataeye-2026-08",
+      "records": [
+        {
+          "title": "谁说纨绔不能当状元",
+          "value": 2579000000,
+          "sourceRank": 1,
+          "format": "3D漫"
+        },
+        {
+          "title": "包子里的真心",
+          "value": 1366000000,
+          "sourceRank": 2,
+          "format": "AI仿真人剧"
+        },
+        {
+          "title": "我年终奖80w降到1w9，领导却慌了",
+          "value": 1128000000,
+          "sourceRank": 3,
+          "format": "3D漫"
+        },
+        {
+          "title": "天灾囤货录，善恶见人心",
+          "value": 1071000000,
+          "sourceRank": 4,
+          "format": "3D漫"
+        },
+        {
+          "title": "1977山猎重生，我以余生偿前错",
+          "value": 1025000000,
+          "sourceRank": 5,
+          "format": "3D漫"
+        },
+        {
+          "title": "垃圾桶里的寻人启事",
+          "value": 991000000,
+          "sourceRank": 6,
+          "format": "3D漫"
+        },
+        {
+          "title": "占院风波",
+          "value": 879000000,
+          "sourceRank": 7,
+          "format": "3D漫"
+        },
+        {
+          "title": "糯糯下山，师兄们都慌了",
+          "value": 827000000,
+          "sourceRank": 8,
+          "format": "3D漫"
+        },
+        {
+          "title": "灶下煤之自由篇",
+          "value": 826000000,
+          "sourceRank": 9,
+          "format": "3D漫"
+        },
+        {
+          "title": "菌香深处见人心",
+          "value": 795000000,
+          "sourceRank": 10,
+          "format": "3D漫"
+        }
+      ]
+    },
+    {
+      "id": "hongguo-2026-08",
+      "platform": "红果",
+      "metric": "peak_heat",
+      "label": "2026年8月 · 红果峰值热度",
+      "unit": "热度值",
+      "reportId": "dataeye-2026-08",
+      "records": [
+        {
+          "title": "万妖图录传第十一季",
+          "value": 125000000,
+          "sourceRank": 1,
+          "format": "3D漫"
+        },
+        {
+          "title": "万妖图录传第十季",
+          "value": 117000000,
+          "sourceRank": 2,
+          "format": "3D漫"
+        },
+        {
+          "title": "咱家剑宗团宠小师妹第三季",
+          "value": 115000000,
+          "sourceRank": 3,
+          "format": "3D漫"
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "mountain",
+      "title": "年代赶山与家庭重建",
+      "platforms": [
+        "douyin"
+      ],
+      "category": "period",
+      "tag": "重生",
+      "evidence": "报告列出的赶山赶海／山猎题材共有 4 部上榜，8 月合计播放增量约 23.89 亿。",
+      "evidenceCount": 4,
+      "evidenceValue": 2389000000,
+      "evidenceUnit": "次播放增量",
+      "examples": [
+        "1977山猎重生，我以余生偿前错",
+        "重回八零，赶山狩猎养妻女",
+        "重生六七：赶山狩猎养全家",
+        "山王传奇"
+      ],
+      "production": "outdoor",
+      "audience": "family",
+      "strength": "劳动、经营和家人关系可以形成连续目标；时代背景提供稳定的视觉主题。",
+      "tradeoff": "动物、山林和时代服饰增加一致性要求。上榜作品的成绩不代表新剧的成功率。",
+      "originalConcept": "一名返乡测绘员重开祖辈的山货合作社，用村民各自的专长解决交货难题。",
+      "hook": "第一批订单即将到期，旧地图上的运输路却已经消失。",
+      "test": "先做一段交货受阻的短样片，对比“生计悬念”和“家人关系”两个开场，记录相同渠道的有效观看与到站。",
+      "reportId": "dataeye-2026-08"
+    },
+    {
+      "id": "child",
+      "title": "萌宝与群像守护",
+      "platforms": [
+        "douyin",
+        "hongguo"
+      ],
+      "category": "family",
+      "tag": "萌宝",
+      "evidence": "抖音百强榜的萌宝题材 4 部，8 月合计播放增量约 21.23 亿；此为报告列出的题材小组。",
+      "evidenceCount": 4,
+      "evidenceValue": 2123000000,
+      "evidenceUnit": "次播放增量",
+      "examples": [
+        "福宝治愈全世界，家有萌娃岁岁安",
+        "沉渊三年：老槐树下的传家宝",
+        "福宝花卷致富：我的小吃店通古今",
+        "满宝进山闻香，山货全归我家"
+      ],
+      "production": "characters",
+      "audience": "warm",
+      "strength": "用家庭成员的关系与互助推动故事，容易建立可持续的人物牵挂。",
+      "tradeoff": "多角色同框与儿童形象一致性需要额外验证；“萌宝”标签并不等于儿童适宜分级。",
+      "originalConcept": "爱收集声音的小孩帮助邻居修复社区广播站，每段旧录音都连着一位居民未说完的故事。",
+      "hook": "一盘没有署名的录音，叫出了街上所有人早已忘记的名字。",
+      "test": "先验证儿童和成人同框、口型与声线的一致性，再对比“温暖关系”与“录音悬念”两个开场。",
+      "reportId": "dataeye-2026-08"
+    },
+    {
+      "id": "family",
+      "title": "家庭关系与生活抉择",
+      "platforms": [
+        "douyin"
+      ],
+      "category": "family",
+      "tag": "亲情",
+      "evidence": "报告将家庭伦理、社会关系归为抖音端的重要情绪线索；《包子里的真心》8 月播放增量 13.66 亿。这里不推算整个题材的市场份额。",
+      "evidenceCount": null,
+      "evidenceValue": null,
+      "evidenceUnit": null,
+      "examples": [
+        "包子里的真心",
+        "垃圾桶里的寻人启事",
+        "占院风波"
+      ],
+      "production": "interior",
+      "audience": "family",
+      "strength": "少量人物与固定生活场景适合先验证对白、表情和关系转折。",
+      "tradeoff": "低场景数量不保证低总成本，表演和台词质量仍需测试；避免靠重复羞辱角色制造冲突。",
+      "originalConcept": "一家社区修理铺接到一台父亲留下的收音机维修单，成年子女在交付期限内重新分担照护责任。",
+      "hook": "客人要求修好收音机，却坚持不能听里面的最后一段录音。",
+      "test": "用同一室内场景制作两个 30 秒开场，控制人物数量，对比观众能否说清矛盾和继续观看的理由。",
+      "reportId": "dataeye-2026-08"
+    },
+    {
+      "id": "cultivation",
+      "title": "玄幻修仙与系列成长",
+      "platforms": [
+        "hongguo"
+      ],
+      "category": "cultivation",
+      "tag": "升级",
+      "evidence": "红果 8 月前三名为《万妖图录传》第十一、十季及《咱家剑宗团宠小师妹》第三季，峰值热度分别为 1.25 亿、1.17 亿和 1.15 亿。三季只涉及两个系列 IP。",
+      "evidenceCount": null,
+      "evidenceValue": null,
+      "evidenceUnit": null,
+      "examples": [
+        "万妖图录传第十一季",
+        "万妖图录传第十季",
+        "咱家剑宗团宠小师妹第三季"
+      ],
+      "production": "effects",
+      "audience": "adventure",
+      "strength": "成长规则和阶段目标适合连载，原创世界观有利于积累长期角色资产。",
+      "tradeoff": "多季头部 IP 自带观众基础，不能等同新 IP 冷启动表现；战斗、特效和复杂场景增加制作难度。",
+      "originalConcept": "一个只能修复器物的学徒进入逐渐失去灵力的城镇，以解决普通人的生活困难寻找力量衰退的原因。",
+      "hook": "全城法器同时失灵，只有一盏没有灵石的旧灯仍然亮着。",
+      "test": "先测试同一角色跨场景、器物交互和一段动作镜头，验证资产一致性后再扩展世界观。",
+      "reportId": "dataeye-2026-08"
+    }
+  ],
+  "previews": [
+    {
+      "id": "qianqiu",
+      "kind": "官方单集",
+      "title": "《千秋诗颂》别董大",
+      "url": "https://tv.cctv.com/2024/02/26/VIDEpQ3zMlzLJGW73i6DRcRI240226.shtml",
+      "publishedAt": "2024-02-26",
+      "note": "在央视网观看《别董大》单集，先了解水墨国风画面与叙事。",
+      "provider": "央视网",
+      "mode": "external",
+      "checkedAt": "2026-10-04",
+      "verification": "核对官方页面标题、日期与视频模块；没有取得站内嵌入授权，未验证各地区实际播放。"
+    },
+    {
+      "id": "shenhua",
+      "kind": "官方预告",
+      "title": "《中国神话》预告片",
+      "url": "https://www.cctv.com/2024/03/22/ARTImxwnEZa0LYYPusv8E57A240322.shtml",
+      "publishedAt": "2024-03-22",
+      "note": "打开官方发布页后，找到“中国神话预告片”播放器。",
+      "provider": "央视网",
+      "mode": "external",
+      "checkedAt": "2026-10-04",
+      "verification": "核对官方页面标题、日期与视频模块；没有取得站内嵌入授权，未验证各地区实际播放。"
+    },
+    {
+      "id": "dianji",
+      "kind": "官方先导片",
+      "title": "《AI看典籍》周处除三害先导片",
+      "url": "https://www.cctv.com/2024/03/22/ARTImxwnEZa0LYYPusv8E57A240322.shtml",
+      "publishedAt": "2024-03-22",
+      "note": "打开官方发布页后，找到“周处除三害先导片”播放器。",
+      "provider": "央视网",
+      "mode": "external",
+      "checkedAt": "2026-10-04",
+      "verification": "核对官方页面标题、日期与视频模块；没有取得站内嵌入授权，未验证各地区实际播放。"
+    },
+    {
+      "id": "meihou",
+      "kind": "官方视频报道",
+      "title": "《文化十分》介绍 AI 微短剧《美猴王》",
+      "url": "https://tv.cctv.com/2025/01/03/VIDEnyWISd4h3t8Br3joeavk250103.shtml",
+      "publishedAt": "2025-01-03",
+      "note": "央视节目视频报道，帮助了解作品；不是正片或预告片。",
+      "provider": "央视网",
+      "mode": "external",
+      "checkedAt": "2026-10-04",
+      "verification": "核对官方页面标题、日期与视频模块；没有取得站内嵌入授权，未验证各地区实际播放。"
+    }
+  ],
+  "plots": [
+    {
+      "id": "mj-c95b4ab0c299",
+      "text": "校园宿舍分配系统出错，林知夏与室友们的磨合成为这部校园喜剧的起点。",
+      "source": "https://www.duanjubaike.net/manju/info-7692794882078821438.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-8291f9515b7a",
+      "text": "妹妹跟随姐姐改变婚事和经营计划，姐妹俩试图避开家族原本的命运。",
+      "source": "https://www.duanjubaike.net/manju/info-7692075907669838872.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-eea76c30a20b",
+      "text": "书生背弃婚姻后遭遇人生变故，与神秘女子的关系牵出狐妖身份之谜。",
+      "source": "https://www.duanjubaike.net/manju/info-7692793329053879321.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-3304f4161daf",
+      "text": "物流园司机追捧一份高价盒饭，一桩围绕饮食与信任的骗局逐渐显露。",
+      "source": "https://www.duanjubaike.net/manju/info-7692037254893554713.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-dab967883362",
+      "text": "大学生与追凶者共同调查棋院旧案，在新的线索中追查隐藏多年的凶手。",
+      "source": "https://www.duanjubaike.net/manju/info-7692787144217087000.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-7424c5a40107",
+      "text": "一名工厂技术人员怀疑家中饮食有问题，开始留存证据，调查婚姻背后的算计。",
+      "source": "https://www.duanjubaike.net/manju/info-7692790257346956312.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-860eb925e9e8",
+      "text": "宴席承办者遭遇付款纠纷，与其他商户一起追查合同和款项的去向。",
+      "source": "https://www.duanjubaike.net/manju/info-7690902342182374424.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-436ba00984bb",
+      "text": "为应对家族安排与商业压力，苏晴雇用陈阳，两人的合作逐渐发展为感情。",
+      "source": "https://www.duanjubaike.net/manju/info-7692394416576662552.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-f8359cc8590a",
+      "text": "隐藏富家身份的转学生进入新校园，应对同学间的排挤，也迎来新的感情。",
+      "source": "https://www.duanjubaike.net/manju/info-7692796440598285337.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-c2c3769cfda5",
+      "text": "女企业家与一名隐藏身份的工人结为协议夫妻，在家族和事业危机中建立信任。",
+      "source": "https://www.duanjubaike.net/manju/info-7692068174707035161.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-f1dfea13b56e",
+      "text": "冰雹来临前，采购商赶到村里收果，却与希望继续等价的村民和中间商发生冲突。",
+      "source": "https://www.duanjubaike.net/manju/info-7691707924061621273.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-35ac2cf67d19",
+      "text": "业务员垫付费用却报销受阻，离职后重新寻找能认可自己能力的职业机会。",
+      "source": "https://www.duanjubaike.net/manju/info-7691287350327905342.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-75be8382d7a9",
+      "text": "一支队伍循线索寻找方向，同伴的失误考验着众人的判断与相互信任。",
+      "source": "https://www.duanjubaike.net/manju/info-7692788736769133593.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-58606f8b0364",
+      "text": "隐瞒公主身份的女子经历婚姻伤害，重新面对自己的身世与家国责任。",
+      "source": "https://www.duanjubaike.net/manju/info-7692406794345270334.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-ee2342134ec1",
+      "text": "池茉在长期失衡的感情中重新审视自己，决定离开曾努力融入的生活圈子。",
+      "source": "https://www.duanjubaike.net/manju/info-7692767052636900376.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-df8db618d5b7",
+      "text": "一场生日风波暴露家人的偏心，林宁离开旧有关系，依靠学业和事业重建生活。",
+      "source": "https://www.duanjubaike.net/manju/info-7689894221133646873.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-c2d82490e952",
+      "text": "年会上的冒犯让一名孕妇看清家庭与职场中的问题，家人的支持成为故事转折。",
+      "source": "https://www.duanjubaike.net/manju/info-7692066642330668056.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-31cac6855705",
+      "text": "犬猫搭档以拟人化形象调查谜案，将侦探故事放进萌宠世界。",
+      "source": "https://www.duanjubaike.net/manju/info-7692484086387969086.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-1dd583caa3c2",
+      "text": "女帝重生为比熊犬，在帮助幼帝处理朝政的过程中寻找旧日阴谋的答案。",
+      "source": "https://www.duanjubaike.net/manju/info-7692779428174105625.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    },
+    {
+      "id": "mj-19ad4d893a7e",
+      "text": "大学毕业生选择进入货运行业，从学习驾驶开始，在长途运输中积累经验。",
+      "source": "https://www.duanjubaike.net/manju/info-7692395954292395033.html",
+      "publisher": "短剧百科（第三方目录）",
+      "checkedAt": "2026-10-04",
+      "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
+    }
+  ],
+  "notice": "历史公开报告快照；播放次数不是人数、收入或版权认证。报告榜单不代表全市场，本站目录数量不代表题材需求。选题建议为编辑判断与原创构思，不是爆款预测。"
+}

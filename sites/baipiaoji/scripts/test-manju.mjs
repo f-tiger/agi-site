@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
+import {INSIGHTS,validateInsights} from './manju-insights.mjs';
 import {MANJU,MANJU_REVISION} from './manju-pages.mjs';
 import {importFacts,validateManju} from './manju-catalog.mjs';
 import {onRequestPost as inquiry} from '../functions/api/manju-inquiry.js';
@@ -24,11 +25,18 @@ for(const x of MANJU.items.filter(x=>x.recordType!=='discovery')){const h=await 
 assert.equal(JSON.parse(await get('manju/catalog.json')).items.length,ids.length);assert.ok((await get('manju/feed.xml')).includes('不是剧集追更'));assert.ok((await get('index.html')).includes('/manju/'));assert.ok(JSON.parse(await get('search-index.json')).some(x=>x.u===base+'/manju/beipai'));assert.ok((await get('llms.txt')).includes('/manju/catalog.json'));assert.ok((await get('sitemap.xml')).includes(base+'/manju/'));
 for(const action of ['view','open','save','inquiry_ok']){assert.ok(parseManjuEvent('/manju/'+action+'/catalog',ids));assert.ok(businessEvent('baipiaoji.com','/manju/',{name:'manju_'+action}));}
 assert.equal(parseManjuEvent('/manju/open/private@email.test',ids),false);assert.equal(businessEvent('baipiaoji.com','/account',{name:'manju_open'}),null);assert.equal(businessEvent('baipiaoji.com','/manju/',{name:'manju_open',email:'sensitive'}),null);
+// Report units/windows stay independent; enrichment cannot invent a work identity.
+assert.equal(validateInsights(INSIGHTS,MANJU),true);
+for(const mutate of [d=>d.cohorts[1].unit='次',d=>d.reports[0].periodEnd='2099-01-01',d=>d.cohorts[0].records[0].value=-1,d=>d.previews[0].mode='embed',d=>d.previews[0].url='https://example.test/fake',d=>d.plots[0].id='missing']){const d=structuredClone(INSIGHTS);mutate(d);assert.throws(()=>validateInsights(d,MANJU));}
+for(const route of ['rankings','topics','previews',...INSIGHTS.topics.map(t=>'topic-'+t.id)]){const h=await get('manju/'+route+'.html');assert.ok(h.includes('<link rel="canonical" href="'+base+'/manju/'+route+'">'));assert.ok(!/<(?:video|iframe)\b/i.test(h.replace(/<iframe[^>]*analytics[^>]*>/g,'')));}
+const insightData=JSON.parse(await get('manju/insights.json'));assert.equal(insightData.cohorts[0].records[0].value,2579000000);assert.equal(insightData.cohorts[1].metric,'peak_heat');assert.equal(insightData.plots.length,20);assert.equal(insightData.previews.length,4);
+const ranking=await get('manju/rankings.html');assert.ok(ranking.includes('不是播放量'));assert.ok(ranking.includes('2026-08-31'));assert.ok(ranking.includes('不是实时全网排名')||ranking.includes('历史快照'));
+for(const action of ['preview_open','rank_sort','topic_complete','topic_empty','topic_export']){assert.ok(parseManjuEvent('/manju/'+action+'/catalog',ids));assert.ok(businessEvent('baipiaoji.com','/manju/topics',{name:'manju_'+action}));assert.equal(businessEvent('baipiaoji.com','/manju/topics',{name:'manju_'+action,input:'private'}),null);}
 const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',email:'test@example.test',note:'Automated validation only; never a customer lead.',consent:true};
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
 else{
  const manifest=JSON.parse(readFileSync(new URL('../data/page-lastmod.json',import.meta.url),'utf8'));
- for(const path of [...MANJU.items.filter(x=>x.recordType!=='discovery').map(x=>x.id),'method','cooperate'])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
+ for(const path of [...MANJU.items.filter(x=>x.recordType!=='discovery').map(x=>x.id),'method','cooperate','rankings','topics','previews',...INSIGHTS.topics.map(t=>'topic-'+t.id)])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
  const sql=new DatabaseSync(':memory:');sql.exec("CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT); CREATE INDEX hits_events ON hits(d,ev) WHERE ev != '';");
  const env={HITS:{prepare(q){let args=[];const st={bind(...a){args=a;return st;},async run(){const r=sql.prepare(q).run(...args);return {meta:{changes:Number(r.changes)}};},async all(){return {results:sql.prepare(q).all(...args)};}};return st;}}};
  const post=(body=good,headers={},suffix='')=>inquiry({env,request:new Request(base+'/api/manju-inquiry'+suffix,{method:'POST',headers:{origin:base,'content-type':'application/json',...headers},body:JSON.stringify(body)})});

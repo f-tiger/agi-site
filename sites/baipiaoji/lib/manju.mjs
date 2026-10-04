@@ -1,4 +1,4 @@
-export const MANJU_ACTIONS = ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return'];
+export const MANJU_ACTIONS = ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export'];
 export function parseManjuEvent(path, ids) {
   const m = /^\/manju\/([a-z_]+)\/([a-z0-9-]+)$/.exec(path);
   return !!m && MANJU_ACTIONS.includes(m[1]) && ['catalog', ...ids].includes(m[2]);

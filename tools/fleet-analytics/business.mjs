@@ -29,7 +29,7 @@ export function businessEvent(host, pathname, detail) {
       ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'].some(action=>name==='eco_tool_'+action))
     return {name,tool_id:'eco-tool-experience',repeat:true};
 
-  if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
+  if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
   if (host === 'baipiaoji.com' && !/^\/(?:account|members)(?:\/|$)/.test(route) && ['search_suggestions','search_results','search_empty','search_suggestion_select','search_result_select','search_error'].includes(name)) return {name, tool_id:'site-search', repeat:true};

@@ -7683,7 +7683,7 @@ for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cp
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
-for(const f of ['github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju.js'])cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju.js','manju-insights.js'])cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root,'lib/github-tools.mjs'),join(dist,'github-tools-core.mjs'));
 for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
@@ -8194,7 +8194,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 
 ## Coding access and API relays
 
-Chinese AI films and manju discovery: ${site.base_url}/manju/ . Editorial public-source catalogue, not streaming or full-view reviews. Link types distinguish official collections, articles/previews and platform search. Local watchlists do not sync with accounts. No active sponsorship or referral commission. Sources and dates: /manju/catalog.json and /manju/catalog.md ; catalogue-change RSS: /manju/feed.xml .
+Chinese AI films and manju discovery: ${site.base_url}/manju/ . Editorial public-source catalogue, not streaming or full-view reviews. Link types distinguish official collections, articles/previews and platform search. Local watchlists do not sync with accounts. No active sponsorship or referral commission. Sources and dates: /manju/catalog.json and /manju/catalog.md ; catalogue-change RSS: /manju/feed.xml . Historical, period-specific play-increment and peak-heat snapshots: /manju/rankings ; free topic recommendation tool: /manju/topics ; official external video entries: /manju/previews . Evidence and original editorial topic briefs: /manju/insights.json and /manju/insights.md . Latest verified report period: August 2026, not current live popularity. Do not add heat values to plays or infer revenue/audience from either.
 
 Coding access directory: ${site.base_url}/coding-access/ ; English ${site.base_url}/en/coding-access/ . Source-linked original subscriptions, API relay candidates and domestic compatible models. Reviewed means public documents read, never payment, reliability or model authentication. Pending entries are not recommendations. Region/account eligibility must be checked before payment. No affiliate links or BPJ checkout. Machine-readable equivalents: /coding-access.json and /coding-access.md (localized English equivalents exist).
 
