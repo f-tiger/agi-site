@@ -1,4 +1,17 @@
 // Optional provider setup. Never overwrite a configured provider with empty input.
+import {readFileSync,writeFileSync} from 'node:fs';
+export function withGoogleBinding(toml,client=''){
+ client=client.trim();if(!client)return toml;
+ if(!/^[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(client))throw Error('Invalid Google client ID');
+ const header=/^\[vars\][ \t]*(?:#[^\r\n]*)?\r?$/m.exec(toml);
+ if(!header)throw Error('Missing deployment vars table');
+ const start=header.index+header[0].length,next=toml.slice(start).search(/^\[/m),end=next<0?toml.length:start+next;
+ const body=toml.slice(start,end),pattern=/^[ \t]*GOOGLE_CLIENT_ID[ \t]*=[^\r\n]*$/gm;
+ const matches=[...body.matchAll(pattern)];if(matches.length>1)throw Error('Duplicate Google deployment binding');
+ const line='GOOGLE_CLIENT_ID = '+JSON.stringify(client);
+ const changed=matches.length?body.replace(pattern,line):'\n'+line+body;
+ return toml.slice(0,start)+changed+toml.slice(end);
+}
 export async function configure(env,request=fetch){
  const updates={};
  const client=(env.GOOGLE_CLIENT_ID||'').trim(),key=(env.RESEND_API_KEY||'').trim(),from=(env.ACCOUNT_MAIL_FROM||'').trim();
@@ -15,4 +28,8 @@ export async function configure(env,request=fetch){
  if(JSON.stringify(before.deployment_configs.production.d1_databases)!==JSON.stringify(after.deployment_configs.production.d1_databases))throw Error('Database bindings changed');
  return {updated:true,google_input:!!client,mail_input:!!(key&&from),mail_incomplete:!!key!==!!from};
 }
-if(import.meta.url===new URL(process.argv[1],'file:').href){try{console.log(JSON.stringify(await configure(process.env)));}catch{console.error('Account provider setup failed. Verify optional Google/mail settings and Cloudflare Pages permissions. No values were logged.');process.exitCode=1;}}
+if(import.meta.url===new URL(process.argv[1],'file:').href){try{
+ const result=await configure(process.env),client=(process.env.GOOGLE_CLIENT_ID||'').trim();
+ if(client){const config=new URL('../wrangler.toml',import.meta.url);writeFileSync(config,withGoogleBinding(readFileSync(config,'utf8'),client));}
+ console.log(JSON.stringify({...result,deployment_google_binding:!!client}));
+}catch{console.error('Account provider setup failed. Verify optional Google/mail settings and Cloudflare Pages permissions. No values were logged.');process.exitCode=1;}}
