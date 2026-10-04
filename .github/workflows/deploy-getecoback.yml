@@ -133,6 +133,11 @@ jobs:
           python3 tools/build_energy_workbench.py
       # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
       # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
+      - name: Build German winter decisions and verify calculations
+        run: |
+          node --test tools/test_winter_math.mjs
+          python3 tools/build_winter_guides.py
+
       - name: Fill the tools hub from the pages that exist (idempotent)
         run: python3 tools/build_tools_hub.py
 
@@ -163,7 +168,10 @@ jobs:
         run: python3 tools/build_related.py
 
       - name: Link household decision tools from relevant existing pages
-        run: python3 tools/link_household.py
+        run: |
+          python3 tools/link_household.py
+          python3 tools/link_winter_guides.py
+          python3 tools/check_winter_guides.py
       - name: Link electricity workbenches from existing content
         run: |
           python3 tools/link_energy_workbench.py

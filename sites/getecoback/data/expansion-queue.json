@@ -1,6 +1,6 @@
 {
  "note": "eco's standing expansion queue (owner 2026-09-24: 「站点应该持续扩展」). The daily fleet task (block C) takes the first item with status 'queued' and an empty 'blocked_by', builds it through the kgr-page checklist, flips it to 'built' with the page date and a bet id, and never builds more than one page a day. When fewer than three items are 'queued', the same run restocks from the season calendar in data/autopilot/demand-digest.md and records every SERP verdict here, rejections included, so no term is researched twice. Gate: tools/check_expansion_queue.py.",
- "updated": "2026-09-27",
+ "updated": "2026-10-04",
  "items": [
   {
    "slug": "beheizter-waeschestaender",
@@ -419,6 +419,180 @@
    "rejected": "2026-09-27",
    "blocked_by": "",
    "next_action": "None. Recorded so the rising panel does not send the next session here again."
+  },
+  {
+   "slug": "smarte-heizkoerperthermostate-lohnen-sich",
+   "working_title": "Smarte Heizkörperthermostate: Lohnt sich der Wechsel?",
+   "cluster": "heizen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940",
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "heizkoerper-wird-nicht-warm",
+   "working_title": "Heizkörper wird nicht warm: sinnvoll eingrenzen",
+   "cluster": "heizen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940",
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "fenster-zugluft-mietwohnung",
+   "working_title": "Fenster zieht: Zugluft in der Mietwohnung prüfen",
+   "cluster": "energie-sparen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.co2online.de/energie-sparen/heizenergie-sparen/lueften-lueftungsanlagen-fenster/",
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "nachtabsenkung-heizung",
+   "working_title": "Nachtabsenkung: Wann weniger Heizen sinnvoll ist",
+   "cluster": "heizen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426",
+     "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "duschen-kosten-rechner",
+   "working_title": "Duschen: Kosten und Sparbrause durchrechnen",
+   "cluster": "energie-sparen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.co2online.de/energie-sparen/wasser-sparen/wasserspartipps/sparduschkopf/",
+     "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/kosten-fuer-warmwasser-senken-das-koennen-sie-als-hausbesitzer-tun-17755"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "homeoffice-warm-bleiben",
+   "working_title": "Homeoffice im Winter: warm bleiben, Kosten prüfen",
+   "cluster": "heizen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426",
+     "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizkosten-sparen-thermostat-richtig-einstellen-und-wechseln-7940"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
+  },
+  {
+   "slug": "lichterkette-stromkosten",
+   "working_title": "Lichterkette: Stromkosten und Timer berechnen",
+   "cluster": "energie-sparen",
+   "evidence": {
+    "date": "2026-10-04",
+    "sources": [
+     "https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/energiesparende-lichterketten-leds-sind-die-beste-wahl-10902"
+    ],
+    "note": "Owner-directed comprehensive winter task; practical consumer decision, search volume unverified."
+   },
+   "serp": {
+    "date": "2026-10-04",
+    "verdict": "unavailable",
+    "note": "Public query feed returned unrelated results. No ranking opportunity claimed."
+   },
+   "cannibalization": "Distinct intent reviewed against existing heating, curtains, blankets, moisture and electricity guides; linked through winter hub. See release document.",
+   "monetisation": "Existing optional Amazon.de category affiliate links where relevant; otherwise onward free decision tools. No product tests or revenue claims.",
+   "status": "built",
+   "blocked_by": [],
+   "next_action": "Observe the published cohort before further expansion.",
+   "built": "2026-10-04",
+   "bet": "eco-winter-decisions-1101"
   }
  ]
 }

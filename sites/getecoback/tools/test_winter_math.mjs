@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {calculate} from '../site/assets/winter-math.mjs';
+const t={base:600,saving:5,cost:150,running:10};
+const s={flow:12,newflow:8,minutes:8,count:365,cold:10,warm:38,factor:1,price:.35,water:5,cost:30};
+const l={watts:20,hours:8,newhours:4,days:30,price:.35,timer:.5};
+const near=(a,b)=>assert(Math.abs(a-b)<1e-9,`${a} != ${b}`);
+test('payback uses only net savings; zero savings never amortize',()=>{assert.deepEqual(calculate('thermostat',t),{gross:30,net:20,payback:7.5});assert.equal(calculate('thermostat',{...t,saving:0}).payback,null);assert.equal(calculate('thermostat',{...t,running:30}).payback,null);});
+test('shower includes energy and water with a system factor',()=>{const r=calculate('shower',s);near(r.before.heat,3.126144);near(r.before.cost,1.5741504);near(r.after.cost,1.0494336);near(r.annual,191.521632);near(r.waterSaved,11.68);near(calculate('shower',{...s,factor:2}).before.energy,r.before.energy/2);assert.equal(calculate('shower',{...s,newflow:12}).payback,null);assert(calculate('shower',{...s,newflow:15}).annual<0);});
+test('timer includes 24-hour standby and may lose money',()=>{const r=calculate('lights',l);near(r.beforeCost,1.68);near(r.afterCost,.966);near(r.saving,.714);assert(calculate('lights',{...l,watts:1,hours:5,newhours:4,timer:1}).saving<0);});
+test('invalid, blank, nonfinite and contradictory inputs fail closed',()=>{for(const x of ['',null,undefined,true,Infinity,-1,'abc'])assert.throws(()=>calculate('lights',{...l,watts:x}),RangeError);assert.throws(()=>calculate('shower',{...s,cold:38}),RangeError);assert.throws(()=>calculate('shower',{...s,factor:0}),RangeError);assert.throws(()=>calculate('lights',{...l,hours:25}),RangeError);});

@@ -81,6 +81,9 @@ CAT_OF = {
     "balkon-terrasse-beschatten": "energie-sparen",
 }
 
+from build_winter_guides import PAGES as WINTER_PAGES
+CAT_OF.update({slug: page['cat'] for slug, page in WINTER_PAGES.items()})
+
 NAV = ("<!--EB_NAV--><nav class=\"eb-nav\"><div class=\"eb-nav-in\">"
        "<a class=\"eb-logo\" href=\"/\">❄️ EcoBack</a>"
        "<div class=\"eb-links\">"

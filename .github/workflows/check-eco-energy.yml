@@ -41,6 +41,8 @@ jobs:
           python3 tools/test_affiliate_growth.py
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
+          node --test tools/test_winter_math.mjs
+          python3 tools/build_winter_guides.py
           python3 tools/build_tools_hub.py
           python3 tools/build_structure.py
           node --test tools/test_buyer_decision.mjs
@@ -49,6 +51,9 @@ jobs:
           # Match deployment: this regenerates the isolated workbench pages
           # after generic chrome, keeping their probe/event contract intact.
           python3 tools/link_energy_workbench.py
+          python3 tools/link_household.py
+          python3 tools/link_winter_guides.py
+          python3 tools/check_winter_guides.py
           python3 tools/build_country_categories.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
@@ -92,6 +97,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
       - uses: actions/upload-artifact@v4
