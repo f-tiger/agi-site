@@ -29,6 +29,8 @@ jobs:
           node-version: '22'
       - name: Verify calculations, generated pages and discoverability
         run: |
+          # Check committed buyer modules before generators can repair missing markup.
+          node --test tools/test_buyer_decision.mjs
           node ../../tools/member-studio/test-isolation.mjs
           node ../../tools/member-studio/test-failure.mjs
           node ../../tools/fleet/test_membership_totals.mjs

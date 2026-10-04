@@ -8,6 +8,31 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-dry
 
 EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves. The examples use stated assumptions; your comparison uses the energy, runtime and tariff you enter. The formulas are shown so you can check the calculation.
 
+## Compare drying cost per load
+Low watts. Long runtime. What does one equally dry load cost?
+Prefilled numbers are a fictional example, not a measurement or recommended tariff.
+Load example: 250 W, 8 hours
+
+### Direct electricity cost per load
+Dryer****
+Dehumidifier****
+
+Room heating, ventilation heat, repairs and your time are excluded. A dry room does not prove equally dry clothes.
+Download result card (PNG)Download calculation (CSV)
+
+Measure one load fairly: checklist
+- Use the same laundry mass, spin speed and desired final dryness.
+- Record start/end energy readings and runtime using a suitable meter. Follow its instructions and electrical rating.
+- Use the kWh difference for the whole run. Rated watts are not measured average power.
+- For a label per 100 cycles, divide by 100. Its test programme may differ from your actual use.
+**What is supported here**Method: kWh × unit price. Comparison data: your inputs. Device performance: not tested here.
+Verbraucherzentrale: label per 100 drying cycles · checked 1 October 2026
+
+[Next: do I need a dehumidifier?](https://getecoback.com/en/guide/dehumidifier-20-sqm.html#eb-moisture-choice)
+Copy calculator link
+No account. Inputs stay in your browser. Downloads contain your numbers; the shared link does not. Anonymous events count actions, not meter readings.
+Custom calculations need JavaScript. Example: 250 W × 8 h ÷ 1,000 = 2 kWh; at EUR 0.35/kWh that costs EUR 0.70. A dryer using 1.5 kWh costs EUR 0.525. Equal drying is assumed.
+
 ## What does a dehumidifier cost per load?
 
 The table below assumes six hours at a constant average power and **€0.30/kWh**. These are arithmetic examples. They do not establish how long your laundry takes to dry. Replace both runtime and unit price with your own values.
@@ -60,6 +85,15 @@ Dehumidifiers with laundry mode →
 [What a portable air conditioner costs to run →](https://getecoback.com/en/guide/portable-ac-running-cost.html)
 [Portable AC leaking water: why it happens →](https://getecoback.com/en/guide/portable-ac-leaking-water.html)
 [Auf Deutsch: Wäsche in der Wohnung trocknen ohne Schimmel →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
+
+## Check manufacturer data before buying
+Why “20 litres” does not always mean 20 litresExample: MeacoDry Arete One 20L. Manufacturer figures, not an EcoBack test. Different room conditions are not a controlled efficiency comparison.
+Condition | Water per day | Power |
+10 °C / 60 % RH | 3.4 L | 180 W |
+20 °C / 60 % RH | 8.5 L | 216 W |
+
+Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
+Sources checked on 1 October 2026: Meaco · Comfee manual · Verbraucherzentrale. No hands-on tests. Guidance, not a remote diagnosis.
 
 ## Reproducible laundry cost comparison
 Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.
