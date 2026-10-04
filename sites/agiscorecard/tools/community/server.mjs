@@ -99,7 +99,7 @@ export async function communityRoute(request,env){
   if(sitemap){const rows=(await db.prepare("SELECT id,lang FROM discuss_posts WHERE status='public' AND parent IS NULL ORDER BY published DESC LIMIT 5000").all()).results;const urls=['/discuss','/zh/discuss',...seeds.flatMap(s=>[topicPath('en',s.id),topicPath('zh',s.id)]),...rows.map(p=>topicPath(p.lang,p.id))];return new Response(request.method==='HEAD'?null:'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(p=>'<url><loc>'+ORIGIN+p+'</loc></url>').join('')+'</urlset>',{headers:{...headers,'Content-Type':'application/xml'}});}
   const id=match[2],page=pageOf(u.searchParams.get('page'));let response;
   if(!id)response=html(hub(lang,await listing(db,lang,Object.hasOwn(categories,u.searchParams.get('category'))?u.searchParams.get('category'):'',(page-1)*20),Object.hasOwn(categories,u.searchParams.get('category'))?u.searchParams.get('category'):'',page));
-  else if(id==='account')response=html(account(lang));
+  else if(id==='account')response=html(account(lang,{jarvis:u.searchParams.get('from')==='jarvis'}));
   else if(id==='rules')response=html(rules(lang));
   else if(id==='moderate')response=html(moderate(lang));
   else if(id==='new')response=html(shell(lang,{title:t('Start a discussion','发起讨论'),description:t('Bring evidence or a first-hand experience.','带来证据或第一手经历。'),path:root(lang)+'/new',noindex:true,body:postForm(lang)}));

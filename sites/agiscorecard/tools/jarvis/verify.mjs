@@ -5,12 +5,17 @@ for(const path of ['/jarvis','/zh/jarvis']){const r=await fetch(origin+path+'?ci
  for(const script of h.matchAll(/<script\b[^>]*>/gi))assert.ok(script[0].includes('nonce="'+nonce+'"'),path+' script without response nonce');assert.ok(h.includes('/api/e'),'first-party measurement preserved');
 }
 const meta=await (await fetch(origin+'/api/jarvis')).json();assert.equal(meta.version,VERSION);assert.equal(meta.sharedAttemptsPer24h,12);assert.equal(meta.paid,false);assert.equal(meta.membershipRequired,false);assert.equal(meta.membershipSite,'agi');assert.equal(meta.ipAttemptsPerWindow,3);assert.equal(meta.maxModelCallsPerNewRun,1);
+assert.equal(meta.registrationRequiredAfterTrial,true);assert.equal(meta.guestTasks,1);assert.equal(meta.guestIpTrialWindowHours,24);
 const denied=await fetch(origin+'/api/jarvis/tasks');assert.equal(denied.status,401);assert.equal(denied.headers.get('cache-control'),'no-store');
 const nonmember=crypto.randomUUID().replaceAll('-','')+crypto.randomUUID().replaceAll('-','');
 const closed=await fetch(origin+'/api/jarvis/tasks',{headers:{authorization:'Bearer '+nonmember}});assert.equal(closed.status,200);const workspace=await closed.json();assert.deepEqual(workspace.tasks,[]);assert.equal(workspace.membership.member,false);
+assert.ok([0,1].includes(workspace.membership.trialRemaining));
+// Guest daily work must fail before task creation or model use, even with forged registration flags.
+const daily=await fetch(origin+'/api/jarvis',{method:'POST',headers:{origin,'content-type':'application/json',authorization:'Bearer '+nonmember},body:JSON.stringify({action:'create',nonce:crypto.randomUUID().replaceAll('-',''),goal:'Synthetic admission probe; no work should be created.',lang:'en',cadence:'daily',web:false,publicQuery:'',consent:true,memory:[],registered:true,paid:true})});assert.equal(daily.status,403);assert.equal((await daily.json()).code,'registration_required');
+for(const prefix of ['', '/zh']){const r=await fetch(origin+prefix+'/discuss/account?from=jarvis&ci=1');assert.equal(r.status,200);const html=await r.text();assert.ok(html.includes(prefix? '免费注册，继续使用贾维斯':'Register free to continue with Jarvis'));assert.match(html,/noindex,nofollow/);assert.ok(!html.includes('data-ga4-id='));}
 // Deliberately invalid task input cannot create a task even if a gate regresses.
 const forged=await fetch(origin+'/api/jarvis',{method:'POST',headers:{origin,'content-type':'application/json',authorization:'Bearer '+nonmember},body:JSON.stringify({action:'create',nonce:'invalid-probe',active:true,paid:true})});assert.equal(forged.status,400);assert.equal((await forged.json()).code,'invalid_request');
 assert.equal(meta.backgroundIntervalMinutes,120);assert.equal((await fetch(origin+'/api/jarvis/run')).status,401);
 const cross=await fetch(origin+'/api/jarvis',{method:'POST',headers:{origin:'https://wrong.example','content-type':'application/json'},body:'{}'});assert.equal(cross.status,403);
 for(const p of ['/jarvis-assets/app.mjs','/jarvis-assets/core.mjs','/jarvis-assets/style.css'])assert.equal((await fetch(origin+p)).status,200,p);
-console.log('Jarvis live surfaces, version, nonce CSP, frame denial, bilingual canonicals, GA4 marker, unchanged limits and free private-browser access verified. No task, payment or AI call created.');
+console.log('Jarvis live surfaces, one-trial metadata, forged guest daily denial, existing free-registration pages, nonce CSP, private reads, bilingual SEO and unchanged model limits verified. No account, task, payment or AI call created.');

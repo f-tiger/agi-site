@@ -1,6 +1,6 @@
 import {VERSION,MODEL,MAX_RUNS,reportOf,rank} from '../../jarvis-assets/core.mjs';
 import {availableCatalog,runTool} from './sources.mjs';
-import {ensure,cleanup} from './store.mjs';
+import {ensure,cleanup,guestRunAllowed} from './store.mjs';
 import {now,limit} from '../create/store.mjs';
 import {reportSchema} from './schema.mjs';
 import {evidencePlan} from './plan.mjs';
@@ -14,8 +14,8 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
  const row=await db.prepare(`UPDATE jarvis_tasks SET status='running',stage='observe',lease=?,lease_until=?,updated=? WHERE id=? AND status IN ('queued','watching') AND next_run<=? AND lease_until<=? AND expires>? AND runs<? RETURNING *`).bind(lease,t+180,t,id,t,t,t,MAX_RUNS).first();
  if(!row)return false;
  async function entitled(){
-  let active=false;try{active=await accessActive(env,row.member_id);}catch{}
-  if(!active)await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='access_blocked',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(now(),id,lease).run();
+  let active=false;try{active=row.member_id?await accessActive(env,row.member_id):await guestRunAllowed(db,row);}catch{}
+  if(!active)await db.prepare("UPDATE jarvis_tasks SET status='paused',stage=?,next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(row.member_id?'access_blocked':'registration_required',now(),id,lease).run();
   return active;
  }
  if(!await entitled())return false;
@@ -82,7 +82,7 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
   log('synthesis',result.reason+'; source pack retained without fabricated AI output');
  }
  if(!await active())return false;
- const completed=!!result.report,runs=row.runs+1,canRepeat=input.cadence==='daily'&&runs<MAX_RUNS&&now()+86400<=row.until_at;
+ const completed=!!result.report,runs=row.runs+1,canRepeat=!!row.member_id&&input.cadence==='daily'&&runs<MAX_RUNS&&now()+86400<=row.until_at;
  const status=canRepeat?'watching':completed?'completed':'limited',nextRun=canRepeat?now()+86400:0;
  result.changed=JSON.stringify(result.sources.map(s=>[s.id,s.updatedAt,s.description]))!==JSON.stringify((JSON.parse(row.result).sources||[]).map(s=>[s.id,s.updatedAt,s.description]));
  const previous=result.prior;result.continuation=false;

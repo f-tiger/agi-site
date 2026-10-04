@@ -34,7 +34,7 @@ export function businessEvent(host, pathname, detail) {
   }
   if (host === 'agiscorecard.com' && route === '/invest' && ['route','scenario','watch','export','source_open','tool_open','telegram_open'].some(a => name === 'roadmap_' + a)) return {name, tool_id:'ai-investment-roadmap', repeat:true};
   if (host === 'agiscorecard.com' && route === '/jarvis' &&
-      ['start','report_ready','source_pack','source_open','export','memory_save','pause','resume','delete','feedback','membership_open','member_verified'].some(a => name === 'jarvis_' + a)) {
+      ['start','report_ready','source_pack','source_open','export','memory_save','pause','resume','delete','feedback','membership_open','member_verified','registration_open'].some(a => name === 'jarvis_' + a)) {
     return {name, tool_id:'jarvis', repeat:true};
   }
   if (host === 'agiscorecard.com' && /^\/future-guide(?:\/[a-z0-9-]+)?$/.test(route) &&
