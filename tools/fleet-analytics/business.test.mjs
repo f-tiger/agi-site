@@ -66,3 +66,11 @@ test('AGI home funnel uses fixed actions and route-derived language only',()=>{
  for(const path of ['/tools/grok','/en/tools/kimi.html']) assert.deepEqual(businessEvent('baipiaoji.com',path,{name:'account_entry'}),{name:'account_entry',tool_id:'free-account',repeat:true});
  for(const [host,path,detail] of [['getecoback.com','/tools/grok',{name:'account_entry'}],['baipiaoji.com','/account',{name:'account_entry'}],['baipiaoji.com','/tools/grok',{name:'account_entry',email:'private'}]]) assert.equal(businessEvent(host,path,detail),null);
 });
+
+for (const name of ['search_suggestions','search_results','search_empty','search_suggestion_select','search_result_select','search_error']) {
+ assert.deepEqual(businessEvent('baipiaoji.com','/en/',{name}),{name,tool_id:'site-search',repeat:true});
+ assert.equal(businessEvent('baipiaoji.com','/en/account',{name}),null);
+ assert.equal(businessEvent('baipiaoji.com','/members',{name}),null);
+ assert.equal(businessEvent('baipiaoji.com','/',{name,query:'private@example.test'}),null);
+ assert.equal(businessEvent('getecoback.com','/',{name}),null);
+}
