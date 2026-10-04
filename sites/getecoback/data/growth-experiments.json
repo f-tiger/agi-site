@@ -21,6 +21,27 @@
         "/au/portable-air-conditioner-window-kit.html"
       ],
       "queue_note": "The measurement/placement part of this older unbuilt topic is delivered by this public pilot. Recheck cannibalization before any separate calibration page; do not duplicate the measurement guide."
+    },
+    {
+      "id": "eco-winter-decisions-1101",
+      "site": "getecoback",
+      "due": "2026-11-01",
+      "metric": "Qualified visits by page/country; consented GA4 tool_complete/tool_export and affiliate_click. Example runs are excluded. Merchant-confirmed revenue is separate.",
+      "threshold": "28 days: fewer than 100 qualified cohort visits = insufficient reach; with at least 100 visits, 10 confirmed completions or 5 merchant clicks is a continuation signal, not statistical proof.",
+      "win": "Deepen observed useful paths; verify matching merchant revenue before calling this commercial success.",
+      "lose": "If reach is sufficient and outcomes absent, revise intent and discovery once before adding further pages.",
+      "source": "sites/getecoback/docs/winter-expansion-2026-10-04.md",
+      "status": "open",
+      "built_pages": [
+        "/winter-energiesparen.html",
+        "/guide/smarte-heizkoerperthermostate-lohnen-sich.html",
+        "/guide/heizkoerper-wird-nicht-warm.html",
+        "/guide/fenster-zugluft-mietwohnung.html",
+        "/guide/nachtabsenkung-heizung.html",
+        "/guide/duschen-kosten-rechner.html",
+        "/guide/homeoffice-warm-bleiben.html",
+        "/guide/lichterkette-stromkosten.html"
+      ]
     }
   ]
 }

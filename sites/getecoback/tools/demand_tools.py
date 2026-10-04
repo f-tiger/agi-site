@@ -5,6 +5,7 @@ sources on these pages. Automatic category shelves must not contradict them.
 """
 import re
 from moisture_decision import PATHS as MOISTURE_PATHS
+from build_winter_guides import PAGES as WINTER_PAGES
 
 WINDOW_DE = {'klimaanlage-kippfenster', 'klimaanlage-dachfenster', 'klimaanlage-zubehoer-guenstig', 'fensterabdichtung-klimaanlage'}
 WINDOW_EN = {'portable-ac-tilt-and-turn-windows', 'portable-ac-skylight-roof-window', 'window-seal-portable-ac'}
@@ -28,6 +29,8 @@ def heater_block():
 
 
 def inject(html, slug, en=False):
+    if slug in WINTER_PAGES or slug == 'winter-energiesparen':
+        return strip(html, ['USSWITCH','USMARKET','USTOP','USSHELF','POPUP','MODELS','TOPPICK','QUICKPICK','SIZER','STICKY','EXPLAINER','PROFILE','HEATNOW','HEATENERGY','CLIMATE','RADAR'])
     if slug not in PROTECTED: return html
     # Run last: both DE and EN build loops may inject these more than once.
     html = strip(html, ['USSWITCH', 'USMARKET', 'USTOP', 'USSHELF', 'POPUP', 'DEMAND_MARKET', 'DEMAND_ASSETS'])
