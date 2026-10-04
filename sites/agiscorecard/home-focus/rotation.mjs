@@ -45,9 +45,9 @@ function dailyFeature(videos,day){
  // can change the ring size; remember yesterday's choice to avoid a repeat at
  // that boundary without cookies, user tracking or a successful daily build.
  const end=Date.parse(day+'T00:00:00Z'),start=Math.min(...reviewed.map(v=>Date.parse(v.date+'T00:00:00Z')));
- let feature=null,ring=[];
- for(let time=start;time<=end;time+=DAY){const date=new Date(time).toISOString().slice(0,10);ring=balancedRing(recent(reviewed.filter(v=>v.date<=date),date,2),24);const index=Math.floor(time/DAY)%ring.length;let next=ring[index];if(next?.video===feature?.video&&ring.length>1)next=ring[(index+1)%ring.length];feature=next;}
- return {feature,ringSize:ring.length};
+ let feature=null,ring=[];const history=[];
+ for(let time=start;time<=end;time+=DAY){const date=new Date(time).toISOString().slice(0,10);ring=balancedRing(recent(reviewed.filter(v=>v.date<=date),date,2),24);const index=Math.floor(time/DAY)%ring.length;let next=ring[index];if(next?.video===feature?.video&&ring.length>1)next=ring[(index+1)%ring.length];feature=next;history.push({date,feature});}
+ return {feature,ringSize:ring.length,history};
 }
 export function homeEdition(pool,now=Date.now()){
  if(pool?.version!==1||!Array.isArray(pool.videos))throw Error('Invalid home rotation pool');
@@ -55,15 +55,26 @@ export function homeEdition(pool,now=Date.now()){
  const videos=pool.videos.filter(v=>eligible(v,day)&&!seen.has(v.video)&&seen.add(v.video)).map(v=>({...v,views:v.views.filter(validView)}));
  const chosen=dailyFeature(videos,day);if(!chosen)return null;
  const {feature,ringSize}=chosen,view=feature.views[Math.floor(dayIndex/Math.max(1,ringSize))%feature.views.length];
- const recommendations={};
- for(const lang of ['en','zh']){
-  // Keep the recommendation pool independent of the daily feature so its ring
-  // does not shift every day. If the hero occurs in the batch, advance one slot.
-  const pool=balancedRing(recent(videos.filter(v=>v.language===lang),day));
-  const picks=batch(pool,dayIndex,4).filter(v=>v.video!==feature.video);
-  if(picks.length<Math.min(4,pool.length))for(const v of batch(pool,dayIndex+1,4)){if(v.video!==feature.video&&!picks.some(x=>x.video===v.video))picks.push(v);if(picks.length===4)break;}
-  recommendations[lang]=picks.slice(0,4);
+ const recommendations={en:[],zh:[]};
+ // Replay recommendation choices across freshness boundaries too. A shrinking
+ // 30/90-day ring can otherwise select yesterday's exact set despite advancing
+ // the batch index. Retain four distinct cards and exclude that day's feature.
+ for(const entry of chosen.history)for(const lang of ['en','zh']){
+  const index=Math.floor(Date.parse(entry.date+'T00:00:00Z')/DAY);
+  const ring=balancedRing(recent(videos.filter(v=>v.language===lang&&v.date<=entry.date),entry.date));
+  const picks=batch(ring,index,4).filter(v=>v.video!==entry.feature?.video);
+  for(const v of [...batch(ring,index+1,4),...ring]){
+   if(picks.length>=4)break;
+   if(v.video!==entry.feature?.video&&!picks.some(x=>x.video===v.video))picks.push(v);
+  }
+  const previous=new Set(recommendations[lang].map(v=>v.video));
+  if(picks.length===previous.size&&picks.every(v=>previous.has(v.video))){
+   const alternate=ring.find(v=>v.video!==entry.feature?.video&&!previous.has(v.video));
+   if(alternate)picks[picks.length-1]=alternate;
+  }
+  recommendations[lang]=picks;
  }
+
  return {day,timeZone:'Asia/Shanghai',feature,view,recommendations};
 }
 export function renderHomeFeature(edition,lang){
