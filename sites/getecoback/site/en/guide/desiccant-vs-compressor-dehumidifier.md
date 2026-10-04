@@ -53,7 +53,7 @@ Two consequences follow, and both are real:
 
 ## The honest running-cost comparison
 
-At the Ofgem price cap for **1 October to 31 December 2026**, electricity on a Direct Debit tariff is **26.32p per kWh**. Scale the hours to your own run.
+At the Ofgem price cap for **1 October to 31 December 2026**, the average electricity unit rate for Direct Debit in England, Scotland and Wales is **26.32p per kWh**. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.
 
 Machine | Plate | Per hour | 8 hours | Cost (£) |
 
@@ -65,7 +65,7 @@ Desiccant dehumidifier, low setting | 330 W | 8.7p | 2.6 kWh | 0.69 |
 
 Desiccant dehumidifier, high setting | 650 W | 17.1p | 5.2 kWh | 1.37 |
 
-Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-09-17. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
 Note what this table cannot tell you: **cost per hour is not cost per litre.** If the compressor unit in your 10 °C garage spends a third of each hour defrosting, its real cost per litre removed is half again what the wattage suggests, and the desiccant machine can end up cheaper for the job despite the bigger number on the plate. Rate the machines at the temperature of your room. The litres-per-day figure on the box is measured at conditions — warm and humid — that a British winter room does not meet.
 

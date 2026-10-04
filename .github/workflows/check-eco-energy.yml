@@ -45,6 +45,7 @@ jobs:
           python3 tools/build_winter_guides.py
           python3 tools/build_winter_locales.py
           python3 tools/build_au_cooling.py
+          python3 tools/build_uk_opportunities.py
           python3 tools/build_tools_hub.py
           python3 tools/build_structure.py
           node --test tools/test_buyer_decision.mjs
@@ -59,6 +60,7 @@ jobs:
           python3 tools/check_winter_guides.py
           python3 tools/build_winter_locales.py
           python3 tools/build_au_cooling.py
+          python3 tools/build_uk_opportunities.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
@@ -72,6 +74,7 @@ jobs:
           python3 tools/build_agent_md.py
           python3 tools/check_winter_locales.py
           python3 tools/check_au_cooling.py
+          python3 tools/check_uk_opportunities.py
           python3 tools/check_country_categories.py
           python3 tools/check_events.py
           python3 tools/check_tools_hub.py

@@ -53,7 +53,7 @@ They are complements, not alternatives. The airer moves water out of the clothes
 
 ## What it costs, at the current cap
 
-At the Ofgem price cap for **1 October to 31 December 2026**, electricity on a Direct Debit tariff is **26.32p per kWh**. Scale the hours to your own run.
+At the Ofgem price cap for **1 October to 31 December 2026**, the average electricity unit rate for Direct Debit in England, Scotland and Wales is **26.32p per kWh**. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.
 
 Machine | Plate | Per hour | 8 hours (one drying session) | Cost (£) |
 
@@ -67,7 +67,7 @@ Compressor dehumidifier alongside it | 300 W | 7.9p | 2.4 kWh | 0.63 |
 
 Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
 
-Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-09-17. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
 Use the figure on your own airer's plate rather than the bands above. The honest comparison is not airer against dryer — it is airer plus whatever deals with the moisture against dryer. An airer at 300 W for eight hours plus a 300 W dehumidifier for the same eight hours lands close to a tumble dryer cycle, and takes all day. The reasons to choose it are the ones that are not about money: no vent, no heat damage to the clothes, no dryer to buy.
 
