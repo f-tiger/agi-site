@@ -31,6 +31,11 @@ for slug,p in PAGES.items():
   assert {x['name']for x in parser.inputs if x.get('type')=='number'}=={x[0]for x in FIELDS[p['tool']]}
   assert 'data-result' in s and 'data-export' in s
  for node in re.findall(r'<script type="application/ld\+json">(.*?)</script>',s,re.S):json.loads(node)
+from link_winter_guides import TARGETS
+for name,(url,*_) in TARGETS.items():
+ s=(SITE/name).read_text()
+ block=re.search(r'<!--EB_WINTER_LINK-->(.*?)<!--/EB_WINTER_LINK-->',s,re.S)
+ assert block and url in block[1], 'Winter entry lost: '+name
 hub=(SITE/'winter-energiesparen.html').read_text()
 assert all('/guide/'+slug+'.html' in hub for slug in PAGES)
-print('Winter: 7 distinct guides, source/next-step links, 3 forms and hub verified.')
+print('Winter: 7 distinct guides, source/next-step links, 3 forms, 12 surviving entry links and hub verified.')
