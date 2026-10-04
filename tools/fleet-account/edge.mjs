@@ -55,7 +55,11 @@ export function addAccountEntry(request,res){
  // Private tools, third-party embeds and analytics frames must not gain navigation.
  if(/^\/(?:auth|api|analytics-assets|\.well-known|embed|members|discuss\/account)(?:\/|\.|$)/.test(url.pathname)||/noindex/i.test(res.headers.get('X-Robots-Tag')||''))return res;
  const entry='<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>';
- const out=new HTMLRewriter().on('head',{element(e){e.append('<link rel="stylesheet" href="/auth/fleet.css"><script defer src="/auth/nav.js"></script>',{html:true});}}).on('body',{element(e){e.prepend(entry,{html:true});}}).transform(res);
+ // Preserve each site's response-specific CSP rather than weakening it or
+ // injecting a script that the original policy rejects.
+ const nonce=/\bscript-src(?:-elem)?\s+[^;]*'nonce-([A-Za-z0-9+/_=-]{1,256})'/.exec(res.headers.get('Content-Security-Policy')||'')?.[1];
+ const script='<script defer src="/auth/nav.js"'+(nonce?' nonce="'+nonce+'"':'')+'></script>';
+ const out=new HTMLRewriter().on('head',{element(e){e.append('<link rel="stylesheet" href="/auth/fleet.css">'+script,{html:true});}}).on('body',{element(e){e.prepend(entry,{html:true});}}).transform(res);
  out.headers.delete('Content-Length');return out;
 }
 export function withFleetAccount(worker,adaptRequest){return {...worker,async fetch(request,env,ctx){const result=await accountRoute(request,env);if(result)return result;if(adaptRequest){const adapted=await adaptRequest(request,env);if(adapted instanceof Response)return adapted;request=adapted;}return addAccountEntry(request,await worker.fetch.call(worker,request,env,ctx));}};}
