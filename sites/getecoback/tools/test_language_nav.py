@@ -12,6 +12,8 @@ class Navigation(HTMLParser):
 before={p:p.read_bytes() for p in SITE.rglob('*.html')}
 rows=build()
 assert all(p.read_bytes()==b for p,b in before.items()), 'Builder must be byte-stable'
+for p in SITE.rglob('members.html'):
+ assert not BLOCK.search(p.read_text()), f'Private member portal must not receive public navigation: {p}'
 for r in rows:
  p=SITE/(r['path'].lstrip('/')+('index.html' if r['path'].endswith('/') else ''))
  s=p.read_text();blocks=BLOCK.findall(s);assert len(blocks)==1,r
@@ -23,4 +25,8 @@ for r in rows:
   if a['data-language-target']=='page':assert h.alternates[a['hreflang']]=='https://getecoback.com'+path
  assert len([a for a in nav.links if a['data-language-target']=='page'])==len(r['translations'])
  assert s.index('<!--EB_LANGUAGE_NAV-->')<s.index('<main') if '<main' in s else True
+# Existing geo-specific content must survive regeneration of the first nav.
+heater=(SITE/'en/guide/electric-heater-20-sqm.html').read_text()
+assert 'id="eb-usunits" hidden' in heater and '20 m² is about 215 sq ft' in heater
+assert all('eb-usunits' not in block for block in BLOCK.findall(heater))
 print(f'PASS language navigation: {len(rows)} canonical pages, links and idempotence')

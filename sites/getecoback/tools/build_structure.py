@@ -4660,6 +4660,16 @@ def storage_guard():
 
 
 def main():
+    # This menu is a final build layer. Legacy chrome injectors target the first
+    # </nav>; leaving last build's menu here would nest content inside it and
+    # erase that content when the final language layer is replaced.
+    from build_language_nav import BLOCK as LANGUAGE_BLOCK, ASSET as LANGUAGE_ASSET
+    from pathlib import Path
+    for page in Path(SITE).rglob('*.html'):
+        source = page.read_text()
+        cleaned = LANGUAGE_ASSET.sub('', LANGUAGE_BLOCK.sub('', source))
+        if cleaned != source:
+            page.write_text(cleaned)
     storage_guard()
     os.makedirs(KAT, exist_ok=True)
     arts = collect_articles()
