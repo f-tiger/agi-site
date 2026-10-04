@@ -22,4 +22,5 @@ for path in ['index.html','en/index.html','en/guide/heated-airer-vs-dehumidifier
 s=(SITE/'en/guide/heated-airer-vs-dehumidifier.html').read_text()
 assert 'Everything beyond that condenses' not in s
 assert 'surface temperature and dew point' in s
+assert (SITE/'en/guide/dehumidifier-drying-clothes-cost.html').read_text().count('id="eb-moisture-choice"')==1
 print('PASS UK: sources, condition-matched figures, scope, local links, homepage entries and SEO/GEO discovery.')
