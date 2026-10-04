@@ -17,3 +17,19 @@ Tests:
 - BPJ's existing disposable `qa=1` live-account test now checks real D1 code exchange, replay rejection, host isolation and logout before deleting the account.
 
 SunWatch lives in a separate repository. Its `src/fleet-account/{edge,config}.mjs` is an explicit source copy; synchronize it whenever the protocol changes. The hub allowlist includes its canonical `invest.agiscorecard.com` hostname. Legacy workers.dev links remain unchanged.
+
+## Account header state
+
+Public HTML remains identical for all visitors. `/auth/nav.js` requests the
+same-origin, no-store `/auth/status` endpoint and renders only a verified display
+name using textContent. Anonymous requests never call the account hub; expired
+sessions clear their local cookie. Failures show a neutral Account entry rather
+than a stale name. No identity is persisted in storage or sent to analytics.
+Focus/back-forward navigation refreshes state; focus polling is bounded.
+BPJ reuses its existing account state and hides the anonymous login entry.
+
+Hub calls use manual redirects with non-success rejection, compatible with
+Workers. `runtime-test.mjs` checks native Request options and HTML privacy;
+`header-browser-test.mjs` covers Chinese/English status transitions and narrow
+mobile layout. Live BPJ QA also exercises the actual AGI/SunWatch callback,
+username-only status and logout with its disposable synthetic account.

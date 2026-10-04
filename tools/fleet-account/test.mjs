@@ -44,10 +44,21 @@ test('edge callback has browser state binding, real hub exchange, clean redirect
  assert.equal((await accountRoute(new Request(callback.replace('state=','state=wrong'),{headers:{Cookie:flow}}),{},service)).status,400);
  const response=await accountRoute(new Request(callback,{headers:{Cookie:flow}}),{},service);assert.equal(response.status,303);assert.equal(response.headers.get('Location'),'/auth/account');const session=response.headers.getSetCookie().find(s=>s.startsWith(SESSION_COOKIE+'=')).split(';')[0];
  const page=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:session}}),{},service);assert.equal(page.status,200);const html=await page.text();assert(html.includes('FixtureUser'));assert(!html.includes('googletagmanager'));assert.match(page.headers.get('Cache-Control'),/no-store/);assert.match(page.headers.get('X-Robots-Tag'),/noindex/);
+ const status=await accountRoute(new Request('https://'+host+'/auth/status',{headers:{Cookie:session}}),{},service);
+ assert.deepEqual(await status.json(),{ok:true,user:{username:'FixtureUser'}});assert.match(status.headers.get('Cache-Control'),/no-store/);
  assert.equal((await accountRoute(new Request('https://'+host+'/auth/logout',{method:'POST',headers:{Cookie:session,Origin:'https://evil.example'}}),{},service)).status,403);
  assert.equal((await accountRoute(new Request('https://'+host+'/auth/logout',{method:'POST',headers:{Cookie:session,Origin:'https://'+host}}),{},service)).status,200);
  const anonymous=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:session}}),{},service);assert((await anonymous.text()).includes('Continue with Google'));
+ assert.deepEqual(await(await accountRoute(new Request('https://'+host+'/auth/status',{headers:{Cookie:session}}),{},service)).json(),{ok:true,user:null});
  const unavailable=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:SESSION_COOKIE+'='+random()}}),{},async()=>{throw Error('offline')});assert.equal(unavailable.status,503);
+});
+test('anonymous header status needs no database; redirects and outages never imply sign-in',async()=>{
+ const url='https://'+host+'/auth/status';let calls=0;
+ const service=async()=>{calls++;throw Error('must not call');};
+ assert.deepEqual(await(await accountRoute(new Request(url),{},service)).json(),{ok:true,user:null});assert.equal(calls,0);
+ const request=new Request(url,{headers:{Cookie:SESSION_COOKIE+'='+random()}});
+ assert.equal((await accountRoute(request,{},service)).status,503);
+ const redirected=await accountRoute(request,{},async(url,options)=>{assert.equal(new Request(url,options).redirect,'manual');return new Response(null,{status:302,headers:{Location:'https://other.example'}});});assert.equal(redirected.status,503);
 });
 test('wrapper preserves other handlers and ordinary responses',async()=>{
  const scheduled=()=>42;const wrapped=withFleetAccount({scheduled,fetch:async()=>new Response('original')});assert.equal(wrapped.scheduled(),42);assert.equal(await(await wrapped.fetch(new Request('https://'+host+'/api/original'),{},{})).text(),'original');assert.equal(await accountRoute(new Request('https://unknown.example/auth/account')),null);

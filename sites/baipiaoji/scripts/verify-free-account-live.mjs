@@ -36,6 +36,20 @@ try{
  assert.equal((await fleet('logout',{},exchanged.j.token)).r.status,200);
  assert.equal((await fleet('session',{},exchanged.j.token)).r.status,401);
  console.log('PASS live fleet hub: synthetic account, single-use PKCE exchange, host isolation and session revocation.');
+ // Follow the real satellite callback too: a mock-only hub test cannot detect
+ // incompatible Workers fetch options or a status route that exposes emails.
+ for(const site of ['agiscorecard.com','invest.agiscorecard.com']){
+  const origin='https://'+site;
+  const start=await fetch(origin+'/auth/google',{redirect:'manual',signal:AbortSignal.timeout(25000)});assert.equal(start.status,303);
+  const target=new URL(start.headers.get('Location')),flowCookie=takeCookie(start);
+  const approved=await fleet('authorize',{host:site,challenge:target.searchParams.get('challenge'),state:target.searchParams.get('state'),confirmed:true,account_id:owner});assert.equal(approved.r.status,200);
+  const callback=await fetch(approved.j.redirect,{redirect:'manual',headers:{Cookie:flowCookie},signal:AbortSignal.timeout(25000)});assert.equal(callback.status,303,'Satellite exchange must succeed');
+  const siteCookie=callback.headers.getSetCookie().find(c=>c.startsWith('__Host-fleet_account=')).split(';')[0];
+  const status=await fetch(origin+'/auth/status',{headers:{Cookie:siteCookie},signal:AbortSignal.timeout(25000)});assert.equal(status.status,200);assert.deepEqual(await status.json(),{ok:true,user:{username}});
+  const logout=await fetch(origin+'/auth/logout',{method:'POST',headers:{Origin:origin,Cookie:siteCookie},signal:AbortSignal.timeout(25000)});assert.equal(logout.status,200);
+  const after=await fetch(origin+'/auth/status',{headers:{Cookie:siteCookie},signal:AbortSignal.timeout(25000)});assert.deepEqual(await after.json(),{ok:true,user:null});
+ }
+ console.log('PASS actual AGI/SunWatch callback, private username-only header status and logout; disposable QA identity only.');
  const saved=await request({action:'favorite_add',account_id:owner,slug:'claude'});assert.equal(saved.r.status,200);assert(saved.j.favorites.includes('claude'));
  const login=await request({action:'login',email,password},'');assert.equal(login.r.status,200);const otherCookie=takeCookie(login.r);assert((await request(null,otherCookie)).j.favorites.includes('claude'));
  const wrong=await request({action:'favorite_remove',account_id:'stale-account',slug:'claude'});assert.equal(wrong.r.status,409);

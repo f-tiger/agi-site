@@ -5,7 +5,7 @@ const base='https://verify.agiscorecard.com',release=JSON.parse(await readFile('
 // The runtime inserts these exact two account elements. Compare against the
 // full expected document, not a stripped/relaxed body: every original byte
 // and the account entry must still match the deployment.
-const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
+const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"><script defer src="/auth/nav.js"></script></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
 const hash=x=>createHash('sha256').update(x).digest('hex');
 async function get(path,options){const r=await fetch(base+path,{...options,signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path+' HTTP '+r.status);return r;}
 // A new custom domain can take a few minutes to resolve. Only readiness is retried;

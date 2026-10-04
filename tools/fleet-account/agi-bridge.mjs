@@ -12,7 +12,7 @@ export async function agiMemberRequest(request,env,fetcher=fetch){
  const token=cookieValue(request,SESSION_COOKIE);if(!TOKEN.test(token))return json({ok:false,code:'unauthorized'},401);
  try{
   if(!env.EVENTS||!env.MEMBER_WATCH_SECRET)throw Error('unavailable');
-  const result=await fetcher(HUB+'/api/account-fleet',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'session',host:url.hostname}),redirect:'error',signal:AbortSignal.timeout(12000)});
+  const result=await fetcher(HUB+'/api/account-fleet',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({action:'session',host:url.hostname}),redirect:'manual',signal:AbortSignal.timeout(12000)});
   if(result.status===401)return json({ok:false,code:'unauthorized'},401);if(!result.ok)throw Error('unavailable');
   const data=await result.json();if(!data.ok||typeof data.user?.id!=='string'||data.user.id.length>100)throw Error('unavailable');
   const id='fleet_'+await hash('agi:'+data.user.id),signer=await crypto.subtle.importKey('raw',new TextEncoder().encode(env.MEMBER_WATCH_SECRET),{name:'HMAC',hash:'SHA-256'},false,['sign']);
