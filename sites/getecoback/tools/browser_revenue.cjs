@@ -38,7 +38,7 @@ const http=require('node:http');
    page.on('requestfailed',r=>console.error('Revenue request failed:',r.url(),r.failure()?.errorText));
    // A rapid next navigation can abort WebKit's pending dynamic imports.
    // Await the actual module, including its dependencies, before leaving a page.
-   const analyticsReady=()=>page.evaluate(async()=>{const script=document.querySelector('script[data-ga4-id]');if(script)await import(script.src);});
+   const analyticsReady=async()=>{await page.waitForLoadState('networkidle');await page.evaluate(async()=>{const script=document.querySelector('script[data-ga4-id]');if(script)await import(script.src);});};
    for(const [lang,t]of Object.entries(copy)){
     console.log('Checking revenue next steps: '+name+' / '+lang);
     await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);await analyticsReady();
