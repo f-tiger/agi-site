@@ -1,0 +1,14 @@
+Source: https://platform.minimaxi.com/docs/coding-plan/intro
+Retrieved: 2026-10-04
+HTTP: 200
+Selected excerpts; not a full source copy.
+ Token Plan 概要 - MiniMax 开放平台文档中心 Documentation Index Fetch the complete documentation index at: /docs/llms.txt Use this file to discover all available pages before explor
+档中心 home page 简体中文 Search... ⌘ K 文档 定价 控制台 搜索... Navigation Token Plan Token Plan 概要 开发指南 API M Plan Token Plan 定价 更新日志 Token Plan 订阅概要 快速接入 常见问题 产品升级公告 工具接入 Claude Code Codex Cursor TRAE Hermes Agent OpenClaw Pi 其他工具 MCP指南 网络搜索 M
+CP CLI指南 MiniMax CLI 一键安装向导 在此页面 欢迎使用 Token Plan！ 核心优势 订阅 Key 用量额度 快速指南 在 AI Agent 与编程工具中使用 达到用量上限后 下一步 Token Plan Token Plan 概要 复制页面 复制页面 Token Plan 的订阅和使用概要 复制页面 复制页面 ​ 欢迎使用 Token Plan！ MiniMax 在语言、视频、语音和图像等方向研发模型。 Toke
+n Plan 通过订阅 Key 提供套餐内 Token Plan 用量额度，覆盖语言模型之外的更多资源。 ​ 核心优势 全模态覆盖 一个订阅通过统一的用量进度条覆盖可用的 MiniMax 资源。 面向 Agent 工作流 套餐面向长上下文 Agent、编程和多模态工作流设计。 极具性价比 固定订阅费提供更广的资源覆盖，并让用量规则更清晰。 ​ 订阅 Key 每位用户在所属的每个团队
+中都有一把专属的 订阅 Key 。这把 Key 可以在团队尚未购买 Token Plan 席位或积分时就存在。如果用户当前没有可用资源，这把 Key 暂时没有可用的付费资源。当用户被分配 Token Plan 席位，或获得积分使用权限后，同一把订阅 Key 即可使用这些资源。 订阅和积分规则请参考 Token Plan 定价 。团队版请参考 Token Plan 团队版 。 ​ 用量额度 Token Pl
+an 的用量额度在控制台以用量进度条展示。对于已有按量计费价格的 API 端点，用量会按对应按量计费价格扣减套餐内 Token Plan 额度。 Plus Max Ultra 价格 ¥49 /月 ¥119 /月 ¥469 /月 适合场景 轻量个人开发与日常试用 高频编程 Agent 与多模态调用 重度 Agent 工作流与更长时间使用 额度窗口 5 小时固定窗口和周窗口 5 小时固定窗口和周窗口 5 小时固定窗口和周窗口 Agent 用量 3-4 个 
+M3 / M2.7 / 图像 / 语音），少量特殊模型（MiniMax H3、音色设计、快速复刻等）暂不支持。 如需通过订阅 Key 调用支持的多模态资源，请参考 MiniMax CLI 指南 。 ​ 快速指南 1 订阅或获得资源分配 访问 Token Plan 订阅页面，在默认团队中购买个人订阅或积分；也可以加入团队，并使用团队分配的 Token Plan 席位或共享积分。 2 获取订阅 Key 前往 账户管理 / Token Plan 页面，查
+看您的可用资源并获取 订阅 Key 。 重要提示 订阅 Key 用于 Token Plan 订阅套餐和已购积分。 订阅 Key 与按量计费 API Key 不可互换。 订阅 Key 可以在付费资源可用之前就存在；当用户拥有 Token Plan 席位或积分权限后才可实际使用资源。 请妥善保管您的 API Key，防止资源损失。 ​ 在 AI Agent 与编程工具中使用 挑选你常用的工具，按对应教程接入： OpenClaw Claude Co
+e Cursor TRAE Hermes Agent 其他工具的接入方式见 其他工具 。 ​ 达到用量上限后 当您达到 5 小时固定窗口额度或周窗口额度后，可选择以下方式： 使用已购积分 ： 如果已购积分可用，Token Plan 资源覆盖范围内的用量可由已购积分自动补充支付。 升级或获得新的分配 ： 升级订阅，或请团队 Owner / Admin 分配更高额度的可用套餐。 切换至按量计费 ： 如需继续使用且不受限制，您可将订阅 Key 替换为
+您的 按量计费 API Key ，切换至按实际 Token 用量计费模式，费用将从您的 API 账户余额中扣除。 等待额度窗口重置 ： 套餐内 Token Plan 额度按 5 小时固定窗口和周窗口控制；未使用完的订阅额度不会结转到下一个计费周期。 ​ 下一步 快速开始 用 5 分钟跑通你的第一次 MiniMax API 调用。 常见问题 用量、计

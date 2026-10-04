@@ -1,0 +1,20 @@
+Source: https://api-docs.deepseek.com/guides/anthropic_api
+Retrieved: 2026-10-04
+HTTP: 200
+Selected excerpts; not a full source copy.
+ Using the Anthropic API | DeepSeek API Docs Skip to main content DeepSeek API Docs Resources Integrations API Status FAQ English English 中文（中国） DeepSeek Platform 中 Quick Start API Guides API Ref
+e Anthropic API format, with the base_url being https://api.deepseek.com/anthropic . With simple configuration, you can integrate the capabilities of DeepSeek into the Anthropic API ecosystem. Use DeepSeek in Claude Code ​ Pleas
+e refer to Integrate with Claude Code . Invoke DeepSeek Model via Anthropic API ​ Install Anthropic SDK pip install anthropic Config Environment Variables export ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+c.Anthropic() message = client.messages.create( model=&quot;deepseek-flash&quot;, max_tokens=1000, system=&quot;You are a helpful assistant.&quot;, messages=[ { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: [ { &quot;
+e.content) Note: When you pass an unsupported model name to DeepSeek&#x27;s Anthropic API, the API backend will automatically map it to the deepseek-flash model. Anthropic Model Mapping ​ When you use the Anthropic API, we map t
+you pass in: Models starting with claude-opus are mapped to deepseek-v4-pro Models starting with claude-haiku or claude-sonnet are mapped to deepseek-flash The claude-opus mapping points to deepseek-v4-pro , which is billed at t
+s by simply changing the base_url and api_key to connect to DeepSeek models. Anthropic API Compatibility Details ​ This section lists the compatibility details of the DeepSeek API with the Anthropic API. For the full Anthropic A
+ference . HTTP Header ​ Field Support Status anthropic-beta Ignored for /messages ; required ( files-api-2025-04-14 ) for Files API endpoints — see Files API anthropic-version Ignored x-api-key Fully Supported Simple Fields ​ F
+ield Support Status model Use DeepSeek Model Instead max_tokens Fully Supported container Ignored mcp_servers Ignored metadata user_id is supported, others are ignored Please refer to Rate Limit &am
+ for more information about user_id parameter. service_tier Ignored stop_sequences Fully Supported stream Fully Supported system Fully Supported temperature Fully Supported (range [0.0 ~ 2.0]) thinking Supported ( budget_tokens
+ is ignored) output_config Only effort is supported top_k Ignored top_p Only takes effect in thinking mode (with a lower bound of 0.95 ); in non-thinking mode it is fixed at 1.0 Tool Fields ​ tools ​ Field Support Status name
+a Fully Supported description Fully Supported cache_control Ignored tool_choice ​ Value Support Status none Fully Supported auto Supported ( disable_parallel_tool_use is ignored) any Supported ( disable_parallel_tool_use is ign
+ored) tool Supported ( disable_parallel_tool_use is ignored) Message Fields ​ Field Variant Sub-Field Support Status content string Fully Supported array, type=&quot;text&quot; text Fully Supported cache_control Ignored
+ citations Ignored array, type=&quot;image&quot; source Supported. source.type can be base64 (media types: jpeg, png, gif, webp), url, or file (the file variant requires the head
+ed input Fully Supported name Fully Supported cache_control Ignored array, type = &quot;tool_result&quot; tool_use_id Fully Supported content Fully Supported cache_control Ignored is_error Ignored array, type = &quot;server_too
+ad&quot; Not Supported Previous Using the Responses API Use DeepSeek in Claude Code Invoke DeepSeek Model via Anthropic API Anthropic Model Mapping Anthropic API Compatibility Details HTTP Header Simple Fields Tool Fields Messag

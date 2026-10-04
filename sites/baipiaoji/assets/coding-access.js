@@ -1,0 +1,17 @@
+(() => {
+ const root=document.querySelector('[data-access]');if(!root)return;
+ const zh=root.lang==='zh',rows=[...root.querySelectorAll('.access-row')],query=root.querySelector('#access-query'),fields=['tool','type','status'].map(k=>root.querySelector('#access-'+k));
+ const params=new URLSearchParams(location.search);query.value=(params.get('q')||'').slice(0,100);fields.forEach(f=>{const v=params.get(f.id.slice(7));if([...f.options].some(o=>o.value===v))f.value=v;});
+ const canTrack=()=>location.hostname==='baipiaoji.com'&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl&&!/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search);
+ const ga={open:'click_tool',source:'click_tool',filter:'select_category',miss:'search_no_results',checklist:'complete_step',copy:'complete_step',submit:'start_plan',vendor:'start_plan'};
+ function event(action,id='catalog') {if(!canTrack())return;fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({e:'coding_access',p:'/coding-access/'+action+'/'+id,l:zh?'zh':'en'}),keepalive:true}).catch(()=>{});if(ga[action])window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'legacy:'+ga[action]}}));}
+ function update(track=false){let n=0;for(const row of rows){const [tool,type,status]=fields.map(f=>f.value);const match=(!tool||row.dataset.tools.split(' ').includes(tool))&&(!type||row.dataset.type===type)&&(!status||row.dataset.status===status)&&row.dataset.search.includes(query.value.trim().toLowerCase());row.hidden=!match;if(match)n++;}root.querySelector('#access-count').textContent=zh?`${n} / ${rows.length} 个入口`:`${n} of ${rows.length} entries`;root.querySelector('#access-empty').hidden=n>0;const u=new URL(location.href);for(const [key,value] of [['q',query.value.trim()],...fields.map(f=>[f.id.slice(7),f.value])]){if(value)u.searchParams.set(key,value);else u.searchParams.delete(key);}history.replaceState(null,'',u);if(track)event(n?'filter':'miss');}
+ fields.forEach(f=>f.addEventListener('change',()=>update(true)));query.addEventListener('input',()=>update());query.addEventListener('change',()=>event(rows.some(r=>!r.hidden)?'filter':'miss'));
+ root.querySelector('#access-reset').addEventListener('click',()=>{query.value='';fields.forEach(f=>f.value='');update();query.focus();});
+ function anchor(){const row=rows.find(r=>'#'+r.id===location.hash);if(row){if(row.hidden){query.value='';fields.forEach(f=>f.value='');update();}row.scrollIntoView({block:'center'});}}
+ root.addEventListener('click',e=>{const a=e.target.closest('[data-access-action]');if(a)event(a.dataset.accessAction,a.dataset.accessId);});
+ const checks=[...root.querySelectorAll('[data-check]')];let complete=false;
+ checks.forEach(c=>c.addEventListener('change',()=>{const all=checks.every(x=>x.checked);if(all&&!complete)event('checklist');complete=all;}));
+ root.querySelector('#access-copy').addEventListener('click',async()=>{const text=(zh?'购买前检查清单（自查，不是认证）':'Purchase checklist (self-review, not certification)')+'\n'+checks.map(c=>(c.checked?'[x] ':'[ ] ')+c.parentElement.textContent.trim()).join('\n');const out=root.querySelector('#access-copy-status');try{await navigator.clipboard.writeText(text);out.textContent=zh?'已复制检查清单。':'Checklist copied.';event('copy');}catch{out.textContent=(zh?'请手动复制：\n':'Copy manually:\n')+text;}});
+ update();anchor();window.addEventListener('hashchange',anchor);
+})();

@@ -1,0 +1,13 @@
+Source: https://docs.bigmodel.cn/cn/coding-plan/overview
+Retrieved: 2026-10-04
+HTTP: 200
+Selected excerpts; not a full source copy.
+e Search... ⌘ K 控制台 价格 财务 API Key 个人中心 Search... Navigation GLM Coding Plan 套餐概览 Models Coding Plan Managed Agents (Beta) API 文档 资源 常见问题 GLM Coding Plan 套餐概览 使用须知 常见问题 团队版权益 接入指南 快速开始 一键安装助手 接入工具 如何切换模型 接入专属 MCP 公告 夜间畅用活动 老用户权益说明 学习资源 
+c 扩展组件 记忆机制 常用工作流 最佳实践 特别权益 GLM in Excel（Beta） On this page 可用模型 适用工具 用量说明 积分额度 积分抵扣计算方式 可用额度参考 独家优势 下一步 GLM Coding Plan 套餐概览 Copy page Copy page Copy page Copy page 夜间畅用活动 来袭：9 月 3 日至 10 月 7 日，每日 23:00～次日 09:00，套餐用户在 ZCode 
+、 AutoClaw 端调用 GLM-5.3-Flash 无限畅蹬，在其他 Agent 额度翻倍！ 查看详情 GLM Coding Plan 是专为 AI 编码打造的订阅套餐，仅需少量投入，即可覆盖需求理解、代码生成、调试修复、代码库问答与自动化任务处理等开发全流程，为您带来智能、高速、稳定的编码体验。 ​ 可用模型 所有套餐均支持 GLM-5.3 、GLM-5.3-Flash。 调用历史模型 GLM-5.2、GLM-5.1 都将自动切换至 GLM-5.3
+ 适用工具 套餐仅限在官方支持的 指定工具与产品环境 中使用。在除规定工具外调用 API，不可享用 Coding 套餐的额度。 套餐支持 OpenClaw 使用，但采用 次级调度 与尽力交付策略，Coding Agent 任务享有资源抢占优先权，高负载下 OpenClaw 任务将自动触发包括动态排队、限流等公平使用策略。 订阅套餐后，在上述编程工具中调用 GLM 模型，按接入指南配置即可使用套餐额度。当套餐额度耗尽后，需要等待下一个 5 小
+时周期恢复额度，系统不会继续消耗您的其他资源包/账户余额。 ​ 用量说明 团队版用量说明，请前往 团队版权益 查看。 ​ 积分额度 套餐同时设有每 5 小时和每周额度上限，您可以在 用量统计 中查看您的额度消耗进展： 套餐类型 5 小时积分 每周积分 Lite 套餐 2,000 10,000 Pro 套餐 12,000 60,000
+ Max 套餐 28,000 140,000 积分刷新规则 5 小时积分 ：采用动态刷新机制，积分额度在请求消耗 5 小时后刷新重置。 周积分 ：自套餐下单时起，以 7 天为一个周期刷新。 ​ 积分抵扣计算方式 模型消耗积分数=（输入 Token × Input 抵扣系数 + 缓存命中 Token × Cached Input 抵扣系数 + 输出 Token × Output 抵扣系数） / 10000 MCP 消耗积
+ 14:00～18:00 （UTC+8）。 庆双节活动 ：9 月 25 日至 10 月 7 日，全天按非高峰时段规则消耗额度。 当前更有 限时深夜错峰活动 加持，实际可用额度远不止于此。 查看详情 ​ 可用额度参考 套餐的 Token 用量会因缓存命中率而有所不同，具体如下： 缓存命中率 模型 Lite（亿 Tokens/周） Pro（亿 Tokens/周） Max（亿 Tokens/周） 95% GLM‑5.3 0.48～0.97 2.9
+型上线时在推理、代码、智能体能力全面达到开源模型 SOTA，工具调用、复杂任务执行表现出色。 兼容多款编码工具 ：支持 Claude Code、Kilo Code、OpenClaw、OpenCode、TRAE、CodeBuddy 等主流编码工具，灵活适配多种开发场景。 高额用量，普惠价格 ：远超常规方案的调用额度，升级至 Pro、Max，即可轻松满足高频复杂项目需求。 扩展覆盖更多能力 ：套餐包含专属图像视频理解、联网搜索、网页读取、开源仓库 MCP，上线 
+一步 快速开始 ：帮助您快速上手，从订阅套餐到在编码工具中使用，只需几分钟 使用须知 ：快速了解账号使用规范、并发限制、退款政策等注意事项 常见问题 ：覆盖套餐相关的订阅、活动及使用过程中的常见问题 GLM Coding 开发者社区 官方知识库 入门指南 实战教程 应用案例 GLM Coding 用户交流群 飞书扫码入群 Was this page helpful? Yes No 使用须知 Powered by This documenta

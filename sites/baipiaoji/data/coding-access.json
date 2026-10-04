@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "updated": "2026-10-04",
+  "scope": "Source-linked discovery, not a transaction service or safety endorsement. Reviewed means public documentation was read, not a purchase or installation test.",
+  "items": [
+    {
+      "id": "codex",
+      "name": "OpenAI Codex",
+      "type": "subscription",
+      "tools": [
+        "codex"
+      ],
+      "operator": "OpenAI",
+      "url": "https://developers.openai.com/codex/pricing",
+      "source": "https://developers.openai.com/codex/pricing",
+      "status": "reviewed",
+      "checkedAt": "2026-10-04",
+      "summary": {
+        "zh": "用自己的 ChatGPT 账号登录，先确认订阅档位和当前 Codex 权益。",
+        "en": "Sign in with your own ChatGPT account and check the plan’s current Codex access."
+      },
+      "billing": {
+        "zh": "订阅费与 API 按量账单分开；本目录不复制容易过时的限额和套餐数字。",
+        "en": "Subscription and API usage are billed separately; check current prices and limits at source."
+      },
+      "caution": {
+        "zh": "先查支持地区与自己的账户资格；付款成功不保证所在地可用。",
+        "en": "Check supported regions and account eligibility before paying."
+      },
+      "ownership": {
+        "zh": "自有账号；退款按 OpenAI 当时政策处理，BPJ 不代办。",
+        "en": "Your own account; refunds follow OpenAI’s current policy, not BPJ."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "claude",
+      "name": "Claude Code / Claude",
+      "type": "subscription",
+      "tools": [
+        "claude-code"
+      ],
+      "operator": "Anthropic",
+      "url": "https://www.anthropic.com/pricing",
+      "source": "https://www.anthropic.com/supported-countries",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "核对 Claude 订阅中的 Claude Code 权益，或选择 Anthropic API 按量付费。",
+        "en": "Check Claude Code access in a Claude subscription, or use the separately billed Anthropic API."
+      },
+      "billing": {
+        "zh": "订阅与 API 余额不能当作同一份权益；价格与限额请看官方实时页面。",
+        "en": "Subscription access and API balance are different products. Check official current pricing."
+      },
+      "caution": {
+        "zh": "本轮官方页抓取返回 403；未完成当前价格或中国大陆可用性核验。",
+        "en": "The source returned HTTP 403 in this review; current prices and mainland availability remain unverified."
+      },
+      "ownership": {
+        "zh": "自有账号；退款条款待自行核对。",
+        "en": "Your own account; verify the current refund policy."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek API",
+      "type": "compatible",
+      "tools": [
+        "claude-code"
+      ],
+      "operator": "DeepSeek",
+      "url": "https://platform.deepseek.com",
+      "source": "https://api-docs.deepseek.com/guides/anthropic_api",
+      "status": "reviewed",
+      "checkedAt": "2026-10-04",
+      "summary": {
+        "zh": "官方提供 Anthropic API 兼容接口，可接入 Claude Code，实际调用 DeepSeek 模型。",
+        "en": "The official Anthropic-compatible API can connect Claude Code to DeepSeek models."
+      },
+      "billing": {
+        "zh": "API 按量计费；网页免费对话与 API 充值余额分开。",
+        "en": "Metered API billing is separate from free web chat."
+      },
+      "caution": {
+        "zh": "接口兼容不代表功能完全一致；模型映射与字段限制见官方文档。",
+        "en": "Compatibility is partial; review model mappings and unsupported fields."
+      },
+      "ownership": {
+        "zh": "自有平台账号和 API Key；充值、退款规则下单前核对。",
+        "en": "Your own platform account and API key; check top-up and refund terms."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "glm",
+      "name": "GLM Coding Plan",
+      "type": "compatible",
+      "tools": [
+        "claude-code"
+      ],
+      "operator": "Zhipu AI",
+      "url": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+      "source": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+      "status": "reviewed",
+      "checkedAt": "2026-10-04",
+      "summary": {
+        "zh": "订阅 GLM 编程套餐，在 Claude Code 等支持工具中使用 GLM 模型。",
+        "en": "Subscribe to a GLM coding plan and use GLM models in supported tools such as Claude Code."
+      },
+      "billing": {
+        "zh": "套餐有窗口与周额度；模型、价格和活动以官方控制台为准。",
+        "en": "Window and weekly allowances apply; check the console for models, prices and promotions."
+      },
+      "caution": {
+        "zh": "买到的是 GLM 套餐，不能据此声称拿到 Claude 或 OpenAI 原厂模型。",
+        "en": "This is a GLM plan; it does not grant original Claude or OpenAI model access."
+      },
+      "ownership": {
+        "zh": "自有智谱账号；使用须知中核对退款、并发和账号规范。",
+        "en": "Your own Zhipu account; check refund, concurrency and account rules."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax Token Plan",
+      "type": "compatible",
+      "tools": [
+        "claude-code",
+        "codex"
+      ],
+      "operator": "MiniMax",
+      "url": "https://platform.minimax.cn/docs/token-plan/intro",
+      "source": "https://platform.minimax.cn/docs/token-plan/intro",
+      "status": "reviewed",
+      "checkedAt": "2026-10-04",
+      "summary": {
+        "zh": "原 Coding Plan 文档已跳转到 Token Plan；按对应工具文档接入 MiniMax 模型。",
+        "en": "The former Coding Plan documentation now redirects to Token Plan. Follow each tool’s MiniMax integration guide."
+      },
+      "billing": {
+        "zh": "订阅 Key 与按量 API Key 不可互换；可用资源取决于订阅席位或积分。",
+        "en": "Subscription keys and metered API keys are not interchangeable; resources depend on seats or credits."
+      },
+      "caution": {
+        "zh": "已核对套餐概要与工具目录；Codex 集成列在目录中，未进行端到端实测。",
+        "en": "Plan overview and tool directory reviewed; Codex integration is listed but not end-to-end tested."
+      },
+      "ownership": {
+        "zh": "自有 MiniMax 账号；核对订阅周期、充值积分和退款规则。",
+        "en": "Your own MiniMax account; check subscription, credit and refund terms."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "type": "relay",
+      "tools": [
+        "claude-code"
+      ],
+      "operator": "OpenRouter",
+      "url": "https://openrouter.ai",
+      "source": "https://openrouter.ai/docs/guides/guides/claude-code-integration",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "第三方 API 聚合候选，需核对目标模型、协议兼容、地区与支付。",
+        "en": "A third-party API aggregation candidate; check model, protocol, region and payment support."
+      },
+      "billing": {
+        "zh": "按模型和上游计价，不是 Claude 官方订阅；费率、费用和退款待核验。",
+        "en": "Model/provider pricing is separate from a Claude subscription; fees and refunds remain unverified."
+      },
+      "caution": {
+        "zh": "本轮接入文档返回 403，未确认当前可用性、付款方式或完整功能。",
+        "en": "The integration source returned HTTP 403; current availability, payments and full functionality are unverified."
+      },
+      "ownership": {
+        "zh": "账号、Key 与数据处理经第三方；下单前核对隐私和退款条款。",
+        "en": "Third-party account, keys and processing; check privacy and refund terms."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "packycode",
+      "name": "PackyCode",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://www.packycode.com",
+      "source": "https://www.packycode.com",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "第三方中转候选，暂不提供购买推荐；需补充运营主体、模型与接入证据。",
+        "en": "A third-party relay candidate, not a purchase recommendation. Operator, model and integration evidence are needed."
+      },
+      "billing": {
+        "zh": "价格、支付、倍率和退款均未核验，不用低价宣传计算性价比。",
+        "en": "Prices, payment methods, billing multipliers and refunds are unverified."
+      },
+      "caution": {
+        "zh": "本轮网站返回 403；名称不证明支持任何工具或原厂模型，匹配仅作待核验分类。",
+        "en": "The site returned HTTP 403. Its name does not prove tool or original-model support; matching is provisional."
+      },
+      "ownership": {
+        "zh": "账号归属、数据保存与运营主体待核验。",
+        "en": "Account ownership, data retention and operator identity are unverified."
+      },
+      "lastAttempt": "2026-10-04",
+      "handsOnTested": false,
+      "affiliate": false
+    }
+  ]
+}

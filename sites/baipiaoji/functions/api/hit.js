@@ -14,6 +14,7 @@ import {parseQuoteEvent} from '../../../../tools/quote-page-lab/growth.mjs';
 //
 // 事件名走白名单：打点接口是公开的，不限制取值就等于给了任何人一个往自家库里写任意字符串的口子。
 export const EVENTS = new Set([
+  'coding_access', // Fixed actions and IDs; never queries, keys or payment data.
   'github_tools', // Bounded catalogue actions; no query text, installations or revenue.
   'distribution', // Bounded action counts; never installations, unique users or revenue.
   'quote',       // Quote builder action counts, separate from calc/paid conversion. No quote content or unique user identifier.
@@ -63,6 +64,12 @@ export async function onRequestPost({ request, env }) {
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    if(ev==='coding_access'){
+      if(!['zh','en'].includes(lang)||!/^\/coding-access\/(?:open|source|filter|miss|checklist|copy|submit|vendor)\/(?:catalog|regions|codex|claude|deepseek|glm|minimax|openrouter|packycode)$/.test(path))return new Response(null,{status:204});
+      const referer=request.headers.get('referer')||'';
+      if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa)(?:=|&|$)/.test(referer)||/bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
+      b.r='';
+    }
     if(ev==='github_tools'){
       if(!['zh','en'].includes(lang)||!parseGithubToolEvent(path,GITHUB_TOOL_IDS))return new Response(null,{status:204});
       const referer=request.headers.get('referer')||'';
