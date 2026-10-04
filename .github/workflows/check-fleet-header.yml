@@ -1,0 +1,21 @@
+name: Check unified fleet header
+on:
+  pull_request:
+    paths:
+      - 'tools/fleet-account/**'
+      - 'sites/gridlings/site/sw.js'
+      - '.github/workflows/check-fleet-header.yml'
+jobs:
+  header:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --prefix tools/revenue-studio --ignore-scripts
+      - run: npm install --prefix /tmp/fleet-header-runtime --ignore-scripts --no-audit --no-fund esbuild@0.25.12 miniflare@4.20260730.0
+      - run: node tools/fleet-account/test.mjs
+      - run: FREE_ACCOUNT_RUNTIME_MODULES=/tmp/fleet-header-runtime/node_modules node tools/fleet-account/header-test.mjs
+      - run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps --only-shell chromium
+      - run: node tools/fleet-account/header-browser-test.mjs

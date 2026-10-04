@@ -33,3 +33,30 @@ Workers. `runtime-test.mjs` checks native Request options and HTML privacy;
 `header-browser-test.mjs` covers Chinese/English status transitions and narrow
 mobile layout. Live BPJ QA also exercises the actual AGI/SunWatch callback,
 username-only status and logout with its disposable synthetic account.
+
+## Unified public header
+
+`header.mjs` integrates navigation utilities into each site's existing header at
+response time. A fallback header is used only when the document has no supported
+site header. There is exactly one account entry; standalone account/language
+strips are removed. BPJ keeps its native header. Compass and Gushen use React
+components in their existing headers to avoid hydration changes.
+
+Language choices use published same-page hreflang pairs or the site's existing
+verified routing. Eco's separate language hubs are labelled as other content,
+not translations. Single-language pages say when a translation is unavailable.
+Private/noindex pages, embeds and widgets do not receive the public header.
+
+Source copies of `config.mjs`, `edge.mjs`, `header.mjs`, and `nav.mjs` also live in
+SunWatch (`src/fleet-account`), Finance (`sites/shared/fleet-account`), Compass
+(`lib/fleet-account`), and Gushen (`frontend/fleet-account`). Synchronize all four
+files on shared changes; compare SHA-256 hashes before release. These copies
+serve 8 additional domains beyond the main repository's 31 canonical domains.
+
+Run `header-test.mjs` with `FREE_ACCOUNT_RUNTIME_MODULES` pointing to an isolated
+esbuild/Miniflare installation. It checks real HTMLRewriter integration, CSP,
+private-page exclusions, preserved tool markup and session-independent HTML.
+`header-browser-test.mjs` covers seven account locales, mobile layout, keyboard
+language dismissal and identity state transitions. Existing site build, GA4,
+SEO/GEO and applicable IndexNow gates still apply. Header changes alone do not
+justify submitting private URLs or the entire unchanged sitemap to IndexNow.
