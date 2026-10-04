@@ -1,11 +1,11 @@
 {
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-10-04",
   "items": [
     {
       "id": "beicaidiao",
       "title": "被裁掉的女孩",
-      "genre": "都市成长",
+      "genre": "都市",
       "format": "AI短剧",
       "year": "2026",
       "platform": "抖音",
@@ -23,12 +23,18 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "urban",
+      "tags": [
+        "职场",
+        "成长"
+      ]
     },
     {
       "id": "beipai",
       "title": "北派笔记",
-      "genre": "悬疑冒险",
+      "genre": "悬疑",
       "format": "AI短剧",
       "year": "2026",
       "platform": "腾讯视频",
@@ -46,12 +52,18 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "suspense",
+      "tags": [
+        "冒险",
+        "小说改编"
+      ]
     },
     {
       "id": "qianqiu",
       "title": "千秋诗颂",
-      "genre": "诗词人文",
+      "genre": "人文",
       "format": "AI动画",
       "year": "2024",
       "platform": "央视网",
@@ -69,12 +81,17 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "culture",
+      "category": "humanities",
+      "tags": [
+        "诗词"
+      ]
     },
     {
       "id": "shenhua",
       "title": "中国神话",
-      "genre": "神话奇幻",
+      "genre": "奇幻",
       "format": "AI短剧",
       "year": "2024",
       "platform": "央视频",
@@ -92,12 +109,17 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "fantasy",
+      "tags": [
+        "神话"
+      ]
     },
     {
       "id": "dianji",
       "title": "AI看典籍",
-      "genre": "诗词人文",
+      "genre": "人文",
       "format": "AI短剧",
       "year": "2024",
       "platform": "央视频",
@@ -115,12 +137,17 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "culture",
+      "category": "humanities",
+      "tags": [
+        "典籍"
+      ]
     },
     {
       "id": "meihou",
       "title": "美猴王",
-      "genre": "神话奇幻",
+      "genre": "奇幻",
       "format": "AI短剧",
       "year": "2025",
       "platform": "抖音",
@@ -138,12 +165,19 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "fantasy",
+      "tags": [
+        "神话",
+        "西游",
+        "成长"
+      ]
     },
     {
       "id": "sanxing",
       "title": "三星堆：未来启示录",
-      "genre": "科幻想象",
+      "genre": "科幻",
       "format": "AI短剧",
       "year": "2024",
       "platform": "央视网",
@@ -161,12 +195,17 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "scifi",
+      "tags": [
+        "古文明"
+      ]
     },
     {
       "id": "bianguan",
       "title": "发配边关，罪妻开荒养出战神",
-      "genre": "古风生活",
+      "genre": "古风",
       "format": "AI漫剧",
       "year": "2026",
       "platform": "抖音",
@@ -184,7 +223,70 @@
       "checkedAt": "2026-10-04",
       "watched": false,
       "sponsored": false,
-      "affiliate": false
+      "affiliate": false,
+      "channel": "stories",
+      "category": "historical",
+      "tags": [
+        "种田"
+      ]
     }
-  ]
+  ],
+  "taxonomy": {
+    "version": 1,
+    "channels": [
+      {
+        "id": "stories",
+        "label": "剧集",
+        "description": "剧情短剧与漫剧"
+      },
+      {
+        "id": "culture",
+        "label": "文化短片",
+        "description": "诗词、典籍与文化动画"
+      },
+      {
+        "id": "all",
+        "label": "全部作品",
+        "description": "浏览完整目录"
+      }
+    ],
+    "genres": [
+      {
+        "id": "urban",
+        "label": "都市"
+      },
+      {
+        "id": "suspense",
+        "label": "悬疑"
+      },
+      {
+        "id": "fantasy",
+        "label": "奇幻"
+      },
+      {
+        "id": "scifi",
+        "label": "科幻"
+      },
+      {
+        "id": "historical",
+        "label": "古风"
+      },
+      {
+        "id": "humanities",
+        "label": "人文"
+      }
+    ],
+    "tags": [
+      "职场",
+      "成长",
+      "冒险",
+      "小说改编",
+      "神话",
+      "西游",
+      "古文明",
+      "种田",
+      "诗词",
+      "典籍"
+    ]
+  }
 }
