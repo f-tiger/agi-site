@@ -34,7 +34,8 @@ const http=require('node:http');
   const browser=await type.launch({headless:true});
   try{
    const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),errors=[];events=[];
-   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+   const page=await context.newPage();page.on('pageerror',e=>{errors.push(e.message);console.error('Revenue page error:',page.url(),e.stack);});
+   page.on('requestfailed',r=>console.error('Revenue request failed:',r.url(),r.failure()?.errorText));
    // A rapid next navigation can abort WebKit's pending dynamic imports.
    // Await the actual module, including its dependencies, before leaving a page.
    const analyticsReady=()=>page.evaluate(async()=>{const script=document.querySelector('script[data-ga4-id]');if(script)await import(script.src);});
