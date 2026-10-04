@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-03",
+ "generated": "2026-10-04",
  "window_days": 365,
- "since": "2025-10-03",
+ "since": "2025-10-04",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -16,7 +16,7 @@
     "light therapy",
     "LED mask"
    ],
-   "stale": true
+   "stale": false
   },
   "pet-fountain": {
    "n": 0,
@@ -26,7 +26,7 @@
     "pet fountain",
     "water fountain"
    ],
-   "stale": true
+   "stale": false
   },
   "pet-feeder": {
    "n": 0,
@@ -36,7 +36,7 @@
     "pet feeder",
     "automatic feeder"
    ],
-   "stale": true
+   "stale": false
   },
   "litter-box": {
    "n": 0,
@@ -45,7 +45,7 @@
    "keywords": [
     "litter box"
    ],
-   "stale": true
+   "stale": false
   },
   "robot-pet": {
    "n": 2,
@@ -71,7 +71,7 @@
     "plush toy",
     "companion robot"
    ],
-   "stale": true
+   "stale": false
   },
   "solar-storage": {
    "n": 0,
@@ -81,7 +81,7 @@
     "portable power station",
     "lithium battery"
    ],
-   "stale": true
+   "stale": false
   },
   "smart-plug": {
    "n": 3,
@@ -113,7 +113,7 @@
     "smart plug",
     "power strip"
    ],
-   "stale": true
+   "stale": false
   },
   "spin-scrubber": {
    "n": 0,
@@ -123,7 +123,7 @@
     "spin scrubber",
     "electric scrubber"
    ],
-   "stale": true
+   "stale": false
   },
   "carpet-cleaner": {
    "n": 0,
@@ -133,7 +133,7 @@
     "carpet cleaner",
     "spot cleaner"
    ],
-   "stale": true
+   "stale": false
   },
   "flip-straw-bottle": {
    "n": 1,
@@ -151,7 +151,7 @@
     "water bottle",
     "tumbler lid"
    ],
-   "stale": true
+   "stale": false
   },
   "heatless-curler": {
    "n": 1,
@@ -169,7 +169,7 @@
     "hair curler",
     "curling"
    ],
-   "stale": true
+   "stale": false
   },
   "hair-dryer": {
    "n": 3,
@@ -200,7 +200,7 @@
    "keywords": [
     "hair dryer"
    ],
-   "stale": true
+   "stale": false
   },
   "massage-gun": {
    "n": 0,
@@ -210,7 +210,7 @@
     "massage gun",
     "massager"
    ],
-   "stale": true
+   "stale": false
   },
   "leg-boots": {
    "n": 0,
@@ -220,7 +220,7 @@
     "compression",
     "leg massager"
    ],
-   "stale": true
+   "stale": false
   },
   "solar-camp-lights": {
    "n": 1,
@@ -239,7 +239,7 @@
     "string light",
     "lantern"
    ],
-   "stale": true
+   "stale": false
   },
   "moon-chair": {
    "n": 0,
@@ -249,7 +249,7 @@
     "camping chair",
     "folding chair"
    ],
-   "stale": true
+   "stale": false
   },
   "blender-bottle": {
    "n": 0,
@@ -259,7 +259,7 @@
     "portable blender",
     "blender"
    ],
-   "stale": true
+   "stale": false
   },
   "veg-chopper": {
    "n": 0,
@@ -269,10 +269,10 @@
     "vegetable chopper",
     "slicer"
    ],
-   "stale": true
+   "stale": false
   },
   "cable-powerbank": {
-   "n": 8,
+   "n": 7,
    "latest": "2026-09-24",
    "items": [
     {
@@ -315,7 +315,7 @@
     "power bank",
     "portable charger"
    ],
-   "stale": true
+   "stale": false
   },
   "cosmetic-organizer": {
    "n": 0,
@@ -325,7 +325,7 @@
     "makeup organizer",
     "cosmetic organizer"
    ],
-   "stale": true
+   "stale": false
   },
   "mamian-skirt": {
    "n": 1,
@@ -343,7 +343,7 @@
     "skirt",
     "children's clothing"
    ],
-   "stale": true
+   "stale": false
   },
   "panku-shirt": {
    "n": 0,
@@ -353,7 +353,7 @@
     "blouse",
     "button-down shirt"
    ],
-   "stale": true
+   "stale": false
   },
   "tea-set": {
    "n": 0,
@@ -364,7 +364,7 @@
     "teapot",
     "ceramic mug"
    ],
-   "stale": true
+   "stale": false
   },
   "car-fridge": {
    "n": 0,
@@ -375,7 +375,7 @@
     "car fridge",
     "electric cooler"
    ],
-   "stale": true
+   "stale": false
   },
   "rollator": {
    "n": 0,
@@ -385,7 +385,7 @@
     "rollator",
     "rolling walker"
    ],
-   "stale": true
+   "stale": false
   },
   "pill-organizer": {
    "n": 0,
@@ -395,7 +395,7 @@
     "pill organizer",
     "pill dispenser"
    ],
-   "stale": true
+   "stale": false
   },
   "walking-pad": {
    "n": 1,
@@ -413,7 +413,7 @@
     "treadmill",
     "walking pad"
    ],
-   "stale": true
+   "stale": false
   },
   "bottle-warmer": {
    "n": 1,
@@ -431,7 +431,7 @@
     "bottle warmer",
     "baby bottle"
    ],
-   "stale": true
+   "stale": false
   },
   "pruning-set": {
    "n": 1,
@@ -450,7 +450,7 @@
     "chainsaw",
     "mini saw"
    ],
-   "stale": true
+   "stale": false
   },
   "aroma-diffuser": {
    "n": 0,
@@ -460,7 +460,7 @@
     "diffuser",
     "aroma"
    ],
-   "stale": true
+   "stale": false
   },
   "vac-consumables": {
    "n": 1,
@@ -478,74 +478,8 @@
     "vacuum filter",
     "vacuum cleaner"
    ],
-   "stale": true
+   "stale": false
   }
  },
- "failed_keywords": [
-  "light therapy: HTTP Error 503: Service Unavailable",
-  "LED mask: HTTP Error 503: Service Unavailable",
-  "pet fountain: HTTP Error 503: Service Unavailable",
-  "water fountain: HTTP Error 503: Service Unavailable",
-  "pet feeder: HTTP Error 503: Service Unavailable",
-  "automatic feeder: HTTP Error 503: Service Unavailable",
-  "litter box: HTTP Error 503: Service Unavailable",
-  "robot toy: HTTP Error 503: Service Unavailable",
-  "plush toy: HTTP Error 503: Service Unavailable",
-  "companion robot: HTTP Error 503: Service Unavailable",
-  "portable power station: HTTP Error 503: Service Unavailable",
-  "lithium battery: HTTP Error 503: Service Unavailable",
-  "smart plug: HTTP Error 503: Service Unavailable",
-  "power strip: HTTP Error 503: Service Unavailable",
-  "spin scrubber: HTTP Error 503: Service Unavailable",
-  "electric scrubber: HTTP Error 503: Service Unavailable",
-  "carpet cleaner: HTTP Error 503: Service Unavailable",
-  "spot cleaner: HTTP Error 503: Service Unavailable",
-  "water bottle: HTTP Error 503: Service Unavailable",
-  "tumbler lid: HTTP Error 503: Service Unavailable",
-  "hair curler: HTTP Error 503: Service Unavailable",
-  "curling: HTTP Error 503: Service Unavailable",
-  "hair dryer: HTTP Error 503: Service Unavailable",
-  "massage gun: HTTP Error 503: Service Unavailable",
-  "massager: HTTP Error 503: Service Unavailable",
-  "compression: HTTP Error 503: Service Unavailable",
-  "leg massager: HTTP Error 503: Service Unavailable",
-  "solar light: HTTP Error 503: Service Unavailable",
-  "string light: HTTP Error 503: Service Unavailable",
-  "lantern: HTTP Error 503: Service Unavailable",
-  "camping chair: HTTP Error 503: Service Unavailable",
-  "folding chair: HTTP Error 503: Service Unavailable",
-  "portable blender: HTTP Error 503: Service Unavailable",
-  "blender: HTTP Error 503: Service Unavailable",
-  "vegetable chopper: HTTP Error 503: Service Unavailable",
-  "slicer: HTTP Error 503: Service Unavailable",
-  "power bank: HTTP Error 503: Service Unavailable",
-  "portable charger: HTTP Error 503: Service Unavailable",
-  "makeup organizer: HTTP Error 503: Service Unavailable",
-  "cosmetic organizer: HTTP Error 503: Service Unavailable",
-  "skirt: HTTP Error 503: Service Unavailable",
-  "children's clothing: HTTP Error 503: Service Unavailable",
-  "blouse: HTTP Error 503: Service Unavailable",
-  "button-down shirt: HTTP Error 503: Service Unavailable",
-  "tea set: HTTP Error 503: Service Unavailable",
-  "teapot: HTTP Error 503: Service Unavailable",
-  "ceramic mug: HTTP Error 503: Service Unavailable",
-  "portable refrigerator: HTTP Error 503: Service Unavailable",
-  "car fridge: HTTP Error 503: Service Unavailable",
-  "electric cooler: HTTP Error 503: Service Unavailable",
-  "rollator: HTTP Error 503: Service Unavailable",
-  "rolling walker: HTTP Error 503: Service Unavailable",
-  "pill organizer: HTTP Error 503: Service Unavailable",
-  "pill dispenser: HTTP Error 503: Service Unavailable",
-  "treadmill: HTTP Error 503: Service Unavailable",
-  "walking pad: HTTP Error 503: Service Unavailable",
-  "bottle warmer: HTTP Error 503: Service Unavailable",
-  "baby bottle: HTTP Error 503: Service Unavailable",
-  "pruning: HTTP Error 503: Service Unavailable",
-  "chainsaw: HTTP Error 503: Service Unavailable",
-  "mini saw: HTTP Error 503: Service Unavailable",
-  "diffuser: HTTP Error 503: Service Unavailable",
-  "aroma: HTTP Error 503: Service Unavailable",
-  "vacuum filter: HTTP Error 503: Service Unavailable",
-  "vacuum cleaner: HTTP Error 503: Service Unavailable"
- ]
+ "failed_keywords": []
 }
