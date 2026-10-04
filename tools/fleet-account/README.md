@@ -60,3 +60,7 @@ private-page exclusions, preserved tool markup and session-independent HTML.
 language dismissal and identity state transitions. Existing site build, GA4,
 SEO/GEO and applicable IndexNow gates still apply. Header changes alone do not
 justify submitting private URLs or the entire unchanged sitemap to IndexNow.
+
+Shared allowlist changes require the BPJ deployment as well as site deployments.
+Use the existing `[deploy]` commit marker so its push workflow updates the hub
+without invoking unrelated scheduled catalogue work.

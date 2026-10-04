@@ -78,6 +78,10 @@ jobs:
           node tools/fleet-analytics/verify-live.mjs web3-studio
           node tools/fleet-account/verify-live.mjs web3-studio
 
+      - name: Install exact Workers HTML verification runtime
+        if: github.ref == 'refs/heads/main'
+        run: npm install --prefix /tmp/fleet-header-runtime --ignore-scripts --no-audit --no-fund esbuild@0.25.12 miniflare@4.20260730.0
+
       - name: Verify every live host, asset and API
         if: github.ref == 'refs/heads/main'
         working-directory: sites/web3-studio
