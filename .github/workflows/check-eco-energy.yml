@@ -66,8 +66,9 @@ jobs:
           python3 tools/check_tools_hub.py
           python3 tools/check_meta.py
           # Match the deployed opt-in channel after all page generators.
-          python3 ../../tools/fleet-analytics/coverage.py --site eco --write
-          python3 ../../tools/fleet-analytics/coverage.py --site eco
+          python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
+          python3 ../../tools/fleet-analytics/coverage.py --site eco --out site
+          python3 -c "import json; r=json.load(open('site/analytics-assets/coverage.json')); assert any(x['mode']=='consent' for x in r['records']), 'No public pages covered'"
       - name: Install browser test runtime
         run: |
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
