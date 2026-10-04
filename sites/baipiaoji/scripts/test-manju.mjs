@@ -19,6 +19,8 @@ assert.equal(parseManjuEvent('/manju/open/private@email.test',ids),false);assert
 const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',email:'test@example.test',note:'Automated validation only; never a customer lead.',consent:true};
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
 else{
+ const manifest=JSON.parse(readFileSync(new URL('../data/page-lastmod.json',import.meta.url),'utf8'));
+ for(const path of [...ids,'method','cooperate'])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
  const sql=new DatabaseSync(':memory:');sql.exec("CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT); CREATE INDEX hits_events ON hits(d,ev) WHERE ev != '';");
  const env={HITS:{prepare(q){let args=[];const st={bind(...a){args=a;return st;},async run(){const r=sql.prepare(q).run(...args);return {meta:{changes:Number(r.changes)}};},async all(){return {results:sql.prepare(q).all(...args)};}};return st;}}};
  const post=(body=good,headers={},suffix='')=>inquiry({env,request:new Request(base+'/api/manju-inquiry'+suffix,{method:'POST',headers:{origin:base,'content-type':'application/json',...headers},body:JSON.stringify(body)})});
