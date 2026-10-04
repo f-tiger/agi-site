@@ -136,9 +136,10 @@ jobs:
       # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
       - name: Build German winter decisions and verify calculations
         run: |
-          node --test tools/test_winter_math.mjs
+          node --test tools/test_winter_math.mjs tools/test_au_cooling.mjs
           python3 tools/build_winter_guides.py
           python3 tools/build_winter_locales.py
+          python3 tools/build_au_cooling.py
 
       - name: Fill the tools hub from the pages that exist (idempotent)
         run: python3 tools/build_tools_hub.py
@@ -196,6 +197,7 @@ jobs:
           python3 tools/link_winter_guides.py
           python3 tools/check_winter_guides.py
           python3 tools/build_winter_locales.py
+          python3 tools/build_au_cooling.py
           python3 tools/build_hreflang.py
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
@@ -225,6 +227,7 @@ jobs:
           python3 tools/build_search.py
           python3 tools/check_country_categories.py
           python3 tools/check_winter_locales.py
+          python3 tools/check_au_cooling.py
           python3 tools/test_affiliate_growth.py
 
       - name: Verify evidence-check discovery after index generation
