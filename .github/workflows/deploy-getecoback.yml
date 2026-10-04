@@ -137,6 +137,7 @@ jobs:
         run: |
           node --test tools/test_winter_math.mjs
           python3 tools/build_winter_guides.py
+          python3 tools/build_winter_locales.py
 
       - name: Fill the tools hub from the pages that exist (idempotent)
         run: python3 tools/build_tools_hub.py
@@ -193,6 +194,7 @@ jobs:
           python3 tools/build_country_categories.py
           python3 tools/link_winter_guides.py
           python3 tools/check_winter_guides.py
+          python3 tools/build_winter_locales.py
           python3 tools/build_hreflang.py
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
@@ -221,6 +223,7 @@ jobs:
         run: |
           python3 tools/build_search.py
           python3 tools/check_country_categories.py
+          python3 tools/check_winter_locales.py
           python3 tools/test_affiliate_growth.py
 
       - name: Verify evidence-check discovery after index generation
