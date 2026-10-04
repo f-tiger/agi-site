@@ -15,9 +15,10 @@ Außentemperatur (°C)
 Luftfeuchte draußen (%)
 
 Temperatur im Keller (°C)
+Gemessene Luftfeuchte im Keller (%)Kälteste gemessene Wandtemperatur (°C)Vorgefüllte Werte sind Beispiele. Ohne eigene Messwerte ist dies keine Empfehlung für deinen Keller.
 Prüfen →
 
-Der Check nutzt die Magnus-Formel (Näherung) und rechnet mit 2 Grad Sicherheitsabstand, weil Kellerwände meist kühler sind als die Kellerluft. Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.
+Der Check vergleicht Innen- und Außentaupunkt und prüft die gemessene Wandtemperatur. Er ersetzt keine Bauwerksdiagnose. Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.
 
 ## Warum Lüften den Keller im Sommer feuchter macht
 

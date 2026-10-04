@@ -85,6 +85,12 @@ jobs:
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site
           python3 -c "import json; r=json.load(open('site/analytics-assets/coverage.json')); assert any(x['mode']=='consent' for x in r['records']), 'No public pages covered'"
+      - name: Build the public workbench tools for task-flow tests
+        run: |
+          npm ci --prefix ../../tools/revenue-studio --ignore-scripts
+          node ../../tools/revenue-studio/build.mjs --site eco --out site
+          python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
+
       - name: Install browser test runtime
         run: |
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
@@ -110,6 +116,8 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
       - uses: actions/upload-artifact@v4
