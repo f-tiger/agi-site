@@ -139,7 +139,9 @@ async function signingKeys(kid) {
   jwksRequest = (async () => {
     try {
       // Never follow a token-supplied jku/x5u, redirect or arbitrary JWKS URL.
-      const response = await fetch(GOOGLE_JWKS_URL, {redirect: 'error', signal: AbortSignal.timeout(8000), headers: {Accept: 'application/json'}});
+      // Workers supports only follow/manual. Reject 3xx below rather than
+      // using redirect:error, which throws before any network request at edge.
+      const response = await fetch(GOOGLE_JWKS_URL, {redirect: 'manual', signal: AbortSignal.timeout(8000), headers: {Accept: 'application/json'}});
       const data = await boundedJSON(response, 65536);
       if (!Array.isArray(data?.keys) || !data.keys.length || data.keys.length > 16) throw googleFailure('google_unavailable', 503);
       const directives = response.headers.get('Cache-Control') || '';

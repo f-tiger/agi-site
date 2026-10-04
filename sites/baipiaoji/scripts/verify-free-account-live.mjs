@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import {randomBytes} from 'node:crypto';
 import {random,digest} from '../../../tools/fleet-account/config.mjs';
+import {verifyGoogleTransport} from './verify-google-transport-live.mjs';
 const base='https://baipiaoji.com',username='qa_'+randomBytes(10).toString('hex');
 const email=username+'@example.invalid';
 let password=randomBytes(24).toString('base64url'),cookie='',owner='',created=false,removed=false;
@@ -17,6 +18,7 @@ try{
    assert.equal(j.client_id,expectedGoogleClient,'Production must use the configured Google client');
   }
   console.log(JSON.stringify({provider,status:r.status,available:j.available===true,...(provider==='account-google'&&expectedGoogleClient?{configuredClientMatches:true}:{})}));
+  if(provider==='account-google'&&j.available===true)await verifyGoogleTransport();
  }
  for(const route of ['/account','/en/account']){const r=await fetch(base+route+'?__ci=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200);const h=await r.text();assert(h.includes('account-register')&&h.includes('account-login')&&h.includes('account-recover'));}
  const readiness=await fetch(base+'/api/account?readiness=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});const ready=await readiness.json();assert.equal(readiness.status,200,'Account readiness: '+(['database_limit','unavailable'].includes(ready.error)?ready.error:'not_ready'));

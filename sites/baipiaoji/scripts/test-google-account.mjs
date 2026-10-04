@@ -82,10 +82,27 @@ const fetched = [];
 globalThis.fetch = async (url, options) => {
   fetched.push(String(url));
   assert.equal(String(url), GOOGLE_JWKS_URL, 'Only the fixed Google public-key URL is requested');
-  assert.equal(options.redirect, 'error');
+  assert.equal(options.redirect, 'manual');
   return new Response(JSON.stringify({keys: [publicKey]}), {headers: {'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=3600'}});
 };
 try {
+  await test('Google key redirects are rejected without following another URL', async () => {
+    const fixtureFetch = globalThis.fetch;
+    let requests = 0;
+    try {
+      globalThis.fetch = async (url, options) => {
+        requests++;
+        assert.equal(String(url), GOOGLE_JWKS_URL);
+        assert.equal(new Request(url, options).redirect, 'manual');
+        return new Response(null, {status: 302, headers: {Location: 'https://other.example/keys'}});
+      };
+      const isolated = await import('../lib/google-account.js?redirect-regression');
+      const nonce = 'N'.repeat(43);
+      await assert.rejects(isolated.verifyGoogleIdToken(await token(nonce), CLIENT, hash(nonce)), error => error.code === 'google_unavailable' && error.status === 503);
+      assert.equal(requests, 1);
+    } finally { globalThis.fetch = fixtureFetch; }
+  });
+
   await test('disabled configuration performs no database or remote call and no fake availability', async () => {
     const before = fetched.length;
     const disabled = await gc({}, null);
@@ -296,7 +313,10 @@ if (process.argv.includes('--workerd')) {
   const source = `import{onRequest as google}from ${JSON.stringify(googlePath)};
     import{onRequest as account}from ${JSON.stringify(accountPath)};
     globalThis.fetch=async(input,options)=>{
-      if(String(input)!==${JSON.stringify(GOOGLE_JWKS_URL)}||options?.redirect!=='error')throw Error('Unexpected external request in isolated test');
+      // Let workerd validate the actual RequestInit before substituting bytes.
+      // The old fixture hid Workers' rejection of redirect:error.
+      const outbound=new Request(input,options);
+      if(outbound.url!==${JSON.stringify(GOOGLE_JWKS_URL)}||outbound.redirect!=='manual')throw Error('Unexpected external request in isolated test');
       return new Response(${JSON.stringify(JSON.stringify({keys: [publicKey]}))},{headers:{'Content-Type':'application/json','Cache-Control':'public, max-age=3600'}});
     };
     export default{fetch(request,env){return(new URL(request.url).pathname==='/api/account-google'?google:account)({request,env})}};`;

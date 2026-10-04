@@ -48,3 +48,17 @@ These features improve the implemented usage path. They do not establish convers
 ## Fleet registration and GIS origin headers (2026-10-04)
 
 Fleet sites return through the BPJ identity hub. Account HTML uses `Referrer-Policy: strict-origin`: Google receives only `https://baipiaoji.com/`, never private paths, query parameters or email-action fragments. This avoids suppressing the origin needed by GIS. Account APIs and fleet callbacks retain `no-referrer`. Google recommends permitting cross-origin origin referrers in its [client setup guide](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid). Cloud client Authorized JavaScript origins must still include the BPJ origin. Neither this header nor readiness proves real Google consent.
+# Google callback repair — 2026-10-04
+
+Selecting a Google account returned `google_unavailable` because Workers rejects
+`fetch(..., {redirect: 'error'})` before contacting Google's JWKS endpoint. Use
+`manual` and reject non-success responses, retaining the fixed Google URL and
+all signature, issuer, audience, expiry and nonce checks. The UI now explains
+this service error rather than showing a generic failure.
+
+The workerd fixture constructs a native Request before replacing response bytes,
+so unsupported request options cannot hide behind a fetch mock. A redirect
+regression requires rejection without following another host. The release's
+existing live account check also sends an intentionally invalid signature using
+a current Google key ID: it must receive a token rejection, not a transport 503.
+This creates no account and does not claim a successful real-user Google consent.
