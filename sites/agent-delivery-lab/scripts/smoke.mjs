@@ -2,6 +2,10 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createHash,randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
 const base='https://verify.agiscorecard.com',release=JSON.parse(await readFile('dist/release.json','utf8'));
+// The runtime inserts these exact two account elements. Compare against the
+// full expected document, not a stripped/relaxed body: every original byte
+// and the account entry must still match the deployment.
+const accountHTML=bytes=>Buffer.from(bytes.toString().replace('</head>','<link rel="stylesheet" href="/auth/fleet.css"></head>').replace(/<body\b[^>]*>/,tag=>tag+'<nav class="fleet-account-entry" aria-label="Account"><a href="/auth/account" rel="nofollow">Google 注册 / Sign in</a></nav>'));
 const hash=x=>createHash('sha256').update(x).digest('hex');
 async function get(path,options){const r=await fetch(base+path,{...options,signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path+' HTTP '+r.status);return r;}
 // A new custom domain can take a few minutes to resolve. Only readiness is retried;
@@ -16,7 +20,7 @@ for(let attempt=0;attempt<36;attempt++){
 }
 assert.equal(health.revision,release.revision,'Deployed revision must match this build');
 const files=await readdir('dist',{recursive:true,withFileTypes:true});let checked=0;
-for(const file of files.filter(x=>x.isFile()&&!['_headers','_redirects'].includes(x.name))){const disk=file.parentPath+'/'+file.name;const relative=disk.slice('dist/'.length);const path=relative==='index.html'?'/':'/'+relative;const res=await get(path);assert.match(res.headers.get('Content-Security-Policy')||'',/default-src 'none'/);if(relative.endsWith('.mjs'))assert.match(res.headers.get('Content-Type')||'',/javascript/);if(relative.endsWith('.html'))assert.match(res.headers.get('Content-Type')||'',/text\/html/);assert.equal(hash(Buffer.from(await res.arrayBuffer())),hash(await readFile(disk)),path+' deployed bytes');checked++;}
+for(const file of files.filter(x=>x.isFile()&&!['_headers','_redirects'].includes(x.name))){const disk=file.parentPath+'/'+file.name;const relative=disk.slice('dist/'.length);const path=relative==='index.html'?'/':'/'+relative;const res=await get(path);assert.match(res.headers.get('Content-Security-Policy')||'',/default-src 'none'/);if(relative.endsWith('.mjs'))assert.match(res.headers.get('Content-Type')||'',/javascript/);if(relative.endsWith('.html'))assert.match(res.headers.get('Content-Type')||'',/text\/html/);assert.equal(hash(Buffer.from(await res.arrayBuffer())),hash(relative.endsWith('.html')&&!/noindex/i.test(res.headers.get('X-Robots-Tag')||'')?accountHTML(await readFile(disk)):await readFile(disk)),path+' deployed bytes');checked++;}
 assert.equal((await fetch(base+'/does-not-exist')).status,404);
 assert.equal((await fetch(base+'/api/feedback',{method:'POST',headers:{Origin:'https://example.org','Content-Type':'application/json'},body:'{}'})).status,403);
 const id=randomUUID();const feedback={id,frequency:'zero',interest:'no',ownCompleted:false,qa:true};
