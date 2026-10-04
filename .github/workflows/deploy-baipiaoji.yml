@@ -39,6 +39,10 @@ concurrency:
 jobs:
   update-build-deploy:
     runs-on: ubuntu-latest
+    env:
+      # Public browser OAuth client supplied by the owner; no client secret is used.
+      # Keep configuration and post-deployment verification on the same value.
+      GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID || '724581859627-0iv2ovkjrlteea7m0tdsnu8cemki208t.apps.googleusercontent.com' }}
     defaults:
       run:
         working-directory: sites/baipiaoji
@@ -355,7 +359,6 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ACCOUNT_MAIL_FROM: ${{ vars.ACCOUNT_MAIL_FROM || secrets.ACCOUNT_MAIL_FROM }}
         run: node scripts/account-configure.mjs

@@ -21,6 +21,8 @@ Set these on Cloudflare Pages project `aiyangmao`, production environment, or in
 
 `account-configure.mjs` uses the existing Cloudflare deployment credential. Missing inputs preserve existing settings. A partially specified mail pair is skipped. It never prints credential values or changes D1 bindings. No paid plan is bought by this script.
 
+On 2026-10-04 the owner supplied the public BPJ Google Web client ID. The deployment job now uses that ID as its fallback when neither a repository variable nor secret overrides it. The same job value is checked against the live `account-google` capability response after deployment; an unavailable or mismatched client fails verification. This is public browser configuration, not a Google client secret. Authorized origins, consent-screen audience and a real Google login must still be verified in the owner's Google project/account. This configuration does not remove the existing display-name/backup-password onboarding or introduce a membership trial.
+
 Public capability endpoints `/api/account-google` and `/api/account-email` report configuration availability, **not completed OAuth or proven mail delivery**. Google buttons are hidden if unavailable; email reset explains when unavailable. Password signup still requires a healthy HITS database. D1 quota exhaustion returns an outage state; provider setup does not resolve the database quota.
 
 ## Release verification
