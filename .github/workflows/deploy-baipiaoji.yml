@@ -323,6 +323,7 @@ jobs:
           node scripts/test-distribution.mjs --dist
           node scripts/test-github-tools.mjs --dist
           node scripts/test-coding-access.mjs --dist
+          node scripts/test-manju.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
@@ -413,6 +414,7 @@ jobs:
           node sites/baipiaoji/scripts/test-catalog-browser.mjs
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node sites/baipiaoji/scripts/test-coding-access-browser.mjs
+          node sites/baipiaoji/scripts/test-manju-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
       - name: Verify fleet account security
@@ -451,7 +453,9 @@ jobs:
           node tools/fleet-account/verify-live.mjs bpj
 
       - name: Verify published coding access directory
-        run: node scripts/test-coding-access.mjs --live
+        run: |
+          node scripts/test-coding-access.mjs --live
+          node scripts/test-manju.mjs --live
 
       - name: Verify published subscription review and checklist
         run: node scripts/test-subscription-audit.mjs --live
