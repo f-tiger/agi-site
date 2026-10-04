@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 35,
@@ -26,21 +26,33 @@
   },
   "items": [
     {
-      "id": "drift:google-ai-studio",
+      "id": "drift:deepl",
       "type": "source_drift",
-      "title": "来源页变动：Google AI Studio（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $1,000 / $10 / $100 / $100,000；消失 无。本站条目仍是 2026-09-29 的版本",
-      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：DeepL（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 5b；消失 无。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://www.deepl.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "google-ai-studio",
-        "https://ai.google.dev/gemini-api/docs/rate-limits"
+        "deepl",
+        "https://www.deepl.com/pricing"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:ollama",
+      "type": "source_drift",
+      "title": "来源页变动：Ollama（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 18.1k / 182.1k；消失 18.0k / 181.7k / 18k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/ollama/ollama 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "ollama",
+        "https://github.com/ollama/ollama"
       ],
       "score": 75
     },
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×6、www.perplexity.ai×6、copilot.microsoft.com×1、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×6、www.perplexity.ai×5、copilot.microsoft.com×1、kagi.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -49,7 +61,6 @@
         "/tools/qingying",
         "/en/tools/ms-copilot",
         "/en/tools/guojia-fanzha",
-        "/",
         "/en/is-google-flow-still-free"
       ],
       "score": 70
@@ -73,62 +84,50 @@
       "score": 65
     },
     {
-      "id": "drift:exa",
+      "id": "drift:codex",
       "type": "source_drift",
-      "title": "来源页变动：Exa（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $4；消失 无。本站条目仍是 2026-08-13 的版本",
-      "action": "打开 https://exa.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：OpenAI Codex（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $100, / $200, / $500 / 15credits；消失 $100 / 1.875credits / 113credits / 18.75credits。本站条目仍是 2026-09-25 的版本",
+      "action": "打开 https://developers.openai.com/codex/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "exa",
-        "https://exa.ai/pricing"
+        "codex",
+        "https://developers.openai.com/codex/pricing"
       ],
       "score": 65
     },
     {
-      "id": "drift:gaoding",
+      "id": "drift:elevenlabs",
       "type": "source_drift",
-      "title": "来源页变动：稿定 AI（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 6秒 / 84b。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://gaoding.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：ElevenLabs（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $1 / 83%；消失 12,500seconds / 152minutes / 500minutes / 80%。本站条目仍是 2026-08-02 的版本",
+      "action": "打开 https://elevenlabs.io/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "gaoding",
-        "https://gaoding.com"
+        "elevenlabs",
+        "https://elevenlabs.io/pricing"
       ],
       "score": 65
     },
     {
-      "id": "drift:elicit",
+      "id": "drift:cerebras",
       "type": "source_drift",
-      "title": "来源页变动：Elicit（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 188s；消失 93% / 94%。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://elicit.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Cerebras（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $5 / 30days；消失 无。本站条目仍是 2026-08-05 的版本",
+      "action": "打开 https://cerebras.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "elicit",
-        "https://elicit.com"
+        "cerebras",
+        "https://cerebras.ai/pricing"
       ],
       "score": 65
     },
     {
-      "id": "drift:quark-ai",
+      "id": "drift:cloudflare-workers-ai",
       "type": "source_drift",
-      "title": "来源页变动：夸克 AI（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 4k；消失 无。本站条目仍是 2026-08-13 的版本",
-      "action": "打开 https://quark.cn 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Cloudflare Workers AI（2026-10-04 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $0.090 / $0.240；消失 无。本站条目仍是 2026-09-16 的版本",
+      "action": "打开 https://developers.cloudflare.com/workers-ai/platform/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "quark-ai",
-        "https://quark.cn"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:notion-ai",
-      "type": "source_drift",
-      "title": "来源页变动：Notion AI（2026-10-03 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1.4m / 100m / 50% / 62%；消失 98%。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://notion.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "notion-ai",
-        "https://notion.com"
+        "cloudflare-workers-ai",
+        "https://developers.cloudflare.com/workers-ai/platform/pricing"
       ],
       "score": 65
     },
@@ -171,7 +170,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 50 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 56 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
