@@ -23,6 +23,6 @@ Example sequence: search selfie skincare cases, compare 2–4 reviewed cases for
 
 MCP inputs reach BPJ for execution, are not stored in the database or added to training, and are not sent to external models. Host-model costs are separate. Keep customer secrets out of requests. Public web consultation and source-linked data remain free; membership buys hosted tool service, not exclusive rights to public data. Popularity does not establish revenue, and revenue does not establish profit. No payments, outreach or site changes are performed by these tools.
 
-Official registry manifest: `server.json`, namespace `io.github.f-tiger/bpj-startup-research`. The existing BPJ deployment checks live protocol behavior before using GitHub OIDC to register a new version. Read the actual registry response before claiming registration or downstream marketplace indexing.
+Official registry manifest: `server.json`, namespace `io.github.f-tiger/bpj-startup-research`. A dedicated registration workflow checks live protocol behavior before using GitHub OIDC to register a new version. It runs after successful BPJ deployments or registry configuration changes, has bounded network retries and can be retried without redeploying the site. Read the actual registry response before claiming registration or downstream marketplace indexing.
 
 Tests: `node scripts/test-startup-mcp.mjs`, `node scripts/test-startup-mcp-browser.mjs`, and `node scripts/test-startup-mcp-live.mjs` from the BPJ site directory. Paid-flow tests use SQLite and fixture memberships, not real payments.
