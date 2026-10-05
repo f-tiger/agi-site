@@ -35,3 +35,7 @@
 公开 GET 仅返回最近七天已核验的来源 facts（无查询哈希或限流标识）。既有每日 `manju-sync.mjs` 用 `importFacts` 再做词表/身份/排除验证并去重入库，HTML、分类页、RSS、JSON、全站搜索及 IndexNow 在原发布流程同步；未符合目录标准的来源记录不保证入库。页面明示未命中时关键词会发送到资料源，请勿输入私密信息。此机制不是实时视频抓取、版权许可或自动剧情生成。
 
 验收：五项接口/解析/SQLite 缓存/限流/隐私单测，新增浏览器覆盖首页新 ID 定位、自然语言推荐、真实 POST 触发、成功/空/错误反馈、私人输入拦截与旧响应隔离；原全站搜索、帧选、SEO、GA4 发布门禁继续执行。两轮自检重点为“没有联网却称已抓取”和 SSRF/跨域、重复抓取、来源冒充官方、搜索词泄露。已在开发环境真实请求公开来源，核对《重生刚分家，带龙凤胎深山暴富》的标题、六个标签和出处；这不是虚构搜索案例或播放实测。
+
+### 2026-10-05 edge compatibility correction
+
+Cloudflare fetch only accepts follow/manual redirect modes. Discovery uses manual and rejects all non-2xx responses, so redirects never escape the fixed source allowlist. Verified against actual workerd/D1 and a real public source result. Preserve the submitted title punctuation for source lookup; local recommendation normalization remains separate. Safe stage/error codes identify failures without exposing query text.
