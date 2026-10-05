@@ -82,3 +82,10 @@ test('Eco tool distribution measures fixed preparation actions without input pay
  assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_tool_published'}),null);
  assert.equal(businessEvent('baipiaoji.com','/rechner.html',{name:'eco_tool_copy'}),null);
 });
+
+test('Eco purchase decisions retain only fixed mode/action labels on public pages',()=>{
+ for(const mode of ['label','dish','shower'])for(const action of ['example','compare','share_prepare','copy','share_reddit','share_x','print'])assert.deepEqual(businessEvent('getecoback.com','/nl/wonen.html',{name:'eco_buy_'+mode+'_'+action}),{name:'eco_buy_'+action,tool_id:'eco-product-'+mode,repeat:true});
+ for(const pathname of ['/members.html','/account','/api/private','/'])assert.equal(businessEvent('getecoback.com',pathname,{name:'eco_buy_dish_compare'}),null);
+ assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_buy_dish_compare',values:{rate:0.3}}),null);
+ for(const name of ['eco_buy_dish_purchase','eco_buy_unknown_compare','eco_buy_email@example.com_compare'])assert.equal(businessEvent('getecoback.com','/rechner.html',{name}),null);
+});

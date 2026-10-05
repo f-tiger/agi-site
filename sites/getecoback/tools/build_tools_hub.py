@@ -29,7 +29,7 @@ HUB = os.path.join(SITE, "tools.html")
 OPEN, CLOSE = "<!--EB_TOOLS_INDEX-->", "<!--/EB_TOOLS_INDEX-->"
 EB_RE = re.compile(r"<!--(EB_[A-Z_]+)-->.*?<!--/\1-->", re.S)
 NOINDEX_RE = re.compile(r'<meta[^>]+name="robots"[^>]+noindex', re.I)
-EXTRA = {"/guide/heizluefter-stromverbrauch.html", "/guide/fensterabdichtung-klimaanlage.html", "/en/guide/window-seal-portable-ac.html", "/guide/strompreis-radar.html", "/waeschetrockner-oder-luftentfeuchter.html", "/en/guide/dehumidifier-drying-clothes-cost.html"}  # Live data or a primary calculator rendered from a reusable EB block.
+EXTRA = {"/nl/wonen.html", "/wohnen.html", "/guide/heizluefter-stromverbrauch.html", "/guide/fensterabdichtung-klimaanlage.html", "/en/guide/window-seal-portable-ac.html", "/guide/strompreis-radar.html", "/waeschetrockner-oder-luftentfeuchter.html", "/en/guide/dehumidifier-drying-clothes-cost.html"}  # Live data or a primary calculator rendered from a reusable EB block.
 SKIP_PREFIX = ("/widgets/", "/workbench", "/member")
 
 FAMILIES = [

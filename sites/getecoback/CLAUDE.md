@@ -3375,3 +3375,13 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
   名单 == site/ 下的 index.html、每个入口页 canonical 是它的斜杠 URL、斜杠 URL 回 200、裸路径 301 到斜杠、普通页的旧规则不变;
   删掉 `/it/` 的变异实测两处变红。部署自检加 `/it` → `/it/` 301 与 `/it/` 200。`eco-it-pilot-1027` 已加注:10-27 的零读数有一部分是入口不可达。
   **新增任何带 index.html 的目录,DIR_INDEXES 要同时加,否则测试红。**
+
+## 2026-10-05 — Country-aware household product decisions
+
+`tools/build_product_decisions.py` enhances eight **existing** URLs in DE/EN/NL/FR with appliance-label/ownership, dishwasher-vs-handwash and showerhead-compatibility calculations. It creates no guide URLs and never edits the daily expansion queue. Run after the last country/UK generators and before hreflang, search, Markdown mirrors and final analytics coverage. `build_tools_hub.py` explicitly includes DE/NL country hubs because reusable EB blocks are stripped by normal discovery.
+
+Authoritative copy/source/market configuration: `data/product-decisions.json`. Pure arithmetic: `site/assets/product-decision-model.mjs`; UI: `product-decisions.mjs/css`. Markets: DE/AT/CH/NL/GB/FR/US/CA; currencies are accounting units, **not FX or live tariffs**. Examples are hypothetical. Annual labels must not be silently rescaled to household cycles or compared to a different test basis. Hot-feed dishwasher energy is separate from appliance-only electricity; do not double-count water heating. Electric/pumped/unknown shower compatibility suppresses purchase/payback recommendations. No fabricated models, prices, tests or demand claims. DE/US merchant tags are the existing verified tags; NL/GB/FR/CA links are untagged; AT/CH have no new merchant links. No new product ranking or subsidy claim.
+
+Run `node tools/test_product_decisions.mjs` and Playwright `tools/browser_product_decisions.cjs` (supports `LIVE=1`). Eight page routes and fixed `eco_buy_*` business events are allowlisted in fleet analytics; no numeric inputs enter analytics. Example selection is not a conversion; merchant click is not a purchase; Reddit/X links are user-initiated share composers. Hash links validate an exact numeric/enum schema and remove incoming queries. Existing account/language header remains authoritative.
+
+`build_agent_md.py` preserves the module's static method and buying checks while stripping executable config and all merchant links. Official NRCan pages returned 403 during this review: retained as reference links, not claimed as a successfully fetched source. Existing AU cooling content is maintained; no Nordic/Eastern Europe rollout or publishing-schedule changes in this batch.
