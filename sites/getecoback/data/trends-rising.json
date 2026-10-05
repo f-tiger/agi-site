@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-04",
+ "fetched": "2026-10-05",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -69,48 +69,48 @@
   "infrarotheizung": {
    "rising": [
     {
-     "q": "elektrische heizung",
-     "v": 54450
-    },
-    {
-     "q": "infrarotheizung klein",
-     "v": 52500
-    },
-    {
-     "q": "infrarotheizung schimmel",
-     "v": 36800
-    },
-    {
-     "q": "infrarotheizung für garage",
-     "v": 35650
-    },
-    {
-     "q": "trotec infrarotheizung",
-     "v": 31550
-    },
-    {
      "q": "steinfeld infrarotheizung",
-     "v": 29850
+     "v": 50700
     },
     {
-     "q": "ölradiator oder infrarotheizung",
-     "v": 29250
+     "q": "elektrische heizung",
+     "v": 49150
+    },
+    {
+     "q": "infrarotheizung werkstatt",
+     "v": 48000
+    },
+    {
+     "q": "könighaus infrarotheizung 600 watt",
+     "v": 41850
+    },
+    {
+     "q": "stand infrarotheizung",
+     "v": 41550
+    },
+    {
+     "q": "infrarotheizung 100 watt",
+     "v": 34050
     },
     {
      "q": "marmony infrarotheizung",
-     "v": 27550
+     "v": 34050
     },
     {
-     "q": "infrarotlampe",
-     "v": 27350
+     "q": "infrarot standheizung",
+     "v": 33400
     },
     {
-     "q": "konvektorheizung",
-     "v": 24200
+     "q": "infrarotheizung wand testsieger",
+     "v": 30150
+    },
+    {
+     "q": "infrarotheizung vor und nachteile",
+     "v": 29050
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-04",
+   "fetched": "2026-10-05",
    "polluted": false
   },
   "luftentfeuchter": {
@@ -211,39 +211,47 @@
    "rising": [
     {
      "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 16500
-    },
-    {
-     "q": "krups kaffeevollautomat intensity milk",
-     "v": 16100
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 10750
-    },
-    {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 10550
+     "v": 17350
     },
     {
      "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 10550
+     "v": 10100
+    },
+    {
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 7300
     },
     {
      "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 450
+     "v": 7150
     },
     {
-     "q": "samsung kaffeevollautomat",
-     "v": 100
+     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+     "v": 5000
+    },
+    {
+     "q": "krups kaffeevollautomat intensity milk",
+     "v": 700
+    },
+    {
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 500
     },
     {
      "q": "mini kaffeevollautomat",
-     "v": 80
+     "v": 70
+    },
+    {
+     "q": "samsung kaffeevollautomat",
+     "v": 70
+    },
+    {
+     "q": "philips kaffeevollautomat lattego",
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-27",
+   "fetched": "2026-10-05",
    "polluted": false
   },
   "akku staubsauger": {

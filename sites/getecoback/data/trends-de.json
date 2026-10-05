@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-10-04",
+ "fetched": "2026-10-05",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "schnee",
-   "traffic": "20000+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "flä­chen­brand",
-   "traffic": "2000+"
-  },
-  {
-   "title": "parookaville 2027",
-   "traffic": "500+"
-  },
-  {
-   "title": "ministerium",
-   "traffic": "2000+"
-  },
-  {
-   "title": "veljko paunovic",
+   "title": "geldbuße",
    "traffic": "1000+"
   },
   {
-   "title": "schnee",
-   "traffic": "20000+"
+   "title": "wuppertal",
+   "traffic": "1000+"
   },
   {
-   "title": "gardasee",
+   "title": "bundesnachrichtendienst",
+   "traffic": "500+"
+  },
+  {
+   "title": "merz news",
    "traffic": "10000+"
   },
   {
-   "title": "deutsche bahn familienticket",
-   "traffic": "5000+"
+   "title": "russland ukraine",
+   "traffic": "1000+"
   },
   {
-   "title": "dieter schwarz",
+   "title": "flydubai vorfall",
+   "traffic": "2000+"
+  },
+  {
+   "title": "laacher see",
+   "traffic": "1000+"
+  },
+  {
+   "title": "martin jäger",
+   "traffic": "2000+"
+  },
+  {
+   "title": "peter hegemann",
    "traffic": "10000+"
   },
   {
-   "title": "reinhard mey platz 1",
-   "traffic": "5000+"
-  },
-  {
-   "title": "zurück in die zukunft",
+   "title": "karl deisseroth",
    "traffic": "2000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-20",
-   "matched": []
-  },
   {
    "d": "2026-09-21",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "schnee"
    ]
+  },
+  {
+   "d": "2026-10-05",
+   "matched": []
   }
  ]
 }
