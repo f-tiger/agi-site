@@ -63,6 +63,9 @@ jobs:
           python3 tools/build_winter_locales.py
           python3 tools/build_au_cooling.py
           python3 tools/build_uk_opportunities.py
+          python3 tools/build_product_decisions.py
+          node tools/test_product_decisions.mjs
+          python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
           # Storage pages and their generator were removed by the owner on 09-27.
@@ -121,6 +124,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_language_nav.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs

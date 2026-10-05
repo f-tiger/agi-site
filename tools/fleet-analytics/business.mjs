@@ -29,6 +29,8 @@ export function businessEvent(host, pathname, detail) {
       ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'].some(action=>name==='eco_tool_'+action))
     return {name,tool_id:'eco-tool-experience',repeat:true};
 
+  if (host === 'getecoback.com' && ['/rechner.html','/wohnen.html','/geraete-austausch-rechner.html','/en/solution-calculator.html','/fr/calculateur.html','/nl/wonen.html','/guide/duschen-kosten-rechner.html','/en/guide/shower-cost-calculator.html'].includes(pathname) && ['example','compare','share_prepare','copy','share_reddit','share_x','print'].some(action=>name==='eco_buy_'+action)) return {name,tool_id:'eco-product-decisions',repeat:true};
+
   if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');

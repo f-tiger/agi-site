@@ -70,6 +70,10 @@ def to_markdown(src_html, path_url, lang):
         protocol = re.search(r'<details><summary>Measure one load fairly: checklist</summary>(.*?)</details>', laundry.group(1), re.S)
         if protocol:
             body += '<h2>Reproducible laundry cost comparison</h2><p>Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.</p>' + protocol.group(1)
+    product = re.search(r'<!--EB_PRODUCT_DECISIONS-->(.*?)<!--/EB_PRODUCT_DECISIONS-->', src_html, re.S)
+    if product:
+        # Preserve sourced methodology/category checks, not script config or shopping UI.
+        body += product.group(1).split('<script', 1)[0]
     # Detect the live-number bands BEFORE they are stripped below. They are
     # JavaScript-rendered, so a crawler or this Markdown view sees an empty
     # div — and the whole point of a live number (citation-growth item six:

@@ -200,6 +200,9 @@ jobs:
           python3 tools/build_winter_locales.py
           python3 tools/build_au_cooling.py
           python3 tools/build_uk_opportunities.py
+          python3 tools/build_product_decisions.py
+          node tools/test_product_decisions.mjs
+          python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)

@@ -29,3 +29,26 @@ Hors financement, actualisation, inflation, remplacement, dégradation et crédi
 ## Sources consultées · 2026-09-20
 
 - [Médiateur national de l’énergie · comparateur officiel](https://comparateur-offres.energie-info.fr/)
+<!--EB_PRODUCT_DECISIONS_MD-->
+## Moins acheter, mieux comparer
+
+Comparez étiquettes énergie, vaisselle et pommeaux de douche. Choisissez un pays et un exemple. Aucun compte ni renseignement personnel requis.
+
+Étiquette : kWh/100 cycles ÷ 100 × cycles annuels ; valeur annuelle inchangée. Total = achat + électricité annuelle × tarif × années. Amortissement = surcoût positif ÷ économie annuelle positive. Vaisselle : énergie machine × prix électrique + litres × prix eau/1000 ; chauffage de l’eau à la main calculé séparément.
+
+Les étiquettes annuelles conservent l’usage standard ; le nombre de cycles modifie uniquement les valeurs par cycle. Ne comparez pas des normes ou capacités différentes. Hors financement, réparations, eau, valeur résiduelle et remplacement. Conserver ou réparer peut être préférable. Appareils électriques uniquement : les coûts de combustible des appareils à gaz sont exclus.
+
+Choisissez le périmètre : le cycle électrique complet inclut le chauffage une fois. Pour une arrivée chaude, indiquez séparément l’électricité de l’appareil et les litres chauffés à l’extérieur. N’utilisez pas les kWh annuels EnergyGuide comme valeur par cycle. Comparez la même vaisselle et le même rinçage. Hors détergent, qualité de nettoyage, temps, achat et installation.
+
+Différence d’eau = différence de débit × minutes × douches. Énergie = litres × hausse de température × 0,001163 ÷ rapport chaleur/énergie. Ce rapport peut dépasser 1 pour une pompe à chaleur ; utilisez le prix du combustible pour une chaudière. Pertes fixes non modélisées. Ne modifiez pas les réglages de sécurité de l’eau chaude.
+
+- Sèche-linge à pompe à chaleur : vérifiez capacité, place, évacuation et durée des cycles.
+- Réfrigérateurs et congélateurs : comparez volume utile, ventilation et kWh annuels.
+- Lave-vaisselle : comparez charge, programme éco, raccordements et dimensions.
+- Pommeaux économes : vérifiez débit minimal, pression, chauffe-eau et compatibilité ; raccourcir les douches reste possible sans achat.
+
+Sources & méthode
+- [ADEME: étiquette énergie](https://www.ademe.fr/presse/communique-national/une-nouvelle-etiquette-energie-en-mars-2021/)
+- [Heures pleines / heures creuses](https://www.energie-info.fr/fiche_pratique/bien-utiliser-les-heures-creuses/)
+- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
+<!--/EB_PRODUCT_DECISIONS_MD-->

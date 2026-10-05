@@ -7,6 +7,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/nl/wonen.html
 Nederland · Wonen & energie
 
 # Een fijner huis begint bij de juiste vraag.
+
 Vochtige ramen, was die binnen moet drogen of twijfel over ventilatie? Begin bij de oorzaak en vergelijk daarna pas apparaten. Deze gids helpt je kiezen wat bij jouw woning en dagelijkse gebruik past.
 Gratis gidsen · EUR · Redactioneel gecontroleerd · 2026-10-01
 
@@ -70,7 +71,55 @@ Redactionele uitleg op basis van de onderstaande bronnen. We hebben geen eigen a
 - Milieu Centraal: beter en energiezuiniger ventileren
 - Consumentenbond: koopadvies luchtontvochtigers
 
+## Minder kopen, beter vergelijken
+Vergelijk energielabels, afwassen en douchekoppen. Begin met een voorbeeld; kies land en beslissing. Geen account of persoonlijke gegevens nodig.
+
+Rekenvoorbeeld — geen actuele prijzen, gemeten producten of koopadvies.
+Methode & grenzenLabel: kWh/100 cycli ÷ 100 × jaarcycli; jaarlabels blijven gelijk. Totaal = aankoop + jaarstroom × tarief × jaren. Terugverdientijd = positieve extra investering ÷ positieve jaarbesparing. Vaat: machine-energie × stroomprijs + liters × waterprijs/1000; verwarmd handafwaswater apart berekenen.
+Jaarlabels behouden het standaardgebruik; aantallen cycli wijzigen alleen cycluswaarden. Vergelijk geen verschillende testnormen of capaciteiten. Zonder financiering, reparaties, water, restwaarde of vervanging. Behouden of repareren kan beter zijn. Alleen elektrische apparaten: brandstofkosten van gasapparaten ontbreken.
+Kies de systeemgrens: alle cyclusstroom omvat waterverwarming eenmaal. Bij warmwateraansluiting gebruik je apparaatstroom en extern verwarmde liters apart. Gebruik geen jaarlijkse EnergyGuide-kWh als cycluswaarde. Vergelijk dezelfde vaat en spoelhoeveelheid. Zonder afwasmiddel, reinigingskwaliteit, tijd, aankoop of installatiekosten.
+Waterverschil = debietverschil × minuten × douches. Energie = liters × temperatuurstijging × 0,001163 ÷ warmte/invoer-verhouding. Bij warmtepompen kan die boven 1 liggen; gebruik de brandstofprijs bij een ketel. Vaste warmteverliezen ontbreken. Verander geen veiligheidsinstellingen voor warm water.
+
+### Vóór aankoop
+
+- Warmtepompdrogers: controleer capaciteit, ruimte, afvoer en programmaduur.
+- Koelkasten en vriezers: vergelijk bruikbaar volume, ventilatieruimte en jaarlijkse kWh.
+- Vaatwassers: controleer gelijke lading, eco-programma, wateraansluiting en inbouwmaten.
+- Waterbesparende douchekoppen: controleer minimumdebiet, druk, verwarming en goedkeuring; korter douchen kan zonder aankoop.
+
+### Bronnen & methode
+
+- EU dryer label
+- EU dishwasher label
+- Milieu Centraal: Vaatwasser
+- UK energy labels
+- FTC: EnergyGuide
+- NRCan: EnerGuide
+- EPA: WaterSense showerheads
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
 Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.
+<!--EB_PRODUCT_DECISIONS_MD-->
+## Minder kopen, beter vergelijken
+
+Vergelijk energielabels, afwassen en douchekoppen. Begin met een voorbeeld; kies land en beslissing. Geen account of persoonlijke gegevens nodig.
+
+Label: kWh/100 cycli ÷ 100 × jaarcycli; jaarlabels blijven gelijk. Totaal = aankoop + jaarstroom × tarief × jaren. Terugverdientijd = positieve extra investering ÷ positieve jaarbesparing. Vaat: machine-energie × stroomprijs + liters × waterprijs/1000; verwarmd handafwaswater apart berekenen.
+
+Jaarlabels behouden het standaardgebruik; aantallen cycli wijzigen alleen cycluswaarden. Vergelijk geen verschillende testnormen of capaciteiten. Zonder financiering, reparaties, water, restwaarde of vervanging. Behouden of repareren kan beter zijn. Alleen elektrische apparaten: brandstofkosten van gasapparaten ontbreken.
+
+Kies de systeemgrens: alle cyclusstroom omvat waterverwarming eenmaal. Bij warmwateraansluiting gebruik je apparaatstroom en extern verwarmde liters apart. Gebruik geen jaarlijkse EnergyGuide-kWh als cycluswaarde. Vergelijk dezelfde vaat en spoelhoeveelheid. Zonder afwasmiddel, reinigingskwaliteit, tijd, aankoop of installatiekosten.
+
+Waterverschil = debietverschil × minuten × douches. Energie = liters × temperatuurstijging × 0,001163 ÷ warmte/invoer-verhouding. Bij warmtepompen kan die boven 1 liggen; gebruik de brandstofprijs bij een ketel. Vaste warmteverliezen ontbreken. Verander geen veiligheidsinstellingen voor warm water.
+
+- Warmtepompdrogers: controleer capaciteit, ruimte, afvoer en programmaduur.
+- Koelkasten en vriezers: vergelijk bruikbaar volume, ventilatieruimte en jaarlijkse kWh.
+- Vaatwassers: controleer gelijke lading, eco-programma, wateraansluiting en inbouwmaten.
+- Waterbesparende douchekoppen: controleer minimumdebiet, druk, verwarming en goedkeuring; korter douchen kan zonder aankoop.
+
+Bronnen & methode
+- [Milieu Centraal: Vaatwasser](https://www.milieucentraal.nl/energie-besparen/apparaten-in-huis/vaatwasser/)
+- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
+<!--/EB_PRODUCT_DECISIONS_MD-->

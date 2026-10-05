@@ -35,7 +35,55 @@ Technical sources below are in German, checked for the original guide on 4 Octob
 - co2online: Sparduschkopf und Durchlauferhitzer (DE)
 - Verbraucherzentrale: Warmwasser und Hygiene (DE)
 
+## Buy less, compare better
+Compare appliance labels, dishwashing and showerheads. Start with an example; choose a country and decision. No account or personal details needed.
+
+Illustrative example — not current prices, measured products or a recommendation.
+Method & boundariesLabel: kWh/100 cycles ÷ 100 × yearly cycles; annual labels unchanged. Total = purchase + annual electricity × rate × years. Payback = positive extra investment ÷ positive annual saving. Dishes: machine energy × electricity price + litres × water price/1000; price handwash heating separately.
+Annual labels retain their standard test usage; cycle counts affect only cycle-based labels. Do not compare different test standards or capacities. Costs exclude finance, repairs, water, residual value and replacement. Keeping or repairing may be better. Electric appliances only: gas-appliance running costs are not modelled.
+Select the energy boundary: whole-cycle electricity includes heating once; for a hot-feed machine, use appliance-only electricity and externally heated litres separately. Do not enter annual EnergyGuide kWh as cycle energy. Dishwashers use the same load and rinse volume. The comparison excludes detergent, cleaning quality, time, purchase and installation costs.
+Water difference = flow difference × minutes × showers. Input energy = litres × temperature rise × 0.001163 ÷ heat/input ratio. Heat-pump ratio can exceed 1; use fuel price for a boiler. Does not model fixed tank losses. Do not change stored-water safety settings.
+
+### Before buying
+
+- Heat-pump dryers: check capacity, space, drainage and cycle duration.
+- Fridges and freezers: compare usable volume, ventilation clearance and annual kWh.
+- Dishwashers: match load size, eco programme, plumbing and installation dimensions.
+- Low-flow showerheads: check minimum flow, pressure, heater and approval; shorter showers remain a no-purchase option.
+
+### Sources & method
+
+- EU dryer label
+- EU dishwasher label
+- Milieu Centraal: Vaatwasser
+- UK energy labels
+- FTC: EnergyGuide
+- NRCan: EnerGuide
+- EPA: WaterSense showerheads
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
 Note: EcoBack does not test devices itself; picks summarise public tests. The site is funded via Amazon affiliate links on the HTML pages — this Markdown view deliberately contains none.
+<!--EB_PRODUCT_DECISIONS_MD-->
+## Buy less, compare better
+
+Compare appliance labels, dishwashing and showerheads. Start with an example; choose a country and decision. No account or personal details needed.
+
+Label: kWh/100 cycles ÷ 100 × yearly cycles; annual labels unchanged. Total = purchase + annual electricity × rate × years. Payback = positive extra investment ÷ positive annual saving. Dishes: machine energy × electricity price + litres × water price/1000; price handwash heating separately.
+
+Annual labels retain their standard test usage; cycle counts affect only cycle-based labels. Do not compare different test standards or capacities. Costs exclude finance, repairs, water, residual value and replacement. Keeping or repairing may be better. Electric appliances only: gas-appliance running costs are not modelled.
+
+Select the energy boundary: whole-cycle electricity includes heating once; for a hot-feed machine, use appliance-only electricity and externally heated litres separately. Do not enter annual EnergyGuide kWh as cycle energy. Dishwashers use the same load and rinse volume. The comparison excludes detergent, cleaning quality, time, purchase and installation costs.
+
+Water difference = flow difference × minutes × showers. Input energy = litres × temperature rise × 0.001163 ÷ heat/input ratio. Heat-pump ratio can exceed 1; use fuel price for a boiler. Does not model fixed tank losses. Do not change stored-water safety settings.
+
+- Heat-pump dryers: check capacity, space, drainage and cycle duration.
+- Fridges and freezers: compare usable volume, ventilation clearance and annual kWh.
+- Dishwashers: match load size, eco programme, plumbing and installation dimensions.
+- Low-flow showerheads: check minimum flow, pressure, heater and approval; shorter showers remain a no-purchase option.
+
+Sources & method
+- [UK energy labels](https://www.gov.uk/guidance/the-energy-labelling-of-products)
+- [Energy Saving Trust: water](https://energysavingtrust.org.uk/advice/saving-water-at-home/)
+<!--/EB_PRODUCT_DECISIONS_MD-->
