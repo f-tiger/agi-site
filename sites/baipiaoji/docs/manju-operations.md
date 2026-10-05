@@ -39,3 +39,9 @@
 ### 2026-10-05 edge compatibility correction
 
 Cloudflare fetch only accepts follow/manual redirect modes. Discovery uses manual and rejects all non-2xx responses, so redirects never escape the fixed source allowlist. Verified against actual workerd/D1 and a real public source result. Preserve the submitted title punctuation for source lookup; local recommendation normalization remains separate. Safe stage/error codes identify failures without exposing query text.
+
+## 2026-10-05 输入联想
+
+视频首页在输入后约 90ms 展示站内联想，最多四条剧名、两条相关题材和两条相似推荐；剧名相关性优先、同分时参考已有榜内名次。选择后复用目录搜索，不新增接口或模型调用，不保存搜索词。未匹配时提供继续搜索入口，沿用既有公开来源补查、缓存与限流。
+
+采用 combobox/listbox 与 aria-activedescendant，支持上下方向键、回车、Esc、点击和失焦关闭。空输入不弹出，重置后不会遮挡榜单操作。中文输入法组词期间取消未发出的补查、停止旧请求并暂不联想；完成组词后恢复。测试覆盖键盘和点击选择、题材推荐、Esc/清空、中文组合输入和原搜索补查回归；SEO 内容及 canonical 不变，发布按原流程检查 GA4 和 IndexNow 适用变更。
