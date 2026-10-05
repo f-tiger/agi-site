@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 35,
+    "candidate": 34,
     "category_hot": 1,
     "stale": 5,
     "demand": 0
@@ -52,7 +52,7 @@
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×6、www.perplexity.ai×5、copilot.microsoft.com×1、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×5、www.perplexity.ai×5、copilot.microsoft.com×1、kagi.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -132,30 +132,6 @@
       "score": 65
     },
     {
-      "id": "candidate:simedw.com",
-      "type": "verify_candidate",
-      "title": "核实候选：I trained a 125M model to autocomplete piano on-device",
-      "why": "HN 507 分 / 106 评论（2026-08-21 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://simedw.com/2026/08/20/midi-autocomplete/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://simedw.com/2026/08/20/midi-autocomplete/",
-        "https://news.ycombinator.com/item?id=49373456"
-      ],
-      "score": 60
-    },
-    {
-      "id": "candidate:danielvaughn.dev",
-      "type": "verify_candidate",
-      "title": "核实候选：Huzzah – a novel approach to coding with AI",
-      "why": "HN 225 分 / 131 评论（2026-08-21 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://www.danielvaughn.dev/posts/huzzah/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://www.danielvaughn.dev/posts/huzzah/",
-        "https://news.ycombinator.com/item?id=49378768"
-      ],
-      "score": 60
-    },
-    {
       "id": "candidate:mysetup.ai",
       "type": "verify_candidate",
       "title": "核实候选：Share your AI Setup, Learn from others",
@@ -168,9 +144,33 @@
       "score": 60
     },
     {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Mini-AGI – Dynamic continual learning model trained on 8GB VRAM",
+      "why": "HN 257 分 / 57 评论（2026-09-22 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/volotat/mini-AGI/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/volotat/mini-AGI/",
+        "https://news.ycombinator.com/item?id=49783133"
+      ],
+      "score": 60
+    },
+    {
+      "id": "candidate:unslop.news",
+      "type": "verify_candidate",
+      "title": "核实候选：Hacker News, Without AI",
+      "why": "HN 179 分 / 77 评论（2026-09-12 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://www.unslop.news/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://www.unslop.news/",
+        "https://news.ycombinator.com/item?id=49660783"
+      ],
+      "score": 60
+    },
+    {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 56 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 57 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
