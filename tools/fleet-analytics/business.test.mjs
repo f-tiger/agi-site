@@ -108,3 +108,5 @@ test('Eco home fit actions accept only fixed mode and action without user data',
  assert.equal(businessEvent('getecoback.com','/account.html',{name:'eco_fit_robot_complete'}),null);
  assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_fit_robot_complete',answers:{}}),null);
 });
+
+for(const action of ['search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached']) { const name='manju_'+action; assert.equal(businessEvent('baipiaoji.com','/manju/',{name})?.name,name); assert.equal(businessEvent('baipiaoji.com','/manju/',{name,query:'PRIVATE'}),null); assert.equal(businessEvent('baipiaoji.com','/account',{name}),null); }
