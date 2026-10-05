@@ -6,8 +6,9 @@
   const query=$('#mj-rank-query'),order=$('#mj-rank-order'),sections=[...document.querySelectorAll('[data-rank-cohort]')],params=new URLSearchParams(location.search);
   if([...rank.options].some(x=>x.value===params.get('cohort')))rank.value=params.get('cohort');
   if(['source','asc','desc'].includes(params.get('order')))order.value=params.get('order');
+  const anchor=/^#rank-[a-z0-9-]{1,100}$/.test(location.hash)?document.getElementById(location.hash.slice(1)):null;if(anchor?.closest('[data-rank-cohort]'))rank.value=anchor.closest('[data-rank-cohort]').dataset.rankCohort;
   function update(measured=false){let count=0;for(const section of sections){section.hidden=rank.value!=='all'&&rank.value!==section.dataset.rankCohort;const body=section.querySelector('tbody'),rows=[...body.rows];rows.sort((a,b)=>order.value==='source'?Number(a.dataset.rankPosition)-Number(b.dataset.rankPosition):(Number(b.dataset.rankValue)-Number(a.dataset.rankValue))*(order.value==='asc'?-1:1));for(const row of rows){body.append(row);row.hidden=!row.dataset.rankTitle.includes(query.value.trim().toLowerCase());if(!section.hidden&&!row.hidden)count++;}}$('#mj-rank-status').textContent=count+' 条匹配的榜单记录；每个榜单独立排序。';$('#mj-rank-empty').hidden=count>0;const u=new URL(location.href);u.searchParams.set('cohort',rank.value);u.searchParams.set('order',order.value);history.replaceState(null,'',u);if(measured)track('rank_sort');}
-  rank.addEventListener('change',()=>update(true));order.addEventListener('change',()=>update(true));query.addEventListener('input',()=>update());update();
+  rank.addEventListener('change',()=>update(true));order.addEventListener('change',()=>update(true));query.addEventListener('input',()=>update());update();if(anchor)requestAnimationFrame(()=>anchor.scrollIntoView({block:'center'}));
  }
  const form=$('#mj-topic-form');
  if(form){

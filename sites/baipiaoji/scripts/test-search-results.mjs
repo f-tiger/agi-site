@@ -18,3 +18,5 @@ console.log('PASS search: bilingual real index, canonical deduplication, exact t
 const manjuRows=[{u:'https://baipiaoji.com/manju/#work-mj-012345abcdef',n:'样本甲',q:'选片',k:'漫剧'},{u:'https://baipiaoji.com/manju/#work-mj-abcdef012345',n:'样本乙',q:'选片',k:'漫剧'}];
 assert.deepEqual(searchResults(manjuRows,'选片').map(x=>x.u),manjuRows.map(x=>x.u));
 assert.equal(searchResults(manjuRows,'样本乙')[0].u,manjuRows[1].u);
+
+const ix=JSON.parse(readFileSync(new URL('../dist/search-index.json',import.meta.url)));const rankEntries=ix.filter(r=>r.u.includes('/manju/rankings#rank-'));assert.ok(rankEntries.length>0);for(const row of rankEntries.slice(0,20)){assert.ok(searchResults(ix,row.n,20).some(r=>r.u===row.u),'Official rank anchors must survive search canonicalization');}

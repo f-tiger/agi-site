@@ -3,7 +3,7 @@ export function searchResults(rows, query, limit = 8) {
   const kw = String(query).trim().toLowerCase();
   if (!kw) return [];
   // This catalogue has useful per-project anchors, not separate thin profile pages.
-  const projectHash = url => ((/^\/(?:en\/)?github-tools\/$/.test(url.pathname) && /^#[a-z0-9-]{1,40}$/.test(url.hash)) || (url.pathname === '/manju/' && /^#work-mj-[a-f0-9]{12}$/.test(url.hash))) ? url.hash : '';
+  const projectHash = url => ((url.pathname === '/manju/rankings' && /^#rank-[a-z0-9-]{1,100}$/.test(url.hash)) || (/^\/(?:en\/)?github-tools\/$/.test(url.pathname) && /^#[a-z0-9-]{1,40}$/.test(url.hash)) || (url.pathname === '/manju/' && /^#work-mj-[a-f0-9]{12}$/.test(url.hash))) ? url.hash : '';
   const canonical = value => {
     const url = new URL(value, 'https://baipiaoji.com');
     return url.origin + (url.pathname.replace(/\.html$/, '').replace(/\/+$/, '') || '/') + projectHash(url);

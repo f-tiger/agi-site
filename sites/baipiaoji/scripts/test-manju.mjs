@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
+import {GENRES,discoveryPaths} from './manju-discovery.mjs';
 import {INSIGHTS,validateInsights} from './manju-insights.mjs';
 import {MANJU,MANJU_REVISION} from './manju-pages.mjs';
 import {importFacts,validateManju} from './manju-catalog.mjs';
@@ -39,6 +40,11 @@ assert.equal(snapshots[0].records[9].value,59020000,'Season digits must not be c
 for(const mutate of [d=>d.cohorts[2].metric='play_increment',d=>d.cohorts[2].records[0].url='https://example.com/fake',d=>d.cohorts[2].records[0].displayValue='1万',d=>d.reports[1].observedAt='2026-09-30',d=>d.reports[1].url='https://example.com/rank/hot-ai-drama',d=>d.topics[0].sample.count=99,d=>d.cohorts[2].records[0].title='桃花簪']){const copy=structuredClone(INSIGHTS);mutate(copy);assert.throws(()=>validateInsights(copy,MANJU));}
 const markdown=await get('manju/insights.md');for(const r of INSIGHTS.reports)assert.ok(markdown.includes(r.url));assert.ok(markdown.includes('9 月覆盖'));
 for(const action of ['preview_open','rank_sort','topic_complete','topic_empty','topic_export']){assert.ok(parseManjuEvent('/manju/'+action+'/catalog',ids));assert.ok(businessEvent('baipiaoji.com','/manju/topics',{name:'manju_'+action}));assert.equal(businessEvent('baipiaoji.com','/manju/topics',{name:'manju_'+action,input:'private'}),null);}
+// Crawlable genre pages must expose real catalogue records, evidence and conversion paths.
+for(const g of GENRES){const h=await get('manju/genre-'+g.id+'.html'),rows=MANJU.items.filter(x=>x.category===g.id);assert.ok(rows.length>=10);assert.ok(h.includes('rel="canonical" href="'+base+'/manju/genre-'+g.id+'"'));assert.ok(h.includes('CollectionPage'));assert.ok(h.includes('ItemList'));assert.ok(h.includes('不是热度排名'));for(const x of rows){assert.ok(h.includes(x.title.replaceAll('&','&amp;')));assert.ok(h.includes(x.source.replaceAll('&','&amp;')));}assert.ok((await get('manju/genre-'+g.id+'.md')).includes(g.angle));assert.ok(home.includes('/manju/genre-'+g.id));assert.ok((await get('sitemap.xml')).includes(base+'/manju/genre-'+g.id));}
+const guide=await get('manju/guide.html');assert.ok(guide.includes('FAQPage'));assert.ok(guide.includes('红果热度能当播放量吗'));assert.ok(guide.includes('/manju/topics'));assert.ok(guide.includes('/manju/insights.json'));
+const index=JSON.parse(await get('search-index.json'));for(const path of discoveryPaths())assert.ok(index.some(r=>r.u===base+'/manju/'+path));
+const indexedOfficial=index.find(r=>r.u.includes('/manju/rankings#rank-'));assert.ok(indexedOfficial);assert.ok(ranking.includes('id="'+new URL(indexedOfficial.u).hash.slice(1)+'"'));
 const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',email:'test@example.test',note:'Automated validation only; never a customer lead.',consent:true};
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
 else{
