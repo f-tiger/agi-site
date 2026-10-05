@@ -3,6 +3,7 @@ import fs from 'node:fs';import path from 'node:path';import assert from 'node:a
 const args=process.argv.slice(2),root=path.resolve(args[args.indexOf('--out')+1]),site=args[args.indexOf('--site')+1];
 const config={agi:['agiscorecard.com','G-FZXLMBB5QB','/earn'],eco:['getecoback.com','G-E2V0Q9SJ9V','/stromtarif-werkstatt.html'],bpj:['baipiaoji.com','G-H79D948F4Z','/workbench'],tds:['thedollscout.com','G-2SEHFY33H8','/workbench']};
 const [host,id]=config[site],origin='https://'+host;
+const hasEvent=(hit,name)=>new URL(hit.url).searchParams.get('en')===name || hit.body.split('\n').some(line=>new URLSearchParams(line).get('en')===name);
 const report=JSON.parse(fs.readFileSync(path.join(root,'analytics-assets/coverage.json')));
 const record=report.records.find(r=>r.mode==='consent'&&(site==='agi'?r.url.endsWith('/earn'):site==='eco'?r.url.endsWith('/stromtarif-werkstatt.html'):true));assert(record);
 const target=record.url;
@@ -67,12 +68,12 @@ try{
  await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
  await emit('workbench_example_complete');await emit('workbench_complete');await emit('workbench_complete');
  await page.evaluate(()=>window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'workbench_export',filename:'SECRET_FILE'}})));
- await page.waitForTimeout(200);
+ await page.waitForTimeout(process.env.REAL_GTAG_DIR?1500:200);
  const businessHits=requests.filter(r=>r.kind==='collect').slice(before);
- assert.equal(businessHits.filter(r=>r.url.includes('en=tool_complete&')).length,1);
- assert.equal(businessHits.filter(r=>r.url.includes('en=tool_example_complete&')).length,1);
+ assert.equal(businessHits.filter(r=>hasEvent(r,'tool_complete')).length,1);
+ assert.equal(businessHits.filter(r=>hasEvent(r,'tool_example_complete')).length,1);
  assert(!JSON.stringify(businessHits).includes('SECRET'));
- assert.equal(businessHits.filter(r=>r.url.includes('en=tool_export&')).length,0);
+ assert.equal(businessHits.filter(r=>hasEvent(r,'tool_export')).length,0);
  await page.locator('[data-analytics-choice="denied"]').click();
  const after=requests.length;await emit('workbench_export');await page.waitForTimeout(100);assert.equal(requests.length,after);
  assert.deepEqual(errors,[]);
