@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-04",
+ "fetched": "2026-10-05",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -143,48 +143,48 @@
   "sora": {
    "rising": [
     {
-     "q": "when is sora coming to fortnite",
-     "v": 23100
-    },
-    {
      "q": "sora release date fortnite speculation",
-     "v": 10150
+     "v": 10400
     },
     {
      "q": "when does sora come to fortnite",
-     "v": 9550
-    },
-    {
-     "q": "when will sora be in fortnite",
-     "v": 7050
-    },
-    {
-     "q": "kingdom hearts grandista sora figure",
-     "v": 3050
+     "v": 9050
     },
     {
      "q": "is sora in fortnite",
-     "v": 3000
+     "v": 3700
+    },
+    {
+     "q": "when is sora coming to fortnite",
+     "v": 3450
+    },
+    {
+     "q": "kingdom hearts grandista sora figure",
+     "v": 3450
     },
     {
      "q": "sora in fortnite",
-     "v": 2150
+     "v": 2300
     },
     {
      "q": "fortnite sora",
-     "v": 1950
+     "v": 2000
     },
     {
-     "q": "sora dora raphael",
-     "v": 1550
+     "q": "sora vigorito",
+     "v": 1000
     },
     {
-     "q": "sora no manimani",
-     "v": 1500
+     "q": "raphael sora dora",
+     "v": 800
+    },
+    {
+     "q": "when will sora be in fortnite",
+     "v": 750
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-22"
+   "fetched": "2026-10-05"
   },
   "gemini": {
    "rising": [
@@ -323,6 +323,60 @@
    ],
    "source": "related-queries",
    "fetched": "2026-10-04"
+  },
+  "claude code": {
+   "auto": [
+    "claude code",
+    "claude code pricing",
+    "claude code install",
+    "claude code download",
+    "claude code mods",
+    "claude code cli",
+    "claude code ai",
+    "claude code docs",
+    "claude code desktop",
+    "claude code vs codex"
+   ],
+   "rising": [
+    {
+     "q": "claude code pricing",
+     "v": "new"
+    },
+    {
+     "q": "claude code install",
+     "v": "new"
+    },
+    {
+     "q": "claude code download",
+     "v": "new"
+    },
+    {
+     "q": "claude code mods",
+     "v": "new"
+    },
+    {
+     "q": "claude code cli",
+     "v": "new"
+    },
+    {
+     "q": "claude code ai",
+     "v": "new"
+    },
+    {
+     "q": "claude code docs",
+     "v": "new"
+    },
+    {
+     "q": "claude code desktop",
+     "v": "new"
+    },
+    {
+     "q": "claude code vs codex",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-05"
   }
  }
 }
