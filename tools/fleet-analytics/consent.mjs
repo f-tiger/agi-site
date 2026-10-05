@@ -11,15 +11,13 @@ const excluded = !/^G-[A-Z0-9]+$/.test(id || '') || location.hostname !== host |
 const key = host === 'thedollscout.com' ? 'tds_analytics_choice_v1' : 'fleet_ga4_choice_v1';
 const {businessEvent} = await import('./business.mjs' + new URL(import.meta.url).search);
 const copy = {
-  en: ['Optional analytics', 'Allow Google Analytics cookies to measure visits and fixed tool actions on this public page? Only public page details, fixed actions and recognised campaign tags are shared; files, form entries and other URL parameters are excluded. Basic site counts remain separate.', 'Allow analytics', 'Decline', 'Analytics settings'],
-  zh: ['可选访问统计', '是否允许 Google Analytics 使用统计 Cookie 记录此公开页面的访问与固定工具操作？仅分享公开页面、固定操作和已登记的营销标签；不采集文件、表单输入或其他网址参数。基础站内计数保持独立。', '允许统计', '拒绝', '统计设置'],
-  de: ['Optionale Nutzungsanalyse', 'Darf Google Analytics mit Analyse-Cookies Besuche und festgelegte Werkzeugaktionen auf dieser öffentlichen Seite messen? Nur öffentliche Seitendaten, feste Aktionen und bekannte Kampagnenkennungen werden übertragen; keine Dateien, Formulareingaben oder sonstigen URL-Parameter. Die eigenen Website-Zählungen bleiben getrennt.', 'Analyse erlauben', 'Ablehnen', 'Analyse-Einstellungen'],
-  it: ['Statistiche facoltative', 'Consentire i cookie di Google Analytics per misurare le visite e le azioni predefinite degli strumenti in questa pagina pubblica? Sono condivisi solo dati pubblici della pagina, azioni predefinite e tag di campagne riconosciute; sono esclusi file, dati dei moduli e altri parametri URL. I conteggi del sito restano separati.', 'Consenti statistiche', 'Rifiuta', 'Impostazioni statistiche'],
-  fr: ['Statistiques facultatives', 'Autoriser les cookies Google Analytics pour mesurer les visites et les actions prédéfinies des outils de cette page publique ? Seuls les pages publiques, actions prédéfinies et tags de campagne reconnus sont transmis ; fichiers, saisies et autres paramètres sont exclus. Les compteurs du site restent séparés.', 'Autoriser', 'Refuser', 'Paramètres des statistiques'],
-  es: ['Estadísticas opcionales', '¿Permitir cookies de Google Analytics para medir visitas y acciones predefinidas de herramientas en esta página pública? Solo se comparten páginas públicas, acciones predefinidas y etiquetas de campaña reconocidas; se excluyen archivos, formularios y otros parámetros URL. Los contadores propios se mantienen separados.', 'Permitir', 'Rechazar', 'Ajustes de estadísticas']
+ en:['Disable analytics','Enable analytics'], zh:['关闭访问统计','开启访问统计'],
+ de:['Analyse deaktivieren','Analyse aktivieren'], it:['Disattiva statistiche','Attiva statistiche'],
+ fr:['Désactiver les statistiques','Activer les statistiques'], es:['Desactivar estadísticas','Activar estadísticas']
 };
-let choice = '';
-try { choice = localStorage.getItem(key) || ''; } catch {}
+// Default on for new visitors; preserve an explicit existing opt-out.
+let choice = 'granted';
+try { if (localStorage.getItem(key) === 'denied') choice = 'denied'; } catch {}
 let frame, frameData, pageViewSent = false, ready = false;
 const sentActions = new Set(), pending = [];
 function accept(detail) {
@@ -59,7 +57,7 @@ function stop() {
     for (const domain of ['', '; domain=' + host, '; domain=.' + host]) document.cookie = name + '=; Max-Age=0; path=/' + domain;
   }
 }
-if (!excluded && !document.getElementById('fleet-analytics-choice')) {
+if (!excluded && !document.getElementById('fleet-analytics-settings')) {
   window.addEventListener('fleet:business', event => accept(event.detail));
   // Legacy gtag calls continue through their existing D1 wrappers. Listen to the
   // queue only for NEW fixed actions; never replay pre-consent dataLayer entries.
@@ -91,25 +89,23 @@ if (!excluded && !document.getElementById('fleet-analytics-choice')) {
     }
   });
   const t = copy[document.documentElement.lang.split('-')[0]] || copy.en;
-  const panel = document.createElement('section'); panel.id = 'fleet-analytics-choice'; panel.setAttribute('aria-label',t[0]);
-  const description = document.createElement('p'); description.textContent = t[1];
-  panel.append(description);
-  for (const [value,label] of [['granted',t[2]],['denied',t[3]]]) {
-    const button = document.createElement('button'); button.type='button'; button.textContent=label; button.dataset.analyticsChoice=value;
-    button.addEventListener('click', () => {
-      choice=value; try { localStorage.setItem(key,choice); } catch {}
-      panel.hidden=true; if (choice==='granted') start(); else stop();
-    });
-    panel.append(button);
-  }
-  panel.hidden = ['granted','denied'].includes(choice); document.body.append(panel);
-  const settings = document.createElement('button'); settings.id='fleet-analytics-settings'; settings.type='button'; settings.textContent=t[4];
-  settings.addEventListener('click',()=>{panel.hidden=false;panel.querySelector('button').focus();});
-  (document.querySelector('footer') || document.body).append(settings);
+  const settings = document.createElement('button');
+  settings.id='fleet-analytics-settings'; settings.type='button';
+  const render = () => {
+    settings.textContent = choice === 'granted' ? t[0] : t[1];
+    settings.dataset.analyticsChoice = choice === 'granted' ? 'denied' : 'granted';
+    settings.setAttribute('aria-pressed', String(choice === 'granted'));
+  };
+  settings.addEventListener('click', () => {
+    choice = choice === 'granted' ? 'denied' : 'granted';
+    try { localStorage.setItem(key,choice); } catch {}
+    render(); if (choice === 'granted') start(); else stop();
+  });
+  render(); (document.querySelector('footer') || document.body).append(settings);
   window.addEventListener('storage', event => {
     if (event.key !== key) return;
-    choice=event.newValue || ''; panel.hidden=['granted','denied'].includes(choice);
-    if (choice==='granted') start(); else stop();
+    choice = event.newValue === 'denied' ? 'denied' : 'granted';
+    render(); if (choice === 'granted') start(); else stop();
   });
   if (choice === 'granted') start(); else stop();
 }

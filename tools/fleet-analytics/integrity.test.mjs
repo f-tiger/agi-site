@@ -45,7 +45,7 @@ function fixture({choice='',query='',privacy={},host='getecoback.com',path='/',t
  return {window,posts,cookies,store,frame,click,handshake,affiliateClick,firstParty,emit,elements};
 }
 test('Consent runtime keeps D1 callbacks while exactly one GA affiliate action crosses the frame',()=>{
- const f=fixture({query:'?utm_source=youtube&utm_medium=organic_video&utm_campaign=bpj-ai-service-01&private=SECRET'});
+ const f=fixture({choice:'denied',query:'?utm_source=youtube&utm_medium=organic_video&utm_campaign=bpj-ai-service-01&private=SECRET'});
  f.affiliateClick();assert.equal(f.posts.length,0);assert.equal(f.firstParty.length,2);
  f.click('granted');f.handshake();f.affiliateClick();
  const business=f.posts.filter(x=>x.d.type==='fleet-ga4-business');
@@ -57,7 +57,7 @@ test('Consent runtime keeps D1 callbacks while exactly one GA affiliate action c
  assert(f.cookies.some(x=>x.startsWith('fleet_getecoback_com_ga=')));assert(f.cookies.every(x=>!x.startsWith('unrelated=')));
 });
 test('Legacy fixed actions are bridged only after consent and never with user fields',()=>{
- const f=fixture();f.window.gtag('event','seal_fit',{len:99,customer:'SECRET'});
+ const f=fixture({choice:'denied'});f.window.gtag('event','seal_fit',{len:99,customer:'SECRET'});
  f.click('granted');f.handshake();f.window.gtag('event','seal_fit',{len:55,customer:'SECRET'});f.window.gtag('event','unregistered_action',{private:'SECRET'});
  const hits=f.posts.filter(x=>x.d.type==='fleet-ga4-business');assert.equal(hits.length,1);assert.equal(hits[0].d.detail.name,'legacy:seal_fit');assert(!JSON.stringify(f.posts).includes('SECRET'));
  f.emit('storage',{key:'fleet_ga4_choice_v1',newValue:'denied'});assert.equal(f.frame(),undefined);
@@ -74,4 +74,12 @@ test('Analytics edge assets bypass private tool policies narrowly, not for arbit
  const response=await analyticsResponse(new Request('https://rfqdesk.agiscorecard.com/analytics-assets/frame.html?v=1'),{ASSETS:{fetch:async r=>{requested=r.url;return new Response('empty frame');}}},'rfqdesk');
  assert.equal(requested,'https://rfqdesk.agiscorecard.com/rfqdesk/analytics-assets/frame.html');
  assert.match(response.headers.get('Cache-Control'),/no-transform/);assert.match(response.headers.get('Content-Security-Policy'),/frame-ancestors 'self'/);assert.equal(response.headers.get('X-Frame-Options'),'SAMEORIGIN');
+});
+
+test('New visitors start automatically without a consent panel or stored choice',()=>{
+ const f=fixture();assert(f.frame());assert(!f.elements.some(e=>e.id==='fleet-analytics-choice'));
+ assert.equal(f.store.size,0);f.handshake();
+ assert.equal(f.posts.filter(x=>x.d.type==='fleet-ga4-page').length,1);
+ f.click('denied');assert.equal(f.frame(),undefined);assert.equal(f.store.get('fleet_ga4_choice_v1'),'denied');
+ f.click('granted');f.handshake();assert.equal(f.posts.filter(x=>x.d.type==='fleet-ga4-page').at(-1).d.data.sendPageView,false);
 });

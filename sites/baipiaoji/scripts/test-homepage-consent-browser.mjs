@@ -24,9 +24,9 @@ for(const prefix of ['', '/en'])for(const mode of ['normal','qa','webdriver','dn
  await page.goto('https://baipiaoji.com'+prefix+'/?'+(mode==='qa'?'qa=1&':'')+'private=SECRET_QUERY#SECRET_HASH');
  await page.evaluate(()=>document.addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault()},true));
  const click=()=>page.locator('.bpj-primary-cta').click();
- await click();assert.equal(tags.length,0,'No Google loader before consent');
+ if(mode!=='normal'){await click();assert.equal(tags.length,0,'Excluded traffic must not load Google');}
  if(mode==='normal'){
-  await page.locator('[data-analytics-choice="granted"]').click();
+  assert.equal(await page.locator('#fleet-analytics-choice').count(),0);
   await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
   await click();await click();
   await page.waitForFunction(()=>Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).filter(x=>x[1]==='home_click').length===2);
@@ -35,10 +35,10 @@ for(const prefix of ['', '/en'])for(const mode of ['normal','qa','webdriver','dn
   assert.equal(events.filter(x=>x[1]==='home_click').length,2,'Do not deduplicate real repeat clicks');
   for(const e of events.filter(x=>x[1]==='home_click')){assert.equal(e[2].home_destination,'tool-directory');assert.equal(e[2].home_block,'hero');}
   assert(!JSON.stringify(events).includes('SECRET'));assert.equal(tags.length,1);
-  assert.equal(hits.filter(x=>x.e==='home'&&x.p.startsWith('/home/hero')).length,3,'D1 keeps its separate pre-consent count');
-  await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="denied"]').click();
+  assert.equal(hits.filter(x=>x.e==='home'&&x.p.startsWith('/home/hero')).length,2,'D1 keeps its separate click count');
+  await page.locator('[data-analytics-choice="denied"]').click();
   await click();assert.equal(await page.locator('iframe[title="Optional analytics"]').count(),0);
-  await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice="granted"]').click();
+  await page.locator('[data-analytics-choice="granted"]').click();
   await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
   await click();await page.waitForFunction(()=>Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).some(x=>x[1]==='home_click'));
   const again=await page.evaluate(()=>Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).map(x=>Array.from(x)));
@@ -52,5 +52,5 @@ for(const prefix of ['', '/en'])for(const mode of ['normal','qa','webdriver','dn
  } else {assert.equal(await page.locator('#fleet-analytics-choice').count(),0);assert.equal(hits.filter(x=>x.e==='home'&&x.p.startsWith('/home/')).length,0);}
  assert.deepEqual(errors,[]);await context.close();
 }
-console.log('PASS homepage consent, repeat clicks, withdrawal/regrant, no query leakage, bilingual responsive layouts, QA/DNT/GPC/automation exclusion. All network intercepted.');
+console.log('PASS homepage default-on without popup, repeat clicks, withdrawal/regrant, no query leakage, bilingual responsive layouts, QA/DNT/GPC/automation exclusion. All network intercepted.');
 } finally {await browser.close();}

@@ -18,18 +18,19 @@ node tools/fleet-analytics/verify-live.mjs eco
 ```
 
 The final installer removes known legacy Google entrypoints while retaining
-first-party callbacks, then installs exactly one opt-in channel. Every generated
+first-party callbacks, then installs exactly one default-on channel. Every generated
 public HTML page is checked for canonical host, property, assets and duplicate
 loaders. Each deploy workflow executes the installer and rejects a main revision
 change before publication. The live gate checks every hostname/shared asset and
 up to a representative spread of routes; use `--all` for exhaustive live checks.
 `coverage.json` describes full build coverage and explicit exclusions.
 
-Google runs in an empty same-origin document, created only after consent. The
+Google runs in an empty same-origin document, created automatically unless opted out. The
 parent sends build-time public URL/title, referrer origin, fixed actions and
 registered campaign tags. URL queries, fragments, forms, file contents, filenames,
 search terms, prices and arbitrary event parameters are excluded. Host-only,
-prefixed cookies keep subsite consent separate. Withdrawal removes the frame and
+prefixed cookies keep subsite analytics separate. Existing explicit refusals are
+preserved; new visitors see no popup. A footer toggle enables opt-out. Withdrawal removes the frame and
 its cookies. Old templates use the same choice as new tools. QA, probes, browser
 automation, DNT and GPC remain excluded. No-transform excludes injected Cloudflare
 beacons from the isolated frame; workers also bypass first-party PV collection
@@ -37,7 +38,7 @@ for analytics assets. Strict tool CSP remains separate from the frame's policy.
 
 One capture listener owns eligible Amazon affiliate clicks; legacy affiliate
 callbacks stay available to first-party counters but cannot double-send GA4.
-Known fixed legacy actions bridge only after consent; pre-consent queues are not
+Known fixed legacy actions bridge only while enabled; pre-consent queues are not
 replayed. New tools should dispatch the strict `fleet:business` contract and add
 meaningful completion/export events to `business.mjs`. Examples must have separate
 events. Do not mark simulated checkout, signup intent or affiliate clicks as sales.
@@ -60,4 +61,4 @@ collection requests, including real-tag mode (`REAL_GTAG_DIR`). Synthetic tests
 never enter production. `browser-test.mjs --site agi --out sites/agiscorecard`
 checks refusal, withdrawal, one pageview, private-data exclusion and tool events.
 Frontend success is **not** GA4 backend receipt. Read genuine events separately;
-optional GA4 is a consenting sample, not a census, and tool actions are not revenue.
+GA4 remains subject to opt-outs and blocking, not a census, and tool actions are not revenue.
