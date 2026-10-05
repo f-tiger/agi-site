@@ -1,3 +1,4 @@
+import {jobGroups,validateClassification} from '../lib/ai-solo-taxonomy.mjs';
 import {consumerCaseIds,adversarialCaseIds} from './ai-solo-indie.mjs';
 import {comparisonGroups} from './ai-solo-compare.mjs';
 // Public build/live integration and offline privacy contracts. Never posts live analytics.
@@ -16,6 +17,7 @@ const origin = 'https://baipiaoji.com';
 const read = relative => readFileSync(new URL('../' + relative, import.meta.url), 'utf8');
 const raw = JSON.parse(read('data/ai-solo-cases.json'));
 const original = Array.isArray(raw) ? raw : raw.cases || raw.items || [];
+validateClassification(original);
 assert(original.length > 0, 'The researched case corpus must not be empty');
 for (const outcome of ['success', 'failure']) assert(original.some(item => item.outcome === outcome), 'Missing researched outcome: ' + outcome);
 assert.equal(new Set(original.map(item => item.id)).size, original.length, 'Duplicate case IDs');
@@ -137,7 +139,7 @@ for (const lang of ['zh', 'en']) {
   }
   for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
   const pages = new Map();
-  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
+  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
     const html = await get(path);
     pages.set(leaf, assertPage(html, path, lang));
@@ -145,6 +147,13 @@ for (const lang of ['zh', 'en']) {
     const markdownPath = path.replace(/\/$/, '') + '.md';
     assertMarkdown(await get(markdownPath), markdownPath);
   }
+  const categorized=pages.get('categories/');
+  for(const c of expectedCases){assert(categorized.includes('data-solo-case="'+c.id+'"'));assert(categorized.includes('data-category="'+c.classification.job+'"'));}
+  for(const g of jobGroups)hasText(categorized,g[lang],'Missing group '+g.id);
+  assert(searchURLs.has(origin+prefix+'/ai-solo/categories/'));
+  assert(searchURLs.has(origin+prefix+'/ai-solo/research/'));
+  const report=JSON.parse(await get('/ai-solo-research.json'));
+  for(const r of report.records){assert(expectedCases.some(c=>c.id===r.caseId&&c.sources.some(s=>s.url===r.sourceUrl)));hasText(pages.get('research/'),local(r,'limitation',lang),'Missing research limit');}
   const indie=pages.get('solo/');
   assert(indie.includes('id="counter-evidence"'),'Missing counterevidence section');
   for(const id of adversarialCaseIds)assert(indie.includes('data-indie-case="'+id+'"'),'Missing adversarial micro-app '+id);

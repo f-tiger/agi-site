@@ -49,7 +49,16 @@
     ],
     "soloRelevance": "独立开发者主导的可复制起点是单一照片需求；已有巨大受众不容易复制。",
     "soloRelevanceEn": "A narrow photo use case is relevant to solo builders; the founder's existing audience is harder to replicate.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://levels.io/new-420k-mo-revenue-record-lex-fridman"
+      ]
+    }
   },
   {
     "id": "interior-ai",
@@ -101,7 +110,16 @@
     ],
     "soloRelevance": "可借鉴行业任务与上传入口的窄化，不应复制流量或利润假设。",
     "soloRelevanceEn": "A focused industry task and simple upload flow are useful solo patterns; traffic and margin assumptions need independent validation.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://levels.io/new-420k-mo-revenue-record-lex-fridman"
+      ]
+    }
   },
   {
     "id": "typingmind",
@@ -171,7 +189,17 @@
     ],
     "soloRelevance": "单一创始人起步，但已合作用人；适合借鉴 BYOK、许可证与 B2B 订阅组合。",
     "soloRelevanceEn": "Started with one founder but used collaborators; useful patterns include BYOK, licenses, and B2B subscriptions.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "ai-clients",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+        "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees"
+      ]
+    }
   },
   {
     "id": "headshotpro",
@@ -223,7 +251,16 @@
     ],
     "soloRelevance": "单一创始人背景可借鉴，当前按创始人主导的小团队处理；核心经验是结果明确与联盟分发。",
     "soloRelevanceEn": "A founder-led example treated conservatively as a small team; the main patterns are a clear deliverable and affiliate distribution.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.rewardful.com/case-studies/headshotpro"
+      ]
+    }
   },
   {
     "id": "pdf-ai",
@@ -275,7 +312,16 @@
     ],
     "soloRelevance": "对 Solo 有参考价值的是买入既有资产再优化；收购预算和运营能力仍是约束。",
     "soloRelevanceEn": "Relevant to solo builders as an acquisition-and-improvement strategy, subject to budget and operating capacity.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW"
+      ]
+    }
   },
   {
     "id": "sitegpt",
@@ -336,7 +382,16 @@
     ],
     "soloRelevance": "这是有直接两人团队证据的样本；适合借鉴小团队与重复业务流程。",
     "soloRelevanceEn": "Direct evidence supports a two-person team; relevant patterns are team discipline and a recurring workflow.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "support",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ"
+      ]
+    }
   },
   {
     "id": "audiopen",
@@ -407,7 +462,17 @@
     "soloRelevance": "创始人自建的聚焦工具，比通用语音平台更贴近 Solo 产品起点。",
     "soloRelevanceEn": "A founder-built focused tool is more relevant to solo starting points than a broad voice platform.",
     "features": null,
-    "evidenceStatus": "pending-review"
+    "evidenceStatus": "pending-review",
+    "classification": {
+      "version": 1,
+      "job": "writing-learning",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+        "https://www.audiopen.ai/"
+      ]
+    }
   },
   {
     "id": "my-askai",
@@ -469,7 +534,17 @@
     "soloRelevance": "两人职责分工与现有平台集成，对 Solo 加一名伙伴的创业方式有参考价值。",
     "soloRelevanceEn": "A two-person division of work and existing-platform integrations are relevant to a solo founder adding one partner.",
     "features": null,
-    "evidenceStatus": "pending-review"
+    "evidenceStatus": "pending-review",
+    "classification": {
+      "version": 1,
+      "job": "support",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
+        "https://kaeda.co/cases/my-askai"
+      ]
+    }
   },
   {
     "id": "castmagic",
@@ -530,7 +605,16 @@
     ],
     "soloRelevance": "可借鉴先解决创作者一个重复流程再发展集成；并非单人零协作证明。",
     "soloRelevanceEn": "Relevant as a focused creator-workflow product that later adds integrations; it is not proof of a zero-collaborator business.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic"
+      ]
+    }
   },
   {
     "id": "docsbot",
@@ -582,7 +666,16 @@
     ],
     "soloRelevance": "小团队能够从一个客服知识库工作流起步；对站点问答 Agent 很相关。",
     "soloRelevanceEn": "A small team can start with one support-knowledge workflow; this is relevant to the site's advisory agent.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "support",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://docsbot.ai/about"
+      ]
+    }
   },
   {
     "id": "formula-bot",
@@ -643,7 +736,17 @@
     ],
     "soloRelevance": "明确一名创始人加两名开发者；可借鉴高频专业任务和低代码实现。",
     "soloRelevanceEn": "Direct evidence identifies one founder and two developers; useful patterns are a frequent professional task and low-code delivery.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/stories/excelformulabot",
+        "https://n8n.io/case-studies/formula-bot/"
+      ]
+    }
   },
   {
     "id": "jenni-ai",
@@ -704,7 +807,16 @@
     ],
     "soloRelevance": "可借鉴从真实重度用户中找细分定位；团队人数随时期变化，不能叫纯 Solo。",
     "soloRelevanceEn": "Relevant for finding a niche through actual power users; changing team size prevents treating it as purely solo.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "writing-learning",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0"
+      ]
+    }
   },
   {
     "id": "customgpt",
@@ -756,7 +868,16 @@
     ],
     "soloRelevance": "对 Solo 有参考价值的是垂直知识库和命名案例的信任构建，非公司规模复制。",
     "soloRelevanceEn": "Relevant solo patterns are a vertical knowledge base and trust from named customer evidence, rather than copying the company's scale.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "support",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://customgpt.ai/customers/"
+      ]
+    }
   },
   {
     "id": "julius-ai",
@@ -808,7 +929,16 @@
     ],
     "soloRelevance": "适合借鉴非技术分析入口，但开放代码执行与数据隐私提高 Solo 运维门槛。",
     "soloRelevanceEn": "The nontechnical analysis flow is relevant, while code execution and data privacy raise solo operating requirements.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://julius.ai/home/ai-powered-business-intelligence"
+      ]
+    }
   },
   {
     "id": "chatbase",
@@ -869,7 +999,16 @@
     ],
     "soloRelevance": "独立起步到小团队的连续路径有参考价值，尤其是整合基础设施以减少运营负担。",
     "soloRelevanceEn": "Relevant as a solo-to-small-team path, especially consolidating infrastructure to reduce operating burden.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "support",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://supabase.com/customers/chatbase"
+      ]
+    }
   },
   {
     "id": "bolt",
@@ -930,7 +1069,16 @@
     ],
     "soloRelevance": "可研究清楚的首次成功体验；不可照搬成熟团队的收入速度。",
     "soloRelevanceEn": "The clear first successful outcome is relevant; the revenue speed of an established team is harder to replicate.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons"
+      ]
+    }
   },
   {
     "id": "cursor",
@@ -982,7 +1130,16 @@
     ],
     "soloRelevance": "参考高频流程与熟悉入口；规模、融资和模型投入不适用于直接 Solo 预算。",
     "soloRelevanceEn": "Useful for studying frequent workflows and familiar entry points; financing and model investment differ from a solo budget.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://cursor.com/en-US/blog/series-c"
+      ]
+    }
   },
   {
     "id": "lovable",
@@ -1034,7 +1191,16 @@
     ],
     "soloRelevance": "对 Solo 站点可借鉴即时结果与模板；公司营收速度不应成为默认预测。",
     "soloRelevanceEn": "Immediate results and templates are useful site patterns; the company's revenue speed should not be a default forecast.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://lovable.dev/blog/agent"
+      ]
+    }
   },
   {
     "id": "replit",
@@ -1095,7 +1261,16 @@
     ],
     "soloRelevance": "借鉴端到端交付路径与产品内首次成果；不能假设新站同样已有分发基础。",
     "soloRelevanceEn": "Relevant for an end-to-end delivery path and first in-product result; a new site lacks the same established distribution.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://replit.com/news/funding-announcement-series-c"
+      ]
+    }
   },
   {
     "id": "gamma",
@@ -1156,7 +1331,16 @@
     ],
     "soloRelevance": "可借鉴聚焦最终演示作品与危机中的重新定位；体量不应与 Solo 直接比较。",
     "soloRelevanceEn": "Useful for focusing on a finished presentation and repositioning during a crisis; scale is not directly comparable to solo.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://gamma.app/insights/how-we-built-a-usd100m-business-differently"
+      ]
+    }
   },
   {
     "id": "elevenlabs",
@@ -1208,7 +1392,16 @@
     ],
     "soloRelevance": "借鉴把模型能力包装成客户业务任务；Solo 更适合调用基础模型而非复制实验室。",
     "soloRelevanceEn": "Relevant for packaging model capability into customer tasks; a solo builder is more likely to use a model than replicate a lab.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "media",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://elevenlabs.io/blog/500m-arr-and-new-investors"
+      ]
+    }
   },
   {
     "id": "midjourney",
@@ -1261,7 +1454,16 @@
     "soloRelevance": "研究订阅需求，不复制模型预算。",
     "soloRelevanceEn": "Study subscription demand, not model budgets.",
     "features": null,
-    "evidenceStatus": "pending-review"
+    "evidenceStatus": "pending-review",
+    "classification": {
+      "version": 1,
+      "job": "media",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.cbinsights.com/research/midjourney-revenue-valuation/"
+      ]
+    }
   },
   {
     "id": "synthesia",
@@ -1322,7 +1524,16 @@
     ],
     "soloRelevance": "Solo 可从一种培训或本地化交付服务切入，参考明确业务场景。",
     "soloRelevanceEn": "A solo builder could start with one training or localization deliverable, using the clear business use case as a reference.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "media",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.synthesia.io/post/100-million-revenue-adobe-investment"
+      ]
+    }
   },
   {
     "id": "heygen",
@@ -1383,7 +1594,16 @@
     ],
     "soloRelevance": "可借鉴本地化垂直方案与结果导向定价；不直接复制模型研发。",
     "soloRelevanceEn": "Relevant for a vertical localization offer and outcome-oriented pricing, rather than duplicating model research.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "media",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.heygen.com/blog/heygen-surpasses-200m-arr"
+      ]
+    }
   },
   {
     "id": "photoroom",
@@ -1435,7 +1655,16 @@
     ],
     "soloRelevance": "可借鉴一个编辑任务与低门槛首次结果，适合作为电商工具或服务切口。",
     "soloRelevanceEn": "A single editing task and easy first result are relevant starting points for a commerce tool or service.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://help.photoroom.com/en/articles/9626719-what-is-photoroom"
+      ]
+    }
   },
   {
     "id": "glean",
@@ -1487,7 +1716,16 @@
     ],
     "soloRelevance": "借鉴权限、连接器和知识上下文的重要性；新站应缩小到一个可交付工作流。",
     "soloRelevanceEn": "Useful for understanding permissions, connectors, and context; a new site should narrow this to one deliverable workflow.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
+      ]
+    }
   },
   {
     "id": "harvey",
@@ -1548,7 +1786,16 @@
     ],
     "soloRelevance": "适合研究高价值垂直任务、可信交付和明确责任边界；不应直接复制法律平台规模。",
     "soloRelevanceEn": "Relevant for valuable vertical tasks, trusted delivery, and clear responsibility boundaries, not replicating a full legal platform.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "legal",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.harvey.ai/blog/harveys-three-year-anniversary"
+      ]
+    }
   },
   {
     "id": "fireflies",
@@ -1609,7 +1856,16 @@
     ],
     "soloRelevance": "可借鉴从记录延伸到完成工作，Solo 宜选择一个细分会议场景。",
     "soloRelevanceEn": "Useful for progressing from notes to completed work; a solo builder should choose one meeting niche.",
-    "features": null
+    "features": null,
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://fireflies.ai/blog/fireflies-1-billion-valuation"
+      ]
+    }
   },
   {
     "id": "cydoc",
@@ -1680,7 +1936,16 @@
       "Operating figures are founder reports without an independent financial audit.",
       "Solo means a solo founder; interns and contract engineers also contributed.",
       "Healthcare compliance and procurement conditions do not directly transfer to ordinary SaaS."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "clinical",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/"
+      ]
+    }
   },
   {
     "id": "content-goblin",
@@ -1757,7 +2022,16 @@
       "The article was published in 2026 but places the closure decision in July 2025 and also describes August 2025 events. The timeline conflicts, so no exact closure date is used.",
       "MRR and explanations are founder reports.",
       "The founder says the business remained slightly profitable late in its life; closure does not mean it never earned money."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/"
+      ]
+    }
   },
   {
     "id": "kite",
@@ -1813,7 +2087,16 @@
       "A historical 2022 case; technology and market conditions have changed.",
       "The founder's claim that individual developers do not pay was his diagnosis; later paid AI coding products provide counterexamples.",
       "Active users are not paying customers or profit."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387"
+      ]
+    }
   },
   {
     "id": "coqui",
@@ -1857,7 +2140,16 @@
     "risksEn": [
       "The official farewell does not disclose revenue, retention or a precise root cause; funding shortage is not recorded as a confirmed fact.",
       "Community projects can continue; the failure scope is company commercial operations."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "media",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve"
+      ]
+    }
   },
   {
     "id": "tome-slides",
@@ -1901,7 +2193,16 @@
     "risksEn": [
       "The notice does not disclose precise revenue, profit or detailed causes.",
       "Product retirement does not mean every Tome business failed."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025"
+      ]
+    }
   },
   {
     "id": "humane-ai-pin",
@@ -1972,7 +2273,17 @@
       "An acquisition is not the failure criterion; this record concerns the explicitly retired AI Pin product.",
       "The transaction value is an asset deal, not revenue or profit.",
       "Capital-intensive hardware should not directly predict solo SaaS success."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+        "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown"
+      ]
+    }
   },
   {
     "id": "neeva-consumer-search",
@@ -2040,7 +2351,18 @@
     "risksEn": [
       "Reflects the market in 2023.",
       "A business exit and technology acquisition can occur together; an acquisition is not treated as failure."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "discovery",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+        "https://searchengineland.com/neeva-shutting-down-427384",
+        "https://daringfireball.net/linked/2023/05/22/neeva-shuts-down"
+      ]
+    }
   },
   {
     "id": "artifact",
@@ -2095,7 +2417,17 @@
       "Yahoo's acquisition is not itself treated as a commercial failure.",
       "The independent app's end does not mean its recommendation technology lacked value; user affection and venture-scale market size differ.",
       "The selected sources do not verify headcount; small-team is a startup-scale tag, not an audited figure."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "discovery",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
+        "https://www.yahooinc.com/press/yahoo-announces-the-acquisition-of-artifact-the-news-discovery-platform-created-by-instagram-cofounders-kevin-systrom-and-mike-krieger"
+      ]
+    }
   },
   {
     "id": "olive-ai",
@@ -2149,7 +2481,16 @@
     "risksEn": [
       "Hospital deployments were a historical company claim, not an audit of paid retention or ROI.",
       "Sold business units may continue serving customers; the scope is the original company's remaining operations."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "clinical",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations"
+      ]
+    }
   },
   {
     "id": "builder-ai",
@@ -2204,7 +2545,17 @@
       "Insolvency does not establish that every legal entity has dissolved; the subtype is a major commercial setback.",
       "Historical revenue figures are publicly disputed and unverified amounts are excluded.",
       "Media allegations are not treated as adjudicated facts."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu",
+        "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html"
+      ]
+    }
   },
   {
     "id": "embodied",
@@ -2272,7 +2623,18 @@
     "risksEn": [
       "The failure scope is the original Embodied operator; later commercial transfers and open-source preservation need separate checks.",
       "The successor support page currently redirects, so continuing service cannot be guaranteed."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
+        "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
+        "https://moxierobots.com/faq"
+      ]
+    }
   },
   {
     "id": "ghost-autonomy",
@@ -2328,7 +2690,16 @@
       "Funding is not revenue or profit.",
       "Autonomous-driving technology, regulation and funding needs differ greatly from solo software.",
       "Root-cause evidence is insufficient; no model or demand failure is asserted."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319"
+      ]
+    }
   },
   {
     "id": "argo-ai",
@@ -2381,7 +2752,17 @@
     "risksEn": [
       "A historical 2022 event, not evidence about every current autonomous-driving route.",
       "A large capital-intensive research company's closure is not a solo AI success-rate observation."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
+        "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478"
+      ]
+    }
   },
   {
     "id": "cruise-robotaxi",
@@ -2434,7 +2815,17 @@
     "risksEn": [
       "Other GM and Cruise autonomous-driving work continued; this is not failure of all company AI activity.",
       "Comparability between capital-intensive operations and solo SaaS is limited."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
+        "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm"
+      ]
+    }
   },
   {
     "id": "poppy",
@@ -2489,7 +2880,17 @@
       "The company said use exceeded expectations; closure does not establish lack of user demand.",
       "Revenue and retention were not disclosed, so no values are invented.",
       "The engineering page is a personal account by a team member."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "ai-clients",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://getpoppy.app/blog/sunset",
+        "https://www.juyoungkim.net/posts/poppy-second-nature"
+      ]
+    }
   },
   {
     "id": "super-ai",
@@ -2540,7 +2941,16 @@
     ],
     "teamEvidence": "创始人复盘未披露完整人数；不能据创业项目语境推定小团队。",
     "teamEvidenceEn": "Founder postmortem does not disclose complete headcount; startup context does not establish a small team.",
-    "teamEvidenceSourceUrl": "https://gravity.fast/blog/super-ai-postmortem/"
+    "teamEvidenceSourceUrl": "https://gravity.fast/blog/super-ai-postmortem/",
+    "classification": {
+      "version": 1,
+      "job": "ai-clients",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://gravity.fast/blog/super-ai-postmortem/"
+      ]
+    }
   },
   {
     "id": "vibe-ai",
@@ -2588,7 +2998,16 @@
       "Related to Super AI through the same author and not an independent statistical sample.",
       "Solo indicates the first-person maker account; actual staffing is undisclosed.",
       "The author's broad claims about companion products are not treated as category-wide laws."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "wellness",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://gravity.fast/blog/vibe-ai-postmortem/"
+      ]
+    }
   },
   {
     "id": "yara-ai",
@@ -2650,7 +3069,18 @@
     "risksEn": [
       "The voluntary exit reflects the founder's risk judgment and does not establish absent demand or a purely revenue-driven failure.",
       "Mental-health tools should not promise clinical efficacy; case interpretation does not replace medical evidence."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "wellness",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.meetyara.com/privacy",
+        "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+        "https://bhbusiness.com/2025/12/01/ai-mental-health-app-shuts-down-citing-safety-concerns-and-blurred-line-between-care-and-wellness/"
+      ]
+    }
   },
   {
     "id": "brainstory",
@@ -2714,7 +3144,18 @@
       "Commercial retirement does not mean the code or functionality disappeared.",
       "Related to Contenda Studio; group by operating entity for training and statistics.",
       "Precise revenue, profit and more detailed causes were not disclosed."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "ai-clients",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://cassidoo.co/post/getting-paid-is-weird/",
+        "https://cassidoo.co/post/adios-2024/",
+        "https://cassidoo.co/post/brainstory-liiiives/"
+      ]
+    }
   },
   {
     "id": "contenda-studio",
@@ -2775,7 +3216,17 @@
       "A product pivot is not the entire company's death; not every pivot is a failure.",
       "Related to Brainstory and must be deduplicated or grouped by operating entity.",
       "The founder's percentage claims are estimates and are not recorded as precise metrics."
-    ]
+    ],
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
+        "https://cassidoo.co/post/bye-bye-2023/"
+      ]
+    }
   },
   {
     "id": "otter-ai",
@@ -2826,7 +3277,16 @@
       "Enterprise resources do not transfer to solo founders; profit is unknown."
     ],
     "soloRelevance": "先验证一个行业的会议整理交付，再测客户续用。",
-    "soloRelevanceEn": "Test one industry-specific meeting deliverable, then measure repeat use."
+    "soloRelevanceEn": "Test one industry-specific meeting deliverable, then measure repeat use.",
+    "classification": {
+      "version": 1,
+      "job": "knowledge",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite"
+      ]
+    }
   },
   {
     "id": "windsurf",
@@ -2877,7 +3337,16 @@
       "ARR is not profit; an acquisition alone does not establish replicability."
     ],
     "soloRelevance": "验证一个开发任务的使用频率与交付质量，避免直接复制完整 IDE。",
-    "soloRelevanceEn": "Validate frequency and quality for one developer task before attempting a full IDE."
+    "soloRelevanceEn": "Validate frequency and quality for one developer task before attempting a full IDE.",
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://cognition.com/blog/windsurf"
+      ]
+    }
   },
   {
     "id": "casetext",
@@ -2928,7 +3397,16 @@
       "Customer counts do not establish activity or profit; legal products carry different risks."
     ],
     "soloRelevance": "从可核对来源的研究辅助切入，并设置专业复核。",
-    "soloRelevanceEn": "Start with source-checkable research assistance and professional review."
+    "soloRelevanceEn": "Start with source-checkable research assistance and professional review.",
+    "classification": {
+      "version": 1,
+      "job": "legal",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc"
+      ]
+    }
   },
   {
     "id": "jasper",
@@ -2979,7 +3457,16 @@
       "The release is a company claim; enterprise adoption does not establish profit."
     ],
     "soloRelevance": "先验证一个内容交付流程的复购，不把生成数量当效果。",
-    "soloRelevanceEn": "Test repeat purchases for one content workflow; output volume is not business impact."
+    "soloRelevanceEn": "Test repeat purchases for one content workflow; output volume is not business impact.",
+    "classification": {
+      "version": 1,
+      "job": "content-work",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html"
+      ]
+    }
   },
   {
     "id": "github-copilot",
@@ -3030,7 +3517,16 @@
       "Platform scale is not replicable; users cannot be converted into revenue or profit estimates."
     ],
     "soloRelevance": "选择能接入现有工作流的细分任务，独立测量付费。",
-    "soloRelevanceEn": "Pick a narrow task within existing workflows and measure payment separately."
+    "soloRelevanceEn": "Pick a narrow task within existing workflows and measure payment separately.",
+    "classification": {
+      "version": 1,
+      "job": "coding",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4"
+      ]
+    }
   },
   {
     "id": "ross-intelligence",
@@ -3071,7 +3567,16 @@
     ],
     "soloRelevance": "在专业数据产品中提前核对授权与现金续航。",
     "soloRelevanceEn": "Check data rights and cash runway early in a professional-data product.",
-    "failureSubtype": "shutdown"
+    "failureSubtype": "shutdown",
+    "classification": {
+      "version": 1,
+      "job": "legal",
+      "audience": "business",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://blog.rossintelligence.com/post/announcement"
+      ]
+    }
   },
   {
     "id": "donotpay",
@@ -3123,7 +3628,16 @@
     ],
     "soloRelevance": "宣传前验证能力边界，为高风险输出安排专业审核。",
     "soloRelevanceEn": "Validate capabilities before advertising and arrange professional review for high-stakes output.",
-    "failureSubtype": "commercial-setback"
+    "failureSubtype": "commercial-setback",
+    "classification": {
+      "version": 1,
+      "job": "legal",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires"
+      ]
+    }
   },
   {
     "id": "anki",
@@ -3165,7 +3679,16 @@
     "soloRelevance": "硬件实验同时计算售后和服务存续成本，不能只看售出数量。",
     "soloRelevanceEn": "Include support and service-continuity costs in hardware experiments, beyond units sold.",
     "failureSubtype": "shutdown",
-    "nameEn": "Anki (original operator)"
+    "nameEn": "Anki (original operator)",
+    "classification": {
+      "version": 1,
+      "job": "hardware",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/"
+      ]
+    }
   },
   {
     "id": "glam-up",
@@ -3243,7 +3766,18 @@
     "soloRelevanceEn": "Test one beauty job and paid report, including creator, acquisition and photo-processing costs.",
     "teamEvidenceSourceUrl": "https://www.starterstory.com/nicole",
     "businessModelSourceUrl": "https://www.starterstory.com/nicole",
-    "acquisitionSourceUrl": "https://www.starterstory.com/nicole"
+    "acquisitionSourceUrl": "https://www.starterstory.com/nicole",
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
+        "https://www.starterstory.com/nicole",
+        "https://www.glamup.ai/"
+      ]
+    }
   },
   {
     "id": "glow-ai",
@@ -3304,7 +3838,16 @@
     "teamEvidenceSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
     "businessModelSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
     "acquisitionSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
-    "nameEn": "Glow AI (Aditya / Savio)"
+    "nameEn": "Glow AI (Aditya / Savio)",
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days"
+      ]
+    }
   },
   {
     "id": "glowly-ai",
@@ -3374,7 +3917,17 @@
     "teamEvidenceSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
     "businessModelSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
     "acquisitionSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
-    "nameEn": "Glowly AI (Will Baker)"
+    "nameEn": "Glowly AI (Will Baker)",
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+        "https://www.glowlyaiapp.com/"
+      ]
+    }
   },
   {
     "id": "glamour-color",
@@ -3406,6 +3959,16 @@
         "periodEn": "Platform updated: 2026-10-04",
         "kind": "revenue",
         "sourceUrl": "https://trustmrr.com/startup/glamour"
+      },
+      {
+        "label": "TrustMRR 新快照 MRR",
+        "labelEn": "New TrustMRR snapshot MRR",
+        "value": "US$9,389",
+        "valueEn": "US$9,389",
+        "kind": "revenue",
+        "period": "来源最后更新 2026-10-05 03:39；来源未注明时区",
+        "periodEn": "Source updated October 5, 2026, 03:39; timezone not stated",
+        "sourceUrl": "https://trustmrr.com/startup/glamour"
       }
     ],
     "observedAt": "2026-10-05",
@@ -3425,17 +3988,28 @@
       }
     ],
     "risks": [
-      "平台连接数据不证明利润、全部收入覆盖或持续留存。"
+      "平台连接数据不证明利润、全部收入覆盖或持续留存。",
+      "不同日期 MRR 快照有波动，单日变化不能推出流失原因；收入接入不等于利润审计。"
     ],
     "risksEn": [
-      "Connected data do not establish profit, complete revenue coverage or sustained retention."
+      "Connected data do not establish profit, complete revenue coverage or sustained retention.",
+      "MRR snapshots vary by date; one-day movement does not establish churn causes. Connected revenue is not a profit audit."
     ],
     "soloRelevance": "将一次色彩报告与持续订阅的复用价值分别验证。",
     "soloRelevanceEn": "Test the value of a one-off color report separately from repeat subscription value.",
     "teamEvidenceSourceUrl": "https://trustmrr.com/startup/glamour",
     "businessModelSourceUrl": "https://trustmrr.com/startup/glamour",
     "acquisitionSourceUrl": "https://trustmrr.com/startup/glamour",
-    "nameEn": "Glamour (Lynex color analysis)"
+    "nameEn": "Glamour (Lynex color analysis)",
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://trustmrr.com/startup/glamour"
+      ]
+    }
   },
   {
     "id": "social-wizard",
@@ -3495,7 +4069,16 @@
     "soloRelevanceEn": "Validate one reply task and actual payment; portfolio revenue and reach are not this product’s profit.",
     "teamEvidenceSourceUrl": "https://www.starterstory.com/kelechi",
     "businessModelSourceUrl": "https://www.starterstory.com/kelechi",
-    "acquisitionSourceUrl": "https://www.starterstory.com/kelechi"
+    "acquisitionSourceUrl": "https://www.starterstory.com/kelechi",
+    "classification": {
+      "version": 1,
+      "job": "daily-life",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/kelechi"
+      ]
+    }
   },
   {
     "id": "solo-color-microcase",
@@ -3558,7 +4141,16 @@
     "acquisitionSourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
     "nameEn": "Solo color-analysis microcase (anonymous)",
     "outcomeScope": "微型收款信号；尚未证明可持续经营",
-    "outcomeScopeEn": "Tiny payment signal; sustainability not established"
+    "outcomeScopeEn": "Tiny payment signal; sustainability not established",
+    "classification": {
+      "version": 1,
+      "job": "appearance",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform"
+      ]
+    }
   },
   {
     "id": "boltai",
@@ -3618,7 +4210,16 @@
     "businessModelSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
     "acquisition": "公开构建、X、帮助文章及 Setapp。",
     "acquisitionEn": "Building in public, X, help articles and Setapp.",
-    "acquisitionSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers"
+    "acquisitionSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+    "classification": {
+      "version": 1,
+      "job": "ai-clients",
+      "audience": "prosumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers"
+      ]
+    }
   },
   {
     "id": "monai",
@@ -3678,7 +4279,16 @@
     "businessModelSourceUrl": "https://www.starterstory.com/Florian",
     "acquisition": "合作创作者短视频；此前约一年半仅达到 300 美元 MRR。",
     "acquisitionEn": "Creator videos; previously about 18 months to reach $300 MRR.",
-    "acquisitionSourceUrl": "https://www.starterstory.com/Florian"
+    "acquisitionSourceUrl": "https://www.starterstory.com/Florian",
+    "classification": {
+      "version": 1,
+      "job": "daily-life",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/Florian"
+      ]
+    }
   },
   {
     "id": "erly",
@@ -3738,7 +4348,16 @@
     "businessModelSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
     "acquisition": "付费生活类创作者短视频；单个创作者可能亏损。",
     "acquisitionEn": "Paid lifestyle-creator videos; individual creators can lose money.",
-    "acquisitionSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month"
+    "acquisitionSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+    "classification": {
+      "version": 1,
+      "job": "daily-life",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month"
+      ]
+    }
   },
   {
     "id": "luca-running",
@@ -3802,7 +4421,16 @@
     "failureSubtype": "shutdown",
     "outcomeScope": "产品停止运营；不否认历史付费或用户价值",
     "outcomeScopeEn": "Product discontinued; historical payment or user value is not denied",
-    "nameEn": "Luca (AI running coach)"
+    "nameEn": "Luca (AI running coach)",
+    "classification": {
+      "version": 1,
+      "job": "wellness",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr"
+      ]
+    }
   },
   {
     "id": "humi-journal",
@@ -3854,6 +4482,15 @@
     "acquisitionSourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
     "failureSubtype": "shutdown",
     "outcomeScope": "产品停止运营；不否认历史付费或用户价值",
-    "outcomeScopeEn": "Product discontinued; historical payment or user value is not denied"
+    "outcomeScopeEn": "Product discontinued; historical payment or user value is not denied",
+    "classification": {
+      "version": 1,
+      "job": "daily-life",
+      "audience": "consumer",
+      "basis": "editorial",
+      "sourceUrls": [
+        "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0"
+      ]
+    }
   }
 ]

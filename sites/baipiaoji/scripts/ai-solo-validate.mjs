@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Facts enter through an editor/researcher, never through a successful HTTP GET.
+import { validateClassification } from '../lib/ai-solo-taxonomy.mjs';
 import { readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -72,6 +73,7 @@ function main() {
   const root = join(dirname(fileURLToPath(import.meta.url)), '..');
   const cases = JSON.parse(readFileSync(join(root, 'data', 'ai-solo-cases.json'), 'utf8'));
   const errors = validateCases(cases);
+  try { validateClassification(cases); } catch (err) { errors.push(err.message); }
   if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
   else console.log('AI Solo case schema: ' + cases.length + ' cases, citations, dates and uncertainty labels valid.');
 }

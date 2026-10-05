@@ -25,17 +25,17 @@ if(root){
  const local=(x,k,fallback='')=>{const v=x?.[zh?k:k+'En'];return v==null?fallback:typeof v==='object'&&!Array.isArray(v)?v[language]||fallback:String(v);};
  const rows=[...root.querySelectorAll('[data-solo-case]')],query=root.querySelector('#solo-query');
  if(query){
-  const fields=['category','scope','evidence'].map(k=>root.querySelector('#solo-'+k)),count=root.querySelector('#solo-count'),empty=root.querySelector('#solo-empty'),list=root.querySelector('.solo-list');
+  const fields=['category','scope','evidence','audience','outcome','signal','review'].map(k=>root.querySelector('#solo-'+k)).filter(Boolean),count=root.querySelector('#solo-count'),empty=root.querySelector('#solo-empty'),list=root.querySelector('.solo-list');
   const pageCases=JSON.parse(root.querySelector('#solo-page-cases').textContent),byId=new Map(pageCases.map(c=>[c.id,c])),params=new URLSearchParams(location.search);
   query.value=(params.get('q')||'').slice(0,160);for(const f of fields){const value=params.get(f.id.slice(5));if([...f.options].some(o=>o.value===value))f.value=value;}
   let turn=0,timer;
-  async function update(track=false){const current=++turn,q=query.value.trim().toLowerCase(),[category,scope,type]=fields.map(f=>f.value);let ranked=rows;
+  async function update(track=false){const current=++turn,q=query.value.trim().toLowerCase(),selected=Object.fromEntries(fields.map(f=>[f.id.slice(5),f.value]));let ranked=rows;
    if(q){const lexical=pageCases.filter(c=>([c.name,local(c,'summary'),local(c,'category'),local(c,'soloRelevance'),...(c.drivers||[]).map(d=>local(d,'text'))].join(' ').toLowerCase()).includes(q)).map(c=>c.id);let matches=lexical;
     try{const {cases,model}=await evidence();const found=retrieveCases(cases,model,q,{outcome:list.dataset.soloOutcome,limit:cases.length});matches=[...new Set([...lexical,...found.map(r=>r.case?.id||r.id).filter(id=>byId.has(id))])];}catch{ /* The sourced static catalogue remains usable if model loading fails. */ }
     if(current!==turn)return;ranked=matches.map(id=>rows.find(r=>r.dataset.soloCase===id)).filter(Boolean);
    }
-   const rankedIds=new Set(ranked.map(r=>r.dataset.soloCase));let n=0;for(const row of rows){const match=rankedIds.has(row.dataset.soloCase)&&(!category||row.dataset.category===category)&&(!scope||row.dataset.scope===scope)&&(!type||row.dataset.evidence.split(' ').includes(type));row.hidden=!match;if(match)n++;}for(const row of ranked)list.append(row);
-   count.textContent=t(`${n} / ${rows.length} 条案例`,`${n} of ${rows.length} cases`);count.dataset.total=String(n);empty.hidden=n>0;const u=new URL(location.href);for(const [key,value]of [['q',query.value.trim()],...fields.map(f=>[f.id.slice(5),f.value])]){if(value)u.searchParams.set(key,value);else u.searchParams.delete(key);}history.replaceState(null,'',u);if(track)event('filter');
+   const rankedIds=new Set(ranked.map(r=>r.dataset.soloCase));let n=0;for(const row of rows){const match=rankedIds.has(row.dataset.soloCase)&&Object.entries(selected).every(([key,value])=>!value||(key==='scope'&&value==='non-company'?row.dataset.scope!=='company':['evidence','signal'].includes(key)?(row.dataset[key]||'').split(' ').includes(value):row.dataset[key]===value));row.hidden=!match;if(match)n++;}for(const row of ranked)list.append(row);
+   count.textContent=t(`${n} / ${rows.length} 条案例`,`${n} of ${rows.length} cases`);count.dataset.total=String(n);empty.hidden=n>0;const u=new URL(location.href);for(const [key,value]of [['q',query.value.trim()],...fields.map(f=>[f.id.slice(5),f.value])]){if(value||fields.some(f=>f.id==='solo-'+key&&f.dataset.default))u.searchParams.set(key,value);else u.searchParams.delete(key);}history.replaceState(null,'',u);if(track)event('filter');
   }
   query.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>update(),160);});query.addEventListener('change',()=>update(true));fields.forEach(f=>f.addEventListener('change',()=>update(true)));root.querySelector('#solo-reset').addEventListener('click',()=>{query.value='';fields.forEach(f=>f.value='');update(true);query.focus();});update();
  }
