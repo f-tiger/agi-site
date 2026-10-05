@@ -97,3 +97,9 @@ Owner 最新要求“先不限制会员使用”，覆盖上文及 v6/v7 记录�
 ## 2026-10-04：一次访客试用后引导免费注册
 
 Owner 最新要求“限制使用次数，免费单人一次使用然后引导注册”，覆盖 v8 的访客不限次数政策。v9 改为一次访客任务，后续运行需免费 AGI 账号；复用讨论区现有注册和密钥备份，无需付费会员。确定性的服务端原子准入与后台执行校验负责次数限制，注册不增加模型额度。匿名浏览器/IP 不等于已验证的唯一真人，同网络用户可能需要提前注册。通过并发、删除/到期、恢复、注册返回与隐私隔离实验检查边界；未进行新模型质量评测或读取客户正文。实现、反证和验收见 [一次试用与免费注册记录](agi-jarvis-trial-registration-2026-10-04.md)。
+
+## 2026-10-05：Google 注册入口的任务接续
+
+新增核对 [Google OAuth 安全建议](https://developers.google.com/identity/protocols/oauth2/resources/best-practices) 与 [Cloudflare Workers AI JSON Mode](https://developers.cloudflare.com/workers-ai/features/json-mode/)：OAuth `state`/PKCE 负责回调安全，Jarvis 私有任务接续仍应是独立、同标签页、短时的确定性能力交接；Cloudflare 同时明确 JSON Schema 不能保证模型必定合规。因此账号接续不能交给 8B 或更强模型推断。
+
+源码审计发现单独添加的 Google 账号入口没有调用现有接续函数，可能让已完成访客试用的人登录后进入空的新工作区。反证是主要的私钥注册路径一直通过，故已有成功测试没有覆盖所有注册入口。本轮冻结“直接 Google 入口保存最小交接回执、服务端适配器原样保留能力头、错误账号仍不能迁移”实验并修复；未改变模型、额度或调度。详情见 [v10 接续记录](agi-jarvis-registration-continuity-2026-10-05.md)。

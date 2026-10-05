@@ -68,8 +68,9 @@ test('AGI native bridge requires real session and preserves free ownership and s
  const {agiMemberRequest}=await import('./agi-bridge.mjs');const {memberByToken}=await import('../../sites/baipiaoji/lib/membership.js');
  const c=database(),env={EVENTS:c.env.HITS,MEMBER_WATCH_SECRET:'synthetic-server-secret'};let user='fixture-one',active=true;
  const service=async()=>active?Response.json({ok:true,user:{id:user}}):Response.json({ok:false},{status:401});
- const original=new Request('https://agiscorecard.com/api/jarvis/tasks',{headers:{Authorization:'Fleet',Cookie:SESSION_COOKIE+'='+random()}});
+ const legacy='d'.repeat(64),original=new Request('https://agiscorecard.com/api/jarvis/tasks',{headers:{Authorization:'Fleet',Cookie:SESSION_COOKIE+'='+random(),'x-jarvis-legacy-key':legacy}});
  const first=await agiMemberRequest(original,env,service);assert(first instanceof Request);const capability=first.headers.get('Authorization').slice(7);assert.match(capability,/^[a-f0-9]{64}$/);const m=await memberByToken(env.EVENTS,capability);assert.equal(m.ends_at,0);
+ assert.equal(first.headers.get('x-jarvis-legacy-key'),legacy,'exact guest capability survives only the server-side account adapter');
  const again=await agiMemberRequest(original,env,service);assert.equal(again.headers.get('Authorization'),first.headers.get('Authorization'));assert.equal(c.sql.prepare('SELECT COUNT(*) n FROM wb_members').get().n,1);
  c.sql.prepare('UPDATE wb_members SET suspended=1').run();await agiMemberRequest(original,env,service);assert.equal((await memberByToken(env.EVENTS,capability)).suspended,1);
  user='fixture-two';const other=await agiMemberRequest(original,env,service);assert.notEqual(other.headers.get('Authorization'),first.headers.get('Authorization'));

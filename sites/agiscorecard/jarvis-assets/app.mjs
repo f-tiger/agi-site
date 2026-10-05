@@ -35,8 +35,13 @@ function updateTrial(){
  $('#member-open').textContent=membership?.member?t('My free AGI account','我的免费 AGI 账号'):t('Register / sign in free','免费注册 / 登录');
 }
 function startAllowed(){if(!permitted())return false;if(!membership.member&&membership.trialRemaining===0){$('#trial-notice').scrollIntoView({block:'center'});$('#register-open').focus();return false;}return true;}
+function rememberRegistration(){
+ if(!membership)return;
+ if(membership.member){sessionStorage.removeItem(LINK);return;}
+ const value=JSON.stringify({key:credential,scope:membership.scope,at:Date.now()});sessionStorage.setItem(LINK,value);if(sessionStorage.getItem(LINK)!==value)throw Error('storage_unavailable');
+}
 function registerHere(e){
- try{if(membership&&!membership.member)sessionStorage.setItem(LINK,JSON.stringify({key:credential,scope:membership.scope,at:Date.now()}));else sessionStorage.removeItem(LINK);}catch{e.preventDefault();return fail(Error('storage_unavailable'));}
+ try{rememberRegistration();}catch{e.preventDefault();return fail(Error('storage_unavailable'));}
  if(!membership?.member)event('registration_open');
 }
 async function api(body){
@@ -94,7 +99,7 @@ $('#web').onchange=()=>{$('#public-query-label').hidden=!$('#web').checked;$('#p
 for(const b of document.querySelectorAll('[data-example]'))b.onclick=()=>{if(!permitted())return;$('#goal').value=examples[Number(b.dataset.example)];$('#public-query').value=['AI workflow','personal AI agent','AI agent tutorial'][Number(b.dataset.example)];renderMemories();$('#goal').focus();};
 $('#task-form').onsubmit=async e=>{e.preventDefault();if(busy||!startAllowed())return;busy=true;$('#start').disabled=true;status(t('Saving your mission…','正在保存任务…'));try{const input={action:'create',goal:$('#goal').value,lang,cadence:$('#cadence').value,web:$('#web').checked,publicQuery:$('#public-query').value,consent:$('#cloud-consent').checked,memory:[...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value),nonce:''};const fingerprint=JSON.stringify(input);if(!pendingCreate||pendingCreate.fingerprint!==fingerprint)pendingCreate={fingerprint,nonce:uid(16)};input.nonce=pendingCreate.nonce;const j=await api(input);pendingCreate=null;if(!membership.member)membership.trialRemaining=0;updateTrial();selected=j.task.id;tasks=tasks.filter(x=>x.id!==j.task.id);tasks.unshift(j.task);render();event('start');schedulePoll();status(t('Saved. Your mission is queued.','已保存，任务正在等待执行。'));}catch(e){fail(e);}finally{busy=false;updateTrial();}};
 $('#member-form').onsubmit=async e=>{e.preventDefault();if(busy)return;const token=$('#member-key').value.trim();if(!/^[a-f0-9]{64}$/.test(token))return;lock();try{sessionStorage.setItem(MEMBER_KEY,token);credential=token;}catch{return fail(Error('storage_unavailable'));}$('#member-login').disabled=true;try{await refresh();if(membership?.member)event('member_verified');}finally{$('#member-login').disabled=false;}};
-$('#restore-workspace').onclick=()=>lock();
+$('#restore-workspace').onclick=()=>{try{rememberRegistration();}catch{return fail(Error('storage_unavailable'));}lock();};
 $('#member-open').onclick=registerHere;$('#register-open').onclick=registerHere;$('#gate-register').onclick=registerHere;
 $('#member-logout').onclick=()=>{try{sessionStorage.removeItem(MEMBER_KEY);sessionStorage.removeItem(LINK);}catch{}credential='';lock();};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(poll);else if(credential){if(memberKey()!==credential){lock();credential=memberKey();}if(credential)refresh();}});
@@ -102,6 +107,6 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeou
 $('#workspace').addEventListener('click',e=>{if(!permitted()){e.preventDefault();e.stopImmediatePropagation();}},true);
 async function openBrowser(){lock();try{sessionStorage.removeItem(MEMBER_KEY);}catch{}let token=storageGet(KEY);if(!/^[a-f0-9]{64}$/.test(token||'')){token=uid(32);if(!storageSet(KEY,token))return fail(Error('storage_unavailable'));}credential=token;await refresh();}
 $('#continue-free').onclick=()=>openBrowser();
-const googleEntry=el('a',t('Register / sign in with Google','使用 Google 注册 / 登录'));googleEntry.href='/auth/account';$('#member-gate').prepend(googleEntry);
+const googleEntry=el('a',t('Register / sign in with Google','使用 Google 注册 / 登录'));googleEntry.href='/auth/account';googleEntry.onclick=registerHere;$('#member-gate').prepend(googleEntry);
 document.body.dataset.ready='true';credential=memberKey();if(credential)refresh();else openBrowser();
 export {VERSION};
