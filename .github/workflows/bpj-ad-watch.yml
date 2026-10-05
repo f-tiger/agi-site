@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: '运行模式：watch=正常轮询上架；inspect=只勘察，不碰订单、不写任何东西，列出该地址收到过的代币与合约地址'
+        description: '运行模式：watch=正常轮询；ads-only=只恢复广告验款，不运行会员或 Jarvis；inspect=只读代币勘察'
         type: choice
-        options: [watch, inspect]
+        options: [watch, ads-only, inspect]
         default: watch
 
 concurrency:
@@ -51,6 +51,18 @@ jobs:
           ADS_WALLET_CHAIN: ${{ vars.ADS_WALLET_CHAIN }}
           ADS_SCAN_API_KEY: ${{ secrets.ADS_SCAN_API_KEY }}
         run: node scripts/ad-watch.mjs --inspect
+
+      # Bounded recovery of existing ads only. No new order, payment, membership,
+      # Jarvis inference or outbound notification is initiated by this mode.
+      # It verifies existing pending payments and refreshes health only on success.
+      - name: Recover ad payment watcher only (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'ads-only'
+        timeout-minutes: 5
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          REQUIRE_WEB3_CONFIGURED: 'true'
+        run: node scripts/ad-watch-v2.mjs --if-configured
 
       - name: Match on-chain payments to pending ad slots
         if: github.event_name != 'workflow_dispatch' || inputs.mode == 'watch'
