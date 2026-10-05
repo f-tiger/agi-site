@@ -7690,7 +7690,7 @@ for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cp
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
-for(const f of ['ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-search.js','manju-live-search.js','manju.js','manju-insights.js'])cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-insights.js'])cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root,'lib/ai-solo-core.mjs'),join(dist,'ai-solo-core.mjs'));
 cpSync(join(root,'lib/github-tools.mjs'),join(dist,'github-tools-core.mjs'));
 for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
