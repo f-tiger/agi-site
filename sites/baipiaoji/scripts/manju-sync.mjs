@@ -2,7 +2,7 @@ import {readFileSync,writeFileSync,renameSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {normalizeTitle,validateManju} from './manju-catalog.mjs';
+import {normalizeTitle,validateManju,importFacts} from './manju-catalog.mjs';
 import {validateInsights} from './manju-insights.mjs';
 const dir=new URL('../data/',import.meta.url),read=name=>JSON.parse(readFileSync(new URL(name,dir),'utf8'));
 const categoryTags=[['仙侠','cultivation'],['修真','cultivation'],['末世','apocalypse'],['悬疑','suspense'],['怪谈','suspense'],['科幻','scifi'],['玄幻','fantasy'],['奇幻','fantasy'],['古装','historical'],['古代','historical'],['恋爱','romance'],['甜宠','romance'],['萌宝','family'],['家庭','family'],['种田','rural'],['乡村','rural'],['都市','urban'],['年代','period'],['武侠','martial'],['搞笑','comedy']];
@@ -46,9 +46,11 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
  try{
   const payload=JSON.parse(execFileSync('python3',[fileURLToPath(new URL('./manju-fetch.py',import.meta.url))],{timeout:400000,maxBuffer:4*1024*1024,encoding:'utf8'}));
   const result=refresh(read('manju.json'),read('manju-insights.json'),payload);
+  let discoveryImport;
+  try{const response=await fetch('https://baipiaoji.com/api/manju-discover',{headers:{'User-Agent':'BPJManjuDirectory/1.0'},signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('public-discovery-unavailable');const pending=await response.json();if(!Array.isArray(pending.records)||pending.records.length>300)throw Error('invalid-discovery-feed');const admitted=importFacts(pending.records,result.catalog);result.catalog.items.push(...admitted.items);validateManju(result.catalog);discoveryImport={status:'ok',fetched:pending.records.length,added:admitted.items.length,rejected:admitted.rejected.length};result.added+=admitted.items.length;}catch{discoveryImport={status:'unavailable',added:0};console.warn('On-demand discovery feed unavailable; existing catalogue retained.');}
   // Validate both complete candidates before replacing either persisted dataset.
   atomic('manju.json',result.catalog);atomic('manju-insights.json',result.insights);
-  status={...status,status:'ok',completedAt:new Date().toISOString(),lastSuccessAt:payload.checkedAtTime,sourceDates:payload.cohorts.map(c=>({kind:c.kind,date:c.observedAt})),records:result.catalog.items.length,added:result.added,changes:result.changes,sourceFingerprint:createHash('sha256').update(JSON.stringify(payload.cohorts)).digest('hex')};
+  status={...status,status:'ok',completedAt:new Date().toISOString(),lastSuccessAt:payload.checkedAtTime,sourceDates:payload.cohorts.map(c=>({kind:c.kind,date:c.observedAt})),records:result.catalog.items.length,discoveryImport,added:result.added,changes:result.changes,sourceFingerprint:createHash('sha256').update(JSON.stringify(payload.cohorts)).digest('hex')};
  }catch(error){let previous={};try{previous=read('manju-sync-status.json');}catch{}status={...status,lastSuccessAt:previous.lastSuccessAt||null,error:'采集或数据校验失败；保留上次有效内容。详见 Actions 日志。'};console.error(String(error.message).slice(0,1500));process.exitCode=1;}
  atomic('manju-sync-status.json',status);console.log(JSON.stringify(status));
 }

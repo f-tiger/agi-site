@@ -331,6 +331,7 @@ jobs:
           node scripts/test-coding-access.mjs --dist
           node --test scripts/test-manju-automation.mjs
           python3 scripts/test-manju-fetch.py
+          node scripts/test-manju-discover.mjs
           node scripts/test-manju.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
@@ -423,6 +424,7 @@ jobs:
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node sites/baipiaoji/scripts/test-coding-access-browser.mjs
           node sites/baipiaoji/scripts/test-manju-browser.mjs
+          node sites/baipiaoji/scripts/test-manju-search-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
       - name: Verify fleet account security

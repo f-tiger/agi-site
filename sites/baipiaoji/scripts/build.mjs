@@ -845,6 +845,7 @@ const SUB_JS_BODY = `(function(){
   // 索引懒加载：聚焦才拉取，不聚焦的访客不花这份流量。
   // 索引按 URL 缓存（2026-09-22）：同一页现在可能有两个搜索框指向不同索引（全站 search-index.json 与
   // agents-index.json）；此前单个全局缓存会让第二个框拿到第一个框的索引。
+  ${readFileSync(join(root,'assets/manju-search.js'),'utf8')}
   (${installSearch.toString()})(${searchResults.toString()}, ZH);
 
 })();
@@ -7683,7 +7684,7 @@ for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cp
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
-for(const f of ['github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-search.js','manju.js','manju-insights.js'])cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-search.js','manju-live-search.js','manju.js','manju-insights.js'])cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root,'lib/github-tools.mjs'),join(dist,'github-tools-core.mjs'));
 for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
