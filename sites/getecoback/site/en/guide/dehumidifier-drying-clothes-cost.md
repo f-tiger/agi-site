@@ -78,6 +78,32 @@ Whole-run kWh × unit price. Prefilled values are fictional scenarios, not produ
 - Use the kWh difference for the whole run. Rated watts are not measured average power.
 - For a label per 100 cycles, divide by 100. Its test programme may differ from your actual use.
 
+## Will the appliance work in your home?
+Check obstacles, setup and upkeep before buying. Choose a situation; add measurements only where they change the decision.
+
+Evidence and limitsSources checked: 5 October 2026. Manufacturer guidance, not our own product tests.
+
+### Robot vacuum & home
+Reference: Saros 10R, not a ranking. The maker quotes up to 3 cm single or 4 cm double thresholds. Geometry, grip and firmware affect results. Dock dimensions describe required free space, not the dock body.
+
+### Laundry still damp
+Check damp causes and required home ventilation separately. Do not block ventilation openings. A dehumidifier does not fix leaks; investigate persistent damp.
+
+### PortaSplit & window
+Installation pre-check, not structural approval or tenancy advice. Check landlord/building requirements separately where needed. Do not treat original PortaSplit and other variants as identical.
+
+### Wet-dry cleaner: net time saved
+Times are editable examples, not product tests. Savings may be negative. Electricity, water, detergent, filters and rollers add costs; saved time is not a cash return.
+Formula: 52 × sessions/week × (manual − machine use − cleanup) ÷ 60.
+
+- Roborock — Saros 10R threshold limits
+- Roborock — required dock space
+- Meaco — laundry setup
+- Meaco — cold-room laundry considerations
+- Midea — PortaSplit installation
+- Midea — PortaSplit installatie
+- Tineco — Switch S6 care FAQ
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp

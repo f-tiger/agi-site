@@ -97,29 +97,33 @@ Waterverschil = debietverschil × minuten × douches. Energie = liters × temper
 - NRCan: EnerGuide
 - EPA: WaterSense showerheads
 
+## Past het apparaat echt in jouw huis?
+Controleer obstakels, plaatsing en onderhoud vóór aankoop. Kies een situatie; voeg alleen maten toe die de beslissing veranderen.
+
+Bronnen en grenzenBronnen gecontroleerd: 5 oktober 2026. Fabrikantgegevens, geen eigen producttests.
+
+### Robotstofzuiger & woning
+Referentie: Saros 10R, geen ranglijst. De fabrikant noemt tot 3 cm enkelvoudige of 4 cm dubbele drempels. Vorm, grip en firmware beïnvloeden het resultaat. Dockmaten zijn vrije gebruiksruimte, niet de behuizing.
+
+### Was blijft vochtig
+Controleer vochtbronnen en noodzakelijke woningventilatie apart. Sluit ventilatieopeningen niet af. Een ontvochtiger verhelpt geen lekkage.
+
+### PortaSplit & raam
+Montagevoorcontrole, geen constructieve goedkeuring of huurrechtadvies. Controleer zo nodig verhuurder- en gebouwvoorwaarden. PortaSplit-varianten zijn niet gelijk.
+
+### Vloerreiniger: netto tijdwinst
+Tijden zijn aanpasbare rekenvoorbeelden, geen producttests. Tijdwinst kan negatief zijn. Stroom, water, reiniger, filters en rollen kosten extra; tijdwinst is geen geldrendement.
+Formule: 52 × beurten/week × (handmatig − apparaatgebruik − onderhoud) ÷ 60.
+
+- Roborock — Saros 10R threshold limits
+- Roborock — required dock space
+- Meaco — laundry setup
+- Meaco — cold-room laundry considerations
+- Midea — PortaSplit installation
+- Midea — PortaSplit installatie
+- Tineco — Switch S6 care FAQ
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
 Redactionele keuzehulp, geen eigen apparaattest. De HTML-pagina bevat gewone winkellinks; deze tekstweergave niet.
-<!--EB_PRODUCT_DECISIONS_MD-->
-## Minder kopen, beter vergelijken
-
-Vergelijk energielabels, afwassen en douchekoppen. Begin met een voorbeeld; kies land en beslissing. Geen account of persoonlijke gegevens nodig.
-
-Label: kWh/100 cycli ÷ 100 × jaarcycli; jaarlabels blijven gelijk. Totaal = aankoop + jaarstroom × tarief × jaren. Terugverdientijd = positieve extra investering ÷ positieve jaarbesparing. Vaat: machine-energie × stroomprijs + liters × waterprijs/1000; verwarmd handafwaswater apart berekenen.
-
-Jaarlabels behouden het standaardgebruik; aantallen cycli wijzigen alleen cycluswaarden. Vergelijk geen verschillende testnormen of capaciteiten. Zonder financiering, reparaties, water, restwaarde of vervanging. Behouden of repareren kan beter zijn. Alleen elektrische apparaten: brandstofkosten van gasapparaten ontbreken.
-
-Kies de systeemgrens: alle cyclusstroom omvat waterverwarming eenmaal. Bij warmwateraansluiting gebruik je apparaatstroom en extern verwarmde liters apart. Gebruik geen jaarlijkse EnergyGuide-kWh als cycluswaarde. Vergelijk dezelfde vaat en spoelhoeveelheid. Zonder afwasmiddel, reinigingskwaliteit, tijd, aankoop of installatiekosten.
-
-Waterverschil = debietverschil × minuten × douches. Energie = liters × temperatuurstijging × 0,001163 ÷ warmte/invoer-verhouding. Bij warmtepompen kan die boven 1 liggen; gebruik de brandstofprijs bij een ketel. Vaste warmteverliezen ontbreken. Verander geen veiligheidsinstellingen voor warm water.
-
-- Warmtepompdrogers: controleer capaciteit, ruimte, afvoer en programmaduur.
-- Koelkasten en vriezers: vergelijk bruikbaar volume, ventilatieruimte en jaarlijkse kWh.
-- Vaatwassers: controleer gelijke lading, eco-programma, wateraansluiting en inbouwmaten.
-- Waterbesparende douchekoppen: controleer minimumdebiet, druk, verwarming en goedkeuring; korter douchen kan zonder aankoop.
-
-Bronnen & methode
-- [Milieu Centraal: Vaatwasser](https://www.milieucentraal.nl/energie-besparen/apparaten-in-huis/vaatwasser/)
-- [EU dishwasher label](https://energy-efficient-products.ec.europa.eu/product-list/dishwashers_en)
-<!--/EB_PRODUCT_DECISIONS_MD-->

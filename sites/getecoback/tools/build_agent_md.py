@@ -74,6 +74,9 @@ def to_markdown(src_html, path_url, lang):
     if product:
         # Preserve sourced methodology/category checks, not script config or shopping UI.
         body += product.group(1).split('<script', 1)[0]
+    fit = re.search(r'<!--EB_HOME_FIT-->(.*?)<!--/EB_HOME_FIT-->', src_html, re.S)
+    if fit:
+        body += fit.group(1).split('<script', 1)[0]
     # Detect the live-number bands BEFORE they are stripped below. They are
     # JavaScript-rendered, so a crawler or this Markdown view sees an empty
     # div — and the whole point of a live number (citation-growth item six:

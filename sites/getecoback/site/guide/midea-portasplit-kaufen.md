@@ -56,6 +56,32 @@ Konkrete Modelle mit Rolle, aus öffentlichen Testberichten zusammengestellt (ni
 [Klimaanlage am Kippfenster abdichten →](https://getecoback.com/guide/klimaanlage-kippfenster.html)
 [Beste Klimaanlage fürs Schlafzimmer →](https://getecoback.com/guide/beste-tragbare-klimaanlage-schlafzimmer.html)
 
+## Passt das Gerät wirklich zu deinem Zuhause?
+Prüfe Hindernisse, Einrichtung und Pflege vor dem Kauf. Wähle eine Situation; genaue Angaben sind nur nötig, wenn sie die Entscheidung ändern.
+
+Grundlagen und GrenzenQuellen geprüft: 05.10.2026. Herstellerangaben, keine eigene Produktprüfung.
+
+### Saugroboter & Wohnung
+Referenz: Saros 10R, keine Rangliste. Hersteller nennt bis 3 cm einfache bzw. 4 cm doppelte Schwellen. Geometrie, Bodenhaftung und Firmware beeinflussen das Ergebnis. Die Stationsmaße sind benötigter Freiraum, nicht das Gehäusemaß.
+
+### Wäsche wird nicht trocken
+Feuchteursachen und notwendige Wohnungslüftung getrennt prüfen. Keine Lüftungsöffnungen verschließen. Ein Entfeuchter repariert keine Undichtigkeit; bei anhaltender Feuchte Ursache klären.
+
+### PortaSplit & Fenster
+Montage-Vorprüfung, keine statische Prüfung oder Mietrechtsberatung. Vermieter-/Gebäudeanforderungen bei Bedarf separat klären. Original-PortaSplit und andere Varianten nicht gleichsetzen.
+
+### Nassreiniger: echte Zeitersparnis
+Zeiten sind frei änderbare Rechenbeispiele, keine Produkttests. Ersparnis kann negativ sein. Strom, Wasser, Reinigungsmittel, Filter und Rollen kommen finanziell hinzu; Zeitersparnis ist keine Geldrendite.
+Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 60.
+
+- Roborock — Saros 10R threshold limits
+- Roborock — required dock space
+- Meaco — laundry setup
+- Meaco — cold-room laundry considerations
+- Midea — PortaSplit installation
+- Midea — PortaSplit installatie
+- Tineco — Switch S6 care FAQ
+
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
 MCP-Server für Assistenten: https://getecoback.com/mcp
