@@ -13,14 +13,14 @@ const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll
 const root='https://baipiaoji.com/manju/';
 const workUrl=x=>root+(x.recordType==='discovery'?'#work-':'')+x.id;
 export const discoveryPaths=()=>['guide',...GENRES.map(g=>'genre-'+g.id)];
-export function discoverySearch(catalog,insights){const names=new Set(catalog.items.map(x=>x.title));return [{u:root+'guide',n:'AI漫剧去哪看、如何找官方入口与引用热度数据',k:'选剧指南',q:'ai短剧 漫剧 官方 平台 哪里看 红果 抖音 热度 播放量 来源'},...GENRES.map(g=>({u:root+'genre-'+g.id,n:g.angle,k:'题材片单',q:g.angle+' '+g.intro})),...insights.cohorts.filter(c=>c.metric==='snapshot_heat').flatMap(c=>c.records.filter(x=>!names.has(x.title)).map(x=>({u:root+'rankings#rank-'+c.id+'-'+x.sourceRank,n:x.title,k:'红果官方榜单',q:x.title+' '+x.tags.join(' ')})))];}
+export function discoverySearch(catalog,insights){const names=new Set(catalog.items.map(x=>x.title));return [{u:root+'guide',n:'AI漫剧去哪看、如何找官方入口与引用热度数据',k:'选剧指南',q:'ai短剧 漫剧 官方 平台 哪里看 红果 抖音 热度 播放量 来源'},...GENRES.map(g=>({u:root+'genre-'+g.id,n:g.angle,k:'题材片单',q:g.angle+' '+g.intro})),...insights.cohorts.filter(c=>c.metric==='snapshot_heat').flatMap(c=>c.records.map(x=>({u:root+'rankings#rank-'+c.id+'-'+x.sourceRank,n:x.title,k:'红果官方榜单',q:x.title+' '+x.tags.join(' ')})))];}
 export const genreLinks=()=>`<nav class="mj-genre-links" aria-label="按题材浏览片单">${GENRES.map(g=>`<a href="/manju/genre-${g.id}">${g.angle}</a>`).join('')}<a href="/manju/guide">新手选剧与数据指南</a></nav>`;
 export function buildDiscovery({publish,page,write,catalog,insights,external,plotFor}){
  const faq=[
   ['AI 漫剧和 AI 短剧去哪里看？','从作品的官方片库或原平台详情页进入。帧选目录区分官方片库、介绍／预告和平台搜索；红果榜单记录附官方详情链接。本站不播放视频，能否播放、登录与收费条件以原平台为准。'],
   ['AI 短剧和漫剧是一回事吗？','不是同一种划分方式。AI 描述制作技术，漫剧描述内容形态；漫剧不一定全部由 AI 制作。帧选保留来源对形态的标注，没有逐部审计制作过程。'],
   ['红果热度能当播放量吗？','不能。红果公开榜单以观看、互动等综合热度排序，完整计算窗口未公开。快照热度、月峰值和抖音月播放增量分别展示，不相加，也不据此推算人数或收入。'],
-  ['为什么 9 月和 10 月数据不能直接比较？','当前核实的是 2026-10-05 红果官方榜单快照，9 月完整官方月榜尚未核实。8 月保留的是 DataEye 报告摘录。来源、指标和周期不同，不能计算同比或环比增长。'],
+  ['为什么 9 月和 10 月数据不能直接比较？',`当前核实的是 ${insights.reviewedAt} 检查的红果官方榜单快照，9 月完整官方月榜尚未核实。8 月保留的是 DataEye 报告摘录。来源、指标和周期不同，不能计算同比或环比增长。`],
   ['如何引用帧选的榜单和题材计数？','写明原始来源、平台、观察日期、指标与样本范围，并附本站页面和原始来源链接。题材计数含分季、多标签有交叉，不是市场份额。可查看带出处的 JSON 和 Markdown 摘要；资料公开不等于获得作品素材转载许可。'],
   ['收藏会同步到账号吗？','收藏保存在当前浏览器，可导出文本或主动分享片单。BPJ 账户不会同步漫剧收藏；目录 RSS 通知资料更新，不是剧集追更。']
  ];

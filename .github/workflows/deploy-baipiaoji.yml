@@ -154,6 +154,12 @@ jobs:
         run: node scripts/catalog-sync.mjs
         continue-on-error: true
 
+      - name: Refresh official manju rankings and expand the directory
+        id: manju_sync
+        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[manju-sync]')
+        run: node scripts/manju-sync.mjs
+        continue-on-error: true
+
       # MCP 被发现探针（2026-09-22，≈10 秒）：官方注册表登记名 / isLatest / 版本 == server.json（权威，错了这步就红），
       # 五个第三方目录的公开搜索页 grep（只作信息），本站 .well-known 版本对齐。产出 data/mcp-discovery.json 随下面那步提交。
       - name: MCP discovery probe (scheduled runs only)
@@ -164,7 +170,7 @@ jobs:
 
       - name: Commit refreshed data
         id: catalog_commit
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]')
+        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]') || contains(github.event.head_commit.message, '[manju-sync]')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -323,6 +329,8 @@ jobs:
           node scripts/test-distribution.mjs --dist
           node scripts/test-github-tools.mjs --dist
           node scripts/test-coding-access.mjs --dist
+          node --test scripts/test-manju-automation.mjs
+          python3 scripts/test-manju-fetch.py
           node scripts/test-manju.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
@@ -1136,6 +1144,7 @@ jobs:
           check "广告库存面" "${{ steps.st_ads.outcome }}"
           check "MCP 发现探针" "${{ steps.mcp_discovery.outcome }}"
           check "GitHub/MCP 每日目录扩展" "${{ steps.catalog_sync.outcome }}"
+          check "漫剧每日自动采集" "${{ steps.manju_sync.outcome }}"
           check "每日目录数据持久化" "${{ steps.catalog_commit.outcome }}"
           check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1

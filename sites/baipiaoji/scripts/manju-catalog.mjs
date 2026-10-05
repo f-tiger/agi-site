@@ -1,6 +1,7 @@
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {validThumbnail} from './manju-thumbnails.mjs';
 const exclusions=JSON.parse(readFileSync(new URL('../data/manju-exclusions.json',import.meta.url),'utf8')).items;
 export const normalizeTitle=s=>s.normalize('NFKC').replace(/[\s\p{P}\p{S}]/gu,'').toLowerCase();
 const sourceAliases={'总裁':'豪门','诡秘':'怪谈','囤物资':'囤货','玄幻脑洞':'玄幻','传统玄幻':'玄幻','都市脑洞':'脑洞','玄幻言情':'恋爱','都市修真':'修真','合家欢':'家庭','喜剧':'搞笑','古风':'古代','升级流':'升级','青春':'校园'};
@@ -34,7 +35,9 @@ export function validateManju(catalog){
   if(seen.has(key)||ids.has(x.id))throw Error('Duplicate manju identity: '+x.id);seen.add(key);ids.add(x.id);
   if(exclusions.some(e=>key.includes(normalizeTitle(e.title))))throw Error('Excluded manju: '+x.title);
   if(!/^https:\/\//.test(x.source)||!/^\d{4}-\d{2}-\d{2}$/.test(x.checkedAt))throw Error('Missing source/date: '+x.id);
-  if(x.recordType==='discovery'){
+  if(x.evidence?.sourceKind==='hongguo-ranking'){
+   if(x.recordType!=='discovery'||!/^hg-\d+$/.test(x.id)||x.destination!=='https://hongguoduanju.com/detail?series_id='+x.id.slice(3)||!/^https:\/\/hongguoduanju\.com\/rank\/hot-(ai|comic)-drama(?:\?page=[2-5])?$/.test(x.source)||x.linkType!=='collection'||x.aiStatus!=='platform-classified'||!validThumbnail(x.thumbnail)||!Array.isArray(x.evidence.reportedTags)||!/^[a-f0-9]{64}$/.test(x.evidence.sourceHash)||x.watched||x.sponsored||x.affiliate)throw Error('Invalid official discovery: '+x.id);
+  }else if(x.recordType==='discovery'){
    const {items}=importFacts([{title:x.title,source:x.source,sourceTitle:x.evidence?.sourceTitle,sourceClaim:x.evidence?.sourceClaim,sourceHash:x.evidence?.sourceHash,reportedTags:x.evidence?.reportedTags,reportedReleaseDate:x.reportedReleaseDate?.replace(/^(\d+)-(\d+)-(\d+)$/,'$1年$2月$3日'),checkedAt:x.checkedAt}],{...catalog,items:[]});
    if(items.length!==1||items[0].id!==x.id||items[0].category!==x.category||JSON.stringify(items[0].tags)!==JSON.stringify(x.tags)||items[0].synopsis!==x.synopsis||x.aiStatus!=='source-labelled'||x.sourceDate!=='未标明')throw Error('Invalid discovery evidence: '+x.id);
    if(x.destination!=='https://www.douyin.com/search/'+encodeURIComponent(x.title)||x.linkType!=='search'||x.watched||x.sponsored||x.affiliate)throw Error('Unreviewed viewing/commercial claim: '+x.id);

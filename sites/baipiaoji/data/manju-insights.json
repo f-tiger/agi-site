@@ -23,9 +23,9 @@
       "periodStart": "2026-10-05",
       "periodEnd": "2026-10-05",
       "checkedAt": "2026-10-05",
-      "sourceDateLabel": "10月5日已更新",
+      "sourceDateLabel": "2026-10-05 来源更新",
       "method": "页面标注基于红果内观看、互动等综合热度排序；本站读取展示热度，万换算为 10000。快照值不是播放量、月峰值或月增量，完整计算窗口未公开。",
-      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；本次人工重新核查热度与公开封面地址，非自动实时刷新。平台分类不等于本站审计 AI 制作流程。",
+      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；每日自动读取并校验，非实时全网排名。平台分类不等于本站审计 AI 制作流程。",
       "ownershipEvidence": [
         {
           "url": "https://apps.apple.com/cn/app/id6451407032",
@@ -36,7 +36,7 @@
           "fact": "2026-10-05 公开请求跳转到 https://hongguoduanju.com/；站点公司名北京笔墨留香科技有限公司一致。"
         }
       ],
-      "checkedAtTime": "2026-10-05T04:17:41+00:00"
+      "checkedAtTime": "2026-10-05T04:59:23.517898+00:00"
     },
     {
       "id": "hongguo-comic-drama-2026-10-05",
@@ -48,9 +48,9 @@
       "periodStart": "2026-10-05",
       "periodEnd": "2026-10-05",
       "checkedAt": "2026-10-05",
-      "sourceDateLabel": "10月5日已更新",
+      "sourceDateLabel": "2026-10-05 来源更新",
       "method": "页面标注基于红果内观看、互动等综合热度排序；本站读取展示热度，万换算为 10000。快照值不是播放量、月峰值或月增量，完整计算窗口未公开。",
-      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；本次人工重新核查热度与公开封面地址，非自动实时刷新。平台分类不等于本站审计 AI 制作流程。",
+      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；每日自动读取并校验，非实时全网排名。平台分类不等于本站审计 AI 制作流程。",
       "ownershipEvidence": [
         {
           "url": "https://apps.apple.com/cn/app/id6451407032",
@@ -61,7 +61,7 @@
           "fact": "2026-10-05 公开请求跳转到 https://hongguoduanju.com/；站点公司名北京笔墨留香科技有限公司一致。"
         }
       ],
-      "checkedAtTime": "2026-10-05T04:17:41+00:00"
+      "checkedAtTime": "2026-10-05T04:59:23.517898+00:00"
     }
   ],
   "cohorts": [
@@ -176,7 +176,6 @@
           "sourceRank": 1,
           "value": 71740000,
           "displayValue": "7174万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690112243203050521",
           "tags": [
             "剧情",
@@ -184,19 +183,19 @@
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/a6780fda603af007c64248452d1fe85a~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/a6780fda603af007c64248452d1fe85a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "穿越六零之我在山洞闷声发家",
           "sourceRank": 2,
           "value": 69210000,
           "displayValue": "6921万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688666572499471422",
           "tags": [
             "种田",
@@ -204,19 +203,19 @@
             "异能"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/65a4cd5682095c7eeeec82a0c9c172a6~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/65a4cd5682095c7eeeec82a0c9c172a6~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重回1988，我从倒货开始养家致富",
           "sourceRank": 3,
           "value": 65970000,
           "displayValue": "6597万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689393278562602009",
           "tags": [
             "种田",
@@ -229,14 +228,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "总裁是我前女友",
           "sourceRank": 4,
           "value": 65350000,
           "displayValue": "6535万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688352674999176254",
           "tags": [
             "恋爱",
@@ -249,33 +248,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "大唐憨婿之我姐姐是太子妃第三季",
           "sourceRank": 5,
           "value": 64110000,
           "displayValue": "6411万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689482965906099262",
           "tags": [
             "宫廷",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/93e3c074a663259ed98e2a41ebe3047a~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/93e3c074a663259ed98e2a41ebe3047a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "招惹督军，他高调求娶我为妻",
           "sourceRank": 6,
           "value": 62300000,
           "displayValue": "6230万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687650704235711513",
           "tags": [
             "恋爱",
@@ -288,14 +287,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "终于从修仙回到都市，坏消息修为没了",
           "sourceRank": 7,
           "value": 61880000,
           "displayValue": "6188万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688564512806423576",
           "tags": [
             "玄幻",
@@ -308,14 +307,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生后谁还嫁富二代",
           "sourceRank": 8,
           "value": 59660000,
           "displayValue": "5966万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689448937878473753",
           "tags": [
             "剧情",
@@ -323,19 +322,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/b888348c6375d54d6381a621d86f8503~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/b888348c6375d54d6381a621d86f8503~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "结账时我摊牌了",
           "sourceRank": 9,
           "value": 58760000,
           "displayValue": "5876万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688338785091718206",
           "tags": [
             "剧情",
@@ -348,14 +347,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我李长生重回八零，赶山狩猎养妻女",
           "sourceRank": 10,
           "value": 58410000,
           "displayValue": "5841万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686008653844859966",
           "tags": [
             "种田",
@@ -363,19 +362,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/54118617735f6d19d12f9e93d1f9b9ee~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/54118617735f6d19d12f9e93d1f9b9ee~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "绿意萌熹：蛙系萌娃闹翻忧郁老爸",
           "sourceRank": 11,
           "value": 58000000,
           "displayValue": "5800万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686812666374933566",
           "tags": [
             "萌宝",
@@ -388,14 +387,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我突破炼气期开始暴富",
           "sourceRank": 12,
           "value": 57910000,
           "displayValue": "5791万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688604710357453886",
           "tags": [
             "玄幻",
@@ -403,19 +402,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/0c70ba93c7fef89c763410554d68b3a7~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/0c70ba93c7fef89c763410554d68b3a7~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "旧爱归零：科研大佬她不伺候了",
           "sourceRank": 13,
           "value": 57530000,
           "displayValue": "5753万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689469045174701081",
           "tags": [
             "剧情",
@@ -423,19 +422,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/c6b512be037f6bbeab00740e34dac2f6~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/c6b512be037f6bbeab00740e34dac2f6~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "锦鲤小福星旺爆帅府，第一季",
           "sourceRank": 14,
           "value": 57400000,
           "displayValue": "5740万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688355768239672344",
           "tags": [
             "脑洞",
@@ -443,19 +442,19 @@
             "民国"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/6e0994b822a1675c427ead229477dde7~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/6e0994b822a1675c427ead229477dde7~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "绿意萌熹：蛙系萌娃闹翻忧郁老爸2",
           "sourceRank": 15,
           "value": 57310000,
           "displayValue": "5731万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688726871877356606",
           "tags": [
             "萌宝",
@@ -468,14 +467,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "分家给破船，我靠赶海暴富",
           "sourceRank": 16,
           "value": 57000000,
           "displayValue": "5700万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690073584227585049",
           "tags": [
             "脑洞",
@@ -488,33 +487,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "蒙冤二十五年，归来举世皆惊",
           "sourceRank": 17,
           "value": 56960000,
           "displayValue": "5696万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7684559889913351193",
           "tags": [
             "剧情",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8c444fb5e6f34ea7c67354e3aa716364~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8c444fb5e6f34ea7c67354e3aa716364~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "夕阳红顶流，大爷大妈助我乐坛封神",
           "sourceRank": 18,
           "value": 56640000,
           "displayValue": "5664万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688208873676622872",
           "tags": [
             "脑洞",
@@ -527,14 +526,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "女村长带全村暴富",
           "sourceRank": 19,
           "value": 56260000,
           "displayValue": "5626万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687935214999325720",
           "tags": [
             "种田",
@@ -547,14 +546,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "天降萌宝：全家开启宠孙模式",
           "sourceRank": 20,
           "value": 56100000,
           "displayValue": "5610万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690954939354336280",
           "tags": [
             "萌宝",
@@ -567,14 +566,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "全家把我当乡下老太，都吓傻了",
           "sourceRank": 21,
           "value": 56030000,
           "displayValue": "5603万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7679018384272395289",
           "tags": [
             "总裁",
@@ -582,19 +581,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/7b095aa97d20b9719f620ee9444d2631~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/7b095aa97d20b9719f620ee9444d2631~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "人在六零，携妹下乡！",
           "sourceRank": 22,
           "value": 55000000,
           "displayValue": "5500万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686078234244434968",
           "tags": [
             "脑洞",
@@ -602,19 +601,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/a504f5d86d54dd7a805027664f41b985~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/a504f5d86d54dd7a805027664f41b985~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生七零，我靠狩猎带全村吃饱饭",
           "sourceRank": 23,
           "value": 54900000,
           "displayValue": "5490万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688634095538031641",
           "tags": [
             "剧情",
@@ -627,14 +626,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "本王只想就藩，皇兄竟逼我造反",
           "sourceRank": 24,
           "value": 54780000,
           "displayValue": "5478万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688615554227129369",
           "tags": [
             "宫廷",
@@ -642,38 +641,38 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/4550c5c588a368a1982f26a4a24e1dc1~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/4550c5c588a368a1982f26a4a24e1dc1~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "儿子婚礼上，闯进来一个骑猪乞丐",
           "sourceRank": 25,
           "value": 54770000,
           "displayValue": "5477万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688289287292324889",
           "tags": [
             "总裁",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/f02d5b70efee57a06be9d167a3693212~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/f02d5b70efee57a06be9d167a3693212~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "七零团宠小福星：林小宝传",
           "sourceRank": 26,
           "value": 54750000,
           "displayValue": "5475万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685973095064030233",
           "tags": [
             "萌宝",
@@ -686,14 +685,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "千禧赶海：我能看透整片大海",
           "sourceRank": 27,
           "value": 54730000,
           "displayValue": "5473万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688263006739762200",
           "tags": [
             "脑洞",
@@ -706,32 +705,32 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "镇国杀神：从拯救落难母女开始",
           "sourceRank": 28,
           "value": 54600000,
           "displayValue": "5460万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689087139169963032",
           "tags": [
             "男频衍生"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/09db19a8761d976e0a592ea7ce6fd72d~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/09db19a8761d976e0a592ea7ce6fd72d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "买卖词条，打造非凡俱乐部！",
           "sourceRank": 29,
           "value": 54330000,
           "displayValue": "5433万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688926316820712473",
           "tags": [
             "脑洞",
@@ -739,19 +738,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/00ef911ce9a63ac9a2630ad4dca06b3d~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/00ef911ce9a63ac9a2630ad4dca06b3d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "九零带娃养龙女我能操控海洋",
           "sourceRank": 30,
           "value": 54180000,
           "displayValue": "5418万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686859066873744408",
           "tags": [
             "脑洞",
@@ -759,19 +758,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/9f9d7bd7a0a316506574e2efdca1b62f~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/9f9d7bd7a0a316506574e2efdca1b62f~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "乐乐来啦之调皮乐宝大佬爹",
           "sourceRank": 31,
           "value": 54160000,
           "displayValue": "5416万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686713711553170494",
           "tags": [
             "萌宝",
@@ -779,19 +778,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/27c53c03d169d1d69ed4afc101b7d96a~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/27c53c03d169d1d69ed4afc101b7d96a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "持械入宋：第六季",
           "sourceRank": 32,
           "value": 54120000,
           "displayValue": "5412万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686430794469887001",
           "tags": [
             "脑洞",
@@ -804,14 +803,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "龙王出山，冷艳总裁爱上我",
           "sourceRank": 33,
           "value": 54060000,
           "displayValue": "5406万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689076293970709529",
           "tags": [
             "战神",
@@ -823,14 +822,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "乐乐来啦之调皮乐宝大佬爹3",
           "sourceRank": 34,
           "value": 53990000,
           "displayValue": "5399万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7692332588853120024",
           "tags": [
             "日常",
@@ -843,14 +842,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "灵犬报恩，被抛弃后赶山护妻女",
           "sourceRank": 35,
           "value": 53960000,
           "displayValue": "5396万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689113403779992638",
           "tags": [
             "种田",
@@ -863,14 +862,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "牢狱蒙尘，都市起风云第一季",
           "sourceRank": 36,
           "value": 53860000,
           "displayValue": "5386万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689391734379269144",
           "tags": [
             "战神",
@@ -878,19 +877,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/a11326a79d9ad1f4a51249a9ac32393e~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/a11326a79d9ad1f4a51249a9ac32393e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "妹妹抢错郎，我却嫁兵王",
           "sourceRank": 37,
           "value": 53800000,
           "displayValue": "5380万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688695977443593278",
           "tags": [
             "剧情",
@@ -898,19 +897,19 @@
             "重生"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/238e4e4169f7610d3be4afb54fefae04~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/238e4e4169f7610d3be4afb54fefae04~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "乐乐来啦之调皮乐宝大佬爹2",
           "sourceRank": 38,
           "value": 53700000,
           "displayValue": "5370万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689337594550684734",
           "tags": [
             "萌宝",
@@ -923,14 +922,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "一顿饭钱，毁了六千万合同",
           "sourceRank": 39,
           "value": 53560000,
           "displayValue": "5356万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687975414706228286",
           "tags": [
             "剧情",
@@ -938,19 +937,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/91a54f30b81182cb9051d34e0273c2ef~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/91a54f30b81182cb9051d34e0273c2ef~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "好运柠宝，天降秦家",
           "sourceRank": 40,
           "value": 53520000,
           "displayValue": "5352万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689032997055499326",
           "tags": [
             "萌宝",
@@ -958,19 +957,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/76caeb3aa2684148fe951ab5e55550dd~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/76caeb3aa2684148fe951ab5e55550dd~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "烬九州：第二十八季",
           "sourceRank": 41,
           "value": 53510000,
           "displayValue": "5351万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689099508306676760",
           "tags": [
             "剧情",
@@ -978,19 +977,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/7e1b48b334b906f1229df25627e529c4~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/7e1b48b334b906f1229df25627e529c4~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "周扬的逆袭第一季",
           "sourceRank": 42,
           "value": 53510000,
           "displayValue": "5351万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688177952311233598",
           "tags": [
             "剧情",
@@ -1003,14 +1002,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "冷战三年，离婚证前他跪下求复合",
           "sourceRank": 43,
           "value": 53490000,
           "displayValue": "5349万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689090226655874072",
           "tags": [
             "恋爱",
@@ -1018,19 +1017,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/42aa5c629ca3f7e840406f00cc641597~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/42aa5c629ca3f7e840406f00cc641597~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "老婆把船票给白月光后悔疯了",
           "sourceRank": 44,
           "value": 53440000,
           "displayValue": "5344万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686068975494499352",
           "tags": [
             "恋爱",
@@ -1038,38 +1037,38 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/394d281738334561e104673ef01b5d4b~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/394d281738334561e104673ef01b5d4b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "临夏的陆凛第一季",
           "sourceRank": 45,
           "value": 53380000,
           "displayValue": "5338万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686752369610083353",
           "tags": [
             "剧情",
             "年代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/dc753de29c58f7d557b9678b47404ed8~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/dc753de29c58f7d557b9678b47404ed8~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "活泉福星小清清",
           "sourceRank": 46,
           "value": 53360000,
           "displayValue": "5336万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687440427049307198",
           "tags": [
             "萌宝",
@@ -1077,19 +1076,19 @@
             "异能"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/40d65deb3514739a441a19f08caa2f3d~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/40d65deb3514739a441a19f08caa2f3d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "租个女婿回村见父母",
           "sourceRank": 47,
           "value": 53180000,
           "displayValue": "5318万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689128867755199512",
           "tags": [
             "恋爱",
@@ -1101,14 +1100,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生八零赶海发家养妻女",
           "sourceRank": 48,
           "value": 53170000,
           "displayValue": "5317万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688728419806235673",
           "tags": [
             "种田",
@@ -1121,14 +1120,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "景城深处梨花开",
           "sourceRank": 49,
           "value": 53150000,
           "displayValue": "5315万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688751589397384254",
           "tags": [
             "剧情",
@@ -1136,19 +1135,19 @@
             "年代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8ed011ee59d3b8653f9d2673cb9c49dd~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8ed011ee59d3b8653f9d2673cb9c49dd~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生之李阳闯八零第二季",
           "sourceRank": 50,
           "value": 53110000,
           "displayValue": "5311万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688756232059898904",
           "tags": [
             "种田",
@@ -1156,19 +1155,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/bd74d1b1c1a451607027a655ad50b3ae~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/bd74d1b1c1a451607027a655ad50b3ae~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "封总，太太她已读不回4",
           "sourceRank": 51,
           "value": 53090000,
           "displayValue": "5309万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691641414412667966",
           "tags": [
             "剧情",
@@ -1176,19 +1175,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/e4c8456bb5ec4a4b6e84eb0945d5c27f~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/e4c8456bb5ec4a4b6e84eb0945d5c27f~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "丈母娘的嫁妆",
           "sourceRank": 52,
           "value": 53060000,
           "displayValue": "5306万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686432318419897369",
           "tags": [
             "总裁",
@@ -1201,33 +1200,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "五个老铁，养出个女状元",
           "sourceRank": 53,
           "value": 53040000,
           "displayValue": "5304万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688275387008158744",
           "tags": [
             "剧情",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/c1f80e9035b62c3b7f3a46df3bf242a4~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/c1f80e9035b62c3b7f3a46df3bf242a4~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "山河有约人间见",
           "sourceRank": 54,
           "value": 53030000,
           "displayValue": "5303万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687610511034158105",
           "tags": [
             "恋爱",
@@ -1240,14 +1239,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "中年逆袭：我靠黄金瞳改命",
           "sourceRank": 55,
           "value": 52960000,
           "displayValue": "5296万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687437332563119166",
           "tags": [
             "脑洞",
@@ -1260,14 +1259,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "三宝驾到，爹地退散",
           "sourceRank": 56,
           "value": 52940000,
           "displayValue": "5294万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689305128502840344",
           "tags": [
             "剧情",
@@ -1280,14 +1279,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我失明五年救她，离婚当天神瞳觉醒",
           "sourceRank": 57,
           "value": 52870000,
           "displayValue": "5287万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687907370969615385",
           "tags": [
             "脑洞",
@@ -1295,19 +1294,19 @@
             "异能"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/1cb23861cf284ce853553695d1b3d2eb~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/1cb23861cf284ce853553695d1b3d2eb~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "迟来深情皆是刃",
           "sourceRank": 58,
           "value": 52870000,
           "displayValue": "5287万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7681965397683211288",
           "tags": [
             "恋爱",
@@ -1320,14 +1319,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "天下第一婿：屠龙少年",
           "sourceRank": 59,
           "value": 52720000,
           "displayValue": "5272万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685251029729823769",
           "tags": [
             "玄幻",
@@ -1335,38 +1334,38 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/007fd3e4e4592381d14ee89c5a3c3a10~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/007fd3e4e4592381d14ee89c5a3c3a10~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "国庆出游不带我，我收回高档酒店",
           "sourceRank": 60,
           "value": 52700000,
           "displayValue": "5270万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687868712644250686",
           "tags": [
             "总裁",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/fd94ddb6d8c0e49d565b51229c6d3e6b~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/fd94ddb6d8c0e49d565b51229c6d3e6b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "帝龙怀珠，太子殿下千千岁",
           "sourceRank": 61,
           "value": 52660000,
           "displayValue": "5266万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688731488375819326",
           "tags": [
             "宫廷",
@@ -1379,14 +1378,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "纨绔下乡之顽郎亦不负流年",
           "sourceRank": 62,
           "value": 52640000,
           "displayValue": "5264万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686341081675336729",
           "tags": [
             "奇幻",
@@ -1394,19 +1393,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/65cc2909b8a3b024e002f5c2a857c140~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/65cc2909b8a3b024e002f5c2a857c140~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "看我赶山养家第三季两情相悦",
           "sourceRank": 63,
           "value": 52630000,
           "displayValue": "5263万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7674087569709091865",
           "tags": [
             "种田",
@@ -1419,14 +1418,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "七零团宠小福星：林小宝传2",
           "sourceRank": 64,
           "value": 52570000,
           "displayValue": "5257万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689818492488387608",
           "tags": [
             "日常",
@@ -1434,19 +1433,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/269deb939634e20c49cbcc3c8a998011~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/269deb939634e20c49cbcc3c8a998011~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "一块槽头肉，养出个省状元",
           "sourceRank": 65,
           "value": 52560000,
           "displayValue": "5256万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685980827544456254",
           "tags": [
             "剧情",
@@ -1459,14 +1458,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "背叛我，前夫肠子都悔青了",
           "sourceRank": 66,
           "value": 52530000,
           "displayValue": "5253万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680515057255451710",
           "tags": [
             "剧情",
@@ -1474,19 +1473,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/5a926724d31a0090a7f85c015d84d665~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/5a926724d31a0090a7f85c015d84d665~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "极品四公子",
           "sourceRank": 67,
           "value": 52510000,
           "displayValue": "5251万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687202316683840536",
           "tags": [
             "宫廷",
@@ -1499,14 +1498,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "妈祖给我报点，我赶海带飞全村",
           "sourceRank": 68,
           "value": 50450000,
           "displayValue": "5045万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7681203098714393662",
           "tags": [
             "脑洞",
@@ -1514,19 +1513,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/2e4d8ae6878c2334bc06ae080f42b73b~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/2e4d8ae6878c2334bc06ae080f42b73b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生七零东北，悔婚后我打猎致富乡野第五季",
           "sourceRank": 69,
           "value": 50440000,
           "displayValue": "5044万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690402916246506520",
           "tags": [
             "剧情",
@@ -1534,19 +1533,19 @@
             "年代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/b5a88fb896c7ef897268b56faa379a78~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/b5a88fb896c7ef897268b56faa379a78~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "一道划痕，满城风雨",
           "sourceRank": 70,
           "value": 50390000,
           "displayValue": "5039万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688740767782669374",
           "tags": [
             "剧情",
@@ -1554,19 +1553,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/109585a7efc22a371ea0ae7a6dcdb254~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/109585a7efc22a371ea0ae7a6dcdb254~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "苏小姐高调离婚，前夫哭惨了",
           "sourceRank": 71,
           "value": 50310000,
           "displayValue": "5031万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680559893509573656",
           "tags": [
             "总裁",
@@ -1574,19 +1573,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/6a2b5925e562865111d08a9631938475~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/6a2b5925e562865111d08a9631938475~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生70：先把空间抢到手",
           "sourceRank": 72,
           "value": 50290000,
           "displayValue": "5029万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689376280923343934",
           "tags": [
             "剧情",
@@ -1599,14 +1598,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "反相之地",
           "sourceRank": 73,
           "value": 50210000,
           "displayValue": "5021万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7674630261790739481",
           "tags": [
             "恐怖",
@@ -1619,14 +1618,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "错位二十载：贫民窟里的真千金",
           "sourceRank": 74,
           "value": 50190000,
           "displayValue": "5019万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689846306159725592",
           "tags": [
             "剧情",
@@ -1634,19 +1633,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/c26c447a8ab67ae61cc663e3a2b3df7b~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/c26c447a8ab67ae61cc663e3a2b3df7b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "悔悟，我用余生偿前错",
           "sourceRank": 75,
           "value": 50110000,
           "displayValue": "5011万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685690143377738776",
           "tags": [
             "种田",
@@ -1659,33 +1658,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "镇北少帅第三季",
           "sourceRank": 76,
           "value": 50110000,
           "displayValue": "5011万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689830837373635608",
           "tags": [
             "宫廷",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/6e6cbcaccea3bd61bab99083f04ce357~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/6e6cbcaccea3bd61bab99083f04ce357~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "烬九州：第二十七季",
           "sourceRank": 77,
           "value": 49960000,
           "displayValue": "4996万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687997064214498328",
           "tags": [
             "剧情",
@@ -1697,33 +1696,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "两千万试透女儿心",
           "sourceRank": 78,
           "value": 49780000,
           "displayValue": "4978万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688349615841610776",
           "tags": [
             "剧情",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/4ae2bc60b23af21339b746efc89a5c36~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/4ae2bc60b23af21339b746efc89a5c36~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生，他只做创一代",
           "sourceRank": 79,
           "value": 49730000,
           "displayValue": "4973万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7683432711033211928",
           "tags": [
             "剧情",
@@ -1731,19 +1730,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/f9e5d0087a07fc7198e5b6539610a246~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/f9e5d0087a07fc7198e5b6539610a246~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "乔家三个闺女撑起家",
           "sourceRank": 80,
           "value": 49730000,
           "displayValue": "4973万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687966129129524248",
           "tags": [
             "剧情",
@@ -1751,19 +1750,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/c6948b7e86f0866f1acc734ecdcbba7f~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/c6948b7e86f0866f1acc734ecdcbba7f~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我在诡异世界开餐馆",
           "sourceRank": 81,
           "value": 49700000,
           "displayValue": "4970万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7683930580831980568",
           "tags": [
             "脑洞",
@@ -1771,19 +1770,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/870a05091be5cb9b6c02795571dcaf33~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/870a05091be5cb9b6c02795571dcaf33~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "八零秋词",
           "sourceRank": 82,
           "value": 49690000,
           "displayValue": "4969万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688716029802859544",
           "tags": [
             "剧情",
@@ -1796,14 +1795,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "持械入宋：第一季",
           "sourceRank": 83,
           "value": 49680000,
           "displayValue": "4968万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7671966197985856536",
           "tags": [
             "脑洞",
@@ -1816,14 +1815,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重回千禧年，我发家成酒业大王",
           "sourceRank": 84,
           "value": 49630000,
           "displayValue": "4963万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688757780122962969",
           "tags": [
             "种田",
@@ -1831,19 +1830,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/38ebfb7512577b990b4cb4fb6ee52de1~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/38ebfb7512577b990b4cb4fb6ee52de1~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "亲家换锁我收回婚房",
           "sourceRank": 85,
           "value": 49490000,
           "displayValue": "4949万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7677578852524100633",
           "tags": [
             "总裁",
@@ -1855,14 +1854,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "大唐憨婿之我姐姐是太子妃第二季",
           "sourceRank": 86,
           "value": 49450000,
           "displayValue": "4945万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685328345545853976",
           "tags": [
             "宫廷",
@@ -1870,19 +1869,19 @@
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/dbfc7488b0420d95e86676c06646fdf9~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/dbfc7488b0420d95e86676c06646fdf9~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "重生七零东北，悔婚后我打猎致富乡野",
           "sourceRank": 87,
           "value": 49430000,
           "displayValue": "4943万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7672323375351467033",
           "tags": [
             "种田",
@@ -1890,19 +1889,19 @@
             "年代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/aa19bb0770d61c4bb7d1b0abf6942d5e~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/aa19bb0770d61c4bb7d1b0abf6942d5e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我叫宁宸，我自逍遥",
           "sourceRank": 88,
           "value": 49400000,
           "displayValue": "4940万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689778272762072089",
           "tags": [
             "宫廷",
@@ -1910,38 +1909,38 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/e3615e91d33279a0718f7e3b894a33e7~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/e3615e91d33279a0718f7e3b894a33e7~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "年过半百，重逢爱人",
           "sourceRank": 89,
           "value": 49400000,
           "displayValue": "4940万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680784091762920472",
           "tags": [
             "剧情",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/ffb990b1d6442c7e730c73a605ea7d9e~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/ffb990b1d6442c7e730c73a605ea7d9e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "冰海争渔王，兄弟不同船",
           "sourceRank": 90,
           "value": 49310000,
           "displayValue": "4931万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688399060264307736",
           "tags": [
             "剧情",
@@ -1953,14 +1952,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "七零团宠小福星：林小宝传3",
           "sourceRank": 91,
           "value": 49310000,
           "displayValue": "4931万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690158644737887256",
           "tags": [
             "萌宝",
@@ -1968,19 +1967,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/6e0201486a4d51a38ab546777f0a086f~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/6e0201486a4d51a38ab546777f0a086f~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "我原本只是来上班的",
           "sourceRank": 92,
           "value": 49250000,
           "displayValue": "4925万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689770547785239576",
           "tags": [
             "恋爱",
@@ -1988,19 +1987,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/2eea70d204a97b3e2a0c00c94cb2e192~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/2eea70d204a97b3e2a0c00c94cb2e192~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "奶团糖宝是锦鲤",
           "sourceRank": 93,
           "value": 49210000,
           "displayValue": "4921万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7681609760910609432",
           "tags": [
             "萌宝",
@@ -2013,14 +2012,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "七个异能儿子带我赶山，荒年致富逆袭",
           "sourceRank": 94,
           "value": 49200000,
           "displayValue": "4920万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686506541624593433",
           "tags": [
             "种田",
@@ -2033,14 +2032,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "两个儿子护我归家",
           "sourceRank": 95,
           "value": 49170000,
           "displayValue": "4917万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7679647650487995454",
           "tags": [
             "剧情",
@@ -2048,19 +2047,19 @@
             "豪门"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/f442c8d9eb01ba6a6fd09e0ff52e3bae~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/f442c8d9eb01ba6a6fd09e0ff52e3bae~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "临夏的陆凛第四季",
           "sourceRank": 96,
           "value": 49100000,
           "displayValue": "4910万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689417997735185433",
           "tags": [
             "剧情",
@@ -2073,14 +2072,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "雪疆弃祭：她嫁太子不嫁神",
           "sourceRank": 97,
           "value": 49100000,
           "displayValue": "4910万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690446236855307288",
           "tags": [
             "恋爱",
@@ -2088,19 +2087,19 @@
             "架空"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/293ca0883d6c65f6a10abb16535a273d~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/293ca0883d6c65f6a10abb16535a273d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "风过处，皆是新生",
           "sourceRank": 98,
           "value": 49070000,
           "displayValue": "4907万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690418385024207897",
           "tags": [
             "剧情",
@@ -2108,19 +2107,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/4c685929c706ac8c28869fbcf9ff6a04~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/4c685929c706ac8c28869fbcf9ff6a04~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "归墟第一季",
           "sourceRank": 99,
           "value": 49060000,
           "displayValue": "4906万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7638987534483082265",
           "tags": [
             "末世",
@@ -2133,14 +2132,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         },
         {
           "title": "十二年情，岂能论斤两",
           "sourceRank": 100,
           "value": 49050000,
           "displayValue": "4905万",
-          "format": "红果AI剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688026440381516824",
           "tags": [
             "剧情",
@@ -2153,33 +2152,34 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果AI剧榜（平台分类）"
         }
       ],
       "sourcePages": [
         {
           "url": "https://hongguoduanju.com/rank/hot-ai-drama",
-          "sha256": "f42ac0f059b09a634655922f060d7ee2e3c2902392d066cc2bba683e13292d2b",
+          "sha256": "837802aeb2d5b959bdb9ae35576719fcd56aeaa8f169d142cd2fba71a32e3459",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
-          "sha256": "0c27f9b249847175630ff7d88b481e55d34a45394668cfbfa61df3801f854c79",
+          "sha256": "4a758de713de827298043225e0631e30d71630c4874c52fbf573434c5cfe6b2b",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
-          "sha256": "4771277cd403695a153a641e328eedf523f6a9b28dbaf4c530effa46a069c742",
+          "sha256": "90a99b463961182a02194d70def71954b0ac9e603af2255a7cbb8eb92010d746",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
-          "sha256": "d32b5a67c09cb23eff357c3cc5fcf6f3f72527f8433944ea0c24f32f6d9a76ae",
+          "sha256": "e2e0d6e621f0ffc6e365f3e2a87d8e820c3dcf3cb348082b871a602abb62c26f",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
-          "sha256": "ff9491ea59380f2309c7fdd5994a09aefd79ae6b8c9c9b7a8cb7a9d79d311980",
+          "sha256": "ea7e4e0792000b1c5d76193b68931e3777241ebffef2af833f5b86cc5ecadab6",
           "count": 20
         }
       ]
@@ -2197,7 +2197,6 @@
           "sourceRank": 1,
           "value": 101560000,
           "displayValue": "10156万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690163276214176792",
           "tags": [
             "玄幻",
@@ -2205,19 +2204,19 @@
             "战斗"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/083b05acd4229e746738f2d0f4d9311a~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/083b05acd4229e746738f2d0f4d9311a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "凡人百世书第八季",
           "sourceRank": 2,
           "value": 76190000,
           "displayValue": "7619万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691717179049249854",
           "tags": [
             "玄幻",
@@ -2230,14 +2229,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重生！丑小鸭逆袭成了万人迷第三季",
           "sourceRank": 3,
           "value": 72260000,
           "displayValue": "7226万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690829699181710361",
           "tags": [
             "脑洞",
@@ -2245,19 +2244,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/b06f9573f34dd30f5e3da46c7b593c68~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/b06f9573f34dd30f5e3da46c7b593c68~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重生！丑小鸭逆袭成了万人迷第四季",
           "sourceRank": 4,
           "value": 67550000,
           "displayValue": "6755万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689844778497739800",
           "tags": [
             "脑洞",
@@ -2265,19 +2264,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/14139df26c9e4ba9900c85113dd075ff~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/14139df26c9e4ba9900c85113dd075ff~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "家有五女，穿越来的他连夜搞事业啦",
           "sourceRank": 5,
           "value": 64580000,
           "displayValue": "6458万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688646466708966462",
           "tags": [
             "剧情",
@@ -2285,38 +2284,38 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/6be6de7b80ddc5cb6df225902f3d5823~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/6be6de7b80ddc5cb6df225902f3d5823~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "帐中香",
           "sourceRank": 6,
           "value": 63400000,
           "displayValue": "6340万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685699444766952473",
           "tags": [
             "恋爱",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/dcff5f2ad83bb40ad86f8b4c8303282b~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/dcff5f2ad83bb40ad86f8b4c8303282b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "废物垫底皇子，反倒成为千古一帝第三季",
           "sourceRank": 7,
           "value": 62570000,
           "displayValue": "6257万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691978484985383960",
           "tags": [
             "脑洞",
@@ -2329,14 +2328,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "觉醒伪神：神明弃我我自为神6",
           "sourceRank": 8,
           "value": 62530000,
           "displayValue": "6253万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690409104472296510",
           "tags": [
             "脑洞",
@@ -2344,19 +2343,19 @@
             "异能"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8a13671ae4d26ab1962ad63b8356a688~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8a13671ae4d26ab1962ad63b8356a688~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "反派亲妈：反派漂亮亲妈十斤反骨第2季",
           "sourceRank": 9,
           "value": 61920000,
           "displayValue": "6192万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690413747721997336",
           "tags": [
             "萌宝",
@@ -2369,14 +2368,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "末世选择，从解析神明开始成神",
           "sourceRank": 10,
           "value": 61450000,
           "displayValue": "6145万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689759731010767896",
           "tags": [
             "末世",
@@ -2384,19 +2383,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/79ef80dda987dd9bd995d1c83765501f~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/79ef80dda987dd9bd995d1c83765501f~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "错绑良配第二季",
           "sourceRank": 11,
           "value": 60730000,
           "displayValue": "6073万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690849774521551896",
           "tags": [
             "恋爱",
@@ -2404,19 +2403,19 @@
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/dcdc50bd7cc5cb0f42657bcb8d59da90~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/dcdc50bd7cc5cb0f42657bcb8d59da90~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "人到中年，系统逼我年少轻狂",
           "sourceRank": 12,
           "value": 60400000,
           "displayValue": "6040万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690186465237535768",
           "tags": [
             "脑洞",
@@ -2429,33 +2428,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "桃源十年归，初恋变权臣",
           "sourceRank": 13,
           "value": 59820000,
           "displayValue": "5982万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688552131053227032",
           "tags": [
             "恋爱",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/ad42e52567aa88b18f775c10d8f7044d~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/ad42e52567aa88b18f775c10d8f7044d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我都元婴期了，你跟我说开学第二季",
           "sourceRank": 14,
           "value": 59790000,
           "displayValue": "5979万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690059679510055960",
           "tags": [
             "玄幻",
@@ -2468,14 +2467,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "花茶人偶苗疆少主他又争又抢第五季",
           "sourceRank": 15,
           "value": 59210000,
           "displayValue": "5921万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691984667913751576",
           "tags": [
             "脑洞",
@@ -2483,19 +2482,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/973ebdaef16f695a1be970897672584b~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/973ebdaef16f695a1be970897672584b~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "满院亲戚全是上古大妖第四季",
           "sourceRank": 16,
           "value": 59090000,
           "displayValue": "5909万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688558312157088793",
           "tags": [
             "奇幻",
@@ -2503,19 +2502,19 @@
             "年代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/1fbc591036bc1ba401e0cd2eb4b62d5e~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/1fbc591036bc1ba401e0cd2eb4b62d5e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "天道余途：苍途问道",
           "sourceRank": 17,
           "value": 58480000,
           "displayValue": "5848万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688651092246154264",
           "tags": [
             "玄幻",
@@ -2528,14 +2527,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我合成了全世界第1季",
           "sourceRank": 18,
           "value": 58470000,
           "displayValue": "5847万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689289660794670105",
           "tags": [
             "脑洞",
@@ -2547,14 +2546,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "乡下来的掌上明珠",
           "sourceRank": 19,
           "value": 58270000,
           "displayValue": "5827万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686433880127048728",
           "tags": [
             "萌宝",
@@ -2567,14 +2566,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "废物垫底皇子，反倒成为千古一帝",
           "sourceRank": 20,
           "value": 58020000,
           "displayValue": "5802万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7679411071647484953",
           "tags": [
             "脑洞",
@@ -2582,19 +2581,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/ce7e8c6aef9e39af93f2caf0082c3bf4~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/ce7e8c6aef9e39af93f2caf0082c3bf4~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "变废为宝：大佬哥哥们抢着捡垃圾第二季",
           "sourceRank": 21,
           "value": 57810000,
           "displayValue": "5781万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690928620021238808",
           "tags": [
             "脑洞",
@@ -2607,14 +2606,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "坤仪！第五季",
           "sourceRank": 22,
           "value": 57460000,
           "displayValue": "5746万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690845148736916504",
           "tags": [
             "宫廷",
@@ -2622,19 +2621,19 @@
             "架空"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/4750344cfd6fb053a9609923eeffc0e4~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/4750344cfd6fb053a9609923eeffc0e4~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "问鼎仙途：踏碎仙凡",
           "sourceRank": 23,
           "value": 57230000,
           "displayValue": "5723万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690155535936539710",
           "tags": [
             "玄幻",
@@ -2647,14 +2646,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我本是魔之阴阳魔帝",
           "sourceRank": 24,
           "value": 57210000,
           "displayValue": "5721万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687961499481934910",
           "tags": [
             "玄幻",
@@ -2662,19 +2661,19 @@
             "异界"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/3193aa9b9162ec12aba065f733878df8~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/3193aa9b9162ec12aba065f733878df8~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "游戏入侵：普攻加血一箭亿万伤屠戮神明",
           "sourceRank": 25,
           "value": 56820000,
           "displayValue": "5682万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689688591462566974",
           "tags": [
             "脑洞",
@@ -2682,19 +2681,19 @@
             "升级流"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/33dd23522dd95fefcd2b2004f75e0f25~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/33dd23522dd95fefcd2b2004f75e0f25~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我合成了全世界第2季",
           "sourceRank": 26,
           "value": 56760000,
           "displayValue": "5676万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691333725090483262",
           "tags": [
             "脑洞",
@@ -2706,33 +2705,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "糯糯下山，师兄们都慌了第四季",
           "sourceRank": 27,
           "value": 56260000,
           "displayValue": "5626万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690800298331212825",
           "tags": [
             "萌宝",
             "异界"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8f589f565efc73cf15b5326a4aea91ee~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8f589f565efc73cf15b5326a4aea91ee~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "穿成反派后娘，七个崽崽争着喊娘第二季",
           "sourceRank": 28,
           "value": 56110000,
           "displayValue": "5611万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690487981513116696",
           "tags": [
             "剧情",
@@ -2745,14 +2744,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "糯糯下山，师兄们都慌了第二季",
           "sourceRank": 29,
           "value": 56090000,
           "displayValue": "5609万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680883072278989849",
           "tags": [
             "萌宝",
@@ -2764,14 +2763,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "反派亲妈：反派漂亮亲妈十斤反骨",
           "sourceRank": 30,
           "value": 55910000,
           "displayValue": "5591万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680187265020070937",
           "tags": [
             "萌宝",
@@ -2779,38 +2778,38 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/9bf5b3c3da00452b0aac7c52221da3ac~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/9bf5b3c3da00452b0aac7c52221da3ac~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "反派拿捏！第二季",
           "sourceRank": 31,
           "value": 55850000,
           "displayValue": "5585万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690412195565276184",
           "tags": [
             "恋爱",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/912729910a4b8a4b5c122230e7ab2333~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/912729910a4b8a4b5c122230e7ab2333~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "诱情染指之黎野入怀",
           "sourceRank": 32,
           "value": 55600000,
           "displayValue": "5560万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688736152076962840",
           "tags": [
             "恋爱",
@@ -2822,14 +2821,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "聚宝仙盆之杂灵根才是真BOSS第十二季",
           "sourceRank": 33,
           "value": 55530000,
           "displayValue": "5553万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686894628578020414",
           "tags": [
             "玄幻",
@@ -2842,14 +2841,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "萌宝小熊末日超市经营",
           "sourceRank": 34,
           "value": 55460000,
           "displayValue": "5546万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690466324060851262",
           "tags": [
             "脑洞",
@@ -2857,19 +2856,19 @@
             "异能"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/6b843cd0d3d846260f75d29adbc5f26e~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/6b843cd0d3d846260f75d29adbc5f26e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "人在古代，修为金丹",
           "sourceRank": 35,
           "value": 55380000,
           "displayValue": "5538万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687955310144654360",
           "tags": [
             "玄幻",
@@ -2882,14 +2881,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "咱家剑宗团宠小师妹第五季",
           "sourceRank": 36,
           "value": 55240000,
           "displayValue": "5524万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7675288927619533886",
           "tags": [
             "萌宝",
@@ -2897,19 +2896,19 @@
             "异界"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/40c6fe1101466d93cbf562c890e16dc0~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/40c6fe1101466d93cbf562c890e16dc0~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重生！丑小鸭逆袭成了万人迷第二季",
           "sourceRank": 37,
           "value": 55080000,
           "displayValue": "5508万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685676216996596761",
           "tags": [
             "脑洞",
@@ -2917,19 +2916,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/eb3db9ee83375cf9d36b1f6f4a075354~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/eb3db9ee83375cf9d36b1f6f4a075354~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "剑神归来：我和驴子的十万年第一季",
           "sourceRank": 38,
           "value": 55080000,
           "displayValue": "5508万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685713332619201561",
           "tags": [
             "玄幻",
@@ -2937,19 +2936,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/742c77bc75609faf97d10794fd78c1eb~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/742c77bc75609faf97d10794fd78c1eb~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重生！丑小鸭逆袭成了万人迷",
           "sourceRank": 39,
           "value": 54970000,
           "displayValue": "5497万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7682645700781296665",
           "tags": [
             "脑洞",
@@ -2962,14 +2961,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "变废为宝：大佬哥哥们抢着捡垃圾",
           "sourceRank": 40,
           "value": 54800000,
           "displayValue": "5480万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7686509632155569177",
           "tags": [
             "脑洞",
@@ -2982,14 +2981,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "秦始皇：朕有华夏全明星阵容",
           "sourceRank": 41,
           "value": 54780000,
           "displayValue": "5478万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7682809595617627161",
           "tags": [
             "脑洞",
@@ -3002,14 +3001,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "攻略诡异：我有一个女鬼催眠APP",
           "sourceRank": 42,
           "value": 54750000,
           "displayValue": "5475万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690136998509546521",
           "tags": [
             "脑洞",
@@ -3022,33 +3021,33 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "糯糯下山，师兄们都慌了第三季",
           "sourceRank": 43,
           "value": 54740000,
           "displayValue": "5474万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685224734895655960",
           "tags": [
             "萌宝",
             "异界"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/6fe7b369dfa0b42b98e254fa1d1e8e23~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/6fe7b369dfa0b42b98e254fa1d1e8e23~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "贵妃将我赎身钱送乞丐，重生后我夺回一切",
           "sourceRank": 44,
           "value": 54740000,
           "displayValue": "5474万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687570310979128382",
           "tags": [
             "剧情",
@@ -3056,19 +3055,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/846be16d48afe0805b1b77be4ad7566e~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/846be16d48afe0805b1b77be4ad7566e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "大力太子妃她力能扛鼎！",
           "sourceRank": 45,
           "value": 54730000,
           "displayValue": "5473万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688613982470409278",
           "tags": [
             "剧情",
@@ -3081,14 +3080,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "大唐第一军火商",
           "sourceRank": 46,
           "value": 54590000,
           "displayValue": "5459万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691584238314867736",
           "tags": [
             "脑洞",
@@ -3096,19 +3095,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/d18d59be34879eca43eed55872934df7~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/d18d59be34879eca43eed55872934df7~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "神秘列车之异能临世第一季",
           "sourceRank": 47,
           "value": 54550000,
           "displayValue": "5455万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690205033022884889",
           "tags": [
             "脑洞",
@@ -3116,19 +3115,19 @@
             "无限流"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/8f29d2ba181fdae290b8c5720482bc83~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/8f29d2ba181fdae290b8c5720482bc83~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "帝心白月光死遁后少年暴君更疯了2",
           "sourceRank": 48,
           "value": 54520000,
           "displayValue": "5452万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690778643408112665",
           "tags": [
             "恋爱",
@@ -3136,19 +3135,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/54636ba1c088f6b79afba4551821ddd8~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/54636ba1c088f6b79afba4551821ddd8~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "冤种兄妹绑错系统爆红了第四季",
           "sourceRank": 49,
           "value": 54470000,
           "displayValue": "5447万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690854407365200958",
           "tags": [
             "脑洞",
@@ -3156,19 +3155,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/7a888fbbd2d5173b1e27f9ec07c188a2~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/7a888fbbd2d5173b1e27f9ec07c188a2~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "糯糯下山，师兄们都慌了",
           "sourceRank": 50,
           "value": 54380000,
           "displayValue": "5438万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7677801492920667198",
           "tags": [
             "萌宝",
@@ -3180,14 +3179,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "谁说没灵根不能修仙的？之无灵证道第39季",
           "sourceRank": 51,
           "value": 54310000,
           "displayValue": "5431万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690809573896113177",
           "tags": [
             "玄幻",
@@ -3195,19 +3194,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/ddf847002c424d2d652585589d898f27~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/ddf847002c424d2d652585589d898f27~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "同事请客，刷的却是我的卡",
           "sourceRank": 52,
           "value": 54310000,
           "displayValue": "5431万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689826227858721854",
           "tags": [
             "剧情",
@@ -3215,19 +3214,19 @@
             "职场"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/674339248d0bd5625fba73784c9bdec6~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/674339248d0bd5625fba73784c9bdec6~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我海洛薇兹，在韩国贵族学院假扮千金",
           "sourceRank": 53,
           "value": 54270000,
           "displayValue": "5427万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688745415595805720",
           "tags": [
             "脑洞",
@@ -3235,19 +3234,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/34ce7ebbdd392e6c8c46697d1c25e8cd~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/34ce7ebbdd392e6c8c46697d1c25e8cd~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我都元婴期了，你跟我说开学",
           "sourceRank": 54,
           "value": 54160000,
           "displayValue": "5416万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685227828454886424",
           "tags": [
             "玄幻",
@@ -3255,19 +3254,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/aa6a0eff354f3057427aa66c4fac6087~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/aa6a0eff354f3057427aa66c4fac6087~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我家山庄通异界，古代员工抢着来第一季",
           "sourceRank": 55,
           "value": 54140000,
           "displayValue": "5414万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690495711065934872",
           "tags": [
             "脑洞",
@@ -3275,19 +3274,19 @@
             "乡村"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/7055ece7ed190df3554087790eafdb32~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/7055ece7ed190df3554087790eafdb32~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "逍遥无敌九皇子第三季",
           "sourceRank": 56,
           "value": 54130000,
           "displayValue": "5413万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690893070614678552",
           "tags": [
             "脑洞",
@@ -3295,19 +3294,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/1af8793f0072b208171ba3350b6efc13~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/1af8793f0072b208171ba3350b6efc13~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "谁说纨绔不能当状元",
           "sourceRank": 57,
           "value": 54030000,
           "displayValue": "5403万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7673067074104593432",
           "tags": [
             "脑洞",
@@ -3320,14 +3319,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "末日车队，序列超凡第三季",
           "sourceRank": 58,
           "value": 54030000,
           "displayValue": "5403万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690605483639442457",
           "tags": [
             "末世",
@@ -3335,19 +3334,19 @@
             "求生"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/b4d559123747f37d141e96d615e45955~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/b4d559123747f37d141e96d615e45955~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "发配边关，罪妻开荒养出战神第十二季",
           "sourceRank": 59,
           "value": 54000000,
           "displayValue": "5400万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690478701330304024",
           "tags": [
             "种田",
@@ -3355,19 +3354,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/52a67231ed0584151fff609c942fb99a~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/52a67231ed0584151fff609c942fb99a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "天灾末世，她囤满物资后所向披靡！",
           "sourceRank": 60,
           "value": 53840000,
           "displayValue": "5384万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7682325650463542334",
           "tags": [
             "末世",
@@ -3380,14 +3379,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "全家大佬独宠小奶团第四季",
           "sourceRank": 61,
           "value": 53840000,
           "displayValue": "5384万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690948763191348248",
           "tags": [
             "萌宝",
@@ -3400,14 +3399,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "荒原求生：幼崽的植物军团",
           "sourceRank": 62,
           "value": 53800000,
           "displayValue": "5380万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690886928958229528",
           "tags": [
             "萌宝",
@@ -3415,19 +3414,19 @@
             "求生"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/a4c5dcb1b5462ec7838f6882c9ff6e52~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/a4c5dcb1b5462ec7838f6882c9ff6e52~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "谁让这个文盲修仙的第四季",
           "sourceRank": 63,
           "value": 53790000,
           "displayValue": "5379万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688372772879223870",
           "tags": [
             "玄幻",
@@ -3440,14 +3439,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "父皇别慌，福星多多来啦",
           "sourceRank": 64,
           "value": 53780000,
           "displayValue": "5378万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687932111319223320",
           "tags": [
             "萌宝",
@@ -3460,14 +3459,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "睡醒三百年，养的五只小兽全成妖祖啦",
           "sourceRank": 65,
           "value": 53570000,
           "displayValue": "5357万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7681976201933491224",
           "tags": [
             "萌宝",
@@ -3479,14 +3478,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "菊花满山开，将错就错2",
           "sourceRank": 66,
           "value": 53570000,
           "displayValue": "5357万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690478696154549272",
           "tags": [
             "恋爱",
@@ -3499,52 +3498,52 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "零号小队：北辰揽星河第七季",
           "sourceRank": 67,
           "value": 53560000,
           "displayValue": "5356万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691254875639778366",
           "tags": [
             "玄幻",
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/5a6c9fa5243467e2a4e2270d690ab681~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/5a6c9fa5243467e2a4e2270d690ab681~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "逆江湖之苍生为局",
           "sourceRank": 68,
           "value": 53520000,
           "displayValue": "5352万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7675932141238111256",
           "tags": [
             "武侠",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/5785caff1910a9f0c77a94ace019f88c~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/5785caff1910a9f0c77a94ace019f88c~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我在贵族学院伪装世家继承者",
           "sourceRank": 69,
           "value": 53510000,
           "displayValue": "5351万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688725300779174936",
           "tags": [
             "脑洞",
@@ -3552,19 +3551,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8e952276af426edc913ed6622d6ab164~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8e952276af426edc913ed6622d6ab164~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "御狐3玄凤榜首",
           "sourceRank": 70,
           "value": 53510000,
           "displayValue": "5351万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688934043496238142",
           "tags": [
             "玄幻",
@@ -3577,14 +3576,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "孤灯遇暖：把她心点亮",
           "sourceRank": 71,
           "value": 53490000,
           "displayValue": "5349万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687950663602408473",
           "tags": [
             "恋爱",
@@ -3592,19 +3591,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/4eb7583a690bf48fdceddc5d80ed1a65~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/4eb7583a690bf48fdceddc5d80ed1a65~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "车粉人狠3公路求生榜一说她要走到公路尽头",
           "sourceRank": 72,
           "value": 53460000,
           "displayValue": "5346万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691228585142537240",
           "tags": [
             "脑洞",
@@ -3612,19 +3611,19 @@
             "战斗"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/2db93e7fd611fd781b95dcb2c542c088~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/2db93e7fd611fd781b95dcb2c542c088~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "绿龙冠冕第一季",
           "sourceRank": 73,
           "value": 53450000,
           "displayValue": "5345万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687956896539495449",
           "tags": [
             "奇幻",
@@ -3637,14 +3636,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "血量亿倍增幅，被当成废物异能第八季",
           "sourceRank": 74,
           "value": 53440000,
           "displayValue": "5344万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689761249826982974",
           "tags": [
             "脑洞",
@@ -3652,19 +3651,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/64c99fa33b9770fb91b708db122aef6a~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/64c99fa33b9770fb91b708db122aef6a~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "彩虹难追",
           "sourceRank": 75,
           "value": 53310000,
           "displayValue": "5331万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689442761421884478",
           "tags": [
             "恋爱",
@@ -3672,19 +3671,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/dc917889000787eb1baa82a5a7a7ca41~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/dc917889000787eb1baa82a5a7a7ca41~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "万人迷神颜顶流只想演炮灰第二季",
           "sourceRank": 76,
           "value": 53310000,
           "displayValue": "5331万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7691681649615981593",
           "tags": [
             "脑洞",
@@ -3692,19 +3691,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/31c1bbcf37b698b6ae591be71927cbc4~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/31c1bbcf37b698b6ae591be71927cbc4~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "从杂役到符仙人第十季",
           "sourceRank": 77,
           "value": 53290000,
           "displayValue": "5329万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688394429442296857",
           "tags": [
             "玄幻",
@@ -3717,14 +3716,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "镇国驸马爷3D版第十一季",
           "sourceRank": 78,
           "value": 53260000,
           "displayValue": "5326万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689388631890349081",
           "tags": [
             "宫廷",
@@ -3737,14 +3736,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "废物垫底皇子，反倒成为千古一帝第二季",
           "sourceRank": 79,
           "value": 53260000,
           "displayValue": "5326万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7685973096800455705",
           "tags": [
             "脑洞",
@@ -3752,19 +3751,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/fe45480958cd5a85c1acb483aae75cdc~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/fe45480958cd5a85c1acb483aae75cdc~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "烛九阴第六季",
           "sourceRank": 80,
           "value": 53200000,
           "displayValue": "5320万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690113785092131865",
           "tags": [
             "剧情",
@@ -3777,14 +3776,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "总算从修仙回到都市，坏消息修为没了",
           "sourceRank": 81,
           "value": 53090000,
           "displayValue": "5309万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689373168569437209",
           "tags": [
             "脑洞",
@@ -3797,14 +3796,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "伪人降临！我是全场唯一预言家。",
           "sourceRank": 82,
           "value": 53060000,
           "displayValue": "5306万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689458194980015128",
           "tags": [
             "脑洞",
@@ -3817,14 +3816,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重回天灾前，萄萄搬空全球",
           "sourceRank": 83,
           "value": 53050000,
           "displayValue": "5305万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690056580099755070",
           "tags": [
             "末世",
@@ -3837,14 +3836,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "努力就变强的我被重生者曝光了",
           "sourceRank": 84,
           "value": 52990000,
           "displayValue": "5299万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689034548801195070",
           "tags": [
             "脑洞",
@@ -3857,14 +3856,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我，万古第一第三季",
           "sourceRank": 85,
           "value": 52950000,
           "displayValue": "5295万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690902347945364504",
           "tags": [
             "玄幻",
@@ -3877,14 +3876,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "献祭万载寿元，凡人少年踏遍诸天",
           "sourceRank": 86,
           "value": 52890000,
           "displayValue": "5289万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688983539290737688",
           "tags": [
             "玄幻",
@@ -3892,19 +3891,19 @@
             "异界"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/13f82e659308fc9fbac14fd3c8900b0d~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/13f82e659308fc9fbac14fd3c8900b0d~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "重生暴雪来临：我囤货求生",
           "sourceRank": 87,
           "value": 52850000,
           "displayValue": "5285万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7689294298486934552",
           "tags": [
             "末世",
@@ -3917,14 +3916,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "万妖图录传第十二季",
           "sourceRank": 88,
           "value": 52820000,
           "displayValue": "5282万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7681495327056071704",
           "tags": [
             "玄幻",
@@ -3932,19 +3931,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/335cde75307dedacb0e0978bf8bc3522~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/335cde75307dedacb0e0978bf8bc3522~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "谁说没灵根不能修仙的？之无灵证道第38季",
           "sourceRank": 89,
           "value": 52800000,
           "displayValue": "5280万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690560660337347609",
           "tags": [
             "玄幻",
@@ -3957,14 +3956,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "风云猎豪重生80变万元户",
           "sourceRank": 90,
           "value": 52780000,
           "displayValue": "5278万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688000142615514136",
           "tags": [
             "剧情",
@@ -3972,19 +3971,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/9e50762bc9a8195e8b858f502f10f4ba~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/9e50762bc9a8195e8b858f502f10f4ba~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "反派拿捏！",
           "sourceRank": 91,
           "value": 52760000,
           "displayValue": "5276万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7682778663716146200",
           "tags": [
             "恋爱",
@@ -3992,19 +3991,19 @@
             "都市"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/87ea5f40f25039649bb5c785bd617781~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/87ea5f40f25039649bb5c785bd617781~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "我有座小荒山靠文旅火遍全世界第四季",
           "sourceRank": 92,
           "value": 52690000,
           "displayValue": "5269万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7692007875920546841",
           "tags": [
             "脑洞",
@@ -4017,14 +4016,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "仙缘劫起：十年归尘",
           "sourceRank": 93,
           "value": 52680000,
           "displayValue": "5268万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7688329494444133438",
           "tags": [
             "玄幻",
@@ -4037,14 +4036,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "听懂物品说话，我屡破奇案",
           "sourceRank": 94,
           "value": 52680000,
           "displayValue": "5268万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687171381556956222",
           "tags": [
             "脑洞",
@@ -4057,14 +4056,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "谁让这个悍匪修仙的！第四季",
           "sourceRank": 95,
           "value": 52660000,
           "displayValue": "5266万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690866794466135102",
           "tags": [
             "玄幻",
@@ -4072,19 +4071,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/03d87521c220366af2be40075137f57e~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/03d87521c220366af2be40075137f57e~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "凡人百世书第七季",
           "sourceRank": 96,
           "value": 52660000,
           "displayValue": "5266万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687179113462778904",
           "tags": [
             "玄幻",
@@ -4092,19 +4091,19 @@
             "逆袭"
           ],
           "thumbnail": {
-            "url": "https://p6-novel.byteimg.com/novel-pic/8347968f6d26c38db7adc0a8eaa718dc~tplv-shrink:640:0.webp",
+            "url": "https://p3-novel.byteimg.com/novel-pic/8347968f6d26c38db7adc0a8eaa718dc~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "收徒就变强，我的弟子都是诸天强者第一季",
           "sourceRank": 97,
           "value": 52650000,
           "displayValue": "5265万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7692006324439092248",
           "tags": [
             "玄幻",
@@ -4112,19 +4111,19 @@
             "系统"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/167c67320e9a1196cfb08d4af1b3ee11~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/167c67320e9a1196cfb08d4af1b3ee11~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "窥见众人前程，我捡漏未来权臣",
           "sourceRank": 98,
           "value": 50450000,
           "displayValue": "5045万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7680406821131013182",
           "tags": [
             "脑洞",
@@ -4137,14 +4136,14 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "皓首问道之百岁登仙路",
           "sourceRank": 99,
           "value": 50440000,
           "displayValue": "5044万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7687907380113181721",
           "tags": [
             "玄幻",
@@ -4157,52 +4156,53 @@
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         },
         {
           "title": "逆江湖之苍生为局第六季",
           "sourceRank": 100,
           "value": 50360000,
           "displayValue": "5036万",
-          "format": "红果漫剧榜（平台分类）",
           "url": "https://hongguoduanju.com/detail?series_id=7690124635425213465",
           "tags": [
             "武侠",
             "古代"
           ],
           "thumbnail": {
-            "url": "https://p3-novel.byteimg.com/novel-pic/137fe1d2109212cc77fd4bb57dc865bd~tplv-shrink:640:0.webp",
+            "url": "https://p6-novel.byteimg.com/novel-pic/137fe1d2109212cc77fd4bb57dc865bd~tplv-shrink:640:0.webp",
             "source": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
             "checkedAt": "2026-10-05",
             "attribution": "红果公开榜单封面",
             "mode": "remote"
-          }
+          },
+          "format": "红果漫剧榜（平台分类）"
         }
       ],
       "sourcePages": [
         {
           "url": "https://hongguoduanju.com/rank/hot-comic-drama",
-          "sha256": "439876391eff78149aafdd1b91164a16c3b17b119e42b78e92ba192f40bf72b9",
+          "sha256": "d177979a15658b61a04a608fee756110f4ed55ccb91010c704fd1f9b3b94eec9",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
-          "sha256": "fc238beeb817c1bea2550c281e28e3beaa1596d5c138c907be9399c2c569e54c",
+          "sha256": "c1f70d9f47bf3e44157dd9eb679956b4fe3c9ca1df359e74f21291b77a3a42bb",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
-          "sha256": "835f099542c555a20de4f07a2b41cf560b2928728d14297d42f09e6bb2644256",
+          "sha256": "4ed7ecc96a5a9b3235d2116a047611739df6373ffe1392785431e70f81bee650",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
-          "sha256": "a66618997bf3941d8ce1e87331ac0b7cc3734988a4f4a02649521e82f15091a4",
+          "sha256": "5a32b307da41ab40b1877ad6c8ea2af86d71155758fde4e76b65be72d6b660cb",
           "count": 20
         },
         {
           "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
-          "sha256": "d4643ae1a0eff56bc9121611c01a00913308de11589d86fd733358051bb8262d",
+          "sha256": "be46fa9ba4c7a37ab9ab989e139e0bdf91ae6864d300db75a5bacca1f171fec2",
           "count": 20
         }
       ]
@@ -4217,7 +4217,7 @@
       ],
       "category": "urban",
       "tag": "逆袭",
-      "evidence": "2026-10-05 红果官方 AI 剧榜前 100 条中，39 条带“都市”标签（含分季）。都市是宽泛背景标签，不等于 39 条都属于职场剧；职场与关系抉择是本站建议验证的切口。",
+      "evidence": "2026-10-05 红果官方AI剧榜前 100 条中，39 条带“都市”标签（含分季）。标签覆盖仅说明这份榜单的题材分布，不代表该细分题材必火；创作切口为本站建议。",
       "evidenceCount": 39,
       "evidenceValue": null,
       "evidenceUnit": "榜内条目",
@@ -4249,7 +4249,7 @@
       ],
       "category": "period",
       "tag": "重生",
-      "evidence": "2026-10-05 红果官方AI剧热播榜前 100 条中，12 条带“种田”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidence": "2026-10-05 红果官方AI剧榜前 100 条中，12 条带“种田”标签（含分季）。标签覆盖仅说明这份榜单的题材分布，不代表该细分题材必火；创作切口为本站建议。",
       "evidenceCount": 12,
       "evidenceValue": null,
       "evidenceUnit": "榜内条目",
@@ -4281,7 +4281,7 @@
       ],
       "category": "family",
       "tag": "萌宝",
-      "evidence": "2026-10-05 红果官方AI剧热播榜前 100 条中，10 条带“萌宝”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidence": "2026-10-05 红果官方AI剧榜前 100 条中，10 条带“萌宝”标签（含分季）。标签覆盖仅说明这份榜单的题材分布，不代表该细分题材必火；创作切口为本站建议。",
       "evidenceCount": 10,
       "evidenceValue": null,
       "evidenceUnit": "榜内条目",
@@ -4313,7 +4313,7 @@
       ],
       "category": "cultivation",
       "tag": "升级",
-      "evidence": "2026-10-05 红果官方漫剧热播榜前 100 条中，24 条带“玄幻”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidence": "2026-10-05 红果官方漫剧榜前 100 条中，24 条带“玄幻”标签（含分季）。标签覆盖仅说明这份榜单的题材分布，不代表该细分题材必火；创作切口为本站建议。",
       "evidenceCount": 24,
       "evidenceValue": null,
       "evidenceUnit": "榜内条目",

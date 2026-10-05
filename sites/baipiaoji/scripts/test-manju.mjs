@@ -34,8 +34,8 @@ const insightData=JSON.parse(await get('manju/insights.json'));assert.equal(insi
 const ranking=await get('manju/rankings.html');assert.ok(ranking.includes('不是播放量'));assert.ok(ranking.includes('2026-08-31'));assert.ok(ranking.includes('不是实时全网排名')||ranking.includes('历史快照'));
 // Official current snapshots must not masquerade as September or monthly play totals.
 const snapshots=INSIGHTS.cohorts.filter(c=>c.metric==='snapshot_heat');assert.equal(snapshots.length,2);assert.equal(snapshots.reduce((n,c)=>n+c.records.length,0),200);
-assert.ok(ranking.includes('9 月：尚未核实'));assert.ok(ranking.includes('2026-10-05'));assert.ok(ranking.includes('官方详情'));
-for(const c of snapshots){const report=INSIGHTS.reports.find(r=>r.id===c.reportId);assert.equal(report.observedAt,'2026-10-05');assert.equal(c.records.length,100);assert.equal(new Set(c.records.map(r=>r.url)).size,100);assert.ok(ranking.includes(report.url));}
+assert.ok(ranking.includes('9 月：尚未核实'));assert.ok(ranking.includes(INSIGHTS.reviewedAt));assert.ok(ranking.includes('官方详情'));
+for(const c of snapshots){const report=INSIGHTS.reports.find(r=>r.id===c.reportId);assert.equal(report.observedAt,c.id.slice(-10));assert.equal(c.records.length,100);assert.equal(new Set(c.records.map(r=>r.url)).size,100);assert.ok(ranking.includes(report.url));}
 assert.ok(snapshots.every(c=>c.records.every(r=>r.value===Number.parseFloat(r.displayValue)*10000)),'Displayed source heat must convert without title digits');
 for(const mutate of [d=>d.cohorts[2].metric='play_increment',d=>d.cohorts[2].records[0].url='https://example.com/fake',d=>d.cohorts[2].records[0].displayValue='1万',d=>d.reports[1].observedAt='2026-09-30',d=>d.reports[1].url='https://example.com/rank/hot-ai-drama',d=>d.topics[0].sample.count=99,d=>d.cohorts[2].records[0].title='桃花簪']){const copy=structuredClone(INSIGHTS);mutate(copy);assert.throws(()=>validateInsights(copy,MANJU));}
 const markdown=await get('manju/insights.md');for(const r of INSIGHTS.reports)assert.ok(markdown.includes(r.url));assert.ok(markdown.includes('9 月覆盖'));
