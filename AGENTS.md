@@ -30,3 +30,9 @@ with genuine traffic, and report missing access or processing lag honestly.
 # Fleet account integration (2026-10-04)
 
 All new canonical fleet sites must support the shared Google registration entry. Follow `tools/fleet-account/README.md`: explicit hub consent, exact host allowlist, per-host sessions and private account routes. Include the shared module in deployment path filters and run account security/live checks. Registration does not grant paid access or subscribe users to marketing.
+
+# Default analytics (owner instruction, 2026-10-05)
+Public fleet pages start GA4 by default without a consent popup. This supersedes
+the earlier opt-in startup requirement. Preserve explicit stored opt-outs, the
+footer toggle, QA/DNT/GPC exclusions, isolated Google frame, fixed sanitized
+events and private-page exclusions. Do not restore a first-visit consent panel.
