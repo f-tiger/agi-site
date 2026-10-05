@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "AI search for every photo and every frame of video on macOS",
+      "url": "https://github.com/allenv0/SCM",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49952111",
+      "points": 149,
+      "comments": 67,
+      "found": "2026-10-05",
+      "status": "candidate"
+    },
+    {
       "name": "Offrun – manage every coding agent from one workspace",
       "url": "https://offrun.dev/",
       "host": "offrun.dev",
@@ -329,27 +339,7 @@
       "comments": 15,
       "found": "2026-08-23",
       "status": "candidate"
-    },
-    {
-      "name": "Huzzah – a novel approach to coding with AI",
-      "url": "https://www.danielvaughn.dev/posts/huzzah/",
-      "host": "danielvaughn.dev",
-      "src": "https://news.ycombinator.com/item?id=49378768",
-      "points": 225,
-      "comments": 131,
-      "found": "2026-08-21",
-      "status": "candidate"
-    },
-    {
-      "name": "I trained a 125M model to autocomplete piano on-device",
-      "url": "https://simedw.com/2026/08/20/midi-autocomplete/",
-      "host": "simedw.com",
-      "src": "https://news.ycombinator.com/item?id=49373456",
-      "points": 507,
-      "comments": 106,
-      "found": "2026-08-21",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-04"
+  "updated": "2026-10-05"
 }

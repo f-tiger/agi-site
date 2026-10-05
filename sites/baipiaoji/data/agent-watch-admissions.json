@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-04",
+ "checked": "2026-10-05",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -762,6 +762,69 @@
    "first_attempt": "2026-10-04",
    "last_attempt": "2026-10-04",
    "attemptedAt": "2026-10-04T06:17:42.048Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "shippp-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "livtakt-livtakt": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "ai-akari-one-minute-akari": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "odyssey365-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "infolang-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "dinglebear-unraid-rmcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "circulara-plugin": {
+   "attempts": 1,
+   "first_attempt": "2026-10-05",
+   "last_attempt": "2026-10-05",
+   "attemptedAt": "2026-10-05T06:14:17.704Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -7939,6 +8002,324 @@
   {
    "slug": "lumify-sports-intelligence",
    "date": "2026-10-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "maguyva-maguyva",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "justdrop-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "canvora-canvora",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cellarion-cellarion",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mitosislabs-mitosis",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "desktopcommander-remote-desktop-commander",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "noemic-noemic",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "djzs-trust-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ottodata-otto",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "everway-mcp-server",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiponge-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "voris-mcp-server",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "kavel-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "proxyllm-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "positif-positif",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chronary-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agentutility-mcp-wordmint",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cleanor-cleanor",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "xpoz-social-insights",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "flowcastle-flowcastle",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "oobeprotocol-sap-mcp-sap-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "secapi-secapi",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "remoote-remote-jobs",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "iturri-market-data",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "argushq-enforcement-database",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "dinglebear-ytdl-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-yarr-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-unifi-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-tailscale-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-synapse-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-gotify-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-cortex-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-arcane-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dinglebear-apprise-rmcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "recao-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "zimac-mnema",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "radixia-blog",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "onehaus-haus",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "superdocs-superdocs",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crawlie-crawlie",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "retrodiffusion-pixel-art",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "veecle-chiplab",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "backengine-mcp",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "knowtis-knowtis",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "callmcp-server",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "llmhosting-pricing",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "vortexiq-vortex-iq",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "creationloop-creationloop",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dsght-public",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "basethread-basethread",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "kumbuka-server",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "betterpost-server",
+   "date": "2026-10-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arpi-mcp",
+   "date": "2026-10-05",
    "source_http": 200,
    "repo_http": 200
   }

@@ -1,24 +1,24 @@
 {
- "generated": "2026-10-04",
+ "generated": "2026-10-05",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "wujie",
-  "xinghuo",
-  "yige",
-  "youdao",
-  "zhihu-zhida",
-  "kimi",
-  "feishu-miaoji",
-  "haiper"
+  "tongyi",
+  "immersive-translate",
+  "liblib",
+  "tongyi-wanxiang",
+  "consensus",
+  "wenxin",
+  "wordvice",
+  "elicit"
  ],
- "cursor": "haiper",
+ "cursor": "elicit",
  "summary": {
-  "ready": 39,
-  "empty": 34,
-  "blocked": 31,
-  "probed_total": 104
+  "ready": 40,
+  "empty": 35,
+  "blocked": 32,
+  "probed_total": 107
  },
  "tools": {
   "kimi": {
@@ -233,15 +233,15 @@
    "slug": "consensus",
    "name": "Consensus",
    "cat": "search",
-   "reach": 2,
-   "probed": "2026-09-18",
+   "reach": 4,
+   "probed": "2026-10-05",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://consensus.app/pricing",
      "status": 200,
-     "bytes": 52461,
+     "bytes": 52906,
      "tokens": 0
     },
     {
@@ -353,8 +353,8 @@
    "slug": "immersive-translate",
    "name": "沉浸式翻译",
    "cat": "writing",
-   "reach": 2,
-   "probed": "2026-09-19",
+   "reach": 6,
+   "probed": "2026-10-05",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -465,8 +465,8 @@
    "slug": "tongyi",
    "name": "通义千问",
    "cat": "chat",
-   "reach": 2,
-   "probed": "2026-09-19",
+   "reach": 8,
+   "probed": "2026-10-05",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -498,8 +498,8 @@
    "slug": "tongyi-wanxiang",
    "name": "通义万相",
    "cat": "image",
-   "reach": 2,
-   "probed": "2026-09-20",
+   "reach": 5,
+   "probed": "2026-10-05",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1381,15 +1381,15 @@
    "slug": "elicit",
    "name": "Elicit",
    "cat": "study",
-   "reach": 0,
-   "probed": "2026-09-24",
+   "reach": 3,
+   "probed": "2026-10-05",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://elicit.com/pricing",
      "status": 200,
-     "bytes": 545039,
+     "bytes": 540586,
      "tokens": 27
     }
    ],
@@ -3001,6 +3001,104 @@
     }
    ],
    "best": null
+  },
+  "liblib": {
+   "slug": "liblib",
+   "name": "LiblibAI 哩布哩布",
+   "cat": "image",
+   "reach": 6,
+   "probed": "2026-10-05",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.liblib.art/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.liblib.art/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.liblib.art/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "wenxin": {
+   "slug": "wenxin",
+   "name": "文心一言（百度）",
+   "cat": "chat",
+   "reach": 4,
+   "probed": "2026-10-05",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://yiyan.baidu.com/pricing",
+     "status": 200,
+     "bytes": 10989,
+     "tokens": 0
+    },
+    {
+     "url": "https://yiyan.baidu.com/price",
+     "status": 200,
+     "bytes": 10995,
+     "tokens": 0
+    },
+    {
+     "url": "https://yiyan.baidu.com/plans",
+     "status": 200,
+     "bytes": 11001,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://yiyan.baidu.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "wordvice": {
+   "slug": "wordvice",
+   "name": "Wordvice AI",
+   "cat": "writing",
+   "reach": 4,
+   "probed": "2026-10-05",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://wordvice.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://wordvice.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://wordvice.ai/plans",
+     "status": 200,
+     "bytes": 197837,
+     "tokens": 20
+    }
+   ],
+   "best": {
+    "url": "https://wordvice.ai/plans",
+    "tokens": 20,
+    "excerpt": "started for free with a Basic plan Free Get Started Premium Upgrade to Premium to gain access to all Wordvice AI tools. $19.95 $9.95 SAVE 50% Per month; billed annually Buy Now Premium PRO Best Value Access to all Premium AI tools. + 1,000 1,000 5,000 free credits. $29.95 $26.95 SAVE 10% Per month; billed annually Buy Now Team Plan Annual only Multiple subscriptions. Discounted pricing. One payment. $19.95 $9.95 SAVE 50% Per month; billed annually Buy Now Basic Premium Premium PRO Team Plan AI Proofreader 2 modes 4 modes 4 modes 4 modes AI Paraphraser 2 modes 5 modes 5 modes 5 modes AI Summarizer Youtube Summarizer 5 summaries/day 10 summaries/day Unlimited 10 summaries/day Website Summariaz"
+   }
   }
  }
 }
