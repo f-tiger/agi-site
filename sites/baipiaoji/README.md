@@ -27,6 +27,10 @@ npx skills@1.7.0 add https://baipiaoji.com --skill bpj-codex-efficiency --agent 
 
 [机器可读 Skill 索引](https://baipiaoji.com/.well-known/agent-skills/index.json) 发布 Lite 1.0.0。Pro 为独立的拟议 19 USDT / 30 天服务，购买以页面实时状态为准，目前保持关闭。命令复制、下载和安装测试都不是客户收入。
 
+## 访问统计
+
+2026-10-05 起，公开页面默认启动舰队共享 GA4，不显示同意弹窗。页脚可以关闭统计；已保存的拒绝选择、DNT/GPC 和 QA 排除仍然生效。部署此变更时使用带 `[deploy]` 的提交信息触发 BPJ 发布。
+
 ## 快速开始
 
 ```bash
