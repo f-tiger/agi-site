@@ -38,6 +38,11 @@ const exists = (href) => {
 
 for (const p of pages) {
   const html = readFileSync(p, 'utf8');
+  // Live launch titles/blurbs are quoted source text, not authored UI copy.
+  // Limit this exception to the radar's marked source block; still check all
+  // links, JSON-LD, translations and placeholders elsewhere on that page.
+  const uiHtml = /(?:^|\/)ai-solo\/hot\/index\.html$/.test(p)
+    ? html.replace(/<div data-source-original>[\s\S]*?<\/div>/g, '') : html;
   // build.mjs 输出的是绝对 URL（https://baipiaoji.com/...），此前只检查以 / 开头的
   // 相对链接——70,421 条里只看了 4 条，broken=0 是没看，不是没坏。
   for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
@@ -50,12 +55,12 @@ for (const p of pages) {
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { console.log('LD-ERR', p); ldErr++; }
   }
-  if (/暂无|待补|TBD|TODO|undefined|\[object /.test(html)) { console.log('PLACEHOLDER', p); placeholder++; }
+  if (/暂无|待补|TBD|TODO|undefined|\[object /.test(uiHtml)) { console.log('PLACEHOLDER', p); placeholder++; }
   // 数据里用 **…** 标重点，渲染时必须转成 <strong>。漏一处，星号就出现在页面和搜索摘要里——
   // 这个洞曾经在 43 个工具页上活了很久，加个门禁堵死。
-  if (html.includes('**')) { console.log('RAW MARKDOWN', p); md++; }
+  if (uiHtml.includes('**')) { console.log('RAW MARKDOWN', p); md++; }
   if (p.includes('/en/')) {
-    const body = html.replace(/<script[\s\S]*?<\/script>/g, '');
+    const body = uiHtml.replace(/<script[\s\S]*?<\/script>/g, '');
     const zh = (body.match(/[一-鿿]{2,}/g) || []).filter((s) => !ZH_ALLOW.has(s));
     if (zh.length) { console.log('ZH-LEAK', p, [...new Set(zh)].slice(0, 4).join(' | ')); leak++; }
   }

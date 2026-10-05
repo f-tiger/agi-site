@@ -9,6 +9,23 @@ if(root){
  function event(action){if(!allowedActions.has(action)||!canTrack())return;const body=JSON.stringify({e:'ai_solo',p:'/ai-solo/'+action+'/workspace',l:language,r:''});if(navigator.sendBeacon)navigator.sendBeacon('/api/hit',new Blob([body],{type:'application/json'}));else fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true}).catch(()=>{});if(actionNames[action])window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:actionNames[action]}}));}
  root.addEventListener('click',e=>{const a=e.target.closest('[data-solo-event]');if(a&&root.contains(a))event(a.dataset.soloEvent);});
  event('view');
+ const hot=root.querySelector('[data-solo-hot]');
+ if(hot){
+  const focus=hot.querySelector('#hot-focus'),source=hot.querySelector('#hot-source'),items=[...root.querySelectorAll('[data-hot-item]')],sections=[...root.querySelectorAll('[data-hot-section]')],count=hot.querySelector('#hot-count'),empty=hot.querySelector('#hot-empty'),params=new URLSearchParams(location.search);
+  for(const [key,field] of [['focus',focus],['source',source]])if([...field.options].some(o=>o.value===params.get(key)))field.value=params.get(key);
+  function updateHot(track=false){
+   let shown=0;
+   for(const item of items){const d=item.dataset,match=(source.value==='all'||d.hotSource===source.value)&&(focus.value==='all'||focus.value==='ai'&&d.hotAi==='1'||focus.value==='consumer'&&d.hotConsumer==='1'||focus.value==='consumer-ai'&&d.hotAi==='1'&&d.hotConsumer==='1');item.hidden=!match;if(match)shown++;}
+   for(const section of sections){section.hidden=source.value!=='all'&&source.value!==section.dataset.hotSection;section.querySelector('[data-hot-source-count]').textContent=String(section.querySelectorAll('[data-hot-item]:not([hidden])').length);}
+   count.textContent=t('显示 '+shown+' / '+items.length+' 条来源记录','Showing '+shown+' / '+items.length+' source records');count.dataset.shown=String(shown);empty.hidden=shown>0;
+   const url=new URL(location.href);url.searchParams.set('focus',focus.value);url.searchParams.set('source',source.value);history.replaceState(null,'',url);if(track)event('filter');
+  }
+  for(const field of [focus,source])field.addEventListener('change',()=>updateHot(true));
+  hot.querySelector('#hot-reset').addEventListener('click',()=>{focus.value='all';source.value='all';updateHot(true);});
+  // A stalled schedule must also look stale when the visitor opens an old build.
+  function checkHotAge(){for(const section of sections){const observed=Date.parse(section.querySelector('[data-hot-observed]').dataset.hotObserved);section.querySelector('[data-hot-stale]').hidden=Number.isFinite(observed)&&Date.now()-observed<=48*3600000;}}
+  checkHotAge();addEventListener('pageshow',checkHotAge);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkHotAge();});updateHot();
+ }
  const comparison=root.querySelector('[data-solo-compare]');
  if(comparison){
   const boxes=[...comparison.querySelectorAll('input[name="cases"]')],known=new Set(boxes.map(b=>b.value)),status=comparison.querySelector('[data-compare-status]'),share=comparison.querySelector('[data-compare-share]');

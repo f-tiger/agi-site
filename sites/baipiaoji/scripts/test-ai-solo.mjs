@@ -84,7 +84,7 @@ function assertPage(html, path, lang) {
   assert(main && visible(main).length > 900, 'Empty or thin AI Solo content: ' + path);
   if (lang === 'en') {
     // Original publisher titles and source quotations may retain their native language.
-    const withoutSources = main.replace(/<ul\b[^>]*class="solo-source-list"[^>]*>[\s\S]*?<\/ul>/gi, '');
+    const withoutSources = main.replace(/<ul\b[^>]*class="solo-source-list"[^>]*>[\s\S]*?<\/ul>/gi, '').replace(/<div data-source-original>[\s\S]*?<\/div>/g, '');
     assert(!/[\u3400-\u9fff]/u.test(visible(withoutSources)), 'Chinese fallback in English visible content: ' + path);
   }
   return main;
@@ -121,9 +121,28 @@ for (const key of ['encoder', 'decoder', 'encoderBias', 'decoderBias']) {
 }
 for (const item of expectedCases.filter(item => pending.has(item.status || item.evidenceStatus))) assert(!model.caseIds.includes(item.id), 'Pending case leaked into training: ' + item.id);
 
+const hot = JSON.parse(await get('/ai-solo-hot.json'));
+assert.equal(hot.version, 1);
+assert.equal(hot.cadence, 'daily-existing-bpj-workflow');
+assert.deepEqual(hot.sources.map(s=>s.id), ['hn','ph']);
+assert(hot.history.length <= 28, 'Unbounded launch history');
+for (const source of hot.sources) {
+  assert(['ok','error'].includes(source.status));
+  assert(source.items.length <= (source.id==='hn'?100:30));
+  if(source.status==='ok')assert(source.observedAt===source.lastAttemptAt);
+  for(const item of source.items) {
+    assert.equal(item.reviewStatus,'unreviewed');assert.equal(item.teamScope,'unknown');
+    assert(!model.caseIds.includes(item.id),'Unreviewed launches leaked into model');
+    assert(!('outcome' in item),'Launch observation must not claim a commercial verdict');
+    if(source.id==='ph')assert(item.rank===null&&item.points===null&&item.comments===null);
+    if(!item.comparisonDate)assert(item.rankChange===null&&item.pointsChange===null);
+  }
+}
+if(!live)assert.deepEqual(hot,JSON.parse(read('data/ai-solo-hot.json')),'Published launch snapshot differs from source');
+
 const sitemap = await get('/sitemap.xml');
 const llms = await get('/llms.txt');
-for (const target of ['/ai-solo/', '/en/ai-solo/', '/ai-solo/agent/', '/ai-solo/method/', '/ai-solo-cases.json']) assert(llms.includes(target), 'Missing llms discovery: ' + target);
+for (const target of ['/ai-solo/', '/en/ai-solo/', '/ai-solo/agent/', '/ai-solo/method/', '/ai-solo-cases.json', '/ai-solo/hot/', '/ai-solo-hot.json']) assert(llms.includes(target), 'Missing llms discovery: ' + target);
 for (const lang of ['zh', 'en']) {
   const prefix = lang === 'en' ? '/en' : '';
   const home = await get(prefix + '/');
@@ -131,7 +150,7 @@ for (const lang of ['zh', 'en']) {
   const journeys = JSON.parse(await get(prefix + '/site-journeys.json'));
   const searchURLs = new Set(search.map(item => item.u));
   assert.equal(journeys.language, lang, 'Wrong journey-map language');
-  for (const [id, route] of [['ai-solo', '/ai-solo/'], ['ai-solo-agent', '/ai-solo/agent/']]) {
+  for (const [id, route] of [['ai-solo-hot', '/ai-solo/hot/'], ['ai-solo', '/ai-solo/'], ['ai-solo-agent', '/ai-solo/agent/']]) {
     const item = journeys.items.find(item => item.id === id);
     assert(item && item.url === origin + prefix + route, 'Missing localized journey: ' + id + '/' + lang);
     assert.equal(item.requiresRegistration, false, 'Public AI Solo reading or consulting incorrectly gated');
@@ -139,7 +158,7 @@ for (const lang of ['zh', 'en']) {
   }
   for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
   const pages = new Map();
-  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
+  for (const leaf of ['', 'hot/', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
     const html = await get(path);
     pages.set(leaf, assertPage(html, path, lang));
