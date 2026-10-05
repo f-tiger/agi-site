@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "reviewedAt": "2026-10-04",
+  "version": 2,
+  "reviewedAt": "2026-10-05",
   "reports": [
     {
       "id": "dataeye-2026-08",
@@ -12,6 +12,54 @@
       "checkedAt": "2026-10-04",
       "method": "抖音端原生播放增量；红果免费短剧 APP 峰值热度。数值为 DataEye 报告快照，本站没有平台后台权限。",
       "scope": "原报告两份百强榜；本站选取抖音前 10 与红果前 3 作指标示例，不是实时全网排名。"
+    },
+    {
+      "id": "hongguo-ai-drama-2026-10-05",
+      "kind": "official_snapshot",
+      "publisher": "红果短剧官网 · AI剧热播榜",
+      "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+      "publishedAt": "2026-10-05",
+      "observedAt": "2026-10-05",
+      "periodStart": "2026-10-05",
+      "periodEnd": "2026-10-05",
+      "checkedAt": "2026-10-05",
+      "sourceDateLabel": "10月5日已更新",
+      "method": "页面标注基于红果内观看、互动等综合热度排序；本站读取展示热度，万换算为 10000。快照值不是播放量、月峰值或月增量，完整计算窗口未公开。",
+      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；平台分类不等于本站审计 AI 制作流程。",
+      "ownershipEvidence": [
+        {
+          "url": "https://apps.apple.com/cn/app/id6451407032",
+          "fact": "App Store 红果短剧，开发者 Beijing Bimo Liuxiang Technology Co., Ltd.，开发者网站 novelquickapp.com/hongguo。"
+        },
+        {
+          "url": "https://novelquickapp.com/hongguo",
+          "fact": "2026-10-05 公开请求跳转到 https://hongguoduanju.com/；站点公司名北京笔墨留香科技有限公司一致。"
+        }
+      ]
+    },
+    {
+      "id": "hongguo-comic-drama-2026-10-05",
+      "kind": "official_snapshot",
+      "publisher": "红果短剧官网 · 漫剧热播榜",
+      "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+      "publishedAt": "2026-10-05",
+      "observedAt": "2026-10-05",
+      "periodStart": "2026-10-05",
+      "periodEnd": "2026-10-05",
+      "checkedAt": "2026-10-05",
+      "sourceDateLabel": "10月5日已更新",
+      "method": "页面标注基于红果内观看、互动等综合热度排序；本站读取展示热度，万换算为 10000。快照值不是播放量、月峰值或月增量，完整计算窗口未公开。",
+      "scope": "公开榜单第 1—5 页，共 100 条（含分季）；平台分类不等于本站审计 AI 制作流程。",
+      "ownershipEvidence": [
+        {
+          "url": "https://apps.apple.com/cn/app/id6451407032",
+          "fact": "App Store 红果短剧，开发者 Beijing Bimo Liuxiang Technology Co., Ltd.，开发者网站 novelquickapp.com/hongguo。"
+        },
+        {
+          "url": "https://novelquickapp.com/hongguo",
+          "fact": "2026-10-05 公开请求跳转到 https://hongguoduanju.com/；站点公司名北京笔墨留香科技有限公司一致。"
+        }
+      ]
     }
   ],
   "cohorts": [
@@ -112,54 +160,2730 @@
           "format": "3D漫"
         }
       ]
+    },
+    {
+      "id": "hongguo-ai-drama-2026-10-05",
+      "platform": "红果",
+      "metric": "snapshot_heat",
+      "label": "2026-10-05 · 红果AI剧热播榜",
+      "unit": "热度值",
+      "reportId": "hongguo-ai-drama-2026-10-05",
+      "records": [
+        {
+          "title": "穿越六零之我在山洞闷声发家",
+          "sourceRank": 1,
+          "value": 70470000,
+          "displayValue": "7047万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688666572499471422",
+          "tags": [
+            "种田",
+            "穿越",
+            "异能"
+          ]
+        },
+        {
+          "title": "总裁是我前女友",
+          "sourceRank": 2,
+          "value": 66190000,
+          "displayValue": "6619万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688352674999176254",
+          "tags": [
+            "恋爱",
+            "都市",
+            "职场"
+          ]
+        },
+        {
+          "title": "重回1988，我从倒货开始养家致富",
+          "sourceRank": 3,
+          "value": 65960000,
+          "displayValue": "6596万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689393278562602009",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "大唐憨婿之我姐姐是太子妃第三季",
+          "sourceRank": 4,
+          "value": 64390000,
+          "displayValue": "6439万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689482965906099262",
+          "tags": [
+            "宫廷",
+            "古代"
+          ]
+        },
+        {
+          "title": "招惹督军，他高调求娶我为妻",
+          "sourceRank": 5,
+          "value": 62820000,
+          "displayValue": "6282万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687650704235711513",
+          "tags": [
+            "恋爱",
+            "民国",
+            "豪门"
+          ]
+        },
+        {
+          "title": "终于从修仙回到都市，坏消息修为没了",
+          "sourceRank": 6,
+          "value": 61190000,
+          "displayValue": "6119万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688564512806423576",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "结账时我摊牌了",
+          "sourceRank": 7,
+          "value": 60890000,
+          "displayValue": "6089万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688338785091718206",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "绿意萌熹：蛙系萌娃闹翻忧郁老爸",
+          "sourceRank": 8,
+          "value": 59750000,
+          "displayValue": "5975万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686812666374933566",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "我突破炼气期开始暴富",
+          "sourceRank": 9,
+          "value": 59630000,
+          "displayValue": "5963万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688604710357453886",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "绿意萌熹：蛙系萌娃闹翻忧郁老爸2",
+          "sourceRank": 10,
+          "value": 59020000,
+          "displayValue": "5902万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688726871877356606",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "重生后谁还嫁富二代",
+          "sourceRank": 11,
+          "value": 58290000,
+          "displayValue": "5829万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689448937878473753",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "夕阳红顶流，大爷大妈助我乐坛封神",
+          "sourceRank": 12,
+          "value": 58140000,
+          "displayValue": "5814万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688208873676622872",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "蒙冤二十五年，归来举世皆惊",
+          "sourceRank": 13,
+          "value": 58010000,
+          "displayValue": "5801万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7684559889913351193",
+          "tags": [
+            "剧情",
+            "都市"
+          ]
+        },
+        {
+          "title": "旧爱归零：科研大佬她不伺候了",
+          "sourceRank": 14,
+          "value": 56890000,
+          "displayValue": "5689万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689469045174701081",
+          "tags": [
+            "剧情",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "锦鲤小福星旺爆帅府，第一季",
+          "sourceRank": 15,
+          "value": 56720000,
+          "displayValue": "5672万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688355768239672344",
+          "tags": [
+            "脑洞",
+            "异能",
+            "民国"
+          ]
+        },
+        {
+          "title": "我李长生重回八零，赶山狩猎养妻女",
+          "sourceRank": 16,
+          "value": 56280000,
+          "displayValue": "5628万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686008653844859966",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "女村长带全村暴富",
+          "sourceRank": 17,
+          "value": 56200000,
+          "displayValue": "5620万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687935214999325720",
+          "tags": [
+            "种田",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "全家把我当乡下老太，都吓傻了",
+          "sourceRank": 18,
+          "value": 56140000,
+          "displayValue": "5614万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7679018384272395289",
+          "tags": [
+            "总裁",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "本王只想就藩，皇兄竟逼我造反",
+          "sourceRank": 19,
+          "value": 56060000,
+          "displayValue": "5606万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688615554227129369",
+          "tags": [
+            "宫廷",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "分家给破船，我靠赶海暴富",
+          "sourceRank": 20,
+          "value": 56040000,
+          "displayValue": "5604万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690073584227585049",
+          "tags": [
+            "脑洞",
+            "系统",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "天降萌宝：全家开启宠孙模式",
+          "sourceRank": 21,
+          "value": 55940000,
+          "displayValue": "5594万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690954939354336280",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "重生七零，我靠狩猎带全村吃饱饭",
+          "sourceRank": 22,
+          "value": 55660000,
+          "displayValue": "5566万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688634095538031641",
+          "tags": [
+            "剧情",
+            "穿越",
+            "年代"
+          ]
+        },
+        {
+          "title": "持械入宋：第六季",
+          "sourceRank": 23,
+          "value": 55410000,
+          "displayValue": "5541万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686430794469887001",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "古代"
+          ]
+        },
+        {
+          "title": "千禧赶海：我能看透整片大海",
+          "sourceRank": 24,
+          "value": 55320000,
+          "displayValue": "5532万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688263006739762200",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "儿子婚礼上，闯进来一个骑猪乞丐",
+          "sourceRank": 25,
+          "value": 55310000,
+          "displayValue": "5531万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688289287292324889",
+          "tags": [
+            "总裁",
+            "都市"
+          ]
+        },
+        {
+          "title": "七零团宠小福星：林小宝传",
+          "sourceRank": 26,
+          "value": 55220000,
+          "displayValue": "5522万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685973095064030233",
+          "tags": [
+            "萌宝",
+            "年代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "乐乐来啦之调皮乐宝大佬爹",
+          "sourceRank": 27,
+          "value": 55120000,
+          "displayValue": "5512万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686713711553170494",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "镇国杀神：从拯救落难母女开始",
+          "sourceRank": 28,
+          "value": 55040000,
+          "displayValue": "5504万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689087139169963032",
+          "tags": [
+            "男频衍生"
+          ]
+        },
+        {
+          "title": "乐乐来啦之调皮乐宝大佬爹2",
+          "sourceRank": 29,
+          "value": 54780000,
+          "displayValue": "5478万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689337594550684734",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "周扬的逆袭第一季",
+          "sourceRank": 30,
+          "value": 54510000,
+          "displayValue": "5451万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688177952311233598",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "九零带娃养龙女我能操控海洋",
+          "sourceRank": 31,
+          "value": 54380000,
+          "displayValue": "5438万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686859066873744408",
+          "tags": [
+            "脑洞",
+            "异能",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "一顿饭钱，毁了六千万合同",
+          "sourceRank": 32,
+          "value": 54350000,
+          "displayValue": "5435万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687975414706228286",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "买卖词条，打造非凡俱乐部！",
+          "sourceRank": 33,
+          "value": 54200000,
+          "displayValue": "5420万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688926316820712473",
+          "tags": [
+            "脑洞",
+            "系统",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "龙王出山，冷艳总裁爱上我",
+          "sourceRank": 34,
+          "value": 53990000,
+          "displayValue": "5399万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689076293970709529",
+          "tags": [
+            "战神",
+            "都市"
+          ]
+        },
+        {
+          "title": "中年逆袭：我靠黄金瞳改命",
+          "sourceRank": 35,
+          "value": 53980000,
+          "displayValue": "5398万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687437332563119166",
+          "tags": [
+            "脑洞",
+            "逆袭",
+            "异能"
+          ]
+        },
+        {
+          "title": "活泉福星小清清",
+          "sourceRank": 36,
+          "value": 53850000,
+          "displayValue": "5385万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687440427049307198",
+          "tags": [
+            "萌宝",
+            "逆袭",
+            "异能"
+          ]
+        },
+        {
+          "title": "烬九州：第二十八季",
+          "sourceRank": 37,
+          "value": 53810000,
+          "displayValue": "5381万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689099508306676760",
+          "tags": [
+            "剧情",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "重生八零赶海发家养妻女",
+          "sourceRank": 38,
+          "value": 53800000,
+          "displayValue": "5380万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688728419806235673",
+          "tags": [
+            "种田",
+            "穿越",
+            "年代"
+          ]
+        },
+        {
+          "title": "临夏的陆凛第一季",
+          "sourceRank": 39,
+          "value": 53730000,
+          "displayValue": "5373万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686752369610083353",
+          "tags": [
+            "剧情",
+            "年代"
+          ]
+        },
+        {
+          "title": "丈母娘的嫁妆",
+          "sourceRank": 40,
+          "value": 53590000,
+          "displayValue": "5359万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686432318419897369",
+          "tags": [
+            "总裁",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "好运柠宝，天降秦家",
+          "sourceRank": 41,
+          "value": 53570000,
+          "displayValue": "5357万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689032997055499326",
+          "tags": [
+            "萌宝",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "妹妹抢错郎，我却嫁兵王",
+          "sourceRank": 42,
+          "value": 53370000,
+          "displayValue": "5337万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688695977443593278",
+          "tags": [
+            "剧情",
+            "穿越",
+            "重生"
+          ]
+        },
+        {
+          "title": "极品四公子",
+          "sourceRank": 43,
+          "value": 53330000,
+          "displayValue": "5333万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687202316683840536",
+          "tags": [
+            "宫廷",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "纨绔下乡之顽郎亦不负流年",
+          "sourceRank": 44,
+          "value": 53200000,
+          "displayValue": "5320万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686341081675336729",
+          "tags": [
+            "奇幻",
+            "年代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "五个老铁，养出个女状元",
+          "sourceRank": 45,
+          "value": 53160000,
+          "displayValue": "5316万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688275387008158744",
+          "tags": [
+            "剧情",
+            "都市"
+          ]
+        },
+        {
+          "title": "灵犬报恩，被抛弃后赶山护妻女",
+          "sourceRank": 46,
+          "value": 53150000,
+          "displayValue": "5315万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689113403779992638",
+          "tags": [
+            "种田",
+            "异能",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "人在六零，携妹下乡！",
+          "sourceRank": 47,
+          "value": 53130000,
+          "displayValue": "5313万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686078234244434968",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "老婆把船票给白月光后悔疯了",
+          "sourceRank": 48,
+          "value": 53040000,
+          "displayValue": "5304万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686068975494499352",
+          "tags": [
+            "恋爱",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "一块槽头肉，养出个省状元",
+          "sourceRank": 49,
+          "value": 53010000,
+          "displayValue": "5301万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685980827544456254",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "冷战三年，离婚证前他跪下求复合",
+          "sourceRank": 50,
+          "value": 53000000,
+          "displayValue": "5300万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689090226655874072",
+          "tags": [
+            "恋爱",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "景城深处梨花开",
+          "sourceRank": 51,
+          "value": 52950000,
+          "displayValue": "5295万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688751589397384254",
+          "tags": [
+            "剧情",
+            "重生",
+            "年代"
+          ]
+        },
+        {
+          "title": "重生之李阳闯八零第二季",
+          "sourceRank": 52,
+          "value": 52930000,
+          "displayValue": "5293万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688756232059898904",
+          "tags": [
+            "种田",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "迟来深情皆是刃",
+          "sourceRank": 53,
+          "value": 52870000,
+          "displayValue": "5287万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7681965397683211288",
+          "tags": [
+            "恋爱",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "国庆出游不带我，我收回高档酒店",
+          "sourceRank": 54,
+          "value": 52870000,
+          "displayValue": "5287万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687868712644250686",
+          "tags": [
+            "总裁",
+            "都市"
+          ]
+        },
+        {
+          "title": "山河有约人间见",
+          "sourceRank": 55,
+          "value": 52830000,
+          "displayValue": "5283万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687610511034158105",
+          "tags": [
+            "恋爱",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "天下第一婿：屠龙少年",
+          "sourceRank": 56,
+          "value": 52710000,
+          "displayValue": "5271万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685251029729823769",
+          "tags": [
+            "玄幻",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "七零团宠小福星：林小宝传2",
+          "sourceRank": 57,
+          "value": 52680000,
+          "displayValue": "5268万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689818492488387608",
+          "tags": [
+            "日常",
+            "年代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "苏小姐高调离婚，前夫哭惨了",
+          "sourceRank": 58,
+          "value": 52660000,
+          "displayValue": "5266万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680559893509573656",
+          "tags": [
+            "总裁",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "背叛我，前夫肠子都悔青了",
+          "sourceRank": 59,
+          "value": 52650000,
+          "displayValue": "5265万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680515057255451710",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "三宝驾到，爹地退散",
+          "sourceRank": 60,
+          "value": 52590000,
+          "displayValue": "5259万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689305128502840344",
+          "tags": [
+            "剧情",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "看我赶山养家第三季两情相悦",
+          "sourceRank": 61,
+          "value": 52550000,
+          "displayValue": "5255万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7674087569709091865",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "帝龙怀珠，太子殿下千千岁",
+          "sourceRank": 62,
+          "value": 52540000,
+          "displayValue": "5254万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688731488375819326",
+          "tags": [
+            "宫廷",
+            "重生",
+            "古代"
+          ]
+        },
+        {
+          "title": "封总，太太她已读不回4",
+          "sourceRank": 63,
+          "value": 52520000,
+          "displayValue": "5252万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691641414412667966",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "我失明五年救她，离婚当天神瞳觉醒",
+          "sourceRank": 64,
+          "value": 52510000,
+          "displayValue": "5251万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687907370969615385",
+          "tags": [
+            "脑洞",
+            "逆袭",
+            "异能"
+          ]
+        },
+        {
+          "title": "重生七零东北，悔婚后我打猎致富乡野第五季",
+          "sourceRank": 65,
+          "value": 50450000,
+          "displayValue": "5045万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690402916246506520",
+          "tags": [
+            "剧情",
+            "重生",
+            "年代"
+          ]
+        },
+        {
+          "title": "烬九州：第二十七季",
+          "sourceRank": 66,
+          "value": 50420000,
+          "displayValue": "5042万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687997064214498328",
+          "tags": [
+            "剧情",
+            "古代"
+          ]
+        },
+        {
+          "title": "悔悟，我用余生偿前错",
+          "sourceRank": 67,
+          "value": 50250000,
+          "displayValue": "5025万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685690143377738776",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "重生，他只做创一代",
+          "sourceRank": 68,
+          "value": 50210000,
+          "displayValue": "5021万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7683432711033211928",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "乐乐来啦之调皮乐宝大佬爹3",
+          "sourceRank": 69,
+          "value": 50190000,
+          "displayValue": "5019万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7692332588853120024",
+          "tags": [
+            "日常",
+            "萌系",
+            "都市"
+          ]
+        },
+        {
+          "title": "年过半百，重逢爱人",
+          "sourceRank": 70,
+          "value": 50190000,
+          "displayValue": "5019万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680784091762920472",
+          "tags": [
+            "剧情",
+            "都市"
+          ]
+        },
+        {
+          "title": "租个女婿回村见父母",
+          "sourceRank": 71,
+          "value": 50160000,
+          "displayValue": "5016万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689128867755199512",
+          "tags": [
+            "恋爱",
+            "乡村"
+          ]
+        },
+        {
+          "title": "重生70：先把空间抢到手",
+          "sourceRank": 72,
+          "value": 50140000,
+          "displayValue": "5014万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689376280923343934",
+          "tags": [
+            "剧情",
+            "重生",
+            "年代"
+          ]
+        },
+        {
+          "title": "一道划痕，满城风雨",
+          "sourceRank": 73,
+          "value": 50120000,
+          "displayValue": "5012万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688740767782669374",
+          "tags": [
+            "剧情",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "我在诡异世界开餐馆",
+          "sourceRank": 74,
+          "value": 50110000,
+          "displayValue": "5011万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7683930580831980568",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "重回千禧年，我发家成酒业大王",
+          "sourceRank": 75,
+          "value": 50050000,
+          "displayValue": "5005万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688757780122962969",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "七个异能儿子带我赶山，荒年致富逆袭",
+          "sourceRank": 76,
+          "value": 50040000,
+          "displayValue": "5004万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686506541624593433",
+          "tags": [
+            "种田",
+            "异能",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "亲家换锁我收回婚房",
+          "sourceRank": 77,
+          "value": 49920000,
+          "displayValue": "4992万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7677578852524100633",
+          "tags": [
+            "总裁",
+            "都市"
+          ]
+        },
+        {
+          "title": "妈祖给我报点，我赶海带飞全村",
+          "sourceRank": 78,
+          "value": 49910000,
+          "displayValue": "4991万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7681203098714393662",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "镇北少帅第三季",
+          "sourceRank": 79,
+          "value": 49910000,
+          "displayValue": "4991万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689830837373635608",
+          "tags": [
+            "宫廷",
+            "古代"
+          ]
+        },
+        {
+          "title": "我家小福宝是锦鲤",
+          "sourceRank": 80,
+          "value": 49900000,
+          "displayValue": "4990万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688985100343594009",
+          "tags": [
+            "萌宝",
+            "古代"
+          ]
+        },
+        {
+          "title": "八零秋词",
+          "sourceRank": 81,
+          "value": 49790000,
+          "displayValue": "4979万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688716029802859544",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "悔悟，我用余生偿前错第二季",
+          "sourceRank": 82,
+          "value": 49650000,
+          "displayValue": "4965万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688947957093108760",
+          "tags": [
+            "种田",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "萌娃兽语满级，动物园天天爆红",
+          "sourceRank": 83,
+          "value": 49640000,
+          "displayValue": "4964万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7684593899658038296",
+          "tags": [
+            "萌宝",
+            "异能",
+            "都市"
+          ]
+        },
+        {
+          "title": "错位二十载：贫民窟里的真千金",
+          "sourceRank": 84,
+          "value": 49610000,
+          "displayValue": "4961万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689846306159725592",
+          "tags": [
+            "剧情",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "持械入宋：第一季",
+          "sourceRank": 85,
+          "value": 49610000,
+          "displayValue": "4961万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7671966197985856536",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "古代"
+          ]
+        },
+        {
+          "title": "反相之地",
+          "sourceRank": 86,
+          "value": 49590000,
+          "displayValue": "4959万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7674630261790739481",
+          "tags": [
+            "恐怖",
+            "校园",
+            "都市"
+          ]
+        },
+        {
+          "title": "两个儿子护我归家",
+          "sourceRank": 87,
+          "value": 49560000,
+          "displayValue": "4956万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7679647650487995454",
+          "tags": [
+            "剧情",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "两千万试透女儿心",
+          "sourceRank": 88,
+          "value": 49550000,
+          "displayValue": "4955万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688349615841610776",
+          "tags": [
+            "剧情",
+            "都市"
+          ]
+        },
+        {
+          "title": "被休掉的竟是玄学大佬啊",
+          "sourceRank": 89,
+          "value": 49530000,
+          "displayValue": "4953万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688920120785128472",
+          "tags": [
+            "玄幻",
+            "古代"
+          ]
+        },
+        {
+          "title": "大唐憨婿之我姐姐是太子妃第二季",
+          "sourceRank": 90,
+          "value": 49490000,
+          "displayValue": "4949万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685328345545853976",
+          "tags": [
+            "宫廷",
+            "穿越",
+            "古代"
+          ]
+        },
+        {
+          "title": "牢狱蒙尘，都市起风云第一季",
+          "sourceRank": 91,
+          "value": 49450000,
+          "displayValue": "4945万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689391734379269144",
+          "tags": [
+            "战神",
+            "都市",
+            "豪门"
+          ]
+        },
+        {
+          "title": "临夏的陆凛第二季",
+          "sourceRank": 92,
+          "value": 49400000,
+          "displayValue": "4940万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687556384270847038",
+          "tags": [
+            "剧情",
+            "年代"
+          ]
+        },
+        {
+          "title": "重生七零东北，悔婚后我打猎致富乡野",
+          "sourceRank": 93,
+          "value": 49380000,
+          "displayValue": "4938万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7672323375351467033",
+          "tags": [
+            "种田",
+            "重生",
+            "年代"
+          ]
+        },
+        {
+          "title": "冰海争渔王，兄弟不同船",
+          "sourceRank": 94,
+          "value": 49370000,
+          "displayValue": "4937万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688399060264307736",
+          "tags": [
+            "剧情",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "都重生了，谁还装富二代啊第十二季",
+          "sourceRank": 95,
+          "value": 49360000,
+          "displayValue": "4936万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688692876577885209",
+          "tags": [
+            "剧情",
+            "重生",
+            "架空"
+          ]
+        },
+        {
+          "title": "乔家三个闺女撑起家",
+          "sourceRank": 96,
+          "value": 49300000,
+          "displayValue": "4930万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687966129129524248",
+          "tags": [
+            "剧情",
+            "年代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "十二年情，岂能论斤两",
+          "sourceRank": 97,
+          "value": 49260000,
+          "displayValue": "4926万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688026440381516824",
+          "tags": [
+            "剧情",
+            "逆袭",
+            "都市"
+          ]
+        },
+        {
+          "title": "杨兴重生80：十斤大米娶媳妇",
+          "sourceRank": 98,
+          "value": 49240000,
+          "displayValue": "4924万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685401001477540888",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "奶团糖宝是锦鲤",
+          "sourceRank": 99,
+          "value": 49230000,
+          "displayValue": "4923万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7681609760910609432",
+          "tags": [
+            "萌宝",
+            "古代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "归墟第一季",
+          "sourceRank": 100,
+          "value": 49200000,
+          "displayValue": "4920万",
+          "format": "红果AI剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7638987534483082265",
+          "tags": [
+            "末世",
+            "求生",
+            "都市"
+          ]
+        }
+      ],
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "6ec17e58a42786574294cf9c5803a4d5d8fb93e2f4b135593878d640c318b770",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "b28ab7acd880ff70d0653c3868499c549099acd0af5e2ddfef23cfc89c84682f",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "adfd797467b29e2a1d110c839965ab33970fd6405b0b3d026efbf7081ce8c2c6",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "b4d3ab3e58e30388e12eba1f372f8014611ab36591c67122ea369e70a59a1f6b",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "a9a38bcaa22877b3c9fcdbfff5da9a964c4e044a59174686f1ad7a575817afdf",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "id": "hongguo-comic-drama-2026-10-05",
+      "platform": "红果",
+      "metric": "snapshot_heat",
+      "label": "2026-10-05 · 红果漫剧热播榜",
+      "unit": "热度值",
+      "reportId": "hongguo-comic-drama-2026-10-05",
+      "records": [
+        {
+          "title": "万妖图录传第十三季",
+          "sourceRank": 1,
+          "value": 111210000,
+          "displayValue": "11121万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690163276214176792",
+          "tags": [
+            "玄幻",
+            "系统",
+            "战斗"
+          ]
+        },
+        {
+          "title": "重生！丑小鸭逆袭成了万人迷第三季",
+          "sourceRank": 2,
+          "value": 75420000,
+          "displayValue": "7542万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690829699181710361",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "重生！丑小鸭逆袭成了万人迷第四季",
+          "sourceRank": 3,
+          "value": 69780000,
+          "displayValue": "6978万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689844778497739800",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "家有五女，穿越来的他连夜搞事业啦",
+          "sourceRank": 4,
+          "value": 66200000,
+          "displayValue": "6620万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688646466708966462",
+          "tags": [
+            "剧情",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "觉醒伪神：神明弃我我自为神6",
+          "sourceRank": 5,
+          "value": 64930000,
+          "displayValue": "6493万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690409104472296510",
+          "tags": [
+            "脑洞",
+            "逆袭",
+            "异能"
+          ]
+        },
+        {
+          "title": "反派亲妈：反派漂亮亲妈十斤反骨第2季",
+          "sourceRank": 6,
+          "value": 64330000,
+          "displayValue": "6433万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690413747721997336",
+          "tags": [
+            "萌宝",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "帐中香",
+          "sourceRank": 7,
+          "value": 62590000,
+          "displayValue": "6259万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685699444766952473",
+          "tags": [
+            "恋爱",
+            "古代"
+          ]
+        },
+        {
+          "title": "错绑良配第二季",
+          "sourceRank": 8,
+          "value": 62030000,
+          "displayValue": "6203万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690849774521551896",
+          "tags": [
+            "恋爱",
+            "系统",
+            "古代"
+          ]
+        },
+        {
+          "title": "桃源十年归，初恋变权臣",
+          "sourceRank": 9,
+          "value": 61890000,
+          "displayValue": "6189万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688552131053227032",
+          "tags": [
+            "恋爱",
+            "古代"
+          ]
+        },
+        {
+          "title": "末世选择，从解析神明开始成神",
+          "sourceRank": 10,
+          "value": 60680000,
+          "displayValue": "6068万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689759731010767896",
+          "tags": [
+            "末世",
+            "求生",
+            "系统"
+          ]
+        },
+        {
+          "title": "满院亲戚全是上古大妖第四季",
+          "sourceRank": 11,
+          "value": 60230000,
+          "displayValue": "6023万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688558312157088793",
+          "tags": [
+            "奇幻",
+            "修真",
+            "年代"
+          ]
+        },
+        {
+          "title": "我都元婴期了，你跟我说开学第二季",
+          "sourceRank": 12,
+          "value": 60210000,
+          "displayValue": "6021万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690059679510055960",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "战斗"
+          ]
+        },
+        {
+          "title": "变废为宝：大佬哥哥们抢着捡垃圾第二季",
+          "sourceRank": 13,
+          "value": 60020000,
+          "displayValue": "6002万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690928620021238808",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "乡下来的掌上明珠",
+          "sourceRank": 14,
+          "value": 59610000,
+          "displayValue": "5961万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686433880127048728",
+          "tags": [
+            "萌宝",
+            "异能",
+            "都市"
+          ]
+        },
+        {
+          "title": "人到中年，系统逼我年少轻狂",
+          "sourceRank": 15,
+          "value": 59240000,
+          "displayValue": "5924万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690186465237535768",
+          "tags": [
+            "脑洞",
+            "逆袭",
+            "系统"
+          ]
+        },
+        {
+          "title": "废物垫底皇子，反倒成为千古一帝",
+          "sourceRank": 16,
+          "value": 58990000,
+          "displayValue": "5899万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7679411071647484953",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "我本是魔之阴阳魔帝",
+          "sourceRank": 17,
+          "value": 58340000,
+          "displayValue": "5834万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687961499481934910",
+          "tags": [
+            "玄幻",
+            "修真",
+            "异界"
+          ]
+        },
+        {
+          "title": "天道余途：苍途问道",
+          "sourceRank": 18,
+          "value": 58110000,
+          "displayValue": "5811万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688651092246154264",
+          "tags": [
+            "玄幻",
+            "逆袭",
+            "异界"
+          ]
+        },
+        {
+          "title": "废物垫底皇子，反倒成为千古一帝第三季",
+          "sourceRank": 19,
+          "value": 57830000,
+          "displayValue": "5783万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691978484985383960",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "聚宝仙盆之杂灵根才是真BOSS第十二季",
+          "sourceRank": 20,
+          "value": 57740000,
+          "displayValue": "5774万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686894628578020414",
+          "tags": [
+            "玄幻",
+            "修真",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "我合成了全世界第2季",
+          "sourceRank": 21,
+          "value": 57700000,
+          "displayValue": "5770万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691333725090483262",
+          "tags": [
+            "脑洞",
+            "架空"
+          ]
+        },
+        {
+          "title": "游戏入侵：普攻加血一箭亿万伤屠戮神明",
+          "sourceRank": 22,
+          "value": 57590000,
+          "displayValue": "5759万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689688591462566974",
+          "tags": [
+            "脑洞",
+            "重生",
+            "升级流"
+          ]
+        },
+        {
+          "title": "问鼎仙途：踏碎仙凡",
+          "sourceRank": 23,
+          "value": 57210000,
+          "displayValue": "5721万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690155535936539710",
+          "tags": [
+            "玄幻",
+            "逆袭",
+            "修真"
+          ]
+        },
+        {
+          "title": "我合成了全世界第1季",
+          "sourceRank": 24,
+          "value": 57120000,
+          "displayValue": "5712万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689289660794670105",
+          "tags": [
+            "脑洞",
+            "架空"
+          ]
+        },
+        {
+          "title": "糯糯下山，师兄们都慌了第四季",
+          "sourceRank": 25,
+          "value": 57090000,
+          "displayValue": "5709万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690800298331212825",
+          "tags": [
+            "萌宝",
+            "异界"
+          ]
+        },
+        {
+          "title": "贵妃将我赎身钱送乞丐，重生后我夺回一切",
+          "sourceRank": 26,
+          "value": 56450000,
+          "displayValue": "5645万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687570310979128382",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "人在古代，修为金丹",
+          "sourceRank": 27,
+          "value": 56230000,
+          "displayValue": "5623万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687955310144654360",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "古代"
+          ]
+        },
+        {
+          "title": "糯糯下山，师兄们都慌了第二季",
+          "sourceRank": 28,
+          "value": 56180000,
+          "displayValue": "5618万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680883072278989849",
+          "tags": [
+            "萌宝",
+            "异界"
+          ]
+        },
+        {
+          "title": "反派拿捏！第二季",
+          "sourceRank": 29,
+          "value": 56160000,
+          "displayValue": "5616万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690412195565276184",
+          "tags": [
+            "恋爱",
+            "都市"
+          ]
+        },
+        {
+          "title": "冤种兄妹绑错系统爆红了第四季",
+          "sourceRank": 30,
+          "value": 56130000,
+          "displayValue": "5613万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690854407365200958",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "咱家剑宗团宠小师妹第五季",
+          "sourceRank": 31,
+          "value": 55960000,
+          "displayValue": "5596万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7675288927619533886",
+          "tags": [
+            "萌宝",
+            "修真",
+            "异界"
+          ]
+        },
+        {
+          "title": "零号小队：北辰揽星河第七季",
+          "sourceRank": 32,
+          "value": 55930000,
+          "displayValue": "5593万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691254875639778366",
+          "tags": [
+            "玄幻",
+            "都市"
+          ]
+        },
+        {
+          "title": "反派亲妈：反派漂亮亲妈十斤反骨",
+          "sourceRank": 33,
+          "value": 55920000,
+          "displayValue": "5592万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680187265020070937",
+          "tags": [
+            "萌宝",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "诱情染指之黎野入怀",
+          "sourceRank": 34,
+          "value": 55830000,
+          "displayValue": "5583万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688736152076962840",
+          "tags": [
+            "恋爱",
+            "都市"
+          ]
+        },
+        {
+          "title": "大力太子妃她力能扛鼎！",
+          "sourceRank": 35,
+          "value": 55790000,
+          "displayValue": "5579万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688613982470409278",
+          "tags": [
+            "剧情",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "穿成反派后娘，七个崽崽争着喊娘第二季",
+          "sourceRank": 36,
+          "value": 55740000,
+          "displayValue": "5574万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690487981513116696",
+          "tags": [
+            "剧情",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "谁说没灵根不能修仙的？之无灵证道第39季",
+          "sourceRank": 37,
+          "value": 55580000,
+          "displayValue": "5558万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690809573896113177",
+          "tags": [
+            "玄幻",
+            "修真",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "剑神归来：我和驴子的十万年第一季",
+          "sourceRank": 38,
+          "value": 55570000,
+          "displayValue": "5557万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685713332619201561",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "逍遥无敌九皇子第三季",
+          "sourceRank": 39,
+          "value": 55310000,
+          "displayValue": "5531万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690893070614678552",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "变废为宝：大佬哥哥们抢着捡垃圾",
+          "sourceRank": 40,
+          "value": 55260000,
+          "displayValue": "5526万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7686509632155569177",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "重生！丑小鸭逆袭成了万人迷第二季",
+          "sourceRank": 41,
+          "value": 55110000,
+          "displayValue": "5511万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685676216996596761",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "糯糯下山，师兄们都慌了第三季",
+          "sourceRank": 42,
+          "value": 55010000,
+          "displayValue": "5501万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685224734895655960",
+          "tags": [
+            "萌宝",
+            "异界"
+          ]
+        },
+        {
+          "title": "萌宝小熊末日超市经营",
+          "sourceRank": 43,
+          "value": 54980000,
+          "displayValue": "5498万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690466324060851262",
+          "tags": [
+            "脑洞",
+            "系统",
+            "异能"
+          ]
+        },
+        {
+          "title": "谁让这个文盲修仙的第四季",
+          "sourceRank": 44,
+          "value": 54910000,
+          "displayValue": "5491万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688372772879223870",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "修真"
+          ]
+        },
+        {
+          "title": "我在贵族学院伪装世家继承者",
+          "sourceRank": 45,
+          "value": 54850000,
+          "displayValue": "5485万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688725300779174936",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "帝心白月光死遁后少年暴君更疯了2",
+          "sourceRank": 46,
+          "value": 54810000,
+          "displayValue": "5481万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690778643408112665",
+          "tags": [
+            "恋爱",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "全家大佬独宠小奶团第四季",
+          "sourceRank": 47,
+          "value": 54780000,
+          "displayValue": "5478万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690948763191348248",
+          "tags": [
+            "萌宝",
+            "异能",
+            "萌系"
+          ]
+        },
+        {
+          "title": "绿龙冠冕第一季",
+          "sourceRank": 48,
+          "value": 54750000,
+          "displayValue": "5475万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687956896539495449",
+          "tags": [
+            "奇幻",
+            "穿越",
+            "异界"
+          ]
+        },
+        {
+          "title": "糯糯下山，师兄们都慌了",
+          "sourceRank": 49,
+          "value": 54640000,
+          "displayValue": "5464万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7677801492920667198",
+          "tags": [
+            "萌宝",
+            "异界"
+          ]
+        },
+        {
+          "title": "发配边关，罪妻开荒养出战神第十二季",
+          "sourceRank": 50,
+          "value": 54570000,
+          "displayValue": "5457万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690478701330304024",
+          "tags": [
+            "种田",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "大唐第一军火商",
+          "sourceRank": 51,
+          "value": 54540000,
+          "displayValue": "5454万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691584238314867736",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "重生！丑小鸭逆袭成了万人迷",
+          "sourceRank": 52,
+          "value": 54520000,
+          "displayValue": "5452万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7682645700781296665",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "我海洛薇兹，在韩国贵族学院假扮千金",
+          "sourceRank": 53,
+          "value": 54500000,
+          "displayValue": "5450万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688745415595805720",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "车粉人狠3公路求生榜一说她要走到公路尽头",
+          "sourceRank": 54,
+          "value": 54380000,
+          "displayValue": "5438万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691228585142537240",
+          "tags": [
+            "脑洞",
+            "重生",
+            "战斗"
+          ]
+        },
+        {
+          "title": "我，万古第一第三季",
+          "sourceRank": 55,
+          "value": 54370000,
+          "displayValue": "5437万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690902347945364504",
+          "tags": [
+            "玄幻",
+            "修真",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "谁说纨绔不能当状元",
+          "sourceRank": 56,
+          "value": 54320000,
+          "displayValue": "5432万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7673067074104593432",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "御狐3玄凤榜首",
+          "sourceRank": 57,
+          "value": 54280000,
+          "displayValue": "5428万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688934043496238142",
+          "tags": [
+            "玄幻",
+            "逆袭",
+            "异界"
+          ]
+        },
+        {
+          "title": "攻略诡异：我有一个女鬼催眠APP",
+          "sourceRank": 58,
+          "value": 54210000,
+          "displayValue": "5421万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690136998509546521",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "异界"
+          ]
+        },
+        {
+          "title": "我都元婴期了，你跟我说开学",
+          "sourceRank": 59,
+          "value": 54150000,
+          "displayValue": "5415万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685227828454886424",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "都市"
+          ]
+        },
+        {
+          "title": "我家山庄通异界，古代员工抢着来第一季",
+          "sourceRank": 60,
+          "value": 54060000,
+          "displayValue": "5406万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690495711065934872",
+          "tags": [
+            "脑洞",
+            "系统",
+            "乡村"
+          ]
+        },
+        {
+          "title": "血量亿倍增幅，被当成废物异能第八季",
+          "sourceRank": 61,
+          "value": 53960000,
+          "displayValue": "5396万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689761249826982974",
+          "tags": [
+            "脑洞",
+            "异能",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "秦始皇：朕有华夏全明星阵容",
+          "sourceRank": 62,
+          "value": 53950000,
+          "displayValue": "5395万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7682809595617627161",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "古代"
+          ]
+        },
+        {
+          "title": "天灾末世，她囤满物资后所向披靡！",
+          "sourceRank": 63,
+          "value": 53880000,
+          "displayValue": "5388万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7682325650463542334",
+          "tags": [
+            "末世",
+            "重生",
+            "囤物资"
+          ]
+        },
+        {
+          "title": "一梦青玄，团宠小师妹一剑毁天灭地第六季",
+          "sourceRank": 64,
+          "value": 53870000,
+          "displayValue": "5387万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689374703357545497",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "战斗"
+          ]
+        },
+        {
+          "title": "镇国驸马爷3D版第十一季",
+          "sourceRank": 65,
+          "value": 53870000,
+          "displayValue": "5387万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689388631890349081",
+          "tags": [
+            "宫廷",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "同事请客，刷的却是我的卡",
+          "sourceRank": 66,
+          "value": 53810000,
+          "displayValue": "5381万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689826227858721854",
+          "tags": [
+            "剧情",
+            "都市",
+            "职场"
+          ]
+        },
+        {
+          "title": "烛九阴第六季",
+          "sourceRank": 67,
+          "value": 53700000,
+          "displayValue": "5370万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690113785092131865",
+          "tags": [
+            "剧情",
+            "古代",
+            "乡村"
+          ]
+        },
+        {
+          "title": "荒原求生：幼崽的植物军团",
+          "sourceRank": 68,
+          "value": 53670000,
+          "displayValue": "5367万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690886928958229528",
+          "tags": [
+            "萌宝",
+            "穿越",
+            "求生"
+          ]
+        },
+        {
+          "title": "睡醒三百年，养的五只小兽全成妖祖啦",
+          "sourceRank": 69,
+          "value": 53650000,
+          "displayValue": "5365万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7681976201933491224",
+          "tags": [
+            "萌宝",
+            "异界"
+          ]
+        },
+        {
+          "title": "谁说没灵根不能修仙的？之无灵证道第38季",
+          "sourceRank": 70,
+          "value": 53640000,
+          "displayValue": "5364万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690560660337347609",
+          "tags": [
+            "玄幻",
+            "逆袭",
+            "修真"
+          ]
+        },
+        {
+          "title": "逆江湖之苍生为局",
+          "sourceRank": 71,
+          "value": 53590000,
+          "displayValue": "5359万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7675932141238111256",
+          "tags": [
+            "武侠",
+            "古代"
+          ]
+        },
+        {
+          "title": "菊花满山开，将错就错2",
+          "sourceRank": 72,
+          "value": 53570000,
+          "displayValue": "5357万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690478696154549272",
+          "tags": [
+            "恋爱",
+            "重生",
+            "古代"
+          ]
+        },
+        {
+          "title": "废物垫底皇子，反倒成为千古一帝第二季",
+          "sourceRank": 73,
+          "value": 53510000,
+          "displayValue": "5351万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7685973096800455705",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "从杂役到符仙人第十季",
+          "sourceRank": 74,
+          "value": 53450000,
+          "displayValue": "5345万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688394429442296857",
+          "tags": [
+            "玄幻",
+            "修真",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "凡人百世书第七季",
+          "sourceRank": 75,
+          "value": 53410000,
+          "displayValue": "5341万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687179113462778904",
+          "tags": [
+            "玄幻",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "父皇别慌，福星多多来啦",
+          "sourceRank": 76,
+          "value": 53350000,
+          "displayValue": "5335万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687932111319223320",
+          "tags": [
+            "萌宝",
+            "异能",
+            "古代"
+          ]
+        },
+        {
+          "title": "谁让这个悍匪修仙的！第四季",
+          "sourceRank": 77,
+          "value": 53290000,
+          "displayValue": "5329万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690866794466135102",
+          "tags": [
+            "玄幻",
+            "修真",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "听懂物品说话，我屡破奇案",
+          "sourceRank": 78,
+          "value": 53290000,
+          "displayValue": "5329万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687171381556956222",
+          "tags": [
+            "脑洞",
+            "异能",
+            "都市"
+          ]
+        },
+        {
+          "title": "孤灯遇暖：把她心点亮",
+          "sourceRank": 79,
+          "value": 53290000,
+          "displayValue": "5329万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687950663602408473",
+          "tags": [
+            "恋爱",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "全班穿越洪荒，你们天仙我圣人第二季",
+          "sourceRank": 80,
+          "value": 53280000,
+          "displayValue": "5328万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7691253328239397950",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "神秘列车之异能临世第一季",
+          "sourceRank": 81,
+          "value": 53170000,
+          "displayValue": "5317万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690205033022884889",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "无限流"
+          ]
+        },
+        {
+          "title": "重生暴雪来临：我囤货求生",
+          "sourceRank": 82,
+          "value": 53160000,
+          "displayValue": "5316万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689294298486934552",
+          "tags": [
+            "末世",
+            "重生",
+            "囤物资"
+          ]
+        },
+        {
+          "title": "努力就变强的我被重生者曝光了",
+          "sourceRank": 83,
+          "value": 53140000,
+          "displayValue": "5314万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689034548801195070",
+          "tags": [
+            "脑洞",
+            "重生",
+            "系统"
+          ]
+        },
+        {
+          "title": "风云猎豪重生80变万元户",
+          "sourceRank": 84,
+          "value": 53070000,
+          "displayValue": "5307万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688000142615514136",
+          "tags": [
+            "剧情",
+            "重生",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "捕鱼大亨，从小渔村开始",
+          "sourceRank": 85,
+          "value": 53030000,
+          "displayValue": "5303万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687590424415849497",
+          "tags": [
+            "种田",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "皓首问道之百岁登仙路",
+          "sourceRank": 86,
+          "value": 53020000,
+          "displayValue": "5302万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7687907380113181721",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "修真"
+          ]
+        },
+        {
+          "title": "彩虹难追",
+          "sourceRank": 87,
+          "value": 52990000,
+          "displayValue": "5299万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689442761421884478",
+          "tags": [
+            "恋爱",
+            "校园",
+            "都市"
+          ]
+        },
+        {
+          "title": "重回天灾前，萄萄搬空全球",
+          "sourceRank": 88,
+          "value": 52980000,
+          "displayValue": "5298万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690056580099755070",
+          "tags": [
+            "末世",
+            "重生",
+            "囤物资"
+          ]
+        },
+        {
+          "title": "伪人降临！我是全场唯一预言家。",
+          "sourceRank": 89,
+          "value": 52980000,
+          "displayValue": "5298万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689458194980015128",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "万妖图录传第十二季",
+          "sourceRank": 90,
+          "value": 52970000,
+          "displayValue": "5297万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7681495327056071704",
+          "tags": [
+            "玄幻",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "仙缘劫起：十年归尘",
+          "sourceRank": 91,
+          "value": 52920000,
+          "displayValue": "5292万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688329494444133438",
+          "tags": [
+            "玄幻",
+            "豪门",
+            "都市"
+          ]
+        },
+        {
+          "title": "总算从修仙回到都市，坏消息修为没了",
+          "sourceRank": 92,
+          "value": 52910000,
+          "displayValue": "5291万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689373168569437209",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "逆袭"
+          ]
+        },
+        {
+          "title": "读心吃瓜我在古代主持正义",
+          "sourceRank": 93,
+          "value": 52820000,
+          "displayValue": "5282万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7689450487975775256",
+          "tags": [
+            "脑洞",
+            "异能",
+            "古代"
+          ]
+        },
+        {
+          "title": "逆江湖之苍生为局第六季",
+          "sourceRank": 94,
+          "value": 52790000,
+          "displayValue": "5279万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690124635425213465",
+          "tags": [
+            "武侠",
+            "古代"
+          ]
+        },
+        {
+          "title": "反派拿捏！",
+          "sourceRank": 95,
+          "value": 52790000,
+          "displayValue": "5279万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7682778663716146200",
+          "tags": [
+            "恋爱",
+            "穿越",
+            "都市"
+          ]
+        },
+        {
+          "title": "神女渡众生乱世赐粮安万民第七季",
+          "sourceRank": 96,
+          "value": 52780000,
+          "displayValue": "5278万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690888441449417752",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "系统"
+          ]
+        },
+        {
+          "title": "飞鱼盛夏第二季",
+          "sourceRank": 97,
+          "value": 52710000,
+          "displayValue": "5271万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688300117102693438",
+          "tags": [
+            "青春",
+            "校园",
+            "都市"
+          ]
+        },
+        {
+          "title": "献祭万载寿元，凡人少年踏遍诸天",
+          "sourceRank": 98,
+          "value": 52640000,
+          "displayValue": "5264万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7688983539290737688",
+          "tags": [
+            "玄幻",
+            "系统",
+            "异界"
+          ]
+        },
+        {
+          "title": "末日宿舍求生：从刷广告开始变强3",
+          "sourceRank": 99,
+          "value": 52620000,
+          "displayValue": "5262万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7690470964605226008",
+          "tags": [
+            "脑洞",
+            "穿越",
+            "求生"
+          ]
+        },
+        {
+          "title": "窥见众人前程，我捡漏未来权臣",
+          "sourceRank": 100,
+          "value": 52510000,
+          "displayValue": "5251万",
+          "format": "红果漫剧榜（平台分类）",
+          "url": "https://hongguoduanju.com/detail?series_id=7680406821131013182",
+          "tags": [
+            "脑洞",
+            "异能",
+            "逆袭"
+          ]
+        }
+      ],
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "c92322f6ff865e2ce7dd9dce23f8d96cedfa13fcf3b9302e7c3ae6994b402d78",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "ec40fa5ece37ea8895936a336b3428a29b592bf8670cbeacb1d8cffac43c7b13",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "552ea97ac3da56ad6fdca53b6800f8ce05097f5dbf214dfd440b5f078d0de1e5",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "4731d968ab6c281ce3618bee2dc622f30aa163f1185e9bfa5c0d84fe355c574a",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "e4ad12c57b3fe7dfc6abddf37358cd11dc1f0e40a976dc9ac90fdfa7428619fd",
+          "count": 20
+        }
+      ]
     }
   ],
   "topics": [
     {
-      "id": "mountain",
-      "title": "年代赶山与家庭重建",
+      "id": "urban",
+      "title": "都市职场与关系抉择",
       "platforms": [
-        "douyin"
+        "hongguo"
+      ],
+      "category": "urban",
+      "tag": "逆袭",
+      "evidence": "2026-10-05 红果官方 AI 剧榜前 100 条中，39 条带“都市”标签（含分季）。都市是宽泛背景标签，不等于 39 条都属于职场剧；职场与关系抉择是本站建议验证的切口。",
+      "evidenceCount": 39,
+      "evidenceValue": null,
+      "evidenceUnit": "榜内条目",
+      "examples": [
+        "总裁是我前女友",
+        "结账时我摊牌了",
+        "绿意萌熹：蛙系萌娃闹翻忧郁老爸"
+      ],
+      "production": "interior",
+      "audience": "family",
+      "strength": "城市生活与工作关系可用少量室内场景测试人物目标、对白和抉择；先围绕一个清楚的冲突制作样片。",
+      "tradeoff": "都市标签宽泛，不能推断某个细分情节必火。少场景依然依赖表情、声音与人物一致性；避免照搬案例情节。",
+      "originalConcept": "一位夜班维修员和即将退休的调度员合作，赶在老社区电梯改造前找回居民遗失的维修记录，也重新商量各自的工作价值。",
+      "hook": "验收前一天，唯一能证明故障规律的记录本被当成废纸卖掉了。",
+      "test": "用同一组原创角色测试两个 30 秒开场：限时任务与人物分歧；同渠道比较有效观看和用户能否复述矛盾。",
+      "reportId": "hongguo-ai-drama-2026-10-05",
+      "sample": {
+        "cohortId": "hongguo-ai-drama-2026-10-05",
+        "tag": "都市",
+        "denominator": 100,
+        "count": 39
+      }
+    },
+    {
+      "id": "mountain",
+      "title": "种田经营与家庭重建",
+      "platforms": [
+        "hongguo"
       ],
       "category": "period",
       "tag": "重生",
-      "evidence": "报告列出的赶山赶海／山猎题材共有 4 部上榜，8 月合计播放增量约 23.89 亿。",
-      "evidenceCount": 4,
-      "evidenceValue": 2389000000,
-      "evidenceUnit": "次播放增量",
+      "evidence": "2026-10-05 红果官方AI剧热播榜前 100 条中，13 条带“种田”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidenceCount": 13,
+      "evidenceValue": null,
+      "evidenceUnit": "榜内条目",
       "examples": [
-        "1977山猎重生，我以余生偿前错",
-        "重回八零，赶山狩猎养妻女",
-        "重生六七：赶山狩猎养全家",
-        "山王传奇"
+        "穿越六零之我在山洞闷声发家",
+        "重回1988，我从倒货开始养家致富",
+        "我李长生重回八零，赶山狩猎养妻女"
       ],
       "production": "outdoor",
       "audience": "family",
       "strength": "劳动、经营和家人关系可以形成连续目标；时代背景提供稳定的视觉主题。",
-      "tradeoff": "动物、山林和时代服饰增加一致性要求。上榜作品的成绩不代表新剧的成功率。",
+      "tradeoff": "种田经营不都发生在山林；按具体场景验证服饰、生产道具和环境一致性。榜内分季和既有 IP 会影响样本，不代表新剧成功率。",
       "originalConcept": "一名返乡测绘员重开祖辈的山货合作社，用村民各自的专长解决交货难题。",
       "hook": "第一批订单即将到期，旧地图上的运输路却已经消失。",
       "test": "先做一段交货受阻的短样片，对比“生计悬念”和“家人关系”两个开场，记录相同渠道的有效观看与到站。",
-      "reportId": "dataeye-2026-08"
+      "reportId": "hongguo-ai-drama-2026-10-05",
+      "sample": {
+        "cohortId": "hongguo-ai-drama-2026-10-05",
+        "tag": "种田",
+        "denominator": 100,
+        "count": 13
+      }
     },
     {
       "id": "child",
       "title": "萌宝与群像守护",
       "platforms": [
-        "douyin",
         "hongguo"
       ],
       "category": "family",
       "tag": "萌宝",
-      "evidence": "抖音百强榜的萌宝题材 4 部，8 月合计播放增量约 21.23 亿；此为报告列出的题材小组。",
-      "evidenceCount": 4,
-      "evidenceValue": 2123000000,
-      "evidenceUnit": "次播放增量",
+      "evidence": "2026-10-05 红果官方AI剧热播榜前 100 条中，11 条带“萌宝”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidenceCount": 11,
+      "evidenceValue": null,
+      "evidenceUnit": "榜内条目",
       "examples": [
-        "福宝治愈全世界，家有萌娃岁岁安",
-        "沉渊三年：老槐树下的传家宝",
-        "福宝花卷致富：我的小吃店通古今",
-        "满宝进山闻香，山货全归我家"
+        "绿意萌熹：蛙系萌娃闹翻忧郁老爸",
+        "绿意萌熹：蛙系萌娃闹翻忧郁老爸2",
+        "天降萌宝：全家开启宠孙模式"
       ],
       "production": "characters",
       "audience": "warm",
@@ -168,7 +2892,45 @@
       "originalConcept": "爱收集声音的小孩帮助邻居修复社区广播站，每段旧录音都连着一位居民未说完的故事。",
       "hook": "一盘没有署名的录音，叫出了街上所有人早已忘记的名字。",
       "test": "先验证儿童和成人同框、口型与声线的一致性，再对比“温暖关系”与“录音悬念”两个开场。",
-      "reportId": "dataeye-2026-08"
+      "reportId": "hongguo-ai-drama-2026-10-05",
+      "sample": {
+        "cohortId": "hongguo-ai-drama-2026-10-05",
+        "tag": "萌宝",
+        "denominator": 100,
+        "count": 11
+      }
+    },
+    {
+      "id": "cultivation",
+      "title": "玄幻修仙与系列成长",
+      "platforms": [
+        "hongguo"
+      ],
+      "category": "cultivation",
+      "tag": "升级",
+      "evidence": "2026-10-05 红果官方漫剧热播榜前 100 条中，24 条带“玄幻”标签（含分季）。这是榜内样本计数，不是播放量或全市场份额；多标签有交叉。",
+      "evidenceCount": 24,
+      "evidenceValue": null,
+      "evidenceUnit": "榜内条目",
+      "examples": [
+        "万妖图录传第十三季",
+        "我都元婴期了，你跟我说开学第二季",
+        "我本是魔之阴阳魔帝"
+      ],
+      "production": "effects",
+      "audience": "adventure",
+      "strength": "成长规则和阶段目标适合连载，原创世界观有利于积累长期角色资产。",
+      "tradeoff": "多季头部 IP 自带观众基础，不能等同新 IP 冷启动表现；战斗、特效和复杂场景增加制作难度。",
+      "originalConcept": "一个只能修复器物的学徒进入逐渐失去灵力的城镇，以解决普通人的生活困难寻找力量衰退的原因。",
+      "hook": "全城法器同时失灵，只有一盏没有灵石的旧灯仍然亮着。",
+      "test": "先测试同一角色跨场景、器物交互和一段动作镜头，验证资产一致性后再扩展世界观。",
+      "reportId": "hongguo-comic-drama-2026-10-05",
+      "sample": {
+        "cohortId": "hongguo-comic-drama-2026-10-05",
+        "tag": "玄幻",
+        "denominator": 100,
+        "count": 24
+      }
     },
     {
       "id": "family",
@@ -194,32 +2956,6 @@
       "originalConcept": "一家社区修理铺接到一台父亲留下的收音机维修单，成年子女在交付期限内重新分担照护责任。",
       "hook": "客人要求修好收音机，却坚持不能听里面的最后一段录音。",
       "test": "用同一室内场景制作两个 30 秒开场，控制人物数量，对比观众能否说清矛盾和继续观看的理由。",
-      "reportId": "dataeye-2026-08"
-    },
-    {
-      "id": "cultivation",
-      "title": "玄幻修仙与系列成长",
-      "platforms": [
-        "hongguo"
-      ],
-      "category": "cultivation",
-      "tag": "升级",
-      "evidence": "红果 8 月前三名为《万妖图录传》第十一、十季及《咱家剑宗团宠小师妹》第三季，峰值热度分别为 1.25 亿、1.17 亿和 1.15 亿。三季只涉及两个系列 IP。",
-      "evidenceCount": null,
-      "evidenceValue": null,
-      "evidenceUnit": null,
-      "examples": [
-        "万妖图录传第十一季",
-        "万妖图录传第十季",
-        "咱家剑宗团宠小师妹第三季"
-      ],
-      "production": "effects",
-      "audience": "adventure",
-      "strength": "成长规则和阶段目标适合连载，原创世界观有利于积累长期角色资产。",
-      "tradeoff": "多季头部 IP 自带观众基础，不能等同新 IP 冷启动表现；战斗、特效和复杂场景增加制作难度。",
-      "originalConcept": "一个只能修复器物的学徒进入逐渐失去灵力的城镇，以解决普通人的生活困难寻找力量衰退的原因。",
-      "hook": "全城法器同时失灵，只有一盏没有灵石的旧灯仍然亮着。",
-      "test": "先测试同一角色跨场景、器物交互和一段动作镜头，验证资产一致性后再扩展世界观。",
       "reportId": "dataeye-2026-08"
     }
   ],
@@ -435,5 +3171,10 @@
       "basis": "依据第三方剧情资料撰写的短概述，未经官方剧情核验；不是全片观后评价。"
     }
   ],
-  "notice": "历史公开报告快照；播放次数不是人数、收入或版权认证。报告榜单不代表全市场，本站目录数量不代表题材需求。选题建议为编辑判断与原创构思，不是爆款预测。"
+  "notice": "带日期的红果官方榜单快照与 DataEye 历史报告分开展示；综合热度不是播放量，播放次数不是人数、收入或版权认证。9 月完整官方月榜尚未核实。样本计数含分季，不代表市场份额；选题建议为编辑判断与原创构思，不是爆款预测。",
+  "coverage": {
+    "september": "尚未核实可公开引用的抖音、红果 2026 年 9 月完整官方月榜；第三方日期标题和官网 sitemap 修改时间未作月榜或上线日期使用。",
+    "october": "2026-10-05 红果官方 AI 剧、漫剧热播榜各 100 条公开快照；不是 10 月完整月榜。",
+    "checkedAt": "2026-10-05"
+  }
 }
