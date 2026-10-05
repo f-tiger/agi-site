@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T13:35:49+00:00",
+ "generated": "2026-10-05T16:40:05+00:00",
  "definition": "append-only ledger (every stamped prefix still matches), reveals bind to committed digests, and each revealed line's earliest anchored version. stamped_before_close is SELF-REPORTED: our runner's stamped_at (to the second; entries without it: UTC day, same day = null) against the close time. The proof-backed bound is the Bitcoin block that attests the version (at or after the stamp, usually within hours); a line is anchored before close on the proof only when that block's time is before the close — check the block height the proof names (ots info / --ots output) against any block explorer",
  "ledger_lines": 0,
  "ledger_bytes": 0,
