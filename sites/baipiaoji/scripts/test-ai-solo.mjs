@@ -48,7 +48,14 @@ async function get(path) {
   if (!cache.has(path)) cache.set(path, (async () => {
     reads++;
     if (!live) return read('dist/' + path.replace(/^\//, '') + (path.endsWith('/') ? 'index.html' : ''));
-    const response = await fetch(origin + path, {headers: {'User-Agent': 'bpj-ci-selfcheck'}, signal: AbortSignal.timeout(25000)});
+    let response;
+    for(let attempt=0;attempt<4;attempt++) {
+      response = await fetch(origin + path, {headers: {'User-Agent': 'bpj-ci-selfcheck'}, signal: AbortSignal.timeout(25000)});
+      if(![404,502,503,504].includes(response.status)||attempt===3)break;
+      // New Pages assets can briefly lag behind the deployment receipt.
+      await response.body?.cancel();
+      await new Promise(resolve=>setTimeout(resolve,2000*2**attempt));
+    }
     assert.equal(response.status, 200, 'Public asset unavailable: ' + path);
     assert.equal(new URL(response.url).origin, origin, 'Public verification redirected off-site: ' + path);
     return response.text();

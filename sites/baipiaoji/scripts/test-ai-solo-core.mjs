@@ -190,6 +190,12 @@ if (researchPaths.every(existsSync)) {
   const realSupport = generatePlan(research, realModel, {question: '给小商家做AI客服SaaS', skill: '编程', customer: '小商家', stage: 'revenue', language: 'zh'});
   assert(realSupport.evidence.success.some(item => ['sitegpt', 'chatbase', 'docsbot', 'my-askai', 'customgpt'].includes(item.id)));
   assert(realSupport.matchedCases.every(item => !['cursor', 'bolt', 'julius-ai'].includes(item.id)));
+  for(const question of ['legal research for law firms','为律所做法律研究助手']) {
+    const legal=generatePlan(research,realModel,{question,skill:'coding',language:question.includes('律所')?'zh':'en'});
+    const ids=legal.matchedCases.map(c=>c.id);
+    assert(ids.includes('casetext')&&ids.some(id=>['ross-intelligence','donotpay'].includes(id)),'Legal guidance must include relevant positive and negative evidence');
+    assert(ids.every(id=>['casetext','harvey','ross-intelligence','donotpay'].includes(id)),'Legal-risk mentions must not admit autonomous driving or generic software cases');
+  }
   const portrait = generatePlan(research, realModel, {question: 'Sell professional portrait headshots', skill: 'design', customer: 'job seekers', language: 'en'});
   assert(portrait.evidence.failure.every(item => !['yara', 'embodied', 'cydoc'].includes(item.id)), 'Missing portrait failures must be disclosed rather than filled with unrelated company shutdowns');
   assert(!/[\u3400-\u9fff]/u.test(planMarkdown(portrait)), 'Production English Markdown must use all available translated source and metric fields');

@@ -211,6 +211,8 @@ export function retrieveCases(input, suppliedModel, query, options = {}) {
   const primaryTokens = unique(tokenize(primaryText));
   const primaryMechanisms = mechanismIDs(primaryText);
   const domainHint = Array.isArray(options.domainHint) ? options.domainHint.filter(id => DOMAIN_IDS.has(id)) : taskDomains(primaryText);
+  // A legal customer job is distinct from a generic risk/compliance mention.
+  const legalJob = /\b(?:legal (?:research|assistant|assistance|work)|law firms?|lawyers?)\b|法律研究|法律检索|法律助手|律所|律师/i.test(primaryText);
   if (!queryTokens.length && !queryMechanisms.length) return [];
   const model = currentModel(cases, suppliedModel);
   const embedding = encode(featureVector(text), model.weights);
@@ -225,7 +227,8 @@ export function retrieveCases(input, suppliedModel, query, options = {}) {
   return model.documents.flatMap((document, index) => {
     const item = byID.get(document.id);
     if (!item || !eligible(item) || options.outcome && item.outcome !== options.outcome || options.scope && item.scope !== options.scope) return [];
-    if (domainHint.length && !domainHint.some(id => document.mechanisms.includes(id))) return [];
+    if (legalJob && !/\b(?:legal|lawyers?)\b|法律|律所|律师/i.test([item.category,item.categoryEn,item.summary,item.summaryEn].join(' '))) return [];
+    if (!legalJob && domainHint.length && !domainHint.some(id => document.mechanisms.includes(id))) return [];
     const tokens = new Set(document.tokens);
     const matchedTokens = queryTokens.filter(token => tokens.has(token));
     const matchedMechanisms = queryMechanisms.filter(id => document.mechanisms.includes(id));
@@ -236,7 +239,7 @@ export function retrieveCases(input, suppliedModel, query, options = {}) {
     const lexicalScore = .8 * primaryLexical + .2 * contextLexical;
     const contextMechanism = queryMechanisms.length ? matchedMechanisms.length / queryMechanisms.length : 0;
     const primaryMechanism = primaryMechanisms.length ? primaryMechanisms.filter(id => document.mechanisms.includes(id)).length / primaryMechanisms.length : contextMechanism;
-    const mechanismScore = .8 * primaryMechanism + .2 * contextMechanism;
+    const mechanismScore = legalJob ? 1 : .8 * primaryMechanism + .2 * contextMechanism;
     const neuralScore = cosine(embedding, model.embeddings[index]);
     const score = .5 * lexicalScore + .32 * mechanismScore + .18 * neuralScore;
     return score >= minScore ? [{case: item, score: round(score), lexicalScore: round(lexicalScore), neuralScore: round(neuralScore), matchedMechanisms}] : [];
