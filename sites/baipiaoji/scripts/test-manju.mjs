@@ -1,3 +1,4 @@
+import {workURL,hasWorkPage,validateWorkEvidence} from './manju-work-urls.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
@@ -47,12 +48,16 @@ for(const change of [t=>t.url='https://attacker.example/a.png',t=>t.url='http://
 for(const g of GENRES){const h=await get('manju/genre-'+g.id+'.html'),rows=MANJU.items.filter(x=>x.category===g.id);assert.ok(rows.length>=10);assert.ok(h.includes('rel="canonical" href="'+base+'/manju/genre-'+g.id+'"'));assert.ok(h.includes('CollectionPage'));assert.ok(h.includes('ItemList'));assert.ok(h.includes('不是热度排名'));for(const x of rows){assert.ok(h.includes(x.title.replaceAll('&','&amp;')));assert.ok(h.includes(x.source.replaceAll('&','&amp;')));}assert.ok((await get('manju/genre-'+g.id+'.md')).includes(g.angle));assert.ok(home.includes('/manju/genre-'+g.id));assert.ok((await get('sitemap.xml')).includes(base+'/manju/genre-'+g.id));}
 const guide=await get('manju/guide.html');assert.ok(guide.includes('FAQPage'));assert.ok(guide.includes('红果热度能当播放量吗'));assert.ok(guide.includes('/manju/topics'));assert.ok(guide.includes('/manju/insights.json'));
 const index=JSON.parse(await get('search-index.json'));for(const path of discoveryPaths())assert.ok(index.some(r=>r.u===base+'/manju/'+path));
+validateWorkEvidence(MANJU);
+const promoted=MANJU.items.filter(x=>x.recordType==='discovery'&&x.searchEvidence?.length);assert.ok(promoted.length>=40);
+const workSitemap=await get('sitemap.xml');
+for(const x of (live?[promoted[0],promoted.at(-1)]:promoted)){const url=workURL(x),h=await get('manju/'+x.id+'.html'),md=await get('manju/'+x.id+'.md'),json=JSON.parse(await get('manju/'+x.id+'.json'));assert.ok(h.includes('rel="canonical" href="'+url+'"'));assert.equal((h.match(/<h1[ >]/g)||[]).length,1);assert.ok(h.includes('href="'+url+'.md"'));assert.ok(h.includes('FAQPage'));assert.ok(!h.includes('VideoObject')&&!h.includes('AggregateRating'));assert.ok(h.includes('热度不是播放量'));assert.equal(json.url,url);assert.equal(json.observations.length,x.searchEvidence.length);for(const e of x.searchEvidence){assert.ok(h.includes(e.url));assert.ok(md.includes(e.source));assert.ok(md.includes(e.observedAt));}assert.ok(home.includes('href="'+url+'"'));assert.ok(ranking.includes('href="'+url+'"'));assert.ok(index.some(r=>r.u===url));assert.ok(workSitemap.includes(url));}
 const indexedOfficial=index.find(r=>r.u.includes('/manju/rankings#rank-'));assert.ok(indexedOfficial);assert.ok(ranking.includes('id="'+new URL(indexedOfficial.u).hash.slice(1)+'"'));
 const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',email:'test@example.test',note:'Automated validation only; never a customer lead.',consent:true};
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
 else{
  const manifest=JSON.parse(readFileSync(new URL('../data/page-lastmod.json',import.meta.url),'utf8'));
- for(const path of [...MANJU.items.filter(x=>x.recordType!=='discovery').map(x=>x.id),'method','cooperate','rankings','topics','previews',...INSIGHTS.topics.map(t=>'topic-'+t.id)])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
+ for(const path of [...MANJU.items.filter(hasWorkPage).map(x=>x.id),'method','cooperate','rankings','topics','previews',...INSIGHTS.topics.map(t=>'topic-'+t.id)])assert.ok(manifest[base+'/manju/'+path+'.html']?.h,'Detail routes must enter substantive-change/IndexNow tracking: '+path);
  const sql=new DatabaseSync(':memory:');sql.exec("CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,country TEXT,ref TEXT,ev TEXT); CREATE INDEX hits_events ON hits(d,ev) WHERE ev != '';");
  const env={HITS:{prepare(q){let args=[];const st={bind(...a){args=a;return st;},async run(){const r=sql.prepare(q).run(...args);return {meta:{changes:Number(r.changes)}};},async all(){return {results:sql.prepare(q).all(...args)};}};return st;}}};
  const post=(body=good,headers={},suffix='')=>inquiry({env,request:new Request(base+'/api/manju-inquiry'+suffix,{method:'POST',headers:{origin:base,'content-type':'application/json',...headers},body:JSON.stringify(body)})});

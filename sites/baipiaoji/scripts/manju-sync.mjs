@@ -1,3 +1,4 @@
+import {promoteSearchDetails} from './manju-work-urls.mjs';
 import {readFileSync,writeFileSync,renameSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -38,6 +39,7 @@ export function refresh(catalog,insights,payload){
  }
  next.updatedAt=payload.checkedAt;data.reviewedAt=payload.checkedAt;
  validateManju(next);validateInsights(data,next);
+ promoteSearchDetails(next,data);
  return {catalog:next,insights:data,added,changes};
 }
 function atomic(name,data){const path=fileURLToPath(new URL(name,dir));writeFileSync(path+'.tmp',JSON.stringify(data,null,2)+'\n');renameSync(path+'.tmp',path);}

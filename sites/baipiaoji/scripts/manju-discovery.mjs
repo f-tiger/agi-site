@@ -1,3 +1,4 @@
+import {workURL as workUrl,hasWorkPage} from './manju-work-urls.mjs';
 // Useful, finite landing pages drawn from the existing reviewed catalogue.
 export const GENRES=[
  {id:'urban',angle:'都市漫剧与 AI 短剧',intro:'从职场变化、城市生活和人物关系切入选剧。先看角色面临的具体抉择，再判断你更喜欢生活叙事还是身份逆转；都市是背景分类，不代表作品都有同一种剧情。',tips:'想看工作与成长，可在完整目录继续按“职场”“成长”筛选。喜欢家庭关系时，可转到家庭片单；别把都市标签直接等同于总裁或豪门。',related:['family','romance']},
@@ -11,9 +12,8 @@ export const GENRES=[
 ];
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const root='https://baipiaoji.com/manju/';
-const workUrl=x=>root+(x.recordType==='discovery'?'#work-':'')+x.id;
 export const discoveryPaths=()=>['guide',...GENRES.map(g=>'genre-'+g.id)];
-export function discoverySearch(catalog,insights){const names=new Set(catalog.items.map(x=>x.title));return [{u:root+'guide',n:'AI漫剧去哪看、如何找官方入口与引用热度数据',k:'选剧指南',q:'ai短剧 漫剧 官方 平台 哪里看 红果 抖音 热度 播放量 来源'},...GENRES.map(g=>({u:root+'genre-'+g.id,n:g.angle,k:'题材片单',q:g.angle+' '+g.intro})),...insights.cohorts.filter(c=>c.metric==='snapshot_heat').flatMap(c=>c.records.map(x=>({u:root+'rankings#rank-'+c.id+'-'+x.sourceRank,n:x.title,k:'红果官方榜单',q:x.title+' '+x.tags.join(' ')})))];}
+export function discoverySearch(catalog,insights){const names=new Set(catalog.items.map(x=>x.title));return [{u:root+'guide',n:'AI漫剧去哪看、如何找官方入口与引用热度数据',k:'选剧指南',q:'ai短剧 漫剧 官方 平台 哪里看 红果 抖音 热度 播放量 来源'},...GENRES.map(g=>({u:root+'genre-'+g.id,n:g.angle,k:'题材片单',q:g.angle+' '+g.intro})),...insights.cohorts.filter(c=>c.metric==='snapshot_heat').flatMap(c=>c.records.map(x=>({u:(()=>{const item=catalog.items.find(y=>y.title===x.title);return item&&hasWorkPage(item)?workUrl(item):root+'rankings#rank-'+c.id+'-'+x.sourceRank;})(),n:x.title,k:'红果官方榜单',q:x.title+' '+x.tags.join(' ')})))];}
 export const genreLinks=()=>`<nav class="mj-genre-links" aria-label="按题材浏览片单">${GENRES.map(g=>`<a href="/manju/genre-${g.id}">${g.angle}</a>`).join('')}<a href="/manju/guide">新手选剧与数据指南</a></nav>`;
 export function buildDiscovery({publish,page,write,catalog,insights,external,plotFor}){
  const faq=[
