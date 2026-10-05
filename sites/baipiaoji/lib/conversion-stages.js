@@ -3,7 +3,7 @@ import { EVENT_ROWS } from './hits-schema.js';
 // Separate stage counts, deliberately not a user-level or Google-attributed funnel.
 // Reuse the hourly reach cache and the partial event index; never fetch identity fields.
 export const STAGE_EVENTS_SQL = `SELECT ev, path, count(*) n FROM hits
- WHERE d >= ? AND d < ? AND ${EVENT_ROWS} AND ev IN ('calc','go','home')
+ WHERE d >= ? AND d < ? AND ${EVENT_ROWS} AND ev IN ('calc','go','home','coding_access')
  AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND COALESCE(lang,'') != 'ci'
  GROUP BY ev, path`;
 export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
@@ -17,9 +17,25 @@ export function stageCounts(rows) {
   const counts = { tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
     homepage_limit_navigation: 0, video_exports_own: 0, video_exports_demo: 0,
-    account_tool_entries: 0 };
+    account_tool_entries: 0, coding_access_filters: 0, coding_access_empty_results: 0,
+    coding_access_provider_opens: 0, coding_access_source_opens: 0,
+    coding_access_selection_copies: 0, coding_access_checklist_copies: 0,
+    coding_access_vendor_entries: 0 };
   for (const row of rows) {
     const n = Number(row.n) || 0, path = String(row.path || '');
+    if (row.ev === 'coding_access') {
+      const fixed = {
+        '/coding-access/filter/catalog': 'coding_access_filters',
+        '/coding-access/miss/catalog': 'coding_access_empty_results',
+        '/coding-access/copy/selection': 'coding_access_selection_copies',
+        '/coding-access/copy/catalog': 'coding_access_checklist_copies',
+        '/coding-access/vendor/catalog': 'coding_access_vendor_entries',
+      };
+      if (fixed[path]) counts[fixed[path]] += n;
+      const action = path.match(/^\/coding-access\/(open|source)\/(regions|codex|claude|deepseek|glm|minimax|openrouter|packycode)$/);
+      if (action) counts[action[1] === 'open' ? 'coding_access_provider_opens' : 'coding_access_source_opens'] += n;
+      continue;
+    }
     if (row.ev === 'go') { counts.directory_outbound_clicks += n; continue; }
     if (row.ev === 'home') { if (path.startsWith('/home/limit-check/')) counts.homepage_limit_navigation += n; continue; }
     if (row.ev !== 'calc') continue;
@@ -62,6 +78,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       accounts: 'Surviving server-side accounts created within this UTC window with qa=0. Verified is their current email-ownership state, not a verification event during this window. Deleted accounts are absent; accounts are not unique humans.',
       account_totals: 'Current surviving accounts with qa=0, across all creation dates including today. Counts include unverified and legacy accounts; they do not prove distinct humans. Current mailbox-verified total is reported separately. Never add subscriber or paid-membership records to this count.',
       account_tool_entries: 'Public tool-to-account link actions within the complete-day window. Repeated actions count again; they are not successful signups and have no person-level attribution.',
+      coding_access: 'Fixed coding-access actions in the same complete UTC-day window. Selection copies mean the browser reported successful clipboard writing; generic checklist copies are separate. Repeated actions count again; neither action counts nor their ratios prove people, retained users, installs, purchases or revenue. No query or checklist content is collected.',
       attribution: 'Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.',
       quality: 'Known CI excluded; unlabelled automation and lost browser events remain possible. Missing tables/read failures return null, never zero.',
     },

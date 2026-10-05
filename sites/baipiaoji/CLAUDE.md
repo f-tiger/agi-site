@@ -1,3 +1,7 @@
+## 2026-10-05 编程选型结果与搜索一致性
+
+现有 `/coding-access/` 中英页支持复制当前可见候选的来源选型清单，搜索纳入已有工具标签与 Claude Code 别名。来源日期、pending 状态与未实测说明不可随构建刷新。新成功动作 `/coding-access/copy/selection` 与通用清单 `copy/catalog` 分开；沿用 `conversion_stages` 索引查询和 reach 小时缓存，无新查询或 cron。动作不是用户或成交；legacy reach 曝光含当天，不能与完整 UTC 日动作混算转化率。协议及 10/12 执行检查、10/13 完整七日复核见 `docs/coding-access-selection-2026-10-05.md`；原 11/01 商业窗口不重置。当前免费目录及独立厂商赞助定位保持，不提供代充、中转收款或新的收费方案。
+
 ## 2026-10-04 编程购买与中转导航
 
 Owner 明确要求接入 BPJ 子站。中英 `/coding-access/` 分原厂订阅、中转候选与国内兼容模型；数据 `data/coding-access.json`，PRD `docs/PRD-coding-access-2026-10-04.md`。Reviewed 只表示读过公开文档，无购买、退款、稳定性或模型真伪实测；403 候选 pending，不给可靠推荐。禁止把兼容模型当 Claude/OpenAI 原厂权益、代充当 API、中转当订阅或网站能收款当地区支持。无新收费、联盟或 cron，沿用投稿/厂商服务、原账户、同意式 GA4、固定 D1 coding_access 动作、真实变更 IndexNow。首页/搜索/功能地图/llms/JSON/Markdown 连通，构建/浏览器/线上 gate 已接 CI。维护时先核对来源，未核验不得改为 reviewed，账号和 Key 不入目录或统计。

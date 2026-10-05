@@ -15,6 +15,14 @@ for(const [path,ev,lang='en',date='2026-09-26'] of [
  ['/studio/video-variants/export-video/demo','calc'],['/studio/video-variants/cloud-open/own','calc'],
  ['/studio/quote-compare/download/own','calc'],['/studio/pdf-tools/complete/own/extra','calc'],
  ['/account-growth/tool-entry','calc'],['/account-growth/tool-entry/forged','calc'],['/account-growth/tool-entry','calc','ci'],
+ ['/coding-access/filter/catalog','coding_access'],['/coding-access/miss/catalog','coding_access'],
+ ['/coding-access/open/minimax','coding_access'],['/coding-access/source/regions','coding_access'],
+ ['/coding-access/copy/selection','coding_access'],['/coding-access/copy/selection','coding_access'],
+ ['/coding-access/copy/catalog','coding_access'],['/coding-access/vendor/catalog','coding_access'],
+ ['/coding-access/copy/selection','coding_access','ci'],
+ ['/coding-access/copy/selection','coding_access','en','2026-09-27'],
+ ['/coding-access/copy/selection','coding_access','en','2026-08-29'],
+ ['/coding-access/copy/selection/extra','coding_access'],['/coding-access/open/private','coding_access'],
  ['/go/fireworks','go'],['/home/limit-check/en/c/api','home'],['/home/other/en/c/api','home'],
  ['/__ci/calc','calc'],['/studio/pdf-tools/complete/own','calc','ci'],
  ['/studio/pdf-tools/complete/own','calc','en','2026-09-27'],
@@ -29,7 +37,7 @@ for(const [id,date,qa,verified] of [['real','2026-09-26',0,1],['unverified','202
 const out=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',complete_days:28,date_basis:'UTC'});
 assert.equal(out.ok,true);
-assert.deepEqual(out.events,{tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:4,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1});
+assert.deepEqual(out.events,{tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:4,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 // Existing legacy accounts without an identity still count; QA never counts.
 db.prepare('INSERT INTO free_accounts VALUES(?,?,?)').run('legacy',sec('2026-01-01'),0);
@@ -39,7 +47,7 @@ const queryPlan=db.prepare('EXPLAIN QUERY PLAN '+STAGE_EVENTS_SQL).all('2026-08-
 assert.ok(queryPlan.some(r=>r.detail.includes('hits_events')),JSON.stringify(queryPlan));
 db.exec('DELETE FROM hits; DELETE FROM free_accounts; DELETE FROM free_account_identities;');
 const empty=await readConversionStages(binding,28);
-assert.equal(empty.accounts.total_non_test,0);assert.equal(empty.accounts.total_currently_email_verified,0);assert.equal(empty.accounts.created,0);assert.equal(empty.events.tool_results_own,0);
+assert.equal(empty.accounts.total_non_test,0);assert.equal(empty.accounts.total_currently_email_verified,0);assert.equal(empty.accounts.created,0);assert.equal(empty.events.tool_results_own,0);assert.equal(empty.events.coding_access_selection_copies,0);
 db.exec('DROP TABLE free_account_identities');
 const missing=await readConversionStages(binding,28);
 assert.equal(missing.ok,false);assert.equal(missing.accounts,null);assert.deepEqual(missing.missing,['accounts']);
