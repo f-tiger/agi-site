@@ -42,6 +42,10 @@ export function validateCases(cases, { today = new Date().toISOString().slice(0,
       if (!EVIDENCE_KINDS.has(source.evidence)) fail('sources[' + j + '].evidence is invalid');
       if (source.publishedAt !== null && (!isoDate(source.publishedAt) || source.publishedAt > c.observedAt)) fail('sources[' + j + '].publishedAt must be null or a valid ISO date no later than observedAt');
     }
+    for(const key of ['teamEvidence','businessModel','acquisition']) if(Object.hasOwn(c,key)){
+      if(!nonempty(c[key])||!nonempty(c[key+'En']))fail(key+' requires bilingual text');
+      if(!urls.has(c[key+'SourceUrl']))fail(key+'SourceUrl must reference a cited source');
+    }
     if (!Array.isArray(c.metrics)) fail('metrics must be an array (unknown metrics use an empty array)');
     for (const [j, metric] of (Array.isArray(c.metrics) ? c.metrics : []).entries()) {
       if (!metric || typeof metric !== 'object') { fail('metrics[' + j + '] must be an object'); continue; }

@@ -1,3 +1,4 @@
+import {consumerCaseIds} from './ai-solo-indie.mjs';
 import {comparisonGroups} from './ai-solo-compare.mjs';
 // Public build/live integration and offline privacy contracts. Never posts live analytics.
 import assert from 'node:assert/strict';
@@ -136,7 +137,7 @@ for (const lang of ['zh', 'en']) {
   }
   for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
   const pages = new Map();
-  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
+  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
     const html = await get(path);
     pages.set(leaf, assertPage(html, path, lang));
@@ -144,6 +145,12 @@ for (const lang of ['zh', 'en']) {
     const markdownPath = path.replace(/\/$/, '') + '.md';
     assertMarkdown(await get(markdownPath), markdownPath);
   }
+  const indie=pages.get('solo/');
+  for(const id of consumerCaseIds)assert(indie.includes('data-indie-case="'+id+'"'),'Missing consumer app '+id);
+  const soloSection=indie.split('id="solo-projects"')[1].split('</section>')[0];
+  const soloIds=[...soloSection.matchAll(/data-indie-case="([a-z0-9-]+)"/g)].map(m=>m[1]);
+  assert.deepEqual(soloIds.sort(),expectedCases.filter(c=>c.scope==='solo').map(c=>c.id).sort(),'Only sourced solo labels enter the solo section');
+  assert(!soloIds.includes('glam-up')&&!soloIds.includes('glow-ai'),'Co-founded beauty apps cannot masquerade as solo');
   for (const group of comparisonGroups) {
     const html=pages.get('compare/'+group.id+'/');
     const ids=[...html.matchAll(/<th scope="col" data-compare-case="([a-z0-9-]+)"/g)].map(m=>m[1]);
@@ -177,6 +184,10 @@ for (const lang of ['zh', 'en']) {
       assert(main.includes('href="' + escape(source.url) + '"'), 'Missing case source link: ' + item.id);
       assert(markdown.includes('](' + source.url + ')'), 'Missing Markdown source link: ' + item.id);
       hasText(main, local(source, 'supports', lang), 'Missing source support scope: ' + item.id);
+    }
+    for(const key of ['teamEvidence','businessModel','acquisition'])if(item[key]) {
+      hasText(html,local(item,key,lang),'Missing case business detail '+item.id+'/'+key);
+      assert(markdown.includes(local(item,key,lang)),'Missing Markdown business detail '+item.id+'/'+key);
     }
     for (const metric of item.metrics || []) for (const key of ['label', 'value', 'period']) {
       const value = local(metric, key, lang, metric[key]);

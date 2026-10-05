@@ -196,6 +196,14 @@ if (researchPaths.every(existsSync)) {
     assert(ids.includes('casetext')&&ids.some(id=>['ross-intelligence','donotpay'].includes(id)),'Legal guidance must include relevant positive and negative evidence');
     assert(ids.every(id=>['casetext','harvey','ross-intelligence','donotpay'].includes(id)),'Legal-risk mentions must not admit autonomous driving or generic software cases');
   }
+  for(const question of ['女生拍照检测肤质的 app 怎么赚钱','A beauty app for selfie skin analysis']) {
+    const beauty=generatePlan(research,realModel,{question,skill:'coding',language:question.includes('女生')?'zh':'en'});
+    assert(beauty.evidence.success.length>=2,'Beauty guidance needs relevant researched apps');
+    assert(beauty.matchedCases.every(c=>['glam-up','glow-ai','glowly-ai','glamour-color','solo-color-microcase'].includes(c.id)),'Selfie analysis must not be mixed with portrait generation, generic coding or medical shutdowns');
+    assert.equal(beauty.evidence.failure.length,0,'Do not invent an unrelated beauty failure');
+    assert(beauty.matchedCases.every(c=>c.businessFacts.length===3),'Team, payment and acquisition evidence must reach consulting');
+    assert(planMarkdown(beauty).includes(beauty.matchedCases[0].businessFacts[0].text));
+  }
   const portrait = generatePlan(research, realModel, {question: 'Sell professional portrait headshots', skill: 'design', customer: 'job seekers', language: 'en'});
   assert(portrait.evidence.failure.every(item => !['yara', 'embodied', 'cydoc'].includes(item.id)), 'Missing portrait failures must be disclosed rather than filled with unrelated company shutdowns');
   assert(!/[\u3400-\u9fff]/u.test(planMarkdown(portrait)), 'Production English Markdown must use all available translated source and metric fields');

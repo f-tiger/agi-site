@@ -3163,5 +3163,398 @@
     "soloRelevanceEn": "Include support and service-continuity costs in hardware experiments, beyond units sold.",
     "failureSubtype": "shutdown",
     "nameEn": "Anki (original operator)"
+  },
+  {
+    "id": "glam-up",
+    "name": "Glam Up",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "自拍美妆与色彩建议",
+    "categoryEn": "Selfie beauty and color advice",
+    "summary": "自拍后获得美妆、色彩和形象建议。Nicole 在 2026 年 9 月自述 Glam Up 曾达 15 万美元峰值 MRR；有联合创始人，不是一人项目。",
+    "summaryEn": "Selfies become makeup, color and appearance advice. In September 2026 Nicole reported historical peak MRR of $150,000 for Glam Up. This is a co-founded project.",
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
+        "title": "Nicole Cheung: two AI consumer apps",
+        "titleEn": "Nicole Cheung: two AI consumer apps",
+        "publishedAt": "2026-09-09",
+        "evidence": "founder-report",
+        "supports": "Glam Up 的峰值 MRR、用户定位；两款应用合计收入不能算给单款。",
+        "supportsEn": "Glam Up peak MRR and audience; portfolio revenue cannot be assigned to one app."
+      },
+      {
+        "url": "https://www.starterstory.com/nicole",
+        "title": "Nicole: consumer app growth interview",
+        "titleEn": "Nicole: consumer app growth interview",
+        "publishedAt": "2026-05-20",
+        "evidence": "founder-report",
+        "supports": "Nicole 与 Aaron 联合创办、周/月订阅、短视频创作者分发。",
+        "supportsEn": "Nicole and Aaron co-founded it; weekly/monthly subscriptions and creator distribution."
+      },
+      {
+        "url": "https://www.glamup.ai/",
+        "title": "Glam Up official product",
+        "titleEn": "Glam Up official product",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "自拍、色彩与美妆功能；不是临床有效性证据。",
+        "supportsEn": "Selfie, color and makeup features; not clinical-validity evidence."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "创始人自述峰值 MRR",
+        "labelEn": "Founder-reported peak MRR",
+        "value": "US$150,000",
+        "valueEn": "US$150,000",
+        "period": "历史峰值；2026-09-09 披露",
+        "periodEn": "Historical peak; disclosed 2026-09-09",
+        "kind": "revenue",
+        "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "Nicole + Aaron 联合创办；后续两款应用合计用工不可视为本产品一人运营。",
+    "teamEvidenceEn": "Co-founded by Nicole and Aaron; later portfolio staffing is not solo operation.",
+    "businessModel": "周或月订阅，访谈口径；现价未核实。",
+    "businessModelEn": "Weekly or monthly subscriptions per interview; current prices unverified.",
+    "acquisition": "短视频创作者内容；需要持续管理与测试。",
+    "acquisitionEn": "Short-form creator content, requiring management and testing.",
+    "drivers": [
+      {
+        "text": "推断：可展示的自拍结果便于解释产品，但分发规模不能由小团队直接复制。",
+        "textEn": "Hypothesis: a visible selfie result helps explain value; scaled distribution is not automatically reproducible.",
+        "kind": "inference",
+        "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3"
+      }
+    ],
+    "risks": [
+      "MRR 是历史峰值，不是利润；美妆建议不是医学诊断。"
+    ],
+    "risksEn": [
+      "Peak MRR is not profit; beauty advice is not medical diagnosis."
+    ],
+    "soloRelevance": "先验证一个美妆场景和一个付费报告；计入创作者、获客和照片处理成本。",
+    "soloRelevanceEn": "Test one beauty job and paid report, including creator, acquisition and photo-processing costs.",
+    "teamEvidenceSourceUrl": "https://www.starterstory.com/nicole",
+    "businessModelSourceUrl": "https://www.starterstory.com/nicole",
+    "acquisitionSourceUrl": "https://www.starterstory.com/nicole"
+  },
+  {
+    "id": "glow-ai",
+    "name": "Glow AI（Aditya / Savio）",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "自拍护肤与美妆建议",
+    "categoryEn": "Selfie skincare and cosmetic advice",
+    "summary": "2024 年报道：Aditya 与 Savio 做面部分析及化妆品建议应用，发布初期达到约 1 万美元 MRR。不能把短期爆发当持续留存。",
+    "summaryEn": "A 2024 report describes Aditya and Savio’s facial-analysis and cosmetics app reaching about $10,000 MRR shortly after launch; launch growth does not establish retention.",
+    "sources": [
+      {
+        "url": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
+        "title": "Glow AI: early launch and influencer distribution",
+        "titleEn": "Glow AI: early launch and influencer distribution",
+        "publishedAt": "2024-11-19",
+        "evidence": "media-report",
+        "supports": "两名创作者、初期 MRR 与以股权换创作者分发的报道。",
+        "supportsEn": "Two builders, early MRR and reported equity-for-distribution partnerships."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "报道的初期 MRR",
+        "labelEn": "Reported early MRR",
+        "value": "~ US$10,000",
+        "valueEn": "~ US$10,000",
+        "period": "2024-11 发布初期",
+        "periodEn": "Early launch, 2024-11",
+        "kind": "revenue",
+        "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "Aditya 与 Savio 合作开发；不是严格 Solo。",
+    "teamEvidenceEn": "Built by Aditya and Savio; not strictly solo.",
+    "businessModel": "来源使用 MRR 口径；具体订阅套餐未核实。",
+    "businessModelEn": "Source uses MRR; specific subscription plans are unverified.",
+    "acquisition": "报道为 TikTok / Instagram 创作者股权合作。",
+    "acquisitionEn": "Reported TikTok/Instagram creator equity partnerships.",
+    "drivers": [
+      {
+        "text": "推断：先解决目标受众的分发可能帮助启动；股权并非免费获客。",
+        "textEn": "Hypothesis: audience access may help launch; equity is not free acquisition.",
+        "kind": "inference",
+        "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days"
+      }
+    ],
+    "risks": [
+      "来源标题与正文的达标天数不一致，故仅保留发布初期；未核验利润和医学效果。"
+    ],
+    "risksEn": [
+      "Headline and body differ on days to milestone, so only the early-launch period is retained; profit and medical efficacy are unverified."
+    ],
+    "soloRelevance": "先验证一个可演示的交付；不要仅凭爆款承诺让渡股权。",
+    "soloRelevanceEn": "Validate one demonstrable deliverable; do not grant equity solely on promised virality.",
+    "teamEvidenceSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
+    "businessModelSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
+    "acquisitionSourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
+    "nameEn": "Glow AI (Aditya / Savio)"
+  },
+  {
+    "id": "glowly-ai",
+    "name": "Glowly AI（Will Baker）",
+    "outcome": "success",
+    "scope": "unknown",
+    "category": "自拍形象建议",
+    "categoryEn": "Selfie appearance advice",
+    "summary": "Will Baker 在 2026 年 8 月访谈称 Glowly 约月入 1 万美元，并说明主要用付费广告获客。访谈由个人主导，但完整经营团队未核实。",
+    "summaryEn": "In August 2026 Will Baker reported around $10,000 monthly revenue for Glowly and described paid-ad acquisition. The interview is individual-led; the full operating team is unverified.",
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+        "title": "Will Baker: app revenue and paid acquisition",
+        "titleEn": "Will Baker: app revenue and paid acquisition",
+        "publishedAt": "2026-08-12",
+        "evidence": "founder-report",
+        "supports": "Glowly 单款月收入自述、自拍功能、订阅和付费获客；团队人数未完整披露。",
+        "supportsEn": "Glowly-specific monthly revenue claim, selfies, subscriptions and paid acquisition; full staffing not disclosed."
+      },
+      {
+        "url": "https://www.glowlyaiapp.com/",
+        "title": "Glowly AI official product",
+        "titleEn": "Glowly AI official product",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "访谈链接到的产品身份。",
+        "supportsEn": "Product identity linked by the interview."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "创始人自述月收入，非已核验 MRR",
+        "labelEn": "Founder-reported monthly revenue, not verified MRR",
+        "value": "~ US$10,000",
+        "valueEn": "~ US$10,000",
+        "period": "2026-08-12 访谈",
+        "periodEn": "2026-08-12 interview",
+        "kind": "revenue",
+        "sourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "Will Baker 个人主导自述；未据此断言全部经营由一人完成。",
+    "teamEvidenceEn": "Will Baker describes personally leading the work; sole operation is not established.",
+    "businessModel": "订阅应用；未核对现价与净回款。",
+    "businessModelEn": "Subscription app; current price and net receipts unverified.",
+    "acquisition": "访谈称采用付费广告，追踪订阅获取成本。",
+    "acquisitionEn": "The interview describes paid ads and subscription-acquisition costs.",
+    "drivers": [
+      {
+        "text": "推断：小范围测试付费获客可检验单位经济，不能由收入反推利润。",
+        "textEn": "Hypothesis: small paid-acquisition tests can probe unit economics; revenue does not establish profit.",
+        "kind": "inference",
+        "sourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps"
+      }
+    ],
+    "risks": [
+      "不能与其他同名 Glowly 的收入记录直接合并；外貌建议不是客观价值或诊断。"
+    ],
+    "risksEn": [
+      "Do not merge revenue records of same-named apps without identity checks; appearance advice is not objective worth or diagnosis."
+    ],
+    "soloRelevance": "先测退款后的单客贡献，再决定是否扩大投放。",
+    "soloRelevanceEn": "Measure contribution after refunds before scaling acquisition.",
+    "teamEvidenceSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+    "businessModelSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+    "acquisitionSourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
+    "nameEn": "Glowly AI (Will Baker)"
+  },
+  {
+    "id": "glamour-color",
+    "name": "Glamour（Lynex 色彩分析）",
+    "outcome": "success",
+    "scope": "unknown",
+    "category": "自拍季型色彩分析",
+    "categoryEn": "Selfie seasonal color analysis",
+    "summary": "Glamour 用自拍生成季型色彩建议。TrustMRR 在 2026-10-04 更新快照列出 9465 美元 MRR，并标注 RevenueCat 接入核验；不是 Glam Up。",
+    "summaryEn": "Glamour turns selfies into seasonal color advice. TrustMRR’s October 4, 2026 snapshot listed $9,465 MRR and a RevenueCat verification label. This is distinct from Glam Up.",
+    "sources": [
+      {
+        "url": "https://trustmrr.com/startup/glamour",
+        "title": "Glamour — TrustMRR RevenueCat snapshot",
+        "titleEn": "Glamour — TrustMRR RevenueCat snapshot",
+        "publishedAt": null,
+        "evidence": "independent-report",
+        "supports": "2026-10-04 更新的 MRR 快照；页面自述订阅与 Meta 获客。核验标签不等于审计。",
+        "supportsEn": "MRR snapshot updated 2026-10-04; profile claims subscriptions and Meta acquisition. Verification labeling is not an audit."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "第三方接入平台展示 MRR",
+        "labelEn": "MRR displayed by connected-data platform",
+        "value": "US$9,465",
+        "valueEn": "US$9,465",
+        "period": "平台更新：2026-10-04",
+        "periodEn": "Platform updated: 2026-10-04",
+        "kind": "revenue",
+        "sourceUrl": "https://trustmrr.com/startup/glamour"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "页面列 Lynex；团队人数未披露，不能认证 Solo。",
+    "teamEvidenceEn": "Profile lists Lynex; team size is undisclosed, so solo status is unverified.",
+    "businessModel": "页面描述订阅与应用内购买；不是独立核验的价格表。",
+    "businessModelEn": "Profile describes subscriptions and in-app purchases, not independently verified current pricing.",
+    "acquisition": "经营者在页面称使用土耳其市场 Meta 广告。",
+    "acquisitionEn": "Profile claims Meta campaigns in Turkey.",
+    "drivers": [
+      {
+        "text": "推断：从具体地区与色彩交付切入，可能缩小测试范围。",
+        "textEn": "Hypothesis: a specific region and color deliverable may narrow the experiment.",
+        "kind": "inference",
+        "sourceUrl": "https://trustmrr.com/startup/glamour"
+      }
+    ],
+    "risks": [
+      "平台连接数据不证明利润、全部收入覆盖或持续留存。"
+    ],
+    "risksEn": [
+      "Connected data do not establish profit, complete revenue coverage or sustained retention."
+    ],
+    "soloRelevance": "将一次色彩报告与持续订阅的复用价值分别验证。",
+    "soloRelevanceEn": "Test the value of a one-off color report separately from repeat subscription value.",
+    "teamEvidenceSourceUrl": "https://trustmrr.com/startup/glamour",
+    "businessModelSourceUrl": "https://trustmrr.com/startup/glamour",
+    "acquisitionSourceUrl": "https://trustmrr.com/startup/glamour",
+    "nameEn": "Glamour (Lynex color analysis)"
+  },
+  {
+    "id": "social-wizard",
+    "name": "Social Wizard",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "AI 聊天回复辅助",
+    "categoryEn": "AI conversation reply assistance",
+    "summary": "Kelechi 在 2025 年访谈中自述独立构建 Social Wizard，早期达到约月入 6 万美元。其两款应用合计 150 万美元不能全归给本产品。",
+    "summaryEn": "In a 2025 interview Kelechi described building Social Wizard himself and reaching about $60,000 monthly revenue early on. The $1.5 million two-app total is not assigned to this product.",
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/kelechi",
+        "title": "Kelechi: Social Wizard and CleanEats",
+        "titleEn": "Kelechi: Social Wizard and CleanEats",
+        "publishedAt": "2025-10-28",
+        "evidence": "founder-report",
+        "supports": "个人构建、Social Wizard 月收入里程碑和社交短视频分发；组合总额另算。",
+        "supportsEn": "Individual development, Social Wizard’s monthly milestone and social-video distribution; portfolio totals are separate."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "创始人自述早期月收入",
+        "labelEn": "Founder-reported early monthly revenue",
+        "value": "~ US$60,000",
+        "valueEn": "~ US$60,000",
+        "period": "早期阶段；2025-10-28 披露",
+        "periodEn": "Early stage; disclosed 2025-10-28",
+        "kind": "revenue",
+        "sourceUrl": "https://www.starterstory.com/kelechi"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "访谈明确讨论个人构建与 solopreneur 运营；不表示没有外部创作者。",
+    "teamEvidenceEn": "Interview explicitly discusses individual building and solopreneur operation; external creators may still be involved.",
+    "businessModel": "应用订阅；实际现价未核实。",
+    "businessModelEn": "App subscriptions; current pricing unverified.",
+    "acquisition": "短视频展示聊天回复场景；流量不是付费证据。",
+    "acquisitionEn": "Short-form demonstrations of reply scenarios; views are not payments.",
+    "drivers": [
+      {
+        "text": "推断：把通用模型封装为具体聊天任务，可减少用户表达成本。",
+        "textEn": "Hypothesis: packaging a general model around a specific reply task may reduce user effort.",
+        "kind": "inference",
+        "sourceUrl": "https://www.starterstory.com/kelechi"
+      }
+    ],
+    "risks": [
+      "收入为访谈自述；聊天截图可能涉及第三方隐私。"
+    ],
+    "risksEn": [
+      "Revenue is interview-reported; chat screenshots can contain third-party private information."
+    ],
+    "soloRelevance": "验证一类回复任务与真实付费；不把组合收入或曝光量计为本产品利润。",
+    "soloRelevanceEn": "Validate one reply task and actual payment; portfolio revenue and reach are not this product’s profit.",
+    "teamEvidenceSourceUrl": "https://www.starterstory.com/kelechi",
+    "businessModelSourceUrl": "https://www.starterstory.com/kelechi",
+    "acquisitionSourceUrl": "https://www.starterstory.com/kelechi"
+  },
+  {
+    "id": "solo-color-microcase",
+    "name": "个人色彩分析微型项目（匿名）",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "自拍季型色彩分析",
+    "categoryEn": "Selfie seasonal color analysis",
+    "summary": "卖家明确写一人经营、一次性付费，累计/六个月口径收入 154.54 美元。这是微型收款样本，不是月入过万的成功神话。",
+    "summaryEn": "The seller states one-person operation, one-off purchases and $154.54 revenue labeled all-time/six-month. This is a tiny payment signal, not a high-revenue success story.",
+    "sources": [
+      {
+        "url": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
+        "title": "AI Personal Color Analysis Platform — seller listing",
+        "titleEn": "AI Personal Color Analysis Platform — seller listing",
+        "publishedAt": "2026-07-07",
+        "evidence": "founder-report",
+        "supports": "一人经营、一次性收费、154.54 美元收入和高弃单率均为卖家自述；名称未公开。",
+        "supportsEn": "Solo operation, one-off pricing, $154.54 revenue and high checkout abandonment are seller claims; product name is undisclosed."
+      }
+    ],
+    "metrics": [
+      {
+        "label": "卖家自述累计/六个月收入",
+        "labelEn": "Seller-reported all-time/six-month revenue",
+        "value": "US$154.54",
+        "valueEn": "US$154.54",
+        "period": "原文 All-time/6-mo；截止日期未披露",
+        "periodEn": "Source says All-time/6-mo; end date undisclosed",
+        "kind": "revenue",
+        "sourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform"
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "features": null,
+    "teamEvidence": "卖家原文明确 1 Solo Founder；未独立核验。",
+    "teamEvidenceEn": "Seller explicitly states 1 Solo Founder; not independently verified.",
+    "businessModel": "一次性付费；正文明确 MRR 为 0，不能用页面 ARR 卡片替代。",
+    "businessModelEn": "One-off purchases; body explicitly states MRR is zero, overriding the page’s misleading ARR card.",
+    "acquisition": "卖家自述自然搜索与直接访问；获客成本未审计。",
+    "acquisitionEn": "Seller reports organic search and direct traffic; acquisition costs are unaudited.",
+    "drivers": [
+      {
+        "text": "推断：有搜索需求与结账意向，仍可能在付款环节流失。",
+        "textEn": "Hypothesis: search demand and checkout intent can coexist with payment drop-off.",
+        "kind": "inference",
+        "sourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform"
+      }
+    ],
+    "risks": [
+      "匿名挂牌与统计周期有局限；弃单率不能直接推出原因或未来收入。"
+    ],
+    "risksEn": [
+      "Anonymous listing and ambiguous periods limit evidence; abandonment does not establish causes or future revenue."
+    ],
+    "soloRelevance": "先核对漏斗事件与真实付款，测试报告预览、价格透明度和付款流程。",
+    "soloRelevanceEn": "Reconcile funnel events with payments; test report previews, clear pricing and checkout.",
+    "teamEvidenceSourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
+    "businessModelSourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
+    "acquisitionSourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
+    "nameEn": "Solo color-analysis microcase (anonymous)",
+    "outcomeScope": "微型收款信号；尚未证明可持续经营",
+    "outcomeScopeEn": "Tiny payment signal; sustainability not established"
   }
 ]

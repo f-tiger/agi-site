@@ -1,5 +1,7 @@
 // Editorial groups use the customer job, not neural similarity or outcome labels.
 export const comparisonGroups = [
+ ['beauty-analysis','自拍美妆与形象建议','Selfie beauty and appearance','比较自拍后的建议交付与获客，分别注明个人或团队证据；不视为医学检测。','Compare selfie advice and acquisition with explicit staffing evidence; these are not medical diagnostics.',['glam-up','glow-ai','glowly-ai']],
+ ['color-analysis','自拍色彩分析','Selfie color analysis','对照季型色彩报告：小额一次性收入、订阅 MRR 与历史峰值不能直接排名。','Compare seasonal-color reports; tiny one-off revenue, subscription MRR and historical peaks are not directly rankable.',['glam-up','glamour-color','solo-color-microcase']],
  ['coding','编程助手','Coding assistants','补全、编辑器与 Agent 的交付不同；时期、平台与团队也不同。','Completion, editors and agents differ in deliverable, period, platform and team.',['cursor','windsurf','github-copilot','kite']],
  ['app-building','应用开发','App building','对照软件交付；自助建站与代开发服务不是同一种成本结构。','Compare software delivery; self-service builders and managed development have different costs.',['bolt','lovable','replit','builder-ai']],
  ['legal','法律工作辅助','Legal assistance','专业律所与消费者的需求不同；监管受挫、停运与客户增长分别记录。','Professional and consumer buyers differ; regulatory setbacks, closure and adoption remain distinct.',['casetext','harvey','ross-intelligence','donotpay']],
@@ -28,7 +30,8 @@ export function buildComparisonPages({cases,render,BASE,zh,esc,caseName,scopeLab
   const cellRows=[
    [t('结果与范围','Outcome and scope'),c=>`${esc(outcomeLabel(c,zh))}<p>${esc(outcomeScope(c,zh))}</p>${reviewNotice(c)}`],
    [t('客户任务与证据','Job and evidence'),c=>`<strong>${fmt(c,'category')}</strong><p>${fmt(c,'summary')}</p>`],
-   [t('团队与规模','Team and scale'),c=>esc(scopeLabel(c,zh))],
+   [t('团队与规模','Team and scale'),c=>esc(scopeLabel(c,zh))+(c.teamEvidence?'<p>'+fmt(c,'teamEvidence')+'</p>':'')],
+   ...[['businessModel',t('如何收费','Payment model')],['acquisition',t('如何获客','Acquisition')]].map(([key,label])=>[label,c=>c[key]?fmt(c,key)+` <a href="${esc(c[key+'SourceUrl'])}" target="_blank" rel="noopener noreferrer" data-solo-event="source-open">${t('来源','Source')}</a>`:t('未独立记录；不从收入倒推。','Not separately recorded; not inferred from revenue.')]),
    [t('历史指标与周期','Historical metrics and periods'),c=>c.metrics.length?c.metrics.map(m=>`<p><strong>${esc(text(m,'label',zh))}: ${esc(text(m,'value',zh,m.value))}</strong><br>${esc(text(m,'period',zh))}</p>`).join(''):t('未公开可核对数字','No sourced numeric metric')],
    [t('利润证据','Profit evidence'),c=>esc(text(c,'profitStatus',zh,t('未知；上述指标不能证明盈利。','Unknown; the metrics above do not establish profit.')))],
    [t('原因与假设','Explanations and hypotheses'),c=>c.drivers.map(d=>`<p><strong>${d.kind==='reported'?t('来源解释','Reported explanation'):t('编辑推断','Editorial hypothesis')}</strong> — ${esc(text(d,'text',zh))}</p>`).join('')],
