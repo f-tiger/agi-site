@@ -1,4 +1,4 @@
-import {consumerCaseIds} from './ai-solo-indie.mjs';
+import {consumerCaseIds,adversarialCaseIds} from './ai-solo-indie.mjs';
 import {comparisonGroups} from './ai-solo-compare.mjs';
 // Public build/live integration and offline privacy contracts. Never posts live analytics.
 import assert from 'node:assert/strict';
@@ -146,6 +146,8 @@ for (const lang of ['zh', 'en']) {
     assertMarkdown(await get(markdownPath), markdownPath);
   }
   const indie=pages.get('solo/');
+  assert(indie.includes('id="counter-evidence"'),'Missing counterevidence section');
+  for(const id of adversarialCaseIds)assert(indie.includes('data-indie-case="'+id+'"'),'Missing adversarial micro-app '+id);
   for(const id of consumerCaseIds)assert(indie.includes('data-indie-case="'+id+'"'),'Missing consumer app '+id);
   const soloSection=indie.split('id="solo-projects"')[1].split('</section>')[0];
   const soloIds=[...soloSection.matchAll(/data-indie-case="([a-z0-9-]+)"/g)].map(m=>m[1]);

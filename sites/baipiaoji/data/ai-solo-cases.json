@@ -2495,7 +2495,7 @@
     "id": "super-ai",
     "name": "Super AI（Aryan Agarwal 项目）",
     "failureSubtype": "shutdown",
-    "scope": "small-team",
+    "scope": "unknown",
     "category": "AI 模型路由 / 聚合",
     "summary": "创始人自述多模型自动路由产品运行至 2025 年 3 月后关闭；案例代表其单个聚合项目，避免与同名产品混淆。",
     "metrics": [],
@@ -2522,7 +2522,7 @@
       "仅有创始人回顾，缺少独立产品和财务核验；应作为低置信度自述。",
       "同作者的 Vibe AI 属相关样本，不能视作完全独立训练观测。",
       "文章推广其新产品，其跨行业因果泛化未经证明。",
-      "团队规模未披露，small-team 仅表示创业项目语境。"
+      "团队人数未披露，规模标为未知。"
     ],
     "soloRelevance": "高：验证聚合功能是否能被底层平台轻易替代，寻找工作流和分发优势。",
     "outcome": "failure",
@@ -2536,8 +2536,11 @@
       "A retrospective founder account without independent product or financial verification; treat as lower confidence.",
       "Vibe AI is reported by the same author; the two are not fully independent training observations.",
       "The article promotes the author's new product and its cross-industry causal claims are unproven.",
-      "Headcount is undisclosed; small-team describes the startup context."
-    ]
+      "Headcount is undisclosed; scope is unknown."
+    ],
+    "teamEvidence": "创始人复盘未披露完整人数；不能据创业项目语境推定小团队。",
+    "teamEvidenceEn": "Founder postmortem does not disclose complete headcount; startup context does not establish a small team.",
+    "teamEvidenceSourceUrl": "https://gravity.fast/blog/super-ai-postmortem/"
   },
   {
     "id": "vibe-ai",
@@ -3556,5 +3559,301 @@
     "nameEn": "Solo color-analysis microcase (anonymous)",
     "outcomeScope": "微型收款信号；尚未证明可持续经营",
     "outcomeScopeEn": "Tiny payment signal; sustainability not established"
+  },
+  {
+    "id": "boltai",
+    "name": "BoltAI",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "Mac 原生 AI 客户端",
+    "categoryEn": "Native Mac AI client",
+    "summary": "Daniel 的个人主导产品：把 AI 放进 Mac 日常操作，收入包含授权销售和 Setapp 分成。",
+    "summaryEn": "Daniel’s solo-led product embeds AI in Mac workflows; revenue mixes licenses and Setapp.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "自报平均月收入",
+        "labelEn": "Reported average monthly revenue",
+        "value": "~US$15,000",
+        "valueEn": "~US$15,000",
+        "period": "2024-09 访谈",
+        "periodEn": "September 2024 interview",
+        "kind": "revenue",
+        "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+        "title": "BoltAI — founder account",
+        "titleEn": "BoltAI — founder account",
+        "publishedAt": "2024-09-29",
+        "evidence": "founder-report",
+        "supports": "创始人自述的产品、经营与结果；未经财务审计。",
+        "supportsEn": "Founder account of product, operations and outcome; not a financial audit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "待验证假设：同时记录净贡献和每单支持时间。",
+        "textEn": "Hypothesis: Measure contribution and support time per purchase.",
+        "kind": "inference",
+        "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers"
+      }
+    ],
+    "risks": [
+      "2024 年自报数据不是当前利润；涨价后收入略降但支持负担减轻。"
+    ],
+    "risksEn": [
+      "Historical self-report, not current profit; higher pricing reduced sales somewhat but eased support."
+    ],
+    "soloRelevance": "同时记录净贡献和每单支持时间。",
+    "soloRelevanceEn": "Measure contribution and support time per purchase.",
+    "teamEvidence": "访谈时自称 solopreneur，也提及自由职业者；不是永久零雇员证明。",
+    "teamEvidenceEn": "Self-described solopreneur at interview; also mentions a freelancer, not permanent zero staffing.",
+    "teamEvidenceSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+    "businessModel": "买断含有限更新，另有 Setapp 收入；月销售额不是纯订阅 MRR。",
+    "businessModelEn": "Licenses with limited updates plus Setapp; monthly sales are not pure subscription MRR.",
+    "businessModelSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+    "acquisition": "公开构建、X、帮助文章及 Setapp。",
+    "acquisitionEn": "Building in public, X, help articles and Setapp.",
+    "acquisitionSourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers"
+  },
+  {
+    "id": "monai",
+    "name": "MonAi",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "AI 语音记账",
+    "categoryEn": "AI voice expense tracking",
+    "summary": "语音输入降低记账阻力；个人开发者与创作者合作后收入增长。",
+    "summaryEn": "Voice entry reduces expense-logging friction; a solo developer grew through a creator partnership.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "自报 MRR",
+        "labelEn": "Reported MRR",
+        "value": ">US$35,000",
+        "valueEn": ">US$35,000",
+        "period": "2026-04 访谈",
+        "periodEn": "April 2026 interview",
+        "kind": "revenue",
+        "sourceUrl": "https://www.starterstory.com/Florian"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/Florian",
+        "title": "MonAi — founder account",
+        "titleEn": "MonAi — founder account",
+        "publishedAt": "2026-04-06",
+        "evidence": "founder-report",
+        "supports": "创始人自述的产品、经营与结果；未经财务审计。",
+        "supportsEn": "Founder account of product, operations and outcome; not a financial audit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "待验证假设：先验证输入频率和续费，再扩大合作预算。",
+        "textEn": "Hypothesis: Validate usage frequency and renewal before increasing creator spend.",
+        "kind": "inference",
+        "sourceUrl": "https://www.starterstory.com/Florian"
+      }
+    ],
+    "risks": [
+      "35K 是历史自报 MRR，不是净利润；单一伙伴带来渠道集中风险。"
+    ],
+    "risksEn": [
+      "Historical self-reported MRR, not profit; one partner creates channel concentration risk."
+    ],
+    "soloRelevance": "先验证输入频率和续费，再扩大合作预算。",
+    "soloRelevanceEn": "Validate usage frequency and renewal before increasing creator spend.",
+    "teamEvidence": "Florian 被介绍为独立开发者；增长依赖付费创作者伙伴。",
+    "teamEvidenceEn": "Florian is introduced as a solo developer; growth relies on a paid creator partner.",
+    "teamEvidenceSourceUrl": "https://www.starterstory.com/Florian",
+    "businessModel": "订阅与试用；合作包含固定费用及利润分成。",
+    "businessModelEn": "Subscription and trial; partnership includes a retainer and profit share.",
+    "businessModelSourceUrl": "https://www.starterstory.com/Florian",
+    "acquisition": "合作创作者短视频；此前约一年半仅达到 300 美元 MRR。",
+    "acquisitionEn": "Creator videos; previously about 18 months to reach $300 MRR.",
+    "acquisitionSourceUrl": "https://www.starterstory.com/Florian"
+  },
+  {
+    "id": "erly",
+    "name": "Erly",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "AI 动作识别闹钟",
+    "categoryEn": "AI movement-verification alarm",
+    "summary": "用视频验证俯卧撑后关闭闹钟；识别服务参与实际交付，不只是 AI 辅助写代码。",
+    "summaryEn": "Video verification of push-ups dismisses an alarm; AI participates in delivery, beyond coding assistance.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "自报 28 天销售",
+        "labelEn": "Reported 28-day sales",
+        "value": ">US$50,000",
+        "valueEn": ">US$50,000",
+        "period": "2026-07 访谈展示的前 28 天",
+        "periodEn": "28-day window shown in July 2026 interview",
+        "kind": "revenue",
+        "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+        "title": "Erly — founder account",
+        "titleEn": "Erly — founder account",
+        "publishedAt": "2026-07-05",
+        "evidence": "founder-report",
+        "supports": "创始人自述的产品、经营与结果；未经财务审计。",
+        "supportsEn": "Founder account of product, operations and outcome; not a financial audit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "待验证假设：让核心交付能在短视频中展示，并设单渠道预算上限。",
+        "textEn": "Hypothesis: Make the core payoff demonstrable and cap channel spend.",
+        "kind": "inference",
+        "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month"
+      }
+    ],
+    "risks": [
+      "28 天销售不是 MRR；下载不是付费人数，归因依靠波峰并不精确。"
+    ],
+    "risksEn": [
+      "28-day sales are not MRR; downloads are not payers, and spike-based attribution is imprecise."
+    ],
+    "soloRelevance": "让核心交付能在短视频中展示，并设单渠道预算上限。",
+    "soloRelevanceEn": "Make the core payoff demonstrable and cap channel spend.",
+    "teamEvidence": "Jake 自称 solo founder，同时明确现在有人协助。",
+    "teamEvidenceEn": "Jake calls himself a solo founder and explicitly says he now has help.",
+    "teamEvidenceSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+    "businessModel": "试用后年付或月付订阅。",
+    "businessModelEn": "Annual or monthly subscription after a trial.",
+    "businessModelSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+    "acquisition": "付费生活类创作者短视频；单个创作者可能亏损。",
+    "acquisitionEn": "Paid lifestyle-creator videos; individual creators can lose money.",
+    "acquisitionSourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month"
+  },
+  {
+    "id": "luca-running",
+    "name": "Luca（AI 跑步教练）",
+    "outcome": "failure",
+    "scope": "small-team",
+    "category": "AI 跑步训练指导",
+    "categoryEn": "AI running coaching",
+    "summary": "双人项目曾获得付费，后停止运营；失败范围是持续经营，不是从未有人愿意付钱。",
+    "summaryEn": "A two-founder project won paying customers, then closed; the failure concerns sustainability, not absence of demand.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "历史自报 ARR",
+        "labelEn": "Historical reported ARR",
+        "value": ">US$100,000",
+        "valueEn": ">US$100,000",
+        "period": "2025-10 复盘中的早期高点；非关闭时",
+        "periodEn": "Early peak described in October 2025; not shutdown revenue",
+        "kind": "revenue",
+        "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+        "title": "Luca（AI 跑步教练） — founder account",
+        "titleEn": "Luca — founder shutdown postmortem",
+        "publishedAt": "2025-10-29",
+        "evidence": "founder-report",
+        "supports": "创始人自述的产品、经营与结果；未经财务审计。",
+        "supportsEn": "Founder account of product, operations and outcome; not a financial audit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "待验证假设：先验证多周交付和续费，不以首月付费代替留存。",
+        "textEn": "Hypothesis: Test multiweek delivery and renewal, not just first-month payment.",
+        "kind": "inference",
+        "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr"
+      }
+    ],
+    "risks": [
+      "关闭据创始人自述；付费增长没有解决持续指导的可靠性和留存。"
+    ],
+    "risksEn": [
+      "Closure is founder-reported; early payments did not resolve ongoing coaching reliability and retention."
+    ],
+    "soloRelevance": "先验证多周交付和续费，不以首月付费代替留存。",
+    "soloRelevanceEn": "Test multiweek delivery and renewal, not just first-month payment.",
+    "teamEvidence": "复盘明确主要由两位联合创始人运营，并曾融资。",
+    "teamEvidenceEn": "Postmortem describes two cofounders and prior funding.",
+    "teamEvidenceSourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+    "businessModel": "消费订阅；历史 ARR 是年化指标，不是累计到账。",
+    "businessModelEn": "Consumer subscription; historical ARR is annualized, not cumulative cash.",
+    "businessModelSourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+    "acquisition": "早期 TikTok 微型创作者带来增长，后续停滞。",
+    "acquisitionEn": "Early TikTok micro-creators drove growth that later stalled.",
+    "acquisitionSourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+    "failureSubtype": "shutdown",
+    "outcomeScope": "产品停止运营；不否认历史付费或用户价值",
+    "outcomeScopeEn": "Product discontinued; historical payment or user value is not denied",
+    "nameEn": "Luca (AI running coach)"
+  },
+  {
+    "id": "humi-journal",
+    "name": "Humi",
+    "outcome": "failure",
+    "scope": "unknown",
+    "category": "AI 图像识别日志",
+    "categoryEn": "AI visual identification journal",
+    "summary": "识别雪茄标识并记录笔记的小应用；作者称已关闭并退款。用作停止经营决策的反例，不推广烟草消费。",
+    "summaryEn": "A visual identification journal; its author reports closure and refunds. A closure-decision case, not tobacco promotion.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
+        "title": "Humi — founder account",
+        "titleEn": "Humi — founder account",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "创始人自述的产品、经营与结果；未经财务审计。",
+        "supportsEn": "Founder account of product, operations and outcome; not a financial audit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "待验证假设：用真实付款、留存与成本验证判断，不能把 Agent 的否定当市场证据。",
+        "textEn": "Hypothesis: Validate with payments, retention and costs; an agent verdict is not market evidence.",
+        "kind": "inference",
+        "sourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0"
+      }
+    ],
+    "risks": [
+      "AI 对商业模式的负面评分不证明市场必然失败；作者也未确认停止是正确决定。"
+    ],
+    "risksEn": [
+      "An AI verdict does not prove market failure; the author does not establish that closing was correct."
+    ],
+    "soloRelevance": "用真实付款、留存与成本验证判断，不能把 Agent 的否定当市场证据。",
+    "soloRelevanceEn": "Validate with payments, retention and costs; an agent verdict is not market evidence.",
+    "teamEvidence": "作者以个人项目叙述；没有完整团队人数证据，不标成确认 Solo。",
+    "teamEvidenceEn": "Personal-project account; complete staffing is unverified, so not confirmed solo.",
+    "teamEvidenceSourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
+    "businessModel": "作者提及客户退款；价格、收入和利润未披露。",
+    "businessModelEn": "Customer refunds mentioned; price, revenue and profit undisclosed.",
+    "businessModelSourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
+    "acquisition": "未披露可核验获客渠道或成本。",
+    "acquisitionEn": "No verifiable acquisition channel or cost disclosed.",
+    "acquisitionSourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
+    "failureSubtype": "shutdown",
+    "outcomeScope": "产品停止运营；不否认历史付费或用户价值",
+    "outcomeScopeEn": "Product discontinued; historical payment or user value is not denied"
   }
 ]

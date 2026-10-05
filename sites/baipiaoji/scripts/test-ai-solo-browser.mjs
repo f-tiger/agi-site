@@ -1,3 +1,4 @@
+import {consumerCaseIds} from './ai-solo-indie.mjs';
 // All page requests are intercepted. No live analytics or consultation inputs are sent.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -37,7 +38,7 @@ try{
   if(lang==='en')assert.ok(!/[\u3400-\u9fff]/u.test(await page.locator('.solo-main').innerText()),'English comparison is fully translated');
   await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'comparison scroll must not overflow page');await page.screenshot({path:path.join(out,lang+'-comparison-mobile.png')});await page.setViewportSize({width:1440,height:1000});
   await page.goto('https://baipiaoji.com'+prefix+'/ai-solo/solo/?__probe=1');
-  assert.equal(await page.locator('#consumer-apps [data-indie-case]').count(),6);
+  assert.equal(await page.locator('#consumer-apps [data-indie-case]').count(),consumerCaseIds.length);
   assert.equal(await page.locator('#solo-projects [data-indie-case]').count(),cases.filter(c=>c.scope==='solo').length);
   assert.equal(await page.locator('#solo-projects [data-indie-scope="company"],#solo-projects [data-indie-scope="small-team"],#solo-projects [data-indie-scope="unknown"]').count(),0);
   if(lang==='en')assert.ok(!/[\u3400-\u9fff]/u.test(await page.locator('.solo-main').innerText()));

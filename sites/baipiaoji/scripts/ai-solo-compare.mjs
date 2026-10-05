@@ -1,5 +1,6 @@
 // Editorial groups use the customer job, not neural similarity or outcome labels.
 export const comparisonGroups = [
+ ['ai-clients','小型 AI 客户端','Small AI clients','比较个人用户的多模型入口：原生 Mac、网页客户端与全能助手不同；买断销售不是订阅 MRR，停止单款产品不等于创始人退出。','Compare multi-model access for individuals: native Mac, web clients and all-in-one assistants differ. License sales are not subscription MRR; product closure is not founder exit.',['boltai','typingmind','super-ai']],
  ['beauty-analysis','自拍美妆与形象建议','Selfie beauty and appearance','比较自拍后的建议交付与获客，分别注明个人或团队证据；不视为医学检测。','Compare selfie advice and acquisition with explicit staffing evidence; these are not medical diagnostics.',['glam-up','glow-ai','glowly-ai']],
  ['color-analysis','自拍色彩分析','Selfie color analysis','对照季型色彩报告：小额一次性收入、订阅 MRR 与历史峰值不能直接排名。','Compare seasonal-color reports; tiny one-off revenue, subscription MRR and historical peaks are not directly rankable.',['glam-up','glamour-color','solo-color-microcase']],
  ['coding','编程助手','Coding assistants','补全、编辑器与 Agent 的交付不同；时期、平台与团队也不同。','Completion, editors and agents differ in deliverable, period, platform and team.',['cursor','windsurf','github-copilot','kite']],
