@@ -1,3 +1,4 @@
+import {readAiSoloSignals} from '../../lib/ai-solo-events.mjs';
 import {readHomepageSignals} from '../../lib/homepage-signals.js';
 import {readManjuSignals} from '../../lib/manju.mjs';
 import {readQuoteSignals} from '../../lib/quote-signals.js';
@@ -115,6 +116,7 @@ export async function computeReach(env, days) {
     const quoteSignals = await readQuoteSignals(env.HITS, since);
     const homepageSignals = await readHomepageSignals(env.HITS, since, today);
     const manjuSignals = await readManjuSignals(env.HITS, since);
+    const aiSoloSignals = await readAiSoloSignals(env.HITS, since);
     return json({
       ok: true,
       generated: new Date().toISOString(),
@@ -131,9 +133,10 @@ export async function computeReach(env, days) {
       quote_signals: quoteSignals,
       homepage_signals: homepageSignals,
       manju_signals: manjuSignals,
+      ai_solo_signals: aiSoloSignals,
       // 有一块没读出来(09-26 额度边缘时实见:主查询成功、商业触发那条被拒)就标 partial,
       // lib/reach-cache.js 不缓存它——否则缺一块的结果会被原样挂一小时。
-      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok ? { partial: true } : {}),
+      ...(commercial.ok === false || !conversionStages.ok || !quoteSignals.ok || !homepageSignals.ok || !aiSoloSignals.ok ? { partial: true } : {}),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),

@@ -18,8 +18,12 @@ export const lmNormalize = (s) => s
       .replace(/\n    <a data-studio-nav[^>]*>[\s\S]*?<\/a>/g, '')
       .replace(/\n    <a data-video-nav[^>]*>[\s\S]*?<\/a>/g, '')
       .replace(/<a data-studio-footer[^>]*>[\s\S]*?<\/a> · /g, '')
+      // This section's global navigation does not refresh unrelated case/article facts.
+      .replace(/(?:\n\s*)?<a data-ai-solo-nav[^>]*>[\s\S]*?<\/a>/g, '')
+      .replace(/<a[^>]* data-ai-solo-footer[^>]*>[\s\S]*?<\/a>/g, '')
       // Asset cache-busters (?v=EDITION) are not page content: a studio EDITION bump must not restamp ~50 pages (2026-09-25 audit V5).
       .replace(/(\/studio-assets\/[^"?]+)\?v=[^"]*/g, '$1')
+      .replace(/(\/ai-solo\.(?:css|js))\?v=[^"]*/g, '$1')
       .replace(/(\/(?:site-shell\.(?:css|js)|account\.(?:css|js)|bpj\.js))\?v=[^"]*/g, '$1')
       .replace(/\d{4}-\d{2}-\d{2}/g, 'D');
 export const lmHashOf = (html) => createHash('sha1').update(lmNormalize(html)).digest('hex').slice(0, 16);

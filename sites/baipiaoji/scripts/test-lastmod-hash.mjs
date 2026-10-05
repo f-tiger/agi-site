@@ -41,4 +41,9 @@ differs('a quota sentence in the answer', page.replace(/<p class="(answer|quota)
 differs('only a number in the body changes (not a date)', page.replace(/(<(?:p|td|li|b|strong)[^>]*>[^<]*?)(?<![\d.-])(\d+)(?![\d.:-])/, (m, a, d) => a + (Number(d) + 1)));
 differs('a heading', page.replace(/<h1>/, '<h1>X '));
 differs('a count outside the rail (page body)', page.replace(/<\/main>/, '<p>共 219 个</p></main>'));
+assert.equal(lmHashOf(page),lmHashOf(page+'<a data-ai-solo-nav href="/ai-solo/">AI Solo business</a>'));n++;
+assert.equal(lmHashOf(page),lmHashOf(page+'<a href="/ai-solo/" data-ai-solo-footer>AI Solo business</a>'));n++;
+assert.notEqual(lmHashOf(page),lmHashOf(page+'<main><a href="/ai-solo/">A relevant body link</a></main>'));n++;
+const soloAssets = '<link rel="stylesheet" href="https://baipiaoji.com/ai-solo.css?v=old"><script type="module" src="https://baipiaoji.com/ai-solo.js?v=old"></script>';
+assert.equal(lmHashOf(page+soloAssets),lmHashOf(page+soloAssets.replaceAll('?v=old','?v=new')));n++;
 console.log(`✅ test-lastmod-hash: ${n} checks — rail counts, footer size, the latest-entry line and dates leave the hash alone; content edits change it${useDist ? ' (real dist page)' : ' (fixture)'}`);

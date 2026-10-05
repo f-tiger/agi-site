@@ -27,6 +27,19 @@ test('BPJ homepage accepts fixed labels only and keeps repeated clicks',()=>{
  for(const [host,path,detail] of [['baipiaoji.com','/tools/grok',{name:'home:hero:toolbox'}],['getecoback.com','/',{name:'home:hero:toolbox'}],['baipiaoji.com','/',{name:'home:SECRET:toolbox'}],['baipiaoji.com','/',{name:'home:hero:https://private.invalid'}],['baipiaoji.com','/',{name:'home:hero:toolbox',query:'SECRET'}]])assert.equal(businessEvent(host,path,detail),null);
 });
 
+test('AI Solo actions stay on public BPJ routes and exclude consultation payloads',()=>{
+ for(const action of ['plan_complete','plan_export','case_open','filter','source_open','example','skill_export','save_local']){
+  const name='ai_solo_'+action;
+  assert.deepEqual(businessEvent('baipiaoji.com','/en/ai-solo/agent/',{name}),{name,tool_id:'ai-solo',repeat:true});
+  for(const route of ['/account','/members','/api/private','/'])assert.equal(businessEvent('baipiaoji.com',route,{name}),null);
+  assert.equal(businessEvent('getecoback.com','/ai-solo/agent/',{name}),null);
+  assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',{name,question:'private customer problem'}),null);
+ }
+ assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',{name:'ai_solo_income'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/ai-solo/agent/',{name:'ai_solo_purchase'}),null);
+ assert.deepEqual(businessEvent('baipiaoji.com','/',{name:'home:ai-solo:ai-solo-agent'}),{name:'home_click',home_block:'ai-solo',home_destination:'ai-solo-agent',site_edition:'zh',repeat:true});
+});
+
 test('BPJ subscription checklist measures review and successful copy without form values',()=>{
  for(const path of ['/subscription-audit','/en/subscription-audit.html'])
   for(const name of ['subscription_review','subscription_copy'])

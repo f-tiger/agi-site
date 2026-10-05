@@ -1,0 +1,120 @@
+{
+  "lastRun": "2026-10-05T06:06:23.611Z",
+  "status": "degraded",
+  "checkedSources": 6,
+  "queue": [
+    {
+      "caseId": "photo-ai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "lastChecked": "2026-10-05T06:06:23.611Z"
+    },
+    {
+      "caseId": "interior-ai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "lastChecked": "2026-10-05T06:06:23.611Z"
+    },
+    {
+      "caseId": "typingmind",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+      "lastChecked": "2026-10-05T06:06:23.611Z"
+    },
+    {
+      "caseId": "typingmind",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+      "lastChecked": "2026-10-05T06:06:23.611Z"
+    },
+    {
+      "caseId": "pdf-ai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "lastChecked": "2026-10-05T06:06:23.611Z"
+    }
+  ],
+  "sources": {
+    "photo-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
+      "caseId": "photo-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "interior-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
+      "caseId": "interior-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "typingmind|https://news.tonydinh.com/p/500k-milestone-my-reflections-after": {
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "typingmind|https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees": {
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "headshotpro|https://www.rewardful.com/case-studies/headshotpro": {
+      "caseId": "headshotpro",
+      "sourceUrl": "https://www.rewardful.com/case-studies/headshotpro",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-05T06:06:23.611Z",
+      "lastHash": "e4518a43ca185a8ae2aa74a9baaa1f2324568c73fe067990ebbc2c35f3a9a553",
+      "hash": "e4518a43ca185a8ae2aa74a9baaa1f2324568c73fe067990ebbc2c35f3a9a553",
+      "simhash": "ac082445adcec10d",
+      "words": 894,
+      "consecutiveChange": 0
+    },
+    "pdf-ai|https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW": {
+      "caseId": "pdf-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    }
+  },
+  "cursor": 5,
+  "errors": [
+    {
+      "caseId": "photo-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "interior-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "pdf-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "reason": "body-limit"
+    }
+  ]
+}

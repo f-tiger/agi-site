@@ -1,0 +1,2777 @@
+[
+  {
+    "id": "photo-ai",
+    "name": "Photo AI",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "AI 摄影",
+    "categoryEn": "AI photography",
+    "summary": "创始人披露 AI 摄影工具在播客曝光后取得月度收入增长，验证了用户为可用照片付费的需求。",
+    "summaryEn": "The founder reported revenue growth after a podcast appearance, indicating paid demand for usable AI photos.",
+    "metrics": [
+      {
+        "label": "月收入快照（非 MRR）",
+        "labelEn": "Monthly revenue snapshot, not verified MRR",
+        "value": "US$161,000",
+        "period": "2024-09-22 披露",
+        "periodEn": "Reported 2024-09-22",
+        "kind": "revenue",
+        "valueEn": "US$161,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+        "title": "创始人：播客后的收入纪录",
+        "titleEn": "Founder: revenue record after the Lex Fridman podcast",
+        "publishedAt": "2024-09-22",
+        "evidence": "founder-report",
+        "supports": "Photo AI 月收入 161K 美元；播客带来增长；多个产品 GPU 成本合并披露。",
+        "supportsEn": "Reports Photo AI revenue of US$161K/month and a podcast-driven increase; GPU costs combine multiple products."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "既有个人品牌和长访谈可能降低获客成本。",
+        "textEn": "An established audience and a long-form interview may reduce acquisition friction.",
+        "kind": "inference",
+        "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman"
+      }
+    ],
+    "risks": [
+      "历史短期快照，创始人提醒高峰很快回落；不能外推为当前 MRR。",
+      "收入和成本自报，GPU 成本并非该产品独立核算；不等于审计利润。"
+    ],
+    "risksEn": [
+      "Historical spike; the founder said the peak soon fell. It is not current MRR.",
+      "Self-reported revenue and shared GPU costs do not establish audited product profit."
+    ],
+    "soloRelevance": "独立开发者主导的可复制起点是单一照片需求；已有巨大受众不容易复制。",
+    "soloRelevanceEn": "A narrow photo use case is relevant to solo builders; the founder's existing audience is harder to replicate.",
+    "features": null
+  },
+  {
+    "id": "interior-ai",
+    "name": "Interior AI",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "AI 室内设计",
+    "categoryEn": "AI interior design",
+    "summary": "面向房间照片改造的窄用途 AI 产品，创始人单独披露过收入。",
+    "summaryEn": "A narrow room-redesign product with separately disclosed founder-reported revenue.",
+    "metrics": [
+      {
+        "label": "月收入快照（非 MRR）",
+        "labelEn": "Monthly revenue snapshot, not verified MRR",
+        "value": "US$43,000",
+        "period": "2024-09-22 披露",
+        "periodEn": "Reported 2024-09-22",
+        "kind": "revenue",
+        "valueEn": "US$43,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+        "title": "创始人：播客后的收入纪录",
+        "titleEn": "Founder: revenue record after the Lex Fridman podcast",
+        "publishedAt": "2024-09-22",
+        "evidence": "founder-report",
+        "supports": "Interior AI 月收入 43K 美元。",
+        "supportsEn": "Reports Interior AI revenue of US$43K/month."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "上传现有房间照片再生成设计，使用入口清楚。",
+        "textEn": "Starting with an existing room photo makes the workflow easy to understand.",
+        "kind": "inference",
+        "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman"
+      }
+    ],
+    "risks": [
+      "收入为历史自报值，不代表当前持续收入或利润。",
+      "竞争者可集成类似能力；应用价值和分发需要持续维护。"
+    ],
+    "risksEn": [
+      "Historical self-reported revenue does not establish current recurring revenue or profit.",
+      "Similar capabilities can be integrated by competitors, requiring continued product and distribution work."
+    ],
+    "soloRelevance": "可借鉴行业任务与上传入口的窄化，不应复制流量或利润假设。",
+    "soloRelevanceEn": "A focused industry task and simple upload flow are useful solo patterns; traffic and margin assumptions need independent validation.",
+    "features": null
+  },
+  {
+    "id": "typingmind",
+    "name": "TypingMind",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "AI 工作界面",
+    "categoryEn": "AI workspace",
+    "summary": "从改善模型聊天界面起步，通过一次性许可证与团队订阅混合收费建立付费需求。",
+    "summaryEn": "Started by improving the chat interface, then monetized through a mix of one-time licenses and team subscriptions.",
+    "metrics": [
+      {
+        "label": "累计收入",
+        "labelEn": "Cumulative revenue",
+        "value": "US$500,000",
+        "period": "截至 2024-02",
+        "periodEn": "By 2024-02",
+        "kind": "revenue",
+        "valueEn": "US$500,000"
+      },
+      {
+        "label": "仅订阅部分 MRR",
+        "labelEn": "MRR from subscription products only",
+        "value": "US$15,000",
+        "period": "2024-02",
+        "periodEn": "2024-02",
+        "kind": "revenue",
+        "valueEn": "US$15,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+        "title": "TypingMind 一年收入复盘",
+        "titleEn": "TypingMind: one-year revenue reflection",
+        "publishedAt": "2024-02-26",
+        "evidence": "founder-report",
+        "supports": "累计收入 500K 美元，订阅部分 15K MRR；BYOK 和低托管成本支持许可证模式。",
+        "supportsEn": "Reports US$500K cumulative revenue and US$15K subscription MRR; BYOK and low hosting costs support one-time licenses."
+      },
+      {
+        "url": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+        "title": "Tony Dinh：与员工合作",
+        "titleEn": "Tony Dinh: working with employees",
+        "publishedAt": "2023-07-06",
+        "evidence": "founder-report",
+        "supports": "创始人说明与员工和承包商合作，不能称为始终零员工。",
+        "supportsEn": "The founder describes employees and contractors; this is not a permanently zero-employee business."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人将早进入 API 界面细分市场、连续发布和成本匹配的收费方式作为关键因素。",
+        "textEn": "The founder attributes traction to early entry, frequent releases, and pricing that matches ongoing costs.",
+        "kind": "reported",
+        "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after"
+      }
+    ],
+    "risks": [
+      "累计收入、订阅 MRR 与整个产品组合收入必须分开。",
+      "底层模型产品不断改进，界面差异需要继续演化。"
+    ],
+    "risksEn": [
+      "Cumulative revenue, subscription MRR, and portfolio revenue must be kept separate.",
+      "As model vendors improve their products, interface differentiation must continue evolving."
+    ],
+    "soloRelevance": "单一创始人起步，但已合作用人；适合借鉴 BYOK、许可证与 B2B 订阅组合。",
+    "soloRelevanceEn": "Started with one founder but used collaborators; useful patterns include BYOK, licenses, and B2B subscriptions.",
+    "features": null
+  },
+  {
+    "id": "headshotpro",
+    "name": "HeadshotPro",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "AI 职业头像",
+    "categoryEn": "AI professional headshots",
+    "summary": "通过职业头像这类明确交付结果获客，公开供应商访谈提供了联盟渠道收入证据。",
+    "summaryEn": "A clear professional-headshot deliverable attracted customers; a supplier interview documents affiliate-channel revenue.",
+    "metrics": [
+      {
+        "label": "联盟渠道月收入",
+        "labelEn": "Monthly revenue attributed to affiliates",
+        "value": "超过 US$50,000",
+        "period": "供应商案例发布时，日期未披露",
+        "periodEn": "At publication; exact date unavailable",
+        "kind": "revenue",
+        "valueEn": "Over US$50,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.rewardful.com/case-studies/headshotpro",
+        "title": "HeadshotPro 联盟营销收入案例",
+        "titleEn": "HeadshotPro affiliate revenue case study",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "Rewardful 访谈创始人，称联盟贡献每月超过 50K 美元及月收入 15% 以上；供应商有商业利益。",
+        "supportsEn": "Rewardful's founder interview reports over US$50K/month and over 15% of revenue from affiliates; the supplier has a commercial interest."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人认为佣金激励能让更多评测者撰文并带来品牌曝光。",
+        "textEn": "The founder says commissions encourage more reviews and brand exposure.",
+        "kind": "reported",
+        "sourceUrl": "https://www.rewardful.com/case-studies/headshotpro"
+      }
+    ],
+    "risks": [
+      "不采用网络目录的 300K MRR 等未经直接核实数字。",
+      "联盟收入不是总收入或利润；具体时期和当前团队人数未核实。"
+    ],
+    "risksEn": [
+      "Unverified directory claims such as US$300K MRR are excluded.",
+      "Affiliate revenue is not total revenue or profit; the exact period and current team size are unverified."
+    ],
+    "soloRelevance": "单一创始人背景可借鉴，当前按创始人主导的小团队处理；核心经验是结果明确与联盟分发。",
+    "soloRelevanceEn": "A founder-led example treated conservatively as a small team; the main patterns are a clear deliverable and affiliate distribution.",
+    "features": null
+  },
+  {
+    "id": "pdf-ai",
+    "name": "PDF.ai",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "文档问答",
+    "categoryEn": "Document Q&A",
+    "summary": "创始人披露收购后的文档问答产品产生真实销售收入。",
+    "summaryEn": "The founder reported sales revenue from an acquired document Q&A product.",
+    "metrics": [
+      {
+        "label": "原帖所述 11 月收入",
+        "labelEn": "Revenue in the November described by the post",
+        "value": "超过 US$60,000",
+        "period": "原帖为历史披露；年份未显式确认",
+        "periodEn": "Historical post; year not explicitly verified",
+        "kind": "revenue",
+        "valueEn": "Over US$60,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+        "title": "Damon Chen：PDF.ai 月收入披露",
+        "titleEn": "Damon Chen: PDF.ai revenue disclosure",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "创始人称 11 月收入超过 60K 美元；未提供审计或独立产品成本。",
+        "supportsEn": "The founder reports over US$60K in November revenue without audited costs."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "收购已有产品可缩短从想法到付费验证的路径。",
+        "textEn": "Acquiring an existing product may shorten the path to paid validation.",
+        "kind": "inference",
+        "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW"
+      }
+    ],
+    "risks": [
+      "不能把该月收入年化成已实现全年收入或 MRR。",
+      "当前团队大小未核实，按创始人主导业务保守处理。"
+    ],
+    "risksEn": [
+      "One month's revenue cannot be treated as realized annual revenue or verified MRR.",
+      "Current team size is unverified; this is conservatively treated as a founder-led business."
+    ],
+    "soloRelevance": "对 Solo 有参考价值的是买入既有资产再优化；收购预算和运营能力仍是约束。",
+    "soloRelevanceEn": "Relevant to solo builders as an acquisition-and-improvement strategy, subject to budget and operating capacity.",
+    "features": null
+  },
+  {
+    "id": "sitegpt",
+    "name": "SiteGPT",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "企业 AI 客服",
+    "categoryEn": "Business AI support",
+    "summary": "两名创始人运行的网站客服产品，披露了累计收入和实际依赖产品的企业数。",
+    "summaryEn": "A two-founder website-support product with disclosed cumulative revenue and business adoption.",
+    "metrics": [
+      {
+        "label": "累计收入",
+        "labelEn": "Cumulative revenue",
+        "value": "US$500,000",
+        "period": "截至创始人该次公开披露",
+        "periodEn": "At the founder's disclosure",
+        "kind": "revenue",
+        "valueEn": "US$500,000"
+      },
+      {
+        "label": "使用企业",
+        "labelEn": "Businesses using the product",
+        "value": "135",
+        "period": "同次公开披露",
+        "periodEn": "Same disclosure",
+        "kind": "users",
+        "valueEn": "135"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+        "title": "SiteGPT 创始人：累计收入与企业用户",
+        "titleEn": "SiteGPT founder: cumulative revenue and adoption",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "累计 500K 美元收入、135 家使用企业，创始人明确是自己与 Dheeraj 两人。",
+        "supportsEn": "Reports US$500K cumulative revenue and 135 businesses; names two founders working on it."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "把重复客服问题定位为每天发生的企业需求。",
+        "textEn": "Recurring support questions frame the product around a daily business need.",
+        "kind": "inference",
+        "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ"
+      }
+    ],
+    "risks": [
+      "自报累计数字不等于 MRR；企业人数未明确全部付费。",
+      "没有独立审计、留存或获客成本数据。"
+    ],
+    "risksEn": [
+      "Self-reported cumulative revenue is not MRR; not every business is explicitly confirmed paid.",
+      "No independent audit, retention, or acquisition-cost data is supplied."
+    ],
+    "soloRelevance": "这是有直接两人团队证据的样本；适合借鉴小团队与重复业务流程。",
+    "soloRelevanceEn": "Direct evidence supports a two-person team; relevant patterns are team discipline and a recurring workflow.",
+    "features": null
+  },
+  {
+    "id": "audiopen",
+    "name": "AudioPen",
+    "outcome": "success",
+    "scope": "solo",
+    "category": "语音转写与重写",
+    "categoryEn": "Voice transcription and rewriting",
+    "summary": "把口述思路变成可用文字的单用途工具，具有用户市场验证和创始人收入访谈。",
+    "summaryEn": "A focused tool turning spoken thoughts into usable text, with adoption evidence and a founder revenue interview.",
+    "metrics": [
+      {
+        "label": "采访所述月收入",
+        "labelEn": "Monthly revenue reported in interview",
+        "value": "US$15,000–20,000",
+        "period": "2026-02-17",
+        "periodEn": "2026-02-17",
+        "kind": "revenue",
+        "valueEn": "US$15,000–20,000"
+      },
+      {
+        "label": "官网声称使用人数",
+        "labelEn": "People claimed by the website",
+        "value": "超过 200,000",
+        "period": "页面观察于 2026-10-05",
+        "periodEn": "Observed 2026-10-05",
+        "kind": "users",
+        "valueEn": "Over 200,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+        "title": "AudioPen 创始人访谈",
+        "titleEn": "AudioPen founder interview",
+        "publishedAt": "2026-02-17",
+        "evidence": "founder-report",
+        "supports": "搜索索引中的创始人采访报告 15K–20K 月收入，正文抓取受限。",
+        "supportsEn": "The indexed founder interview reports US$15K–20K monthly revenue; direct page fetch was restricted."
+      },
+      {
+        "url": "https://www.audiopen.ai/",
+        "title": "AudioPen 官网",
+        "titleEn": "AudioPen website",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "官网声称超过 200K 使用人数；不说明活跃或付费口径。",
+        "supportsEn": "Claims over 200K users without specifying paid or active users."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "官网清楚区分简单转写与按风格重写，强调完成文字任务。",
+        "textEn": "The site distinguishes transcription from styled rewriting and focuses on a finished writing task.",
+        "kind": "inference",
+        "sourceUrl": "https://www.audiopen.ai/"
+      }
+    ],
+    "risks": [
+      "收入采访正文未能抓取，需后续人工复核；用户数为公司营销口径。",
+      "竞争对手和系统级语音功能可能降低差异；当前协作人数未核实。"
+    ],
+    "risksEn": [
+      "The revenue interview needs follow-up verification because the full page could not be fetched; adoption is a marketing claim.",
+      "Competing and built-in voice features can erode differentiation; current collaborator count is unverified."
+    ],
+    "soloRelevance": "创始人自建的聚焦工具，比通用语音平台更贴近 Solo 产品起点。",
+    "soloRelevanceEn": "A founder-built focused tool is more relevant to solo starting points than a broad voice platform.",
+    "features": null,
+    "evidenceStatus": "pending-review"
+  },
+  {
+    "id": "my-askai",
+    "name": "My AskAI",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "企业 AI 客服",
+    "categoryEn": "Business AI support",
+    "summary": "两人团队通过嵌入现有客服流程和窄化定位获得订阅收入。",
+    "summaryEn": "A two-person team earned subscription revenue by fitting a focused product into existing support workflows.",
+    "metrics": [
+      {
+        "label": "创始人采访 MRR",
+        "labelEn": "MRR reported in founder interview",
+        "value": "US$40,000",
+        "period": "2025-07",
+        "periodEn": "2025-07",
+        "kind": "revenue",
+        "valueEn": "US$40,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
+        "title": "My AskAI：两人团队达到 40K MRR",
+        "titleEn": "My AskAI: two-person team reaches US$40K MRR",
+        "publishedAt": "2025-07-10",
+        "evidence": "founder-report",
+        "supports": "Indie Hackers 搜索索引显示两人团队与 40K MRR；正文访问受限。",
+        "supportsEn": "Indie Hackers' indexed interview summary states a two-person team and US$40K MRR; the full page was restricted."
+      },
+      {
+        "url": "https://kaeda.co/cases/my-askai",
+        "title": "My AskAI 案例及原始采访链接",
+        "titleEn": "My AskAI case summary and original interview link",
+        "publishedAt": null,
+        "evidence": "media-report",
+        "supports": "媒体复述同一创始人采访，不能当第二份独立审计。",
+        "supportsEn": "Repeats the same founder interview; it is not independent financial corroboration."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "在既有客服平台内提供较便宜的 AI 解答，可能比替换整个系统容易成交。",
+        "textEn": "A lower-cost AI layer inside existing support systems may be easier to buy than a full replacement.",
+        "kind": "inference",
+        "sourceUrl": "https://kaeda.co/cases/my-askai"
+      }
+    ],
+    "risks": [
+      "该数来自历史创始人采访，正文仍需人工复核。",
+      "转述媒体和目录估计并非独立证据；利润率与留存不纳入事实指标。"
+    ],
+    "risksEn": [
+      "This historical founder interview still needs full-page verification.",
+      "Repeating media summaries and directory estimates are not independent evidence; margins and retention are not recorded as measured facts."
+    ],
+    "soloRelevance": "两人职责分工与现有平台集成，对 Solo 加一名伙伴的创业方式有参考价值。",
+    "soloRelevanceEn": "A two-person division of work and existing-platform integrations are relevant to a solo founder adding one partner.",
+    "features": null,
+    "evidenceStatus": "pending-review"
+  },
+  {
+    "id": "castmagic",
+    "name": "Castmagic",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "内容复用",
+    "categoryEn": "Content repurposing",
+    "summary": "以音视频转多种发布素材切入，联合创始人披露订阅收入和专业用户采用。",
+    "summaryEn": "Turns audio and video into publishing assets; a cofounder disclosed subscription revenue and professional adoption.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "US$1,000,000",
+        "period": "2024 年初",
+        "periodEn": "Early 2024",
+        "kind": "revenue",
+        "valueEn": "US$1,000,000"
+      },
+      {
+        "label": "累计服务专业人士与创作者",
+        "labelEn": "Professionals and creators served",
+        "value": "35,000",
+        "period": "2024 年初",
+        "periodEn": "Early 2024",
+        "kind": "users",
+        "valueEn": "35,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+        "title": "Castmagic 联合创始人里程碑",
+        "titleEn": "Castmagic cofounder milestone",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "帖文明确 2024 年初达到 1M ARR，并服务 35K 人；用户数不全等于付费数。",
+        "supportsEn": "States US$1M ARR and 35K professionals and creators served at the start of 2024; users are not necessarily paid."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "把单份录音扩展成多个可交付内容资产，减少重复制作步骤。",
+        "textEn": "Reusing one recording for several deliverables reduces repeated production work.",
+        "kind": "inference",
+        "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic"
+      }
+    ],
+    "risks": [
+      "ARR 自报且是历史值，不等于全年已确认收入或利润。",
+      "用户总量没有活跃和付费口径；当前团队规模未核实。"
+    ],
+    "risksEn": [
+      "Historical self-reported ARR is not realized annual revenue or profit.",
+      "User totals lack active and paid definitions; current team size is unverified."
+    ],
+    "soloRelevance": "可借鉴先解决创作者一个重复流程再发展集成；并非单人零协作证明。",
+    "soloRelevanceEn": "Relevant as a focused creator-workflow product that later adds integrations; it is not proof of a zero-collaborator business.",
+    "features": null
+  },
+  {
+    "id": "docsbot",
+    "name": "DocsBot",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "知识库 AI 客服",
+    "categoryEn": "Knowledge-grounded AI support",
+    "summary": "以企业知识为依据回答问题并连接行动，官网公开实际企业用户与命名客户。",
+    "summaryEn": "Answers from business knowledge and connects actions, with disclosed business adoption and named customers.",
+    "metrics": [
+      {
+        "label": "官网声称服务企业",
+        "labelEn": "Businesses claimed as served",
+        "value": "超过 3,000",
+        "period": "观察于 2026-10-05",
+        "periodEn": "Observed 2026-10-05",
+        "kind": "users",
+        "valueEn": "Over 3,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://docsbot.ai/about",
+        "title": "DocsBot 团队与关键事实",
+        "titleEn": "DocsBot team and key facts",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "官网称 3K+ 企业，并列举 Sony Network Communications、Sentry、StellarWP；照片显示五名团队成员。",
+        "supportsEn": "Claims 3K+ businesses and names Sony Network Communications, Sentry, and StellarWP; a team photo shows five members."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "引用来源、人工转交与既有客服系统集成可能提高企业信任。",
+        "textEn": "Citations, human handoff, and help-desk integration may improve buyer trust.",
+        "kind": "inference",
+        "sourceUrl": "https://docsbot.ai/about"
+      }
+    ],
+    "risks": [
+      "官网用户量是公司口径，不代表全为付费或持续活跃。",
+      "没有公开收入或审计利润，按用户市场验证归类。"
+    ],
+    "risksEn": [
+      "Website adoption claims do not confirm that all users are paid or active.",
+      "No public audited revenue or profit is established; classification rests on market adoption."
+    ],
+    "soloRelevance": "小团队能够从一个客服知识库工作流起步；对站点问答 Agent 很相关。",
+    "soloRelevanceEn": "A small team can start with one support-knowledge workflow; this is relevant to the site's advisory agent.",
+    "features": null
+  },
+  {
+    "id": "formula-bot",
+    "name": "Formula Bot",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "数据分析",
+    "categoryEn": "Data analysis",
+    "summary": "从 Excel 公式生成扩展到数据分析；历史创始人访谈证明了订阅收入。",
+    "summaryEn": "Expanded from Excel formulas into data analysis, with historical founder-reported subscription revenue.",
+    "metrics": [
+      {
+        "label": "访谈正文所述 MRR",
+        "labelEn": "MRR stated in interview body",
+        "value": "超过 US$14,000",
+        "period": "2023-03-21 采访",
+        "periodEn": "Interview dated 2023-03-21",
+        "kind": "revenue",
+        "valueEn": "Over US$14,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.starterstory.com/stories/excelformulabot",
+        "title": "Formula Bot 创始人访谈",
+        "titleEn": "Formula Bot founder interview",
+        "publishedAt": "2023-03-21",
+        "evidence": "founder-report",
+        "supports": "正文自报超过 14K MRR；网页标题、摘要与正文的月收入不同，因此不使用其高额标题数字。",
+        "supportsEn": "The body reports over US$14K MRR; differing title and monthly-sales figures are excluded."
+      },
+      {
+        "url": "https://n8n.io/case-studies/formula-bot/",
+        "title": "Formula Bot 的低代码工作流案例",
+        "titleEn": "Formula Bot low-code workflow case",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "n8n 案例描述一个全职创始人加两名开发者；该来源为供应商案例。",
+        "supportsEn": "The supplier case describes one full-time founder supported by two developers."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人称社交平台创作者和口碑帮助传播，低代码降低首次交付成本。",
+        "textEn": "The founder describes creator distribution, word of mouth, and low-code delivery.",
+        "kind": "reported",
+        "sourceUrl": "https://www.starterstory.com/stories/excelformulabot"
+      }
+    ],
+    "risks": [
+      "2023 年数据较旧；当前产品名称和范围已变化。",
+      "页面的月销售数字相互不一致；MRR 自报值也没有审计。"
+    ],
+    "risksEn": [
+      "The 2023 data is old; branding and product scope have changed.",
+      "Monthly-sales figures on the page conflict; even the selected MRR remains unaudited."
+    ],
+    "soloRelevance": "明确一名创始人加两名开发者；可借鉴高频专业任务和低代码实现。",
+    "soloRelevanceEn": "Direct evidence identifies one founder and two developers; useful patterns are a frequent professional task and low-code delivery.",
+    "features": null
+  },
+  {
+    "id": "jenni-ai",
+    "name": "Jenni AI",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "学术写作",
+    "categoryEn": "Academic writing",
+    "summary": "多次调整定位后转向研究者和学生，创始人披露了收入与用户增长。",
+    "summaryEn": "After several positioning changes, the team focused on researchers and students; the founder disclosed revenue and adoption.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "US$6,000,000",
+        "period": "2024 年创始人时间线帖文",
+        "periodEn": "Founder timeline post from 2024",
+        "kind": "revenue",
+        "valueEn": "US$6,000,000"
+      },
+      {
+        "label": "累计用户",
+        "labelEn": "Cumulative users",
+        "value": "3,500,000",
+        "period": "同一帖文",
+        "periodEn": "Same post",
+        "kind": "users",
+        "valueEn": "3,500,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
+        "title": "David Park：Jenni AI 创业时间线",
+        "titleEn": "David Park: Jenni AI timeline",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "创始人称 6M ARR 和 3.5M 用户，并解释从 SEO 内容转向研究者/学生；不使用其他目录更高数字。",
+        "supportsEn": "Reports US$6M ARR and 3.5M users; describes the pivot from SEO content to researchers and students."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人报告发现重度用户集中于研究者与学生，再调整产品定位和短视频传播。",
+        "textEn": "The founder reports identifying researchers and students as power users, then changing positioning and short-video distribution.",
+        "kind": "reported",
+        "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0"
+      }
+    ],
+    "risks": [
+      "历史收入为自报且非审计；用户量不是活跃或付费人数。",
+      "写作、引用准确性与使用规范决定长期信任。"
+    ],
+    "risksEn": [
+      "Historical revenue is self-reported and unaudited; users are not necessarily active or paid.",
+      "Writing quality, citation accuracy, and usage norms affect long-term trust."
+    ],
+    "soloRelevance": "可借鉴从真实重度用户中找细分定位；团队人数随时期变化，不能叫纯 Solo。",
+    "soloRelevanceEn": "Relevant for finding a niche through actual power users; changing team size prevents treating it as purely solo.",
+    "features": null
+  },
+  {
+    "id": "customgpt",
+    "name": "CustomGPT.ai",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "企业知识 Agent",
+    "categoryEn": "Business knowledge agents",
+    "summary": "官网披露企业采用并提供命名客户工作流，足以记录用户市场验证。",
+    "summaryEn": "The company lists adoption and named customer workflows, supporting a market-adoption classification.",
+    "metrics": [
+      {
+        "label": "官网声称客户",
+        "labelEn": "Customers claimed on the website",
+        "value": "超过 10,000",
+        "period": "观察于 2026-10-05",
+        "periodEn": "Observed 2026-10-05",
+        "kind": "users",
+        "valueEn": "Over 10,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://customgpt.ai/customers/",
+        "title": "CustomGPT.ai 客户案例",
+        "titleEn": "CustomGPT.ai customer cases",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "官网称 10K+ 客户创建 Agent；付费、活跃与组织口径未说明。",
+        "supportsEn": "Claims 10K+ customers created agents without defining paid, active, or organizational counts."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "以企业自身资料形成可追溯答案，并展示具体客户任务。",
+        "textEn": "Grounding answers in company materials and showing concrete customer workflows may improve adoption.",
+        "kind": "inference",
+        "sourceUrl": "https://customgpt.ai/customers/"
+      }
+    ],
+    "risks": [
+      "数字来自公司宣传，不是独立审计；不采用目录 ARR 估计。",
+      "当前团队人数未核实；小团队标签仅表示创始人主导参照，不能推算人均收入。"
+    ],
+    "risksEn": [
+      "The adoption number is a company claim; directory ARR estimates are excluded.",
+      "Current team size is unverified; the founder-led small-team label must not be used to calculate revenue per employee."
+    ],
+    "soloRelevance": "对 Solo 有参考价值的是垂直知识库和命名案例的信任构建，非公司规模复制。",
+    "soloRelevanceEn": "Relevant solo patterns are a vertical knowledge base and trust from named customer evidence, rather than copying the company's scale.",
+    "features": null
+  },
+  {
+    "id": "julius-ai",
+    "name": "Julius AI",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "数据分析",
+    "categoryEn": "Data analysis",
+    "summary": "让用户直接用自然语言分析数据，官网披露大量用户采用。",
+    "summaryEn": "Offers natural-language data analysis, with substantial company-reported adoption.",
+    "metrics": [
+      {
+        "label": "官网声称用户",
+        "labelEn": "Users claimed on the website",
+        "value": "超过 2,000,000",
+        "period": "观察于 2026-10-05",
+        "periodEn": "Observed 2026-10-05",
+        "kind": "users",
+        "valueEn": "Over 2,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://julius.ai/home/ai-powered-business-intelligence",
+        "title": "Julius AI 商业数据分析页面",
+        "titleEn": "Julius AI business analytics page",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "官网称 2M+ 用户并提供免费额度与付费升级，不披露收入或付费用户数。",
+        "supportsEn": "Claims 2M+ users and offers free limits with paid upgrades; revenue and paid-user counts are not disclosed."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "把分析入口从代码改为数据上传加提问，可能扩大非技术用户市场。",
+        "textEn": "An upload-and-question workflow may expand access beyond technical users.",
+        "kind": "inference",
+        "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence"
+      }
+    ],
+    "risks": [
+      "公司注册/使用口径不等于活跃、留存或付费规模。",
+      "分析正确性、敏感数据处理和运行成本需要独立验证；当前团队人数未核实。"
+    ],
+    "risksEn": [
+      "The company's user count does not establish activity, retention, or payment.",
+      "Analysis accuracy, sensitive-data handling, and execution cost need separate validation; team size is unverified."
+    ],
+    "soloRelevance": "适合借鉴非技术分析入口，但开放代码执行与数据隐私提高 Solo 运维门槛。",
+    "soloRelevanceEn": "The nontechnical analysis flow is relevant, while code execution and data privacy raise solo operating requirements.",
+    "features": null
+  },
+  {
+    "id": "chatbase",
+    "name": "Chatbase",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "企业 AI 客服",
+    "categoryEn": "Business AI support",
+    "summary": "单一创始人起步后发展为 18 人团队，供应商客户故事披露付费需求。",
+    "summaryEn": "Grew from one founder into an 18-person team, with paid traction disclosed in a supplier customer story.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$10,000,000",
+        "period": "2026 年客户故事",
+        "periodEn": "2026 customer story",
+        "kind": "revenue",
+        "valueEn": "Over US$10,000,000"
+      },
+      {
+        "label": "付费客户",
+        "labelEn": "Paying customers",
+        "value": "超过 8,000",
+        "period": "故事称 2026 年初",
+        "periodEn": "Early 2026 according to the story",
+        "kind": "users",
+        "valueEn": "Over 8,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://supabase.com/customers/chatbase",
+        "title": "Chatbase 在 Supabase 上走向企业市场",
+        "titleEn": "Chatbase goes upmarket on Supabase",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "供应商案例报告 18 人、8K+ 付费客户、10M+ ARR；收入并非财务审计。",
+        "supportsEn": "Supplier story reports 18 people, 8K+ paying customers, and US$10M+ ARR; this is not an audit."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人受访强调产品从吸引注意转向可靠性、信任和企业工作流。",
+        "textEn": "The founder emphasizes the shift from attention to reliability, trust, and enterprise workflows.",
+        "kind": "reported",
+        "sourceUrl": "https://supabase.com/customers/chatbase"
+      }
+    ],
+    "risks": [
+      "供应商和被采访公司均有宣传利益；不能把目标 100M ARR 当成结果。",
+      "ARR 不等于利润；当前规模已不是 Solo。"
+    ],
+    "risksEn": [
+      "The supplier and interviewed company have promotional interests; the US$100M ARR goal is not an achieved result.",
+      "ARR is not profit, and the current business is not solo."
+    ],
+    "soloRelevance": "独立起步到小团队的连续路径有参考价值，尤其是整合基础设施以减少运营负担。",
+    "soloRelevanceEn": "Relevant as a solo-to-small-team path, especially consolidating infrastructure to reduce operating burden.",
+    "features": null
+  },
+  {
+    "id": "bolt",
+    "name": "Bolt / StackBlitz",
+    "outcome": "success",
+    "scope": "small-team",
+    "category": "AI 应用开发",
+    "categoryEn": "AI app development",
+    "summary": "原有团队推出自然语言建应用工具后获得快速付费和活跃用户验证。",
+    "summaryEn": "An existing team launched natural-language app building and reported rapid paid and active-user traction.",
+    "metrics": [
+      {
+        "label": "采访所述 ARR",
+        "labelEn": "ARR reported in interview",
+        "value": "约 US$40,000,000",
+        "period": "2025-03-13",
+        "periodEn": "2025-03-13",
+        "kind": "revenue",
+        "valueEn": "Around US$40,000,000"
+      },
+      {
+        "label": "月活跃用户",
+        "labelEn": "Monthly active users",
+        "value": "约 1,000,000",
+        "period": "同次采访",
+        "periodEn": "Same interview",
+        "kind": "users",
+        "valueEn": "Around 1,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+        "title": "Lenny 采访 StackBlitz 创始人",
+        "titleEn": "Lenny interviews StackBlitz's founder",
+        "publishedAt": "2025-03-13",
+        "evidence": "founder-report",
+        "supports": "创始人采访称约 40M ARR、1M MAU、15–20 人团队；主持人可能是相关公司投资者。",
+        "supportsEn": "The founder interview reports about US$40M ARR, 1M MAU, and 15–20 people; the host may hold relevant investments."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "既有浏览器开发技术积累与可直接演示的生成体验可能加速采用。",
+        "textEn": "Existing browser-development infrastructure and a demonstrable generated result may speed adoption.",
+        "kind": "inference",
+        "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons"
+      }
+    ],
+    "risks": [
+      "高增长采访为历史自报；不证明净利润或低模型成本。",
+      "既有技术、团队和资金背景与首次 Solo 创业不同。"
+    ],
+    "risksEn": [
+      "Historical self-reported growth does not establish net profit or low model costs.",
+      "Existing technology, staff, and financing differ from a first solo venture."
+    ],
+    "soloRelevance": "可研究清楚的首次成功体验；不可照搬成熟团队的收入速度。",
+    "soloRelevanceEn": "The clear first successful outcome is relevant; the revenue speed of an established team is harder to replicate.",
+    "features": null
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 编程",
+    "categoryEn": "AI coding",
+    "summary": "围绕开发者高频代码工作流获得付费规模和企业采用。",
+    "summaryEn": "Built paid scale and enterprise adoption around developers' frequent coding workflows.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$500,000,000",
+        "period": "2025-06-06",
+        "periodEn": "2025-06-06",
+        "kind": "revenue",
+        "valueEn": "Over US$500,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://cursor.com/en-US/blog/series-c",
+        "title": "Cursor：Series C and Scale",
+        "titleEn": "Cursor: Series C and Scale",
+        "publishedAt": "2025-06-06",
+        "evidence": "company-report",
+        "supports": "公司公告称 500M+ ARR，超过一半 Fortune 500 企业使用；没有声称盈利。",
+        "supportsEn": "Reports US$500M+ ARR and use by over half the Fortune 500; it does not establish profitability."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "在开发者已经工作的编辑器内交付能力，减少使用切换。",
+        "textEn": "Delivering AI inside the editor reduces workflow switching.",
+        "kind": "inference",
+        "sourceUrl": "https://cursor.com/en-US/blog/series-c"
+      }
+    ],
+    "risks": [
+      "ARR 是公司公告口径，不等于全年收入或利润。",
+      "大型融资公司仅作对照，模型成本与留存未单独核实。"
+    ],
+    "risksEn": [
+      "Company-reported ARR is not realized annual revenue or profit.",
+      "A financed company serves as a comparison; model costs and retention are not independently verified."
+    ],
+    "soloRelevance": "参考高频流程与熟悉入口；规模、融资和模型投入不适用于直接 Solo 预算。",
+    "soloRelevanceEn": "Useful for studying frequent workflows and familiar entry points; financing and model investment differ from a solo budget.",
+    "features": null
+  },
+  {
+    "id": "lovable",
+    "name": "Lovable",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 应用开发",
+    "categoryEn": "AI app development",
+    "summary": "通过自然语言创建应用获得付费采用，官网宣布收入里程碑。",
+    "summaryEn": "Natural-language app building gained paid adoption, with an official revenue milestone.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "US$100,000,000",
+        "period": "2025-07-23",
+        "periodEn": "2025-07-23",
+        "kind": "revenue",
+        "valueEn": "US$100,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://lovable.dev/blog/agent",
+        "title": "Lovable：100M ARR 与 Agent",
+        "titleEn": "Lovable: US$100M ARR and Agent",
+        "publishedAt": "2025-07-23",
+        "evidence": "company-report",
+        "supports": "官方公告 100M ARR；项目生成数不是付费用户数。",
+        "supportsEn": "Officially reports US$100M ARR; generated projects are not paying users."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "把创建结果和预览放在一个直接可见的体验里，可能提高激活。",
+        "textEn": "Making creation and preview visible within one experience may improve activation.",
+        "kind": "inference",
+        "sourceUrl": "https://lovable.dev/blog/agent"
+      }
+    ],
+    "risks": [
+      "公司公告未经公开审计；增长不等于盈利。",
+      "应用安全、交付可靠性和代码可维护性影响持续价值。"
+    ],
+    "risksEn": [
+      "The company announcement is unaudited; growth does not establish profitability.",
+      "Application security, reliable delivery, and code maintainability affect durable value."
+    ],
+    "soloRelevance": "对 Solo 站点可借鉴即时结果与模板；公司营收速度不应成为默认预测。",
+    "soloRelevanceEn": "Immediate results and templates are useful site patterns; the company's revenue speed should not be a default forecast.",
+    "features": null
+  },
+  {
+    "id": "replit",
+    "name": "Replit",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 应用开发",
+    "categoryEn": "AI app development",
+    "summary": "已有开发社区接入 AI Agent，官方披露年化收入和用户规模。",
+    "summaryEn": "An existing development community adopted AI agents; the company disclosed annualized revenue and user scale.",
+    "metrics": [
+      {
+        "label": "年化收入（非已实现全年收入）",
+        "labelEn": "Annualized revenue, not realized annual revenue",
+        "value": "US$150,000,000",
+        "period": "2025-09-10",
+        "periodEn": "2025-09-10",
+        "kind": "revenue",
+        "valueEn": "US$150,000,000"
+      },
+      {
+        "label": "社区用户",
+        "labelEn": "Community users",
+        "value": "超过 40,000,000",
+        "period": "2025-09-10",
+        "periodEn": "2025-09-10",
+        "kind": "users",
+        "valueEn": "Over 40,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://replit.com/news/funding-announcement-series-c",
+        "title": "Replit 客户增长与融资公告",
+        "titleEn": "Replit customer momentum announcement",
+        "publishedAt": "2025-09-10",
+        "evidence": "company-report",
+        "supports": "官方称年化收入从 2.8M 增至 150M 美元，并有 40M+ 社区用户。",
+        "supportsEn": "Reports annualized revenue of US$150M and a community of 40M+ users."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "已有社区加建设、运行、部署连贯工作流，为分发和转化提供起点。",
+        "textEn": "An existing community and connected build-run-deploy workflow offer a distribution base.",
+        "kind": "inference",
+        "sourceUrl": "https://replit.com/news/funding-announcement-series-c"
+      }
+    ],
+    "risks": [
+      "年化收入不能当作完成的年度营收；社区人数不等于付费人数。",
+      "历史公司与基础设施成本使其不属于 Solo 可直接复制的规模。"
+    ],
+    "risksEn": [
+      "Annualized revenue is not completed annual revenue; community users are not necessarily paid.",
+      "Its established company and infrastructure cost are not directly replicable solo scale."
+    ],
+    "soloRelevance": "借鉴端到端交付路径与产品内首次成果；不能假设新站同样已有分发基础。",
+    "soloRelevanceEn": "Relevant for an end-to-end delivery path and first in-product result; a new site lacks the same established distribution.",
+    "features": null
+  },
+  {
+    "id": "gamma",
+    "name": "Gamma",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 演示与文档",
+    "categoryEn": "AI presentations and documents",
+    "summary": "重新围绕 AI 设计产品后取得广泛采用；创始人称收入增长且已盈利。",
+    "summaryEn": "After rebuilding around AI, the product gained broad adoption; the founder reports revenue growth and profitability.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$100,000,000",
+        "period": "2025-11-10",
+        "periodEn": "2025-11-10",
+        "kind": "revenue",
+        "valueEn": "Over US$100,000,000"
+      },
+      {
+        "label": "累计用户",
+        "labelEn": "Cumulative users",
+        "value": "70,000,000",
+        "period": "2025-11-10",
+        "periodEn": "2025-11-10",
+        "kind": "users",
+        "valueEn": "70,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
+        "title": "Gamma 创始人：建设 100M 收入业务",
+        "titleEn": "Gamma founder: building a US$100M business",
+        "publishedAt": "2025-11-10",
+        "evidence": "founder-report",
+        "supports": "报告 100M ARR、70M 用户、50 名员工，并自称已盈利两年；没有公布审计利润额。",
+        "supportsEn": "Reports US$100M ARR, 70M users, and 50 employees; profitability is asserted without an audited profit amount."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "创始人报告在早期增长停滞后重建 AI 体验，并坚持较小团队。",
+        "textEn": "The founder reports rebuilding the AI experience after stalled growth and keeping a leaner team.",
+        "kind": "reported",
+        "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently"
+      }
+    ],
+    "risks": [
+      "盈利是创始人定性自报，不纳入可核实利润金额。",
+      "大量用户非全部付费或活跃；仍属于数十人的公司。"
+    ],
+    "risksEn": [
+      "Profitability is a qualitative founder claim, not a verified profit amount.",
+      "User totals are not all paid or active; this remains a company with dozens of employees."
+    ],
+    "soloRelevance": "可借鉴聚焦最终演示作品与危机中的重新定位；体量不应与 Solo 直接比较。",
+    "soloRelevanceEn": "Useful for focusing on a finished presentation and repositioning during a crisis; scale is not directly comparable to solo.",
+    "features": null
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "outcome": "success",
+    "scope": "company",
+    "category": "语音 AI",
+    "categoryEn": "Voice AI",
+    "summary": "语音模型与企业 Agent 产品获得收入验证，官方披露持续的付费扩张。",
+    "summaryEn": "Voice models and enterprise agents show paid traction through official recurring-revenue disclosure.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$500,000,000",
+        "period": "2026 年前四个月里程碑，2026-05-05 公布",
+        "periodEn": "Reached in the first four months of 2026; announced 2026-05-05",
+        "kind": "revenue",
+        "valueEn": "Over US$500,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+        "title": "ElevenLabs：500M ARR 里程碑",
+        "titleEn": "ElevenLabs: US$500M ARR milestone",
+        "publishedAt": "2026-05-05",
+        "evidence": "company-report",
+        "supports": "官方报告超过 500M ARR，更新页面称 2025 年底 350M ARR；不同早期公告有 330M 口径。",
+        "supportsEn": "Officially reports US$500M+ ARR; this updated page states US$350M at end-2025, differing from an earlier US$330M report."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "公司称企业在客服、销售、招聘等工作流部署语音 Agent 是增长来源。",
+        "textEn": "The company attributes growth to voice agents deployed in support, sales, hiring, and other enterprise workflows.",
+        "kind": "reported",
+        "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors"
+      }
+    ],
+    "risks": [
+      "公司 ARR 口径未经公开审计；不同公告的历史数字不完全一致。",
+      "自研模型、530 人团队及巨额资源投入不等于 Solo 模式。"
+    ],
+    "risksEn": [
+      "Company ARR is unaudited, and historical figures differ across announcements.",
+      "Proprietary models, a 530-person team, and large resources do not represent a solo business."
+    ],
+    "soloRelevance": "借鉴把模型能力包装成客户业务任务；Solo 更适合调用基础模型而非复制实验室。",
+    "soloRelevanceEn": "Relevant for packaging model capability into customer tasks; a solo builder is more likely to use a model than replicate a lab.",
+    "features": null
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "outcome": "success",
+    "scope": "company",
+    "category": "图像生成",
+    "categoryEn": "Image generation",
+    "summary": "图像订阅业务具有收入验证。",
+    "summaryEn": "An image subscription business with reported revenue.",
+    "metrics": [
+      {
+        "label": "媒体所称 ARR（未审计）",
+        "labelEn": "Reported ARR, unaudited",
+        "value": "US$200,000,000",
+        "period": "2023-10-31 报道",
+        "periodEn": "Reported 2023-10-31",
+        "kind": "revenue",
+        "valueEn": "US$200,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.cbinsights.com/research/midjourney-revenue-valuation/",
+        "title": "CB Insights：Midjourney 收入研究",
+        "titleEn": "CB Insights: Midjourney revenue analysis",
+        "publishedAt": "2023-10-31",
+        "evidence": "media-report",
+        "supports": "搜索索引中的研究称约 200M 美元 ARR、少于 100 名员工；正文访问 403，需复核，非审计。",
+        "supportsEn": "Indexed research reports about US$200M ARR and fewer than 100 employees; full access returned 403. Unaudited, requiring verification."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "订阅可将持续图像需求转为付费。",
+        "textEn": "Subscriptions monetize recurring image demand.",
+        "kind": "inference",
+        "sourceUrl": "https://www.cbinsights.com/research/midjourney-revenue-valuation/"
+      }
+    ],
+    "risks": [
+      "历史媒体口径且正文受限；ARR 不是已实现全年收入或利润。",
+      "模型公司规模与 Solo 不同，仅作对照。"
+    ],
+    "risksEn": [
+      "Historical media claim with restricted full access; ARR is not realized annual revenue or profit.",
+      "A model company serves as a comparison, with different resources from solo builders."
+    ],
+    "soloRelevance": "研究订阅需求，不复制模型预算。",
+    "soloRelevanceEn": "Study subscription demand, not model budgets.",
+    "features": null,
+    "evidenceStatus": "pending-review"
+  },
+  {
+    "id": "synthesia",
+    "name": "Synthesia",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 视频",
+    "categoryEn": "AI video",
+    "summary": "用 AI 视频服务企业沟通、培训和知识分享，官方披露可观付费规模。",
+    "summaryEn": "Serves enterprise communication, training, and knowledge sharing through AI video, with substantial paid scale.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$100,000,000",
+        "period": "2025-04-15",
+        "periodEn": "2025-04-15",
+        "kind": "revenue",
+        "valueEn": "Over US$100,000,000"
+      },
+      {
+        "label": "使用企业",
+        "labelEn": "Businesses using the product",
+        "value": "超过 65,000",
+        "period": "2025-04-15",
+        "periodEn": "2025-04-15",
+        "kind": "users",
+        "valueEn": "Over 65,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+        "title": "Synthesia：100M ARR 公告",
+        "titleEn": "Synthesia: US$100M ARR announcement",
+        "publishedAt": "2025-04-15",
+        "evidence": "company-report",
+        "supports": "报告 100M+ ARR、65K+ 企业；客户口径包含不同计划，未证明每个均付费。",
+        "supportsEn": "Reports US$100M+ ARR and 65K+ businesses; the adoption count is not a confirmed paid-customer count."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "企业知识与培训视频具有可重复需求，计划分层覆盖不同购买者。",
+        "textEn": "Repeatable training and knowledge-video needs, with tiered plans, address different buyers.",
+        "kind": "inference",
+        "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment"
+      }
+    ],
+    "risks": [
+      "ARR 为公司自报，不证明利润。",
+      "模型、合规与企业销售资源显著高于 Solo 起步规模。"
+    ],
+    "risksEn": [
+      "Company-reported ARR does not establish profit.",
+      "Model, compliance, and enterprise-sales resources exceed typical solo starting scale."
+    ],
+    "soloRelevance": "Solo 可从一种培训或本地化交付服务切入，参考明确业务场景。",
+    "soloRelevanceEn": "A solo builder could start with one training or localization deliverable, using the clear business use case as a reference.",
+    "features": null
+  },
+  {
+    "id": "heygen",
+    "name": "HeyGen",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 视频",
+    "categoryEn": "AI video",
+    "summary": "围绕个人形象与多语言沟通构建视频产品，官方披露收入和市场采用。",
+    "summaryEn": "Builds video around personal identity and multilingual communication, with official revenue and adoption disclosure.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$200,000,000",
+        "period": "2026-06-25",
+        "periodEn": "2026-06-25",
+        "kind": "revenue",
+        "valueEn": "Over US$200,000,000"
+      },
+      {
+        "label": "累计用户",
+        "labelEn": "Cumulative users",
+        "value": "超过 30,000,000",
+        "period": "2026-06-25",
+        "periodEn": "2026-06-25",
+        "kind": "users",
+        "valueEn": "Over 30,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+        "title": "HeyGen：200M ARR 里程碑",
+        "titleEn": "HeyGen: US$200M ARR milestone",
+        "publishedAt": "2026-06-25",
+        "evidence": "company-report",
+        "supports": "报告 200M+ ARR 和 30M+ 用户；页面后续更新于 2026-09-16。",
+        "supportsEn": "Reports US$200M+ ARR and 30M+ users; page updated 2026-09-16."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "本地化和个人表达作为具体成果，可能比抽象 AI 视频能力更容易购买。",
+        "textEn": "Localization and personal communication offer more concrete outcomes than a generic AI-video capability.",
+        "kind": "inference",
+        "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr"
+      }
+    ],
+    "risks": [
+      "收入为公司公告，未核实净利润；用户不是全部付费或活跃。",
+      "肖像、授权和真实性要求增加产品与运营复杂度。"
+    ],
+    "risksEn": [
+      "Company-reported revenue does not establish net profit; users are not all paid or active.",
+      "Identity authorization and authenticity requirements add product and operational complexity."
+    ],
+    "soloRelevance": "可借鉴本地化垂直方案与结果导向定价；不直接复制模型研发。",
+    "soloRelevanceEn": "Relevant for a vertical localization offer and outcome-oriented pricing, rather than duplicating model research.",
+    "features": null
+  },
+  {
+    "id": "photoroom",
+    "name": "Photoroom",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 电商图像",
+    "categoryEn": "AI commerce images",
+    "summary": "通过易用图像处理服务获得广泛用户采用，下载规模是市场证据而非收入证明。",
+    "summaryEn": "An accessible image-editing product gained broad adoption; downloads are market evidence, not revenue proof.",
+    "metrics": [
+      {
+        "label": "累计下载次数（非用户数）",
+        "labelEn": "Cumulative downloads, not unique users",
+        "value": "超过 150,000,000",
+        "period": "2025-10-20",
+        "periodEn": "2025-10-20",
+        "kind": "other",
+        "valueEn": "Over 150,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom",
+        "title": "Photoroom 官方产品介绍",
+        "titleEn": "Photoroom official product overview",
+        "publishedAt": "2025-10-20",
+        "evidence": "company-report",
+        "supports": "帮助中心称自 2019 年以来 150M+ 下载；未公开该页收入或付费用户数据。",
+        "supportsEn": "Help center reports 150M+ downloads since 2019 without revenue or paid-user data."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "把复杂图像编辑压缩成可重复的简单步骤，可能扩大电商与创作者采用。",
+        "textEn": "Simplifying repeatable image-editing tasks may broaden adoption among sellers and creators.",
+        "kind": "inference",
+        "sourceUrl": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom"
+      }
+    ],
+    "risks": [
+      "下载次数不能当作独立用户、活跃用户或付费用户。",
+      "不能据此判断盈利；公司用户市场验证不代表 Solo 资源条件。"
+    ],
+    "risksEn": [
+      "Downloads are not unique, active, or paying users.",
+      "They do not establish profitability, and the company's adoption does not imply solo resource conditions."
+    ],
+    "soloRelevance": "可借鉴一个编辑任务与低门槛首次结果，适合作为电商工具或服务切口。",
+    "soloRelevanceEn": "A single editing task and easy first result are relevant starting points for a commerce tool or service.",
+    "features": null
+  },
+  {
+    "id": "glean",
+    "name": "Glean",
+    "outcome": "success",
+    "scope": "company",
+    "category": "企业知识与 Agent",
+    "categoryEn": "Enterprise knowledge and agents",
+    "summary": "企业知识搜索扩展到 Agent 工作流，官方披露持续订阅收入。",
+    "summaryEn": "Expanded enterprise knowledge search into agent workflows, with official recurring-revenue disclosure.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "US$200,000,000",
+        "period": "2025-12-08",
+        "periodEn": "2025-12-08",
+        "kind": "revenue",
+        "valueEn": "US$200,000,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+        "title": "Glean：200M ARR 公告",
+        "titleEn": "Glean: US$200M ARR announcement",
+        "publishedAt": "2025-12-08",
+        "evidence": "company-report",
+        "supports": "官方报告 200M ARR 与超过 1K 员工；不将融资或合同目标纳入成功指标。",
+        "supportsEn": "Reports US$200M ARR and over 1K employees; financing and targets are not used as success metrics."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "深度接入企业知识与权限上下文可能增加持续使用价值。",
+        "textEn": "Integrating enterprise knowledge and permission context may increase ongoing value.",
+        "kind": "inference",
+        "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
+      }
+    ],
+    "risks": [
+      "ARR 自报而非公开审计利润；企业销售周期与资源负担较大。",
+      "不是 Solo 案例；应作为企业版路径对照。"
+    ],
+    "risksEn": [
+      "Self-reported ARR is not audited profit; enterprise sales have substantial resource demands.",
+      "This is a company comparison, not a solo case."
+    ],
+    "soloRelevance": "借鉴权限、连接器和知识上下文的重要性；新站应缩小到一个可交付工作流。",
+    "soloRelevanceEn": "Useful for understanding permissions, connectors, and context; a new site should narrow this to one deliverable workflow.",
+    "features": null
+  },
+  {
+    "id": "harvey",
+    "name": "Harvey",
+    "outcome": "success",
+    "scope": "company",
+    "category": "专业服务 AI",
+    "categoryEn": "Professional services AI",
+    "summary": "聚焦法律和专业服务，官方披露收入、企业客户和使用增长。",
+    "summaryEn": "Focuses on legal and professional services, with official revenue, customer, and usage disclosure.",
+    "metrics": [
+      {
+        "label": "ARR",
+        "labelEn": "ARR",
+        "value": "超过 US$100,000,000",
+        "period": "2025-08-04",
+        "periodEn": "2025-08-04",
+        "kind": "revenue",
+        "valueEn": "Over US$100,000,000"
+      },
+      {
+        "label": "客户组织",
+        "labelEn": "Customer organizations",
+        "value": "超过 500",
+        "period": "2025-08-04",
+        "periodEn": "2025-08-04",
+        "kind": "users",
+        "valueEn": "Over 500"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+        "title": "Harvey 三周年公告",
+        "titleEn": "Harvey three-year anniversary",
+        "publishedAt": "2025-08-04",
+        "evidence": "company-report",
+        "supports": "官方报告 100M+ ARR、500+ 客户和 350 名员工；WAU 增长为相对数，未转化成绝对人数。",
+        "supportsEn": "Reports US$100M+ ARR, 500+ customers, and 350 employees; relative WAU growth is not converted into an absolute count."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "围绕高价值专业任务和客户需求持续开发，而非通用聊天界面。",
+        "textEn": "Development around valuable professional tasks and customer needs may support larger contracts.",
+        "kind": "inference",
+        "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary"
+      }
+    ],
+    "risks": [
+      "公司公告未经公开审计；ARR 不等于利润。",
+      "法律专业准确性和企业采购门槛提高 Solo 复制难度。"
+    ],
+    "risksEn": [
+      "The company announcement is unaudited; ARR is not profit.",
+      "Professional accuracy and enterprise procurement increase the difficulty of solo replication."
+    ],
+    "soloRelevance": "适合研究高价值垂直任务、可信交付和明确责任边界；不应直接复制法律平台规模。",
+    "soloRelevanceEn": "Relevant for valuable vertical tasks, trusted delivery, and clear responsibility boundaries, not replicating a full legal platform.",
+    "features": null
+  },
+  {
+    "id": "fireflies",
+    "name": "Fireflies.ai",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 会议",
+    "categoryEn": "AI meetings",
+    "summary": "会议知识转写和后续工作流产品拥有广泛采用，公司同时自报盈利。",
+    "summaryEn": "Meeting transcription and follow-up workflows have broad adoption; the company also asserts profitability.",
+    "metrics": [
+      {
+        "label": "累计服务人数",
+        "labelEn": "People served",
+        "value": "超过 20,000,000",
+        "period": "2025-06-12",
+        "periodEn": "2025-06-12",
+        "kind": "users",
+        "valueEn": "Over 20,000,000"
+      },
+      {
+        "label": "采用组织",
+        "labelEn": "Organizations using the product",
+        "value": "超过 500,000",
+        "period": "2025-06-12",
+        "periodEn": "2025-06-12",
+        "kind": "users",
+        "valueEn": "Over 500,000"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
+        "title": "Fireflies 市场采用公告",
+        "titleEn": "Fireflies adoption announcement",
+        "publishedAt": "2025-06-12",
+        "evidence": "company-report",
+        "supports": "报告 20M+ 人、500K+ 组织、100 名员工，并称自 2023 年起盈利；未公布可审计利润金额。",
+        "supportsEn": "Reports 20M+ people, 500K+ organizations, and 100 employees; asserts profitability since 2023 without an audited amount."
+      }
+    ],
+    "observedAt": "2026-10-05",
+    "drivers": [
+      {
+        "text": "连接多种会议平台并把记录转为可搜索知识与行动，可能形成重复使用。",
+        "textEn": "Meeting-platform integration and turning records into searchable knowledge and actions may encourage repeat use.",
+        "kind": "inference",
+        "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation"
+      }
+    ],
+    "risks": [
+      "用户和组织总量不等于付费或活跃用户；盈利是公司定性声明。",
+      "会议平台自带 AI、隐私要求和录音授权影响差异与运营。"
+    ],
+    "risksEn": [
+      "People and organizations are not confirmed paid or active users; profitability is a qualitative company claim.",
+      "Built-in platform AI, privacy, and recording authorization affect differentiation and operations."
+    ],
+    "soloRelevance": "可借鉴从记录延伸到完成工作，Solo 宜选择一个细分会议场景。",
+    "soloRelevanceEn": "Useful for progressing from notes to completed work; a solo builder should choose one meeting niche.",
+    "features": null
+  },
+  {
+    "id": "cydoc",
+    "name": "Cydoc",
+    "failureSubtype": "shutdown",
+    "scope": "solo",
+    "category": "医疗 AI / 工作流",
+    "summary": "单人创始人主导的医疗 AI 公司于 2025 年 8 月决定关闭；获得付费客户和临床验证，但未形成可持续销售与交付体系。",
+    "metrics": [
+      {
+        "label": "付费客户（创始人自述）",
+        "value": "4 家",
+        "period": "2018–2025 生命周期",
+        "kind": "users",
+        "labelEn": "Paying customers (founder report)",
+        "valueEn": "4 customers",
+        "periodEn": "2018–2025 lifetime"
+      },
+      {
+        "label": "亲友与医生投资（创始人自述）",
+        "value": "US$265,000",
+        "period": "2023–2024 年初",
+        "kind": "funding",
+        "labelEn": "Investment from family, friends and physicians (founder report)",
+        "valueEn": "US$265,000",
+        "periodEn": "2023–early 2024"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+        "title": "Why I Shut Down My Bootstrapped Health AI Startup After 7 Years",
+        "publishedAt": "2026-02-21",
+        "evidence": "founder-report",
+        "supports": "2025 年 8 月关闭、4 家付费客户、投资金额，以及客户发现、MVP、销售和工作流问题。",
+        "titleEn": "Why I Shut Down My Bootstrapped Health AI Startup After 7 Years",
+        "supportsEn": "Closure in August 2025, four paying customers, investment, and problems with customer discovery, MVP scope, sales and workflow."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "客户访谈与预付费验证太晚，早期开发了客户不需要的功能。",
+        "kind": "reported",
+        "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+        "textEn": "Customer interviews and prepayment validation came too late; early development included features customers did not need."
+      },
+      {
+        "text": "创始人兼顾产品、技术和销售，缺乏持续获客体系及临床工作流整合。",
+        "kind": "reported",
+        "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+        "textEn": "The founder covered product, engineering and sales, without a repeatable acquisition system or enough workflow integration."
+      }
+    ],
+    "risks": [
+      "经营数字来自创始人自述，未经独立财务审计。",
+      "solo 指单人创始人主导；实际使用过实习生和外包工程师。",
+      "医疗行业的合规与采购条件不能直接外推到普通 SaaS。"
+    ],
+    "soloRelevance": "高：先验证付费需求、缩小 MVP、把工作流接入和销售投入纳入资源预算。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Cydoc",
+    "summaryEn": "A health AI company led by a solo founder decided to close in August 2025. It had paying customers and clinical validation, but did not establish sustainable sales and delivery.",
+    "categoryEn": "Health AI / workflow",
+    "soloRelevanceEn": "High: validate paid demand early, narrow the MVP, and budget for workflow integration and sales.",
+    "risksEn": [
+      "Operating figures are founder reports without an independent financial audit.",
+      "Solo means a solo founder; interns and contract engineers also contributed.",
+      "Healthcare compliance and procurement conditions do not directly transfer to ordinary SaaS."
+    ]
+  },
+  {
+    "id": "content-goblin",
+    "name": "Content Goblin",
+    "failureSubtype": "shutdown",
+    "scope": "small-team",
+    "category": "AI 内容 / Pinterest 增长",
+    "summary": "一位开发者与推广合伙人经营的 AI 内容工具曾获得订阅营收，后因持续流失、渠道变化和成本压力宣布停运；失败指后续经营终止，不否定早期营收。",
+    "metrics": [
+      {
+        "label": "峰值 MRR（创始人自述）",
+        "value": "约 US$15,000 / 月",
+        "period": "2025 年初",
+        "kind": "revenue",
+        "labelEn": "Peak MRR (founder report)",
+        "valueEn": "About US$15,000 / month",
+        "periodEn": "Early 2025"
+      },
+      {
+        "label": "衰退后 MRR（创始人自述）",
+        "value": "约 US$1,000 / 月",
+        "period": "停运决策前，具体日期未披露",
+        "kind": "revenue",
+        "labelEn": "MRR after decline (founder report)",
+        "valueEn": "About US$1,000 / month",
+        "periodEn": "Before the closure decision; exact date undisclosed"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
+        "title": "I'm Shutting Down Content Goblin – A Post Mortem",
+        "publishedAt": "2026-07-17",
+        "evidence": "founder-report",
+        "supports": "产品、MRR、持续流失、推广渠道依赖、付费获客成本、AI 成本及宣布停运。",
+        "titleEn": "I'm Shutting Down Content Goblin – A Post Mortem",
+        "supportsEn": "Product, MRR, churn, acquisition-channel dependence, paid acquisition, AI costs and the closure announcement."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "初期增长依赖推广合伙人的 YouTube 受众，渠道转向后缺乏替代流量。",
+        "kind": "reported",
+        "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
+        "textEn": "Initial growth depended on a partner's YouTube audience; the business lacked replacement traffic when that channel changed direction."
+      },
+      {
+        "text": "用户变现渠道变化伴随订阅取消，付费获客需要更长留存才能回本。",
+        "kind": "reported",
+        "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
+        "textEn": "Changes to users' monetization channels coincided with cancellations, while paid acquisition required longer retention to repay its cost."
+      },
+      {
+        "text": "持续流失、模型服务成本与创始人支持负担令经营回报不足。",
+        "kind": "reported",
+        "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
+        "textEn": "Churn, model-provider costs and founder support demands reduced the return from continuing the business."
+      }
+    ],
+    "risks": [
+      "来源 2026 年发布但写停运决定在 2025 年 7 月，又描述 2025 年 8 月事件，存在时间线冲突；不使用确切停运日期。",
+      "MRR 和原因均为创始人自述。",
+      "来源称后期仍略有利润，不能把停运简化为从未赚钱。"
+    ],
+    "soloRelevance": "高：跟踪净留存、获客回本和创始人时间；避免只依赖一位达人或一条内容平台。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Content Goblin",
+    "summaryEn": "An AI content tool run by a developer and a marketing partner earned subscription revenue before announcing closure following churn, channel changes and cost pressure. Later closure does not erase its earlier revenue.",
+    "categoryEn": "AI content / Pinterest growth",
+    "soloRelevanceEn": "High: track net retention, acquisition payback and founder time; avoid dependence on one influencer or content platform.",
+    "risksEn": [
+      "The article was published in 2026 but places the closure decision in July 2025 and also describes August 2025 events. The timeline conflicts, so no exact closure date is used.",
+      "MRR and explanations are founder reports.",
+      "The founder says the business remained slightly profitable late in its life; closure does not mean it never earned money."
+    ]
+  },
+  {
+    "id": "kite",
+    "name": "Kite",
+    "failureSubtype": "shutdown",
+    "scope": "small-team",
+    "category": "AI 编程工具",
+    "summary": "早于 Copilot 的 AI 编程助手于 2022 年宣布结束支持；有大量开发者使用，但未建立足够的付费转化。",
+    "metrics": [
+      {
+        "label": "活跃开发者（创始人经媒体引用）",
+        "value": "约 500,000",
+        "period": "停运复盘披露，2022 年",
+        "kind": "users",
+        "labelEn": "Active developers (founder quoted by media)",
+        "valueEn": "About 500,000",
+        "periodEn": "Reported in the 2022 closure retrospective"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
+        "title": "Kite AI coding pulled down to earth … now open source",
+        "publishedAt": "2022-11-21",
+        "evidence": "media-report",
+        "supports": "公司停运、约 15 人团队、50 万活跃开发者和创始人对技术与营收问题的复盘。",
+        "titleEn": "Kite AI coding pulled down to earth … now open source",
+        "supportsEn": "Closure, a team of about 15, 500,000 active developers, and the founder's account of technical and monetization problems."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "开发周期长，免费用户规模未转化为足以维持经营的收入。",
+        "kind": "reported",
+        "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
+        "textEn": "Development took years, and the free user base did not generate sufficient revenue to sustain operations."
+      }
+    ],
+    "risks": [
+      "2022 年旧案例，技术与市场条件已变化。",
+      "创始人当时称个人开发者不愿付费，这是其诊断；后续付费 AI 编程市场提供反例。",
+      "活跃用户不等于付费客户或利润。"
+    ],
+    "soloRelevance": "高：免费增长和付费转化分开验证，尽早测试谁购买及采购方式。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Kite",
+    "summaryEn": "This AI coding assistant predated Copilot and ended support in 2022. A large developer audience did not produce enough paid conversion to sustain the business.",
+    "categoryEn": "AI developer tools",
+    "soloRelevanceEn": "High: validate free adoption separately from paid conversion, and test the buyer and procurement path early.",
+    "risksEn": [
+      "A historical 2022 case; technology and market conditions have changed.",
+      "The founder's claim that individual developers do not pay was his diagnosis; later paid AI coding products provide counterexamples.",
+      "Active users are not paying customers or profit."
+    ]
+  },
+  {
+    "id": "coqui",
+    "name": "Coqui AI",
+    "failureSubtype": "shutdown",
+    "scope": "small-team",
+    "category": "语音 AI / 开源",
+    "summary": "Coqui 创始人于 2024 年 1 月公开宣布公司关闭；开源 TTS 技术与商业公司状态需要分别观察。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+        "title": "Coqui is shutting down",
+        "publishedAt": "2024-01-03",
+        "evidence": "founder-report",
+        "supports": "小团队公司关闭、2023 年 Studio 与 API 商业服务，以及开源模型继续可用。",
+        "titleEn": "Coqui is shutting down",
+        "supportsEn": "Small-team company closure, the Studio and API launched in 2023, and continued availability of open-source models."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "技术影响和开源社区规模不能单独证明商业服务可持续；具体停运根因未在告别文章披露。",
+        "kind": "inference",
+        "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+        "textEn": "Technical impact and an open-source community do not by themselves establish commercial sustainability; the farewell did not disclose a specific root cause."
+      }
+    ],
+    "risks": [
+      "官方告别文章未披露营收、留存或精确失败根因，不将资金短缺当作已证实事实。",
+      "开源社区项目仍可存续，失败范围为公司商业运营。"
+    ],
+    "soloRelevance": "中高：把开源采用、商业客户及付费服务成本作为三组独立指标。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Coqui AI",
+    "summaryEn": "A Coqui founder announced the company's closure in January 2024. Its open-source TTS technology and the commercial company must be tracked separately.",
+    "categoryEn": "Voice AI / open source",
+    "soloRelevanceEn": "Medium to high: track open-source adoption, commercial customers and paid-service costs as separate indicators.",
+    "risksEn": [
+      "The official farewell does not disclose revenue, retention or a precise root cause; funding shortage is not recorded as a confirmed fact.",
+      "Community projects can continue; the failure scope is company commercial operations."
+    ]
+  },
+  {
+    "id": "tome-slides",
+    "name": "Tome Slides",
+    "failureSubtype": "product-discontinued",
+    "scope": "company",
+    "category": "AI 演示文稿",
+    "summary": "Tome 官方宣布 Slides 于 2025 年 4 月 30 日停止访问，并表示没有找到把产品变成可行生意的方法；范围限于 Slides 产品。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
+        "title": "Tome Slides is Sunsetting on April 30th, 2025",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "Slides 结束日期、商业化未跑通、取消订阅及删除用户文件的安排。",
+        "titleEn": "Tome Slides is Sunsetting on April 30th, 2025",
+        "supportsEn": "Slides end date, unsuccessful commercialization, subscription cancellations and deletion of user files."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "团队公开表示尝试改进产品和商业化后，仍未找到能运作的经营方式。",
+        "kind": "reported",
+        "sourceUrl": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
+        "textEn": "The team reported that efforts to improve and commercialize the product did not produce a workable business."
+      }
+    ],
+    "risks": [
+      "具体收入、利润和停运根因未在该公告披露。",
+      "产品停运不等于 Tome 公司全部业务失败。"
+    ],
+    "soloRelevance": "高：用户喜爱产品后仍需验证定价、交付成本与经常性需求。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Tome Slides",
+    "summaryEn": "Tome announced that Slides would stop being accessible on April 30, 2025, saying it had not found a way to make the product a workable business. The scope is the Slides product.",
+    "categoryEn": "AI presentations",
+    "soloRelevanceEn": "High: after users like a product, validate pricing, delivery costs and recurring demand.",
+    "risksEn": [
+      "The notice does not disclose precise revenue, profit or detailed causes.",
+      "Product retirement does not mean every Tome business failed."
+    ]
+  },
+  {
+    "id": "humane-ai-pin",
+    "name": "Humane AI Pin",
+    "failureSubtype": "product-discontinued",
+    "scope": "company",
+    "category": "AI 硬件 / 个人助手",
+    "summary": "AI Pin 核心云服务于 2025 年 2 月 28 日结束；HP 取得部分软件、人才与知识产权，消费硬件业务停运。",
+    "metrics": [
+      {
+        "label": "部分资产交易金额",
+        "value": "US$116 million",
+        "period": "2025-02",
+        "kind": "other",
+        "labelEn": "Partial asset transaction value",
+        "valueEn": "US$116 million",
+        "periodEn": "February 2025"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+        "title": "Ai Pin Consumers FAQ",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "2025 年 2 月 28 日停止支持和核心服务。",
+        "titleEn": "Ai Pin Consumers FAQ",
+        "supportsEn": "End of support and core service on February 28, 2025."
+      },
+      {
+        "url": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+        "title": "Humane is shutting down the AI Pin and selling its remnants to HP",
+        "publishedAt": "2025-02-18",
+        "evidence": "media-report",
+        "supports": "交易金额、消费硬件结束，以及产品可靠性和市场表现报道。",
+        "titleEn": "Humane is shutting down the AI Pin and selling its remnants to HP",
+        "supportsEn": "Transaction value, consumer hardware retirement, and reporting on reliability and market response."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "媒体报道产品体验问题和退货压力，削弱了面向消费者的付费价值。",
+        "kind": "reported",
+        "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+        "textEn": "Media reported product-experience problems and return pressure that weakened consumer value."
+      },
+      {
+        "text": "依赖持续云服务的硬件需要在商业模型中覆盖长期服务义务。",
+        "kind": "inference",
+        "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+        "textEn": "Cloud-dependent hardware needs a business model that pays for long-term service obligations."
+      }
+    ],
+    "risks": [
+      "收购本身不是失败判据；这里记录明确停运的 AI Pin 产品。",
+      "交易金额是资产交易，不是营收或利润。",
+      "资本密集硬件案例不宜直接用于预测 solo SaaS 成功率。"
+    ],
+    "soloRelevance": "中：先兑现稳定的核心任务，计入长期服务成本和退出时的数据迁移。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Humane AI Pin",
+    "summaryEn": "AI Pin's core cloud services ended on February 28, 2025. HP acquired some software, staff and intellectual property, while the consumer hardware business wound down.",
+    "categoryEn": "AI hardware / personal assistant",
+    "soloRelevanceEn": "Medium: deliver a reliable core task and budget for long-term service and data migration on exit.",
+    "risksEn": [
+      "An acquisition is not the failure criterion; this record concerns the explicitly retired AI Pin product.",
+      "The transaction value is an asset deal, not revenue or profit.",
+      "Capital-intensive hardware should not directly predict solo SaaS success."
+    ]
+  },
+  {
+    "id": "neeva-consumer-search",
+    "name": "Neeva 消费者搜索",
+    "failureSubtype": "product-discontinued",
+    "scope": "company",
+    "category": "AI 搜索 / 订阅",
+    "summary": "Neeva 于 2023 年退出消费者搜索并转向企业方向；失败范围为消费者订阅搜索路线，不是后续技术资产价值。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+        "title": "Neeva, The Ad-Free Search Engine, Announces Closure",
+        "titleEn": "Neeva, The Ad-Free Search Engine, Announces Closure",
+        "publishedAt": "2023-05-20",
+        "evidence": "media-report",
+        "supports": "消费者搜索关闭、可持续经营问题和转向企业。",
+        "supportsEn": "Consumer-search closure, sustainability problems and enterprise pivot."
+      },
+      {
+        "url": "https://searchengineland.com/neeva-shutting-down-427384",
+        "title": "Neeva is shutting down its ads-free search engine",
+        "titleEn": "Neeva is shutting down its ads-free search engine",
+        "publishedAt": "2023-05-22",
+        "evidence": "media-report",
+        "supports": "6 月 2 日关闭及创始人对获客、市场和资金环境的判断。",
+        "supportsEn": "June 2 closure and the founders' account of acquisition, market and funding challenges."
+      },
+      {
+        "url": "https://daringfireball.net/linked/2023/05/22/neeva-shuts-down",
+        "title": "Neeva, Upstart Search Engine, Shuts Down",
+        "titleEn": "Neeva, Upstart Search Engine, Shuts Down",
+        "publishedAt": "2023-05-22",
+        "evidence": "media-report",
+        "supports": "转录创始人公开说明：让用户试用和更改默认搜索比说服已采用用户付费更困难。",
+        "supportsEn": "Reproduces the founders' explanation that adoption and switching defaults were harder than convincing adopters to pay."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人称获客和改变默认搜索习惯困难，结合资金及市场环境，消费者搜索已没有可持续经营路径。",
+        "textEn": "The founders cited difficult acquisition and default-search switching, alongside funding and market conditions, leaving no sustainable consumer-search path.",
+        "kind": "reported",
+        "sourceUrl": "https://searchengineland.com/neeva-shutting-down-427384"
+      },
+      {
+        "text": "创始人表示说服用户试用比说服已采用用户付费更困难，因此不能简单归因为用户不愿付费。",
+        "textEn": "The founders said getting users to try it was harder than getting adopters to pay; unwillingness to pay is not a sufficient explanation.",
+        "kind": "reported",
+        "sourceUrl": "https://daringfireball.net/linked/2023/05/22/neeva-shuts-down"
+      }
+    ],
+    "risks": [
+      "2023 年市场状态。",
+      "业务退出和技术被收购可以同时发生，不把收购归为失败。"
+    ],
+    "soloRelevance": "中高：与默认免费工具竞争时，验证用户为何切换及持续付费。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Neeva Consumer Search",
+    "summaryEn": "Neeva exited consumer search in 2023 and shifted toward enterprise services. This record concerns the consumer subscription search route, not the subsequent value of its technology.",
+    "categoryEn": "AI search / subscription",
+    "soloRelevanceEn": "Medium to high: when competing with a default free tool, validate why users switch and keep paying.",
+    "risksEn": [
+      "Reflects the market in 2023.",
+      "A business exit and technology acquisition can occur together; an acquisition is not treated as failure."
+    ]
+  },
+  {
+    "id": "artifact",
+    "name": "Artifact 独立新闻应用",
+    "failureSubtype": "product-discontinued",
+    "scope": "small-team",
+    "category": "AI 新闻 / 推荐",
+    "summary": "创始人先宣布结束独立新闻应用；2024 年 Yahoo 收购其技术，独立 app 不再继续。范围为独立产品路线。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
+        "title": "Instagram co-founders’ AI-powered news app Artifact shutting down",
+        "publishedAt": "2024-01-14",
+        "evidence": "media-report",
+        "supports": "创始人解释独立应用市场机会不足以支持继续投资。",
+        "titleEn": "Instagram co-founders’ AI-powered news app Artifact shutting down",
+        "supportsEn": "The founders' explanation that the independent app's market opportunity did not warrant continued investment."
+      },
+      {
+        "url": "https://www.yahooinc.com/press/yahoo-announces-the-acquisition-of-artifact-the-news-discovery-platform-created-by-instagram-cofounders-kevin-systrom-and-mike-krieger",
+        "title": "Yahoo announces the acquisition of Artifact",
+        "publishedAt": "2024-04-02",
+        "evidence": "company-report",
+        "supports": "Yahoo 收购技术及独立应用结束后的技术整合安排。",
+        "titleEn": "Yahoo announces the acquisition of Artifact",
+        "supportsEn": "Yahoo's technology acquisition and the post-app integration plan."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人称市场机会不足以支撑继续投入独立产品。",
+        "kind": "reported",
+        "sourceUrl": "https://indianexpress.com/article/technology/artificial-intelligence/artifact-ai-news-app-shutting-down-9108918/",
+        "textEn": "The founders said the market opportunity did not warrant continued investment in the standalone product."
+      }
+    ],
+    "risks": [
+      "不把 Yahoo 收购本身当作商业失败。",
+      "独立应用失败不代表推荐技术没有价值；用户喜爱与创业规模门槛不同。",
+      "团队人数在选用资料中未确认，small-team 为创业团队规模标签而非审计数据。"
+    ],
+    "soloRelevance": "高：定义自己的可持续营收目标，避免照搬融资公司要求的大市场规模。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Artifact Standalone News App",
+    "summaryEn": "The founders announced an end to the independent news app. Yahoo acquired the technology in 2024 and the standalone app did not continue. The scope is the independent product route.",
+    "categoryEn": "AI news / recommendations",
+    "soloRelevanceEn": "High: set your own sustainable revenue target rather than adopting a venture-funded company's market-size threshold.",
+    "risksEn": [
+      "Yahoo's acquisition is not itself treated as a commercial failure.",
+      "The independent app's end does not mean its recommendation technology lacked value; user affection and venture-scale market size differ.",
+      "The selected sources do not verify headcount; small-team is a startup-scale tag, not an audited figure."
+    ]
+  },
+  {
+    "id": "olive-ai",
+    "name": "Olive AI",
+    "failureSubtype": "shutdown",
+    "scope": "company",
+    "category": "医疗 AI / 流程自动化",
+    "summary": "Olive 于 2023 年 10 月出售核心业务并关闭剩余运营；已有医院部署，仍未能维持原公司的经营。",
+    "metrics": [
+      {
+        "label": "医院部署（当时管理层声称）",
+        "value": "超过 900 家",
+        "period": "2021 年",
+        "kind": "users",
+        "labelEn": "Hospital deployments (historical management claim)",
+        "valueEn": "More than 900",
+        "periodEn": "2021"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
+        "title": "Olive AI sells two key businesses, winds down operations",
+        "publishedAt": "2023-10-31",
+        "evidence": "media-report",
+        "supports": "关停、资产处置、医院部署的历史声称，以及 CEO 承认增长过快和缺乏聚焦。",
+        "titleEn": "Olive AI sells two key businesses, winds down operations",
+        "supportsEn": "Closure, asset sales, historical hospital-deployment claim, and the CEO's account of excessive growth and lack of focus."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "CEO 承认增长过快和缺乏聚焦挤压产品与工程资源，妨碍关键执行。",
+        "kind": "reported",
+        "sourceUrl": "https://www.fiercehealthcare.com/health-tech/once-high-flying-unicorn-olive-ai-sells-two-key-businesses-winds-down-operations",
+        "textEn": "The CEO acknowledged that fast growth and lack of focus strained product and engineering resources and delayed key execution."
+      }
+    ],
+    "risks": [
+      "历史医院部署是公司当时声称，不能视为付费客户留存或 ROI 审计。",
+      "卖出的业务可能继续服务客户；失败范围为原公司剩余运营。"
+    ],
+    "soloRelevance": "中：控制产品广度，验证每个自动化工作流的实施成本和客户价值。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Olive AI",
+    "summaryEn": "Olive sold its core business units and wound down remaining operations in October 2023. Hospital deployments did not ensure sustainability of the original company.",
+    "categoryEn": "Health AI / process automation",
+    "soloRelevanceEn": "Medium: control product breadth and validate implementation cost and customer value for each automated workflow.",
+    "risksEn": [
+      "Hospital deployments were a historical company claim, not an audit of paid retention or ROI.",
+      "Sold business units may continue serving customers; the scope is the original company's remaining operations."
+    ]
+  },
+  {
+    "id": "builder-ai",
+    "name": "Builder.ai",
+    "failureSubtype": "commercial-setback",
+    "scope": "company",
+    "category": "AI 软件开发 / 无代码",
+    "summary": "Builder.ai 于 2025 年 5 月公开宣布进入资不抵债处置程序；记录明确财务困境，不把所有 AI 软件开发路线判为失败。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu",
+        "title": "Builder.ai announces insolvency proceedings",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "公司明确进入 insolvency 程序，并称历史挑战与决策压迫财务状况。",
+        "titleEn": "Builder.ai announces insolvency proceedings",
+        "supportsEn": "Company confirmation of insolvency proceedings and its statement about historical financial pressures."
+      },
+      {
+        "url": "https://www.computerworld.com/article/3991362/microsoft-backed-no-code-ai-startup-files-for-bankruptcy.html",
+        "title": "Microsoft-backed no-code AI startup files for bankruptcy",
+        "publishedAt": "2025-05-20",
+        "evidence": "media-report",
+        "supports": "2025 年 5 月宣布程序及公司业务背景。",
+        "titleEn": "Microsoft-backed no-code AI startup files for bankruptcy",
+        "supportsEn": "Timing of the May 2025 announcement and business background."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "公司称历史挑战与以往决策使财务状况承受重大压力，未能恢复。",
+        "kind": "reported",
+        "sourceUrl": "https://www.linkedin.com/posts/builderai_today-engineerai-corporation-known-as-activity-7330581919031521280-w7hu",
+        "textEn": "The company said historic challenges and past decisions put significant strain on its financial position and it could not recover."
+      }
+    ],
+    "risks": [
+      "insolvency 不自动等同所有法人已解散；标签为重大商业挫折。",
+      "历史营收存在公开争议，未纳入未核实金额。",
+      "不将媒体指控当作已裁决事实。"
+    ],
+    "soloRelevance": "中：核验收入质量、现金余额、履约义务与产品宣传能否实际兑现。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Builder.ai",
+    "summaryEn": "Builder.ai announced insolvency proceedings in May 2025. This is a documented financial setback, not evidence that every AI software-development route fails.",
+    "categoryEn": "AI software development / no-code",
+    "soloRelevanceEn": "Medium: verify revenue quality, cash, delivery obligations and whether product claims can be delivered.",
+    "risksEn": [
+      "Insolvency does not establish that every legal entity has dissolved; the subtype is a major commercial setback.",
+      "Historical revenue figures are publicly disputed and unverified amounts are excluded.",
+      "Media allegations are not treated as adjudicated facts."
+    ]
+  },
+  {
+    "id": "embodied",
+    "name": "Embodied / Moxie 原运营公司",
+    "failureSubtype": "shutdown",
+    "scope": "company",
+    "category": "AI 陪伴机器人",
+    "summary": "原运营商 Embodied 于 2024 年宣布关闭，云服务依赖使机器人用户面临服务中断；后续有资产承接和社区维护，不能称 Moxie 永久消失。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
+        "title": "Maker of AI robots for kids abruptly shutters",
+        "publishedAt": "2024-12-10",
+        "evidence": "media-report",
+        "supports": "Embodied 宣布关停及云依赖导致消费者设备服务风险。",
+        "titleEn": "Maker of AI robots for kids abruptly shutters",
+        "supportsEn": "Embodied's closure announcement and the consumer-service risk caused by cloud dependence."
+      },
+      {
+        "url": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
+        "title": "They bought an AI robot … the company is shutting down",
+        "publishedAt": "2024-12-11",
+        "evidence": "media-report",
+        "supports": "CEO 向客户说明融资未完成，无法继续运营。",
+        "titleEn": "They bought an AI robot … the company is shutting down",
+        "supportsEn": "The CEO's account of a failed funding round."
+      },
+      {
+        "url": "https://moxierobots.com/faq",
+        "title": "Moxie Robots Help and Support",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "搜索索引中的后续运营方说明承接 Moxie 权利；当前页面重定向，后续状态需复查。",
+        "titleEn": "Moxie Robots Help and Support",
+        "supportsEn": "Indexed successor information about acquired Moxie rights; the current page redirects and later status needs rechecking."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "CEO 向客户说明新融资未完成，原公司无法继续运营。",
+        "kind": "reported",
+        "sourceUrl": "https://www.businessinsider.com/moxie-robot-toy-shutting-down-kids-embodied-goodbye-2024-12",
+        "textEn": "The CEO told customers that a funding round failed and the original company could not continue operating."
+      },
+      {
+        "text": "硬件功能依赖经营主体的持续云服务，形成停运后客户价值损失。",
+        "kind": "inference",
+        "sourceUrl": "https://www.axios.com/2024/12/10/moxie-kids-robot-shuts-down",
+        "textEn": "Hardware depended on the operator's cloud service, exposing customers to a loss of value after closure."
+      }
+    ],
+    "risks": [
+      "失败范围限于 Embodied 原运营主体；后续商业承接与开源保留路径需分别核实。",
+      "后续支持网页当前重定向，不能保证服务持续可用。"
+    ],
+    "soloRelevance": "中：设计持续服务成本、离线能力、数据导出和产品停运交接。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Embodied / Original Moxie Operator",
+    "summaryEn": "Original operator Embodied announced closure in 2024. Cloud dependence exposed robot owners to service interruption. Later asset transfers and community maintenance mean Moxie should not be described as permanently gone.",
+    "categoryEn": "AI companion robots",
+    "soloRelevanceEn": "Medium: plan continuing-service costs, offline functions, data export and handover when a product closes.",
+    "risksEn": [
+      "The failure scope is the original Embodied operator; later commercial transfers and open-source preservation need separate checks.",
+      "The successor support page currently redirects, so continuing service cannot be guaranteed."
+    ]
+  },
+  {
+    "id": "ghost-autonomy",
+    "name": "Ghost Autonomy",
+    "failureSubtype": "shutdown",
+    "scope": "company",
+    "category": "AI 自动驾驶",
+    "summary": "Ghost Autonomy 于 2024 年 4 月停止全球运营；案例用于对照资本密集 AI 技术商业化。",
+    "metrics": [
+      {
+        "label": "累计融资（媒体报道）",
+        "value": "约 US$220 million",
+        "period": "截至 2024 年关停",
+        "kind": "funding",
+        "labelEn": "Total funding (media report)",
+        "valueEn": "About US$220 million",
+        "periodEn": "By closure in 2024"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
+        "title": "Ghost Autonomy ceased operations",
+        "publishedAt": null,
+        "evidence": "media-report",
+        "supports": "2024 年 4 月 3 日公告关闭全球运营、自动驾驶软件业务及约 2.2 亿美元融资。",
+        "titleEn": "Ghost Autonomy ceased operations",
+        "supportsEn": "Worldwide operations closure announced on April 3, 2024, autonomous-driving software, and reported funding."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "大量融资和技术合作仍不能单独证明商业化完成；具体根因在选用报道中不足。",
+        "kind": "inference",
+        "sourceUrl": "https://autotechinsight.ihsmarkit.com/main/news/view/printer-friendly?id=5275319",
+        "textEn": "Funding and technical partnerships alone do not establish completed commercialization; the selected reporting does not establish a precise root cause."
+      }
+    ],
+    "risks": [
+      "融资不是收入或利润。",
+      "自动驾驶技术、监管和资金要求与 solo 软件差距很大。",
+      "根因证据不足，不能据此归因于模型或客户需求。"
+    ],
+    "soloRelevance": "低到中：对照技术里程碑与付费交付里程碑的区别。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Ghost Autonomy",
+    "summaryEn": "Ghost Autonomy ceased worldwide operations in April 2024. It serves as a comparison for capital-intensive AI commercialization.",
+    "categoryEn": "AI autonomous driving",
+    "soloRelevanceEn": "Low to medium: distinguish technical milestones from paid-delivery milestones.",
+    "risksEn": [
+      "Funding is not revenue or profit.",
+      "Autonomous-driving technology, regulation and funding needs differ greatly from solo software.",
+      "Root-cause evidence is insufficient; no model or demand failure is asserted."
+    ]
+  },
+  {
+    "id": "argo-ai",
+    "name": "Argo AI",
+    "failureSubtype": "shutdown",
+    "scope": "company",
+    "category": "AI 自动驾驶",
+    "summary": "Argo AI 于 2022 年停止运营，股东转向更近期可交付的驾驶辅助；记录公司关闭，原因不能简化为裁员。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
+        "title": "Ford's shuttered unit Argo … government notice",
+        "publishedAt": "2022-11-01",
+        "evidence": "media-report",
+        "supports": "Reuters 报道 Argo 已关闭。",
+        "titleEn": "Ford's shuttered unit Argo … government notice",
+        "supportsEn": "Reuters reporting that Argo had already closed."
+      },
+      {
+        "url": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
+        "title": "Ford withdraws petition seeking approval to deploy self-driving vehicles",
+        "publishedAt": null,
+        "evidence": "media-report",
+        "supports": "Ford 表示规模化且盈利的全自动驾驶仍需很长时间，转向其他技术。",
+        "titleEn": "Ford withdraws petition seeking approval to deploy self-driving vehicles",
+        "supportsEn": "Ford's judgment on the long path to scaled, profitable fully autonomous driving and its technology shift."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "Ford 公开判断全自动驾驶达到规模化和盈利仍有漫长路径，选择转向较近可实现技术。",
+        "kind": "reported",
+        "sourceUrl": "https://www.investing.com/news/stock-market-news/ford-withdraws-petition-seeking-us-approval-to-deploy-selfdriving-vehicles-3045478",
+        "textEn": "Ford publicly judged that profitable, scaled fully autonomous driving remained a long way away and shifted to nearer-term technologies."
+      }
+    ],
+    "risks": [
+      "2022 年历史事件，不代表今天所有自动驾驶路线。",
+      "大型资本密集研发公司的关停不可作为 solo AI 成功率统计。"
+    ],
+    "soloRelevance": "中：把技术愿景拆成近期能收费、能交付且成本可控的阶段。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Argo AI",
+    "summaryEn": "Argo ceased operations in 2022 as its backers shifted toward nearer-term driver assistance. This record establishes company closure rather than using layoffs as the failure criterion.",
+    "categoryEn": "AI autonomous driving",
+    "soloRelevanceEn": "Medium: split the technical vision into near-term stages that can be sold, delivered and kept within budget.",
+    "risksEn": [
+      "A historical 2022 event, not evidence about every current autonomous-driving route.",
+      "A large capital-intensive research company's closure is not a solo AI success-rate observation."
+    ]
+  },
+  {
+    "id": "cruise-robotaxi",
+    "name": "Cruise Robotaxi 项目",
+    "failureSubtype": "product-discontinued",
+    "scope": "company",
+    "category": "AI 自动驾驶 / 运营服务",
+    "summary": "GM 于 2024 年 12 月宣布不再投入 Cruise Robotaxi 开发，技术团队转向私人车辆；失败范围是 Robotaxi 商业项目。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
+        "title": "GM to refocus autonomous driving development on personal vehicles",
+        "publishedAt": "2024-12-10",
+        "evidence": "company-report",
+        "supports": "Robotaxi 开发停止投入、规模化所需资源和竞争因素。",
+        "titleEn": "GM to refocus autonomous driving development on personal vehicles",
+        "supportsEn": "End of robotaxi-development funding, required scaling resources and competition."
+      },
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+        "title": "GM 2025 Form 10-K",
+        "publishedAt": null,
+        "evidence": "filing",
+        "supports": "2025 年文件记载 Robotaxi 运营收尾投入，支持项目结束状态。",
+        "titleEn": "GM 2025 Form 10-K",
+        "supportsEn": "The 2025 filing records spending to wind down robotaxi operations."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "GM 指出规模化需要大量时间与资源，同时面临越来越激烈的 Robotaxi 市场竞争。",
+        "kind": "reported",
+        "sourceUrl": "https://investor.gm.com/news-releases/news-release-details/gm-refocus-autonomous-driving-development-personal-vehicles/",
+        "textEn": "GM cited the substantial time and resources needed to scale and increasingly intense robotaxi competition."
+      }
+    ],
+    "risks": [
+      "GM 与 Cruise 其他自动驾驶工作继续，不能称整个公司全部 AI 业务失败。",
+      "资本密集运营项目与 solo SaaS 的可比性有限。"
+    ],
+    "soloRelevance": "中：明确扩张必须增加的交付、运营和服务资源，不把规模当作自动盈利。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Cruise Robotaxi Program",
+    "summaryEn": "GM announced in December 2024 that it would no longer fund Cruise robotaxi development and would refocus technical work on personal vehicles. The scope is the robotaxi commercial program.",
+    "categoryEn": "AI autonomous driving / operations",
+    "soloRelevanceEn": "Medium: specify the delivery, operations and service resources needed for expansion instead of assuming scale yields profit.",
+    "risksEn": [
+      "Other GM and Cruise autonomous-driving work continued; this is not failure of all company AI activity.",
+      "Comparability between capital-intensive operations and solo SaaS is limited."
+    ]
+  },
+  {
+    "id": "poppy",
+    "name": "Poppy / Second Nature Computing",
+    "failureSubtype": "product-discontinued",
+    "scope": "small-team",
+    "category": "主动 AI 助手 / 消费者",
+    "summary": "Poppy 官方于 2026 年 8 月宣布停止销售与开发，并于 8 月 31 日结束服务；公告未公开经营指标或具体停运根因。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://getpoppy.app/blog/sunset",
+        "title": "Sunset – Poppy",
+        "publishedAt": "2026-08-17",
+        "evidence": "company-report",
+        "supports": "停止开发和订阅、2026 年 8 月 31 日服务结束及用户数据删除安排。",
+        "titleEn": "Sunset – Poppy",
+        "supportsEn": "End of development and subscriptions, August 31, 2026 service termination and data-deletion plan."
+      },
+      {
+        "url": "https://www.juyoungkim.net/posts/poppy-second-nature",
+        "title": "Poppy: Building a Proactive AI Assistant",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "创始工程师描述三人建设主动助手的团队工作；不是审计人数。",
+        "titleEn": "Poppy: Building a Proactive AI Assistant",
+        "supportsEn": "A founding engineer's account of three people building the proactive assistant; not audited headcount."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "团队宣布转向其他工作，不再继续开发；商业根因未披露。",
+        "kind": "reported",
+        "sourceUrl": "https://getpoppy.app/blog/sunset",
+        "textEn": "The team said it was moving on and would not continue development; a commercial root cause was not disclosed."
+      }
+    ],
+    "risks": [
+      "官方称用户使用超预期，不能凭停运推断没有用户需求。",
+      "未披露营收或留存，不填造数值。",
+      "工程师页面属于个人团队自述。"
+    ],
+    "soloRelevance": "高：主动助手须验证长期付费及支持义务；停运时提供退款和数据导出。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Poppy / Second Nature Computing",
+    "summaryEn": "Poppy announced the end of sales and development in August 2026 and service termination on August 31. The notice did not disclose operating metrics or a specific commercial root cause.",
+    "categoryEn": "Proactive AI assistants / consumer",
+    "soloRelevanceEn": "High: validate long-term payment and support obligations for proactive assistants; provide refunds and data export on closure.",
+    "risksEn": [
+      "The company said use exceeded expectations; closure does not establish lack of user demand.",
+      "Revenue and retention were not disclosed, so no values are invented.",
+      "The engineering page is a personal account by a team member."
+    ]
+  },
+  {
+    "id": "super-ai",
+    "name": "Super AI（Aryan Agarwal 项目）",
+    "failureSubtype": "shutdown",
+    "scope": "small-team",
+    "category": "AI 模型路由 / 聚合",
+    "summary": "创始人自述多模型自动路由产品运行至 2025 年 3 月后关闭；案例代表其单个聚合项目，避免与同名产品混淆。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://gravity.fast/blog/super-ai-postmortem/",
+        "title": "Super AI Postmortem: Why an All-in-One AI App Didn't Work",
+        "publishedAt": "2026-05-06",
+        "evidence": "founder-report",
+        "supports": "2024 年 3 月到 2025 年 3 月的项目、关闭决定及模型趋同导致价值下降的创始人复盘。",
+        "titleEn": "Super AI Postmortem: Why an All-in-One AI App Didn't Work",
+        "supportsEn": "March 2024–March 2025 project window, closure and the founder's explanation about model convergence."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人认为通用模型能力趋同后，自动选择模型的差异化价值下降。",
+        "kind": "reported",
+        "sourceUrl": "https://gravity.fast/blog/super-ai-postmortem/",
+        "textEn": "The founder believed that convergence in general model capabilities reduced the value of automatic model selection."
+      }
+    ],
+    "risks": [
+      "仅有创始人回顾，缺少独立产品和财务核验；应作为低置信度自述。",
+      "同作者的 Vibe AI 属相关样本，不能视作完全独立训练观测。",
+      "文章推广其新产品，其跨行业因果泛化未经证明。",
+      "团队规模未披露，small-team 仅表示创业项目语境。"
+    ],
+    "soloRelevance": "高：验证聚合功能是否能被底层平台轻易替代，寻找工作流和分发优势。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Super AI (Aryan Agarwal project)",
+    "summaryEn": "The founder reports that this model-routing product closed in March 2025. The record concerns his individual aggregation project and must not be confused with products sharing its name.",
+    "categoryEn": "AI model routing / aggregation",
+    "soloRelevanceEn": "High: test whether the underlying platform can replace an aggregation feature and seek workflow and distribution advantages.",
+    "risksEn": [
+      "A retrospective founder account without independent product or financial verification; treat as lower confidence.",
+      "Vibe AI is reported by the same author; the two are not fully independent training observations.",
+      "The article promotes the author's new product and its cross-industry causal claims are unproven.",
+      "Headcount is undisclosed; small-team describes the startup context."
+    ]
+  },
+  {
+    "id": "vibe-ai",
+    "name": "Vibe AI（Aryan Agarwal 项目）",
+    "failureSubtype": "shutdown",
+    "scope": "solo",
+    "category": "AI 陪伴 / 消费者",
+    "summary": "创始人自述 AI 朋友项目于 2026 年 2 月关闭；早期互动较强，后续留存与长对话成本无法支持目标定价。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://gravity.fast/blog/vibe-ai-postmortem/",
+        "title": "Vibe AI Postmortem: Lessons from Building an AI Friend",
+        "publishedAt": "2026-05-06",
+        "evidence": "founder-report",
+        "supports": "2025 年 3 月到 2026 年 2 月项目窗口、留存下降和单位经济问题的自述。",
+        "titleEn": "Vibe AI Postmortem: Lessons from Building an AI Friend",
+        "supportsEn": "March 2025–February 2026 project window and the reported retention and unit-economics problems."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人称第三周留存下降，长上下文对话成本高于用户可接受的收费。",
+        "kind": "reported",
+        "sourceUrl": "https://gravity.fast/blog/vibe-ai-postmortem/",
+        "textEn": "The founder reports retention falling by week three and long-context conversation costs exceeding the audience's acceptable price."
+      }
+    ],
+    "risks": [
+      "只有创始人自述，缺少具体队列留存、账单和价格证据，低置信度。",
+      "与 Super AI 同作者相关，不适合作为独立统计样本。",
+      "solo 标签表示单人主导叙述，实际人力未披露。",
+      "不能将作者对陪伴类别的概括外推为所有产品规律。"
+    ],
+    "soloRelevance": "高：按活跃付费用户计算模型成本，区分新鲜感和长期使用。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Vibe AI (Aryan Agarwal project)",
+    "summaryEn": "The founder reports closing this AI friend project in February 2026. Early engagement was strong, but later retention and long-conversation costs did not support the target pricing.",
+    "categoryEn": "AI companions / consumer",
+    "soloRelevanceEn": "High: calculate model cost per active paying user and distinguish novelty from sustained use.",
+    "risksEn": [
+      "A founder report without cohort-retention tables, bills or pricing evidence; lower confidence.",
+      "Related to Super AI through the same author and not an independent statistical sample.",
+      "Solo indicates the first-person maker account; actual staffing is undisclosed.",
+      "The author's broad claims about companion products are not treated as category-wide laws."
+    ]
+  },
+  {
+    "id": "yara-ai",
+    "name": "Yara AI",
+    "failureSubtype": "shutdown",
+    "scope": "small-team",
+    "category": "AI 心理健康 / 高风险服务",
+    "summary": "Yara 在 2025 年 11 月主动停止服务；创始人担心模型不能安全服务脆弱用户，未继续推进订阅产品。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.meetyara.com/privacy",
+        "title": "Thank You from the Yara Team",
+        "publishedAt": null,
+        "evidence": "company-report",
+        "supports": "官方确认服务关闭与创始人告别。",
+        "titleEn": "Thank You from the Yara Team",
+        "supportsEn": "Official confirmation of service closure and the founder's farewell."
+      },
+      {
+        "url": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+        "title": "Joe Braidwood announces Yara AI shutdown",
+        "publishedAt": null,
+        "evidence": "founder-report",
+        "supports": "创始人解释停止服务的安全原因。",
+        "titleEn": "Joe Braidwood announces Yara AI shutdown",
+        "supportsEn": "The founder's explanation of safety concerns."
+      },
+      {
+        "url": "https://bhbusiness.com/2025/12/01/ai-mental-health-app-shuts-down-citing-safety-concerns-and-blurred-line-between-care-and-wellness/",
+        "title": "AI Mental Health App Shuts Down, Citing Safety Concerns",
+        "publishedAt": "2025-12-01",
+        "evidence": "media-report",
+        "supports": "2025 年 11 月停运及风险边界背景。",
+        "titleEn": "AI Mental Health App Shuts Down, Citing Safety Concerns",
+        "supportsEn": "November 2025 closure and the context of service boundaries."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人认为严重心理健康场景中，现有 AI 不能满足其服务安全要求。",
+        "kind": "reported",
+        "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+        "textEn": "The founder judged that existing AI did not meet his safety requirements for serious mental-health situations."
+      }
+    ],
+    "risks": [
+      "主动退出源于创始人的风险判断，不代表无需求或纯营收失败。",
+      "心理健康工具不应承诺临床疗效；案例归因不能替代医学证据。"
+    ],
+    "soloRelevance": "高：先确定能安全交付的服务边界和人工接管成本，再设计付费产品。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Yara AI",
+    "summaryEn": "Yara voluntarily ended services in November 2025. Its founder was concerned that models could not safely support vulnerable users, so the planned subscription offering did not proceed.",
+    "categoryEn": "AI mental wellness / high-stakes service",
+    "soloRelevanceEn": "High: establish a safely deliverable service scope and the cost of human escalation before designing a paid product.",
+    "risksEn": [
+      "The voluntary exit reflects the founder's risk judgment and does not establish absent demand or a purely revenue-driven failure.",
+      "Mental-health tools should not promise clinical efficacy; case interpretation does not replace medical evidence."
+    ]
+  },
+  {
+    "id": "brainstory",
+    "name": "Brainstory",
+    "failureSubtype": "product-discontinued",
+    "scope": "small-team",
+    "category": "AI 语音 / 思维教练",
+    "summary": "Contenda 小团队打造的 AI 思维教练于 2024 年结束商业运营并开源；原 CTO 表示没有建立可持续业务，之后以个人插件方式部分复现。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://cassidoo.co/post/getting-paid-is-weird/",
+        "title": "Getting paid is weird and sometimes hard",
+        "publishedAt": "2024-07-25",
+        "evidence": "company-report",
+        "supports": "原 CTO 确认 Brainstory 当周正式关闭。",
+        "titleEn": "Getting paid is weird and sometimes hard",
+        "supportsEn": "The former CTO confirmed that Brainstory formally closed that week."
+      },
+      {
+        "url": "https://cassidoo.co/post/adios-2024/",
+        "title": "Adios, 2024",
+        "publishedAt": "2024-12-31",
+        "evidence": "company-report",
+        "supports": "小团队、未形成可持续生意和成员后续去向。",
+        "titleEn": "Adios, 2024",
+        "supportsEn": "Small-team context, inability to sustain the business and later team roles."
+      },
+      {
+        "url": "https://cassidoo.co/post/brainstory-liiiives/",
+        "title": "Making my startup come back to life",
+        "publishedAt": "2025-01-08",
+        "evidence": "company-report",
+        "supports": "AI 语音教练功能与开源后作为个人插件部分复现。",
+        "titleEn": "Making my startup come back to life",
+        "supportsEn": "AI voice-coach functionality and a partial personal-extension recreation after open-sourcing."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "原 CTO 表示团队未能让商业业务持续运作。",
+        "kind": "reported",
+        "sourceUrl": "https://cassidoo.co/post/adios-2024/",
+        "textEn": "The former CTO said the team could not make the business sustainable."
+      }
+    ],
+    "risks": [
+      "商业产品停运不等于开源代码或功能消失。",
+      "与 Contenda Studio 同主体相关，训练和统计时需按主体分组。",
+      "精确收入、利润和更细的经营根因未披露。"
+    ],
+    "soloRelevance": "高：把有用功能与可持续独立产品区分，评估插件或既有平台上的分发方式。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Brainstory",
+    "summaryEn": "Contenda's small team ended commercial operation of this AI thinking coach in 2024 and released its code. Its former CTO said the business was not sustainable; some functionality was later recreated as a personal extension.",
+    "categoryEn": "AI voice / thinking coach",
+    "soloRelevanceEn": "High: distinguish useful functionality from a sustainable standalone product and evaluate distribution through extensions or existing platforms.",
+    "risksEn": [
+      "Commercial retirement does not mean the code or functionality disappeared.",
+      "Related to Contenda Studio; group by operating entity for training and statistics.",
+      "Precise revenue, profit and more detailed causes were not disclosed."
+    ]
+  },
+  {
+    "id": "contenda-studio",
+    "name": "Contenda Studio",
+    "failureSubtype": "pivot",
+    "scope": "small-team",
+    "category": "AI 内容复用 / DevRel",
+    "summary": "创始人于 2023 年复盘从内容复用工具转向 Brainstory；Studio 的企业销售未跑通，范围为该产品路线的转型。",
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
+        "title": "Lessons in pivoting: From Studio to Brainstory",
+        "publishedAt": "2023-12-05",
+        "evidence": "founder-report",
+        "supports": "GPT-4 对差异化的冲击、企业销售未成交及转向 Brainstory。",
+        "titleEn": "Lessons in pivoting: From Studio to Brainstory",
+        "supportsEn": "GPT-4's effect on differentiation, unclosed enterprise sales and the pivot to Brainstory."
+      },
+      {
+        "url": "https://cassidoo.co/post/bye-bye-2023/",
+        "title": "Buh bye, 2023",
+        "publishedAt": "2023-12-31",
+        "evidence": "company-report",
+        "supports": "原 CTO 确认产品转型、技术优势减弱和销售问题。",
+        "titleEn": "Buh bye, 2023",
+        "supportsEn": "The former CTO's account of the pivot, lost technical advantage and sales problems."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "底层模型迭代削弱团队围绕旧模型构建的质量优势，竞争者更易进入。",
+        "kind": "reported",
+        "sourceUrl": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
+        "textEn": "Foundation-model advances weakened the quality advantage built around an older model and made entry easier for competitors."
+      },
+      {
+        "text": "企业潜客多轮沟通和利益相关方认同没有转化为成交。",
+        "kind": "reported",
+        "sourceUrl": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
+        "textEn": "Multiple enterprise conversations and stakeholder agreement did not turn into closed deals."
+      }
+    ],
+    "risks": [
+      "产品转型不是公司整体死亡；不能把所有 pivot 都归为失败。",
+      "与 Brainstory 相关样本需按经营主体去重或分组。",
+      "创始人给出的百分比属于估计，未作为精确指标。"
+    ],
+    "soloRelevance": "高：技术优势和付费需求分别核验，把成交作为客户认同的强证据。",
+    "outcome": "failure",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "nameEn": "Contenda Studio",
+    "summaryEn": "The founder described a pivot from content repurposing to Brainstory in 2023. Studio's enterprise sales did not work; this record concerns a product-route pivot.",
+    "categoryEn": "AI content repurposing / DevRel",
+    "soloRelevanceEn": "High: validate technical advantage separately from paid demand and use closed deals as strong evidence of customer commitment.",
+    "risksEn": [
+      "A product pivot is not the entire company's death; not every pivot is a failure.",
+      "Related to Brainstory and must be deduplicated or grouped by operating entity.",
+      "The founder's percentage claims are estimates and are not recorded as precise metrics."
+    ]
+  }
+]

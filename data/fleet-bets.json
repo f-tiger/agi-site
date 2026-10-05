@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-10-01",
+ "updated": "2026-10-05",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -2458,6 +2458,17 @@
    "win": "先核实重复用户、来源和实际佣金，再考虑扩大同类指南或付费层。",
    "lose": "访问不足修复具体查询与落地匹配/分发；访问足够但使用不足修复任务流程。42 天内不因低样本反复换整站方向。",
    "source": "docs/tds-collector-relaunch-2026-10-02.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-ai-solo-validation-1019",
+   "site": "baipiaoji",
+   "due": "2026-10-19",
+   "metric": "AI Solo 首个完整14日窗口（预计10-05—10-18）：剔除已知QA/CI的相关页面事件；ai_solo own plan-complete与plan-export（example单列）；可核实经营者执行/重复任务反馈",
+   "threshold": "发现事件≥50后才判使用；自己的plan-complete≥10且plan-export≥3；付费/云扩展另需≥3独立经营者可核实执行或重复任务反馈",
+   "win": "完善已验证任务的案例对照与现有工具/内容/账户价值；支付与交付核验后才记录收入，不默认新SKU或复活撤回服务",
+   "lose": "发现不足=insufficient先修分发；样本足够且完成/导出不足=优化约束、案例匹配与执行价值；没有重复需求不开发收费云计划；不得把免费咨询无付款判为商业失败",
+   "source": "sites/baipiaoji/docs/PRD-ai-solo-2026-10-05.md:118",
    "status": "open"
   }
  ]

@@ -97,3 +97,17 @@
 /en/catalog-sync.json
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=300
+
+/ai-solo-cases.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+/ai-solo-model.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+/ai-solo-core.mjs
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+/ai-solo/*
+  Referrer-Policy: strict-origin
+/en/ai-solo/*
+  Referrer-Policy: strict-origin

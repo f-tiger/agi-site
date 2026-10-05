@@ -168,6 +168,12 @@ jobs:
         if: github.event_name != 'push'
         run: node scripts/mcp-discovery-probe.mjs
 
+      # Existing daily schedule only. 5 cases × 2 sources, concurrency 2, 8s cap.
+      # Worst ~40s/run (~20 min/month); no fact/date rewrites or new cron.
+      - name: Monitor AI Solo sources for editorial recheck
+        if: github.event_name != 'push'
+        run: node scripts/ai-solo-refresh.mjs
+
       - name: Commit refreshed data
         id: catalog_commit
         if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]') || contains(github.event.head_commit.message, '[manju-sync]')
@@ -329,6 +335,9 @@ jobs:
           node scripts/test-distribution.mjs --dist
           node scripts/test-github-tools.mjs --dist
           node scripts/test-coding-access.mjs --dist
+          node scripts/ai-solo-validate.mjs
+          node --test scripts/test-ai-solo-core.mjs scripts/test-ai-solo-refresh.mjs
+          node scripts/test-ai-solo.mjs --dist
           node --test scripts/test-manju-automation.mjs
           python3 scripts/test-manju-fetch.py
           node scripts/test-manju-discover.mjs
@@ -423,6 +432,7 @@ jobs:
           node sites/baipiaoji/scripts/test-catalog-browser.mjs
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node sites/baipiaoji/scripts/test-coding-access-browser.mjs
+          node sites/baipiaoji/scripts/test-ai-solo-browser.mjs
           node sites/baipiaoji/scripts/test-manju-browser.mjs
           node sites/baipiaoji/scripts/test-manju-search-browser.mjs
           node tools/fleet/browser-distribution.mjs
@@ -465,6 +475,7 @@ jobs:
       - name: Verify published coding access directory
         run: |
           node scripts/test-coding-access.mjs --live
+          node scripts/test-ai-solo.mjs --live
           node scripts/test-manju.mjs --live
 
       - name: Verify published subscription review and checklist
