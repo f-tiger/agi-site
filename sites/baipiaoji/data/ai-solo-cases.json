@@ -2773,5 +2773,395 @@
       "Related to Brainstory and must be deduplicated or grouped by operating entity.",
       "The founder's percentage claims are estimates and are not recorded as precise metrics."
     ]
+  },
+  {
+    "id": "otter-ai",
+    "name": "Otter.ai",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 会议记录",
+    "categoryEn": "AI meetings",
+    "summary": "2025 年 3 月，公司宣布 ARR 超过 1 亿美元。属于历史年化订阅收入信号，不等于当年实收或利润。",
+    "summaryEn": "In March 2025, Otter reported ARR above $100 million: a historical annualized subscription signal, not annual cash receipts or profit.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "公司披露 ARR",
+        "labelEn": "Company-reported ARR",
+        "value": "> US$100M",
+        "valueEn": "> US$100M",
+        "period": "2025-03-25",
+        "periodEn": "2025-03-25",
+        "kind": "revenue",
+        "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite",
+        "title": "Otter.ai breaks $100M ARR barrier",
+        "titleEn": "Otter.ai breaks $100M ARR barrier",
+        "publishedAt": "2025-03-25",
+        "evidence": "company-report",
+        "supports": "2025 年 3 月，公司宣布 ARR 超过 1 亿美元。属于历史年化订阅收入信号，不等于当年实收或利润。",
+        "supportsEn": "In March 2025, Otter reported ARR above $100 million: a historical annualized subscription signal, not annual cash receipts or profit."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "推断：围绕会议后续工作设计交付，可能比单纯转录更容易形成持续使用。",
+        "textEn": "Hypothesis: delivering meeting follow-up work may support repeat use beyond transcription.",
+        "kind": "inference",
+        "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite"
+      }
+    ],
+    "risks": [
+      "企业规模和销售资源不能直接迁移；利润未知。"
+    ],
+    "risksEn": [
+      "Enterprise resources do not transfer to solo founders; profit is unknown."
+    ],
+    "soloRelevance": "先验证一个行业的会议整理交付，再测客户续用。",
+    "soloRelevanceEn": "Test one industry-specific meeting deliverable, then measure repeat use."
+  },
+  {
+    "id": "windsurf",
+    "name": "Windsurf",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 编程",
+    "categoryEn": "AI coding",
+    "summary": "Cognition 的 2025 年 7 月收购公告披露 Windsurf ARR 为 8200 万美元；这是收购方披露的历史业务规模。",
+    "summaryEn": "Cognition reported Windsurf ARR of $82 million in its July 2025 acquisition announcement, a historical acquirer-reported business snapshot.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "收购方披露 ARR",
+        "labelEn": "Acquirer-reported ARR",
+        "value": "US$82M",
+        "valueEn": "US$82M",
+        "period": "2025-07-14",
+        "periodEn": "2025-07-14",
+        "kind": "revenue",
+        "sourceUrl": "https://cognition.com/blog/windsurf"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://cognition.com/blog/windsurf",
+        "title": "Cognition’s acquisition of Windsurf",
+        "titleEn": "Cognition’s acquisition of Windsurf",
+        "publishedAt": "2025-07-14",
+        "evidence": "company-report",
+        "supports": "Cognition 的 2025 年 7 月收购公告披露 Windsurf ARR 为 8200 万美元；这是收购方披露的历史业务规模。",
+        "supportsEn": "Cognition reported Windsurf ARR of $82 million in its July 2025 acquisition announcement, a historical acquirer-reported business snapshot."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "推断：嵌入开发者日常编辑工作，可能降低新工具切换摩擦。",
+        "textEn": "Hypothesis: fitting daily editor workflows may reduce switching friction.",
+        "kind": "inference",
+        "sourceUrl": "https://cognition.com/blog/windsurf"
+      }
+    ],
+    "risks": [
+      "ARR 不是利润；收购不能单独证明产品可复制。"
+    ],
+    "risksEn": [
+      "ARR is not profit; an acquisition alone does not establish replicability."
+    ],
+    "soloRelevance": "验证一个开发任务的使用频率与交付质量，避免直接复制完整 IDE。",
+    "soloRelevanceEn": "Validate frequency and quality for one developer task before attempting a full IDE."
+  },
+  {
+    "id": "casetext",
+    "name": "Casetext",
+    "outcome": "success",
+    "scope": "company",
+    "category": "法律 AI",
+    "categoryEn": "Legal AI",
+    "summary": "2023 年 8 月收购完成公告称 Casetext 服务超过 1 万家律所和企业法务部门；客户数覆盖公司产品，不全等于 CoCounsel 用户。",
+    "summaryEn": "The August 2023 acquisition notice reported over 10,000 law-firm and corporate legal customers across Casetext products, not exclusively CoCounsel users.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "公司产品客户机构",
+        "labelEn": "Customers across company products",
+        "value": "> 10,000",
+        "valueEn": "> 10,000",
+        "period": "2023-08-17",
+        "periodEn": "2023-08-17",
+        "kind": "users",
+        "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+        "title": "Thomson Reuters completes acquisition of Casetext",
+        "titleEn": "Thomson Reuters completes acquisition of Casetext",
+        "publishedAt": "2023-08-17",
+        "evidence": "company-report",
+        "supports": "2023 年 8 月收购完成公告称 Casetext 服务超过 1 万家律所和企业法务部门；客户数覆盖公司产品，不全等于 CoCounsel 用户。",
+        "supportsEn": "The August 2023 acquisition notice reported over 10,000 law-firm and corporate legal customers across Casetext products, not exclusively CoCounsel users."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "推断：专业工作流程中的明确交付，有助于检验客户价值。",
+        "textEn": "Hypothesis: a defined deliverable in a professional workflow makes customer value testable.",
+        "kind": "inference",
+        "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc"
+      }
+    ],
+    "risks": [
+      "客户数不等于活跃或盈利；不同法律产品的风险不相同。"
+    ],
+    "risksEn": [
+      "Customer counts do not establish activity or profit; legal products carry different risks."
+    ],
+    "soloRelevance": "从可核对来源的研究辅助切入，并设置专业复核。",
+    "soloRelevanceEn": "Start with source-checkable research assistance and professional review."
+  },
+  {
+    "id": "jasper",
+    "name": "Jasper",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 营销内容",
+    "categoryEn": "AI marketing content",
+    "summary": "2024 年 10 月公司新闻稿披露超过 850 家企业客户，支持企业市场采用信号。",
+    "summaryEn": "An October 2024 company release reported over 850 enterprise customers, supporting an enterprise-adoption signal.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "公司披露企业客户",
+        "labelEn": "Company-reported enterprise customers",
+        "value": "> 850",
+        "valueEn": "> 850",
+        "period": "2024-10-30",
+        "periodEn": "2024-10-30",
+        "kind": "users",
+        "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+        "title": "Jasper expands enterprise marketing products",
+        "titleEn": "Jasper expands enterprise marketing products",
+        "publishedAt": "2024-10-30",
+        "evidence": "company-report",
+        "supports": "2024 年 10 月公司新闻稿披露超过 850 家企业客户，支持企业市场采用信号。",
+        "supportsEn": "An October 2024 company release reported over 850 enterprise customers, supporting an enterprise-adoption signal."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "推断：将内容生成接入品牌与营销流程，可能提供比通用写作更明确的价值。",
+        "textEn": "Hypothesis: connecting generation to brand and marketing workflows may offer clearer value than generic writing.",
+        "kind": "inference",
+        "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html"
+      }
+    ],
+    "risks": [
+      "新闻稿是公司自述；企业客户不代表公开利润。"
+    ],
+    "risksEn": [
+      "The release is a company claim; enterprise adoption does not establish profit."
+    ],
+    "soloRelevance": "先验证一个内容交付流程的复购，不把生成数量当效果。",
+    "soloRelevanceEn": "Test repeat purchases for one content workflow; output volume is not business impact."
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "outcome": "success",
+    "scope": "company",
+    "category": "AI 编程",
+    "categoryEn": "AI coding",
+    "summary": "微软在 2025 年 7 月财报电话会议披露 GitHub Copilot 有 2000 万用户；没有将这个数字定义为付费或月活用户。",
+    "summaryEn": "Microsoft reported 20 million GitHub Copilot users in its July 2025 earnings call, without defining that figure as paid or monthly active users.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "披露用户数，非付费口径",
+        "labelEn": "Reported users, not a paid-user count",
+        "value": "20M",
+        "valueEn": "20M",
+        "period": "2025-07-30",
+        "periodEn": "2025-07-30",
+        "kind": "users",
+        "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+        "title": "Microsoft FY2025 Q4 earnings call",
+        "titleEn": "Microsoft FY2025 Q4 earnings call",
+        "publishedAt": "2025-07-30",
+        "evidence": "company-report",
+        "supports": "微软在 2025 年 7 月财报电话会议披露 GitHub Copilot 有 2000 万用户；没有将这个数字定义为付费或月活用户。",
+        "supportsEn": "Microsoft reported 20 million GitHub Copilot users in its July 2025 earnings call, without defining that figure as paid or monthly active users."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "推断：既有开发者平台可能有助于分发，但不能单独归因。",
+        "textEn": "Hypothesis: an established developer platform may help distribution; causation is not established.",
+        "kind": "inference",
+        "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4"
+      }
+    ],
+    "risks": [
+      "平台规模不能复制；用户数不能换算收入或利润。"
+    ],
+    "risksEn": [
+      "Platform scale is not replicable; users cannot be converted into revenue or profit estimates."
+    ],
+    "soloRelevance": "选择能接入现有工作流的细分任务，独立测量付费。",
+    "soloRelevanceEn": "Pick a narrow task within existing workflows and measure payment separately."
+  },
+  {
+    "id": "ross-intelligence",
+    "name": "ROSS Intelligence",
+    "outcome": "failure",
+    "scope": "company",
+    "category": "法律 AI",
+    "categoryEn": "Legal AI",
+    "summary": "创始人在 2020 年 12 月公告停止运营，并宣布研究平台于 2021 年 1 月 31 日停止提供服务；公司仍处理诉讼。",
+    "summaryEn": "A December 2020 founder notice announced operating shutdown and platform unavailability from January 31, 2021; the company continued litigation.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://blog.rossintelligence.com/post/announcement",
+        "title": "ROSS Intelligence shutdown announcement",
+        "titleEn": "ROSS Intelligence shutdown announcement",
+        "publishedAt": "2020-12-11",
+        "evidence": "founder-report",
+        "supports": "创始人在 2020 年 12 月公告停止运营，并宣布研究平台于 2021 年 1 月 31 日停止提供服务；公司仍处理诉讼。",
+        "supportsEn": "A December 2020 founder notice announced operating shutdown and platform unavailability from January 31, 2021; the company continued litigation."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "创始人将资金耗尽与诉讼负担及后续融资受阻联系起来；这是当事人解释。",
+        "textEn": "The founders linked depleted operating cash to litigation and blocked fundraising; this is their account.",
+        "kind": "reported",
+        "sourceUrl": "https://blog.rossintelligence.com/post/announcement"
+      }
+    ],
+    "risks": [
+      "不采用公告对诉讼对方动机的指控；运营结束不等于法人消失。"
+    ],
+    "risksEn": [
+      "Do not adopt allegations about the opposing party’s motives; operating closure is not corporate dissolution."
+    ],
+    "soloRelevance": "在专业数据产品中提前核对授权与现金续航。",
+    "soloRelevanceEn": "Check data rights and cash runway early in a professional-data product.",
+    "failureSubtype": "shutdown"
+  },
+  {
+    "id": "donotpay",
+    "name": "DoNotPay",
+    "outcome": "failure",
+    "scope": "company",
+    "category": "法律 AI",
+    "categoryEn": "Legal AI",
+    "summary": "FTC 于 2025 年 2 月公布最终命令：要求 19.3 万美元金钱救济，并限制缺乏证据的 AI 律师宣传。这是监管受挫案例，不是停运结论。",
+    "summaryEn": "In February 2025 the FTC announced a final order requiring $193,000 in monetary relief and restricting unsupported AI-lawyer claims. This is a regulatory setback, not a shutdown finding.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [
+      {
+        "label": "命令要求的金钱救济",
+        "labelEn": "Monetary relief required by order",
+        "value": "US$193,000",
+        "valueEn": "US$193,000",
+        "period": "2025-02-11",
+        "periodEn": "2025-02-11",
+        "kind": "cost",
+        "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+        "title": "FTC finalizes DoNotPay order",
+        "titleEn": "FTC finalizes DoNotPay order",
+        "publishedAt": "2025-02-11",
+        "evidence": "independent-report",
+        "supports": "FTC 于 2025 年 2 月公布最终命令：要求 19.3 万美元金钱救济，并限制缺乏证据的 AI 律师宣传。这是监管受挫案例，不是停运结论。",
+        "supportsEn": "In February 2025 the FTC announced a final order requiring $193,000 in monetary relief and restricting unsupported AI-lawyer claims. This is a regulatory setback, not a shutdown finding."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "FTC 要求类似真人律师的宣传有充分证据支持。",
+        "textEn": "The FTC order requires adequate substantiation for claims of lawyer-like performance.",
+        "kind": "reported",
+        "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires"
+      }
+    ],
+    "risks": [
+      "金额不是运营亏损；命令不能证明公司已经停止经营。"
+    ],
+    "risksEn": [
+      "The amount is not an operating loss; the order does not establish business closure."
+    ],
+    "soloRelevance": "宣传前验证能力边界，为高风险输出安排专业审核。",
+    "soloRelevanceEn": "Validate capabilities before advertising and arrange professional review for high-stakes output.",
+    "failureSubtype": "commercial-setback"
+  },
+  {
+    "id": "anki",
+    "name": "Anki（原公司）",
+    "outcome": "failure",
+    "scope": "company",
+    "category": "AI 陪伴机器人",
+    "categoryEn": "AI companion robots",
+    "summary": "2019 年 4 月报道原 Anki 公司停止经营，并援引公司关于融资不足的解释；不将该事件推广为后续品牌与服务全部永久停止。",
+    "summaryEn": "April 2019 reporting described the original Anki business shutting down and cited its funding explanation; this does not establish permanent closure of all later branded services.",
+    "observedAt": "2026-10-05",
+    "features": null,
+    "metrics": [],
+    "sources": [
+      {
+        "url": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
+        "title": "Robotics company Anki shutting down",
+        "titleEn": "Robotics company Anki shutting down",
+        "publishedAt": "2019-04-29",
+        "evidence": "media-report",
+        "supports": "2019 年 4 月报道原 Anki 公司停止经营，并援引公司关于融资不足的解释；不将该事件推广为后续品牌与服务全部永久停止。",
+        "supportsEn": "April 2019 reporting described the original Anki business shutting down and cited its funding explanation; this does not establish permanent closure of all later branded services."
+      }
+    ],
+    "drivers": [
+      {
+        "text": "报道援引公司称一项关键融资交易未能达成，资金不足以支撑软硬件业务路线。",
+        "textEn": "Reporting quoted the company linking inadequate funding to a failed financing deal and its hardware/software roadmap.",
+        "kind": "reported",
+        "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/"
+      }
+    ],
+    "risks": [
+      "这是原经营主体的历史事件，不据此推断后续运营者现状。"
+    ],
+    "risksEn": [
+      "This is a historical original-operator event, not evidence about later operators."
+    ],
+    "soloRelevance": "硬件实验同时计算售后和服务存续成本，不能只看售出数量。",
+    "soloRelevanceEn": "Include support and service-continuity costs in hardware experiments, beyond units sold.",
+    "failureSubtype": "shutdown",
+    "nameEn": "Anki (original operator)"
   }
 ]

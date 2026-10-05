@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+import {comparisonGroups} from './ai-solo-compare.mjs';
 // Public build/live integration and offline privacy contracts. Never posts live analytics.
 import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
@@ -129,13 +129,19 @@ for (const lang of ['zh', 'en']) {
   }
   for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
   const pages = new Map();
-  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/']) {
+  for (const leaf of ['', 'success/', 'failure/', 'agent/', 'method/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
     const html = await get(path);
     pages.set(leaf, assertPage(html, path, lang));
     assert(sitemap.includes('<loc>' + origin + path + '</loc>'), 'Missing sitemap page: ' + path);
     const markdownPath = path.replace(/\/$/, '') + '.md';
     assertMarkdown(await get(markdownPath), markdownPath);
+  }
+  for (const group of comparisonGroups) {
+    const html=pages.get('compare/'+group.id+'/');
+    const ids=[...html.matchAll(/<th scope="col" data-compare-case="([a-z0-9-]+)"/g)].map(m=>m[1]);
+    assert.deepEqual(ids,group.ids,'Comparison membership must use explicit customer-job groups');
+    for(const id of ids){const c=expectedCases.find(c=>c.id===id);hasText(html,local(c,'summary',lang),'Missing comparison evidence '+id);for(const source of c.sources)assert(html.includes(escape(source.url)),'Missing comparison citation '+id);}
   }
   for (const outcome of ['success', 'failure']) {
     const html = pages.get(outcome + '/');

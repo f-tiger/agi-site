@@ -9,6 +9,17 @@ if(root){
  function event(action){if(!allowedActions.has(action)||!canTrack())return;const body=JSON.stringify({e:'ai_solo',p:'/ai-solo/'+action+'/workspace',l:language,r:''});if(navigator.sendBeacon)navigator.sendBeacon('/api/hit',new Blob([body],{type:'application/json'}));else fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true}).catch(()=>{});if(actionNames[action])window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:actionNames[action]}}));}
  root.addEventListener('click',e=>{const a=e.target.closest('[data-solo-event]');if(a&&root.contains(a))event(a.dataset.soloEvent);});
  event('view');
+ const comparison=root.querySelector('[data-solo-compare]');
+ if(comparison){
+  const boxes=[...comparison.querySelectorAll('input[name="cases"]')],known=new Set(boxes.map(b=>b.value)),status=comparison.querySelector('[data-compare-status]'),share=comparison.querySelector('[data-compare-share]');
+  function select(ids,track=false){
+   if(ids.length<2||ids.length>4||ids.some(id=>!known.has(id))||new Set(ids).size!==ids.length){status.textContent=t('请选择本组 2–4 个不同案例；当前表格保持不变。','Choose 2–4 distinct cases from this group; the table is unchanged.');return false;}
+   const selected=new Set(ids);for(const b of boxes)b.checked=selected.has(b.value);for(const cell of root.querySelectorAll('[data-compare-case]'))cell.hidden=!selected.has(cell.dataset.compareCase);
+   const url=new URL(location.href);url.searchParams.set('cases',boxes.filter(b=>b.checked).map(b=>b.value).join(','));history.replaceState(null,'',url);share.href=url.pathname+'?cases='+encodeURIComponent(boxes.filter(b=>b.checked).map(b=>b.value).join(','));status.textContent=t('正在对比 '+ids.length+' 个案例。可复制“当前对比链接”分享。','Comparing '+ids.length+' cases. Copy the comparison link to share.');if(track)event('filter');return true;
+  }
+  const requested=new URLSearchParams(location.search).get('cases');if(requested!==null)select(requested.split(','));
+  comparison.addEventListener('submit',e=>{e.preventDefault();select(boxes.filter(b=>b.checked).map(b=>b.value),true);});
+ }
  let evidencePromise;
  function evidence(){if(!evidencePromise)evidencePromise=Promise.all([fetch('/ai-solo-cases.json').then(r=>{if(!r.ok)throw new Error('cases');return r.json();}),fetch('/ai-solo-model.json').then(r=>{if(!r.ok)throw new Error('model');return r.json();})]).then(([data,model])=>({cases:Array.isArray(data)?data:data.cases||[],model})).catch(err=>{evidencePromise=null;throw err;});return evidencePromise;}
  const local=(x,k,fallback='')=>{const v=x?.[zh?k:k+'En'];return v==null?fallback:typeof v==='object'&&!Array.isArray(v)?v[language]||fallback:String(v);};

@@ -177,7 +177,7 @@ const coreSource = readFileSync(new URL('../lib/ai-solo-core.mjs', import.meta.u
 assert(!/\bfetch\s*\(|XMLHttpRequest|localStorage|sessionStorage|navigator\.sendBeacon|\beval\s*\(|new Function\s*\(/.test(coreSource), 'Core must remain local and non-executing');
 
 // If production data has arrived, exercise the actual curated dataset as well.
-const researchPaths = ['/workspace/scratch/ai-solo-success-research.json', '/workspace/scratch/ai-solo-failure-research.json'];
+const researchPaths = [new URL('../data/ai-solo-cases.json', import.meta.url)];
 if (researchPaths.every(existsSync)) {
   const research = researchPaths.flatMap(path => JSON.parse(readFileSync(path, 'utf8')));
   const realStart = performance.now();
