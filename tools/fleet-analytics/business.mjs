@@ -31,6 +31,8 @@ export function businessEvent(host, pathname, detail) {
 
   if (host === 'getecoback.com' && ['/rechner.html','/wohnen.html','/geraete-austausch-rechner.html','/en/solution-calculator.html','/fr/calculateur.html','/nl/wonen.html','/guide/duschen-kosten-rechner.html','/en/guide/shower-cost-calculator.html'].includes(pathname) && /^eco_buy_(label|dish|shower)_(example|compare|share_prepare|copy|share_reddit|share_x|print)$/.test(name)) { const [,mode,action]=/^eco_buy_(label|dish|shower)_(.+)$/.exec(name); return {name:'eco_buy_'+action,tool_id:'eco-product-'+mode,repeat:true}; }
 
+  if (host === 'getecoback.com' && ['/rechner.html','/en/solution-calculator.html','/nl/wonen.html','/fr/calculateur.html','/guide/midea-portasplit-kaufen.html','/guide/waesche-trocknen-wohnung.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) && /^eco_fit_(robot|laundry|ac|floor)_(example|complete|share_prepare|copy|share_reddit|share_x|print)$/.test(name)) { const [,mode,action]=/^eco_fit_(robot|laundry|ac|floor)_(.+)$/.exec(name); return {name:'eco_fit_'+action,tool_id:'eco-fit-'+mode,repeat:true}; }
+
   if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');

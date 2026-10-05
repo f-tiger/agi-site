@@ -89,3 +89,9 @@ test('Eco purchase decisions retain only fixed mode/action labels on public page
  assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_buy_dish_compare',values:{rate:0.3}}),null);
  for(const name of ['eco_buy_dish_purchase','eco_buy_unknown_compare','eco_buy_email@example.com_compare'])assert.equal(businessEvent('getecoback.com','/rechner.html',{name}),null);
 });
+
+test('Eco home fit actions accept only fixed mode and action without user data',()=>{
+ for(const mode of ['robot','laundry','ac','floor'])assert.deepEqual(businessEvent('getecoback.com','/rechner.html',{name:'eco_fit_'+mode+'_complete'}),{name:'eco_fit_complete',tool_id:'eco-fit-'+mode,repeat:true});
+ assert.equal(businessEvent('getecoback.com','/account.html',{name:'eco_fit_robot_complete'}),null);
+ assert.equal(businessEvent('getecoback.com','/rechner.html',{name:'eco_fit_robot_complete',answers:{}}),null);
+});

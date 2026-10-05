@@ -35,6 +35,10 @@ def collect():
                 continue
             title = field(h, r"<title>(.*?)</title>")
             desc = field(h, r'<meta name="description" content="(.*?)"')
+            if 'id="home-fit-config"' in h:
+                match = re.search(r'<script id="home-fit-config" type="application/json">(.*?)</script>', h, re.S)
+                fit = json.loads(match.group(1))['text']
+                desc = ' · '.join(fit[k] for k in ['robot', 'laundry', 'ac', 'floor']) + '. ' + desc
             if not title:
                 continue
             url = "/" + rel
