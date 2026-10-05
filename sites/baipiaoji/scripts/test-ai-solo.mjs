@@ -150,7 +150,7 @@ for (const lang of ['zh', 'en']) {
   const journeys = JSON.parse(await get(prefix + '/site-journeys.json'));
   const searchURLs = new Set(search.map(item => item.u));
   assert.equal(journeys.language, lang, 'Wrong journey-map language');
-  for (const [id, route] of [['ai-solo-hot', '/ai-solo/hot/'], ['ai-solo', '/ai-solo/'], ['ai-solo-agent', '/ai-solo/agent/']]) {
+  for (const [id, route] of [['startup-mcp', '/ai-solo/mcp/'], ['ai-solo-hot', '/ai-solo/hot/'], ['ai-solo', '/ai-solo/'], ['ai-solo-agent', '/ai-solo/agent/']]) {
     const item = journeys.items.find(item => item.id === id);
     assert(item && item.url === origin + prefix + route, 'Missing localized journey: ' + id + '/' + lang);
     assert.equal(item.requiresRegistration, false, 'Public AI Solo reading or consulting incorrectly gated');
@@ -158,7 +158,7 @@ for (const lang of ['zh', 'en']) {
   }
   for (const route of ['/ai-solo/', '/ai-solo/success/', '/ai-solo/failure/', '/ai-solo/agent/']) assert(home.includes('href="' + origin + prefix + route + '"'), 'Homepage lacks AI Solo entry: ' + lang + route);
   const pages = new Map();
-  for (const leaf of ['', 'hot/', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
+  for (const leaf of ['', 'mcp/', 'hot/', 'success/', 'failure/', 'agent/', 'method/', 'solo/', 'categories/', 'research/', 'compare/', ...comparisonGroups.map(g=>'compare/'+g.id+'/')]) {
     const path = prefix + '/ai-solo/' + leaf;
     const html = await get(path);
     pages.set(leaf, assertPage(html, path, lang));

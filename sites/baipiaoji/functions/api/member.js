@@ -1,5 +1,6 @@
 import {json,digest,seconds} from '../../lib/ad-commerce.js';
 import {PLAN,memberSite,memberPlan,allowedProduct,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,createOrderForMember,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
+import {startupKeyAction} from '../../lib/startup-mcp-access.mjs';
 const tokenOf=r=>String(r.headers.get('Authorization')||'').replace(/^Bearer /,'');
 export async function onRequestGet({env}){
  try{if(!env.HITS)return json({ok:false,code:'not_ready'},503);await ensureMembers(env.HITS,memberSite(env));return json({ok:true,version:1,ready:await memberReady(env),plan:memberPlan(env),site:memberSite(env),chain:'bsc',token:'USDT',auto_renew:false});}catch{return json({ok:false,code:'temporarily_unavailable'},503);}
@@ -27,6 +28,11 @@ export async function memberAction({request,env,b,token=null,m=null}){
   }
   if(!m)return json({ok:false,code:'unauthorized'},401);
   await rate(db,'api:'+m.id,120,60);
+  if(typeof b.action==='string'&&b.action.startsWith('startup_mcp_')){
+   if(memberSite(env)!=='bpj')return json({ok:false,code:'wrong_site'},403);
+   if(b.action==='startup_mcp_create')await rate(db,'startup-key:'+m.id,6,3600);
+   try{return json(await startupKeyAction(db,m,b));}catch(e){const codes=['unauthorized','membership_required','bad_label','bad_key_id','bad_action','key_limit_or_account_changed'];return json({ok:false,code:codes.includes(e.message)?e.message:'temporarily_unavailable'},e.message==='membership_required'?403:e.message==='unauthorized'?401:e.message==='key_limit_or_account_changed'?409:codes.includes(e.message)?400:503);}
+  }
   if(b.action==='support'){
    if(typeof b.message!=='string'||!b.message.trim()||b.message.length>1000||/[a-f0-9]{64}/i.test(b.message))return json({ok:false,code:'bad_support'},400);
    await rate(db,'support:'+m.id,3,86400);

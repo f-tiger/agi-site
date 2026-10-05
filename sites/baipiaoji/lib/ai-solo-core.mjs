@@ -57,6 +57,7 @@ function hashText(text) {
   return hash >>> 0;
 }
 function corpusHash(cases) {
+  if(preparedCorpusHashes.has(cases))return preparedCorpusHashes.get(cases);
   const text = stableJSON(cases);
   return hashText(text).toString(16).padStart(8, '0') + hashText('bpj-corpus-v1:' + text).toString(16).padStart(8, '0');
 }
@@ -65,7 +66,9 @@ function randomGenerator(seed) {
   return () => { value ^= value << 13; value ^= value >>> 17; value ^= value << 5; return (value >>> 0) / 4294967296; };
 }
 
+const preparedCorpora=new WeakSet(),preparedCorpusHashes=new WeakMap(),preparedPatterns=new WeakMap();
 function normalizeCases(input) {
+  if(input&&preparedCorpora.has(input))return input;
   const seen = new Set();
   return list(input).slice(0, MAX_CASES).flatMap(item => {
     if (!item || typeof item !== 'object') return [];
@@ -200,6 +203,19 @@ function validModel(model, contentHash) {
 }
 function currentModel(cases, model) { return validModel(model, corpusHash(cases)) ? model : buildModel(cases); }
 
+// Server inference reuses a verified immutable snapshot; mutable browser inputs
+// keep the original normalization/hash path so case edits still invalidate models.
+export function prepareInferenceCorpus(input,model){
+ const cases=normalizeCases(input),hash=corpusHash(cases);
+ if(!validModel(model,hash))throw Error('case_model_mismatch');
+ const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;};
+ freeze(cases);freeze(model);preparedCorpora.add(cases);preparedCorpusHashes.set(cases,hash);
+ const byId=new Map(cases.map(c=>[c.id,c])),documents=model.documents.map(d=>({item:byId.get(d.id),mechanisms:d.mechanisms}));
+ if(documents.some(d=>!d.item||!Array.isArray(d.mechanisms)))throw Error('case_model_mismatch');
+ preparedPatterns.set(cases,freeze(summarizePatterns(cases,documents.map(d=>d.item),documents)));
+ return {cases,model};
+}
+
 /** Related-text scores combine trained embeddings, token overlap and mechanism overlap. */
 export function retrieveCases(input, suppliedModel, query, options = {}) {
   const cases = normalizeCases(input);
@@ -251,8 +267,12 @@ export function retrieveCases(input, suppliedModel, query, options = {}) {
 /** Collection counts describe a selected corpus; they are not population success rates. */
 export function analyzePatterns(input) {
   const allCases = normalizeCases(input);
+  if(preparedPatterns.has(allCases))return preparedPatterns.get(allCases);
   const cases = allCases.filter(item => eligible(item));
   const documents = cases.map(item => ({item, mechanisms: caseMechanisms(item)}));
+  return summarizePatterns(allCases,cases,documents);
+}
+function summarizePatterns(allCases,cases,documents){
   return {corpusSize: allCases.length, sourcedCases: cases.length, excludedCases: allCases.length - cases.length, successCount: cases.filter(item => item.outcome === 'success').length, failureCount: cases.filter(item => item.outcome === 'failure').length, mechanisms: MECHANISMS.map(([id, zh, en]) => {
     const relevant = documents.filter(document => document.mechanisms.includes(id));
     const successIds = relevant.filter(({item}) => item.outcome === 'success').map(({item}) => item.id);

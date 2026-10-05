@@ -26,6 +26,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write # Publish the owner-authorized startup MCP after live verification.
 
 concurrency:
   # A push skipped by the job gate must not cancel an actual deployment.
@@ -342,7 +343,7 @@ jobs:
           node scripts/test-github-tools.mjs --dist
           node scripts/test-coding-access.mjs --dist
           node scripts/ai-solo-validate.mjs
-          node --test scripts/test-ai-solo-core.mjs scripts/test-ai-solo-refresh.mjs scripts/test-ai-solo-hot.mjs
+          node --test scripts/test-ai-solo-core.mjs scripts/test-ai-solo-refresh.mjs scripts/test-ai-solo-hot.mjs scripts/test-startup-mcp.mjs
           node scripts/test-ai-solo.mjs --dist
           node --test scripts/test-manju-automation.mjs
           python3 scripts/test-manju-fetch.py
@@ -439,6 +440,7 @@ jobs:
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
           node sites/baipiaoji/scripts/test-coding-access-browser.mjs
           node sites/baipiaoji/scripts/test-ai-solo-browser.mjs
+          node sites/baipiaoji/scripts/test-startup-mcp-browser.mjs
           node sites/baipiaoji/scripts/test-manju-browser.mjs
           node tools/fleet/browser-distribution.mjs
 
@@ -483,6 +485,7 @@ jobs:
         run: |
           node scripts/test-coding-access.mjs --live
           node scripts/test-ai-solo.mjs --live
+          node scripts/test-startup-mcp-live.mjs
           node scripts/test-manju.mjs --live
 
       - name: Verify published subscription review and checklist
@@ -1010,6 +1013,21 @@ jobs:
       # Cloudflare 的 Bot Fight / "Block AI Scrapers" 在 robots 之上生效，开了就是 403，
       # 而站点自己完全看不出来——第一方打点只记录跑 JS 的真人，爬虫根本不会出现在 D1 里。
       # CI 的出口网络能到生产域，所以在这里按爬虫 UA 实测，把结果写回仓库供任何会话读取。
+      # No extra schedule: register this MCP version only after live verification.
+      - name: Check startup MCP registry version
+        id: startup_registry
+        run: node scripts/startup-mcp-registry.mjs --check
+
+      - name: Publish and verify startup MCP registry entry
+        if: steps.startup_registry.outputs.publish == 'true'
+        run: |
+          publisher_dir=$(mktemp -d)
+          curl -fsSL --max-time 60 "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz -C "$publisher_dir" mcp-publisher
+          cd startup-mcp
+          "$publisher_dir/mcp-publisher" login github-oidc
+          "$publisher_dir/mcp-publisher" publish
+          node ../scripts/startup-mcp-registry.mjs --verify
+
       - name: Probe AI crawler reachability
         if: github.event_name != 'push'
         run: node scripts/ai-crawler-probe.mjs

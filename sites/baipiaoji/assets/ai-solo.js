@@ -3,12 +3,18 @@ import {retrieveCases,generatePlan,planMarkdown} from '/ai-solo-core.mjs';
 const root=document.querySelector('[data-ai-solo]');
 if(root){
  const zh=root.dataset.language==='zh',language=zh?'zh':'en',base=root.dataset.base||'',t=(a,b)=>zh?a:b;
- const actionNames={'plan-complete':'ai_solo_plan_complete','plan-export':'ai_solo_plan_export','case-open':'ai_solo_case_open',filter:'ai_solo_filter','source-open':'ai_solo_source_open',example:'ai_solo_example','skill-export':'ai_solo_skill_export','save-local':'ai_solo_save_local'};
+ const actionNames={'plan-complete':'ai_solo_plan_complete','plan-export':'ai_solo_plan_export','case-open':'ai_solo_case_open',filter:'ai_solo_filter','source-open':'ai_solo_source_open',example:'ai_solo_example','skill-export':'ai_solo_skill_export','save-local':'ai_solo_save_local','mcp-preview':'ai_solo_mcp_preview','mcp-setup':'ai_solo_mcp_setup'};
  const allowedActions=new Set(['view',...Object.keys(actionNames)]);
  function canTrack(){let denied=false;try{denied=localStorage.getItem('fleet_ga4_choice_v1')==='denied';}catch{}return location.hostname==='baipiaoji.com'&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl&&!denied&&!/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search);}
  function event(action){if(!allowedActions.has(action)||!canTrack())return;const body=JSON.stringify({e:'ai_solo',p:'/ai-solo/'+action+'/workspace',l:language,r:''});if(navigator.sendBeacon)navigator.sendBeacon('/api/hit',new Blob([body],{type:'application/json'}));else fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true}).catch(()=>{});if(actionNames[action])window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:actionNames[action]}}));}
  root.addEventListener('click',e=>{const a=e.target.closest('[data-solo-event]');if(a&&root.contains(a))event(a.dataset.soloEvent);});
  event('view');
+ const preview=root.querySelector('#startup-preview');
+ if(preview){
+  const status=root.querySelector('#startup-preview-status'),output=root.querySelector('#startup-preview-result');
+  preview.addEventListener('click',async()=>{preview.disabled=true;output.hidden=true;status.textContent=t('正在读取免费样本…','Loading the free sample…');try{const response=await fetch('/api/startup-mcp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'startup_preview',arguments:{language}}}),signal:AbortSignal.timeout(15000)}),body=await response.json();if(!response.ok||!body.result?.structuredContent)throw Error('preview');output.textContent=JSON.stringify(body.result.structuredContent,null,2);output.hidden=false;status.textContent=t('免费预览已返回，未扣会员额度。','Free preview returned; no member quota used.');event('mcp-preview');}catch{status.textContent=t('预览暂时不可用，请稍后重试；网页案例仍可阅读。','Preview unavailable; retry later or read the web cases.');}finally{preview.disabled=false;}});
+ }
+
  const hot=root.querySelector('[data-solo-hot]');
  if(hot){
   const focus=hot.querySelector('#hot-focus'),source=hot.querySelector('#hot-source'),items=[...root.querySelectorAll('[data-hot-item]')],sections=[...root.querySelectorAll('[data-hot-section]')],count=hot.querySelector('#hot-count'),empty=hot.querySelector('#hot-empty'),params=new URLSearchParams(location.search);

@@ -8,6 +8,7 @@ export const JOURNEY_GROUPS = [
 const REGISTERED_TOOL_PATHS = new Set(['/llm-api-calculator','/publish-check','/stack-builder','/video-quota-planner','/subscription-audit','/tokenizer','/pipeline/video','/free-for-you']);
 const entry=(id,path,group,type,zh,en,zhDesc,enDesc,next=[],extra={})=>({id,path,group,type,title:{zh,en},description:{zh:zhDesc,en:enDesc},requiresRegistration:REGISTERED_TOOL_PATHS.has(path),next,...extra});
 export const SITE_JOURNEYS = [
+  entry('startup-mcp','/ai-solo/mcp/','connect','developer','创业研究 MCP','Startup research MCP','免费预览，会员按额度调用案例对比、每日热度与创业验证计划。','Free preview and metered member access to case comparisons, daily launch signals and validation plans.',['ai-solo-hot','ai-solo-categories','members']),
   entry('ai-solo-hot','/ai-solo/hot/','choose','guide','创业热度雷达','Startup launch radar','每日观察公开发布与讨论信号，筛选消费场景线索，保留采样时间与变化。','Daily public launch and discussion observations, consumer keyword filters, sampling times and changes.',['ai-solo-categories','ai-solo-research','ai-solo-agent']),
   entry('ai-solo','/ai-solo/','choose','guide','AI Solo 商业化案例','AI Solo commercialization cases','对照收入或市场验证与失败案例，保留出处、时期及团队规模。','Compare revenue or market-validation cases with failures, retaining sources, periods and team size.',['ai-solo-agent','directory','vendors']),
   entry('ai-solo-categories','/ai-solo/categories/','choose','guide','AI 创业案例分类','AI business case categories','按需求、用户、团队、结果与证据交叉筛选。','Filter by job, audience, team, outcome and recorded evidence.',['ai-solo-solo','ai-solo-agent']),

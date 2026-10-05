@@ -129,6 +129,13 @@ try{
   assert.equal((await call(env,a,'create_key',{password})).status,429);
   assert.equal((await call(env,a,'status')).body.exists,false);
  });
+ await test('account-linked paid members manage only their own scoped startup keys',async({env,db,a,b})=>{
+  await existing(db);await call(env,a,'link_key',{key:KEY,key_saved:true,password});
+  const created=await call(env,a,'startup_mcp_create',{label:'Account Agent'});assert.equal(created.status,200);assert(created.body.key.startsWith('bpj_solo_'));
+  const state=await call(env,a,'startup_mcp_status');assert.equal(state.body.keys.length,1);assert(!JSON.stringify(state.body).includes(created.body.key));
+  assert.equal((await call(env,b,'startup_mcp_revoke',{id:created.body.id})).status,404);
+  assert.equal((await call(env,a,'startup_mcp_revoke',{id:created.body.id})).status,200);
+ });
  if(process.argv.includes('--browser')){
   const fs=await import('node:fs'),os=await import('node:os'),path=await import('node:path'),{createRequire}=await import('node:module'),{execFileSync}=await import('node:child_process');
   const {chromium}=createRequire(new URL('../../../tools/revenue-studio/package.json',import.meta.url))('playwright');

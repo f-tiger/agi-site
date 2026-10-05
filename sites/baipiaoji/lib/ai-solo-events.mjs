@@ -1,5 +1,5 @@
 // Fixed public action counts only; no questions, customer names, amounts or IDs.
-export const AI_SOLO_ACTIONS = Object.freeze(['view','filter','case-open','source-open','example','plan-complete','plan-export','skill-export','save-local']);
+export const AI_SOLO_ACTIONS = Object.freeze(['view','filter','case-open','source-open','example','plan-complete','plan-export','skill-export','save-local','mcp-preview','mcp-setup']);
 export function parseAiSoloEvent(path) {
   const match = /^\/ai-solo\/([a-z-]+)\/workspace$/.exec(String(path || ''));
   return match && AI_SOLO_ACTIONS.includes(match[1]) ? {action:match[1]} : null;
