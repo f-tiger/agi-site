@@ -4,7 +4,7 @@ if(root){
 const config=JSON.parse(document.getElementById('product-decision-config').textContent),{text:t,markets}=config;
 let s=defaults(config.market),kind='example';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
-const emit=action=>{if(!/[?&]__(probe|ci)(?:=|&|$)/.test(location.search))window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'eco_buy_'+action}}));};
+const emit=action=>{if(!/[?&]__(probe|ci)(?:=|&|$)/.test(location.search))window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'eco_buy_'+s.mode+'_'+action}}));};
 const button=(text,fn)=>{const b=el('button',text);b.type='button';b.addEventListener('click',fn);return b;};
 const form=el('form'),top=el('div',undefined,'pd-choices'),advanced=el('details'),fields=el('div',undefined,'pd-fields'),result=el('div'),status=el('p'),notice=el('p'),local=el('p'),sourceList=el('ul'),shareBox=el('div');
 result.setAttribute('aria-live','polite');result.id='pd-result';status.setAttribute('role','status');notice.className='pd-notice';local.className='pd-local';shareBox.hidden=true;
