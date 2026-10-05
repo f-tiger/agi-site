@@ -82,7 +82,7 @@ export async function onRequestPost({ request, env }) {
       b.r='';
     }
     if(ev==='coding_access'){
-      if(!['zh','en'].includes(lang)||!/^\/coding-access\/(?:open|source|filter|miss|checklist|copy|submit|vendor)\/(?:catalog|regions|codex|claude|deepseek|glm|minimax|openrouter|packycode)$/.test(path))return new Response(null,{status:204});
+      if(!['zh','en'].includes(lang)||!(path==='/coding-access/copy/selection'||/^\/coding-access\/(?:open|source|filter|miss|checklist|copy|submit|vendor)\/(?:catalog|regions|codex|claude|deepseek|glm|minimax|openrouter|packycode)$/.test(path)))return new Response(null,{status:204});
       const referer=request.headers.get('referer')||'';
       if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||/(?:[?&])(?:__ci|__probe|qa)(?:=|&|$)/.test(referer)||/bot|spider|crawler|headless|bpj-ci|playwright|curl|wget|python|node/i.test(request.headers.get('user-agent')||''))return new Response(null,{status:204});
       b.r='';
