@@ -21,8 +21,8 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com';
   const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   await page.goto(origin+'/guide/luftentfeuchter-ratgeber.html');
   const form=page.locator('#eb-moisture-choice form');
-  await form.locator('button').click();await page.waitForTimeout(100);assert.equal(hits.length,0,'no pre-consent Google traffic');
-  await page.locator('[data-analytics-choice=granted]').click();
+  assert.equal(await page.locator('#fleet-analytics-choice').count(),0,'no popup');
+
   await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
   await form.locator('[name=humidity]').selectOption('high');await form.locator('[name=temperature]').selectOption('warm');
   await form.locator('button').click();await page.waitForTimeout(100);
@@ -33,7 +33,7 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com';
   await page.evaluate(()=>document.querySelector('#eb-moisture-choice').addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault();}));
   await page.locator('#eb-moisture-choice [data-choice-action=shop]:visible').first().click();await page.waitForTimeout(100);
   assert.equal(hits.filter(h=>h[0]==='affiliate_click').length,1,'one merchant click despite legacy callbacks');
-  await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice=denied]').click();
+  await page.locator('[data-analytics-choice=denied]').click();
   const count=hits.length;await form.locator('[name=temperature]').selectOption('cold');await form.locator('button').click();await page.waitForTimeout(100);assert.equal(hits.length,count,'withdrawal suppresses future results');
   assert.deepEqual(errors,[]);console.log('Moisture analytics: completion, deduplication, privacy, withdrawal and single affiliate click passed (intercepted).');
  }finally{await browser.close();}

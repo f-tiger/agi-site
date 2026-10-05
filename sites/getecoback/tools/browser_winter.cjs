@@ -17,8 +17,8 @@ for(const [slug,kind,expected,lang='de']of [['smarte-heizkoerperthermostate-lohn
  const page=await ctx.newPage();page.on('pageerror',e=>errors.push(e.message));
  await page.goto(origin+(lang==='de'?'':'/'+lang)+'/guide/'+slug+'.html');await page.locator('[data-winter-tool][data-ready=true]').waitFor();
  const calc=page.locator('[data-winter-tool]'),form=calc.locator('form');
- await form.locator('[type=submit]').click();assert((await calc.locator('[data-result]').innerText()).includes(expected));assert.equal(hits.length,0);checks+=2;
- await page.locator('[data-analytics-choice=granted]').click();await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
+ await form.locator('[type=submit]').click();assert((await calc.locator('[data-result]').innerText()).includes(expected));assert.equal(hits.filter(x=>x[0]==='tool_complete').length,0);checks+=2;
+ await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
  await form.locator('[type=submit]').click();await page.waitForTimeout(80);assert.equal(hits.filter(x=>x[0]==='tool_complete').length,0);checks++;
  await form.locator('[name=own]').check();await form.locator('[name=currency]').selectOption('CHF');await form.locator('[type=submit]').click();await page.waitForTimeout(100);
  assert((await calc.locator('[data-result]').innerText()).includes('CHF'));assert.equal(hits.filter(x=>x[0]==='tool_complete').length,1);checks+=2;
@@ -26,7 +26,7 @@ for(const [slug,kind,expected,lang='de']of [['smarte-heizkoerperthermostate-lohn
  const downloadPromise=page.waitForEvent('download');await calc.locator('[data-export]').click();const downloaded=await downloadPromise;const text=fs.readFileSync(await downloaded.path(),'utf8');assert(text.includes(lang==='de'?'Eigene Angaben':lang==='en'?'Your values':'Dati personali'));assert(text.includes('CHF'));await page.waitForTimeout(80);assert.equal(hits.filter(x=>x[0]==='tool_export').length,1);checks+=3;
  for(const [name,fields]of hits.filter(x=>['tool_complete','tool_export'].includes(x[0]))){assert.equal(fields.tool_id,(lang==='de'?'':lang+'/')+'guide/'+slug);for(const key of ['flow','price','saving','cost','currency','own','result'])assert(!Object.hasOwn(fields,key));}checks++;
  await form.locator('input[type=number]').first().fill('');assert.equal(await calc.locator('[data-result]').isVisible(),false);assert.equal(await calc.locator('[data-export]').isVisible(),false);await form.locator('[type=submit]').click();assert.equal(hits.filter(x=>x[0]==='tool_complete').length,1);checks+=3;
- await page.locator('#fleet-analytics-settings').click();await page.locator('[data-analytics-choice=denied]').click();const n=hits.length;
+ await page.locator('[data-analytics-choice=denied]').click();const n=hits.length;
  await form.locator('input[type=number]').first().fill(kind==='shower'?'10':kind==='lights'?'30':'700');await form.locator('[type=submit]').click();await page.waitForTimeout(80);assert.equal(hits.length,n);checks++;
  if(lang!=='de'){
   await form.locator('[name=currency]').selectOption('GBP');await form.locator('[type=submit]').click();assert((await calc.locator('[data-result]').innerText()).includes('GBP'));checks++;
