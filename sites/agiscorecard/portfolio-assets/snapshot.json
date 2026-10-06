@@ -3,149 +3,166 @@
   "cohort": "social-basket-2026-10-02-close",
   "manifest_sha256": "cdffeaf5be9e7a54ca8a792a1b33d7808c48f6320d65ccd0308655b8040a6912",
   "dates": [
-    "2026-10-02"
+    "2026-10-02",
+    "2026-10-05"
   ],
   "series": {
     "AMD": [
-      100.0
+      100.0,
+      99.65926185
     ],
     "TSLA": [
-      100.0
+      100.0,
+      102.19650145
     ],
     "META": [
-      100.0
+      100.0,
+      101.89814402
     ],
     "MU": [
-      100.0
+      100.0,
+      98.98314678
     ],
     "NVDA": [
-      100.0
+      100.0,
+      102.11583544
     ],
     "PLTR": [
-      100.0
+      100.0,
+      100.34436763
     ],
     "SPCX": [
-      100.0
+      100.0,
+      107.63084368
     ],
     "AMZN": [
-      100.0
+      100.0,
+      99.95228595
     ],
     "GOOGL": [
-      100.0
+      100.0,
+      100.86462918
     ],
     "MSFT": [
-      100.0
+      100.0,
+      101.47816802
     ],
     "NOW": [
-      100.0
+      100.0,
+      101.26506689
     ],
     "PANW": [
-      100.0
+      100.0,
+      100.87293414
     ],
     "SPY": [
-      100.0
+      100.0,
+      100.67434155
     ],
     "QQQ": [
-      100.0
+      100.0,
+      100.88316057
     ],
     "TQQQ": [
-      100.0
+      100.0,
+      102.6046174
     ],
     "basket": [
-      100.0
+      100.0,
+      101.43843209
     ]
   },
   "metrics": {
     "AMD": {
-      "return_pct": 0.0,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "return_pct": -0.340738,
+      "max_drawdown_pct": -0.340738,
+      "excess_spy_pp": -1.01508
     },
     "TSLA": {
-      "return_pct": 0.0,
+      "return_pct": 2.196501,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 1.52216
     },
     "META": {
-      "return_pct": 0.0,
+      "return_pct": 1.898144,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 1.223802
     },
     "MU": {
-      "return_pct": 0.0,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "return_pct": -1.016853,
+      "max_drawdown_pct": -1.016853,
+      "excess_spy_pp": -1.691195
     },
     "NVDA": {
-      "return_pct": 0.0,
+      "return_pct": 2.115835,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 1.441494
     },
     "PLTR": {
-      "return_pct": 0.0,
+      "return_pct": 0.344368,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": -0.329974
     },
     "SPCX": {
-      "return_pct": 0.0,
+      "return_pct": 7.630844,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 6.956502
     },
     "AMZN": {
-      "return_pct": 0.0,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "return_pct": -0.047714,
+      "max_drawdown_pct": -0.047714,
+      "excess_spy_pp": -0.722056
     },
     "GOOGL": {
-      "return_pct": 0.0,
+      "return_pct": 0.864629,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.190288
     },
     "MSFT": {
-      "return_pct": 0.0,
+      "return_pct": 1.478168,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.803826
     },
     "NOW": {
-      "return_pct": 0.0,
+      "return_pct": 1.265067,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.590725
     },
     "PANW": {
-      "return_pct": 0.0,
+      "return_pct": 0.872934,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.198593
     },
     "SPY": {
-      "return_pct": 0.0,
+      "return_pct": 0.674342,
       "max_drawdown_pct": 0,
       "excess_spy_pp": 0.0
     },
     "QQQ": {
-      "return_pct": 0.0,
+      "return_pct": 0.883161,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.208819
     },
     "TQQQ": {
-      "return_pct": 0.0,
+      "return_pct": 2.604617,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 1.930276
     },
     "basket": {
-      "return_pct": 0.0,
+      "return_pct": 1.438432,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.0
+      "excess_spy_pp": 0.764091
     }
   },
-  "as_of": "2026-10-02",
+  "as_of": "2026-10-05",
   "revisions": [],
-  "attempted_at": "2026-10-03T07:06:25.022663+00:00",
+  "attempted_at": "2026-10-06T02:27:43.766508+00:00",
   "errors": [],
   "provider": "Yahoo Finance adjusted daily closes",
   "registered_date": "2026-10-03",
   "entry_session": "2026-10-02",
   "status": "tracking",
-  "last_success_at": "2026-10-03T07:06:25.022663+00:00",
+  "last_success_at": "2026-10-06T02:27:43.766508+00:00",
   "entry_adjusted_close": {
     "AMD": 633.9099731445312,
     "TSLA": 370.5899963378906,
