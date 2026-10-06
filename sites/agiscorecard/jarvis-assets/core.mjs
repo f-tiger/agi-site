@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261005-10';
+export const VERSION='jarvis-20261006-11';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -40,6 +40,14 @@ export function safeURL(value){try{const u=new URL(value);if(u.protocol!=='https
 export function tokens(s){return [...new Set((String(s).toLowerCase().match(/[a-z0-9]{2,}|[\u4e00-\u9fff]/gu)||[]).filter(x=>!['the','and','with','for','this','that','what','how','can','want','find','my'].includes(x)))].slice(0,100);}
 export function rank(query,rows,max=6){const words=tokens(query);return rows.map(r=>{const haystack=JSON.stringify(r).toLowerCase();return {r,score:words.reduce((s,w)=>s+(haystack.includes(w)?1:0),0)};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,max).map(x=>x.r);}
 export function relevantMemory(goal,entries){return rank(goal,entries.map((text,i)=>({text,id:String(i)})),3).map(m=>m.text.slice(0,300));}
+const draftText=(value,max)=>{const clean=String(value??'').replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,' ').replace(/\s+/gu,' ').trim();if(clean.length<=max)return clean;let clipped='';for(const char of clean){if(clipped.length+char.length>max-1)break;clipped+=char;}return clipped+'…';};
+export function followupDraft(goal,nextAction,doneWhen,lang='en'){
+ const zh=lang==='zh',parts=[(zh?'继续推进这个目标：':'Continue this goal: ')+draftText(goal,480)];
+ if(nextAction)parts.push((zh?'本次选择的下一步：':'Next step to test: ')+draftText(nextAction,260));
+ if(doneWhen)parts.push((zh?'完成标准：':'Success criterion: ')+draftText(doneWhen,260));
+ parts.push(zh?'我实际尝试了什么、观察到什么（请补充）：':'What I tried or observed (add your result):');
+ return parts.join('\n\n').slice(0,1200);
+}
 export function calculate(expression){
  if(typeof expression!=='string'||expression.length>120||!/^[\d\s.+\-*/()%]+$/.test(expression))throw Error('invalid_calculation');
  const ts=expression.match(/\d+(?:\.\d+)?|\.\d+|[()+\-*/%]/g)||[];let at=0,depth=0;
