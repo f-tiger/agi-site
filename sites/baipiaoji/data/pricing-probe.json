@@ -1,24 +1,24 @@
 {
- "generated": "2026-10-05",
+ "generated": "2026-10-06",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "tongyi",
-  "immersive-translate",
-  "liblib",
-  "tongyi-wanxiang",
-  "consensus",
-  "wenxin",
-  "wordvice",
-  "elicit"
+  "fish-audio",
+  "ima",
+  "marscode",
+  "ms-copilot",
+  "qingying",
+  "zhipu-glm",
+  "canva",
+  "github-models"
  ],
- "cursor": "elicit",
+ "cursor": "github-models",
  "summary": {
   "ready": 40,
-  "empty": 35,
+  "empty": 36,
   "blocked": 32,
-  "probed_total": 107
+  "probed_total": 108
  },
  "tools": {
   "kimi": {
@@ -204,7 +204,7 @@
    "name": "Canva 可画",
    "cat": "image",
    "reach": 2,
-   "probed": "2026-09-18",
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -289,8 +289,8 @@
    "slug": "fish-audio",
    "name": "Fish Audio",
    "cat": "audio",
-   "reach": 2,
-   "probed": "2026-09-19",
+   "reach": 3,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -387,8 +387,8 @@
    "slug": "qingying",
    "name": "智谱清影",
    "cat": "video",
-   "reach": 2,
-   "probed": "2026-09-19",
+   "reach": 3,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -639,8 +639,8 @@
    "slug": "github-models",
    "name": "GitHub Models",
    "cat": "coding",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 2,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -725,27 +725,27 @@
    "slug": "ms-copilot",
    "name": "微软 Copilot",
    "cat": "chat",
-   "reach": 1,
-   "probed": "2026-09-21",
+   "reach": 3,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://copilot.microsoft.com/pricing",
      "status": 200,
-     "bytes": 38594,
+     "bytes": 38545,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/price",
      "status": 200,
-     "bytes": 38594,
+     "bytes": 38545,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/plans",
      "status": 200,
-     "bytes": 36871,
+     "bytes": 38545,
      "tokens": 0
     }
    ],
@@ -1761,8 +1761,8 @@
    "slug": "ima",
    "name": "腾讯 ima",
    "cat": "office",
-   "reach": 0,
-   "probed": "2026-09-26",
+   "reach": 3,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1965,8 +1965,8 @@
    "slug": "marscode",
    "name": "MarsCode（字节）",
    "cat": "coding",
-   "reach": 0,
-   "probed": "2026-09-26",
+   "reach": 3,
+   "probed": "2026-10-06",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -3098,6 +3098,40 @@
     "url": "https://wordvice.ai/plans",
     "tokens": 20,
     "excerpt": "started for free with a Basic plan Free Get Started Premium Upgrade to Premium to gain access to all Wordvice AI tools. $19.95 $9.95 SAVE 50% Per month; billed annually Buy Now Premium PRO Best Value Access to all Premium AI tools. + 1,000 1,000 5,000 free credits. $29.95 $26.95 SAVE 10% Per month; billed annually Buy Now Team Plan Annual only Multiple subscriptions. Discounted pricing. One payment. $19.95 $9.95 SAVE 50% Per month; billed annually Buy Now Basic Premium Premium PRO Team Plan AI Proofreader 2 modes 4 modes 4 modes 4 modes AI Paraphraser 2 modes 5 modes 5 modes 5 modes AI Summarizer Youtube Summarizer 5 summaries/day 10 summaries/day Unlimited 10 summaries/day Website Summariaz"
+   }
+  },
+  "zhipu-glm": {
+   "slug": "zhipu-glm",
+   "name": "智谱开放平台",
+   "cat": "api",
+   "reach": 3,
+   "probed": "2026-10-06",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://open.bigmodel.cn/pricing",
+     "status": 200,
+     "bytes": 3479,
+     "tokens": 0
+    },
+    {
+     "url": "https://open.bigmodel.cn/price",
+     "status": 200,
+     "bytes": 3479,
+     "tokens": 0
+    },
+    {
+     "url": "https://open.bigmodel.cn/plans",
+     "status": 200,
+     "bytes": 3479,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://open.bigmodel.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
    }
   }
  }

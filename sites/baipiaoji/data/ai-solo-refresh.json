@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-05T06:06:23.611Z",
+  "lastRun": "2026-10-06T06:52:09.457Z",
   "status": "degraded",
-  "checkedSources": 6,
+  "checkedSources": 7,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -32,6 +32,36 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
       "lastChecked": "2026-10-05T06:06:23.611Z"
+    },
+    {
+      "caseId": "sitegpt",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+      "lastChecked": "2026-10-06T06:52:09.457Z"
+    },
+    {
+      "caseId": "audiopen",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+      "lastChecked": "2026-10-06T06:52:09.457Z"
+    },
+    {
+      "caseId": "audiopen",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.audiopen.ai/",
+      "lastChecked": "2026-10-06T06:52:09.457Z"
+    },
+    {
+      "caseId": "my-askai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
+      "lastChecked": "2026-10-06T06:52:09.457Z"
+    },
+    {
+      "caseId": "castmagic",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+      "lastChecked": "2026-10-06T06:52:09.457Z"
     }
   ],
   "sources": {
@@ -87,33 +117,99 @@
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
+    },
+    "sitegpt|https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ": {
+      "caseId": "sitegpt",
+      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "audiopen|https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap": {
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "audiopen|https://www.audiopen.ai/": {
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.audiopen.ai/",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "my-askai|https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE": {
+      "caseId": "my-askai",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "my-askai|https://kaeda.co/cases/my-askai": {
+      "caseId": "my-askai",
+      "sourceUrl": "https://kaeda.co/cases/my-askai",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-06T06:52:09.457Z",
+      "lastHash": "b2687d849406c4f5d4c02e3d55f51bdc516abdf3959734dc7173624df6b1208a",
+      "hash": "b2687d849406c4f5d4c02e3d55f51bdc516abdf3959734dc7173624df6b1208a",
+      "simhash": "94b633233eec839d",
+      "words": 416,
+      "consecutiveChange": 0
+    },
+    "castmagic|https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic": {
+      "caseId": "castmagic",
+      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "docsbot|https://docsbot.ai/about": {
+      "caseId": "docsbot",
+      "sourceUrl": "https://docsbot.ai/about",
+      "lastAttempt": "2026-10-06T06:52:09.457Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-06T06:52:09.457Z",
+      "lastHash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
+      "hash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
+      "simhash": "b2f4825e3cfe25af",
+      "words": 945,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 5,
+  "cursor": 10,
   "errors": [
     {
-      "caseId": "photo-ai",
-      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "caseId": "sitegpt",
+      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
       "reason": "body-limit"
     },
     {
-      "caseId": "interior-ai",
-      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
       "reason": "body-limit"
     },
     {
-      "caseId": "typingmind",
-      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.audiopen.ai/",
       "reason": "body-limit"
     },
     {
-      "caseId": "typingmind",
-      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+      "caseId": "my-askai",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
       "reason": "body-limit"
     },
     {
-      "caseId": "pdf-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "caseId": "castmagic",
+      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
       "reason": "body-limit"
     }
   ]

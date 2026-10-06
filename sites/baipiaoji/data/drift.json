@@ -1,10 +1,64 @@
 {
-  "generated": "2026-10-05",
+  "generated": "2026-10-06",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 106,
   "fetched_fail": 21,
-  "pending": 10,
+  "pending": 8,
   "items": [
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-10-06",
+      "first_seen": "2026-10-05",
+      "added": [
+        "5.5k"
+      ],
+      "removed": [
+        "5.4k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "krea",
+      "url": "https://krea.ai/pricing",
+      "confirmed": "2026-10-06",
+      "first_seen": "2026-10-05",
+      "added": [
+        "1,317images",
+        "3image",
+        "658images"
+      ],
+      "removed": [
+        "1k"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-10-06",
+      "first_seen": "2026-10-05",
+      "added": [
+        "69.9k",
+        "70k"
+      ],
+      "removed": [
+        "69.3k",
+        "69k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-06",
+      "first_seen": "2026-10-05",
+      "added": [
+        "1,s"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "codex",
       "url": "https://developers.openai.com/codex/pricing",
@@ -227,20 +281,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-10-01",
-      "first_seen": "2026-09-29",
-      "added": [
-        "36.1k"
-      ],
-      "removed": [
-        "36.0k",
-        "36k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "framer",
       "url": "https://framer.com/pricing",
       "confirmed": "2026-09-26",
@@ -292,24 +332,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "cline",
-      "url": "https://cline.bot",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [
-        "11m",
-        "69.3k",
-        "69k"
-      ],
-      "removed": [
-        "67.9k",
-        "68k",
-        "8.0m",
-        "8m"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "dify",
       "url": "https://dify.ai",
       "confirmed": "2026-09-25",
@@ -334,17 +356,6 @@
         "2000万"
       ],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-09-25",
-      "first_seen": "2026-09-24",
-      "added": [],
-      "removed": [
-        "1,s"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "anythingllm",

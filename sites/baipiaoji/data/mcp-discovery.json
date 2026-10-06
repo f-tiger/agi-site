@@ -1,15 +1,18 @@
 {
- "checked": "2026-10-05",
+ "checked": "2026-10-06",
  "server": {
   "name": "io.github.f-tiger/verified-ai-free-tiers",
   "version": "1.13.0",
   "remote": "https://baipiaoji.com/api/mcp"
  },
  "official_registry": {
-  "listed": false,
-  "http": null,
-  "error": "This operation was aborted",
-  "parse_error": "Unexpected end of JSON input"
+  "listed": true,
+  "latest_version": "1.13.0",
+  "is_latest": true,
+  "version_matches": true,
+  "updated_at": "2026-09-22T15:38:19.738468Z",
+  "status": "active",
+  "http": 200
  },
  "own_surfaces": {
   "well_known_http": 200,
