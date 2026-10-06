@@ -13,7 +13,9 @@ test('anonymous, unpaid and expired callers can use private tasks without buying
   const read=await call(e,null,token);assert.equal(read.status,200);assert.equal(read.j.tasks[0].id,id);assert.equal(read.j.membership.member,state!=='anonymous');
   assert.equal((await call(e,null,other)).j.tasks.length,0);assert.equal((await call(e,{action:'delete',id},other)).status,404);
   await execute(e.EVENTS,e,id);assert.equal((await call(e,null,token)).j.tasks[0].status,'completed');
-  assert.equal((await call(e,{action:'feedback',id,value:'useful'},token)).status,200);
+  assert.equal((await call(e,{action:'feedback',id,value:'not_useful_sources'},token)).status,200);
+  assert.equal((await call(e,null,token)).j.tasks[0].feedback,'not_useful_sources');
+  assert.equal((await call(e,{action:'feedback',id,value:'private free text'},token)).status,400);
   assert.equal((await call(e,{action:'delete',id},token)).status,200);assert.equal((await call(e,null,token)).j.tasks.length,0);
  }
 });

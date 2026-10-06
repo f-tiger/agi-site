@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261006-11';
+export const VERSION='jarvis-20261006-12';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -47,6 +47,21 @@ export function followupDraft(goal,nextAction,doneWhen,lang='en'){
  if(doneWhen)parts.push((zh?'完成标准：':'Success criterion: ')+draftText(doneWhen,260));
  parts.push(zh?'我实际尝试了什么、观察到什么（请补充）：':'What I tried or observed (add your result):');
  return parts.join('\n\n').slice(0,1200);
+}
+const correctionLabels={
+ sources:{en:'The sources did not support the answer.',zh:'来源不足以支持这次回答。'},
+ answer:{en:'The answer missed the goal.',zh:'回答偏离了我的目标。'},
+ action:{en:'The proposed next step was not practical.',zh:'建议的下一步不够可执行。'},
+ other:{en:'The result was not useful for another reason.',zh:'结果因其他原因暂时没有帮助。'}
+};
+export function correctionDraft(goal,reason,lang='en'){
+ const zh=lang==='zh',label=correctionLabels[reason]?.[zh?'zh':'en'];if(!label)throw Error('invalid_feedback');
+ return [
+  (zh?'修正这个目标：':'Revise this goal: ')+draftText(goal,520),
+  (zh?'上次结果的问题：':'What went wrong: ')+label,
+  zh?'这次需要改变什么（请补充）：':'What should change this time (add details):',
+  zh?'怎样的证据或结果才有用（请补充）：':'What evidence or result would be useful (add details):'
+ ].join('\n\n').slice(0,1200);
 }
 export function calculate(expression){
  if(typeof expression!=='string'||expression.length>120||!/^[\d\s.+\-*/()%]+$/.test(expression))throw Error('invalid_calculation');

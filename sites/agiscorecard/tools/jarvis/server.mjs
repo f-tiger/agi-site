@@ -89,7 +89,7 @@ export async function jarvisRoute(request,env,ctx){
    if(ctx?.waitUntil)ctx.waitUntil(execute(db,env,b.id,{interactive:true}).catch(()=>{}));return json({ok:true},202);
   }
   if(b.action==='feedback'){
-   if(!['useful','not_useful'].includes(b.value))throw Error('invalid_request');await db.prepare('UPDATE jarvis_tasks SET feedback=? WHERE id=? AND owner=?').bind(b.value,b.id,owner).run();return json({ok:true});
+   if(!['useful','not_useful','not_useful_sources','not_useful_answer','not_useful_action','not_useful_other'].includes(b.value))throw Error('invalid_request');await db.prepare('UPDATE jarvis_tasks SET feedback=? WHERE id=? AND owner=?').bind(b.value,b.id,owner).run();return json({ok:true});
   }throw Error('invalid_request');
  }catch(e){const codes={unauthorized:401,access_blocked:403,registration_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
 }

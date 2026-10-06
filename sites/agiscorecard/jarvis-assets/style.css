@@ -6,3 +6,5 @@
 .trial-notice{margin:0 0 20px;padding:16px 20px}.trial-notice p{margin:0 0 8px;max-width:100ch}.trial-notice a{display:inline-block;font-weight:600;padding:4px 0}
 /* Follow-up controls stay visually subordinate to the model-authored action. */
 .next-action .text-button{margin-top:2px;padding-left:0}
+.feedback-recovery{margin:12px 0;padding:14px;background:var(--surface);border-left:3px solid var(--blue)}
+.feedback-recovery button{font-size:12px;margin:4px 6px 4px 0;padding:8px 10px}
