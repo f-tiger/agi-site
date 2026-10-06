@@ -60,7 +60,7 @@ function date(n){return new Date(n*1000).toLocaleString(zh?'zh-CN':'en-US',{mont
 function renderList(){const list=$('#task-list');list.replaceChildren();if(!tasks.length){list.append(el('p',t('Start with one real task. Your results will stay here for 30 days.','从一项真实任务开始，结果会在这里保留 30 天。'),'quiet'));return;}
  for(const task of tasks){const b=el('button',undefined,'mission-item');b.type='button';b.setAttribute('aria-current',String(task.id===selected));b.append(el('strong',task.input.goal.slice(0,85)),el('span',(labels[task.status]||task.status)+' · '+date(task.created)));b.onclick=()=>{selected=task.id;render();};list.append(b);}}
 function btn(text,fn,cls='secondary'){const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;}
-async function mutate(action,extra={}){if(busy||!permitted())return;busy=true;try{await api({action,id:selected,...extra});if(action==='delete')selected=null;event(action);await refresh();}catch(e){fail(e);}finally{busy=false;}}
+async function mutate(action,extra={}){if(busy||!permitted())return;busy=true;try{await api({action,id:selected,...extra});if(action==='delete')selected=null;event(action);await refresh();}catch(e){fail(e);}finally{busy=false;updateTrial();}}
 function prepareFollowup(task,nextAction){
  if(!startAllowed())return;
  selected=null;render();$('#task-form').reset();pendingCreate=null;$('#public-query-label').hidden=true;$('#public-query').required=false;
