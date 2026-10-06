@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-05T14:03:51.993Z",
+  "generated": "2026-10-06T13:02:28.112Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -10,7 +10,7 @@
     "doc_video_load_shotcut": 1
   },
   "excluded": {
-    "doc_ci": 104
+    "doc_ci": 110
   },
   "daily": [
     {
@@ -164,15 +164,15 @@
   "crawler_fetches": [
     {
       "path": "/",
-      "n": 266
+      "n": 268
     },
     {
       "path": "/llms.txt",
-      "n": 73
+      "n": 81
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 67
+      "n": 68
     },
     {
       "path": "/de/json-compare",
@@ -215,6 +215,14 @@
       "n": 11
     },
     {
+      "path": "/zh/ai-portrait-background-remover",
+      "n": 11
+    },
+    {
+      "path": "/zh/ai-text-summarizer",
+      "n": 11
+    },
+    {
       "path": "/zh/image-compressor",
       "n": 11
     },
@@ -236,6 +244,10 @@
     },
     {
       "path": "/zh/pdf-to-text",
+      "n": 11
+    },
+    {
+      "path": "/zh/time-zone-planner",
       "n": 11
     },
     {
@@ -291,14 +303,6 @@
       "n": 10
     },
     {
-      "path": "/zh/ai-portrait-background-remover",
-      "n": 10
-    },
-    {
-      "path": "/zh/ai-text-summarizer",
-      "n": 10
-    },
-    {
       "path": "/zh/compare-pdf-text",
       "n": 10
     },
@@ -312,10 +316,6 @@
     },
     {
       "path": "/zh/open-source/whisper",
-      "n": 10
-    },
-    {
-      "path": "/zh/time-zone-planner",
       "n": 10
     },
     {
@@ -384,6 +384,10 @@
     },
     {
       "path": "/zh/verify-file",
+      "n": 9
+    },
+    {
+      "path": "/zh/videos/audacity",
       "n": 9
     },
     {
@@ -460,10 +464,6 @@
     },
     {
       "path": "/zh/open-source/shotcut",
-      "n": 8
-    },
-    {
-      "path": "/zh/videos/audacity",
       "n": 8
     },
     {
@@ -786,7 +786,7 @@
   "crawler_agents": [
     {
       "claimed_agent": "GPTBot",
-      "n": 260
+      "n": 263
     },
     {
       "claimed_agent": "Amazonbot",
@@ -798,35 +798,35 @@
     },
     {
       "claimed_agent": "ClaudeBot",
-      "n": 200
+      "n": 201
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 191
+      "n": 192
     },
     {
       "claimed_agent": "ChatGPT-User",
-      "n": 131
+      "n": 132
     },
     {
       "claimed_agent": "Bingbot",
-      "n": 82
+      "n": 87
     },
     {
       "claimed_agent": "OAI-SearchBot",
-      "n": 51
+      "n": 52
     },
     {
       "claimed_agent": "PerplexityBot",
-      "n": 28
+      "n": 29
     },
     {
       "claimed_agent": "Claude-User",
-      "n": 15
+      "n": 16
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 15
+      "n": 16
     }
   ],
   "source_events": [
@@ -906,5 +906,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 32,
-  "query_rows_read": 7036
+  "query_rows_read": 7050
 }
