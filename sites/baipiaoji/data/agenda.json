@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05",
+  "generated": "2026-10-06",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 34,
@@ -38,18 +38,6 @@
       "score": 75
     },
     {
-      "id": "drift:ollama",
-      "type": "source_drift",
-      "title": "来源页变动：Ollama（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 18.1k / 182.1k；消失 18.0k / 181.7k / 18k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://github.com/ollama/ollama 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "ollama",
-        "https://github.com/ollama/ollama"
-      ],
-      "score": 75
-    },
-    {
       "id": "aiflow:first",
       "type": "ai_referral",
       "title": "AI 助手引流出现：chatgpt.com×5、www.perplexity.ai×5、copilot.microsoft.com×1、kagi.com×1",
@@ -66,20 +54,50 @@
       "score": 70
     },
     {
-      "id": "cathot:coding",
-      "type": "category_hot",
-      "title": "类目异动：coding（14 天内 3 个工具实质变更）",
-      "why": "Cursor、Windsurf、Bolt.new接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
-      "action": "提前复核 coding 类尚未跟进的 20 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-26）），重点看定价页与帮助中心",
+      "id": "drift:continue",
+      "type": "source_drift",
+      "title": "来源页变动：Continue（2026-10-06 确认）",
+      "why": "官方来源页的数字令牌变了——新增 5.5k；消失 5.4k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "github-copilot",
-        "tongyi-lingma",
-        "trae",
-        "comate",
+        "continue",
+        "https://github.com/continuedev/continue"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:krea",
+      "type": "source_drift",
+      "title": "来源页变动：Krea AI（2026-10-06 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1,317images / 3image / 658images；消失 1k。本站条目仍是 2026-08-06 的版本",
+      "action": "打开 https://krea.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "krea",
+        "https://krea.ai/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:cline",
+      "type": "source_drift",
+      "title": "来源页变动：Cline（2026-10-06 确认）",
+      "why": "官方来源页的数字令牌变了——新增 69.9k / 70k；消失 69.3k / 69k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
         "cline",
-        "qoder",
-        "github-models",
-        "marscode"
+        "https://cline.bot"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:zhipu-glm",
+      "type": "source_drift",
+      "title": "来源页变动：智谱开放平台（2026-10-06 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1,s；消失 无。本站条目仍是 2026-08-01 的版本",
+      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "zhipu-glm",
+        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
       ],
       "score": 65
     },
@@ -92,42 +110,6 @@
       "refs": [
         "codex",
         "https://developers.openai.com/codex/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:elevenlabs",
-      "type": "source_drift",
-      "title": "来源页变动：ElevenLabs（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $1 / 83%；消失 12,500seconds / 152minutes / 500minutes / 80%。本站条目仍是 2026-08-02 的版本",
-      "action": "打开 https://elevenlabs.io/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "elevenlabs",
-        "https://elevenlabs.io/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:cerebras",
-      "type": "source_drift",
-      "title": "来源页变动：Cerebras（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $5 / 30days；消失 无。本站条目仍是 2026-08-05 的版本",
-      "action": "打开 https://cerebras.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cerebras",
-        "https://cerebras.ai/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:cloudflare-workers-ai",
-      "type": "source_drift",
-      "title": "来源页变动：Cloudflare Workers AI（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0.090 / $0.240；消失 无。本站条目仍是 2026-09-16 的版本",
-      "action": "打开 https://developers.cloudflare.com/workers-ai/platform/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cloudflare-workers-ai",
-        "https://developers.cloudflare.com/workers-ai/platform/pricing"
       ],
       "score": 65
     },
@@ -170,13 +152,24 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 57 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 56 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "kimi"
       ],
       "score": 60
+    },
+    {
+      "id": "paidgap:feishu-miaoji",
+      "type": "paid_gap",
+      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 16 次，无付费档）",
+      "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
+      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "refs": [
+        "feishu-miaoji"
+      ],
+      "score": 46
     }
   ]
 }
