@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-05",
+ "fetched": "2026-10-06",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -210,95 +210,95 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 17350
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 10100
+     "q": "krups kaffeevollautomat intensity milk",
+     "v": 15550
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 7300
+     "v": 11950
     },
     {
-     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 7150
-    },
-    {
-     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 5000
-    },
-    {
-     "q": "krups kaffeevollautomat intensity milk",
-     "v": 700
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 11300
     },
     {
      "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 500
+     "v": 10550
     },
     {
-     "q": "mini kaffeevollautomat",
-     "v": 70
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 7800
+    },
+    {
+     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+     "v": 6150
+    },
+    {
+     "q": "wmf perfection 840l kaffeevollautomat",
+     "v": 5250
+    },
+    {
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 750
+    },
+    {
+     "q": "de'longhi kaffeevollautomat",
+     "v": 120
     },
     {
      "q": "samsung kaffeevollautomat",
      "v": 70
-    },
-    {
-     "q": "philips kaffeevollautomat lattego",
-     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-05",
+   "fetched": "2026-10-06",
    "polluted": false
   },
   "akku staubsauger": {
    "rising": [
     {
+     "q": "levoit akku staubsauger lvac 200 max",
+     "v": 21600
+    },
+    {
      "q": "sky scanner",
-     "v": 20850
-    },
-    {
-     "q": "dyson filter reinigen",
-     "v": 14750
-    },
-    {
-     "q": "lululemon leipzig",
-     "v": 11100
+     "v": 650
     },
     {
      "q": "ford",
      "v": 400
     },
     {
-     "q": "ventilator dyson",
+     "q": "dyson cool ventilator",
+     "v": 400
+    },
+    {
+     "q": "ford puma",
      "v": 350
     },
     {
-     "q": "lululemon shorts",
-     "v": 300
-    },
-    {
-     "q": "belstaff",
+     "q": "ventilator dyson",
      "v": 250
-    },
-    {
-     "q": "dyson tp09",
-     "v": 200
     },
     {
      "q": "belstaff jacke herren",
      "v": 200
     },
     {
-     "q": "new balance herren sale",
-     "v": 200
+     "q": "dreame r20",
+     "v": 160
+    },
+    {
+     "q": "new balance 9060",
+     "v": 140
+    },
+    {
+     "q": "dyson kabelloser staubsauger",
+     "v": 130
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-28",
+   "fetched": "2026-10-06",
    "polluted": true
   },
   "matratze": {
