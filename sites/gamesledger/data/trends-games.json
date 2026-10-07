@@ -1,7 +1,14 @@
 {
- "d": "2026-10-06",
+ "d": "2026-10-07",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "general hospital",
+   "appid": 3347670,
+   "name": "BM General Hospital",
+   "sim": 0.91
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
@@ -32,6 +39,11 @@
    "appid": 4356430,
    "name": "NBA 2K27",
    "first_seen": "2026-09-22"
+  },
+  {
+   "appid": 3347670,
+   "name": "BM General Hospital",
+   "first_seen": "2026-10-07"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
