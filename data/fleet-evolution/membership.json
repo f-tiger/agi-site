@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
-  "generated": "2026-09-24T07:47:56.109Z",
+  "generated": "2026-10-07T16:28:00.765Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-  "ok": true,
+  "ok": false,
+  "counters_complete": false,
   "sites": [
     {
       "site": "bpj",
@@ -28,7 +29,7 @@
       "origin": "https://agiscorecard.com",
       "public": {
         "ok": true,
-        "ready": true,
+        "ready": false,
         "site": "agi",
         "auto_renew": false,
         "plan_price_units": 9000000,
@@ -46,7 +47,7 @@
       "origin": "https://getecoback.com",
       "public": {
         "ok": true,
-        "ready": true,
+        "ready": false,
         "site": "eco",
         "auto_renew": false,
         "plan_price_units": 9000000,
@@ -64,7 +65,7 @@
       "origin": "https://thedollscout.com",
       "public": {
         "ok": true,
-        "ready": true,
+        "ready": false,
         "site": "tds",
         "auto_renew": false,
         "plan_price_units": 9000000,
@@ -83,7 +84,5 @@
     "paid_members": null,
     "active_members": null,
     "unexpired_pending": null
-  },
-  "counters_complete": false,
-  "correction_note": "2026-10-07: historical totals corrected to null because every admin read failed. Original observation timestamp retained; this is not a new live measurement."
+  }
 }
