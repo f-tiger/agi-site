@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-06T13:02:28.112Z",
+  "generated": "2026-10-07T12:57:04.541Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -10,7 +10,7 @@
     "doc_video_load_shotcut": 1
   },
   "excluded": {
-    "doc_ci": 110
+    "doc_ci": 111
   },
   "daily": [
     {
@@ -164,15 +164,15 @@
   "crawler_fetches": [
     {
       "path": "/",
-      "n": 268
+      "n": 274
     },
     {
       "path": "/llms.txt",
-      "n": 81
+      "n": 90
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 68
+      "n": 70
     },
     {
       "path": "/de/json-compare",
@@ -543,6 +543,10 @@
       "n": 5
     },
     {
+      "path": "/document-assets/text/en/videos/audacity.txt",
+      "n": 5
+    },
+    {
       "path": "/document-assets/text/zh/videos/shotcut.txt",
       "n": 5
     },
@@ -624,10 +628,6 @@
     },
     {
       "path": "/document-assets/text/en/videos.txt",
-      "n": 4
-    },
-    {
-      "path": "/document-assets/text/en/videos/audacity.txt",
       "n": 4
     },
     {
@@ -786,11 +786,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "GPTBot",
-      "n": 263
+      "n": 265
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 239
+      "n": 240
     },
     {
       "claimed_agent": "YandexBot",
@@ -798,35 +798,35 @@
     },
     {
       "claimed_agent": "ClaudeBot",
-      "n": 201
+      "n": 202
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 192
+      "n": 199
     },
     {
       "claimed_agent": "ChatGPT-User",
-      "n": 132
+      "n": 133
     },
     {
       "claimed_agent": "Bingbot",
-      "n": 87
+      "n": 89
     },
     {
       "claimed_agent": "OAI-SearchBot",
-      "n": 52
+      "n": 53
     },
     {
       "claimed_agent": "PerplexityBot",
-      "n": 29
+      "n": 30
     },
     {
       "claimed_agent": "Claude-User",
-      "n": 16
+      "n": 17
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 16
+      "n": 17
     }
   ],
   "source_events": [
@@ -906,5 +906,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 32,
-  "query_rows_read": 7050
+  "query_rows_read": 7048
 }
