@@ -21,7 +21,6 @@ jobs:
     env:
       POC_REPO_ROOT: ${{ github.workspace }}
       POC_SOURCE_COMMIT: 66d7cc7495177294ec286b2f2ae447324597b180
-      KOKORO_MODEL_DIR: ${{ runner.temp }}/release-demo-models
       MEDIA_EVIDENCE_DIR: ${{ github.workspace }}/tools/marketing/release-demo-poc/artifacts/media-evidence
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -37,6 +36,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p artifacts
+          echo "KOKORO_MODEL_DIR=$RUNNER_TEMP/release-demo-models" >> "$GITHUB_ENV"
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends ffmpeg libreoffice-impress poppler-utils fonts-dejavu-core espeak-ng
           python -m venv .venv
