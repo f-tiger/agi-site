@@ -79,9 +79,11 @@
     }
   ],
   "totals": {
-    "paid_orders": 0,
-    "paid_members": 0,
-    "active_members": 0,
-    "unexpired_pending": 0
-  }
+    "paid_orders": null,
+    "paid_members": null,
+    "active_members": null,
+    "unexpired_pending": null
+  },
+  "counters_complete": false,
+  "correction_note": "2026-10-07: historical totals corrected to null because every admin read failed. Original observation timestamp retained; this is not a new live measurement."
 }

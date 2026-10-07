@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 /*
- * Read-only membership health and aggregate counters for the four independent
- * member services.  This script deliberately never reads a member token,
+ * Membership health and aggregate counters for four independent member services.
+ * The current API handlers initialize database schema, so they are NOT read-only.
+ * --check suppresses local snapshot writes only; it does not suppress those
+ * server-side initialization calls. Do not use it as a read-only live audit.
+ * This script deliberately never reads a member token,
  * order id, support message, wallet, or customer row.  The admin endpoint only
  * returns aggregate counters and is authenticated with the existing operator
  * secret; the output is safe to commit to the public monorepo.
@@ -25,6 +28,12 @@ const output = arg('--out') ? path.resolve(arg('--out')) : outPath;
 function numberOrNull(value) {
   if (value === null || value === undefined || value === '') return null;
   return Number.isFinite(Number(value)) ? Number(value) : null;
+}
+
+function countOrNull(value) {
+  if (typeof value !== 'number' && !(typeof value === 'string' && /^\d+$/.test(value))) return null;
+  const count = Number(value);
+  return Number.isSafeInteger(count) && count >= 0 ? count : null;
 }
 
 async function jsonFetch(url, options = {}) {
@@ -71,10 +80,10 @@ async function inspectSite(site) {
     });
     row.admin = {
       ok: body.ok === true,
-      paid_orders: numberOrNull(body.paid_orders),
-      paid_members: numberOrNull(body.paid_members),
-      active_members: numberOrNull(body.active_members),
-      unexpired_pending: numberOrNull(body.unexpired_pending),
+      paid_orders: countOrNull(body.paid_orders),
+      paid_members: countOrNull(body.paid_members),
+      active_members: countOrNull(body.active_members),
+      unexpired_pending: countOrNull(body.unexpired_pending),
       recurring_billing: body.recurring_billing === true
     };
   } catch (error) {
@@ -92,7 +101,7 @@ const snapshot = {
   source: 'same-origin /api/member and /api/member-admin stats',
   privacy: 'aggregate counters only; no member, order, support, token or wallet data',
   ok: rows.every(row => row.public.ok && row.public.ready),
-  counters_complete: rows.every(row => row.admin.ok),
+  counters_complete: rows.every(row => row.admin.ok) && Object.values(totals).every(Number.isFinite),
   sites: rows,
   totals
 };
