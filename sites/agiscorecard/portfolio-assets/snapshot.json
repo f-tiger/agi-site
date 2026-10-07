@@ -4,165 +4,182 @@
   "manifest_sha256": "cdffeaf5be9e7a54ca8a792a1b33d7808c48f6320d65ccd0308655b8040a6912",
   "dates": [
     "2026-10-02",
-    "2026-10-05"
+    "2026-10-05",
+    "2026-10-06"
   ],
   "series": {
     "AMD": [
       100.0,
-      99.65926185
+      99.65926185,
+      102.44672121
     ],
     "TSLA": [
       100.0,
-      102.19650145
+      102.19650145,
+      102.72268449
     ],
     "META": [
       100.0,
-      101.89814402
+      101.89814402,
+      101.48335177
     ],
     "MU": [
       100.0,
-      98.98314678
+      98.98314678,
+      97.27135282
     ],
     "NVDA": [
       100.0,
-      102.11583544
+      102.11583544,
+      102.2611706
     ],
     "PLTR": [
       100.0,
-      100.34436763
+      100.34436763,
+      101.75894428
     ],
     "SPCX": [
       100.0,
-      107.63084368
+      107.63084368,
+      108.15298874
     ],
     "AMZN": [
       100.0,
-      99.95228595
+      99.95228595,
+      101.89647113
     ],
     "GOOGL": [
       100.0,
-      100.86462918
+      100.86462918,
+      101.21688288
     ],
     "MSFT": [
       100.0,
-      101.47816802
+      101.47816802,
+      102.27425615
     ],
     "NOW": [
       100.0,
-      101.26506689
+      101.26506689,
+      102.67152568
     ],
     "PANW": [
       100.0,
-      100.87293414
+      100.87293414,
+      104.13401791
     ],
     "SPY": [
       100.0,
-      100.67434155
+      100.67434155,
+      101.22784835
     ],
     "QQQ": [
       100.0,
-      100.88316057
+      100.88316057,
+      101.34474717
     ],
     "TQQQ": [
       100.0,
-      102.6046174
+      102.6046174,
+      103.99950349
     ],
     "basket": [
       100.0,
-      101.43843209
+      101.43843209,
+      102.35753064
     ]
   },
   "metrics": {
     "AMD": {
-      "return_pct": -0.340738,
+      "return_pct": 2.446721,
       "max_drawdown_pct": -0.340738,
-      "excess_spy_pp": -1.01508
+      "excess_spy_pp": 1.218873
     },
     "TSLA": {
-      "return_pct": 2.196501,
+      "return_pct": 2.722684,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.52216
+      "excess_spy_pp": 1.494836
     },
     "META": {
-      "return_pct": 1.898144,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.223802
+      "return_pct": 1.483352,
+      "max_drawdown_pct": -0.407066,
+      "excess_spy_pp": 0.255503
     },
     "MU": {
-      "return_pct": -1.016853,
-      "max_drawdown_pct": -1.016853,
-      "excess_spy_pp": -1.691195
+      "return_pct": -2.728647,
+      "max_drawdown_pct": -2.728647,
+      "excess_spy_pp": -3.956496
     },
     "NVDA": {
-      "return_pct": 2.115835,
+      "return_pct": 2.261171,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.441494
+      "excess_spy_pp": 1.033322
     },
     "PLTR": {
-      "return_pct": 0.344368,
+      "return_pct": 1.758944,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": -0.329974
+      "excess_spy_pp": 0.531096
     },
     "SPCX": {
-      "return_pct": 7.630844,
+      "return_pct": 8.152989,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 6.956502
+      "excess_spy_pp": 6.92514
     },
     "AMZN": {
-      "return_pct": -0.047714,
+      "return_pct": 1.896471,
       "max_drawdown_pct": -0.047714,
-      "excess_spy_pp": -0.722056
+      "excess_spy_pp": 0.668623
     },
     "GOOGL": {
-      "return_pct": 0.864629,
+      "return_pct": 1.216883,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.190288
+      "excess_spy_pp": -0.010965
     },
     "MSFT": {
-      "return_pct": 1.478168,
+      "return_pct": 2.274256,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.803826
+      "excess_spy_pp": 1.046408
     },
     "NOW": {
-      "return_pct": 1.265067,
+      "return_pct": 2.671526,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.590725
+      "excess_spy_pp": 1.443677
     },
     "PANW": {
-      "return_pct": 0.872934,
+      "return_pct": 4.134018,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.198593
+      "excess_spy_pp": 2.90617
     },
     "SPY": {
-      "return_pct": 0.674342,
+      "return_pct": 1.227848,
       "max_drawdown_pct": 0,
       "excess_spy_pp": 0.0
     },
     "QQQ": {
-      "return_pct": 0.883161,
+      "return_pct": 1.344747,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.208819
+      "excess_spy_pp": 0.116899
     },
     "TQQQ": {
-      "return_pct": 2.604617,
+      "return_pct": 3.999503,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.930276
+      "excess_spy_pp": 2.771655
     },
     "basket": {
-      "return_pct": 1.438432,
+      "return_pct": 2.357531,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 0.764091
+      "excess_spy_pp": 1.129682
     }
   },
-  "as_of": "2026-10-05",
+  "as_of": "2026-10-06",
   "revisions": [],
-  "attempted_at": "2026-10-06T02:27:43.766508+00:00",
+  "attempted_at": "2026-10-07T01:46:20.983958+00:00",
   "errors": [],
   "provider": "Yahoo Finance adjusted daily closes",
   "registered_date": "2026-10-03",
   "entry_session": "2026-10-02",
   "status": "tracking",
-  "last_success_at": "2026-10-06T02:27:43.766508+00:00",
+  "last_success_at": "2026-10-07T01:46:20.983958+00:00",
   "entry_adjusted_close": {
     "AMD": 633.9099731445312,
     "TSLA": 370.5899963378906,
