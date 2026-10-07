@@ -20,9 +20,19 @@ test('dynamic widgets cover the fixed basket and use isolated provider URLs with
  for(const x of marketSymbols){const u=new URL(widgetURL('symbol-overview',x.ticker,true)),config=JSON.parse(decodeURIComponent(u.hash.slice(1)));assert.equal(u.origin,'https://www.tradingview-widget.com');assert.deepEqual(config.symbols,[[x.ticker,x.symbol+'|1D']]);assert.equal(config.locale,'zh_CN');assert.equal(config['page-uri'],'agiscorecard.com/zh/portfolio-tracker');assert.equal(config.hideMarketStatus,false);}
  assert.throws(()=>widgetURL('symbol-overview','NVDA?private=1'));assert.throws(()=>widgetURL('unknown','NVDA'));
 });
+test('the committed observation satisfies the registered snapshot contract',()=>{
+ assert.equal(validateSnapshot(registered),registered);
+});
 test('a refresh rejects corrupt and rollback records before replacing the last complete observation',()=>{
- assert.equal(validateSnapshot(registered),registered);const keys=marketSymbols.map(x=>x.ticker).concat('basket');
- const complete={...registered,status:'tracking',dates:[manifest.entry_session,'2026-10-06'],as_of:'2026-10-06',series:Object.fromEntries(keys.map(k=>[k,[100,110]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:10,max_drawdown_pct:0,excess_spy_pp:0}]))};
- assert.equal(validateSnapshot(complete,registered),complete);assert.throws(()=>validateSnapshot(registered,complete));assert.throws(()=>validateSnapshot({...complete,manifest_sha256:'different'},complete));
- const bad=structuredClone(complete);delete bad.metrics.SPCX;assert.throws(()=>validateSnapshot(bad,complete));assert.equal(complete.metrics.SPCX.return_pct,10);
+ const keys=marketSymbols.map(x=>x.ticker).concat('basket');
+ // Both observations are fixtures: daily refreshes must never change their ordering.
+ const observation=(dates,values)=>({version:1,cohort:manifest.id,manifest_sha256:registered.manifest_sha256,status:'tracking',attempted_at:'2026-10-06T00:00:00Z',dates,as_of:dates.at(-1),series:Object.fromEntries(keys.map(k=>[k,[...values]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:values.at(-1)-100,max_drawdown_pct:0,excess_spy_pp:0}]))});
+ const older=observation([manifest.entry_session],[100]),complete=observation([manifest.entry_session,'2026-10-05'],[100,110]);
+ const before=structuredClone(complete);
+ assert.equal(validateSnapshot(older),older);assert.equal(validateSnapshot(complete,older),complete);
+ assert.equal(validateSnapshot(complete,complete),complete);
+ assert.throws(()=>validateSnapshot(older,complete),new Error('rollback'));
+ assert.throws(()=>validateSnapshot({...complete,manifest_sha256:'different'},complete),new Error('snapshot'));
+ const bad=structuredClone(complete);delete bad.metrics.SPCX;assert.throws(()=>validateSnapshot(bad,complete),new Error('series'));
+ assert.deepEqual(complete,before);
 });
