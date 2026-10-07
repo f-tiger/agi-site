@@ -74,5 +74,7 @@ jobs:
           name: proposal-deck-release-demo-poc
           path: tools/marketing/release-demo-poc/artifacts/deliverable/
           retention-days: 1
+          # The staged directory is an explicit allowlist; retain its code/.gitignore.
+          include-hidden-files: true
           compression-level: 6
           if-no-files-found: error
