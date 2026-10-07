@@ -28,7 +28,7 @@ SELECT COUNT(*) AS legacy_count,
   coalesce(sum(day < date('now') AND market!='unknown' AND
     (target_path LIKE '/dp/%' OR target_path LIKE '/gp/product/%')),0) AS product_28d,
   coalesce(sum(day < date('now') AND market!='unknown' AND
-    (target_path LIKE '/s?%' OR target_path LIKE '/s/%')),0) AS search_28d,
+    (target_path='/s' OR target_path LIKE '/s?%' OR target_path LIKE '/s/%')),0) AS search_28d,
   coalesce(sum(day < date('now') AND market!='unknown' AND
     (target_path='/primegratistesten' OR target_path LIKE '/primegratistesten?%')),0) AS prime_trial_28d,
   date('now','-28 days') AS start_28d,

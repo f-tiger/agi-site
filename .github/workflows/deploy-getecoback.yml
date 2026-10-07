@@ -248,6 +248,7 @@ jobs:
 
       - name: Check affiliate windows and unavailable-data reporting
         run: |
+          node --test tools/test_affiliate_meta.mjs
           node --test tools/test_affiliate_metrics.mjs
           node --test tools/test_affiliate_audit.mjs
           node --test tools/test_buyer_decision.mjs

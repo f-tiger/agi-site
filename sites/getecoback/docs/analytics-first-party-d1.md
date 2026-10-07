@@ -87,6 +87,27 @@ SELECT meta, COUNT(*) FROM ev WHERE name='b2b_intent' GROUP BY meta;
 - Die Zeitreihe beginnt am 2026-08-05. Vergleiche mit früheren GA4-Zahlen sind
   nur grob möglich, weil GA4 sitzungsbasiert und einwilligungsgefiltert war.
 
+## Affiliate-Metadaten ab 2026-10-07
+
+`affiliate_click` bewahrt nur die bereits verwendeten Felder `source`,
+`merchant`, `page`, `page_path` und `link_url`. Jedes Feld wird vor der
+JSON-Serialisierung begrenzt; das vollständige Objekt bleibt unter 768 Bytes.
+Unbekannte Felder und unerwartete Datentypen werden verworfen. Seitenpfade
+enthalten weder Query noch Fragment; zu lange Pfade werden nicht abgeschnitten,
+sondern ausgelassen. Der vorhandene separate `page`-Zähler bleibt unverändert.
+
+Ziel-URLs enthalten keine Zugangsdaten, Fragmente, freien Suchbegriffe oder
+sonstigen Query-Parameter. Nur der bestehende, zum Amazon-Markt passende Tag
+`getecoback-21` (DE) bzw. `ecoback0d-20` (US) darf erhalten bleiben. Bei
+Amazon-Produktlinks bleiben Produktpfad und ASIN erhalten. Ein Suchlink ohne
+Query (`/s`) zählt weiterhin als Suche; sein Suchbegriff ist nicht rekonstruierbar.
+ASIN-basierte Auswertung bleibt möglich, suchtextbasierte Modellzuordnung kann
+ab diesem Datum fehlen. Die tatsächlich angeklickten Links werden nicht geändert.
+
+Die alte Grenze schnitt das fertige JSON nach 200 Zeichen ab und konnte damit
+auch andere Felder unlesbar machen. Historische Daten werden nicht repariert
+oder rückwirkend ergänzt. Dies misst künftige Seitenklicks, keine Amazon-Käufe.
+
 ## 站内搜索遥测（2026-08-08 起）
 
 事件 `site_search`：`meta.q`=搜索词（≤80 字符）、`meta.hits`=命中数（`-1`=用户点击了某条结果，另带 `meta.pick`）。

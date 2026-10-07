@@ -7,6 +7,7 @@ import {videoGrowth} from './video-growth.mjs';
 import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
+import {affiliateMeta} from './affiliate-meta.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -761,6 +762,7 @@ async function handleEvent(request, env, ctx) {
   let body;
   try { body = await request.json(); } catch { return json({ error: "bad_json" }, 400, cors); }
 
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: "bad_json" }, 400, cors);
   const name = String(body.n || "").slice(0, 40);
   if (!EV_NAMES.has(name)) return json({ ok: false, error: "unknown_event" }, 200, cors);
 
@@ -781,7 +783,8 @@ async function handleEvent(request, env, ctx) {
   // enough to reconstruct anyone's browsing.
   let ref = "";
   try { ref = body.r ? new URL(String(body.r)).hostname.slice(0, 100) : ""; } catch { ref = ""; }
-  const meta = body.m ? JSON.stringify(body.m).slice(0, 200) : "";
+  const meta = name === 'affiliate_click' ? affiliateMeta(body.m)
+    : body.m ? JSON.stringify(body.m).slice(0, 200) : "";
   const country = request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
