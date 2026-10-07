@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-06",
+ "fetched": "2026-10-07",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -358,44 +358,36 @@
   "makeup organizer": {
    "rising": [
     {
-     "q": "beis makeup bag",
-     "v": 650
-    },
-    {
-     "q": "target makeup organizer",
-     "v": 300
-    },
-    {
-     "q": "caboodle makeup organizer",
-     "v": 250
-    },
-    {
-     "q": "ulta makeup organizer",
-     "v": 170
+     "q": "stackers makeup organizer",
+     "v": 600
     },
     {
      "q": "marshalls",
-     "v": 120
+     "v": 550
     },
     {
-     "q": "walmart makeup organizer",
-     "v": 110
+     "q": "caboodle",
+     "v": 400
     },
     {
-     "q": "ulta",
-     "v": 110
+     "q": "target makeup organizer",
+     "v": 250
     },
     {
-     "q": "makeup organizer near me",
-     "v": 100
+     "q": "caboodle makeup organizer",
+     "v": 180
+    },
+    {
+     "q": "makeup organizer walmart",
+     "v": 140
     },
     {
      "q": "makeup organizer drawers",
-     "v": 50
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-06"
+   "fetched": "2026-10-07"
   },
   "mamian skirt": {
    "auto": [
@@ -412,7 +404,7 @@
    ],
    "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-07"
+   "fetched": "2026-10-07"
   },
   "chinese style shirt": {
    "auto": [
