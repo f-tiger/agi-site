@@ -398,3 +398,47 @@ Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audi
 - **已知限制**:Routine 与会话都不带 connector,每日会话没有 Cloudflare MCP;after35 审核与 10 万实验复核在补上 connector 之前会如实报「未做」。
   补法:owner 在 claude.ai Routines 界面给这条 Routine 加 Cloudflare connector,或在界面里新建一条选好仓库与 connector 的 Routine 并贴入同一 prompt。
 - **通用教训**:长期 Routine 不要绑在对话会话上;要绑就绑在专门建的、以仓库为 source 的会话上,并让它每轮写一条记录、由第①层检查新鲜度。
+
+
+## 2026-10-07: isolate aggregate membership reporting
+
+The existing `fleet-autopilot` daily schedule calls `fleet-membership-report.yml`
+in an independent job without an algorithm/content/growth dependency. Membership
+collection was previously skipped whenever the algorithm failed, including run
+37598948695 on October 7. The September 24 snapshot is an old observation; its
+corrected null values never established zero members.
+
+The new reusable workflow supports an isolated manual reporting run. PRs and
+`dry_run: true` run mocked tests only, without live requests or credentials. Pushes
+to main that change this reporting workflow, its caller, or membership-reporting
+tools run the narrowly scoped reporting verification; data-only snapshot commits
+do not match those paths, so they do not recursively trigger reporting. No site
+build, broad autopilot rerun, watcher, cleanup, IndexNow submission or new cron is
+part of this workflow. No page content changes, so SEO/GEO/IndexNow release work
+is not applicable to this repair.
+
+Live collection uses the existing operator secret, four owned origins and only
+`/api/member` plus `/api/member-admin` with `action: stats` (at most eight requests
+per collection, no retries). Those existing API handlers can initialize schema,
+so this is not described as a strictly read-only server operation. It does not
+scan/confirm payments, modify membership rights, clean history or change secrets.
+Only allowlisted aggregate counters are serialized; no private customer fields,
+wallets or credentials are included. Counts do not establish cash, net revenue,
+unique customers or account registrations.
+
+A run-start freshness/shape gate rejects an old file after a crash or timeout.
+Current reports with missing reads are preserved as `null` / `unavailable`, then
+counter incompleteness or a failed public read fails the final availability gate.
+Membership readiness
+is reported separately from the success of the collection itself. A dedicated
+concurrency group serializes report writes; only `membership.json` is committed,
+with bounded rebase/push retries and a failing exit after conflict/exhaustion.
+The algorithm can still read the previous committed snapshot in its own checkout;
+its existing age/completeness guards apply rather than assuming job order.
+
+Budget: one small test job and one report job per existing daily trigger, roughly
+two incremental runner minutes/day (about 60/month), plus reporting-code changes
+and explicit manual runs. Hard limits are three minutes for tests and five for
+collection/persistence, including a two-minute collector step. No paid service,
+new credential, extra schedule or durability SLA is introduced. GitHub schedule
+delays can still make the daily report late.
