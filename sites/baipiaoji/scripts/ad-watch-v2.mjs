@@ -1,5 +1,7 @@
 // Zero-AI background verification. No wallet values or transaction records in logs.
 import {watchSecret} from './ad-runner-config.mjs';
+const memberReceiptsOnly=process.argv.includes('--member-receipts-only');
+if(memberReceiptsOnly&&process.argv.includes('--members'))throw Error('Choose one membership watcher mode');
 if(process.argv.includes('--if-configured')){
  const required=process.env.REQUIRE_WEB3_CONFIGURED==='true';
  let configured=false;
@@ -44,16 +46,23 @@ const state=await doctor.json();
 if(!doctor.ok||!state.selling||!state.rails?.wallet||!state.web3?.watch_healthy)throw Error('Watcher completed but Web3 selling is not healthy');
 console.log(JSON.stringify({selling:true,wallet:true,watch_healthy:true}));
 
-if(process.argv.includes('--members')){
+if(process.argv.includes('--members')||memberReceiptsOnly){
  let membershipProcessed=0,openSupport=0;
  for(let batch=0;batch<7;batch++){
-  const r=await fetch('https://baipiaoji.com/api/member-watch',{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
+  // A separate endpoint cannot fall back to old retention behavior during rollout.
+  const r=await fetch('https://baipiaoji.com/api/'+(memberReceiptsOnly?'bpj-member-recovery':'member-watch'),{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
   const j=await r.json();
   if(!r.ok||!j.ok)throw Error('Membership watcher failed: HTTP '+r.status);
+  if(memberReceiptsOnly&&(j.mode!=='receipts-only'||j.ready!==true))throw Error('Membership receipts-only recovery did not establish readiness');
   membershipProcessed+=j.processed;openSupport=j.support_open;
   if(j.processed<1)break;
  }
  console.log(JSON.stringify({membership_processed:membershipProcessed,membership_support_open:openSupport}));
+ if(memberReceiptsOnly){
+  const r=await fetch('https://baipiaoji.com/api/member?__ci=1',{signal:AbortSignal.timeout(30000),cache:'no-store'}),j=await r.json();
+  if(!r.ok||!j.ok||j.site!=='bpj'||j.ready!==true)throw Error('Public membership readiness check failed');
+  console.log(JSON.stringify({membership_ready:true,membership_mode:'receipts-only'}));
+ }
  if(openSupport)console.log('::warning::Membership support requests await operator review; use the authenticated member-admin API.');
 }
 

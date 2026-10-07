@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: '运行模式：watch=正常轮询；ads-only=只恢复广告验款，不运行会员或 Jarvis；inspect=只读代币勘察'
+        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款，无清理或 Jarvis；inspect=只读代币勘察'
         type: choice
-        options: [watch, ads-only, inspect]
+        options: [watch, ads-only, receipts-only, inspect]
         default: watch
 
 concurrency:
@@ -63,6 +63,16 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           REQUIRE_WEB3_CONFIGURED: 'true'
         run: node scripts/ad-watch-v2.mjs --if-configured
+
+      # Explicit maintenance mode; preserve the existing ads-only contract.
+      - name: Recover ads and membership receipts only (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'receipts-only'
+        timeout-minutes: 5
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          REQUIRE_WEB3_CONFIGURED: 'true'
+        run: node scripts/ad-watch-v2.mjs --if-configured --member-receipts-only
 
       - name: Match on-chain payments to pending ad slots
         if: github.event_name != 'workflow_dispatch' || inputs.mode == 'watch'

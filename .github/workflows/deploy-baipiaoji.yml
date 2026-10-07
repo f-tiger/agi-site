@@ -44,6 +44,8 @@ jobs:
     env:
       # Public browser OAuth client supplied by the owner; no client secret is used.
       # Keep configuration and post-deployment verification on the same value.
+      # Narrow maintenance release only; normal push/schedule behavior is unchanged.
+      BPJ_RECEIPTS_RECOVERY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[member-receipts-recovery]') }}
       GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID || '724581859627-0iv2ovkjrlteea7m0tdsnu8cemki208t.apps.googleusercontent.com' }}
     defaults:
       run:
@@ -254,6 +256,9 @@ jobs:
           node scripts/test-account-configure.mjs
           node scripts/test-account-member.mjs
           node scripts/test-ad-watch-readiness.mjs
+          node scripts/test-member-recovery.mjs
+          node scripts/test-member-recovery-runner.mjs
+          node scripts/test-member-recovery-workflow.mjs
 
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
@@ -376,6 +381,8 @@ jobs:
         run: node tools/member-studio/ops.mjs preflight
 
       - name: Sync payment secrets using the existing Cloudflare credential
+        # Maintenance releases can explicitly reuse live credentials unchanged.
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         id: payment_config
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -385,12 +392,24 @@ jobs:
         run: node scripts/ad-configure.mjs --optional
 
       - name: Sync optional account providers without replacing existing settings
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ACCOUNT_MAIL_FROM: ${{ vars.ACCOUNT_MAIL_FROM || secrets.ACCOUNT_MAIL_FROM }}
         run: node scripts/account-configure.mjs
+
+      # Keep the same public OAuth binding in the build without any API/config write.
+      - name: Preserve public account binding when reusing existing configuration
+        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        run: |
+          node --input-type=module <<'JS'
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import {withGoogleBinding} from './scripts/account-configure.mjs';
+          const file='wrangler.toml';
+          writeFileSync(file,withGoogleBinding(readFileSync(file,'utf8'),process.env.GOOGLE_CLIENT_ID));
+          JS
 
       - name: Build and validate practical tool workbench
         working-directory: ${{ github.workspace }}
@@ -470,6 +489,10 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: bash .github/scripts/deploy-main-guard.sh check
 
+      - name: Check existing public account configuration before maintenance
+        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        run: node scripts/verify-member-recovery-live.mjs --account-only
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -499,6 +522,7 @@ jobs:
         run: node scripts/verify-homepage-live.mjs
 
       - name: Codex Efficiency live surface
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         run: node scripts/verify-codex-efficiency-live.mjs
 
 
@@ -506,15 +530,18 @@ jobs:
         run: node scripts/verify-ai-tools-live.mjs
 
       - name: Verify live campaign measurement (QA excluded)
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         run: node scripts/verify-growth-live.mjs
 
       - name: Verify live free-account lifecycle and remove synthetic account
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         run: node scripts/verify-free-account-live.mjs
 
       - name: Verify search experiment and conversion stages on live site
         run: node scripts/verify-search-experiment-live.mjs
 
       - name: Verify paid-app demand pilot without counting QA
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         run: node scripts/verify-release-pilot-live.mjs
 
       - name: Read pilot evidence (aggregates only)
@@ -529,11 +556,22 @@ jobs:
 
       # Refresh the existing watcher before readiness checks; stale heartbeats close sales.
       - name: Verify Web3 watcher and selling after deployment
+        id: receipt_verification
         env:
-          REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
+          REQUIRE_WEB3_CONFIGURED: ${{ env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true' || steps.payment_config.outputs.configured }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: node scripts/ad-watch-v2.mjs --if-configured --members
+        run: |
+          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
+            node scripts/ad-watch-v2.mjs --if-configured --member-receipts-only
+          else
+            node scripts/ad-watch-v2.mjs --if-configured --members
+          fi
+
+      - name: Verify maintenance account and static surfaces
+        id: recovery_surface
+        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        run: node scripts/verify-member-recovery-live.mjs
 
       - name: Verify published BPJ first-party tools
         run: node scripts/verify-studio-live.mjs
@@ -668,6 +706,7 @@ jobs:
       # 部署后自测第一方打点：CI 网络可达生产域，打一发 /__selftest，
       # D1 里能查到即证明 Function+绑定+信标链路全通
       - name: Self-test first-party beacon
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         id: st_beacon
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://baipiaoji.com/api/hit \
@@ -685,6 +724,7 @@ jobs:
       # 之前只在本地用 mock 测过前端，真接口一次都没跑过——mock 通过不代表线上通。
       # 固定用一个 CI 专用邮箱，重复运行只会命中同一行，不会污染名单。
       - name: Self-test subscribe & unsubscribe endpoints
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         id: st_sub
         run: |
           api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/$1" \
@@ -713,6 +753,7 @@ jobs:
       # 提交链路自测：固定 URL，首次插入返回 ok、此后返回 already——两条路径都测到。
       # 非法 URL 必须 400。与订阅自测同一原则：静默通过等于没测。
       - name: Self-test submit endpoint
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         id: st_submit
         run: |
           api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/submit" \
@@ -731,6 +772,7 @@ jobs:
       # 认领链路自测（2026-09-26）：GET 状态、未知 slug 404、未认领时更正 403——三条都不出网核验厂商域名
       # （verify 动作会真的去读官方站点，自检不打它）。UA 带 bpj-ci-selfcheck；claims 表按 slug 一行，不碰读预算。
       - name: Self-test claim endpoint
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
         id: st_claim
         run: |
           UA='curl/8.0 bpj-ci-selfcheck'
@@ -1019,7 +1061,7 @@ jobs:
         run: node scripts/startup-mcp-registry.mjs --check
 
       - name: Publish and verify startup MCP registry entry
-        if: steps.startup_registry.outputs.publish == 'true'
+        if: env.BPJ_RECEIPTS_RECOVERY != 'true' && steps.startup_registry.outputs.publish == 'true'
         run: |
           publisher_dir=$(mktemp -d)
           curl -fsSL --max-time 60 "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz -C "$publisher_dir" mcp-publisher
@@ -1185,5 +1227,13 @@ jobs:
           check "漫剧每日自动采集" "${{ steps.manju_sync.outcome }}"
           check "每日目录数据持久化" "${{ steps.catalog_commit.outcome }}"
           check "变更清单回写" "${{ steps.manifest.outcome }}"
+          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
+            [ "${{ steps.receipt_verification.outcome }}" = "success" ] || fail=1
+            [ "${{ steps.recovery_surface.outcome }}" = "success" ] || fail=1
+          fi
           [ "$fail" = "0" ] || exit 1
-          echo "✅ 全部链路自测通过"
+          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
+            echo "✅ 收款维护检查通过；生产账号/CE 生命周期、增长写入、订阅投稿信标及 MCP 发布检查已跳过，未记为通过"
+          else
+            echo "✅ 全部链路自测通过"
+          fi

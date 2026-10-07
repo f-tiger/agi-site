@@ -21,7 +21,11 @@ concurrency:
 
 jobs:
   register:
-    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
+    # Receipt recovery changes no MCP manifest and must not create registry auth.
+    if: >-
+      !contains(github.event.head_commit.message, '[member-receipts-recovery]') &&
+      !contains(github.event.workflow_run.head_commit.message, '[member-receipts-recovery]') &&
+      (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-latest
     timeout-minutes: 8
     defaults:
@@ -48,3 +52,4 @@ jobs:
           "$publisher_dir/mcp-publisher" login github-oidc
           "$publisher_dir/mcp-publisher" publish
           node ../scripts/startup-mcp-registry.mjs --verify
+
