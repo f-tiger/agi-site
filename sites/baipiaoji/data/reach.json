@@ -1,54 +1,55 @@
 {
-  "generated": "2026-10-06",
+  "generated": "2026-10-07",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-09-08",
-  "until": "2026-10-06",
+  "since": "2026-09-09",
+  "until": "2026-10-07",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 434,
-  "per_day": 15.5,
+  "humans_referred": 446,
+  "per_day": 15.9,
   "by_kind": {
-    "tool": 362,
-    "page": 34,
-    "category": 28,
-    "alternatives": 3,
+    "tool": 366,
+    "page": 35,
+    "category": 30,
+    "alternatives": 6,
     "judgement": 2,
     "plans": 1,
     "solutions": 1,
-    "vs": 3
+    "vs": 4,
+    "upgrade": 1
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 139
+      "n": 138
     },
     {
       "cat": "coding",
-      "n": 54
+      "n": 56
     },
     {
       "cat": "video",
       "n": 36
     },
     {
+      "cat": "image",
+      "n": 35
+    },
+    {
       "cat": "office",
       "n": 33
     },
     {
-      "cat": "image",
-      "n": 30
-    },
-    {
       "cat": "api",
-      "n": 28
+      "n": 29
     },
     {
       "cat": "writing",
-      "n": 25
+      "n": 28
     },
     {
       "cat": "local",
-      "n": 14
+      "n": 15
     },
     {
       "cat": "search",
@@ -60,7 +61,7 @@
     },
     {
       "cat": "audio",
-      "n": 8
+      "n": 9
     },
     {
       "cat": "agent",
@@ -69,27 +70,23 @@
     {
       "cat": "design",
       "n": 2
-    },
-    {
-      "cat": "safety",
-      "n": 1
     }
   ],
   "tools": [
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 56
+      "n": 59
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 52
+      "n": 49
     },
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 18
+      "n": 17
     },
     {
       "slug": "feishu-miaoji",
@@ -109,11 +106,11 @@
     {
       "slug": "tongyi",
       "cat": "chat",
-      "n": 9
+      "n": 8
     },
     {
-      "slug": "google-flow",
-      "cat": "video",
+      "slug": "quillbot",
+      "cat": "writing",
       "n": 7
     },
     {
@@ -124,6 +121,21 @@
     {
       "slug": "liblib",
       "cat": "image",
+      "n": 6
+    },
+    {
+      "slug": "tongyi-wanxiang",
+      "cat": "image",
+      "n": 6
+    },
+    {
+      "slug": "jimeng",
+      "cat": "image",
+      "n": 6
+    },
+    {
+      "slug": "google-flow",
+      "cat": "video",
       "n": 6
     },
     {
@@ -152,18 +164,8 @@
       "n": 5
     },
     {
-      "slug": "tongyi-wanxiang",
-      "cat": "image",
-      "n": 5
-    },
-    {
       "slug": "jianying",
       "cat": "video",
-      "n": 5
-    },
-    {
-      "slug": "jimeng",
-      "cat": "image",
       "n": 5
     },
     {
@@ -174,11 +176,6 @@
     {
       "slug": "consensus",
       "cat": "search",
-      "n": 4
-    },
-    {
-      "slug": "quillbot",
-      "cat": "writing",
       "n": 4
     },
     {
@@ -194,6 +191,11 @@
     {
       "slug": "ms-copilot",
       "cat": "chat",
+      "n": 3
+    },
+    {
+      "slug": "cherry-studio",
+      "cat": "local",
       "n": 3
     },
     {
@@ -227,8 +229,8 @@
       "n": 3
     },
     {
-      "slug": "comfyui",
-      "cat": "local",
+      "slug": "ttsmaker",
+      "cat": "audio",
       "n": 3
     },
     {
@@ -262,11 +264,6 @@
       "n": 2
     },
     {
-      "slug": "cherry-studio",
-      "cat": "local",
-      "n": 2
-    },
-    {
       "slug": "doubao",
       "cat": "chat",
       "n": 2
@@ -290,11 +287,11 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 56
+      "n": 59
     },
     {
       "path": "grok",
-      "n": 52
+      "n": 49
     },
     {
       "path": "/",
@@ -302,11 +299,11 @@
     },
     {
       "path": "coding",
-      "n": 18
+      "n": 20
     },
     {
       "path": "cline",
-      "n": 18
+      "n": 17
     },
     {
       "path": "feishu-miaoji",
@@ -322,10 +319,10 @@
     },
     {
       "path": "tongyi",
-      "n": 9
+      "n": 8
     },
     {
-      "path": "google-flow",
+      "path": "quillbot",
       "n": 7
     },
     {
@@ -334,6 +331,18 @@
     },
     {
       "path": "liblib",
+      "n": 6
+    },
+    {
+      "path": "tongyi-wanxiang",
+      "n": 6
+    },
+    {
+      "path": "jimeng",
+      "n": 6
+    },
+    {
+      "path": "google-flow",
       "n": 6
     },
     {
@@ -357,15 +366,7 @@
       "n": 5
     },
     {
-      "path": "tongyi-wanxiang",
-      "n": 5
-    },
-    {
       "path": "jianying",
-      "n": 5
-    },
-    {
-      "path": "jimeng",
       "n": 5
     },
     {
@@ -385,10 +386,6 @@
       "n": 4
     },
     {
-      "path": "quillbot",
-      "n": 4
-    },
-    {
       "path": "wordvice",
       "n": 4
     },
@@ -398,6 +395,10 @@
     },
     {
       "path": "ms-copilot",
+      "n": 3
+    },
+    {
+      "path": "cherry-studio",
       "n": 3
     },
     {
@@ -425,7 +426,7 @@
       "n": 3
     },
     {
-      "path": "comfyui",
+      "path": "ttsmaker",
       "n": 3
     },
     {
@@ -457,10 +458,6 @@
       "n": 2
     },
     {
-      "path": "cherry-studio",
-      "n": 2
-    },
-    {
       "path": "doubao",
       "n": 2
     },
@@ -489,10 +486,6 @@
       "n": 2
     },
     {
-      "path": "ttsmaker",
-      "n": 2
-    },
-    {
       "path": "video",
       "n": 2
     },
@@ -501,11 +494,19 @@
       "n": 2
     },
     {
+      "path": "comfyui",
+      "n": 2
+    },
+    {
       "path": "elevenlabs",
       "n": 2
     },
     {
       "path": "windsurf",
+      "n": 2
+    },
+    {
+      "path": "/why-did-my-ai-free-tier-stop-working",
       "n": 2
     },
     {
@@ -523,28 +524,28 @@
     {
       "path": "/agents/c/research",
       "n": 1
-    },
-    {
-      "path": "/agents/chatdev",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 190
+      "n": 197
     },
     {
       "ref": "www.google.com",
-      "n": 162
+      "n": 165
     },
     {
       "ref": "www.bing.com",
-      "n": 29
+      "n": 31
     },
     {
       "ref": "m.baidu.com",
       "n": 9
+    },
+    {
+      "ref": "duckduckgo.com",
+      "n": 6
     },
     {
       "ref": "www.baidu.com",
@@ -552,10 +553,6 @@
     },
     {
       "ref": "chatgpt.com",
-      "n": 5
-    },
-    {
-      "ref": "duckduckgo.com",
       "n": 5
     },
     {
@@ -599,15 +596,15 @@
       "n": 1
     },
     {
-      "ref": "kagi.com",
-      "n": 1
-    },
-    {
       "ref": "search.brave.com",
       "n": 1
     },
     {
       "ref": "weixin110.qq.com",
+      "n": 1
+    },
+    {
+      "ref": "yandex.com.tr",
       "n": 1
     }
   ],
@@ -633,48 +630,43 @@
       "n": 1
     },
     {
-      "ref": "kagi.com",
-      "path": "/en/tools/guojia-fanzha",
-      "n": 1
-    },
-    {
       "ref": "www.perplexity.ai",
       "path": "/en/is-google-flow-still-free",
       "n": 1
     }
   ],
   "events": {
-    "sub_view": 423,
-    "go": 137,
-    "manju": 77,
-    "home": 48,
-    "biz": 31,
+    "sub_view": 418,
+    "go": 143,
+    "manju": 83,
+    "home": 50,
+    "biz": 34,
     "calc": 26,
+    "star": 24,
     "ai_solo": 21,
-    "star": 19,
+    "video": 12,
     "quote": 11,
-    "video": 10,
     "github_tools": 7,
     "gs": 5,
-    "sheet_dl": 4,
-    "sub_submit": 4,
     "gate": 3,
-    "sub_ok": 3,
+    "sheet_dl": 3,
+    "sub_submit": 3,
+    "sub_ok": 2,
     "gs_go": 1,
     "sub_dup": 1
   },
   "submissions": {
-    "new": 13,
-    "total": 13
+    "new": 14,
+    "total": 14
   },
   "ads": {},
   "commercial_triggers": {
     "ok": true,
     "started": "2026-09-26",
     "counts": {
-      "vendor-view": 2,
+      "vendor-view": 3,
       "vendor-sponsor": 0,
-      "vendor-wait": 0,
+      "vendor-wait": 1,
       "ad-view": 0,
       "ad-wallet": 0,
       "ad-reach": 0,
@@ -685,8 +677,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-09-08",
-      "end_exclusive": "2026-10-06",
+      "start": "2026-09-09",
+      "end_exclusive": "2026-10-07",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -696,7 +688,7 @@
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
       "other_calc_events": 26,
-      "directory_outbound_clicks": 136,
+      "directory_outbound_clicks": 143,
       "homepage_limit_navigation": 0,
       "video_exports_own": 0,
       "video_exports_demo": 0,
@@ -710,10 +702,10 @@
       "coding_access_vendor_entries": 0
     },
     "accounts": {
-      "created": 3,
-      "new_accounts_currently_email_verified": 1,
-      "total_non_test": 3,
-      "total_currently_email_verified": 1
+      "created": 4,
+      "new_accounts_currently_email_verified": 2,
+      "total_non_test": 4,
+      "total_currently_email_verified": 2
     },
     "missing": [],
     "definitions": {
@@ -733,23 +725,23 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-09-08",
+      "requested_start": "2026-09-09",
       "start": "2026-09-22",
-      "until": "2026-10-06",
+      "until": "2026-10-07",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 43,
+    "clicks": 45,
     "unclassified_records": 0,
     "by_language": {
       "zh": 35,
-      "en": 8,
+      "en": 10,
       "other": 0
     },
     "by_block": [
       {
         "id": "directory",
-        "n": 15
+        "n": 17
       },
       {
         "id": "nav",
@@ -795,7 +787,7 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 15
+        "n": 17
       },
       {
         "id": "homepage",
@@ -965,9 +957,17 @@
       },
       {
         "date": "2026-10-06",
-        "complete": false,
-        "clicks": 2,
+        "complete": true,
+        "clicks": 4,
         "zh": 2,
+        "en": 2,
+        "other": 0
+      },
+      {
+        "date": "2026-10-07",
+        "complete": false,
+        "clicks": 0,
+        "zh": 0,
         "en": 0,
         "other": 0
       }
@@ -980,15 +980,15 @@
         "n": 11
       },
       {
-        "language": "zh",
-        "block": "nav",
-        "destination": "agents",
-        "n": 4
-      },
-      {
         "language": "en",
         "block": "directory",
         "destination": "tool-category",
+        "n": 6
+      },
+      {
+        "language": "zh",
+        "block": "nav",
+        "destination": "agents",
         "n": 4
       },
       {
@@ -1333,7 +1333,15 @@
       },
       {
         "date": "2026-10-06",
-        "complete": false,
+        "complete": true,
+        "language": "en",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 2
+      },
+      {
+        "date": "2026-10-06",
+        "complete": true,
         "language": "zh",
         "block": "other",
         "destination": "other-destination",
@@ -1350,7 +1358,7 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-09-08",
+    "since": "2026-09-09",
     "includes_current_partial_utc_day": true,
     "actions": {
       "entry_open": 5,

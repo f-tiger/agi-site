@@ -1,22 +1,22 @@
 {
- "generated": "2026-10-06",
+ "generated": "2026-10-07",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "fish-audio",
-  "ima",
-  "marscode",
-  "ms-copilot",
-  "qingying",
-  "zhipu-glm",
-  "canva",
-  "github-models"
+  "google-ai-studio",
+  "ai360",
+  "aider",
+  "aippt",
+  "ante",
+  "bing-image",
+  "caiyun",
+  "cerebras"
  ],
- "cursor": "github-models",
+ "cursor": "cerebras",
  "summary": {
-  "ready": 40,
-  "empty": 36,
+  "ready": 41,
+  "empty": 35,
   "blocked": 32,
   "probed_total": 108
  },
@@ -320,33 +320,21 @@
    "name": "Google AI Studio",
    "cat": "api",
    "reach": 2,
-   "probed": "2026-09-19",
+   "probed": "2026-10-07",
    "env": "runner",
-   "state": "empty",
+   "state": "ready",
    "tried": [
     {
-     "url": "https://aistudio.google.com/pricing",
+     "url": "https://ai.google.dev/gemini-api/docs/pricing",
      "status": 200,
-     "bytes": 600000,
-     "tokens": 0
-    },
-    {
-     "url": "https://aistudio.google.com/price",
-     "status": 200,
-     "bytes": 600000,
-     "tokens": 0
-    },
-    {
-     "url": "https://aistudio.google.com/plans",
-     "status": 200,
-     "bytes": 600000,
-     "tokens": 0
+     "bytes": 241566,
+     "tokens": 93
     }
    ],
    "best": {
-    "url": "https://aistudio.google.com/pricing",
-    "tokens": 0,
-    "excerpt": ""
+    "url": "https://ai.google.dev/gemini-api/docs/pricing",
+    "tokens": 93,
+    "excerpt": "年 12 月 31 日之前为 0.50 美元/100 万个 token/小时（存储价格）。 自 2027 年 1 月 1 日起为 1.00 美元/100 万个 token/小时（存储价格）。 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3.x 模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 无 ** 每月 5,000 条提示（免费，在 Gemini 3 中共享），超出后按每 1,000 次搜索查询 14 美元计费 用于改进 Google 产品 是 否 * 客户向 Gemini 提交的请求可能会触发一次或多次 Google 搜索查询。每执行一次搜索查询，系统都会向您收取费用。 ** 可在 Google AI Studio 中进行测试。 Gemini 3.5 Flash gemini-3.5-flash 在 Google AI Studio 中试用 Google 的早期 Flash 模型，专为在日常高吞吐量工作负载中保证速度和基础性能而打造。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 $1.50 输出价格（包括思考 token） 免费 9.00 美元 上下文缓存价格 免费 0.15 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3.x 模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google "
    }
   },
   "immersive-translate": {
@@ -606,15 +594,15 @@
    "name": "Cerebras",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-09-22",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://cerebras.ai/pricing",
      "status": 200,
-     "bytes": 234244,
-     "tokens": 0
+     "bytes": 238347,
+     "tokens": 1
     },
     {
      "url": "https://cloud.cerebras.ai/pricing",
@@ -631,8 +619,8 @@
    ],
    "best": {
     "url": "https://cerebras.ai/pricing",
-    "tokens": 0,
-    "excerpt": ""
+    "tokens": 1,
+    "excerpt": "ation; not intended for production use. ** Available by agreement. *** Add a valid payment method to receive a one-time $5 promotional credit. The credit expires 30 days after activation. You will not be charged or automatically enrolled in paid usage. API and Playground access will pause when the credit expires or is exhausted unless you separately purchase PayGo credits. Promotional credits are non-transferable, have no cash value, and may be withheld or revoked in cases of fraud, abuse, or duplicate accounts. Developer Tier Pricing Full list of supported models can be found here . Partners Get access to Cerebras Inference through our partner APIs AWS Marketplace Get started in minutes, te"
    }
   },
   "github-models": {
@@ -782,7 +770,7 @@
    "name": "360 AI 搜索",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-09-21",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -816,7 +804,7 @@
    "name": "Aider",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-09-21",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -846,7 +834,7 @@
    "name": "AiPPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-09-21",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -880,7 +868,7 @@
    "name": "Ante",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-09-21",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -914,7 +902,7 @@
    "name": "Bing 图像创作",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-09-21",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -944,7 +932,7 @@
    "name": "彩云小译",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-09-22",
+   "probed": "2026-10-07",
    "env": "runner",
    "state": "empty",
    "tried": [

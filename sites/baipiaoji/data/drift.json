@@ -1,10 +1,21 @@
 {
-  "generated": "2026-10-06",
+  "generated": "2026-10-07",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 106,
   "fetched_fail": 21,
-  "pending": 8,
+  "pending": 14,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-10-07",
+      "first_seen": "2026-10-06",
+      "added": [],
+      "removed": [
+        "5b"
+      ],
+      "checked_then": "2026-09-21"
+    },
     {
       "slug": "continue",
       "url": "https://github.com/continuedev/continue",
@@ -81,17 +92,6 @@
         "62.50credits"
       ],
       "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-10-04",
-      "first_seen": "2026-10-03",
-      "added": [
-        "5b"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
     },
     {
       "slug": "ollama",
