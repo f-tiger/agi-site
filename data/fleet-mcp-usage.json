@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T14:37:34Z",
+ "generated": "2026-10-07T14:57:40Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
@@ -9,18 +9,18 @@
    "exposed": true,
    "missing": [],
    "days": 28,
-   "calls": 164,
+   "calls": 176,
    "ci": 45,
    "operator": 15,
-   "indexer": 52,
-   "other": 52,
+   "indexer": 55,
+   "other": 61,
    "with_args": 0,
    "callers": 8,
    "demand_callers": 0,
    "variety": "shape_only",
    "best_caller": {
-    "calls": 40,
-    "days": 6,
+    "calls": 47,
+    "days": 7,
     "shapes": 2
    }
   },
@@ -39,8 +39,8 @@
     "hitzewelle_vorschau": 83,
     "btu_empfehlung": 57,
     "fensterabdichtung_laenge": 56,
-    "geraet_wahl": 44,
-    "balkonspeicher_foerderung": 38,
+    "geraet_wahl": 46,
+    "balkonspeicher_foerderung": 36,
     "taupunkt_lueften": 28,
     "klimaanlage_stromkosten": 28,
     "heizleistung_watt": 28
@@ -59,7 +59,7 @@
   }
  ],
  "fleet": {
-  "calls_28d": 526,
+  "calls_28d": 538,
   "demand_callers": 0,
   "demand_measurable_on": [
    "buysomething"
