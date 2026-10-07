@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261006-12';
+export const VERSION='jarvis-20261007-13';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -37,6 +37,10 @@ export function reportOf(raw,sources,lang){
  return {summary:r.summary,findings,nextActions,uncertainties:r.uncertainties};
 }
 export function safeURL(value){try{const u=new URL(value);if(u.protocol!=='https:'||u.username||u.password||u.port||!u.hostname.includes('.')||/(^|\.)(localhost|local|internal|test)$/.test(u.hostname)||/^\d+[.:]/.test(u.hostname)||u.hostname.includes(':'))return null;return u.href;}catch{return null;}}
+export function citedSources(finding,sources){
+ const byId=new Map((Array.isArray(sources)?sources:[]).filter(s=>s&&typeof s.id==='string').map(s=>[s.id,s]));
+ return [...new Set(Array.isArray(finding?.sourceIds)?finding.sourceIds:[])].map(id=>byId.get(id)).filter(Boolean);
+}
 export function tokens(s){return [...new Set((String(s).toLowerCase().match(/[a-z0-9]{2,}|[\u4e00-\u9fff]/gu)||[]).filter(x=>!['the','and','with','for','this','that','what','how','can','want','find','my'].includes(x)))].slice(0,100);}
 export function rank(query,rows,max=6){const words=tokens(query);return rows.map(r=>{const haystack=JSON.stringify(r).toLowerCase();return {r,score:words.reduce((s,w)=>s+(haystack.includes(w)?1:0),0)};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,max).map(x=>x.r);}
 export function relevantMemory(goal,entries){return rank(goal,entries.map((text,i)=>({text,id:String(i)})),3).map(m=>m.text.slice(0,300));}
@@ -77,7 +81,7 @@ export function calculate(expression){
 export function markdownText(value){return String(value??'').replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,' ').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/[\\`*_{}\[\]()#+.!|~:\-]/g,'\\$&');}
 export function markdown(task){
  const m=markdownText,r=task.result||{},lines=['# '+m(task.input.goal),'',`Status: ${m(task.status)}`,`Run: ${m(task.runs)}; checked: ${m(r.checkedAt||'pending')}`,'',m(r.report?.summary||'Source pack only. AI synthesis was not completed.'),''];
- for(const f of r.report?.findings||[])lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');
+ for(const f of r.report?.findings||[]){lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');for(const s of citedSources(f,r.sources))lines.push('  - Cited source metadata \(not proof of support\): '+m(s.title)+' — '+m(s.description||''));}
  lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));
  lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+m(s));
  lines.push('','## Sources');for(const s of r.sources||[]){const url=safeURL(s.url);lines.push(`- [${m(s.id)}] ${m(s.title)}\n  ${url?'<'+url.replace(/</g,'%3C').replace(/>/g,'%3E')+'>':'Local arithmetic / unavailable link'}\n  ${m(s.description||'')}`);}
