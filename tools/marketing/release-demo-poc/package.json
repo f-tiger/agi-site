@@ -1,0 +1,9 @@
+{
+  "name": "proposal-deck-isolated-demo-poc",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Bounded local UI capture experiment",
+  "dependencies": {
+    "playwright": "1.55.1"
+  }
+}

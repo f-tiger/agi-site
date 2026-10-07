@@ -1,0 +1,32 @@
+// Adapted from the existing mentor-report-01 capture flow: actual local UI, no external requests.
+import fs from 'node:fs';import path from 'node:path';import http from 'node:http';import crypto from 'node:crypto';import {createRequire} from 'node:module';
+const require=createRequire(import.meta.url),{chromium}=require('playwright');
+const [root,out,configPath,projectPath]=process.argv.slice(2);const config=JSON.parse(fs.readFileSync(configPath)),input=fs.readFileSync(projectPath,'utf8');fs.mkdirSync(out,{recursive:true});
+const hashes={config:crypto.createHash('sha256').update(fs.readFileSync(configPath)).digest('hex'),project:crypto.createHash('sha256').update(input).digest('hex'),source:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'source.json'))).digest('hex')};
+const server=http.createServer((req,res)=>{const p=new URL(req.url,'http://local').pathname;if(p==='/api/member'){res.writeHead(503,{'Content-Type':'application/json'}).end('{"ok":false,"ready":false,"localDemo":true}');return;}const file=path.resolve(root,'.'+(p==='/'?'/index.html':p));if(!file.startsWith(path.resolve(root)+path.sep)||p.startsWith('/api/')){res.writeHead(403).end();return;}try{res.writeHead(200,{'Content-Type':({'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css'})[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(fs.readFileSync(file));}catch{res.writeHead(404).end();}});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
+let browser;let report={status:'failed',input_hashes:hashes,started_at_utc:new Date().toISOString(),capture_method:'Playwright continuous video of an isolated local copy of unchanged product modules',source_url:base,production_requests:0,recordings:[]};
+try{
+ browser=await chromium.launch({headless:true});
+ async function take(format,viewport){
+  const dir=path.join(out,format);fs.mkdirSync(dir,{recursive:true});const ctx=await browser.newContext({viewport,recordVideo:{dir,size:viewport},serviceWorkers:'block'});const requests=[],blocked=[],errors=[];
+  await ctx.route('**/*',route=>{const url=route.request().url();requests.push(url);if(url.startsWith(base+'/'))return route.continue();blocked.push(url);return route.abort();});
+  const page=await ctx.newPage();page.on('pageerror',err=>errors.push(String(err.message)));const open=Date.now();await page.goto(base+'/?__ci=1',{waitUntil:'networkidle'});
+  if(await page.locator('#dk-export').count()!==1)throw Error('LOCAL_FEATURE_SELECTOR_MISSING');
+  if(errors.length)throw Error('PRODUCT_INIT_ERROR: '+errors.join(';'));
+  await page.locator('details summary').click();await page.locator('#dk-paste').fill(input);await page.locator('#dk-apply').click();await page.locator('details summary').click();
+  await page.addStyleTag({content:'.demo-cursor{position:fixed;width:22px;height:22px;border:3px solid #175bcc;background:#175bcc18;border-radius:50%;z-index:100000;pointer-events:none;left:-40px;top:-40px;transition:transform .12s}.demo-cursor.down{transform:scale(1.55);background:#175bcc55}'});
+  await page.evaluate(()=>{const c=document.createElement('div');c.className='demo-cursor';document.body.append(c);addEventListener('mousemove',e=>{c.style.left=(e.clientX-11)+'px';c.style.top=(e.clientY-11)+'px';});addEventListener('mousedown',()=>c.classList.add('down'));addEventListener('mouseup',()=>c.classList.remove('down'));});
+  const scroll=async s=>{await page.locator(s).evaluate(e=>e.scrollIntoView({behavior:'smooth',block:'center'}));await page.waitForTimeout(500);};
+  const click=async s=>{const b=await page.locator(s).boundingBox();if(b)await page.mouse.move(b.x+b.width/2,b.y+b.height/2,{steps:16});await page.locator(s).click();};
+  await scroll('#dk-preview');const zero=Date.now(),offset=(zero-open)/1000,actions=[];const mark=(action,latest)=>{const at=(Date.now()-zero)/1000;actions.push({action,at_seconds:at});if(at>latest)throw Error('ACTION_TIMING_OUT_OF_BOUNDS:'+action);};const until=async s=>{const remain=zero+s*1000-Date.now();if(remain>0)await page.waitForTimeout(remain);};
+  await page.screenshot({path:path.join(dir,'01-preview.png')});await until(5.0);mark('edit-start',5.7);await scroll('#dk-title');await click('#dk-title');await page.locator('#dk-title').fill('');await page.locator('#dk-title').pressSequentially(config.expected_title,{delay:65});mark('edit-complete',8.4);
+  await scroll('#dk-preview');mark('edited-preview-visible',9.5);await page.screenshot({path:path.join(dir,'02-edited.png')});await until(10.0);await scroll('#dk-source');await click('#dk-notes');mark('notes-visible',12.0);await page.screenshot({path:path.join(dir,'03-notes.png')});
+  await until(14.8);await scroll('#dk-export');await until(16);const downloadEvent=page.waitForEvent('download',{timeout:15000});await click('#dk-export');mark('download-clicked',17.2);const download=await downloadEvent;await download.saveAs(path.join(dir,'download.pptx'));if(await download.failure())throw Error('DOWNLOAD_FAILED');mark('download-complete',20.2);
+  await page.locator('#dk-status').waitFor({state:'visible'});await page.screenshot({path:path.join(dir,'04-downloaded.png')});await until(20.5);await scroll('#dk-preview');await page.mouse.move(viewport.width*.65,viewport.height*.45,{steps:24});await page.screenshot({path:path.join(dir,'05-preview.png')});await until(28.2);
+  const video=page.video();await ctx.close();const videoPath=await video.path();fs.renameSync(videoPath,path.join(dir,'capture.webm'));
+  if(blocked.length||errors.length)throw Error('UNEXPECTED_NETWORK_OR_PRODUCT_ERROR');
+  const rec={format,viewport,offset,duration:28,download:'download.pptx',video:'capture.webm',requests:requests.map(u=>u.replace(base,'LOCAL_ORIGIN')),blocked:[],page_errors:[],actions,captured_at_utc:new Date().toISOString()};fs.writeFileSync(path.join(dir,'capture.json'),JSON.stringify(rec,null,2));return rec;
+ }
+ report.recordings=await Promise.all([take('landscape',{width:1024,height:650}),take('portrait',{width:600,height:730})]);report.status='passed';
+}catch(e){report.reason=String(e.message);process.exitCode=1;}finally{await browser?.close();await new Promise(r=>server.close(r));report.finished_at_utc=new Date().toISOString();fs.writeFileSync(path.join(out,'capture-report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({status:report.status,reason:report.reason||null}));}

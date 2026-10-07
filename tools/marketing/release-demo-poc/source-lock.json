@@ -1,0 +1,34 @@
+{
+  "repository": "f-tiger/agi-site",
+  "source_commit": "66d7cc7495177294ec286b2f2ae447324597b180",
+  "files": [
+    {
+      "path": "sites/baipiaoji/assets/studio/deck-core.mjs",
+      "git_blob_sha": "2e386988045fd2cba6e4598faf9347fe2b69cf56"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/deck-export.mjs",
+      "git_blob_sha": "c7835d03b01e0a3d4cd2c8e0460289a6ec3d56bd"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/deck-app.mjs",
+      "git_blob_sha": "bcd0ed36dfeb786c696a1ae99b52c77dd13d3d83"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/deck-view.mjs",
+      "git_blob_sha": "375d7e4e1a1f3b8afa02d710fd75271e60cbcec8"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/deck.css",
+      "git_blob_sha": "96fc952a9dc0479ca167edec1789a9b897c96fa8"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/vendor/pptxgenjs-4.0.1.js",
+      "git_blob_sha": "c20c9445033558f594d28a2178e8c60d22d14870"
+    },
+    {
+      "path": "sites/baipiaoji/assets/studio/vendor/pptxgenjs-LICENSE.txt",
+      "git_blob_sha": "6c5b85e5e2c51be21146e84e984da59bc1bd22cf"
+    }
+  ]
+}

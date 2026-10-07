@@ -1,0 +1,14 @@
+# CPU-only primary media dependencies, Python 3.11/3.12, Ubuntu 24.04 x86_64.
+# Runtime wheel URL and SHA256 verified against PyPI 2026-10-07.
+# Pip validates the URL hash; no unpinned Kokoro package may be substituted.
+kokoro-onnx @ https://files.pythonhosted.org/packages/60/e1/a27e5a70a525a5ee1fd5357596f07b724d02ff317f134e86cb6e3d9db968/kokoro_onnx-0.6.1-py3-none-any.whl#sha256=50c8de4950d601df41428ee5462a48c8a78bef441bf671f2492e070ef44d8a32
+onnxruntime==1.23.2
+numpy==2.2.6
+espeakng-loader==0.2.4
+phonemizer==3.4.0
+soundfile==0.13.1
+# Transitive dependencies are resolved by pip; setup_media.py saves actual
+# pip freeze + package metadata + bundled notices. This is not a complete
+# hash-locked transitive lockfile. Install with --report to retain wheel hashes.
+
+Pillow==11.3.0

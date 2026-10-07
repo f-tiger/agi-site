@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "product": "bpj-proposal-deck",
+  "values": {
+    "title": "Lark Coffee launch · fictional demo",
+    "client": "Lark Coffee · fictional demo",
+    "author": "Demo Studio · fictional",
+    "brief": "Fictional demonstration only. Show editable text exported from the existing free ProposalDeck. No customer, revenue, delivery or savings claim.",
+    "theme": "blue",
+    "language": "en",
+    "demo": true,
+    "slides": [
+      {
+        "type": "cover",
+        "title": "A clearer coffee launch",
+        "body": "One product page\nThree clearly explained blends\nA concise handover checklist\nFictional example, not a client engagement",
+        "source": "Fictional demonstration. All names and project details are invented.",
+        "notes": "This is a fictional input used to verify the existing free native PPTX export. No commercial outcome is implied."
+      }
+    ]
+  }
+}

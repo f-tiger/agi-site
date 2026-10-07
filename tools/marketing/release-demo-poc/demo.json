@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "product": "BPJ ProposalDeck",
+  "feature": "native-editable-pptx",
+  "expected_title": "A focused coffee launch",
+  "template": "proposal-demo-01",
+  "duration_seconds": 28,
+  "voice": "af_heart",
+  "scenes": [
+    {"at": 0, "duration": 5, "label": "ONE FREE EXPORT", "heading": "Keep the deck editable.", "narration": "Turn this draft into an editable PowerPoint."},
+    {"at": 5, "duration": 5, "label": "EDIT THE DRAFT", "heading": "Make the title yours.", "narration": "Change the title. The preview follows your edits."},
+    {"at": 10, "duration": 5, "label": "KEEP THE CONTEXT", "heading": "Sources. Speaker notes.", "narration": "Keep the source and speaker notes with the slide."},
+    {"at": 15, "duration": 6, "label": "DOWNLOAD THE FILE", "heading": "A real PowerPoint file.", "narration": "Download the actual PowerPoint file, with native editable text."},
+    {"at": 21, "duration": 7, "label": "INSPECT THE RESULT", "heading": "Open it. Check it. Share.", "narration": "Creation and exports are free. Check the file before sharing."}
+  ]
+}

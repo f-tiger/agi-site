@@ -1,0 +1,78 @@
+name: ProposalDeck isolated release demo POC
+on:
+  push:
+    branches: [codex/release-demo-poc-20261007]
+    paths:
+      - tools/marketing/release-demo-poc/**
+      - .github/workflows/release-demo-poc.yml
+permissions:
+  contents: read
+concurrency:
+  group: proposal-deck-isolated-demo-poc
+  cancel-in-progress: false
+jobs:
+  demo:
+    if: github.ref == 'refs/heads/codex/release-demo-poc-20261007'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: tools/marketing/release-demo-poc
+    env:
+      POC_REPO_ROOT: ${{ github.workspace }}
+      POC_SOURCE_COMMIT: 66d7cc7495177294ec286b2f2ae447324597b180
+      KOKORO_MODEL_DIR: ${{ runner.temp }}/release-demo-models
+      MEDIA_EVIDENCE_DIR: ${{ github.workspace }}/tools/marketing/release-demo-poc/artifacts/media-evidence
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.11'
+      - name: Install official local media and browser dependencies
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg libreoffice-impress poppler-utils fonts-dejavu-core espeak-ng
+          python -m venv .venv
+          .venv/bin/python -m pip install --report artifacts/pip-install-report.json -r requirements.txt
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          npm install --ignore-scripts --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          npm list playwright playwright-core --json > artifacts/npm-versions.json
+          { node --version; python --version; ffmpeg -version; soffice --version; } > artifacts/system-versions.txt
+          ffmpeg -L > artifacts/ffmpeg-license.txt 2>&1
+          cp /usr/share/doc/fonts-dejavu-core/copyright artifacts/font-copyright.txt
+      - name: Verify exact assets and license evidence before inference
+        run: python setup_media.py
+      - name: Test safety gates before capture
+        run: |
+          set -euo pipefail
+          python -m unittest -v test_config test_setup_media 2>&1 | tee artifacts/unit-tests.txt
+          node --check prepare.mjs
+          node --check capture.mjs
+          python -m py_compile *.py
+      - name: Capture, validate, revise JSON only, restore and reject local missing-feature fixture
+        run: python gates.py
+      - name: Run structural adversarial tests against fresh browser download
+        env:
+          TEST_PPTX_PATH: out/baseline/capture/landscape/download.pptx
+        run: |
+          set -euo pipefail
+          python -m unittest -v test_validation 2>&1 | tee -a artifacts/unit-tests.txt
+      - name: Stage only permitted media, reusable code and evidence
+        if: always()
+        run: python stage_artifacts.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: proposal-deck-release-demo-poc
+          path: tools/marketing/release-demo-poc/artifacts/deliverable/
+          retention-days: 1
+          compression-level: 6
+          if-no-files-found: error
