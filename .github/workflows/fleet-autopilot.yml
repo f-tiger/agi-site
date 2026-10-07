@@ -112,16 +112,6 @@ jobs:
       - name: Test fleet evolution decision engine
         run: python3 tools/fleet/test_evolution.py
 
-      - name: Snapshot independent membership health and counters
-        id: membership
-        continue-on-error: true
-        env:
-          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
-        run: |
-          FLAGS=""
-          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
-          node tools/fleet/membership_snapshot.mjs $FLAGS
-
       - name: Build fleet opportunity and upgrade manifests
         id: evolution
         run: |
@@ -301,3 +291,13 @@ jobs:
         run: |
           echo "::error::Web3 audit failed; inspect the current report or timeout log."
           exit 1
+
+
+  # This aggregate report must not depend on algorithm, content or growth success.
+  # The reusable workflow also supports an isolated reporting-only run.
+  membership-report:
+    uses: ./.github/workflows/fleet-membership-report.yml
+    with:
+      dry_run: ${{ inputs.dry_run == true }}
+    secrets:
+      ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}

@@ -1,0 +1,115 @@
+name: Fleet membership report
+
+# Aggregate reporting only. Daily cadence comes from fleet-autopilot's existing
+# independent job; no new cron, growth task, watcher, deployment or IndexNow call.
+on:
+  workflow_call:
+    inputs:
+      dry_run:
+        type: boolean
+        default: false
+    secrets:
+      ADS_WATCH_SECRET:
+        required: false
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run mocked tests only; do not contact live services"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fleet-membership-report.yml'
+      - '.github/workflows/fleet-autopilot.yml'
+      - 'tools/fleet/*membership*'
+  pull_request:
+    paths:
+      - '.github/workflows/fleet-membership-report.yml'
+      - '.github/workflows/fleet-autopilot.yml'
+      - 'tools/fleet/*membership*'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test missing, partial, malformed, stale and zero counters without live requests
+        run: |
+          node --test tools/fleet/membership_snapshot.test.mjs tools/fleet/test_membership_totals.mjs
+          python3 tools/fleet/test_membership_snapshot.py
+
+  report:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && inputs.dry_run != true
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: fleet-membership-report
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test the current main collector before contacting live services
+        run: |
+          node --test tools/fleet/membership_snapshot.test.mjs tools/fleet/test_membership_totals.mjs
+          python3 tools/fleet/test_membership_snapshot.py
+      - name: Record this report start
+        id: clock
+        run: echo "started=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+      # Uses the existing secret and stats actions only. These API handlers may
+      # initialize schema; this is not advertised as a strictly read-only audit.
+      - name: Collect only aggregate membership health and counters
+        id: collect
+        timeout-minutes: 2
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node tools/fleet/membership_snapshot.mjs
+      - name: Reject stale or misleading evidence and summarize availability
+        id: current
+        if: always() && steps.collect.outcome == 'success'
+        run: python3 tools/fleet/check_membership_snapshot.py --since "${{ steps.clock.outputs.started }}" --summary "$GITHUB_STEP_SUMMARY"
+      - name: Preserve only this run's aggregate report
+        if: always() && steps.current.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fleet-membership-${{ github.run_id }}-${{ github.run_attempt }}
+          path: data/fleet-evolution/membership.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Commit only the validated current report
+        if: always() && steps.current.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/fleet-evolution/membership.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(fleet): refresh aggregate membership report ${{ steps.clock.outputs.started }}"
+          for i in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            if [ -n "$(git ls-files -u)" ]; then
+              echo "::error::Concurrent membership report conflict; inspect the saved artifact."
+              exit 1
+            fi
+            sleep $((2**i))
+          done
+          echo "::error::Could not persist membership report after three attempts."
+          exit 1
+      - name: Expose incomplete collection after preserving its evidence
+        if: always() && steps.current.outcome == 'success'
+        run: python3 tools/fleet/check_membership_snapshot.py --since "${{ steps.clock.outputs.started }}" --require-available
