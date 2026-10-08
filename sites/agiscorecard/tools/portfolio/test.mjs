@@ -12,6 +12,7 @@ import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 test('fixed public analytics events accept no private fields',()=>{assert.equal(businessEvent('agiscorecard.com','/zh/portfolio-tracker',{name:'portfolio_cloud_intent'}).tool_id,PRODUCT);assert.equal(businessEvent('agiscorecard.com','/portfolio-tracker',{name:'portfolio_stress',capital:10000}),null);assert.equal(businessEvent('agiscorecard.com','/invest',{name:'portfolio_stress'}),null);});
 
 import {validateSnapshot} from '../../portfolio-assets/core.mjs';
+import {refreshFixtures} from './browser-fixtures.mjs';
 import {marketSymbols,widgetURL} from '../../portfolio-assets/market.mjs';
 import fs from 'node:fs';
 const registered=JSON.parse(fs.readFileSync(new URL('../../portfolio-assets/snapshot.json',import.meta.url))),manifest=JSON.parse(fs.readFileSync(new URL('../../portfolio-assets/manifest.json',import.meta.url)));
@@ -22,6 +23,21 @@ test('dynamic widgets cover the fixed basket and use isolated provider URLs with
 });
 test('the committed observation satisfies the registered snapshot contract',()=>{
  assert.equal(validateSnapshot(registered),registered);
+});
+test('browser refresh fixtures stay newer than the published observation and retain a real rollback case',()=>{
+ const future=structuredClone(registered),keys=[...manifest.stocks,...manifest.benchmarks].map(x=>x.ticker).concat('basket');
+ Object.assign(future,{status:'tracking',as_of:'2036-12-31',dates:[manifest.entry_session,'2036-12-31'],series:Object.fromEntries(keys.map(k=>[k,[100,105]])),metrics:Object.fromEntries(keys.map(k=>[k,{return_pct:5,max_drawdown_pct:0,excess_spy_pp:0}]))});
+ const awaiting={...registered,status:'awaiting_entry',as_of:null,dates:[],series:{},metrics:{}};
+ for(const published of [registered,future,awaiting]){
+  const before=structuredClone(published),f=refreshFixtures(published,manifest);
+  assert.equal(validateSnapshot(published),published);
+  assert.ok(f.first.as_of>(published.as_of||manifest.entry_session));assert.ok(f.second.as_of>f.first.as_of);
+  assert.equal(validateSnapshot(f.first,published),f.first);assert.equal(validateSnapshot(f.second,f.first),f.second);
+  assert.equal(f.first.metrics.basket.return_pct,10);assert.equal(f.second.metrics.basket.return_pct,12);
+  assert.equal(f.rollback,published);assert.throws(()=>validateSnapshot(f.rollback,f.second),new Error('rollback'));
+  assert.deepEqual(refreshFixtures(published,manifest),f);assert.deepEqual(published,before);
+ }
+ assert.equal(refreshFixtures(future,manifest).first.as_of,'2037-01-01');
 });
 test('a refresh rejects corrupt and rollback records before replacing the last complete observation',()=>{
  const keys=marketSymbols.map(x=>x.ticker).concat('basket');
