@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-07T09:12:07.697Z",
+  "asOf": "2026-10-08T09:25:41.541Z",
   "ok": true,
   "checks": [
     {
@@ -15,19 +15,7 @@
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "reconcile.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,11 +23,11 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "permit.agiscorecard.com",
+      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -47,7 +35,7 @@
       "ok": true
     },
     {
-      "name": "disclosures.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +43,19 @@
       "ok": true
     },
     {
-      "name": "calls.agiscorecard.com",
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-07T09:12:08.114Z",
+      "retrievedAt": "2026-10-08T09:25:41.924Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 83916.19691750669,
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "price": 82971.77421464039,
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2608.436020625581,
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "price": 2560.794463130724,
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9998885664997432,
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
-          "deviationBps": -1.1143350025677456
+          "price": 0.9996565573700994,
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "deviationBps": -3.4344262990060326
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9998277617894967,
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
-          "deviationBps": -1.722382105032727
+          "price": 0.9994283278908136,
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "deviationBps": -5.716721091864052
         }
       ],
       "source": {
@@ -110,70 +110,25 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-07T09:12:08.346Z",
+      "retrievedAt": "2026-10-08T09:25:42.014Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-07T09:12:08.025Z"
+          "checkedAt": "2026-10-08T09:25:41.795Z"
         },
         {
           "id": "x402",
-          "status": "ok",
-          "checkedAt": "2026-10-07T09:12:08.025Z"
+          "status": "unavailable",
+          "checkedAt": "2026-10-08T09:25:41.810Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-10-07T09:12:08.025Z"
+          "checkedAt": "2026-10-08T09:25:41.795Z"
         }
       ],
       "items": [
-        {
-          "title": "Document settlement metadata (`m`) field in builder-code extension (#3711)",
-          "url": "https://github.com/x402-foundation/x402/commit/10b2d06b9472bc467d139b272d01bface38ae2d8",
-          "publishedAt": "2026-10-06T16:23:28.000Z",
-          "source": "x402 Foundation repository",
-          "sourceId": "x402",
-          "kind": "commits",
-          "task": "stablecoin"
-        },
-        {
-          "title": "feat(builder-code): add facilitator-authored settlement metadata (m) (#3666)",
-          "url": "https://github.com/x402-foundation/x402/commit/1566e13f3dbe12ca211761b0bb30215cb10471aa",
-          "publishedAt": "2026-10-06T16:08:52.000Z",
-          "source": "x402 Foundation repository",
-          "sourceId": "x402",
-          "kind": "commits",
-          "task": "stablecoin"
-        },
-        {
-          "title": "Document auth-capture v1.1 SDK support (#3708)",
-          "url": "https://github.com/x402-foundation/x402/commit/586e55f885fcdf3289c146fc44ab2b8cb3613e5e",
-          "publishedAt": "2026-10-06T14:57:45.000Z",
-          "source": "x402 Foundation repository",
-          "sourceId": "x402",
-          "kind": "commits",
-          "task": "stablecoin"
-        },
-        {
-          "title": "feat(ts): auth capture sdk v1.1 (#3203)",
-          "url": "https://github.com/x402-foundation/x402/commit/28376d643a6d9492e4a6cbfa5199376b90eb89dc",
-          "publishedAt": "2026-10-06T14:53:52.000Z",
-          "source": "x402 Foundation repository",
-          "sourceId": "x402",
-          "kind": "commits",
-          "task": "stablecoin"
-        },
-        {
-          "title": "feat: add EVM auth capture to go server & facilitator SDKs (#3622)",
-          "url": "https://github.com/x402-foundation/x402/commit/cb0ec5bca0a5b21860a36bb60f34433c2e8e0d71",
-          "publishedAt": "2026-10-05T15:45:18.000Z",
-          "source": "x402 Foundation repository",
-          "sourceId": "x402",
-          "kind": "commits",
-          "task": "stablecoin"
-        },
         {
           "title": "How native transaction assertions could enforce a transaction's final outcome",
           "url": "https://blog.ethereum.org/en/2026/10/05/transaction-assertions",
@@ -223,126 +178,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-07T09:12:08.917Z",
+      "retrievedAt": "2026-10-08T09:25:42.561Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -2.4307510121898246,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -1.1559751186706935,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": 1.0765590242244105,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -0.6904318495108974,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -3.9529521117800503,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -1.8834014342206773,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": -2.2885819652674666,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -4.680566553436572,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -0.009119220902931158,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -0.018979404995578264,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": 0.007766258945252069,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -0.020844940703446113,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -0.0036471460324927207,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -0.035832256395706974,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": 0.020500396808187382,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -0.01617151066258815,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -1.745252452554935,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -5.689763110155077,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": -1.109317709859925,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -8.11943366825294,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:15:40.000Z",
           "day": {
-            "percent": -2.3521330354945857,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -2.645864260995634,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:15:40.000Z"
           },
           "week": {
-            "percent": 5.954767561550978,
-            "from": "2026-09-30T09:01:50.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": 5.584145151718567,
+            "from": "2026-10-01T09:01:40.000Z",
+            "to": "2026-10-08T09:15:40.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-07T09:10:50.000Z",
+          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
           "day": {
-            "percent": -9.080485336458743,
-            "from": "2026-10-06T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": 0.6930918744839865,
+            "from": "2026-10-07T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           },
           "week": {
-            "percent": 4.6490091558189395,
-            "from": "2026-09-30T09:00:00.000Z",
-            "to": "2026-10-07T09:10:50.000Z"
+            "percent": -1.3440598995954844,
+            "from": "2026-10-01T09:00:00.000Z",
+            "to": "2026-10-08T09:22:10.000Z"
           }
         },
         {
           "symbol": "AKT",
-          "status": "stale",
-          "sourceUpdatedAt": "2026-10-07T08:52:00.000Z",
-          "day": null,
-          "week": null
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-10-08T09:20:30.000Z",
+          "day": {
+            "percent": -0.9523550635584743,
+            "from": "2026-10-07T08:52:00.000Z",
+            "to": "2026-10-08T09:20:30.000Z"
+          },
+          "week": {
+            "percent": 10.779175013530606,
+            "from": "2026-10-01T08:51:50.000Z",
+            "to": "2026-10-08T09:20:30.000Z"
+          }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-07T09:12:09.877Z",
+    "asOf": "2026-10-08T09:25:43.678Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -351,36 +314,7 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/10b2d06b9472bc467d139b272d01bface38ae2d8",
-      "title": "Document settlement metadata (`m`) field in builder-code extension (#3711)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/1566e13f3dbe12ca211761b0bb30215cb10471aa",
-      "title": "feat(builder-code): add facilitator-authored settlement metadata (m) (#3666)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/586e55f885fcdf3289c146fc44ab2b8cb3613e5e",
-      "title": "Document auth-capture v1.1 SDK support (#3708)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/28376d643a6d9492e4a6cbfa5199376b90eb89dc",
-      "title": "feat(ts): auth capture sdk v1.1 (#3203)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    }
-  ],
+  "changes": [],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
