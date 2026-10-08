@@ -354,7 +354,110 @@ async function topQueries(token, d) {
   return { error: errors.join(' || ') };
 }
 
+// One-time metadata preflight, never a SQL execution path. Uses only the exact
+// credential already verified by the existing report; no token fallback.
+export const D1_METADATA_PREFLIGHT = Object.freeze({
+  before: 'dbe53224ff2a2db4ad1cb38deb8881fd61a95092',
+  message: 'diagnostic: one-time D1 metadata preflight 2026-10-08',
+  ref: 'refs/heads/claude/bpj-revenue-tools-9qtufj',
+  repository: 'f-tiger/agi-site',
+  runNumber: '5', // Prior verified diagnostic run was number 4; fail closed if displaced.
+  maxResponseBytes: 16384,
+  timeoutMs: 10000,
+});
+
+export function d1MetadataTrigger(env, event) {
+  return env.GITHUB_EVENT_NAME === 'push' && env.GITHUB_RUN_ATTEMPT === '1'
+    && env.GITHUB_RUN_NUMBER === D1_METADATA_PREFLIGHT.runNumber
+    && env.GITHUB_WORKFLOW_REF === `${D1_METADATA_PREFLIGHT.repository}/.github/workflows/d1-usage.yml@${D1_METADATA_PREFLIGHT.ref}`
+    && env.GITHUB_REPOSITORY === D1_METADATA_PREFLIGHT.repository
+    && env.GITHUB_REF === D1_METADATA_PREFLIGHT.ref
+    && event?.ref === D1_METADATA_PREFLIGHT.ref
+    && event?.before === D1_METADATA_PREFLIGHT.before
+    && /^[0-9a-f]{40}$/.test(env.GITHUB_SHA || '')
+    && event?.after === env.GITHUB_SHA && event?.head_commit?.id === env.GITHUB_SHA
+    && event?.head_commit?.message === D1_METADATA_PREFLIGHT.message
+    && event?.deleted === false && event?.forced === false;
+}
+
+export function d1MetadataFields(body, databaseId) {
+  const result = body?.result;
+  if (body?.success !== true || !Array.isArray(body.errors) || body.errors.length
+      || result?.uuid !== databaseId || !Number.isSafeInteger(result.file_size)
+      || result.file_size <= 0) throw Error('invalid_or_unknown_metadata');
+  // Cloudflare marks num_tables deprecated/inaccurate. Never infer row count,
+  // table presence, permission to query, or a query budget from this field.
+  const num_tables = Number.isSafeInteger(result.num_tables) && result.num_tables >= 0
+    ? result.num_tables : null;
+  return {uuid: result.uuid, file_size: result.file_size, num_tables};
+}
+
+async function d1MetadataBody(response) {
+  const reader = response.body?.getReader();
+  if (!reader) throw Error('missing_response_body');
+  const chunks = []; let bytes = 0;
+  while (true) {
+    const {done, value} = await reader.read();
+    if (done) break;
+    bytes += value.byteLength;
+    if (bytes > D1_METADATA_PREFLIGHT.maxResponseBytes) {
+      await reader.cancel(); throw Error('response_bound_exceeded');
+    }
+    chunks.push(value);
+  }
+  const combined = new Uint8Array(bytes); let offset = 0;
+  for (const chunk of chunks) {combined.set(chunk, offset); offset += chunk.byteLength;}
+  try {return JSON.parse(new TextDecoder('utf-8', {fatal: true}).decode(combined));}
+  catch {throw Error('invalid_response_json');}
+}
+
+export async function d1MetadataPreflight(token, account, request = fetch, emit = say) {
+  if (!token || !/^[0-9a-f]{32}$/.test(account || '')) {
+    emit('D1_METADATA_PREFLIGHT stopped: existing token/account unavailable; no requests.'); return 1;
+  }
+  emit('D1_METADATA_PREFLIGHT: at most four GETs, sequential, no retries, no SQL, no other credentials.');
+  emit('Source credential: CLOUDFLARE_API_TOKEN in the existing diagnostic job only.');
+  let requested = 0;
+  for (const site of MEMBERSHIP_SITES) {
+    let phase = 'request', status = null;
+    try {
+      requested++;
+      const response = await request(`https://api.cloudflare.com/client/v4/accounts/${account}/d1/database/${site.databaseId}?fields=uuid,file_size,num_tables`, {
+        method: 'GET', headers: {authorization: `Bearer ${token}`},
+        redirect: 'error', signal: AbortSignal.timeout(D1_METADATA_PREFLIGHT.timeoutMs),
+      });
+      status = response.status;
+      if (!response.ok) {
+        emit(`D1_METADATA_PREFLIGHT ${JSON.stringify({site: site.site, status: [401, 403].includes(status) ? 'authorization_denied' : 'http_error', http_status: status, requests_attempted: requested})}`);
+        emit('Stopped without retries, alternate credentials, SQL, or access changes. Query permission and query cost remain unknown.'); return 1;
+      }
+      phase = 'metadata_validation';
+      const data = d1MetadataFields(await d1MetadataBody(response), site.databaseId);
+      emit(`D1_METADATA_PREFLIGHT ${JSON.stringify({site: site.site, status: 'metadata_read_granted', ...data})}`);
+    } catch {
+      emit(`D1_METADATA_PREFLIGHT ${JSON.stringify({site: site.site, status: 'unavailable_or_uncertain', phase, http_status: status, requests_attempted: requested})}`);
+      emit('Stopped on unknown metadata, malformed/oversized response, transport error, or deadline. No retry or SQL; raw provider text is discarded.'); return 1;
+    }
+  }
+  emit('Metadata preflight complete. num_tables is deprecated/inaccurate. No EXPLAIN or SELECT was executed; query permission/cost and collector readiness remain unverified/CLOSED.');
+  return 0;
+}
+
+async function maybeD1MetadataPreflight() {
+  if (process.env.GITHUB_EVENT_NAME !== 'push' || process.env.GITHUB_RUN_ATTEMPT !== '1') return null;
+  let event;
+  try {
+    const {readFileSync} = await import('node:fs');
+    event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+  } catch {return null;}
+  if (!d1MetadataTrigger(process.env, event)) return null;
+  return d1MetadataPreflight((process.env.CLOUDFLARE_API_TOKEN || '').trim(), ACCOUNT);
+}
+
+
 async function main() {
+  const metadataPreflight = await maybeD1MetadataPreflight();
+  if (metadataPreflight !== null) return metadataPreflight;
   const tokens = [];
   for (const v of TOKEN_VARS) {
     const t = (process.env[v] || '').trim();
@@ -515,6 +618,74 @@ if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
     globalThis.fetch = async () => {calls++; return new Response('private error body offline-fixture', {status: 502});};
     assert.equal((await gql('offline-fixture', Q_MEMBERSHIP_SCHEMA, {}, true)).error, 'HTTP 502, invalid JSON');
     globalThis.fetch = originalFetch; assert.equal(calls, 3);
+    // Metadata preflight fixtures never use the real token or network.
+    const probeEnv = {GITHUB_EVENT_NAME: 'push', GITHUB_RUN_ATTEMPT: '1',
+      GITHUB_RUN_NUMBER: D1_METADATA_PREFLIGHT.runNumber,
+      GITHUB_WORKFLOW_REF: `${D1_METADATA_PREFLIGHT.repository}/.github/workflows/d1-usage.yml@${D1_METADATA_PREFLIGHT.ref}`,
+      GITHUB_REPOSITORY: D1_METADATA_PREFLIGHT.repository, GITHUB_REF: D1_METADATA_PREFLIGHT.ref,
+      GITHUB_SHA: 'a'.repeat(40)};
+    const probeEvent = {ref: D1_METADATA_PREFLIGHT.ref, before: D1_METADATA_PREFLIGHT.before,
+      after: probeEnv.GITHUB_SHA, head_commit: {id: probeEnv.GITHUB_SHA, message: D1_METADATA_PREFLIGHT.message},
+      deleted: false, forced: false};
+    assert.equal(d1MetadataTrigger(probeEnv, probeEvent), true);
+    for (const patch of [{GITHUB_EVENT_NAME: 'workflow_dispatch'}, {GITHUB_RUN_ATTEMPT: '2'},
+      {GITHUB_RUN_NUMBER: '6'}, {GITHUB_WORKFLOW_REF: 'other'},
+      {GITHUB_REPOSITORY: 'other/repo'}, {GITHUB_REF: 'refs/heads/main'}, {GITHUB_SHA: ''}]) {
+      assert.equal(d1MetadataTrigger({...probeEnv, ...patch}, probeEvent), false);
+    }
+    for (const patch of [{before: 'b'.repeat(40)}, {after: 'b'.repeat(40)}, {forced: true},
+      {deleted: true}, {head_commit: {...probeEvent.head_commit, message: 'future change'}}]) {
+      assert.equal(d1MetadataTrigger(probeEnv, {...probeEvent, ...patch}), false);
+    }
+    const fixtureToken = 'offline-fixture-token', fixtureAccount = 'a'.repeat(32);
+    const metadataFixture = entry => ({success: true, errors: [], result: {
+      uuid: entry.databaseId, file_size: 4096, num_tables: 1,
+      private_extra: 'private-fixture-must-not-be-logged'}});
+    let metadataCalls = 0, metadataOutput = [];
+    const fakeMetadata = async (url, options) => {
+      const entry = MEMBERSHIP_SITES[metadataCalls++];
+      assert.equal(url, `https://api.cloudflare.com/client/v4/accounts/${fixtureAccount}/d1/database/${entry.databaseId}?fields=uuid,file_size,num_tables`);
+      assert.equal(options.method, 'GET'); assert.equal(options.redirect, 'error'); assert(options.signal);
+      assert.equal(options.headers.authorization, `Bearer ${fixtureToken}`); assert.equal(options.body, undefined);
+      return new Response(JSON.stringify(metadataFixture(entry)), {status: 200});
+    };
+    assert.equal(await d1MetadataPreflight(fixtureToken, fixtureAccount, fakeMetadata, line => metadataOutput.push(line)), 0);
+    assert.equal(metadataCalls, 4);
+    assert(!metadataOutput.join('\n').includes('private-fixture'));
+    assert(!metadataOutput.join('\n').includes(fixtureToken));
+    assert(!metadataOutput.join('\n').includes(fixtureAccount));
+    const fields = d1MetadataFields(metadataFixture(site), site.databaseId);
+    assert.deepEqual(Object.keys(fields).sort(), ['file_size', 'num_tables', 'uuid']);
+    const missingTables = metadataFixture(site); delete missingTables.result.num_tables;
+    assert.equal(d1MetadataFields(missingTables, site.databaseId).num_tables, null);
+    for (const mutate of [body => {body.success = false;}, body => {body.errors = [{message: 'private-fixture'}];},
+      body => {body.result.uuid = 'other';}, body => {delete body.result.file_size;},
+      body => {body.result.file_size = 0;}, body => {body.result.file_size = '4096';}]) {
+      const body = metadataFixture(site); mutate(body);
+      assert.throws(() => d1MetadataFields(body, site.databaseId));
+    }
+    // Stop the entire batch on any error, including a failure after one success.
+    for (const failure of [() => new Response('private-fixture', {status: 401}),
+      () => new Response('private-fixture', {status: 403}),
+      () => new Response('private-fixture', {status: 429}),
+      () => new Response('private-fixture', {status: 500}),
+      () => new Response('not-json-private-fixture'),
+      () => new Response('x'.repeat(D1_METADATA_PREFLIGHT.maxResponseBytes + 1)),
+      () => new Response(JSON.stringify({success: false, errors: [{message: fixtureToken}]})),
+      () => {throw Error('timeout-private-fixture');}]) {
+      let failedCalls = 0; const lines = [];
+      assert.equal(await d1MetadataPreflight(fixtureToken, fixtureAccount, async () => {
+        failedCalls++;
+        return failedCalls === 1 ? new Response(JSON.stringify(metadataFixture(site))) : failure();
+      }, line => lines.push(line)), 1);
+      assert.equal(failedCalls, 2); assert(!lines.join('\n').includes('private-fixture'));
+      assert(!lines.join('\n').includes(fixtureToken));
+    }
+    metadataCalls = 0;
+    assert.equal(await d1MetadataPreflight('', fixtureAccount, fakeMetadata, () => {}), 1);
+    assert.equal(await d1MetadataPreflight(fixtureToken, 'invalid-account', fakeMetadata, () => {}), 1);
+    assert.equal(metadataCalls, 0);
+    console.log('d1 metadata selftest ok (one-time event gate, exact four GETs, bounds, fail-closed, no raw data/credentials, no SQL)');
     console.log('d1_usage selftest ok (redaction, exact allowlist, bounds, missing/zero distinction, projection, adversarial metrics, offline GraphQL)');
     process.exit(0);
   }
@@ -526,4 +697,5 @@ if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
     process.exit(code);
   }, () => { console.error('D1 analytics unavailable or authorization denied; stopped without access changes.'); process.exit(1); });
 }
+
 
