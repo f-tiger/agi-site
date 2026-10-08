@@ -56,3 +56,10 @@ The first v14 release run, [37711079873](https://github.com/f-tiger/agi-site/act
 
 The model, prompt, D1 schema, retention, trial receipts, free registration, task limits and two-hour maintenance schedule are unchanged. GA4 continues to accept only the existing fixed correction events. English/Chinese pages and AI-readable mirrors retain the same honest product scope; sitemap `lastmod` is updated to 2026-10-08. IndexNow remains the existing weekly/manual process, with no per-push submission.
 
+## Final release result
+
+- [Release run 37711504555](https://github.com/f-tiger/agi-site/actions/runs/37711504555) passed the full build, all-site Chromium suite, GA4/privacy checks, deployment and live verification. The corrected English and Chinese Jarvis browser flows covered the selected-finding draft, cited hostile title as inert text, exclusion of source description, zero task/feedback side effects, registration continuity, mobile layout, pause/reload/delete and workspace isolation.
+- Production reports `jarvis-20261008-14` at [English Jarvis](https://agiscorecard.com/jarvis) and [Chinese Jarvis](https://agiscorecard.com/zh/jarvis). Both pages and the versioned app asset returned HTTP 200 and contained the new control.
+- Live API metadata still reports one guest task, free registration after the trial, no paid/member requirement, 12 shared attempts per 24 hours, 3 attempts per IP window and one model call for a new task. The final live check created no account, task, payment or AI call.
+- No IndexNow submission was added or triggered. Real customer usage, feedback, repeat use, token consumption for this zero-call control and retention remain unknown until permission-safe aggregates exist.
+
