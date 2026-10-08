@@ -455,7 +455,85 @@ async function maybeD1MetadataPreflight() {
 }
 
 
+// One additional owner-requested refusal diagnosis. Same BPJ route and existing
+// credential as run 5. Capture only bounded numeric provider codes, never text.
+export const D1_REFUSAL_DIAGNOSTIC = Object.freeze({
+  before: 'fe9b38938e1c6fd58134611a95d9a14cfdc37963',
+  message: 'diagnostic: capture one D1 refusal code 2026-10-08',
+  runNumber: '6',
+  databaseId: '1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05',
+});
+
+export function d1RefusalTrigger(env, event) {
+  return env.GITHUB_EVENT_NAME === 'push' && env.GITHUB_RUN_ATTEMPT === '1'
+    && env.GITHUB_RUN_NUMBER === D1_REFUSAL_DIAGNOSTIC.runNumber
+    && env.GITHUB_WORKFLOW_REF === `${D1_METADATA_PREFLIGHT.repository}/.github/workflows/d1-usage.yml@${D1_METADATA_PREFLIGHT.ref}`
+    && env.GITHUB_REPOSITORY === D1_METADATA_PREFLIGHT.repository
+    && env.GITHUB_REF === D1_METADATA_PREFLIGHT.ref
+    && event?.ref === D1_METADATA_PREFLIGHT.ref
+    && event?.before === D1_REFUSAL_DIAGNOSTIC.before
+    && /^[0-9a-f]{40}$/.test(env.GITHUB_SHA || '')
+    && event?.after === env.GITHUB_SHA && event?.head_commit?.id === env.GITHUB_SHA
+    && event?.head_commit?.message === D1_REFUSAL_DIAGNOSTIC.message
+    && event?.deleted === false && event?.forced === false;
+}
+
+export function d1RefusalCodes(body) {
+  // Strict field/type/range allowlist, four unique codes at most. Do not coerce
+  // strings or serialize anything else from the provider response.
+  if (!Array.isArray(body?.errors)) return [];
+  return [...new Set(body.errors.map(e => e?.code)
+    .filter(c => Number.isSafeInteger(c) && c >= 1000 && c <= 99999))].slice(0, 4);
+}
+
+export async function d1RefusalDiagnostic(token, account, request = fetch, emit = say) {
+  if (!token || !/^[0-9a-f]{32}$/.test(account || '')) {
+    emit('D1_REFUSAL_DIAGNOSTIC stopped: existing token/account unavailable; no requests.'); return 1;
+  }
+  let status = null;
+  try {
+    const response = await request(`https://api.cloudflare.com/client/v4/accounts/${account}/d1/database/${D1_REFUSAL_DIAGNOSTIC.databaseId}?fields=uuid,file_size,num_tables`, {
+      method: 'GET', headers: {authorization: `Bearer ${token}`},
+      redirect: 'error', signal: AbortSignal.timeout(D1_METADATA_PREFLIGHT.timeoutMs),
+    });
+    status = response.status;
+    if (response.ok) {
+      // A successful response is not an instruction to read data or continue.
+      await response.body?.cancel();
+      emit(`D1_REFUSAL_DIAGNOSTIC ${JSON.stringify({site: 'bpj', status: 'metadata_read_granted', http_status: status, requests_attempted: 1})}`);
+      return 0;
+    }
+    let codes = [];
+    try {codes = d1RefusalCodes(await d1MetadataBody(response));} catch {}
+    emit(`D1_REFUSAL_DIAGNOSTIC ${JSON.stringify({site: 'bpj', status: [401, 403].includes(status) ? 'authorization_denied' : 'http_error', http_status: status, provider_codes: codes, provider_code_status: codes.length ? 'captured' : 'unavailable_or_invalid', requests_attempted: 1})}`);
+    return 1;
+  } catch {
+    emit(`D1_REFUSAL_DIAGNOSTIC ${JSON.stringify({site: 'bpj', status: 'unavailable_or_uncertain', http_status: status, requests_attempted: 1})}`);
+    return 1;
+  }
+}
+
+async function maybeD1RefusalDiagnostic() {
+  let event;
+  try {
+    const {readFileSync} = await import('node:fs');
+    event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
+  } catch {
+    say('D1_REFUSAL_DIAGNOSTIC stopped: event unavailable; no requests.'); return 1;
+  }
+  // This one-time diagnostic revision never falls back to historical analytics,
+  // even if another run displaced it or an event payload is absent/changed.
+  if (!d1RefusalTrigger(process.env, event)) {
+    say('D1_REFUSAL_DIAGNOSTIC stopped: one-time event gate mismatch; no requests.'); return 1;
+  }
+  const result = await d1RefusalDiagnostic((process.env.CLOUDFLARE_API_TOKEN || '').trim(), ACCOUNT);
+  say('Stopped after one same-route request. No retry, alternate credential, other database, SQL, or access change. Query permission/cost and readiness remain unverified/CLOSED.');
+  return result;
+}
+
 async function main() {
+  const refusalDiagnostic = await maybeD1RefusalDiagnostic();
+  if (refusalDiagnostic !== null) return refusalDiagnostic;
   const metadataPreflight = await maybeD1MetadataPreflight();
   if (metadataPreflight !== null) return metadataPreflight;
   const tokens = [];
@@ -685,6 +763,60 @@ if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
     assert.equal(await d1MetadataPreflight('', fixtureAccount, fakeMetadata, () => {}), 1);
     assert.equal(await d1MetadataPreflight(fixtureToken, 'invalid-account', fakeMetadata, () => {}), 1);
     assert.equal(metadataCalls, 0);
+    const refusalEnv = {...probeEnv, GITHUB_RUN_NUMBER: D1_REFUSAL_DIAGNOSTIC.runNumber};
+    const refusalEvent = {...probeEvent, before: D1_REFUSAL_DIAGNOSTIC.before,
+      head_commit: {...probeEvent.head_commit, message: D1_REFUSAL_DIAGNOSTIC.message}};
+    assert.equal(d1RefusalTrigger(refusalEnv, refusalEvent), true);
+    for (const patch of [{GITHUB_EVENT_NAME: 'workflow_dispatch'}, {GITHUB_RUN_ATTEMPT: '2'},
+      {GITHUB_RUN_NUMBER: '7'}, {GITHUB_WORKFLOW_REF: 'other'}, {GITHUB_REPOSITORY: 'other/repo'},
+      {GITHUB_REF: 'refs/heads/main'}, {GITHUB_SHA: ''}]) {
+      assert.equal(d1RefusalTrigger({...refusalEnv, ...patch}, refusalEvent), false);
+    }
+    for (const patch of [{ref: 'other'}, {before: 'b'.repeat(40)}, {after: 'b'.repeat(40)},
+      {forced: true}, {deleted: true}, {head_commit: {...refusalEvent.head_commit, id: 'b'.repeat(40)}},
+      {head_commit: {...refusalEvent.head_commit, message: 'future change'}}]) {
+      assert.equal(d1RefusalTrigger(refusalEnv, {...refusalEvent, ...patch}), false);
+    }
+    assert.deepEqual(d1RefusalCodes({errors: [{code: 10000, message: fixtureToken}, {code: '10000'},
+      {code: 10000}, {code: 999}, {code: 100000}, {code: 1000.5}, null, {code: {secret: fixtureToken}}]}), [10000]);
+    assert.deepEqual(d1RefusalCodes({errors: {secret: fixtureToken}}), []);
+    assert.deepEqual(d1RefusalCodes({errors: [1000, 1001, 1002, 1003, 1004].map(code => ({code}))}), [1000, 1001, 1002, 1003]);
+    for (const httpStatus of [401, 403, 400, 429, 500, 200]) {
+      let calls = 0; const lines = [];
+      const result = await d1RefusalDiagnostic(fixtureToken, fixtureAccount, async (url, options) => {
+        calls++;
+        assert.equal(url, `https://api.cloudflare.com/client/v4/accounts/${fixtureAccount}/d1/database/${D1_REFUSAL_DIAGNOSTIC.databaseId}?fields=uuid,file_size,num_tables`);
+        assert.equal(options.method, 'GET'); assert.equal(options.redirect, 'error'); assert(options.signal);
+        assert.equal(options.headers.authorization, `Bearer ${fixtureToken}`); assert.equal(options.body, undefined);
+        return new Response(JSON.stringify({errors: [{code: 10000, message: fixtureToken}], result: {private: fixtureToken}}), {status: httpStatus});
+      }, line => lines.push(line));
+      assert.equal(calls, 1); assert.equal(result, httpStatus === 200 ? 0 : 1);
+      const receipt = JSON.parse(lines[0].slice('D1_REFUSAL_DIAGNOSTIC '.length));
+      assert.equal(receipt.requests_attempted, 1); assert.equal(receipt.http_status, httpStatus);
+      assert.equal(receipt.status, httpStatus === 200 ? 'metadata_read_granted' : [401, 403].includes(httpStatus) ? 'authorization_denied' : 'http_error');
+      if (httpStatus === 200) assert.equal(receipt.provider_codes, undefined);
+      else assert.deepEqual(receipt.provider_codes, [10000]);
+      assert(!lines.join('\n').includes(fixtureToken)); assert(!lines.join('\n').includes(fixtureAccount));
+    }
+    for (const failure of [() => new Response('private-fixture', {status: 401}),
+      () => new Response('x'.repeat(D1_METADATA_PREFLIGHT.maxResponseBytes + 1), {status: 401}),
+      () => {throw Error(fixtureToken);}]) {
+      let calls = 0; const lines = [];
+      assert.equal(await d1RefusalDiagnostic(fixtureToken, fixtureAccount, async () => {calls++; return failure();}, line => lines.push(line)), 1);
+      assert.equal(calls, 1); assert(!lines.join('\n').includes(fixtureToken)); assert(!lines.join('\n').includes('private-fixture'));
+    }
+    let refusalCalls = 0, streamCancelled = false;
+    const oversizedStream = new ReadableStream({pull(controller) {controller.enqueue(new Uint8Array(9000));}, cancel() {streamCancelled = true;}});
+    assert.equal(await d1RefusalDiagnostic(fixtureToken, fixtureAccount, async () => {
+      refusalCalls++; return new Response(oversizedStream, {status: 401});
+    }, () => {}), 1);
+    assert.equal(refusalCalls, 1); assert.equal(streamCancelled, true);
+    refusalCalls = 0;
+    const noRequest = async () => {refusalCalls++; throw Error('unexpected request');};
+    assert.equal(await d1RefusalDiagnostic('', fixtureAccount, noRequest, () => {}), 1);
+    assert.equal(await d1RefusalDiagnostic(fixtureToken, 'invalid-account', noRequest, () => {}), 1);
+    assert.equal(refusalCalls, 0);
+    console.log('d1 refusal selftest ok (one exact GET, event gate, bounded numeric codes, streaming size cap, no raw text/credentials, no SQL)');
     console.log('d1 metadata selftest ok (one-time event gate, exact four GETs, bounds, fail-closed, no raw data/credentials, no SQL)');
     console.log('d1_usage selftest ok (redaction, exact allowlist, bounds, missing/zero distinction, projection, adversarial metrics, offline GraphQL)');
     process.exit(0);
