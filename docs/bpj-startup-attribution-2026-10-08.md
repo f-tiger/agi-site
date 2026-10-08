@@ -8,7 +8,7 @@ Preserve the fixed `bpj-startup-research` entry marker from the Chinese and Engl
 - The new entry label is accepted only by BPJ checkout. It is not a workspace product and does not grant cloud storage access.
 - Same-nonce retries and reuse of an unexpired pending order retain the first stored source, including an empty source. Missing historical source rows are not backfilled.
 - Unknown URL source values are omitted by the client. Nonempty unknown checkout-body sources still fail with `bad_source` before nonce lookup.
-- Language links preserve only this fixed BPJ source and its MCP anchor. BPJ QA exclusion survives that navigation.
+- Language links preserve only this fixed BPJ source and its MCP anchor. BPJ `__ci` exclusion survives that navigation.
 - No prices, quotas, payment/authentication/key behavior, schema, schedules, catalog entitlements or analytics are changed. Private member/key pages remain analytics-free. BPJ client asset versions are bumped.
 
 The existing aggregate report still does not expose a separate MCP order count. This change stores future first-entry evidence only. No live database query, migration or historical rewrite is part of this patch.
@@ -31,7 +31,7 @@ The browser script has 17 scenarios: bilingual CTA navigation, bearer and accoun
 
 ## Release boundary
 
-This draft does not deploy. Shared membership paths match the BPJ, AGI, ECO and TDS main-branch release filters. The applicable pull-request workflows are `check-autopilot.yml` (routing and generated sitemap inputs) and `check-eco-energy.yml` (four-site membership isolation/failure tests plus ECO browser, language and privacy regressions). Neither executes the new BPJ attribution browser script. Existing deploy workflows also run broader membership browser tests as part of release.
+This draft does not deploy. Shared membership paths match the BPJ, AGI, ECO and TDS main-branch release filters. The applicable pull-request workflows are `check-autopilot.yml` (routing and generated sitemap inputs) and `check-eco-energy.yml` (four-site membership isolation/failure tests plus ECO browser, language and privacy regressions). The latter now runs the four BPJ attribution checks above using its existing Playwright 1.58.2 and Chromium installation. Only test commands were added; triggers, permissions, credentials, deployment jobs and schedules are unchanged. Existing deploy workflows also run broader membership browser tests as part of release.
 
 Before merge, review all four sites' shared-membership regression and the applicable release path. Existing configuration sync is not by itself evidence of a new permission or payment change. The previously rejected BPJ D1 metadata request and TDS D1 request must not be retried. No D1 permission expansion, alternate credentials, CI bypass or workflow rewrite is authorized by this patch.
 
