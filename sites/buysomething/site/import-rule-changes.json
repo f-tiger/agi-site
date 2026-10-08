@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-07",
+ "generated": "2026-10-08",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-06-09",
+ "since": "2026-06-10",
  "queries": [
   "section 301",
   "section 232",
@@ -21,6 +21,24 @@
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
  "count": 25,
  "changes": [
+  {
+   "document_number": "2026-20650",
+   "date": "2026-10-08",
+   "type": "Proposed Rule",
+   "title": "Low-Value Shipments",
+   "abstract": "This document proposes to amend the U.S. Customs and Border Protection regulations to modify filing requirements for informal entries of goods valued at $2,500 or less and to establish a new electronic informal entry type for merchandise entering through the mail environment. This document also proposes other relate…",
+   "agencies": [
+    "Homeland Security Department",
+    "U.S. Customs and Border Protection"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/10/08/2026-20650/low-value-shipments",
+   "matched": [
+    "de minimis exemption",
+    "harmonized tariff schedule",
+    "section 232"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-20511",
    "date": "2026-10-07",
@@ -174,7 +192,6 @@
    ],
    "url": "https://www.federalregister.gov/documents/2026/09/14/2026-18839/modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset",
    "matched": [
-    "harmonized tariff schedule",
     "section 232",
     "section 301"
    ],
@@ -342,21 +359,6 @@
     "Executive Office of the President"
    ],
    "url": "https://www.federalregister.gov/documents/2026/07/23/2026-14997/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united",
-   "matched": [
-    "section 232"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-14992",
-   "date": "2026-07-23",
-   "type": "Presidential Document",
-   "title": "Imposing Additional Duties To Offset Canadian Discrimination Against the Commerce of the United States With Respect to Dairy",
-   "abstract": "",
-   "agencies": [
-    "Executive Office of the President"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/07/23/2026-14992/imposing-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of-the-united",
    "matched": [
     "section 232"
    ],
