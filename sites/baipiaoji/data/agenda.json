@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-06",
+  "generated": "2026-10-08",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 34,
+    "candidate": 35,
     "category_hot": 1,
     "stale": 5,
     "demand": 0
@@ -26,21 +26,21 @@
   },
   "items": [
     {
-      "id": "drift:deepl",
+      "id": "drift:notebooklm",
       "type": "source_drift",
-      "title": "来源页变动：DeepL（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 5b；消失 无。本站条目仍是 2026-09-21 的版本",
-      "action": "打开 https://www.deepl.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：NotebookLM（Google）（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 000b / 000k / 000m / 00b；消失 无。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://support.google.com/gemininotebook 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "deepl",
-        "https://www.deepl.com/pricing"
+        "notebooklm",
+        "https://support.google.com/gemininotebook"
       ],
       "score": 75
     },
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×5、www.perplexity.ai×5、copilot.microsoft.com×1、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×5、www.perplexity.ai×5、copilot.microsoft.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -48,28 +48,39 @@
         "/en/c/image",
         "/tools/qingying",
         "/en/tools/ms-copilot",
-        "/en/tools/guojia-fanzha",
         "/en/is-google-flow-still-free"
       ],
       "score": 70
     },
     {
-      "id": "drift:continue",
+      "id": "drift:gemini-cli",
       "type": "source_drift",
-      "title": "来源页变动：Continue（2026-10-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 5.5k；消失 5.4k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Gemini CLI（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 107k / 14.7k。本站条目仍是 2026-08-05 的版本",
+      "action": "打开 https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "continue",
-        "https://github.com/continuedev/continue"
+        "gemini-cli",
+        "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:elevenlabs",
+      "type": "source_drift",
+      "title": "来源页变动：ElevenLabs（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 100minutes / 2,500seconds / 31minutes。本站条目仍是 2026-08-02 的版本",
+      "action": "打开 https://elevenlabs.io/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "elevenlabs",
+        "https://elevenlabs.io/pricing"
       ],
       "score": 65
     },
     {
       "id": "drift:krea",
       "type": "source_drift",
-      "title": "来源页变动：Krea AI（2026-10-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1,317images / 3image / 658images；消失 1k。本站条目仍是 2026-08-06 的版本",
+      "title": "来源页变动：Krea AI（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $5.25/mo / $5/mo / $9 / 2images；消失 1,080images / 1,111images / 1,317images / 1,350images。本站条目仍是 2026-08-06 的版本",
       "action": "打开 https://krea.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
         "krea",
@@ -80,8 +91,8 @@
     {
       "id": "drift:cline",
       "type": "source_drift",
-      "title": "来源页变动：Cline（2026-10-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 69.9k / 70k；消失 69.3k / 69k。本站条目仍是 2026-08-04 的版本",
+      "title": "来源页变动：Cline（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 70.0k；消失 69.9k。本站条目仍是 2026-08-04 的版本",
       "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
         "cline",
@@ -90,26 +101,14 @@
       "score": 65
     },
     {
-      "id": "drift:zhipu-glm",
+      "id": "drift:windsurf",
       "type": "source_drift",
-      "title": "来源页变动：智谱开放平台（2026-10-06 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1,s；消失 无。本站条目仍是 2026-08-01 的版本",
-      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Windsurf（2026-10-08 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $70 / $77 / $78 / 5k；消失 $74 / $75 / 3k / 4m。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://windsurf.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "zhipu-glm",
-        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:codex",
-      "type": "source_drift",
-      "title": "来源页变动：OpenAI Codex（2026-10-04 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $100, / $200, / $500 / 15credits；消失 $100 / 1.875credits / 113credits / 18.75credits。本站条目仍是 2026-09-25 的版本",
-      "action": "打开 https://developers.openai.com/codex/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "codex",
-        "https://developers.openai.com/codex/pricing"
+        "windsurf",
+        "https://windsurf.com"
       ],
       "score": 65
     },
@@ -152,7 +151,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 56 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 65 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -163,13 +162,13 @@
     {
       "id": "paidgap:feishu-miaoji",
       "type": "paid_gap",
-      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 16 次，无付费档）",
+      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 17 次，无付费档）",
       "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "feishu-miaoji"
       ],
-      "score": 46
+      "score": 47
     }
   ]
 }
