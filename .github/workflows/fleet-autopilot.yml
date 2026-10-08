@@ -296,8 +296,10 @@ jobs:
   # This aggregate report must not depend on algorithm, content or growth success.
   # The reusable workflow also supports an isolated reporting-only run.
   membership-report:
+    permissions:
+      contents: write
+      actions: read
     uses: ./.github/workflows/fleet-membership-report.yml
     with:
       dry_run: ${{ inputs.dry_run == true }}
-    secrets:
-      ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+
