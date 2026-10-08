@@ -1,0 +1,36 @@
+name: Check autopilot route inputs
+on:
+  pull_request:
+    paths:
+      - 'tools/autopilot/**'
+      - 'tools/revenue-studio/**'
+      - 'tools/member-studio/**'
+      - 'data/autopilot/config/**'
+      - 'sites/gridlings/worker.js'
+      - '.github/workflows/fleet-autopilot.yml'
+      - '.github/workflows/check-autopilot.yml'
+permissions:
+  contents: read
+jobs:
+  route-inputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test routing and freshness invariants without live requests
+        run: |
+          python3 tools/autopilot/selftest.py
+          python3 tools/autopilot/test_route_inputs.py
+      - name: Install pinned build dependencies without lifecycle scripts
+        run: npm ci --prefix tools/revenue-studio --omit=dev --ignore-scripts --no-audit --no-fund
+      - name: Verify existing sitemap inputs without measuring or publishing
+        run: |
+          python3 tools/autopilot/prepare_generated.py
+          python3 tools/autopilot/test_route_inputs.py --repository
+          python3 tools/autopilot/run.py --site agiscorecard --site gridlings --today "$(date -u +%F)" --check
+          git diff --exit-code -- sites data

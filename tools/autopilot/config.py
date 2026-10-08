@@ -164,4 +164,40 @@ def worker_routes(path):
         key = url_path.strip("/")
         if key and asset.endswith((".html", ".htm")):
             out[key] = asset.lstrip("/")
+    # This is a bounded parser for the Worker's existing GEO_ZH contract, not a
+    # generic /zh/* rewrite. Reject a changed declaration or transform instead of
+    # guessing which file a newly shaped Worker would serve. Never execute JS.
+    # Remove comments without changing quoted values. A commented-out branch is
+    # not a serving rule; whitespace inside strings and regex literals matters.
+    code = re.sub(r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|`(?:\\.|[^`\\])*`)|(//[^\n]*|/\*[\s\S]*?\*/)',
+                  lambda m: m.group(1) if m.group(1) is not None else " ", src)
+    if re.search(r"\bGEO_ZH\b", code):
+        declarations = re.findall(
+            r"^const\s+GEO_ZH\s*=\s*new\s+Set\s*\((\[[^\]]*\])\)\s*;", code, re.M)
+        branch = ('} else if (GEO_ZH.has(url.pathname.replace(/\\/$/, ""))) {'
+                  'assetReq = new Request(new URL(url.pathname.replace(/\\/$/, "").slice(3)'
+                  ' + "-zh.html", url).toString(), request);}')
+        # Only inter-token whitespace may vary. Treat the string and pathname
+        # regex literals as whole tokens, retaining their exact semantics.
+        token_pattern = r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|`(?:\\.|[^`\\])*`|/\\/\$/|[A-Za-z_$][\w$]*|[0-9]+|[^\s]'
+        tokens = re.findall(token_pattern, code)
+        expected = re.findall(token_pattern, branch)
+        has_branch = any(tokens[i:i + len(expected)] == expected for i in range(len(tokens)))
+        if len(declarations) != 1 or not has_branch or tokens.count("GEO_ZH") != 2:
+            raise ConfigError("worker_routes GEO_ZH declaration/transform no longer matches: %s" % path)
+        try:
+            routes = json.loads(declarations[0])
+        except ValueError as e:
+            raise ConfigError("worker_routes GEO_ZH must be a literal JSON string list: %s" % path) from e
+        if (not isinstance(routes, list) or not routes
+                or any(not isinstance(route, str)
+                       or not re.fullmatch(r"/zh/[a-z0-9]+(?:-[a-z0-9]+)*", route)
+                       for route in routes)
+                or len(set(routes)) != len(routes)):
+            raise ConfigError("worker_routes GEO_ZH contains unsupported or duplicate routes: %s" % path)
+        for route in routes:
+            key, asset = route.lstrip("/"), route[len("/zh/"):] + "-zh.html"
+            if key in out and out[key] != asset:
+                raise ConfigError("worker_routes has conflicting mapping for %s" % route)
+            out[key] = asset
     return out

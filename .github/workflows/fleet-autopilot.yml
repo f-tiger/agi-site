@@ -55,6 +55,17 @@ jobs:
       - name: Self-test the invariants (red fixtures)
         run: python3 tools/autopilot/selftest.py
 
+      # Reuse the deployment builder, but materialize only missing HTML already
+      # listed in the original sitemap. No homepage, sitemap inventory or public
+      # asset writes from this preparation step are committed or deployed.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare existing generated sitemap inputs
+        run: |
+          npm ci --prefix tools/revenue-studio --omit=dev --ignore-scripts --no-audit --no-fund
+          python3 tools/autopilot/prepare_generated.py
+
       # Reader heat from each site's own PUBLIC aggregate endpoint (eco /api/trend,
       # agi /api/trends, buysomething /api/pop). No secret involved: the Worker reads
       # its own D1 binding and publishes the aggregate. A failed fetch writes
