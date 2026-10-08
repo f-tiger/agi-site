@@ -1,43 +1,43 @@
 {
- "generated": "2026-10-07T14:57:34Z",
+ "generated": "2026-10-08T15:06:20Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
  "errors": [],
  "fleet": {
-  "search": 1296,
-  "ai": 40,
+  "search": 1350,
+  "ai": 38,
   "fleet": 57,
   "social": 6,
-  "self": 6181,
-  "direct": 45540,
-  "other": 32,
+  "self": 6223,
+  "direct": 45835,
+  "other": 33,
   "unattributed": 0
  },
- "fleet_human_pv": 53152,
+ "fleet_human_pv": 53542,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 46675,
+   "human_pv": 46980,
    "by_source": {
-    "search": 399,
+    "search": 440,
     "ai": 14,
     "fleet": 28,
     "social": 2,
-    "self": 5457,
-    "direct": 40757,
+    "self": 5469,
+    "direct": 41009,
     "other": 18
    },
    "by_search": {
-    "google.com": 266,
-    "duckduckgo.com": 62,
-    "bing.com": 44,
+    "google.com": 305,
+    "duckduckgo.com": 60,
+    "bing.com": 45,
+    "cn.bing.com": 9,
     "google.com.hk": 5,
-    "cn.bing.com": 5,
     "ecosia.org": 4,
-    "noai.duckduckgo.com": 3,
     "qwant.com": 2,
     "search.brave.com": 2,
+    "noai.duckduckgo.com": 2,
     "html.duckduckgo.com": 2,
     "sogou.com": 1,
     "id.search.yahoo.com": 1
@@ -74,9 +74,9 @@
   },
   {
    "site": "baipiaoji",
-   "human_pv": 460,
+   "human_pv": 475,
    "by_source": {
-    "search": 440,
+    "search": 455,
     "ai": 13,
     "fleet": 0,
     "social": 0,
@@ -85,14 +85,14 @@
     "other": 7
    },
    "by_search": {
-    "cn.bing.com": 204,
-    "google.com": 169,
-    "bing.com": 35,
+    "cn.bing.com": 214,
+    "google.com": 174,
+    "bing.com": 37,
     "m.baidu.com": 9,
-    "baidu.com": 7,
     "duckduckgo.com": 6,
-    "yandex.com": 3,
+    "baidu.com": 6,
     "yandex.ru": 3,
+    "yandex.com": 2,
     "search.brave.com": 1,
     "yandex.com.tr": 1,
     "yandex.kz": 1,
@@ -111,45 +111,47 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 734,
+   "human_pv": 732,
    "by_source": {
-    "search": 244,
-    "ai": 10,
+    "search": 240,
+    "ai": 8,
     "fleet": 0,
     "social": 1,
     "self": 132,
-    "direct": 347,
-    "other": 0
+    "direct": 350,
+    "other": 1
    },
    "by_search": {
-    "duckduckgo.com": 98,
     "bing.com": 98,
+    "duckduckgo.com": 93,
     "ecosia.org": 21,
     "de.search.yahoo.com": 11,
     "qwant.com": 6,
     "google.com": 2,
+    "search.brave.com": 2,
     "noai.duckduckgo.com": 2,
     "at.search.yahoo.com": 2,
     "startpage.com": 1,
     "sg.search.yahoo.com": 1,
-    "search.brave.com": 1,
     "r.search.yahoo.com": 1
    },
    "by_fleet": {},
-   "by_other": {},
+   "by_other": {
+    "scriblihelp.com": 1
+   },
    "unattributed": 0,
    "via": "endpoint"
   },
   {
    "site": "thedollscout",
-   "human_pv": 631,
+   "human_pv": 625,
    "by_source": {
     "search": 13,
     "ai": 1,
     "fleet": 0,
     "social": 0,
     "self": 224,
-    "direct": 393,
+    "direct": 387,
     "other": 0
    },
    "by_search": {
@@ -164,14 +166,14 @@
   },
   {
    "site": "goldrush",
-   "human_pv": 271,
+   "human_pv": 270,
    "by_source": {
     "search": 17,
     "ai": 0,
     "fleet": 8,
     "social": 0,
-    "self": 12,
-    "direct": 233,
+    "self": 13,
+    "direct": 231,
     "other": 1
    },
    "by_search": {
@@ -188,14 +190,14 @@
   },
   {
    "site": "gridlings",
-   "human_pv": 859,
+   "human_pv": 893,
    "by_source": {
     "search": 119,
     "ai": 0,
     "fleet": 7,
     "social": 0,
-    "self": 200,
-    "direct": 530,
+    "self": 222,
+    "direct": 542,
     "other": 3
    },
    "by_search": {
@@ -217,18 +219,18 @@
   },
   {
    "site": "buysomething",
-   "human_pv": 201,
+   "human_pv": 223,
    "by_source": {
-    "search": 13,
+    "search": 14,
     "ai": 0,
     "fleet": 0,
     "social": 0,
-    "self": 10,
-    "direct": 177,
+    "self": 18,
+    "direct": 190,
     "other": 1
    },
    "by_search": {
-    "google.com": 13
+    "google.com": 14
    },
    "by_fleet": {},
    "by_other": {
@@ -239,21 +241,21 @@
   },
   {
    "site": "gamesledger",
-   "human_pv": 551,
+   "human_pv": 541,
    "by_source": {
-    "search": 30,
+    "search": 31,
     "ai": 2,
     "fleet": 6,
     "social": 2,
-    "self": 95,
-    "direct": 415,
+    "self": 94,
+    "direct": 405,
     "other": 1
    },
    "by_search": {
     "google.com": 21,
     "duckduckgo.com": 4,
     "cn.bing.com": 3,
-    "bing.com": 1,
+    "bing.com": 2,
     "noai.duckduckgo.com": 1
    },
    "by_fleet": {
@@ -267,14 +269,14 @@
   },
   {
    "site": "after35",
-   "human_pv": 638,
+   "human_pv": 641,
    "by_source": {
     "search": 0,
     "ai": 0,
     "fleet": 0,
     "social": 0,
     "self": 10,
-    "direct": 628,
+    "direct": 631,
     "other": 0
    },
    "by_search": {},
@@ -285,14 +287,14 @@
   },
   {
    "site": "learn",
-   "human_pv": 373,
+   "human_pv": 378,
    "by_source": {
     "search": 0,
     "ai": 0,
     "fleet": 0,
     "social": 0,
     "self": 5,
-    "direct": 367,
+    "direct": 372,
     "other": 1
    },
    "by_search": {},
@@ -305,14 +307,14 @@
   },
   {
    "site": "fanzha",
-   "human_pv": 364,
+   "human_pv": 365,
    "by_source": {
     "search": 2,
     "ai": 0,
     "fleet": 0,
     "social": 0,
     "self": 8,
-    "direct": 354,
+    "direct": 355,
     "other": 0
    },
    "by_search": {
@@ -326,14 +328,14 @@
   },
   {
    "site": "firstjob",
-   "human_pv": 333,
+   "human_pv": 338,
    "by_source": {
     "search": 0,
     "ai": 0,
     "fleet": 0,
     "social": 0,
     "self": 12,
-    "direct": 321,
+    "direct": 326,
     "other": 0
    },
    "by_search": {},
@@ -344,14 +346,14 @@
   },
   {
    "site": "codeword",
-   "human_pv": 548,
+   "human_pv": 557,
    "by_source": {
     "search": 10,
     "ai": 0,
     "fleet": 4,
     "social": 1,
     "self": 14,
-    "direct": 519,
+    "direct": 528,
     "other": 0
    },
    "by_search": {
@@ -367,14 +369,14 @@
   },
   {
    "site": "powerbill",
-   "human_pv": 514,
+   "human_pv": 524,
    "by_source": {
     "search": 9,
     "ai": 0,
     "fleet": 4,
     "social": 0,
     "self": 2,
-    "direct": 499,
+    "direct": 509,
     "other": 0
    },
    "by_search": {
