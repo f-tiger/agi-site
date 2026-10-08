@@ -1,10 +1,116 @@
 {
-  "generated": "2026-10-07",
+  "generated": "2026-10-08",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 106,
   "fetched_fail": 21,
-  "pending": 14,
+  "pending": 13,
   "items": [
+    {
+      "slug": "gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [],
+      "removed": [
+        "107k",
+        "14.7k"
+      ],
+      "checked_then": "2026-08-05"
+    },
+    {
+      "slug": "notebooklm",
+      "url": "https://support.google.com/gemininotebook",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [
+        "000b",
+        "000k",
+        "000m",
+        "00b",
+        "00k",
+        "00m",
+        "0b",
+        "0k",
+        "0m",
+        "18,gb"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [],
+      "removed": [
+        "100minutes",
+        "2,500seconds",
+        "31minutes"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "krea",
+      "url": "https://krea.ai/pricing",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [
+        "$5.25/mo",
+        "$5/mo",
+        "$9",
+        "2images",
+        "4video"
+      ],
+      "removed": [
+        "1,080images",
+        "1,111images",
+        "1,317images",
+        "1,350images",
+        "10,000images",
+        "10,285images",
+        "111images",
+        "12,000images",
+        "157images",
+        "2,160images",
+        "2,222images",
+        "2,700images"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [
+        "70.0k"
+      ],
+      "removed": [
+        "69.9k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-08",
+      "first_seen": "2026-10-07",
+      "added": [
+        "$70",
+        "$77",
+        "$78",
+        "5k",
+        "7b"
+      ],
+      "removed": [
+        "$74",
+        "$75",
+        "3k",
+        "4m"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -26,36 +132,6 @@
       ],
       "removed": [
         "5.4k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "krea",
-      "url": "https://krea.ai/pricing",
-      "confirmed": "2026-10-06",
-      "first_seen": "2026-10-05",
-      "added": [
-        "1,317images",
-        "3image",
-        "658images"
-      ],
-      "removed": [
-        "1k"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "cline",
-      "url": "https://cline.bot",
-      "confirmed": "2026-10-06",
-      "first_seen": "2026-10-05",
-      "added": [
-        "69.9k",
-        "70k"
-      ],
-      "removed": [
-        "69.3k",
-        "69k"
       ],
       "checked_then": "2026-08-04"
     },
@@ -108,23 +184,6 @@
         "18k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-10-04",
-      "first_seen": "2026-10-03",
-      "added": [
-        "$1",
-        "83%"
-      ],
-      "removed": [
-        "12,500seconds",
-        "152minutes",
-        "500minutes",
-        "80%"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "cerebras",
@@ -235,31 +294,6 @@
       ],
       "removed": [],
       "checked_then": "2026-09-29"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [
-        "$74",
-        "$75"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "gemini-cli",
-      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
-      "confirmed": "2026-10-01",
-      "first_seen": "2026-09-29",
-      "added": [
-        "14.7k"
-      ],
-      "removed": [
-        "14.6k"
-      ],
-      "checked_then": "2026-08-05"
     },
     {
       "slug": "ragflow",

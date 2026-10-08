@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-07T06:26:16.393Z",
+  "lastRun": "2026-10-08T06:37:57.062Z",
   "status": "degraded",
-  "checkedSources": 6,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -98,6 +98,30 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://supabase.com/customers/chatbase",
       "lastChecked": "2026-10-07T06:26:16.393Z"
+    },
+    {
+      "caseId": "bolt",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+      "lastChecked": "2026-10-08T06:37:57.062Z"
+    },
+    {
+      "caseId": "cursor",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
+      "lastChecked": "2026-10-08T06:37:57.062Z"
+    },
+    {
+      "caseId": "lovable",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://lovable.dev/blog/agent",
+      "lastChecked": "2026-10-08T06:37:57.062Z"
+    },
+    {
+      "caseId": "gamma",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
+      "lastChecked": "2026-10-08T06:37:57.062Z"
     }
   ],
   "sources": {
@@ -267,38 +291,68 @@
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
+    },
+    "bolt|https://www.lennysnewsletter.com/p/inside-bolt-eric-simons": {
+      "caseId": "bolt",
+      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "cursor|https://cursor.com/en-US/blog/series-c": {
+      "caseId": "cursor",
+      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
+      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "lovable|https://lovable.dev/blog/agent": {
+      "caseId": "lovable",
+      "sourceUrl": "https://lovable.dev/blog/agent",
+      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "replit|https://replit.com/news/funding-announcement-series-c": {
+      "caseId": "replit",
+      "sourceUrl": "https://replit.com/news/funding-announcement-series-c",
+      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-08T06:37:57.062Z",
+      "lastHash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
+      "hash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
+      "simhash": "9252241e9f62870b",
+      "words": 805,
+      "consecutiveChange": 0
+    },
+    "gamma|https://gamma.app/insights/how-we-built-a-usd100m-business-differently": {
+      "caseId": "gamma",
+      "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
+      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "status": "unreachable",
+      "http": 403,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 15,
+  "cursor": 20,
   "errors": [
     {
-      "caseId": "formula-bot",
-      "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
+      "caseId": "bolt",
+      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
       "reason": "body-limit"
     },
     {
-      "caseId": "formula-bot",
-      "sourceUrl": "https://n8n.io/case-studies/formula-bot/",
+      "caseId": "cursor",
+      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
       "reason": "body-limit"
     },
     {
-      "caseId": "jenni-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "customgpt",
-      "sourceUrl": "https://customgpt.ai/customers/",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "julius-ai",
-      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "chatbase",
-      "sourceUrl": "https://supabase.com/customers/chatbase",
+      "caseId": "lovable",
+      "sourceUrl": "https://lovable.dev/blog/agent",
       "reason": "body-limit"
     }
   ]

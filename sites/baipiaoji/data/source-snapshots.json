@@ -3,13 +3,13 @@
  "items": {
   "chatgpt": {
    "url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "github-copilot": {
    "url": "https://docs.github.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -17,7 +17,7 @@
   },
   "gemini": {
    "url": "https://support.google.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "06e048e18048fe5b",
    "facts": [
@@ -35,7 +35,7 @@
   },
   "deepseek": {
    "url": "https://cdn.deepseek.com/policies/zh-CN/deepseek-terms-of-use.html",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "eaf9493ba817987e",
    "facts": [
@@ -47,7 +47,7 @@
   },
   "tongyi": {
    "url": "https://help.aliyun.com/zh/model-studio/new-free-quota",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "5dd51150c8ad6ae3",
    "facts": [
@@ -70,7 +70,7 @@
   },
   "kimi": {
    "url": "https://kimi.com/zh-cn/help/membership",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -87,9 +87,9 @@
   },
   "windsurf": {
    "url": "https://windsurf.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "4e694ef14357265c",
+   "hash": "e445758f36c43140",
    "facts": [
     "$0",
     "$1",
@@ -104,8 +104,9 @@
     "$40/mo",
     "$5",
     "$6",
-    "$74",
-    "$75",
+    "$70",
+    "$77",
+    "$78",
     "$80/mo",
     "10,m",
     "126char",
@@ -116,17 +117,17 @@
     "1m",
     "2b",
     "3b",
-    "3k",
     "4,m",
     "40,m",
     "41b",
     "42m",
     "4b",
-    "4m",
     "507,m",
     "5b",
+    "5k",
     "6,m",
     "6b",
+    "7b",
     "7m",
     "8,m",
     "8b",
@@ -134,18 +135,8 @@
    ],
    "baseline": "2026-09-17",
    "drift": {
-    "confirmed": "2026-10-03",
-    "first_seen": "2026-10-01",
-    "added": [
-     "$74",
-     "$75"
-    ],
-    "removed": [],
-    "checked_then": "2026-08-03"
-   },
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "e445758f36c43140",
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [
      "$70",
      "$77",
@@ -158,18 +149,19 @@
      "$75",
      "3k",
      "4m"
-    ]
+    ],
+    "checked_then": "2026-08-03"
    }
   },
   "canva": {
    "url": "https://canva.com/policies/content-license-agreement",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "trae": {
    "url": "https://trae.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -177,13 +169,13 @@
   },
   "jimeng": {
    "url": "https://lf9-cdn-tos.draftstatic.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 404,
    "note": "HTTP 404"
   },
   "tongyi-lingma": {
    "url": "https://help.aliyun.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "b35a53268168a3fc",
    "facts": [
@@ -193,13 +185,13 @@
   },
   "liblib": {
    "url": "https://liblib.art/activities/",
-   "fetched": "2026-10-07",
-   "status": 404,
-   "note": "HTTP 404"
+   "fetched": "2026-10-08",
+   "status": 0,
+   "note": "UND_ERR_CONNECT_TIMEOUT"
   },
   "recraft": {
    "url": "https://recraft.ai/blog/ownership-and-commercial-use-faq",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "4c152233099560e1",
    "facts": [
@@ -210,13 +202,13 @@
   },
   "runway": {
    "url": "https://help.runwayml.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "gamma": {
    "url": "https://help.gamma.app",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -224,7 +216,7 @@
   },
   "hailuo": {
    "url": "https://hailuoai.com/doc/zh/user-agreement.html",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e5f1ccf0f72bf1c1",
    "facts": [
@@ -235,7 +227,7 @@
   },
   "kling": {
    "url": "https://klingai.com/global/docs/user-policy",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "f0761d0de7f360bd",
    "facts": [
@@ -247,7 +239,7 @@
   },
   "xinghuo": {
    "url": "https://xfyun.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -255,7 +247,7 @@
   },
   "cloudflare-workers-ai": {
    "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "47f9ccba0c4f0a31",
    "facts": [
@@ -384,7 +376,7 @@
   },
   "groq": {
    "url": "https://console.groq.com/docs/rate-limits",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "0b6662681b3babf5",
    "facts": [
@@ -423,7 +415,7 @@
   },
   "google-ai-studio": {
    "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "09840c50a2d66928",
    "facts": [
@@ -467,7 +459,7 @@
   },
   "zhipu-glm": {
    "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e8ecfb9615104960",
    "facts": [
@@ -531,11 +523,30 @@
     ],
     "removed": [],
     "checked_then": "2026-08-01"
+   },
+   "pending": {
+    "seen": "2026-10-08",
+    "hash": "e0ffd24a9b7ff46c",
+    "added": [
+     "$1",
+     "$1..",
+     "0,m",
+     "0026gb",
+     "060b",
+     "061b",
+     "1,m",
+     "169b",
+     "1b",
+     "200b",
+     "213b",
+     "218b"
+    ],
+    "removed": []
    }
   },
   "siliconflow": {
    "url": "https://siliconflow.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "a5797ec6feea565b",
    "facts": [
@@ -556,7 +567,7 @@
   },
   "wps-ai": {
    "url": "https://wps.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -564,7 +575,7 @@
   },
   "cursor": {
    "url": "https://cursor.com/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "0a986a5d8c799ffa",
    "facts": [
@@ -575,7 +586,7 @@
   },
   "claude": {
    "url": "https://support.claude.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -583,48 +594,36 @@
   },
   "cline": {
    "url": "https://cline.bot",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "7b4506245f1c313d",
+   "hash": "47f224f31f5b61bd",
    "facts": [
     "11m",
-    "69.9k",
+    "70.0k",
     "70k"
    ],
    "baseline": "2026-09-12",
    "drift": {
-    "confirmed": "2026-10-06",
-    "first_seen": "2026-10-05",
-    "added": [
-     "69.9k",
-     "70k"
-    ],
-    "removed": [
-     "69.3k",
-     "69k"
-    ],
-    "checked_then": "2026-08-04"
-   },
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "47f224f31f5b61bd",
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [
      "70.0k"
     ],
     "removed": [
      "69.9k"
-    ]
+    ],
+    "checked_then": "2026-08-04"
    }
   },
   "doubao": {
    "url": "https://doubao.com/legal/",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 404,
    "note": "HTTP 404"
   },
   "comate": {
    "url": "https://comate.baidu.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -632,19 +631,19 @@
   },
   "wenxin": {
    "url": "https://news.cn/tech/20250213",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "leonardo": {
    "url": "https://leonardo.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "ideogram": {
    "url": "https://ideogram.ai/licensing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "1ff8407314e642b9",
    "facts": [
@@ -668,7 +667,7 @@
   },
   "pixverse": {
    "url": "https://pixverse.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "229666b2d9f4b5dc",
    "facts": [
@@ -687,9 +686,9 @@
   },
   "krea": {
    "url": "https://krea.ai/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "4eb0e3ac6481051a",
+   "hash": "4bcb5aeb83db05cd",
    "facts": [
     "$0/mo",
     "$105",
@@ -697,82 +696,43 @@
     "$200",
     "$21/mo",
     "$35",
+    "$5.25/mo",
+    "$5/mo",
     "$63/mo",
+    "$9",
     "0images",
-    "1,080images",
-    "1,111images",
-    "1,317images",
-    "1,350images",
     "1.5m",
-    "10,000images",
-    "10,285images",
     "100k",
-    "111images",
-    "12,000images",
-    "157images",
     "160k",
     "1m",
     "1video",
     "2,000images",
-    "2,160images",
-    "2,222images",
-    "2,700images",
     "2.0videos",
-    "20,000images",
     "20k",
-    "222images",
     "22k",
     "240k",
-    "283images",
+    "2images",
     "2k",
-    "3,600images",
-    "314images",
-    "3image",
-    "4,444images",
-    "4,500images",
     "40%",
     "400k",
-    "409images",
     "40k",
     "40m",
-    "450images",
     "4images",
-    "5,142images",
+    "4video",
     "500k",
     "50images",
-    "566images",
-    "6,000images",
     "60k",
-    "658images",
-    "675images",
-    "7,200images",
     "750k",
     "80k",
-    "818images",
     "8images",
     "8video",
-    "9,000images",
-    "900images",
     "900min",
     "90days"
    ],
    "baseline": "2026-10-01",
    "drift": {
-    "confirmed": "2026-10-06",
-    "first_seen": "2026-10-05",
-    "added": [
-     "1,317images",
-     "3image",
-     "658images"
-    ],
-    "removed": [
-     "1k"
-    ],
-    "checked_then": "2026-08-06"
-   },
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "4bcb5aeb83db05cd",
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [
      "$5.25/mo",
      "$5/mo",
@@ -793,12 +753,13 @@
      "2,160images",
      "2,222images",
      "2,700images"
-    ]
+    ],
+    "checked_then": "2026-08-06"
    }
   },
   "tongyi-wanxiang": {
    "url": "https://help.aliyun.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "b35a53268168a3fc",
    "facts": [
@@ -808,7 +769,7 @@
   },
   "vidu": {
    "url": "https://platform.vidu.com/docs/terms-of-use",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "be886f832a8ca626",
    "facts": [
@@ -946,11 +907,30 @@
      "60seconds"
     ],
     "checked_then": "2026-08-06"
+   },
+   "pending": {
+    "seen": "2026-10-08",
+    "hash": "724179f43aef6964",
+    "added": [],
+    "removed": [
+     "$0.005",
+     "$0.01",
+     "$0.02",
+     "$0.025",
+     "$0.03",
+     "$0.03,",
+     "$0.035",
+     "$0.04",
+     "$0.04,",
+     "$0.045",
+     "$0.05",
+     "$0.05,"
+    ]
    }
   },
   "google-flow": {
    "url": "https://support.google.com/flow/answer/16526234",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ad97d61a278f69c5",
    "facts": [
@@ -972,7 +952,7 @@
   },
   "luma": {
    "url": "https://lumalabs.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -980,7 +960,7 @@
   },
   "notion-ai": {
    "url": "https://notion.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "01ebe4e778aa1b64",
    "facts": [
@@ -1007,7 +987,7 @@
   },
   "qingying": {
    "url": "https://chatglm.cn/agreement",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1015,7 +995,7 @@
   },
   "feishu-miaoji": {
    "url": "https://feishu.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1023,7 +1003,7 @@
   },
   "aippt": {
    "url": "https://aippt.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "58f4f73b7c68a281",
    "facts": [
@@ -1046,7 +1026,7 @@
   },
   "openrouter": {
    "url": "https://openrouter.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "c1b2860f020fdb5b",
    "facts": [
@@ -1061,14 +1041,16 @@
    ],
    "baseline": "2026-09-12",
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "8d0e6bcef3e6f152",
+    "seen": "2026-10-08",
+    "hash": "6299e44a7d2bbb89",
     "added": [
-     "28%",
-     "308.4b",
-     "54%",
-     "7%",
-     "986.2b"
+     "$30",
+     "10%",
+     "29%",
+     "293.8b",
+     "57%",
+     "600hours",
+     "970.9b"
     ],
     "removed": [
      "368.9b",
@@ -1079,7 +1061,7 @@
   },
   "cohere": {
    "url": "https://docs.cohere.com/docs/rate-limits",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "6f2ebddf07cbae7c",
    "facts": [
@@ -1097,7 +1079,7 @@
   },
   "huggingface": {
    "url": "https://huggingface.co/docs/inference-providers/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e8f7deaeedffc263",
    "facts": [
@@ -1109,18 +1091,20 @@
    ],
    "baseline": "2026-09-12",
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "25ff87e6652fa2b9",
+    "seen": "2026-10-08",
+    "hash": "269fb2900937818b",
     "added": [
      "12months",
      "2hours"
     ],
-    "removed": []
+    "removed": [
+     "$0.10,"
+    ]
    }
   },
   "nvidia-nim": {
    "url": "https://developer.nvidia.com/nim",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1128,7 +1112,7 @@
   },
   "cerebras": {
    "url": "https://cerebras.ai/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ecc165b4e4e4bf78",
    "facts": [
@@ -1149,13 +1133,13 @@
   },
   "mistral": {
    "url": "https://docs.mistral.ai/deployment/ai-studio/tier",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 404,
    "note": "HTTP 404"
   },
   "suno": {
    "url": "https://help.suno.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1163,9 +1147,9 @@
   },
   "elevenlabs": {
    "url": "https://elevenlabs.io/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "e51df86e27b5160b",
+   "hash": "72579beaccb39f68",
    "facts": [
     "$0",
     "$0.17",
@@ -1195,7 +1179,6 @@
     "10000credits",
     "1000characters",
     "1000credits",
-    "100minutes",
     "100words",
     "10k",
     "10minutes",
@@ -1208,7 +1191,6 @@
     "1character",
     "1credit",
     "2,000credits",
-    "2,500seconds",
     "2,650credits",
     "20%",
     "2000credits",
@@ -1223,7 +1205,6 @@
     "3000credits",
     "30k",
     "30minutes",
-    "31minutes",
     "330credits",
     "33m",
     "40credits",
@@ -1242,34 +1223,20 @@
    ],
    "baseline": "2026-09-12",
    "drift": {
-    "confirmed": "2026-10-04",
-    "first_seen": "2026-10-03",
-    "added": [
-     "$1",
-     "83%"
-    ],
-    "removed": [
-     "12,500seconds",
-     "152minutes",
-     "500minutes",
-     "80%"
-    ],
-    "checked_then": "2026-08-02"
-   },
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "72579beaccb39f68",
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [],
     "removed": [
      "100minutes",
      "2,500seconds",
      "31minutes"
-    ]
+    ],
+    "checked_then": "2026-08-02"
    }
   },
   "fish-audio": {
    "url": "https://fish.audio",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "2e20304bd9cb7cab",
    "facts": [
@@ -1285,13 +1252,13 @@
   },
   "quillbot": {
    "url": "https://help.quillbot.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "grammarly": {
    "url": "https://support.grammarly.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1299,7 +1266,7 @@
   },
   "caiyun": {
    "url": "https://docs.caiyunapp.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1307,19 +1274,19 @@
   },
   "consensus": {
    "url": "https://help.consensus.app",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "perplexity": {
    "url": "https://perplexity.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "grok": {
    "url": "https://docs.x.ai/grok/faq",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "c90190bfeee70b1d",
    "facts": [
@@ -1332,13 +1299,23 @@
   },
   "notebooklm": {
    "url": "https://support.google.com/gemininotebook",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "bd04c01c08365f77",
+   "hash": "86fd9ffa06d2b037",
    "facts": [
     "0,b",
+    "000b",
+    "000k",
+    "000m",
+    "00b",
+    "00k",
+    "00m",
+    "0b",
+    "0k",
+    "0m",
     "1,b",
     "100%",
+    "18,gb",
     "2,b",
     "21,b",
     "22,b",
@@ -1349,9 +1326,9 @@
     "8147497,b"
    ],
    "baseline": "2026-09-12",
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "86fd9ffa06d2b037",
+   "drift": {
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [
      "000b",
      "000k",
@@ -1364,12 +1341,13 @@
      "0m",
      "18,gb"
     ],
-    "removed": []
+    "removed": [],
+    "checked_then": "2026-08-13"
    }
   },
   "felo": {
    "url": "https://felo.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1377,7 +1355,7 @@
   },
   "metaso": {
    "url": "https://metaso.cn/meta-user-policy",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "30c0c06e9b1499a1",
    "facts": [
@@ -1400,7 +1378,7 @@
   },
   "aider": {
    "url": "https://aider.chat",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "66819e1f78e5f35d",
    "facts": [
@@ -1413,7 +1391,7 @@
   },
   "github-models": {
    "url": "https://docs.github.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1421,7 +1399,7 @@
   },
   "ms-copilot": {
    "url": "https://support.microsoft.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1429,7 +1407,7 @@
   },
   "continue": {
    "url": "https://github.com/continuedev/continue",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "af6c6401511b856d",
    "facts": [
@@ -1447,17 +1425,27 @@
      "5.4k"
     ],
     "checked_then": "2026-08-04"
+   },
+   "pending": {
+    "seen": "2026-10-08",
+    "hash": "0bd49bbafbfc0914",
+    "added": [
+     "36.2k"
+    ],
+    "removed": [
+     "36.1k"
+    ]
    }
   },
   "poe": {
    "url": "https://help.poe.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "v0": {
    "url": "https://v0.app",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ea7bb654d85b9de2",
    "facts": [
@@ -1486,16 +1474,17 @@
    ],
    "baseline": "2026-09-12",
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "4acc1d908a6d1a02",
+    "seen": "2026-10-08",
+    "hash": "d93d5ab84aa94837",
     "added": [
      "1.5k",
      "10.8k",
      "100%",
      "11.1k",
      "14.6k",
+     "18%",
      "20.7k",
-     "21%",
+     "3.6k",
      "6.7k",
      "8.7k",
      "9.6k"
@@ -1513,7 +1502,7 @@
   },
   "bolt": {
    "url": "https://support.bolt.new",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1521,7 +1510,7 @@
   },
   "replit": {
    "url": "https://docs.replit.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1529,7 +1518,7 @@
   },
   "bing-image": {
    "url": "https://bing.com/new/termsofuseimagecreator",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1537,7 +1526,7 @@
   },
   "lovable": {
    "url": "https://docs.lovable.dev",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1545,7 +1534,7 @@
   },
   "wujie": {
    "url": "https://wujiebantu.com/us/ai-use",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ffa42000daca287e",
    "facts": [
@@ -1555,7 +1544,7 @@
   },
   "codebuddy": {
    "url": "https://codebuddy.ai/docs/zh/ide/Account/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 0,
    "hash": "fa4c0daf1a530867",
    "facts": [
@@ -1592,7 +1581,7 @@
   },
   "upscayl": {
    "url": "https://upscayl.org",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "aeb68d516bbfaaf2",
    "facts": [
@@ -1603,7 +1592,7 @@
   },
   "pixlr": {
    "url": "https://pixlr.com/license-and-services-agreement",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "296a5097ccd76a9d",
    "facts": [
@@ -1615,7 +1604,7 @@
   },
   "playground-ai": {
    "url": "https://help.playgroundai.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1623,7 +1612,7 @@
   },
   "civitai": {
    "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1631,7 +1620,7 @@
   },
   "removebg": {
    "url": "https://remove.bg",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "c4204617afd15da2",
    "facts": [
@@ -1643,7 +1632,7 @@
   },
   "tusiart": {
    "url": "https://tusiart.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "1a77278f17099840",
    "facts": [
@@ -1663,21 +1652,20 @@
    ],
    "baseline": "2026-09-12",
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "568c63dddd1c512e",
+    "seen": "2026-10-08",
+    "hash": "8910c374ff9dfaea",
     "added": [
-     "1.4k",
      "1.5k",
-     "1.7k",
-     "13k",
+     "102video",
      "14k",
-     "181video",
+     "17k",
+     "1k",
      "2.3k",
-     "2.4k",
      "23k",
-     "46video",
-     "58k",
-     "9.7k"
+     "27k",
+     "5.9k",
+     "57k",
+     "58k"
     ],
     "removed": [
      "1.1k",
@@ -1697,13 +1685,13 @@
   },
   "haiper": {
    "url": "https://static2.haiper.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 0,
    "note": "ENOTFOUND"
   },
   "heygen": {
    "url": "https://heygen.com/terms",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "03766c8a72d1be73",
    "facts": [
@@ -1716,7 +1704,7 @@
   },
   "opusclip": {
    "url": "https://opus.pro/terms-of-service",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "480a44c153195129",
    "facts": [
@@ -1735,7 +1723,7 @@
   },
   "udio": {
    "url": "https://help.udio.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1743,13 +1731,13 @@
   },
   "d-id": {
    "url": "https://help.d-id.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "pika": {
    "url": "https://pika.art/terms-of-service",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "b1ea3fddef0aba8d",
    "facts": [
@@ -1778,13 +1766,13 @@
   },
   "ttsmaker": {
    "url": "https://ttsmaker.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "napkin": {
    "url": "https://napkin.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "eee7b03d291548a9",
    "facts": [
@@ -1794,7 +1782,7 @@
   },
   "immersive-translate": {
    "url": "https://immersivetranslate.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "2e597b67ed637fa3",
    "facts": [
@@ -1818,7 +1806,7 @@
   },
   "ima": {
    "url": "https://ima.qq.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1826,7 +1814,7 @@
   },
   "gezhe": {
    "url": "https://gezhe.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1834,7 +1822,7 @@
   },
   "processon": {
    "url": "https://processon.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "b71da31ecd1046f6",
    "facts": [
@@ -1845,7 +1833,7 @@
   },
   "devv": {
    "url": "https://devv.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1853,13 +1841,13 @@
   },
   "ai360": {
    "url": "https://pop.vip.360.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "note": "HTTP 200"
   },
   "zhihu-zhida": {
    "url": "https://zhida.zhihu.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -1867,7 +1855,7 @@
   },
   "wordvice": {
    "url": "https://wordvice.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "72a421c6890383cc",
    "facts": [
@@ -1879,7 +1867,7 @@
   },
   "quark-ai": {
    "url": "https://quark.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "4d935684ea949718",
    "facts": [
@@ -1898,7 +1886,7 @@
   },
   "youdao": {
    "url": "https://ai.youdao.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "49d2f2820cfea10a",
    "facts": [
@@ -1908,13 +1896,13 @@
   },
   "phind": {
    "url": "https://phind.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "deepinfra": {
    "url": "https://deepinfra.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "45e9cded22f045e1",
    "facts": [
@@ -1999,8 +1987,8 @@
     "checked_then": "2026-08-04"
    },
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "b18525b26c9f3bdf",
+    "seen": "2026-10-08",
+    "hash": "51e396590e90d569",
     "added": [
      "$0.003",
      "$0.004",
@@ -2033,7 +2021,7 @@
   },
   "dify": {
    "url": "https://dify.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "8ce85b64adc3c530",
    "facts": [
@@ -2050,11 +2038,21 @@
      "156k"
     ],
     "checked_then": "2026-08-04"
+   },
+   "pending": {
+    "seen": "2026-10-08",
+    "hash": "7495833b918bcb56",
+    "added": [
+     "158k"
+    ],
+    "removed": [
+     "157k"
+    ]
    }
   },
   "fireworks": {
    "url": "https://docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2062,7 +2060,7 @@
   },
   "coze": {
    "url": "https://docs.coze.cn",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2070,7 +2068,7 @@
   },
   "bailian": {
    "url": "https://aliyun.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "af2e61e201b03b73",
    "facts": [
@@ -2108,7 +2106,7 @@
   },
   "ragflow": {
    "url": "https://ragflow.io/docs/faq",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "d53fe762d699e2a0",
    "facts": [
@@ -2137,7 +2135,7 @@
   },
   "n8n": {
    "url": "https://docs.n8n.io",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "602423a74cd542e2",
    "facts": [
@@ -2156,10 +2154,10 @@
     "checked_then": "2026-08-04"
    },
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "5bb95899a89e800e",
+    "seen": "2026-10-08",
+    "hash": "56a2e019b8aab1d8",
     "added": [
-     "12days"
+     "14days"
     ],
     "removed": [
      "21days"
@@ -2168,7 +2166,7 @@
   },
   "figma": {
    "url": "https://figma.com/legal/tos",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "c947b28a6285e336",
    "facts": [
@@ -2183,7 +2181,7 @@
   },
   "jsdesign": {
    "url": "https://js.design",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2191,7 +2189,7 @@
   },
   "fastgpt": {
    "url": "https://fastgpt.cn/price",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "9729cfee8fef5165",
    "facts": [
@@ -2249,7 +2247,7 @@
   },
   "motiff": {
    "url": "https://miaoduo.com/help/others/489912186378811",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ac4100a1b806a458",
    "facts": [
@@ -2264,7 +2262,7 @@
   },
   "elicit": {
    "url": "https://elicit.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "d455f0ea2e5c99f2",
    "facts": [
@@ -2356,13 +2354,13 @@
   },
   "scispace": {
    "url": "https://scispace.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 202,
    "note": "HTTP 202"
   },
   "framer": {
    "url": "https://framer.com/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "100bdaff907b33f9",
    "facts": [
@@ -2393,7 +2391,7 @@
   },
   "ollama": {
    "url": "https://github.com/ollama/ollama",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "620d9d077962222d",
    "facts": [
@@ -2420,21 +2418,23 @@
     "checked_then": "2026-08-04"
    },
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "55bae0a2e8f153bd",
+    "seen": "2026-10-08",
+    "hash": "3655ec9c72eabd0e",
     "added": [
-     "182.4k",
+     "182.5k",
+     "183k",
      "2.6k"
     ],
     "removed": [
      "182.1k",
+     "182k",
      "2.5k"
     ]
    }
   },
   "doubao-aixue": {
    "url": "https://doubao.com/legal/instructions",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2442,7 +2442,7 @@
   },
   "gaoding": {
    "url": "https://gaoding.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "81e06858206e590b",
    "facts": [
@@ -2490,25 +2490,33 @@
     "checked_then": "2026-08-04"
    },
    "pending": {
-    "seen": "2026-10-07",
-    "hash": "926127f832661553",
-    "added": [
-     "184b"
-    ],
+    "seen": "2026-10-08",
+    "hash": "67193481adeca884",
+    "added": [],
     "removed": [
-     "3064b"
+     "15秒",
+     "16秒",
+     "1个",
+     "1秒",
+     "3064b",
+     "3207b",
+     "5个",
+     "72668b",
+     "786579b",
+     "9543b",
+     "98b"
     ]
    }
   },
   "character-ai": {
    "url": "https://character.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 403,
    "note": "HTTP 403"
   },
   "duckduckgo-ai": {
    "url": "https://duckduckgo.com/duckduckgo-help-pages/duckai/usage-limits",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2516,7 +2524,7 @@
   },
   "cody": {
    "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "1e0ef8f7f6ec3378",
    "facts": [
@@ -2527,7 +2535,7 @@
   },
   "anythingllm": {
    "url": "https://anythingllm.com",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "32e97904945d8887",
    "facts": [
@@ -2565,43 +2573,31 @@
   },
   "gemini-cli": {
    "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
-   "hash": "6b7d0a0729529ff5",
+   "hash": "5d72c5038e2d23da",
    "facts": [
     "1,000requests",
     "1,500requests",
-    "107k",
-    "14.7k",
     "2,000requests",
     "250requests",
     "90days"
    ],
    "baseline": "2026-09-12",
    "drift": {
-    "confirmed": "2026-10-01",
-    "first_seen": "2026-09-29",
-    "added": [
-     "14.7k"
-    ],
-    "removed": [
-     "14.6k"
-    ],
-    "checked_then": "2026-08-05"
-   },
-   "pending": {
-    "seen": "2026-10-07",
-    "hash": "5d72c5038e2d23da",
+    "confirmed": "2026-10-08",
+    "first_seen": "2026-10-07",
     "added": [],
     "removed": [
      "107k",
      "14.7k"
-    ]
+    ],
+    "checked_then": "2026-08-05"
    }
   },
   "lm-studio": {
    "url": "https://lmstudio.ai",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2609,7 +2605,7 @@
   },
   "exa": {
    "url": "https://exa.ai/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "25200062d15d536c",
    "facts": [
@@ -2645,7 +2641,7 @@
   },
   "ante": {
    "url": "https://ante.run",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2653,7 +2649,7 @@
   },
   "gptzero": {
    "url": "https://gptzero.me",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "2686411989cda679",
    "facts": [
@@ -2673,7 +2669,7 @@
   },
   "languagetool": {
    "url": "https://languagetool.org/http-api/",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "e3b0c44298fc1c14",
    "facts": [],
@@ -2681,7 +2677,7 @@
   },
   "deepl": {
    "url": "https://www.deepl.com/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "6f7b4b20c4507619",
    "facts": [
@@ -2712,11 +2708,19 @@
      "5b"
     ],
     "checked_then": "2026-09-21"
+   },
+   "pending": {
+    "seen": "2026-10-08",
+    "hash": "2b808f683592a0d4",
+    "added": [
+     "5b"
+    ],
+    "removed": []
    }
   },
   "kiro": {
    "url": "https://kiro.dev/pricing/",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "ca0e656fb02d981a",
    "facts": [
@@ -2751,7 +2755,7 @@
   },
   "codex": {
    "url": "https://developers.openai.com/codex/pricing",
-   "fetched": "2026-10-07",
+   "fetched": "2026-10-08",
    "status": 200,
    "hash": "87b8cd9f0381f15f",
    "facts": [
@@ -2815,5 +2819,5 @@
    }
   }
  },
- "generated": "2026-10-07"
+ "generated": "2026-10-08"
 }

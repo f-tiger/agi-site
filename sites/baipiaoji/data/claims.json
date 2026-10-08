@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07",
+  "generated": "2026-10-08",
   "source": "/api/claim?export=1",
   "definition": "claims = records whose official domain proved control of the token (well-known file or DNS TXT); attestations = vendor corrections awaiting the limits-edit review, never auto-published; no personal data is stored",
   "counts": {
