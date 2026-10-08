@@ -1,0 +1,30 @@
+name: Check BPJ catalogue transport
+on:
+  pull_request:
+    paths:
+      - 'sites/baipiaoji/scripts/catalog-*.mjs'
+      - 'sites/baipiaoji/scripts/test-catalog-*.mjs'
+      - 'sites/baipiaoji/scripts/agent-watch-*.mjs'
+      - 'sites/baipiaoji/lib/github-*.mjs'
+      - 'sites/baipiaoji/data/agent-watch-vocab.json'
+      - '.github/workflows/check-bpj-catalog.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bpj-catalog-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  catalog-fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check transport syntax and offline catalogue regressions
+        run: |
+          node --check sites/baipiaoji/scripts/catalog-network.mjs
+          node sites/baipiaoji/scripts/test-catalog-sync.mjs
