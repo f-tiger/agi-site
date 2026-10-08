@@ -227,6 +227,8 @@ def main():
         receipts.append(r)
         if r["outcome"] == "failed":
             failed.append(s)
+            for note in r.get("notes", []):
+                print("[%s] failed: %s" % (s, note), file=sys.stderr)
 
     if not args.check:
         os.makedirs(RECEIPTS, exist_ok=True)
