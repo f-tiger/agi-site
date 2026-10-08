@@ -1,3 +1,21 @@
+## 2026-10-08 — Evidence Audits citation claim correction
+
+Supersedes the promotional claim that this site holds a current measured
+33–37.5% citation share across AI answer engines, earned by a particular playbook.
+The historical record remains in `analytics-notes.md`, under 2026-08-16:
+an owner-supplied Bing AI Performance screenshot transcription, 30-day window,
+Microsoft Copilots and Partners, explicitly sampled. Its six visible query rows
+include 37.50% for “are we close to agi” and 33.10% for a truncated Aschenbrenner
+query. These are query-specific historical observations, not a current
+cross-engine benchmark or causal evidence. The original screenshots/export
+were not independently reacquired for this correction; no new benchmark is claimed.
+
+The English/Chinese audit metadata and answer capsules, English “Why us” and the service descriptions’ causal wording,
+llms.txt summary and generated audit mirrors now describe the public examples'
+source attribution and uncertainty. This is not an independent re-verification
+of every substantive finding in those older audits. Historical records are
+retained; service prices, promises, order routes, schemas and tracking are unchanged.
+
 ## 2026-09-05(晚)— /ai-trading-ledger 上线(预登记纸面台账;owner 问「自动化交易子站?」)
 
 裁定不开子站(根仓 docs/auto-trading-research-2026-09.md)。建:`tools/paper_ledger.py` 六臂确定性
