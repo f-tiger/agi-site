@@ -53,11 +53,13 @@ async function scenario({site='bpj',lang='en',query='',expected='',account=false
  assert.equal(await page.evaluate(()=>typeof globalThis.gtag),'undefined');
  if(account)await page.locator('#account-use').click();
  else{await page.locator('#key').fill(key);await page.locator('#login').click();}
+ // The async auth handler refreshes backup state; wait before interacting with it.
+ await page.waitForFunction(id=>document.querySelector('#'+id)?.disabled===false,account?'account-use':'login');
  await page.locator('#key-saved').check();await page.locator('#consent').check();await page.locator('#checkout').click();
  await page.waitForFunction(()=>document.querySelector('#orders')?.textContent.includes('offline-order'));
  assert.equal(requests.length,1);assert.equal(requests[0].source,expected);assert.equal(requests[0].endpoint,account?'/api/account-member':'/api/member');
  assert.deepEqual(requests[0].keys,account?['accept_terms','account_id','action','key_saved','nonce','source']:['accept_terms','action','key_saved','nonce','source']);
- assert.deepEqual(errors,[]);assert.deepEqual(outside,[]);await context.close();count++;
+ assert.deepEqual(errors,[]);assert.deepEqual(outside,[]);await context.close();count++;console.log('PASS attribution browser '+count+' '+site+'/'+lang+' '+(account?'account':'key')+' '+(cta?'CTA':switchLanguage?'language switch':query||'no source'));
 }
 try{
  for(const lang of ['zh','en'])await scenario({lang,cta:true,expected:source});
