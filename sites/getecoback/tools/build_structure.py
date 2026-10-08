@@ -4231,6 +4231,11 @@ def inject_explainer(html, slug, en=False):
     if dev not in ("ac", "fan", "dehum") or slug in SKIP_MODELS:
         return re.sub(r'<!--EB_EXPLAINER-->.*?<!--/EB_EXPLAINER-->\n?', '', html, flags=re.S)
     block = explainer_block(dev, en)
+    # This guide compares measured drying outcomes, not promised wall protection.
+    if slug == "waesche-trocknen-wohnung" and not en:
+        block = block.replace(EXPLAINER["dehum"][3],
+            "Er entzieht der Raumluft Feuchtigkeit und sammelt sie im Tank. "
+            "Trockenzeit und Wirkung hängen von Gerät und Raumbedingungen ab.")
     if "<!--EB_EXPLAINER-->" in html:
         return re.sub(r'<!--EB_EXPLAINER-->.*?<!--/EB_EXPLAINER-->\n?', lambda m: block, html, flags=re.S)
     if "<!--/EB_MODELS-->" in html:
