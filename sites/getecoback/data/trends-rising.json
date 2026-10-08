@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-07",
+ "fetched": "2026-10-08",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -302,74 +302,89 @@
    "polluted": true
   },
   "matratze": {
+   "auto": [
+    "matratzen concord",
+    "matratze",
+    "matratze 140x200",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratzen",
+    "matratze 160x200",
+    "matratzenschoner",
+    "matratze 120x200",
+    "matratzen topper"
+   ],
    "rising": [
     {
-     "q": "fluss durch riga",
-     "v": 4200
+     "q": "matratzen concord",
+     "v": "new"
     },
     {
-     "q": "emma performance matratze",
-     "v": 140
+     "q": "matratze 140x200",
+     "v": "new"
     },
     {
-     "q": "boxspringbett 140x200 mit matratze und topper",
-     "v": 140
+     "q": "matratze 90x200",
+     "v": "new"
     },
     {
-     "q": "bett1 de",
-     "v": 120
+     "q": "matratze 180x200",
+     "v": "new"
     },
     {
-     "q": "am qualitätsmatratzen",
-     "v": 80
+     "q": "matratzen",
+     "v": "new"
     },
     {
-     "q": "emma original pro matratze",
-     "v": 80
+     "q": "matratze 160x200",
+     "v": "new"
     },
     {
-     "q": "emma original matratze",
-     "v": 70
+     "q": "matratzenschoner",
+     "v": "new"
     },
     {
-     "q": "encasing matratze",
-     "v": 70
+     "q": "matratze 120x200",
+     "v": "new"
     },
     {
-     "q": "kinderbett mit matratze",
-     "v": 60
-    },
-    {
-     "q": "homavo matratze",
-     "v": 60
+     "q": "matratzen topper",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-07",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-08"
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "dyson wischsauger",
-     "v": 73900
-    },
-    {
      "q": "roborock f25 ultra",
-     "v": 4250
+     "v": 9500
     },
     {
-     "q": "tineco floor one stretch s6",
-     "v": 250
+     "q": "vorwerk akkusauger",
+     "v": 9200
     },
     {
-     "q": "vorwerk saugwischer akku",
-     "v": 50
+     "q": "akku-saugwischer testsieger stiftung warentest",
+     "v": 2300
+    },
+    {
+     "q": "vorwerk akku saugwischer",
+     "v": 90
+    },
+    {
+     "q": "tineco",
+     "v": 60
+    },
+    {
+     "q": "bester saugwischer",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-30",
-   "polluted": true
+   "fetched": "2026-10-08",
+   "polluted": false
   }
  }
 }
