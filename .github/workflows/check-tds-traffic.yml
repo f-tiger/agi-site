@@ -1,0 +1,28 @@
+name: Check TDS traffic reporting
+on:
+  pull_request:
+    paths:
+      - 'sites/thedollscout/scripts/cf-analytics.mjs'
+      - 'sites/thedollscout/scripts/documents/metrics.mjs'
+      - 'sites/thedollscout/scripts/traffic-report-tests.mjs'
+      - '.github/workflows/tds-traffic.yml'
+      - '.github/workflows/check-tds-traffic.yml'
+permissions:
+  contents: read
+jobs:
+  report-fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check reporting semantics with offline fixtures only
+        run: |
+          node --check sites/thedollscout/scripts/cf-analytics.mjs
+          node --check sites/thedollscout/scripts/documents/metrics.mjs
+          node --test sites/thedollscout/scripts/traffic-report-tests.mjs
+          git diff --exit-code -- sites/thedollscout/content

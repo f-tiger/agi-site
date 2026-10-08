@@ -5,13 +5,13 @@
    it disappears whenever the browser or the network refuses to talk to Google:
    ad blockers, privacy browsers, and national firewalls all produce an empty
    property that looks identical to "nobody came". Cloudflare counts requests at
-   the edge, before any of that applies. It cannot see events, tools completed
-   or affiliate clicks — but it can always answer "did anyone arrive", which is
-   the question GA4 currently cannot answer for this owner.
+   the edge, before any of that applies. These are raw requests/page views,
+   including bots and unclassified traffic. They cannot establish people,
+   qualified visits, tool completions, affiliate clicks or GA4 event counts.
+   Missing GA4 data is unavailable evidence, not a measured zero.
 
-   It also unblocks the growth loop. GA4 needs a service account the owner has
-   not created yet; this uses the API token already in the repository secrets,
-   so the loop gets a real traffic number with no further setup.
+   This separate source uses the API token already in repository secrets;
+   availability here does not establish availability in another collector.
 
    Credentials: it TRIES EVERY token secret it can see rather than preferring
    one. That is not tidiness — the first version preferred
@@ -165,27 +165,17 @@ query Traffic($zone: String!, $since: Date!, $until: Date!) {
   }
 }`;
 
-/* Without ipClassMap the headline number is a lie by omission: an unpromoted
-   site's "unique visitors" are overwhelmingly crawlers and scanners, and one
-   undifferentiated figure invites reading bots as people. ipType splits
-   searchEngine / scanner / clean at the edge. A wave of 404s means a
-   vulnerability scanner walking wp-admin paths — same requests, opposite
-   meaning — so responseStatusMap earns its place too. */
+/* Preserve the API's IP-reputation, response-status and country labels.
+   These describe requests; none is a verified human/customer classifier. */
 const EXTRAS = `
           ipClassMap { ipType requests }
           responseStatusMap { edgeResponseStatus requests }
           countryMap { clientCountryName requests }`;
 
-/* The field that actually answers "was anyone here a person".
-   ipClassMap does NOT: `clean` means "this IP has a good reputation" and
-   `noRecord` means "Cloudflare holds no reputation record for it" — ordinary
-   residential visitors land in either, so a zero in `clean` is not a zero in
-   humans, and reading it that way overstates what the edge can see.
-   browserMap is different in kind. Cloudflare only assigns a browser family
-   when the request looks like a browser rendering a page, so its pageViews are
-   the closest thing this plan offers to a human count. contentTypeMap is the
-   corroborating signal: a browser that renders a page also fetches the CSS and
-   the JavaScript, and a crawler taking only the HTML does not. */
+/* browserMap is a user-agent-family breakdown, including named bots, Curl
+   and Unknown as well as browser-family labels. Even browser-labelled traffic
+   can be automated. Response content types are a separate request breakdown,
+   not corroboration of people or browser execution. */
 const BROWSER_EXTRAS = `
           browserMap { uaBrowserFamily pageViews }
           contentTypeMap { edgeResponseContentTypeName requests }`;
@@ -236,13 +226,12 @@ return {
     uniques: d.uniq.uniques,
     /* IP REPUTATION, not visitor type. `clean` = good reputation, `noRecord` =
        no reputation record held — ordinary people land in both, and so do
-       unrecognised bots. Do not read a zero in `clean` as a zero in humans;
-       that is what byBrowser is for. */
+       unrecognised bots. Neither this map nor byBrowser measures humans. */
     byIpType: Object.fromEntries(
       (d.sum.ipClassMap || []).map((c) => [c.ipType, c.requests]).sort((a, b) => b[1] - a[1])
     ),
-    /* Page views Cloudflare could attribute to a browser family. The nearest
-       thing to a human count this plan exposes. */
+    /* Legacy key retained: raw UA-family labels, including bots and Unknown.
+       A missing/empty map does not establish zero human visits. */
     byBrowser: Object.fromEntries(
       (d.sum.browserMap || []).map((b) => [b.uaBrowserFamily, b.pageViews]).sort((a, b) => b[1] - a[1])
     ),
@@ -290,8 +279,12 @@ writeFileSync(
     {
       source: "Cloudflare GraphQL Analytics API (edge-measured)",
       note: "Counted at the edge, so unaffected by ad blockers, privacy browsers " +
-            "or network-level blocking of Google. Includes bot and crawler traffic, " +
-            "which on a new site is most of it — read it as a floor, not as humans.",
+            "or network-level blocking of Google. Raw requests/page views include " +
+            "bots and unclassified traffic. byBrowser contains reported user-agent " +
+            "families, not verified browsers or people; byIpType is IP reputation. " +
+            "These counts cannot measure qualified visitors or substitute for GA4 " +
+            "events, first-party actions or the collector's qualified-visit gate. " +
+            "Missing breakdowns are unavailable, not zero people.",
       zone: ZONE_NAME,
       updated,
       window: { since: dates[0], until: dates[dates.length - 1] },
@@ -307,14 +300,14 @@ console.log(`Zone ${ZONE_NAME}, ${since} → ${until}\n`);
 const used = attempts.find((a) => a.verdict === "worked");
 if (used) console.log(`_Read with \`${used.label}\` (token \`${used.id}\`)._\n`);
 console.log(
-  `**Requests: ${total.requests} · Page views: ${total.pageViews} · ` +
+  `**Raw edge requests: ${total.requests} · Raw edge page views: ${total.pageViews} · ` +
   `Unique IPs: ${uniqAvg}/day avg, ${uniqPeak} peak**\n`
 );
 console.log(
-  "_Unique IPs are shown per day, not summed. Summing them would count the " +
-  "same crawler returning tomorrow as a second visitor._\n"
+  "_Includes bots and unclassified traffic. Unique IPs are shown per day, not " +
+  "summed or treated as people, sessions or qualified visits._\n"
 );
-console.log("| Date | Requests | Page views | Uniques |");
+console.log("| Date | Raw requests | Raw page views | Unique IPs |");
 console.log("|---|---|---|---|");
 for (const r of rows) console.log(`| ${r.date} | ${r.requests} | ${r.pageViews} | ${r.uniques} |`);
 
@@ -329,72 +322,60 @@ for (const r of rows) {
 }
 if (degraded) {
   console.log(
-    `\n_No bot/human breakdown this run — the API refused those fields (${degraded}). ` +
-    "The counts above are still real; they just cannot be split into crawlers and people._"
+    `\n_Some breakdown fields were unavailable this run (${degraded}). ` +
+    "Available counts are retained; missing breakdowns are not zero. " +
+    "No query tier establishes a bot/human split._"
   );
 }
-/* ---- the question the other numbers cannot answer ---- */
-const browsers = {};
+const uaFamilies = {};
 const types = {};
 for (const r of rows) {
-  for (const [k, v] of Object.entries(r.byBrowser || {})) browsers[k] = (browsers[k] || 0) + v;
+  for (const [k, v] of Object.entries(r.byBrowser || {})) uaFamilies[k] = (uaFamilies[k] || 0) + v;
   for (const [k, v] of Object.entries(r.byContentType || {})) types[k] = (types[k] || 0) + v;
 }
-const browserViews = Object.values(browsers).reduce((a, b) => a + b, 0);
-if (Object.keys(browsers).length || Object.keys(types).length) {
-  console.log("\n### Was anyone a person?\n");
-  if (!Object.keys(browsers).length) {
-    console.log("**No page view in this window was attributed to any browser family.**");
-    console.log("Cloudflare assigns a browser only to requests that look like a browser rendering a page.");
-  } else {
-    console.log(`**${browserViews} page view(s) attributed to a browser**, out of ${total.pageViews} total.\n`);
-    console.log("| Browser | Page views |\n|---|---|");
-    for (const [k, v] of Object.entries(browsers).sort((a, b) => b[1] - a[1])) console.log(`| ${k} | ${v} |`);
-  }
-  /* Corroboration. A browser that renders a page also fetches the stylesheet
-     and the script; a crawler that takes the HTML and leaves does not. If the
-     HTML count is large and the CSS/JS counts are near zero, the visitors were
-     not running a browser, whatever their IP reputation says. */
-  const html = types["text/html"] || 0;
-  const assets = (types["text/css"] || 0) + (types["application/javascript"] || 0) + (types["text/javascript"] || 0);
-  if (html || assets) {
-    console.log(`\nHTML responses: **${html}** · CSS+JS responses: **${assets}**`);
-    console.log(
-      assets < html * 0.1
-        ? "\nAlmost nothing fetched the stylesheet or the script. Requests took the HTML and left, " +
-          "which is what a crawler does and not what a browser does."
-        : "\nThe stylesheet and script were fetched alongside the HTML, which is what a real browser does."
-    );
-  }
+const uaFamilyViews = Object.values(uaFamilies).reduce((a, b) => a + b, 0);
+console.log("\n### Reported user-agent families\n");
+if (!Object.keys(uaFamilies).length) {
+  console.log("**No user-agent-family entries returned (unavailable or empty breakdown).** This does not establish zero browser traffic or zero people.");
+} else {
+  console.log(`**${uaFamilyViews} page view(s) in the returned user-agent-family breakdown**, out of ${total.pageViews} raw edge page views.\n`);
+  console.log("These labels include bots, non-browser clients and Unknown/unclassified traffic. A browser-family label is a user-agent classification, not verification of a person or qualified visit.");
+  console.log("| Reported UA family | Raw page views |\n|---|---|");
+  for (const [k, v] of Object.entries(uaFamilies).sort((a, b) => b[1] - a[1])) console.log(`| ${k} | ${v} |`);
+}
+if (Object.keys(types).length) {
+  console.log("\n### Reported response content types\n");
+  console.log("| Content type | Raw requests |\n|---|---|");
+  for (const [k, v] of Object.entries(types).sort((a, b) => b[1] - a[1])) console.log(`| ${k} | ${v} |`);
+  console.log("\nHTML/CSS/JS response counts do not prove page rendering or human activity: bots can fetch assets and browsers can use cached assets.");
 }
 
 const ranked = Object.entries(classes).sort((a, b) => b[1] - a[1]);
 if (ranked.length) {
-  console.log("\n### Who those requests were\n");
+  console.log("\n### Reported IP reputation classes\n");
   console.log("| Cloudflare class | Requests | Share |");
   console.log("|---|---|---|");
   for (const [k, v] of ranked) {
     console.log(`| ${k} | ${v} | ${((v / total.requests) * 100).toFixed(1)}% |`);
   }
-  const clean = classes.clean || 0;
   console.log(
-    `\n\`clean\` (${clean}) is the **ceiling** on human requests, not a count of them — ` +
-    "unrecognised bots are classified clean too. Everything else on that list is " +
-    "definitionally not a customer."
+    "\n`clean` describes IP reputation, not a human-request ceiling. Other classes " +
+    "do not establish the absence of people or customers. A missing class is not " +
+    "a measured zero; none of these classes measures qualified visits."
   );
 }
 const notFound = (statuses["404"] || 0) + (statuses["403"] || 0);
 if (notFound > total.requests * 0.2) {
   console.log(
-    `\n**${notFound} of ${total.requests} requests got a 404/403.** That is the ` +
-    "signature of vulnerability scanners walking paths that were never here " +
-    "(wp-admin, .env, phpmyadmin), not of people failing to find pages. " +
-    "Discount it from any read of the traffic."
+    `\n**${notFound} of ${total.requests} requests got a 404/403.** ` +
+    "Status codes alone do not distinguish scanners from people encountering " +
+    "missing or restricted pages; no human-traffic count is inferred."
   );
 }
 
-console.log("\n_Edge-measured, so this includes crawlers and bots — on a new site that is " +
-  "most of the traffic. Its value is that it cannot be zeroed by an ad blocker or a " +
-  "firewall, so a zero here means genuinely nobody arrived._");
+console.log("\n_Edge requests, edge page views, UA labels, qualified visits, GA4 events " +
+  "and first-party actions are separate measures. This report cannot pass or fail " +
+  "the collector's 100-qualified-visit gate. Zero recorded edge requests applies " +
+  "only to the queried zone/window; unavailable data is not zero._");
 console.log(`\nHistory written to \`${OUT}\` (${dates.length} days retained).`);
 }
