@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './test-catalog-network.mjs';
 import {readFileSync} from 'node:fs';
 import {syncGithub,pullRegistry,syncMcp,summarize,REGISTRY,repoKey,admissionQueue,topicFromTags,eligibleRepo} from './catalog-sync.mjs';
 import {safeURL,publicIP,requestURL} from './catalog-network.mjs';
@@ -24,6 +25,15 @@ check('automatic records do not fabricate licensing, hardware or installation ev
 check('duplicates are suppressed across editorial and automatic entries',()=>{assert.equal(mergeCatalog(curated,{tools:[...discovery.tools,...discovery.tools]}).tools.length,2);});
 const before=structuredClone(discovery),failed=await syncGithub({curated,discovery,state,get:async()=>({status:429}),now:tomorrow,limits:{queries:1,verify:0}});
 check('API failure preserves catalogue and last successful verification date',()=>{assert.equal(failed.status,'degraded');assert.deepEqual(discovery,before);assert.equal(state.queryIndex,1);assert.equal(summarize({lastSuccessAt:now},failed,tomorrow,null).lastSuccessAt,now);});
+const networkFailure=new AggregateError([Object.assign(new Error('IPv6 unreachable'),{code:'ENETUNREACH'}),Object.assign(new Error('IPv4 timeout'),{code:'ETIMEDOUT'})]);
+const failedMcpState={cursor:'unread-page',watermark:now,since:now,checked:{}};
+const failedMcp=await syncMcp({registry:{agents:[]},pool:{candidates:[]},seeds:{candidates:[]},admissions:{rejected:{},admitted:[]},vocab,state:failedMcpState,now:tomorrow,get:async()=>{throw networkFailure;}});
+check('transport exhaustion produces degraded MCP status without erasing the completed GitHub lane',()=>{
+ assert.equal(failedMcp.status,'degraded');assert.deepEqual(failedMcp.errors,['mcp-registry-network-or-response-error']);
+ assert.equal(failedMcpState.cursor,'unread-page');assert.equal(failedMcpState.watermark,now);
+ const status={github:summarize(null,first,now,null),mcp:summarize({lastSuccessAt:now},failedMcp,tomorrow,null)};
+ assert.equal(status.github.admitted,1);assert.equal(status.github.status,'ok');assert.equal(status.mcp.lastSuccessAt,now);assert.equal(status.mcp.attemptedAt,tomorrow);
+});
 await syncGithub({curated,discovery,state,get:async()=>({status:200,data:repo('new',{archived:true})}),now:tomorrow,limits:{queries:0,verify:1}});
 check('archived automatic records leave public listings but retain history',()=>{assert.equal(discovery.tools[0].active,false);assert.equal(mergeCatalog(curated,discovery).tools.length,1);});
 
@@ -55,3 +65,4 @@ if(process.argv.includes('--dist')){
  const published=JSON.parse(readFileSync(new URL('../dist/catalog-sync.json',import.meta.url)));check('public status is real source data',()=>assert.deepEqual(published,JSON.parse(readFileSync(new URL('../data/catalog-sync-status.json',import.meta.url)))));
 }
 console.log('PASS '+count+' catalogue automation and adversarial checks (fixtures, no network).');
+
