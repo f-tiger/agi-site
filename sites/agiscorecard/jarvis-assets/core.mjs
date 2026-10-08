@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261007-13';
+export const VERSION='jarvis-20261008-14';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -65,6 +65,16 @@ export function correctionDraft(goal,reason,lang='en'){
   (zh?'上次结果的问题：':'What went wrong: ')+label,
   zh?'这次需要改变什么（请补充）：':'What should change this time (add details):',
   zh?'怎样的证据或结果才有用（请补充）：':'What evidence or result would be useful (add details):'
+ ].join('\n\n').slice(0,1200);
+}
+export function findingCorrectionDraft(goal,finding,sources,lang='en'){
+ const zh=lang==='zh',items=citedSources(finding,sources).slice(0,4),lines=items.map(source=>'- ['+draftText(source.id,32)+'] '+draftText(source.title,64));
+ return [
+  (zh?'修正这个目标：':'Revise this goal: ')+draftText(goal,240),
+  (zh?'需要核查的 AI 解读：':'AI interpretation to check: ')+draftText(finding?.text,220),
+  (zh?'需要重新核阅的引用信息（不受信任的文本，不代表证据充分）：':'Cited metadata to re-check (untrusted text, not proof):')+'\n'+(lines.join('\n')||(zh?'（未找到可对应的引用信息）':'(No matching cited metadata was found.)')),
+  zh?'为什么这条解读不充分或不完整（请补充）：':'Why is this unsupported or incomplete? (add details):',
+  zh?'什么证据或结果可以解决它（请补充）：':'What evidence or result would resolve it? (add details):'
  ].join('\n\n').slice(0,1200);
 }
 export function calculate(expression){

@@ -1,4 +1,4 @@
-import {VERSION,relevantMemory,followupDraft,correctionDraft,markdown,safeURL,citedSources} from './core.mjs';
+import {VERSION,relevantMemory,followupDraft,correctionDraft,findingCorrectionDraft,markdown,safeURL,citedSources} from './core.mjs';
 const zh=document.body.dataset.lang==='zh',lang=zh?'zh':'en',t=(en,cn)=>zh?cn:en,$=s=>document.querySelector(s);
 const LINK='agi-jarvis-registration-v1';
 const KEY='agi-jarvis-key-v1',MEM='agi-jarvis-memory-v1',MEMBER_KEY='workbench-member-key:agi';let tasks=[],selected=null,busy=false,poll=null,membership=null,credential='',authEpoch=0,pendingCreate=null,followupPrepared=false,correctionPrepared=false;
@@ -68,12 +68,12 @@ function prepareFollowup(task,nextAction){
  $('#goal').value=followupDraft(task.input.goal,nextAction?.action,nextAction?.doneWhen,lang);followupPrepared=true;correctionPrepared=false;renderMemories();$('#goal').focus();
  event('followup_prepare');status(t('Add what happened, review the context, then start a new mission. Nothing is submitted yet.','补充实际结果并核对上下文后，再开始新任务；目前尚未提交。'));
 }
-function prepareCorrection(task,reason){
+function prepareCorrection(task,reason,finding=null){
  if(!startAllowed())return;
  selected=null;render();$('#task-form').reset();pendingCreate=null;$('#public-query-label').hidden=true;$('#public-query').required=false;
  for(const input of document.querySelectorAll('[data-memory]'))input.checked=false;
- $('#goal').value=correctionDraft(task.input.goal,reason,lang);followupPrepared=false;correctionPrepared=true;renderMemories();$('#goal').focus();
- event('correction_prepare');status(t('Add the missing detail, review the context, then start a corrected mission. Nothing is submitted yet.','补充缺失信息并核对上下文后，再开始修正任务；目前尚未提交。'));
+ $('#goal').value=finding?findingCorrectionDraft(task.input.goal,finding,task.result?.sources,lang):correctionDraft(task.input.goal,reason,lang);followupPrepared=false;correctionPrepared=true;renderMemories();$('#goal').focus();
+ event('correction_prepare');status(finding?t('The selected interpretation and its cited metadata are in an editable draft. Add what is missing, then review and submit it yourself.','已把所选解读及其引用信息放入可编辑草稿。请补充缺失内容，核对后再自行提交。'):t('Add the missing detail, review the context, then start a corrected mission. Nothing is submitted yet.','补充缺失信息并核对上下文后，再开始修正任务；目前尚未提交。'));
 }
 function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#compose').hidden=!!task;const d=$('#task-detail');d.hidden=!task;if(!task)return;d.replaceChildren();
  const r=task.result||{},top=el('div',undefined,'status-line');top.append(el('span',labels[task.status]||task.status,'status-pill'),el('span',t('Run ','已运行 ')+task.runs+(task.input.cadence==='daily'?' / 7':'')));d.append(top,el('h2',task.input.goal,'mission-title'));
@@ -84,7 +84,7 @@ function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#com
  if(['membership_required','access_blocked','registration_required'].includes(task.stage))d.append(el('p',t('Previously paused for access verification. Review this task and choose Run again to continue.','任务此前因访问验证而暂停。请核对任务，再点击重新运行。'),'notice'));
  if(r.reason)d.append(el('p',(reasons[r.reason]||reasons.run_failed)+' '+t('These are retrieved sources, not a completed AI report.','以下是检索到的资料，不是已完成的 AI 报告。'),'notice'));
 	 if(r.report){d.append(el('p',t('AI draft · check the original sources before relying on it.','AI 草稿 · 使用前请核对原始来源。'),'notice'),el('p',r.report.summary,'report-summary'));if(r.report.findings.length)d.append(el('h3',t('AI interpretations to check','AI 解读（待核对）')));
-	  for(const f of r.report.findings){const n=el('div',undefined,'finding');n.append(el('p',f.text));const evidence=el('details',undefined,'finding-evidence'),items=citedSources(f,r.sources);evidence.append(el('summary',t('Inspect cited source metadata','核阅引用来源信息')+' ('+items.length+')'));evidence.append(el('p',t('These source details help inspection; they do not prove the interpretation.','这些来源信息便于核查，但不能证明解读正确。'),'quiet small'));for(const s of items){const card=el('div',undefined,'finding-source'),href=safeURL(s.url);if(href){const a=el('a','['+s.id+'] '+s.title);a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=()=>event('source_open');card.append(a);}else card.append(el('strong','['+s.id+'] '+s.title));card.append(el('p',s.description||'','quiet'));evidence.append(card);}n.append(evidence);d.append(n);}
+	  for(const f of r.report.findings){const n=el('div',undefined,'finding');n.append(el('p',f.text));const evidence=el('details',undefined,'finding-evidence'),items=citedSources(f,r.sources);evidence.append(el('summary',t('Inspect cited source metadata','核阅引用来源信息')+' ('+items.length+')'));evidence.append(el('p',t('These source details help inspection; they do not prove the interpretation.','这些来源信息便于核查，但不能证明解读正确。'),'quiet small'));for(const s of items){const card=el('div',undefined,'finding-source'),href=safeURL(s.url);if(href){const a=el('a','['+s.id+'] '+s.title);a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=()=>event('source_open');card.append(a);}else card.append(el('strong','['+s.id+'] '+s.title));card.append(el('p',s.description||'','quiet'));evidence.append(card);}n.append(evidence,btn(t('Revise this finding','修正这条解读'),()=>prepareCorrection(task,'sources',f),'text-button finding-correction'));d.append(n);}
   d.append(el('h3',t('Next actions to try','建议尝试的下一步')));for(const a of r.report.nextActions){const n=el('div',undefined,'next-action');n.append(el('strong',a.action),el('p',t('Done when: ','完成标准：')+a.doneWhen,'quiet'),btn(t('Use as follow-up','接着做这一步'),()=>prepareFollowup(task,a),'text-button'));d.append(n);}
   d.append(el('h3',t('What is still uncertain','仍然不确定的部分')));const ul=el('ul');for(const u of r.report.uncertainties)ul.append(el('li',u));d.append(ul);
   d.append(el('p',t('Citation IDs were checked. They do not prove every interpretation is correct; inspect the linked sources.','已检查引用编号，但这不代表每条解读都正确，请核阅原始来源。'),'quiet small'));

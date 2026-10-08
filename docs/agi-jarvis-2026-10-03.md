@@ -95,3 +95,7 @@ The first test prototype is live at https://agiscorecard.com/zh/jarvis and https
 ## Claim-level source inspection (v13, 2026-10-07)
 
 Citation-ID validation still does not establish semantic support. V13 therefore adds a collapsed, deterministic source-inspection panel to every model finding and carries the same claim-to-source mapping into export. It uses no additional model call and labels source metadata as an inspection aid, not proof. Hostile source text remains plain text and links retain the existing HTTPS allowlist. The guest trial, free registration path, privacy controls, model, quotas and two-hour maintenance schedule are unchanged. Research basis, counterevidence and falsifiable checks are recorded in [the v13 evidence-inspection note](agi-jarvis-evidence-inspection-2026-10-07.md).
+
+## Claim-level correction handoff (v14, 2026-10-08)
+
+V14 lets a user turn one questionable AI interpretation into an editable correction draft. Deterministic code carries only the original goal, selected interpretation and the IDs/titles of actually cited sources; source descriptions, URLs, memories and permissions are excluded. Preparing the draft creates no task or model call, keeps the guest/free-registration gate, and resets search, cadence, memory selection and cloud consent before any new submission. It does not claim that feedback retrained the model. Evidence, counterevidence, the frozen 12-case experiment and adversarial boundaries are recorded in [the v14 finding-correction note](agi-jarvis-finding-correction-2026-10-08.md).
