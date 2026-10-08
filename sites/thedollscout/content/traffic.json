@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-06"
+    "until": "2026-10-07"
   },
   "days": {
     "2026-07-26": {
@@ -3898,6 +3898,75 @@
         "NL": 108,
         "GB": 62,
         "CN": 41
+      }
+    },
+    "2026-10-07": {
+      "date": "2026-10-07",
+      "requests": 4538,
+      "pageViews": 1231,
+      "uniques": 759,
+      "byIpType": {
+        "noRecord": 3144,
+        "unknown": 1169,
+        "searchEngine": 200,
+        "allowlist": 23,
+        "badHost": 2
+      },
+      "byBrowser": {
+        "Unknown": 804,
+        "Chrome": 223,
+        "Curl": 101,
+        "Edge": 28,
+        "ChromeMobile": 21,
+        "GoogleBot": 16,
+        "MobileSafari": 14,
+        "YandexBot": 11,
+        "BingBot": 9,
+        "ChromeMobileWebview": 2,
+        "Firefox": 1,
+        "Opera": 1
+      },
+      "byContentType": {
+        "html": 2003,
+        "json": 1138,
+        "txt": 642,
+        "empty": 320,
+        "js": 19,
+        "css": 124,
+        "svg": 30,
+        "xml": 15,
+        "unknown": 13,
+        "webp": 11,
+        "pdf": 7,
+        "png": 3,
+        "zip": 1,
+        "jpeg": 1
+      },
+      "byStatus": {
+        "200": 3397,
+        "202": 225,
+        "204": 16,
+        "301": 205,
+        "303": 1,
+        "304": 4,
+        "308": 12,
+        "400": 1,
+        "401": 3,
+        "403": 20,
+        "404": 564,
+        "405": 68,
+        "410": 20,
+        "499": 2
+      },
+      "topCountries": {
+        "US": 2203,
+        "FI": 530,
+        "CN": 439,
+        "FR": 230,
+        "GB": 187,
+        "SG": 187,
+        "NL": 171,
+        "KR": 160
       }
     }
   }
