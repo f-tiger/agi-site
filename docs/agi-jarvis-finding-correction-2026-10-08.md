@@ -45,6 +45,8 @@ Pass criteria for every case:
 
 V13 had no finding-level correction action, so it satisfied 0/12 of this specific product-flow set. V14's pure draft cases passed 12/12; all 70 Jarvis unit, membership and security tests passed. These results validate the deterministic handoff, not source support, model quality, customer value or retention.
 
+The first v14 release run, [37711079873](https://github.com/f-tiger/agi-site/actions/runs/37711079873), stopped before deployment in the new adversarial browser assertion. The fixture had injected an attack title into `sources[0]`, while the report cited `calc-3*60`; the product correctly copied only the actually cited source, so the expected attack string was absent. The fixture was corrected to select the source by cited ID. No acceptance condition or product guard was relaxed, and this failed run did not deploy v14.
+
 ## Two adversarial checks
 
 1. **Privacy, authorization and quota:** a prepared draft is local and editable; it does not write D1, call AI, select device memories, enable public search, choose a daily watch or grant cloud consent. `startAllowed()` remains the same server-backed guest/account gate. Existing fixed analytics event names contain no goal, finding, source or reason.
