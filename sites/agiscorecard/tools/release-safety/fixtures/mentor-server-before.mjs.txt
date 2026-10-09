@@ -21,10 +21,10 @@ export async function mentorRoute(request,env){
   const b=await bodyOf(request),db=env.EVENTS;if(!db||!env.MEMBER_WATCH_SECRET)throw Error('unavailable');await ensure(db);
   const ip=await hash(env.MEMBER_WATCH_SECRET+':relay:'+new Date().toISOString().slice(0,10)+':'+(request.headers.get('CF-Connecting-IP')||'unknown'));
   await limit(db,'mentor-request:'+ip,40,60);
-  if(b.action==='admin'||b.action==='admin_readonly'){
+  if(b.action==='admin'){
    const bearer=(request.headers.get('authorization')||'').replace(/^Bearer /,'');
    if(bearer!==await hash(env.MEMBER_WATCH_SECRET+':mentor-admin:v1'))throw Error('unauthorized');
-   if(b.action==='admin')await db.batch([db.prepare("DELETE FROM mentor_events WHERE day<date('now','-90 days')"),db.prepare("DELETE FROM mentor_feedback WHERE day<date('now','-90 days')")]);
+   await db.batch([db.prepare("DELETE FROM mentor_events WHERE day<date('now','-90 days')"),db.prepare("DELETE FROM mentor_feedback WHERE day<date('now','-90 days')")]);
    let orders=null;try{orders=(await db.prepare("SELECT o.state,COUNT(*) n,COALESCE(SUM(CASE WHEN o.state='paid' THEN o.amount_units ELSE 0 END),0) gross_usdt_micro FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='work-mentor' AND s.created>=? GROUP BY o.state").bind(now()-28*86400).all()).results;}catch{}
    return json({ok:true,version:VERSION,metric:'opt_in_browser_days_not_people',events:(await db.prepare("SELECT source,evidence,campaign,action,COUNT(*) browser_days FROM mentor_events WHERE day>=date('now','-27 days') GROUP BY source,evidence,campaign,action").all()).results,feedback:(await db.prepare("SELECT reason,COUNT(*) browser_days FROM mentor_feedback WHERE day>=date('now','-27 days') GROUP BY reason").all()).results,orders});
   }

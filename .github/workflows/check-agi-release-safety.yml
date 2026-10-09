@@ -1,0 +1,51 @@
+name: Check AGI non-destructive release
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/deploy-agiscorecard.yml'
+      - '.github/workflows/check-agi-release-safety.yml'
+      - 'sites/agiscorecard/tools/member-release-health.mjs'
+      - 'sites/agiscorecard/tools/release-safety/**'
+      - 'sites/agiscorecard/tools/mentor/**'
+      - 'sites/agiscorecard/tools/create/**'
+      - 'sites/agiscorecard/tools/community/**'
+permissions:
+  contents: read
+concurrency:
+  group: agi-release-safety-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test real route fixtures, legacy rejection and existing security behavior
+        run: |
+          node --test sites/agiscorecard/tools/release-safety/test.mjs sites/agiscorecard/tools/mentor/test.mjs sites/agiscorecard/tools/create/test.mjs sites/agiscorecard/tools/create/ai-check-test.mjs sites/agiscorecard/tools/community/test.mjs sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs
+          node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/test-failure.mjs
+      - name: Install pinned browser test dependencies without lifecycle scripts
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Build local fixture surfaces and check analytics coverage
+        run: |
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          node sites/agiscorecard/tools/mentor/build.mjs
+          python3 sites/agiscorecard/tools/create/build.py
+          node sites/agiscorecard/tools/jarvis/build.mjs
+          python3 tools/fleet-analytics/coverage.py --site agi --write
+          python3 tools/fleet-analytics/coverage.py --site agi
+      - name: Exercise existing local browser regressions
+        run: |
+          node sites/agiscorecard/tools/create/browser-test.mjs
+          node sites/agiscorecard/tools/community/browser-test.mjs
+          node sites/agiscorecard/tools/mentor/browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/browser-test.mjs
+      # No secrets, production request, deployment or operation/watch runner.
