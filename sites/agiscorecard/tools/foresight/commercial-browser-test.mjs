@@ -15,6 +15,9 @@ export async function checkCommercial({page,base,lang,out}){
  await page.reload();await page.waitForFunction(()=>document.body.dataset.ready==='true');assert.equal(await page.locator('#commercial-recurring').inputValue(),'yes');assert.equal(await page.locator('[data-plan-output=action]').textContent(),note.action);
  const popupPromise=page.waitForEvent('popup');await page.locator('[data-cloud]').click();const popup=await popupPromise;await popup.waitForFunction(v=>document.getElementById('payload')?.value.includes(v),version);const handed=JSON.parse(await popup.locator('#payload').inputValue());assert.deepEqual(handed.values.notes[id].commercial,note.commercial);assert.deepEqual(await stored(),saved);await popup.close();
  const dp=page.waitForEvent('download');await page.locator('#export-plan').click();const download=await dp,text=fs.readFileSync(await download.path(),'utf8');for(const term of ['dCX4PE2HxMs','43b4c17eaa8b43df42b5','17:27','29:09','openrouter.ai/pricing','5.5%','8%','workflow-maintenance','2026-10-12'])assert.ok(text.includes(term),term);
+ // Let the real transient member-handoff notice expire before the review capture.
+ // Do not hide UI elements or edit screenshots to manufacture a clean preview.
+ await page.waitForFunction(()=>!document.getElementById('status')?.textContent);
  for(const width of [1440,390,360]){await page.setViewportSize({width,height:1000});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'business evidence overflow '+width);if(width!==360)await page.locator('#commercial-evidence').screenshot({path:path.join(out,'commercial-'+lang+'-'+width+'.png')});}
  // Negative frozen case: no existing workflow. Selecting or attaching never overwrites the old action/date.
  await page.locator('#commercial-recurring').selectOption('no');assert.equal(await page.locator('#commercial-case').isVisible(),false);assert.deepEqual(await stored(),saved);
