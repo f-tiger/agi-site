@@ -20,15 +20,15 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
    if(u.hostname==='www.googletagmanager.com'&&u.pathname==='/gtag/js')return r.fulfill({contentType:'text/javascript',body:`const send=a=>{if(a[0]==='event')fetch('https://www.google-analytics.com/g/collect',{method:'POST',body:JSON.stringify({name:a[1],fields:a[2]})});};for(const a of window.dataLayer||[])send(a);const push=window.dataLayer.push.bind(window.dataLayer);window.dataLayer.push=(...items)=>{items.forEach(send);return push(...items);};`});
    if(u.hostname==='www.google-analytics.com'&&u.pathname==='/g/collect'){ga.push(JSON.parse(req.postData()));return r.fulfill({status:204});}
    if(u.origin!==origin){blocked.push(u.origin);return r.abort();}
-   if(u.pathname.startsWith('/api/')){try{d1.push(JSON.parse(req.postData()));}catch{}return r.fulfill({contentType:'application/json',body:'{"ok":true}'});}
+   if(u.pathname.startsWith('/api/')){if(u.pathname==='/api/ev'){try{d1.push(JSON.parse(req.postData()));}catch{}}return r.fulfill({contentType:'application/json',body:'{"ok":true}'});}
    let rel=u.pathname.slice(1);if(!rel||rel.endsWith('/'))rel+='index.html';else if(!path.extname(rel))rel+='.html';
    const f=path.resolve(root,rel);if(!f.startsWith(root+path.sep)||!fs.existsSync(f))return r.fulfill({status:404,body:'missing fixture'});
    return r.fulfill({contentType:types[path.extname(f)]||'application/octet-stream',body:fs.readFileSync(f)});
   });
-  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(origin+paths[lang]+query,{referer:'https://www.google.com/search?q=SECRET_REFERRER'});
+  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(origin+paths[lang]+query,{referer:'https://www.google.com/search?q=SECRET_REFERRER'});await page.locator('#eco-tool-experience[data-ready="true"]').waitFor();
   const calc=page.locator('#laundry-check'),submit=()=>calc.locator('[type=submit]').click();
-  const settle=()=>page.waitForTimeout(100),events=()=>ga.filter(e=>e.name.startsWith('laundry_')),first=()=>d1.filter(e=>e?.n?.startsWith('laundry_'));
-  return {context,page,calc,submit,settle,ga,d1,events,first,errors,blocked};
+  const settle=()=>page.waitForTimeout(100),until=async predicate=>{for(let n=0;n<50;n++){if(predicate())return;await page.waitForTimeout(100);}assert(predicate(),'Timed out waiting for intercepted analytics');},events=()=>ga.filter(e=>e.name.startsWith('laundry_')),first=()=>d1.filter(e=>e?.n?.startsWith('laundry_'));
+  return {context,page,calc,submit,settle,until,ga,d1,events,first,errors,blocked};
  }
  try{
   for(const lang of ['de','en']){
@@ -39,7 +39,7 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
    assert.equal(f.events().filter(e=>e.name.startsWith('laundry_compare_')).length,0);checks++;
    await calc.locator('[name=method]').selectOption('measured');await calc.locator('[name=method]').selectOption('estimate');
    await calc.locator('[data-csv]').evaluate(el=>el.click());await f.settle();assert.equal(f.events().filter(e=>e.name.startsWith('laundry_export_')).length,0);checks++;
-   await f.submit();await f.settle();let hit=f.events().filter(e=>e.name.startsWith('laundry_compare_')).at(-1);
+   await f.submit();await f.until(()=>f.events().filter(e=>e.name.startsWith('laundry_compare_')).length===1);let hit=f.events().filter(e=>e.name.startsWith('laundry_compare_')).at(-1);
    assert.equal(hit.fields.laundry_input,'example');assert.equal(hit.fields.laundry_method,'estimate');assert.equal(hit.fields.laundry_equal,'no');checks++;
    await calc.locator('[name=method]').selectOption('measured');await f.submit();await f.settle();hit=f.events().filter(e=>e.name.startsWith('laundry_compare_')).at(-1);
    assert.equal(hit.fields.laundry_input,'example');assert.equal(hit.fields.laundry_method,'measured');checks++;
@@ -57,7 +57,7 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
    await f.settle();assert.equal(f.events().length,before+4);checks++;
    await page.locator('[data-analytics-choice="denied"]').click();const denied=f.events().length;
    await calc.locator('[name=comparable]').uncheck();await f.submit();await f.settle();assert.equal(f.events().length,denied);assert.equal(f.first().at(-1).m.equal,'no');checks++;
-   await page.locator('[data-analytics-choice="granted"]').click();await f.settle();assert.equal(f.events().length,denied);assert.equal(f.ga.filter(e=>e.name==='page_view').length,1);await f.submit();await f.settle();assert.equal(f.events().length,denied+1);checks++;
+   await page.locator('[data-analytics-choice="granted"]').click();await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);await f.settle();assert.equal(f.events().length,denied);assert.equal(f.ga.filter(e=>e.name==='page_view').length,1);await f.submit();await f.until(()=>f.events().length===denied+1);assert.equal(f.events().length,denied+1);checks++;
    await calc.locator('[name=method]').selectOption('estimate');await calc.locator('[name=hours]').fill('5');await f.submit();await f.settle();assert.equal(f.events().length,denied+2);checks++;
    const valid=f.events().length;await calc.locator('[name=dryer]').fill('2001');await f.submit();await f.settle();assert.equal(f.events().length,valid);checks++;
    for(const e of f.events()){
@@ -72,7 +72,7 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
   }
   for(const options of [{query:'?__probe=1'},{query:'?__qa=1'},{choice:'denied'},{privacy:{doNotTrack:'1'}},{privacy:{globalPrivacyControl:true}},{privacy:{webdriver:true}}]){
    const f=await fixture('en',options);await f.calc.scrollIntoViewIfNeeded();await f.submit();await f.settle();assert.equal(f.ga.length,0);
-   if(options.query==='?__probe=1')assert.equal(f.d1.length,0);
+   if(options.query==='?__probe=1')assert.equal(f.d1.length,0,'__probe must suppress every /api/ev request');
    if(options.choice==='denied')assert(f.first().some(e=>e.n==='laundry_compare'));else assert.equal(f.first().length,0);
    assert.deepEqual(f.errors,[]);checks++;await f.context.close();
   }
