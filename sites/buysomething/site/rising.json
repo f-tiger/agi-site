@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-08",
+ "fetched": "2026-10-09",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -407,39 +407,24 @@
    "fetched": "2026-10-08"
   },
   "chinese style shirt": {
-   "auto": [
-    "chinese style shirt",
-    "chinese style shirt women",
-    "chinese style shirt name",
-    "chinese style shirt zara",
-    "chinese style shirt men",
-    "chinese style shirt pattern",
-    "what are traditional chinese shirts called",
-    "chinese shirt name",
-    "chinese style dishes"
-   ],
    "rising": [
     {
-     "q": "chinese style shirt men",
-     "v": "new"
+     "q": "mandarin collar shirt",
+     "v": 53400
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-08"
+   "source": "related-queries",
+   "fetched": "2026-10-09"
   },
   "gongfu tea set": {
    "rising": [
     {
      "q": "gaiwan tea set",
-     "v": 60
-    },
-    {
-     "q": "gongfu tea tray",
-     "v": 60
+     "v": 130
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-09"
+   "fetched": "2026-10-09"
   },
   "car refrigerator": {
    "rising": [
