@@ -1,29 +1,19 @@
 {
- "generated": "2026-10-08T15:06:23+00:00",
+ "generated": "2026-10-09T14:50:44+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 3,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 46001,
-   "title": "What will be the winning margin in Brazil’s 2026 presidential election runoff?",
+   "post_id": 45954,
+   "title": "How many clinicaltrials.gov studies with an LLM-based Chatbot as the intervention/treatment will be recruiting on November 1, 2026?",
    "hosts": [
-    "www.metaculus.com",
-    "www.tse.jus.br"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
-  {
-   "post_id": 45953,
-   "title": "Will Donald Trump's approval rating reach a new low in the second half of October 2026?",
-   "hosts": [
-    "www.natesilver.net"
+    "clinicaltrials.gov"
    ],
    "covered_by": null,
    "tournament": "33121"
