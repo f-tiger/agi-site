@@ -1,43 +1,43 @@
 {
-  "generated": "2026-10-08",
+  "generated": "2026-10-09",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-09-10",
-  "until": "2026-10-08",
+  "since": "2026-09-11",
+  "until": "2026-10-09",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 463,
-  "per_day": 16.5,
+  "humans_referred": 477,
+  "per_day": 17,
   "by_kind": {
-    "tool": 378,
+    "tool": 390,
     "category": 31,
-    "page": 35,
+    "page": 36,
     "alternatives": 8,
     "judgement": 2,
     "plans": 1,
     "solutions": 1,
-    "vs": 6,
+    "vs": 7,
     "upgrade": 1
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 144
+      "n": 150
     },
     {
       "cat": "coding",
-      "n": 61
+      "n": 60
     },
     {
       "cat": "video",
-      "n": 39
-    },
-    {
-      "cat": "image",
-      "n": 35
+      "n": 40
     },
     {
       "cat": "office",
-      "n": 34
+      "n": 36
+    },
+    {
+      "cat": "image",
+      "n": 36
     },
     {
       "cat": "api",
@@ -45,7 +45,7 @@
     },
     {
       "cat": "writing",
-      "n": 27
+      "n": 28
     },
     {
       "cat": "local",
@@ -56,12 +56,12 @@
       "n": 13
     },
     {
-      "cat": "audio",
-      "n": 10
+      "cat": "study",
+      "n": 12
     },
     {
-      "cat": "study",
-      "n": 10
+      "cat": "audio",
+      "n": 11
     },
     {
       "cat": "agent",
@@ -76,17 +76,12 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 65
+      "n": 70
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 48
-    },
-    {
-      "slug": "cline",
-      "cat": "coding",
-      "n": 18
+      "n": 47
     },
     {
       "slug": "feishu-miaoji",
@@ -94,9 +89,14 @@
       "n": 17
     },
     {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 17
+    },
+    {
       "slug": "haiper",
       "cat": "video",
-      "n": 11
+      "n": 12
     },
     {
       "slug": "fireworks",
@@ -109,19 +109,19 @@
       "n": 8
     },
     {
-      "slug": "quillbot",
-      "cat": "writing",
-      "n": 7
-    },
-    {
       "slug": "google-flow",
       "cat": "video",
-      "n": 7
+      "n": 8
     },
     {
       "slug": "deepl",
       "cat": "writing",
-      "n": 6
+      "n": 7
+    },
+    {
+      "slug": "quillbot",
+      "cat": "writing",
+      "n": 7
     },
     {
       "slug": "exa",
@@ -154,6 +154,11 @@
       "n": 5
     },
     {
+      "slug": "fish-audio",
+      "cat": "audio",
+      "n": 5
+    },
+    {
       "slug": "immersive-translate",
       "cat": "writing",
       "n": 5
@@ -161,11 +166,6 @@
     {
       "slug": "you-chat",
       "cat": "chat",
-      "n": 5
-    },
-    {
-      "slug": "jianying",
-      "cat": "video",
       "n": 5
     },
     {
@@ -179,13 +179,23 @@
       "n": 4
     },
     {
-      "slug": "fish-audio",
-      "cat": "audio",
+      "slug": "elicit",
+      "cat": "study",
       "n": 4
     },
     {
       "slug": "wordvice",
       "cat": "writing",
+      "n": 4
+    },
+    {
+      "slug": "ms-copilot",
+      "cat": "chat",
+      "n": 4
+    },
+    {
+      "slug": "jianying",
+      "cat": "video",
       "n": 4
     },
     {
@@ -199,18 +209,13 @@
       "n": 3
     },
     {
-      "slug": "ms-copilot",
-      "cat": "chat",
+      "slug": "bolt",
+      "cat": "coding",
       "n": 3
     },
     {
       "slug": "cherry-studio",
       "cat": "local",
-      "n": 3
-    },
-    {
-      "slug": "elicit",
-      "cat": "study",
       "n": 3
     },
     {
@@ -244,18 +249,8 @@
       "n": 3
     },
     {
-      "slug": "pixverse",
-      "cat": "video",
-      "n": 2
-    },
-    {
       "slug": "anythingllm",
       "cat": "local",
-      "n": 2
-    },
-    {
-      "slug": "bolt",
-      "cat": "coding",
       "n": 2
     },
     {
@@ -269,8 +264,13 @@
       "n": 2
     },
     {
-      "slug": "google-ai-studio",
-      "cat": "api",
+      "slug": "gamma",
+      "cat": "office",
+      "n": 2
+    },
+    {
+      "slug": "hailuo",
+      "cat": "video",
       "n": 2
     }
   ],
@@ -287,11 +287,11 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 65
+      "n": 70
     },
     {
       "path": "grok",
-      "n": 48
+      "n": 47
     },
     {
       "path": "coding",
@@ -302,16 +302,16 @@
       "n": 20
     },
     {
-      "path": "cline",
-      "n": 18
-    },
-    {
       "path": "feishu-miaoji",
       "n": 17
     },
     {
+      "path": "cline",
+      "n": 17
+    },
+    {
       "path": "haiper",
-      "n": 11
+      "n": 12
     },
     {
       "path": "fireworks",
@@ -322,16 +322,16 @@
       "n": 8
     },
     {
-      "path": "quillbot",
-      "n": 7
-    },
-    {
       "path": "google-flow",
-      "n": 7
+      "n": 8
     },
     {
       "path": "deepl",
-      "n": 6
+      "n": 7
+    },
+    {
+      "path": "quillbot",
+      "n": 7
     },
     {
       "path": "exa",
@@ -358,15 +358,15 @@
       "n": 5
     },
     {
+      "path": "fish-audio",
+      "n": 5
+    },
+    {
       "path": "immersive-translate",
       "n": 5
     },
     {
       "path": "you-chat",
-      "n": 5
-    },
-    {
-      "path": "jianying",
       "n": 5
     },
     {
@@ -386,11 +386,19 @@
       "n": 4
     },
     {
-      "path": "fish-audio",
+      "path": "elicit",
       "n": 4
     },
     {
       "path": "wordvice",
+      "n": 4
+    },
+    {
+      "path": "ms-copilot",
+      "n": 4
+    },
+    {
+      "path": "jianying",
       "n": 4
     },
     {
@@ -402,15 +410,11 @@
       "n": 3
     },
     {
-      "path": "ms-copilot",
+      "path": "bolt",
       "n": 3
     },
     {
       "path": "cherry-studio",
-      "n": 3
-    },
-    {
-      "path": "elicit",
       "n": 3
     },
     {
@@ -434,15 +438,15 @@
       "n": 3
     },
     {
+      "path": "/claim",
+      "n": 3
+    },
+    {
       "path": "mistral",
       "n": 3
     },
     {
       "path": "/alternatives/tongyi-lingma",
-      "n": 2
-    },
-    {
-      "path": "pixverse",
       "n": 2
     },
     {
@@ -454,10 +458,6 @@
       "n": 2
     },
     {
-      "path": "bolt",
-      "n": 2
-    },
-    {
       "path": "canva",
       "n": 2
     },
@@ -466,15 +466,11 @@
       "n": 2
     },
     {
-      "path": "google-ai-studio",
+      "path": "gamma",
       "n": 2
     },
     {
       "path": "hailuo",
-      "n": 2
-    },
-    {
-      "path": "lovable",
       "n": 2
     },
     {
@@ -490,11 +486,15 @@
       "n": 2
     },
     {
+      "path": "siliconflow",
+      "n": 2
+    },
+    {
       "path": "video",
       "n": 2
     },
     {
-      "path": "/claim",
+      "path": "chess-ai",
       "n": 2
     },
     {
@@ -529,27 +529,27 @@
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 209
+      "n": 216
     },
     {
       "ref": "www.google.com",
-      "n": 170
+      "n": 172
     },
     {
       "ref": "www.bing.com",
-      "n": 33
+      "n": 36
     },
     {
       "ref": "m.baidu.com",
       "n": 9
     },
     {
-      "ref": "duckduckgo.com",
+      "ref": "chatgpt.com",
       "n": 6
     },
     {
-      "ref": "chatgpt.com",
-      "n": 5
+      "ref": "duckduckgo.com",
+      "n": 6
     },
     {
       "ref": "www.baidu.com",
@@ -566,6 +566,10 @@
     {
       "ref": "yandex.ru",
       "n": 3
+    },
+    {
+      "ref": "copilot.microsoft.com",
+      "n": 2
     },
     {
       "ref": "sm01.markhorseotool.com",
@@ -589,10 +593,6 @@
     },
     {
       "ref": "bing.com",
-      "n": 1
-    },
-    {
-      "ref": "copilot.microsoft.com",
       "n": 1
     },
     {
@@ -625,8 +625,18 @@
       "n": 1
     },
     {
+      "ref": "chatgpt.com",
+      "path": "/tools/tusiart",
+      "n": 1
+    },
+    {
       "ref": "copilot.microsoft.com",
       "path": "/en/tools/ms-copilot",
+      "n": 1
+    },
+    {
+      "ref": "copilot.microsoft.com",
+      "path": "/tools/ms-copilot",
       "n": 1
     },
     {
@@ -636,35 +646,35 @@
     }
   ],
   "events": {
-    "sub_view": 417,
-    "go": 147,
+    "sub_view": 414,
+    "go": 154,
     "manju": 83,
-    "home": 52,
-    "biz": 35,
-    "calc": 25,
-    "star": 25,
+    "home": 54,
+    "biz": 40,
+    "calc": 27,
+    "star": 27,
     "ai_solo": 21,
+    "github_tools": 12,
     "video": 12,
     "quote": 11,
-    "gs": 9,
-    "github_tools": 8,
+    "gs": 10,
+    "gs_go": 4,
     "gate": 3,
-    "gs_go": 3,
     "sheet_dl": 2,
     "sub_ok": 2,
     "sub_submit": 2,
     "earn": 1
   },
   "submissions": {
-    "new": 15,
-    "total": 15
+    "new": 18,
+    "total": 18
   },
   "ads": {},
   "commercial_triggers": {
     "ok": true,
     "started": "2026-09-26",
     "counts": {
-      "vendor-view": 3,
+      "vendor-view": 4,
       "vendor-sponsor": 0,
       "vendor-wait": 1,
       "ad-view": 0,
@@ -677,8 +687,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-09-10",
-      "end_exclusive": "2026-10-08",
+      "start": "2026-09-11",
+      "end_exclusive": "2026-10-09",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -688,11 +698,11 @@
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
       "other_calc_events": 25,
-      "directory_outbound_clicks": 147,
+      "directory_outbound_clicks": 153,
       "homepage_limit_navigation": 0,
       "video_exports_own": 0,
       "video_exports_demo": 0,
-      "account_tool_entries": 0,
+      "account_tool_entries": 2,
       "coding_access_filters": 0,
       "coding_access_empty_results": 0,
       "coding_access_provider_opens": 0,
@@ -725,23 +735,23 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-09-10",
+      "requested_start": "2026-09-11",
       "start": "2026-09-22",
-      "until": "2026-10-08",
+      "until": "2026-10-09",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 47,
+    "clicks": 49,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 37,
+      "zh": 39,
       "en": 10,
       "other": 0
     },
     "by_block": [
       {
         "id": "directory",
-        "n": 17
+        "n": 18
       },
       {
         "id": "nav",
@@ -749,7 +759,7 @@
       },
       {
         "id": "hero",
-        "n": 4
+        "n": 5
       },
       {
         "id": "site-header",
@@ -787,7 +797,7 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 17
+        "n": 18
       },
       {
         "id": "homepage",
@@ -795,7 +805,7 @@
       },
       {
         "id": "tool-profile",
-        "n": 5
+        "n": 6
       },
       {
         "id": "agents",
@@ -973,9 +983,17 @@
       },
       {
         "date": "2026-10-08",
+        "complete": true,
+        "clicks": 1,
+        "zh": 1,
+        "en": 0,
+        "other": 0
+      },
+      {
+        "date": "2026-10-09",
         "complete": false,
-        "clicks": 0,
-        "zh": 0,
+        "clicks": 1,
+        "zh": 1,
         "en": 0,
         "other": 0
       }
@@ -985,7 +1003,7 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 11
+        "n": 12
       },
       {
         "language": "en",
@@ -1007,6 +1025,12 @@
       },
       {
         "language": "zh",
+        "block": "hero",
+        "destination": "tool-profile",
+        "n": 3
+      },
+      {
+        "language": "zh",
         "block": "nav",
         "destination": "homepage",
         "n": 2
@@ -1021,12 +1045,6 @@
         "language": "zh",
         "block": "hero",
         "destination": "tool-directory",
-        "n": 2
-      },
-      {
-        "language": "zh",
-        "block": "hero",
-        "destination": "tool-profile",
         "n": 2
       },
       {
@@ -1370,6 +1388,22 @@
         "block": "hero",
         "destination": "tool-profile",
         "n": 1
+      },
+      {
+        "date": "2026-10-08",
+        "complete": true,
+        "language": "zh",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 1
+      },
+      {
+        "date": "2026-10-09",
+        "complete": false,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-profile",
+        "n": 1
       }
     ],
     "definitions": {
@@ -1382,7 +1416,7 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-09-10",
+    "since": "2026-09-11",
     "includes_current_partial_utc_day": true,
     "actions": {
       "entry_open": 5,

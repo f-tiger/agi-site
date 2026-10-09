@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-06",
+ "checked": "2026-10-09",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -960,6 +960,105 @@
    "first_attempt": "2026-10-06",
    "last_attempt": "2026-10-06",
    "attemptedAt": "2026-10-06T06:50:25.349Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "aient-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "mrmarket-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "takehub-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 503,
+   "repo_http": 404,
+   "reason": "source HTTP 503"
+  },
+  "bittlebits-bittlebits": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "walterwrites-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "nudg3-brand-intelligence": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "meepo-studio": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "nullary-nullary": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "kolens-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "pyrimid-pyrimid": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 402,
+   "repo_http": 200,
+   "reason": "source HTTP 402"
+  },
+  "usealloy-alloy": {
+   "attempts": 1,
+   "first_attempt": "2026-10-09",
+   "last_attempt": "2026-10-09",
+   "attemptedAt": "2026-10-09T06:38:33.001Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -8725,6 +8824,300 @@
   {
    "slug": "masnavi-masnavi",
    "date": "2026-10-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "responsibleailabs-rail-score",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "sig-foodlog-food-logger",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "uploadcheck-uploadcheck",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "joinmultiplayer-gpu",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "sitepulsar-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mashop-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "auralogs-auralogs",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "decibelshield-decibel-shield",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "bareun-bareun",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ironscout-ironscout",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "deinai-creator-skill",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "threadminder-threadminder",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ganty-mcp-server",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "painspotter-painspotter",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "marketintell-marketintell",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "slideless-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "haymon-dbmcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "law-mcp-lawyer-search",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "tensorfeed-x402-base-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "redditgrow-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "roopslaw-legalsearch",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "tunnelmind-scry",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cooperpetcare-cooper",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "dynsoft-sac",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "marketcore-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "steep-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "humantaste-taste-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ninar-ninar",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "sendfast-sendfast",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "calendarmcp-server",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenticterminal-directory",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "boolsai-signals",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nausika-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "auxen-auxen",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "presentations-ai",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "autorfp-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "orggen-orggen",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "adeu-adeu",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "rolli-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trydock-dock",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gethal-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 403
+  },
+  {
+   "slug": "agentdm-agentdm",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "3dstreet-3dstreet",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dreamlit-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenticshelf-mcp",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cosmonote-notes",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "compeller-compel",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "social-api-socialapi",
+   "date": "2026-10-09",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "tuteliq-mcp",
+   "date": "2026-10-09",
    "source_http": 200,
    "repo_http": 200
   }

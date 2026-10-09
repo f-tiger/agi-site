@@ -1,10 +1,104 @@
 {
-  "generated": "2026-10-08",
+  "generated": "2026-10-09",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 13,
+  "fetched_ok": 103,
+  "fetched_fail": 24,
+  "pending": 7,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [
+        "5b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [],
+      "removed": [
+        "15秒",
+        "16秒",
+        "1个",
+        "1秒",
+        "3064b",
+        "3207b",
+        "5个",
+        "72668b",
+        "786579b",
+        "9543b",
+        "98b"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [
+        "158k"
+      ],
+      "removed": [
+        "157k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [
+        "36.2k"
+      ],
+      "removed": [
+        "36.1k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "huggingface",
+      "url": "https://huggingface.co/docs/inference-providers/pricing",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [
+        "12months",
+        "2hours"
+      ],
+      "removed": [
+        "$0.10,"
+      ],
+      "checked_then": "2026-08-05"
+    },
+    {
+      "slug": "vidu",
+      "url": "https://platform.vidu.com/docs/terms-of-use",
+      "confirmed": "2026-10-09",
+      "first_seen": "2026-10-08",
+      "added": [],
+      "removed": [
+        "$0.005",
+        "$0.01",
+        "$0.02",
+        "$0.025",
+        "$0.03",
+        "$0.03,",
+        "$0.035",
+        "$0.04",
+        "$0.04,",
+        "$0.045",
+        "$0.05",
+        "$0.05,"
+      ],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "gemini-cli",
       "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
@@ -112,30 +206,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-10-07",
-      "first_seen": "2026-10-06",
-      "added": [],
-      "removed": [
-        "5b"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-10-06",
-      "first_seen": "2026-10-05",
-      "added": [
-        "5.5k"
-      ],
-      "removed": [
-        "5.4k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "zhipu-glm",
       "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
       "confirmed": "2026-10-06",
@@ -219,18 +289,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [],
-      "removed": [
-        "6秒",
-        "84b"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "elicit",
@@ -366,19 +424,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-09-25",
-      "first_seen": "2026-09-24",
-      "added": [
-        "157k"
-      ],
-      "removed": [
-        "156k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "immersive-translate",
       "url": "https://immersivetranslate.com",
       "confirmed": "2026-09-25",
@@ -500,41 +545,6 @@
         "8k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "vidu",
-      "url": "https://platform.vidu.com/docs/terms-of-use",
-      "confirmed": "2026-09-17",
-      "first_seen": "2026-09-16",
-      "added": [
-        "$2",
-        "1.5credits",
-        "1048576characters",
-        "1credit",
-        "2000characters",
-        "3images",
-        "48hours",
-        "4video",
-        "5,000credits",
-        "50%",
-        "5000characters",
-        "7images"
-      ],
-      "removed": [
-        "$2,080",
-        "$4.495",
-        "10mb",
-        "1hour",
-        "200characters",
-        "20seconds",
-        "2seconds",
-        "3,m",
-        "3credits",
-        "3seconds",
-        "600seconds",
-        "60seconds"
-      ],
-      "checked_then": "2026-08-06"
     }
   ]
 }

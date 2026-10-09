@@ -1,39 +1,39 @@
 {
   "version": 1,
-  "attemptedAt": "2026-10-08T06:37:21.194Z",
+  "attemptedAt": "2026-10-09T06:39:13.459Z",
   "schedule": "每日北京时间 08:30，复用 BPJ 发布任务",
   "status": "ok",
-  "completedAt": "2026-10-08T06:37:39.554Z",
-  "lastSuccessAt": "2026-10-08T06:37:39.253842+00:00",
+  "completedAt": "2026-10-09T06:39:34.799Z",
+  "lastSuccessAt": "2026-10-09T06:39:34.243520+00:00",
   "sourceDates": [
     {
       "kind": "ai-drama",
-      "date": "2026-10-08"
+      "date": "2026-10-09"
     },
     {
       "kind": "comic-drama",
-      "date": "2026-10-08"
+      "date": "2026-10-09"
     }
   ],
-  "records": 601,
+  "records": 620,
   "discoveryImport": {
     "status": "ok",
     "fetched": 1,
     "added": 0,
     "rejected": 1
   },
-  "added": 17,
+  "added": 19,
   "changes": [
     {
       "kind": "ai-drama",
-      "newEntries": 9,
-      "heatChanges": 91
+      "newEntries": 12,
+      "heatChanges": 88
     },
     {
       "kind": "comic-drama",
-      "newEntries": 9,
-      "heatChanges": 91
+      "newEntries": 7,
+      "heatChanges": 93
     }
   ],
-  "sourceFingerprint": "25940c0b63f799aa077411303c249f91185956d122bbafaf61fc94b7137dd35b"
+  "sourceFingerprint": "91c5cda5c3b6e79df918654a949b7144792df70b150b0e9778085c20d3a5f1e9"
 }

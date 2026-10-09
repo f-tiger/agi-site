@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-10-08T06:37:57.062Z",
+  "lastRun": "2026-10-09T06:39:41.803Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -122,6 +122,24 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
       "lastChecked": "2026-10-08T06:37:57.062Z"
+    },
+    {
+      "caseId": "elevenlabs",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "lastChecked": "2026-10-09T06:39:41.803Z"
+    },
+    {
+      "caseId": "synthesia",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "lastChecked": "2026-10-09T06:39:41.803Z"
+    },
+    {
+      "caseId": "heygen",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+      "lastChecked": "2026-10-09T06:39:41.803Z"
     }
   ],
   "sources": {
@@ -336,23 +354,73 @@
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
+    },
+    "elevenlabs|https://elevenlabs.io/blog/500m-arr-and-new-investors": {
+      "caseId": "elevenlabs",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "midjourney|https://www.cbinsights.com/research/midjourney-revenue-valuation/": {
+      "caseId": "midjourney",
+      "sourceUrl": "https://www.cbinsights.com/research/midjourney-revenue-valuation/",
+      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-09T06:39:41.803Z",
+      "lastHash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
+      "hash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
+      "simhash": "a6082704b4c1a81e",
+      "words": 387,
+      "consecutiveChange": 0
+    },
+    "synthesia|https://www.synthesia.io/post/100-million-revenue-adobe-investment": {
+      "caseId": "synthesia",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "heygen|https://www.heygen.com/blog/heygen-surpasses-200m-arr": {
+      "caseId": "heygen",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "photoroom|https://help.photoroom.com/en/articles/9626719-what-is-photoroom": {
+      "caseId": "photoroom",
+      "sourceUrl": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom",
+      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-09T06:39:41.803Z",
+      "lastHash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
+      "hash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
+      "simhash": "2ad22595e494c99c",
+      "words": 371,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 20,
+  "cursor": 25,
   "errors": [
     {
-      "caseId": "bolt",
-      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+      "caseId": "elevenlabs",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
       "reason": "body-limit"
     },
     {
-      "caseId": "cursor",
-      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
+      "caseId": "synthesia",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
       "reason": "body-limit"
     },
     {
-      "caseId": "lovable",
-      "sourceUrl": "https://lovable.dev/blog/agent",
+      "caseId": "heygen",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
       "reason": "body-limit"
     }
   ]

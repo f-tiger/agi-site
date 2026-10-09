@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-08",
+ "generated": "2026-10-09",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "character-ai",
-  "chatgpt",
-  "codebuddy",
-  "cody",
-  "cohere",
-  "comate",
-  "continue",
-  "coze"
+  "d-id",
+  "devv",
+  "dify",
+  "doubao-aixue",
+  "duckduckgo-ai",
+  "elevenlabs",
+  "felo",
+  "figma"
  ],
- "cursor": "coze",
+ "cursor": "figma",
  "summary": {
   "ready": 40,
   "empty": 36,
@@ -1203,20 +1203,20 @@
    "name": "D-ID",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://d-id.com/pricing/studio",
      "status": 200,
-     "bytes": 152585,
+     "bytes": 152959,
      "tokens": 0
     },
     {
      "url": "https://www.d-id.com/pricing",
      "status": 200,
-     "bytes": 152585,
+     "bytes": 152959,
      "tokens": 0
     },
     {
@@ -1237,7 +1237,7 @@
    "name": "Devv AI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1271,7 +1271,7 @@
    "name": "Dify",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1293,26 +1293,26 @@
    "name": "豆包爱学",
    "cat": "study",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://www.doubao.com/pricing",
      "status": 200,
-     "bytes": 267346,
+     "bytes": 268571,
      "tokens": 0
     },
     {
      "url": "https://www.doubao.com/price",
      "status": 200,
-     "bytes": 267346,
+     "bytes": 268571,
      "tokens": 0
     },
     {
      "url": "https://www.doubao.com/plans",
      "status": 200,
-     "bytes": 267346,
+     "bytes": 268571,
      "tokens": 0
     }
    ],
@@ -1327,26 +1327,26 @@
    "name": "DuckDuckGo AI Chat",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://duck.ai/pricing",
      "status": 200,
-     "bytes": 26012,
+     "bytes": 26289,
      "tokens": 0
     },
     {
      "url": "https://duck.ai/price",
      "status": 200,
-     "bytes": 26012,
+     "bytes": 26289,
      "tokens": 0
     },
     {
      "url": "https://duck.ai/plans",
      "status": 200,
-     "bytes": 26012,
+     "bytes": 26289,
      "tokens": 0
     }
    ],
@@ -1361,7 +1361,7 @@
    "name": "ElevenLabs",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-09-23",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1369,13 +1369,13 @@
      "url": "https://elevenlabs.io/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 37
+     "tokens": 50
     }
    ],
    "best": {
     "url": "https://elevenlabs.io/pricing",
-    "tokens": 37,
-    "excerpt": "enAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 per month Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter $6 per month Choose Starter Everything in free, plus Commercial License Instant Voice Cloning 20 Projects in Studio Music commercial use Dubbing Studio Image &amp; Video 30k credits per month Creator Popular $22 First month 50% off $11 per month Choose Creator Everything in Starter, plus Professional Voice Cloning Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus 44.1k"
+    "tokens": 50,
+    "excerpt": "enAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 per month Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter Until Oct 18 $6 First month 83% off $1 per month Choose Starter Everything in free, plus Commercial License Instant Voice Cloning 20 Projects in Studio Music commercial use Dubbing Studio Image &amp; Video 30k credits per month Creator Popular $22 First month 50% off $11 per month Choose Creator Everything in Starter, plus Professional Voice Cloning Additional Credits 121k credits per month Pro $99 per month Choose P"
    }
   },
   "elicit": {
@@ -1427,14 +1427,14 @@
    "name": "Felo Search",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://felo.ai/pricing",
      "status": 200,
-     "bytes": 119969,
+     "bytes": 120229,
      "tokens": 0
     },
     {
@@ -1461,7 +1461,7 @@
    "name": "Figma",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-09",
    "env": "runner",
    "state": "ready",
    "tried": [

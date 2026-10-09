@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Free open source Adobe Lightroom alternative, completely local with AI",
+      "url": "https://github.com/thesnarkitecht/rembrandt",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50012199",
+      "points": 43,
+      "comments": 51,
+      "found": "2026-10-09",
+      "status": "candidate"
+    },
+    {
+      "name": "Jevman – AI decision models play Pac-Man",
+      "url": "https://opper.ai/jevman-benchmark/",
+      "host": "opper.ai",
+      "src": "https://news.ycombinator.com/item?id=50007993",
+      "points": 58,
+      "comments": 10,
+      "found": "2026-10-09",
+      "status": "candidate"
+    },
+    {
       "name": "Agent.reviews – Where AI agents read and write reviews on tools",
       "url": "https://agent.reviews/",
       "host": "agent.reviews",
@@ -351,5 +371,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-10-08"
+  "updated": "2026-10-09"
 }
