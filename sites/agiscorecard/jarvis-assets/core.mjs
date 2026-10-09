@@ -1,4 +1,5 @@
-export const VERSION='jarvis-20261009-16';
+import {normalizeContext,contextReceipt} from './handoff.mjs';
+export const VERSION='jarvis-20261009-17';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -7,7 +8,8 @@ export function inputOf(b){
  if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||typeof b.nonce!=='string'||!/^[a-f0-9]{32}$/.test(b.nonce))throw Error('invalid_request');
  if(!Array.isArray(b.memory)||b.memory.length>3||b.memory.some(m=>!str(m,300)))throw Error('invalid_request');
  if(b.web&&!str(b.publicQuery,160))throw Error('invalid_request');
- return {goal:b.goal.trim(),lang:b.lang,cadence:b.cadence,web:b.web,publicQuery:b.web?b.publicQuery.trim():'',memory:b.memory.map(m=>m.trim()),nonce:b.nonce};
+ let context;try{context=normalizeContext(b.context);}catch{throw Error('invalid_request');}
+ return {goal:b.goal.trim(),lang:b.lang,cadence:b.cadence,web:b.web,publicQuery:b.web?b.publicQuery.trim():'',memory:b.memory.map(m=>m.trim()),nonce:b.nonce,...(b.context!==undefined?{context}:{})};
 }
 export function parseObject(raw){
  if(raw&&typeof raw==='object'&&!Array.isArray(raw)){try{raw=JSON.stringify(raw);}catch{throw Error('invalid_model_output');}}
@@ -97,6 +99,7 @@ export function reportNotice(report,version,lang='en'){
 }
 export function markdown(task){
  const m=markdownText,r=task.result||{},lines=['# '+m(task.input.goal),'',`Status: ${m(task.status)}`,`Run: ${m(task.runs)}; checked: ${m(r.checkedAt||'pending')}`,'',m(r.report?.summary||'Source pack only. AI synthesis was not completed.'),''];
+ if(task.input.context){lines.push('## Selected business evidence receipt',m(contextReceipt(task.input.context,task.input.lang)),'');}
  if(r.report)lines.push(m(reportNotice(r.report,r.version,task.input.lang)),'');
  for(const f of r.report?.findings||[]){lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');for(const field of f.sourceFields||[])lines.push('  - Returned field ['+m(field.sourceId)+'].'+m(field.field)+': '+m(field.value));for(const s of citedSources(f,r.sources))lines.push('  - Cited source metadata \(not proof of support\): '+m(s.title)+' — '+m(s.description||''));}
  lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));

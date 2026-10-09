@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'sites/agiscorecard/tools/jarvis/**'
+      - 'sites/agiscorecard/foresight-assets/**'
       - 'sites/agiscorecard/jarvis-assets/**'
       - 'sites/agiscorecard/jarvis.html'
       - 'sites/agiscorecard/zh/jarvis.html'
@@ -24,13 +25,14 @@ jobs:
         with:
           node-version: '24'
       - name: Test original behavior and frozen evidence counterexamples
-        run: node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs sites/agiscorecard/tools/jarvis/screening-test.mjs
+        run: node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs sites/agiscorecard/tools/jarvis/screening-test.mjs sites/agiscorecard/tools/jarvis/handoff-test.mjs sites/agiscorecard/tools/jarvis/handoff-evidence-test.mjs sites/agiscorecard/tools/jarvis/handoff-scope-test.mjs
       - name: Install pinned browser test dependencies without lifecycle scripts
         run: |
           npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - name: Generate bilingual surfaces and inspect local analytics coverage
         run: |
+          node sites/agiscorecard/tools/foresight/build.mjs
           node sites/agiscorecard/tools/jarvis/build.mjs
           python3 tools/fleet-analytics/coverage.py --site agi --write
           python3 tools/fleet-analytics/coverage.py --site agi
@@ -38,5 +40,15 @@ jobs:
         run: |
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/screening-browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/handoff-browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/handoff-race-browser-test.mjs
+      - name: Retain local handoff screenshots and fixture results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-handoff-ui
+          path: /tmp/jarvis-handoff-browser/
+          if-no-files-found: ignore
+          retention-days: 7
       # No production URL, model, account, operational tick/watch, secrets,
       # publishing, cleanup or scheduled-workflow dispatch is used by this job.

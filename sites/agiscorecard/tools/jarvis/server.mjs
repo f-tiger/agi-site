@@ -34,6 +34,10 @@ export async function jarvisRoute(request,env,ctx){
   const ip=await hash(env.MEMBER_WATCH_SECRET+':relay:'+new Date().toISOString().slice(0,10)+':'+(request.headers.get('CF-Connecting-IP')||'unknown'));
   await limit(db,'jarvis-request:'+ip,60,60);
   const member=await resolveAccess(env,token),owner=member.owner;
+  // Bind new-client mutations to the workspace actually reviewed in the UI.
+  // A stable Fleet token can resolve to another account after a cookie change.
+  const expectedScope=request.headers.get('x-jarvis-scope');
+  if(request.method==='POST'&&expectedScope!==null&&(!/^[a-f0-9]{64}$/.test(expectedScope)||expectedScope!==owner))throw Error('workspace_changed');
   const trialIP=await hash(env.MEMBER_WATCH_SECRET+':jarvis-trial-ip:v1:'+(request.headers.get('CF-Connecting-IP')||'unknown'));
   if(!member.id)await trialReceipt(db,owner);
   // A valid member may recover this browser's old private records, never start
@@ -50,6 +54,7 @@ export async function jarvisRoute(request,env,ctx){
   const b=await bodyOf(request);
   if((await resolveAccess(env,token)).owner!==owner)throw Error('unauthorized');
   if(b.action==='create'){
+   if(b.context!==undefined&&expectedScope===null)throw Error('workspace_changed');
    const input=inputOf(b);const existing=await db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND nonce=? AND expires>?').bind(owner,input.nonce,now()).first();
    if(existing)return json({ok:true,task:publicTask(existing),reused:true});
    if(!member.id&&(input.cadence!=='once'||!await trialRemaining(db,owner,trialIP))){
@@ -98,5 +103,5 @@ export async function jarvisRoute(request,env,ctx){
    else {const saved=await db.prepare(`INSERT INTO jarvis_action_progress(task_id,run,action_index,state,updated) SELECT ?,?,?,?,? FROM jarvis_tasks WHERE id=? AND owner=? AND runs=? AND result=? ON CONFLICT(task_id,run,action_index) DO UPDATE SET state=excluded.state,updated=excluded.updated RETURNING task_id`).bind(b.id,b.run,b.index,b.value,now(),b.id,owner,b.run,task.result).first();if(!saved)throw Error('cannot_update');}
    return json({ok:true});
   }throw Error('invalid_request');
- }catch(e){const codes={unauthorized:401,access_blocked:403,registration_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409,cannot_update:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
+ }catch(e){const codes={workspace_changed:409,unauthorized:401,access_blocked:403,registration_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409,cannot_update:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
 }

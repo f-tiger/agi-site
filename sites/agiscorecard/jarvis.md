@@ -8,6 +8,10 @@ https://agiscorecard.com/jarvis
 
 Guests can submit one task, then register a free AGI account to continue. A saved task uses the trial even when AI is unavailable. Reading, exporting and deleting its result remain available. An interrupted first run can resume saved work, but a new run or daily watch needs an account. One trial is recorded per browser key; the same IP can start at most one guest trial in 24 hours. This is abuse prevention, not verified identity: shared networks may need to register sooner. Registration uses the existing AGI display name and private login-key backup, with no email, payment or extra model quota.
 
+## Can I continue a saved Future Guide plan?
+
+On the distribution-opportunity page, explicitly attach the reviewed business evidence and prepare one selected plan in Jarvis. A single-use browser-session preview expires after 30 minutes. Review it and apply it to an empty goal, then choose cloud consent and Start yourself. Only the final visible goal and selected evidence receipt are submitted; editing it does not change the original local plan. The saved task and export retain the evidence version, source links, limits and self-reported fit even if AI is unavailable. This prepares an unverified draft or source pack; it does not diagnose, repair or execute a workflow. CSV execution records belong in the existing Earn delivery lab’s workflow mode, which flags counts, duplicate run IDs and empty outputs rather than reconciling individual business records.
+
 ## What can Jarvis do today?
 
 Research AI work, learning and product ideas using our editorial catalog. With your choice, it can search GitHub and Hacker News metadata. It can calculate, compare findings and draft concrete next steps. It cannot control your computer, access your accounts, send messages or buy things.
