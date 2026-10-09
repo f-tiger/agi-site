@@ -1,7 +1,26 @@
 import {claims,interviews,reviewed} from '../../foresight-assets/catalog.mjs';
+import {evidenceFor} from '../../foresight-assets/commercial.mjs';
 import {rank,safeURL,calculate} from '../../jarvis-assets/core.mjs';
+import {normalizeContext} from '../../jarvis-assets/handoff.mjs';
 import {boundedText} from './security.mjs';
 const dateOf=value=>typeof value==='string'&&value.length<=40&&/^\d{4}-\d{2}-\d{2}(?:T[\d:.+Z-]+)?$/.test(value)?value:null;
+// The request carries only a versioned reference and self-reported fit. Never
+// restore evidence text, URLs, verification or provenance from client fields.
+export function contextSources(value,lang='en'){
+ const context=normalizeContext(value);if(!context)return [];
+ const e=evidenceFor({version:context.evidenceVersion});if(!e)throw Error('invalid_context');
+ const language=lang==='zh'?'zh':'en',t=(en,zh)=>language==='zh'?zh:en;
+ return e.rows.map(row=>{
+  const statement=row.statement[language],restriction=row.limit[language],method=e.method[language],hypothesis=e.hypothesis[language],boundary=e.boundary[language];
+  const videoURL=row.start===null?null:'https://www.youtube.com/watch?v='+e.videoId+'&t='+row.start+'s';
+  return {id:'context-'+e.version+'-'+row.id,pinned:true,contextKind:context.kind,evidenceVersion:e.version,claimId:e.claimId,
+   title:'OpenRouter · '+(row.kind==='official_offer'?t('Official published offer','官方公开报价'):t('Participant account in publisher transcript','发布方文字稿中的参与者自述'))+' · '+row.locator,
+   description:[statement,restriction,t('Source: ','出处：')+row.url+' · '+row.locator,...(videoURL?[videoURL]:[]),t('Editorial check: ','人工核对：')+e.checkedAt,t('Interview published: ','访谈发布：')+e.publishedAt,t('Interview first discovered: ','访谈首次发现：')+e.firstSeenAt,method,hypothesis,boundary].join('\n\n'),
+   url:row.url,kind:row.kind,statement,limit:restriction,method,hypothesis,boundary,locator:row.locator,start:row.start,videoURL,
+   // The interview date is not the publication date of the current price page.
+   publishedAt:row.kind==='participant_account'?e.publishedAt:null,interviewPublishedAt:e.publishedAt,firstSeenAt:e.firstSeenAt,checkedAt:e.checkedAt,discoveryId:e.discoveryId,videoId:e.videoId};
+ });
+}
 export const catalog=lang=>claims.map(c=>({id:'view-'+c.id,title:c[lang].title,description:c[lang].summary+' '+c[lang].limit,url:'https://agiscorecard.com'+(lang==='zh'?'/zh':'')+'/future-guide/'+c.id,publishedAt:interviews[c.interview].date,checkedAt:reviewed,kind:'editorial_view',sourceURL:interviews[c.interview].source}));
 export async function availableCatalog(lang,assets){
  const rows=catalog(lang);if(!assets)return {rows,discoveryLoaded:false};
