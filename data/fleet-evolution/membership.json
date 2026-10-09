@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated": "2026-10-08T10:27:43.460Z",
+  "generated": "2026-10-09T09:35:30.672Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-  "ok": false,
+  "ok": true,
   "counters_complete": false,
   "sites": [
     {
@@ -47,7 +47,7 @@
       "origin": "https://getecoback.com",
       "public": {
         "ok": true,
-        "ready": false,
+        "ready": true,
         "site": "eco",
         "auto_renew": false,
         "plan_price_units": 9000000,
@@ -65,7 +65,7 @@
       "origin": "https://thedollscout.com",
       "public": {
         "ok": true,
-        "ready": false,
+        "ready": true,
         "site": "tds",
         "auto_renew": false,
         "plan_price_units": 9000000,
