@@ -35,6 +35,9 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
    const f=await fixture(lang,{query:'?private=SECRET_QUERY#SECRET_FRAGMENT'}),{page,calc}=f;
    await page.waitForFunction(()=>document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length>0);
    await calc.scrollIntoViewIfNeeded();await f.settle();
+   // The existing experience layer runs an uncounted illustrative preview.
+   assert.equal(f.events().filter(e=>e.name.startsWith('laundry_compare_')).length,0);checks++;
+   await calc.locator('[name=method]').selectOption('measured');await calc.locator('[name=method]').selectOption('estimate');
    await calc.locator('[data-csv]').evaluate(el=>el.click());await f.settle();assert.equal(f.events().filter(e=>e.name.startsWith('laundry_export_')).length,0);checks++;
    await f.submit();await f.settle();let hit=f.events().filter(e=>e.name.startsWith('laundry_compare_')).at(-1);
    assert.equal(hit.fields.laundry_input,'example');assert.equal(hit.fields.laundry_method,'estimate');assert.equal(hit.fields.laundry_equal,'no');checks++;
