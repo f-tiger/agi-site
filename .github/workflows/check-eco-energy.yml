@@ -52,6 +52,7 @@ jobs:
           python3 tools/build_structure.py
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_laundry.mjs
+          node --test tools/test_member_release_health.mjs
           node --test ../../tools/affiliate-growth/test.mjs
           # Match deployment: this regenerates the isolated workbench pages
           # after generic chrome, keeping their probe/event contract intact.
@@ -104,6 +105,8 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: Verify isolated laundry GA4 state transport
+        run: NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_laundry_analytics.cjs
       - name: Fetch fixed pre-shelf-change baseline for the affiliate audit
         run: |
           git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7

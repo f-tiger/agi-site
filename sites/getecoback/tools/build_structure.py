@@ -15,7 +15,7 @@ English pages under /en/ and the standalone 404 are left untouched.
 Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 """
 import os, re, glob, json, urllib.parse, html as htmllib
-from laundry_decision import inject as inject_laundry
+from laundry_decision import inject as inject_laundry, DE as LAUNDRY_DE, EN as LAUNDRY_EN
 from moisture_decision import inject as inject_moisture_decision, creator_entry
 from demand_tools import inject as inject_demand, seal_block
 
@@ -4323,9 +4323,15 @@ TRACK = ('<!--EB_TRACK--><script>(function(){'
 
 
 def inject_track(html):
+    track = TRACK
+    # Rebuilding chrome must preserve the existing probe exclusion on BOTH
+    # laundry canonicals. The household linker only repairs the German page.
+    if any(f'<link rel="canonical" href="https://getecoback.com{p}"' in html
+           for p in (LAUNDRY_DE, LAUNDRY_EN)):
+        track = track.replace('(function(){', '(function(){if(new URLSearchParams(location.search).get("__probe")==="1")return;', 1)
     if "<!--EB_TRACK-->" in html:
-        return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: TRACK, html, flags=re.S)
-    return html.replace("</body>", TRACK + "\n</body>", 1)
+        return re.sub(r'<!--EB_TRACK-->.*?<!--/EB_TRACK-->', lambda m: track, html, flags=re.S)
+    return html.replace("</body>", track + "\n</body>", 1)
 
 
 def inject_chrome(html, nav=NAV, footer=FOOTER):

@@ -255,6 +255,7 @@ jobs:
           node --test tools/test_demand_tools.mjs
           python3 tools/test_demand_tools.py
           node --test tools/test_laundry.mjs
+          node --test tools/test_member_release_health.mjs
           python3 tools/test_trend_radar.py
 
       - name: Check every affiliate block carries a Werbekennzeichnung
@@ -424,7 +425,21 @@ jobs:
           node tools/fleet-analytics/verify-live.mjs eco
           node tools/fleet-account/verify-live.mjs eco
 
+      # Push deployment checks must not process orders or delete expired
+      # workspaces. Existing ready includes the watcher's <4-hour health check;
+      # this is a non-destructive status gate, not a new chain/key verification.
+      - name: Verify non-destructive membership readiness after push
+        if: github.event_name == 'push'
+        working-directory: ${{ github.workspace }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node sites/getecoback/tools/member_release_health.mjs && node tools/member-studio/verify.mjs --site eco --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
       - name: Verify independent membership after deployment
+        if: github.event_name != 'push'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
