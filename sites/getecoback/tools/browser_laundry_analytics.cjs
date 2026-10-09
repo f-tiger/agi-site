@@ -72,7 +72,7 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
   }
   for(const options of [{query:'?__probe=1'},{query:'?__qa=1'},{choice:'denied'},{privacy:{doNotTrack:'1'}},{privacy:{globalPrivacyControl:true}},{privacy:{webdriver:true}}]){
    const f=await fixture('en',options);await f.calc.scrollIntoViewIfNeeded();await f.submit();await f.settle();assert.equal(f.ga.length,0);
-   if(options.query==='?__probe=1')assert.equal(f.d1.length,0,'__probe must suppress every /api/ev request');
+   if(options.query==='?__probe=1')assert.equal(f.d1.length,0,'__probe must suppress every /api/ev request: '+JSON.stringify(f.d1.map(e=>e?.n)));
    if(options.choice==='denied')assert(f.first().some(e=>e.n==='laundry_compare'));else assert.equal(f.first().length,0);
    assert.deepEqual(f.errors,[]);checks++;await f.context.close();
   }
