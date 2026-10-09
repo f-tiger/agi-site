@@ -18,7 +18,15 @@ Submitted tasks are stored on the server. A background runner checks the queue a
 
 ## What happens when AI is unavailable?
 
-You get the matching source pack and an explicit limited status. No preset is passed off as AI output. A new run gathers evidence with code and uses one synthesis call; an older checkpoint can total two calls. It shares the existing site allowance of 12 attempts per 24-hour window and 3 per IP window. Failed attempts count too.
+You get the matching source pack and an explicit limited status. No preset is passed off as AI output. A new run gathers evidence with code and uses at most one synthesis call; an older checkpoint can total two calls. Explicit GitHub metadata reading-candidate requests can receive a limited rule-based packet with no new model call. It shares the existing site allowance of 12 attempts per 24-hour window and 3 per IP window. Failed attempts count too.
+
+## What does a rule-based metadata packet establish?
+
+For explicit one-candidate GitHub metadata screening, Jarvis selects the first valid repository in the returned order, copies attributed fields and retains executed arithmetic. This is an inspection order, not a quality ranking. The packet proposes a bounded checklist; it does not read README or code, establish licensing or safety, or prove that all goal conditions are met. Other tasks still produce unverified AI drafts.
+
+## Can I record what happened after a suggested action?
+
+Yes. For each current next action, you can mark Tried, Completed or Blocked. This is your self-report, not independent proof that the real-world goal succeeded. Jarvis stores only the fixed state, action number, run number and update time; it does not duplicate the action or task text in this progress receipt. A new daily report gets a new set of progress states. Deleting or expiring the task removes these receipts.
 
 ## Where are my goals and memories stored?
 

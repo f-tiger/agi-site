@@ -1,0 +1,371 @@
+{
+  "fixtureType": "reconstructed_from_native_markdown_export_not_raw_api_response",
+  "observedAtUTC": "2026-10-09T01:33:47.696Z",
+  "site": "https://agiscorecard.com/zh/jarvis?__qa=1",
+  "buildContext": "jarvis v15; parent/audit verified main ad63598f694f8befbee1b48a3664b7cde085f50e",
+  "input": {
+    "goal": "请依据本次返回的 GitHub 和 Hacker News 元数据，给我一个值得进一步阅读的公开 AI agent 项目候选，并说明来源直接支持的事实。把每周 3 小时换算成分钟，给出一个能在这个时间内开始的核查步骤和完成标准。没有读取代码、全文或评论时，不要判断项目安全性、可靠性、安装难度、性能或商业收益。",
+    "lang": "zh",
+    "cadence": "once",
+    "publicQuery": "AI agents",
+    "web": true,
+    "selectedMemoryCount": 0
+  },
+  "actualOutput": {
+    "status": "completed",
+    "runCount": 1,
+    "modelCallsVisible": 1,
+    "summary": "obra/superpowers 是一个值得进一步阅读的公开 AI agent 项目，旨在帮助开发者构建更具人性化的 AI agent。",
+    "findings": [
+      {
+        "text": "obra/superpowers 是一个基于技能的框架和软件开发方法论，旨在帮助开发者构建更具人性化的 AI agent。",
+        "citations": [
+          "github-1073224795"
+        ]
+      }
+    ],
+    "nextActions": [
+      {
+        "text": "阅读obra/superpowers 项目的 README 文档",
+        "doneWhen": "了解项目的基本原理和目标"
+      }
+    ],
+    "uncertainties": [
+      "项目是否能够实现其目标，是否有足够的支持和资源"
+    ]
+  },
+  "sourcesUnderTest": [
+    {
+      "id": "github-1073224795",
+      "title": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "kindObservedInUI": "repository_metadata"
+    },
+    {
+      "id": "calc-3*60",
+      "title": "3*60",
+      "description": "180",
+      "kindObservedInUI": "arithmetic"
+    },
+    {
+      "id": "discovery-35316e32c0120cba313d",
+      "title": "E177｜“没有AI我会难受至极”：与大学生聊聊智能工具的依赖与适应",
+      "url": "https://sv101.fireside.fm/184",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：从学生的角度来说，AI已经成为他们学习过程的一部分，尤其是对这一代的大学生而言。本期节目我们邀请到了四位学生朋友，一起探…",
+      "kindObservedInUI": "discovered_metadata"
+    },
+    {
+      "id": "hn-50012543",
+      "title": "The Gemini Agent",
+      "url": "https://news.ycombinator.com/item?id=50012543",
+      "description": "Hacker News discussion metadata; article body and comments have not been reviewed.",
+      "kindObservedInUI": "discussion_metadata"
+    }
+  ],
+  "adjudication": {
+    "overallSemanticTaskAcceptance": "FAIL",
+    "validCitationIdentifier": "PASS",
+    "candidateIsActualRepositoryMetadata": "PASS_this_case_only",
+    "frameworkAndMethodologyDescription": "SUPPORTED_as_publisher_description_not_independently_verified",
+    "humanCentricAgentPurpose": "UNSUPPORTED",
+    "arithmeticTool": "PASS_3_times_60_equals_180",
+    "arithmeticDeliveredInAnswer": "FAIL_only_present_in_source_list",
+    "observableDoneWhen": "FAIL",
+    "licenseDeploymentFeasibility": "UNKNOWN_not_in_retrieved_fields_not_claimed",
+    "saveReopenExport": "PASS_byte_identical",
+    "tokenUsage": "UNKNOWN_not_exposed_in_UI_or_export",
+    "exactModelLatency": "UNKNOWN",
+    "traceObserveToVerifyMs": 5030,
+    "traceLastRetrievalToVerifyMs": 2582
+  },
+  "offlineCounterexampleForRegression": {
+    "status": "proposed_only_no_second_live_model_call",
+    "invalidClaim": "E177 是一个开源 AI agent 仓库，可以部署。",
+    "sourceId": "discovery-35316e32c0120cba313d",
+    "expected": "Reject repository/open-source/deployability claims: the source is unreviewed podcast publisher metadata, not repository metadata; citation ID existence is insufficient."
+  },
+  "evidence": {
+    "completeNativeExport": "export-first.md",
+    "reopenedNativeExport": "export-reopened.md",
+    "sha256": "a251870465f1146028d58b56514caf3add2218af3447a1e03454f4328847b046"
+  },
+  "limitations": [
+    "Not raw model request/response capture.",
+    "No customer data, credentials, workspace capability, task IDs or private account data included.",
+    "No statistical/general model quality claim; one normal production trial task only."
+  ],
+  "executionEvidence": {
+    "qaMechanism": "Source-audited app.mjs line 8: __qa presence suppresses Jarvis fixed business events only; task creation does not read it or bypass quotas.",
+    "initialIdentity": "Existing cloud-browser anonymous workspace; visible remaining trial=1; no other tasks visible; no memory selected.",
+    "finalIdentity": "Same workspace; trial used; one task, completed; visible model call count 1.",
+    "sourceCap": "engine.mjs line 63 admits at most 14 source records before model synthesis; 6 catalog + 1 arithmetic + 4 GitHub + 3 HN. Tool log reports 4 HN returned; the fourth was not admitted, and is not known from UI/export.",
+    "modelInputFieldsFromCode": [
+      "id",
+      "title",
+      "description truncated to 400 characters",
+      "kind",
+      "stars",
+      "updatedAt",
+      "checkedAt"
+    ],
+    "modelInputExcludedFields": [
+      "url",
+      "sourceURL",
+      "publishedAt"
+    ],
+    "modelActualProviderRequest": "Not independently captured. Can only reconstruct from audited code plus task input and persisted evidence; not equivalent to observing provider payload.",
+    "modelConfigFromAudit": {
+      "model": "@cf/meta/llama-3.1-8b-instruct-fast",
+      "max_tokens": 1400,
+      "temperature": 0.2
+    },
+    "usageFromAudit": "Provider r.usage (or null) is stored in result.usage and exposed by normal authenticated tasks API. UI and Markdown export do not display it. No raw authenticated API request was made to acquire it.",
+    "trace": [
+      {
+        "at": "2026-10-09T01:33:42.666Z",
+        "stage": "observe",
+        "detail": "6 matching catalog records; metadata is not full-source review"
+      },
+      {
+        "at": "2026-10-09T01:33:42.800Z",
+        "stage": "plan",
+        "detail": "3 allowed tool actions; fixed evidence workflow, no new planning inference"
+      },
+      {
+        "at": "2026-10-09T01:33:43.733Z",
+        "stage": "calculate",
+        "detail": "1 results"
+      },
+      {
+        "at": "2026-10-09T01:33:44.502Z",
+        "stage": "github_search",
+        "detail": "4 results"
+      },
+      {
+        "at": "2026-10-09T01:33:45.114Z",
+        "stage": "hackernews_search",
+        "detail": "4 results"
+      },
+      {
+        "at": "2026-10-09T01:33:47.696Z",
+        "stage": "verify",
+        "detail": "Output shape and citation identifiers checked; factual accuracy still needs source review"
+      }
+    ],
+    "timingInterpretation": "5.030 seconds observe→verify. Last retrieval→verify 2.582 seconds includes synthesis, quota/state handling, parsing and validation; neither is exact model-only latency. Browser UI completion polling adds separate delay.",
+    "sourceCode": "https://github.com/f-tiger/agi-site/blob/ad63598f694f8befbee1b48a3664b7cde085f50e/sites/agiscorecard/tools/jarvis/engine.mjs#L63-L73",
+    "frontendSource": "https://github.com/f-tiger/agi-site/blob/ad63598f694f8befbee1b48a3664b7cde085f50e/sites/agiscorecard/jarvis-assets/app.mjs#L8"
+  },
+  "claimBySourceMatrix": [
+    {
+      "id": "C01",
+      "output": "obra/superpowers is the candidate project",
+      "source": "github-1073224795",
+      "evidence": "Title obra/superpowers; UI labels repository metadata; URL https://github.com/obra/superpowers",
+      "verdict": "PASS",
+      "limit": "Selection is a recommendation, not proven quality or suitability."
+    },
+    {
+      "id": "C02",
+      "output": "基于技能的框架和软件开发方法论",
+      "source": "github-1073224795",
+      "evidence": "An agentic skills framework & software development methodology that works.",
+      "verdict": "SUPPORTED_AS_PUBLISHER_DESCRIPTION",
+      "limit": "Should attribute to repository description; no README/code or performance validation."
+    },
+    {
+      "id": "C03",
+      "output": "旨在帮助开发者构建更具人性化的 AI agent (summary and finding)",
+      "source": "github-1073224795",
+      "evidence": "Cited metadata contains no human-centric/human-like aim.",
+      "verdict": "FAIL_UNSUPPORTED",
+      "limit": "Correct citation identifier does not establish this added purpose."
+    },
+    {
+      "id": "C04",
+      "output": "阅读obra/superpowers 项目的 README 文档",
+      "source": "github-1073224795",
+      "evidence": "Repository link provides a reasonable place to inspect next. README existence and content were not retrieved.",
+      "verdict": "PARTIAL",
+      "limit": "It is a proposed action, not completed. Better: open repository and check README if available."
+    },
+    {
+      "id": "C05",
+      "output": "完成标准：了解项目的基本原理和目标",
+      "source": "none (proposed acceptance condition)",
+      "evidence": "No observable deliverable, time allocation or pass/fail checklist.",
+      "verdict": "FAIL_NOT_OBSERVABLE",
+      "limit": "Replace with saved source URL and two directly quoted/attributed facts plus unknowns."
+    },
+    {
+      "id": "C06",
+      "output": "项目是否能够实现其目标，是否有足够的支持和资源",
+      "source": "none",
+      "evidence": "Expressed as uncertainty, not asserted fact.",
+      "verdict": "PASS_UNKNOWN_FRAMING",
+      "limit": "Does not identify unavailable license/deployment data; no such factual claim was made."
+    },
+    {
+      "id": "C07",
+      "output": "3*60 = 180 (sources only)",
+      "source": "calc-3*60",
+      "evidence": "Local arithmetic source title 3*60, result 180; independently checked 3*60.",
+      "verdict": "TOOL_PASS_ANSWER_COMPLETENESS_FAIL",
+      "limit": "The main answer and next action never say 每周180分钟 or use the time budget."
+    },
+    {
+      "id": "C08",
+      "output": "Citation github-1073224795 exists",
+      "source": "github-1073224795",
+      "evidence": "Expanded citation matches exported source record.",
+      "verdict": "STRUCTURAL_PASS_SEMANTIC_FAIL_FOR_C03",
+      "limit": "The UI correctly warns that citation checking does not prove accuracy."
+    },
+    {
+      "id": "C09",
+      "output": "No code safety/reliability/installation/performance/commercial-return claims",
+      "source": "all output text",
+      "evidence": "None appear in the actual output.",
+      "verdict": "PASS_THIS_CASE",
+      "limit": "No broader safety or hallucination robustness claim."
+    },
+    {
+      "id": "C10",
+      "output": "No podcast/discussion misclassified as selected repository",
+      "source": "six discovered_metadata records and three discussion_metadata records",
+      "evidence": "Selected source is github-1073224795 only.",
+      "verdict": "PASS_THIS_CASE_ONLY",
+      "limit": "A proposed offline counterexample exists; no second model test was run."
+    },
+    {
+      "id": "C11",
+      "output": "Project license and deployability",
+      "source": "none; not in retrieval fields",
+      "evidence": "No LICENSE, README or installation fields were retrieved.",
+      "verdict": "UNKNOWN",
+      "limit": "Do not infer open-source license or deployability from public GitHub visibility."
+    }
+  ],
+  "minimalRepairRecommendations": [
+    "Separate source-grounded facts from recommendations. For metadata-only scope, render names, type, URLs and attributed description directly rather than allow unsupported semantic expansion.",
+    "Carry the deterministic 3*60=180 result into the main response with units and time-budget use; do not rely on the model to remember it from a long source bundle.",
+    "Require one observable next-step artifact and a bounded timebox, e.g. within 180 minutes save the repository URL, two directly supported facts, and explicitly unknown license/deployment details.",
+    "For project-candidate tasks, enforce repository_metadata eligibility; keep podcast/editorial/HN metadata as context only. Add the actual unsupported human-centric phrase and podcast-as-repository counterexample to offline tests.",
+    "Preserve provider/model, existing trial and call limits, identity, retention and analytics suppression. Do not spend another anonymous trial just to obtain a passing screenshot."
+  ],
+  "boundaryAudit": {
+    "createSubmissions": 1,
+    "visibleModelCalls": 1,
+    "reruns": 0,
+    "accountSignups": 0,
+    "identityResets": 0,
+    "privateMemorySelected": 0,
+    "opsRunOrTick": 0,
+    "deletions": 0,
+    "codeEditsByQAWorker": 0,
+    "scheduleChanges": 0,
+    "marketingInteractions": 0,
+    "customerAdoptionClaimed": false,
+    "testDataRetention": "normal product retention 30 days; no task deletion attempted"
+  },
+  "reconstructedSources": [
+    {
+      "id": "discovery-35316e32c0120cba313d",
+      "title": "E177｜“没有AI我会难受至极”：与大学生聊聊智能工具的依赖与适应",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：从学生的角度来说，AI已经成为他们学习过程的一部分，尤其是对这一代的大学生而言。本期节目我们邀请到了四位学生朋友，一起探…",
+      "kind": "discovered_metadata",
+      "url": "https://sv101.fireside.fm/184"
+    },
+    {
+      "id": "discovery-3b97f7d426e262b25bdc",
+      "title": "95. 对Manus创始人肖弘的3小时访谈：世界不是线性外推，做博弈中的重要变量",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：今天的嘉宾是肖弘（小红/小宏），一名AI应用创业者。 我们从去年在不同时期进行谈话，可以算是展开了一场 “接力式访谈”…",
+      "kind": "discovered_metadata",
+      "url": "https://www.xiaoyuzhoufm.com/episode/67c3d80fb0167b8db9e3ec0f"
+    },
+    {
+      "id": "discovery-fb454b8ffb9f3a0cd73e",
+      "title": "AI可解释性与对齐：J-Space，思维链，AI人格，幻觉，与金门大桥【101视频播客】",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：一个模型被问：“会织网的动物有几条腿？”它回答8。问题里没有出现“蜘蛛”，但模型内部其实已经判断这个动物是蜘蛛。研究者没…",
+      "kind": "discovered_metadata",
+      "url": "https://www.youtube.com/watch?v=J5_90lWxM_o"
+    },
+    {
+      "id": "discovery-f22b35d2ec285c01f0b5",
+      "title": "E245｜藏在大模型背后的新闻人：GPT们的回复是这样写出来的",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：当你觉得AI“懂你”的那一刻——精准抓住一个你自己都没说清的情绪，问出一个让你陷入沉思的问题——你以为那来自数据中心的芯…",
+      "kind": "discovered_metadata",
+      "url": "https://sv101.fireside.fm/258"
+    },
+    {
+      "id": "discovery-29165cf8aa3fc64e24d1",
+      "title": "147. 和蚂蚁灵波沈宇军聊：机器人原生基础模型、大脑和本体的关系、预训练与数据scale up、老师汤晓鸥",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：进入2026年，中国科技业萌生了一个新现象：出现一批从机器人大脑出发的公司，现阶段重心不在本体上。这个现象是反直觉的——…",
+      "kind": "discovered_metadata",
+      "url": "https://www.xiaoyuzhoufm.com/episode/6a5f79b3a3fec224d5a128cd"
+    },
+    {
+      "id": "discovery-c3336262f962dba80989",
+      "title": "132. 对星海图创始人高继扬的3小时访谈：鲶鱼、曾国藩、Waymo与Momenta的两面、一只狼与许华哲的离开",
+      "description": "自动发现的标题与发布者摘要，未核阅节目全文：我一直有一个疑惑，为什么在中国具身智能行业里，至今我尚且没有遇到像梁文锋、杨植麟这样带有浓重的技术浪漫主义色彩的人。这让…",
+      "kind": "discovered_metadata",
+      "url": "https://www.xiaoyuzhoufm.com/episode/698ebb0b66e2c30377510cf6"
+    },
+    {
+      "id": "calc-3*60",
+      "title": "3*60",
+      "description": "180",
+      "kind": "arithmetic"
+    },
+    {
+      "id": "github-1073224795",
+      "title": "obra/superpowers",
+      "description": "An agentic skills framework & software development methodology that works.",
+      "kind": "repository_metadata",
+      "url": "https://github.com/obra/superpowers"
+    },
+    {
+      "id": "github-1024554267",
+      "title": "NousResearch/hermes-agent",
+      "description": "The agent that grows with you",
+      "kind": "repository_metadata",
+      "url": "https://github.com/NousResearch/hermes-agent"
+    },
+    {
+      "id": "github-787076358",
+      "title": "firecrawl/firecrawl",
+      "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
+      "kind": "repository_metadata",
+      "url": "https://github.com/firecrawl/firecrawl"
+    },
+    {
+      "id": "github-614765452",
+      "title": "Significant-Gravitas/AutoGPT",
+      "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "kind": "repository_metadata",
+      "url": "https://github.com/Significant-Gravitas/AutoGPT"
+    },
+    {
+      "id": "hn-50013359",
+      "title": "Female AI agents 'paid' less than males, study finds",
+      "description": "Hacker News discussion metadata; article body and comments have not been reviewed.",
+      "kind": "discussion_metadata",
+      "url": "https://news.ycombinator.com/item?id=50013359"
+    },
+    {
+      "id": "hn-50012543",
+      "title": "The Gemini Agent",
+      "description": "Hacker News discussion metadata; article body and comments have not been reviewed.",
+      "kind": "discussion_metadata",
+      "url": "https://news.ycombinator.com/item?id=50012543"
+    },
+    {
+      "id": "hn-50011675",
+      "title": "Multiple Agents race condition on Booking",
+      "description": "Hacker News discussion metadata; article body and comments have not been reviewed.",
+      "kind": "discussion_metadata",
+      "url": "https://news.ycombinator.com/item?id=50011675"
+    }
+  ]
+}

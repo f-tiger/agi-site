@@ -1,0 +1,42 @@
+name: Check Jarvis evidence contract
+on:
+  pull_request:
+    paths:
+      - 'sites/agiscorecard/tools/jarvis/**'
+      - 'sites/agiscorecard/jarvis-assets/**'
+      - 'sites/agiscorecard/jarvis.html'
+      - 'sites/agiscorecard/zh/jarvis.html'
+      - '.github/workflows/check-jarvis-evidence.yml'
+permissions:
+  contents: read
+concurrency:
+  group: jarvis-evidence-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test original behavior and frozen evidence counterexamples
+        run: node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs sites/agiscorecard/tools/jarvis/screening-test.mjs
+      - name: Install pinned browser test dependencies without lifecycle scripts
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Generate bilingual surfaces and inspect local analytics coverage
+        run: |
+          node sites/agiscorecard/tools/jarvis/build.mjs
+          python3 tools/fleet-analytics/coverage.py --site agi --write
+          python3 tools/fleet-analytics/coverage.py --site agi
+      - name: Check synthetic UI only, including legacy and limited packets
+        run: |
+          node sites/agiscorecard/tools/jarvis/browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/screening-browser-test.mjs
+      # No production URL, model, account, operational tick/watch, secrets,
+      # publishing, cleanup or scheduled-workflow dispatch is used by this job.

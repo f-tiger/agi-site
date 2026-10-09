@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261009-15';
+export const VERSION='jarvis-20261009-16';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -89,9 +89,16 @@ export function calculate(expression){
 // Export is another rendering boundary. Only validated source URLs become links;
 // user, model and retrieved text must remain literal text in Markdown readers.
 export function markdownText(value){return String(value??'').replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,' ').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/[\\`*_{}\[\]()#+.!|~:\-]/g,'\\$&');}
+export function reportNotice(report,version,lang='en'){
+ const zh=lang==='zh';
+ if(report?.contract==='metadata-screening-v1')return zh?'规则初筛资料包 · 未新增模型调用。仅核对字段与算术，未评估整项目标是否完成。':'Rule-based metadata packet · no new model call. Fields and arithmetic checked; full task acceptance not assessed.';
+ const historical=typeof version==='string'&&/^jarvis-\d{8}-\d+$/.test(version)&&version!==VERSION;
+ return historical?(zh?'历史 AI 草稿 · 未按字段证据合约核验，使用前请核对原始来源。':'Historical AI draft · not checked against the field-evidence contract. Check original sources before relying on it.'):(zh?'AI 草稿 · 解读未核验，使用前请核对原始来源。':'AI draft · interpretations are unverified. Check original sources before relying on it.');
+}
 export function markdown(task){
  const m=markdownText,r=task.result||{},lines=['# '+m(task.input.goal),'',`Status: ${m(task.status)}`,`Run: ${m(task.runs)}; checked: ${m(r.checkedAt||'pending')}`,'',m(r.report?.summary||'Source pack only. AI synthesis was not completed.'),''];
- for(const f of r.report?.findings||[]){lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');for(const s of citedSources(f,r.sources))lines.push('  - Cited source metadata \(not proof of support\): '+m(s.title)+' — '+m(s.description||''));}
+ if(r.report)lines.push(m(reportNotice(r.report,r.version,task.input.lang)),'');
+ for(const f of r.report?.findings||[]){lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');for(const field of f.sourceFields||[])lines.push('  - Returned field ['+m(field.sourceId)+'].'+m(field.field)+': '+m(field.value));for(const s of citedSources(f,r.sources))lines.push('  - Cited source metadata \(not proof of support\): '+m(s.title)+' — '+m(s.description||''));}
  lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));
  lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+m(s));
  lines.push('','## Sources');for(const s of r.sources||[]){const url=safeURL(s.url);lines.push(`- [${m(s.id)}] ${m(s.title)}\n  ${url?'<'+url.replace(/</g,'%3C').replace(/>/g,'%3E')+'>':'Local arithmetic / unavailable link'}\n  ${m(s.description||'')}`);}
