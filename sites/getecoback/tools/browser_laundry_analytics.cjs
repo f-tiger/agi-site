@@ -13,7 +13,9 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
   const context=await browser.newContext({serviceWorkers:'block',viewport:{width:390,height:844}}),ga=[],d1=[],errors=[];let holdFirstCollector=holdCollector;
   await context.addInitScript(({choice,privacy})=>{
    for(const [key,value]of Object.entries({webdriver:false,...privacy}))Object.defineProperty(navigator,key,{get:()=>value});
-   if(choice)localStorage.setItem('fleet_ga4_choice_v1',choice);
+   // Seed only the top-level visit. Same-origin analytics frames must not
+   // rewrite this choice and trigger withdrawal via the parent's storage event.
+   if(choice&&window===window.top)localStorage.setItem('fleet_ga4_choice_v1',choice);
    window.__laundryBusiness=[];window.addEventListener('fleet:business',e=>window.__laundryBusiness.push(e.detail));
    window.addEventListener('message',e=>{if(e.isTrusted&&e.origin==='https://getecoback.com'&&e.source===document.querySelector('iframe[title="Optional analytics"]')?.contentWindow&&e.data?.type==='fleet-ga4-started')window.__laundryStartedFrame=e.source;});
   },{choice,privacy});
@@ -66,6 +68,7 @@ const types={'.mjs':'text/javascript','.js':'text/javascript','.css':'text/css',
   }
   // Denied or pre-channel operations are not replayed or consumed by local dedup.
   for(const holdConsent of [false,true]){
+   console.log('Laundry channel availability:',holdConsent?'delayed consent module':'stored denial then grant');
    const f=await fixture('en',holdConsent?{holdConsent:true}:{choice:'denied'});await f.calc.locator('[name=hours]').fill('4');await f.submit();await f.download('[data-csv]');assert.equal(f.events().length,0);checks++;
    if(holdConsent){await f.page.waitForFunction(()=>typeof window.__releaseLaundryAnalytics==='function');await f.page.evaluate(()=>window.__releaseLaundryAnalytics());}else await f.page.locator('[data-analytics-choice="granted"]').click();
    await f.ready();await f.settle();assert.equal(f.events().length,0,'no replay on availability');await f.submit();await f.until(()=>f.events().length===1);await f.download('[data-csv]');assert.equal(f.events().length,2);checks++;
