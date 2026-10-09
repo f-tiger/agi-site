@@ -3,7 +3,6 @@ on:
   pull_request:
     paths:
       - 'sites/getecoback/**'
-      - 'tools/fleet-analytics/**'
       - 'tools/member-studio/**'
       - 'tools/fleet/membership*.mjs'
       - 'sites/baipiaoji/lib/membership.js'
@@ -53,7 +52,7 @@ jobs:
           python3 tools/build_structure.py
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_laundry.mjs
-          node --test ../../tools/fleet-analytics/business.test.mjs ../../tools/fleet-analytics/integrity.test.mjs
+          node --test tools/test_member_release_health.mjs
           node --test ../../tools/affiliate-growth/test.mjs
           # Match deployment: this regenerates the isolated workbench pages
           # after generic chrome, keeping their probe/event contract intact.

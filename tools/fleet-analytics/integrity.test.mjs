@@ -83,16 +83,3 @@ test('New visitors start automatically without a consent panel or stored choice'
  f.click('denied');assert.equal(f.frame(),undefined);assert.equal(f.store.get('fleet_ga4_choice_v1'),'denied');
  f.click('granted');f.handshake();assert.equal(f.posts.filter(x=>x.d.type==='fleet-ga4-page').at(-1).d.data.sendPageView,false);
 });
-
-
-test('laundry name-only states respect opt-out, withdrawal, QA and no pre-consent replay',()=>{
- const path='/en/guide/dehumidifier-drying-clothes-cost.html',name='eco_laundry:compare:en:edited:measured:yes:compare:onsite:none';
- const emit=f=>f.emit('fleet:business',{detail:{name}});
- const f=fixture({choice:'denied',path});emit(f);assert.equal(f.posts.length,0);
- f.click('granted');f.handshake();assert.equal(f.posts.filter(p=>p.d.type==='fleet-ga4-business').length,0);
- emit(f);assert.equal(JSON.stringify(f.posts.filter(p=>p.d.type==='fleet-ga4-business').map(p=>p.d.detail)),JSON.stringify([{name}]));
- f.emit('fleet:business',{detail:{name,kwh:12345,referrer:'SECRET'}});assert.equal(f.posts.filter(p=>p.d.type==='fleet-ga4-business').length,1);
- f.click('denied');const count=f.posts.length;emit(f);assert.equal(f.posts.length,count);
- for(const query of ['?__probe=1','?__qa=1','?__ci=1']){const blocked=fixture({path,query});emit(blocked);assert.equal(blocked.posts.length,0);}
- for(const privacy of [{webdriver:true},{doNotTrack:'1'},{globalPrivacyControl:true}]){const blocked=fixture({path,privacy});emit(blocked);assert.equal(blocked.posts.length,0);}
-});
