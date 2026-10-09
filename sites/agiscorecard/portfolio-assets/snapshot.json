@@ -6,197 +6,214 @@
     "2026-10-02",
     "2026-10-05",
     "2026-10-06",
-    "2026-10-07"
+    "2026-10-07",
+    "2026-10-08"
   ],
   "series": {
     "AMD": [
       100.0,
       99.65926185,
       102.44672121,
-      101.88512765
+      101.88512765,
+      97.91295594
     ],
     "TSLA": [
       100.0,
       102.19650145,
       102.72268449,
-      101.94824504
+      101.94824504,
+      101.18999533
     ],
     "META": [
       100.0,
       101.89814402,
       101.48335177,
-      99.07015446
+      99.07015446,
+      99.01247084
     ],
     "MU": [
       100.0,
       98.98314678,
       97.27135282,
-      101.21965831
+      101.21965831,
+      96.36706563
     ],
     "NVDA": [
       100.0,
       102.11583544,
       102.2611706,
-      101.50459684
+      101.50459684,
+      98.51677655
     ],
     "PLTR": [
       100.0,
       100.34436763,
       101.75894428,
-      102.84503053
+      102.84503053,
+      105.31390664
     ],
     "SPCX": [
       100.0,
       107.63084368,
       108.15298874,
-      105.43532903
+      105.43532903,
+      101.01283376
     ],
     "AMZN": [
       100.0,
       99.95228595,
       101.89647113,
-      103.33969824
+      103.33969824,
+      101.00985736
     ],
     "GOOGL": [
       100.0,
       100.86462918,
       101.21688288,
-      102.03784571
+      102.03784571,
+      101.39447119
     ],
     "MSFT": [
       100.0,
       101.47816802,
       102.27425615,
-      102.36314412
+      102.36314412,
+      100.98157706
     ],
     "NOW": [
       100.0,
       101.26506689,
       102.67152568,
-      102.5971053
+      102.5971053,
+      103.9961266
     ],
     "PANW": [
       100.0,
       100.87293414,
       104.13401791,
-      100.57782391
+      100.57782391,
+      98.82452377
     ],
     "SPY": [
       100.0,
       100.67434155,
       101.22784835,
-      100.98487032
+      100.98487032,
+      100.5574006
     ],
     "QQQ": [
       100.0,
       100.88316057,
       101.34474717,
-      101.08727063
+      101.08727063,
+      99.73318392
     ],
     "TQQQ": [
       100.0,
       102.6046174,
       103.99950349,
-      103.22182513
+      103.22182513,
+      99.03715744
     ],
     "basket": [
       100.0,
       101.43843209,
       102.35753064,
-      102.0686466
+      102.0686466,
+      100.46104672
     ]
   },
   "metrics": {
     "AMD": {
-      "return_pct": 1.885128,
-      "max_drawdown_pct": -0.548181,
-      "excess_spy_pp": 0.900257
+      "return_pct": -2.087044,
+      "max_drawdown_pct": -4.425486,
+      "excess_spy_pp": -2.644445
     },
     "TSLA": {
-      "return_pct": 1.948245,
-      "max_drawdown_pct": -0.753913,
-      "excess_spy_pp": 0.963375
+      "return_pct": 1.189995,
+      "max_drawdown_pct": -1.492065,
+      "excess_spy_pp": 0.632595
     },
     "META": {
-      "return_pct": -0.929846,
-      "max_drawdown_pct": -2.77531,
-      "excess_spy_pp": -1.914716
+      "return_pct": -0.987529,
+      "max_drawdown_pct": -2.831919,
+      "excess_spy_pp": -1.54493
     },
     "MU": {
-      "return_pct": 1.219658,
-      "max_drawdown_pct": -2.728647,
-      "excess_spy_pp": 0.234788
+      "return_pct": -3.632934,
+      "max_drawdown_pct": -4.794121,
+      "excess_spy_pp": -4.190335
     },
     "NVDA": {
-      "return_pct": 1.504597,
-      "max_drawdown_pct": -0.739845,
-      "excess_spy_pp": 0.519727
+      "return_pct": -1.483223,
+      "max_drawdown_pct": -3.661599,
+      "excess_spy_pp": -2.040624
     },
     "PLTR": {
-      "return_pct": 2.845031,
+      "return_pct": 5.313907,
       "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.86016
+      "excess_spy_pp": 4.756506
     },
     "SPCX": {
-      "return_pct": 5.435329,
-      "max_drawdown_pct": -2.512792,
-      "excess_spy_pp": 4.450459
+      "return_pct": 1.012834,
+      "max_drawdown_pct": -6.601903,
+      "excess_spy_pp": 0.455433
     },
     "AMZN": {
-      "return_pct": 3.339698,
-      "max_drawdown_pct": -0.047714,
-      "excess_spy_pp": 2.354828
+      "return_pct": 1.009857,
+      "max_drawdown_pct": -2.254546,
+      "excess_spy_pp": 0.452457
     },
     "GOOGL": {
-      "return_pct": 2.037846,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.052975
+      "return_pct": 1.394471,
+      "max_drawdown_pct": -0.630525,
+      "excess_spy_pp": 0.837071
     },
     "MSFT": {
-      "return_pct": 2.363144,
-      "max_drawdown_pct": 0,
-      "excess_spy_pp": 1.378274
+      "return_pct": 0.981577,
+      "max_drawdown_pct": -1.349672,
+      "excess_spy_pp": 0.424176
     },
     "NOW": {
-      "return_pct": 2.597105,
+      "return_pct": 3.996127,
       "max_drawdown_pct": -0.072484,
-      "excess_spy_pp": 1.612235
+      "excess_spy_pp": 3.438726
     },
     "PANW": {
-      "return_pct": 0.577824,
-      "max_drawdown_pct": -3.415017,
-      "excess_spy_pp": -0.407046
+      "return_pct": -1.175476,
+      "max_drawdown_pct": -5.098712,
+      "excess_spy_pp": -1.732877
     },
     "SPY": {
-      "return_pct": 0.98487,
-      "max_drawdown_pct": -0.240031,
+      "return_pct": 0.557401,
+      "max_drawdown_pct": -0.662316,
       "excess_spy_pp": 0.0
     },
     "QQQ": {
-      "return_pct": 1.087271,
-      "max_drawdown_pct": -0.25406,
-      "excess_spy_pp": 0.1024
+      "return_pct": -0.266816,
+      "max_drawdown_pct": -1.590179,
+      "excess_spy_pp": -0.824217
     },
     "TQQQ": {
-      "return_pct": 3.221825,
-      "max_drawdown_pct": -0.747771,
-      "excess_spy_pp": 2.236955
+      "return_pct": -0.962843,
+      "max_drawdown_pct": -4.771509,
+      "excess_spy_pp": -1.520243
     },
     "basket": {
-      "return_pct": 2.068647,
-      "max_drawdown_pct": -0.28223,
-      "excess_spy_pp": 1.083776
+      "return_pct": 0.461047,
+      "max_drawdown_pct": -1.852804,
+      "excess_spy_pp": -0.096354
     }
   },
-  "as_of": "2026-10-07",
+  "as_of": "2026-10-08",
   "revisions": [],
-  "attempted_at": "2026-10-08T02:13:47.557650+00:00",
+  "attempted_at": "2026-10-09T02:30:59.357480+00:00",
   "errors": [],
   "provider": "Yahoo Finance adjusted daily closes",
   "registered_date": "2026-10-03",
   "entry_session": "2026-10-02",
   "status": "tracking",
-  "last_success_at": "2026-10-08T02:13:47.557650+00:00",
+  "last_success_at": "2026-10-09T02:30:59.357480+00:00",
   "entry_adjusted_close": {
     "AMD": 633.9099731445312,
     "TSLA": 370.5899963378906,
