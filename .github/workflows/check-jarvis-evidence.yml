@@ -41,6 +41,7 @@ jobs:
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/screening-browser-test.mjs
           node sites/agiscorecard/tools/jarvis/handoff-browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/handoff-race-browser-test.mjs
       - name: Retain local handoff screenshots and fixture results
         if: always()
         uses: actions/upload-artifact@v4

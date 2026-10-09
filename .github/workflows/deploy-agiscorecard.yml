@@ -257,6 +257,7 @@ jobs:
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/screening-browser-test.mjs
           node sites/agiscorecard/tools/jarvis/handoff-browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/handoff-race-browser-test.mjs
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
