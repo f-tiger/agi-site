@@ -25,6 +25,20 @@ export function businessEvent(host, pathname, detail) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  // ECO laundry keeps the existing name-only transport. Decode fixed states in
+  // BOTH parent and isolated collector; never accept input values or raw URLs.
+  // Fixed names (at most 40 chars) reuse the channel's once-per-page dedup.
+  // Denied actions are never queued, but a fresh post-grant action can count.
+  if (host === 'getecoback.com' && ['/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname)) {
+    const match = /^eco_laundry:(view|compare|export|next):(de|en):(example|edited):(estimate|measured):(yes|no):(view|compare|csv|card|share|guide):(onsite|youtube|tiktok):(none|tag_only|referrer|other)$/.exec(name);
+    if (match) {
+      const [,event,lang,input,method,equal,action,source,evidence] = match;
+      const actions = {view:['view'],compare:['compare'],export:['csv','card'],next:['share','guide']};
+      if (lang === (pathname.startsWith('/en/')?'en':'de') && actions[event].includes(action) && (source === 'onsite') === (evidence === 'none'))
+        return {name:'laundry_'+event+(['export','next'].includes(event)?'_'+action:'')+'_'+input+'_'+method+'_'+equal,tool_id:'laundry-check',site_edition:lang,laundry_input:input,laundry_method:method,laundry_equal:equal,laundry_action:action,laundry_source:source,laundry_evidence:evidence};
+    }
+  }
+
   if (host === 'getecoback.com' && /^\//.test(pathname) && !/^\/(?:(?:en|it|fr|es|zh)\/)?(?:members|account|api|private)(?:[/.]|$)/.test(pathname) &&
       ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'].some(action=>name==='eco_tool_'+action))
     return {name,tool_id:'eco-tool-experience',repeat:true};

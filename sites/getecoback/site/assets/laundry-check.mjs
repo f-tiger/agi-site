@@ -6,15 +6,23 @@ export function acquisition(href,referrer=''){
  const same=d=>h===d||h.endsWith('.'+d);
  return {source,evidence:(source==='youtube'&&(same('youtube.com')||same('youtu.be'))||source==='tiktok'&&same('tiktok.com'))?'referrer':h?'other':'tag_only'};
 }
+// Compare the selected mode with that mode's initial example. A mode switch or
+// equal-drying confirmation alone is not an edited input or a verified reading.
+export function laundryInputKind(x,initial){
+ const keys=['dryer','dryerBasis','price','loads','purchase','currency',...(x.method==='measured'?['dehum']:['watts','hours'])];
+ return keys.every(key=>x[key]===initial[key])?'example':'edited';
+}
+export function laundryBusinessName(name,m){
+ return ['eco_laundry',name.replace(/^laundry_/,''),m.lang,m.input,m.method,m.equal,m.action,m.source,m.evidence].join(':');
+}
 if(typeof document!=='undefined'){
  const root=document.querySelector('#laundry-check');
  if(root){
  const en=root.dataset.lang==='en',t=(de,english)=>en?english:de,form=root.querySelector('form'),q=s=>root.querySelector(s),results=q('[data-results]'),seen=new Set();let latest=null;
  const values=()=>{const d=new FormData(form),number=n=>Number(d.get(n));return {dryer:number('dryer'),dryerBasis:d.get('dryerBasis'),method:d.get('method'),watts:number('watts'),hours:number('hours'),dehum:number('dehum'),price:number('price'),loads:number('loads'),purchase:number('purchase'),currency:d.get('currency'),comparable:d.has('comparable')};};
- const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});const initial=signature(values());
- const inputKind=x=>signature(x)===initial?'example':'edited';
+ const initial=values(),inputKind=x=>laundryInputKind(x,initial);
  const privacy=()=>navigator.doNotTrack==='1'||navigator.globalPrivacyControl||navigator.webdriver||/[?&]__(probe|ci|qa)(=|&|$)/.test(location.search);
- const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
+ const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);try{window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:laundryBusinessName(name,m)}}));}catch{}if(seen.has(key))return;seen.add(key);try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
  const invalidate=()=>{latest=null;results.hidden=true;q('[data-error]').textContent='';};
  const mode=()=>{const measured=form.elements.method.value==='measured';q('[data-measured]').hidden=!measured;q('[data-estimate]').hidden=measured;form.elements.dehum.disabled=!measured;form.elements.watts.disabled=measured;form.elements.hours.disabled=measured;};
  const fmt=(n,d=2)=>n.toLocaleString(en?'en-GB':'de-DE',{maximumFractionDigits:d});

@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
-import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
+import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition,laundryInputKind,laundryBusinessName} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
 const x={dryer:1.5,dryerBasis:'cycle',method:'estimate',watts:250,hours:8,dehum:2,price:.35,loads:3,purchase:200,currency:'EUR',comparable:true};
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});
@@ -21,4 +21,17 @@ test('German laundry guide keeps illustrative runtimes separate from measured dr
   for(const q of faq.mainEntity)assert(visible.includes(q.acceptedAnswer.text));
   assert(h.includes('Watt ÷ 1.000 × Stunden × Strompreis'));
   for(const value of ['200 W','300 W','500 W','0,36 €','0,54 €','0,90 €','4,32 €','6,48 €','10,80 €'])assert(h.includes(value));
+});
+
+
+test('mode-only and equal-confirmation changes remain examples; inactive fields do not count as edits',()=>{
+ for(const method of ['estimate','measured'])for(const comparable of [false,true])assert.equal(laundryInputKind({...x,method,comparable},x),'example');
+ assert.equal(laundryInputKind({...x,method:'measured',watts:0,hours:0},x),'example');
+ assert.equal(laundryInputKind({...x,dehum:42},x),'example');
+ for(const change of [{dryer:1.6},{price:.36},{hours:7},{purchase:201},{loads:4},{method:'measured',dehum:1.1}])assert.equal(laundryInputKind({...x,...change},x),'edited');
+ assert.equal(laundryInputKind({...x,method:'measured',dehum:2},x),'example');
+});
+test('laundry GA bridge encodes only the bounded metadata, never numeric inputs',()=>{
+ const m={lang:'en',input:'edited',method:'measured',equal:'yes',action:'csv',source:'onsite',evidence:'none',price:12345,private:'SECRET'};
+ assert.equal(laundryBusinessName('laundry_export',m),'eco_laundry:export:en:edited:measured:yes:csv:onsite:none');
 });

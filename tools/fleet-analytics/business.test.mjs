@@ -110,3 +110,21 @@ test('Eco home fit actions accept only fixed mode and action without user data',
 });
 
 for(const action of ['search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached']) { const name='manju_'+action; assert.equal(businessEvent('baipiaoji.com','/manju/',{name})?.name,name); assert.equal(businessEvent('baipiaoji.com','/manju/',{name,query:'PRIVATE'}),null); assert.equal(businessEvent('baipiaoji.com','/account',{name}),null); }
+
+
+test('laundry only accepts fixed state combinations on the two exact ECO pages',()=>{
+ const paths={de:'/waeschetrockner-oder-luftentfeuchter.html',en:'/en/guide/dehumidifier-drying-clothes-cost.html'};
+ const actions={view:['view'],compare:['compare'],export:['csv','card'],next:['share','guide']},names=new Set();
+ for(const [lang,path] of Object.entries(paths))for(const [event,list] of Object.entries(actions))for(const action of list)for(const input of ['example','edited'])for(const method of ['estimate','measured'])for(const equal of ['yes','no'])for(const [source,evidence] of [['onsite','none'],['youtube','tag_only'],['youtube','referrer'],['youtube','other'],['tiktok','tag_only'],['tiktok','referrer'],['tiktok','other']]){
+  const name=['eco_laundry',event,lang,input,method,equal,action,source,evidence].join(':');
+  assert.deepEqual(businessEvent('getecoback.com',path,{name}),{name:'laundry_'+event+(['export','next'].includes(event)?'_'+action:'')+'_'+input+'_'+method+'_'+equal,tool_id:'laundry-check',site_edition:lang,laundry_input:input,laundry_method:method,laundry_equal:equal,laundry_action:action,laundry_source:source,laundry_evidence:evidence});
+  const accepted=businessEvent('getecoback.com',path,{name});names.add(accepted.name);assert(accepted.name.length<=40);assert(!accepted.repeat);
+ }
+ assert.equal(names.size,48);assert.equal(Math.max(...[...names].map(n=>n.length)),40);
+ const name='eco_laundry:compare:en:edited:measured:yes:compare:onsite:none';
+ for(const [host,path,detail] of [
+  ['baipiaoji.com',paths.en,{name}],['getecoback.com','/',{name}],['getecoback.com','/guide/waesche-trocknen-wohnung.html',{name}],['getecoback.com',paths.de,{name}],
+  ...['kwh','price','referrer','email'].map(key=>['getecoback.com',paths.en,{name,[key]:'SECRET'}]),
+  ...[name+':SECRET',name.replace(':en:',':SECRET:'),name.replace(':yes:',':true:'),name.replace(':onsite:none',':youtube:none'),name.replace(':onsite:none',':onsite:referrer'),name.replace(':yes:compare:',':yes:csv:'),name.replace(':compare:en:',':purchase:en:'),name.replace(':edited:',':verified:')].map(name=>['getecoback.com',paths.en,{name}])
+ ])assert.equal(businessEvent(host,path,detail),null);
+});
