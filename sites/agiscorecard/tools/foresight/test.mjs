@@ -1,3 +1,4 @@
+import './commercial-test.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {blank,normalize,emptyNote,PRODUCT,selectClaims,sourceUrl,inWindow,reviewedCounts} from '../../foresight-assets/core.mjs';
 import {claims,goals,interviews} from '../../foresight-assets/catalog.mjs';

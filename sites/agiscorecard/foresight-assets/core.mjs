@@ -1,4 +1,5 @@
 import {claims,goals,interviews,reviewed} from './catalog.mjs';
+import {normalizeCommercial} from './commercial.mjs';
 export const PRODUCT='future-guide';
 export const blank=()=>({goal:'work',saved:[],notes:{}});
 const ids=new Set(claims.map(c=>c.id)),goalIds=new Set(goals.map(g=>g.id));
@@ -13,7 +14,9 @@ export function normalize(raw){
     const note=emptyNote();note.stance=n.stance;
     for(const k of ['task','action','counter','review']){if(typeof n[k]!=='string'||n[k].length>1500)throw Error('field');note[k]=n[k];}
     if(note.review&&(!/^\d{4}-\d{2}-\d{2}$/.test(note.review)||!Number.isFinite(Date.parse(note.review))||new Date(note.review).toISOString().slice(0,10)!==note.review))throw Error('date');
-    if(typeof n.done!=='boolean')throw Error('done');note.done=n.done;out.notes[id]=note;
+    if(typeof n.done!=='boolean')throw Error('done');note.done=n.done;
+    if(n.commercial!==undefined)note.commercial=normalizeCommercial(n.commercial,id);
+    out.notes[id]=note;
   }
   return {version:1,product:PRODUCT,values:out};
 }

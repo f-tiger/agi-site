@@ -125,7 +125,9 @@ def main():
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)
             if body:
                 # Published text only; retain source URLs and the editorial/AI boundary.
-                visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', body.group(1), flags=re.S|re.I)
+                # A conditional business destination is not an unconditional mirror recommendation.
+                body_text = re.sub(r'<a\b(?=[^>]*id="commercial-case")[^>]*>.*?</a>', '', body.group(1), flags=re.S)
+                visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', body_text, flags=re.S|re.I)
                 linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', visible, flags=re.S)
                 readable = text_of(linked)
                 md += '\n## Source-linked future guide\n\n' + readable + '\n'

@@ -26,3 +26,6 @@
 .plan-output h3{font-size:18px;margin-bottom:14px}.plan-output dl{margin:0}.plan-output dl>div{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;margin-top:12px;font-size:14px;line-height:1.8}.plan-output dt{color:var(--muted)}.plan-output dd{margin:0}
 .plan .planner-evidence{font-size:13px;line-height:1.8;color:var(--muted);margin:0 0 20px}.planner-evidence strong{color:var(--ink);font-weight:600}
 @media(max-width:720px){.planner-grid{grid-template-columns:minmax(0,1fr);gap:0}.plan-output{padding:16px}.plan-output dl>div{grid-template-columns:minmax(0,1fr);gap:1px;margin-top:12px}.plan-output dt{font-size:12px}.plan-output dd{font-size:14px}.plan .actions>.primary{width:100%}.plan .actions>button:not(.primary){flex:1 1 auto}}
+
+/* Claim-specific commercial evidence: existing light theme, no score badge. */
+.commercial-row{border-top:1px solid var(--line,#dfe2e8);padding:14px 0}.commercial-row h3{font-size:1rem}.commercial-fit{border:1px solid var(--line,#dfe2e8);padding:16px;margin-top:22px;min-width:0}.commercial-fit legend{font-weight:700;padding:0 6px}.commercial-fit .field{display:block;margin:14px 0}.commercial-fit select{display:block;width:100%;margin-top:6px}.commercial-evidence a{overflow-wrap:anywhere}.commercial-evidence [hidden]{display:none!important}
