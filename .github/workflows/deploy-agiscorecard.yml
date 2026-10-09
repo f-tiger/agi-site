@@ -260,6 +260,9 @@ jobs:
           node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
           (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply && python3 tools/add_breadcrumbs.py --check)
 
+      - name: Test non-destructive release contracts and old-server rejection
+        run: node --test sites/agiscorecard/tools/release-safety/test.mjs
+
       - name: Configure independent membership secrets
         working-directory: ${{ github.workspace }}
         env:
@@ -302,9 +305,20 @@ jobs:
           workingDirectory: sites/agiscorecard
           command: deploy
 
-      # Refresh the existing membership health record before Mentor checks ready.
-      # A delayed scheduled watcher must not make this refresh unreachable.
+      # Push readiness must not process orders, delete expired data or refresh health.
+      # Existing readiness is not a fresh chain probe, payment or watch-key check.
+      - name: Verify non-destructive membership readiness after push
+        if: github.event_name == 'push'
+        working-directory: ${{ github.workspace }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node sites/agiscorecard/tools/member-release-health.mjs && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
       - name: Verify independent membership after deployment
+        if: github.event_name != 'push'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -322,7 +336,11 @@ jobs:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
         run: |
           node sites/agiscorecard/tools/mentor/verify.mjs
-          node sites/agiscorecard/tools/mentor/metrics.mjs
+          if [ "${{ github.event_name }}" = "push" ]; then
+            node sites/agiscorecard/tools/mentor/metrics.mjs --read-only
+          else
+            node sites/agiscorecard/tools/mentor/metrics.mjs
+          fi
           node sites/agiscorecard/tools/evidence-metrics.mjs
 
       - name: Verify live shared navigation and destinations
@@ -380,13 +398,23 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
-        run: node sites/agiscorecard/tools/create/ops.mjs stats
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            node sites/agiscorecard/tools/create/ops.mjs stats --read-only
+          else
+            node sites/agiscorecard/tools/create/ops.mjs stats
+          fi
 
       - name: Read aggregate community growth and review backlog
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
-        run: node sites/agiscorecard/tools/community/ops.mjs stats
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            node sites/agiscorecard/tools/community/ops.mjs stats --read-only
+          else
+            node sites/agiscorecard/tools/community/ops.mjs stats
+          fi
 
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}
@@ -471,7 +499,11 @@ jobs:
       - name: Summarize deployment and the separate AI check
         run: |
           cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
-          Deployment and all live release checks passed.
+          Deployment and the listed live checks passed.
+          Push membership readiness does not freshly verify RPC, watch-key authentication
+          or payments. Push aggregate reporting does not perform maintenance cleanup.
+          Existing negative authorization probes expect no tasks or inference; they
+          cannot establish that property if the tested admission control itself regresses.
 
           Real Relay inference is checked by the separate **Relay AI availability** job
           on the existing daily schedule, or an explicit manual run with
