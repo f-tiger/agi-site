@@ -1,0 +1,58 @@
+name: Check Future Guide commercial evidence
+on:
+  pull_request:
+    paths:
+      - 'sites/agiscorecard/foresight-assets/**'
+      - 'sites/agiscorecard/tools/foresight/**'
+      - 'sites/agiscorecard/tools/gen_agent_surfaces.py'
+      - '.github/workflows/check-future-commercial.yml'
+permissions:
+  contents: read
+jobs:
+  local-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install locked dependencies without lifecycle scripts
+        run: npm ci --prefix tools/revenue-studio --ignore-scripts --no-audit --no-fund
+      - name: Install the matching test browser
+        run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - name: Build local fixtures and mirrors without fetching feeds
+        run: |
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          node sites/agiscorecard/tools/foresight/build.mjs
+          python3 sites/agiscorecard/tools/build_home_focus.py
+          python3 sites/agiscorecard/tools/gen_agent_surfaces.py
+          python3 tools/fleet-analytics/coverage.py --site agi --write
+      - name: Verify source identity, bounded fit and old-record compatibility
+        run: |
+          python3 sites/agiscorecard/tools/foresight/test_refresh.py
+          node --test sites/agiscorecard/tools/foresight/test.mjs sites/agiscorecard/tools/foresight/planner.test.mjs sites/agiscorecard/tools/foresight/home-rotation.test.mjs
+          node sites/agiscorecard/tools/foresight/member-test.mjs
+          node sites/agiscorecard/tools/foresight/build.mjs --check
+          python3 tools/fleet-analytics/coverage.py --site agi
+      - name: Test bilingual UI on localhost with external browser requests blocked
+        env:
+          FUTURE_ARTIFACT_DIR: /tmp/future-commercial-screenshots
+        run: |
+          node sites/agiscorecard/tools/foresight/browser-test.mjs
+          node sites/agiscorecard/tools/foresight/planner.browser.mjs
+      - name: Validate source mirrors, internal links and language metadata
+        run: |
+          python3 sites/agiscorecard/tools/validate.py
+          python3 sites/agiscorecard/tools/check_hreflang.py
+          git diff --check
+      - name: Retain local-only UI review screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: future-commercial-ui
+          path: /tmp/future-commercial-screenshots/
+          if-no-files-found: ignore
+          retention-days: 7

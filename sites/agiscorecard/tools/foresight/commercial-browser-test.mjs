@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
+import {COMMERCIAL_CLAIM as id,COMMERCIAL_VERSION as version} from '../../foresight-assets/commercial.mjs';
+export async function checkCommercial({page,base,lang,out}){
+ const prefix=lang==='zh'?'/zh':'',url=base+prefix+'/future-guide/'+id+'?__qa=1',key='agi-future-guide-v1';
+ const old={version:1,product:'future-guide',values:{goal:'work',saved:[id],notes:{[id]:{stance:'undecided',task:'Existing task',action:'Existing action',counter:'Existing stop condition',review:'2026-10-12',done:true}}}};
+ await page.evaluate(({key,old})=>localStorage.setItem(key,JSON.stringify(old)),{key,old});await page.goto(url);await page.waitForFunction(()=>document.body.dataset.ready==='true');
+ const stored=()=>page.evaluate(k=>JSON.parse(localStorage.getItem(k)),key);
+ assert.equal(await page.locator('#commercial-case').isVisible(),false);assert.equal(await page.locator('[data-plan-output=action]').textContent(),'Existing action');
+ for(const name of ['recurring','records','owner'])await page.locator('#commercial-'+name).selectOption('yes');
+ assert.equal(await page.locator('#commercial-case').isVisible(),true);assert.deepEqual(await stored(),old);assert.equal(await page.locator('[data-plan-output=action]').textContent(),'Existing action');
+ await page.locator('#language').click();await page.waitForFunction(()=>document.body.dataset.ready==='true');assert.deepEqual(await stored(),old);
+ await page.goto(url);for(const name of ['recurring','records','owner'])await page.locator('#commercial-'+name).selectOption('yes');await page.locator('#commercial-attach').click();
+ assert.deepEqual(await stored(),old,'attach edits the draft, not stored notes');assert.equal(await page.locator('[data-plan-output=review]').textContent(),'2026-10-12');assert.notEqual(await page.locator('[data-plan-output=action]').textContent(),'Existing action');
+ await page.locator('#plan-form [type=submit]').click();const saved=await stored(),note=saved.values.notes[id];assert.equal(note.commercial.version,version);assert.deepEqual(note.commercial.fit,{recurring:true,records:true,owner:true});assert.equal(note.review,'2026-10-12');assert.equal(note.done,false);
+ await page.reload();await page.waitForFunction(()=>document.body.dataset.ready==='true');assert.equal(await page.locator('#commercial-recurring').inputValue(),'yes');assert.equal(await page.locator('[data-plan-output=action]').textContent(),note.action);
+ const popupPromise=page.waitForEvent('popup');await page.locator('[data-cloud]').click();const popup=await popupPromise;await popup.waitForFunction(v=>document.getElementById('payload')?.value.includes(v),version);const handed=JSON.parse(await popup.locator('#payload').inputValue());assert.deepEqual(handed.values.notes[id].commercial,note.commercial);assert.deepEqual(await stored(),saved);await popup.close();
+ const dp=page.waitForEvent('download');await page.locator('#export-plan').click();const download=await dp,text=fs.readFileSync(await download.path(),'utf8');for(const term of ['dCX4PE2HxMs','43b4c17eaa8b43df42b5','17:27','29:09','openrouter.ai/pricing','5.5%','8%','workflow-maintenance','2026-10-12'])assert.ok(text.includes(term),term);
+ // Let the real transient member-handoff notice expire before the review capture.
+ // Do not hide UI elements or edit screenshots to manufacture a clean preview.
+ await page.waitForFunction(()=>!document.getElementById('status')?.textContent);
+ for(const width of [1440,390,360]){await page.setViewportSize({width,height:1000});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'business evidence overflow '+width);if(width!==360)await page.locator('#commercial-evidence').screenshot({path:path.join(out,'commercial-'+lang+'-'+width+'.png')});}
+ // Negative frozen case: no existing workflow. Selecting or attaching never overwrites the old action/date.
+ await page.locator('#commercial-recurring').selectOption('no');assert.equal(await page.locator('#commercial-case').isVisible(),false);assert.deepEqual(await stored(),saved);
+ await page.locator('#commercial-attach').click();assert.equal(await page.locator('[data-plan-output=action]').textContent(),note.action);await page.locator('#plan-form [type=submit]').click();const negative=(await stored()).values.notes[id];for(const field of ['task','action','counter','review','done'])assert.equal(negative[field],note[field]);
+ const negativeDownload=page.waitForEvent('download');await page.locator('#export-plan').click();assert.ok(!fs.readFileSync(await (await negativeDownload).path(),'utf8').includes('/earn/cases/workflow-maintenance'));
+ // Unknown future receipt version: explicit backup import preserves the usable old plan, fails closed on evidence.
+ await page.goto(base+prefix+'/future-guide?__qa=1#notebook');const bad=structuredClone(saved);bad.values.notes[id].commercial.version='unavailable-future-version';page.once('dialog',d=>d.accept());await page.locator('#import-backup').setInputFiles({name:'future-evidence.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(bad))});await page.waitForFunction(({key,id})=>JSON.parse(localStorage.getItem(key)).values.notes[id].commercial.version==='unavailable',{key,id});
+ await page.goto(url);await page.waitForFunction(()=>document.body.dataset.ready==='true');assert.equal(await page.locator('#commercial-case').isVisible(),false);assert.equal(await page.locator('[data-plan-output=action]').textContent(),note.action);assert.equal(await page.locator('[data-plan-output=review]').textContent(),'2026-10-12');
+ assert.match(await page.locator('#commercial-saved-status').textContent(),/unavailable|不可用/);
+ console.log(lang+': commercial evidence, two fit cases, explicit draft/save boundaries, old notes, language switch, export, unknown-version import and responsive rendering passed.');
+}
