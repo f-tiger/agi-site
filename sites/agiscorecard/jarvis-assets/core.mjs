@@ -1,4 +1,4 @@
-export const VERSION='jarvis-20261008-14';
+export const VERSION='jarvis-20261009-15';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];

@@ -1,7 +1,7 @@
 import {VERSION,MODEL,MAX_RUNS,inputOf} from '../../jarvis-assets/core.mjs';
 import {bodyOf} from './security.mjs';
 import {hash,now,limit} from '../create/store.mjs';
-import {ensure,owned,publicTask,trialReceipt,trialRemaining,guestRunAllowed} from './store.mjs';
+import {ensure,owned,publicTask,progressFor,withProgress,trialReceipt,trialRemaining,guestRunAllowed} from './store.mjs';
 import {execute,tick} from './engine.mjs';
 import {runTool} from './sources.mjs';
 import {resolveAccess} from './membership.mjs';
@@ -45,7 +45,7 @@ export async function jarvisRoute(request,env,ctx){
   }
   if(request.method==='GET'){
    const rows=(await db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND expires>? ORDER BY created DESC LIMIT 20').bind(owner,now()).all()).results;
-   return json({ok:true,tasks:rows.map(publicTask),membership:{endsAt:member.endsAt,scope:owner,member:!!member.id,trialRemaining:member.id?null:await trialRemaining(db,owner,trialIP)}});
+   const progress=await progressFor(db,owner,rows);return json({ok:true,tasks:rows.map(row=>withProgress(row,progress.get(row.id))),membership:{endsAt:member.endsAt,scope:owner,member:!!member.id,trialRemaining:member.id?null:await trialRemaining(db,owner,trialIP)}});
   }
   const b=await bodyOf(request);
   if((await resolveAccess(env,token)).owner!==owner)throw Error('unauthorized');
@@ -67,7 +67,7 @@ export async function jarvisRoute(request,env,ctx){
    return json({ok:true,task},202);
   }
   if(!idOK(b.id))throw Error('invalid_request');const task=await owned(db,owner,b.id);if(!task)throw Error('not_found');
-  if(b.action==='delete'){await db.prepare('DELETE FROM jarvis_tasks WHERE id=? AND owner=?').bind(b.id,owner).run();return json({ok:true});}
+  if(b.action==='delete'){await db.prepare('DELETE FROM jarvis_action_progress WHERE task_id=? AND EXISTS(SELECT 1 FROM jarvis_tasks WHERE id=? AND owner=?)').bind(b.id,b.id,owner).run();await db.prepare('DELETE FROM jarvis_tasks WHERE id=? AND owner=?').bind(b.id,owner).run();return json({ok:true});}
   if(b.action==='pause'){
    await db.prepare("UPDATE jarvis_tasks SET status='paused',stage='paused',next_run=0,lease='',lease_until=0,updated=? WHERE id=? AND owner=?").bind(now(),b.id,owner).run();return json({ok:true});
   }
@@ -90,6 +90,13 @@ export async function jarvisRoute(request,env,ctx){
   }
   if(b.action==='feedback'){
    if(!['useful','not_useful','not_useful_sources','not_useful_answer','not_useful_action','not_useful_other'].includes(b.value))throw Error('invalid_request');await db.prepare('UPDATE jarvis_tasks SET feedback=? WHERE id=? AND owner=?').bind(b.value,b.id,owner).run();return json({ok:true});
+  }
+  if(b.action==='action_progress'){
+   if(['queued','running'].includes(task.status)||!Number.isInteger(b.run)||b.run<1||b.run!==task.runs||!Number.isInteger(b.index)||b.index<0||b.index>3||!['tried','done','blocked','clear'].includes(b.value))throw Error('invalid_request');
+   let result;try{result=JSON.parse(task.result);}catch{throw Error('invalid_request');}if(!Array.isArray(result.report?.nextActions)||b.index>=result.report.nextActions.length)throw Error('invalid_request');
+   if(b.value==='clear')await db.prepare('DELETE FROM jarvis_action_progress WHERE task_id=? AND run=? AND action_index=? AND EXISTS(SELECT 1 FROM jarvis_tasks WHERE id=? AND owner=? AND runs=? AND result=?)').bind(b.id,b.run,b.index,b.id,owner,b.run,task.result).run();
+   else {const saved=await db.prepare(`INSERT INTO jarvis_action_progress(task_id,run,action_index,state,updated) SELECT ?,?,?,?,? FROM jarvis_tasks WHERE id=? AND owner=? AND runs=? AND result=? ON CONFLICT(task_id,run,action_index) DO UPDATE SET state=excluded.state,updated=excluded.updated RETURNING task_id`).bind(b.id,b.run,b.index,b.value,now(),b.id,owner,b.run,task.result).first();if(!saved)throw Error('cannot_update');}
+   return json({ok:true});
   }throw Error('invalid_request');
- }catch(e){const codes={unauthorized:401,access_blocked:403,registration_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
+ }catch(e){const codes={unauthorized:401,access_blocked:403,registration_required:403,unavailable:503,invalid_request:400,too_large:413,request_timeout:408,not_found:404,rate_limited:429,active_limit:409,cannot_resume:409,cannot_update:409};return json({ok:false,code:Object.hasOwn(codes,e.message)?e.message:'unavailable'},codes[e.message]||503);}
 }

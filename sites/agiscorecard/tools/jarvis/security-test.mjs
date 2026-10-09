@@ -26,7 +26,7 @@ test('simultaneous resumes of different tasks cannot exceed three active tasks',
 });
 test('all task mutations reject another owner without changing private data',async t=>{
  const e=await fixture(t),id=await seed(e,'paused',{memory:['PRIVATE CANARY']});const before=e.EVENTS.sqlite.prepare('SELECT * FROM jarvis_tasks WHERE id=?').get(id);
- for(const action of ['pause','resume','delete','feedback']){const r=await call(e,{action,id,value:'useful'},other);assert.equal(r.status,404);assert.ok(!(await r.text()).includes('CANARY'));}
+ for(const action of ['pause','resume','delete','feedback','action_progress']){const r=await call(e,{action,id,value:'useful',run:1,index:0},other);assert.equal(r.status,404);assert.ok(!(await r.text()).includes('CANARY'));}
  assert.deepEqual(e.EVENTS.sqlite.prepare('SELECT * FROM jarvis_tasks WHERE id=?').get(id),before);
 });
 test('cross-site writes, alternate bearer syntax, non-string IDs and non-string nonces fail closed',async t=>{

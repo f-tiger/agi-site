@@ -6,6 +6,9 @@ export async function ensure(db){
   db.prepare('CREATE INDEX IF NOT EXISTS jarvis_due ON jarvis_tasks(status,next_run,lease_until)'),
   db.prepare('CREATE INDEX IF NOT EXISTS jarvis_owner ON jarvis_tasks(owner,expires,created)'),
   db.prepare('CREATE INDEX IF NOT EXISTS jarvis_expiry ON jarvis_tasks(expires)'),
+  // Fixed action-state receipts contain no goal, action text, memory or key.
+  db.prepare(`CREATE TABLE IF NOT EXISTS jarvis_action_progress(task_id TEXT NOT NULL,run INTEGER NOT NULL,action_index INTEGER NOT NULL,state TEXT NOT NULL,updated INTEGER NOT NULL,PRIMARY KEY(task_id,run,action_index))`),
+  db.prepare('CREATE INDEX IF NOT EXISTS jarvis_action_task ON jarvis_action_progress(task_id)'),
   // Minimal usage receipts survive task deletion/expiry; no task text or raw IP.
   db.prepare('CREATE TABLE IF NOT EXISTS jarvis_trials(owner TEXT PRIMARY KEY,task_id TEXT NOT NULL,created INTEGER NOT NULL)'),
   db.prepare('CREATE TABLE IF NOT EXISTS jarvis_trial_ips(k TEXT PRIMARY KEY,expires INTEGER NOT NULL)'),
@@ -25,6 +28,12 @@ export async function ensure(db){
  }).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);
 }
 export function publicTask(r){return {id:r.id,input:JSON.parse(r.input),status:r.status,stage:r.stage,result:JSON.parse(r.result),previous:JSON.parse(r.previous),runs:r.runs,created:r.created,updated:r.updated,nextRun:r.next_run,until:r.until_at,expires:r.expires,feedback:r.feedback};}
+export async function progressFor(db,owner,rows){
+ const ids=rows.map(row=>row.id);if(!ids.length)return new Map();
+ const values=(await db.prepare(`SELECT p.task_id,p.run,p.action_index,p.state,p.updated FROM jarvis_action_progress p JOIN jarvis_tasks t ON t.id=p.task_id WHERE t.owner=? AND t.expires>? AND p.task_id IN (${ids.map(()=>'?').join(',')}) ORDER BY p.task_id,p.run,p.action_index`).bind(owner,now(),...ids).all()).results;
+ const map=new Map();for(const value of values){if(!map.has(value.task_id))map.set(value.task_id,[]);map.get(value.task_id).push({run:value.run,index:value.action_index,state:value.state,updated:value.updated});}return map;
+}
+export function withProgress(row,progress){const task=publicTask(row),current=(progress||[]).filter(value=>value.run===row.runs);task.actionProgress=Object.fromEntries(current.map(value=>[String(value.index),{state:value.state,updated:value.updated}]));return task;}
 export async function owned(db,owner,id){return db.prepare('SELECT * FROM jarvis_tasks WHERE owner=? AND id=? AND expires>?').bind(owner,id,now()).first();}
 export async function trialReceipt(db,owner){
  let row=await db.prepare('SELECT task_id FROM jarvis_trials WHERE owner=?').bind(owner).first();
@@ -42,6 +51,6 @@ export async function cleanup(db){
  const rows=(await db.prepare('SELECT id,owner,member_id FROM jarvis_tasks WHERE expires<=? ORDER BY expires LIMIT 99').bind(now()).all()).results;
  const guests=[...new Set(rows.filter(row=>!row.member_id).map(row=>row.owner))];
  if(guests.length)await db.prepare("INSERT OR IGNORE INTO jarvis_trials(owner,task_id,created) SELECT owner,id,created FROM jarvis_tasks WHERE member_id='' AND owner IN ("+guests.map(()=>'?').join(',')+') ORDER BY created,id').bind(...guests).run();
- if(rows.length)await db.prepare('DELETE FROM jarvis_tasks WHERE id IN ('+rows.map(()=>'?').join(',')+') AND expires<=?').bind(...rows.map(row=>row.id),now()).run();
+ if(rows.length){await db.prepare('DELETE FROM jarvis_action_progress WHERE task_id IN ('+rows.map(()=>'?').join(',')+')').bind(...rows.map(row=>row.id)).run();await db.prepare('DELETE FROM jarvis_tasks WHERE id IN ('+rows.map(()=>'?').join(',')+') AND expires<=?').bind(...rows.map(row=>row.id),now()).run();}
  await db.prepare('DELETE FROM jarvis_trial_ips WHERE k IN (SELECT k FROM jarvis_trial_ips WHERE expires<=? LIMIT 100)').bind(now()).run();
 }
