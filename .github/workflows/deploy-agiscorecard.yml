@@ -126,7 +126,7 @@ jobs:
       - name: Build and test bounded Jarvis research agent
         run: |
           node sites/agiscorecard/tools/jarvis/build.mjs
-          node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs
+          node --test sites/agiscorecard/tools/jarvis/test.mjs sites/agiscorecard/tools/jarvis/security-test.mjs sites/agiscorecard/tools/jarvis/membership-test.mjs sites/agiscorecard/tools/jarvis/screening-test.mjs
 
       - name: Build and test source-backed investment roadmap
         run: |
@@ -255,6 +255,7 @@ jobs:
           node sites/agiscorecard/tools/infrastructure/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
+          node sites/agiscorecard/tools/jarvis/screening-browser-test.mjs
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/verify.mjs --site agi --out sites/agiscorecard
