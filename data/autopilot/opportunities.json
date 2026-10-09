@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-08",
- "radar_fetched": "2026-10-08",
+ "generated": "2026-10-09",
+ "radar_fetched": "2026-10-09",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 7,
+  "candidates": 9,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 7,
+  "scout": 9,
   "supplied": 0
  },
  "opportunities": [
@@ -51,12 +51,12 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there a program which returns the output of dumpsys activity activities as a ",
+   "theme": "is there an android shell program which returns open windows titles in last focu",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-10-01"
+    "2026-10-08"
    ],
    "state": "scout",
    "supplied": false,
@@ -96,6 +96,36 @@
    "fleet_pages": []
   },
   {
+   "theme": "is there an app store from which applications can t be taken down by anybody not",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-02"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.01,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "software that converts pen hovering mode to pen contact down down mode",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-09"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "using google or any other search engine to search for pdfs with fixed page range",
    "site": "",
    "kind": "request-board",
@@ -111,16 +141,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there an app store from which applications can t be taken down by anybody not",
+   "theme": "is there an android shell program to switch to any open application according to",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-10-02"
+    "2026-10-08"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 1.99,
+   "score": 1.96,
    "demand": [],
    "supply": [],
    "fleet_pages": []
