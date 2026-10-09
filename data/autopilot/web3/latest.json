@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-08T09:25:41.541Z",
+  "asOf": "2026-10-09T09:35:19.861Z",
   "ok": true,
   "checks": [
     {
@@ -15,15 +15,11 @@
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
+      "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "web3.agiscorecard.com",
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -31,19 +27,7 @@
       "ok": true
     },
     {
-      "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "proof.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "disclosures.agiscorecard.com",
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,11 +35,27 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "permit.agiscorecard.com",
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-08T09:25:41.924Z",
+      "retrievedAt": "2026-10-09T09:35:21.026Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 82971.77421464039,
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "price": 82557.50264315448,
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2560.794463130724,
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "price": 2503.1048445160995,
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9996565573700994,
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
-          "deviationBps": -3.4344262990060326
+          "price": 0.99961738306015,
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
+          "deviationBps": -3.826169398499779
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9994283278908136,
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
-          "deviationBps": -5.716721091864052
+          "price": 0.9992527009280701,
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
+          "deviationBps": -7.4729907192994105
         }
       ],
       "source": {
@@ -110,25 +110,70 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-08T09:25:42.014Z",
+      "retrievedAt": "2026-10-09T09:35:20.696Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-08T09:25:41.795Z"
+          "checkedAt": "2026-10-09T09:35:20.371Z"
         },
         {
           "id": "x402",
-          "status": "unavailable",
-          "checkedAt": "2026-10-08T09:25:41.810Z"
+          "status": "ok",
+          "checkedAt": "2026-10-09T09:35:20.371Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-10-08T09:25:41.795Z"
+          "checkedAt": "2026-10-09T09:35:20.371Z"
         }
       ],
       "items": [
+        {
+          "title": "feat(python): add builder-code settlement metadata m (#3723)",
+          "url": "https://github.com/x402-foundation/x402/commit/7f2b2f1f77fa5317615735e3378a6fad41cccb4e",
+          "publishedAt": "2026-10-07T14:27:11.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "style(evm): tidy auth-capture imports (#3721)",
+          "url": "https://github.com/x402-foundation/x402/commit/b0c41d8298a728b5b5274feb2189352bbb84e1ca",
+          "publishedAt": "2026-10-07T13:32:33.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Document settlement metadata (`m`) field in builder-code extension (#3711)",
+          "url": "https://github.com/x402-foundation/x402/commit/10b2d06b9472bc467d139b272d01bface38ae2d8",
+          "publishedAt": "2026-10-06T16:23:28.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "feat(builder-code): add facilitator-authored settlement metadata (m) (#3666)",
+          "url": "https://github.com/x402-foundation/x402/commit/1566e13f3dbe12ca211761b0bb30215cb10471aa",
+          "publishedAt": "2026-10-06T16:08:52.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Document auth-capture v1.1 SDK support (#3708)",
+          "url": "https://github.com/x402-foundation/x402/commit/586e55f885fcdf3289c146fc44ab2b8cb3613e5e",
+          "publishedAt": "2026-10-06T14:57:45.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
         {
           "title": "How native transaction assertions could enforce a transaction's final outcome",
           "url": "https://blog.ethereum.org/en/2026/10/05/transaction-assertions",
@@ -178,134 +223,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-08T09:25:42.561Z",
+      "retrievedAt": "2026-10-09T09:35:21.739Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": -1.1559751186706935,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -0.3082467927993715,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -0.6904318495108974,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -4.249148720365925,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": -1.8834014342206773,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -2.165923324179564,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -4.680566553436572,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -9.07327239740865,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": -0.018979404995578264,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -0.0017970605660444505,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -0.020844940703446113,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -0.024563516604692026,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": -0.035832256395706974,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -0.011278532829406274,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -0.01617151066258815,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -0.0496286537502888,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": -5.689763110155077,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -2.7795259915178283,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -8.11943366825294,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -12.116667587043795,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:15:40.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:33:02.000Z",
           "day": {
-            "percent": -2.645864260995634,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:15:40.000Z"
+            "percent": -6.2405286012467975,
+            "from": "2026-10-08T09:00:50.000Z",
+            "to": "2026-10-09T09:33:02.000Z"
           },
           "week": {
-            "percent": 5.584145151718567,
-            "from": "2026-10-01T09:01:40.000Z",
-            "to": "2026-10-08T09:15:40.000Z"
+            "percent": -4.563978562159454,
+            "from": "2026-10-02T09:01:40.000Z",
+            "to": "2026-10-09T09:33:02.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:22:10.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:34:58.000Z",
           "day": {
-            "percent": 0.6930918744839865,
-            "from": "2026-10-07T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -3.9713525186004683,
+            "from": "2026-10-08T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           },
           "week": {
-            "percent": -1.3440598995954844,
-            "from": "2026-10-01T09:00:00.000Z",
-            "to": "2026-10-08T09:22:10.000Z"
+            "percent": -6.290874009416248,
+            "from": "2026-10-02T09:00:00.000Z",
+            "to": "2026-10-09T09:34:58.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-08T09:20:30.000Z",
+          "sourceUpdatedAt": "2026-10-09T09:22:41.000Z",
           "day": {
-            "percent": -0.9523550635584743,
-            "from": "2026-10-07T08:52:00.000Z",
-            "to": "2026-10-08T09:20:30.000Z"
+            "percent": 1.7545126277481504,
+            "from": "2026-10-08T08:51:50.000Z",
+            "to": "2026-10-09T09:22:41.000Z"
           },
           "week": {
-            "percent": 10.779175013530606,
-            "from": "2026-10-01T08:51:50.000Z",
-            "to": "2026-10-08T09:20:30.000Z"
+            "percent": 9.856045108131317,
+            "from": "2026-10-02T08:51:40.000Z",
+            "to": "2026-10-09T09:22:41.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-08T09:25:43.678Z",
+    "asOf": "2026-10-09T09:35:22.802Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -314,7 +359,43 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/7f2b2f1f77fa5317615735e3378a6fad41cccb4e",
+      "title": "feat(python): add builder-code settlement metadata m (#3723)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/b0c41d8298a728b5b5274feb2189352bbb84e1ca",
+      "title": "style(evm): tidy auth-capture imports (#3721)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/10b2d06b9472bc467d139b272d01bface38ae2d8",
+      "title": "Document settlement metadata (`m`) field in builder-code extension (#3711)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/1566e13f3dbe12ca211761b0bb30215cb10471aa",
+      "title": "feat(builder-code): add facilitator-authored settlement metadata (m) (#3666)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/586e55f885fcdf3289c146fc44ab2b8cb3613e5e",
+      "title": "Document auth-capture v1.1 SDK support (#3708)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
