@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-09-24T07:47:38.343Z",
+  "as_of": "2026-10-09T09:35:21.602Z",
   "kind": "owned_page_health_not_market_validation",
-  "ok": true,
+  "ok": false,
   "site_checks": [
     {
       "site": "bpj",
@@ -20,7 +20,10 @@
     },
     {
       "site": "tds",
-      "errors": [],
+      "errors": [
+        "discovery:index.html",
+        "discovery:de/index.html"
+      ],
       "discovery_pages": 6
     }
   ],
@@ -673,6 +676,11 @@
     "net_revenue": null
   },
   "next_actions": [
+    {
+      "priority": "repair",
+      "url": "https://thedollscout.com",
+      "reason": "discovery:index.html, discovery:de/index.html"
+    },
     {
       "priority": "evidence",
       "reason": "Import dated Search Console/Bing, referral and settled-payment evidence before claiming acquisition or revenue."

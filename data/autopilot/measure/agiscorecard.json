@@ -3,24 +3,57 @@
   "search_no_result": [],
   "site_search": [
    {
+    "n": 31,
+    "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 7,
+    "q": "tool:verdicts"
+   },
+   {
+    "n": 7,
+    "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 6,
+    "q": "tool:invest_positions"
+   },
+   {
     "n": 5,
     "q": "tool:sunwatch_ledger"
    },
    {
     "n": 5,
-    "q": "tool:invest_positions"
-   },
-   {
-    "n": 1,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    }
   ]
  },
- "fetched": "2026-09-24",
+ "fetched": "2026-10-09",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {},
+ "pages": {
+  "/cn": {
+   "n7": 169,
+   "p7": 70
+  },
+  "/earn": {
+   "n7": 115,
+   "p7": 46
+  },
+  "/future-guide": {
+   "n7": 452,
+   "p7": 0
+  },
+  "/search": {
+   "n7": 106,
+   "p7": 38
+  },
+  "/zh/future-guide": {
+   "n7": 259,
+   "p7": 0
+  }
+ },
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

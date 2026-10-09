@@ -1,10 +1,105 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-24",
+ "generated": "2026-10-09",
  "pages": {
+  "ai-audio-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "aa6543dd8036b798",
+   "origin": "bootstrap"
+  },
+  "ai-portrait-background-remover.html": {
+   "changed": "2026-09-27",
+   "h": "ee95f2240dc0d25a",
+   "origin": "bootstrap"
+  },
+  "ai-text-summarizer.html": {
+   "changed": "2026-09-27",
+   "h": "50e3e3d3781c2e02",
+   "origin": "bootstrap"
+  },
+  "brands.html": {
+   "changed": "2026-10-02",
+   "h": "5eac3f66f7166bcb",
+   "origin": "bootstrap"
+  },
+  "brands/dimoo.html": {
+   "changed": "2026-10-02",
+   "h": "a6756c4e2cb2c80f",
+   "origin": "bootstrap"
+  },
+  "brands/hirono.html": {
+   "changed": "2026-10-02",
+   "h": "3ee4889376a59f67",
+   "origin": "bootstrap"
+  },
+  "brands/jellycat.html": {
+   "changed": "2026-10-02",
+   "h": "78a7f2d1902d5ef0",
+   "origin": "bootstrap"
+  },
+  "brands/labubu.html": {
+   "changed": "2026-10-02",
+   "h": "f6c120205061aa79",
+   "origin": "bootstrap"
+  },
+  "brands/molly.html": {
+   "changed": "2026-10-02",
+   "h": "17a6842f92fc6090",
+   "origin": "bootstrap"
+  },
+  "brands/skullpanda.html": {
+   "changed": "2026-10-02",
+   "h": "5faf41a47dfde390",
+   "origin": "bootstrap"
+  },
+  "brands/smiski.html": {
+   "changed": "2026-10-04",
+   "h": "537fc4c655554004",
+   "origin": "bootstrap"
+  },
+  "brands/sonny-angel.html": {
+   "changed": "2026-10-02",
+   "h": "f811e1cca6b37862",
+   "origin": "bootstrap"
+  },
   "checker.html": {
    "changed": "2026-08-30",
    "h": "a5dddd94468b853a",
+   "origin": "bootstrap"
+  },
+  "collecting.html": {
+   "changed": "2026-10-02",
+   "h": "1336af60c7c34f41",
+   "origin": "bootstrap"
+  },
+  "collecting/blind-box-rules.html": {
+   "changed": "2026-10-02",
+   "h": "06a4a6eeb4e7da6d",
+   "origin": "bootstrap"
+  },
+  "collecting/budget.html": {
+   "changed": "2026-10-02",
+   "h": "9fbbfba9f73277fb",
+   "origin": "bootstrap"
+  },
+  "collecting/check-retailers.html": {
+   "changed": "2026-10-02",
+   "h": "4d110385b441ca47",
+   "origin": "bootstrap"
+  },
+  "collecting/display-checklist.html": {
+   "changed": "2026-10-02",
+   "h": "05b4f3bbdeced73c",
+   "origin": "bootstrap"
+  },
+  "collecting/duplicates.html": {
+   "changed": "2026-10-02",
+   "h": "97f69e4cdf35c753",
+   "origin": "bootstrap"
+  },
+  "collecting/start-a-collection.html": {
+   "changed": "2026-10-02",
+   "h": "da2b3af57e229ccc",
    "origin": "bootstrap"
   },
   "collection-tracker.html": {
@@ -17,14 +112,129 @@
    "h": "ddafb4020a15deff",
    "origin": "bootstrap"
   },
+  "collector-tools.html": {
+   "changed": "2026-10-02",
+   "h": "7431aae724f222d6",
+   "origin": "bootstrap"
+  },
+  "collectors.html": {
+   "changed": "2026-09-27",
+   "h": "374ca60459633151",
+   "origin": "bootstrap"
+  },
+  "compare-pdf-text.html": {
+   "changed": "2026-09-27",
+   "h": "1a21fd10eccc3885",
+   "origin": "bootstrap"
+  },
+  "creator-kit.html": {
+   "changed": "2026-09-27",
+   "h": "84ed39101c9bddd8",
+   "origin": "bootstrap"
+  },
   "data/index.html": {
    "changed": "2026-08-30",
    "h": "9dfccbf199ec321f",
    "origin": "bootstrap"
   },
+  "de/ai-audio-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "42c345f3194207b0",
+   "origin": "bootstrap"
+  },
+  "de/ai-portrait-background-remover.html": {
+   "changed": "2026-09-27",
+   "h": "7cdc1ee6c0226d15",
+   "origin": "bootstrap"
+  },
+  "de/ai-text-summarizer.html": {
+   "changed": "2026-09-27",
+   "h": "de0c3c96d2760317",
+   "origin": "bootstrap"
+  },
+  "de/brands.html": {
+   "changed": "2026-10-02",
+   "h": "03158ea45e8db635",
+   "origin": "bootstrap"
+  },
+  "de/brands/dimoo.html": {
+   "changed": "2026-10-02",
+   "h": "2795a6daf9810dcd",
+   "origin": "bootstrap"
+  },
+  "de/brands/hirono.html": {
+   "changed": "2026-10-02",
+   "h": "2815929aae3c7061",
+   "origin": "bootstrap"
+  },
+  "de/brands/jellycat.html": {
+   "changed": "2026-10-02",
+   "h": "7435b5d240cf3299",
+   "origin": "bootstrap"
+  },
+  "de/brands/labubu.html": {
+   "changed": "2026-10-02",
+   "h": "32ea64fccb7a5cd3",
+   "origin": "bootstrap"
+  },
+  "de/brands/molly.html": {
+   "changed": "2026-10-02",
+   "h": "987be566c39f9a0d",
+   "origin": "bootstrap"
+  },
+  "de/brands/skullpanda.html": {
+   "changed": "2026-10-02",
+   "h": "e36dc40b6f28ecc1",
+   "origin": "bootstrap"
+  },
+  "de/brands/smiski.html": {
+   "changed": "2026-10-04",
+   "h": "44825eddd08f87ec",
+   "origin": "bootstrap"
+  },
+  "de/brands/sonny-angel.html": {
+   "changed": "2026-10-02",
+   "h": "ae0d0de029cf416a",
+   "origin": "bootstrap"
+  },
   "de/checker.html": {
    "changed": "2026-08-30",
    "h": "237bd5cfb7af9e81",
+   "origin": "bootstrap"
+  },
+  "de/collecting.html": {
+   "changed": "2026-10-02",
+   "h": "6f3f207bbf08e6ac",
+   "origin": "bootstrap"
+  },
+  "de/collecting/blind-box-rules.html": {
+   "changed": "2026-10-02",
+   "h": "03221567dc67cb58",
+   "origin": "bootstrap"
+  },
+  "de/collecting/budget.html": {
+   "changed": "2026-10-02",
+   "h": "1116741dc225f86a",
+   "origin": "bootstrap"
+  },
+  "de/collecting/check-retailers.html": {
+   "changed": "2026-10-02",
+   "h": "cdd6415b60d22b5e",
+   "origin": "bootstrap"
+  },
+  "de/collecting/display-checklist.html": {
+   "changed": "2026-10-02",
+   "h": "15b2cf2241001c38",
+   "origin": "bootstrap"
+  },
+  "de/collecting/duplicates.html": {
+   "changed": "2026-10-02",
+   "h": "01df11c44ac864c4",
+   "origin": "bootstrap"
+  },
+  "de/collecting/start-a-collection.html": {
+   "changed": "2026-10-02",
+   "h": "ea79b6102313d9ab",
    "origin": "bootstrap"
   },
   "de/collection-tracker.html": {
@@ -37,9 +247,49 @@
    "h": "3f769f4df2460475",
    "origin": "bootstrap"
   },
+  "de/collector-tools.html": {
+   "changed": "2026-10-02",
+   "h": "a3c813c4f5ed94cb",
+   "origin": "bootstrap"
+  },
+  "de/collectors.html": {
+   "changed": "2026-09-27",
+   "h": "06ab91fde29bfbdc",
+   "origin": "bootstrap"
+  },
+  "de/compare-pdf-text.html": {
+   "changed": "2026-09-27",
+   "h": "c558b65fa2b40818",
+   "origin": "bootstrap"
+  },
+  "de/creator-kit.html": {
+   "changed": "2026-09-27",
+   "h": "fa3b14a98c44e80d",
+   "origin": "bootstrap"
+  },
+  "de/delivery-evidence.html": {
+   "changed": "2026-09-27",
+   "h": "0e51573389ffe6bb",
+   "origin": "bootstrap"
+  },
   "de/display-calculator.html": {
    "changed": "2026-09-19",
    "h": "d7547342a1df134e",
+   "origin": "bootstrap"
+  },
+  "de/document-privacy.html": {
+   "changed": "2026-09-27",
+   "h": "4c66e2761897904a",
+   "origin": "bootstrap"
+  },
+  "de/document-tools.html": {
+   "changed": "2026-09-27",
+   "h": "1cb2873089d59d4e",
+   "origin": "bootstrap"
+  },
+  "de/editorial.html": {
+   "changed": "2026-10-02",
+   "h": "370742cc1d9ac516",
    "origin": "bootstrap"
   },
   "de/fake-check.html": {
@@ -52,6 +302,11 @@
    "h": "7a82413a1111b07f",
    "origin": "observed"
   },
+  "de/for-agents.html": {
+   "changed": "2026-10-02",
+   "h": "a52e98edf744a584",
+   "origin": "bootstrap"
+  },
   "de/glossary.html": {
    "changed": "2026-08-30",
    "h": "dd83bc9c9e342c1f",
@@ -62,14 +317,44 @@
    "h": "39c25dfa8cb36009",
    "origin": "bootstrap"
   },
+  "de/image-compressor.html": {
+   "changed": "2026-09-27",
+   "h": "08e409387e0b5e55",
+   "origin": "bootstrap"
+  },
   "de/index.html": {
-   "changed": "2026-09-20",
-   "h": "a1f8a0191b458d3c",
+   "changed": "2026-10-09",
+   "h": "bb173ca7ce76c8e1",
    "origin": "observed"
+  },
+  "de/json-compare.html": {
+   "changed": "2026-09-27",
+   "h": "e447311a5d1a36f3",
+   "origin": "bootstrap"
+  },
+  "de/learn/pdf-accessibility-checklist.html": {
+   "changed": "2026-09-27",
+   "h": "6a1803db15122a4c",
+   "origin": "bootstrap"
+  },
+  "de/learn/pdf-reading-order.html": {
+   "changed": "2026-09-27",
+   "h": "d6c454f3ed6e923e",
+   "origin": "bootstrap"
+  },
+  "de/learn/scanned-pdf-vs-text-pdf.html": {
+   "changed": "2026-09-27",
+   "h": "90119c7cf890272f",
+   "origin": "bootstrap"
   },
   "de/lookup.html": {
    "changed": "2026-08-30",
    "h": "84d4c46d229abb7b",
+   "origin": "bootstrap"
+  },
+  "de/methodology.html": {
+   "changed": "2026-09-27",
+   "h": "08edd8a3ee843ba0",
    "origin": "bootstrap"
   },
   "de/odds/index.html": {
@@ -102,6 +387,56 @@
    "h": "5955e534bec201e9",
    "origin": "bootstrap"
   },
+  "de/open-source.html": {
+   "changed": "2026-09-27",
+   "h": "f98fa5f7e9e217bf",
+   "origin": "bootstrap"
+  },
+  "de/open-source/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "83037e3dd000e0fa",
+   "origin": "bootstrap"
+  },
+  "de/open-source/obs.html": {
+   "changed": "2026-09-27",
+   "h": "20baf8fbbb23590e",
+   "origin": "bootstrap"
+  },
+  "de/open-source/ollama.html": {
+   "changed": "2026-09-27",
+   "h": "3b3c6042e58e9236",
+   "origin": "bootstrap"
+  },
+  "de/open-source/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "ab2e3b72c36d1d95",
+   "origin": "bootstrap"
+  },
+  "de/open-source/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "5c7a0e54521fbf03",
+   "origin": "bootstrap"
+  },
+  "de/open-source/whisper.html": {
+   "changed": "2026-09-27",
+   "h": "c105e6e5236c61e7",
+   "origin": "bootstrap"
+  },
+  "de/pdf-accessibility-checker.html": {
+   "changed": "2026-09-27",
+   "h": "083e375763f15a2a",
+   "origin": "bootstrap"
+  },
+  "de/pdf-batch-audit.html": {
+   "changed": "2026-09-27",
+   "h": "7fad538a525aaad3",
+   "origin": "bootstrap"
+  },
+  "de/pdf-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "22571cacc8da278d",
+   "origin": "bootstrap"
+  },
   "de/psychology.html": {
    "changed": "2026-08-30",
    "h": "0fe7380c7ce49b70",
@@ -112,19 +447,104 @@
    "h": "a01d9e6c54e800e4",
    "origin": "observed"
   },
+  "de/series.html": {
+   "changed": "2026-10-04",
+   "h": "93300994a5228eab",
+   "origin": "bootstrap"
+  },
+  "de/series/smiski-construction.html": {
+   "changed": "2026-10-03",
+   "h": "840386bc420e0cf5",
+   "origin": "bootstrap"
+  },
+  "de/series/smiski-museum.html": {
+   "changed": "2026-10-04",
+   "h": "6edb55926012deec",
+   "origin": "bootstrap"
+  },
+  "de/series/smiski-sunday.html": {
+   "changed": "2026-10-03",
+   "h": "f80f7d1f7fd03181",
+   "origin": "bootstrap"
+  },
+  "de/series/smiski-work.html": {
+   "changed": "2026-10-04",
+   "h": "7a18f9b05430766a",
+   "origin": "bootstrap"
+  },
+  "de/series/sonny-angel-snack-series.html": {
+   "changed": "2026-10-02",
+   "h": "59aad261508e1018",
+   "origin": "bootstrap"
+  },
+  "de/series/sonny-angel-vegetable-series.html": {
+   "changed": "2026-10-02",
+   "h": "e871659a5fca87b7",
+   "origin": "bootstrap"
+  },
   "de/start.html": {
    "changed": "2026-09-20",
    "h": "61cf7608cf1c5b04",
    "origin": "observed"
+  },
+  "de/time-zone-planner.html": {
+   "changed": "2026-09-27",
+   "h": "2fea3d3832943421",
+   "origin": "bootstrap"
+  },
+  "de/verify-file.html": {
+   "changed": "2026-09-27",
+   "h": "504a330e018ba161",
+   "origin": "bootstrap"
+  },
+  "de/videos.html": {
+   "changed": "2026-09-27",
+   "h": "0447296a58f423eb",
+   "origin": "bootstrap"
+  },
+  "de/videos/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "87a786fe2431d940",
+   "origin": "bootstrap"
+  },
+  "de/videos/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "9da07cffdfa4f119",
+   "origin": "bootstrap"
+  },
+  "de/videos/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "e43e26cfcb8e1246",
+   "origin": "bootstrap"
   },
   "de/where-to-buy.html": {
    "changed": "2026-09-20",
    "h": "6387001314e02bbc",
    "origin": "observed"
   },
+  "delivery-evidence.html": {
+   "changed": "2026-09-27",
+   "h": "0a23d5bcc8ea73bb",
+   "origin": "bootstrap"
+  },
   "display-calculator.html": {
    "changed": "2026-09-19",
    "h": "136902146b098fcc",
+   "origin": "bootstrap"
+  },
+  "document-privacy.html": {
+   "changed": "2026-09-27",
+   "h": "8bd0a3c818029dfb",
+   "origin": "bootstrap"
+  },
+  "document-tools.html": {
+   "changed": "2026-09-27",
+   "h": "2044d57782fcca8b",
+   "origin": "bootstrap"
+  },
+  "editorial.html": {
+   "changed": "2026-10-02",
+   "h": "3ff6b14ff1c1e61f",
    "origin": "bootstrap"
   },
   "fake-check.html": {
@@ -137,6 +557,11 @@
    "h": "88f8988f07c0c4e6",
    "origin": "observed"
   },
+  "for-agents.html": {
+   "changed": "2026-10-02",
+   "h": "f418da647978fc8f",
+   "origin": "bootstrap"
+  },
   "glossary.html": {
    "changed": "2026-08-30",
    "h": "025745213f2f6998",
@@ -147,10 +572,35 @@
    "h": "5c8b9baa7d725bc4",
    "origin": "bootstrap"
   },
+  "image-compressor.html": {
+   "changed": "2026-09-27",
+   "h": "686f244d6beabf31",
+   "origin": "bootstrap"
+  },
   "index.html": {
-   "changed": "2026-09-20",
-   "h": "d2891fb2bddd82b9",
+   "changed": "2026-10-09",
+   "h": "2d2c44843795afe0",
    "origin": "observed"
+  },
+  "json-compare.html": {
+   "changed": "2026-09-27",
+   "h": "64e56671276588ed",
+   "origin": "bootstrap"
+  },
+  "learn/pdf-accessibility-checklist.html": {
+   "changed": "2026-09-27",
+   "h": "7b9f9140aa608b71",
+   "origin": "bootstrap"
+  },
+  "learn/pdf-reading-order.html": {
+   "changed": "2026-09-27",
+   "h": "3db7d062b216db68",
+   "origin": "bootstrap"
+  },
+  "learn/scanned-pdf-vs-text-pdf.html": {
+   "changed": "2026-09-27",
+   "h": "e9cb632b79e88766",
+   "origin": "bootstrap"
   },
   "legal/affiliate-disclosure.html": {
    "changed": "2026-08-30",
@@ -158,13 +608,18 @@
    "origin": "bootstrap"
   },
   "legal/privacy.html": {
-   "changed": "2026-09-20",
-   "h": "3043991bd4bade8f",
+   "changed": "2026-10-09",
+   "h": "1642b239739cfbdd",
    "origin": "observed"
   },
   "lookup.html": {
    "changed": "2026-08-30",
    "h": "794e317891db50fc",
+   "origin": "bootstrap"
+  },
+  "methodology.html": {
+   "changed": "2026-09-27",
+   "h": "7c46291d6904d9d4",
    "origin": "bootstrap"
   },
   "odds/index.html": {
@@ -197,6 +652,56 @@
    "h": "16e896bea9f3dee4",
    "origin": "bootstrap"
   },
+  "open-source.html": {
+   "changed": "2026-09-27",
+   "h": "eb2686017dbeb161",
+   "origin": "bootstrap"
+  },
+  "open-source/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "e30264717e16e6eb",
+   "origin": "bootstrap"
+  },
+  "open-source/obs.html": {
+   "changed": "2026-09-27",
+   "h": "7f5cf7a5ef805030",
+   "origin": "bootstrap"
+  },
+  "open-source/ollama.html": {
+   "changed": "2026-09-27",
+   "h": "1d637e13ea3d4cb6",
+   "origin": "bootstrap"
+  },
+  "open-source/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "319060f3b09c6893",
+   "origin": "bootstrap"
+  },
+  "open-source/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "97c1d7bca5ea7818",
+   "origin": "bootstrap"
+  },
+  "open-source/whisper.html": {
+   "changed": "2026-09-27",
+   "h": "71f9572215eb96a6",
+   "origin": "bootstrap"
+  },
+  "pdf-accessibility-checker.html": {
+   "changed": "2026-09-27",
+   "h": "8bf4d288f18130a3",
+   "origin": "bootstrap"
+  },
+  "pdf-batch-audit.html": {
+   "changed": "2026-09-27",
+   "h": "0779628b581a2262",
+   "origin": "bootstrap"
+  },
+  "pdf-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "d2596712ffcf70fe",
+   "origin": "bootstrap"
+  },
   "psychology.html": {
    "changed": "2026-08-30",
    "h": "be8cc5b411fb6030",
@@ -207,14 +712,79 @@
    "h": "de01700cfd52c76e",
    "origin": "observed"
   },
+  "series.html": {
+   "changed": "2026-10-04",
+   "h": "1aace447213e7f19",
+   "origin": "bootstrap"
+  },
+  "series/smiski-construction.html": {
+   "changed": "2026-10-03",
+   "h": "8b2e9ce776c2c4f5",
+   "origin": "bootstrap"
+  },
+  "series/smiski-museum.html": {
+   "changed": "2026-10-04",
+   "h": "67f2a0127f360f24",
+   "origin": "bootstrap"
+  },
+  "series/smiski-sunday.html": {
+   "changed": "2026-10-03",
+   "h": "8cebf72c99e2d2b9",
+   "origin": "bootstrap"
+  },
+  "series/smiski-work.html": {
+   "changed": "2026-10-04",
+   "h": "990ecd90e1a4fab1",
+   "origin": "bootstrap"
+  },
+  "series/sonny-angel-snack-series.html": {
+   "changed": "2026-10-02",
+   "h": "3eabbc1e3870b24f",
+   "origin": "bootstrap"
+  },
+  "series/sonny-angel-vegetable-series.html": {
+   "changed": "2026-10-02",
+   "h": "fb8c9cd9fc7c7867",
+   "origin": "bootstrap"
+  },
   "start.html": {
    "changed": "2026-09-20",
    "h": "210f7200eb5221d3",
    "origin": "observed"
   },
   "th/index.html": {
-   "changed": "2026-08-30",
-   "h": "e85c5df4de36d7a2",
+   "changed": "2026-10-09",
+   "h": "3243ca47691fd9fb",
+   "origin": "observed"
+  },
+  "time-zone-planner.html": {
+   "changed": "2026-09-27",
+   "h": "8f69872dd1ef4101",
+   "origin": "bootstrap"
+  },
+  "verify-file.html": {
+   "changed": "2026-09-27",
+   "h": "dbd433123adfe4b9",
+   "origin": "bootstrap"
+  },
+  "videos.html": {
+   "changed": "2026-09-27",
+   "h": "e503fd6d2fe02a90",
+   "origin": "bootstrap"
+  },
+  "videos/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "d00989d72a82ba45",
+   "origin": "bootstrap"
+  },
+  "videos/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "ed63711f9f17bd79",
+   "origin": "bootstrap"
+  },
+  "videos/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "34d5774a22482707",
    "origin": "bootstrap"
   },
   "where-to-buy.html": {
@@ -222,9 +792,294 @@
    "h": "fb6d232bdba104d5",
    "origin": "observed"
   },
+  "zh/ai-audio-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "48009d716201be3c",
+   "origin": "bootstrap"
+  },
+  "zh/ai-portrait-background-remover.html": {
+   "changed": "2026-09-27",
+   "h": "70e0f743f4c3502f",
+   "origin": "bootstrap"
+  },
+  "zh/ai-text-summarizer.html": {
+   "changed": "2026-09-27",
+   "h": "e70a463734142627",
+   "origin": "bootstrap"
+  },
+  "zh/brands.html": {
+   "changed": "2026-10-02",
+   "h": "851aa572dc8ee09b",
+   "origin": "bootstrap"
+  },
+  "zh/brands/dimoo.html": {
+   "changed": "2026-10-02",
+   "h": "fe2980eec9443c14",
+   "origin": "bootstrap"
+  },
+  "zh/brands/hirono.html": {
+   "changed": "2026-10-02",
+   "h": "0ec71cc7850032a1",
+   "origin": "bootstrap"
+  },
+  "zh/brands/jellycat.html": {
+   "changed": "2026-10-02",
+   "h": "d3a7a9e41915786e",
+   "origin": "bootstrap"
+  },
+  "zh/brands/labubu.html": {
+   "changed": "2026-10-02",
+   "h": "2e96385a981f1536",
+   "origin": "bootstrap"
+  },
+  "zh/brands/molly.html": {
+   "changed": "2026-10-02",
+   "h": "1b3ec30b948aec61",
+   "origin": "bootstrap"
+  },
+  "zh/brands/skullpanda.html": {
+   "changed": "2026-10-02",
+   "h": "8e0cfd751097cf79",
+   "origin": "bootstrap"
+  },
+  "zh/brands/smiski.html": {
+   "changed": "2026-10-04",
+   "h": "ba461cd6be03209c",
+   "origin": "bootstrap"
+  },
+  "zh/brands/sonny-angel.html": {
+   "changed": "2026-10-02",
+   "h": "d8c27fad17a171aa",
+   "origin": "bootstrap"
+  },
+  "zh/collecting.html": {
+   "changed": "2026-10-02",
+   "h": "b56cfcf6e7a5d6d3",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/blind-box-rules.html": {
+   "changed": "2026-10-02",
+   "h": "049554d3e38df7b1",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/budget.html": {
+   "changed": "2026-10-02",
+   "h": "ff152158339b974b",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/check-retailers.html": {
+   "changed": "2026-10-02",
+   "h": "761080a6179346aa",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/display-checklist.html": {
+   "changed": "2026-10-02",
+   "h": "a822e591f63b993e",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/duplicates.html": {
+   "changed": "2026-10-02",
+   "h": "56f85a5e990ee2d5",
+   "origin": "bootstrap"
+  },
+  "zh/collecting/start-a-collection.html": {
+   "changed": "2026-10-02",
+   "h": "1fc0b96078738473",
+   "origin": "bootstrap"
+  },
+  "zh/collector-tools.html": {
+   "changed": "2026-10-02",
+   "h": "effab23f0c4b8106",
+   "origin": "bootstrap"
+  },
+  "zh/collectors.html": {
+   "changed": "2026-09-27",
+   "h": "6ea4e1dbbd311bad",
+   "origin": "bootstrap"
+  },
+  "zh/compare-pdf-text.html": {
+   "changed": "2026-09-27",
+   "h": "37a60c2794dcb6c1",
+   "origin": "bootstrap"
+  },
+  "zh/creator-kit.html": {
+   "changed": "2026-09-27",
+   "h": "297fed2b50f16f3e",
+   "origin": "bootstrap"
+  },
+  "zh/delivery-evidence.html": {
+   "changed": "2026-09-27",
+   "h": "f2cbbff098ebc7c5",
+   "origin": "bootstrap"
+  },
+  "zh/document-privacy.html": {
+   "changed": "2026-09-27",
+   "h": "0122098ac96d1cb5",
+   "origin": "bootstrap"
+  },
+  "zh/document-tools.html": {
+   "changed": "2026-09-27",
+   "h": "577c05d1f374af35",
+   "origin": "bootstrap"
+  },
+  "zh/editorial.html": {
+   "changed": "2026-10-02",
+   "h": "74c792500b554f7a",
+   "origin": "bootstrap"
+  },
+  "zh/for-agents.html": {
+   "changed": "2026-10-02",
+   "h": "8979a1ea55349615",
+   "origin": "bootstrap"
+  },
+  "zh/image-compressor.html": {
+   "changed": "2026-09-27",
+   "h": "7e42d594b57cebad",
+   "origin": "bootstrap"
+  },
   "zh/index.html": {
-   "changed": "2026-08-30",
-   "h": "a69a8e8661f98934",
+   "changed": "2026-10-09",
+   "h": "f701709720e6388d",
+   "origin": "observed"
+  },
+  "zh/json-compare.html": {
+   "changed": "2026-09-27",
+   "h": "13760a7b433e5f50",
+   "origin": "bootstrap"
+  },
+  "zh/learn/pdf-accessibility-checklist.html": {
+   "changed": "2026-09-27",
+   "h": "68eaca8c051ee9d6",
+   "origin": "bootstrap"
+  },
+  "zh/learn/pdf-reading-order.html": {
+   "changed": "2026-09-27",
+   "h": "44484a8ffcd9b513",
+   "origin": "bootstrap"
+  },
+  "zh/learn/scanned-pdf-vs-text-pdf.html": {
+   "changed": "2026-09-27",
+   "h": "4a3b4c992d592ecb",
+   "origin": "bootstrap"
+  },
+  "zh/methodology.html": {
+   "changed": "2026-09-27",
+   "h": "237271e1c9822483",
+   "origin": "bootstrap"
+  },
+  "zh/open-source.html": {
+   "changed": "2026-09-27",
+   "h": "4d76015150456649",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "f6d644de19848188",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/obs.html": {
+   "changed": "2026-09-27",
+   "h": "cd2667e10796e195",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/ollama.html": {
+   "changed": "2026-09-27",
+   "h": "c6d30138f72adab2",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "1b776bd0fc700ccf",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "062dfac1c5fca4bc",
+   "origin": "bootstrap"
+  },
+  "zh/open-source/whisper.html": {
+   "changed": "2026-09-27",
+   "h": "7b14e932b45f67de",
+   "origin": "bootstrap"
+  },
+  "zh/pdf-accessibility-checker.html": {
+   "changed": "2026-09-27",
+   "h": "b8d59732afc70e0f",
+   "origin": "bootstrap"
+  },
+  "zh/pdf-batch-audit.html": {
+   "changed": "2026-09-27",
+   "h": "84a75a8c87ac1c1d",
+   "origin": "bootstrap"
+  },
+  "zh/pdf-to-text.html": {
+   "changed": "2026-09-27",
+   "h": "94492bf7399351fb",
+   "origin": "bootstrap"
+  },
+  "zh/series.html": {
+   "changed": "2026-10-04",
+   "h": "94942c6d6d2af95b",
+   "origin": "bootstrap"
+  },
+  "zh/series/smiski-construction.html": {
+   "changed": "2026-10-03",
+   "h": "33b6473a7bc80a98",
+   "origin": "bootstrap"
+  },
+  "zh/series/smiski-museum.html": {
+   "changed": "2026-10-04",
+   "h": "2822d1d3b77e8aab",
+   "origin": "bootstrap"
+  },
+  "zh/series/smiski-sunday.html": {
+   "changed": "2026-10-03",
+   "h": "59a1677575bb3cd1",
+   "origin": "bootstrap"
+  },
+  "zh/series/smiski-work.html": {
+   "changed": "2026-10-04",
+   "h": "45de63706b07fbe6",
+   "origin": "bootstrap"
+  },
+  "zh/series/sonny-angel-snack-series.html": {
+   "changed": "2026-10-02",
+   "h": "18b0be4b5c302e7b",
+   "origin": "bootstrap"
+  },
+  "zh/series/sonny-angel-vegetable-series.html": {
+   "changed": "2026-10-02",
+   "h": "6d571790ccb30c67",
+   "origin": "bootstrap"
+  },
+  "zh/time-zone-planner.html": {
+   "changed": "2026-09-27",
+   "h": "f1e308bb3f42b464",
+   "origin": "bootstrap"
+  },
+  "zh/verify-file.html": {
+   "changed": "2026-09-27",
+   "h": "3c9ad523dc08faed",
+   "origin": "bootstrap"
+  },
+  "zh/videos.html": {
+   "changed": "2026-09-27",
+   "h": "55f361ddd448cdf3",
+   "origin": "bootstrap"
+  },
+  "zh/videos/audacity.html": {
+   "changed": "2026-09-27",
+   "h": "ab481a2ca68868bf",
+   "origin": "bootstrap"
+  },
+  "zh/videos/shotcut.html": {
+   "changed": "2026-09-27",
+   "h": "21c2cfa19582325c",
+   "origin": "bootstrap"
+  },
+  "zh/videos/upscayl.html": {
+   "changed": "2026-09-27",
+   "h": "915aaad079c027d5",
    "origin": "bootstrap"
   }
  },

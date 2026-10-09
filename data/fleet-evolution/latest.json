@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-24",
+  "as_of": "2026-10-09",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
-    "healthy": 18,
-    "membership_ready": 4,
-    "paid_members": 0,
-    "active_members": 0,
+    "healthy": 31,
+    "membership_ready": 2,
+    "paid_members": null,
+    "active_members": null,
     "opportunities": 7,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-09-24T07:47:56.109Z",
-    "health": "2026-09-23T16:03:41Z",
-    "ai_referrals": "2026-09-23T16:04:05Z",
-    "opportunities": "2026-09-23",
-    "autopilot_receipt": "2026-09-24"
+    "membership": "2026-10-08T10:27:43.460Z",
+    "health": "2026-10-08T15:05:45Z",
+    "ai_referrals": "2026-10-08T15:06:20Z",
+    "opportunities": "2026-10-08",
+    "autopilot_receipt": "2026-10-09"
   },
   "input_ages_days": {
-    "membership": 0,
+    "membership": 1,
     "health": 1,
     "ai_referrals": 1,
     "opportunities": 1,
@@ -28,10 +28,11 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-09-24T07:47:56.109Z",
+    "generated": "2026-10-08T10:27:43.460Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": true,
+    "ok": false,
+    "counters_complete": false,
     "sites": [
       {
         "site": "bpj",
@@ -74,7 +75,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -92,7 +93,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -107,42 +108,15 @@
       }
     ],
     "totals": {
-      "paid_orders": 0,
-      "paid_members": 0,
-      "active_members": 0,
-      "unexpired_pending": 0
+      "paid_orders": null,
+      "paid_members": null,
+      "active_members": null,
+      "unexpired_pending": null
     }
   },
   "opportunities": [
     {
-      "theme": "how to recover google auth after phone stolen",
-      "site": null,
-      "state": "scout",
-      "score": 6.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "stripe withholding balance of 100000",
-      "site": null,
-      "state": "scout",
-      "score": 3.07,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
-      "site": null,
-      "state": "scout",
-      "score": 2.11,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "what exists if i want a premade soc mcu screen enclosure battery",
+      "theme": "what tools do you wish existed",
       "site": null,
       "state": "scout",
       "score": 2.07,
@@ -151,16 +125,43 @@
       "supply": 0
     },
     {
-      "theme": "about map enshittification have you noticed the maps have gotten worse",
+      "theme": "when you code with ai do you tell it how to manage state",
       "site": null,
       "state": "scout",
-      "score": 2.04,
+      "score": 2.07,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "dynamically display text on a remote android tv display",
+      "theme": "is there a program which returns the output of dumpsys activity activities as a ",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "tool or service that tracks deprecations and breaking changes per library versio",
+      "site": null,
+      "state": "scout",
+      "score": 2.02,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "tool recommendation to sync backup local file server to sharepoint online",
+      "site": null,
+      "state": "scout",
+      "score": 2.02,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "using google or any other search engine to search for pdfs with fixed page range",
       "site": null,
       "state": "scout",
       "score": 2.0,
@@ -169,10 +170,10 @@
       "supply": 0
     },
     {
-      "theme": "editor with doxygen preview",
+      "theme": "is there an app store from which applications can t be taken down by anybody not",
       "site": null,
       "state": "scout",
-      "score": 2.0,
+      "score": 1.99,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -181,14 +182,49 @@
   "actions": [
     {
       "site": "getecoback",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "agiscorecard",
       "kind": "optimize_existing_page",
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 20,
-        "query": "infrarotheizung gegen schimmel",
-        "page": "guide/infrarotheizung-gegen-schimmel.html",
-        "value": 59250
+        "count": 1,
+        "query": "cathie wood ark invest ai stocks",
+        "page": "invest/cathie-wood.html",
+        "value": 900
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "optimize_existing_page",
+      "priority": 80,
+      "reason": "measured demand reaches an existing page with zero recent referred readers",
+      "evidence": {
+        "count": 17,
+        "query": "energiesparender heizlüfter",
+        "page": "guide/heizung-10-qm.html",
+        "value": 70600
       },
       "mode": "queue"
     },
@@ -213,46 +249,50 @@
       "mode": "observe"
     },
     {
-      "site": "getecoback",
-      "kind": "membership_observability",
-      "priority": 68,
-      "reason": "membership aggregate counters are unavailable",
-      "evidence": {
-        "admin_ok": false
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "membership_observability",
-      "priority": 68,
-      "reason": "membership aggregate counters are unavailable",
-      "evidence": {
-        "admin_ok": false
-      },
-      "mode": "observe"
-    },
-    {
-      "site": "getecoback",
+      "site": "agiscorecard",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 21,
-        "query": "akku heizlüfter makita",
-        "value": 38500
+        "count": 5,
+        "query": "ai infrastructure stocks comeback",
+        "value": 4700
       },
       "mode": "queue"
     },
     {
-      "site": "thedollscout",
+      "site": "buysomething",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 11,
-        "query": "crumbl labubu ube dot cake",
-        "value": 30400
+        "count": 2,
+        "query": "costco compression boots",
+        "value": 200
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 37,
+        "query": "steinfeld infrarotheizung",
+        "value": 50700
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/future-guide",
+        "n7": 452,
+        "p7": 0
       },
       "mode": "queue"
     },
@@ -262,9 +302,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/fensterabdichtung-selber-bauen.html",
-        "n7": 12,
-        "p7": 4
+        "page": "/",
+        "n7": 19,
+        "p7": 1
       },
       "mode": "queue"
     },
@@ -274,7 +314,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 105,
+        "human_pv_28d": 223,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -285,7 +325,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 448,
+        "human_pv_28d": 270,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -296,18 +336,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 839,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 321,
+        "human_pv_28d": 893,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -316,7 +345,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 4
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
@@ -328,11 +357,11 @@
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 1
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",

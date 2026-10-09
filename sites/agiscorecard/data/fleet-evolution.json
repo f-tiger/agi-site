@@ -13,11 +13,11 @@
       "reach_humans_referred_band": null
     },
     "demand": {
-      "has_underserved": false,
-      "has_gaps": false,
-      "has_hot_pages": false,
-      "top_underserved_page": null,
-      "top_hot_page": null
+      "has_underserved": true,
+      "has_gaps": true,
+      "has_hot_pages": true,
+      "top_underserved_page": "invest/cathie-wood.html",
+      "top_hot_page": "/future-guide"
     },
     "health": {
       "http": "200",
@@ -26,11 +26,45 @@
   },
   "actions": [
     {
+      "kind": "optimize_existing_page",
+      "priority": 80,
+      "reason": "measured demand reaches an existing page with zero recent referred readers",
+      "evidence": {
+        "count_band": "1-9",
+        "query": "cathie wood ark invest ai stocks",
+        "page": "invest/cathie-wood.html",
+        "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
       "kind": "membership_observability",
       "priority": 68,
       "reason": "membership aggregate counters are unavailable",
       "evidence": {},
       "mode": "observe"
+    },
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count_band": "1-9",
+        "query": "ai infrastructure stocks comeback",
+        "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/future-guide",
+        "n7_band": "100+",
+        "p7_band": "0"
+      },
+      "mode": "queue"
     }
   ],
   "autonomous_changes": [

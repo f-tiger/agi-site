@@ -1,11 +1,16 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-24",
+ "generated": "2026-10-09",
  "pages": {
-  "6x6-sudoku-rules.html": {
-   "changed": "2026-08-24",
-   "h": "13c9d5787f940c76",
+  "6x6-sudoku-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "0b77ae9c1717c1b3",
    "origin": "bootstrap"
+  },
+  "6x6-sudoku-rules.html": {
+   "changed": "2026-10-09",
+   "h": "3fd5371b0c6b7e98",
+   "origin": "observed"
   },
   "ai-games.html": {
    "changed": "2026-09-06",
@@ -18,9 +23,9 @@
    "origin": "bootstrap"
   },
   "balance-zh.html": {
-   "changed": "2026-08-22",
-   "h": "24ad33af71e2c761",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c8a0b5512c7fbea6",
+   "origin": "observed"
   },
   "balance.html": {
    "changed": "2026-08-22",
@@ -32,10 +37,15 @@
    "h": "5348998336d2b732",
    "origin": "bootstrap"
   },
-  "binary-puzzle-rules.html": {
-   "changed": "2026-08-24",
-   "h": "d2d91b0b01b7c3a5",
+  "binary-puzzle-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "f34a035950fb2d5c",
    "origin": "bootstrap"
+  },
+  "binary-puzzle-rules.html": {
+   "changed": "2026-10-09",
+   "h": "c3af8edae25dc6ea",
+   "origin": "observed"
   },
   "blocknova.html": {
    "changed": "2026-09-05",
@@ -47,25 +57,35 @@
    "h": "c095480836deb6ff",
    "origin": "bootstrap"
   },
-  "futoshiki-rules.html": {
-   "changed": "2026-08-24",
-   "h": "0502ba0a05ea6dd3",
+  "futoshiki-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "410f6029e5a94a16",
    "origin": "bootstrap"
   },
+  "futoshiki-rules.html": {
+   "changed": "2026-10-09",
+   "h": "416917d09e1ca92f",
+   "origin": "observed"
+  },
   "futoshiki-zh.html": {
-   "changed": "2026-08-23",
-   "h": "fc5f6baaefd678c9",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "76acc6c345646d71",
+   "origin": "observed"
   },
   "futoshiki.html": {
    "changed": "2026-08-23",
    "h": "87f94fb828e8eb50",
    "origin": "bootstrap"
   },
-  "games-like-linkedin-queens.html": {
-   "changed": "2026-08-24",
-   "h": "bc2dc3789b36fda0",
+  "games-like-linkedin-queens-zh.html": {
+   "changed": "2026-09-22",
+   "h": "0bacf1732d1517e7",
    "origin": "bootstrap"
+  },
+  "games-like-linkedin-queens.html": {
+   "changed": "2026-10-09",
+   "h": "7d75bcea771a1299",
+   "origin": "observed"
   },
   "ghostline.html": {
    "changed": "2026-09-18",
@@ -77,15 +97,20 @@
    "h": "c5ad908cda5d9ed7",
    "origin": "bootstrap"
   },
-  "kropki-sudoku-rules.html": {
-   "changed": "2026-08-24",
-   "h": "a3c3ee3b7f2c9bbd",
+  "kropki-sudoku-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "d221b09d143eccb4",
    "origin": "bootstrap"
   },
+  "kropki-sudoku-rules.html": {
+   "changed": "2026-10-09",
+   "h": "fec064443c680152",
+   "origin": "observed"
+  },
   "kropki-zh.html": {
-   "changed": "2026-08-23",
-   "h": "d8e50edcd0b8c7ac",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "d48707f779752f67",
+   "origin": "observed"
   },
   "kropki.html": {
    "changed": "2026-08-23",
@@ -103,9 +128,9 @@
    "origin": "bootstrap"
   },
   "minisudoku-zh.html": {
-   "changed": "2026-08-23",
-   "h": "4759a6da204c1041",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "24a18697d1ba13c9",
+   "origin": "observed"
   },
   "minisudoku.html": {
    "changed": "2026-08-23",
@@ -117,15 +142,20 @@
    "h": "96f7d432b485ba42",
    "origin": "bootstrap"
   },
-  "nonogram-rules.html": {
-   "changed": "2026-08-24",
-   "h": "f8cf4b0b7aeed80f",
+  "nonogram-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "1e615255c580e365",
    "origin": "bootstrap"
   },
+  "nonogram-rules.html": {
+   "changed": "2026-10-09",
+   "h": "edd7247944c02a18",
+   "origin": "observed"
+  },
   "nonogram-zh.html": {
-   "changed": "2026-08-23",
-   "h": "54c8be1e1e0f73d8",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "a6133a77542fbe4c",
+   "origin": "observed"
   },
   "nonogram.html": {
    "changed": "2026-08-23",
@@ -147,15 +177,20 @@
    "h": "fa0747818d04e048",
    "origin": "bootstrap"
   },
-  "sandwich-sudoku-rules.html": {
-   "changed": "2026-08-24",
-   "h": "46516a49281fca86",
+  "sandwich-sudoku-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "43b9e055248b402d",
    "origin": "bootstrap"
   },
+  "sandwich-sudoku-rules.html": {
+   "changed": "2026-10-09",
+   "h": "c6428796b6e4a34a",
+   "origin": "observed"
+  },
   "sandwich-zh.html": {
-   "changed": "2026-08-23",
-   "h": "05d8e6786defbe8a",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "8d93cfc87c21f131",
+   "origin": "observed"
   },
   "sandwich.html": {
    "changed": "2026-08-23",
@@ -167,20 +202,30 @@
    "h": "86249bc98b48f3d4",
    "origin": "observed"
   },
+  "skyscraper-puzzle-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "8b48c00c9dc9f05f",
+   "origin": "bootstrap"
+  },
   "skyscraper-puzzle-rules.html": {
-   "changed": "2026-08-24",
-   "h": "206e3542df97a2b9",
+   "changed": "2026-10-09",
+   "h": "8e7e11d9acb414da",
+   "origin": "observed"
+  },
+  "star-battle-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "49171143cfed1d0d",
    "origin": "bootstrap"
   },
   "star-battle-rules.html": {
-   "changed": "2026-08-24",
-   "h": "f52554f0094a6ef8",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "16b15e464668f543",
+   "origin": "observed"
   },
   "starbattle-zh.html": {
-   "changed": "2026-08-23",
-   "h": "161466c9c6c3d753",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c01c01a202689993",
+   "origin": "observed"
   },
   "starbattle.html": {
    "changed": "2026-08-23",
@@ -188,24 +233,29 @@
    "origin": "bootstrap"
   },
   "thermo-zh.html": {
-   "changed": "2026-08-23",
-   "h": "fee863edef0cd22e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e4512af940ae42ae",
+   "origin": "observed"
   },
   "thermo.html": {
    "changed": "2026-08-23",
    "h": "f3f1d12ce2435e72",
    "origin": "bootstrap"
   },
-  "thermometer-puzzle-rules.html": {
-   "changed": "2026-08-24",
-   "h": "cdb702118b8869f6",
+  "thermometer-puzzle-rules-zh.html": {
+   "changed": "2026-09-22",
+   "h": "f0c677793f601147",
    "origin": "bootstrap"
   },
+  "thermometer-puzzle-rules.html": {
+   "changed": "2026-10-09",
+   "h": "e3e51e4f327b5260",
+   "origin": "observed"
+  },
   "towers-zh.html": {
-   "changed": "2026-08-23",
-   "h": "a0854c4ed44ed918",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "200822a89c6c5623",
+   "origin": "observed"
   },
   "towers.html": {
    "changed": "2026-08-23",

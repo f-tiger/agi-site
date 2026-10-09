@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-24",
+ "generated": "2026-10-09",
  "pages": {
   "about.html": {
    "changed": "2026-07-10",
@@ -18,19 +18,24 @@
    "origin": "bootstrap"
   },
   "agi-odds-vs-evidence.html": {
-   "changed": "2026-09-15",
-   "h": "14ecf1b4c8873cc3",
+   "changed": "2026-10-09",
+   "h": "cf9cc9681a21bc1c",
    "origin": "observed"
   },
+  "agi-prediction-markets.html": {
+   "changed": "2026-09-28",
+   "h": "7fc5ec47e97c4eb0",
+   "origin": "bootstrap"
+  },
   "agi-questions.html": {
-   "changed": "2026-09-14",
-   "h": "832fb5f15fa2f6f8",
+   "changed": "2026-10-09",
+   "h": "fb582a6a0d99ca18",
    "origin": "observed"
   },
   "agi-test.html": {
-   "changed": "2026-07-12",
-   "h": "93a1f89f8e7fb427",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "7921ab497f271388",
+   "origin": "observed"
   },
   "agi-vs-superintelligence.html": {
    "changed": "2026-07-10",
@@ -38,18 +43,23 @@
    "origin": "bootstrap"
   },
   "ai-2027-scenario-explained.html": {
-   "changed": "2026-08-29",
-   "h": "7089425f89b9a039",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "d30da57c1708aa64",
+   "origin": "observed"
   },
   "ai-and-your-job.html": {
-   "changed": "2026-09-05",
-   "h": "ab0f46a437b68b33",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "1f6af3f7b5266198",
+   "origin": "observed"
   },
   "ai-capex-trillion-dollar.html": {
    "changed": "2026-08-25",
    "h": "986a03c5eebb2101",
+   "origin": "bootstrap"
+  },
+  "ai-infrastructure.html": {
+   "changed": "2026-09-30",
+   "h": "f059f6399736987c",
    "origin": "bootstrap"
   },
   "ai-job-risk-check.html": {
@@ -63,28 +73,33 @@
    "origin": "bootstrap"
   },
   "ai-progress-2026-so-far.html": {
-   "changed": "2026-08-29",
-   "h": "564848c23091df0e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "f87784b164395b4d",
+   "origin": "observed"
   },
   "ai-stock-exposure.html": {
-   "changed": "2026-08-05",
-   "h": "0a8283e7201f5cbd",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "365873e0d73b7970",
+   "origin": "observed"
   },
   "ai-tools.html": {
-   "changed": "2026-08-14",
-   "h": "b31433147871baf8",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "a5fa8d3c8edb98b0",
+   "origin": "observed"
   },
   "ai-trading-ledger.html": {
-   "changed": "2026-09-05",
-   "h": "9eb51191b3c8722c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "04ed1a42ba43b9ca",
+   "origin": "observed"
   },
   "ai-vs-human-intelligence.html": {
    "changed": "2026-09-05",
    "h": "65b00508221bc136",
+   "origin": "bootstrap"
+  },
+  "ai-weekly-report.html": {
+   "changed": "2026-10-01",
+   "h": "e2a5e4e09e7c795a",
    "origin": "bootstrap"
   },
   "altman-vs-amodei-agi.html": {
@@ -133,9 +148,9 @@
    "origin": "bootstrap"
   },
   "audits.html": {
-   "changed": "2026-08-23",
-   "h": "0bc06f3954cd85fb",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "b673e9cc9e6ff984",
+   "origin": "observed"
   },
   "badge.html": {
    "changed": "2026-07-11",
@@ -143,9 +158,9 @@
    "origin": "bootstrap"
   },
   "calibration.html": {
-   "changed": "2026-08-08",
-   "h": "e3bda60c158315d5",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c39509246c9879c3",
+   "origin": "observed"
   },
   "can-ai-replace-knowledge-workers.html": {
    "changed": "2026-09-05",
@@ -153,69 +168,74 @@
    "origin": "bootstrap"
   },
   "changelog.html": {
-   "changed": "2026-08-16",
-   "h": "e6cee6507512711a",
-   "origin": "bootstrap"
-  },
-  "cn.html": {
-   "changed": "2026-09-20",
-   "h": "5ad9fbd50a6153ec",
+   "changed": "2026-10-09",
+   "h": "d8aa3cebdb02ce72",
    "origin": "observed"
   },
-  "dario-amodei-agi-prediction.html": {
-   "changed": "2026-08-29",
-   "h": "5e45ba5dd7da725e",
+  "cn.html": {
+   "changed": "2026-10-09",
+   "h": "1f4dc03eefeb819c",
+   "origin": "observed"
+  },
+  "create.html": {
+   "changed": "2026-09-29",
+   "h": "4ea99d24b453c4cc",
    "origin": "bootstrap"
+  },
+  "dario-amodei-agi-prediction.html": {
+   "changed": "2026-10-09",
+   "h": "45b465e82386ef01",
+   "origin": "observed"
   },
   "de/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "c9213a4bd88c4bec",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "58580e8d334a824a",
+   "origin": "observed"
   },
   "de/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "5e1b4daa51aeaf7e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "380d9d13fe50e949",
+   "origin": "observed"
   },
   "de/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "fe50e93a21fbd1d3",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "ed8edf0ef0e68040",
+   "origin": "observed"
   },
   "de/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "2e21c276bc73fe24",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "f5036ea78c7022b2",
+   "origin": "observed"
   },
   "de/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "ee2b04de2589fb3e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "6d6903f79135725a",
+   "origin": "observed"
   },
   "de/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "3d1179e4997526ea",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "1737c9cdaa6e3c35",
+   "origin": "observed"
   },
   "de/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "444a19e5fe558a2c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "9f72efbc4a4d7203",
+   "origin": "observed"
   },
   "de/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "e7fedf4663b0b39b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "db262383372df4ce",
+   "origin": "observed"
   },
   "de/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "caedf08488e9cd86",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e00a8ed60a3b29f1",
+   "origin": "observed"
   },
   "de/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "341141bde6c1ca61",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "7d753cad011e57e1",
+   "origin": "observed"
   },
   "deepseek-vs-openai-gap.html": {
    "changed": "2026-06-30",
@@ -228,14 +248,14 @@
    "origin": "bootstrap"
   },
   "did-open-source-ai-fade.html": {
-   "changed": "2026-08-15",
-   "h": "a8a8d7474a8a712f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "4c1089c6d89c689f",
+   "origin": "observed"
   },
   "do-ai-trading-agents-work.html": {
-   "changed": "2026-09-05",
-   "h": "2676b87d660c2fa9",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "68f0b32c0c18a906",
+   "origin": "observed"
   },
   "does-ai-slowdown-change-agi-2027.html": {
    "changed": "2026-09-14",
@@ -243,8 +263,73 @@
    "origin": "bootstrap"
   },
   "does-copying-13f-work.html": {
-   "changed": "2026-08-29",
-   "h": "a834f68405feb90d",
+   "changed": "2026-10-09",
+   "h": "63c43aa6cfa50fe2",
+   "origin": "observed"
+  },
+  "earn.html": {
+   "changed": "2026-10-01",
+   "h": "7dcafb99c0367be0",
+   "origin": "bootstrap"
+  },
+  "earn/cases/clip-service.html": {
+   "changed": "2026-10-01",
+   "h": "0eeb9452beabee56",
+   "origin": "bootstrap"
+  },
+  "earn/cases/faq-automation.html": {
+   "changed": "2026-10-01",
+   "h": "f5a66f9049d734d5",
+   "origin": "bootstrap"
+  },
+  "earn/cases/launch-acceptance.html": {
+   "changed": "2026-10-01",
+   "h": "0f8ced1300720045",
+   "origin": "bootstrap"
+  },
+  "earn/cases/product-visuals.html": {
+   "changed": "2026-10-01",
+   "h": "b38cdf2202da7a9b",
+   "origin": "bootstrap"
+  },
+  "earn/cases/subtitle-localization.html": {
+   "changed": "2026-10-01",
+   "h": "47c47135641b4a7d",
+   "origin": "bootstrap"
+  },
+  "earn/cases/tiktok-ad-brief.html": {
+   "changed": "2026-10-01",
+   "h": "e60d10c342c7af47",
+   "origin": "bootstrap"
+  },
+  "earn/cases/tiktok-effect-prototype.html": {
+   "changed": "2026-10-01",
+   "h": "482e5ea5658e7ef9",
+   "origin": "bootstrap"
+  },
+  "earn/cases/tutorial-production.html": {
+   "changed": "2026-10-01",
+   "h": "e6a90d68b943c0b4",
+   "origin": "bootstrap"
+  },
+  "earn/cases/workflow-maintenance.html": {
+   "changed": "2026-10-01",
+   "h": "f0cac4fc83e3fd7f",
+   "origin": "bootstrap"
+  },
+  "earn/delivery-lab.html": {
+   "changed": "2026-10-01",
+   "h": "2eec3340449a1781",
+   "origin": "bootstrap"
+  },
+  "earn/method.html": {
+   "changed": "2026-10-01",
+   "h": "e4d9976a8d00f35f",
+   "origin": "bootstrap"
+  },
+  "earn/open-source.html": {
+   "changed": "2026-10-01",
+   "h": "e24bb9a3bc6f46b7",
    "origin": "bootstrap"
   },
   "elon-musk-agi-prediction.html": {
@@ -253,54 +338,54 @@
    "origin": "bootstrap"
   },
   "es/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "7582636e23a4d557",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "4096abc5e651cf68",
+   "origin": "observed"
   },
   "es/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "c729ae70df1a3db5",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "7ddcab06cb41b1f1",
+   "origin": "observed"
   },
   "es/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "afa9b7588ef2c86c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e3f34b654b3aa8bc",
+   "origin": "observed"
   },
   "es/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "5ed824867d66b157",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "82fe3e049a6cccfc",
+   "origin": "observed"
   },
   "es/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "9018f2dbd1f93982",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "63c5f12dd87d006c",
+   "origin": "observed"
   },
   "es/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "63c83ba42bb573be",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "b4f9fee74fe85e31",
+   "origin": "observed"
   },
   "es/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "5150c6938f5286c6",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "78191112f22b9f8f",
+   "origin": "observed"
   },
   "es/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "f67e24401a4db93b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "8c78e3040c256627",
+   "origin": "observed"
   },
   "es/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "798c4859a9a63551",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "75a500071afabbb5",
+   "origin": "observed"
   },
   "es/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "423fae5fdf469a5c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "35672081f3c4a067",
+   "origin": "observed"
   },
   "eu-ai-act-what-applies-now.html": {
    "changed": "2026-09-16",
@@ -313,8 +398,8 @@
    "origin": "bootstrap"
   },
   "for-agents.html": {
-   "changed": "2026-09-20",
-   "h": "1db62cf95288acae",
+   "changed": "2026-10-09",
+   "h": "59d21c75d716531c",
    "origin": "observed"
   },
   "forecaster-leaderboard.html": {
@@ -323,58 +408,218 @@
    "origin": "bootstrap"
   },
   "fr/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "6df1dfff01af1cda",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "2744e7261b8b2640",
+   "origin": "observed"
   },
   "fr/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "3404b27c16b15a7e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "719eda40c5a79fa2",
+   "origin": "observed"
   },
   "fr/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "71aa9cc1e1795d07",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c8d0e360f1b16c77",
+   "origin": "observed"
   },
   "fr/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "abcc892258488b5b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "8f7e0ded085699d9",
+   "origin": "observed"
   },
   "fr/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "46990f5235bf8f34",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "faa4db0328231183",
+   "origin": "observed"
   },
   "fr/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "6818688098b86a26",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "bde92ab9ba612058",
+   "origin": "observed"
   },
   "fr/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "f5e40c378cd7758b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "1ff2e45b3948b5c0",
+   "origin": "observed"
   },
   "fr/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "4e195c958761cf5e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "5572de6f6d451516",
+   "origin": "observed"
   },
   "fr/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "b0318ddb3a7904ea",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "6f3729c31eb1e448",
+   "origin": "observed"
   },
   "fr/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "32ca3c90e8e3a5e9",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "757544198087d0e1",
+   "origin": "observed"
   },
   "future-bet.html": {
    "changed": "2026-07-21",
    "h": "2cc4753e619ff160",
+   "origin": "bootstrap"
+  },
+  "future-guide.html": {
+   "changed": "2026-10-09",
+   "h": "672ae0e19c3fd876",
+   "origin": "bootstrap"
+  },
+  "future-guide/agent-coordination.html": {
+   "changed": "2026-10-03",
+   "h": "d63705e961e3c3e2",
+   "origin": "bootstrap"
+  },
+  "future-guide/agent-permissions.html": {
+   "changed": "2026-10-03",
+   "h": "1254e59be6b0cdef",
+   "origin": "bootstrap"
+  },
+  "future-guide/agents-recover.html": {
+   "changed": "2026-10-03",
+   "h": "411f80ec7765a121",
+   "origin": "bootstrap"
+  },
+  "future-guide/agents-take-time.html": {
+   "changed": "2026-10-03",
+   "h": "74f1a190639e6612",
+   "origin": "bootstrap"
+  },
+  "future-guide/ai-work-organization.html": {
+   "changed": "2026-10-03",
+   "h": "e12b0840b56f2eb5",
+   "origin": "bootstrap"
+  },
+  "future-guide/career-change-together.html": {
+   "changed": "2026-10-03",
+   "h": "45663afc87d7cdb7",
+   "origin": "bootstrap"
+  },
+  "future-guide/creative-control.html": {
+   "changed": "2026-10-03",
+   "h": "38a61864ee195982",
+   "origin": "bootstrap"
+  },
+  "future-guide/delegate-keep-judgment.html": {
+   "changed": "2026-10-03",
+   "h": "74691c2b62181a04",
+   "origin": "bootstrap"
+  },
+  "future-guide/deployable-trust.html": {
+   "changed": "2026-10-03",
+   "h": "1ef10a596df3b9d3",
+   "origin": "bootstrap"
+  },
+  "future-guide/distribution-opportunity.html": {
+   "changed": "2026-10-09",
+   "h": "57d56f93d18cd425",
+   "origin": "bootstrap"
+  },
+  "future-guide/domain-knowledge.html": {
+   "changed": "2026-10-03",
+   "h": "ce243ecf56472bed",
+   "origin": "bootstrap"
+  },
+  "future-guide/durable-skills.html": {
+   "changed": "2026-10-03",
+   "h": "66361aacae944dbb",
+   "origin": "bootstrap"
+  },
+  "future-guide/evaluate-your-task.html": {
+   "changed": "2026-10-03",
+   "h": "d886e1c88b5ed49a",
+   "origin": "bootstrap"
+  },
+  "future-guide/fast-ai-progress.html": {
+   "changed": "2026-10-03",
+   "h": "366d126006158c11",
+   "origin": "bootstrap"
+  },
+  "future-guide/feedback-before-answers.html": {
+   "changed": "2026-10-03",
+   "h": "3b28e358f7fba22f",
+   "origin": "bootstrap"
+  },
+  "future-guide/improvement-bottlenecks.html": {
+   "changed": "2026-10-03",
+   "h": "9f8adfe2b1e9c89e",
+   "origin": "bootstrap"
+  },
+  "future-guide/interactive-worlds.html": {
+   "changed": "2026-10-03",
+   "h": "aa97b7e3bae27b48",
+   "origin": "bootstrap"
+  },
+  "future-guide/learn-by-making.html": {
+   "changed": "2026-10-03",
+   "h": "f8587dfc45bfc936",
+   "origin": "bootstrap"
+  },
+  "future-guide/learning-needs-people.html": {
+   "changed": "2026-10-03",
+   "h": "fa30298fabe2b4ca",
+   "origin": "bootstrap"
+  },
+  "future-guide/learning-with-ai.html": {
+   "changed": "2026-10-03",
+   "h": "72af8fe37d776fc8",
+   "origin": "bootstrap"
+  },
+  "future-guide/many-models.html": {
+   "changed": "2026-10-03",
+   "h": "aa2d6b5f274e04ce",
+   "origin": "bootstrap"
+  },
+  "future-guide/method.html": {
+   "changed": "2026-10-03",
+   "h": "b2a33b018c38e7dd",
+   "origin": "bootstrap"
+  },
+  "future-guide/metrics-versus-progress.html": {
+   "changed": "2026-10-03",
+   "h": "7dbe363b855bfbb5",
+   "origin": "bootstrap"
+  },
+  "future-guide/mutable-software.html": {
+   "changed": "2026-10-03",
+   "h": "af1b5ee5ff5a656b",
+   "origin": "bootstrap"
+  },
+  "future-guide/prototype-together.html": {
+   "changed": "2026-10-03",
+   "h": "2b144140d68115fb",
+   "origin": "bootstrap"
+  },
+  "future-guide/requirements-still-matter.html": {
+   "changed": "2026-10-03",
+   "h": "28c3187a92a38e2c",
+   "origin": "bootstrap"
+  },
+  "future-guide/safety-is-engineering.html": {
+   "changed": "2026-10-03",
+   "h": "cb9507d0390aaee1",
+   "origin": "bootstrap"
+  },
+  "future-guide/simulation-gap.html": {
+   "changed": "2026-10-03",
+   "h": "032a83412917710d",
+   "origin": "bootstrap"
+  },
+  "future-guide/small-decisions.html": {
+   "changed": "2026-10-03",
+   "h": "5577cf7e9ade43c4",
+   "origin": "bootstrap"
+  },
+  "future-guide/software-judgment.html": {
+   "changed": "2026-10-03",
+   "h": "0ccbcfae90cbd11e",
+   "origin": "bootstrap"
+  },
+  "future-guide/test-failure-cases.html": {
+   "changed": "2026-10-03",
+   "h": "26704298db1f93c7",
    "origin": "bootstrap"
   },
   "gdpval-explained.html": {
@@ -382,10 +627,15 @@
    "h": "5a4ec130205f6478",
    "origin": "bootstrap"
   },
-  "how-close-is-agi.html": {
-   "changed": "2026-08-29",
-   "h": "26c587cdb51b414d",
+  "grader-consensus.html": {
+   "changed": "2026-09-27",
+   "h": "ecfdd98b41e6f51e",
    "origin": "bootstrap"
+  },
+  "how-close-is-agi.html": {
+   "changed": "2026-10-09",
+   "h": "e29da4f4fce38e79",
+   "origin": "observed"
   },
   "how-fast-is-ai-improving.html": {
    "changed": "2026-07-12",
@@ -398,8 +648,8 @@
    "origin": "bootstrap"
   },
   "index.html": {
-   "changed": "2026-09-20",
-   "h": "1a66fa1fb6605e9a",
+   "changed": "2026-10-09",
+   "h": "bab20ae6a6a7fd0a",
    "origin": "observed"
   },
   "intelligence-explosion-2027.html": {
@@ -408,19 +658,19 @@
    "origin": "bootstrap"
   },
   "invest.html": {
-   "changed": "2026-09-19",
-   "h": "19b3cae8f1ea6eac",
+   "changed": "2026-10-09",
+   "h": "e4d4f88ac5fb1cca",
    "origin": "observed"
   },
   "invest/cathie-wood.html": {
-   "changed": "2026-07-26",
-   "h": "90ddb73734feddd0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "895aa9cc0a92fcf7",
+   "origin": "observed"
   },
   "invest/warren-buffett.html": {
-   "changed": "2026-07-26",
-   "h": "77e3c8dca9113913",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "f71570638f54dad3",
+   "origin": "observed"
   },
   "is-agi-inevitable.html": {
    "changed": "2026-07-12",
@@ -437,6 +687,11 @@
    "h": "e133791f0cd74129",
    "origin": "bootstrap"
   },
+  "is-ai-music-good-enough.html": {
+   "changed": "2026-09-17",
+   "h": "53de71eb8b6c1952",
+   "origin": "bootstrap"
+  },
   "is-chatgpt-agi.html": {
    "changed": "2026-07-12",
    "h": "d5bdadf3ccf33d69",
@@ -448,9 +703,9 @@
    "origin": "bootstrap"
   },
   "is-nvidia-overvalued.html": {
-   "changed": "2026-08-29",
-   "h": "59af0bbf9d775a49",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e425e5e89b26c482",
+   "origin": "observed"
   },
   "is-the-ai-capex-a-bubble.html": {
    "changed": "2026-06-30",
@@ -458,103 +713,108 @@
    "origin": "bootstrap"
   },
   "it/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "bd23137b7b7e79d5",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "287434145bec8fb4",
+   "origin": "observed"
   },
   "it/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "0a4a8a74129332d2",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "1cc88e976facbfc7",
+   "origin": "observed"
   },
   "it/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "7c8b6c32f315bc26",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "b039260bf9937ead",
+   "origin": "observed"
   },
   "it/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "a8eae7a724fd6a9a",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "582de731c9630e31",
+   "origin": "observed"
   },
   "it/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "de63e601628c5d37",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "0387e81c86b024af",
+   "origin": "observed"
   },
   "it/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "4516042a09d41e54",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "6e32da01d973fb56",
+   "origin": "observed"
   },
   "it/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "73e22d458524bd88",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "6bd5d4924703106a",
+   "origin": "observed"
   },
   "it/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "3cfbc7b799593c07",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "4f4225230a6f38c2",
+   "origin": "observed"
   },
   "it/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "8ae0a9bab62ae4c0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "318e931583c279a7",
+   "origin": "observed"
   },
   "it/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "6c3e737363f14484",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "5d0ef725c9c384c8",
+   "origin": "observed"
   },
   "ja/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "3a07ecc9c1fe5fab",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "f9cbbe3154bdb8ac",
+   "origin": "observed"
   },
   "ja/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "190b3cfc3cb2da1f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "6e6085f38130c0f0",
+   "origin": "observed"
   },
   "ja/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "bc552b48f56f7837",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "537bba16ebdc7213",
+   "origin": "observed"
   },
   "ja/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "d21ec2a51ac48b6c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "4691910c719b584d",
+   "origin": "observed"
   },
   "ja/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "fe47da146373dc0a",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e91b855a9be7340b",
+   "origin": "observed"
   },
   "ja/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "f0b07dc0588a942c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "2e6fd7c46c7d298f",
+   "origin": "observed"
   },
   "ja/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "ba3f891a0e3caeae",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "0ed6d8eef16a0538",
+   "origin": "observed"
   },
   "ja/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "fa8fe1cdb3e78816",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "9323ce0f5387fab2",
+   "origin": "observed"
   },
   "ja/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "9f8abe6d6666018d",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "50ae67bde419ddf7",
+   "origin": "observed"
   },
   "ja/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "97f5d0628f88525d",
+   "changed": "2026-10-09",
+   "h": "74f22f5bcb3e5b63",
+   "origin": "observed"
+  },
+  "jarvis.html": {
+   "changed": "2026-10-09",
+   "h": "d6a5924172912930",
    "origin": "bootstrap"
   },
   "justin-sun-2013-bitcoin-story.html": {
@@ -573,58 +833,68 @@
    "origin": "bootstrap"
   },
   "ko/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "9504b0ff5096a428",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "ac9b5e36edb1db1a",
+   "origin": "observed"
   },
   "ko/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "07a15b7228d3f9f7",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "841f7428741c6f02",
+   "origin": "observed"
   },
   "ko/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "91c626218be201d8",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e2ccb3a5df1bb078",
+   "origin": "observed"
   },
   "ko/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "46d8b351a0943fe0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "b933449ee5e2eda7",
+   "origin": "observed"
   },
   "ko/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "8e27bf70b8d9df6c",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "441e027cc13921a8",
+   "origin": "observed"
   },
   "ko/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "bd940974c17f5a77",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "229fc7ea3e72b95f",
+   "origin": "observed"
   },
   "ko/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "5f66e03c09526d28",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "9ddbdd96bcaac0ca",
+   "origin": "observed"
   },
   "ko/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "35e4b7889ff06194",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "932524575934bed8",
+   "origin": "observed"
   },
   "ko/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "4231e90bd00f42b7",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e1f36bcd29718ddd",
+   "origin": "observed"
   },
   "ko/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "4752cb06a8c4131d",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "dfbb7f37eae248ba",
+   "origin": "observed"
   },
   "matrix-odds.html": {
    "changed": "2026-08-16",
    "h": "9c8baeb6fdcd188b",
+   "origin": "bootstrap"
+  },
+  "members.html": {
+   "changed": "",
+   "h": "412cf7be7bab72df",
+   "origin": "bootstrap"
+  },
+  "mentor.html": {
+   "changed": "2026-10-01",
+   "h": "61498195a593c746",
    "origin": "bootstrap"
   },
   "musk-vs-hassabis-agi.html": {
@@ -642,80 +912,90 @@
    "h": "2cddeef86985aac6",
    "origin": "bootstrap"
   },
+  "portfolio-tracker.html": {
+   "changed": "2026-10-03",
+   "h": "a3fa7cd5af8ad6a4",
+   "origin": "bootstrap"
+  },
   "prediction-receipts.html": {
    "changed": "2026-07-24",
    "h": "d27c02aca7d89a43",
    "origin": "bootstrap"
   },
   "privacy.html": {
-   "changed": "2026-09-20",
-   "h": "effb1120258feecc",
+   "changed": "2026-10-09",
+   "h": "29c3c10e376e30ee",
    "origin": "observed"
   },
   "progress-index.html": {
-   "changed": "2026-08-08",
-   "h": "c5644601882aa7de",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "afbf8e9e40681330",
+   "origin": "observed"
   },
   "pt/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "ace8a764bfbcb876",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "059bf5a4f7ed271f",
+   "origin": "observed"
   },
   "pt/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "796c944177fd8030",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "3fa3fdc35f8badd6",
+   "origin": "observed"
   },
   "pt/how-close-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "2c4fa7121c2d47e3",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "cf3523dba3cd8d86",
+   "origin": "observed"
   },
   "pt/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "669b840464b4afbf",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "5a419f90a32b5584",
+   "origin": "observed"
   },
   "pt/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "86ddd7c6a2de24cc",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "785250a97d57de13",
+   "origin": "observed"
   },
   "pt/what-is-agi.html": {
-   "changed": "2026-07-16",
-   "h": "4c0d99712c32f29f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "524dd153c4446839",
+   "origin": "observed"
   },
   "pt/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "47343d456a631fab",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "5efb46d617aa9ff2",
+   "origin": "observed"
   },
   "pt/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-06-30",
-   "h": "6925c7c67a4c6b71",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "083f6d5136ad35bc",
+   "origin": "observed"
   },
   "pt/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "49ffd60e1d0cb395",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "64f93fe930c7d80f",
+   "origin": "observed"
   },
   "pt/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "ed12aaf8716b10df",
+   "changed": "2026-10-09",
+   "h": "07df7f2c0ea89b22",
+   "origin": "observed"
+  },
+  "relay-demo.html": {
+   "changed": "2026-09-30",
+   "h": "1b7fbc269fa2eb02",
    "origin": "bootstrap"
   },
   "sam-altman-agi-prediction.html": {
-   "changed": "2026-08-29",
-   "h": "ea2b25eb5452fcd8",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "603feb0b6e157ce3",
+   "origin": "observed"
   },
   "situational-awareness-predictions.html": {
-   "changed": "2026-08-29",
-   "h": "16907f398db3afa9",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "2c746bb95ddf7747",
+   "origin": "observed"
   },
   "situational-awareness-summary.html": {
    "changed": "2026-08-16",
@@ -783,9 +1063,9 @@
    "origin": "bootstrap"
   },
   "when-will-agi-arrive.html": {
-   "changed": "2026-09-06",
-   "h": "d8cfe9c0b28d84ed",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "635baa1bcfbfb760",
+   "origin": "observed"
   },
   "which-agent-protocols-are-actually-used.html": {
    "changed": "2026-08-21",
@@ -803,9 +1083,9 @@
    "origin": "bootstrap"
   },
   "will-agi-arrive-2027.html": {
-   "changed": "2026-08-29",
-   "h": "af4bbec151890a3b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "d279fe7b82e8c0e6",
+   "origin": "observed"
   },
   "will-ai-cause-mass-unemployment.html": {
    "changed": "2026-09-05",
@@ -837,24 +1117,109 @@
    "h": "5e5995e82b6aa571",
    "origin": "bootstrap"
   },
+  "workbench.html": {
+   "changed": "",
+   "h": "dbe90a8612e5a635",
+   "origin": "bootstrap"
+  },
+  "workbench/agentfit.html": {
+   "changed": "",
+   "h": "0eb61b8b69411985",
+   "origin": "bootstrap"
+  },
+  "workbench/classroompuzzles.html": {
+   "changed": "",
+   "h": "d6a8a6ba23a6a321",
+   "origin": "bootstrap"
+  },
+  "workbench/embedpuzzles.html": {
+   "changed": "",
+   "h": "27c83f810f34c079",
+   "origin": "bootstrap"
+  },
+  "workbench/evidencebrief.html": {
+   "changed": "",
+   "h": "92f3ebd078e9b086",
+   "origin": "bootstrap"
+  },
+  "workbench/evidencewatch.html": {
+   "changed": "",
+   "h": "69abbbd17dcb0391",
+   "origin": "bootstrap"
+  },
+  "workbench/filinglens-workspace.html": {
+   "changed": "",
+   "h": "769f664699fa1fb2",
+   "origin": "bootstrap"
+  },
+  "workbench/job-evidence.html": {
+   "changed": "",
+   "h": "f7737b385ab766cd",
+   "origin": "bootstrap"
+  },
+  "workbench/localebatch-qa.html": {
+   "changed": "",
+   "h": "f46ca33f4aec32da",
+   "origin": "bootstrap"
+  },
+  "workbench/modelmeter-reconcile.html": {
+   "changed": "",
+   "h": "f5802df6e51cd002",
+   "origin": "bootstrap"
+  },
+  "workbench/puzzleclub.html": {
+   "changed": "",
+   "h": "cfdb20ec6b215a1d",
+   "origin": "bootstrap"
+  },
+  "workbench/querysprint-projects.html": {
+   "changed": "",
+   "h": "70389faee99e6302",
+   "origin": "bootstrap"
+  },
+  "workbench/rfq-roundbook.html": {
+   "changed": "",
+   "h": "a5a852d415985b00",
+   "origin": "bootstrap"
+  },
+  "workbench/scamchecklist.html": {
+   "changed": "",
+   "h": "ad69c3a7ab7caa2c",
+   "origin": "bootstrap"
+  },
+  "workbench/tradecheck-team.html": {
+   "changed": "",
+   "h": "54e5bb9073080a62",
+   "origin": "bootstrap"
+  },
+  "workbench/workflowcost.html": {
+   "changed": "",
+   "h": "ee361f4a41a9c867",
+   "origin": "bootstrap"
+  },
   "your-agi-timeline.html": {
    "changed": "2026-08-14",
    "h": "ce7e3fa68fd69b70",
    "origin": "bootstrap"
   },
   "zh/agi-test.html": {
-   "changed": "2026-07-12",
-   "h": "5db9ff71b2dd432f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "2e4e13b153e4b378",
+   "origin": "observed"
   },
   "zh/agi-vs-superintelligence.html": {
-   "changed": "2026-07-11",
-   "h": "7bca78375d3b6fa1",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c4df4542ceccdb91",
+   "origin": "observed"
   },
   "zh/ai-and-your-job.html": {
-   "changed": "2026-09-05",
-   "h": "d32cbb3198877971",
+   "changed": "2026-10-09",
+   "h": "688ffac8da8ce71c",
+   "origin": "observed"
+  },
+  "zh/ai-infrastructure.html": {
+   "changed": "2026-09-30",
+   "h": "12ae988723413bae",
    "origin": "bootstrap"
   },
   "zh/ai-job-risk-check.html": {
@@ -863,88 +1228,328 @@
    "origin": "bootstrap"
   },
   "zh/ai-orders-of-magnitude-explained.html": {
-   "changed": "2026-08-16",
-   "h": "15e00d652a76be13",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "0b3b1feef8836ef8",
+   "origin": "observed"
   },
   "zh/ai-stock-exposure.html": {
-   "changed": "2026-08-05",
-   "h": "42c799f6abce90f9",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "35a84e9332f2ffb8",
+   "origin": "observed"
   },
   "zh/ai-tools.html": {
-   "changed": "2026-08-14",
-   "h": "e151312a4d69219a",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "ee3fe86caf973950",
+   "origin": "observed"
   },
   "zh/ai-vs-human-intelligence.html": {
-   "changed": "2026-09-05",
-   "h": "742f1c61dcd0049a",
+   "changed": "2026-10-09",
+   "h": "51ef3c12c0b6bd66",
+   "origin": "observed"
+  },
+  "zh/ai-weekly-report.html": {
+   "changed": "2026-10-01",
+   "h": "46da93ad7007b16d",
    "origin": "bootstrap"
   },
   "zh/audits.html": {
-   "changed": "2026-08-23",
-   "h": "7945177dba6690d9",
+   "changed": "2026-10-09",
+   "h": "d23faf91889f0fd8",
+   "origin": "observed"
+  },
+  "zh/create.html": {
+   "changed": "2026-09-29",
+   "h": "3bf95de931a986b4",
    "origin": "bootstrap"
   },
   "zh/deepseek-vs-openai-gap.html": {
-   "changed": "2026-07-11",
-   "h": "3b4abb0d7cf222e0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "945badecbcfdef58",
+   "origin": "observed"
   },
   "zh/did-open-source-ai-fade.html": {
-   "changed": "2026-06-30",
-   "h": "e151ec047abcd3e5",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "001e7a3ef0123abc",
+   "origin": "observed"
   },
   "zh/does-copying-13f-work.html": {
-   "changed": "2026-08-30",
-   "h": "947749116baabae3",
+   "changed": "2026-10-09",
+   "h": "ad2e3729057b2d49",
+   "origin": "observed"
+  },
+  "zh/earn.html": {
+   "changed": "2026-10-01",
+   "h": "981e8ec937d34a72",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/clip-service.html": {
+   "changed": "2026-10-01",
+   "h": "b23ace60d5443a03",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/faq-automation.html": {
+   "changed": "2026-10-01",
+   "h": "1a0dd12ccf4d0719",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/launch-acceptance.html": {
+   "changed": "2026-10-01",
+   "h": "0844ca49617baa04",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/product-visuals.html": {
+   "changed": "2026-10-01",
+   "h": "eb1c2e5ad411b7aa",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/subtitle-localization.html": {
+   "changed": "2026-10-01",
+   "h": "3f5ef8ede2b9be08",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/tiktok-ad-brief.html": {
+   "changed": "2026-10-01",
+   "h": "519067b5e52999f1",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/tiktok-effect-prototype.html": {
+   "changed": "2026-10-01",
+   "h": "ea2770042452fa51",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/tutorial-production.html": {
+   "changed": "2026-10-01",
+   "h": "31ec67884de30d5c",
+   "origin": "bootstrap"
+  },
+  "zh/earn/cases/workflow-maintenance.html": {
+   "changed": "2026-10-01",
+   "h": "2a5c39036872c269",
+   "origin": "bootstrap"
+  },
+  "zh/earn/delivery-lab.html": {
+   "changed": "2026-10-01",
+   "h": "0166aac7e99d8f8d",
+   "origin": "bootstrap"
+  },
+  "zh/earn/method.html": {
+   "changed": "2026-10-01",
+   "h": "f048a3f36815ad14",
+   "origin": "bootstrap"
+  },
+  "zh/earn/open-source.html": {
+   "changed": "2026-10-01",
+   "h": "f56dde727013c17c",
    "origin": "bootstrap"
   },
   "zh/elon-musk-agi-prediction.html": {
-   "changed": "2026-07-11",
-   "h": "80df38f188125c1e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "01ab7e0acfb2cdc3",
+   "origin": "observed"
   },
   "zh/future-bet.html": {
    "changed": "2026-07-25",
    "h": "42ab8d26a8ea1abd",
    "origin": "bootstrap"
   },
-  "zh/how-close-is-agi.html": {
-   "changed": "2026-07-11",
-   "h": "81d70e60ba0962b4",
+  "zh/future-guide.html": {
+   "changed": "2026-10-09",
+   "h": "756d44f56aaceda0",
    "origin": "bootstrap"
+  },
+  "zh/future-guide/agent-coordination.html": {
+   "changed": "2026-10-03",
+   "h": "b62918214d981a83",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/agent-permissions.html": {
+   "changed": "2026-10-03",
+   "h": "23b184b7d3984c8f",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/agents-recover.html": {
+   "changed": "2026-10-03",
+   "h": "43ac7e22ee6e06d3",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/agents-take-time.html": {
+   "changed": "2026-10-03",
+   "h": "c635e9d74ffb46db",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/ai-work-organization.html": {
+   "changed": "2026-10-03",
+   "h": "63d15c663a5f3ff3",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/career-change-together.html": {
+   "changed": "2026-10-03",
+   "h": "584cb89870bd0f86",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/creative-control.html": {
+   "changed": "2026-10-03",
+   "h": "baa43fe8954046e8",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/delegate-keep-judgment.html": {
+   "changed": "2026-10-03",
+   "h": "299859dede326359",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/deployable-trust.html": {
+   "changed": "2026-10-03",
+   "h": "070ae9d6ceec6729",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/distribution-opportunity.html": {
+   "changed": "2026-10-09",
+   "h": "6dc3eed14ba0f93a",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/domain-knowledge.html": {
+   "changed": "2026-10-03",
+   "h": "d20737d6a44eadab",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/durable-skills.html": {
+   "changed": "2026-10-03",
+   "h": "fa0531eb5ca71659",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/evaluate-your-task.html": {
+   "changed": "2026-10-03",
+   "h": "82410f775f6da7c8",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/fast-ai-progress.html": {
+   "changed": "2026-10-03",
+   "h": "6fa36896026f0bbc",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/feedback-before-answers.html": {
+   "changed": "2026-10-03",
+   "h": "d32ffb70e27e27b1",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/improvement-bottlenecks.html": {
+   "changed": "2026-10-03",
+   "h": "df02e5ca9d5707d5",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/interactive-worlds.html": {
+   "changed": "2026-10-03",
+   "h": "8874824d8f153b24",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/learn-by-making.html": {
+   "changed": "2026-10-03",
+   "h": "177ec5f457078ec8",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/learning-needs-people.html": {
+   "changed": "2026-10-03",
+   "h": "be06767e43837624",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/learning-with-ai.html": {
+   "changed": "2026-10-03",
+   "h": "498c4b6e24a9d861",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/many-models.html": {
+   "changed": "2026-10-03",
+   "h": "8175d5c7996d5a32",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/method.html": {
+   "changed": "2026-10-03",
+   "h": "22d53722dc6550a0",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/metrics-versus-progress.html": {
+   "changed": "2026-10-03",
+   "h": "f278dbd94faacf59",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/mutable-software.html": {
+   "changed": "2026-10-03",
+   "h": "0414b44632931096",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/prototype-together.html": {
+   "changed": "2026-10-03",
+   "h": "ab9fe20b8b331972",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/requirements-still-matter.html": {
+   "changed": "2026-10-03",
+   "h": "d1f4c43ae94470a9",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/safety-is-engineering.html": {
+   "changed": "2026-10-03",
+   "h": "f90ee75b0aa5a47b",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/simulation-gap.html": {
+   "changed": "2026-10-03",
+   "h": "86f0b484d7b96c73",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/small-decisions.html": {
+   "changed": "2026-10-03",
+   "h": "f74bbc4d7e71935d",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/software-judgment.html": {
+   "changed": "2026-10-03",
+   "h": "c005e61a70e8dbe0",
+   "origin": "bootstrap"
+  },
+  "zh/future-guide/test-failure-cases.html": {
+   "changed": "2026-10-03",
+   "h": "a964dc0a40479cb0",
+   "origin": "bootstrap"
+  },
+  "zh/how-close-is-agi.html": {
+   "changed": "2026-10-09",
+   "h": "0c5b1ae46ab66d2a",
+   "origin": "observed"
   },
   "zh/how-fast-is-ai-improving.html": {
-   "changed": "2026-07-12",
-   "h": "a4f1836e97adab1f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c84b7d4f4d2d5841",
+   "origin": "observed"
   },
   "zh/how-will-we-know-agi-arrived.html": {
-   "changed": "2026-07-12",
-   "h": "af7e9d8e22178db6",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "0a658e2aed480562",
+   "origin": "observed"
   },
   "zh/invest.html": {
-   "changed": "2026-09-19",
-   "h": "72b0ffcc8dbf5db2",
+   "changed": "2026-10-09",
+   "h": "f4597cd05a7a439d",
    "origin": "observed"
   },
   "zh/is-agi-inevitable.html": {
-   "changed": "2026-07-12",
-   "h": "175c0072119a9b6b",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "2bac2bdeb6f9aa3d",
+   "origin": "observed"
   },
   "zh/is-agi-just-hype.html": {
-   "changed": "2026-07-11",
-   "h": "55c2c420ab6fa4d0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "737dc9d2c9dd2f7a",
+   "origin": "observed"
   },
   "zh/is-chatgpt-agi.html": {
-   "changed": "2026-07-12",
-   "h": "5e0a3b66fa862346",
+   "changed": "2026-10-09",
+   "h": "2a7a89981ea8226a",
+   "origin": "observed"
+  },
+  "zh/jarvis.html": {
+   "changed": "2026-10-09",
+   "h": "01ed409defc0efd9",
    "origin": "bootstrap"
   },
   "zh/justin-sun-2013.html": {
@@ -957,45 +1562,65 @@
    "h": "d81bc1ebe967ca9d",
    "origin": "bootstrap"
   },
-  "zh/narrow-vs-general-ai.html": {
-   "changed": "2026-07-12",
-   "h": "71eec9d77c7a2da6",
+  "zh/members.html": {
+   "changed": "",
+   "h": "536e158c48271271",
    "origin": "bootstrap"
   },
+  "zh/mentor.html": {
+   "changed": "2026-10-01",
+   "h": "4986986bf297c832",
+   "origin": "bootstrap"
+  },
+  "zh/narrow-vs-general-ai.html": {
+   "changed": "2026-10-09",
+   "h": "d086575564df7059",
+   "origin": "observed"
+  },
   "zh/paradigm-experiment.html": {
-   "changed": "2026-09-05",
-   "h": "85d0cc2dbeebe722",
+   "changed": "2026-10-09",
+   "h": "550414de1bb6459e",
+   "origin": "observed"
+  },
+  "zh/portfolio-tracker.html": {
+   "changed": "2026-10-03",
+   "h": "12b5e8aaf5c75e8f",
    "origin": "bootstrap"
   },
   "zh/progress-index.html": {
-   "changed": "2026-08-08",
-   "h": "721931a35986f325",
+   "changed": "2026-10-09",
+   "h": "f403174fb266886f",
+   "origin": "observed"
+  },
+  "zh/relay-demo.html": {
+   "changed": "2026-09-30",
+   "h": "a807108b7020f122",
    "origin": "bootstrap"
   },
   "zh/sam-altman-agi-prediction.html": {
-   "changed": "2026-07-11",
-   "h": "3a74091674713979",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "96974a67528138d7",
+   "origin": "observed"
   },
   "zh/situational-awareness-summary.html": {
-   "changed": "2026-08-16",
-   "h": "8db5cd8712a857f6",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "3f02b50fa6699109",
+   "origin": "observed"
   },
   "zh/us-china-ai-arms-race.html": {
-   "changed": "2026-07-11",
-   "h": "86117cf0fdf08c79",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "432abfd509f1395e",
+   "origin": "observed"
   },
   "zh/was-aschenbrenner-right.html": {
-   "changed": "2026-06-30",
-   "h": "471c03fd2b02567e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "7012291681b9f93a",
+   "origin": "observed"
   },
   "zh/what-is-agi.html": {
-   "changed": "2026-07-10",
-   "h": "f9edca4eb97fdf96",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "00566ee1f77c73a0",
+   "origin": "observed"
   },
   "zh/what-is-b-ai.html": {
    "changed": "2026-08-23",
@@ -1008,58 +1633,138 @@
    "origin": "bootstrap"
   },
   "zh/what-is-superintelligence.html": {
-   "changed": "2026-07-11",
-   "h": "1991fb220be16d32",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "c74717cf48994906",
+   "origin": "observed"
   },
   "zh/what-is-the-singularity.html": {
-   "changed": "2026-07-12",
-   "h": "7fc8f2ee324ba49e",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "87fbe508e310e744",
+   "origin": "observed"
   },
   "zh/what-jobs-are-safe-from-ai.html": {
-   "changed": "2026-09-05",
-   "h": "b094ae3e249abe5f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "726fcc6fdb060a6d",
+   "origin": "observed"
   },
   "zh/when-will-agi-arrive.html": {
-   "changed": "2026-06-30",
-   "h": "4a6fb208457151d0",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "bc170c3eec1dab93",
+   "origin": "observed"
   },
   "zh/who-is-building-agi.html": {
-   "changed": "2026-07-12",
-   "h": "78b178ac481c5f50",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "e6990b58d4d86634",
+   "origin": "observed"
   },
   "zh/who-is-leopold-aschenbrenner.html": {
-   "changed": "2026-07-31",
-   "h": "09310d1f004acc61",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "a4a18ee505091241",
+   "origin": "observed"
   },
   "zh/will-agi-arrive-2027.html": {
-   "changed": "2026-06-30",
-   "h": "7fe64342fb721dd7",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "0a0e692f332550f3",
+   "origin": "observed"
   },
   "zh/will-ai-cause-mass-unemployment.html": {
-   "changed": "2026-09-05",
-   "h": "b4d63497b0a57506",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "8d911142a7ad765a",
+   "origin": "observed"
   },
   "zh/will-ai-replace-programmers.html": {
-   "changed": "2026-09-05",
-   "h": "290353ea8689311f",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "99417eb18eea61de",
+   "origin": "observed"
   },
   "zh/will-ai-take-over.html": {
-   "changed": "2026-09-05",
-   "h": "ea7ac73b9f3df996",
-   "origin": "bootstrap"
+   "changed": "2026-10-09",
+   "h": "1a0e42b2a95bf84a",
+   "origin": "observed"
   },
   "zh/will-china-beat-us-to-agi.html": {
-   "changed": "2026-06-30",
-   "h": "a2e2202940632959",
+   "changed": "2026-10-09",
+   "h": "8f214318a7a5446a",
+   "origin": "observed"
+  },
+  "zh/workbench.html": {
+   "changed": "",
+   "h": "d19e8ab87f5d1887",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/agentfit.html": {
+   "changed": "",
+   "h": "dc3408a101a17328",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/classroompuzzles.html": {
+   "changed": "",
+   "h": "5c21247fd077d1eb",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/embedpuzzles.html": {
+   "changed": "",
+   "h": "ef02ab44c7cb36c8",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/evidencebrief.html": {
+   "changed": "",
+   "h": "5407cdbaf6f43f23",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/evidencewatch.html": {
+   "changed": "",
+   "h": "fcc67b714eb634b6",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/filinglens-workspace.html": {
+   "changed": "",
+   "h": "248af5f655a6947d",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/job-evidence.html": {
+   "changed": "",
+   "h": "69be1342986bbec5",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/localebatch-qa.html": {
+   "changed": "",
+   "h": "c7ce171cd9a5af90",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/modelmeter-reconcile.html": {
+   "changed": "",
+   "h": "ba2f456c9efcb0c3",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/puzzleclub.html": {
+   "changed": "",
+   "h": "b75462658d75868c",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/querysprint-projects.html": {
+   "changed": "",
+   "h": "9dca93bcc518523d",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/rfq-roundbook.html": {
+   "changed": "",
+   "h": "13c81933b0e6cc8c",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/scamchecklist.html": {
+   "changed": "",
+   "h": "f5ad0e9be932c76d",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/tradecheck-team.html": {
+   "changed": "",
+   "h": "eac3457883ac4294",
+   "origin": "bootstrap"
+  },
+  "zh/workbench/workflowcost.html": {
+   "changed": "",
+   "h": "62333e7e2cfa0d63",
    "origin": "bootstrap"
   }
  },
