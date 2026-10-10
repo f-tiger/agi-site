@@ -137,3 +137,9 @@ Owner 最新要求“限制使用次数，免费单人一次使用然后引导�
 反证是按钮可能增加界面复杂度，复制的不受信任标题也可能把提示注入带入下一次任务。故草稿不复制来源说明和 URL，明确标注元数据“不受信任且不代表证据充分”，重置记忆、联网、周期和云端同意；只有用户补充、复核并再次同意后才提交。确定性方案新增 0 次模型调用；当前 8B、小模型和更强 70B 自评都缺少冻结人工标签支持，暂不用于此步骤。
 
 冻结 12 个中英、缺失/重复引用、超长、控制符与恶意文本案例：v13 不存在逐条纠错路径，特定流程基线为 0/12；v14 纯函数为 12/12，并通过当时全部 70 项 Jarvis 单元、会员与安全测试。这证明纠错交接边界，不证明语义支持、模型质量、真实客户价值或留存。完整三轮优化、两轮对抗检查、部署起点和数据未知项见 [v14 实现记录](agi-jarvis-finding-correction-2026-10-08.md)。
+
+## 2026-10-10：用固定自报状态形成任务恢复提示
+
+新增核对 Microsoft Research 的 [CHI 2010 任务恢复线索研究](https://www.microsoft.com/en-us/research/publication/evaluating-cues-for-resuming-interrupted-programming-tasks/)、OpenAI 的 [Dots Activity 说明](https://openai.com/index/introducing-dots/) 与 Anthropic 的 [有效 agent 工程指南](https://www.anthropic.com/research/building-effective-agents/)。它们共同支持把可检查的最近状态放在恢复入口，但不证明更多状态能提高本站的真实任务成功。
+
+反证是 Microsoft 样本属于编程中断场景且年代较早；Jarvis 的完成/受阻状态由用户自报，不能推断现实成果。故 v18 不使用小模型、当前 8B 或更强模型总结，不展示完成百分比，只由确定性代码把当前运行的固定枚举与最后记录时间显示在私有任务列表和详情中。无进展、旧运行、未知状态和越界索引不产生提示；没有新 D1 字段、客户文本、GA4 参数、token 或后台工作。完整三轮优化、两轮对抗检查、冻结实验和发布边界见 [v18 实现记录](agi-jarvis-resumption-cue-2026-10-10.md)。
