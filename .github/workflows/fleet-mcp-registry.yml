@@ -1,0 +1,148 @@
+name: Register remaining fleet MCP servers
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/mcp-registry/**
+      - .github/workflows/fleet-mcp-registry.yml
+  pull_request:
+    paths:
+      - tools/mcp-registry/**
+      - .github/workflows/fleet-mcp-registry.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fleet-mcp-registry-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  RELEASE_TAG: fleet-mcp-registry-2026-10-10
+
+jobs:
+  validate-remote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install jsonschema==4.25.1
+      - name: Validate registration receipts and remote manifests
+        run: |
+          python -m unittest discover -s tools/mcp-registry -p 'test_registry.py'
+          python tools/mcp-registry/registry.py validate
+          python tools/mcp-registry/registry.py live
+
+  build-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install jsonschema==4.25.1
+      - name: Build and verify local MCP bundles
+        run: |
+          node tools/mcp-registry/build-local.mjs --output "$RUNNER_TEMP/fleet-mcp-bundles" --release-tag "$RELEASE_TAG" --repository "$GITHUB_REPOSITORY"
+          node tools/mcp-registry/local-packages/smoke.mjs --output "$RUNNER_TEMP/fleet-mcp-bundles"
+          python tools/mcp-registry/registry.py validate --manifest-dir "$RUNNER_TEMP/fleet-mcp-bundles/servers"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fleet-mcp-bundles-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/fleet-mcp-bundles/artifacts/
+            ${{ runner.temp }}/fleet-mcp-bundles/servers/
+            ${{ runner.temp }}/fleet-mcp-bundles/build-index.json
+            ${{ runner.temp }}/fleet-mcp-bundles/smoke-results.json
+          retention-days: 14
+          if-no-files-found: error
+
+  release:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build-local
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: fleet-mcp-bundles-${{ github.sha }}
+          path: ${{ runner.temp }}/fleet-mcp-bundles
+      - name: Publish immutable local artifacts and verify downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/mcp-registry/release.py --directory "$RUNNER_TEMP/fleet-mcp-bundles" --tag "$RELEASE_TAG" --repository "$GITHUB_REPOSITORY" --target "$GITHUB_SHA"
+
+  register-local:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: fleet-mcp-bundles-${{ github.sha }}
+          path: ${{ runner.temp }}/fleet-mcp-bundles
+      - name: Install pinned publisher with release digest
+        run: |
+          mkdir -p "$RUNNER_TEMP/mcp-publisher"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP/mcp-publisher" mcp-publisher
+      - name: Authenticate using short-lived GitHub OIDC
+        run: '"$RUNNER_TEMP/mcp-publisher/mcp-publisher" login github-oidc'
+      - name: Register and verify every exact version
+        run: python tools/mcp-registry/registry.py publish --publisher "$RUNNER_TEMP/mcp-publisher/mcp-publisher" --manifest-dir "$RUNNER_TEMP/fleet-mcp-bundles/servers" --receipt "$RUNNER_TEMP/registry-receipts.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fleet-local-mcp-registry-receipts-${{ github.sha }}
+          path: ${{ runner.temp }}/registry-receipts.json
+          retention-days: 30
+          if-no-files-found: warn
+
+  register-remote:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: validate-remote
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned publisher with release digest
+        run: |
+          mkdir -p "$RUNNER_TEMP/mcp-publisher"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP/mcp-publisher" mcp-publisher
+      - name: Authenticate using short-lived GitHub OIDC
+        run: '"$RUNNER_TEMP/mcp-publisher/mcp-publisher" login github-oidc'
+      - name: Register and verify every exact version
+        run: python tools/mcp-registry/registry.py publish --publisher "$RUNNER_TEMP/mcp-publisher/mcp-publisher" --manifest-dir tools/mcp-registry/manifests --receipt "$RUNNER_TEMP/registry-receipts.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fleet-remote-mcp-registry-receipts-${{ github.sha }}
+          path: ${{ runner.temp }}/registry-receipts.json
+          retention-days: 30
+          if-no-files-found: warn

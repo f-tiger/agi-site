@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-10T15:58:38Z",
+  "scope": "Unauthenticated MCP metadata only; no tools/call or service configuration changes.",
+  "free": {
+    "url": "https://baipiaoji.com/api/ai-mcp",
+    "initializeStatus": 200,
+    "protocolVersion": "2025-06-18",
+    "serverInfo": {
+      "name": "bpj-ai-tools",
+      "version": "0.1.0"
+    },
+    "toolsListStatus": 200,
+    "tools": ["list_bpj_ai_tools", "review_task_state"],
+    "registrationDecision": "Ready for official registry publication using manifests/bpj-ai-tools.json."
+  },
+  "pro": {
+    "url": "https://baipiaoji.com/api/ai-mcp-pro",
+    "initializeStatus": 503,
+    "response": {"error": "paid_mcp_not_launched"},
+    "registrationDecision": "Excluded: service is not launched; registration must not imply availability or enable paid service."
+  },
+  "sourceEvidence": [
+    "sites/baipiaoji/lib/ai-mcp.mjs",
+    "sites/baipiaoji/lib/ai-tool-registry.mjs",
+    "sites/baipiaoji/docs/ai-tools-release-20260926.md"
+  ],
+  "limitations": [
+    "Metadata checks do not prove tool-execution success or external usage.",
+    "Rule-based reviews use unverified user evidence, not calibrated success probabilities."
+  ]
+}

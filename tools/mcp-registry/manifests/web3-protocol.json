@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/agiscorecard-web3-protocol",
+  "description": "Read dated x402, ERC-8004 and token-interface profiles with official sources and freshness limits.",
+  "version": "1.7.0",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/web3-studio"
+  },
+  "websiteUrl": "https://protocol.agiscorecard.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://protocol.agiscorecard.com/mcp"
+    }
+  ]
+}
