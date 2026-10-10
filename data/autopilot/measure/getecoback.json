@@ -2,12 +2,12 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 19,
-    "p7": 21
+    "n7": 15,
+    "p7": 20
    },
    "btu_calc": {
     "n7": 11,
-    "p7": 18
+    "p7": 14
    },
    "buyer_result": {
     "n7": 1,
@@ -22,12 +22,12 @@
     "p7": 0
    },
    "feuchte_now": {
-    "n7": 13,
-    "p7": 16
+    "n7": 11,
+    "p7": 19
    },
    "heat_now": {
-    "n7": 7,
-    "p7": 54
+    "n7": 6,
+    "p7": 55
    },
    "laundry_view": {
     "n7": 2,
@@ -38,45 +38,49 @@
     "p7": 3
    },
    "page_view": {
-    "n7": 190,
-    "p7": 229
+    "n7": 176,
+    "p7": 243
    },
    "popup_click": {
     "n7": 2,
-    "p7": 3
+    "p7": 2
    },
    "popup_close": {
-    "n7": 15,
-    "p7": 8
+    "n7": 11,
+    "p7": 12
    },
    "popup_view": {
-    "n7": 35,
-    "p7": 29
+    "n7": 29,
+    "p7": 33
    },
    "seal_fit": {
-    "n7": 1,
-    "p7": 0
+    "n7": 0,
+    "p7": 1
    },
    "strom_now": {
-    "n7": 12,
-    "p7": 26
+    "n7": 13,
+    "p7": 27
    },
    "stromkosten_calc": {
     "n7": 4,
     "p7": 0
    },
    "strompreis_api": {
-    "n7": 7,
-    "p7": 5
+    "n7": 6,
+    "p7": 6
    },
    "video_play": {
     "n7": 2,
     "p7": 1
+   },
+   "watt_calc": {
+    "n7": 1,
+    "p7": 0
    }
   },
   "zero_hits": []
  },
- "fetched": "2026-10-09",
+ "fetched": "2026-10-10",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -85,33 +89,41 @@
    "n7": 19,
    "p7": 1
   },
-  "/en/": {
-   "n7": 3,
-   "p7": 0
+  "/en/guide/dehumidifier-drying-clothes-cost.html": {
+   "n7": 4,
+   "p7": 3
   },
   "/en/guide/portable-ac-not-cooling.html": {
    "n7": 3,
    "p7": 2
   },
   "/en/guide/portable-ac-tilt-and-turn-windows.html": {
-   "n7": 7,
-   "p7": 2
+   "n7": 6,
+   "p7": 3
   },
   "/guide/abluftschlauch-verlaengern.html": {
    "n7": 5,
-   "p7": 0
+   "p7": 2
   },
   "/guide/balkon-terrasse-beschatten.html": {
    "n7": 4,
    "p7": 0
   },
+  "/guide/btu-rechner.html": {
+   "n7": 2,
+   "p7": 1
+  },
   "/guide/heizluefter-stromverbrauch.html": {
    "n7": 4,
-   "p7": 6
+   "p7": 4
   },
-  "/guide/klimaanlage-50-qm.html": {
+  "/guide/heizung-30-qm.html": {
+   "n7": 3,
+   "p7": 1
+  },
+  "/guide/infrarotheizung-watt-rechner.html": {
    "n7": 2,
-   "p7": 0
+   "p7": 1
   },
   "/guide/klimaanlage-kippfenster.html": {
    "n7": 5,
@@ -122,36 +134,32 @@
    "p7": 3
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 4,
+   "n7": 5,
    "p7": 8
   },
   "/guide/luftentfeuchter-20-qm.html": {
    "n7": 2,
-   "p7": 0
+   "p7": 1
   },
   "/guide/luftentfeuchter-keller.html": {
    "n7": 4,
    "p7": 0
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 4,
-   "p7": 6
-  },
-  "/guide/mobile-klimaanlage-kuehlt-nicht.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 7
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
    "n7": 10,
    "p7": 9
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 3,
-   "p7": 1
+   "n7": 2,
+   "p7": 2
   },
   "/guide/strompreis-radar.html": {
-   "n7": 7,
-   "p7": 5
+   "n7": 6,
+   "p7": 6
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 5,
@@ -159,11 +167,11 @@
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 8,
-   "p7": 4
+   "p7": 3
   },
   "/kategorie/klimaanlagen.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   },
   "/tools.html": {
    "n7": 6,
@@ -172,10 +180,6 @@
   "/waeschetrockner-oder-luftentfeuchter.html": {
    "n7": 2,
    "p7": 0
-  },
-  "/wie-wir-empfehlen.html": {
-   "n7": 2,
-   "p7": 1
   },
   "/winter-energiesparen.html": {
    "n7": 2,

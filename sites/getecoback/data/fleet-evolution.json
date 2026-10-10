@@ -3,7 +3,7 @@
   "site": "getecoback",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": null,
       "has_active_members": null
     },
@@ -26,13 +26,6 @@
   },
   "actions": [
     {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {},
-      "mode": "alert"
-    },
-    {
       "kind": "optimize_existing_page",
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
@@ -43,6 +36,13 @@
         "value_band": "100+"
       },
       "mode": "queue"
+    },
+    {
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {},
+      "mode": "observe"
     },
     {
       "kind": "content_gap",

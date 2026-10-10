@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-09",
+  "as_of": "2026-10-10",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 2,
+    "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 7,
+    "opportunities": 9,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-08T10:27:43.460Z",
-    "health": "2026-10-08T15:05:45Z",
-    "ai_referrals": "2026-10-08T15:06:20Z",
-    "opportunities": "2026-10-08",
-    "autopilot_receipt": "2026-10-09"
+    "membership": "2026-10-09T09:35:30.672Z",
+    "health": "2026-10-09T14:50:07Z",
+    "ai_referrals": "2026-10-09T14:50:39Z",
+    "opportunities": "2026-10-09",
+    "autopilot_receipt": "2026-10-10"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-08T10:27:43.460Z",
+    "generated": "2026-10-09T09:35:30.672Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": false,
+    "ok": true,
     "counters_complete": false,
     "sites": [
       {
@@ -75,7 +75,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -93,7 +93,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -134,7 +134,7 @@
       "supply": 0
     },
     {
-      "theme": "is there a program which returns the output of dumpsys activity activities as a ",
+      "theme": "is there an android shell program which returns open windows titles in last focu",
       "site": null,
       "state": "scout",
       "score": 2.05,
@@ -161,6 +161,24 @@
       "supply": 0
     },
     {
+      "theme": "is there an app store from which applications can t be taken down by anybody not",
+      "site": null,
+      "state": "scout",
+      "score": 2.01,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "software that converts pen hovering mode to pen contact down down mode",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "using google or any other search engine to search for pdfs with fixed page range",
       "site": null,
       "state": "scout",
@@ -170,38 +188,16 @@
       "supply": 0
     },
     {
-      "theme": "is there an app store from which applications can t be taken down by anybody not",
+      "theme": "is there an android shell program to switch to any open application according to",
       "site": null,
       "state": "scout",
-      "score": 1.99,
+      "score": 1.96,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     }
   ],
   "actions": [
-    {
-      "site": "getecoback",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
     {
       "site": "agiscorecard",
       "kind": "optimize_existing_page",
@@ -249,6 +245,26 @@
       "mode": "observe"
     },
     {
+      "site": "getecoback",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
       "site": "agiscorecard",
       "kind": "content_gap",
       "priority": 55,
@@ -278,9 +294,21 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 37,
+        "count": 34,
         "query": "steinfeld infrarotheizung",
         "value": 50700
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 5,
+        "query": "lets try the viral crumbl labubu",
+        "value": 17850
       },
       "mode": "queue"
     },
@@ -291,8 +319,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/future-guide",
-        "n7": 452,
-        "p7": 0
+        "n7": 483,
+        "p7": 29
       },
       "mode": "queue"
     },
@@ -314,7 +342,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 223,
+        "human_pv_28d": 233,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -325,7 +353,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 270,
+        "human_pv_28d": 252,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -336,7 +364,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 893,
+        "human_pv_28d": 921,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -357,7 +385,7 @@
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",

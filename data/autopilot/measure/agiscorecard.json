@@ -3,15 +3,15 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 31,
+    "n": 26,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 7,
+    "n": 8,
     "q": "tool:verdicts"
    },
    {
-    "n": 7,
+    "n": 6,
     "q": "tool:thesis_tracker"
    },
    {
@@ -19,39 +19,39 @@
     "q": "tool:invest_positions"
    },
    {
-    "n": 5,
-    "q": "tool:sunwatch_ledger"
+    "n": 6,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 5,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "q": "tool:sunwatch_ledger"
    }
   ]
  },
- "fetched": "2026-10-09",
+ "fetched": "2026-10-10",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/cn": {
-   "n7": 169,
-   "p7": 70
-  },
-  "/earn": {
-   "n7": 115,
-   "p7": 46
-  },
   "/future-guide": {
-   "n7": 452,
-   "p7": 0
+   "n7": 483,
+   "p7": 29
+  },
+  "/mentor": {
+   "n7": 81,
+   "p7": 20
   },
   "/search": {
-   "n7": 106,
-   "p7": 38
+   "n7": 125,
+   "p7": 34
   },
   "/zh/future-guide": {
-   "n7": 259,
-   "p7": 0
+   "n7": 236,
+   "p7": 59
+  },
+  "/zh/future-guide/agents-take-time": {
+   "n7": 74,
+   "p7": 18
   }
  },
  "site": "agiscorecard",

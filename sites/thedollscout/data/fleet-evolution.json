@@ -3,7 +3,7 @@
   "site": "thedollscout",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": null,
       "has_active_members": null
     },
@@ -14,7 +14,7 @@
     },
     "demand": {
       "has_underserved": false,
-      "has_gaps": false,
+      "has_gaps": true,
       "has_hot_pages": false,
       "top_underserved_page": null,
       "top_hot_page": null
@@ -26,11 +26,22 @@
   },
   "actions": [
     {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
       "evidence": {},
-      "mode": "alert"
+      "mode": "observe"
+    },
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count_band": "1-9",
+        "query": "lets try the viral crumbl labubu",
+        "value_band": "100+"
+      },
+      "mode": "queue"
     }
   ],
   "autonomous_changes": [

@@ -81,7 +81,10 @@
    "v": 35900
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 2,
+    "p7": 1
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/infrarotheizung-watt-rechner.html",
@@ -127,6 +130,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.875,
+   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
+   "q": "luftentfeuchter wohnmobil",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 21600
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.65,
    "page": "guide/heizung-10-qm.html",
    "q": "heizlüfter bad testsieger",
@@ -138,35 +152,24 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "guide/waesche-trocknen-wohnung.html",
-   "q": "luftentfeuchter wohnung ohne strom",
+   "match": 0.938,
+   "page": "guide/trotec-luftentfeuchter-test.html",
+   "q": "luftentfeuchter mit hepa filter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 20650
+   "stand": "2026-10-09",
+   "v": 16450
   },
   {
    "heat": null,
    "kind": "value",
-   "match": 0.933,
-   "page": "guide/luftentfeuchter-40-qm.html",
-   "q": "luftentfeuchter keller dauerbetrieb",
+   "match": 0.617,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "elektrischer luftentfeuchter test",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 17850
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/fensterabdichtung-selber-bauen.html",
-   "q": "luftentfeuchter selber bauen",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 16300
+   "stand": "2026-10-09",
+   "v": 15100
   },
   {
    "heat": null,
@@ -178,6 +181,17 @@
    "source": "related-queries",
    "stand": "2026-10-03",
    "v": 10700
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.917,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter fürs auto",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 9500
   },
   {
    "heat": null,
@@ -206,22 +220,11 @@
    "kind": "value",
    "match": 0.775,
    "page": "guide/schimmel-kleiderschrank.html",
-   "q": "luftentfeuchter nachfüllpack",
+   "q": "nachfüllpack luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 180
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.975,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 80
+   "stand": "2026-10-09",
+   "v": 150
   }
  ],
  "first_party_demand": {
@@ -247,16 +250,6 @@
    "source": "related-queries",
    "stand": "2026-10-02",
    "v": 49100
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "index.html",
-   "q": "obi luftentfeuchter mieten",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 42450
   },
   {
    "kind": "value",
@@ -287,16 +280,6 @@
    "source": "related-queries",
    "stand": "2026-10-02",
    "v": 31650
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "index.html",
-   "q": "uhu luftentfeuchter nachfüllbeutel",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 28600
   },
   {
    "kind": "value",
@@ -340,16 +323,6 @@
   },
   {
    "kind": "value",
-   "match": 0.533,
-   "page": "waeschetrockner-oder-luftentfeuchter.html",
-   "q": "luftentfeuchter testsieger ökotest",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 10900
-  },
-  {
-   "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
    "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
@@ -357,6 +330,16 @@
    "source": "related-queries",
    "stand": "2026-10-06",
    "v": 10550
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "pingi luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 9900
   },
   {
    "kind": "value",
@@ -380,6 +363,16 @@
   },
   {
    "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "pingi luftentfeuchter kompakt",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 5550
+  },
+  {
+   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "wmf perfection 840l kaffeevollautomat",
@@ -387,16 +380,6 @@
    "source": "related-queries",
    "stand": "2026-10-06",
    "v": 5250
-  },
-  {
-   "kind": "value",
-   "match": 0.53,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "akku-saugwischer testsieger stiftung warentest",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-10-08",
-   "v": 2300
   },
   {
    "kind": "value",
@@ -480,16 +463,6 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "vorwerk akku saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-10-08",
-   "v": 90
-  },
-  {
-   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "samsung kaffeevollautomat",
@@ -505,8 +478,8 @@
    "q": "bester saugwischer",
    "seed": "saugwischer",
    "source": "related-queries",
-   "stand": "2026-10-08",
-   "v": 60
+   "stand": "2026-10-09",
+   "v": 40
   },
   {
    "kind": "autocomplete-new",
@@ -599,9 +572,9 @@
    "v": 1
   }
  ],
- "generated": "2026-10-09",
+ "generated": "2026-10-10",
  "geo": "DE",
- "heat_source": "measured 2026-10-09 (25 pages); no notes",
+ "heat_source": "measured 2026-10-10 (25 pages); no notes",
  "hot_pages": [
   {
    "n7": 19,
@@ -615,17 +588,17 @@
   },
   {
    "n7": 8,
-   "p7": 4,
+   "p7": 3,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
-   "n7": 7,
-   "p7": 2,
+   "n7": 6,
+   "p7": 3,
    "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
-   "n7": 7,
-   "p7": 5,
+   "n7": 6,
+   "p7": 6,
    "page": "/guide/strompreis-radar.html"
   },
   {
@@ -635,7 +608,7 @@
   },
   {
    "n7": 5,
-   "p7": 0,
+   "p7": 2,
    "page": "/guide/abluftschlauch-verlaengern.html"
   },
   {
@@ -646,7 +619,17 @@
   {
    "n7": 5,
    "p7": 8,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 5,
+   "p7": 8,
    "page": "/guide/thermovorhang-ratgeber.html"
+  },
+  {
+   "n7": 4,
+   "p7": 3,
+   "page": "/en/guide/dehumidifier-drying-clothes-cost.html"
   },
   {
    "n7": 4,
@@ -655,7 +638,7 @@
   },
   {
    "n7": 4,
-   "p7": 6,
+   "p7": 4,
    "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
@@ -665,18 +648,8 @@
   },
   {
    "n7": 4,
-   "p7": 8,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 4,
    "p7": 0,
    "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 4,
-   "p7": 6,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   }
  ],
  "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = 读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。",
@@ -684,12 +657,11 @@
  "offtopic_dropped": [
   "heizdecke",
   "dreo atom one",
-  "meaco arete two 12l",
-  "avreno",
+  "meacodry arete one 12l",
   "roborock f25 ultra",
-  "vorwerk akkusauger",
-  "tabaksteuer",
-  "tineco"
+  "avreno",
+  "trotec ttk 30 e",
+  "tabaksteuer"
  ],
  "site": "getecoback",
  "source_notes": [
@@ -768,17 +740,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-watt-rechner.html",
-   "q": "infrarotheizung 100 watt",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-05",
-   "v": 34050
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.667,
    "page": "guide/infrarotheizung-decke-oder-wand.html",
    "q": "infrarotheizung wand testsieger",
@@ -812,6 +773,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.875,
+   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
+   "q": "luftentfeuchter wohnmobil",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 21600
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.65,
    "page": "guide/heizung-10-qm.html",
    "q": "heizlüfter bad testsieger",
@@ -823,35 +795,24 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "guide/waesche-trocknen-wohnung.html",
-   "q": "luftentfeuchter wohnung ohne strom",
+   "match": 0.938,
+   "page": "guide/trotec-luftentfeuchter-test.html",
+   "q": "luftentfeuchter mit hepa filter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 20650
+   "stand": "2026-10-09",
+   "v": 16450
   },
   {
    "heat": null,
    "kind": "value",
-   "match": 0.933,
-   "page": "guide/luftentfeuchter-40-qm.html",
-   "q": "luftentfeuchter keller dauerbetrieb",
+   "match": 0.617,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "elektrischer luftentfeuchter test",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 17850
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/fensterabdichtung-selber-bauen.html",
-   "q": "luftentfeuchter selber bauen",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-01",
-   "v": 16300
+   "stand": "2026-10-09",
+   "v": 15100
   },
   {
    "heat": null,
@@ -863,6 +824,17 @@
    "source": "related-queries",
    "stand": "2026-10-03",
    "v": 10700
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.917,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter fürs auto",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-09",
+   "v": 9500
   },
   {
    "heat": null,
