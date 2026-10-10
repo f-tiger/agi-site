@@ -7,6 +7,7 @@ async function laundryShareRecovery(page,lang,p){
  const field=name=>root.locator(`[name="${name}"]`),mode=value=>field('method').selectOption(value);
  const cost=async(dryer,dehum)=>{verify.match(await root.locator('[data-cost=dryer]').innerText(),dryer);verify.match(await root.locator('[data-cost=dehum]').innerText(),dehum);};
  const validShare=async()=>{verify(await form.evaluate(e=>e.checkValidity()));await page.waitForFunction(()=>!document.querySelector('#eco-tool-experience > .eco-actions:last-of-type button').disabled);verify(await preview.isVisible());verify.equal((await page.evaluate(()=>window.__qaBusiness)).length,0);};
+ const restored=async(method,dehum)=>{await page.waitForFunction(({method,dehum})=>{const r=document.querySelector('#laundry-check'),value=r?.querySelector('[data-cost=dehum]')?.textContent||'';return r?.querySelector('[name=method]')?.value===method&&!r.querySelector('[data-results]').hidden&&Number(value.replace(/[^0-9,.-]/g,'').replace(',','.'))===dehum;},{method,dehum});await validShare();};
  const invalid=async()=>{await submit.click();verify(!await form.evaluate(e=>e.checkValidity()));verify(!await root.locator('[data-results]').isVisible());verify(await prepare.isDisabled());};
  await page.waitForSelector('#eco-tool-experience[data-ready]');
  const details=root.locator('form details');if(await details.getAttribute('open')===null)await details.locator('summary').click();
@@ -33,13 +34,16 @@ async function laundryShareRecovery(page,lang,p){
  const draft=await panel.locator('textarea').inputValue();verify(!draft.includes(lang==='en'?'Average power (W)':'Mittlere Leistung (W)'));verify(!draft.includes('undefined'));
  // Active-only links reload, and old complete schemas remain readable.
  const route=hash=>base+p+'?__probe=1'+hash;
- await page.goto(route(measuredLink.hash));await page.waitForSelector('#eco-tool-experience[data-ready]');await validShare();await cost(/0[,.]60/,/0[,.]30/);
- await page.reload();await page.waitForSelector('#eco-tool-experience[data-ready]');await validShare();verify.equal(await field('method').inputValue(),'measured');
+ await page.goto(route(measuredLink.hash));await page.waitForSelector('#eco-tool-experience[data-ready]');await restored('measured',0.30);await cost(/0[,.]60/,/0[,.]30/);
+ await page.reload();await page.waitForSelector('#eco-tool-experience[data-ready]');await restored('measured',0.30);verify.equal(await field('method').inputValue(),'measured');
+ await field('dehum').fill('2');await submit.click();await validShare();await cost(/0[,.]60/,/0[,.]60/);
  const legacy={...measured,watts:'600',hours:''};
- await page.goto(route('#eco-v1='+encodeURIComponent(JSON.stringify({path:p,values:legacy}))));await validShare();await cost(/0[,.]60/,/0[,.]30/);
- await page.goto(route(estimateLink.hash));await validShare();await cost(/0[,.]60/,/1[,.]44/);
- await page.goBack();await validShare();await cost(/0[,.]60/,/0[,.]30/);
- await page.goForward();await validShare();await cost(/0[,.]60/,/1[,.]44/);
+ await page.goto(route('#eco-v1='+encodeURIComponent(JSON.stringify({path:p,values:legacy}))));await restored('measured',0.30);await cost(/0[,.]60/,/0[,.]30/);
+ await page.goto(route(estimateLink.hash));await restored('estimate',1.44);await cost(/0[,.]60/,/1[,.]44/);
+ await page.goBack();await restored('measured',0.30);await cost(/0[,.]60/,/0[,.]30/);
+ await page.goForward();await restored('estimate',1.44);await cost(/0[,.]60/,/1[,.]44/);
+ await field('hours').fill('1');await submit.click();await validShare();await cost(/0[,.]60/,/0[,.]18/);
+ const legacyEstimate={...estimate,dehum:'-1'};await page.goto(route('#eco-v1='+encodeURIComponent(JSON.stringify({path:p,values:legacyEstimate}))));await restored('estimate',1.44);verify.equal(await field('dehum').inputValue(),'1');
  await mode('measured');await field('dehum').fill('1');await submit.click();await validShare();await mode('estimate');await submit.click();await validShare();
  for(const width of [320,390]){await page.setViewportSize({width,height:844});verify(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await submit.click();await validShare();await cost(/0[,.]60/,/1[,.]44/);}
  return checks;
