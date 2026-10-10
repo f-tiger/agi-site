@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/agiscorecard-web3-evidence",
+  "description": "Review agent task evidence with sample deduplication, version filters and uncertainty intervals.",
+  "version": "1.7.0",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/web3-studio"
+  },
+  "websiteUrl": "https://evidence.agiscorecard.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://evidence.agiscorecard.com/mcp"
+    }
+  ]
+}

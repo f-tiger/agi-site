@@ -1,0 +1,48 @@
+[
+  {
+    "id": "filinglens",
+    "name": "io.github.f-tiger/filinglens",
+    "title": "FilingLens Local SEC Fact Comparison",
+    "description": "Compare the same SEC fact and period at two filing cutoffs locally, with source evidence.",
+    "version": "0.1.0",
+    "websiteUrl": "https://filinglens.agiscorecard.com/",
+    "source": { "path": "agents/filinglens-mcp", "revision": "37dcfa4fa96bf8d984220f810850ad035436bbe3", "tree": "e83eb68a600b5d3538c05343bb4b7d4ddc086a44" },
+    "files": ["package.json", "package-lock.json", "README.md", "LICENSE.txt", "THIRD-PARTY-NOTICES.txt", "src"],
+    "entryPoint": "src/server.mjs",
+    "node": ">=22.0.0",
+    "tools": ["filinglens_compare", "filinglens_example", "filinglens_periods"],
+    "smokeTool": { "name": "filinglens_example", "arguments": {} }
+  },
+  {
+    "id": "tradecheck",
+    "name": "io.github.f-tiger/tradecheck",
+    "title": "TradeCheck Local Invoice Review",
+    "description": "Review orders and supplier invoices locally with exact arithmetic and source-linked findings.",
+    "version": "0.2.0",
+    "websiteUrl": "https://rfqdesk.agiscorecard.com/",
+    "source": { "path": "agents/tradecheck-mcp", "revision": "37dcfa4fa96bf8d984220f810850ad035436bbe3", "tree": "5b3023eb4168cc405f1c9c8f77228e6f574480f4" },
+    "files": ["package.json", "package-lock.json", "README.md", "LICENSE.txt", "THIRD-PARTY-NOTICES.txt", "AGENT-WORKFLOW.md", "src", "tsconfig.json", "examples"],
+    "build": "typescript",
+    "entryPoint": "dist/server.js",
+    "node": ">=22.0.0",
+    "tools": ["tradecheck_example", "tradecheck_import_tables", "tradecheck_reconcile", "tradecheck_supplier_draft"],
+    "smokeTool": { "name": "tradecheck_example", "arguments": {} }
+  },
+  {
+    "id": "ecoback-local-tools",
+    "name": "io.github.f-tiger/ecoback-local-tools",
+    "title": "EcoBack Local Climate and Energy Tools",
+    "description": "Local climate and energy calculators with optional public weather and guide lookup for Germany/EU.",
+    "version": "1.1.0",
+    "websiteUrl": "https://getecoback.com/mcp.html",
+    "source": {
+      "repository": "f-tiger/getecoback-mcp",
+      "revision": "6c41b53faf07c0a6571e64400d553ed491a6ec72"
+    },
+    "files": ["package.json", "README.md", "LICENSE", "src"],
+    "entryPoint": "src/server.mjs",
+    "node": ">=18.0.0",
+    "tools": ["balkonspeicher_foerderung", "btu_empfehlung", "fensterabdichtung_laenge", "heizleistung_watt", "hitzewelle_vorschau", "klimaanlage_stromkosten", "ratgeber_lesen", "ratgeber_suche", "taupunkt_lueften"],
+    "smokeTool": { "name": "btu_empfehlung", "arguments": { "qm": 20, "sonne": "normal" } }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/agiscorecard-web3-reconcile",
+  "description": "Reconcile declared stablecoin invoices and transfers; flag partial, pending and mismatched payments.",
+  "version": "1.7.0",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/web3-studio"
+  },
+  "websiteUrl": "https://reconcile.agiscorecard.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://reconcile.agiscorecard.com/mcp"
+    }
+  ]
+}

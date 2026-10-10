@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/agiscorecard-web3-proof",
+  "description": "Estimate zkML proving and verification costs and latency from supplied measurements; no proofs run.",
+  "version": "1.7.0",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/web3-studio"
+  },
+  "websiteUrl": "https://proof.agiscorecard.com/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://proof.agiscorecard.com/mcp"
+    }
+  ]
+}
