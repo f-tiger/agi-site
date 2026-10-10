@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-10-09",
+ "fetched": "2026-10-10",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "darmstadt 98 – energie",
+   "traffic": "2000+"
+  }
+ ],
  "top": [
   {
-   "title": "münchberg",
-   "traffic": "200+"
-  },
-  {
-   "title": "pflanze",
-   "traffic": "200+"
-  },
-  {
-   "title": "andernach",
-   "traffic": "200+"
-  },
-  {
-   "title": "tankstelle",
+   "title": "joshua kimmich",
    "traffic": "2000+"
   },
   {
-   "title": "timo boll",
-   "traffic": "200+"
-  },
-  {
-   "title": "steffen krach",
-   "traffic": "10000+"
-  },
-  {
-   "title": "rosja",
-   "traffic": "200+"
-  },
-  {
-   "title": "pest",
+   "title": "volkswagen ag",
    "traffic": "5000+"
   },
   {
-   "title": "asml",
+   "title": "cedric teuchert",
    "traffic": "200+"
   },
   {
-   "title": "playstation",
-   "traffic": "500+"
+   "title": "ilse aigner",
+   "traffic": "200+"
+  },
+  {
+   "title": "marokko",
+   "traffic": "200+"
+  },
+  {
+   "title": "vfl osnabrück – dynamo",
+   "traffic": "5000+"
+  },
+  {
+   "title": "1. fc magdeburg – hannover 96",
+   "traffic": "50000+"
+  },
+  {
+   "title": "darmstadt 98 – energie",
+   "traffic": "2000+"
+  },
+  {
+   "title": "netphen",
+   "traffic": "200+"
+  },
+  {
+   "title": "micron technology",
+   "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-25",
-   "matched": []
-  },
   {
    "d": "2026-09-26",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-10-09",
    "matched": []
+  },
+  {
+   "d": "2026-10-10",
+   "matched": [
+    "darmstadt 98 – energie"
+   ]
   }
  ]
 }
