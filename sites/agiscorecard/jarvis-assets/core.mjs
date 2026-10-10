@@ -1,8 +1,21 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261009-17';
+export const VERSION='jarvis-20261010-18';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
+export function progressCue(task,lang='en'){
+ const actions=task?.result?.report?.nextActions;if(!Array.isArray(actions)||!actions.length)return null;
+ const counts={done:0,tried:0,blocked:0};let updated=0;
+ for(let index=0;index<actions.length;index++){
+  const value=task?.actionProgress?.[String(index)];if(!value||!Object.hasOwn(counts,value.state))continue;
+  counts[value.state]++;if(Number.isSafeInteger(value.updated)&&value.updated>updated)updated=value.updated;
+ }
+ const marked=counts.done+counts.tried+counts.blocked;if(!marked)return null;
+ const remaining=actions.length-marked,zh=lang==='zh',parts=zh?
+  [[counts.done,'已完成'],[counts.tried,'已尝试'],[counts.blocked,'受阻'],[remaining,'未标记']]:
+  [[counts.done,'completed'],[counts.tried,'tried'],[counts.blocked,'blocked'],[remaining,'not marked']];
+ return {text:(zh?'用户自报':'Self-reported')+' · '+parts.filter(([count])=>count>0).map(([count,label])=>zh?label+' '+count:count+' '+label).join(' · '),updated};
+}
 const str=(s,n)=>typeof s==='string'&&s.trim().length>0&&s.length<=n;
 export function inputOf(b){
  if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||typeof b.nonce!=='string'||!/^[a-f0-9]{32}$/.test(b.nonce))throw Error('invalid_request');
