@@ -12,3 +12,4 @@
 .finding-evidence{margin:8px 0 3px;border-left:2px solid var(--line);padding:5px 0 5px 12px}.finding-evidence summary{color:var(--blue);font-size:12px}.finding-evidence>p{margin:7px 0}.finding-source{background:var(--surface);border-radius:7px;margin:7px 0;padding:9px 11px;font-size:12px;overflow-wrap:anywhere}.finding-source a,.finding-source strong{display:block;font-weight:600}.finding-source p{font-size:12px;margin:4px 0;line-height:1.55}.finding-correction{display:block;margin-top:8px;padding-left:0}
 
 .handoff-receipt{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:inherit;max-width:100%;font-size:.88rem}.handoff-saved-evidence{margin:1rem 0}#handoff-preview h3{margin-top:0}
+.mission-item .mission-progress{color:var(--blue);line-height:1.55}.status-line .mission-progress{flex-basis:100%;color:var(--muted)}
