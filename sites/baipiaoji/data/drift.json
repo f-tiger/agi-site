@@ -1,10 +1,69 @@
 {
-  "generated": "2026-10-09",
+  "generated": "2026-10-10",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 103,
-  "fetched_fail": 24,
-  "pending": 7,
+  "fetched_ok": 104,
+  "fetched_fail": 23,
+  "pending": 8,
   "items": [
+    {
+      "slug": "n8n",
+      "url": "https://docs.n8n.io",
+      "confirmed": "2026-10-10",
+      "first_seen": "2026-10-09",
+      "added": [
+        "15days"
+      ],
+      "removed": [
+        "21days"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "deepinfra",
+      "url": "https://deepinfra.com",
+      "confirmed": "2026-10-10",
+      "first_seen": "2026-10-09",
+      "added": [
+        "$0.003",
+        "$0.004",
+        "$0.042",
+        "$0.105",
+        "$0.125",
+        "$0.14",
+        "$0.28",
+        "$0.42",
+        "$0.43",
+        "$0.563",
+        "$0.834",
+        "$0.87"
+      ],
+      "removed": [
+        "$0.006",
+        "$0.091",
+        "$0.136",
+        "$0.15",
+        "$0.20",
+        "$0.39",
+        "$0.488",
+        "$0.60",
+        "$0.68",
+        "$0.90",
+        "$1.17",
+        "$1.56"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-10",
+      "first_seen": "2026-10-09",
+      "added": [],
+      "removed": [
+        "1,s"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -204,17 +263,6 @@
         "4m"
       ],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-06",
-      "first_seen": "2026-10-05",
-      "added": [
-        "1,s"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "codex",
@@ -512,39 +560,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "n8n",
-      "url": "https://docs.n8n.io",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "21days"
-      ],
-      "removed": [
-        "19days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "deepinfra",
-      "url": "https://deepinfra.com",
-      "confirmed": "2026-09-17",
-      "first_seen": "2026-09-16",
-      "added": [
-        "$0.15",
-        "$0.90",
-        "$3.00",
-        "25%"
-      ],
-      "removed": [
-        "$0.12",
-        "$1.20",
-        "$4.00",
-        "4b",
-        "8k"
-      ],
-      "checked_then": "2026-08-04"
     }
   ]
 }

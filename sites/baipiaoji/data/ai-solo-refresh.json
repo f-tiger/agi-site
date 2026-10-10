@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-10-09T06:39:41.803Z",
+  "lastRun": "2026-10-10T06:22:34.563Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -140,6 +140,30 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
       "lastChecked": "2026-10-09T06:39:41.803Z"
+    },
+    {
+      "caseId": "glean",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "lastChecked": "2026-10-10T06:22:34.563Z"
+    },
+    {
+      "caseId": "harvey",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+      "lastChecked": "2026-10-10T06:22:34.563Z"
+    },
+    {
+      "caseId": "fireflies",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
+      "lastChecked": "2026-10-10T06:22:34.563Z"
+    },
+    {
+      "caseId": "cydoc",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+      "lastChecked": "2026-10-10T06:22:34.563Z"
     }
   ],
   "sources": {
@@ -404,24 +428,74 @@
       "simhash": "2ad22595e494c99c",
       "words": 371,
       "consecutiveChange": 0
+    },
+    "glean|https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months": {
+      "caseId": "glean",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "harvey|https://www.harvey.ai/blog/harveys-three-year-anniversary": {
+      "caseId": "harvey",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "fireflies|https://fireflies.ai/blog/fireflies-1-billion-valuation": {
+      "caseId": "fireflies",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
+      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "cydoc|https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/": {
+      "caseId": "cydoc",
+      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "content-goblin|https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/": {
+      "caseId": "content-goblin",
+      "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
+      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-10T06:22:34.563Z",
+      "lastHash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
+      "hash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
+      "simhash": "64fa8c1c8f9ee6af",
+      "words": 2444,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 25,
+  "cursor": 30,
   "errors": [
     {
-      "caseId": "elevenlabs",
-      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "caseId": "glean",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
       "reason": "body-limit"
     },
     {
-      "caseId": "synthesia",
-      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "caseId": "harvey",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
       "reason": "body-limit"
     },
     {
-      "caseId": "heygen",
-      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+      "caseId": "fireflies",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
       "reason": "body-limit"
+    },
+    {
+      "caseId": "cydoc",
+      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+      "reason": "unsafe-source"
     }
   ]
 }

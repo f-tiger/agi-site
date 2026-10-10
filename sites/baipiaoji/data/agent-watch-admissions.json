@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-09",
+ "checked": "2026-10-10",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1059,6 +1059,150 @@
    "first_attempt": "2026-10-09",
    "last_attempt": "2026-10-09",
    "attemptedAt": "2026-10-09T06:38:33.001Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "djwizard-tvwizard": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "helixar-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
+  },
+  "lucasandersen-mlp-tax": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "papertext-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "plith-plith": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "xurprise-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "roxels-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "saber-mcp-saber": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "raisonn-connect": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "vibe-bi-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "cookiy-cookiy": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "lattiq-x402-trading-signals": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "scamverify-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "willform-agent": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "ponlo-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "rapay-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-10",
+   "last_attempt": "2026-10-10",
+   "attemptedAt": "2026-10-10T06:21:21.428Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -9120,6 +9264,270 @@
    "date": "2026-10-09",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "readypermit-geo",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "getperspective-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bankee-inferventis-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "selis-mcp-pmo",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "traderouter-trade-router-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nexustoken-sdk",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "example4-xmp4",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "tandem-docs-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "radiusos-crm",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "contendeo-contendeo",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "paperlantern-code",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "anomalyarmor-armor-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "undisk-mcp-stdio-proxy",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nocturnus-logic-server",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cueapi-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "elasticflow-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "scanbim-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "newzai-api-news-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agentic-news-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "proofslip-mcp-server",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "nefesh-human-state",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "preclick-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "businys-mcp-server",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "inflowpay-inflow",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gavelin-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "paichart-mcp-hub",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "windsor-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "i18nagent-i18n-agent",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "stompy-stompy",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "obris-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "imboard-dossier",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "unulu-unulu",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenttrust-mcp-server",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fiber-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "himalayas-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clarid-hmda",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "agency-lona-trading",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "telbase-deploy",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "trustrails-server",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "qwady-borough",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "mcp-strava",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "websitepublisher-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "mcp-skills-search",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "specproof-mcp",
+   "date": "2026-10-10",
+   "source_http": 200,
+   "repo_http": 404
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-09",
+ "generated": "2026-10-10",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "d-id",
-  "devv",
-  "dify",
-  "doubao-aixue",
-  "duckduckgo-ai",
-  "elevenlabs",
-  "felo",
-  "figma"
+  "framer",
+  "gamma",
+  "gaoding",
+  "gemini",
+  "gemini-cli",
+  "gezhe",
+  "google-ai-studio",
+  "gptzero"
  ],
- "cursor": "figma",
+ "cursor": "gptzero",
  "summary": {
   "ready": 40,
   "empty": 36,
@@ -319,22 +319,22 @@
    "slug": "google-ai-studio",
    "name": "Google AI Studio",
    "cat": "api",
-   "reach": 2,
-   "probed": "2026-10-07",
+   "reach": 0,
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ai.google.dev/gemini-api/docs/pricing",
      "status": 200,
-     "bytes": 241566,
-     "tokens": 93
+     "bytes": 228580,
+     "tokens": 76
     }
    ],
    "best": {
     "url": "https://ai.google.dev/gemini-api/docs/pricing",
-    "tokens": 93,
-    "excerpt": "年 12 月 31 日之前为 0.50 美元/100 万个 token/小时（存储价格）。 自 2027 年 1 月 1 日起为 1.00 美元/100 万个 token/小时（存储价格）。 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3.x 模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 无 ** 每月 5,000 条提示（免费，在 Gemini 3 中共享），超出后按每 1,000 次搜索查询 14 美元计费 用于改进 Google 产品 是 否 * 客户向 Gemini 提交的请求可能会触发一次或多次 Google 搜索查询。每执行一次搜索查询，系统都会向您收取费用。 ** 可在 Google AI Studio 中进行测试。 Gemini 3.5 Flash gemini-3.5-flash 在 Google AI Studio 中试用 Google 的早期 Flash 模型，专为在日常高吞吐量工作负载中保证速度和基础性能而打造。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 $1.50 输出价格（包括思考 token） 免费 9.00 美元 上下文缓存价格 免费 0.15 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3.x 模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google "
+    "tokens": 76,
+    "excerpt": "高效的模型，针对高调用量智能体任务、翻译和简单的数据处理进行了优化。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.30 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 token） 免费 $2.50 上下文缓存价格 不可用 0.03 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新型号中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 无 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新型号中共享），超出后按每 1,000 次搜索查询 14 美元计费。 用于改进 Google 产品 是 否 批量 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.15 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 token） 免费 $1.25 上下文缓存价格 不可用 0.02 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 无 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新型号中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 无 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新型号中共享），超出后按每 1,000 次搜索查询 14 美元计费。 用于改进 Googl"
    }
   },
   "immersive-translate": {
@@ -1483,7 +1483,7 @@
    "name": "Framer",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1491,13 +1491,13 @@
      "url": "https://framer.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 11
+     "tokens": 10
     }
    ],
    "best": {
     "url": "https://framer.com/pricing",
-    "tokens": 11,
-    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits to try Free Framer domain 1 GB bandwidth Design pages Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 <div class=\"framer-lhw"
+    "tokens": 10,
+    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits to try Free Framer domain 1 GB bandwidth Design pages Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2× credits first month 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) <p dir=\"auto\" class=\"framer-text\" style=\"--font-selector:SW50ZXItVmFyaWFibGVWRj1JbTl3YzNvaUlERTRMQ0FpZDJkb2RDSWdOVFF3;--framer-font-family:&quot"
    }
   },
   "gamma": {
@@ -1505,7 +1505,7 @@
    "name": "Gamma",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1535,21 +1535,21 @@
    "name": "稿定 AI",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.gaoding.com/pricing",
      "status": 200,
-     "bytes": 514749,
+     "bytes": 514078,
      "tokens": 18
     }
    ],
    "best": {
     "url": "https://www.gaoding.com/pricing",
     "tokens": 18,
-    "excerpt": "兑换 🌕月满中秋 ·会员低至4折 大会员最高送3个月，模板+AI权益一步到位，月均更划算！ 03 天 10 小时 40 分钟 20 秒 个人使用 企业使用 2年 最高送1年 连续包年 连续包季 更多选择 模板会员 模板在线编辑，快速出图 ¥ 159 /年 ¥13.25/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 到期前 24 小时内将按 159 元/年自动续费，可随时取消 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 AI 创作与创意生成，豆额度灵活选择 ¥ 319 /年 ¥659 ¥26.58/月 1豆=0.09元 明细 0.3K 0.5K 1K 300 豆/月 每月最多可生成约 500 张图片或 50 个视频 立即开通 到期前 24 小时内将按 319 元/年自动续费，可随时取消 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置"
+    "excerpt": "稿定设计价格-模板会员、素材下载会员、大会员套餐对比 登录/注册 会员兑换 解锁会员权益，轻松创作 个人使用 企业使用 2年 最高送1年 连续包年 连续包季 更多选择 模板会员 模板在线编辑，快速出图 ¥ 159 /年 ¥13.25/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 到期前 24 小时内将按 159 元/年自动续费，可随时取消 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 AI 创作与创意生成，豆额度灵活选择 ¥ 319 /年 ¥659 ¥26.58/月 1豆=0.09元 明细 0.3K 0.5K 1K 300 豆/月 每月最多可生成约 500 张图片或 50 个视频 立即开通 到期前 24 小时内将按 319 元/年自动续费，可随时取消 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组"
    }
   },
   "gemini": {
@@ -1557,7 +1557,7 @@
    "name": "Google Gemini",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-09-24",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1587,14 +1587,14 @@
    "name": "Gemini CLI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
      "status": 200,
-     "bytes": 313461,
+     "bytes": 300442,
      "tokens": 0
     },
     {
@@ -1615,7 +1615,7 @@
    "name": "歌者 PPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1645,14 +1645,14 @@
    "name": "GPTZero",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-10",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://gptzero.me/pricing",
      "status": 200,
-     "bytes": 237272,
+     "bytes": 237145,
      "tokens": 5
     }
    ],

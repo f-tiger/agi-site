@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 2,
   "pending": [
-   {
-    "repo": "milvus-io/milvus",
-    "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "HKUDS/DeepTutor",
     "topic": "knowledge",
@@ -52,11 +47,6 @@
    {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "HKUDS/nanobot",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -152,11 +142,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "superset-sh/superset",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -260,11 +245,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "Hunyuan-PromptEnhancer/PromptEnhancer",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "FurkanGozukara/Stable-Diffusion",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -347,11 +327,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "leon-ai/leon",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -505,11 +480,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "syv-ai/HyperQwen",
-    "topic": "local",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "ddalcu/mlx-serve",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -600,11 +570,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "gunthercox/ChatterBot",
-    "topic": "chat",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "fathah/hermes-desktop",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -647,11 +612,6 @@
    {
     "repo": "869413421/ai-moive-studio",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "PKU-YuanGroup/MagicTime",
-    "topic": "video",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -707,11 +667,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "tisfeng/Easydict",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -815,11 +770,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "axolotl-ai-cloud/axolotl",
-    "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "ludwig-ai/ludwig",
     "topic": "models",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -912,11 +862,6 @@
    {
     "repo": "ray-project/llm-applications",
     "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "DayuanJiang/next-ai-draw-io",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -1582,11 +1527,6 @@
    {
     "repo": "ray-project/ray",
     "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "AI4Finance-Foundation/FinGPT",
-    "topic": "ai",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "AmintaCCCP/GithubStarsManager",
     "topic": "everyday",
     "foundAt": "2026-10-09T06:38:33.001Z"
+   },
+   {
+    "repo": "triton-inference-server/model_analyzer",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "google/agentmesh",
+    "topic": "agents",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "roboflow/inference",
+    "topic": "agents",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "theopenco/llmgateway",
+    "topic": "coding",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "pegainfer-project/pegainfer",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "zml/zml",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "mozilla-ai/any-llm",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "kaito-project/aikit",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "typedb/typedb",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "huggingface/huggingface.js",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "SharpAI/SwiftLM",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "openvinotoolkit/model_server",
+    "topic": "local",
+    "foundAt": "2026-10-10T06:21:21.428Z"
    }
   ],
   "checked": {
@@ -3012,12 +3012,12 @@
    "gh-dietrichgebert-ponytail-61b983": "2026-10-05T06:14:17.704Z",
    "gh-langchain-ai-langchain-5d4aa1": "2026-10-05T06:14:17.704Z",
    "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-05T06:14:17.704Z",
-   "gh-graphify-labs-graphify-6d32f9": "2026-10-04T06:17:42.048Z",
-   "gh-tauricresearch-tradingagents-317caa": "2026-10-04T06:17:42.048Z",
-   "gh-juliusbrussee-caveman-72f8b4": "2026-10-04T06:17:42.048Z",
-   "gh-rasbt-llms-from-scratch-0e357a": "2026-10-04T06:17:42.048Z",
-   "gh-unclecode-crawl4ai-f09556": "2026-10-04T06:17:42.048Z",
-   "gh-rtk-ai-rtk-dc41af": "2026-10-04T06:17:42.048Z",
+   "gh-graphify-labs-graphify-6d32f9": "2026-10-10T06:21:21.428Z",
+   "gh-tauricresearch-tradingagents-317caa": "2026-10-10T06:21:21.428Z",
+   "gh-juliusbrussee-caveman-72f8b4": "2026-10-10T06:21:21.428Z",
+   "gh-rasbt-llms-from-scratch-0e357a": "2026-10-10T06:21:21.428Z",
+   "gh-unclecode-crawl4ai-f09556": "2026-10-10T06:21:21.428Z",
+   "gh-rtk-ai-rtk-dc41af": "2026-10-10T06:21:21.428Z",
    "gh-datawhalechina-hello-agents-2b581f": "2026-10-06T06:50:25.349Z",
    "gh-thedotmack-claude-mem-1ba5bb": "2026-10-06T06:50:25.349Z",
    "gh-panniantong-agent-reach-7694a2": "2026-10-06T06:50:25.349Z",
@@ -3033,7 +3033,7 @@
   }
  },
  "mcp": {
-  "cursor": "com.powerpoint-sucks/decks:1.0.0",
+  "cursor": "com.tern0/resolver:0.3.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3277,7 +3277,47 @@
    "de-bibelstudium-mcp-bibelstudium": "2026-10-09T06:38:33.001Z",
    "de-cronjob-cronjob-de-mcp": "2026-10-09T06:38:33.001Z",
    "debugbundle-mcp": "2026-10-09T06:38:33.001Z",
-   "decaframe-decaframe": "2026-10-09T06:38:33.001Z"
+   "decaframe-decaframe": "2026-10-09T06:38:33.001Z",
+   "decagon": "2026-10-10T06:21:21.428Z",
+   "dechonet-mcp": "2026-10-10T06:21:21.428Z",
+   "decionis-mcp": "2026-10-10T06:21:21.428Z",
+   "deepagents": "2026-10-10T06:21:21.428Z",
+   "deepeval": "2026-10-10T06:21:21.428Z",
+   "deepgram-voice-agent": "2026-10-10T06:21:21.428Z",
+   "deepledger-mcp": "2026-10-10T06:21:21.428Z",
+   "deer-flow": "2026-10-10T06:21:21.428Z",
+   "deerdawn-deerdawn": "2026-10-10T06:21:21.428Z",
+   "desktop-commander": "2026-10-10T06:21:21.428Z",
+   "devart-mcp-sqlserver": "2026-10-10T06:21:21.428Z",
+   "devin": "2026-10-10T06:21:21.428Z",
+   "dexpaprika-dexpaprika": "2026-10-10T06:21:21.428Z",
+   "dify": "2026-10-10T06:21:21.428Z",
+   "dimensions-analytics-mcp": "2026-10-10T06:21:21.428Z",
+   "dinglebear-labby": "2026-10-10T06:21:21.428Z",
+   "dmarkoff-mcp": "2026-10-10T06:21:21.428Z",
+   "dnsdoctor-dns-doctor": "2026-10-10T06:21:21.428Z",
+   "docker-mcp-toolkit": "2026-10-10T06:21:21.428Z",
+   "docs2mcp-docs2mcp": "2026-10-10T06:21:21.428Z",
+   "donnyautomation-dex-data": "2026-10-10T06:21:21.428Z",
+   "draugr-draugr": "2026-10-10T06:21:21.428Z",
+   "dregs-mcp": "2026-10-10T06:21:21.428Z",
+   "drillr-drillr": "2026-10-10T06:21:21.428Z",
+   "dspy": "2026-10-10T06:21:21.428Z",
+   "dust": "2026-10-10T06:21:21.428Z",
+   "dveracity-semantic-mcp": "2026-10-10T06:21:21.428Z",
+   "dvt-dvt": "2026-10-10T06:21:21.428Z",
+   "dzgapp-mint": "2026-10-10T06:21:21.428Z",
+   "e2b": "2026-10-10T06:21:21.428Z",
+   "easygroupflights-easygroupflights": "2026-10-10T06:21:21.428Z",
+   "edgedepth-research": "2026-10-10T06:21:21.428Z",
+   "edgegap-mcp": "2026-10-10T06:21:21.428Z",
+   "eigma-eigma": "2026-10-10T06:21:21.428Z",
+   "eino": "2026-10-10T06:21:21.428Z",
+   "ekwo-mcp": "2026-10-10T06:21:21.428Z",
+   "elevenlabs-agents": "2026-10-10T06:21:21.428Z",
+   "elicitly-elicitly": "2026-10-10T06:21:21.428Z",
+   "elijahdesent-custom-website-editor": "2026-10-10T06:21:21.428Z",
+   "eliza": "2026-10-10T06:21:21.428Z"
   }
  }
 }
