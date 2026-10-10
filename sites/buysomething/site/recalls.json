@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-09",
+ "generated": "2026-10-10",
  "window_days": 365,
- "since": "2025-10-09",
+ "since": "2025-10-10",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -272,7 +272,7 @@
    "stale": false
   },
   "cable-powerbank": {
-   "n": 7,
+   "n": 6,
    "latest": "2026-09-24",
    "items": [
     {
@@ -328,17 +328,9 @@
    "stale": false
   },
   "mamian-skirt": {
-   "n": 1,
-   "latest": "2025-10-09",
-   "items": [
-    {
-     "id": 10430,
-     "date": "2025-10-09",
-     "title": "Children's LED Tutu Skirts Recalled Due to Risk of Serious Injury or Death from Battery Ingestion; Violates Mandatory Standard for Consumer ",
-     "hazard": "The recalled LED tutu skirts violate the mandatory standard for consumer products containing button cell or coin batteri",
-     "url": "https://www.cpsc.gov/Recalls/2026/Childrens-LED-Tutu-Skirts-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Battery-Ingestion-Violates-Mandatory-Standard-for-Consumer-Products-with-Coin-Batteries-Sold-on-Amazon-by-Bmrwtg"
-    }
-   ],
+   "n": 0,
+   "latest": null,
+   "items": [],
    "keywords": [
     "skirt",
     "children's clothing"
