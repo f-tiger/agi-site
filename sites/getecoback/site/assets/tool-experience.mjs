@@ -42,12 +42,22 @@ const preview=node('div',null,'eco-preview');preview.setAttribute('aria-live','p
 const assumptionBox=node('details',null,'eco-assumptions'),assumptions=node('dl');assumptionBox.append(node('summary',t[3]),assumptions);
 const resultShare=button(t[6],()=>openShare(true));resultShare.disabled=true;
 function key(e){return e.name||e.id;}
-function read(){return Object.fromEntries(adapter.fields.map(e=>[key(e),e.type==='checkbox'?e.checked:e.value]));}
+// Laundry has mutually exclusive energy inputs. Keep inactive edits in the
+// form, but never validate, describe or share them as calculation assumptions.
+// Resolve the mode from the supplied scenario, not the current DOM, on restore.
+function fieldsFor(values){return laundry?adapter.fields.filter(e=>values.method==='measured'?!['watts','hours'].includes(key(e)):key(e)!=='dehum'):adapter.fields;}
+function read(){const raw=Object.fromEntries(adapter.fields.map(e=>[key(e),e.type==='checkbox'?e.checked:e.value]));return Object.fromEntries(fieldsFor(raw).map(e=>[key(e),raw[key(e)]]));}
 function label(e){const l=e.labels?.[0];if(!l)return key(e);const c=l.cloneNode(true);c.querySelectorAll('input,select,button').forEach(x=>x.remove());return clean(c.textContent)||key(e);}
 function checked(raw){
- if(!raw||typeof raw!=='object'||Array.isArray(raw)||Object.keys(raw).length!==adapter.fields.length)throw Error('schema');
- const out={};for(const e of adapter.fields){const k=key(e),v=raw[k];if(e.type==='checkbox'){if(typeof v!=='boolean')throw Error('boolean');out[k]=k==='own'||(tariff&&k==='confirm')?false:v;}else if(e.tagName==='SELECT'){if(typeof v!=='string'||![...e.options].some(o=>o.value===v))throw Error('enum');out[k]=k==='purpose'?'example':v;}else{if(typeof v!=='string'||v.trim()===''||v.length>32||!Number.isFinite(Number(v)))throw Error('number');if(e.min!==''&&Number(v)<Number(e.min)||e.max!==''&&Number(v)>Number(e.max))throw Error('range');out[k]=v;}}
- if(Object.keys(raw).some(k=>!Object.hasOwn(out,k)))throw Error('extra');return out;
+ if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('schema');
+ if(laundry&&!['estimate','measured'].includes(raw.method))throw Error('enum');
+ const fields=fieldsFor(raw),keys=Object.keys(raw);
+ // Existing laundry links included every field. Read that exact old shape,
+ // discard bounded inactive strings, and emit the active-only shape thereafter.
+ const legacy=laundry&&keys.length===adapter.fields.length&&adapter.fields.every(e=>Object.hasOwn(raw,key(e)));
+ if(keys.length!==fields.length&&!legacy)throw Error('schema');
+ const out={};for(const e of fields){const k=key(e),v=raw[k];if(e.type==='checkbox'){if(typeof v!=='boolean')throw Error('boolean');out[k]=k==='own'||(tariff&&k==='confirm')?false:v;}else if(e.tagName==='SELECT'){if(typeof v!=='string'||![...e.options].some(o=>o.value===v))throw Error('enum');out[k]=k==='purpose'?'example':v;}else{if(typeof v!=='string'||v.trim()===''||v.length>32||!Number.isFinite(Number(v)))throw Error('number');if(e.min!==''&&Number(v)<Number(e.min)||e.max!==''&&Number(v)>Number(e.max))throw Error('range');out[k]=v;}}
+ if(keys.some(k=>!Object.hasOwn(out,k)&&(!legacy||typeof raw[k]!=='string'||raw[k].length>32)))throw Error('extra');return out;
 }
 function invalidate(){if(inRun)return;snapshot=null;resultShare.disabled=true;preview.hidden=true;genericDraft.hidden=true;status.textContent=t[14];kind='edited';}
 function capture(){
@@ -55,13 +65,13 @@ function capture(){
  let values;try{values=checked(read());}catch{return;}
  const controls=[...a.result.querySelectorAll('button,a')].map(e=>clean(e.textContent));const sizing=/\/(?:btu-rechner|btu-calculator)\.html$/.test(location.pathname);const rawText=sizing?[...[...a.result.querySelectorAll(':scope > p')].slice(0,2).map(e=>e.innerText),lang==='de'?'Grobe Dimensionierung. Wärmebelastung, Montage und Komfort vor dem Kauf prüfen.':'Indicative sizing. Check heat load, installation and comfort before buying.'].join('\n'):country?[a.result.querySelector('.callout')?.innerText,...[...a.result.querySelectorAll('.metric')].map(e=>e.querySelector('span').innerText+': '+e.querySelector('b').innerText),...[...a.result.querySelectorAll(':scope > p')].map(e=>e.innerText)].filter(Boolean).join('\n'):a.result.innerText;const text=rawText.split('\n').filter(line=>!controls.includes(clean(line))).join('\n').trim();if(/NaN|Infinity/.test(text))return;
  snapshot={values,text,kind};preview.replaceChildren(node('strong',kind==='example'?t[4]:kind==='shared'?t[15]:t[5]),node('p',text));preview.hidden=false;assumptions.replaceChildren();
- for(const e of a.fields){if(key(e)==='own')continue;assumptions.append(node('dt',label(e)),node('dd',String(values[key(e)])));}
+ for(const e of fieldsFor(values)){if(key(e)==='own')continue;assumptions.append(node('dt',label(e)),node('dd',String(values[key(e)])));}
  resultShare.disabled=false;status.textContent='';
 }
 function run(raw,source){
  const values=checked(raw);inRun=true;window.__ecoToolExample=true;kind=source;snapshot=null;genericDraft.hidden=true;
  const x=scrollX,y=scrollY,originalURL=location.href;
- try{for(const e of adapter.fields){if(e.type==='checkbox')e.checked=values[key(e)];else e.value=values[key(e)];e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}if(adapter.form===tariff){tariff.elements.namedItem('purpose').value='example';/* Preview hypothetical data without claiming the user's required confirmation. The model and checked() still validate all numbers. */tariff.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}else if(adapter.form)adapter.form.requestSubmit();else adapter.go.click();capture();}
+ try{for(const e of fieldsFor(values)){if(e.type==='checkbox')e.checked=values[key(e)];else e.value=values[key(e)];e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}if(adapter.form===tariff){tariff.elements.namedItem('purpose').value='example';/* Preview hypothetical data without claiming the user's required confirmation. The model and checked() still validate all numbers. */tariff.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}else if(adapter.form)adapter.form.requestSubmit();else adapter.go.click();capture();}
  finally{window.__ecoToolExample=false;inRun=false;history.replaceState(null,'',originalURL);window.scrollTo(x,y);}
  if(!snapshot){resultShare.disabled=true;preview.hidden=true;status.textContent=t[20];}
 }
@@ -69,7 +79,7 @@ function shareURL(values,channel){const u=new URL(canonical);u.search='';u.hash=
 function openShare(withResult){
  if(withResult&&!snapshot)return;
  const s=withResult?snapshot:null,url=shareURL(s?.values,'copy'),provenance=s?(s.kind==='example'?t[4]:s.kind==='shared'?t[15]:t[5]):'';
- const lines=[title,provenance,s?.text||'',...(s?['',t[3]+':',...adapter.fields.filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean);
+ const lines=[title,provenance,s?.text||'',...(s?['',t[3]+':',...fieldsFor(s.values).filter(e=>key(e)!=='own').map(e=>label(e)+': '+s.values[key(e)])]:[]),'',t[18],t[17]+': '+url].filter(Boolean);
  const text=lines.join('\n');genericDraft.replaceChildren(node('h3',t[19]),node('p',t[10],'eco-note'));
  const area=node('textarea');area.value=text;area.readOnly=true;area.setAttribute('aria-label',t[19]);genericDraft.append(area);
  const links=node('div',null,'eco-links');
@@ -79,9 +89,9 @@ function openShare(withResult){
  const fallback=node('a',t[11],'eco-fallback');fallback.href=url;fallback.setAttribute('aria-label',t[11]);genericDraft.append(links,fallback);genericDraft.hidden=false;emit(withResult?'share_prepare':'tool_share');
 }
 function downloadCard(s,provenance){
- const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1200+adapter.fields.length*36;const c=canvas.getContext('2d');c.fillStyle='#edf5f8';c.fillRect(0,0,1200,canvas.height);c.fillStyle='#0a4d7a';c.fillRect(0,0,1200,18);let y=65;
+ const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1200+fieldsFor(s.values).length*36;const c=canvas.getContext('2d');c.fillStyle='#edf5f8';c.fillRect(0,0,1200,canvas.height);c.fillStyle='#0a4d7a';c.fillRect(0,0,1200,18);let y=65;
  const wrap=(text,font,maxLines)=>{c.font=font;c.fillStyle='#142330';const words=text.split(/\s+/);let line='',n=0;for(const word of words){if(c.measureText(line+' '+word).width>1070&&line){c.fillText(line,60,y);y+=38;n++;line='';if(n>=maxLines){c.fillText('…',60,y);y+=38;return;}}line+=(line?' ':'')+word;}if(line){c.fillText(line,60,y);y+=38;}};
- wrap('EcoBack · '+title,'700 30px system-ui',3);y+=18;wrap(provenance,'600 24px system-ui',2);y+=18;wrap(clean(s.text),'24px system-ui',10);y=Math.max(y+35,790);wrap(t[3],'600 22px system-ui',1);for(const e of adapter.fields){if(key(e)==='own')continue;c.font='18px system-ui';c.fillStyle='#142330';c.fillText(label(e),60,y,900);c.textAlign='right';c.fillText(String(s.values[key(e)]),1140,y,160);c.textAlign='left';y+=32;}y+=26;wrap(t[18],'20px system-ui',3);c.fillStyle='#0a4d7a';c.font='18px system-ui';c.fillText(new URL(canonical).host+new URL(canonical).pathname,60,canvas.height-45,1080);
+ wrap('EcoBack · '+title,'700 30px system-ui',3);y+=18;wrap(provenance,'600 24px system-ui',2);y+=18;wrap(clean(s.text),'24px system-ui',10);y=Math.max(y+35,790);wrap(t[3],'600 22px system-ui',1);for(const e of fieldsFor(s.values)){if(key(e)==='own')continue;c.font='18px system-ui';c.fillStyle='#142330';c.fillText(label(e),60,y,900);c.textAlign='right';c.fillText(String(s.values[key(e)]),1140,y,160);c.textAlign='left';y+=32;}y+=26;wrap(t[18],'20px system-ui',3);c.fillStyle='#0a4d7a';c.font='18px system-ui';c.fillText(new URL(canonical).host+new URL(canonical).pathname,60,canvas.height-45,1080);
  const a=node('a');a.href=canvas.toDataURL('image/png');a.download='ecoback-scenario.png';a.click();emit('image');
 }
 if(adapter){
