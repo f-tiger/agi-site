@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-10-09",
+ "fetched": "2026-10-10",
  "geo": "US",
- "matched": [],
+ "matched": [
+  {
+   "title": "openai",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "wral",
+   "title": "alejandro tabilo",
+   "traffic": "100+"
+  },
+  {
+   "title": "matthew lillard scooby doo",
+   "traffic": "100+"
+  },
+  {
+   "title": "blender",
+   "traffic": "100+"
+  },
+  {
+   "title": "birmingham weather",
    "traffic": "200+"
   },
   {
-   "title": "novak djokovic",
-   "traffic": "1000+"
-  },
-  {
-   "title": "star trek: enterprise",
-   "traffic": "2000+"
-  },
-  {
-   "title": "susan collins troy jackson debate",
+   "title": "tyson fury",
    "traffic": "100+"
   },
   {
-   "title": "orlando weather",
+   "title": "delta flight status",
+   "traffic": "500+"
+  },
+  {
+   "title": "openai",
    "traffic": "200+"
   },
   {
-   "title": "klystron 9",
-   "traffic": "100+"
-  },
-  {
-   "title": "unc basketball",
-   "traffic": "100+"
-  },
-  {
-   "title": "charlotte weather",
-   "traffic": "100+"
-  },
-  {
-   "title": "real madrid",
+   "title": "pokemon ruby sapphire emerald",
    "traffic": "200+"
   },
   {
-   "title": "hubert hurkacz",
+   "title": "f1 sprint",
+   "traffic": "500+"
+  },
+  {
+   "title": "ins",
    "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-25",
-   "matched": []
-  },
   {
    "d": "2026-09-26",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-10-09",
    "matched": []
+  },
+  {
+   "d": "2026-10-10",
+   "matched": [
+    "openai"
+   ]
   }
  ]
 }

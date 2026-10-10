@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-09",
- "radar_fetched": "2026-10-09",
+ "generated": "2026-10-10",
+ "radar_fetched": "2026-10-10",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -21,16 +21,16 @@
  },
  "opportunities": [
   {
-   "theme": "what tools do you wish existed",
+   "theme": "any solution for bookmarks on various services",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-10-02"
+    "2026-10-09"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.07,
+   "score": 2.29,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -96,21 +96,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there an app store from which applications can t be taken down by anybody not",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-02"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.01,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "software that converts pen hovering mode to pen contact down down mode",
    "site": "",
    "kind": "request-board",
@@ -132,6 +117,21 @@
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-10-04"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "web push notifications server",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-10"
    ],
    "state": "scout",
    "supplied": false,
