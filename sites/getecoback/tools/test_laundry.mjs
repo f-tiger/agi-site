@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
+import {runInNewContext} from 'node:vm';
 import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
 const x={dryer:1.5,dryerBasis:'cycle',method:'estimate',watts:250,hours:8,dehum:2,price:.35,loads:3,purchase:200,currency:'EUR',comparable:true};
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
@@ -22,6 +23,51 @@ test('German laundry guide keeps illustrative runtimes separate from measured dr
   for(const q of faq.mainEntity)assert(visible.includes(q.acceptedAnswer.text));
   assert(h.includes('Watt ÷ 1.000 × Stunden × Strompreis'));
   for(const value of ['200 W','300 W','500 W','0,36 €','0,54 €','0,90 €','4,32 €','6,48 €','10,80 €'])assert(h.includes(value));
+});
+
+// Exercise the shipped sharing adapter's pure schema functions without a DOM.
+// Browser coverage below the same CI validates native validity and restoration.
+function shareSchema(isLaundry=true){
+  const source=readFileSync(new URL('../site/assets/tool-experience.mjs',import.meta.url),'utf8');
+  const functions=source.slice(source.indexOf('function key(e)'),source.indexOf('function invalidate()'));
+  const number=(name,value,min='0',max='')=>({name,value,type:'number',tagName:'INPUT',min,max});
+  const select=(name,value,options)=>({name,value,type:'select-one',tagName:'SELECT',options:options.map(value=>({value}))});
+  const fields=[number('dryer','200','0','2000'),select('dryerBasis','hundred',['cycle','hundred']),select('method','estimate',['estimate','measured']),number('watts','600','0','5000'),number('hours','8','0','72'),number('dehum','-1','0','100'),number('price','0.30','0','5'),number('loads','3','0','30'),number('purchase','0','0','50000'),select('currency','GBP',['EUR','GBP','USD']),{name:'comparable',type:'checkbox',checked:true}];
+  const schema=runInNewContext(`(()=>{${functions};return {read,checked,fieldsFor:typeof fieldsFor==='function'?fieldsFor:null};})()`,{adapter:{fields},laundry:isLaundry?{}:null,tariff:null});
+  return {schema,fields,set:(name,value)=>{fields.find(e=>e.name===name).value=value;},plain:value=>JSON.parse(JSON.stringify(value))};
+}
+
+test('laundry share schema excludes inactive invalid inputs without changing their values',()=>{
+  const {schema,fields,set,plain}=shareSchema();
+  const estimate=plain(schema.checked(schema.read()));
+  assert.equal(estimate.hours,'8');assert.equal(estimate.watts,'600');assert(!Object.hasOwn(estimate,'dehum'));
+  assert.deepEqual(plain(schema.checked({...estimate,dehum:'-1'})),estimate);
+  assert.equal(fields.find(e=>e.name==='dehum').value,'-1');
+  set('method','measured');set('dehum','1');set('hours','');
+  const measured=plain(schema.checked(schema.read()));
+  assert.equal(measured.dehum,'1');assert(!Object.hasOwn(measured,'hours'));assert(!Object.hasOwn(measured,'watts'));
+  assert.equal(fields.find(e=>e.name==='hours').value,'');
+  set('method','estimate');assert.throws(()=>schema.checked(schema.read()));
+  set('hours','8');assert.equal(schema.checked(schema.read()).hours,'8');
+});
+
+test('laundry share restores raw scenario mode, accepts exact legacy shape and rejects invalid active or extra data',()=>{
+  const {schema,set,plain}=shareSchema();
+  const legacy={dryer:'200',dryerBasis:'hundred',method:'measured',watts:'600',hours:'',dehum:'1',price:'0.30',loads:'3',purchase:'0',currency:'GBP',comparable:false};
+  const parsed=plain(schema.checked(legacy));
+  assert.equal(parsed.method,'measured');assert.equal(parsed.dehum,'1');assert(!Object.hasOwn(parsed,'hours'));
+  assert.deepEqual(plain(schema.checked(parsed)),parsed);
+  set('method','estimate');assert.deepEqual(plain(schema.checked(parsed)),parsed);
+  const {price,...missing}=parsed;
+  for(const raw of [missing,{...parsed,dehum:'-1'},{...parsed,dehum:''},{...parsed,method:'bad'},{...parsed,currency:'JPY'},{...parsed,extra:'1'},{...parsed,watts:'600'},{...legacy,hours:{}},{...legacy,hours:'x'.repeat(33)}])assert.throws(()=>schema.checked(raw));
+});
+
+test('non-laundry sharing retains full-field validation and schema',()=>{
+  const {schema,set,plain}=shareSchema(false);
+  assert.throws(()=>schema.checked(schema.read()));
+  set('dehum','2');const all=plain(schema.checked(schema.read()));
+  assert.equal(Object.keys(all).length,11);assert.equal(all.dehum,'2');assert.equal(all.hours,'8');
+  const {dehum,...missing}=all;assert.throws(()=>schema.checked(missing));
 });
 
 test('heated-airer costs are illustrative whole-run arithmetic, with matching FAQ and Markdown',()=>{
