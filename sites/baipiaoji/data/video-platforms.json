@@ -1,0 +1,309 @@
+{
+  "checkedAt": "2026-10-10",
+  "productPositioning": "视频发布评估与小测：比较平台适配、修改方向和实际表现，不预测爆款。",
+  "globalEvidence": {
+    "id": "ai-label",
+    "title": "人工智能生成合成内容标识办法",
+    "url": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+    "publishedAt": "2025-03-14",
+    "effectiveAt": "2025-09-01",
+    "checkedAt": "2026-10-10",
+    "evidenceStatus": "official_search_fulltext",
+    "summary": "第十条要求发布生成合成内容时主动声明并使用平台提供的标识功能，不得恶意删除、篡改、伪造、隐匿标识。"
+  },
+  "measurementContract": {
+    "beforePublish": "建议是公开规则与编辑假设对用户输入的检查，不是平台算法、爆款概率或审核结论。",
+    "confidence": "不用未经验证的高/中/低预测置信度；显示输入证据完整度及缺失信息。",
+    "inputs": [
+      "内容类型",
+      "目标受众",
+      "本条视频目标",
+      "标题",
+      "开头内容描述",
+      "核心收益或剧情冲突",
+      "真实演示/来源证据",
+      "可读字幕",
+      "自报时长与画幅",
+      "素材权利及AI标识情况"
+    ],
+    "privacy": "首版本地计算。文本/视频文件不默认上传，埋点只传固定动作，不传脚本、片名、联系人、URL或文件名。",
+    "output": [
+      "候选小测平台及逐项依据，不凑排名",
+      "最值得修改的三项",
+      "分平台标题/开头/画幅建议",
+      "标注与权利缺项",
+      "发布实验记录"
+    ],
+    "notSupported": [
+      "任意平台链接私有数据抓取",
+      "官方算法权重",
+      "账号安全保证",
+      "爆款概率",
+      "通用播放量达标阈值"
+    ],
+    "experiments": {
+      "windows": [
+        "24小时",
+        "72小时",
+        "7天"
+      ],
+      "status": "本工具建议的观察窗口，不是平台官方流量周期",
+      "method": "比较同账号、相近题材和时长、相同观察窗口；记录自然与付费流量，单次只改一个主要变量；不建议靠重复重发刷样本。",
+      "metrics": [
+        "播放量与数据统计时间",
+        "平均观看时长或平台可见的留存/完播指标",
+        "分享与收藏",
+        "评论中的目标用户问题",
+        "新增关注",
+        "获准承接入口的点击与实际激活"
+      ],
+      "denominators": "每个平台按后台实际口径分别记分母；不把曝光、播放、观看人数视为同一个量。没有数据留空，不记为0。",
+      "appGoal": "工具视频同时衡量落地页访问→首次完成核心任务/注册；高播放不等于高激活。",
+      "dramaGoal": "剧情内容观察本集观看与后续集主动访问；不将热度当作播放量。"
+    }
+  },
+  "platforms": [
+    {
+      "id": "douyin",
+      "name": "抖音",
+      "sources": [
+        {
+          "id": "douyin-agreement",
+          "title": "抖音用户服务协议",
+          "url": "https://www.douyin.com/draft/douyin_agreement/douyin_agreement_user.html",
+          "updatedAt": "2026-02-13",
+          "effectiveAt": "2026-02-20",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_fulltext",
+          "summary": "发布内容不得侵权、违反广告规则或严重标题不符；协议2.4限定未经授权的爬虫等使用，内容涉及AI合成需遵守平台标识规则。"
+        },
+        {
+          "id": "douyin-algorithm",
+          "title": "什么是推荐系统",
+          "url": "https://trust.douyin.com/algorithm/",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_search_fulltext_dynamic_page",
+          "summary": "官方科普描述召回、多轮排序、多样性等环节；行为可参与推荐，未公开可用于单条视频爆款预测的固定权重；页面强调演示是简化。"
+        },
+        {
+          "id": "douyin-data",
+          "title": "查询特定视频的视频数据",
+          "url": "https://open.douyin.com/platform/resource/docs/openapi/video-management/douyin/search-video/video-data",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_search_fulltext",
+          "summary": "video.data需申请权限与用户授权，仅能查询授权用户上传的公开视频。提供播放、点赞、评论、分享等字段；不是任意视频数据接口。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：先呈现具体问题与真实结果，再演示关键步骤；视频中手机界面与字幕需能读清。",
+        "AI漫剧：尽早交代人物目标和冲突，让单条片段具有可理解的小段剧情。",
+        "优先测试精简开头与完整说明的两个原创版本；长度是实验变量，不是平台硬阈值。"
+      ],
+      "humanChecks": [
+        "实际开头是否兑现标题",
+        "移动端屏幕录制可读性",
+        "发布后台AI声明及可用承接组件"
+      ],
+      "testMetrics": [
+        "早期留存（后台提供时）",
+        "平均观看/完播",
+        "关注/分享",
+        "获准组件的点击及激活"
+      ]
+    },
+    {
+      "id": "kuaishou",
+      "name": "快手",
+      "sources": [
+        {
+          "id": "kuaishou-community",
+          "title": "快手社区管理规范",
+          "url": "https://www.kuaishou.com/norm?tab=community",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_fulltext",
+          "summary": "禁止未经授权搬运、虚假夸大宣传、标题封面不符与骗赞、数据造假；限制非认可渠道私下交易及鼓动用户转移到其他平台消费内容。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：以具体使用场景和可复现步骤解释帮助，别只列功能名。",
+        "剧情内容保留角色关系与承接，避免只剩刺激镜头。",
+        "自有App推广先核实允许的服务推广/承接方式；不生成站外联系方式、口令或二维码规避方案。"
+      ],
+      "humanChecks": [
+        "实操是否可复现",
+        "推广入口是否获准",
+        "素材与剧情表达是否符合发布规则"
+      ],
+      "testMetrics": [
+        "平均观看/完播",
+        "分享与关注",
+        "真实使用问题",
+        "可用站内组件转化"
+      ]
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "sources": [
+        {
+          "id": "xiaohongshu-community",
+          "title": "小红书社区公约2.0",
+          "url": "https://pgy.xiaohongshu.com/help/detail?id=1eda0a065dd894063c2e029a49e8f6a1&userType=4",
+          "updatedAt": "2026-07-31",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_search_indexed_text_direct_open_timeout",
+          "summary": "强调真诚分享；服务效果与产品功效需有真实体验或科学依据，不虚构功能和数据。"
+        },
+        {
+          "id": "xiaohongshu-commercial",
+          "title": "内容合作笔记法律法规要求",
+          "url": "https://pgy.xiaohongshu.com/help/detail?id=6495c527d1eedeeb48fb18b1f875650e&userType=4",
+          "updatedAt": "2026-09-22",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_search_indexed_text",
+          "summary": "商业合作笔记需要遵守实际行业及法律要求，不能用无依据的绝对化效果承诺或文字变体规避规范；不是所有普通笔记的同一准入规则。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：按具体人群的一个问题组织，展示真实使用过程、限制和适用条件。",
+        "封面和标题说明对象与解决的问题，给可保存复用的步骤。",
+        "AI漫剧可测试有自有观点的题材分析/创作过程，不能默认搬运片段就是原创。"
+      ],
+      "humanChecks": [
+        "是否真的体验过",
+        "免费/收费/平台可用性描述是否准确",
+        "商业关系披露与当次发布入口规则"
+      ],
+      "testMetrics": [
+        "收藏与分享",
+        "围绕使用场景的评论",
+        "搜索带来的访问（后台可见时）",
+        "实际激活"
+      ]
+    },
+    {
+      "id": "bilibili",
+      "name": "哔哩哔哩",
+      "sources": [
+        {
+          "id": "bilibili-ai",
+          "title": "关于AI生成内容有序标识的公告",
+          "url": "https://www.bilibili.com/opus/1106496554576904197",
+          "updatedAt": "2025-08-29",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_fulltext",
+          "summary": "投稿侧可在创作声明选择人工智能合成技术标识；平台可对未主动声明内容添加标识，不得恶意篡改或隐匿。"
+        },
+        {
+          "id": "bilibili-data",
+          "title": "哔哩哔哩开放平台隐私政策",
+          "url": "https://open.bilibili.com/agreement/privacy-policy",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_search_indexed_text_dynamic_page",
+          "summary": "稿件数据管理服务列举播放、点赞、评论、硬币、收藏、弹幕、分享等稿件数据；需按授权及开发者服务范围接入。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：有完整操作路径、结果、失败场景和适用边界的教程/比较版值得测试。",
+        "需要电脑全界面细节的演示优先测试横屏，并加章节和清晰字幕；这属于编辑建议，不是投稿硬限制。",
+        "AI漫剧测试完整叙事单元、制作过程或有增量观点的解读，给出素材权利与AI声明。"
+      ],
+      "humanChecks": [
+        "教程是否可复现",
+        "章节与结论是否准确",
+        "标识与授权是否完整"
+      ],
+      "testMetrics": [
+        "平均观看时长/留存",
+        "收藏/投币",
+        "实质评论",
+        "关注与后续内容访问"
+      ]
+    },
+    {
+      "id": "weixin",
+      "name": "视频号",
+      "sources": [
+        {
+          "id": "weixin-rules",
+          "title": "微信视频号运营规范（发布前核对入口）",
+          "url": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_url_located_fulltext_inaccessible",
+          "summary": "本轮未成功读取官方全文，不将转载中的条款号或日期当作已核实事实。页面应显示发布前查看现行规则。"
+        },
+        {
+          "id": "weixin-assistant",
+          "title": "视频号助手",
+          "url": "https://channels.weixin.qq.com/",
+          "publishedAt": null,
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_entry_requires_interactive_access",
+          "summary": "发布及账号能力以用户实际后台为准，本轮未登录，不承诺数据API、承接入口或具体指标可用。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：优先说明对具体工作/生活场景的帮助，设计不依赖上下文也能理解的分享版本。",
+        "使用清楚字幕和可复现演示；这是内容实验建议，不代表官方偏好某年龄或固定时长。",
+        "AI漫剧保持虚构属性清楚，不伪装成现实新闻。"
+      ],
+      "humanChecks": [
+        "当次发布页的AI/虚构声明选项",
+        "账号允许的承接方式",
+        "转发后独立观看能否理解"
+      ],
+      "testMetrics": [
+        "分享",
+        "可见的观看/完播指标",
+        "关注",
+        "获准入口转化"
+      ]
+    },
+    {
+      "id": "toutiao",
+      "name": "今日头条",
+      "sources": [
+        {
+          "id": "toutiao-create",
+          "title": "内容创作规则/规范",
+          "url": "https://baike.toutiao.com/detail/211/212/570?enter_from=left_navigation",
+          "updatedAt": "2026-05-20",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_fulltext",
+          "summary": "标题需准确反映内容；夸张、隐去关键信息、误导性标题可能影响推荐；不鼓励重复上传相同或高度相似作品，不能用重复重发做实验。"
+        },
+        {
+          "id": "toutiao-recommend",
+          "title": "推荐机制",
+          "url": "https://baike.toutiao.com/detail/211/221/0?enter_from=left_navigation",
+          "updatedAt": "2025-02-19",
+          "checkedAt": "2026-10-10",
+          "evidenceStatus": "official_fulltext",
+          "summary": "官方说明用户、内容、兴趣匹配及冷启动反馈，也明确流量受同一时期其他内容表现和目标人群范围影响；没有单条视频稳定爆量承诺。"
+        }
+      ],
+      "editorialRules": [
+        "App演示：问题、解决过程、效果与限制讲清，标题点明对象和用途。",
+        "AI漫剧介绍明确是影视/动漫作品，避免使用容易被误认作现实新闻的标题。",
+        "用有实质差异的题材和讲解角度测试，避免删掉重发/轻微改词刷样本。"
+      ],
+      "humanChecks": [
+        "标题主体和结论是否完整",
+        "视频是否兑现标题",
+        "是否重复上传相似作品"
+      ],
+      "testMetrics": [
+        "曝光/点击（同一后台口径）",
+        "有效观看指标",
+        "实质评论与关注",
+        "实际工具激活"
+      ]
+    }
+  ],
+  "version": "2026-10-10.1"
+}

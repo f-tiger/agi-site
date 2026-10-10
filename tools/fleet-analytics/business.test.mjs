@@ -2,6 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
+test('Video publishing actions accept only fixed names, never files or report inputs',()=>{
+ for(const action of ['file_ready','file_error','complete','example','export','compare']){
+  const name='manju_video_'+action;
+  assert.deepEqual(businessEvent('baipiaoji.com','/manju/video-fit',{name}),{name,tool_id:'manju',repeat:true});
+  for(const field of ['filename','title','summary','report','audience'])assert.equal(businessEvent('baipiaoji.com','/manju/video-fit',{name,[field]:'PRIVATE'}),null);
+  assert.equal(businessEvent('baipiaoji.com','/account',{name}),null);
+  assert.equal(businessEvent('getecoback.com','/manju/video-fit',{name}),null);
+ }
+ assert.equal(businessEvent('baipiaoji.com','/manju/video-fit',{name:'manju_video_purchase'}),null);
+});
 test('Fixed route and action whitelist excludes arbitrary labels and cross-site tools',()=>{
  assert.deepEqual(businessEvent('getecoback.com','/de/workbench/billlens.html',{name:'workbench_complete'}),{name:'tool_complete',tool_id:'billlens'});
  assert.deepEqual(businessEvent('baipiaoji.com','/en/workbench/creatorops',{name:'workbench_example_export'}),{name:'tool_example_export',tool_id:'creatorops'});
