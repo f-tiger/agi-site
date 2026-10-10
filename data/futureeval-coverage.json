@@ -1,19 +1,30 @@
 {
- "generated": "2026-10-09T14:50:44+00:00",
+ "generated": "2026-10-10T14:08:00+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 3,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 45954,
-   "title": "How many clinicaltrials.gov studies with an LLM-based Chatbot as the intervention/treatment will be recruiting on November 1, 2026?",
+   "post_id": 46004,
+   "title": "Will José Mourinho still be the manager for Real Madrid on December 31, 2026?",
    "hosts": [
-    "clinicaltrials.gov"
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
+  {
+   "post_id": 46003,
+   "title": "What will be the total OpenRouter token usage December 21-27, 2026?",
+   "hosts": [
+    "cdn.metaculus.com",
+    "openrouter.ai",
+    "www.metaculus.com"
    ],
    "covered_by": null,
    "tournament": "33121"
