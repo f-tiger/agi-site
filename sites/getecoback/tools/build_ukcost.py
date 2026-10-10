@@ -43,6 +43,7 @@ VARIANTS = {
         ("Heated airer, mid", 200, 8),
         ("Heated airer, three-tier", 300, 8),
         ("Compressor dehumidifier alongside it", 300, 8),
+        ("Airer plus dehumidifier (both at 300 W)", 600, 8),
         ("Tumble dryer, one cycle", None, 2.0),
     ],
 }
@@ -62,15 +63,33 @@ def block(cap, variant):
             f"<td>{kwh:.1f} kWh</td><td>{kwh * rate / 100:.2f}</td></tr>")
     body = "\n    ".join(rows)
     vat = f" {cap['vat_note']}" if cap.get("vat_note") else ""
-    span = "8 hours" if variant != "airer" else "8 hours (one drying session)"
+    span = "8 hours" if variant != "airer" else "Energy (8 h; dryer: 1 cycle)"
+    machine = "Machine" if variant != "airer" else "Example appliance"
+    plate = "Plate" if variant != "airer" else "Assumed draw"
+    assumptions = comparison = ""
+    if variant == "airer":
+        assumptions = (
+            "  <p>Illustrative fixed-draw examples, not product measurements or matched drying tests. "
+            "Eight hours is an assumed runtime, not a promise that a load will be dry. "
+            "The dryer row assumes 2.0 kWh for one cycle; use your own cycle measurement or label basis.</p>\n")
+        combined_kwh = 2 * 300 / 1000 * 8
+        dryer_kwh = 2.0
+        comparison = (
+            f"  <p>In this example, a 300 W airer plus a 300 W dehumidifier, both running for eight hours, "
+            f"use <strong>{combined_kwh:.1f} kWh (£{combined_kwh * rate / 100:.2f})</strong>. "
+            f"That is <strong>{combined_kwh / dryer_kwh:.1f} times</strong> the energy of the "
+            f"assumed <strong>{dryer_kwh:.1f} kWh (£{dryer_kwh * rate / 100:.2f})</strong> dryer cycle at the same unit rate. "
+            "This is an arithmetic comparison, not evidence that either setup dries the same load to the same final dryness.</p>\n")
     return (
         f"<!--EB_UKCOST:{variant}-->\n"
         f"  <p>At the Ofgem price cap for <strong>{cap['period']}</strong>, the average electricity unit rate for "
         f"Direct Debit in England, Scotland and Wales is <strong>{rate}p per kWh</strong>. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.</p>\n"
+        f"{assumptions}"
         f"  <table>\n"
-        f"    <tr><th>Machine</th><th>Plate</th><th>Per hour</th><th>{span}</th><th>Cost (£)</th></tr>\n"
+        f"    <tr><th>{machine}</th><th>{plate}</th><th>Per hour</th><th>{span}</th><th>Cost (£)</th></tr>\n"
         f"    {body}\n"
         f"  </table>\n"
+        f"{comparison}"
         f"  <p style=\"font-size:13px;color:#5b6b78;\">Unit rate only, standing charge excluded — "
         f"that is a daily fixed cost you pay whether the machine runs or not.{vat} "
         f"Rate from <a href=\"{cap['source']}\" rel=\"nofollow noopener\" target=\"_blank\">Ofgem</a>, "

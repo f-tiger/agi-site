@@ -55,7 +55,9 @@ They are complements, not alternatives. The airer moves water out of the clothes
 
 At the Ofgem price cap for **1 October to 31 December 2026**, the average electricity unit rate for Direct Debit in England, Scotland and Wales is **26.32p per kWh**. This is not a Northern Ireland tariff; regional and plan rates vary. Scale the hours to your own run.
 
-Machine | Plate | Per hour | 8 hours (one drying session) | Cost (£) |
+Illustrative fixed-draw examples, not product measurements or matched drying tests. Eight hours is an assumed runtime, not a promise that a load will be dry. The dryer row assumes 2.0 kWh for one cycle; use your own cycle measurement or label basis.
+
+Example appliance | Assumed draw | Per hour | Energy (8 h; dryer: 1 cycle) | Cost (£) |
 
 Heated airer, low-wattage | 100 W | 2.6p | 0.8 kWh | 0.21 |
 
@@ -65,11 +67,15 @@ Heated airer, three-tier | 300 W | 7.9p | 2.4 kWh | 0.63 |
 
 Compressor dehumidifier alongside it | 300 W | 7.9p | 2.4 kWh | 0.63 |
 
+Airer plus dehumidifier (both at 300 W) | 600 W | 15.8p | 4.8 kWh | 1.26 |
+
 Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
+
+In this example, a 300 W airer plus a 300 W dehumidifier, both running for eight hours, use **4.8 kWh (£1.26)**. That is **2.4 times** the energy of the assumed **2.0 kWh (£0.53)** dryer cycle at the same unit rate. This is an arithmetic comparison, not evidence that either setup dries the same load to the same final dryness.
 
 Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-10-04. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
 
-Use the figure on your own airer's plate rather than the bands above. The honest comparison is not airer against dryer — it is airer plus whatever deals with the moisture against dryer. An airer at 300 W for eight hours plus a 300 W dehumidifier for the same eight hours lands close to a tumble dryer cycle, and takes all day. The reasons to choose it are the ones that are not about money: no vent, no heat damage to the clothes, no dryer to buy.
+Use the figure on your own airer's plate as an estimate, or measure whole-run kWh. Include the electricity used by any dehumidifier or other powered moisture removal. Compare the same laundry mass and final dryness, with the washing spin, room conditions and actual running hours recorded. A low-wattage appliance running longer can use more energy; the table cannot establish a cheapest method for your home. Space, fabric-care needs and whether you already own a dryer also matter.
 
 ## The three ways to deal with the moisture
 
@@ -93,11 +99,11 @@ Not by itself, but it does put every drop of water from the washing into the air
 
 ### Is a heated airer cheaper than a tumble dryer?
 
-Usually yes per session, because the wattage is far lower, but it takes several hours rather than one and it leaves you with the moisture to deal with. Work it out from the plate on your own airer: watts divided by 1000, times the hours you run it, times your unit rate.
+Not necessarily. Lower wattage alone does not mean a lower cost per dry load. Compare total kWh for the same laundry mass and final dryness, including any dehumidifier or other powered moisture removal. For estimates, use watts divided by 1000, times actual running hours, times your unit rate for each machine, then add the costs. Actual draw, cycling and drying time can vary; a plug-in meter can measure the whole run.
 
 ### Should I use a heated airer and a dehumidifier together?
 
-In a closed room that is the combination that works, and it is usually faster than either alone. The airer supplies the heat that moves water out of the fabric and the dehumidifier takes that water out of the air, so the drying does not stall as the room reaches saturation. You are paying for both machines, so compare the total against a tumble dryer cycle.
+They can work together: the airer supplies heat and the dehumidifier removes water from the air. Drying time depends on the load, airflow, room conditions and appliance settings; we have not measured a speed advantage. Count both machines' whole-run electricity use and compare with a dryer only for the same laundry mass and final dryness.
 
 ### Should I open a window while the airer is on?
 
