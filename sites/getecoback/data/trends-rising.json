@@ -1,52 +1,52 @@
 {
- "fetched": "2026-10-10",
+ "fetched": "2026-10-11",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "rising": [
     {
      "q": "midea portasplit mobile split klimaanlage inklusive",
-     "v": 10700
+     "v": 12800
     },
     {
      "q": "bgh urteil klimaanlage",
-     "v": 4700
+     "v": 7150
     },
     {
-     "q": "tronic klimaanlage 9000 btu",
-     "v": 2000
+     "q": "constantin schreiber axel springer",
+     "v": 3700
     },
     {
      "q": "tabaksteuer",
-     "v": 850
+     "v": 1000
+    },
+    {
+     "q": "tronic klimaanlage 9000 btu",
+     "v": 600
+    },
+    {
+     "q": "totsoo klimaanlage",
+     "v": 400
     },
     {
      "q": "haier klimaanlage",
      "v": 250
     },
     {
-     "q": "kabelkanal klimaanlage",
-     "v": 170
+     "q": "kaufland klimaanlage angebot",
+     "v": 200
     },
     {
-     "q": "carrier klimaanlage",
-     "v": 170
+     "q": "bodenkonsole klimaanlage",
+     "v": 200
     },
     {
-     "q": "daikin multisplit klimaanlage 2 innengeräte",
-     "v": 150
-    },
-    {
-     "q": "klimaanlage kaufland",
-     "v": 110
-    },
-    {
-     "q": "multisplit klimaanlage 3 innengeräte",
-     "v": 110
+     "q": "heizen mit klimaanlage",
+     "v": 160
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-03",
+   "fetched": "2026-10-11",
    "polluted": false
   },
   "schimmel entfernen": {
@@ -161,51 +161,58 @@
    "polluted": false
   },
   "heizlüfter": {
+   "auto": [
+    "heizlüfter",
+    "heizlüfter test",
+    "heizlüfter bad",
+    "heizlüfter media markt",
+    "heizlüfter camping",
+    "heizlüfter mit akku",
+    "heizlüfter obi",
+    "heizlüfter energiesparend",
+    "heizlüfter kaufen",
+    "heizlüfter test stiftung warentest"
+   ],
    "rising": [
     {
-     "q": "heizlüfter 230v",
-     "v": 52800
+     "q": "heizlüfter test",
+     "v": "new"
     },
     {
-     "q": "dreo atom one",
-     "v": 44450
+     "q": "heizlüfter bad",
+     "v": "new"
     },
     {
-     "q": "dreo solaris slim h3",
-     "v": 39950
+     "q": "heizlüfter media markt",
+     "v": "new"
     },
     {
-     "q": "sparsamer heizlüfter",
-     "v": 32250
+     "q": "heizlüfter camping",
+     "v": "new"
     },
     {
-     "q": "elektrische heizung",
-     "v": 30050
+     "q": "heizlüfter mit akku",
+     "v": "new"
     },
     {
-     "q": "heizlüfter bad testsieger",
-     "v": 25650
+     "q": "heizlüfter obi",
+     "v": "new"
     },
     {
-     "q": "mobile heizung",
-     "v": 23550
+     "q": "heizlüfter energiesparend",
+     "v": "new"
     },
     {
-     "q": "heizlüfter werkstatt",
-     "v": 22800
+     "q": "heizlüfter kaufen",
+     "v": "new"
     },
     {
-     "q": "infrarot heizstrahler",
-     "v": 20800
-    },
-    {
-     "q": "welcher heizlüfter verbraucht am wenigsten strom",
-     "v": 18500
+     "q": "heizlüfter test stiftung warentest",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-10",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-11"
   },
   "kaffeevollautomat": {
    "rising": [

@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-10-10",
+ "fetched": "2026-10-11",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "darmstadt 98 – energie",
-   "traffic": "2000+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "joshua kimmich",
+   "title": "st. pauli – ksc",
    "traffic": "2000+"
   },
   {
-   "title": "volkswagen ag",
+   "title": "uli hoeneß",
    "traffic": "5000+"
   },
   {
-   "title": "cedric teuchert",
-   "traffic": "200+"
-  },
-  {
-   "title": "ilse aigner",
-   "traffic": "200+"
-  },
-  {
-   "title": "marokko",
-   "traffic": "200+"
-  },
-  {
-   "title": "vfl osnabrück – dynamo",
-   "traffic": "5000+"
-  },
-  {
-   "title": "1. fc magdeburg – hannover 96",
-   "traffic": "50000+"
-  },
-  {
-   "title": "darmstadt 98 – energie",
+   "title": "hertha – greuther fürth",
    "traffic": "2000+"
   },
   {
-   "title": "netphen",
+   "title": "bochum – arminia",
    "traffic": "200+"
   },
   {
-   "title": "micron technology",
+   "title": "donald tusk",
+   "traffic": "500+"
+  },
+  {
+   "title": "steffen henssler",
+   "traffic": "5000+"
+  },
+  {
+   "title": "zdf fernsehgarten heute",
+   "traffic": "1000+"
+  },
+  {
+   "title": "merz",
+   "traffic": "5000+"
+  },
+  {
+   "title": "papst leo",
+   "traffic": "10000+"
+  },
+  {
+   "title": "donauwörth",
    "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-26",
-   "matched": []
-  },
   {
    "d": "2026-09-27",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "darmstadt 98 – energie"
    ]
+  },
+  {
+   "d": "2026-10-11",
+   "matched": []
   }
  ]
 }
