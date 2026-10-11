@@ -1,8 +1,10 @@
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
+import {withAggregateCache} from '../../tools/fleet-reporting/cache.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import {researchSnapshot,researchMarkup} from './research.mjs';
 import {snapshot,marketMarkup,briefsMarkup,rss} from './market.mjs';
 import {measurement} from './measurement.mjs';
+import {aggregateWindow,aggregateResponse,unavailableAggregate,aggregateErrorReason,selectRows,splitDaily,sqlTime} from './aggregate-read.mjs';
 import {handleMcp} from './mcp.mjs';
 import {scenarios} from './public/experience.mjs';
 import {sites,hubHost} from './public/catalog.mjs';
@@ -20,7 +22,8 @@ function profileResponse(rows){const ageDays=Math.floor((Date.now()-Date.parse(C
 const openapi={openapi:'3.1.0',info:{title:'Protocol Ledger source profiles',version:'1.0.0',description:'Free dated editorial snapshot. No live-chain, pricing or conformance guarantee.'},servers:[{url:'https://protocol.agiscorecard.com'}],paths:{'/api/v1/profiles':{get:{operationId:'listProfiles',parameters:[{name:'purpose',in:'query',schema:{type:'string',enum:['all','payment','identity','token']}},{name:'status',in:'query',schema:{type:'string',enum:['all','draft','standard','specification']}}],responses:{'200':{description:'Dated records, source URLs and stale state',content:{'application/json':{schema:{$ref:'#/components/schemas/ProfileResponse'}}}},'400':{description:'Unknown query field or enum'}}}},'/api/v1/profiles/{id}':{get:{operationId:'getProfile',parameters:[{name:'id',in:'path',required:true,schema:{type:'string'}}],responses:{'200':{description:'One source-backed record',content:{'application/json':{schema:{$ref:'#/components/schemas/ProfileResponse'}}}},'404':{description:'Unknown ID'}}}}},components:{schemas:{ProfileResponse:{type:'object',required:['version','revision','checkedAt','ageDays','stale','scope','profiles'],properties:{version:{type:'string'},revision:{type:'string'},checkedAt:{type:'string',format:'date'},ageDays:{type:'integer'},stale:{type:'boolean'},scope:{type:'string'},profiles:{type:'array',items:{type:'object',required:['id','name','purpose','network','status','version','source','checkedAt','claim','fields','boundary','tags'],properties:Object.fromEntries(['id','name','purpose','network','status','version','source','checkedAt','claim','boundary'].map(k=>[k,{type:'string'}]).concat([['fields',{type:'array',items:{type:'string'}}],['tags',{type:'array',items:{type:'string'}}]]))}}}}}}};
 export async function handle(request,env){
  const u=new URL(request.url),site=hosts.get(u.hostname);if(!site)return json({error:'Unknown host'},404);if(u.pathname==='/mcp')return handleMcp(request,env,site);
- if(['/api/event','/api/growth'].includes(u.pathname))return measurement(request,env,site);
+ if(u.pathname==='/api/event')return measurement(request,env,site);
+ if(u.pathname==='/api/growth')return withAggregateCache(request,readRequest=>measurement(readRequest,env,site));
  if(site==='hub'&&u.pathname==='/zh/market.html'){
   if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only endpoint'},405,{Allow:'GET, HEAD'});
   const [board,updates]=await Promise.all([researchSnapshot(),snapshot('briefs')]);
@@ -60,9 +63,18 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
   const limited=await env.EVENT_LIMIT.limit({key:site+':'+(request.headers.get('CF-Connecting-IP')||'unknown')});if(!limited.success)return json({error:'Please try again later'},429);
   let value;try{value=await body(request);}catch{return json({error:'Invalid JSON or body over 1 KiB'},400);}if(!feedbackShape(value))return json({error:'Invalid feedback fields'},400);await setup(env.DB);await env.DB.prepare('INSERT OR IGNORE INTO web3_studio_feedback (id,site,frequency,usefulness,interest,own_completed,qa) VALUES (?,?,?,?,?,?,?)').bind(value.id,site,value.frequency,value.usefulness,value.interest,value.ownCompleted?1:0,value.qa?1:0).run();return json({saved:true});
  }
- if(u.pathname==='/api/stats'){
-  if(!['GET','HEAD'].includes(request.method))return json({error:'GET required'},405);if(!env.DB)return json({error:'Feedback unavailable'},503);await setup(env.DB);const query=site==='hub'?'SELECT site,frequency,usefulness,interest,own_completed,qa,COUNT(*) AS submissions FROM web3_studio_feedback GROUP BY site,frequency,usefulness,interest,own_completed,qa':'SELECT site,frequency,usefulness,interest,own_completed,qa,COUNT(*) AS submissions FROM web3_studio_feedback WHERE site=? GROUP BY site,frequency,usefulness,interest,own_completed,qa';const stmt=env.DB.prepare(query);const result=await(site==='hub'?stmt:stmt.bind(site)).all();return json({measurement:'Anonymous submissions, not verified people or customers. qa=1 is testing.',groups:result.results});
- }
+ if(u.pathname==='/api/stats')return withAggregateCache(request,async request=>{
+  if(!['GET','HEAD'].includes(request.method))return aggregateResponse(request,{error:'GET required'},405);
+  if(u.search)return aggregateResponse(request,{error:'Unknown filter'},400);
+  const window=aggregateWindow(new Date(),35);
+  if(!env.DB)return unavailableAggregate(request,window,'database_unavailable');
+  try{
+   const scope=site==='hub'?'':' AND site=?',scopeArgs=site==='hub'?[]:[site];
+   const groups=await selectRows(env.DB,'SELECT site,frequency,usefulness,interest,own_completed,qa,COUNT(*) AS submissions FROM web3_studio_feedback WHERE created_at>=? AND created_at<?'+scope+' GROUP BY site,frequency,usefulness,interest,own_completed,qa',[sqlTime(window.groups.start),sqlTime(window.groups.end),...scopeArgs]);
+   const rows=await selectRows(env.DB,'SELECT date(created_at) AS date,site,frequency,usefulness,interest,own_completed,qa,COUNT(*) AS submissions FROM web3_studio_feedback WHERE created_at>=? AND created_at<?'+scope+' GROUP BY date(created_at),site,frequency,usefulness,interest,own_completed,qa ORDER BY date,site,qa',[sqlTime(window.daily.start),sqlTime(window.today.end),...scopeArgs]);
+   return aggregateResponse(request,{status:'ok',generatedAt:window.generatedAt,asOf:window.generatedAt,timezone:'UTC',window,scope:{site,allSites:site==='hub'},measurement:'Anonymous self-reported submissions, not verified people or customers. qa=1 is testing and must be excluded from business reports.',metrics:{submissions:{unit:'feedback_submissions',identity:'not_unique_people',qaField:'qa',businessQaValue:0},own_completed:{unit:'self_reported_completion',verifiedTaskResult:false},dailyRows:'Sparse UTC date/site/choice/QA groups; today is partial.'},groups,...splitDaily(rows,window)});
+  }catch(error){return unavailableAggregate(request,window,aggregateErrorReason(error));}
+ });
  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405,{Allow:'GET, HEAD'});
  if(u.pathname==='/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/'+u.search}});
  if(site==='hub'&&u.pathname==='/zh/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/zh/'+u.search}});
@@ -74,7 +86,7 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
  if(u.pathname.endsWith('.json')||u.pathname==='/guide.md'||u.pathname==='/llms-full.txt')headers.set('X-Robots-Tag','noindex');
  return new Response(response.body,{status:response.status,headers});
 }
-const fleetWrappedWorker = {async fetch(request,env){const u=new URL(request.url);if(hosts.has(u.hostname)&&isAnalyticsPath(u.pathname))return analyticsResponse(request,env);let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
+const fleetWrappedWorker = {async fetch(request,env){const u=new URL(request.url);if(hosts.has(u.hostname)&&isAnalyticsPath(u.pathname))return analyticsResponse(request,env);let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);if(!['/api/growth','/api/stats'].includes(u.pathname))headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
 
 
 export default withFleetAccount(fleetWrappedWorker);

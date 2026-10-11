@@ -1,3 +1,4 @@
+import {withAggregateCache} from '../../tools/fleet-reporting/cache.mjs';
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import { release } from './release.generated.mjs';
@@ -5,6 +6,26 @@ const security={'Content-Security-Policy':"default-src 'none'; script-src 'self'
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{...security,'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex'}});}
 export function validFeedback(v){return v && typeof v==='object' && !Array.isArray(v) && Object.keys(v).sort().join(',')==='frequency,id,interest,ownCompleted,qa' && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v.id) && ['zero','1-3','4plus'].includes(v.frequency) && ['no','free','discuss'].includes(v.interest) && typeof v.ownCompleted==='boolean' && typeof v.qa==='boolean';}
 async function table(db){await db.prepare('CREATE TABLE IF NOT EXISTS agent_delivery_feedback (id TEXT PRIMARY KEY, created TEXT NOT NULL DEFAULT (datetime(\'now\')), frequency TEXT NOT NULL, interest TEXT NOT NULL, own_completed INTEGER NOT NULL, qa INTEGER NOT NULL)').run();await db.prepare("DELETE FROM agent_delivery_feedback WHERE created < datetime('now','-35 days')").run();}
+// Public reporting never creates, prunes or writes feedback rows. Initialization
+// and retention remain exclusively on the existing feedback submission path.
+async function feedbackStats(request,env){
+  const end=new Date(),start=new Date(end.getTime()-35*86400000);
+  const meta={generated:end.toISOString(),timezone:'UTC',windowDays:35,window:{start:start.toISOString(),end:end.toISOString(),endExclusive:true,type:'rolling'},unit:'Anonymous submissions, not verified people or purchases. QA is separately flagged.'};
+  const respond=(data,status=200)=>new Response(request.method==='HEAD'?null:JSON.stringify(data),{status,headers:{...security,'Content-Type':'application/json; charset=utf-8','Cache-Control':status===200?'public, max-age=3600':'no-store','X-Robots-Tag':'noindex'}});
+  if(!env.DB)return respond({...meta,available:false,error:'database_not_configured',groups:null,daily:null},503);
+  try{
+    const data=await env.DB.prepare("SELECT substr(created,1,10) AS date,frequency,interest,own_completed,qa,COUNT(*) AS submissions FROM agent_delivery_feedback WHERE julianday(created) >= julianday(?) AND julianday(created) < julianday(?) GROUP BY substr(created,1,10),frequency,interest,own_completed,qa ORDER BY date,frequency,interest,own_completed,qa").bind(meta.window.start,meta.window.end).all();
+    if(data.success===false||!Array.isArray(data.results))throw Error('Missing aggregate result');
+    const totals=new Map(),daily=[];
+    for(const row of data.results){
+      const group={frequency:row.frequency,interest:row.interest,own_completed:row.own_completed,qa:row.qa,submissions:row.submissions};
+      const key=[group.frequency,group.interest,group.own_completed,group.qa].join('|');
+      const sum=totals.get(key);if(sum)sum.submissions+=group.submissions;else totals.set(key,{...group});
+      daily.push({date:row.date,complete:row.date>meta.window.start.slice(0,10)&&row.date<meta.window.end.slice(0,10),...group});
+    }
+    return respond({...meta,available:true,groups:[...totals.values()],daily,dailySemantics:'UTC dates within the rolling window; first date and today are partial. Empty date/category combinations have no retained submissions. Retention can remove old submissions; these are not user counts.'});
+  }catch{return respond({...meta,available:false,error:'aggregate_unavailable',groups:null,daily:null},503);}
+}
 async function smallBody(request){const reader=request.body?.getReader();if(!reader)throw Error('body');let n=0,chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;n+=value.length;if(n>1024){await reader.cancel();throw Error('size');}chunks.push(value);}}finally{reader.releaseLock();}const out=new Uint8Array(n);let offset=0;for(const x of chunks){out.set(x,offset);offset+=x.length;}return JSON.parse(new TextDecoder().decode(out));}
 const fleetWrappedWorker = {async fetch(request,env){
   const url=new URL(request.url);
@@ -27,9 +48,8 @@ const fleetWrappedWorker = {async fetch(request,env){
     } catch{return json({error:'Feedback temporarily unavailable'},503);}
   }
   if(url.pathname==='/api/stats'){
-    if(request.method!=='GET')return json({error:'Method not allowed'},405);
-    if(!env.DB)return json({error:'Feedback temporarily unavailable'},503);
-    try{await table(env.DB);const data=await env.DB.prepare("SELECT frequency,interest,own_completed,qa,COUNT(*) AS submissions FROM agent_delivery_feedback WHERE created >= datetime('now','-35 days') GROUP BY frequency,interest,own_completed,qa").all();return json({windowDays:35,unit:'Anonymous submissions, not verified people or purchases. QA is separately flagged.',groups:data.results||[]});}catch{return json({error:'Feedback temporarily unavailable'},503);}
+    if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);
+    return withAggregateCache(request,readRequest=>feedbackStats(readRequest,env));
   }
   if(url.pathname.startsWith('/api/'))return json({error:'Not found'},404);
   if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);

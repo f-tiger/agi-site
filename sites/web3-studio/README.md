@@ -89,3 +89,33 @@ The existing daily fleet-autopilot retains 30 daily diagnostic records.
 `/market.html` now combines eight curated assets, daily history comparisons, source-linked research questions and a local evidence notebook. `/api/research` is a separate read-only feed; the original four-asset `/api/market` contract and deterministic MCP tools remain available. `status` describes snapshot retrieval; every quote has its own freshness status. Changes use daily samples within two hours of the intended interval, never synthetic candles. Missing history does not erase usable current prices.
 
 Watchlist baselines and notes are written to browser storage only on explicit Save, expire after 30 days and have separate Delete actions. They are never uploaded. Export is a user-authored Markdown file, not automatic publication or an AI verdict. Four optional fixed-category events support evaluating the experiment without collecting notes, saved prices or asset selections. `scripts/research-smoke.mjs` verifies actual source/history connectivity after deployment; the existing daily audit covers this feed too.
+
+## Read-only aggregate coverage (2026-10-11)
+
+`GET` and `HEAD /api/growth` and `/api/stats` execute SELECT statements only.
+Schema setup and 35-day retention cleanup happen on accepted event/feedback
+submissions, never during reporting. Missing storage or tables return HTTP 503
+with `status: "unavailable"` and `groups`, `daily`, `today` set to null. An empty
+array is only returned after a successful query. Internal errors and raw inputs
+are not included in public responses.
+
+Both endpoints include `generatedAt`, `asOf`, `timezone: "UTC"`, `scope`,
+`window`, and metric definitions. `groups` retains its legacy dimensions:
+28 rolling days for growth; 35 rolling days of feedback for stats. `daily`
+contains sparse date groups for the previous 28 complete UTC days; `today` is
+separate and partial. Every window states inclusive start and exclusive end.
+Every row includes `site`; the hub queries all sites without duplicating totals
+onto each tool host. A tool hostname returns only its own rows. Growth's `qa=1`
+is QA-only and uncached, while default growth excludes QA. Feedback retains the
+`qa` dimension in all groups: business reports must filter `qa=0` explicitly.
+Self-reported `own_completed` does not establish an independently verified task.
+Counts are events/submissions, not users, MCP demand, registrations or revenue.
+
+Successful public reads advertise `Cache-Control: public, max-age=3600`;
+unavailable responses and growth QA reads use `no-store`. `generatedAt` records
+query generation, not a claim that source data is fully processed. This change
+adds no new event collection, D1 tables, persistent visitor IDs or scheduled job.
+For a deployment that must avoid synthetic business activity, set
+`FLEET_READ_ONLY_PROBE=1`: smoke scripts verify assets, metadata and sources but
+skip feedback/event submissions, aggregate reads, and MCP `tools/call` requests.
+The reporting collector can then fetch each aggregate exactly once.

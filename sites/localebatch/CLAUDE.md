@@ -9,7 +9,7 @@
 - 一个 Worker(`agi-localebatch-pilot`),单主机 `localebatch.agiscorecard.com`;`src/worker.mjs`。
 - D1:`jobs`(只有付费处理打开后才可能有行)+ `rate_limits`;API `/api/jobs` · `/api/webhook`
   (Stripe,未配置即 503)· `/api/config` · `/api/v…`。**不记录任何访问事件**——没有 page_view、
-  没有 opt-in 计数、没有 `/api/pulse`。这是 09-18 发布时的形态,不是漏埋点;后果写在判定线里。
+  没有 opt-in 计数；2026-10-11 增加只读 `/api/pulse` 报告入口。未配置 DB 时明确 503，不能将浏览器检查使用量写成 0。原先没有公开聚合是 09-18 发布时的形态,不是漏埋点;后果写在判定线里。
 - 部署:`deploy-localebatch.yml`(push 到 main 或 `codex/localebatch-launch-2026-09-18`,path 含
   `tools/discovery/**`)。闸门 = 搜索发现页构建校验 + 产品检查 + 离线 review 构建 + wrangler 校验 +
   主机归属;部署后 `scripts/smoke.mjs`(公开页 + 收费关闭状态)+ `tools/discovery/live.mjs`
@@ -33,3 +33,10 @@
   `dateModified`)、可见「Updated」行,并重写 sitemap(现在带 `<lastmod>`,由 `tools/discovery/lastmod-localebatch.json`
   内容哈希清单驱动)。**CI 是 check 模式**:改了页面要 `LASTMOD_MODE=update python3 tools/discovery/build.py --only localebatch`
   并提交清单。`/guide` 标题缩短、`/privacy` 补 meta description(按页面内容写)、发现页标题超 60 字符不加品牌后缀。
+
+## 2026-10-11 只读报告接入
+- `GET/HEAD /api/pulse` 仅 SELECT 数字聚合，不读取/返回私人目录、输入、输出内容、任务 ID、恢复令牌或支付标识，不调用支付/模型/队列。
+- 公开配置仍没有 DB；实际返回 `available:false,reason:backend_not_configured`、指标 null、HTTP 503，不开收费、不补绑定、不改计划。
+- 若以后已有 DB：固定已知状态的存续任务/项目数、自带非空输出的 accepted 结果数，以及 UTC 28 个完整日加今天局部的创建/存储付款时间计数。存续量不等于新建量，completed 不等于成功结果，结果没有完成日期，不能构造按日成功量。
+- 现有库未存 QA/live 模式及币种，因此不认定非测试客户、收入保持 null；付款计数包括之后退款的记录，不能解释为净收入。浏览器免费检查、下载未存 D1，不能填 0。
+- 200 响应按小时缓存、均 noindex；缺表/查询错误 503 明确不可用。`FLEET_READ_ONLY_PROBE=1` 部署冒烟跳过 `/api/jobs` POST，保留公开配置中收费关闭的 GET 检查。

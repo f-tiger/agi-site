@@ -1,0 +1,1736 @@
+{
+  "version": 1,
+  "inventory_reviewed_on": "2026-10-11",
+  "source_catalog_reviewed_on": "2026-10-11",
+  "scope": "Union of repository routes, analytics registry, account allowlist, reviewed external source catalogue and observed GA4 hostname identities. Not a DNS/account asset inventory.",
+  "ga4_properties": [
+    {
+      "name": "AGI",
+      "property_id": "541489054",
+      "measurement_id": "G-FZXLMBB5QB",
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "ECO",
+      "property_id": "544688614",
+      "measurement_id": "G-E2V0Q9SJ9V",
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "BPJ",
+      "property_id": "547077892",
+      "measurement_id": "G-H79D948F4Z",
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "TDS",
+      "property_id": "547130808",
+      "measurement_id": "G-2SEHFY33H8",
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "BestBlindToys",
+      "property_id": "491625986",
+      "measurement_id": null,
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "AIChain",
+      "property_id": "541485670",
+      "measurement_id": null,
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "Zaoqi",
+      "property_id": "541626444",
+      "measurement_id": null,
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    },
+    {
+      "name": "ListingLift",
+      "property_id": "545196738",
+      "measurement_id": "G-HT123LQLP7",
+      "connection_status": "historically_connected_recheck_each_run",
+      "timezone": null
+    }
+  ],
+  "sources": [
+    {
+      "id": "35-pulse",
+      "url": "https://35.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/after35/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "agi-pulse",
+      "url": "https://agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/agiscorecard/tools/analytics-worker/index.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "bpj-reach",
+      "url": "https://baipiaoji.com/api/reach?days=28",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/baipiaoji/functions/api/reach.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "codeword-pulse",
+      "url": "https://codeword.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/codeword/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "eco-pulse",
+      "url": "https://getecoback.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/getecoback/src/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "eco-trend",
+      "url": "https://getecoback.com/api/trend",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/getecoback/src/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "fanzha-pulse",
+      "url": "https://fanzha.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/fanzha/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "filinglens-pulse",
+      "url": "https://filinglens.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/venture-lab/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "firstjob-pulse",
+      "url": "https://firstjob.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/firstjob/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "games-pulse",
+      "url": "https://games.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/gamesledger/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "goldrush-pulse",
+      "url": "https://goldrush.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/goldrush/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "learn-pulse",
+      "url": "https://learn.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/learn/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "localebatch-pulse",
+      "url": "https://localebatch.agiscorecard.com/api/pulse",
+      "kind": "capability-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/localebatch/src/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "modelmeter-pulse",
+      "url": "https://modelmeter.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/venture-lab/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "play-pulse",
+      "url": "https://play.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/gridlings/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "powerbill-pulse",
+      "url": "https://powerbill.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/powerbill/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "querysprint-pulse",
+      "url": "https://querysprint.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/venture-lab/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "rfqdesk-pulse",
+      "url": "https://rfqdesk.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/venture-lab/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "source-pulse",
+      "url": "https://source.agiscorecard.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/buysomething/worker.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "tds-pulse",
+      "url": "https://thedollscout.com/api/pulse",
+      "kind": "d1-aggregate",
+      "read_contract": "legacy-approved",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/thedollscout/functions/api/pulse.js"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "verify-stats",
+      "url": "https://verify.agiscorecard.com/api/stats",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/agent-delivery-lab/worker.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes."
+    },
+    {
+      "id": "web3-growth",
+      "url": "https://web3.agiscorecard.com/api/growth",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/web3-studio/worker.mjs",
+        "sites/web3-studio/public/catalog.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes.",
+      "grouping": {
+        "field": "site",
+        "values_by_hostname": {
+          "web3.agiscorecard.com": "hub",
+          "reconcile.agiscorecard.com": "reconcile",
+          "evidence.agiscorecard.com": "evidence",
+          "route.agiscorecard.com": "route",
+          "protocol.agiscorecard.com": "protocol",
+          "permit.agiscorecard.com": "permit",
+          "compute.agiscorecard.com": "compute",
+          "incentives.agiscorecard.com": "incentives",
+          "proof.agiscorecard.com": "proof",
+          "calls.agiscorecard.com": "calls",
+          "disclosures.agiscorecard.com": "disclosures"
+        }
+      }
+    },
+    {
+      "id": "web3-stats",
+      "url": "https://web3.agiscorecard.com/api/stats",
+      "kind": "d1-aggregate",
+      "read_contract": "read-only-aggregate",
+      "timezone": "UTC",
+      "source_paths": [
+        "sites/web3-studio/worker.mjs",
+        "sites/web3-studio/public/catalog.mjs"
+      ],
+      "min_refresh_seconds": 3600,
+      "notes": "One GET per reporting run. Respect cache; no cache-busting or business-event probes.",
+      "grouping": {
+        "field": "site",
+        "values_by_hostname": {
+          "web3.agiscorecard.com": "hub",
+          "reconcile.agiscorecard.com": "reconcile",
+          "evidence.agiscorecard.com": "evidence",
+          "route.agiscorecard.com": "route",
+          "protocol.agiscorecard.com": "protocol",
+          "permit.agiscorecard.com": "permit",
+          "compute.agiscorecard.com": "compute",
+          "incentives.agiscorecard.com": "incentives",
+          "proof.agiscorecard.com": "proof",
+          "calls.agiscorecard.com": "calls",
+          "disclosures.agiscorecard.com": "disclosures"
+        }
+      }
+    }
+  ],
+  "sites": [
+    {
+      "id": "after35",
+      "hostname": "35.agiscorecard.com",
+      "canonical_url": "https://35.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/after35/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "35-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "agentfront",
+      "hostname": "agentfront.agiscorecard.com",
+      "canonical_url": "https://agentfront.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/createjob/blob/claude/startup-research-website-plan-oz7m04/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/agentfront/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/agentfront/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/agentfront/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "Both Createjob and SellSomething declare this host; current deployment ownership requires verification."
+      ]
+    },
+    {
+      "id": "agentready",
+      "hostname": "agentready.agiscorecard.com",
+      "canonical_url": "https://agentready.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/agentready/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/agentready/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/agentready/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "agents",
+      "hostname": "agents.agiscorecard.com",
+      "canonical_url": "https://agents.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "agi",
+      "hostname": "agiscorecard.com",
+      "canonical_url": "https://agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "agi-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "bpj",
+      "hostname": "baipiaoji.com",
+      "canonical_url": "https://baipiaoji.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "547077892",
+        "measurement_id": "G-H79D948F4Z",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "bpj-reach"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "bestblindtoys",
+      "hostname": "bestblindtoys.com",
+      "canonical_url": "https://bestblindtoys.com/",
+      "site_kind": "historical_property_host",
+      "source_paths": [
+        "sites/getecoback/CLAUDE.md"
+      ],
+      "ga4": {
+        "property_id": "491625986",
+        "measurement_id": null,
+        "mapping_status": "historical_property_not_backend_verified",
+        "source_paths": [
+          "owner-provided Windsor property list, 2026-10-11"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "Current deployment source unavailable; retain explicitly in report coverage."
+      ]
+    },
+    {
+      "id": "calls",
+      "hostname": "calls.agiscorecard.com",
+      "canonical_url": "https://calls.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "closecalc",
+      "hostname": "closecalc.agiscorecard.com",
+      "canonical_url": "https://closecalc.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/closecalc/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/closecalc/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/closecalc/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "codeword",
+      "hostname": "codeword.agiscorecard.com",
+      "canonical_url": "https://codeword.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/codeword/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "codeword-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "compass",
+      "hostname": "compass.agiscorecard.com",
+      "canonical_url": "https://compass.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/aistock/blob/main/lib/site.ts",
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "AIChain property is observed on the legacy Netlify host; do not automatically assign it to this canonical host."
+      ]
+    },
+    {
+      "id": "compute",
+      "hostname": "compute.agiscorecard.com",
+      "canonical_url": "https://compute.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "disclosures",
+      "hostname": "disclosures.agiscorecard.com",
+      "canonical_url": "https://disclosures.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "evidence",
+      "hostname": "evidence.agiscorecard.com",
+      "canonical_url": "https://evidence.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "listinglift",
+      "hostname": "f-tiger.github.io",
+      "canonical_url": "https://f-tiger.github.io/smarterFuture/launch/ai-realtor/",
+      "site_kind": "canonical_path",
+      "source_paths": [
+        "https://github.com/f-tiger/smarterFuture/blob/b2875b6c7314c1509f6dce19c89c2f56b72dfc15/launch/ai-realtor/config.js",
+        "https://github.com/f-tiger/smarterFuture/blob/main/llms.txt"
+      ],
+      "ga4": {
+        "property_id": "545196738",
+        "measurement_id": "G-HT123LQLP7",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/smarterFuture/blob/b2875b6c7314c1509f6dce19c89c2f56b72dfc15/launch/ai-realtor/config.js"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "Filter by hostname AND /smarterFuture/launch/ai-realtor/ page path; github.io hostname alone is not this site."
+      ]
+    },
+    {
+      "id": "fanzha",
+      "hostname": "fanzha.agiscorecard.com",
+      "canonical_url": "https://fanzha.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/fanzha/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "fanzha-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "filinglens",
+      "hostname": "filinglens.agiscorecard.com",
+      "canonical_url": "https://filinglens.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/venture-lab/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "filinglens-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "firstjob",
+      "hostname": "firstjob.agiscorecard.com",
+      "canonical_url": "https://firstjob.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/firstjob/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "firstjob-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "gamesledger",
+      "hostname": "games.agiscorecard.com",
+      "canonical_url": "https://games.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/gamesledger/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "games-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "eco",
+      "hostname": "getecoback.com",
+      "canonical_url": "https://getecoback.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/getecoback/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "544688614",
+        "measurement_id": "G-E2V0Q9SJ9V",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "eco-pulse",
+        "eco-trend"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "glossary",
+      "hostname": "glossary.agiscorecard.com",
+      "canonical_url": "https://glossary.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/glossary/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/glossary/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/glossary/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "goldrush",
+      "hostname": "goldrush.agiscorecard.com",
+      "canonical_url": "https://goldrush.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/goldrush/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "goldrush-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "gushen",
+      "hostname": "gushen.agiscorecard.com",
+      "canonical_url": "https://gushen.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/README.md",
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "Canonical host supported by the fleet account allowlist; GA4 property mapping unverified."
+      ]
+    },
+    {
+      "id": "incentives",
+      "hostname": "incentives.agiscorecard.com",
+      "canonical_url": "https://incentives.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "index",
+      "hostname": "index.agiscorecard.com",
+      "canonical_url": "https://index.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "intersolar",
+      "hostname": "intersolar-booth-scout.netlify.app",
+      "canonical_url": "https://intersolar-booth-scout.netlify.app/",
+      "site_kind": "external_canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/intersolar/blob/claude/munich-intersolar-opportunities-5m1v7u/COLLAB-SETUP.md"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "invest",
+      "hostname": "invest.agiscorecard.com",
+      "canonical_url": "https://invest.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sunPredition/blob/c89e90073c715d4b56b4f823e022b252cda1ffb0/src/research-page.js",
+        "tools/fleet-account/README.md",
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sunPredition/blob/c89e90073c715d4b56b4f823e022b252cda1ffb0/src/research-page.js"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "SunWatch. Research-page tag evidence is not proof that all pages are instrumented."
+      ]
+    },
+    {
+      "id": "learn",
+      "hostname": "learn.agiscorecard.com",
+      "canonical_url": "https://learn.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/learn/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "learn-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "lens",
+      "hostname": "lens.agiscorecard.com",
+      "canonical_url": "https://lens.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/createjob/blob/claude/startup-research-website-plan-oz7m04/wrangler.jsonc"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "localebatch",
+      "hostname": "localebatch.agiscorecard.com",
+      "canonical_url": "https://localebatch.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/localebatch/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "localebatch-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "mcppulse",
+      "hostname": "mcppulse.agiscorecard.com",
+      "canonical_url": "https://mcppulse.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/mcppulse/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/mcppulse/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/mcppulse/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "modelmeter",
+      "hostname": "modelmeter.agiscorecard.com",
+      "canonical_url": "https://modelmeter.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/venture-lab/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "modelmeter-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "pay",
+      "hostname": "pay.agiscorecard.com",
+      "canonical_url": "https://pay.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "permit",
+      "hostname": "permit.agiscorecard.com",
+      "canonical_url": "https://permit.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "gridlings",
+      "hostname": "play.agiscorecard.com",
+      "canonical_url": "https://play.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/gridlings/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "play-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "powerbill",
+      "hostname": "powerbill.agiscorecard.com",
+      "canonical_url": "https://powerbill.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/powerbill/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "powerbill-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "proof",
+      "hostname": "proof.agiscorecard.com",
+      "canonical_url": "https://proof.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "protocol",
+      "hostname": "protocol.agiscorecard.com",
+      "canonical_url": "https://protocol.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "querysprint",
+      "hostname": "querysprint.agiscorecard.com",
+      "canonical_url": "https://querysprint.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/venture-lab/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "querysprint-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "reconcile",
+      "hostname": "reconcile.agiscorecard.com",
+      "canonical_url": "https://reconcile.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "rfqdesk",
+      "hostname": "rfqdesk.agiscorecard.com",
+      "canonical_url": "https://rfqdesk.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/venture-lab/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "rfqdesk-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "route",
+      "hostname": "route.agiscorecard.com",
+      "canonical_url": "https://route.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "searchfurture",
+      "hostname": "searchfurture.agiscorecard.com",
+      "canonical_url": "https://searchfurture.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/searchFurture/blob/main/scripts/gen-seo.mjs",
+        "https://github.com/f-tiger/searchFurture/blob/main/wrangler.toml"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/searchFurture/blob/main/scripts/gen-seo.mjs"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "selltoagents",
+      "hostname": "selltoagents.agiscorecard.com",
+      "canonical_url": "https://selltoagents.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/selltoagents/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/selltoagents/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/selltoagents/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "buysomething",
+      "hostname": "source.agiscorecard.com",
+      "canonical_url": "https://source.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/buysomething/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "source-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "tds",
+      "hostname": "thedollscout.com",
+      "canonical_url": "https://thedollscout.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "547130808",
+        "measurement_id": "G-2SEHFY33H8",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "tds-pulse"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "tools",
+      "hostname": "tools.agiscorecard.com",
+      "canonical_url": "https://tools.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/tools/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/tools/public/index.html"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/tools/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "agent-delivery-lab",
+      "hostname": "verify.agiscorecard.com",
+      "canonical_url": "https://verify.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/agent-delivery-lab/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "verify-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "wallets",
+      "hostname": "wallets.agiscorecard.com",
+      "canonical_url": "https://wallets.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest."
+    },
+    {
+      "id": "web3",
+      "hostname": "web3.agiscorecard.com",
+      "canonical_url": "https://web3.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "sites/web3-studio/wrangler.jsonc",
+        "tools/fleet-account/config.mjs",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "registry_configured_not_backend_verified",
+        "source_paths": [
+          "tools/fleet-analytics/registry.json"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [
+        "web3-growth",
+        "web3-stats"
+      ],
+      "coverage_status": "aggregate_configured",
+      "reason": "Endpoint configured; each run must report available, missing, failed or stale separately. Configuration is not data coverage."
+    },
+    {
+      "id": "x402",
+      "hostname": "x402.agiscorecard.com",
+      "canonical_url": "https://x402.agiscorecard.com/",
+      "site_kind": "canonical",
+      "source_paths": [
+        "https://github.com/f-tiger/sellSomething/blob/claude/sales-website-research-plan-7i7rc2/sites/x402/wrangler.jsonc",
+        "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/x402/public/index.html",
+        "tools/fleet-account/config.mjs"
+      ],
+      "ga4": {
+        "property_id": "541489054",
+        "measurement_id": "G-FZXLMBB5QB",
+        "mapping_status": "source_configured_not_backend_verified",
+        "source_paths": [
+          "https://github.com/f-tiger/sellSomething/blob/d62bbcfc334c7613be1891879cbd889fadc69e10/sites/x402/public/index.html"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "Both Finance account integration and SellSomething route configuration name this host; count it once."
+      ]
+    },
+    {
+      "id": "zaoqi",
+      "hostname": "zaoqi-blueprints.pages.dev",
+      "canonical_url": "https://zaoqi-blueprints.pages.dev/",
+      "site_kind": "observed_property_host",
+      "source_paths": [
+        "https://github.com/f-tiger/zaoqi-blueprints/blob/master/README.md",
+        "owner report: Windsor hostname/property pair observed 2026-10-11"
+      ],
+      "ga4": {
+        "property_id": "541626444",
+        "measurement_id": null,
+        "mapping_status": "observed_hostname_not_deployment_verified",
+        "source_paths": [
+          "owner report: Windsor hostname/property pair observed 2026-10-11"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "aggregate_source_ids": [],
+      "coverage_status": "uncovered",
+      "reason": "No verified public aggregate endpoint in the reporting manifest.",
+      "notes": [
+        "GA4 hostname is observed; source repository does not establish the canonical-versus-alias relationship."
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "hostname": "www.getecoback.com",
+      "site_id": "eco",
+      "kind": "configured_alias",
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "sites/getecoback/wrangler.jsonc",
+        "tools/fleet-analytics/registry.json"
+      ],
+      "notes": "Same deployed Worker as canonical getecoback.com; do not count as an additional site or copy canonical traffic."
+    },
+    {
+      "hostname": "aichain-stocks.netlify.app",
+      "site_id": "compass",
+      "kind": "legacy_alias",
+      "ga4": {
+        "property_id": "541485670",
+        "measurement_id": null,
+        "mapping_status": "observed_hostname_not_deployment_verified",
+        "source_paths": [
+          "owner report: Windsor hostname/property pair observed 2026-10-11"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "sites/agiscorecard/CLAUDE.md"
+      ],
+      "notes": "Keep its GA4 row separate; do not copy it to compass or add users across hosts."
+    },
+    {
+      "hostname": "gushen-4g2.pages.dev",
+      "site_id": "gushen",
+      "kind": "legacy_alias",
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "sites/agiscorecard/CLAUDE.md"
+      ]
+    },
+    {
+      "hostname": "dollscout.pages.dev",
+      "site_id": "tds",
+      "kind": "preview_or_legacy_alias",
+      "ga4": {
+        "property_id": "547130808",
+        "measurement_id": null,
+        "mapping_status": "observed_hostname_not_deployment_verified",
+        "source_paths": [
+          "owner report: Windsor hostname/property pair observed 2026-10-11"
+        ],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "owner report: Windsor hostname/property pair observed 2026-10-11"
+      ]
+    },
+    {
+      "hostname": "f-tiger.github.io",
+      "path_prefix": "/zaoqi-blueprints/",
+      "site_id": "zaoqi",
+      "kind": "source_documentation_path",
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "https://github.com/f-tiger/zaoqi-blueprints/blob/master/README.md"
+      ],
+      "notes": "No proved hostname/property relationship to the Pages deployment."
+    },
+    {
+      "hostname": "compound-discovery.pages.dev",
+      "site_id": "listinglift",
+      "kind": "configured_preview_unverified",
+      "ga4": {
+        "property_id": null,
+        "measurement_id": null,
+        "mapping_status": "unverified",
+        "source_paths": [],
+        "backend_receipt": "must_verify_each_report"
+      },
+      "source_paths": [
+        "https://github.com/f-tiger/smarterFuture/blob/main/wrangler.toml"
+      ],
+      "notes": "Derived from configured Pages project name; deployment and hostname not live verified."
+    }
+  ],
+  "unmapped_sources_notes": [
+    "Read Windsor get_connectors and get_fields before each report; the current connection list overrides the historical property catalogue.",
+    "Always preserve returned GA4 hostnames not in this manifest as observed-unmapped rows; never discard them or distribute property totals to sub-sites.",
+    "Missing dates, property mappings, database bindings or aggregate endpoints are unknown, not zero.",
+    "Aliases/previews are not extra canonical sites; GA4 users must not be added across hosts, dates or hours to claim unique people.",
+    "External catalogue configurations were checked without requesting analytics or business endpoints. No private account data is included."
+  ]
+}

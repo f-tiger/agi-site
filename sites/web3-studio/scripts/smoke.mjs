@@ -5,6 +5,7 @@ import {sites,hubHost} from '../public/catalog.mjs';
 import {profiles} from '../public/profiles.mjs';
 import {release} from '../release.generated.mjs';
 
+const readOnlyProbe=process.env.FLEET_READ_ONLY_PROBE==='1';
 const hosts=[{id:'hub',host:hubHost},...sites];
 import {expectedHTML,closeExpectedHTML} from '../../../tools/fleet-account/expected-html.mjs';
 try {
@@ -12,7 +13,7 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 let requests=0;
 async function request(host,path,init={}){
  requests++;
- return fetch('https://'+host+path,{...init,redirect:'manual',signal:AbortSignal.timeout(15000)});
+ return fetch('https://'+host+path,{...init,headers:{'User-Agent':'Fleet-ReadOnly-Verification/1.0 (metadata probe)',...init.headers},redirect:'manual',signal:AbortSignal.timeout(15000)});
 }
 async function ready(s){
  let last='';
@@ -38,13 +39,13 @@ await Promise.all(hosts.map(async s=>{
  for(const path of ['/not-a-page','/reconcile/index.html','/../__private__'])assert.equal((await request(s.host,path)).status,404,s.host+path);
  const h=await request(s.host,'/',{method:'HEAD'});assert.equal(h.status,200);assert.equal((await h.arrayBuffer()).byteLength,0);
  if(s.id!=='protocol')assert.equal((await request(s.host,'/api/v1/profiles')).status,404);
- if(s.id!=='hub'){
+ if(s.id!=='hub'&&!readOnlyProbe){
   const payload={id:randomUUID(),frequency:'zero',usefulness:'sample',interest:'no',ownCompleted:false,qa:true};
   const init={method:'POST',headers:{Origin:'https://'+s.host,'Content-Type':'application/json'},body:JSON.stringify(payload)};
   for(let i=0;i<2;i++){const f=await request(s.host,'/api/feedback',init);assert.equal(f.status,200,'QA feedback '+s.host);assert.equal((await f.json()).saved,true);}
   const stats=await request(s.host,'/api/stats');assert.equal(stats.status,200);const v=await stats.json();assert.ok(v.groups.some(g=>g.site===s.id&&g.qa===1&&g.submissions>=1));assert.ok(v.groups.every(g=>g.site===s.id));
  }
- console.log('Verified '+s.host+': revision, '+Object.keys(files).length+' files, routing, headers'+(s.id==='hub'?'':', isolated QA feedback'));
+ console.log('Verified '+s.host+': revision, '+Object.keys(files).length+' files, routing, headers'+(s.id==='hub'||readOnlyProbe?'':', isolated QA feedback'));
 }));
 const apiHost=sites.find(s=>s.id==='protocol').host;
 let r=await request(apiHost,'/api/v1/profiles');assert.equal(r.status,200);assert.equal(r.headers.get('access-control-allow-origin'),'*');let v=await r.json();assert.equal(v.revision,release.revision);assert.deepEqual(v.profiles,profiles);
@@ -53,6 +54,6 @@ for(const path of ['/api/v1/profiles?status=nope','/api/v1/profiles?purpose=all&
 assert.equal((await request(apiHost,'/api/v1/profiles/unknown')).status,404);
 r=await request(apiHost,'/openapi.json');v=await r.json();assert.equal(v.openapi,'3.1.0');assert.ok(v.components.schemas.ProfileResponse);
 r=await request(apiHost,'/api/v1/profiles',{method:'OPTIONS'});assert.equal(r.status,204);
-console.log(JSON.stringify({verifiedHosts:hosts.length,revision:release.revision,requests,qaExcludedFromDemand:true}));
+console.log(JSON.stringify({verifiedHosts:hosts.length,revision:release.revision,requests,qaExcludedFromDemand:true,readOnlyProbe,syntheticFeedbackSkipped:readOnlyProbe}));
 
 }finally{await closeExpectedHTML();}

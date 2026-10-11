@@ -14,3 +14,11 @@ Release uses `.github/workflows/deploy-agent-delivery-lab.yml`. Branches validat
 Feedback rows are anonymous submissions, not verified users or conversions. Keep QA separate. Never add raw inputs, arbitrary free text, wallet connections or claims of settlement verification without re-evaluating the product boundary.
 
 Version 0.2 adds local file import, tab-memory input preservation, a guided contract editor, contract export, and batch checks. See ../../docs/agent-delivery-lab-v02-2026-09-19.md. All entered costs remain self-reported; no provider ranking or currency conversion.
+
+Public reporting: `GET`/`HEAD /api/stats` executes aggregate SELECTs only. Its
+35-day window is rolling UTC; `daily` rows identify partial boundary dates and
+retain QA flags. The existing `groups` array remains available. Missing storage
+or query failures return HTTP 503 with null metrics, not zero submissions. Report
+responses have a one-hour successful cache policy and `noindex`. Set
+`FLEET_READ_ONLY_PROBE=1` for a release probe without feedback writes or aggregate
+reads; the report collector can then read each aggregate endpoint once.

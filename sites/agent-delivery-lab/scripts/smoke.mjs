@@ -1,11 +1,13 @@
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash,randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
+const readOnly=process.env.FLEET_READ_ONLY_PROBE==='1';
+const probeHeaders={'User-Agent':'FleetAnalyticsProbe/1.0 (release metadata; no business events)'};
 const base='https://verify.agiscorecard.com',release=JSON.parse(await readFile('dist/release.json','utf8'));
 import {expectedHTML,closeExpectedHTML} from '../../../tools/fleet-account/expected-html.mjs';
 try {
 const hash=x=>createHash('sha256').update(x).digest('hex');
-async function get(path,options){const r=await fetch(base+path,{...options,signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path+' HTTP '+r.status);return r;}
+async function get(path,options){const r=await fetch(base+path,{...options,headers:{...probeHeaders,...options?.headers},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,path+' HTTP '+r.status);return r;}
 // A new custom domain can take a few minutes to resolve. Only readiness is retried;
 // content, security and feedback assertions below still fail immediately.
 let health,lastError;
@@ -19,12 +21,14 @@ for(let attempt=0;attempt<36;attempt++){
 assert.equal(health.revision,release.revision,'Deployed revision must match this build');
 const files=await readdir('dist',{recursive:true,withFileTypes:true});let checked=0;
 for(const file of files.filter(x=>x.isFile()&&!['_headers','_redirects'].includes(x.name))){const disk=file.parentPath+'/'+file.name;const relative=disk.slice('dist/'.length);const path=relative==='index.html'?'/':'/'+relative;const res=await get(path);assert.match(res.headers.get('Content-Security-Policy')||'',/default-src 'none'/);if(relative.endsWith('.mjs'))assert.match(res.headers.get('Content-Type')||'',/javascript/);if(relative.endsWith('.html'))assert.match(res.headers.get('Content-Type')||'',/text\/html/);assert.equal(hash(Buffer.from(await res.arrayBuffer())),hash(relative.endsWith('.html')&&!/noindex/i.test(res.headers.get('X-Robots-Tag')||'')?await expectedHTML(await readFile(disk),base+path,res.headers):await readFile(disk)),path+' deployed bytes');checked++;}
-assert.equal((await fetch(base+'/does-not-exist')).status,404);
+assert.equal((await fetch(base+'/does-not-exist',{headers:probeHeaders})).status,404);
+if(!readOnly){
 assert.equal((await fetch(base+'/api/feedback',{method:'POST',headers:{Origin:'https://example.org','Content-Type':'application/json'},body:'{}'})).status,403);
 const id=randomUUID();const feedback={id,frequency:'zero',interest:'no',ownCompleted:false,qa:true};
 await get('/api/feedback',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:JSON.stringify(feedback)});
 const stats=await(await get('/api/stats')).json();assert.ok(stats.groups.some(g=>g.qa===1&&g.submissions>0),'QA feedback reached isolated table');
 console.log('Non-QA feedback submissions: '+stats.groups.filter(g=>g.qa===0).reduce((sum,g)=>sum+g.submissions,0)+' (not verified people).');
-console.log('PASS: deployed revision, '+checked+' asset hashes and MIME types, security headers, 404, origin rejection, QA feedback and stats.');
+}
+console.log('PASS: deployed revision, '+checked+' asset hashes and MIME types, security headers, 404'+(readOnly?' (read-only mode: feedback and aggregate probes skipped).':', origin rejection, QA feedback and stats.'));
 
 }finally{await closeExpectedHTML();}

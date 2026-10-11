@@ -97,3 +97,24 @@ unrelated paying buyers, a usable import and at least two independent repeat buy
 An agency managing several catalogs is a channel hypothesis, not a signed customer.
 Only then add one adjacent task using the same payment/queue/export engine. Proposed
 HTML/localization-memory/feed adapters are not implemented or being sold.
+
+## Public read-only report
+
+`GET`/`HEAD /api/pulse` returns coarse numeric aggregates only and never starts
+jobs, initializes tables, prunes records, calls payment/model providers or reads
+private catalog contents into the response. The checked-in public deployment has
+no DB binding: it correctly reports HTTP 503, `backend_not_configured`, and null
+metrics. This endpoint does not enable the paid backend.
+
+With an existing database, fixed-state retained job/item counts are separate from
+UTC daily job creations and recorded payment timestamps (28 complete days plus
+today). Successful result evidence requires an accepted item with non-empty
+stored output; completed job state alone is insufficient. Result completion dates,
+free browser checker use and downloads are not stored here. QA/live mode and
+currency are not persisted, so counts cannot establish non-test customers and
+revenue stays null. Recorded payments can include subsequently refunded jobs.
+Expired jobs can be deleted, so retained inventory is not an all-time ledger.
+
+Successful report responses use a one-hour cache policy; failures are uncached
+and all reports use `noindex`. `FLEET_READ_ONLY_PROBE=1` skips synthetic job
+submission in the release smoke while retaining asset and sales-gate GET checks.
