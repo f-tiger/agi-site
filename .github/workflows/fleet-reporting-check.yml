@@ -1,0 +1,55 @@
+name: Validate fleet reporting coverage and read-only aggregates
+on:
+  pull_request:
+    paths:
+      - 'tools/fleet-reporting/**'
+      - 'sites/web3-studio/**'
+      - 'sites/venture-lab/**'
+      - 'sites/agent-delivery-lab/**'
+      - 'sites/localebatch/**'
+      - '.github/workflows/fleet-reporting-check.yml'
+      - '.github/workflows/deploy-web3-studio.yml'
+      - '.github/workflows/deploy-venture-lab.yml'
+      - '.github/workflows/deploy-agent-delivery-lab.yml'
+      - '.github/workflows/deploy-localebatch.yml'
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  reporting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate inventory, private collector and aggregate cache
+        run: |
+          python -m unittest discover -s tools/fleet-reporting -p 'test_*.py'
+          node --test tools/fleet-reporting/cache.test.mjs
+  sites:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        site: [web3-studio, venture-lab, agent-delivery-lab, localebatch]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install locked site dependencies when present
+        working-directory: sites/${{ matrix.site }}
+        run: |
+          if [ -f package-lock.json ]; then npm ci --ignore-scripts --no-audit --no-fund; fi
+      - name: Install share-card renderer
+        if: matrix.site == 'web3-studio'
+        run: python3 -m pip install -r sites/web3-studio/requirements-build.txt
+      - name: Verify existing behavior and SELECT-only aggregate boundaries
+        working-directory: sites/${{ matrix.site }}
+        run: npm test

@@ -2,10 +2,12 @@ name: Validate and deploy Web3 Workbench
 on:
   push:
     branches: [main, 'codex/web3-*']
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/web3-studio/**', '.github/workflows/deploy-web3-studio.yml']
+    paths: ['tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/web3-studio/**', '.github/workflows/deploy-web3-studio.yml']
   workflow_dispatch: {}
 permissions:
   contents: read
+env:
+  FLEET_READ_ONLY_PROBE: '1'
 concurrency:
   group: web3-studio-${{ github.ref }}
   cancel-in-progress: false

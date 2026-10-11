@@ -12,10 +12,14 @@
   发布与回滚;URL、内容、事件类别各自独立。
 - D1:专用测量库,一张按 site 分区的事件表。**统计默认关闭,只测勾选同意者**;事件白名单
   (event/mode/source),随机访问标识,无跨会话持久化,35 天保留,5 000 行/站/日上限。
-  API:`POST /api/event` · `GET /api/pulse`(28d,`mode!='qa'`,按 event/source 分组——**这是
-  opt-in 事件计数,不是访客**;与舰队 14 站的 `/api/pulse` 不同形状,所以不接 `ai_referrals.py`)
+  API:`POST /api/event` · `GET/HEAD /api/pulse`(SELECT-only,UTC 完整 28 日 `daily` 与 `complete_rows`,
+  今日局部 `today` 单列;旧 `rows` 是 27 完整日加今日局部,由 `legacy_window` 明示;QA 排除,
+  own/sample/exercise 分开——**这是 opt-in 事件计数,不是访客**;缺库/缺表返回 503,不建表、不清理)
   · `GET /api/config`(`sales_enabled:false` 由部署冒烟断言)· FilingLens 另有
   `GET /api/sec-concept`(SEC 官方 companyfacts 直查)。
+- 聚合成功响应缓存 1 小时并 noindex,`generated`/`timezone` 明示 UTC。建表与保留期清理由既有
+  POST 事件及 scheduled 路径负责。`FLEET_READ_ONLY_PROBE=1` 部署冒烟保留资产/metadata 检查,
+  跳过 QA 事件与 pulse 读取,交给私有采集器部署后逐端点读取一次。
 - 部署:`deploy-venture-lab.yml`(push 到 main 或 `codex/venture-lab-*`,path 含 `tools/discovery/**`
   与两个 `agents/*-mcp/**`)。闸门 = 14 项本地测试 + MCP 包校验 + SQL 运行时测试 + 主机归属;
   部署后 `scripts/smoke.mjs` 遍历 `experiments.json` 四主机(11 条路径、pulse 形状、config、

@@ -8,8 +8,8 @@
 ## 机器结构(照实记,改了要同步)
 - 一个独立 Worker,单主机 `verify.agiscorecard.com`;`worker.mjs` = 静态资产透传 + API。
 - D1:舰队共用库里的**隔离表 `agent_delivery_feedback`**(匿名反馈,不是用户、不是转化)。
-  API:`POST /api/feedback` · `GET /api/stats`(排除 qa=1 的分组计数)· `GET /api/health`。
-  **不记录 page_view,没有 `/api/pulse`**——这是 09-19 发布时的设计(README:「Feedback rows
+  API:`POST /api/feedback` · `GET/HEAD /api/stats`(qa 分组保留，分析时排除 qa=1)· `GET /api/health`。
+  **不记录 page_view；公开聚合入口是 `/api/stats`，不是 `/api/pulse`**——这是 09-19 发布时的设计(README:「Feedback rows
   are anonymous submissions, not verified users or conversions」),不是漏埋点。
 - 部署:`deploy-agent-delivery-lab.yml`(push 到 main 或 `codex/agent-delivery-*`,path 过滤;
   main 上才部署)。闸门 = `npm test`(引擎/CLI/worker)+ 主机归属检查;部署后 `scripts/smoke.mjs`
@@ -35,3 +35,9 @@
 - 4 页此前零 JSON-LD、零 og:image:首页加 `WebApplication`,4 页加 og/twitter + `public/share.png`
   (`scripts/share_card.py` 用页面自己的文案渲染;改文案时重跑)。
 - 进每周 IndexNow(`tools/indexnow-subdomains.mjs`),密钥文件 `public/16507d8e….txt` 由 worker 的资产透传直接服务。
+
+## 2026-10-11 只读报告接入
+- `/api/stats` GET/HEAD 仅 SELECT，不再建表或清理。建表/35 天保留清理仍只在原反馈 POST 路径。
+- 保留 `groups` 与 QA 字段，新增 `generated`、UTC 滚动 35 天精确边界及 `daily` 分组；首日和今天标记 partial，不能拿来冒充完整日。匿名提交不等于用户或交付。
+- 缺 DB/表或查询失败返回 503、`available:false`、`groups:null`、`daily:null`；不写成 0。成功响应按小时缓存，均 noindex。
+- 报告修复部署设置 `FLEET_READ_ONLY_PROBE=1`，冒烟仅查资产/版本/404，跳过反馈 POST 与聚合读取；采集器每轮统一读取聚合一次。

@@ -1,3 +1,5 @@
+import {withAggregateCache} from '../../../tools/fleet-reporting/cache.mjs';
+import {publicPulse} from './public-pulse.mjs';
 import {withFleetAccount} from '../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {auditCSV,checkTranslation,LANGUAGES,LIMITS} from '../site/core.mjs';
@@ -121,6 +123,7 @@ async function webhook(request,env){
 }
 async function api(request,env){
   const url=new URL(request.url),path=url.pathname;
+  if(path==='/api/pulse'){if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);return withAggregateCache(request,readRequest=>publicPulse(readRequest,env));}
   if(path==='/api/config'&&request.method==='GET')return json({available:readiness(env).ready,price:PRICE/100,currency:CURRENCY,limits:LIMITS,support:env.SUPPORT_EMAIL||null,seller:env.SELLER_NAME||null});
   if(path==='/api/webhook'&&request.method==='POST')return webhook(request,env);
   if(request.method!=='GET'&&request.headers.get('Origin')!==url.origin)fail('Same-origin request required.',403);

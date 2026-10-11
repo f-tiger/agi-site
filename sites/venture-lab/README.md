@@ -22,7 +22,7 @@ The three domains share a release and rollback unit. A failure affects all three
 
 Default off, optional checkbox. Explicit price-interest sends only its named event. Allowlisted schema; no raw inputs or contact details. Random page-visit identifier, no cross-session persistence. CI/browser checks use `mode=qa` (`?qa=1` in browser), excluded by the aggregate report. Samples use `sample`, SQL uses `exercise`, own CSV uses `own`. Reloads are not repeat users. Consent selection means reported counts are incomplete, not total traffic.
 
-Rate limit: 20 events per minute per visit key, plus 5,000 stored events/day/site cap. This is abuse/cost mitigation, not bot verification. Anonymous events remain forgeable. Cleanup on the next measurement request deletes records older than the 35-day active window; idle data may remain longer. No subscription, personal lead or confirmed purchase exists in this database.
+Rate limit: 20 events per minute per visit key, plus 5,000 stored events/day/site cap. This is abuse/cost mitigation, not bot verification. Anonymous events remain forgeable. Cleanup on the next accepted measurement POST or existing scheduled handler deletes records older than the 35-day active window; idle data may remain longer. Aggregate GET/HEAD requests never initialize or clean up data. No subscription, personal lead or confirmed purchase exists in this database.
 
 Run the **Commercial experiment funnel report** workflow for a read-only trailing-28-day aggregate. No raw identifiers are logged. Sales should only be reported from a real merchant ledger; never infer them from interest.
 
@@ -32,9 +32,17 @@ Public worker/module/WASM execution and each complete user path must pass browse
 
 ## Runtime measurement binding (2026-09-18)
 
-CI deployment credentials can bind the owner-managed `after35-events` database but D1 REST management returned 401. Preparation now uses the same explicit database ID as Learn. Cloudflare validates binding access during deployment. On first use the Worker creates only `venture_events` and its index. `/api/pulse` exposes only this host's 28-day non-QA aggregate counts, never visit identifiers or another site's tables. It accepts no SQL or query parameters. This is additive and does not change D1 permissions or existing data.
+CI deployment credentials can bind the owner-managed `after35-events` database but D1 REST management returned 401. Preparation now uses the same explicit database ID as Learn. Cloudflare validates binding access during deployment. Event ingestion initializes only the isolated `venture_events` and `filinglens_events` tables and indexes. `/api/pulse` uses SELECT only, scopes every query to the requested host and excludes QA. Missing database, missing tables or failed reads return 503 with no invented empty metrics. It accepts no SQL or query parameters and never returns visit identifiers.
 
-The account already uses all five free Worker cron slots. No additional cron or paid plan is required: daily cleanup runs on the next event or aggregate request. If the service receives no requests, expired records may remain until the next request.
+The account already uses all five free Worker cron slots. No additional cron or paid plan is required: daily cleanup runs on the next accepted event, and the existing scheduled handler is unchanged. Expired records may remain longer when neither runs; aggregate reads do not mutate them.
+
+### Public aggregate contract
+
+Successful `/api/pulse` GET and HEAD responses use the shared aggregate cache, `Cache-Control: public, max-age=3600` and `X-Robots-Tag: noindex`; HEAD has no body and shares the GET cache entry. Errors are not cached. `generated` is the UTC read time, and `timezone` is `UTC`. `window` describes the most recent 28 complete UTC calendar days, `[today-28, today)`, with an exclusive end. `daily` contains sparse `{day,mode,event,source,visit_events}` aggregates in that interval, and `complete_rows` groups the same interval without day. These are anonymous opt-in event counts, never distinct people, external customers, orders or revenue. The modes `own`, `sample` and `exercise` stay separate. A successfully read date with no matching events has no daily row; an unavailable table fails the whole request.
+
+`today` contains the current UTC partial day separately. For old consumers, `days:28` and `rows` remain available and retain their former interval: 27 complete days plus the current partial day. `legacy_window` labels that interval explicitly; use `window` and `daily` for complete-day comparisons. The `complete` flag refers to calendar boundaries, not completeness of opt-in collection or proof that all processing is final.
+
+`FLEET_READ_ONLY_PROBE=1 node scripts/smoke.mjs` checks public assets, routing and closed-sales metadata without sending QA events or consuming the aggregate endpoint. The private collector can then read each aggregate once after deployment.
 
 ## Build dependency
 

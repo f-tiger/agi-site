@@ -1,5 +1,6 @@
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
+import {withAggregateCache} from '../../tools/fleet-reporting/cache.mjs';
 import {secConcept} from './sec-api.mjs';
 import discovery from '../../tools/discovery/content.json' with {type:'json'};
 import {schema} from './schema.mjs';
@@ -11,15 +12,28 @@ const events=new Set(['visit','start','complete','export','rfq_export','offer','
 const sources=new Set(['direct','bpj','learn','eco','agi','search','ai','community','social','example']);
 const modes=new Set(['own','sample','exercise','qa']);
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+const pulseResponse=(request,data,status=200)=>new Response(request.method==='HEAD'?null:JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':status===200?'public, max-age=3600':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex'}});
+const dayOffset=(day,offset)=>new Date(Date.parse(day+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
+function aggregateRows(rows){const grouped=new Map();for(const {mode,event,source,visit_events} of rows){const key=JSON.stringify([mode,event,source]);const row=grouped.get(key)||{mode,event,source,visit_events:0};row.visit_events+=visit_events;grouped.set(key,row);}return [...grouped.values()].sort((a,b)=>a.mode.localeCompare(b.mode)||a.event.localeCompare(b.event)||a.source.localeCompare(b.source));}
+async function readPulse(db,site,table){
+ const generated=new Date().toISOString(),today=generated.slice(0,10),start=dayOffset(today,-28),legacyStart=dayOffset(today,-27);
+ // Public report reads never initialize, prune or otherwise mutate measurement data.
+ const result=await db.prepare(`SELECT day,mode,event,source,COUNT(*) AS visit_events FROM ${table} WHERE site=? AND day >= ? AND day <= ? AND mode IN ('own','sample','exercise') GROUP BY day,mode,event,source ORDER BY day,mode,event,source`).bind(site,start,today).all();
+ if(result.success===false||!Array.isArray(result.results))throw Error('Measurement unavailable');
+ const daily=result.results.filter(row=>row.day<today),partial=result.results.filter(row=>row.day===today);
+ return {site,generated,timezone:'UTC',days:28,metric:'anonymous opt-in events; not people, customers, orders or revenue',window:{start,end:today,days:28,complete:true,end_exclusive:true},daily,complete_rows:aggregateRows(daily),today:{date:today,partial:true,through:generated,rows:aggregateRows(partial)},legacy_window:{start:legacyStart,end:generated,days:28,complete:false,includes_today:true,description:'rows covers 27 complete UTC days and the current partial UTC day'},rows:aggregateRows(result.results.filter(row=>row.day>=legacyStart))};
+}
 async function body(request){const reader=request.body?.getReader();if(!reader)throw Error('body');let size=0,chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>512)throw Error('size');chunks.push(value);}}finally{await reader.cancel();}return JSON.parse(new TextDecoder().decode(Uint8Array.from(chunks.flatMap(x=>[...x]))));}
 const fleetWrappedWorker = {
  async fetch(request,env){const url=new URL(request.url),site=routes.get(url.hostname);if(!site)return new Response('Not found',{status:404});if(isAnalyticsPath(url.pathname))return analyticsResponse(request,env,site);const table=site==='filinglens'?'filinglens_events':'venture_events';
  if(url.pathname==='/api/sec-concept')return site==='filinglens'?secConcept(request,env):json({error:'Not found'},404);
  if(url.pathname==='/api/config')return json({site,price:experiments[site].proposed_price,sales_enabled:false,measurement:!!env.DB});
  if(url.pathname==='/api/pulse'){
-  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);
-  if(!env.DB)return json({error:'Measurement unavailable'},503);
-  try{await initialize(env.DB);const result=await env.DB.prepare(`SELECT mode,event,source,COUNT(*) AS visit_events FROM ${table} WHERE site=? AND day >= date('now','-27 days') AND mode != 'qa' GROUP BY mode,event,source ORDER BY mode,event,source`).bind(site).all();return json({site,days:28,metric:'opt-in visit events; not users, buyers or revenue',rows:result.results});}catch{return json({error:'Measurement unavailable'},503);}
+  if(!['GET','HEAD'].includes(request.method))return pulseResponse(request,{error:'Method not allowed'},405);
+  return withAggregateCache(request,async readRequest=>{
+   if(!env.DB)return pulseResponse(readRequest,{site,error:'Measurement unavailable'},503);
+   try{return pulseResponse(readRequest,await readPulse(env.DB,site,table));}catch{return pulseResponse(readRequest,{site,error:'Measurement unavailable'},503);}
+  });
  }
  if(url.pathname==='/api/event'){
   if(request.method!=='POST')return json({error:'Method not allowed'},405);

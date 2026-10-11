@@ -3,6 +3,7 @@ on:
   push:
     branches: [main, 'codex/venture-lab-*']
     paths:
+      - "tools/fleet-reporting/cache.mjs"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
       - ".github/scripts/deploy-main-guard*"
@@ -14,6 +15,8 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: read
+env:
+  FLEET_READ_ONLY_PROBE: '1'
 concurrency:
   group: venture-lab-${{ github.ref }}
   cancel-in-progress: false
@@ -103,17 +106,17 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: sites/venture-lab
         run: node scripts/smoke.mjs
-      - name: Publish honest experiment baseline
-        if: github.ref == 'refs/heads/main'
+      - name: Optional public experiment baseline
+        if: github.ref == 'refs/heads/main' && env.FLEET_READ_ONLY_PROBE != '1'
         working-directory: sites/venture-lab
         run: node scripts/report.mjs
 
-      - name: Verify public search pages and notify IndexNow once
+      - name: Verify public search pages (IndexNow requires write-enabled probes)
         if: github.ref == 'refs/heads/main'
-        run: node tools/discovery/live.mjs venture ${{ github.run_attempt == 1 && '--submit' || '' }}
+        run: node tools/discovery/live.mjs venture ${{ env.FLEET_READ_ONLY_PROBE != '1' && github.run_attempt == 1 && '--submit' || '' }}
 
-      - name: Read fleet crawl health and aggregate traffic
-        if: github.ref == 'refs/heads/main'
+      - name: Optional fleet crawl health and aggregate traffic
+        if: github.ref == 'refs/heads/main' && env.FLEET_READ_ONLY_PROBE != '1'
         continue-on-error: true
         timeout-minutes: 3
         run: python3 tools/discovery/audit.py

@@ -2,10 +2,12 @@ name: Validate and deploy Agent Delivery Lab
 on:
   push:
     branches: [main, 'codex/agent-delivery-*']
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
+    paths: ['tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
   workflow_dispatch: {}
 permissions:
   contents: read
+env:
+  FLEET_READ_ONLY_PROBE: '1'
 concurrency:
   group: agent-delivery-lab-${{ github.ref }}
   cancel-in-progress: false

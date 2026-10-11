@@ -50,3 +50,15 @@
 - **官方 MCP 注册表**:`server.json`(`io.github.f-tiger/agiscorecard-web3-workbench`,版本须等于 package.json)+
   `.github/workflows/web3-mcp-publish.yml`(只在 server.json 变更时跑;sanity 步真打线上 initialize,**必须带自定义 UA,
   边缘 403 Python 默认 UA**)。判定线 `web3-mcp-registry-1019`。升版本时 package.json 与 server.json 一起改。
+
+## 2026-10-11 子站只读报表契约
+
+`/api/growth` 和 `/api/stats` 的 GET/HEAD 仅执行 SELECT，不初始化表或清理历史记录；
+建表与 35 日清理只留在通过校验的事件/反馈提交路径。无 DB、缺表和查询失败均明确
+返回 503 unavailable 与 null 数据。两接口提供完整 UTC 28 日 `daily`、当日局部 `today`、
+生成时间、各窗口精确边界；旧 `groups` 维度保留（growth 滚动 28 日，stats 滚动 35 日）。
+每行按 site 分组，子站过滤自身，hub 不把全集分摊给子站。growth 默认剔 QA；stats 的
+qa 维度保留，业务报告只能取 qa=0，反馈完成是自报不是核验任务。
+公开成功聚合缓存一小时；growth QA 与错误响应 no-store。`FLEET_READ_ONLY_PROBE=1`
+部署核验只读静态/来源/MCP 元数据，跳过合成提交、tools/call 和聚合读取，由报表每端点
+每轮一次采集。此修复不改变 GA4 默认启动规则或第一方可选测量规则。
