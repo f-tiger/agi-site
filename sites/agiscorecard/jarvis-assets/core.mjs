@@ -1,5 +1,5 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261010-18';
+export const VERSION='jarvis-20261011-19';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
@@ -66,6 +66,17 @@ export function followupDraft(goal,nextAction,doneWhen,lang='en'){
  if(doneWhen)parts.push((zh?'完成标准：':'Success criterion: ')+draftText(doneWhen,260));
  parts.push(zh?'我实际尝试了什么、观察到什么（请补充）：':'What I tried or observed (add your result):');
  return parts.join('\n\n').slice(0,1200);
+}
+export function blockerDraft(goal,nextAction,doneWhen,lang='en'){
+ const zh=lang==='zh';
+ return [
+  (zh?'继续推进这个目标：':'Continue this goal: ')+draftText(goal,320),
+  (zh?'受阻的步骤：':'Blocked step: ')+draftText(nextAction,200),
+  (zh?'完成标准：':'Success criterion: ')+draftText(doneWhen,200),
+  zh?'什么阻碍了这一步（请补充）：':'What blocked this step? (add details):',
+  zh?'下一次尝试必须保留什么约束（请补充）：':'What constraint must the next attempt preserve? (add details):',
+  zh?'可以先验证的最小、更安全替代方案（请补充）：':'Smallest safer alternative to test (add details):'
+ ].join('\n\n').slice(0,1200);
 }
 const correctionLabels={
  sources:{en:'The sources did not support the answer.',zh:'来源不足以支持这次回答。'},

@@ -30,7 +30,7 @@ For explicit one-candidate GitHub metadata screening, Jarvis selects the first v
 
 ## Can I record what happened after a suggested action?
 
-Yes. For each current next action, you can mark Tried, Completed or Blocked. This is your self-report, not independent proof that the real-world goal succeeded. Jarvis stores only the fixed state, action number, run number and update time; it does not duplicate the action or task text in this progress receipt. A new daily report gets a new set of progress states. Deleting or expiring the task removes these receipts.
+Yes. For each current next action, you can mark Tried, Completed or Blocked. A blocked step offers an editable recovery draft for the blocker, the constraint to preserve and a smaller safe alternative; it does not retry or call the model until you review, consent and submit. This is your self-report, not independent proof that the real-world goal succeeded. Jarvis stores only the fixed state, action number, run number and update time; it does not duplicate the action or task text in this progress receipt. A new daily report gets a new set of progress states. Deleting or expiring the task removes these receipts.
 
 ## Where are my goals and memories stored?
 
