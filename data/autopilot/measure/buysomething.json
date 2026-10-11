@@ -1,9 +1,14 @@
 {
  "extra": {
   "days": 28,
-  "picks": {}
+  "picks": {
+   "led-mask": {
+    "open": 1,
+    "out": 0
+   }
+  }
  },
- "fetched": "2026-10-10",
+ "fetched": "2026-10-11",
  "kind": "sr-pop",
  "notes": [],
  "ok": true,

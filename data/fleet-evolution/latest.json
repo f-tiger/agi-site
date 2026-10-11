@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-10",
+  "as_of": "2026-10-11",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-09T09:35:30.672Z",
-    "health": "2026-10-09T14:50:07Z",
-    "ai_referrals": "2026-10-09T14:50:39Z",
-    "opportunities": "2026-10-09",
-    "autopilot_receipt": "2026-10-10"
+    "membership": "2026-10-10T08:56:15.523Z",
+    "health": "2026-10-10T14:07:32Z",
+    "ai_referrals": "2026-10-10T14:07:57Z",
+    "opportunities": "2026-10-10",
+    "autopilot_receipt": "2026-10-11"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-09T09:35:30.672Z",
+    "generated": "2026-10-10T08:56:15.523Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -116,10 +116,10 @@
   },
   "opportunities": [
     {
-      "theme": "what tools do you wish existed",
+      "theme": "any solution for bookmarks on various services",
       "site": null,
       "state": "scout",
-      "score": 2.07,
+      "score": 2.29,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -161,15 +161,6 @@
       "supply": 0
     },
     {
-      "theme": "is there an app store from which applications can t be taken down by anybody not",
-      "site": null,
-      "state": "scout",
-      "score": 2.01,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "software that converts pen hovering mode to pen contact down down mode",
       "site": null,
       "state": "scout",
@@ -180,6 +171,15 @@
     },
     {
       "theme": "using google or any other search engine to search for pdfs with fixed page range",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "web push notifications server",
       "site": null,
       "state": "scout",
       "score": 2.0,
@@ -217,10 +217,10 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 17,
-        "query": "energiesparender heizlüfter",
-        "page": "guide/heizung-10-qm.html",
-        "value": 70600
+        "count": 16,
+        "query": "elektrische heizung",
+        "page": "guide/infrarotheizung-badezimmer.html",
+        "value": 49150
       },
       "mode": "queue"
     },
@@ -295,8 +295,8 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count": 34,
-        "query": "steinfeld infrarotheizung",
-        "value": 50700
+        "query": "heizlüfter 230v",
+        "value": 52800
       },
       "mode": "queue"
     },
@@ -306,7 +306,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 5,
+        "count": 18,
         "query": "lets try the viral crumbl labubu",
         "value": 17850
       },
@@ -319,8 +319,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/future-guide",
-        "n7": 483,
-        "p7": 29
+        "n7": 662,
+        "p7": 101
       },
       "mode": "queue"
     },
@@ -342,7 +342,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 233,
+        "human_pv_28d": 244,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -353,7 +353,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 252,
+        "human_pv_28d": 267,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -364,7 +364,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 921,
+        "human_pv_28d": 926,
         "ai_ref_28d": 0
       },
       "mode": "queue"

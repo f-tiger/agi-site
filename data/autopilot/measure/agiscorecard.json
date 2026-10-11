@@ -3,16 +3,20 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 26,
+    "n": 27,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 8,
+    "n": 7,
+    "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 6,
     "q": "tool:verdicts"
    },
    {
     "n": 6,
-    "q": "tool:thesis_tracker"
+    "q": "tool:sunwatch_ledger"
    },
    {
     "n": 6,
@@ -21,37 +25,33 @@
    {
     "n": 6,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
-   },
-   {
-    "n": 5,
-    "q": "tool:sunwatch_ledger"
    }
   ]
  },
- "fetched": "2026-10-10",
+ "fetched": "2026-10-11",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
+  "/ai-stock-exposure": {
+   "n7": 180,
+   "p7": 80
+  },
   "/future-guide": {
-   "n7": 483,
-   "p7": 29
+   "n7": 662,
+   "p7": 101
   },
   "/mentor": {
    "n7": 81,
-   "p7": 20
+   "p7": 31
   },
   "/search": {
-   "n7": 125,
-   "p7": 34
+   "n7": 122,
+   "p7": 40
   },
   "/zh/future-guide": {
-   "n7": 236,
-   "p7": 59
-  },
-  "/zh/future-guide/agents-take-time": {
-   "n7": 74,
-   "p7": 18
+   "n7": 218,
+   "p7": 98
   }
  },
  "site": "agiscorecard",
