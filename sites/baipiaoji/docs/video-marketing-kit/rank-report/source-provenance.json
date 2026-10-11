@@ -1,0 +1,67 @@
+{
+  "status": "ownership_chain_verified",
+  "checkedAt": "2026-10-11T15:10:47.880694+00:00",
+  "receipts": [
+    {
+      "requestedUrl": "https://apps.apple.com/cn/app/id6451407032",
+      "finalUrl": "https://apps.apple.com/cn/app/%E7%BA%A2%E6%9E%9C%E7%9F%AD%E5%89%A7-%E6%B5%B7%E9%87%8F%E7%83%AD%E9%97%A8%E7%9F%AD%E5%89%A7%E9%9A%8F%E5%BF%83%E7%9C%8B/id6451407032",
+      "status": 200,
+      "redirects": [
+        {
+          "url": "https://apps.apple.com/cn/app/id6451407032",
+          "status": 301,
+          "location": "https://apps.apple.com/cn/app/%E7%BA%A2%E6%9E%9C%E7%9F%AD%E5%89%A7-%E6%B5%B7%E9%87%8F%E7%83%AD%E9%97%A8%E7%9F%AD%E5%89%A7%E9%9A%8F%E5%BF%83%E7%9C%8B/id6451407032"
+        }
+      ],
+      "responseSha256": "8740ca15ad1c872237d7908eb1eb9fb8fa104381e5ed38089c9abb479dac0c40",
+      "checkedAt": "2026-10-11T15:10:40.643107+00:00"
+    },
+    {
+      "requestedUrl": "https://novelquickapp.com/hongguo",
+      "finalUrl": "https://hongguoduanju.com/",
+      "status": 200,
+      "redirects": [
+        {
+          "url": "https://novelquickapp.com/hongguo",
+          "status": 301,
+          "location": "https://novelquickapp.com/"
+        },
+        {
+          "url": "https://novelquickapp.com/",
+          "status": 301,
+          "location": "https://hongguoduanju.com/"
+        }
+      ],
+      "responseSha256": "fcee22a576bfc7b04a858226a7586ff6d8a2063e1f6810374d5af0bf2d79dff5",
+      "checkedAt": "2026-10-11T15:10:45.700266+00:00"
+    },
+    {
+      "requestedUrl": "https://hongguoduanju.com/",
+      "finalUrl": "https://hongguoduanju.com/",
+      "status": 200,
+      "redirects": [],
+      "responseSha256": "466a028fabdb7546a8f9298e14372767239d2a2132c3dcdafefcbfa9405e77f0",
+      "checkedAt": "2026-10-11T15:10:47.875008+00:00"
+    }
+  ],
+  "facts": {
+    "appStoreDeveloperLinks": [
+      {
+        "label": "开发者网站",
+        "href": "https://novelquickapp.com/hongguo"
+      }
+    ],
+    "appStoreProviderMatches": true,
+    "developerRedirectReachesRankingDomain": true,
+    "rankingDomainHomeCompanyMatches": true,
+    "displayedIcp": [
+      "京ICP备2021028909号-43"
+    ]
+  },
+  "conclusion": "The current App Store product listing links to the developer website, whose HTTP redirects reach hongguoduanju.com; provider and destination company names agree. This supports describing the ranking source as the Hongguo official website.",
+  "limitations": [
+    "This is current cross-link verification, not an independent corporate or MIIT registration audit.",
+    "Website provenance does not certify numeric heat accuracy, permission to redistribute artwork, BPJ partnership, full historical consistency, or playback rights.",
+    "Historical page hash records cannot themselves prove source ownership at the time of capture."
+  ]
+}

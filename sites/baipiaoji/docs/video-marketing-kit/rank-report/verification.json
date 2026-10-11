@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-11T15:27:23.115354+00:00",
+  "status": "passed",
+  "authorship": "first_party_validation_not_independent_third_party_review",
+  "checks": [
+    "byte-identical repeat: summary.json",
+    "byte-identical repeat: observations.csv",
+    "byte-identical repeat: tag-counts.csv",
+    "byte-identical repeat: .full-recomputed.json",
+    "independent direct-Git endpoint calculation: ai-drama (39, 61, 10, 29, 0)",
+    "independent direct-Git endpoint calculation: comic-drama (58, 42, 15, 41, 2)",
+    "14 daily rows agree with independently extracted IDs",
+    "423 tag rows have valid count/100 denominators",
+    "README relative artifacts exist",
+    "PNG 2240x1312; CJK chart visually reviewed after title spacing correction",
+    "root repeat: 3 generated data files byte-identical",
+    "root review: 23-column blank handoff template",
+    "root review: relative file links valid",
+    "root review: 3 Python scripts parse; source probe requires explicit output and fails closed on incomplete provenance",
+    "CSV LF normalization; offline recomputation remains byte-identical"
+  ],
+  "fullRecomputedSha256": "192f3eccd6881018987c733c09a696467eac18cad751ec17e1d75ca2fbb6f528",
+  "externalAdoptionVerified": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 9578,
+      "sha256": "0090dba30fc50ccb3fe419ab2b3f27e651bef5517726556f7fa54c483b381976"
+    },
+    {
+      "path": "draw-chart.py",
+      "bytes": 3729,
+      "sha256": "ea1d9e426c9cf0e1f6efe3b2a3000fcd3d94ad997cf2d7d0624c8e772cd1a1ea"
+    },
+    {
+      "path": "endpoint-comparison.png",
+      "bytes": 188316,
+      "sha256": "972e77cdd1997bddd5c8f78bdc74ad0bf691c612bd8c7073c498da4cd8e5b0e9"
+    },
+    {
+      "path": "observations.csv",
+      "bytes": 3682,
+      "sha256": "4988a49299abf961a60aee3616d59b10cfa86612ad2b006c50cd294b073a4666"
+    },
+    {
+      "path": "recompute.py",
+      "bytes": 13513,
+      "sha256": "d9d59584c093e41710e5351aa53d043de45ba1faff68f2ad5526403b02ecf593"
+    },
+    {
+      "path": "source-provenance.json",
+      "bytes": 2794,
+      "sha256": "2f347772bdfe00e4f259f75b2d37c78684680e94d8373f075cf83a812c5e3373"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 31886,
+      "sha256": "62054cbcd5b3521c150ce96d61e822eccd26bf835918ac7fcf9194786f13c5b5"
+    },
+    {
+      "path": "tag-counts.csv",
+      "bytes": 14905,
+      "sha256": "c48ead1f093cd2c0e4363a5d4cdd2c3e0f0b16b5e2d3b33301e7d41b6853977d"
+    },
+    {
+      "path": "verify-source.py",
+      "bytes": 3844,
+      "sha256": "6c7465dcc0297a43b553afd5fa53214d313f18834dd13244803af6341f0fa53a"
+    }
+  ],
+  "initialCheckedAt": "2026-10-11T15:19:38.838314+00:00",
+  "publicationScope": "Repository research materials only; no website page deployment or third-party publication evidenced here"
+}

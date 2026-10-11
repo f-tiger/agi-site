@@ -1,0 +1,820 @@
+{
+  "schemaVersion": 1,
+  "title": "红果 AI 剧与漫剧 TOP100：2026-10-05 至 2026-10-11 七次日快照观察",
+  "author": "帧选",
+  "authorship": "first_party_analysis_not_independent_testimonial",
+  "externalAdoptionVerified": false,
+  "scope": "2026-10-05 through 2026-10-11; one archived successful observation per date per ranking category",
+  "identity": "series_id; separate seasons remain separate records",
+  "metric": "snapshot_heat",
+  "unit": "热度值",
+  "totals": {
+    "ai-drama": {
+      "observationCount": 7,
+      "rowsPerObservation": 100,
+      "distinctSeriesIdsAcrossObservedSnapshots": 163,
+      "presentInAllSevenSnapshotsCount": 38,
+      "endpoint": {
+        "from": "2026-10-05",
+        "to": "2026-10-11",
+        "common": 39,
+        "presentAtEndAbsentAtStart": 61,
+        "presentAtStartAbsentAtEnd": 61,
+        "improvedAmongCommon": 10,
+        "declinedAmongCommon": 29,
+        "unchangedAmongCommon": 0
+      }
+    },
+    "comic-drama": {
+      "observationCount": 7,
+      "rowsPerObservation": 100,
+      "distinctSeriesIdsAcrossObservedSnapshots": 162,
+      "presentInAllSevenSnapshotsCount": 57,
+      "endpoint": {
+        "from": "2026-10-05",
+        "to": "2026-10-11",
+        "common": 58,
+        "presentAtEndAbsentAtStart": 42,
+        "presentAtStartAbsentAtEnd": 42,
+        "improvedAmongCommon": 15,
+        "declinedAmongCommon": 41,
+        "unchangedAmongCommon": 2
+      }
+    }
+  },
+  "observations": [
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-05",
+      "checkedAtTimeUTC": "2026-10-05T06:15:21.762303+00:00",
+      "checkedAtTimeBeijing": "2026-10-05T14:15:21.762303+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 100,
+      "presentTodayAbsentOctober5": 0,
+      "presentOctober5AbsentToday": 0,
+      "improvedAmongCommon": 0,
+      "declinedAmongCommon": 0,
+      "unchangedAmongCommon": 100,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "3e35bf939ca11ea9f9acb65f66f93e9db8e48441",
+      "sourceBlobSha256": "32cedb08db7bc1592f30f67068f33486574f8aa5d5c1c65a0e0b5f297efd6973"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-06",
+      "checkedAtTimeUTC": "2026-10-06T06:51:57.901696+00:00",
+      "checkedAtTimeBeijing": "2026-10-06T14:51:57.901696+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 91,
+      "presentTodayAbsentOctober5": 9,
+      "presentOctober5AbsentToday": 9,
+      "improvedAmongCommon": 33,
+      "declinedAmongCommon": 47,
+      "unchangedAmongCommon": 11,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "b857e1a41f5cd82b3e18ee4d0c64805775b1cc8e",
+      "sourceBlobSha256": "55a7d914eca4771fbabff8eacb7ae90532156e27bc16696dd8d865e13f233228"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-07",
+      "checkedAtTimeUTC": "2026-10-07T06:25:56.888344+00:00",
+      "checkedAtTimeBeijing": "2026-10-07T14:25:56.888344+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 82,
+      "presentTodayAbsentOctober5": 18,
+      "presentOctober5AbsentToday": 18,
+      "improvedAmongCommon": 27,
+      "declinedAmongCommon": 53,
+      "unchangedAmongCommon": 2,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "d174d12f49dc84449972d2f98ad182e172fcd1ed",
+      "sourceBlobSha256": "59e80be8bf033066f18793399fa014fdf2f1ce412cf975d21d1f1dd221b6f24f"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-08",
+      "checkedAtTimeUTC": "2026-10-08T06:37:39.253842+00:00",
+      "checkedAtTimeBeijing": "2026-10-08T14:37:39.253842+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 74,
+      "presentTodayAbsentOctober5": 26,
+      "presentOctober5AbsentToday": 26,
+      "improvedAmongCommon": 23,
+      "declinedAmongCommon": 49,
+      "unchangedAmongCommon": 2,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "b5de7dc7babd056b512baf7ae368a98005f58c29",
+      "sourceBlobSha256": "7bd9eb7a679c71ec6c593b0f60732e0a8b170fa611dc01241da83a0d5cd56768"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-09",
+      "checkedAtTimeUTC": "2026-10-09T06:39:34.243520+00:00",
+      "checkedAtTimeBeijing": "2026-10-09T14:39:34.243520+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 63,
+      "presentTodayAbsentOctober5": 37,
+      "presentOctober5AbsentToday": 37,
+      "improvedAmongCommon": 19,
+      "declinedAmongCommon": 42,
+      "unchangedAmongCommon": 2,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "c9cf2ce4302931fb071e91794e51dcd8f664b466",
+      "sourceBlobSha256": "22a0f59523194ca0d530a97c34d8eef61b73ac2c1e748fb25498be1619450e2a"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-10",
+      "checkedAtTimeUTC": "2026-10-10T06:22:16.990020+00:00",
+      "checkedAtTimeBeijing": "2026-10-10T14:22:16.990020+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 52,
+      "presentTodayAbsentOctober5": 48,
+      "presentOctober5AbsentToday": 48,
+      "improvedAmongCommon": 12,
+      "declinedAmongCommon": 37,
+      "unchangedAmongCommon": 3,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "e67af2ff15020964d9d408df121288706b2a3c46",
+      "sourceBlobSha256": "81e8127d24dbd8e34f85e3d4a998bb2551139167be15ab674c731f9bc6fbee73"
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-11",
+      "checkedAtTimeUTC": "2026-10-11T07:18:52.855232+00:00",
+      "checkedAtTimeBeijing": "2026-10-11T15:18:52.855232+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 39,
+      "presentTodayAbsentOctober5": 61,
+      "presentOctober5AbsentToday": 61,
+      "improvedAmongCommon": 10,
+      "declinedAmongCommon": 29,
+      "unchangedAmongCommon": 0,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "5ace1cdfbe98b9fe0f1fd6793441b9c4091bff7b",
+      "sourceBlobSha256": "b5276f267ecd6f5f88b0cfd993bc40b4a5ba995fffbf2eebcc239a0972613ed9"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-05",
+      "checkedAtTimeUTC": "2026-10-05T06:15:21.762303+00:00",
+      "checkedAtTimeBeijing": "2026-10-05T14:15:21.762303+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 100,
+      "presentTodayAbsentOctober5": 0,
+      "presentOctober5AbsentToday": 0,
+      "improvedAmongCommon": 0,
+      "declinedAmongCommon": 0,
+      "unchangedAmongCommon": 100,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "3e35bf939ca11ea9f9acb65f66f93e9db8e48441",
+      "sourceBlobSha256": "32cedb08db7bc1592f30f67068f33486574f8aa5d5c1c65a0e0b5f297efd6973"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-06",
+      "checkedAtTimeUTC": "2026-10-06T06:51:57.901696+00:00",
+      "checkedAtTimeBeijing": "2026-10-06T14:51:57.901696+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 87,
+      "presentTodayAbsentOctober5": 13,
+      "presentOctober5AbsentToday": 13,
+      "improvedAmongCommon": 42,
+      "declinedAmongCommon": 40,
+      "unchangedAmongCommon": 5,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "b857e1a41f5cd82b3e18ee4d0c64805775b1cc8e",
+      "sourceBlobSha256": "55a7d914eca4771fbabff8eacb7ae90532156e27bc16696dd8d865e13f233228"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-07",
+      "checkedAtTimeUTC": "2026-10-07T06:25:56.888344+00:00",
+      "checkedAtTimeBeijing": "2026-10-07T14:25:56.888344+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 79,
+      "presentTodayAbsentOctober5": 21,
+      "presentOctober5AbsentToday": 21,
+      "improvedAmongCommon": 28,
+      "declinedAmongCommon": 47,
+      "unchangedAmongCommon": 4,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "d174d12f49dc84449972d2f98ad182e172fcd1ed",
+      "sourceBlobSha256": "59e80be8bf033066f18793399fa014fdf2f1ce412cf975d21d1f1dd221b6f24f"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-08",
+      "checkedAtTimeUTC": "2026-10-08T06:37:39.253842+00:00",
+      "checkedAtTimeBeijing": "2026-10-08T14:37:39.253842+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 74,
+      "presentTodayAbsentOctober5": 26,
+      "presentOctober5AbsentToday": 26,
+      "improvedAmongCommon": 25,
+      "declinedAmongCommon": 48,
+      "unchangedAmongCommon": 1,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "b5de7dc7babd056b512baf7ae368a98005f58c29",
+      "sourceBlobSha256": "7bd9eb7a679c71ec6c593b0f60732e0a8b170fa611dc01241da83a0d5cd56768"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-09",
+      "checkedAtTimeUTC": "2026-10-09T06:39:34.243520+00:00",
+      "checkedAtTimeBeijing": "2026-10-09T14:39:34.243520+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 70,
+      "presentTodayAbsentOctober5": 30,
+      "presentOctober5AbsentToday": 30,
+      "improvedAmongCommon": 22,
+      "declinedAmongCommon": 46,
+      "unchangedAmongCommon": 2,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "c9cf2ce4302931fb071e91794e51dcd8f664b466",
+      "sourceBlobSha256": "22a0f59523194ca0d530a97c34d8eef61b73ac2c1e748fb25498be1619450e2a"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-10",
+      "checkedAtTimeUTC": "2026-10-10T06:22:16.990020+00:00",
+      "checkedAtTimeBeijing": "2026-10-10T14:22:16.990020+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 61,
+      "presentTodayAbsentOctober5": 39,
+      "presentOctober5AbsentToday": 39,
+      "improvedAmongCommon": 19,
+      "declinedAmongCommon": 41,
+      "unchangedAmongCommon": 1,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "e67af2ff15020964d9d408df121288706b2a3c46",
+      "sourceBlobSha256": "81e8127d24dbd8e34f85e3d4a998bb2551139167be15ab674c731f9bc6fbee73"
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-11",
+      "checkedAtTimeUTC": "2026-10-11T07:18:52.855232+00:00",
+      "checkedAtTimeBeijing": "2026-10-11T15:18:52.855232+08:00",
+      "rows": 100,
+      "uniqueSeriesIds": 100,
+      "sourcePages": 5,
+      "commonWithOctober5": 58,
+      "presentTodayAbsentOctober5": 42,
+      "presentOctober5AbsentToday": 42,
+      "improvedAmongCommon": 15,
+      "declinedAmongCommon": 41,
+      "unchangedAmongCommon": 2,
+      "metric": "snapshot_heat",
+      "unit": "热度值",
+      "commit": "5ace1cdfbe98b9fe0f1fd6793441b9c4091bff7b",
+      "sourceBlobSha256": "b5276f267ecd6f5f88b0cfd993bc40b4a5ba995fffbf2eebcc239a0972613ed9"
+    }
+  ],
+  "sources": [
+    {
+      "commit": "3e35bf939ca11ea9f9acb65f66f93e9db8e48441",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "1ab6706d9853d090d729e82ef82b066488df470f",
+      "sha256": "32cedb08db7bc1592f30f67068f33486574f8aa5d5c1c65a0e0b5f297efd6973",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/3e35bf939ca11ea9f9acb65f66f93e9db8e48441/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "b857e1a41f5cd82b3e18ee4d0c64805775b1cc8e",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "36894aec6eac6f9fe544d6dd7b1cbbaef1a1dcae",
+      "sha256": "55a7d914eca4771fbabff8eacb7ae90532156e27bc16696dd8d865e13f233228",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/b857e1a41f5cd82b3e18ee4d0c64805775b1cc8e/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "d174d12f49dc84449972d2f98ad182e172fcd1ed",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "de54334170ad53f55520e232849828dc0810f078",
+      "sha256": "59e80be8bf033066f18793399fa014fdf2f1ce412cf975d21d1f1dd221b6f24f",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/d174d12f49dc84449972d2f98ad182e172fcd1ed/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "b5de7dc7babd056b512baf7ae368a98005f58c29",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "9f377929dc891fdd3a8c4f1a3478a75df0468c56",
+      "sha256": "7bd9eb7a679c71ec6c593b0f60732e0a8b170fa611dc01241da83a0d5cd56768",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/b5de7dc7babd056b512baf7ae368a98005f58c29/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "c9cf2ce4302931fb071e91794e51dcd8f664b466",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "bef39f30fa586faf83a52567dc2a6ae01c9b070a",
+      "sha256": "22a0f59523194ca0d530a97c34d8eef61b73ac2c1e748fb25498be1619450e2a",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/c9cf2ce4302931fb071e91794e51dcd8f664b466/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "e67af2ff15020964d9d408df121288706b2a3c46",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "35f483dd098c74f548d9f7358df4c21e3e656a59",
+      "sha256": "81e8127d24dbd8e34f85e3d4a998bb2551139167be15ab674c731f9bc6fbee73",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/e67af2ff15020964d9d408df121288706b2a3c46/sites/baipiaoji/data/manju-insights.json"
+    },
+    {
+      "commit": "5ace1cdfbe98b9fe0f1fd6793441b9c4091bff7b",
+      "path": "sites/baipiaoji/data/manju-insights.json",
+      "gitBlob": "dcc0e184f84507512c87627bc43c1b86d23f9272",
+      "sha256": "b5276f267ecd6f5f88b0cfd993bc40b4a5ba995fffbf2eebcc239a0972613ed9",
+      "permalink": "https://github.com/f-tiger/agi-site/blob/5ace1cdfbe98b9fe0f1fd6793441b9c4091bff7b/sites/baipiaoji/data/manju-insights.json"
+    }
+  ],
+  "method": {
+    "inclusion": "Two fixed official site ranking categories, pages 1–5, source ranks 1–100; one archived successful observation per date.",
+    "rankImprovement": "sourceRank at first observation minus sourceRank at last observation, only for series_id in both.",
+    "enteredObservedTop100": "Present in later chosen TOP100 snapshot and absent in earlier chosen TOP100 snapshot; does not mean new release or first ever appearance.",
+    "absentFromLaterObservedTop100": "Present in earlier chosen snapshot, absent in later; does not establish platform delisting.",
+    "tagCounts": "Count each unique source tag at most once per row; one row can contribute to multiple tags.",
+    "hashes": "Pinned Git blob SHA256 validates reproducibility of the stored file. Historical page SHA256 values are stored collection evidence, not an independent capture or proof of platform metrics accuracy."
+  },
+  "limitations": [
+    "The source describes a composite heat metric; it is not plays, viewers, revenue, monthly growth, or market share.",
+    "One chosen observation per calendar date, at differing collection times; no intraday record, equal-interval assumption, or continuous seven-day ranking claim.",
+    "A work may leave and return between observations. Rank changes describe sampled list positions, not audience growth or causation.",
+    "The 100-row samples are platform-defined lists, not all released dramas. AI classification is the source classification, not an independent production audit.",
+    "Source pages are now live; pinned archived metadata supports recomputation, but original historical HTML was not independently recovered.",
+    "Heat algorithms and measurement windows are not fully disclosed. No cross-platform heat normalization or historical backfill is performed."
+  ],
+  "originalRankingUrls": [
+    "https://hongguoduanju.com/rank/hot-ai-drama",
+    "https://hongguoduanju.com/rank/hot-comic-drama"
+  ],
+  "historicalPageHashes": [
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-05",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "f9d585ab101cedb0e2cb8cc7c9ea12d576b9a0e7141d61d64729ac17793a0b60",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "1d814599270d7c01927e472473176f2f4d7a1eed584c4602ae86ae72c7878d18",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "a41ab9286bd96573f7c0a706d4443e8c6a91619cf854beebb43384621f519bcc",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "f20195aa4779ac63b88ecd54ab47dc8630344517c0c19a377b426c0c6bbffd15",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "9bc8923599288b42483788b58ca208502ca485dd73f43f958af8a73ff66ccc21",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-06",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "4109b90c43b73274bf6eb12fa68bcc6b2153f195a4927e98a7aaa4093a945a2c",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "e98344d72090f3f225112f82087d6d46b2febefe1209d45dea0b388dbf5e1882",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "b9d188d3741f42e312d1099d0e46b6869ee58aedfca3f2a0e0462276d834e809",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "67686c66380b3dd86949aa30b0a74ccaaf3f1d4ec5f5f302c7288d01234a2ff4",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "b28d6187d0a58deb8ae6a36b3c5678b466ad57ff880011ef1ed319692eda9cd0",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-07",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "f0d971249abe39fc2720511b42b46f23e0e499a751c695c6cd30078d2e5a5f93",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "2c9a2530444b8dcd285c9fb656dbcd0717e2e2b25cbf00407c03852f7ec916f7",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "e75747638bbb09316acbbb85c313d78c9e799585e7e0d605b8ffb0534a3048c6",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "7d81474649ef5f8aec9f627558ff48fe2856e52fc8b3663c272ea1fb30c2ae03",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "f3d862f7d3c15d81ec270366a1c85a427c62c9681990575f27e7371e454c6824",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-08",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "06db6b1026718b968511c6d3e5c7b5eb976e437b1ca59f4bc341aee9a08b9521",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "063a42b5572afe189ce172456ba30fffaca62c4dedadf51504755e4745970ab8",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "31ea2af7a556544b44b734a4561331288863eb97af536a176da8fc1da882af01",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "fb573a37661a8777cfb5ba5d78d5123144b8cca79702b33ee74d0e2e7f77acfb",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "3b68e9221fbe0140b1c943ef3a7032034f0dd7945cc3dab1d1b75f1f2f434420",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-09",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "958639c0594fc24f9c85e6a950be8ebee59519967acc5654835f3a03b956b9e4",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "a01fbee0dba3008b5bc315f7b8a524edb03df27ee1ffc64c833dda18a0606500",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "773fbc117542fa78d9667adba11cfeffc91a3ce8f306e6f835d65ff5b080e5f5",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "b7d8e0febc1453d630792ed028ca9356a52b6aeee18040901a0b9aef549e60e2",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "1e76492276e0475e325c5cb0f110984a840103fa0d33d6a56aedfd031a93f69c",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-10",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "983fb6176a45ab669c2dea8034136cd099b700ee57d27f20382d52283fce65fe",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "edab503bee0953a1c4426306c7e1131f18a2fb74ca622c29c93e7cf82212c7ce",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "09eb8d298fc7905b5eae65020ef8ac91e548fb69c2790d159d3506a4e61bc539",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "bc1599382abac1992468adb04affcda0c69b9f2f90fe51e67f1b9046149dc694",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "be1da15ffbd503a991cd05c98d5dc11ec45835ebb447d952dd1e3ae2a4caed42",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "ai-drama",
+      "observedAt": "2026-10-11",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama",
+          "sha256": "f49c7b38e378783da1d306f0fae9f6393d4d7bdf28dcb82104d1625566270270",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=2",
+          "sha256": "99dd1a353a94e10392798dafb60b0198c3260100fffcd8c36e04a2a457240364",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=3",
+          "sha256": "2bad2e7bd7a2649c2d61ca4c94e89e739b892115031f03379fae481b67fe72a0",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=4",
+          "sha256": "93ebbffecb38b5be591e2f01728d7c77b4ea0fa8f108305fb05469abbbd2f5a4",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-ai-drama?page=5",
+          "sha256": "adc9a7a51945026ececa01b156faeb1e12776f533e60157e59299f566b54751a",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-05",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "1e92d5de8bf41dd41577af65490a79da21dc71e571429dd502f2946eabd26dc6",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "fd672e0fd76b4e2053a71d917e0ff5994517c85fb330b17191e8abce0a13d73d",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "47de5cd527fcf97f65ab18b271f7313fe37b1413881126952591ecbcef553127",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "5449b37904a62a944783f1ef63d5d6cc5dc3f54556159360f9809dc03bb14c79",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "0e191f5ffaa17a8cfa6b55fd28aacfc7ec7d0d8aef05df2b8c59b4338d2a8e36",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-06",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "58e2e95148e5b9b72a1da31349e604336770390c353b4fc0f496df752b77458f",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "8e7e8eca0124bdc300c47d7b922fadd3c74a65e7c8a88bd05b88b52d77777a7a",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "48bc6b264819a5f61f7b746531a27f8ef4f2d957f0ff635532dff27083d6d176",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "00cf231b298c1fc7ef6a8dc9328957c7b697ba3391be6573ad363da5f73f0582",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "c69920f7e664393e8a1a568ebf0a8783ab489e4db175330fbf2f4c35078c0af8",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-07",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "bc148d2f643ba76128c42d219a77307e7e840f7f4840898e0742b7faf2e68f4b",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "3472c90953de9c8deb424b5c45659bb34dc4e24e5dd5f639407dba1bc81f8c48",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "2fe88ff4bd0ed1879365a43fd50a992be8f4b527aee3c66cae5ffad6bbc30467",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "492f605383fb28b611495a1e2bd9af357ad96506cfd59790d892e68513bbba20",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "733929e2949b6bd089170d78626a742a8ef7f4d4f0316fc31c4cdc4d2137a92f",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-08",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "e5eaed5e1353a2e916a5372d4b07ab0b067f38c42ae59d111d0440372e795b9b",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "190984b53ca7fdc8a74275d43af96ea3ab8ce0e1bde2c2b28c1122a24fed0228",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "646fd4f8bc4b291c50f0464bc5d8e0a180e1fb3e1cec4fd5ac621d6a6f3dbeae",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "9a84b4e9ef4aabc9e2b284b0f04eea5ab43be70e0fc68d14c4b78ca63f286134",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "37d01c86eb205bedb37954266da613397c331fa7e91aac53c22aad34f5b49abf",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-09",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "dc6c492af0e633b98a18464a9449c515fbc2355586ca31c787a52b85749f3c03",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "38c765ab9b11012944e264d922074f4e047db6f67bc6f42e26a7365324563794",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "c21bf4d16f887c5723c5eb777619480e0632d4cb43e8f77b8044af4c73a20168",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "bd34646e741428d9b0e933f1e5a5a9388e4589b7988496caa9deda5aa9f6e3ba",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "30b7b57f79752e9583940e4c0d632d3217d53020dbc9b371f5053d0312b5ccb5",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-10",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "cd96538d8c2af89c4dcbdaa43659668e11bbee161708a6b81140562ad435afcc",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "8e977c2cef83836d4ace240168f59006835fa5495e8e6d9fcad33db8cd03ebdc",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "024aafceeb93167b009e38973cd564e3a5bd8b4f78c2c8dfe95120c71542bff6",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "9130279717b3c3365e5dec1108230c56b568259af52df65e60ec1450948847b7",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "1b3647e2a7fe0359f1205d84379541b176bf5f8a91b8659178f2faa29a35f5b5",
+          "count": 20
+        }
+      ]
+    },
+    {
+      "cohort": "comic-drama",
+      "observedAt": "2026-10-11",
+      "sourcePages": [
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama",
+          "sha256": "6201301510b26628d8a8bb31facda9678bd8a58131e12d5af790e7b21da2f5d6",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=2",
+          "sha256": "fdc37ded8277c2f8a3c36aa631a4c9a83a07fd3f2dc93ea408332f29c0eb37f8",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=3",
+          "sha256": "ff1f71942f10890c1ac873b01463249a09d7475bc12c9a911df772009e794e7c",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=4",
+          "sha256": "8ac4489fabec0ccb4b4022909ff914e591d988aa18029708b02affd9e8518320",
+          "count": 20
+        },
+        {
+          "url": "https://hongguoduanju.com/rank/hot-comic-drama?page=5",
+          "sha256": "7b0b28e806a626e57ee74dd88e7ad2e5a444c4627b9ae64309c2db2e1c4ad8a8",
+          "count": 20
+        }
+      ]
+    }
+  ]
+}
