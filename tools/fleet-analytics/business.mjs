@@ -25,6 +25,9 @@ export function businessEvent(host, pathname, detail) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'getecoback.com' && ['/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) &&
+      ['view','example','calculate','compare','example_export','export','share','guide'].some(action=>name==='eco_laundry_'+action))
+    return {name:name.slice(4),tool_id:'laundry-cost',repeat:true};
   if (host === 'getecoback.com' && /^\//.test(pathname) && !/^\/(?:(?:en|it|fr|es|zh)\/)?(?:members|account|api|private)(?:[/.]|$)/.test(pathname) &&
       ['example','share_prepare','tool_share','share_reddit','share_x','copy','image'].some(action=>name==='eco_tool_'+action))
     return {name,tool_id:'eco-tool-experience',repeat:true};

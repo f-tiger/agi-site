@@ -27,12 +27,15 @@ Note the actual room volume, temperature, moisture source, door arrangement and 
 Check the manufacturer’s operating range and performance curve. A cold-room decision may involve compressor versus desiccant operation, but do not assume that a technology label proves the lower whole-session cost. Follow the actual manual and account for the room’s moisture source.
 [Compare desiccant and compressor operation](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) · [Measure laundry running cost](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check).
 
-## Purchase checklist
+## UK purchase checklist
+Check the exact model and seller before paying. A German listing or an English-language page does not establish UK compatibility or delivery. EcoBack has not verified a UK affiliate buying link for these models; the manufacturer links below are ordinary sources, not commission links.
 
 - Confirm the exact model generation and condition-matched extraction and watts.
 - Check noise at the intended setting, tank access, drainage and placement.
 - Identify leaks or ventilation faults that a purchase would not fix.
 - Use your own tariff and a full session, not only maximum nameplate watts.
+- Confirm the model generation, UK plug and rated voltage in the manufacturer specification and the exact seller listing; do not assume an imported variant is equivalent.
+- Check delivery to your postcode, including any Northern Ireland or island exclusions, total delivered price in GBP, warranty coverage and who handles returns.
 - Check current availability and return terms directly; this page makes no stock or price promise.
 
 ## Manufacturer sources

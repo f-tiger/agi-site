@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
-import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
+import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition,laundryAction} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
 const x={dryer:1.5,dryerBasis:'cycle',method:'estimate',watts:250,hours:8,dehum:2,price:.35,loads:3,purchase:200,currency:'EUR',comparable:true};
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});
@@ -106,4 +106,25 @@ print(json.dumps([block({**cap,'electricity_p_per_kwh':rate},'airer') for rate i
     assert(h.includes('not product measurements or matched drying tests'));
     assert(!h.includes('one drying session'));
   }
+});
+
+test('GA4 separates fictional examples, unconfirmed calculations and completed comparisons',()=>{
+ assert.equal(laundryAction('laundry_compare',{action:'compare',input:'example',equal:'yes'}),'eco_laundry_example');
+ assert.equal(laundryAction('laundry_compare',{action:'compare',input:'edited',equal:'no'}),'eco_laundry_calculate');
+ assert.equal(laundryAction('laundry_compare',{action:'compare',input:'edited',equal:'yes',kwh:123}),'eco_laundry_compare');
+ assert.equal(laundryAction('laundry_export',{action:'csv',input:'example'}),'eco_laundry_example_export');
+ assert.equal(laundryAction('laundry_export',{action:'card',input:'edited'}),'eco_laundry_export');
+ assert.equal(laundryAction('purchase',{action:'compare',input:'edited'}),null);
+});
+
+test('UK entry starts with an explicit GBP example and routes to local buying checks',()=>{
+ const en=readFileSync(new URL('../site/en/guide/dehumidifier-drying-clothes-cost.html',import.meta.url),'utf8');
+ assert(en.includes('<select name="currency"><option value="GBP">'));
+ assert(en.includes('GBP 0.35/kWh means 35p/kWh'));
+ assert(en.includes('changing currency does not convert amounts'));
+ assert(en.includes('/en/guide/12l-vs-20l-dehumidifier-uk.html#purchase-checklist'));
+ assert(!en.includes('k=dehumidifier+laundry+mode'));
+ assert(!en.includes('k=digital+hygrometer+indoor'));
+ const uk=readFileSync(new URL('../site/en/guide/12l-vs-20l-dehumidifier-uk.html',import.meta.url),'utf8');
+ for(const text of ['id="purchase-checklist"','UK plug','postcode','not verified a UK affiliate'])assert(uk.includes(text));
 });

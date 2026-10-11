@@ -43,8 +43,8 @@ Indoor drying adds moisture to room air. The Verbraucherzentrale guidance on hea
 
 **Looking at machines?** Check the operating temperature range, extraction test conditions, noise data and drainage options. Rated watts and tank size alone do not establish laundry drying cost.
 
-Dehumidifiers with laundry mode →
-  Indoor hygrometers →
+[UK model and retailer checklist →](https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html#purchase-checklist)
+  [UK damp and heating decisions →](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html)
 
 ## Frequently asked questions
 

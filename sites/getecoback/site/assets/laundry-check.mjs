@@ -1,4 +1,13 @@
 import {laundry} from './laundry-math.mjs';
+// Only fixed action names cross into the optional GA4 frame; never input values.
+export function laundryAction(name,m){
+ if(name==='laundry_view'&&m.action==='view')return 'eco_laundry_view';
+ if(name==='laundry_next'&&['share','guide'].includes(m.action))return 'eco_laundry_'+m.action;
+ if(!['example','edited'].includes(m.input))return null;
+ if(name==='laundry_compare'&&m.action==='compare')return 'eco_laundry_'+(m.input==='example'?'example':m.equal==='yes'?'compare':'calculate');
+ if(name==='laundry_export'&&['card','csv'].includes(m.action))return 'eco_laundry_'+(m.input==='example'?'example_':'')+'export';
+ return null;
+}
 export function acquisition(href,referrer=''){
  const u=new URL(href),source=u.searchParams.get('utm_source');
  if(u.searchParams.get('utm_campaign')!=='eco-laundry-03'||u.searchParams.get('utm_medium')!=='organic_video'||!['youtube','tiktok'].includes(source))return {source:'onsite',evidence:'none'};
@@ -14,7 +23,7 @@ if(typeof document!=='undefined'){
  const signature=x=>JSON.stringify({...x,comparable:false,watts:x.method==='estimate'?x.watts:0,hours:x.method==='estimate'?x.hours:0,dehum:x.method==='measured'?x.dehum:0});const initial=signature(values());
  const inputKind=x=>signature(x)===initial?'example':'edited';
  const privacy=()=>navigator.doNotTrack==='1'||navigator.globalPrivacyControl||navigator.webdriver||/[?&]__(probe|ci|qa)(=|&|$)/.test(location.search);
- const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
+ const emit=(name,action,x=values())=>{if(privacy()||window.__ecoToolExample)return;const m={lang:en?'en':'de',input:inputKind(x),method:x.method,equal:x.comparable?'yes':'no',action,...acquisition(location.href,document.referrer)},key=name+JSON.stringify(m);if(seen.has(key))return;seen.add(key);const fixed=laundryAction(name,m);if(fixed)window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:fixed}}));try{fetch('/api/ev',{method:'POST',keepalive:true,credentials:'omit',headers:{'content-type':'application/json'},body:JSON.stringify({n:name,p:location.pathname,r:document.referrer,m})}).catch(()=>{});}catch{}};
  const invalidate=()=>{latest=null;results.hidden=true;q('[data-error]').textContent='';};
  const mode=()=>{const measured=form.elements.method.value==='measured';q('[data-measured]').hidden=!measured;q('[data-estimate]').hidden=measured;form.elements.dehum.disabled=!measured;form.elements.watts.disabled=measured;form.elements.hours.disabled=measured;};
  const fmt=(n,d=2)=>n.toLocaleString(en?'en-GB':'de-DE',{maximumFractionDigits:d});
