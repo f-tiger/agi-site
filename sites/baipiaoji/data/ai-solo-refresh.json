@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-10T06:22:34.563Z",
+  "lastRun": "2026-10-11T06:21:59.219Z",
   "status": "degraded",
-  "checkedSources": 5,
+  "checkedSources": 7,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -164,6 +164,48 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
       "lastChecked": "2026-10-10T06:22:34.563Z"
+    },
+    {
+      "caseId": "kite",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "coqui",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "tome-slides",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "humane-ai-pin",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "humane-ai-pin",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "neeva-consumer-search",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
+    },
+    {
+      "caseId": "neeva-consumer-search",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://searchengineland.com/neeva-shutting-down-427384",
+      "lastChecked": "2026-10-11T06:21:59.219Z"
     }
   ],
   "sources": {
@@ -473,29 +515,90 @@
       "simhash": "64fa8c1c8f9ee6af",
       "words": 2444,
       "consecutiveChange": 0
+    },
+    "kite|https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387": {
+      "caseId": "kite",
+      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "coqui|https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve": {
+      "caseId": "coqui",
+      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "tome-slides|https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025": {
+      "caseId": "tome-slides",
+      "sourceUrl": "https://tome.app/help/en/articles/10744234-tome-slides-is-sunsetting-on-april-30th-2025",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": 404,
+      "consecutiveChange": 0
+    },
+    "humane-ai-pin|https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ": {
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "humane-ai-pin|https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown": {
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "neeva-consumer-search|https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/": {
+      "caseId": "neeva-consumer-search",
+      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "neeva-consumer-search|https://searchengineland.com/neeva-shutting-down-427384": {
+      "caseId": "neeva-consumer-search",
+      "sourceUrl": "https://searchengineland.com/neeva-shutting-down-427384",
+      "lastAttempt": "2026-10-11T06:21:59.219Z",
+      "status": "unreachable",
+      "http": 403,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 30,
+  "cursor": 35,
   "errors": [
     {
-      "caseId": "glean",
-      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "caseId": "kite",
+      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
       "reason": "body-limit"
     },
     {
-      "caseId": "harvey",
-      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+      "caseId": "coqui",
+      "sourceUrl": "https://www.linkedin.com/pulse/coqui-shutting-down-josh-meyer-fpsve",
       "reason": "body-limit"
     },
     {
-      "caseId": "fireflies",
-      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://support.humane.com/hc/en-us/articles/34243204841997-Ai-Pin-Consumers-FAQ",
+      "reason": "network-error"
+    },
+    {
+      "caseId": "humane-ai-pin",
+      "sourceUrl": "https://www.theverge.com/news/614883/humane-ai-hp-acquisition-pin-shutdown",
       "reason": "body-limit"
     },
     {
-      "caseId": "cydoc",
-      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "reason": "unsafe-source"
+      "caseId": "neeva-consumer-search",
+      "sourceUrl": "https://www.searchenginejournal.com/neeva-the-ad-free-search-engine-announces-closure/487414/",
+      "reason": "body-limit"
     }
   ]
 }

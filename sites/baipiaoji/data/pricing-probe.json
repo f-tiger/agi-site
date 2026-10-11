@@ -1,23 +1,23 @@
 {
- "generated": "2026-10-10",
+ "generated": "2026-10-11",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "framer",
-  "gamma",
-  "gaoding",
-  "gemini",
-  "gemini-cli",
-  "gezhe",
-  "google-ai-studio",
-  "gptzero"
+  "grammarly",
+  "groq",
+  "guojia-fanzha",
+  "heygen",
+  "huggingface",
+  "ideogram",
+  "jsdesign",
+  "krea"
  ],
- "cursor": "gptzero",
+ "cursor": "krea",
  "summary": {
-  "ready": 40,
+  "ready": 41,
   "empty": 36,
-  "blocked": 32,
+  "blocked": 31,
   "probed_total": 108
  },
  "tools": {
@@ -650,14 +650,14 @@
    "name": "Groq",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://groq.com/pricing",
      "status": 200,
-     "bytes": 54261,
+     "bytes": 54990,
      "tokens": 1
     },
     {
@@ -683,8 +683,8 @@
    "slug": "guojia-fanzha",
    "name": "国家反诈中心",
    "cat": "safety",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1667,7 +1667,7 @@
    "name": "Grammarly",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1675,13 +1675,13 @@
      "url": "https://www.grammarly.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 13
+     "tokens": 10
     }
    ],
    "best": {
     "url": "https://www.grammarly.com/pricing",
-    "tokens": 13,
-    "excerpt": "million people and 50,000 organizations Most popular For individuals Free Write without spelling and grammar mistakes. $0 USD / month Create account Write without mistakes See your writing tone Generate text with 100 AI prompts Most popular For eligible individuals and teams Pro Achieve your goals with clear and confident writing. $12 USD Try for free Email reminder 2 days before trial ends. $0 payment today Try for $0.00 Everything in Free, plus: Rewrite full sentences with a click Adjust your writing tone with ease Write fluently in English Unlimited personalized suggestions Detect plagiarism and AI generated text Generate text with 2,000 AI prompts Most popular For larger organizations En"
+    "tokens": 10,
+    "excerpt": "million people and 50,000 organizations Most popular For individuals Free Write without spelling and grammar mistakes. $0 USD / month Create account Write without mistakes See your writing tone Generate text with 100 AI prompts Most popular For eligible individuals and teams Pro Achieve your goals with clear and confident writing. $12 USD Try for free Email reminder 2 days before trial ends. $0 payment today Start 7-day Free Trial Everything in Free, plus: Rewrite full sentences with a click Adjust your writing tone with ease Write fluently in English Unlimited personalized suggestions Detect plagiarism and AI generated text Generate text with 2,000 AI prompts Most popular For larger organiz"
    }
   },
   "heygen": {
@@ -1689,7 +1689,7 @@
    "name": "HeyGen",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1697,12 +1697,12 @@
      "url": "https://heygen.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 36
+     "tokens": 35
     }
    ],
    "best": {
     "url": "https://heygen.com/pricing",
-    "tokens": 36,
+    "tokens": 35,
     "excerpt": "Paid plans include a monthly credit allocation you spend across all features. For solo creators, the Creator plan costs $29/month (or $24/month if you pay annually). For advanced individuals, Pro starts at $49/month and scales up to tiers with more credits per month. For teams looking to create and collaborate, the Business plan costs $149/month plus $20/seat/month. What are credits? Credits are HeyGen&#x27;s single currency for video and asset creation. Every paid plan includes a monthly credit allocation, which you can use across different HeyGen features. The number of credits a video or asset uses can vary based on which AI model is used, video duration, and the complexity of the generat"
    }
   },
@@ -1711,21 +1711,21 @@
    "name": "Hugging Face",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://huggingface.co/docs/inference-providers/pricing",
      "status": 200,
-     "bytes": 134917,
-     "tokens": 5
+     "bytes": 139825,
+     "tokens": 4
     }
    ],
    "best": {
     "url": "https://huggingface.co/docs/inference-providers/pricing",
-    "tokens": 5,
-    "excerpt": "xperiment with Inference Providers: Account Type Monthly Credits Can be spent on Extra usage (pay-as-you-go) Free Users $0.10, subject to change Inference Providers yes (credits purchase required) PRO Users $2.00 All Hugging Face compute services yes Team or Enterprise Organizations $2.00 per seat All Hugging Face compute services yes Credits included with a PRO, Team, or Enterprise subscription are general-purpose compute credits : on top of Inference Providers, they can also be spent on Inference Endpoints , upgraded CPU &amp; GPU hardware for Spaces (including ZeroGPU usage beyond your quota), and Jobs . They are credited every month and applied automatically before any pay-as-you-go usag"
+    "tokens": 4,
+    "excerpt": "Monthly Credits Can be spent on Extra usage (pay-as-you-go) Free Users None - yes (credits purchase required) PRO Users $2.00 All Hugging Face compute services yes Team or Enterprise Organizations $2.00 per seat All Hugging Face compute services yes Credits included with a PRO, Team, or Enterprise subscription are general-purpose compute credits : on top of Inference Providers, they can also be spent on Inference Endpoints , upgraded CPU &amp; GPU hardware for Spaces (including ZeroGPU usage beyond your quota), and Jobs . They are credited every month and applied automatically before any pay-as-you-go usage is billed. Your monthly credits automatically apply when you route requests through H"
    }
   },
   "ideogram": {
@@ -1733,7 +1733,7 @@
    "name": "Ideogram",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-09-25",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1793,7 +1793,7 @@
    "name": "即时设计",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-11",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1827,32 +1827,22 @@
    "name": "Krea AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-11",
    "env": "runner",
-   "state": "blocked",
+   "state": "ready",
    "tried": [
     {
      "url": "https://krea.ai/pricing",
-     "status": 0,
-     "bytes": 0,
-     "tokens": 0,
-     "error": "UND_ERR_HEADERS_OVERFLOW"
-    },
-    {
-     "url": "https://krea.ai/open-source-pricing",
-     "status": 0,
-     "bytes": 0,
-     "tokens": 0,
-     "error": "UND_ERR_HEADERS_OVERFLOW"
-    },
-    {
-     "url": "https://krea.ai/price",
-     "status": 404,
-     "bytes": 0,
-     "tokens": 0
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 42
     }
    ],
-   "best": null
+   "best": {
+    "url": "https://krea.ai/pricing",
+    "tokens": 42,
+    "excerpt": "mparisons across different areas of our platform. Compare plans Select plans to compare 3 plans max Basic Pro Max Basic $5.25 /mo Pro $21 /mo Max $63 /mo svg]:-rotate-45 focus-visible:border-action focus-visible:ring-action text-primary-900 min-h-0 items-center gap-4 rounded-md py-0 text-base leading-6 font-medium shadow-none transition-opacity hover:no-underline focus-visible:ring-[3px] dark:text-white [&amp;[data-state=open]_.comparison-mobile-accordion-chevron]:rotate-180\" id=\"bits-s22\" aria-expanded=\"false\" aria-disabled=\"false\" data-state=\"closed\" data-orientation=\"vertical\" data-accordion-trigger=\"\" tabindex=\"0\"> Features &amp; License Access to Krea Agent svg]:pointer-events-none [&am"
+   }
   },
   "languagetool": {
    "slug": "languagetool",

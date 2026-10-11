@@ -1,40 +1,40 @@
 {
-  "checked_at": "2026-10-10",
+  "checked_at": "2026-10-11",
   "results": [
     {
       "slug": "deepseek",
       "url": "https://chat.deepseek.com",
       "ok": true,
       "status": 202,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kimi",
       "url": "https://kimi.moonshot.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tongyi",
       "url": "https://tongyi.aliyun.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "yuanbao",
       "url": "https://yuanbao.tencent.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatgpt",
       "url": "https://chatgpt.com",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gemini",
@@ -42,273 +42,273 @@
       "ok": false,
       "status": 0,
       "error": "UND_ERR_HEADERS_OVERFLOW",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "github-copilot",
       "url": "https://github.com/features/copilot",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tongyi-lingma",
       "url": "https://lingma.aliyun.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "trae",
       "url": "https://www.trae.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "windsurf",
       "url": "https://windsurf.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jimeng",
       "url": "https://jimeng.jianying.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "liblib",
       "url": "https://www.liblib.art",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "canva",
       "url": "https://www.canva.cn",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "recraft",
       "url": "https://www.recraft.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jianying",
       "url": "https://www.capcut.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kling",
       "url": "https://klingai.kuaishou.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hailuo",
       "url": "https://hailuoai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "runway",
       "url": "https://runwayml.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gamma",
       "url": "https://gamma.app",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "xinghuo",
       "url": "https://xinghuo.xfyun.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wps-ai",
       "url": "https://ai.wps.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "google-ai-studio",
       "url": "https://aistudio.google.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "siliconflow",
       "url": "https://siliconflow.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "groq",
       "url": "https://groq.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhipu-glm",
       "url": "https://open.bigmodel.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cloudflare-workers-ai",
       "url": "https://developers.cloudflare.com/workers-ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "doubao",
       "url": "https://www.doubao.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhipu-qingyan",
       "url": "https://chatglm.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wenxin",
       "url": "https://yiyan.baidu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "claude",
       "url": "https://claude.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tiangong",
       "url": "https://www.tiangong.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cursor",
       "url": "https://cursor.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "codegeex",
       "url": "https://codegeex.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "comate",
       "url": "https://comate.baidu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cline",
       "url": "https://cline.bot",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "qoder",
       "url": "https://qoder.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tongyi-wanxiang",
       "url": "https://tongyi.aliyun.com/wanxiang",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "yige",
       "url": "https://yige.baidu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "leonardo",
       "url": "https://leonardo.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ideogram",
       "url": "https://ideogram.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "krea",
       "url": "https://krea.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vidu",
       "url": "https://www.vidu.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pixverse",
       "url": "https://app.pixverse.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "qingying",
       "url": "https://chatglm.cn/video",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhiying",
@@ -316,70 +316,70 @@
       "ok": false,
       "status": 0,
       "error": "UND_ERR_CONNECT_TIMEOUT",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "luma",
       "url": "https://lumalabs.ai/dream-machine",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "google-flow",
       "url": "https://labs.google/fx/tools/flow",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "feishu-miaoji",
       "url": "https://www.feishu.cn/product/minutes",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aippt",
       "url": "https://www.aippt.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhiwen",
       "url": "https://zhiwen.xfyun.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "notion-ai",
       "url": "https://www.notion.so/product/ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tencent-docs-ai",
       "url": "https://docs.qq.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openrouter",
       "url": "https://openrouter.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cerebras",
       "url": "https://cloud.cerebras.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mistral",
@@ -387,161 +387,161 @@
       "ok": false,
       "status": 0,
       "error": "TypeError",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "nvidia-nim",
       "url": "https://build.nvidia.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cohere",
       "url": "https://cohere.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "huggingface",
       "url": "https://huggingface.co",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "suno",
       "url": "https://suno.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "elevenlabs",
       "url": "https://elevenlabs.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fish-audio",
       "url": "https://fish.audio",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tianyin",
       "url": "https://tianyin.music.163.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tme-studio",
       "url": "https://y.qq.com/opens/tme-studio",
       "ok": false,
       "status": 404,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "miaobi",
       "url": "https://xiezuocat.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "caiyun",
       "url": "https://fanyi.caiyunapp.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "quillbot",
       "url": "https://quillbot.com",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "grammarly",
       "url": "https://www.grammarly.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "metaso",
       "url": "https://metaso.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "perplexity",
       "url": "https://www.perplexity.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "notebooklm",
       "url": "https://notebooklm.google.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "felo",
       "url": "https://felo.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "consensus",
       "url": "https://consensus.app",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hunyuan",
       "url": "https://hunyuan.tencent.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "grok",
       "url": "https://grok.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ms-copilot",
       "url": "https://copilot.microsoft.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "poe",
       "url": "https://poe.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "yuewen",
@@ -549,749 +549,749 @@
       "ok": false,
       "status": 0,
       "error": "CERT_HAS_EXPIRED",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "baixiaoying",
       "url": "https://ying.baichuan-ai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lechat",
       "url": "https://chat.mistral.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "qwen-chat",
       "url": "https://chat.qwen.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "github-models",
       "url": "https://github.com/marketplace/models",
       "ok": false,
       "status": 404,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "marscode",
       "url": "https://www.marscode.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "continue",
       "url": "https://continue.dev",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aider",
       "url": "https://aider.chat",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "v0",
       "url": "https://v0.app",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bolt",
       "url": "https://bolt.new",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lovable",
       "url": "https://lovable.dev",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "replit",
       "url": "https://replit.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "codebuddy",
       "url": "https://copilot.tencent.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wujie",
       "url": "https://www.wujieai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bing-image",
       "url": "https://www.bing.com/images/create",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "playground-ai",
       "url": "https://playground.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "civitai",
       "url": "https://civitai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "removebg",
       "url": "https://www.remove.bg",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "upscayl",
       "url": "https://upscayl.org",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pixlr",
       "url": "https://pixlr.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tusiart",
       "url": "https://tusiart.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pika",
       "url": "https://pika.art",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "haiper",
       "url": "https://haiper.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "opusclip",
       "url": "https://www.opus.pro",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "dujia",
       "url": "https://aigc.baidu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "heygen",
       "url": "https://www.heygen.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "d-id",
       "url": "https://www.d-id.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "udio",
       "url": "https://www.udio.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tingwu",
       "url": "https://tingwu.aliyun.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "moyin",
       "url": "https://www.moyin.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "xfyun-peiyin",
       "url": "https://peiyin.xunfei.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ttsmaker",
       "url": "https://ttsmaker.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podcastle",
       "url": "https://podcastle.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "processon",
       "url": "https://www.processon.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "napkin",
       "url": "https://www.napkin.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "boardmix",
       "url": "https://boardmix.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chaojijianli",
       "url": "https://www.wondercv.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gezhe",
       "url": "https://gezhe.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ima",
       "url": "https://ima.qq.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "huoshan-xiezuo",
       "url": "https://www.writingo.net",
       "ok": false,
       "status": 404,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "immersive-translate",
       "url": "https://immersivetranslate.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "youdao",
       "url": "https://fanyi.youdao.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wordvice",
       "url": "https://wordvice.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "quark-ai",
       "url": "https://www.quark.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai360",
       "url": "https://so.360.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhihu-zhida",
       "url": "https://zhida.zhihu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "devv",
       "url": "https://devv.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "phind",
       "url": "https://www.phind.com",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "together",
       "url": "https://www.together.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fireworks",
       "url": "https://fireworks.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bailian",
       "url": "https://bailian.console.aliyun.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "qianfan",
       "url": "https://qianfan.cloud.baidu.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "volcengine-ark",
       "url": "https://www.volcengine.com/product/ark",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sambanova",
       "url": "https://cloud.sambanova.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "deepinfra",
       "url": "https://deepinfra.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "coze",
       "url": "https://www.coze.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "dify",
       "url": "https://dify.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "n8n",
       "url": "https://n8n.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fastgpt",
       "url": "https://fastgpt.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "yuanqi",
       "url": "https://yuanqi.tencent.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "appbuilder",
       "url": "https://appbuilder.baidu.com",
       "ok": false,
       "status": 500,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "flowith",
       "url": "https://flowith.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ragflow",
       "url": "https://ragflow.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "figma",
       "url": "https://www.figma.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jsdesign",
       "url": "https://js.design",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "motiff",
       "url": "https://motiff.cn",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gaoding",
       "url": "https://www.gaoding.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "x-design",
       "url": "https://www.x-design.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chuangkit",
       "url": "https://www.chuangkit.com",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "framer",
       "url": "https://www.framer.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "elicit",
       "url": "https://elicit.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scispace",
       "url": "https://typeset.io",
       "ok": true,
       "status": 202,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "readpaper",
       "url": "https://readpaper.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "doubao-aixue",
       "url": "https://www.doubao.com/education",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "connectedpapers",
       "url": "https://www.connectedpapers.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wanzhi",
       "url": "https://www.wanzhi.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "guojia-fanzha",
       "url": "https://fzapph5.gjfzpt.cn/QRCode/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "decopy-detector",
       "url": "https://decopy.ai/zh/ai-detector/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ollama",
       "url": "https://ollama.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lm-studio",
       "url": "https://lmstudio.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "open-webui",
       "url": "https://openwebui.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "anythingllm",
       "url": "https://anythingllm.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "comfyui",
       "url": "https://www.comfy.org",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jan",
       "url": "https://jan.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gemini-cli",
       "url": "https://github.com/google-gemini/gemini-cli",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kiro",
       "url": "https://kiro.dev",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "codex",
       "url": "https://developers.openai.com/codex",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "you-chat",
       "url": "https://you.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "duckduckgo-ai",
       "url": "https://duck.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "character-ai",
       "url": "https://character.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lmarena",
       "url": "https://lmarena.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pollinations",
       "url": "https://pollinations.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "seaart",
       "url": "https://www.seaart.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openart",
       "url": "https://openart.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "nightcafe",
       "url": "https://creator.nightcafe.studio",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cleanup-pictures",
       "url": "https://cleanup.pictures",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bigjpg",
       "url": "https://bigjpg.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "waifu2x",
       "url": "https://waifu2x.udp.jp",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "capcut",
       "url": "https://www.capcut.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "clipchamp",
       "url": "https://clipchamp.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "veed",
       "url": "https://www.veed.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kapwing",
       "url": "https://www.kapwing.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "murf",
       "url": "https://murf.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "speechify",
       "url": "https://speechify.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vocalremover",
       "url": "https://vocalremover.org",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mubert",
       "url": "https://mubert.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lalal-ai",
       "url": "https://www.lalal.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tabnine",
@@ -1299,1442 +1299,1442 @@
       "ok": false,
       "status": 0,
       "error": "UND_ERR_HEADERS_OVERFLOW",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cody",
       "url": "https://sourcegraph.com/cody",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "blackbox-ai",
       "url": "https://www.blackbox.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zed",
       "url": "https://zed.dev",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "roo-code",
       "url": "https://roocode.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openhands",
       "url": "https://github.com/All-Hands-AI/OpenHands",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "goose",
       "url": "https://block.github.io/goose/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "novita",
       "url": "https://novita.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hyperbolic",
       "url": "https://www.hyperbolic.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "replicate",
       "url": "https://replicate.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "modal",
       "url": "https://modal.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai21",
       "url": "https://studio.ai21.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "monica",
       "url": "https://monica.im",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sider",
       "url": "https://sider.ai",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatpdf",
       "url": "https://www.chatpdf.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tome",
       "url": "https://tome.app",
       "ok": false,
       "status": 404,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wordtune",
       "url": "https://www.wordtune.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "languagetool",
       "url": "https://languagetool.org",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "exa",
       "url": "https://exa.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "semantic-scholar",
       "url": "https://www.semanticscholar.org",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "researchrabbit",
       "url": "https://www.researchrabbit.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "litmaps",
       "url": "https://www.litmaps.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wolframalpha",
       "url": "https://www.wolframalpha.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "flowise",
       "url": "https://flowiseai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "langflow",
       "url": "https://www.langflow.org",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "activepieces",
       "url": "https://www.activepieces.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gpt4all",
       "url": "https://www.nomic.ai/gpt4all",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "llamafile",
       "url": "https://github.com/Mozilla-Ocho/llamafile",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatbox",
       "url": "https://chatboxai.app",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cherry-studio",
       "url": "https://www.cherry-ai.com",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "penpot",
       "url": "https://penpot.app",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "uizard",
       "url": "https://uizard.io",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "visily",
       "url": "https://www.visily.ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gptzero",
       "url": "https://gptzero.me",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zhuque",
       "url": "https://matrix.tencent.com/ai-detect/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "copyleaks",
       "url": "https://copyleaks.com",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ante",
       "url": "https://ante.run/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "self-hosted-ai-stack",
       "url": "https://selfhostedaistack.com/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aigocode",
       "url": "https://www.aigocode.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "musegen",
       "url": "https://www.musegen.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "seply",
       "url": "https://seply.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ugcfy-ai",
       "url": "https://ugcfy.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-product-photo",
       "url": "https://ai-product-photo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "opencord-ai",
       "url": "https://www.opencord.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aicamp",
       "url": "https://aicamp.so/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "brainsoup",
       "url": "https://www.nurgo-software.com/products/brainsoup",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "creativepixel",
       "url": "https://canvora.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "picture-to-drawing",
       "url": "https://picturetodrawing.com/photo-to-photo-style",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ink-ai-tattoo-generator",
       "url": "https://ink-ai.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "animegenius",
       "url": "https://animegenius.live3d.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tweet-detective",
       "url": "https://www.tweetdetective.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zerogpt",
       "url": "https://www.zerogpt.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writehuman",
       "url": "https://writehuman.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-content-detector-by-leap-ai",
       "url": "https://www.tryleap.ai/detect",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aiundetect",
       "url": "https://www.aiundetect.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "humanizeai-com",
       "url": "https://humanizeai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "beatviz-ai-music-video-generator",
       "url": "https://beatviz.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-lyrics-generator",
       "url": "https://theselyricsdonotexist.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aiva",
       "url": "https://www.aiva.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "audjust-ai",
       "url": "https://audjust.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "eilla",
       "url": "https://eilla.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "moneycoach",
       "url": "https://apps.apple.com/us/app/moneycoach-ai-budget-planner/id989642198",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "stockgpt",
       "url": "https://askstockgpt.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rmiq-ads",
       "url": "https://www.rmiq.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "beb-ai",
       "url": "https://beb.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "creatify-ai",
       "url": "https://creatify.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jot",
       "url": "http://www.jotapp.tech/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "thumbnailcreator-com",
       "url": "https://www.thumbnailcreator.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "testsprite",
       "url": "https://www.testsprite.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "neuraltrust",
       "url": "https://neuraltrust.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "agentstamp",
       "url": "https://agentstamp.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rainforest-qa",
       "url": "https://www.rainforestqa.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "plask",
       "url": "https://plask.ai/en-US",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "meshy-ai",
       "url": "https://www.meshy.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "neuralframes",
       "url": "https://www.neuralframes.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "blimey",
       "url": "https://blimeycreate.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kaedim",
       "url": "https://www.kaedim3d.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "interior-ai",
       "url": "https://interiorai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "oda-studio",
       "url": "https://www.odastudio.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "adobe-speech-enhancer",
       "url": "https://podcast.adobe.com/enhance",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "assemblyai",
       "url": "https://www.assemblyai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "krisp",
       "url": "https://krisp.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "noise-remover",
       "url": "https://noiseremoval.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cleanvoice-ai",
       "url": "https://cleanvoice.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "audio-enhancer",
       "url": "https://audioenhancer.ai/signup/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "photo-ai",
       "url": "https://photoai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aiselfi-es",
       "url": "https://aiselfi.es/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "avtrs",
       "url": "https://www.avtrs.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hairstyleai",
       "url": "https://www.hairstyleai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "green-screen-ai",
       "url": "https://greenscreenai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "stillgram",
       "url": "https://stillgram.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "img-cut",
       "url": "https://img-cut.aishoot.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "imagecolorizer",
       "url": "https://imagecolorizer.com/app",
-      "ok": false,
-      "status": 404,
-      "checked_at": "2026-10-10"
+      "ok": true,
+      "status": 200,
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zoomscape",
       "url": "https://zoomscape.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mokker",
       "url": "https://mokker.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pixian",
       "url": "https://pixian.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scene-one",
       "url": "https://sceneone.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sudowrite",
       "url": "https://sudowrite.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-story-generator-site",
       "url": "https://aistorygenerator.site/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "storybee",
       "url": "https://storybee.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "oliv-ai",
       "url": "https://www.oliv.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "skydis",
       "url": "https://skydis.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rei-blackbook",
       "url": "https://www.reiblackbook.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "forms-app",
       "url": "https://forms.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "waplus-whatsapp-crm",
       "url": "https://waplus.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatbase",
       "url": "https://www.chatbase.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "my-ask-ai",
       "url": "https://myaskai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "humata",
       "url": "https://www.humata.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "owlbot",
       "url": "https://www.owlbot.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "dynamiq",
       "url": "https://app.getdynamiq.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "interview-solver",
       "url": "https://interviewsolver.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "justcopy-ai",
       "url": "https://justcopy.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "swimm-ai",
       "url": "https://swimm.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "codiumai",
       "url": "https://www.qodo.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "taskade",
       "url": "https://www.taskade.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "storychief",
       "url": "https://www.storychief.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "content-raptor",
       "url": "https://contentraptor.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "xxai",
       "url": "https://www.hixx.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "the-humanize-ai-pro",
       "url": "https://thehumanizeai.pro/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "cover-letter-ai",
       "url": "https://coverletter-ai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writemeacoverletter",
       "url": "https://writemeacoverletter.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "coverletterwrite",
       "url": "https://coverletterwrite.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "your-cover-letter",
       "url": "https://yourcoverletter.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chat-data",
       "url": "https://www.chat-data.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fastbots-ai",
       "url": "https://fastbots.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sitespeakai",
       "url": "https://sitespeak.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "motionshot",
       "url": "https://www.motionshot.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "autopredict",
       "url": "https://autopredict.co.uk/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "newsdeck-from-onesub",
       "url": "https://newsdeck.pro/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "decile",
       "url": "https://decile.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "genius-sheets",
       "url": "https://geniussheets.us/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "code-language-converter",
       "url": "https://codelanguageconverter.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "querygenie",
       "url": "https://sqlgenie-co.web.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scale",
       "url": "https://scale.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai2sql",
       "url": "https://ai2sql.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "text2sql",
       "url": "https://text2sql.lemonsqueezy.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-sql-bot",
       "url": "https://www.sqlai.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "prems-ai",
       "url": "https://prems.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "unbounce",
       "url": "https://unbounce.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "copymonkey",
       "url": "https://copymonkey.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wizishop",
       "url": "https://wizishop.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aimreply",
       "url": "https://aimreply.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "remail",
       "url": "https://www.remail.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "emailtriager",
       "url": "https://www.emailtriager.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "draftlab",
       "url": "https://draftlab.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ellie",
       "url": "http://ellieai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "intellimail",
       "url": "https://www.intellimail.xyz/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "warmy",
       "url": "https://www.warmy.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "getresponse",
       "url": "https://www.getresponse.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "smartwriter",
       "url": "https://www.smartwriter.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hoppy-copy",
       "url": "https://www.hoppycopy.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pet-booth",
       "url": "https://petbooth.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ask-rbg",
       "url": "https://ask-rbg.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "philosophy",
       "url": "https://www.philosophy.fyi/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "creative-qr-codes-using-ai",
       "url": "https://qr.zust.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "outfit-changer",
       "url": "https://outfitchanger.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hidden-door",
       "url": "https://www.hiddendoor.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scenario",
       "url": "https://www.scenario.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "latitude",
       "url": "https://latitude.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ggpredict",
       "url": "https://www.ggpredict.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "charisma",
       "url": "https://charisma.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chess-ai",
       "url": "https://betafish.gavinong.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gifts-genie",
       "url": "https://gen.gifts/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "colorbliss",
       "url": "https://colorbliss.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "free-ai-headshot-generator-supawork-ai",
       "url": "https://supawork.ai/ai-professional-headshot-generator",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "betterpic",
       "url": "https://www.betterpic.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "executive-headshots",
       "url": "https://executiveheadshots.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "the-multiverse-ai",
       "url": "https://www.themultiverse.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "headpix",
       "url": "https://headpix.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ubie-ai-symptom-checker",
       "url": "https://ubiehealth.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "s10-ai",
       "url": "https://s10.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aiquizgen",
       "url": "https://aiquizgen.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sopcreator",
       "url": "https://www.sopcreator.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "teacherbot",
       "url": "https://www.teacherbot.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "solvely",
       "url": "https://solvely.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "myess",
       "url": "https://myess.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "caktus",
       "url": "https://caktus.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pictools-ai",
       "url": "https://pictools.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "avclabs-photopro-ai",
       "url": "https://www.avclabs.com/photopro-ai.html",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "imgupscaler",
       "url": "https://imgupscaler.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-image-enlarger",
       "url": "https://imglarger.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "avc-ai",
       "url": "https://avc.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hitpaw-online-photo-enhancer",
       "url": "https://online.hitpaw.com/online-photo-enhancer.html",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "raphael-ai",
       "url": "https://raphael.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "image-to-image-ai",
       "url": "https://imgtoimg.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-anime-filter",
       "url": "https://www.animefilter.online/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "simpedit",
       "url": "https://simpedit.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "animatemypic",
       "url": "https://animatemypic.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ebsynth",
       "url": "https://ebsynth.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kadapt",
       "url": "https://kadapt.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "https-www-interviews-chat",
       "url": "https://www.interviews.chat/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "parakeet-ai",
       "url": "https://www.parakeet-ai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "star-method-coach",
       "url": "https://starmethod.org/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "careerflow-ai-mock-interview",
       "url": "https://www.careerflow.ai/mock-interview",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mind-interview-ai",
       "url": "https://mind-interview.com/en/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "langotalk",
       "url": "https://www.langotalk.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "elsa-speech-analyzer",
       "url": "https://speechanalyzer.elsaspeak.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "det-practice",
       "url": "https://www.detpractice.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tutorai",
       "url": "https://tutorai.me/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lingostar",
       "url": "https://lingostar.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "patentpal",
       "url": "https://patentpal.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "spellbook",
       "url": "https://spellbook.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scoredetect",
       "url": "https://www.scoredetect.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-logo-generator",
       "url": "https://ailogogenerator.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "logomakerr-ai",
       "url": "https://logomakerr.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zarla-logo-maker",
       "url": "https://www.zarla.com/free-logo-maker",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-food-generator",
@@ -2742,2170 +2742,2170 @@
       "ok": false,
       "status": 0,
       "error": "ECONNRESET",
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jamie",
       "url": "https://www.meetjamie.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "avoma",
       "url": "https://www.avoma.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fireflies",
       "url": "https://fireflies.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fathom",
       "url": "https://www.fathom.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wudpecker",
       "url": "https://www.wudpecker.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "anakin-ai",
       "url": "https://anakin.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "quickie-dev",
       "url": "https://quickie.dev/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "singlebasecloud",
       "url": "https://singlebase.cloud/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "namelix",
       "url": "http://namelix.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "namesnack",
       "url": "https://www.namesnack.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podcast-name-generator-by-podcast-rocket",
       "url": "https://podcastrocket.net/podcast-name-generator/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "namewizard",
       "url": "https://namewizard.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "travel-blog-name-ideas-generator",
       "url": "https://travelfeed.com/tools/travel-blog-name-ideas-generator",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fabric",
       "url": "https://fabric.so/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ideamap",
       "url": "https://ideamap.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "whisper-memos",
       "url": "https://whispermemos.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "beloga",
       "url": "https://www.beloga.xyz/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "coursebox",
       "url": "https://www.coursebox.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gemma-guard",
       "url": "https://gemmaguard.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "clipdrop",
       "url": "https://clipdrop.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "free-ai-pdf-reader",
       "url": "https://aipdfreader.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "prismposter",
       "url": "https://www.prismposter.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bard-pdf",
       "url": "https://aibardpdf.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "swifdoo-pdf",
       "url": "https://www.swifdoo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pdf-gpt",
       "url": "https://www.pdfgpt.chat/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "slidespeak",
       "url": "https://slidespeak.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kinestex",
       "url": "https://www.kinestex.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rtutor",
       "url": "https://rtutor.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "daydrm",
       "url": "https://www.daydrm.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podwise",
       "url": "https://podwise.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "helloscribe",
       "url": "https://www.helloscribe.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "palette",
       "url": "https://palette.fm/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "old-photo-restoration",
       "url": "https://www.aipassportphotos.com/old-photo-restoration",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jpghd",
       "url": "http://jpghd.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "colorize",
       "url": "https://colorize.cc/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "autoname",
       "url": "https://www.autoname.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "texti",
       "url": "https://texti.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "digest-fm",
       "url": "https://digest.fm/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podnav",
       "url": "https://aipodnav.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podzay",
       "url": "https://www.podzay.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aideaflow-podcast",
       "url": "https://aideaflowpodcast.com/en",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "recast-studio",
       "url": "https://recast.studio/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "promptomania",
       "url": "https://promptomania.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "screenloop",
       "url": "https://www.screenloop.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jd-generator",
       "url": "https://www.hirequotient.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "springworks",
       "url": "https://www.springworks.in/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hire-hoc",
       "url": "https://hirehoc.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sourcely",
       "url": "https://www.sourcely.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aiapply",
       "url": "https://aiapply.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "huntr-ai-resume-builder",
       "url": "https://huntr.co/product/ai-resume-builder",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "resumeup-ai",
       "url": "https://resumeup.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jobwinner",
       "url": "https://jobwinner.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-resume-editor",
       "url": "https://www.rezi.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "resume-worded",
       "url": "https://resumeworded.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "quattr",
       "url": "https://www.quattr.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "backlink-gpt",
       "url": "https://backlinkgpt.com/en",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ctrify",
       "url": "http://www.ctrify.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "link-finder",
       "url": "https://link-finder.net/en/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "seoify",
       "url": "https://www.seoify.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "applypass",
       "url": "https://www.applypass.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "linkdr",
       "url": "https://linkdr.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "nioleads",
       "url": "https://nioleads.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "theo-context-aware-strategic-co-pilot",
       "url": "https://www.theogrowth.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "frametrace-reverse-video-search",
       "url": "https://reversevideosearch.org/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "everypixel",
       "url": "https://www.everypixel.com/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "andisearch",
       "url": "https://andisearch.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pitchbob-io",
       "url": "https://pitchbob.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "storydoc",
       "url": "https://www.storydoc.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "my-pitch-deck",
       "url": "https://www.mypitchdeck.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "slidesai",
       "url": "https://www.slidesai.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "glimmer-ai",
       "url": "https://glimmerai.tech/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatba",
       "url": "https://www.chatba.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pitchgrade",
       "url": "https://pitchgrade.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "podify-io",
       "url": "https://podify.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "postlyy",
       "url": "https://postlyy.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "viral-post-generator",
       "url": "https://taplio.com/linkedin-post-generator",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "predis",
       "url": "https://predis.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "robopost-ai",
       "url": "https://robopost.app/en/features/robopost-ai",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "qura-ai",
       "url": "https://www.qura.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-sound-effect-generator",
       "url": "https://aisoundeffectgenerator.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "getsound",
       "url": "https://www.getsound.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sfx-engine",
       "url": "https://sfxengine.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "poppop-ai-sound-effect-generator",
       "url": "https://poppop.ai/ai-sound-effect-generator",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kardsai-ai-flashcard-maker",
       "url": "https://kardsai.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "quizwhiz",
       "url": "https://www.quizwhiz.ai/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jenni",
       "url": "https://jenni.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "airmusic",
       "url": "https://airmusic.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "audioai-io",
       "url": "https://audioai.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "audo-studio",
       "url": "https://audo.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "clumi-ai",
       "url": "https://clumi.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "descript",
       "url": "https://www.descript.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "freesong",
       "url": "https://freesong.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "musicfy",
       "url": "https://musicfy.lol/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "otter-ai",
       "url": "https://otter.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "resemble-ai",
       "url": "https://www.resemble.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "soundtools",
       "url": "https://soundtools.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tts-ai",
       "url": "https://tts.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "typecast-ai",
       "url": "https://typecast.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vocloner",
       "url": "https://vocloner.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "voicebox",
       "url": "https://voicebox.sh/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wellsaid",
       "url": "https://wellsaid.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "adalo",
       "url": "https://www.adalo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "airtable-ai",
       "url": "https://www.airtable.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "allyhub",
       "url": "https://allyhub.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bubble",
       "url": "https://bubble.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "camunda",
       "url": "https://camunda.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "coda-ai",
       "url": "https://coda.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "composio",
       "url": "https://composio.dev/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "crewai",
       "url": "https://crewai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "glide",
       "url": "https://www.glideapps.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ifttt",
       "url": "https://ifttt.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kissflow",
       "url": "https://kissflow.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "make",
       "url": "https://www.make.com/en",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "manus",
       "url": "https://manus.im/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mulesoft",
       "url": "https://www.mulesoft.com/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openclaw",
       "url": "https://openclaw.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openworker",
       "url": "https://openworker.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pagerduty",
       "url": "https://www.pagerduty.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pipedream",
       "url": "https://pipedream.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "softr",
       "url": "https://www.softr.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "splunk",
       "url": "https://www.splunk.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tray-io",
       "url": "https://tray.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "webflow",
       "url": "https://webflow.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "workato",
       "url": "https://www.workato.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "workbeaver",
       "url": "https://workbeaver.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "workclaw",
       "url": "https://www.workclaw.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zapier",
       "url": "https://zapier.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "botpress",
       "url": "https://botpress.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatfuel",
       "url": "https://chatfuel.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "flow-xo",
       "url": "https://flowxo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "freshdesk-fred-ai",
       "url": "https://www.freshworks.com/freshdesk/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "landbot",
       "url": "https://landbot.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "manychat",
       "url": "https://manychat.com/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tars",
       "url": "https://hellotars.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tidio",
       "url": "https://www.tidio.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writer",
       "url": "https://writer.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zendesk-ai",
       "url": "https://www.zendesk.com/service/ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "coderabbit",
       "url": "https://www.coderabbit.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "flatkey-ai",
       "url": "https://flatkey.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jcode",
       "url": "https://jcode.sh/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "langfuse",
       "url": "https://langfuse.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "letta",
       "url": "https://www.letta.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "nxcode",
       "url": "https://www.nxcode.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "open-code-review",
       "url": "https://open-codereview.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "openinterpreter",
       "url": "https://www.openinterpreter.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "reasonix",
       "url": "https://reasonix.io/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "superagent",
       "url": "https://www.superagent.sh/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "you-bot",
       "url": "https://you.bot/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "chatwoot",
       "url": "https://www.chatwoot.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "crisp",
       "url": "https://crisp.chat/en/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gorgias",
       "url": "https://www.gorgias.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "help-scout",
       "url": "https://www.helpscout.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hubspot-service-hub",
       "url": "https://www.hubspot.com/products/service",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "intercom-ai",
       "url": "https://www.intercom.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kaltalk",
       "url": "https://kaltalk.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "levity",
       "url": "https://levity.ai/en",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "livechat",
       "url": "https://www.livechat.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "salesforce-service-cloud",
       "url": "https://www.salesforce.com/service/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tawk-to",
       "url": "https://www.tawk.to/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zoho-desk",
       "url": "https://www.zoho.com/desk/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "akkio",
       "url": "https://www.akkio.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "deepnote",
       "url": "https://deepnote.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "label-studio",
       "url": "https://labelstud.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "llamaparse",
       "url": "https://www.llamaindex.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pandas-ai",
       "url": "https://pandas-ai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "prodigy",
       "url": "https://prodi.gy/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "archdiagramai",
       "url": "https://architecturediagramai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "designs-ai",
       "url": "https://designs.ai/en",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "fontjoy",
       "url": "https://fontjoy.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "khroma",
       "url": "https://www.khroma.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kittl",
       "url": "https://www.kittl.com:443/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lovspark-ai",
       "url": "https://lovspark.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "makko-ai",
       "url": "https://www.makko.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "relume",
       "url": "https://www.relume.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "roomfoundry",
       "url": "https://roomfoundry.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "stockimg-ai",
       "url": "https://stockimg.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zawa-ai",
       "url": "https://zawa.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "competera",
       "url": "https://competera.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "copy-shark",
       "url": "https://www.copyshark.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "copy-ai",
       "url": "https://www.copy.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hotjar",
       "url": "https://contentsquare.com/hotjar/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "insightagent",
       "url": "https://www.insightagent.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "jasper-ai",
       "url": "https://www.jasper.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "omnia-retail",
       "url": "https://www.omniaretail.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "priceshape",
       "url": "https://priceshape.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "simplified",
       "url": "https://simplified.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wiser",
       "url": "https://www.wiser.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "acade-ai",
       "url": "https://acade.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "course-hero-ai",
       "url": "https://www.coursehero.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "duolingo-max",
       "url": "https://www.duolingo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gradescope",
       "url": "https://www.gradescope.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "magicschool-ai",
       "url": "https://www.magicschool.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "memrise",
       "url": "https://www.memrise.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "paperpal",
       "url": "https://paperpal.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "symbolab",
       "url": "https://www.symbolab.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "boomerang",
       "url": "https://www.boomerangapp.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lavender",
       "url": "https://lavender.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lemlist",
       "url": "https://www.lemlist.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mailchimp-ai",
       "url": "https://mailchimp.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mailshake",
       "url": "https://mailshake.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mixmax",
       "url": "https://www.mixmax.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rytr",
       "url": "https://rytr.me/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "smartlead",
       "url": "https://www.smartlead.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writesonic",
       "url": "https://writesonic.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "botkeeper",
       "url": "https://www.botkeeper.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "docyt",
       "url": "https://www.docyt.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "kavout",
       "url": "https://www.kavout.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "receiptsai",
       "url": "https://receiptsai.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "trade-ideas",
       "url": "https://www.trade-ideas.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "bamboohr",
       "url": "https://www.bamboohr.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "breezy-hr",
       "url": "https://breezy.hr/",
       "ok": false,
       "status": 403,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "codility",
       "url": "https://www.codility.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hireez",
       "url": "https://hireez.com/ez-agent/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hirevue",
       "url": "https://www.hirevue.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lever",
       "url": "https://www.lever.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "testgorilla",
       "url": "https://www.testgorilla.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vervoe",
       "url": "https://vervoe.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "workable",
       "url": "https://www.workable.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ezimgeditor",
       "url": "https://ezimgeditor.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "freemake-cc",
       "url": "https://freemake.cc/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "gazouya",
       "url": "https://gazouya.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "imagvio-ai",
       "url": "https://imagvio.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "let-s-enhance",
       "url": "https://letsenhance.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "patentfig-ai",
       "url": "https://patentfig.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "photopea",
       "url": "https://www.photopea.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "remini",
       "url": "https://app.remini.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vynzo-ai",
       "url": "https://vynzo.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "harvey-ai",
       "url": "https://www.harvey.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "adcreative-ai",
       "url": "https://www.adcreative.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "analook",
       "url": "https://www.analook.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "answerthepublic",
       "url": "https://answerthepublic.com/en",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "anyword",
       "url": "https://www.anyword.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "beamtrace",
       "url": "https://beamtrace.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "brevo-sendinblue",
       "url": "https://www.brevo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "buffer-ai",
       "url": "https://buffer.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lumen5",
       "url": "https://lumen5.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "supaslides",
       "url": "https://supaslides.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "surfer-seo",
       "url": "https://surferseo.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "calendly-ai",
       "url": "https://calendly.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "grain",
       "url": "https://grain.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "granola",
       "url": "https://www.granola.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "meetily",
       "url": "https://meetily.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "motion",
       "url": "https://www.usemotion.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "reclaim-ai",
       "url": "https://reclaim.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tl-dv",
       "url": "https://tldv.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "zoom-ai",
       "url": "https://www.zoom.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "asana-ai",
       "url": "https://asana.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "clickup",
       "url": "https://clickup.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "easy-peasy-ai",
       "url": "https://easy-peasy.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "karakeep",
       "url": "https://karakeep.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "linear",
       "url": "https://linear.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "me-bot",
       "url": "https://www.me.bot/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mem-ai",
       "url": "https://get.mem.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "miro",
       "url": "https://miro.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "mural",
       "url": "https://www.mural.co/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "panzoe-ai",
       "url": "https://panzoe.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "peony",
       "url": "https://www.peony.ink/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "todoist-ai",
       "url": "https://www.todoist.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "voicenotes",
       "url": "https://voicenotes.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "whacka",
       "url": "https://whacka.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "wispr-flow",
       "url": "https://wisprflow.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "aisummarizer",
       "url": "https://aisummarizer.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "asreview",
       "url": "https://asreview.nl/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "explainpaper",
       "url": "https://www.explainpaper.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rayyan",
       "url": "https://www.rayyan.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "scite-ai",
       "url": "https://scite.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ahrefs-webmaster-tools",
       "url": "https://ahrefs.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "botify",
       "url": "https://www.botify.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "frase-io",
       "url": "https://www.frase.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "marketmuse",
       "url": "https://www.marketmuse.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "oncrawl",
       "url": "https://www.oncrawl.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "se-ranking",
       "url": "https://seranking.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "semrush-free-trial",
       "url": "https://www.semrush.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writerzen",
       "url": "https://writerzen.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "audiense",
       "url": "https://www.audiense.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hootsuite",
       "url": "https://www.hootsuite.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "planable",
       "url": "https://planable.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "publora",
       "url": "https://publora.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "social-insider",
       "url": "https://www.socialinsider.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "socialbee",
       "url": "https://socialbee.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "sprout-social-free-trial",
       "url": "https://sproutsocial.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "thumblore-com",
       "url": "https://www.thumblore.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "ai-image-translator",
       "url": "https://aiimagetranslator.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "crowdin",
       "url": "https://crowdin.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "lokalise-ai",
       "url": "https://lokalise.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "phrase",
       "url": "https://phrase.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "rask-ai",
       "url": "https://www.rask.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "smartcat",
       "url": "https://www.smartcat.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "systran",
       "url": "https://www.systransoft.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "transifex",
       "url": "https://www.transifex.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "unbabel",
       "url": "https://unbabel.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "beautiful-ai",
       "url": "https://www.beautiful.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "davinci-resolve",
       "url": "https://www.blackmagicdesign.com/products/davinciresolve",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "freelipsync",
       "url": "https://freelipsync.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "invideo",
       "url": "https://invideo.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "klaylab-com",
       "url": "https://klaylab.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "magic-hour",
       "url": "https://magichour.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "opencut",
       "url": "https://opencut.app/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "pictory",
       "url": "https://pictory.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "protoface",
       "url": "https://www.protoface.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "synthesia",
       "url": "https://www.synthesia.io/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "tapvid",
       "url": "https://tapvid.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "videoupscale-net",
       "url": "https://www.videoupscale.net/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "vmake",
       "url": "https://vmake.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "hemingway-editor",
       "url": "https://hemingwayapp.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "prowritingaid",
       "url": "https://prowritingaid.com/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "undetectedgpt",
       "url": "https://www.undetectedgpt.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "unfox-ai",
       "url": "https://unfox.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     },
     {
       "slug": "writerly-ai",
       "url": "https://www.writerly.ai/",
       "ok": true,
       "status": 200,
-      "checked_at": "2026-10-10"
+      "checked_at": "2026-10-11"
     }
   ]
 }

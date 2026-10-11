@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 18,
-  "page": 2,
+  "queryIndex": 0,
+  "page": 3,
   "pending": [
-   {
-    "repo": "HKUDS/DeepTutor",
-    "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "HKUDS/LightRAG",
     "topic": "knowledge",
@@ -47,11 +42,6 @@
    {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "zhayujie/CowAgent",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -142,11 +132,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "zilliztech/claude-context",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -245,11 +230,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "FurkanGozukara/Stable-Diffusion",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "llmsresearch/paperbanana",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -327,11 +307,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "k2-fsa/sherpa-onnx",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -500,11 +475,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "siddsachar/row-bot",
-    "topic": "local",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "nobodywho-ooo/nobodywho",
     "topic": "local",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -575,11 +545,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "assistant-ui/assistant-ui",
-    "topic": "chat",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "dataelement/bisheng",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -612,11 +577,6 @@
    {
     "repo": "869413421/ai-moive-studio",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "OpenMOSS/MOVA",
-    "topic": "video",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -667,11 +627,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "HIllya51/LunaTranslator",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -770,11 +725,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "ludwig-ai/ludwig",
-    "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "oumi-ai/oumi",
     "topic": "local",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -862,11 +812,6 @@
    {
     "repo": "ray-project/llm-applications",
     "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "Wox-launcher/Wox",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -1527,11 +1472,6 @@
    {
     "repo": "ray-project/ray",
     "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "stefan-jansen/machine-learning-for-trading",
-    "topic": "ai",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "openvinotoolkit/model_server",
     "topic": "local",
     "foundAt": "2026-10-10T06:21:21.428Z"
+   },
+   {
+    "repo": "bytedance/SALMONN",
+    "topic": "audio",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "Helicone/helicone",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "intel/neural-compressor",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "vndee/llm-sandbox",
+    "topic": "coding",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "datajuicer/data-juicer",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "zjunlp/SkillNet",
+    "topic": "agents",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "codelion/adaptive-classifier",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "RobRoyce/knowledge",
+    "topic": "knowledge",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "mlc-ai/xgrammar",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "The-FinAI/PIXIU",
+    "topic": "ai",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "crmne/ruby_llm",
+    "topic": "agents",
+    "foundAt": "2026-10-11T06:21:02.155Z"
+   },
+   {
+    "repo": "ax-llm/ax",
+    "topic": "agents",
+    "foundAt": "2026-10-11T06:21:02.155Z"
    }
   ],
   "checked": {
@@ -3029,11 +3029,17 @@
    "gh-nvlabs-sana-6a3780": "2026-10-09T06:38:33.001Z",
    "gh-tesseract-ocr-tesseract-65d070": "2026-10-09T06:38:33.001Z",
    "gh-ohmyzsh-ohmyzsh-76ac06": "2026-10-09T06:38:33.001Z",
-   "gh-shareai-lab-learn-claude-code-bed633": "2026-10-09T06:38:33.001Z"
+   "gh-shareai-lab-learn-claude-code-bed633": "2026-10-09T06:38:33.001Z",
+   "gh-hiyouga-llamafactory-e1e932": "2026-10-11T06:21:02.155Z",
+   "gh-pathwaycom-llm-app-bdeacb": "2026-10-11T06:21:02.155Z",
+   "gh-thedaviddias-front-end-checklist-b8be7b": "2026-10-11T06:21:02.155Z",
+   "gh-tirth8205-code-review-graph-152ccb": "2026-10-11T06:21:02.155Z",
+   "gh-hbai-ltd-toonflow-app-e1ff64": "2026-10-11T06:21:02.155Z",
+   "gh-debpalash-voicestudio-90d094": "2026-10-11T06:21:02.155Z"
   }
  },
  "mcp": {
-  "cursor": "com.tern0/resolver:0.3.0",
+  "cursor": "dev.craftery/tools:1.0.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3317,7 +3323,47 @@
    "elevenlabs-agents": "2026-10-10T06:21:21.428Z",
    "elicitly-elicitly": "2026-10-10T06:21:21.428Z",
    "elijahdesent-custom-website-editor": "2026-10-10T06:21:21.428Z",
-   "eliza": "2026-10-10T06:21:21.428Z"
+   "eliza": "2026-10-10T06:21:21.428Z",
+   "elopstudio-aiwave-ai-wave": "2026-10-11T06:21:02.155Z",
+   "emberverse-emberverse": "2026-10-11T06:21:02.155Z",
+   "emisar-emisar": "2026-10-11T06:21:02.155Z",
+   "empiriolabs-mcp": "2026-10-11T06:21:02.155Z",
+   "empryo-docs": "2026-10-11T06:21:02.155Z",
+   "enclave402-enclave402": "2026-10-11T06:21:02.155Z",
+   "enconvert-mcp": "2026-10-11T06:21:02.155Z",
+   "energyaisolution-solar-home-incentives": "2026-10-11T06:21:02.155Z",
+   "eveoy-mcp": "2026-10-11T06:21:02.155Z",
+   "evlek-mcp-server": "2026-10-11T06:21:02.155Z",
+   "exa-mcp-server": "2026-10-11T06:21:02.155Z",
+   "exactlane-preflight": "2026-10-11T06:21:02.155Z",
+   "execbro-execbro": "2026-10-11T06:21:02.155Z",
+   "expense-budget-tracker-expense-budget-tracker": "2026-10-11T06:21:02.155Z",
+   "extend-extend": "2026-10-11T06:21:02.155Z",
+   "extentos-mcp-server": "2026-10-11T06:21:02.155Z",
+   "factory-droids": "2026-10-11T06:21:02.155Z",
+   "failecho-failecho": "2026-10-11T06:21:02.155Z",
+   "fairmind-project-context": "2026-10-11T06:21:02.155Z",
+   "familyofficeknowledgegraph-fo-kg": "2026-10-11T06:21:02.155Z",
+   "fast-agent": "2026-10-11T06:21:02.155Z",
+   "fastgpt": "2026-10-11T06:21:02.155Z",
+   "fastmcp": "2026-10-11T06:21:02.155Z",
+   "feeless402-nano-pay": "2026-10-11T06:21:02.155Z",
+   "fellou": "2026-10-11T06:21:02.155Z",
+   "fgac-fgac": "2026-10-11T06:21:02.155Z",
+   "fiatdock-mcp": "2026-10-11T06:21:02.155Z",
+   "figma-context-mcp": "2026-10-11T06:21:02.155Z",
+   "files-python-mcp": "2026-10-11T06:21:02.155Z",
+   "fillfolio-mcp": "2026-10-11T06:21:02.155Z",
+   "fin": "2026-10-11T06:21:02.155Z",
+   "findmetool-lookup": "2026-10-11T06:21:02.155Z",
+   "firecrawl": "2026-10-11T06:21:02.155Z",
+   "firecrawl-mcp-server": "2026-10-11T06:21:02.155Z",
+   "flashmemorize-flash": "2026-10-11T06:21:02.155Z",
+   "flightpowers-booking": "2026-10-11T06:21:02.155Z",
+   "flowise": "2026-10-11T06:21:02.155Z",
+   "fluttergo-remote": "2026-10-11T06:21:02.155Z",
+   "flyvolo-knowledge": "2026-10-11T06:21:02.155Z",
+   "foldlaboratories-art": "2026-10-11T06:21:02.155Z"
   }
  }
 }

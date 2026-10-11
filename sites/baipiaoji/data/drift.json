@@ -1,10 +1,95 @@
 {
-  "generated": "2026-10-10",
+  "generated": "2026-10-11",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 104,
-  "fetched_fail": 23,
-  "pending": 8,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 7,
   "items": [
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-10-11",
+      "first_seen": "2026-10-10",
+      "added": [
+        "70.1k"
+      ],
+      "removed": [
+        "70.0k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "google-ai-studio",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "confirmed": "2026-10-11",
+      "first_seen": "2026-10-10",
+      "added": [
+        "$50",
+        "1,000美元",
+        "100,000美元",
+        "1000万",
+        "100万",
+        "100美元",
+        "10亿",
+        "2.7亿",
+        "20,000美元",
+        "200万",
+        "50万"
+      ],
+      "removed": [
+        "$1,000",
+        "$100",
+        "$100,000",
+        "$20,000"
+      ],
+      "checked_then": "2026-09-29"
+    },
+    {
+      "slug": "cloudflare-workers-ai",
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
+      "confirmed": "2026-10-11",
+      "first_seen": "2026-10-10",
+      "added": [
+        "$0.038"
+      ],
+      "removed": [
+        "$0.090"
+      ],
+      "checked_then": "2026-09-16"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-11",
+      "first_seen": "2026-10-10",
+      "added": [
+        "$13",
+        "$14",
+        "$17",
+        "$2",
+        "$21",
+        "$22",
+        "$24",
+        "$25",
+        "$26",
+        "$27",
+        "$28",
+        "$29"
+      ],
+      "removed": [
+        "$10",
+        "$11",
+        "$12",
+        "$15",
+        "$16",
+        "$6",
+        "$70",
+        "$77",
+        "$78",
+        "5k"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "n8n",
       "url": "https://docs.n8n.io",
@@ -232,39 +317,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "cline",
-      "url": "https://cline.bot",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [
-        "70.0k"
-      ],
-      "removed": [
-        "69.9k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [
-        "$70",
-        "$77",
-        "$78",
-        "5k",
-        "7b"
-      ],
-      "removed": [
-        "$74",
-        "$75",
-        "3k",
-        "4m"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "codex",
       "url": "https://developers.openai.com/codex/pricing",
       "confirmed": "2026-10-04",
@@ -314,18 +366,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "cloudflare-workers-ai",
-      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
-      "confirmed": "2026-10-04",
-      "first_seen": "2026-10-03",
-      "added": [
-        "$0.090",
-        "$0.240"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-16"
     },
     {
       "slug": "exa",
@@ -378,28 +418,6 @@
         "98%"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "google-ai-studio",
-      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [
-        "$1,000",
-        "$10",
-        "$100",
-        "$100,000",
-        "$2,000",
-        "$20,000",
-        "$200",
-        "$250",
-        "10分钟",
-        "20gb",
-        "21个",
-        "2gb"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-29"
     },
     {
       "slug": "ragflow",
