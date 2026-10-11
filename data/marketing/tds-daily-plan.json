@@ -319,5 +319,16 @@
       "status": "private_asset_ready_technical_checks_passed",
       "scope": "40 seconds; English voice/subtitles, original music. No external post. Subjective audio review and actual platform layout remain unverified."
     }
+  ],
+  "preparation_iterations": [
+    {
+      "date": "2026-10-11",
+      "phase": "afternoon",
+      "action": "Prepare canonical owned links and registered Pinterest/Reddit/YouTube variants for three collector entries",
+      "status": "implemented_and_locally_verified_not_distributed",
+      "receipt": "docs/tds-distribution-links-2026-10-11.md",
+      "external_posts": 0,
+      "note": "Existing PNG/MCP implementations reused. Channel/account/entry/asset review and specific publication authorization remain blockers."
+    }
   ]
 }

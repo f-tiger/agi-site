@@ -1,0 +1,176 @@
+{
+  "as_of": "2026-10-11",
+  "kind": "marketing_preparation_not_distribution",
+  "sends": 0,
+  "campaigns": [
+    {
+      "id": "tds-smiski-checklist-20261011",
+      "site": "tds",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "Check the officially sourced SMISKI Museum Series names, mark the figures you own, and keep your checklist in this browser. Export a backup from the collection tracker.",
+      "url": "https://thedollscout.com/series/smiski-museum",
+      "goal": "own_task_complete",
+      "dedupe_key": "433a729d0c28d809",
+      "published": false,
+      "url_role": "internal_canonical",
+      "external_drafts": [
+        {
+          "source": "pinterest",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/smiski-museum?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_website_claim_unverified",
+            "final_pin_asset_review_required"
+          ],
+          "published": false
+        },
+        {
+          "source": "reddit",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/smiski-museum?utm_source=reddit&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_community_rules_unverified"
+          ],
+          "published": false
+        },
+        {
+          "source": "youtube",
+          "medium": "organic_video",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/smiski-museum?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "clickable_channel_entry_unverified",
+            "video_audio_and_platform_review_required"
+          ],
+          "published": false
+        }
+      ],
+      "distribution_authorized": false
+    },
+    {
+      "id": "tds-sonny-checklist-20261011",
+      "site": "tds",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "Use the officially sourced Sonny Angel Snack Series checklist to record the figures you own. Progress stays in this browser; save a backup from the collection tracker.",
+      "url": "https://thedollscout.com/series/sonny-angel-snack-series",
+      "goal": "own_task_complete",
+      "dedupe_key": "6532885255589780",
+      "published": false,
+      "url_role": "internal_canonical",
+      "external_drafts": [
+        {
+          "source": "pinterest",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/sonny-angel-snack-series?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_website_claim_unverified",
+            "final_pin_asset_review_required"
+          ],
+          "published": false
+        },
+        {
+          "source": "reddit",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/sonny-angel-snack-series?utm_source=reddit&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_community_rules_unverified"
+          ],
+          "published": false
+        },
+        {
+          "source": "youtube",
+          "medium": "organic_video",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/series/sonny-angel-snack-series?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "clickable_channel_entry_unverified",
+            "video_audio_and_platform_review_required"
+          ],
+          "published": false
+        }
+      ],
+      "distribution_authorized": false
+    },
+    {
+      "id": "tds-collection-backup-20261011",
+      "site": "tds",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "Keep owned quantities and wishlist entries in your browser, then export a JSON backup you can restore later. No account or cloud sync is required.",
+      "url": "https://thedollscout.com/collection-tracker",
+      "goal": "own_task_complete",
+      "dedupe_key": "73da995cda6b72b8",
+      "published": false,
+      "url_role": "internal_canonical",
+      "external_drafts": [
+        {
+          "source": "pinterest",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/collection-tracker?utm_source=pinterest&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_website_claim_unverified",
+            "final_pin_asset_review_required"
+          ],
+          "published": false
+        },
+        {
+          "source": "reddit",
+          "medium": "social",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/collection-tracker?utm_source=reddit&utm_medium=social&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "account_and_community_rules_unverified"
+          ],
+          "published": false
+        },
+        {
+          "source": "youtube",
+          "medium": "organic_video",
+          "campaign": "free-tools",
+          "url": "https://thedollscout.com/collection-tracker?utm_source=youtube&utm_medium=organic_video&utm_campaign=free-tools",
+          "state": "prepared_not_authorized",
+          "blockers": [
+            "specific_publication_authorization_required",
+            "clickable_channel_entry_unverified",
+            "video_audio_and_platform_review_required"
+          ],
+          "published": false
+        }
+      ],
+      "distribution_authorized": false
+    }
+  ],
+  "measurement": {
+    "visits": null,
+    "qualified_tasks": null,
+    "paid_buyers": null,
+    "net_revenue": null
+  },
+  "notes": [
+    "No social post or email was sent. Unknown metrics remain null, never zero.",
+    "One-time sponsored orders are not membership MRR. Draft readiness is not payment acceptance."
+  ]
+}

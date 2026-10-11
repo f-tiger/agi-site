@@ -1,5 +1,5 @@
-import copy, datetime as dt, json, pathlib, re, unittest
-from urllib.parse import urlsplit
+import copy, datetime as dt, json, pathlib, re, subprocess, unittest
+from urllib.parse import urlsplit, parse_qs
 from marketing_queue import compile_plan
 class MarketingQueueTests(unittest.TestCase):
  def catalog(self):return {'reviewed_at':'2026-09-19','max_age_days':30,'campaigns':[{'id':'ad','site':'bpj','url':'https://baipiaoji.com/advertise.html','goal':'paid','requires_checkout':True,'status':'approved_entry','draft':'See actual reach','channel':'owned'}]}
@@ -39,7 +39,7 @@ class MarketingQueueTests(unittest.TestCase):
   self.assertEqual(row['blockers'],['tracking_not_registered']);self.assertEqual(row['state'],'blocked');self.assertFalse(row['published'])
   catalog['campaigns'][0]['campaign_tracking_ready']=True
   self.assertEqual(compile_plan(catalog,doctor,'2026-09-19')['campaigns'][0]['state'],'draft_ready')
- def test_new_tds_entries_are_real_english_canonicals_but_not_tracking_ready(self):
+ def test_tds_entries_use_canonicals_and_parser_accepted_external_links(self):
   root=pathlib.Path(__file__).resolve().parents[2]
   catalog=json.loads((root/'data/marketing/campaigns.json').read_text())
   ids={'tds-smiski-checklist-20261011','tds-sonny-checklist-20261011','tds-collection-backup-20261011'}
@@ -55,6 +55,41 @@ class MarketingQueueTests(unittest.TestCase):
   for day in ['2026-10-11','2026-10-20']:
    plan=compile_plan(catalog,{},day)
    for row in plan['campaigns']:
-    if row['id'] in ids:self.assertEqual(row['blockers'],['tracking_not_registered'])
+    if row['id'] in ids:
+     self.assertEqual(row['blockers'],[]);self.assertEqual(row['state'],'draft_ready')
+     self.assertFalse(row['distribution_authorized']);self.assertFalse(row['published'])
+     self.assertEqual(row['url'],'https://thedollscout.com'+expected_paths[row['id']])
+     for variant in row['external_drafts']:
+      self.assertEqual(variant['state'],'prepared_not_authorized');self.assertFalse(variant['published'])
+      self.assertIn('specific_publication_authorization_required',variant['blockers'])
+      query=parse_qs(urlsplit(variant['url']).query)
+      self.assertEqual(set(query),{'utm_source','utm_medium','utm_campaign'})
+      self.assertEqual(query['utm_campaign'],['free-tools'])
+      self.assertEqual(urlsplit(variant['url']).path,expected_paths[row['id']])
+      # Execute the production parser: passing a Python allowlist alone cannot
+      # prove that the website will retain all three campaign labels.
+      script="import {campaignFields} from './tools/fleet-analytics/campaign.mjs'; console.log(JSON.stringify(campaignFields(new URL(process.argv[1]).search)));"
+      parsed=json.loads(subprocess.check_output(['node','--input-type=module','-e',script,variant['url']],cwd=root,text=True))
+      self.assertEqual(parsed,{'campaign_source':variant['source'],'campaign_medium':variant['medium'],'campaign_name':'free-tools'})
    self.assertEqual(plan['sends'],0);self.assertIsNone(plan['measurement']['net_revenue'])
+ def test_collection_policy_is_scoped_and_fail_closed(self):
+  root=pathlib.Path(__file__).resolve().parents[2]
+  catalog=json.loads((root/'data/marketing/campaigns.json').read_text())
+  c=next(c for c in catalog['campaigns'] if c.get('link_policy'))
+  catalog['campaigns']=[c]
+  for change in [{'link_policy':'typo'},{'site':'bpj'},{'url':'https://thedollscout.com/image-compressor'},
+                 {'url':c['url']+'?utm_source=wrong'},{'url':c['url']+'#private'},
+                 {'url':'https://thedollscout.com:443'+urlsplit(c['url']).path}]:
+   broken=copy.deepcopy(catalog);broken['campaigns'][0].update(change)
+   with self.subTest(change=change),self.assertRaises(ValueError):compile_plan(broken,{},'2026-10-11')
+  expired=compile_plan(catalog,{},'2026-11-11')['campaigns'][0]
+  self.assertEqual(expired['state'],'blocked')
+  for variant in expired['external_drafts']:self.assertIn('review_stale',variant['blockers'])
+ def test_legacy_drafts_unchanged_when_collection_policy_added(self):
+  root=pathlib.Path(__file__).resolve().parents[2]
+  catalog=json.loads((root/'data/marketing/campaigns.json').read_text())
+  old=[c for c in catalog['campaigns'] if not c.get('link_policy')]
+  expected=compile_plan({**catalog,'campaigns':old},{},'2026-10-11')['campaigns']
+  actual=[c for c in compile_plan(catalog,{},'2026-10-11')['campaigns'] if c['id'] in {x['id'] for x in old}]
+  self.assertEqual(expected,actual)
 if __name__=='__main__':unittest.main()
