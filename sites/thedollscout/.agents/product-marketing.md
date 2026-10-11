@@ -1,3 +1,29 @@
+# TDS product and commercial context — version 4.0
+
+**Document version:** v4
+**Last updated:** 2026-10-11
+
+The current focus remains collectible-toy discovery and purchase planning. The priority is a complete task: find a verified series → save owned figures in the existing local collection → return to update it → plan a budget/display → visit a relevant, disclosed merchant link. No renewed domain pivot or broad utility expansion is inferred from the growth request.
+
+**Primary audience:** SMISKI and Sonny Angel collectors who need a named checklist; Labubu search visitors assessing probabilities; gift buyers planning space and a purchase. These are target segments, not verified paying customer counts.
+
+**Free value:** persistent series checklists, owned/wishlist/duplicate quantities, portable JSON/CSV backups, source-linked names, honest probability and display calculations. Storage is device/browser-local; clearing data can remove it. Existing collection backups remain compatible.
+
+**Paid value and readiness:** existing disclosed Amazon US/DE accessory links are the available revenue path. They are search results, not tested recommendations or a live price/stock feed. The new release opens no subscription, checkout, ad spend or cloud service. Premium sync/reminders may only be offered after repeat use, data reliability and a working payment/delivery path are demonstrated. Existing memberships are independent.
+
+**Alternatives:** Blind Box Tracker and hobbyDB for collection records; Rebrickable for the broader model of user assets plus a maintained catalog; BrickEconomy for data-led repeat use; a spreadsheet remains a viable free substitute. Public evidence and traffic-estimate limitations: `docs/tds-competitive-research-2026-10-11.md`.
+
+**Positioning hypothesis:** save a specific collecting decision in one visit and make it useful on the next visit. A local tracker alone is not a moat. Source coverage, successful maintenance and task completion must improve before claiming differentiation.
+
+**Measurement:** separate production-host visits, successful collection saves, exports, repeat sessions, affiliate clicks and merchant-confirmed commissions. Historic GA4 gaps and QA contamination must not become a clean baseline. Detailed connected-account exports stay outside the public repository.
+
+**Chosen learning gates (operational thresholds, not forecasts):** over the next 28 complete days, first seek 100 qualified collection-page sessions, 20 successful checklist saves and 5 collection exports. If acquisition remains below the traffic gate, work on relevant distribution; do not infer lack of demand. If traffic reaches the gate but saves remain below 10%, inspect usability and task fit. Only consider a paid recurring service after at least 5 independently confirmed repeat users request the same persistent capability and 3 unrelated buyers complete a real paid pilot. Merchant reporting is required for revenue attribution.
+
+**Changelog**
+- v4 (2026-10-11) — Focused on saved collection tasks, repaired the daily publication bottleneck, connected high-intent pages to existing purchase planning, and documented measurable stop/scale gates without claiming growth.
+
+The previous version and historical decisions follow for traceability.
+
 ## 2026-10-02 native daily series expansion
 
 TDS now owns its scheduled growth through the existing GitHub Actions 07:20 UTC release. No assistant session or paid model is required. Scope starts with official SMISKI figure and Sonny Angel regular-series catalogs. Up to two verified series per UTC day get EN/DE/ZH checklists, user-supplied printed-probability tools and links to budgets/display planning. Other brand guides remain separately curated. Daily checking does not imply daily new products, stock, equal odds or guaranteed search traffic.

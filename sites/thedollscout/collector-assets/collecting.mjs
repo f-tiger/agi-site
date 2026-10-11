@@ -6,14 +6,15 @@ if(share)share.addEventListener('click',async()=>{const status=document.querySel
 // Preserve anonymous first-party page counts separately from consented GA4.
 // QA, previews and privacy opt-outs never create production visits.
 const params=new URLSearchParams(location.search);
-const measurable=location.hostname==='thedollscout.com'&&!['ci','__ci','__probe'].some(k=>params.has(k))&&params.get('utm_source')!=='verify'&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1';
+function optedOut(){try{return localStorage.getItem('tds_analytics_choice_v1')==='denied';}catch{return false;}}
+const measurable=location.hostname==='thedollscout.com'&&!['ci','__ci','__probe','qa','__qa'].some(k=>params.has(k))&&params.get('utm_source')!=='verify'&&!location.pathname.startsWith('/__ci')&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'&&!optedOut();
 if(measurable){
  let ref='';try{ref=new URL(document.referrer).origin;}catch{}
  const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:'',r:ref});
  fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});
 }
 const recorded=new Set();
-function recordAction(name){if(!measurable||recorded.has(name))return;recorded.add(name);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}}));const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
+function recordAction(name){if(!measurable||optedOut()||recorded.has(name))return;recorded.add(name);window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}}));const body=JSON.stringify({p:new URL(document.querySelector('link[rel=canonical]').href).pathname,e:name,r:''});fetch('/api/ev',{method:'POST',body,keepalive:true}).catch(()=>{});}
 import {initStyleOdds} from './style-odds-ui.mjs?v=2026-10-02.5';
 const styleTool=document.querySelector('[data-style-tool]');
 if(styleTool)initStyleOdds(styleTool,recordAction);
@@ -54,5 +55,5 @@ if(mcpCopy)mcpCopy.addEventListener('click',async()=>{const status=document.quer
 import {initPlanning} from './planning-ui.mjs?v=2026-10-02.5';
 for(const el of document.querySelectorAll('[data-planning]'))initPlanning(el,recordAction);
 
-import {initSeries} from './series-ui.mjs?v=2026-10-02.daily1';
+import {initSeries} from './series-ui.mjs?v=2026-10-11.1';
 initSeries(recordAction);

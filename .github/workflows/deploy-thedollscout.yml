@@ -141,7 +141,7 @@ jobs:
 
       - name: Verify collector tools and generated pages
         run: |
-          node --test scripts/collector-tools.test.cjs
+          node --test scripts/collector-tools.test.cjs scripts/collection-sync.test.cjs scripts/collection-tracker-ui.test.cjs scripts/legacy-analytics.test.cjs
           node scripts/gen-collector-pages.mjs
           git diff --exit-code -- collection-tracker.html display-calculator.html collector-guide.html de/collection-tracker.html de/display-calculator.html de/collector-guide.html
 

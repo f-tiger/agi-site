@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-04",
+    "date": "2026-10-11",
     "status": "ok",
     "added": [
-      "smiski-work",
-      "smiski-museum"
+      "smiski-living-series",
+      "smiski-bath-series"
     ],
     "changed": [],
     "eligible": 16,
@@ -48,7 +48,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-04",
+      "checked": "2026-10-11",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +78,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-04",
+      "checked": "2026-10-11",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -179,6 +179,54 @@
         "en": "https://thedollscout.com/series/smiski-museum",
         "de": "https://thedollscout.com/de/series/smiski-museum",
         "zh": "https://thedollscout.com/zh/series/smiski-museum"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-living-series",
+      "brand": "smiski",
+      "title": "SMISKI Living Series",
+      "names": [
+        "Smiski Daydreaming",
+        "Smiski Playing",
+        "Smiski Hiding",
+        "Smiski Nap Time",
+        "Smiski Thinking",
+        "Smiski Lifting"
+      ],
+      "source": "https://smiski.com/e/products/living/",
+      "published": "2026-10-11",
+      "modified": "2026-10-11",
+      "checked": "2026-10-11",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-living-series",
+        "de": "https://thedollscout.com/de/series/smiski-living-series",
+        "zh": "https://thedollscout.com/zh/series/smiski-living-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-bath-series",
+      "brand": "smiski",
+      "title": "SMISKI Bath Series",
+      "names": [
+        "Smiski Shampooing",
+        "Smiski Not Looking",
+        "Smiski Scrubbing",
+        "Smiski With Duck",
+        "Smiski Dazed",
+        "Smiski Looking"
+      ],
+      "source": "https://smiski.com/e/products/bath-series/",
+      "published": "2026-10-11",
+      "modified": "2026-10-11",
+      "checked": "2026-10-11",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-bath-series",
+        "de": "https://thedollscout.com/de/series/smiski-bath-series",
+        "zh": "https://thedollscout.com/zh/series/smiski-bath-series"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."

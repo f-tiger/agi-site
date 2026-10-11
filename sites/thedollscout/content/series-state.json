@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 12,
+  "cursor": 18,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-04"
+      "checked": "2026-10-11"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-04"
+      "checked": "2026-10-11"
     },
     {
       "id": "smiski-construction",
@@ -121,9 +121,70 @@
       "published": "2026-10-04",
       "modified": "2026-10-04",
       "checked": "2026-10-04"
+    },
+    {
+      "id": "smiski-living-series",
+      "brand": "smiski",
+      "title": "SMISKI Living Series",
+      "names": [
+        "Smiski Daydreaming",
+        "Smiski Playing",
+        "Smiski Hiding",
+        "Smiski Nap Time",
+        "Smiski Thinking",
+        "Smiski Lifting"
+      ],
+      "source": "https://smiski.com/e/products/living/",
+      "hash": "088735bc37da6b270eceee2c4cc3dad48394510153e8a9c5f13d0eee54db930b",
+      "published": "2026-10-11",
+      "modified": "2026-10-11",
+      "checked": "2026-10-11"
+    },
+    {
+      "id": "smiski-bath-series",
+      "brand": "smiski",
+      "title": "SMISKI Bath Series",
+      "names": [
+        "Smiski Shampooing",
+        "Smiski Not Looking",
+        "Smiski Scrubbing",
+        "Smiski With Duck",
+        "Smiski Dazed",
+        "Smiski Looking"
+      ],
+      "source": "https://smiski.com/e/products/bath-series/",
+      "hash": "33793deb8ee702bc22a983f905cee9e02d0f827f10e836d1a2254bfe233cbb5f",
+      "published": "2026-10-11",
+      "modified": "2026-10-11",
+      "checked": "2026-10-11"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-11",
+      "status": "ok",
+      "added": [
+        "smiski-living-series",
+        "smiski-bath-series"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-04",
       "status": "ok",
@@ -206,11 +267,11 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-04",
+    "date": "2026-10-11",
     "status": "ok",
     "added": [
-      "smiski-work",
-      "smiski-museum"
+      "smiski-living-series",
+      "smiski-bath-series"
     ],
     "changed": [],
     "eligible": 16,
