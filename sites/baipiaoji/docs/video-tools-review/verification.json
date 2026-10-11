@@ -1,0 +1,113 @@
+{
+  "verifiedAt": "2026-10-11T10:31:28.638Z",
+  "kind": "operator_synthetic_check",
+  "independentReview": false,
+  "productionCalls": true,
+  "sourceCheckedAt": "2026-10-10",
+  "ruleVersion": "2026-10-10.1",
+  "publicJsonSha256": "1c8750e43eb7b1e3e0c084fc1b921774ae3c8653c2b280e20bc7f64633168c82",
+  "server": {
+    "name": "io.github.f-tiger/bpj-video-tools",
+    "version": "1.0.0"
+  },
+  "results": [
+    {
+      "id": "tutorial",
+      "url": "https://baipiaoji.com/manju/video-fit#vf-example-tutorial",
+      "synthetic": true,
+      "input": {
+        "mode": "draft",
+        "goal": "views",
+        "captions": "yes",
+        "audio": "clear",
+        "rights": "confirmed",
+        "ai": "not_applicable",
+        "commercial": "not_applicable",
+        "claim": "not_applicable",
+        "destination": "not_applicable",
+        "contentType": "tutorial",
+        "audience": "需要整理工作桌面的居家办公者",
+        "durationSeconds": 240,
+        "aspect": "horizontal",
+        "opening": "intro",
+        "proof": "steps"
+      },
+      "status": "test",
+      "priority": [
+        "bilibili"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "app30",
+      "url": "https://baipiaoji.com/manju/video-fit#vf-example-app30",
+      "synthetic": true,
+      "input": {
+        "mode": "draft",
+        "goal": "try",
+        "captions": "yes",
+        "audio": "clear",
+        "rights": "confirmed",
+        "ai": "not_applicable",
+        "commercial": "disclosed",
+        "claim": "supported",
+        "destination": "approved",
+        "contentType": "app",
+        "audience": "需要拆分任务的职场新人",
+        "durationSeconds": 30,
+        "aspect": "vertical",
+        "opening": "result",
+        "proof": "demo"
+      },
+      "status": "test",
+      "priority": [
+        "douyin",
+        "kuaishou"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "drama",
+      "url": "https://baipiaoji.com/manju/video-fit#vf-example-drama",
+      "synthetic": true,
+      "input": {
+        "mode": "draft",
+        "goal": "views",
+        "captions": "no",
+        "audio": "clear",
+        "rights": "uncertain",
+        "ai": "unlabelled",
+        "commercial": "not_applicable",
+        "claim": "not_applicable",
+        "destination": "not_applicable",
+        "contentType": "drama",
+        "audience": "喜欢奇幻冒险故事的成年观众",
+        "durationSeconds": 45,
+        "aspect": "vertical",
+        "opening": "conflict",
+        "proof": "story"
+      },
+      "status": "revise",
+      "priority": [],
+      "blockers": [
+        "素材权利尚有疑问，暂不安排发布小测",
+        "AI 内容尚未按自报情况完成标识",
+        "已知没有字幕或难读，请先修正可读性再安排小测"
+      ]
+    }
+  ],
+  "emptyInput": {
+    "status": "needs-info",
+    "priority": []
+  },
+  "changedRights": {
+    "fromExample": "app30",
+    "rights": "uncertain",
+    "status": "revise",
+    "priority": [],
+    "blockers": [
+      "素材权利尚有疑问，暂不安排发布小测"
+    ]
+  },
+  "limit": "Checks public fixture consistency, not real video quality, platform acceptance, traffic or independent adoption."
+}
