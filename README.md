@@ -24,6 +24,17 @@ See `CLAUDE.md`.
 
 ## One practical workflow check
 
+[帧选：AI 漫剧与短剧找片](https://baipiaoji.com/manju/) is a free Chinese-language
+discovery catalogue with dated official sources and clearly labelled viewing
+destinations. It does not host episodes.
+
+For creators, the [video publishing assessment tool](https://baipiaoji.com/manju/video-fit)
+compares preparation for six Chinese platforms using local video metadata and
+self-reported checks. Try the [worked examples](https://baipiaoji.com/manju/video-fit#vf-examples),
+or cite its [public methodology](https://baipiaoji.com/manju/video-fit.md) and
+[structured rules](https://baipiaoji.com/manju/video-fit.json). Files and reports
+stay in the browser; suggestions are test hypotheses, not viral predictions.
+
 [Compare coding assistants on a small CRM workflow](tools/workflow-task-check/README.md):
 a free local exercise covering duplicate events, retries, credential errors and
 ambiguous timeouts. Synthetic data only; no account or API key required.
