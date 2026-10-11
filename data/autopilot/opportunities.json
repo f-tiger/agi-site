@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-10",
- "radar_fetched": "2026-10-10",
+ "generated": "2026-10-11",
+ "radar_fetched": "2026-10-11",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,11 +13,11 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 9,
+  "candidates": 10,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 9,
-  "supplied": 0
+  "scout": 10,
+  "supplied": 1
  },
  "opportunities": [
   {
@@ -36,16 +36,31 @@
    "fleet_pages": []
   },
   {
-   "theme": "when you code with ai do you tell it how to manage state",
+   "theme": "locked out of google despite knowing password and having email access",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-10-03"
+    "2026-10-10"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.07,
+   "score": 2.22,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "fake abuse reports keep auto blocking my site on cloudflare",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-10"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.08,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -149,10 +164,20 @@
     "2026-10-08"
    ],
    "state": "scout",
-   "supplied": false,
-   "score": 1.96,
+   "supplied": true,
+   "score": 0.96,
    "demand": [],
-   "supply": [],
+   "supply": [
+    {
+     "title": "Show HN: Sibuna an open source web application firewall with proof of work",
+     "url": "https://github.com/insanai/sibuna",
+     "src": "hn_show",
+     "shared": [
+      "application",
+      "open"
+     ]
+    }
+   ],
    "fleet_pages": []
   }
  ]
