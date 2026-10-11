@@ -143,3 +143,11 @@ Owner 最新要求“限制使用次数，免费单人一次使用然后引导�
 新增核对 Microsoft Research 的 [CHI 2010 任务恢复线索研究](https://www.microsoft.com/en-us/research/publication/evaluating-cues-for-resuming-interrupted-programming-tasks/)、OpenAI 的 [Dots Activity 说明](https://openai.com/index/introducing-dots/) 与 Anthropic 的 [有效 agent 工程指南](https://www.anthropic.com/research/building-effective-agents/)。它们共同支持把可检查的最近状态放在恢复入口，但不证明更多状态能提高本站的真实任务成功。
 
 反证是 Microsoft 样本属于编程中断场景且年代较早；Jarvis 的完成/受阻状态由用户自报，不能推断现实成果。故 v18 不使用小模型、当前 8B 或更强模型总结，不展示完成百分比，只由确定性代码把当前运行的固定枚举与最后记录时间显示在私有任务列表和详情中。无进展、旧运行、未知状态和越界索引不产生提示；没有新 D1 字段、客户文本、GA4 参数、token 或后台工作。完整三轮优化、两轮对抗检查、冻结实验和发布边界见 [v18 实现记录](agi-jarvis-resumption-cue-2026-10-10.md)。
+
+## 2026-10-11：在明确受阻处把决定交还用户
+
+新增核对 Anthropic 2026-04-09 的 [Trustworthy agents in practice](https://www.anthropic.com/research/trustworthy-agents) 及 [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)：agent 在阻塞或需要用户判断时应暂停获取反馈，但过多逐动作确认会造成摩擦、甚至被忽略。这支持只在用户明确自报 `blocked` 后给出可编辑恢复草稿，不支持常驻确认、自动重试或让模型猜测阻塞原因。
+
+反证是增加恢复问题会增加认知负担，原始模型建议本身也可能错误。故 v19 只在受阻状态下把通用入口替换为“处理阻塞”，要求用户补充阻塞原因、必须保留的约束和更小的安全替代方案；准备阶段复位记忆、联网、周期与云端同意，0 次模型调用、0 个新任务。确定性模板、小模型、当前 8B 与更强模型比较后，后三者都没有该固定字段拼接所需的质量优势证据，且会增加 token、延迟和误写风险。
+
+冻结 12 个中英、空值、超长、控制符、类 HTML 与隐私约束案例：v18 特定流程基线为 0/12，v19 本地确定性结果为 12/12；浏览器夹具还要求准备前后原任务数、模型调用数和反馈不变，只有重新同意提交才新增任务。该结果只验证恢复交接，不证明模型质量、真实完成率或客户价值。三轮优化、两轮对抗检查和数据未知项见 [v19 实现记录](agi-jarvis-blocker-recovery-2026-10-11.md)。
