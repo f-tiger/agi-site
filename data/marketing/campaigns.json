@@ -64,7 +64,8 @@
       "channel": "owned_task_tutorial",
       "status": "approved_entry",
       "reviewed_at": "2026-10-11",
-      "campaign_tracking_ready": false
+      "campaign_tracking_ready": true,
+      "link_policy": "tds_collection_v1"
     },
     {
       "id": "tds-sonny-checklist-20261011",
@@ -77,7 +78,8 @@
       "channel": "owned_task_tutorial",
       "status": "approved_entry",
       "reviewed_at": "2026-10-11",
-      "campaign_tracking_ready": false
+      "campaign_tracking_ready": true,
+      "link_policy": "tds_collection_v1"
     },
     {
       "id": "tds-collection-backup-20261011",
@@ -90,7 +92,8 @@
       "channel": "owned_task_tutorial",
       "status": "approved_entry",
       "reviewed_at": "2026-10-11",
-      "campaign_tracking_ready": false
+      "campaign_tracking_ready": true,
+      "link_policy": "tds_collection_v1"
     },
     {
       "id": "localebatch-csv-check",
