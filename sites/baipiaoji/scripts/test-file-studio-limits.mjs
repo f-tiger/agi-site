@@ -6,6 +6,7 @@ import {LIMITS,checkFiles} from '../assets/studio/file-core.mjs';
 import {FILE_COPY} from '../assets/studio/file-copy.mjs';
 import {fileWorkspace} from '../assets/studio/file-view.mjs';
 const make=async(count)=>{const doc=await PDFDocument.create();for(let i=0;i<count;i++)doc.addPage([300,500]);return new File([await doc.save()],'synthetic-catalog.pdf',{type:'application/pdf'});};
+assert.equal(LIMITS.pages,200,'Keep the existing source and output page caps unchanged');
 const atLimit=await make(LIMITS.pages),overLimit=await make(LIMITS.pages+1);
 assert.ok(overLimit.size<LIMITS.fileBytes);
 assert.equal(checkFiles([],[overLimit],'pdf').length,1,'Page rejection is separate from byte limits');
