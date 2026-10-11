@@ -442,3 +442,27 @@ and explicit manual runs. Hard limits are three minutes for tests and five for
 collection/persistence, including a two-minute collector step. No paid service,
 new credential, extra schedule or durability SLA is introduced. GitHub schedule
 delays can still make the daily report late.
+
+
+## 2026-10-08: prepare least-privilege aggregate artifact handoff (disabled)
+
+The independent membership report no longer accepts an operator secret or calls
+live membership services. It consumes only validated JSON from the existing
+`bpj-ad-watch` job, with same-public-repository ephemeral `actions: read`.
+The watcher retains `contents: read`; it does not gain publishing permissions.
+
+The producer remains source-disabled pending measured per-endpoint D1 rows-read
+and cache/index budget evidence. Account-wide headroom does not establish that
+cost. No authenticated aggregate restoration or live collection is claimed.
+The disabled gate skips collection without interrupting the existing watcher.
+
+When separately reviewed and enabled, durable artifact preclaims plus existing
+watcher concurrency limit attempts to one per UTC date and at least 24 hours plus
+five minutes apart. Failure consumes the claim; reruns, missing/truncated metadata
+and missing claim upload cannot retry stats. The two-hour watcher cron does not
+become two-hour aggregate polling. No cron/mode is changed, and consumer runs
+never dispatch the watcher. Existing reports preserve source observation time;
+missing or stale sources cannot be relabeled fresh or as zero.
+
+Full boundary, evidence and verification:
+[Membership artifact handoff](membership-artifact-handoff-2026-10-08.md).
