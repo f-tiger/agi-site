@@ -4802,6 +4802,11 @@ def main():
         if "amazon.de/s?k=" in new:
             new = inject_usswitch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=True)
+        if os.path.basename(path) == 'dehumidifier-drying-clothes-cost.html':
+            # This route has UK buying checks, not a verified UK affiliate shop.
+            # Generic profile/sticky promotions bypass the explicit market choice.
+            for marker in ('EB_STICKY', 'EB_PROFILE'):
+                new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             en_processed += 1

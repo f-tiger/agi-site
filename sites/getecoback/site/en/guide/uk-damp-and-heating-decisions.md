@@ -13,7 +13,7 @@ A headline litres-per-day rating is tied to test conditions. Compare extraction 
 
 ## Drying washing: compare a completed load
 A heated airer evaporates water into the room; it does not collect it. Ventilation and dehumidification can remove moisture, but they have different operating costs and depend on conditions. Compare the same laundry mass and final dryness, including any airer and dehumidifier used together.
-[Open the existing laundry cost calculator](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check). Select GBP. That calculator takes pounds per kWh: 26.32p is £0.2632/kWh. Use measured session kWh where possible rather than assuming nameplate power throughout.
+[Open the existing laundry cost calculator](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check). The calculator starts with a fictional GBP example. Replace its rate with your bill: 26.32p is £0.2632/kWh. Use measured session kWh where possible rather than assuming nameplate power throughout.
 
 ## A dated electricity reference, not a UK-wide tariff
 Ofgem lists **26.32p/kWh** as the average Direct Debit electricity unit rate for **1 October to 31 December 2026** in England, Scotland and Wales. Actual rates vary by region, payment method and plan. This is not a Northern Ireland tariff; enter the rate on your own bill. Standing charges are excluded from appliance running costs. The headline annual price-cap figure is not a maximum household bill.

@@ -83,3 +83,18 @@ test('New visitors start automatically without a consent panel or stored choice'
  f.click('denied');assert.equal(f.frame(),undefined);assert.equal(f.store.get('fleet_ga4_choice_v1'),'denied');
  f.click('granted');f.handshake();assert.equal(f.posts.filter(x=>x.d.type==='fleet-ga4-page').at(-1).d.data.sendPageView,false);
 });
+
+test('Laundry bridge is route-bound, opt-out aware and sends no input data',()=>{
+ const path='/en/guide/dehumidifier-drying-clothes-cost.html';
+ assert.deepEqual(businessEvent('getecoback.com',path,{name:'eco_laundry_compare'}),{name:'laundry_compare',tool_id:'laundry-cost',repeat:true});
+ assert.equal(businessEvent('getecoback.com','/members.html',{name:'eco_laundry_compare'}),null);
+ assert.equal(businessEvent('getecoback.com',path,{name:'eco_laundry_compare',kwh:123}),null);
+ const f=fixture({choice:'denied',path});
+ f.emit('fleet:business',{detail:{name:'eco_laundry_compare'}});assert.equal(f.posts.length,0);
+ f.click('granted');f.handshake();
+ for(const action of ['example','compare','export'])f.emit('fleet:business',{detail:{name:'eco_laundry_'+action}});
+ const hits=f.posts.filter(x=>x.d.type==='fleet-ga4-business');
+ assert.deepEqual(hits.map(x=>x.d.detail.name),['eco_laundry_example','eco_laundry_compare','eco_laundry_export']);
+ assert(hits.every(x=>Object.keys(x.d.detail).join(',')==='name'));
+ f.click('denied');const n=f.posts.length;f.emit('fleet:business',{detail:{name:'eco_laundry_compare'}});assert.equal(f.posts.length,n);
+});
