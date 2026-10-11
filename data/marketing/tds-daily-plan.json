@@ -307,9 +307,11 @@
     {
       "date": "2026-10-11",
       "item": "Successful MCP and collector action measurement",
-      "status": "production_index_gate_followup",
+      "status": "deployed_and_production_verified",
       "pull_request": 153,
-      "scope": "Fixed labels and complete UTC windows; first deployment safely returned null/503, follow-up verifies actual date index selection"
+      "scope": "Fixed labels and complete UTC windows; initial date-plan gate failure fixed with read-only actual-index selection. Production HTTP200 pending/null before first complete day; no DDL.",
+      "followup_pull_request": 155,
+      "verified_run": 38122582783
     },
     {
       "date": "2026-10-11",
