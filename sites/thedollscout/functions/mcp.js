@@ -7,6 +7,7 @@ import {compareBlindBoxBudget,estimateCollectionProgress} from '../collector-ass
 import {SERVER,PROTOCOL_VERSION,TOOLS,RESOURCES} from '../collector-assets/mcp-contract.mjs';
 import '../js/collector-core.js';
 import {styleProbability} from '../collector-assets/style-odds-core.mjs';
+import {recordMcpSuccess} from '../lib/collector-measurement.js';
 
 async function load(env, request, path) {
   const res = await env.ASSETS.fetch(new URL(path, request.url));
@@ -123,7 +124,8 @@ const CORS = {
   "access-control-allow-headers": "content-type, mcp-protocol-version",
 };
 
-export async function onRequest({ request, env }) {
+export async function onRequest(context) {
+  const {request, env} = context;
   const origin=request.headers.get('origin');
   if(origin&&!['https://thedollscout.com','https://chatgpt.com','https://claude.ai','https://www.perplexity.ai'].includes(origin))return new Response('Origin not allowed',{status:403,headers:CORS});
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
@@ -202,7 +204,7 @@ export async function onRequest({ request, env }) {
       }
       if(invalid)return Response.json(rpc(id,{isError:true,content:[{type:'text',text:'Invalid arguments. Use the types, required fields and bounds published by tools/list.'}]}),{headers:CORS});
       const result = await callTool(tool.name,args,ctx);
-      return Response.json(
+      const response = Response.json(
         rpc(id, {
           content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
           structuredContent: result,
@@ -212,6 +214,8 @@ export async function onRequest({ request, env }) {
         }),
         { headers: CORS }
       );
+      recordMcpSuccess(context, tool.name, result.found === false ? 'no_result' : 'result');
+      return response;
     }
 
     return Response.json(rpcError(id, -32601, `Method not found: ${method}`), { headers: CORS });

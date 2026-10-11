@@ -3209,7 +3209,7 @@ https://github.com/f-tiger/agi-site/issues/new
 # Collector tools for AI assistants
 
 https://thedollscout.com/for-agents
-Content updated: 2026-10-02
+Content updated: 2026-10-11
 
 Find, read and call TDS collecting tools from an MCP-compatible assistant.
 
@@ -3251,7 +3251,7 @@ Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 c
 
 Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations, stacking, weight or stability check.
 
-The server cannot read your local collection, cloud account, private files or membership. Collection tracking and digital file tools run in their own browser pages; the catalog returns links and requirements. It does not claim to execute them remotely.
+The server cannot read your local collection, cloud account, private files or membership. Collection tracking and digital file tools run in their own browser pages; the catalog returns links and requirements. It does not claim to execute them remotely. Successful calls may add anonymous counts of the fixed tool name and result category, without storing arguments or identifying a person.
 
 Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.
 
@@ -3267,7 +3267,7 @@ https://thedollscout.com/document-assets/tool-capabilities.json
 # Sammelwerkzeuge für KI-Assistenten
 
 https://thedollscout.com/de/for-agents
-Content updated: 2026-10-02
+Content updated: 2026-10-11
 
 TDS-Sammelwerkzeuge mit einem MCP-kompatiblen Assistenten finden, lesen und aufrufen.
 
@@ -3309,7 +3309,7 @@ Mit TDS planen: Figuren von 8 × 6 × 15 cm in einer Vitrine mit 40 × 25 × 30 
 
 Beispielergebnis: 12 Figuren in 4 × 3 Positionen, auf einer Ebene. Keine gemischten Ausrichtungen, Stapelung, Gewichts- oder Stabilitätsprüfung.
 
-Der Server kann weder lokale Sammlungen noch Cloud-Konten, private Dateien oder Mitgliedschaften lesen. Sammlung und digitale Dateiwerkzeuge laufen auf ihren eigenen Browserseiten. Der Katalog liefert Links und Anforderungen, keine behauptete Remote-Ausführung.
+Der Server kann weder lokale Sammlungen noch Cloud-Konten, private Dateien oder Mitgliedschaften lesen. Sammlung und digitale Dateiwerkzeuge laufen auf ihren eigenen Browserseiten. Der Katalog liefert Links und Anforderungen, keine behauptete Remote-Ausführung. Erfolgreiche Aufrufe können anonym nach festem Werkzeugnamen und Ergebniskategorie gezählt werden, ohne Argumente oder Personenkennungen zu speichern.
 
 Öffentliche Seiten, Klartext und MCP-Katalog helfen kompatiblen Diensten, die Werkzeuge zu finden. Suchaufnahme, Empfehlung und Erlaubnis zum Werkzeugaufruf sind getrennte Schritte und werden hier nicht garantiert.
 
@@ -3325,7 +3325,7 @@ https://thedollscout.com/document-assets/tool-capabilities.json
 # 供 AI 助手使用的收藏工具
 
 https://thedollscout.com/zh/for-agents
-Content updated: 2026-10-02
+Content updated: 2026-10-11
 
 通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
 
@@ -3367,7 +3367,7 @@ estimate_collection_progress: Estimate new distinct regular styles, repeated reg
 
 示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
 
-此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。
+此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。成功调用可按固定工具名和结果类别匿名计数，不保存输入参数或识别个人。
 
 公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。
 
@@ -3423,6 +3423,12 @@ Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
 
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
+
 Collection checklist: Hamburger, Sandwich, French Fries, Ketchup, Mustard, Milkshake, Coffee, Sugar, Donut, Hot Dog, Fried Chicken, Fried Chicken Sandwich
 
 Select the styles you own. Saved in this browser, shared across languages and the collection tracker. Unchecking moves owned entries to your wishlist and keeps their quantities; checking again restores them. Existing wishlist entries stay unchanged. No account or cloud sync. Export a backup before clearing browser data or changing devices.
@@ -3448,6 +3454,12 @@ https://thedollscout.com/series/sonny-angel-vegetable-series
 Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
+
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
 
 Collection checklist: Carrot, Tomato, Garlic, Zucchini, Onion, Radish, GreenPepper, Eggplant, BokChoy, Corn, Cauliflower, Cabbage
 
@@ -3475,6 +3487,12 @@ Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
 
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
+
 Collection checklist: SMISKI Digging a Hole, SMISKI Crushing Rock, SMISKI Tightening Bolt, SMISKI Measuring, SMISKI Directing Traffic, SMISKI Loosening Bolt
 
 Select the styles you own. Saved in this browser, shared across languages and the collection tracker. Unchecking moves owned entries to your wishlist and keeps their quantities; checking again restores them. Existing wishlist entries stay unchanged. No account or cloud sync. Export a backup before clearing browser data or changing devices.
@@ -3500,6 +3518,12 @@ https://thedollscout.com/series/smiski-sunday
 Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
+
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
 
 Collection checklist: SMISKI Blowing Bubbles, SMISKI Paper Airplane, SMISKI Sunbathing, SMISKI Sing-Along, SMISKI Skateboarding, SMISKI Gardening
 
@@ -3527,6 +3551,12 @@ Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
 
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
+
 Collection checklist: SMISKI Approving, SMISKI Researching, SMISKI Presenting, SMISKI Good Idea, SMISKI On the Rord, Little SMISKI Group Think
 
 Select the styles you own. Saved in this browser, shared across languages and the collection tracker. Unchecking moves owned entries to your wishlist and keeps their quantities; checking again restores them. Existing wishlist entries stay unchanged. No account or cloud sync. Export a backup before clearing browser data or changing devices.
@@ -3552,6 +3582,12 @@ https://thedollscout.com/series/smiski-museum
 Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
+
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
 
 Collection checklist: Smiski The Source, Smiski Fuzin&Raijin, Smiski Bacchus, Smiski Vela’zquez, Smiski Dali, Smiski Pearl Earring
 
@@ -3579,6 +3615,12 @@ Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
 
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
+
 Collection checklist: Smiski Daydreaming, Smiski Playing, Smiski Hiding, Smiski Nap Time, Smiski Thinking, Smiski Lifting
 
 Select the styles you own. Saved in this browser, shared across languages and the collection tracker. Unchecking moves owned entries to your wishlist and keeps their quantities; checking again restores them. Existing wishlist entries stay unchanged. No account or cloud sync. Export a backup before clearing browser data or changing devices.
@@ -3604,6 +3646,12 @@ https://thedollscout.com/series/smiski-bath-series
 Content updated: 2026-10-11
 
 Official names. Your checklist. A clearer plan before the next box.
+
+Make a collection card
+
+Preview the figures recorded in this browser, then download a PNG to share yourself. No collection is uploaded. Prices, notes and wishlist entries stay off the card.
+
+Not owned means not recorded as owned. It is not a wishlist or a shopping recommendation.
 
 Collection checklist: Smiski Shampooing, Smiski Not Looking, Smiski Scrubbing, Smiski With Duck, Smiski Dazed, Smiski Looking
 
@@ -3667,6 +3715,12 @@ Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
+
 Sammlungs-Checkliste: Hamburger, Sandwich, French Fries, Ketchup, Mustard, Milkshake, Coffee, Sugar, Donut, Hot Dog, Fried Chicken, Fried Chicken Sandwich
 
 Vorhandene Figuren auswählen. In diesem Browser gespeichert und mit allen Sprachen sowie der Sammlungsverwaltung geteilt. Abwählen verschiebt vorhandene Einträge mit ihrer Anzahl auf die Wunschliste; erneutes Auswählen stellt sie wieder her. Bestehende Wunscheinträge bleiben unverändert. Kein Konto und keine Cloud-Synchronisierung. Vor dem Löschen von Browserdaten oder einem Gerätewechsel eine Sicherung exportieren.
@@ -3692,6 +3746,12 @@ https://thedollscout.com/de/series/sonny-angel-vegetable-series
 Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
 
 Sammlungs-Checkliste: Carrot, Tomato, Garlic, Zucchini, Onion, Radish, GreenPepper, Eggplant, BokChoy, Corn, Cauliflower, Cabbage
 
@@ -3719,6 +3779,12 @@ Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
+
 Sammlungs-Checkliste: SMISKI Digging a Hole, SMISKI Crushing Rock, SMISKI Tightening Bolt, SMISKI Measuring, SMISKI Directing Traffic, SMISKI Loosening Bolt
 
 Vorhandene Figuren auswählen. In diesem Browser gespeichert und mit allen Sprachen sowie der Sammlungsverwaltung geteilt. Abwählen verschiebt vorhandene Einträge mit ihrer Anzahl auf die Wunschliste; erneutes Auswählen stellt sie wieder her. Bestehende Wunscheinträge bleiben unverändert. Kein Konto und keine Cloud-Synchronisierung. Vor dem Löschen von Browserdaten oder einem Gerätewechsel eine Sicherung exportieren.
@@ -3744,6 +3810,12 @@ https://thedollscout.com/de/series/smiski-sunday
 Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
 
 Sammlungs-Checkliste: SMISKI Blowing Bubbles, SMISKI Paper Airplane, SMISKI Sunbathing, SMISKI Sing-Along, SMISKI Skateboarding, SMISKI Gardening
 
@@ -3771,6 +3843,12 @@ Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
+
 Sammlungs-Checkliste: SMISKI Approving, SMISKI Researching, SMISKI Presenting, SMISKI Good Idea, SMISKI On the Rord, Little SMISKI Group Think
 
 Vorhandene Figuren auswählen. In diesem Browser gespeichert und mit allen Sprachen sowie der Sammlungsverwaltung geteilt. Abwählen verschiebt vorhandene Einträge mit ihrer Anzahl auf die Wunschliste; erneutes Auswählen stellt sie wieder her. Bestehende Wunscheinträge bleiben unverändert. Kein Konto und keine Cloud-Synchronisierung. Vor dem Löschen von Browserdaten oder einem Gerätewechsel eine Sicherung exportieren.
@@ -3796,6 +3874,12 @@ https://thedollscout.com/de/series/smiski-museum
 Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
 
 Sammlungs-Checkliste: Smiski The Source, Smiski Fuzin&Raijin, Smiski Bacchus, Smiski Vela’zquez, Smiski Dali, Smiski Pearl Earring
 
@@ -3823,6 +3907,12 @@ Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
+
 Sammlungs-Checkliste: Smiski Daydreaming, Smiski Playing, Smiski Hiding, Smiski Nap Time, Smiski Thinking, Smiski Lifting
 
 Vorhandene Figuren auswählen. In diesem Browser gespeichert und mit allen Sprachen sowie der Sammlungsverwaltung geteilt. Abwählen verschiebt vorhandene Einträge mit ihrer Anzahl auf die Wunschliste; erneutes Auswählen stellt sie wieder her. Bestehende Wunscheinträge bleiben unverändert. Kein Konto und keine Cloud-Synchronisierung. Vor dem Löschen von Browserdaten oder einem Gerätewechsel eine Sicherung exportieren.
@@ -3848,6 +3938,12 @@ https://thedollscout.com/de/series/smiski-bath-series
 Content updated: 2026-10-11
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
+
+Eine Sammlungskarte erstellen
+
+Die in diesem Browser erfassten Figuren zuerst prüfen und dann als PNG selbst teilen. Die Sammlung wird nicht hochgeladen. Preise, Notizen und Wunscheinträge stehen nicht auf der Karte.
+
+Nicht vorhanden heißt: nicht als vorhanden erfasst. Es ist keine Wunschliste oder Kaufempfehlung.
 
 Sammlungs-Checkliste: Smiski Shampooing, Smiski Not Looking, Smiski Scrubbing, Smiski With Duck, Smiski Dazed, Smiski Looking
 
@@ -3911,6 +4007,12 @@ Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
+
 收藏清单: Hamburger, Sandwich, French Fries, Ketchup, Mustard, Milkshake, Coffee, Sugar, Donut, Hot Dog, Fried Chicken, Fried Chicken Sandwich
 
 勾选已拥有的款式，清单自动保存在当前浏览器，与其他语言页面和收藏账本共用。取消勾选会将已拥有条目移至愿望单并保留数量，再次勾选可恢复；原有愿望单条目不变。无需账户，不会同步到云端。清理浏览器数据或更换设备前，请先到收藏账本导出备份。
@@ -3936,6 +4038,12 @@ https://thedollscout.com/zh/series/sonny-angel-vegetable-series
 Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
 
 收藏清单: Carrot, Tomato, Garlic, Zucchini, Onion, Radish, GreenPepper, Eggplant, BokChoy, Corn, Cauliflower, Cabbage
 
@@ -3963,6 +4071,12 @@ Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
+
 收藏清单: SMISKI Digging a Hole, SMISKI Crushing Rock, SMISKI Tightening Bolt, SMISKI Measuring, SMISKI Directing Traffic, SMISKI Loosening Bolt
 
 勾选已拥有的款式，清单自动保存在当前浏览器，与其他语言页面和收藏账本共用。取消勾选会将已拥有条目移至愿望单并保留数量，再次勾选可恢复；原有愿望单条目不变。无需账户，不会同步到云端。清理浏览器数据或更换设备前，请先到收藏账本导出备份。
@@ -3988,6 +4102,12 @@ https://thedollscout.com/zh/series/smiski-sunday
 Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
 
 收藏清单: SMISKI Blowing Bubbles, SMISKI Paper Airplane, SMISKI Sunbathing, SMISKI Sing-Along, SMISKI Skateboarding, SMISKI Gardening
 
@@ -4015,6 +4135,12 @@ Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
+
 收藏清单: SMISKI Approving, SMISKI Researching, SMISKI Presenting, SMISKI Good Idea, SMISKI On the Rord, Little SMISKI Group Think
 
 勾选已拥有的款式，清单自动保存在当前浏览器，与其他语言页面和收藏账本共用。取消勾选会将已拥有条目移至愿望单并保留数量，再次勾选可恢复；原有愿望单条目不变。无需账户，不会同步到云端。清理浏览器数据或更换设备前，请先到收藏账本导出备份。
@@ -4040,6 +4166,12 @@ https://thedollscout.com/zh/series/smiski-museum
 Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
 
 收藏清单: Smiski The Source, Smiski Fuzin&Raijin, Smiski Bacchus, Smiski Vela’zquez, Smiski Dali, Smiski Pearl Earring
 
@@ -4067,6 +4199,12 @@ Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
+
 收藏清单: Smiski Daydreaming, Smiski Playing, Smiski Hiding, Smiski Nap Time, Smiski Thinking, Smiski Lifting
 
 勾选已拥有的款式，清单自动保存在当前浏览器，与其他语言页面和收藏账本共用。取消勾选会将已拥有条目移至愿望单并保留数量，再次勾选可恢复；原有愿望单条目不变。无需账户，不会同步到云端。清理浏览器数据或更换设备前，请先到收藏账本导出备份。
@@ -4092,6 +4230,12 @@ https://thedollscout.com/zh/series/smiski-bath-series
 Content updated: 2026-10-11
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
+
+制作收藏分享卡
+
+先预览当前浏览器记录的收藏，再下载 PNG 自行分享。收藏不会上传；卡片不包含价格、私人备注或愿望单条目。
+
+未拥有表示尚未记录为已拥有，不等同于愿望单或购买建议。
 
 收藏清单: Smiski Shampooing, Smiski Not Looking, Smiski Scrubbing, Smiski With Duck, Smiski Dazed, Smiski Looking
 

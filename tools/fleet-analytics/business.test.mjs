@@ -80,6 +80,19 @@ test('TDS daily series calculation has one fixed metric, never collector inputs'
  for(const [p,d]of [['/series',{name:'collector_series_calc'}],['/series/unknown-series',{name:'collector_series_calc'}],['/series/smiski-living',{name:'collector_series_calc',probability:10}]])assert.equal(businessEvent('thedollscout.com',p,d),null);
 });
 
+test('TDS MCP copy and generated series downloads stay route-bound and fixed across locales',()=>{
+ for(const prefix of ['/','/de/','/zh/']){
+  assert.deepEqual(businessEvent('thedollscout.com',prefix+'for-agents',{name:'collector_mcp_copy'}),{name:'collector_mcp_copy',tool_id:'collector-mcp'});
+  assert.deepEqual(businessEvent('thedollscout.com',prefix+'series/smiski-living',{name:'collector_series_export'}),{name:'collector_checklist_export',tool_id:'series-checklist'});
+ }
+ for(const name of ['collector_mcp_copy','collector_series_export']){
+  for(const path of ['/','/members','/series','/collection-tracker'])assert.equal(businessEvent('thedollscout.com',path,{name}),null);
+  for(const host of ['baipiaoji.com','agiscorecard.com','getecoback.com','preview.pages.dev'])for(const path of ['/for-agents','/series/smiski-living'])assert.equal(businessEvent(host,path,{name}),null);
+ }
+ for(const [path,name]of [['/for-agents','collector_mcp_copy'],['/series/smiski-living','collector_series_export']])for(const key of ['url','collection','filename','styles','input'])assert.equal(businessEvent('thedollscout.com',path,{name,[key]:'PRIVATE'}),null);
+ assert.equal(businessEvent('thedollscout.com','/series/smiski-living',{name:'collector_series_preview'}),null);
+});
+
 test('Future guide media events record fixed actions, never search or media URLs',()=>{
  assert.deepEqual(businessEvent('agiscorecard.com','/zh/future-guide',{name:'future_video_open'}),{name:'future_video_open',tool_id:'future-guide',repeat:true});
  for(const [host,p,d]of [['baipiaoji.com','/future-guide',{name:'future_audio_open'}],['agiscorecard.com','/members',{name:'future_medium'}],['agiscorecard.com','/future-guide',{name:'future_topic',query:'private'}],['agiscorecard.com','/future-guide',{name:'future_unknown'}]])assert.equal(businessEvent(host,p,d),null);

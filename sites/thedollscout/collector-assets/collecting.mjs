@@ -6,7 +6,7 @@ if(share)share.addEventListener('click',async()=>{const status=document.querySel
 // Preserve anonymous first-party page counts separately from consented GA4.
 // QA, previews and privacy opt-outs never create production visits.
 const params=new URLSearchParams(location.search);
-function optedOut(){try{return localStorage.getItem('tds_analytics_choice_v1')==='denied';}catch{return false;}}
+function optedOut(){try{return localStorage.getItem('tds_analytics_choice_v1')==='denied';}catch{return true;}}
 const measurable=location.hostname==='thedollscout.com'&&!['ci','__ci','__probe','qa','__qa'].some(k=>params.has(k))&&params.get('utm_source')!=='verify'&&!location.pathname.startsWith('/__ci')&&!navigator.webdriver&&!/bot|crawler|spider|headless/i.test(navigator.userAgent)&&!navigator.globalPrivacyControl&&navigator.doNotTrack!=='1'&&!optedOut();
 if(measurable){
  let ref='';try{ref=new URL(document.referrer).origin;}catch{}
@@ -50,10 +50,10 @@ if(demo){
  reduced.addEventListener('change',()=>{stop();show(2);});
 }
 const mcpCopy=document.querySelector('[data-copy-mcp]');
-if(mcpCopy)mcpCopy.addEventListener('click',async()=>{const status=document.querySelector('[data-mcp-status]');try{await navigator.clipboard.writeText('https://thedollscout.com/mcp');status.textContent=mcpCopy.dataset.success;}catch{status.textContent=mcpCopy.dataset.failure;}});
+if(mcpCopy)mcpCopy.addEventListener('click',async()=>{const status=document.querySelector('[data-mcp-status]');try{await navigator.clipboard.writeText('https://thedollscout.com/mcp');status.textContent=mcpCopy.dataset.success;recordAction('collector_mcp_copy');}catch{status.textContent=mcpCopy.dataset.failure;}});
 
 import {initPlanning} from './planning-ui.mjs?v=2026-10-02.5';
 for(const el of document.querySelectorAll('[data-planning]'))initPlanning(el,recordAction);
 
-import {initSeries} from './series-ui.mjs?v=2026-10-11.1';
+import {initSeries} from './series-ui.mjs?v=2026-10-11.2';
 initSeries(recordAction);

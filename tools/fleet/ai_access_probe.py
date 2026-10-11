@@ -74,7 +74,8 @@ BLOCK_CODES = {401, 403, 429, 503}
 
 
 def fetch(url, ua, timeout=20):
-    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "text/html,text/plain,*/*"})
+    # TDS bot logging excludes this header; query markers alone are insufficient.
+    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "text/html,text/plain,*/*", "X-Probe": "fleet-ai-access"})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             r.read(4096)
