@@ -96,7 +96,7 @@ jobs:
           node scripts/documents/build.mjs
           node scripts/documents/verify.mjs
           node scripts/collecting/build.mjs
-          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs
+          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
@@ -259,6 +259,10 @@ jobs:
       - name: Verify callable assistant tools and discovery files
         run: node scripts/collecting/verify-mcp.mjs
 
+      - name: Verify indexed collector measurement and complete-day coverage
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        run: node scripts/collecting/verify-measurement.mjs
+
       - name: Verify live document pages and assets
         id: document_pages
         # Pages can briefly serve the previous manifest during deployment propagation.
@@ -345,27 +349,27 @@ jobs:
           # MCP 冒烟:initialize 必须回 protocolVersion;计算工具算 1:72×12 盒
           # 必须回 15.x%(纯数学,答案确定)。/mcp 曾在退役 410 列表里——这两条
           # 断言同时守住「函数活着」与「410 没有误伤」。
-          mcp=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+          mcp=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
             -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}')
           echo "mcp initialize -> $mcp"
           echo "$mcp" | grep -q '"protocolVersion"' || { echo "::error::MCP initialize did not return protocolVersion"; fail=1; }
-          calc=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+          calc=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
             -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"secret_pull_probability","arguments":{"oddsN":72,"boxes":12}}}')
           echo "mcp secret_pull_probability(72,12) -> $calc"
           echo "$calc" | grep -q '15\.' || { echo "::error::MCP calculator did not return ~15% for 1:72 x 12 boxes"; fail=1; }
-          def=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+          def=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
             -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"define_labubu_term","arguments":{"term":"lafufu"}}}')
           echo "mcp define_labubu_term(lafufu) -> $def"
           # 这两个工具此前从未被冒烟覆盖(2026-08-30 深审发现):它们各自读一个
           # 已发布数据集,数据集换名/换形状时只有这里会喊。
-          odds=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+          odds=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
             -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"labubu_rarity_odds","arguments":{}}}')
           echo "$odds" | grep -q '1:72\|"72"\|:72' || { echo "::error::MCP labubu_rarity_odds returned no 1:72 row"; fail=1; }
-          sig=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+          sig=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
             -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"labubu_fake_signals","arguments":{}}}')
           echo "$sig" | grep -qi 'teeth' || { echo "::error::MCP labubu_fake_signals returned no teeth-count signal"; fail=1; }

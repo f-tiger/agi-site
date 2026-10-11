@@ -16,13 +16,10 @@
 <h1>Privacy</h1>
 <p>Google Analytics starts by default on public pages unless you have opted out, and uses analytics cookies. Basic first-party counts do not use cookies. Analytics on this site are:</p>
 <ul>
-<li><strong>Google Analytics 4</strong> — all public pages load it only after you allow analytics. It uses analytics cookies; Google signals and ad personalisation are off. Use the footer analytics toggle to disable or enable analytics. Public page addresses omit query strings and fragments, and referrers are reduced to their origin. Selected files and entered text are not sent. Fixed actions and recognised campaign tags may be included; raw URL parameters are excluded. New and historical pages preserve the same explicit opt-out choice.</li>
-<li><strong>A first-party beacon</strong> that records the page path, the
-referrer reduced to a hostname, and outbound affiliate clicks reduced to a
-target hostname — no cookies, no identifiers, no personal data.</li>
+<li><strong>Google Analytics 4</strong> — public pages start analytics by default, while respecting a stored opt-out, Do Not Track and Global Privacy Control. It uses analytics cookies; Google signals and ad personalisation are off. Use the footer analytics toggle to disable or enable analytics. Public page addresses omit query strings and fragments, and referrers are reduced to their origin. Selected files and entered text are not sent. Fixed actions and recognised campaign tags may be included; raw URL parameters are excluded. New and historical pages preserve the same explicit opt-out choice.</li>
+<li><strong>A first-party beacon</strong> records a date, public page path, page language, coarse country code, fixed action and a referrer or affiliate destination hostname. These counts do not add a user identifier or analytics cookie. Collection contents, entered text and exported files are not included. Known tests and supported privacy opt-outs are excluded.</li>
 </ul>
-<p>We collect no names, no emails, no accounts. Outbound links go to the
-sites they name; their privacy practices are their own.</p>
+<p>The local collection tools do not require your name, email or an account. Optional account and membership features are separate from these local tools. Outbound links go to the sites they name; their privacy practices are their own.</p>
 <p><strong>Embedded videos:</strong> homepage video preview images are served by YouTube when they enter view, which sends connection information to its image servers. Homepage and new tool tutorial pages load a YouTube
 privacy-enhanced player (youtube-nocookie.com) only after you select “Load YouTube
 player.” Loading it sends connection information to YouTube and Google; their
@@ -30,7 +27,7 @@ privacy practices then apply. Privacy-enhanced mode does not guarantee anonymous
 viewing. Historical pages may load an embedded player when the page opens.</p>
 <p><a href="/">Back to DollScout</a></p>
 </div></section>
-<section class="wrap prose"><h2>Collection tracker</h2><p>The collection tracker stores the figure names, notes, list status and quantities you enter in this browser’s local storage. We do not upload this collection or its JSON backups and CSV exports. Clearing browser data removes the local copy; export a JSON backup first. Aggregate events record actions such as save, export, import or calculate, without collection content or measurement values. Existing site analytics described above still apply.</p></section></main>
+<section class="wrap prose"><h2>Collection tracker and cards</h2><p>The collection tracker stores the figure names, notes, list status and quantities you enter in this browser’s local storage. We do not upload this collection or its JSON backups and CSV exports. Series PNG cards are also generated locally, after you request a preview. A card contains the official series names and the owned quantities shown in that preview; it excludes prices, personal notes and wishlist entries. Downloading a card does not publish it. If you share the image elsewhere, that service and its audience can see the card’s contents. Clearing browser data removes the local collection; export a JSON backup first. Fixed aggregate events record actions such as save, download initiation, import or calculate, without collection content or measurement values. Existing site analytics described above still apply.</p><h2>MCP tool measurement</h2><p>The public MCP server cannot read your local collection or private files. For an accepted, successfully executed tool call, it can record the date, a fixed tool name and a fixed result category. It does not store the tool arguments, request ID, IP address or full user-agent string in this measurement. Known self-checks and supported privacy signals are excluded. Copying the MCP address can record a fixed copy action after the clipboard operation succeeds. These counts measure operations, not unique people, installations, purchases or revenue.</p></section></main>
 <script src="/js/config.js"></script>
 <script src="/js/analytics.js"></script>
 <script src="/js/main.js"></script>

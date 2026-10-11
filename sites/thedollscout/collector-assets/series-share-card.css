@@ -1,0 +1,17 @@
+.series-share{margin-top:2rem;padding:1.5rem;border:2px solid #e4002b;border-radius:16px;background:#fff;color:#111;scroll-margin-top:1rem}
+.series-share h3{margin:0 0 .7rem;font-size:clamp(1.35rem,4vw,1.8rem)}
+.series-share>p{max-width:70ch;line-height:1.6}
+.series-share .actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.series-share button{min-height:48px;white-space:normal}
+.series-share button:focus-visible{outline:3px solid #175cd3;outline-offset:4px}
+.series-share button:disabled{cursor:not-allowed;opacity:.55}
+.series-share [data-share-image]{display:block;width:min(100%,540px);height:auto;margin:1rem auto;border:1px solid #d0d5dd}
+.series-share [hidden]{display:none!important}
+.series-share details{margin-top:1rem;overflow-wrap:anywhere}
+.series-share summary{cursor:pointer;padding:.7rem 0;font-weight:700}
+.series-share [data-share-details] h4{font-size:1.2rem;margin:1rem 0}
+.series-share [data-share-details] dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.4rem 1rem;max-width:30rem}
+.series-share [data-share-details] dd{font-weight:700;margin:0}
+.series-share [data-share-details] li{margin:.45rem 0;line-height:1.5}
+.series-share [data-share-status]{min-height:1.6em;font-weight:600}
+@media(max-width:480px){.series-share{padding:1rem}.series-share .actions{display:grid}.series-share .actions button{width:100%}}

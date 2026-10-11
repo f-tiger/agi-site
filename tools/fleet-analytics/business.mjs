@@ -79,6 +79,8 @@ export function businessEvent(host, pathname, detail) {
     if (action) return {name:'tool_' + (action[1] || '') + action[2], tool_id:match[1]};
   }
   if (host === 'thedollscout.com') {
+    if(route==='/for-agents'&&name==='collector_mcp_copy')return {name,tool_id:'collector-mcp'};
+    if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_export')return {name:'collector_checklist_export',tool_id:'series-checklist'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_save')return {name:'collector_checklist_save',tool_id:'series-checklist'};
     if(route==='/collection-tracker'&&['collection_save','collection_export','collection_import'].includes(name))return {name,tool_id:'collection-tracker'};
     if(route==='/display-calculator'&&name==='display_calc')return {name,tool_id:'display-calculator'};

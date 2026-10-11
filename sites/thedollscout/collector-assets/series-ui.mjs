@@ -1,8 +1,10 @@
 import {styleProbability} from './style-odds-core.mjs';
+import {initSeriesShare} from './series-share-card.mjs?v=2026-10-11.2';
 export function initSeriesChecklist(root, record, {core=globalThis.DSCollector, storage=()=>globalThis.localStorage, events=globalThis.window, page=globalThis.document}={}) {
  const boxes=[...root.querySelectorAll('input[type=checkbox]')];
  const labels=JSON.parse(root.querySelector('[data-checklist-labels]').textContent);
  const status=root.querySelector('[data-storage-status]');
+ const share=initSeriesShare(root,record,{core,storage,events,page});
  let snapshot;
  const figure=box=>({seriesId:labels.seriesId,styleId:box.dataset.styleId,name:box.nextElementSibling.textContent,series:labels.title});
  function render(items) {
@@ -30,6 +32,7 @@ export function initSeriesChecklist(root, record, {core=globalThis.DSCollector, 
  root.addEventListener('change',event=>{
   const box=event.target;
   if(!boxes.includes(box)) return;
+  share?.invalidate();
   root.querySelector('[data-copy-status]').textContent='';
   let changed=false;
   try {
@@ -45,6 +48,7 @@ export function initSeriesChecklist(root, record, {core=globalThis.DSCollector, 
    refresh(error.message==='conflict'?labels.conflict:labels.storageError);
   }
   if(changed) record('collector_series_save');
+  share?.refresh();
  });
  root.querySelector('[data-checklist-copy]').addEventListener('click',async()=>{
   try {

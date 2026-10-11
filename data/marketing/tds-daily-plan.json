@@ -8,7 +8,7 @@
   "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
   "rules": [
     "Repair real failures before the calendar topic.",
-    "At most one material site improvement and one distribution asset per iteration; no-change is a valid evidence-based outcome.",
+    "The two daily iterations share one primary experiment; morning selects or implements, afternoon resumes and verifies. Do not duplicate existing changes, PRs, source requests, posts or registration. No-change is a valid evidence-based outcome.",
     "The native source expansion retains its existing caps and schedule.",
     "External drafts are not posts, platform views are not site users, and clicks are not revenue.",
     "Private metrics and identities never enter this public plan.",
@@ -285,5 +285,15 @@
       "gate": "3位无关联真实付费买家是试点扩张门槛，不是本轮承诺",
       "status": "planned"
     }
-  ]
+  ],
+  "iterations_per_day": 2,
+  "iteration_schedule": {
+    "timezone": "Asia/Shanghai",
+    "local_times": [
+      "09:00",
+      "17:00"
+    ],
+    "mode": "flexible_schedule",
+    "first_new_scheduled_slot": "2026-10-11T17:00:00+08:00"
+  }
 }
