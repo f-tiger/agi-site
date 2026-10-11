@@ -2,6 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
+test('Consumer discovery measures fixed destination and sharing actions without private selections',()=>{
+ for(const action of ['official_open','platform_search','intro_open','share_native','share_copy']){
+  const name='manju_'+action;
+  for(const path of ['/manju/','/manju/beipai'])assert.deepEqual(businessEvent('baipiaoji.com',path,{name}),{name,tool_id:'manju',repeat:true});
+  for(const field of ['query','url','list','title','saved'])assert.equal(businessEvent('baipiaoji.com','/manju/',{name,[field]:'PRIVATE'}),null);
+  assert.equal(businessEvent('baipiaoji.com','/account',{name}),null);
+  assert.equal(businessEvent('getecoback.com','/manju/',{name}),null);
+ }
+ for(const name of ['manju_playback_success','manju_share_published'])assert.equal(businessEvent('baipiaoji.com','/manju/',{name}),null);
+});
 test('Video publishing actions accept only fixed names, never files or report inputs',()=>{
  for(const action of ['file_ready','file_error','complete','example','export','compare']){
   const name='manju_video_'+action;

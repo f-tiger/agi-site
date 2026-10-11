@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {evaluateVideo} from '../assets/video-fit-core.mjs';
 
 // Read-only release check: live requests never execute page scripts or send events.
 const live=process.argv.includes('--live');
@@ -103,13 +104,29 @@ assert.match(text,/视频号官方规则全文.*(?:无法读取|未读取)/,'Dis
 assert.match(text,/不是官方流量周期/,'Observation windows must not masquerade as platform rules');
 assert.ok(pageLinks.includes('/manju/video-fit.json')&&pageLinks.includes('/manju/video-fit.md'),'Expose public machine-readable methods from the page');
 
-// Mirrors contain reviewed rules/method only; private inputs and reports have no public slot.
+// Public examples are fixed synthetic drafts, never visitor inputs or saved reports.
 const publicData=JSON.parse(json.text);
-const {name,url,description,faq,...publicRules}=publicData;
+const {name,url,description,faq,examples,...publicRules}=publicData;
 assert.ok(typeof name==='string'&&name.includes('视频'));
 assert.equal(url,canonical);
 assert.ok(typeof description==='string'&&description.includes('不预测'));
 assert.deepEqual(publicRules,rules,'Public JSON may contain reviewed rules, never runtime inputs or reports');
+assert.deepEqual(examples.map(x=>x.id),['tutorial','app30','drama']);
+for(const example of examples){
+ assert.equal(example.synthetic,true);
+ assert.equal(example.url,canonical+'#vf-example-'+example.id);
+ assert.match(example.disclaimer,/不是成功案例/);
+ assert.ok(html.includes('id="vf-example-'+example.id+'"'));
+ assert.ok(markdown.text.includes(example.url)&&text.includes(example.title));
+ const result=evaluateVideo(example.input,null,rules);
+ assert.deepEqual(example.output.priority,result.priority,'Public example must use the actual evaluator');
+ assert.equal(example.output.status,result.status);
+ assert.ok(example.output.platforms.length<=2&&example.output.actions.length<=3);
+ for(const action of example.output.actions){assert.ok(text.includes(visible(action.text)));assert.ok(markdown.text.includes(action.text));}
+}
+assert.deepEqual(examples[0].output.priority,['bilibili']);
+assert.deepEqual(examples[1].output.priority,['douyin','kuaishou']);
+assert.equal(examples[2].output.status,'revise');assert.deepEqual(examples[2].output.priority,[],'Unresolved preparation must not produce marketing recommendations');
 assert.deepEqual(faq,faqs[0].mainEntity.map(q=>({question:q.name,answer:q.acceptedAnswer.text})));
 assert.ok(markdown.text.includes(canonical)&&markdown.text.includes(rules.checkedAt));
 assert.match(markdown.text,/不上传视频/);
