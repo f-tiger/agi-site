@@ -1,4 +1,5 @@
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
+import {protectAccountPage} from '../lib/account-page-privacy.js';
 // 服务端爬虫可见性：页面级打点此前 100% 依赖客户端 JS beacon（build.mjs 的 sendBeacon），
 // 而 GPTBot / ClaudeBot / PerplexityBot 这些 AI 检索爬虫**不执行 JavaScript**——
 // 它们抓一万页我们也一条都记不到。于是「AI 助手有没有来抓」这个问题，
@@ -82,7 +83,7 @@ const CANONICAL_MD = new Set(['/limits.md', '/pricing.md']);
 
 export async function onRequest(ctx) {
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
-  let res = await ctx.next();
+  let res = protectAccountPage(await ctx.next(), ctx.request);
   try {
     const url = new URL(ctx.request.url);
     if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;
