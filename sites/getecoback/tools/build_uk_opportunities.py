@@ -20,6 +20,11 @@ def main():
   (SITE/path).write_text(html)
  for path in ['index.html','en/index.html']+['en/guide/'+s+'.html' for s,_ in routes]+['en/guide/desiccant-vs-compressor-dehumidifier.html']:
   file=SITE/path;s=file.read_text();s=re.sub(r'<!--EB_UK_PATH-->.*?<!--/EB_UK_PATH-->','',s,flags=re.S)
+  if path=='en/guide/dehumidifier-drying-clothes-cost.html':
+   # These generic promotions select a German store independently of the
+   # buyer module's explicit market choice. No verified UK affiliate route yet.
+   for marker in ['EB_STICKY','EB_PROFILE']:
+    s=re.sub(r'<!--'+marker+r'-->.*?<!--/'+marker+r'-->','',s,flags=re.S)
   label='Großbritannien: Feuchtigkeit, Wäsche und Heizkosten (Englisch)' if path=='index.html' else 'UK: damp, laundry and heating decisions'
   block=f'<!--EB_UK_PATH--><aside style="max-width:1000px;margin:24px auto;padding:20px;background:#edf3e6;color:#203a32"><p style="font-size:1.2rem;font-weight:700">{link(HUB,label)}</p><p>{link(COMPARE,"12L vs 20L: compare the same temperature and humidity")}</p></aside><!--/EB_UK_PATH-->'
   marker=re.search(r'</header>',s) or re.search(r'<main[^>]*>',s) or re.search(r'<body[^>]*>',s)

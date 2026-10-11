@@ -125,6 +125,8 @@ test('UK entry starts with an explicit GBP example and routes to local buying ch
  assert(en.includes('/en/guide/12l-vs-20l-dehumidifier-uk.html#purchase-checklist'));
  assert(!en.includes('k=dehumidifier+laundry+mode'));
  assert(!en.includes('k=digital+hygrometer+indoor'));
+ assert(!en.includes('<!--EB_STICKY-->'));
+ assert(!en.includes('<!--EB_PROFILE-->'));
  const uk=readFileSync(new URL('../site/en/guide/12l-vs-20l-dehumidifier-uk.html',import.meta.url),'utf8');
  for(const text of ['id="purchase-checklist"','UK plug','postcode','not verified a UK affiliate'])assert(uk.includes(text));
 });
