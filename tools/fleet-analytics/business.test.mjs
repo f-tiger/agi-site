@@ -72,6 +72,11 @@ test('TDS collecting measurements keep exact route/action pairs and exclude inpu
 
 test('TDS daily series calculation has one fixed metric, never collector inputs',()=>{
  assert.deepEqual(businessEvent('thedollscout.com','/zh/series/sonny-angel-snack-series',{name:'collector_series_calc'}),{name:'collector_series_complete',tool_id:'series-style-probability'});
+ assert.deepEqual(businessEvent('thedollscout.com','/zh/series/sonny-angel-snack-series',{name:'collector_series_save'}),{name:'collector_checklist_save',tool_id:'series-checklist'});
+ assert.equal(businessEvent('thedollscout.com','/series/smiski-living',{name:'collector_series_save',styles:['private']}),null);
+ assert.equal(businessEvent('thedollscout.com','/series',{name:'collector_series_save'}),null);
+ for(const name of ['collection_save','collection_export','collection_import'])assert.deepEqual(businessEvent('thedollscout.com','/de/collection-tracker',{name}),{name,tool_id:'collection-tracker'});
+ for(const path of ['/display-calculator','/de/display-calculator'])assert.deepEqual(businessEvent('thedollscout.com',path,{name:'display_calc'}),{name:'display_calc',tool_id:'display-calculator'});
  for(const [p,d]of [['/series',{name:'collector_series_calc'}],['/series/unknown-series',{name:'collector_series_calc'}],['/series/smiski-living',{name:'collector_series_calc',probability:10}]])assert.equal(businessEvent('thedollscout.com',p,d),null);
 });
 

@@ -1,27 +1,30 @@
-# TDS Document Scout
+# The Doll Scout — collectible guides and free collection tools
 
-Free browser tools for creators and small teams preparing files for publication or handover. No account is required. File processing stays on the visitor’s device.
+TDS helps collectors find a series, keep a private collection checklist, understand blind-box probabilities and plan a purchase or display. English is the default, with German and Chinese guides.
 
-## Try a complete task
+- [Series checklists](https://thedollscout.com/series): official-source SMISKI and Sonny Angel names, saved in the same local collection used by the tracker.
+- [Collection tracker](https://thedollscout.com/collection-tracker): owned figures, wishlist, duplicate quantities, JSON backup and CSV export. No account or cloud sync is required or implied.
+- [Budget comparison](https://thedollscout.com/collecting/budget): compare independent boxes with a confirmed figure using your own costs and probabilities.
+- [Brand guides](https://thedollscout.com/brands): eight brands, source links, probability and display-fit tools. Official links do not imply an affiliate relationship or verified stock.
 
-- [Run the image example](https://thedollscout.com/image-compressor?example=1#utility-result): resize a built-in image, inspect the actual export and download it. Then choose your own files.
-- [Run the PDF comparison example](https://thedollscout.com/compare-pdf-text?example=1#results): inspect page-level text changes between two public sample PDFs and export the report. This is not visual comparison or OCR.
-- [Record a file handover](https://thedollscout.com/delivery-evidence): create a portable inventory of final files and notes. It does not prove delivery, identity or acceptance.
-
-The [complete toolkit](https://thedollscout.com/#tools) includes 12 tools across AI, images, JSON, time zones, file verification and PDFs. English, German and Chinese interfaces are available. Local AI models require an explicit first-use download; interface language does not imply multilingual model support.
+The existing [digital tools](https://thedollscout.com/document-tools) remain at their stable URLs and are also discoverable through BPJ. They are separate from collector membership.
 
 ## Build and verify
 
 ```sh
-cd scripts/documents
-npm ci
-npm test
-node build.mjs
-node verify.mjs
+cd sites/thedollscout
+npm ci --prefix scripts/documents --ignore-scripts
+npm test --prefix scripts/documents
+node scripts/documents/build.mjs
+node scripts/gen-collector-pages.mjs
+node scripts/collecting/build.mjs
+node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs scripts/collection-sync.test.cjs scripts/collection-tracker-ui.test.cjs scripts/legacy-analytics.test.cjs
+node scripts/collecting/verify.mjs
+python3 scripts/collecting/persist-tests.py
 ```
 
-The generator maintains HTML, metadata, structured data, plain text and the public tool manifest together. See CLAUDE.md for full deployment and privacy requirements. Example runs, CI checks and real task completions are separated; public event aggregates are not unique-user or revenue counts.
+The production workflow also builds the shared workbench, then digital tools, then collecting pages, and installs/verifies fleet GA4 after every generator. See `.github/workflows/deploy-thedollscout.yml` and `CLAUDE.md` for the complete release contract.
 
-## History
+Daily expansion uses official-source checks and the existing scheduled release, with at most two new series per day. A check date is not a release date. Failed checks retain verified records. Local checklist data stays in the browser: back it up before switching devices or clearing storage.
 
-The previous collectibles guide remains accessible in the [collector archive](https://thedollscout.com/collectors). Existing guide and tool URLs are preserved. TDS is independent of Pop Mart and Kasing Lung.
+TDS is independent of the brands discussed. Existing US/DE Amazon links are labeled. Visits, successful tool actions and merchant clicks are separate from verified commission revenue. Former retired content remains retired.

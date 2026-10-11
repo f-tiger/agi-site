@@ -79,6 +79,9 @@ export function businessEvent(host, pathname, detail) {
     if (action) return {name:'tool_' + (action[1] || '') + action[2], tool_id:match[1]};
   }
   if (host === 'thedollscout.com') {
+    if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_save')return {name:'collector_checklist_save',tool_id:'series-checklist'};
+    if(route==='/collection-tracker'&&['collection_save','collection_export','collection_import'].includes(name))return {name,tool_id:'collection-tracker'};
+    if(route==='/display-calculator'&&name==='display_calc')return {name,tool_id:'display-calculator'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_calc')return {name:'collector_series_complete',tool_id:'series-style-probability'};
     const planning={'/collecting/budget':'collector_budget_calc','/collecting/duplicates':'collector_progress_calc'};
     if(planning[route]===name)return {name:'tool_complete',tool_id:route.slice(1).replaceAll('/','-')};

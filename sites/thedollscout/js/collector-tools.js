@@ -8,10 +8,15 @@
   function announce(text) { q('[data-message]').textContent = text; }
   function track(event) {
     try {
+      const params=new URLSearchParams(location.search);
+      if(location.hostname!=='thedollscout.com'||window.top!==window.self||['ci','__ci','__probe','qa','__qa'].some(k=>params.has(k))||params.get('utm_source')==='verify'||navigator.webdriver||/bot|crawler|spider|headless/i.test(navigator.userAgent)||navigator.globalPrivacyControl||navigator.doNotTrack==='1') return;
+      if(localStorage.getItem('tds_analytics_choice_v1')==='denied') return;
+      const collection=/^\/(?:de\/)?collection-tracker(?:\.html)?\/?$/.test(location.pathname);
+      const display=/^\/(?:de\/)?display-calculator(?:\.html)?\/?$/.test(location.pathname);
+      if(!(collection&&['collection_save','collection_export','collection_import'].includes(event))&&!(display&&event==='display_calc'))return;
       const body = JSON.stringify({p: location.pathname, e: event, r: ''});
-      if (navigator.sendBeacon) navigator.sendBeacon('/api/ev', body);
-      else fetch('/api/ev', {method:'POST', body, keepalive:true}).catch(() => {});
-      if (typeof window.gtag === 'function') window.gtag('event', event);
+      if (!navigator.sendBeacon || !navigator.sendBeacon('/api/ev', body)) fetch('/api/ev', {method:'POST', body, keepalive:true}).catch(() => {});
+      window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:event}}));
     } catch (_) {}
   }
   function download(text, type, name) {
@@ -20,14 +25,20 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   if (app.dataset.collector === 'collection') {
-    const key = 'dollscout-collection-v1';
-    let items = [], edit = -1, canSave = true;
-    try { const saved=localStorage.getItem(key); if(saved) items=core.restore(saved); }
+    const key = core.COLLECTION_KEY;
+    let items = [], edit = -1, canSave = true, snapshot;
+    try { snapshot=core.readCollection(localStorage); items=snapshot.items; }
     catch (_) { canSave=false; announce(msg('storageError')); }
-    function save(next) {
-      if (!canSave) { announce(msg('storageError')); return false; }
-      try { localStorage.setItem(key, core.backup(next)); items=next; return true; }
-      catch (_) { announce(msg('storageError')); return false; }
+    function save(next, replaceInvalid=false) {
+      if (!canSave && !replaceInvalid) { announce(msg('storageError')); return false; }
+      try {
+        snapshot=core.writeCollection(localStorage,next,replaceInvalid?localStorage.getItem(key):snapshot.raw,replaceInvalid);
+        items=snapshot.items; canSave=true; return true;
+      } catch (error) {
+        if(error.message==='conflict') refresh(msg('conflict'));
+        else announce(msg('storageError'));
+        return false;
+      }
     }
     function reset() { edit=-1; q('form').reset(); q('[data-save]').textContent=msg('add'); q('[data-cancel]').hidden=true; }
     function render() {
@@ -56,20 +67,37 @@
         card.append(title,detail,actions); list.append(card);
       }
     }
+    function refresh(message=msg('synced')) {
+      try {
+        const next=core.readCollection(localStorage);
+        const changed=!snapshot||next.raw!==snapshot.raw||!canSave;
+        snapshot=next; items=next.items; canSave=true;
+        if(changed){reset();render();announce(message);}
+        return true;
+      } catch (_) {canSave=false;announce(msg('storageError'));return false;}
+    }
     q('form').addEventListener('submit',event=>{
       event.preventDefault();
       try {
         const item=core.normalizeItem(Object.fromEntries(new FormData(event.currentTarget)));
         const next=items.slice();
-        if(edit>=0) next[edit]=item;
+        if(edit>=0) {
+          const previous=items[edit];
+          // Quantity/status edits retain the catalogue link. Renaming an entry
+          // makes it a manual entry; an explicit wishlist edit ends undo status.
+          if(previous.seriesId&&previous.name===item.name&&previous.series===item.series) {
+            item.seriesId=previous.seriesId; item.styleId=previous.styleId;
+          }
+          next[edit]=item;
+        }
         else {if(next.length>=core.MAX_ITEMS) throw Error('limit'); next.push(item);}
         if(save(next)){reset();render();announce(msg('saved'));track('collection_save');}
       } catch (_) {announce(msg('invalid'));}
     });
     q('[data-cancel]').addEventListener('click',reset);
     q('[data-filter]').addEventListener('change',render); q('[data-search]').addEventListener('input',render);
-    q('[data-backup]').addEventListener('click',()=>{download(core.backup(items),'application/json','dollscout-collection.json');track('collection_export');});
-    q('[data-csv]').addEventListener('click',()=>{download(core.csv(items),'text/csv;charset=utf-8','dollscout-collection.csv');track('collection_export');});
+    q('[data-backup]').addEventListener('click',()=>{if(refresh()){download(core.backup(items),'application/json','dollscout-collection.json');track('collection_export');}});
+    q('[data-csv]').addEventListener('click',()=>{if(refresh()){download(core.csv(items),'text/csv;charset=utf-8','dollscout-collection.csv');track('collection_export');}});
     q('[data-import]').addEventListener('change',async event=>{
       const file=event.target.files[0]; if(!file) return;
       try {
@@ -77,17 +105,17 @@
         const next=core.restore(await file.text());
         if(confirm(msg('confirmImport').replace('{count}',next.length))) {
           // An explicit restore may replace malformed stored data, but never silently.
-          canSave=true;
-          if(save(next)){reset();render();announce(msg('saved'));track('collection_import');}
+          if(save(next,true)){reset();render();announce(msg('saved'));track('collection_import');}
         }
       } catch (_) {announce(msg('invalidBackup'));}
       event.target.value='';
     });
     window.addEventListener('storage',event=>{
-      if(event.key!==key) return;
-      try {items=event.newValue?core.restore(event.newValue):[];reset();render();announce(msg('synced'));}
-      catch(_){canSave=false;announce(msg('storageError'));}
+      if(event.key===key||event.key===null) refresh();
     });
+    window.addEventListener('focus',()=>refresh());
+    window.addEventListener('pageshow',()=>refresh());
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
     render();
   } else {
     const form=q('form'); let unit='cm';
