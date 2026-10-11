@@ -14,7 +14,55 @@ export const COLLECTOR_QUERY = `SELECT d,ev,path,
 export function usesDateRangeIndex(rows) {
   // Accept the existing index's real name; never assume a fixture's index name.
   const details = rows.map(row => String(row.detail || ''));
-  return details.some(detail => /\bSEARCH hits USING (?:COVERING )?INDEX\b/i.test(detail) && /\bd>\?/.test(detail) && /\bd<\?/.test(detail)) && !details.some(detail => /\bSCAN hits\b/i.test(detail));
+  return details.some(detail => {
+    const constraints=/^SEARCH hits USING (?:COVERING )?INDEX .+ \(([^()]*)\)$/i.exec(detail)?.[1];
+    return constraints && /\bd>\?/.test(constraints) && /\bd<\?/.test(constraints);
+  }) && !details.some(detail => /\bSCAN hits\b/i.test(detail));
+}
+
+export function resultRows(result) {
+  if (!result || result.success === false || !Array.isArray(result.results)) throw Error('Database metadata or query unavailable');
+  return result.results;
+}
+
+function quoteIndex(name) {
+  if (typeof name !== 'string' || !name || name.length > 128 || /[\u0000-\u001f\u007f]/.test(name)) throw Error('Invalid index metadata');
+  return '"'+name.replaceAll('"','""')+'"';
+}
+
+export async function findDateIndex(read) {
+  const indexes=resultRows(await read('PRAGMA index_list(hits)'));
+  if (indexes.length > 32) throw Error('Index metadata capacity exceeded');
+  // Malformed metadata is a failure, never evidence that an index is absent.
+  for (const index of indexes) {
+    quoteIndex(index.name);
+    if (![0,1].includes(index.partial)) throw Error('Invalid index metadata');
+  }
+  for (const index of indexes) {
+    if (index.partial) continue;
+    const columns=resultRows(await read('PRAGMA index_info('+quoteIndex(index.name)+')'));
+    if (!columns.length || columns.some(column=>!Number.isSafeInteger(column.seqno) || column.seqno<0 || !Number.isSafeInteger(column.cid) || column.cid < -2 || column.name!==null && typeof column.name!=='string')) throw Error('Invalid index column metadata');
+    const first=columns.find(column=>column.seqno===0);
+    if (!first) throw Error('Invalid index column metadata');
+    if (first.cid >= 0 && first.name === 'd') return index.name;
+  }
+  return null;
+}
+
+export function indexedCollectorQuery(index) {
+  return COLLECTOR_QUERY.replace('FROM hits WHERE','FROM hits INDEXED BY '+quoteIndex(index)+' WHERE');
+}
+
+export async function collectorQueryWithPlan(read,bounds) {
+  let sql=COLLECTOR_QUERY;
+  if (usesDateRangeIndex(resultRows(await read('EXPLAIN QUERY PLAN '+sql,bounds)))) return sql;
+  // SQLite can prefer an ev index even while a full date-leading index exists.
+  // Force only a real, non-partial date-leading index verified from metadata.
+  const index=await findDateIndex(read);
+  if (!index) return null;
+  sql=indexedCollectorQuery(index);
+  if (!usesDateRangeIndex(resultRows(await read('EXPLAIN QUERY PLAN '+sql,bounds)))) throw Object.assign(Error('Date index plan rejected'),{collectorIndexCode:'date_index_plan_rejected'});
+  return sql;
 }
 
 export function collectorWindow(now = new Date()) {
@@ -48,18 +96,16 @@ export async function onRequestGet(ctx) {
     const bounds = [window.measuredWindow?.start || FIRST_FULL_UTC_DAY, window.expected28dWindow.end_exclusive];
     try {
       // EXPLAIN reads metadata only. Reject an unindexed plan before scanning rows.
-      const plan = await ctx.env.HITS.prepare('EXPLAIN QUERY PLAN '+COLLECTOR_QUERY).bind(...bounds).all();
-      if (plan.success === false) throw Error('Query plan failed');
-      if (!usesDateRangeIndex(plan.results || [])) return json({ok:false,error:'missing_date_index',reason:'schema',counts:null},503);
+      const read=(sql,params=[])=>ctx.env.HITS.prepare(sql).bind(...params).all();
+      const query=await collectorQueryWithPlan(read,bounds);
+      if (!query) return json({ok:false,error:'missing_date_index',reason:'schema',counts:null},503);
       const base = {ok:true,...window,generated:new Date().toISOString(),cache_seconds:300,
         unit:'anonymous_events_not_users',
         notes:'Browser actions are deduplicated per event per page load. Export records a generated download action, not a verified saved file or share. MCP counts validated successful tools/call responses; no_result is separate. No user, session, citation, attribution or revenue measurement. QA and declared privacy opt-outs are excluded; open requests and user agents can be spoofed. Historical periods and the partial release day are excluded. Zero means no stored eligible events in a successfully queried measured window; silent write failures and unreported outages cannot be reconstructed.'};
       if (!window.coveredDays) return json({...base,counts:null,browser:[],mcp:[],query_rows_read:0});
-      const result = await ctx.env.HITS.prepare(COLLECTOR_QUERY).bind(...bounds).all();
-      if (result.success === false) throw Error('Aggregate query failed');
-      if (!Array.isArray(result.results)) throw Error('Missing aggregate rows');
-      if (result.results.length > 10000) return json({ok:false,error:'aggregate_capacity',counts:null},503);
-      return json({...base,...aggregateCollector(result.results),query_rows_read:result.meta?.rows_read??null});
-    } catch (error) { return json({ok:false,error:'query_failed',reason:databaseFailure(error),counts:null},503); }
+      const result = await read(query,bounds),rows=resultRows(result);
+      if (rows.length > 10000) return json({ok:false,error:'aggregate_capacity',counts:null},503);
+      return json({...base,...aggregateCollector(rows),query_rows_read:result.meta?.rows_read??null});
+    } catch (error) { return json({ok:false,error:error.collectorIndexCode==='date_index_plan_rejected'?'date_index_plan_rejected':'query_failed',reason:databaseFailure(error),counts:null},503); }
   });
 }

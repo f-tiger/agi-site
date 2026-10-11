@@ -46,28 +46,28 @@
       "day": 4,
       "date": "2026-10-15",
       "focus": "Content",
-      "task": "将清单图接到系列页，并准备两系列首轮Pin",
-      "deliverable": "可下载清单与首轮Pin稿；内部用canonical；有明确账号授权则发布并保存回执",
+      "task": "复查10月11日已上线分享卡的实际使用与两系列首轮Pin稿，完善分发入口",
+      "deliverable": "已上线分享卡的使用证据及首轮Pin稿；有对应账号授权才发布并保存回执",
       "gate": "图片来源、线上下载和UTM核验；未授权不宣称发布",
-      "status": "planned"
+      "status": "partially_delivered_early"
     },
     {
       "day": 5,
       "date": "2026-10-16",
       "focus": "AI / MCP",
-      "task": "核对安装复制、真实tools/call与引用的可测边界",
-      "deliverable": "先补缺失计量设计；若实施仅固定工具名与QA排除，不收输入",
+      "task": "读取新计量可用的完整UTC日，区分复制、成功tools/call与引用；复查异常和覆盖",
+      "deliverable": "使用计量回执与缺测说明，避免重复实现或注册；工具调用仍不是人数和营收",
       "gate": "有明确缺口且隐私/成本验收通过",
-      "status": "planned"
+      "status": "followup_after_early_implementation"
     },
     {
       "day": 6,
       "date": "2026-10-17",
       "focus": "Video",
-      "task": "制作Museum真实连续操作演示，展示保存后刷新与导出",
-      "deliverable": "真实操作MP4、英文字幕/配音、许可音乐；经手机核验的频道链接或关联长片入口",
+      "task": "复查10月11日已制作Museum真实演示，完成试听和渠道入口/平台安全区验收",
+      "deliverable": "复用现有真实MP4、英文字幕/配音和许可音乐；具备对应授权与有效入口后发布并保存回执",
       "gate": "完成看听验收与可点击路径；普通Shorts描述URL不可点击；发布需对应账号授权",
-      "status": "planned"
+      "status": "partially_delivered_early"
     },
     {
       "day": 7,
@@ -295,5 +295,27 @@
     ],
     "mode": "flexible_schedule",
     "first_new_scheduled_slot": "2026-10-11T17:00:00+08:00"
-  }
+  },
+  "early_deliveries": [
+    {
+      "date": "2026-10-11",
+      "item": "Local collection PNG preview/download",
+      "status": "deployed_and_browser_verified",
+      "pull_request": 153,
+      "scope": "8 official series, EN/DE/ZH; local ledger; no upload or automatic publication"
+    },
+    {
+      "date": "2026-10-11",
+      "item": "Successful MCP and collector action measurement",
+      "status": "production_index_gate_followup",
+      "pull_request": 153,
+      "scope": "Fixed labels and complete UTC windows; first deployment safely returned null/503, follow-up verifies actual date index selection"
+    },
+    {
+      "date": "2026-10-11",
+      "item": "Museum continuous-operation demo",
+      "status": "private_asset_ready_technical_checks_passed",
+      "scope": "40 seconds; English voice/subtitles, original music. No external post. Subjective audio review and actual platform layout remain unverified."
+    }
+  ]
 }
