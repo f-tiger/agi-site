@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import {onRequest as mcp} from '../../functions/mcp.js';
 import {onRequestPost as beacon} from '../../functions/api/ev.js';
-import {onRequestGet as growth, COLLECTOR_QUERY, collectorWindow, aggregateCollector, usesDateRangeIndex} from '../../functions/api/collector-growth.js';
+import {onRequestGet as growth, COLLECTOR_QUERY, collectorWindow, aggregateCollector, usesDateRangeIndex, collectorQueryWithPlan} from '../../functions/api/collector-growth.js';
 import {recordMcpSuccess} from '../../lib/collector-measurement.js';
 
 function recorder({fail=false}={}) {
@@ -121,9 +121,44 @@ test('Endpoint distinguishes pending measurement, a successfully queried zero, u
   const db=database(),ctx=contextForDB(db);
   await atDate('2026-10-11T12:00:00Z',async()=>{const r=await growth(ctx),j=await r.json();assert.equal(r.status,200);assert.equal(j.counts,null);assert.equal(j.coverage,'pending_first_complete_day');assert.equal(ctx.calls.length,1);assert.ok(ctx.calls[0].startsWith('EXPLAIN'));});
   await atDate('2026-10-13T12:00:00Z',async()=>{const r=await growth(ctx),j=await r.json();assert.equal(r.status,200);assert.deepEqual(j.counts,{browser_actions:0,mcp_tool_calls:0});assert.equal(j.coveredDays,1);assert.equal(ctx.calls.length,3);});
-  const missing=contextForDB(database(''));const r=await growth(missing);assert.equal(r.status,503);assert.equal((await r.json()).error,'missing_date_index');assert.equal(missing.calls.length,1);
+  const missing=contextForDB(database(''));const r=await growth(missing);assert.equal(r.status,503);assert.equal((await r.json()).error,'missing_date_index');assert.equal(missing.calls.length,2);assert.ok(missing.calls.every(sql=>/^(?:EXPLAIN|PRAGMA)/.test(sql)));
   const broken=contextForDB(db);broken.env.HITS.prepare=()=>{throw Error('D1 daily quota exceeded');};const failure=await growth(broken),j=await failure.json();assert.equal(failure.status,503);assert.equal(j.counts,null);assert.equal(j.reason,'daily_limit');
   const unavailable=await growth({env:{}});assert.equal(unavailable.status,503);assert.equal((await unavailable.json()).counts,null);db.close();
+});
+
+test('An event-index planner choice falls back to the actual date index without DDL or extra data scans',async()=>{
+  const db=database('an_actual_date_index');db.exec('CREATE INDEX idx_hits_ev ON hits(ev)');
+  const bounds=['2026-10-12','2026-10-13'];
+  assert.equal(usesDateRangeIndex(db.prepare('EXPLAIN QUERY PLAN '+COLLECTOR_QUERY).all(...bounds)),false,'reproduces the production failure shape even though a date index exists');
+  const ctx=contextForDB(db);
+  await atDate('2026-10-13T12:00:00Z',async()=>{const response=await growth(ctx),body=await response.json();assert.equal(response.status,200);assert.deepEqual(body.counts,{browser_actions:0,mcp_tool_calls:0});});
+  assert.equal(ctx.calls.filter(sql=>sql.startsWith('SELECT')).length,1);
+  assert.ok(ctx.calls.find(sql=>sql.startsWith('SELECT')).includes('INDEXED BY "an_actual_date_index"'));
+  assert.ok(ctx.calls.every(sql=>/^(?:EXPLAIN|PRAGMA|SELECT)/.test(sql)),'runtime is read-only');
+  const pending=contextForDB(db);
+  await atDate('2026-10-11T12:00:00Z',async()=>{const response=await growth(pending),body=await response.json();assert.equal(response.status,200);assert.equal(body.counts,null);});
+  assert.ok(pending.calls.every(sql=>/^(?:EXPLAIN|PRAGMA)/.test(sql)),'pending release day still proves the index without scanning rows');
+  db.close();
+});
+
+test('Partial, expression-first and event-leading indexes never stand in for a full date-leading index',async()=>{
+  for(const statement of ["CREATE INDEX partial_date ON hits(d) WHERE ev='collection_save'",'CREATE INDEX expression_first ON hits(substr(d,1,4),d)','CREATE INDEX event_first ON hits(ev)']){
+    const db=database('');db.exec(statement);const ctx=contextForDB(db),response=await growth(ctx),body=await response.json();
+    assert.equal(response.status,503,statement);assert.equal(body.error,'missing_date_index');assert.equal(body.counts,null);assert.ok(ctx.calls.every(sql=>/^(?:EXPLAIN|PRAGMA)/.test(sql)));db.close();
+  }
+});
+
+test('Index names come only from real metadata and are quoted, while malformed or failed metadata blocks reads',async()=>{
+  const db=database('');db.exec('CREATE INDEX "date "" quoted; --" ON hits(d); CREATE INDEX idx_hits_ev ON hits(ev)');
+  const calls=[],read=async(sql,params=[])=>{calls.push(sql);return {results:db.prepare(sql).all(...params)};};
+  const query=await collectorQueryWithPlan(read,['2026-10-12','2026-10-13']);
+  assert.ok(query.includes('INDEXED BY "date "" quoted; --"'));assert.equal(db.prepare(query).all('2026-10-12','2026-10-13').length,0);db.close();
+  for(const bad of [{success:false,results:[]},{results:[{name:'bad\u0000index',partial:0}]},{results:[{name:3,partial:0}]},{results:[{name:'idx_d'}]}]){
+    const requests=[],read=async(sql)=>{requests.push(sql);return sql.startsWith('EXPLAIN')?{results:[{detail:'SEARCH hits USING INDEX idx_ev (ev=?)'}]}:bad;};
+    await assert.rejects(()=>collectorQueryWithPlan(read,['2026-10-12','2026-10-13']));assert.ok(requests.every(sql=>/^(?:EXPLAIN|PRAGMA)/.test(sql)));
+  }
+  const ctx={request:new Request('https://thedollscout.com/api/collector-growth',{headers:{'x-probe':'test'}}),env:{HITS:{prepare:sql=>({bind:()=>({all:async()=>({results:sql.startsWith('PRAGMA index_list')?[{name:'idx_d',partial:0}]:sql.startsWith('PRAGMA index_info')?[{seqno:0,cid:0,name:'d'}]:[{detail:'SCAN hits USING INDEX idx_d'}]})})})}}};
+  const rejected=await growth(ctx);assert.equal(rejected.status,503);assert.equal((await rejected.json()).error,'date_index_plan_rejected');
 });
 
 test('Aggregate cache bounds repeat scans and failures/overflow never become an empty successful report',async()=>{
