@@ -1,6 +1,8 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs/promises';import path from 'node:path';import {fileURLToPath} from 'node:url';
 import {onRequest} from '../../functions/mcp.js';import {TOOLS,SERVER,RESOURCES,DEMO_INPUT} from '../../collector-assets/mcp-contract.mjs';
 import {styleProbability} from '../../collector-assets/style-odds-core.mjs';
+import {buildDiscovery} from './discovery.mjs';
+import {brands,locales,origin,updated,route} from './content.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const env={ASSETS:{fetch:async u=>{try{return new Response(await fs.readFile(path.join(root,new URL(u).pathname)))}catch{return new Response('',{status:404})}}}};
 async function rpc(method,params={},options={}){const r=await onRequest({env,request:new Request('https://thedollscout.com/mcp',{method:'POST',headers:{'content-type':'application/json',...options.headers},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params})})});return r.json();}
@@ -8,6 +10,25 @@ test('MCP discovery and schema come from the same shipped contract',async()=>{as
 test('assistant display plan agrees with the actual browser calculator and visible demo',async()=>{const j=await rpc('tools/call',{name:'plan_display_fit',arguments:DEMO_INPUT});assert.equal(j.result.isError,false);const result=j.result.structuredContent;assert.equal(result.count,12);assert.equal(result.columns,4);assert.equal(result.rows,3);assert.equal(result.rotated,false);const nofit=await rpc('tools/call',{name:'plan_display_fit',arguments:{...DEMO_INPUT,height:10}});assert.equal(nofit.result.structuredContent.count,0);const rotation=await rpc('tools/call',{name:'plan_display_fit',arguments:{width:10,depth:6,height:5,itemWidth:6,itemDepth:5,itemHeight:5,gap:0,rotate:true}});assert.equal(rotation.result.structuredContent.count,2);assert.equal(rotation.result.structuredContent.rotated,true);});
 test('invalid and private parameters never become plausible calculator output',async()=>{for(const args of [{...DEMO_INPUT,width:'40'},{...DEMO_INPUT,rotate:'false'},{...DEMO_INPUT,gap:-1},{...DEMO_INPUT,privateFile:'secret'},{width:4},[]]){const j=await rpc('tools/call',{name:'plan_display_fit',arguments:args});assert.equal(j.result.isError,true);assert.equal(j.result.structuredContent,undefined);}assert.equal((await rpc('tools/call',{name:'secret_pull_probability',arguments:{oddsN:72,boxes:1.5}})).result.isError,true);assert.equal((await rpc('tools/call',{name:'read_private_collection'})).error.code,-32602);});
 test('brand evidence, language fallback and browser-only boundary are accurate',async()=>{const g=(await rpc('tools/call',{name:'get_collecting_guide',arguments:{brand:'jellycat',language:'zh'}})).result.structuredContent;assert.equal(g.language,'zh');assert.match(g.officialSource,/jellycat.com/);const tools=(await rpc('tools/call',{name:'find_collector_tools',arguments:{task:'collection',language:'zh'}})).result.structuredContent.tools;assert.ok(tools.length);for(const t of tools){assert.equal(t.execution,'browser-only');assert.equal(t.languageFallback,t.id!=='series-checklists');assert.equal(t.selectedUrl,t.id==='series-checklists'?'https://thedollscout.com/zh/series':t.urls.en);assert.equal(t.mcpTool,undefined);}const odds=(await rpc('tools/call',{name:'secret_pull_probability',arguments:{oddsN:72,boxes:12}})).result.structuredContent;assert.equal(odds.probabilityPercent,'15.5%');});
+test('assistant discovery describes persistent browser checklists without granting remote access',async()=>{
+ let generated;
+ buildDiscovery({brands,locales,origin,updated,route,esc:String,emit:()=>{},write:(file,text)=>{if(file==='collector-assets/tool-capabilities.json')generated=JSON.parse(text);}});
+ const expected=generated.tools.find(t=>t.id==='series-checklists');
+ for(const language of ['en','de','zh']){
+  const result=(await rpc('tools/call',{name:'find_collector_tools',arguments:{task:'collection',language}})).result.structuredContent;
+  const checklist=result.tools.find(t=>t.id==='series-checklists');
+  assert.equal(checklist.limitations,expected.limitations,'shipped MCP data must match its generator');
+  assert.match(checklist.limitations,/same browser profile/);
+  assert.match(checklist.limitations,/shared with the collection tracker across site languages and tabs/);
+  assert.match(checklist.limitations,/JSON backups/);
+  assert.match(checklist.limitations,/clearing browser data/);
+  assert.match(checklist.limitations,/No cloud sync/);
+  assert.match(checklist.limitations,/MCP cannot read or edit/);
+  assert.doesNotMatch(checklist.limitations,/current tab only|resets on navigation/i);
+  assert.equal(checklist.execution,'browser-only');
+  assert.equal(checklist.mcpTool,undefined);
+ }
+});
 test('malformed messages, oversized payloads and unexpected browser origins are rejected',async()=>{for(const [body,status]of [['{',200],[JSON.stringify([]),200],['x'.repeat(16385),413]]){const r=await onRequest({env,request:new Request('https://thedollscout.com/mcp',{method:'POST',body})});assert.equal(r.status,status);if(status===200)assert.ok((await r.json()).error);}const r=await onRequest({env,request:new Request('https://thedollscout.com/mcp',{method:'POST',headers:{origin:'https://untrusted.example'},body:'{}'})});assert.equal(r.status,403);});
 test('style math handles regular replacement, secrets, known odds and endpoints',()=>{
  const regular=styleProbability({target:'regular',regularStyles:6,secretOddsN:72,boxes:12});

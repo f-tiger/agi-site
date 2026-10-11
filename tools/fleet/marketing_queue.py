@@ -6,15 +6,18 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 ALLOWED = {'baipiaoji.com','agiscorecard.com','www.getecoback.com','getecoback.com','thedollscout.com','localebatch.agiscorecard.com'}
 
 def compile_plan(catalog, doctor, today):
-    age = (dt.date.fromisoformat(today)-dt.date.fromisoformat(catalog['reviewed_at'])).days
     rows=[]
     for c in catalog['campaigns']:
+        # A reviewed entry must not renew unrelated campaigns in the same catalog.
+        reviewed_at=c.get('reviewed_at', catalog['reviewed_at'])
+        age = (dt.date.fromisoformat(today)-dt.date.fromisoformat(reviewed_at)).days
         u=urllib.parse.urlsplit(c['url'])
         if u.scheme!='https' or u.hostname not in ALLOWED or u.username or u.password:
             raise ValueError('Unapproved campaign destination')
         reasons=[]
         if age<0 or age>catalog['max_age_days']: reasons.append('review_stale')
         if c['status']!='approved_entry': reasons.append('entry_not_approved')
+        if c.get('campaign_tracking_ready') is False: reasons.append('tracking_not_registered')
         if c['requires_checkout'] and not (doctor.get('ok') is True and doctor.get('selling') is True and doctor.get('mode')=='live'):
             reasons.append('live_checkout_not_ready')
         params=dict(urllib.parse.parse_qsl(u.query));params.update(utm_source=c['channel'],utm_medium='owned',utm_campaign=c['id'],utm_content='v1')

@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "site": "tds",
+  "start_date": "2026-10-12",
+  "days": 30,
+  "timezone": "Asia/Shanghai",
+  "mode": "evidence_gated_backlog_not_daily_publish_quota",
+  "native_schedule_unchanged": "07:20 UTC / 15:20 Asia/Shanghai",
+  "rules": [
+    "Repair real failures before the calendar topic.",
+    "At most one material site improvement and one distribution asset per iteration; no-change is a valid evidence-based outcome.",
+    "The native source expansion retains its existing caps and schedule.",
+    "External drafts are not posts, platform views are not site users, and clicks are not revenue.",
+    "Private metrics and identities never enter this public plan.",
+    "Blocked tasks remain explicit; choose another useful authorized task instead of silently waiting."
+  ],
+  "days_plan": [
+    {
+      "day": 1,
+      "date": "2026-10-12",
+      "focus": "Measurement",
+      "task": "核对生产域名、完整日期窗与新收藏事件；同时查账号、链接、UTM及佣金账单访问条件",
+      "deliverable": "私有基线与依赖表：Pinterest账号、Shorts可点击路径、固定标签、联盟账单；未知不补零",
+      "gate": "可读数据先完成；缺权限不能阻挡独立站点工作",
+      "status": "planned"
+    },
+    {
+      "day": 2,
+      "date": "2026-10-13",
+      "focus": "Search",
+      "task": "比较Museum与Snack真实查询/搜索结果，选择一个有证据的页面改进",
+      "deliverable": "一处标题、正文答案或内链改进；保持来源与三语一致",
+      "gate": "有查询或明确任务证据",
+      "status": "planned"
+    },
+    {
+      "day": 3,
+      "date": "2026-10-14",
+      "focus": "Video review",
+      "task": "完成旧tds-image-01视频固定复盘；收藏内容单独立项",
+      "deliverable": "保留09/30–10/13窗口与原门槛，发布/播放/到站分表",
+      "gate": "旧视频读回；未取得指标写未知",
+      "status": "planned"
+    },
+    {
+      "day": 4,
+      "date": "2026-10-15",
+      "focus": "Content",
+      "task": "将清单图接到系列页，并准备两系列首轮Pin",
+      "deliverable": "可下载清单与首轮Pin稿；内部用canonical；有明确账号授权则发布并保存回执",
+      "gate": "图片来源、线上下载和UTM核验；未授权不宣称发布",
+      "status": "planned"
+    },
+    {
+      "day": 5,
+      "date": "2026-10-16",
+      "focus": "AI / MCP",
+      "task": "核对安装复制、真实tools/call与引用的可测边界",
+      "deliverable": "先补缺失计量设计；若实施仅固定工具名与QA排除，不收输入",
+      "gate": "有明确缺口且隐私/成本验收通过",
+      "status": "planned"
+    },
+    {
+      "day": 6,
+      "date": "2026-10-17",
+      "focus": "Video",
+      "task": "制作Museum真实连续操作演示，展示保存后刷新与导出",
+      "deliverable": "真实操作MP4、英文字幕/配音、许可音乐；经手机核验的频道链接或关联长片入口",
+      "gate": "完成看听验收与可点击路径；普通Shorts描述URL不可点击；发布需对应账号授权",
+      "status": "planned"
+    },
+    {
+      "day": 7,
+      "date": "2026-10-18",
+      "focus": "Weekly review",
+      "task": "复盘第一周访问、任务完成、故障与分发状态",
+      "deliverable": "保留一个主要获取实验和一个使用实验，删除无依据待办",
+      "gate": "低样本先诊断分发，不做显著性结论",
+      "status": "planned"
+    },
+    {
+      "day": 8,
+      "date": "2026-10-19",
+      "focus": "Search",
+      "task": "补一个有来源的任务答案，同时设计自愿反馈入口和更新周报价值",
+      "deliverable": "来源答案及反馈/同意/退订文案草稿；不把注册自动视为邮件订阅",
+      "gate": "按真实问题选题；无发送服务与同意记录不发邮件",
+      "status": "planned"
+    },
+    {
+      "day": 9,
+      "date": "2026-10-20",
+      "focus": "Product",
+      "task": "检查想要/已有/重复款的记录与导出摩擦",
+      "deliverable": "修复一个可复现问题，或保留当前界面并给出原因",
+      "gate": "用真实行为/问题证据选改动",
+      "status": "planned"
+    },
+    {
+      "day": 10,
+      "date": "2026-10-21",
+      "focus": "Pinterest",
+      "task": "准备两系列第二轮Pin，表达不同收藏任务，并检查第一轮发布与点击",
+      "deliverable": "两系列各两个实质不同任务素材；发布回执与起始观察日，未发仍标草稿",
+      "gate": "核对账号、认领和授权；从实际首发观察28天，不以短窗定成败",
+      "status": "planned"
+    },
+    {
+      "day": 11,
+      "date": "2026-10-22",
+      "focus": "MCP distribution",
+      "task": "验证官方Registry、Glama与客户端发现的当前事实",
+      "deliverable": "一个真实安装/工具任务测试及准确指南；不重复创建listing",
+      "gate": "现有身份、支持的提交机制与真实回执",
+      "status": "planned"
+    },
+    {
+      "day": 12,
+      "date": "2026-10-23",
+      "focus": "Commerce",
+      "task": "核对购买/展示页地区商家与披露，准备一份具体商家合作提案",
+      "deliverable": "准确官方门店信息、配件匹配和合作提案草稿；不编造库存价格",
+      "gate": "普通官方链接可先核验；联盟链接另需资格；外联须明确授权",
+      "status": "planned"
+    },
+    {
+      "day": 13,
+      "date": "2026-10-24",
+      "focus": "Product",
+      "task": "验证“只想要一款”的收藏任务和预算/展示规划",
+      "deliverable": "支持目标款决策，不强迫集齐或暗示盲盒保证结果",
+      "gate": "模型假设、用户输入与事实边界正确",
+      "status": "planned"
+    },
+    {
+      "day": 14,
+      "date": "2026-10-25",
+      "focus": "Weekly review",
+      "task": "第二周按渠道检查到站与成功任务，不按素材数评绩效",
+      "deliverable": "继续/修改/暂停清单，至少保留原始绝对数与分母",
+      "gate": "渠道数据窗口一致，低曝光不判产品无需求",
+      "status": "planned"
+    },
+    {
+      "day": 15,
+      "date": "2026-10-26",
+      "focus": "Retention",
+      "task": "检查再次打开收藏、备份恢复和愿望单任务",
+      "deliverable": "一处能降低再次使用成本的改进或操作说明",
+      "gate": "本地数据不假称跨设备同步",
+      "status": "planned"
+    },
+    {
+      "day": 16,
+      "date": "2026-10-27",
+      "focus": "Community",
+      "task": "依据真实收藏问题写两份完整回答并核对社区规则",
+      "deliverable": "可直接使用的回答草稿；相关且允许时才放链接",
+      "gate": "账户资格、社区当期规则和明确外发授权",
+      "status": "planned"
+    },
+    {
+      "day": 17,
+      "date": "2026-10-28",
+      "focus": "Video",
+      "task": "制作Snack任务演示，比较已有/想要/重复数量",
+      "deliverable": "第二条真实演示；用独立素材标记并记录制作投入",
+      "gate": "播放入口可用，不能用静态卡片冒充操作视频",
+      "status": "planned"
+    },
+    {
+      "day": 18,
+      "date": "2026-10-29",
+      "focus": "AI visibility",
+      "task": "核查Google新AI报告与Bing引用报告的实际访问能力",
+      "deliverable": "可读则记录引用/展示和URL；不可读列具体访问缺口",
+      "gate": "引用、点击与用户任务分开，不购买工具来凑报告",
+      "status": "planned"
+    },
+    {
+      "day": 19,
+      "date": "2026-10-30",
+      "focus": "Commerce",
+      "task": "改善一个具体收藏目标到合适地区商家的路径",
+      "deliverable": "用户先得到答案，再进入准确披露的渠道",
+      "gate": "不把点击记为成交，不默认所有商家可返佣",
+      "status": "planned"
+    },
+    {
+      "day": 20,
+      "date": "2026-10-31",
+      "focus": "Data quality",
+      "task": "检查官方来源失效、重复系列、陈旧时间和未覆盖款式",
+      "deliverable": "修复一个真实数据问题；无新事实就保持日期",
+      "gate": "沿用每天最多2系列、6详情抓取上限",
+      "status": "planned"
+    },
+    {
+      "day": 21,
+      "date": "2026-11-01",
+      "focus": "Weekly review",
+      "task": "第三周比较具体搜索入口、分发素材与复用证据",
+      "deliverable": "选最值得加深的品牌/问题；调整下一周投入比例",
+      "gate": "访问不足与任务失败分开诊断",
+      "status": "planned"
+    },
+    {
+      "day": 22,
+      "date": "2026-11-02",
+      "focus": "Revenue evidence",
+      "task": "复查首日识别的账单访问条件，核算本周期佣金、退款与币种",
+      "deliverable": "确认待结算/已结算分账与履约成本；不可读取仍列准确缺口",
+      "gate": "不以GA4 revenue=0或无订单返回推出真实营收为0",
+      "status": "planned"
+    },
+    {
+      "day": 23,
+      "date": "2026-11-03",
+      "focus": "Conversion",
+      "task": "复查商家点击前的任务完成和购买匹配",
+      "deliverable": "一个有证据的CTA/商家匹配改进，或保留现状",
+      "gate": "不使用暗示稀缺、虚构评价或不实折扣",
+      "status": "planned"
+    },
+    {
+      "day": 24,
+      "date": "2026-11-04",
+      "focus": "Search / content",
+      "task": "更新表现最有依据的一组现有内容",
+      "deliverable": "一次有实质新增事实的更新，不批量生成相似页面",
+      "gate": "有查询或内容缺口依据",
+      "status": "planned"
+    },
+    {
+      "day": 25,
+      "date": "2026-11-05",
+      "focus": "Paid-value research",
+      "task": "汇总自愿反馈中独立再次使用者的共同需求，评估同步/提醒/整理服务",
+      "deliverable": "证据充分则给买家任务、交付成本和报价草案；否则明确证据不足",
+      "gate": "至少5位自愿反馈者明确复用及同类需求并去重；匿名事件不能证明人数",
+      "status": "planned"
+    },
+    {
+      "day": 26,
+      "date": "2026-11-06",
+      "focus": "Paid pilot",
+      "task": "检查候选服务的交付、收款、隐私与退款条件",
+      "deliverable": "满足条件时准备真实付费试点；否则继续免费任务验证",
+      "gate": "无已完成交付能力不售卖；新费用或承诺需适用授权",
+      "status": "planned"
+    },
+    {
+      "day": 27,
+      "date": "2026-11-07",
+      "focus": "Distribution review",
+      "task": "比较已获授权渠道的素材、到站和有效任务",
+      "deliverable": "集中到匹配受众的入口；保留失败素材和未知读数",
+      "gate": "不把平台播放当独立到站或营收",
+      "status": "planned"
+    },
+    {
+      "day": 28,
+      "date": "2026-11-08",
+      "focus": "Cohort review",
+      "task": "按最后已可用完整窗口评估保存、导出与再次使用",
+      "deliverable": "分别报告100合格会话、20保存、5导出经营门槛进度；不混算保存率",
+      "gate": "完整28UTC日为10/12至11/08；11/08当天仅作中期，结束后等数据完整再结案",
+      "status": "planned"
+    },
+    {
+      "day": 29,
+      "date": "2026-11-09",
+      "focus": "Scale decision",
+      "task": "依据真实结果选择扩目录、改任务或缩减某渠道",
+      "deliverable": "下一月优先级与明确停止理由",
+      "gate": "高曝光低任务先修任务；低曝光先改分发",
+      "status": "planned"
+    },
+    {
+      "day": 30,
+      "date": "2026-11-10",
+      "focus": "Revenue review",
+      "task": "核对确认佣金、真实付费试点和履约成本，制定下一月计划",
+      "deliverable": "实际收入与退款清单、继续/调整决定、可执行下一月积压",
+      "gate": "3位无关联真实付费买家是试点扩张门槛，不是本轮承诺",
+      "status": "planned"
+    }
+  ]
+}

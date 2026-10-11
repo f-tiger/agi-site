@@ -54,6 +54,45 @@
       "status": "approved_entry"
     },
     {
+      "id": "tds-smiski-checklist-20261011",
+      "site": "tds",
+      "language": "en",
+      "url": "https://thedollscout.com/series/smiski-museum",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Check the officially sourced SMISKI Museum Series names, mark the figures you own, and keep your checklist in this browser. Export a backup from the collection tracker.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry",
+      "reviewed_at": "2026-10-11",
+      "campaign_tracking_ready": false
+    },
+    {
+      "id": "tds-sonny-checklist-20261011",
+      "site": "tds",
+      "language": "en",
+      "url": "https://thedollscout.com/series/sonny-angel-snack-series",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Use the officially sourced Sonny Angel Snack Series checklist to record the figures you own. Progress stays in this browser; save a backup from the collection tracker.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry",
+      "reviewed_at": "2026-10-11",
+      "campaign_tracking_ready": false
+    },
+    {
+      "id": "tds-collection-backup-20261011",
+      "site": "tds",
+      "language": "en",
+      "url": "https://thedollscout.com/collection-tracker",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Keep owned quantities and wishlist entries in your browser, then export a JSON backup you can restore later. No account or cloud sync is required.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry",
+      "reviewed_at": "2026-10-11",
+      "campaign_tracking_ready": false
+    },
+    {
       "id": "localebatch-csv-check",
       "site": "commerce",
       "url": "https://localebatch.agiscorecard.com/",

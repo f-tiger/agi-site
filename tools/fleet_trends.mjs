@@ -7,20 +7,7 @@
 // eco 的德国区触发器独立在 sites/getecoback/tools/fetch_trends_de.mjs。
 // 诚实规则同 eco:抓不到写 ok:false,绝不复用旧数据;短词用词边界防误配(agi≠magic)。
 import { writeFileSync, mkdirSync } from 'node:fs';
-
-const MAPS = {
-  'sites/baipiaoji/data/trends-us.json': ['chatgpt', 'openai', 'claude', 'anthropic', 'gemini',
-    'midjourney', 'suno', 'sora', 'grok', 'deepseek', 'kimi', 'qwen', 'copilot', 'perplexity',
-    'runway', 'notebooklm', 'stable diffusion', 'llama', 'mistral', 'artificial intelligence',
-    'gpt', 'veo', 'nano banana'],
-  'sites/agiscorecard/trends-us.json': ['agi', 'openai', 'anthropic', 'claude', 'gpt', 'gemini',
-    'superintelligence', 'altman', 'aschenbrenner', 'deepmind', 'artificial general intelligence',
-    'ai benchmark', 'gpt-6', 'sam altman'],
-  // 2026-09-25 owner-authorized document pivot; unrelated collector spikes are archived.
-  'sites/thedollscout/content/trends-us.json': ['pdf accessibility', 'pdf remediation',
-    'accessible pdf', 'compare pdf', 'pdf to text', 'pdf audit'],
-};
-const SHORT = new Set(['agi', 'gpt', 'veo', 'sora', 'kimi', 'suno', 'grok', 'qwen']); // 词边界匹配,防 magic/sorana/kimi-antonelli 误配
+import { MAPS, hit } from './fleet-trends-vocabulary.mjs';
 
 const today = new Date().toISOString().slice(0, 10);
 const url = 'https://trends.google.com/trending/rss?geo=US';
@@ -39,10 +26,6 @@ try {
   }).filter((i) => i.title);
   if (!items.length) throw new Error('RSS parsed but zero items');
 } catch (e) { reason = String(e.message || e).slice(0, 120); }
-
-const hit = (title, kw) => SHORT.has(kw)
-  ? new RegExp(`(^|[^a-z0-9])${kw}([^a-z0-9]|$)`, 'i').test(title)
-  : title.toLowerCase().includes(kw);
 
 // history = 冷却状态。「同词 7 天冷却」需要记忆;只留 14 天,文件永不膨胀。
 import { readFileSync, existsSync } from 'node:fs';

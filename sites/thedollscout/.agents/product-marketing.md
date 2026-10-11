@@ -3,6 +3,8 @@
 **Document version:** v4
 **Last updated:** 2026-10-11
 
+**Daily execution:** the owner requested deeper conventional-channel and AI/MCP research plus daily improvements on 2026-10-11. Follow `docs/tds-daily-growth-playbook-2026-10-11.md` and `data/marketing/tds-daily-plan.json` at repository root. The calendar is an evidence-gated backlog; preserve native source limits, separate draft/published/used/paid evidence, and never publish private account metrics. Existing social/affiliate connections do not prove distribution or paid demand.
+
 The current focus remains collectible-toy discovery and purchase planning. The priority is a complete task: find a verified series → save owned figures in the existing local collection → return to update it → plan a budget/display → visit a relevant, disclosed merchant link. No renewed domain pivot or broad utility expansion is inferred from the growth request.
 
 **Primary audience:** SMISKI and Sonny Angel collectors who need a named checklist; Labubu search visitors assessing probabilities; gift buyers planning space and a purchase. These are target segments, not verified paying customer counts.

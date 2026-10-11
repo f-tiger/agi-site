@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-02",
+  "updated": "2026-10-11",
   "server": {
     "name": "dollscout",
     "version": "2.4.0"
@@ -308,7 +308,7 @@
         "zh": "https://thedollscout.com/zh/series"
       },
       "seriesCatalog": "https://thedollscout.com/collector-assets/series-catalog.json",
-      "limitations": "Current tab only; resets on navigation. MCP cannot read or edit the checklist."
+      "limitations": "Saved in the same browser profile and shared with the collection tracker across site languages and tabs. Export/import JSON backups in the tracker; clearing browser data removes local records. No cloud sync. MCP cannot read or edit the checklist."
     },
     {
       "id": "series-style-odds",
