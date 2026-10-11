@@ -51,6 +51,18 @@ try{
   assert.equal((await call(env,a,'save',{id:space,revision:0,name:'Paid',data})).status,200);
   assert.equal((await old(env,created.body.key,'read',{id:space,revision:1})).body.data.values.project,'private fixture');
  });
+ await test('account checkout stores startup attribution once and rejects invalid sources',async({env,db,a})=>{
+  await existing(db);assert.equal((await call(env,a,'link_key',{key:KEY,key_saved:true,password})).status,200);
+  const source='bpj-startup-research',checkout={nonce,accept_terms:true,key_saved:true,source};
+  const quote=await call(env,a,'checkout',checkout);assert.equal(quote.status,200);const id=quote.body.order.id;
+  assert.equal(db.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(id).product,source);
+  assert.equal((await call(env,a,'checkout',{...checkout,source:'launchdesk'})).body.order.id,id);
+  assert.equal((await old(env,KEY,'checkout',{...checkout,nonce:'c'.repeat(32),source:'launchdesk'})).body.order.id,id);
+  assert.equal(db.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(id).product,source);
+  const bad=await call(env,a,'checkout',{...checkout,source:'untrusted-source'});assert.equal(bad.status,400);assert.equal(bad.body.code,'bad_source');
+  assert.equal((await call(env,a,'save',{id:space,revision:0,name:'Source is not a product',data:{...data,product:source}})).body.code,'wrong_site');
+  assert.equal(db.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);assert.equal(db.sql.prepare('SELECT COUNT(*) n FROM wb_spaces').get().n,0);
+ });
  await test('link is one-to-one, requires both credentials and preserves legacy ownership',async({env,db,a,b})=>{
   await existing(db);const other='2'.repeat(64);await existing(db,other,'other-paid');
   assert.equal((await call(env,a,'link_key',{key:KEY,key_saved:true,password:'wrong-password-value'})).status,401);
@@ -196,3 +208,4 @@ try{
  }
  console.log(`${count} account/member bridge tests passed (real SQLite, real password KDF, mocked chain; no real funds).`);
 }finally{reset();}
+
