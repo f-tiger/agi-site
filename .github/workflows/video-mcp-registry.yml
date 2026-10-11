@@ -1,0 +1,71 @@
+name: Register BPJ video MCP
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Daily update & deploy"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bpj-video-mcp-registry
+  cancel-in-progress: false
+
+jobs:
+  register:
+    # Never consume fork output or publish before the deployed endpoint passes its call tests.
+    if: >-
+      github.repository == 'f-tiger/agi-site' &&
+      ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The deploy workflow builds current main, which can differ from its event head SHA.
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test registry idempotency and collision handling
+        run: node --test scripts/test-video-mcp-registry.mjs
+      - name: Verify the deployed MCP protocol and real tool calls
+        run: node scripts/test-video-mcp-live.mjs
+      - name: Check exact and latest registry records
+        id: registry
+        run: node scripts/video-mcp-registry.mjs --check --receipt "$RUNNER_TEMP/bpj-video-mcp-registry-check.json"
+      - name: Install pinned official publisher with release digest
+        if: steps.registry.outputs.publish == 'true'
+        run: |
+          mkdir -p "$RUNNER_TEMP/mcp-publisher"
+          curl -4 -fLsS --retry 3 --connect-timeout 10 --max-time 90 https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz -o "$RUNNER_TEMP/mcp-publisher.tar.gz"
+          echo "a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc  $RUNNER_TEMP/mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf "$RUNNER_TEMP/mcp-publisher.tar.gz" -C "$RUNNER_TEMP/mcp-publisher" mcp-publisher
+      - name: Publish using short-lived GitHub OIDC
+        if: steps.registry.outputs.publish == 'true'
+        working-directory: sites/baipiaoji/video-mcp
+        run: |
+          "$RUNNER_TEMP/mcp-publisher/mcp-publisher" login github-oidc
+          # Recover a successful publication whose CLI response was lost by checking its immutable receipt.
+          "$RUNNER_TEMP/mcp-publisher/mcp-publisher" publish || node ../scripts/video-mcp-registry.mjs --verify --receipt "$RUNNER_TEMP/bpj-video-mcp-registry-recovery.json"
+      - name: Read back the exact published version and current latest
+        run: node scripts/video-mcp-registry.mjs --verify --receipt "$RUNNER_TEMP/bpj-video-mcp-registry-receipt.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bpj-video-mcp-registry-receipts-${{ github.run_id }}
+          path: ${{ runner.temp }}/bpj-video-mcp-registry-*.json
+          retention-days: 30
+          if-no-files-found: warn

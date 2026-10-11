@@ -106,7 +106,10 @@ assert.ok(pageLinks.includes('/manju/video-fit.json')&&pageLinks.includes('/manj
 
 // Public examples are fixed synthetic drafts, never visitor inputs or saved reports.
 const publicData=JSON.parse(json.text);
-const {name,url,description,faq,examples,...publicRules}=publicData;
+const {name,url,description,faq,examples,mcp,...publicRules}=publicData;
+assert.equal(mcp.url,base+'/api/video-mcp');
+assert.deepEqual(mcp.tools,['evaluate_video_publish','get_video_platform_rules','search_manju']);
+assert.ok(html.includes('id="mcp"')&&markdown.text.includes(mcp.url));
 assert.ok(typeof name==='string'&&name.includes('视频'));
 assert.equal(url,canonical);
 assert.ok(typeof description==='string'&&description.includes('不预测'));

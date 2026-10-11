@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.f-tiger/bpj-video-tools",
+  "title": "BPJ Video Tools",
+  "description": "Chinese video platform preflight and source-backed AI drama search. Free; no video uploads.",
+  "version": "1.0.0",
+  "websiteUrl": "https://baipiaoji.com/manju/video-fit#mcp",
+  "repository": {
+    "url": "https://github.com/f-tiger/agi-site",
+    "source": "github",
+    "subfolder": "sites/baipiaoji/video-mcp"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://baipiaoji.com/api/video-mcp"
+    }
+  ]
+}

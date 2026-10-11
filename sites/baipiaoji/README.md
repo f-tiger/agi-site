@@ -16,6 +16,13 @@
 
 ## 在你的内容和项目中使用 BPJ
 
+**AI 助手接入视频工具**：[连接说明](https://baipiaoji.com/manju/video-fit#mcp) · [官方 MCP Registry 查询](https://registry.modelcontextprotocol.io/?q=io.github.f-tiger%2Fbpj-video-tools)。免费、免 Key，提供 `evaluate_video_publish`、`get_video_platform_rules`、`search_manju`。远程接口接收你选择提交的结构化字段或检索词，不接收视频；网页评估继续只在本机运行。
+
+```sh
+claude mcp add --transport http bpj-video https://baipiaoji.com/api/video-mcp
+```
+
+
 - **视频创作者／App 开发者**：[免费使用视频发布评估工具](https://baipiaoji.com/manju/video-fit)，比较抖音、快手、小红书、B站、视频号与头条，得到修改待办和单变量测试方案。文件只在本机读取，输入不上传；不预测爆款。[公开演算示例](https://baipiaoji.com/manju/video-fit#vf-examples)、[带日期的文字方法](https://baipiaoji.com/manju/video-fit.md)与[规则 JSON](https://baipiaoji.com/manju/video-fit.json)可供教程作者和助手核对引用，不能把合成示例称为成功案例。
 - **短剧观众／选剧指南**：[帧选目录](https://baipiaoji.com/manju/)按题材找 AI 漫剧与短剧，区分官方作品入口、平台搜索和介绍，提供本机收藏与主动分享。[公开目录](https://baipiaoji.com/manju/catalog.json)保留来源和日期；不托管视频，热度不等于播放量。
 - **教程 / 工具目录**：[免费嵌入工作量规划器](https://baipiaoji.com/work-plan#embed) · [English](https://baipiaoji.com/en/work-plan#embed)。读者填写自己的工作量，查看有来源和日期的免费额度。无需账号，计算在本地完成；可继续到本站导出，云端保存为 9 USDT / 30 天。

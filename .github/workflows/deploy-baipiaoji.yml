@@ -357,6 +357,7 @@ jobs:
           node scripts/test-manju.mjs
           node --test scripts/test-video-fit-core.mjs
           node scripts/test-video-fit.mjs
+          node --test scripts/test-video-mcp.mjs scripts/test-video-mcp-registry.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
@@ -517,6 +518,7 @@ jobs:
           node scripts/test-startup-mcp-live.mjs
           node scripts/test-manju.mjs --live
           node scripts/test-video-fit.mjs --live
+          node scripts/test-video-mcp-live.mjs
 
       - name: Verify published subscription review and checklist
         run: node scripts/test-subscription-audit.mjs --live
