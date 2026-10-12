@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-10"
+    "until": "2026-10-11"
   },
   "days": {
     "2026-07-26": {
@@ -4163,6 +4163,75 @@
         "BE": 249,
         "DE": 140,
         "FR": 93
+      }
+    },
+    "2026-10-11": {
+      "date": "2026-10-11",
+      "requests": 13040,
+      "pageViews": 5098,
+      "uniques": 774,
+      "byIpType": {
+        "unknown": 7886,
+        "noRecord": 4824,
+        "searchEngine": 285,
+        "allowlist": 28,
+        "monitoringService": 17
+      },
+      "byBrowser": {
+        "Unknown": 3636,
+        "Curl": 1090,
+        "Chrome": 137,
+        "MobileSafari": 130,
+        "ChromeHeadless": 28,
+        "GoogleBot": 22,
+        "AppleBot": 18,
+        "ChromeMobile": 16,
+        "BingBot": 11,
+        "Edge": 6,
+        "Safari": 3,
+        "Firefox": 1
+      },
+      "byContentType": {
+        "html": 5715,
+        "txt": 2658,
+        "json": 1798,
+        "js": 73,
+        "empty": 527,
+        "css": 501,
+        "unknown": 93,
+        "xml": 90,
+        "pdf": 70,
+        "svg": 48,
+        "png": 35,
+        "zip": 11,
+        "webp": 3
+      },
+      "byStatus": {
+        "200": 11702,
+        "202": 233,
+        "204": 62,
+        "301": 34,
+        "303": 15,
+        "304": 67,
+        "308": 139,
+        "400": 12,
+        "401": 36,
+        "403": 8,
+        "404": 567,
+        "405": 35,
+        "410": 127,
+        "499": 1,
+        "503": 2
+      },
+      "topCountries": {
+        "US": 10842,
+        "FI": 483,
+        "BE": 325,
+        "PL": 241,
+        "SG": 227,
+        "GB": 177,
+        "FR": 139,
+        "NL": 94
       }
     }
   }
