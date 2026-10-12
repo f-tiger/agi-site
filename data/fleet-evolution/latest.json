@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-11",
+  "as_of": "2026-10-12",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 9,
+    "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-10T08:56:15.523Z",
-    "health": "2026-10-10T14:07:32Z",
-    "ai_referrals": "2026-10-10T14:07:57Z",
-    "opportunities": "2026-10-10",
-    "autopilot_receipt": "2026-10-11"
+    "membership": "2026-10-11T09:16:21.033Z",
+    "health": "2026-10-11T14:31:16Z",
+    "ai_referrals": "2026-10-11T14:31:44Z",
+    "opportunities": "2026-10-11",
+    "autopilot_receipt": "2026-10-12"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-10T08:56:15.523Z",
+    "generated": "2026-10-11T09:16:21.033Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -125,10 +125,19 @@
       "supply": 0
     },
     {
-      "theme": "when you code with ai do you tell it how to manage state",
+      "theme": "locked out of google despite knowing password and having email access",
       "site": null,
       "state": "scout",
-      "score": 2.07,
+      "score": 2.22,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "fake abuse reports keep auto blocking my site on cloudflare",
+      "site": null,
+      "state": "scout",
+      "score": 2.08,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -191,10 +200,10 @@
       "theme": "is there an android shell program to switch to any open application according to",
       "site": null,
       "state": "scout",
-      "score": 1.96,
+      "score": 0.96,
       "days_seen": 1,
       "demand": 0,
-      "supply": 0
+      "supply": 1
     }
   ],
   "actions": [
@@ -217,7 +226,7 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 16,
+        "count": 13,
         "query": "elektrische heizung",
         "page": "guide/infrarotheizung-badezimmer.html",
         "value": 49150
@@ -283,8 +292,8 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count": 2,
-        "query": "costco compression boots",
-        "value": 200
+        "query": "costco vegetable chopper",
+        "value": 110
       },
       "mode": "queue"
     },
@@ -294,9 +303,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 34,
-        "query": "heizlüfter 230v",
-        "value": 52800
+        "count": 32,
+        "query": "steinfeld infrarotheizung",
+        "value": 50700
       },
       "mode": "queue"
     },
@@ -319,8 +328,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/future-guide",
-        "n7": 662,
-        "p7": 101
+        "n7": 620,
+        "p7": 186
       },
       "mode": "queue"
     },
@@ -331,8 +340,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 19,
-        "p7": 1
+        "n7": 11,
+        "p7": 10
       },
       "mode": "queue"
     },
@@ -342,7 +351,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 244,
+        "human_pv_28d": 250,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -353,7 +362,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 267,
+        "human_pv_28d": 269,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -364,7 +373,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 926,
+        "human_pv_28d": 1002,
         "ai_ref_28d": 0
       },
       "mode": "queue"

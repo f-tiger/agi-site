@@ -50,7 +50,7 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count_band": "10-99",
-        "query": "heizlüfter 230v",
+        "query": "steinfeld infrarotheizung",
         "value_band": "100+"
       },
       "mode": "queue"
@@ -62,7 +62,7 @@
       "evidence": {
         "page": "/",
         "n7_band": "10-99",
-        "p7_band": "1-9"
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }
