@@ -1,8 +1,9 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261012-20';
+export const VERSION='jarvis-20261012-21';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;
+export const TASK_FOCUS_MAX_AGE_MS=30*24*60*60*1000;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
 export function progressCue(task,lang='en'){
  const actions=task?.result?.report?.nextActions;if(!Array.isArray(actions)||!actions.length)return null;
@@ -29,6 +30,19 @@ export function composerDraftOf(raw,scope,lang,now=Date.now()){
   if(!raw||typeof raw!=='object'||Array.isArray(raw)||Object.keys(raw).sort().join(',')!=='at,goal,lang,scope,version'||raw.version!==1)return null;
   const value=composerDraftRecord(raw.goal,raw.scope,raw.lang,raw.at);
   if(value.scope!==scope||value.lang!==lang||!Number.isSafeInteger(now)||value.at>now||now-value.at>COMPOSER_DRAFT_MAX_AGE_MS)return null;
+  return value;
+ }catch{return null;}
+}
+export function taskFocusRecord(id,scope,lang,at=Date.now()){
+ if(!(/^[a-f0-9]{32}$/).test(id)||!(/^[a-f0-9]{64}$/).test(scope)||!['en','zh'].includes(lang)||!Number.isSafeInteger(at)||at<=0)throw Error('invalid_task_focus');
+ return {version:1,scope,lang,id,at};
+}
+export function taskFocusOf(raw,scope,lang,taskIds,now=Date.now()){
+ try{
+  if(typeof raw==='string'){if(raw.length>320)return null;raw=JSON.parse(raw);}
+  if(!raw||typeof raw!=='object'||Array.isArray(raw)||Object.keys(raw).sort().join(',')!=='at,id,lang,scope,version'||raw.version!==1||!Array.isArray(taskIds))return null;
+  const value=taskFocusRecord(raw.id,raw.scope,raw.lang,raw.at);
+  if(value.scope!==scope||value.lang!==lang||!Number.isSafeInteger(now)||value.at>now||now-value.at>TASK_FOCUS_MAX_AGE_MS||!taskIds.includes(value.id))return null;
   return value;
  }catch{return null;}
 }
