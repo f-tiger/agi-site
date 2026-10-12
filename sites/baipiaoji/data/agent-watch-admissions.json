@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-11",
+ "checked": "2026-10-12",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1311,6 +1311,168 @@
    "first_attempt": "2026-10-11",
    "last_attempt": "2026-10-11",
    "attemptedAt": "2026-10-11T06:21:02.155Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "autoblocks-ctxl": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-ahoy": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-brave-search-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-clock": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-fetch": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-local001": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-lta-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-mango-sago": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-scrapermcp-el": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-sg-bus-test": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-tutorials": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-clpi-clp-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-data-mindset-sts-google-forms-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-demomagic-duckchain-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-eliu243-oura-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-exa-labs-exa-code-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-fengyinxia-jimeng-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-hjsh200219-pharminfo-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-12",
+   "last_attempt": "2026-10-12",
+   "attemptedAt": "2026-10-12T06:28:11.186Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -9922,6 +10084,258 @@
   {
    "slug": "smithery-alphago2580-naramarketmcp",
    "date": "2026-10-11",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-anirbanbasu-frankfurtermcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-anirbanbasu-pymcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-arjunkmrm-perplexity-search",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-aryankeluskar-poke-video-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-bergeramit-bergeramit-hw3-tech",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-bhushangitfull-file-mcp-smith",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-bielacki-igdb-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-blacklotusdev8-test-m",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-blbl147-xhs-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-callmybot-cookbook-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-callmybot-domoticz",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-callmybot-hello-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-cc25a-openai-api-agent-project123123123",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-cindyloo-dropbox-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-cristianoaredes-mcp-dadosbr",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-ctaylor86-mcp-video-download-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-cuongpo-coti-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-devbrother2024-typescript-mcp-server-boilerplate",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-docfork-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-dsharipova-mcp-hw",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-faithk7-gmail-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-flight505-mcp-dincoder",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-hithereiamaliff-mcp-datagovmy",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-hithereiamaliff-mcp-nextcloud",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-hollaugo-financial-research-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-hustcc-mcp-mermaid",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-huuthangntk-claude-vision-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-infranodus-mcp-server-infranodus",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-isnow890-data4library-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-jekakos-mcp-user-data-enrichment",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-jenniferjiang0511-mit-ai-studio-hw3",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-jessicayanwang-test",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-jirispilka-actors-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-jjlabsio-korea-stock-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-keithah-hostex-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-keithah-tessie-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-keremurat-json",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-kesslerio-attio-mcp-server",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-kirbah-mcp-youtube",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-kkjdaniel-bgg-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-kodey-ai-salesforce-mcp",
+   "date": "2026-10-12",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-kwp-lab-rss-reader-mcp",
+   "date": "2026-10-12",
    "source_http": 200,
    "repo_http": 200
   }

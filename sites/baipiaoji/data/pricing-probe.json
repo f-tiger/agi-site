@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-11",
+ "generated": "2026-10-12",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "grammarly",
-  "groq",
-  "guojia-fanzha",
-  "heygen",
-  "huggingface",
-  "ideogram",
-  "jsdesign",
-  "krea"
+  "languagetool",
+  "leonardo",
+  "lovable",
+  "luma",
+  "metaso",
+  "motiff",
+  "n8n",
+  "napkin"
  ],
- "cursor": "krea",
+ "cursor": "napkin",
  "summary": {
   "ready": 41,
   "empty": 36,
@@ -1849,7 +1849,7 @@
    "name": "LanguageTool",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1871,7 +1871,7 @@
    "name": "Leonardo AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1901,14 +1901,14 @@
    "name": "Lovable",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://lovable.dev/pricing",
      "status": 200,
-     "bytes": 175838,
+     "bytes": 179597,
      "tokens": 1
     },
     {
@@ -1935,14 +1935,14 @@
    "name": "Luma Dream Machine",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-09-26",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://lumalabs.ai/pricing",
      "status": 200,
-     "bytes": 571579,
+     "bytes": 594469,
      "tokens": 9
     }
    ],
@@ -1991,7 +1991,7 @@
    "name": "秘塔 AI 搜索",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-09-27",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2054,7 +2054,7 @@
    "name": "Motiff 妙多",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-09-27",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2076,34 +2076,21 @@
    "name": "n8n",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-09-27",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://n8n.io/pricing",
-     "status": 0,
-     "bytes": 0,
-     "tokens": 0,
-     "error": "ECONNRESET"
-    },
-    {
-     "url": "https://n8n.io/price",
-     "status": 404,
-     "bytes": 0,
-     "tokens": 0
-    },
-    {
-     "url": "https://n8n.io/plans",
      "status": 200,
-     "bytes": 450126,
+     "bytes": 501298,
      "tokens": 8
     }
    ],
    "best": {
-    "url": "https://n8n.io/plans",
+    "url": "https://n8n.io/pricing",
     "tokens": 8,
-    "excerpt": "egardless of complexity. Monthly Annually (Save 17%) Starter Great for getting started and seeing the power of n8n. 20€ /mo, billed annually 2.5K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n This plan includes: 1 shared project 5 concurrent executions Unlimited users 2,300 AI credits/month Forum support Pro For solo builders and small teams running workflows in production. 50€ /mo, billed annually 10K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n Everything in Starter plan, plus: 3 shared projects 20 concurrent executions 7 days of insights Up to 13,700 AI credits/month Admin roles Global var"
+    "excerpt": "tions, regardless of complexity. Monthly Annually (Save 17%) Starter Build and run your first workflows and agents. 20€ /mo, billed annually 2.5K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n This plan includes: 1 shared project 5 concurrent executions Agents, MCP and AI nodes 1,600 Assistant credits/month AI models without API keys Forum support Pro For solo builders and small teams running automations in production. 50€ /mo, billed annually 10K workflow executions with unlimited steps Start free trial No credit card required Hosted by n8n Everything in Starter plan, plus: 3 shared projects Up to 50 concurrent executions 7 days of insights U"
    }
   },
   "napkin": {
@@ -2111,14 +2098,14 @@
    "name": "Napkin AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-09-27",
+   "probed": "2026-10-12",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.napkin.ai/pricing",
      "status": 200,
-     "bytes": 59995,
+     "bytes": 60382,
      "tokens": 7
     }
    ],

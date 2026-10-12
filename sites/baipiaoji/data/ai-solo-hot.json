@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-11T06:22:00.128Z",
+  "updatedAt": "2026-10-12T06:29:24.250Z",
   "cadence": "daily-existing-bpj-workflow",
   "windowDays": 7,
   "historyDays": 14,
@@ -10,11 +10,11 @@
       "name": "Hacker News · Show HN",
       "sourceUrl": "https://news.ycombinator.com/show",
       "status": "ok",
-      "lastAttemptAt": "2026-10-11T06:22:00.128Z",
-      "observedAt": "2026-10-11T06:22:00.128Z",
-      "windowStart": "2026-10-04T06:22:00.128Z",
+      "lastAttemptAt": "2026-10-12T06:29:24.250Z",
+      "observedAt": "2026-10-12T06:29:24.250Z",
+      "windowStart": "2026-10-05T06:29:24.250Z",
       "order": "points-desc-comments-tiebreak",
-      "available": 930,
+      "available": 938,
       "limited": true,
       "items": [
         {
@@ -24,37 +24,17 @@
           "url": "https://bigwords.page/",
           "sourceUrl": "https://news.ycombinator.com/item?id=49994443",
           "publishedAt": "2026-10-07T15:44:21.000Z",
-          "points": 719,
-          "comments": 164,
+          "points": 723,
+          "comments": 166,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 1,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 8,
-          "rankChange": 0
-        },
-        {
-          "id": "hn-50018817",
-          "title": "Show HN: Let your AI agents paint big arrows, boxes and text on your screen",
-          "summary": "",
-          "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50018817",
-          "publishedAt": "2026-10-09T11:03:48.000Z",
-          "points": 413,
-          "comments": 188,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 2,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 22,
+          "pointsChange": 4,
           "rankChange": 0
         },
         {
@@ -64,18 +44,58 @@
           "url": "https://carrierexplode.com/",
           "sourceUrl": "https://news.ycombinator.com/item?id=50024499",
           "publishedAt": "2026-10-09T18:10:55.000Z",
-          "points": 413,
-          "comments": 52,
+          "points": 425,
+          "comments": 55,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 3,
-          "comparisonDate": "2026-10-10",
+          "rank": 2,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 144,
-          "rankChange": 0
+          "pointsChange": 12,
+          "rankChange": 1
+        },
+        {
+          "id": "hn-50018817",
+          "title": "Show HN: Let your AI agents paint big arrows, boxes and text on your screen",
+          "summary": "",
+          "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50018817",
+          "publishedAt": "2026-10-09T11:03:48.000Z",
+          "points": 415,
+          "comments": 196,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 3,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 2,
+          "rankChange": -1
+        },
+        {
+          "id": "hn-50038634",
+          "title": "Show HN: WallHop – 12ft.io is gone, so I built a replacement",
+          "summary": "",
+          "url": "https://wallhop.io/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50038634",
+          "publishedAt": "2026-10-11T00:46:48.000Z",
+          "points": 273,
+          "comments": 121,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 4,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-50016312",
@@ -84,18 +104,18 @@
           "url": "https://quake-srp.pages.dev/",
           "sourceUrl": "https://news.ycombinator.com/item?id=50016312",
           "publishedAt": "2026-10-09T05:22:58.000Z",
-          "points": 236,
-          "comments": 178,
+          "points": 239,
+          "comments": 180,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 4,
-          "comparisonDate": "2026-10-10",
+          "rank": 5,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 10,
-          "rankChange": 0
+          "pointsChange": 3,
+          "rankChange": -1
         },
         {
           "id": "hn-50008047",
@@ -111,30 +131,50 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 5,
-          "comparisonDate": "2026-10-10",
+          "rank": 6,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 2,
-          "rankChange": 0
+          "pointsChange": 0,
+          "rankChange": -1
         },
         {
-          "id": "hn-49952111",
-          "title": "Show HN: AI search for every photo and every frame of video on macOS",
+          "id": "hn-50042333",
+          "title": "Show HN: BetterWispr – Free, open-source dictation for Mac",
           "summary": "",
-          "url": "https://github.com/allenv0/SCM",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49952111",
-          "publishedAt": "2026-10-04T09:24:52.000Z",
-          "points": 183,
-          "comments": 74,
-          "aiSignal": true,
-          "consumerSignal": true,
+          "url": "https://betterwispr.com/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50042333",
+          "publishedAt": "2026-10-11T12:01:28.000Z",
+          "points": 187,
+          "comments": 105,
+          "aiSignal": false,
+          "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 6,
-          "comparisonDate": "2026-10-10",
+          "rank": 7,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "hn-50024055",
+          "title": "Show HN: The rarest tech books and docs you've probably never read",
+          "summary": "",
+          "url": "https://readrare.com/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50024055",
+          "publishedAt": "2026-10-09T17:39:44.000Z",
+          "points": 181,
+          "comments": 66,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 8,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
+          "pointsChange": 16,
           "rankChange": 0
         },
         {
@@ -144,38 +184,18 @@
           "url": "https://artmuseum.artfrompixels.com/",
           "sourceUrl": "https://news.ycombinator.com/item?id=49992057",
           "publishedAt": "2026-10-07T12:51:08.000Z",
-          "points": 172,
-          "comments": 66,
+          "points": 174,
+          "comments": 68,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 7,
-          "comparisonDate": "2026-10-10",
+          "rank": 9,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 0
-        },
-        {
-          "id": "hn-50024055",
-          "title": "Show HN: The rarest tech books and docs you've probably never read",
-          "summary": "",
-          "url": "https://readrare.com/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50024055",
-          "publishedAt": "2026-10-09T17:39:44.000Z",
-          "points": 165,
-          "comments": 64,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 8,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 56,
-          "rankChange": 0
+          "pointsChange": 2,
+          "rankChange": -2
         },
         {
           "id": "hn-50003545",
@@ -184,58 +204,38 @@
           "url": "https://oss.lsantos.dev/proton-drive-linux-fs/",
           "sourceUrl": "https://news.ycombinator.com/item?id=50003545",
           "publishedAt": "2026-10-08T09:10:42.000Z",
-          "points": 115,
-          "comments": 41,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 9,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 55,
-          "rankChange": 14
-        },
-        {
-          "id": "hn-49954015",
-          "title": "Show HN: AstroHelm – Use your phone camera to aim a telescope or telephoto lens",
-          "summary": "",
-          "url": "https://astrohelm.app/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49954015",
-          "publishedAt": "2026-10-04T14:01:09.000Z",
-          "points": 99,
-          "comments": 31,
+          "points": 119,
+          "comments": 44,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 10,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
+          "pointsChange": 4,
           "rankChange": -1
         },
         {
-          "id": "hn-49952148",
-          "title": "Show HN: Nightwatch – a Mac menu-bar app that tells you when tonight is clear",
+          "id": "hn-50015833",
+          "title": "Show HN: Happy Hangul Day! An RNN for Generating Korean Handwriting Strokes",
           "summary": "",
-          "url": "https://github.com/rsutcliffe/nightwatch",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49952148",
-          "publishedAt": "2026-10-04T09:31:01.000Z",
-          "points": 89,
-          "comments": 28,
+          "url": "https://hangul.ink/blog/hangul-day",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50015833",
+          "publishedAt": "2026-10-09T03:58:16.000Z",
+          "points": 90,
+          "comments": 19,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 11,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 0
+          "pointsChange": 61,
+          "rankChange": 24
         },
         {
           "id": "hn-49978171",
@@ -252,7 +252,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 12,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -272,7 +272,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 13,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -284,7 +284,7 @@
           "url": "https://opper.ai/jevman-benchmark/",
           "sourceUrl": "https://news.ycombinator.com/item?id=50007993",
           "publishedAt": "2026-10-08T16:34:13.000Z",
-          "points": 78,
+          "points": 79,
           "comments": 23,
           "aiSignal": true,
           "consumerSignal": false,
@@ -292,10 +292,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 14,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 5,
-          "rankChange": 2
+          "pointsChange": 1,
+          "rankChange": 0
         },
         {
           "id": "hn-49977385",
@@ -312,7 +312,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 15,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -324,7 +324,7 @@
           "url": "https://agent.reviews/",
           "sourceUrl": "https://news.ycombinator.com/item?id=49995539",
           "publishedAt": "2026-10-07T16:59:11.000Z",
-          "points": 72,
+          "points": 73,
           "comments": 49,
           "aiSignal": true,
           "consumerSignal": false,
@@ -332,10 +332,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 16,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 1,
-          "rankChange": 1
+          "rankChange": 0
         },
         {
           "id": "hn-50009904",
@@ -352,10 +352,50 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 17,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 2,
-          "rankChange": 1
+          "pointsChange": 0,
+          "rankChange": 0
+        },
+        {
+          "id": "hn-50006930",
+          "title": "Show HN: Diffle, a keyboard-centric diff viewer with LSP support",
+          "summary": "",
+          "url": "https://github.com/moritzwilksch/diffle",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50006930",
+          "publishedAt": "2026-10-08T15:23:19.000Z",
+          "points": 69,
+          "comments": 12,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 18,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 46,
+          "rankChange": 23
+        },
+        {
+          "id": "hn-49987765",
+          "title": "Show HN: NanoMuse – An open-source AI agent for your phone and computer",
+          "summary": "",
+          "url": "https://github.com/nano-muse/nanoMuse",
+          "sourceUrl": "https://news.ycombinator.com/item?id=49987765",
+          "publishedAt": "2026-10-07T03:30:44.000Z",
+          "points": 66,
+          "comments": 22,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 19,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 1,
+          "rankChange": 0
         },
         {
           "id": "hn-50017301",
@@ -371,31 +411,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 18,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 2,
-          "rankChange": 3
-        },
-        {
-          "id": "hn-49987765",
-          "title": "Show HN: NanoMuse – An open-source AI agent for your phone and computer",
-          "summary": "",
-          "url": "https://github.com/nano-muse/nanoMuse",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49987765",
-          "publishedAt": "2026-10-07T03:30:44.000Z",
-          "points": 65,
-          "comments": 21,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 19,
-          "comparisonDate": "2026-10-10",
+          "rank": 20,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -2
         },
         {
           "id": "hn-49991986",
@@ -404,18 +424,18 @@
           "url": "https://github.com/akawashiro/procinsh",
           "sourceUrl": "https://news.ycombinator.com/item?id=49991986",
           "publishedAt": "2026-10-07T12:45:06.000Z",
-          "points": 60,
-          "comments": 25,
+          "points": 62,
+          "comments": 26,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 20,
-          "comparisonDate": "2026-10-10",
+          "rank": 21,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 2
+          "pointsChange": 2,
+          "rankChange": -1
         },
         {
           "id": "hn-49988516",
@@ -431,11 +451,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 21,
-          "comparisonDate": "2026-10-10",
+          "rank": 22,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 2,
-          "rankChange": 3
+          "pointsChange": 0,
+          "rankChange": -1
         },
         {
           "id": "hn-49980399",
@@ -451,31 +471,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 22,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 3
-        },
-        {
-          "id": "hn-49956771",
-          "title": "Show HN: Build with Python – a beginner course where your code draws",
-          "summary": "",
-          "url": "https://scimigo.com/en/learn/build-with-python/01-draw-with-python",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49956771",
-          "publishedAt": "2026-10-04T18:59:25.000Z",
-          "points": 48,
-          "comments": 20,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
           "rank": 23,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": -1
         },
         {
           "id": "hn-50012199",
@@ -485,17 +485,17 @@
           "sourceUrl": "https://news.ycombinator.com/item?id=50012199",
           "publishedAt": "2026-10-08T21:00:55.000Z",
           "points": 47,
-          "comments": 62,
+          "comments": 64,
           "aiSignal": true,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 24,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 0
         },
         {
           "id": "hn-49986740",
@@ -512,10 +512,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 25,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 6,
-          "rankChange": 6
+          "pointsChange": 0,
+          "rankChange": 0
         },
         {
           "id": "hn-49979793",
@@ -532,10 +532,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 26,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 2
+          "rankChange": 0
         },
         {
           "id": "hn-50013931",
@@ -552,10 +552,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 27,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 2
+          "rankChange": 0
         },
         {
           "id": "hn-49963394",
@@ -572,10 +572,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 28,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 2
+          "rankChange": 0
         },
         {
           "id": "hn-49997971",
@@ -592,10 +592,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 29,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 0
         },
         {
           "id": "hn-50014150",
@@ -605,17 +605,17 @@
           "sourceUrl": "https://news.ycombinator.com/item?id=50014150",
           "publishedAt": "2026-10-09T00:02:19.000Z",
           "points": 40,
-          "comments": 15,
+          "comments": 16,
           "aiSignal": true,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 30,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 3
+          "pointsChange": 0,
+          "rankChange": 0
         },
         {
           "id": "hn-49977886",
@@ -632,10 +632,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 31,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 0
         },
         {
           "id": "hn-50006114",
@@ -645,17 +645,17 @@
           "sourceUrl": "https://news.ycombinator.com/item?id=50006114",
           "publishedAt": "2026-10-08T14:18:51.000Z",
           "points": 33,
-          "comments": 14,
+          "comments": 17,
           "aiSignal": true,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 32,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 5
+          "pointsChange": 0,
+          "rankChange": 0
         },
         {
           "id": "hn-49965227",
@@ -672,10 +672,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 33,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 0
         },
         {
           "id": "hn-50009634",
@@ -692,30 +692,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 34,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 4
-        },
-        {
-          "id": "hn-50015833",
-          "title": "Show HN: Happy Hangul Day! An RNN for Generating Korean Handwriting Strokes",
-          "summary": "",
-          "url": "https://hangul.ink/blog/hangul-day",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50015833",
-          "publishedAt": "2026-10-09T03:58:16.000Z",
-          "points": 29,
-          "comments": 5,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 35,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 23,
-          "rankChange": 61
+          "pointsChange": 0,
+          "rankChange": 0
         },
         {
           "id": "hn-49978401",
@@ -731,11 +711,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 36,
-          "comparisonDate": "2026-10-10",
+          "rank": 35,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 1
         },
         {
           "id": "hn-49995778",
@@ -751,11 +731,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 37,
-          "comparisonDate": "2026-10-10",
+          "rank": 36,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 1
         },
         {
           "id": "hn-49995809",
@@ -764,18 +744,18 @@
           "url": "https://github.com/lowenbjer/claude-terse",
           "sourceUrl": "https://news.ycombinator.com/item?id=49995809",
           "publishedAt": "2026-10-07T17:16:48.000Z",
-          "points": 24,
+          "points": 25,
           "comments": 18,
           "aiSignal": true,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 38,
-          "comparisonDate": "2026-10-10",
+          "rank": 37,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 3
+          "pointsChange": 1,
+          "rankChange": 1
         },
         {
           "id": "hn-50008642",
@@ -791,11 +771,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 39,
-          "comparisonDate": "2026-10-10",
+          "rank": 38,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 3
+          "rankChange": 1
+        },
+        {
+          "id": "hn-50049132",
+          "title": "Show HN: BraiNOTES, handwritten notes on your lecture PDFs in a browser tab",
+          "summary": "",
+          "url": "https://github.com/swimmingbrain/brainotes",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50049132",
+          "publishedAt": "2026-10-11T23:22:29.000Z",
+          "points": 24,
+          "comments": 2,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 39,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-50005276",
@@ -805,57 +805,17 @@
           "sourceUrl": "https://news.ycombinator.com/item?id=50005276",
           "publishedAt": "2026-10-08T12:56:46.000Z",
           "points": 23,
-          "comments": 9,
+          "comments": 11,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 40,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 3
-        },
-        {
-          "id": "hn-50006930",
-          "title": "Show HN: Diffle, a keyboard-centric diff viewer with LSP support",
-          "summary": "",
-          "url": "https://github.com/moritzwilksch/diffle",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50006930",
-          "publishedAt": "2026-10-08T15:23:19.000Z",
-          "points": 23,
-          "comments": 2,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 41,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "hn-49957044",
-          "title": "Show HN: Arcadeia – A self-hosted media library with animated video previews",
-          "summary": "",
-          "url": "https://github.com/travelonium/arcadeia",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49957044",
-          "publishedAt": "2026-10-04T19:33:16.000Z",
-          "points": 17,
-          "comments": 6,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 42,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 2
+          "rankChange": 0
         },
         {
           "id": "hn-50029607",
@@ -871,11 +831,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 43,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "rank": 41,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 0,
+          "rankChange": 2
         },
         {
           "id": "hn-49996495",
@@ -891,11 +851,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 44,
-          "comparisonDate": "2026-10-10",
+          "rank": 42,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": 2
         },
         {
           "id": "hn-50016840",
@@ -911,11 +871,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 45,
-          "comparisonDate": "2026-10-10",
+          "rank": 43,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": 2
+        },
+        {
+          "id": "hn-50045340",
+          "title": "Show HN: Mira, AI Walking Tours",
+          "summary": "",
+          "url": "https://www.mira.tours/wander",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50045340",
+          "publishedAt": "2026-10-11T17:04:21.000Z",
+          "points": 16,
+          "comments": 4,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 44,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-49964102",
@@ -931,8 +911,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 46,
-          "comparisonDate": "2026-10-10",
+          "rank": 45,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 1
@@ -951,11 +931,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 47,
-          "comparisonDate": "2026-10-10",
+          "rank": 46,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 1,
-          "rankChange": 3
+          "pointsChange": 0,
+          "rankChange": 1
+        },
+        {
+          "id": "hn-50049388",
+          "title": "Show HN: Plimsoll, a self-hosted sandbox for code your AI agent writes",
+          "summary": "",
+          "url": "https://github.com/plimsollmark/plimsoll",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50049388",
+          "publishedAt": "2026-10-11T23:47:59.000Z",
+          "points": 15,
+          "comments": 2,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 47,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-50038883",
@@ -972,10 +972,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 48,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 0,
+          "rankChange": 0
         },
         {
           "id": "hn-49966865",
@@ -992,10 +992,50 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 49,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
+        },
+        {
+          "id": "hn-50026819",
+          "title": "Show HN: Babytalk: Offline speech to text and text to speech on ESP32",
+          "summary": "",
+          "url": "https://github.com/tlack/babytalk",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50026819",
+          "publishedAt": "2026-10-09T21:33:56.000Z",
+          "points": 14,
+          "comments": 9,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 50,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 1,
+          "rankChange": 1
+        },
+        {
+          "id": "hn-50028283",
+          "title": "Show HN: Yeah Nah – a BS score for Australian job ads",
+          "summary": "",
+          "url": "https://yeahnah.lol/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50028283",
+          "publishedAt": "2026-10-10T00:38:18.000Z",
+          "points": 14,
+          "comments": 3,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 51,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 1,
+          "rankChange": 1
         },
         {
           "id": "hn-49984736",
@@ -1011,51 +1051,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 50,
-          "comparisonDate": "2026-10-10",
+          "rank": 52,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
-        },
-        {
-          "id": "hn-50026819",
-          "title": "Show HN: Babytalk: Offline speech to text and text to speech on ESP32",
-          "summary": "",
-          "url": "https://github.com/tlack/babytalk",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50026819",
-          "publishedAt": "2026-10-09T21:33:56.000Z",
-          "points": 13,
-          "comments": 7,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 51,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 4,
-          "rankChange": 8
-        },
-        {
-          "id": "hn-50028283",
-          "title": "Show HN: Yeah Nah – a BS score for Australian job ads",
-          "summary": "",
-          "url": "https://yeahnah.lol/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50028283",
-          "publishedAt": "2026-10-10T00:38:18.000Z",
-          "points": 13,
-          "comments": 3,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 52,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 2,
-          "rankChange": 2
+          "rankChange": -2
         },
         {
           "id": "hn-49988641",
@@ -1072,10 +1072,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 53,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": 0
         },
         {
           "id": "hn-49978398",
@@ -1092,18 +1092,18 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 54,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": 0
         },
         {
-          "id": "hn-49956183",
-          "title": "Show HN: Dataviz, ranked daily from GitHub, NPM, PyPI and CRAN",
+          "id": "hn-50035527",
+          "title": "Show HN: A functioning Celery Man computer",
           "summary": "",
-          "url": "https://awesomedataviz.com/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49956183",
-          "publishedAt": "2026-10-04T17:54:49.000Z",
+          "url": "https://celeryman.fun/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50035527",
+          "publishedAt": "2026-10-10T18:08:36.000Z",
           "points": 11,
           "comments": 1,
           "aiSignal": false,
@@ -1112,10 +1112,10 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 55,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 0
+          "pointsChange": 2,
+          "rankChange": 7
         },
         {
           "id": "hn-50001750",
@@ -1132,7 +1132,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 56,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -1152,7 +1152,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 57,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -1172,7 +1172,7 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 58,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
           "rankChange": 0
@@ -1192,10 +1192,30 @@
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
           "rank": 59,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": 0
+        },
+        {
+          "id": "hn-50032872",
+          "title": "Show HN: World Watcher – a map to seamlessly watch public webcam streams",
+          "summary": "",
+          "url": "https://worldwatcher.live/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50032872",
+          "publishedAt": "2026-10-10T13:40:00.000Z",
+          "points": 9,
+          "comments": 2,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 60,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 1,
+          "rankChange": 6
         },
         {
           "id": "hn-49980418",
@@ -1211,11 +1231,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 60,
-          "comparisonDate": "2026-10-10",
+          "rank": 61,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": -1
         },
         {
           "id": "hn-49980821",
@@ -1231,19 +1251,19 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 61,
-          "comparisonDate": "2026-10-10",
+          "rank": 62,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": -1
         },
         {
-          "id": "hn-50035527",
-          "title": "Show HN: A functioning Celery Man computer",
+          "id": "hn-50032812",
+          "title": "Show HN: AsoBeast – Open-Source ASO Rank Tracker for App Store and Google Play",
           "summary": "",
-          "url": "https://celeryman.fun/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50035527",
-          "publishedAt": "2026-10-10T18:08:36.000Z",
+          "url": "https://github.com/AsoBeast/asobeast",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50032812",
+          "publishedAt": "2026-10-10T13:34:34.000Z",
           "points": 9,
           "comments": 0,
           "aiSignal": false,
@@ -1251,11 +1271,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 62,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "rank": 63,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 2,
+          "rankChange": 26
         },
         {
           "id": "hn-49966745",
@@ -1271,11 +1291,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 63,
-          "comparisonDate": "2026-10-10",
+          "rank": 64,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -1
         },
         {
           "id": "hn-49978267",
@@ -1291,11 +1311,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 64,
-          "comparisonDate": "2026-10-10",
+          "rank": 65,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": -1
         },
         {
           "id": "hn-50012880",
@@ -1311,19 +1331,19 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 65,
-          "comparisonDate": "2026-10-10",
+          "rank": 66,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 1
+          "rankChange": -1
         },
         {
-          "id": "hn-50032872",
-          "title": "Show HN: World Watcher – a map to seamlessly watch public webcam streams",
+          "id": "hn-50037852",
+          "title": "Show HN: ManimGX – Manim's API on a Rust/wgpu engine, for 3D videos in Python",
           "summary": "",
-          "url": "https://worldwatcher.live/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50032872",
-          "publishedAt": "2026-10-10T13:40:00.000Z",
+          "url": "https://github.com/academa-labs/manimgx",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50037852",
+          "publishedAt": "2026-10-10T22:33:30.000Z",
           "points": 8,
           "comments": 2,
           "aiSignal": false,
@@ -1331,8 +1351,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 66,
-          "comparisonDate": "2026-10-10",
+          "rank": 67,
+          "comparisonDate": "2026-10-11",
           "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
@@ -1351,11 +1371,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 67,
-          "comparisonDate": "2026-10-10",
+          "rank": 68,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -1
         },
         {
           "id": "hn-50014659",
@@ -1371,11 +1391,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 68,
-          "comparisonDate": "2026-10-10",
+          "rank": 69,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -1
+        },
+        {
+          "id": "hn-50050732",
+          "title": "Show HN: Skills Hub, a desktop app for managing AI agent skills",
+          "summary": "",
+          "url": "https://github.com/qufei1993/skills-hub",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50050732",
+          "publishedAt": "2026-10-12T02:48:19.000Z",
+          "points": 8,
+          "comments": 1,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 70,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-49991390",
@@ -1391,11 +1431,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 69,
-          "comparisonDate": "2026-10-10",
+          "rank": 71,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -2
         },
         {
           "id": "hn-49991419",
@@ -1411,11 +1451,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 70,
-          "comparisonDate": "2026-10-10",
+          "rank": 72,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -2
         },
         {
           "id": "hn-49996497",
@@ -1431,11 +1471,51 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 71,
-          "comparisonDate": "2026-10-10",
+          "rank": 73,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -2
+        },
+        {
+          "id": "hn-50050469",
+          "title": "Show HN: Homebutler – my server report printed 7 lines for 2 changes, now 2",
+          "summary": "",
+          "url": "https://github.com/Higangssh/homebutler",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50050469",
+          "publishedAt": "2026-10-12T02:12:51.000Z",
+          "points": 8,
+          "comments": 0,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 74,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "hn-50048731",
+          "title": "Show HN: Shpyrd – A new type of cloud for AI era",
+          "summary": "",
+          "url": "https://www.shpyrd.io/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50048731",
+          "publishedAt": "2026-10-11T22:42:08.000Z",
+          "points": 7,
+          "comments": 20,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 75,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-49963508",
@@ -1451,11 +1531,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 72,
-          "comparisonDate": "2026-10-10",
+          "rank": 76,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -4
+        },
+        {
+          "id": "hn-50042240",
+          "title": "Show HN: I'm a 14-year-old building my first startup, Titan",
+          "summary": "",
+          "url": "https://titan-ai.co/",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50042240",
+          "publishedAt": "2026-10-11T11:50:15.000Z",
+          "points": 7,
+          "comments": 7,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 77,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-49997240",
@@ -1471,11 +1571,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 73,
-          "comparisonDate": "2026-10-10",
+          "rank": 78,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -5
         },
         {
           "id": "hn-49982997",
@@ -1491,11 +1591,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 74,
-          "comparisonDate": "2026-10-10",
+          "rank": 79,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -5
         },
         {
           "id": "hn-50009580",
@@ -1511,11 +1611,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 75,
-          "comparisonDate": "2026-10-10",
+          "rank": 80,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -5
         },
         {
           "id": "hn-49983573",
@@ -1531,11 +1631,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 76,
-          "comparisonDate": "2026-10-10",
+          "rank": 81,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -5
         },
         {
           "id": "hn-50010250",
@@ -1551,11 +1651,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 77,
-          "comparisonDate": "2026-10-10",
+          "rank": 82,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -5
+        },
+        {
+          "id": "hn-50039633",
+          "title": "Show HN: GSD Task Manager – an MCP server that gives your AI agent a task list",
+          "summary": "",
+          "url": "https://github.com/vscarpenter/gsd-task-manager",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50039633",
+          "publishedAt": "2026-10-11T03:42:56.000Z",
+          "points": 7,
+          "comments": 3,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "rank": 83,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 1,
+          "rankChange": 13
         },
         {
           "id": "hn-49996408",
@@ -1571,31 +1691,31 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 78,
-          "comparisonDate": "2026-10-10",
+          "rank": 84,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -6
         },
         {
-          "id": "hn-49959751",
-          "title": "Show HN: HyperCMD, write CLI applications using plain HTML",
+          "id": "hn-50047792",
+          "title": "Show HN: Doiter – Language where pointers and stack frames are Docker containers",
           "summary": "",
-          "url": "https://github.com/fusor-rs/hypercmd",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49959751",
-          "publishedAt": "2026-10-05T01:33:16.000Z",
+          "url": "https://github.com/simvux/doiter",
+          "sourceUrl": "https://news.ycombinator.com/item?id=50047792",
+          "publishedAt": "2026-10-11T21:03:53.000Z",
           "points": 7,
-          "comments": 1,
+          "comments": 2,
           "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 79,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": 0
+          "rank": 85,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
         },
         {
           "id": "hn-50010564",
@@ -1611,11 +1731,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 80,
-          "comparisonDate": "2026-10-10",
+          "rank": 86,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": 0
+          "rankChange": -6
         },
         {
           "id": "hn-50030849",
@@ -1631,11 +1751,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 81,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "rank": 87,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 0,
+          "rankChange": -6
         },
         {
           "id": "hn-49976996",
@@ -1651,11 +1771,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 82,
-          "comparisonDate": "2026-10-10",
+          "rank": 88,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": -6
         },
         {
           "id": "hn-49988001",
@@ -1671,11 +1791,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 83,
-          "comparisonDate": "2026-10-10",
+          "rank": 89,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": -6
         },
         {
           "id": "hn-49995687",
@@ -1691,11 +1811,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 84,
-          "comparisonDate": "2026-10-10",
+          "rank": 90,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": -6
         },
         {
           "id": "hn-50009562",
@@ -1711,11 +1831,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 85,
-          "comparisonDate": "2026-10-10",
+          "rank": 91,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": -6
         },
         {
           "id": "hn-50016052",
@@ -1731,11 +1851,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 86,
-          "comparisonDate": "2026-10-10",
+          "rank": 92,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -1
+          "rankChange": -6
         },
         {
           "id": "hn-50030811",
@@ -1751,11 +1871,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 87,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "rank": 93,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 0,
+          "rankChange": -6
         },
         {
           "id": "hn-50030988",
@@ -1771,31 +1891,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 88,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "hn-50032812",
-          "title": "Show HN: AsoBeast – Open-Source ASO Rank Tracker for App Store and Google Play",
-          "summary": "",
-          "url": "https://github.com/AsoBeast/asobeast",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50032812",
-          "publishedAt": "2026-10-10T13:34:34.000Z",
-          "points": 7,
-          "comments": 0,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 89,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
+          "rank": 94,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": 0,
+          "rankChange": -6
         },
         {
           "id": "hn-49964046",
@@ -1811,11 +1911,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 90,
-          "comparisonDate": "2026-10-10",
+          "rank": 95,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -4
+          "rankChange": -5
         },
         {
           "id": "hn-49964379",
@@ -1831,11 +1931,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 91,
-          "comparisonDate": "2026-10-10",
+          "rank": 96,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -2
+          "rankChange": -5
         },
         {
           "id": "hn-49984522",
@@ -1851,11 +1951,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 92,
-          "comparisonDate": "2026-10-10",
+          "rank": 97,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -2
+          "rankChange": -5
         },
         {
           "id": "hn-49993256",
@@ -1871,11 +1971,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 93,
-          "comparisonDate": "2026-10-10",
+          "rank": 98,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -2
+          "rankChange": -5
         },
         {
           "id": "hn-49967539",
@@ -1891,11 +1991,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 94,
-          "comparisonDate": "2026-10-10",
+          "rank": 99,
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -2
+          "rankChange": -5
         },
         {
           "id": "hn-50032374",
@@ -1911,111 +2011,11 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "rank": 95,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "hn-50039633",
-          "title": "Show HN: GSD Task Manager – an MCP server that gives your AI agent a task list",
-          "summary": "",
-          "url": "https://github.com/vscarpenter/gsd-task-manager",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50039633",
-          "publishedAt": "2026-10-11T03:42:56.000Z",
-          "points": 6,
-          "comments": 3,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 96,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "hn-49965478",
-          "title": "Show HN: Jurl – curl that reads the page for you",
-          "summary": "",
-          "url": "https://jurl.dev/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49965478",
-          "publishedAt": "2026-10-05T14:38:02.000Z",
-          "points": 6,
-          "comments": 2,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 97,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": -3
-        },
-        {
-          "id": "hn-49976376",
-          "title": "Show HN: Acceptodds a prediction market on which ICLR 2027 papers get accepted",
-          "summary": "",
-          "url": "https://acceptodds.com/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=49976376",
-          "publishedAt": "2026-10-06T10:03:26.000Z",
-          "points": 6,
-          "comments": 2,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 98,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": 0,
-          "rankChange": -3
-        },
-        {
-          "id": "hn-50009322",
-          "title": "Show HN: Plan trips across the U.S. using only local public transit",
-          "summary": "",
-          "url": "https://ahhhtrak.com/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50009322",
-          "publishedAt": "2026-10-08T17:53:17.000Z",
-          "points": 6,
-          "comments": 2,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "rank": 99,
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "hn-50018882",
-          "title": "Show HN: All Things Banana – banana news, prices, and a daily Wikipedia game",
-          "summary": "",
-          "url": "https://allthingsbanana.com/",
-          "sourceUrl": "https://news.ycombinator.com/item?id=50018882",
-          "publishedAt": "2026-10-09T11:12:59.000Z",
-          "points": 6,
-          "comments": 2,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
           "rank": 100,
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": 0,
-          "rankChange": -3
+          "rankChange": -5
         }
       ]
     },
@@ -2024,40 +2024,60 @@
       "name": "Product Hunt · Atom",
       "sourceUrl": "https://www.producthunt.com/feed",
       "status": "ok",
-      "lastAttemptAt": "2026-10-11T06:22:00.128Z",
-      "observedAt": "2026-10-11T06:22:00.128Z",
-      "windowStart": "2026-10-04T06:22:00.128Z",
+      "lastAttemptAt": "2026-10-12T06:29:24.250Z",
+      "observedAt": "2026-10-12T06:29:24.250Z",
+      "windowStart": "2026-10-05T06:29:24.250Z",
       "order": "published-desc-no-votes",
       "available": null,
       "limited": true,
       "items": [
         {
-          "id": "ph-1275490",
-          "title": "Lune",
-          "summary": "The search engine built for scientific AI agents",
-          "url": "https://www.producthunt.com/products/lune-research",
-          "sourceUrl": "https://www.producthunt.com/products/lune-research",
-          "publishedAt": "2026-10-10T03:56:36.000Z",
+          "id": "ph-1276371",
+          "title": "Gboard Kurukuru Version",
+          "summary": "Your fingers stay put. The keys come around",
+          "url": "https://www.producthunt.com/products/google",
+          "sourceUrl": "https://www.producthunt.com/products/google",
+          "publishedAt": "2026-10-11T04:14:18.000Z",
           "points": null,
           "comments": null,
           "rank": null,
-          "aiSignal": true,
+          "aiSignal": false,
           "consumerSignal": false,
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
         },
         {
-          "id": "ph-1275415",
-          "title": "Maildun for Mac",
-          "summary": "Design on-brand emails by hand, with AI, or over MCP",
-          "url": "https://www.producthunt.com/products/maildun-for-mac",
-          "sourceUrl": "https://www.producthunt.com/products/maildun-for-mac",
-          "publishedAt": "2026-10-10T01:06:33.000Z",
+          "id": "ph-1275909",
+          "title": "NotchPit",
+          "summary": "Your Mac's notch, rearranged into a control center",
+          "url": "https://www.producthunt.com/products/notchpit",
+          "sourceUrl": "https://www.producthunt.com/products/notchpit",
+          "publishedAt": "2026-10-10T13:31:03.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1275891",
+          "title": "Agibot",
+          "summary": "The always-on personal AI agent for your Mac. $0 forever",
+          "url": "https://www.producthunt.com/products/agibot",
+          "sourceUrl": "https://www.producthunt.com/products/agibot",
+          "publishedAt": "2026-10-10T13:04:39.000Z",
           "points": null,
           "comments": null,
           "rank": null,
@@ -2066,7 +2086,67 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1275794",
+          "title": "Farol",
+          "summary": "The macOS terminal that shows which coding agent needs you",
+          "url": "https://www.producthunt.com/products/farol-3",
+          "sourceUrl": "https://www.producthunt.com/products/farol-3",
+          "publishedAt": "2026-10-10T10:38:06.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1275665",
+          "title": "EdgeVolume",
+          "summary": "Control your Mac’s volume from your trackpad edge",
+          "url": "https://www.producthunt.com/products/edgevolume-volume-at-your-fingertips",
+          "sourceUrl": "https://www.producthunt.com/products/edgevolume-volume-at-your-fingertips",
+          "publishedAt": "2026-10-10T07:58:12.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1275628",
+          "title": "FocusWrite",
+          "summary": "A local-first writing app with focus modes.",
+          "url": "https://www.producthunt.com/products/focuswrite",
+          "sourceUrl": "https://www.producthunt.com/products/focuswrite",
+          "publishedAt": "2026-10-10T07:08:24.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
           "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
@@ -2086,8 +2166,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2106,8 +2186,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2126,8 +2206,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2146,28 +2226,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1275196",
-          "title": "Microsoft-Decision-1",
-          "summary": "Microsoft’s decision model for agents and workflows",
-          "url": "https://www.producthunt.com/products/microsoft-decision-1",
-          "sourceUrl": "https://www.producthunt.com/products/microsoft-decision-1",
-          "publishedAt": "2026-10-09T18:50:17.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2186,7 +2246,27 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1275171",
+          "title": "FloorGen",
+          "summary": "Draw the house, or just ask. Free floor plans with AI",
+          "url": "https://www.producthunt.com/products/floorgen",
+          "sourceUrl": "https://www.producthunt.com/products/floorgen",
+          "publishedAt": "2026-10-09T18:19:20.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
           "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
@@ -2206,8 +2286,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2226,88 +2306,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1275112",
-          "title": "KernelAI",
-          "summary": "Private, offline AI for iPhone and Android",
-          "url": "https://www.producthunt.com/products/kernelai",
-          "sourceUrl": "https://www.producthunt.com/products/kernelai",
-          "publishedAt": "2026-10-09T16:58:13.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1275017",
-          "title": "Claude Dashboards & Motion",
-          "summary": "Ask Claude for live dashboards and animated explainers",
-          "url": "https://www.producthunt.com/products/claude-dashboards-motion",
-          "sourceUrl": "https://www.producthunt.com/products/claude-dashboards-motion",
-          "publishedAt": "2026-10-09T15:13:51.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1274980",
-          "title": "GitGlow",
-          "summary": "Review your code and your agents' changes before you ship",
-          "url": "https://www.producthunt.com/products/gitglow-2",
-          "sourceUrl": "https://www.producthunt.com/products/gitglow-2",
-          "publishedAt": "2026-10-09T14:21:14.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1274592",
-          "title": "TapNoise",
-          "summary": "A tiny desktop pet that reacts to every key you press",
-          "url": "https://www.producthunt.com/products/tapnoise",
-          "sourceUrl": "https://www.producthunt.com/products/tapnoise",
-          "publishedAt": "2026-10-09T07:16:56.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2326,47 +2326,7 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1274511",
-          "title": "Request Eagle",
-          "summary": "Fast and open-source Postman alternative",
-          "url": "https://www.producthunt.com/products/request-eagle",
-          "sourceUrl": "https://www.producthunt.com/products/request-eagle",
-          "publishedAt": "2026-10-09T05:58:24.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": false,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1274468",
-          "title": "Porch",
-          "summary": "local project summaries and cost tracking for AI coding",
-          "url": "https://www.producthunt.com/products/porch-6",
-          "sourceUrl": "https://www.producthunt.com/products/porch-6",
-          "publishedAt": "2026-10-09T04:53:12.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
@@ -2386,98 +2346,18 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1274179",
-          "title": "OpenVids",
-          "summary": "Open-source video editor you run by chatting with AI agents",
-          "url": "https://www.producthunt.com/products/openvids",
-          "sourceUrl": "https://www.producthunt.com/products/openvids",
-          "publishedAt": "2026-10-08T19:58:50.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
         {
-          "id": "ph-1273924",
-          "title": "Trophy MCP Servers",
-          "summary": "Interact with Trophy from your favourite AI tools",
-          "url": "https://www.producthunt.com/products/trophy-1-0",
-          "sourceUrl": "https://www.producthunt.com/products/trophy-1-0",
-          "publishedAt": "2026-10-08T15:06:32.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1273798",
-          "title": "Gemini Agent for Google Cloud",
-          "summary": "The work agent that runs on both Gemini and Claude",
-          "url": "https://www.producthunt.com/products/google",
-          "sourceUrl": "https://www.producthunt.com/products/google",
-          "publishedAt": "2026-10-08T12:31:02.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1273431",
-          "title": "Pine Computer",
-          "summary": "A cloud computer built for AI to get jobs done",
-          "url": "https://www.producthunt.com/products/pine-computer",
-          "sourceUrl": "https://www.producthunt.com/products/pine-computer",
-          "publishedAt": "2026-10-08T06:42:34.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1273350",
-          "title": "Cue",
-          "summary": "Put your AirPods in, your Mac starts focusing",
-          "url": "https://www.producthunt.com/products/cue-26",
-          "sourceUrl": "https://www.producthunt.com/products/cue-26",
-          "publishedAt": "2026-10-08T04:36:03.000Z",
+          "id": "ph-1274334",
+          "title": "SimpleSpread",
+          "summary": "Native, open source Mac spreadsheet",
+          "url": "https://www.producthunt.com/products/simplespread",
+          "sourceUrl": "https://www.producthunt.com/products/simplespread",
+          "publishedAt": "2026-10-09T00:21:08.000Z",
           "points": null,
           "comments": null,
           "rank": null,
@@ -2486,18 +2366,58 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
         },
         {
-          "id": "ph-1273308",
-          "title": "Playground by Google Labs",
-          "summary": "Create, play, and share your own games with Google AI",
-          "url": "https://www.producthunt.com/products/google-labs",
-          "sourceUrl": "https://www.producthunt.com/products/google-labs",
-          "publishedAt": "2026-10-08T03:24:04.000Z",
+          "id": "ph-1274214",
+          "title": "KarmaBoard",
+          "summary": "A vintage split-flap message board for any TV",
+          "url": "https://www.producthunt.com/products/karmaboard",
+          "sourceUrl": "https://www.producthunt.com/products/karmaboard",
+          "publishedAt": "2026-10-08T20:49:49.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1273845",
+          "title": "DevTerminal",
+          "summary": "A macOS terminal with a Run button that knows your project",
+          "url": "https://www.producthunt.com/products/devterminal",
+          "sourceUrl": "https://www.producthunt.com/products/devterminal",
+          "publishedAt": "2026-10-08T13:33:51.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1273549",
+          "title": "Halo",
+          "summary": "Notifications, dictation and AI agents in your Mac's notch",
+          "url": "https://www.producthunt.com/products/halo-11",
+          "sourceUrl": "https://www.producthunt.com/products/halo-11",
+          "publishedAt": "2026-10-08T08:48:13.000Z",
           "points": null,
           "comments": null,
           "rank": null,
@@ -2506,8 +2426,28 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1273545",
+          "title": "Edgee Mod for Claude Code",
+          "summary": "Use any model inside Claude Code, keep your Claude plan",
+          "url": "https://www.producthunt.com/products/edgee",
+          "sourceUrl": "https://www.producthunt.com/products/edgee",
+          "publishedAt": "2026-10-08T08:41:39.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": true,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2526,48 +2466,68 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1273218",
-          "title": "Hypervibe",
-          "summary": "Run your AI coding agents on one infinite board",
-          "url": "https://www.producthunt.com/products/hypervibe-2",
-          "sourceUrl": "https://www.producthunt.com/products/hypervibe-2",
-          "publishedAt": "2026-10-08T00:23:22.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
-          "pointsChange": null,
-          "rankChange": null
-        },
-        {
-          "id": "ph-1273098",
-          "title": "Opposable",
-          "summary": "Computer use for phones to give your AI thumbs",
-          "url": "https://www.producthunt.com/products/opposable",
-          "sourceUrl": "https://www.producthunt.com/products/opposable",
-          "publishedAt": "2026-10-07T20:54:42.000Z",
-          "points": null,
-          "comments": null,
-          "rank": null,
-          "aiSignal": true,
-          "consumerSignal": false,
-          "classification": "keyword-candidate",
-          "reviewStatus": "unreviewed",
-          "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
+          "comparisonDate": "2026-10-11",
           "seenBefore": true,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1273246",
+          "title": "shippedit.me",
+          "summary": "Launch Platform with SEO, AEO & Growth Insights",
+          "url": "https://www.producthunt.com/products/shippedit-me",
+          "sourceUrl": "https://www.producthunt.com/products/shippedit-me",
+          "publishedAt": "2026-10-08T01:41:14.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1273235",
+          "title": "Kooler",
+          "summary": "Find cocktails you can make with what's in your bar",
+          "url": "https://www.producthunt.com/products/kooler-2",
+          "sourceUrl": "https://www.producthunt.com/products/kooler-2",
+          "publishedAt": "2026-10-08T01:10:54.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1272903",
+          "title": "NewMinecraftServers",
+          "summary": "Minecraft server discovery, analytics, & spoof detection.",
+          "url": "https://www.producthunt.com/products/newminecraftservers",
+          "sourceUrl": "https://www.producthunt.com/products/newminecraftservers",
+          "publishedAt": "2026-10-07T16:29:22.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2586,8 +2546,8 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
@@ -2606,18 +2566,18 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": false,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": true,
           "pointsChange": null,
           "rankChange": null
         },
         {
-          "id": "ph-1272630",
-          "title": "Zernio",
-          "summary": "Marketing infrastructure for products and agents",
-          "url": "https://www.producthunt.com/products/zernio",
-          "sourceUrl": "https://www.producthunt.com/products/zernio",
-          "publishedAt": "2026-10-07T11:56:43.000Z",
+          "id": "ph-1272707",
+          "title": "Unboom",
+          "summary": "Tames boomy room bass on your Mac without acoustic panels",
+          "url": "https://www.producthunt.com/products/unboom",
+          "sourceUrl": "https://www.producthunt.com/products/unboom",
+          "publishedAt": "2026-10-07T13:07:27.000Z",
           "points": null,
           "comments": null,
           "rank": null,
@@ -2626,8 +2586,48 @@
           "classification": "keyword-candidate",
           "reviewStatus": "unreviewed",
           "teamScope": "unknown",
-          "comparisonDate": "2026-10-10",
-          "seenBefore": true,
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1272499",
+          "title": "kōdlo",
+          "summary": "End-to-end sales workspace with unified context",
+          "url": "https://www.producthunt.com/products/kodlo",
+          "sourceUrl": "https://www.producthunt.com/products/kodlo",
+          "publishedAt": "2026-10-07T09:46:27.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
+          "pointsChange": null,
+          "rankChange": null
+        },
+        {
+          "id": "ph-1272046",
+          "title": "Isly",
+          "summary": "Your MacBook notch, brought to life.",
+          "url": "https://www.producthunt.com/products/isly",
+          "sourceUrl": "https://www.producthunt.com/products/isly",
+          "publishedAt": "2026-10-06T20:50:38.000Z",
+          "points": null,
+          "comments": null,
+          "rank": null,
+          "aiSignal": false,
+          "consumerSignal": false,
+          "classification": "keyword-candidate",
+          "reviewStatus": "unreviewed",
+          "teamScope": "unknown",
+          "comparisonDate": "2026-10-11",
+          "seenBefore": false,
           "pointsChange": null,
           "rankChange": null
         }
@@ -8187,6 +8187,800 @@
         },
         {
           "id": "ph-1272630",
+          "points": null,
+          "comments": null,
+          "rank": null
+        }
+      ]
+    },
+    {
+      "day": "2026-10-12",
+      "source": "hn",
+      "observedAt": "2026-10-12T06:29:24.250Z",
+      "items": [
+        {
+          "id": "hn-49994443",
+          "points": 723,
+          "comments": 166,
+          "rank": 1
+        },
+        {
+          "id": "hn-50024499",
+          "points": 425,
+          "comments": 55,
+          "rank": 2
+        },
+        {
+          "id": "hn-50018817",
+          "points": 415,
+          "comments": 196,
+          "rank": 3
+        },
+        {
+          "id": "hn-50038634",
+          "points": 273,
+          "comments": 121,
+          "rank": 4
+        },
+        {
+          "id": "hn-50016312",
+          "points": 239,
+          "comments": 180,
+          "rank": 5
+        },
+        {
+          "id": "hn-50008047",
+          "points": 221,
+          "comments": 37,
+          "rank": 6
+        },
+        {
+          "id": "hn-50042333",
+          "points": 187,
+          "comments": 105,
+          "rank": 7
+        },
+        {
+          "id": "hn-50024055",
+          "points": 181,
+          "comments": 66,
+          "rank": 8
+        },
+        {
+          "id": "hn-49992057",
+          "points": 174,
+          "comments": 68,
+          "rank": 9
+        },
+        {
+          "id": "hn-50003545",
+          "points": 119,
+          "comments": 44,
+          "rank": 10
+        },
+        {
+          "id": "hn-50015833",
+          "points": 90,
+          "comments": 19,
+          "rank": 11
+        },
+        {
+          "id": "hn-49978171",
+          "points": 88,
+          "comments": 24,
+          "rank": 12
+        },
+        {
+          "id": "hn-49978595",
+          "points": 86,
+          "comments": 39,
+          "rank": 13
+        },
+        {
+          "id": "hn-50007993",
+          "points": 79,
+          "comments": 23,
+          "rank": 14
+        },
+        {
+          "id": "hn-49977385",
+          "points": 75,
+          "comments": 0,
+          "rank": 15
+        },
+        {
+          "id": "hn-49995539",
+          "points": 73,
+          "comments": 49,
+          "rank": 16
+        },
+        {
+          "id": "hn-50009904",
+          "points": 69,
+          "comments": 53,
+          "rank": 17
+        },
+        {
+          "id": "hn-50006930",
+          "points": 69,
+          "comments": 12,
+          "rank": 18
+        },
+        {
+          "id": "hn-49987765",
+          "points": 66,
+          "comments": 22,
+          "rank": 19
+        },
+        {
+          "id": "hn-50017301",
+          "points": 66,
+          "comments": 3,
+          "rank": 20
+        },
+        {
+          "id": "hn-49991986",
+          "points": 62,
+          "comments": 26,
+          "rank": 21
+        },
+        {
+          "id": "hn-49988516",
+          "points": 57,
+          "comments": 4,
+          "rank": 22
+        },
+        {
+          "id": "hn-49980399",
+          "points": 52,
+          "comments": 25,
+          "rank": 23
+        },
+        {
+          "id": "hn-50012199",
+          "points": 47,
+          "comments": 64,
+          "rank": 24
+        },
+        {
+          "id": "hn-49986740",
+          "points": 47,
+          "comments": 8,
+          "rank": 25
+        },
+        {
+          "id": "hn-49979793",
+          "points": 45,
+          "comments": 21,
+          "rank": 26
+        },
+        {
+          "id": "hn-50013931",
+          "points": 44,
+          "comments": 7,
+          "rank": 27
+        },
+        {
+          "id": "hn-49963394",
+          "points": 41,
+          "comments": 31,
+          "rank": 28
+        },
+        {
+          "id": "hn-49997971",
+          "points": 40,
+          "comments": 59,
+          "rank": 29
+        },
+        {
+          "id": "hn-50014150",
+          "points": 40,
+          "comments": 16,
+          "rank": 30
+        },
+        {
+          "id": "hn-49977886",
+          "points": 37,
+          "comments": 31,
+          "rank": 31
+        },
+        {
+          "id": "hn-50006114",
+          "points": 33,
+          "comments": 17,
+          "rank": 32
+        },
+        {
+          "id": "hn-49965227",
+          "points": 33,
+          "comments": 11,
+          "rank": 33
+        },
+        {
+          "id": "hn-50009634",
+          "points": 32,
+          "comments": 20,
+          "rank": 34
+        },
+        {
+          "id": "hn-49978401",
+          "points": 28,
+          "comments": 17,
+          "rank": 35
+        },
+        {
+          "id": "hn-49995778",
+          "points": 27,
+          "comments": 9,
+          "rank": 36
+        },
+        {
+          "id": "hn-49995809",
+          "points": 25,
+          "comments": 18,
+          "rank": 37
+        },
+        {
+          "id": "hn-50008642",
+          "points": 24,
+          "comments": 9,
+          "rank": 38
+        },
+        {
+          "id": "hn-50049132",
+          "points": 24,
+          "comments": 2,
+          "rank": 39
+        },
+        {
+          "id": "hn-50005276",
+          "points": 23,
+          "comments": 11,
+          "rank": 40
+        },
+        {
+          "id": "hn-50029607",
+          "points": 16,
+          "comments": 22,
+          "rank": 41
+        },
+        {
+          "id": "hn-49996495",
+          "points": 16,
+          "comments": 7,
+          "rank": 42
+        },
+        {
+          "id": "hn-50016840",
+          "points": 16,
+          "comments": 5,
+          "rank": 43
+        },
+        {
+          "id": "hn-50045340",
+          "points": 16,
+          "comments": 4,
+          "rank": 44
+        },
+        {
+          "id": "hn-49964102",
+          "points": 15,
+          "comments": 32,
+          "rank": 45
+        },
+        {
+          "id": "hn-50006760",
+          "points": 15,
+          "comments": 3,
+          "rank": 46
+        },
+        {
+          "id": "hn-50049388",
+          "points": 15,
+          "comments": 2,
+          "rank": 47
+        },
+        {
+          "id": "hn-50038883",
+          "points": 15,
+          "comments": 0,
+          "rank": 48
+        },
+        {
+          "id": "hn-49966865",
+          "points": 14,
+          "comments": 12,
+          "rank": 49
+        },
+        {
+          "id": "hn-50026819",
+          "points": 14,
+          "comments": 9,
+          "rank": 50
+        },
+        {
+          "id": "hn-50028283",
+          "points": 14,
+          "comments": 3,
+          "rank": 51
+        },
+        {
+          "id": "hn-49984736",
+          "points": 14,
+          "comments": 2,
+          "rank": 52
+        },
+        {
+          "id": "hn-49988641",
+          "points": 11,
+          "comments": 5,
+          "rank": 53
+        },
+        {
+          "id": "hn-49978398",
+          "points": 11,
+          "comments": 4,
+          "rank": 54
+        },
+        {
+          "id": "hn-50035527",
+          "points": 11,
+          "comments": 1,
+          "rank": 55
+        },
+        {
+          "id": "hn-50001750",
+          "points": 10,
+          "comments": 8,
+          "rank": 56
+        },
+        {
+          "id": "hn-49994446",
+          "points": 10,
+          "comments": 2,
+          "rank": 57
+        },
+        {
+          "id": "hn-50009313",
+          "points": 10,
+          "comments": 0,
+          "rank": 58
+        },
+        {
+          "id": "hn-49970043",
+          "points": 9,
+          "comments": 2,
+          "rank": 59
+        },
+        {
+          "id": "hn-50032872",
+          "points": 9,
+          "comments": 2,
+          "rank": 60
+        },
+        {
+          "id": "hn-49980418",
+          "points": 9,
+          "comments": 1,
+          "rank": 61
+        },
+        {
+          "id": "hn-49980821",
+          "points": 9,
+          "comments": 0,
+          "rank": 62
+        },
+        {
+          "id": "hn-50032812",
+          "points": 9,
+          "comments": 0,
+          "rank": 63
+        },
+        {
+          "id": "hn-49966745",
+          "points": 8,
+          "comments": 9,
+          "rank": 64
+        },
+        {
+          "id": "hn-49978267",
+          "points": 8,
+          "comments": 4,
+          "rank": 65
+        },
+        {
+          "id": "hn-50012880",
+          "points": 8,
+          "comments": 2,
+          "rank": 66
+        },
+        {
+          "id": "hn-50037852",
+          "points": 8,
+          "comments": 2,
+          "rank": 67
+        },
+        {
+          "id": "hn-49970810",
+          "points": 8,
+          "comments": 1,
+          "rank": 68
+        },
+        {
+          "id": "hn-50014659",
+          "points": 8,
+          "comments": 1,
+          "rank": 69
+        },
+        {
+          "id": "hn-50050732",
+          "points": 8,
+          "comments": 1,
+          "rank": 70
+        },
+        {
+          "id": "hn-49991390",
+          "points": 8,
+          "comments": 0,
+          "rank": 71
+        },
+        {
+          "id": "hn-49991419",
+          "points": 8,
+          "comments": 0,
+          "rank": 72
+        },
+        {
+          "id": "hn-49996497",
+          "points": 8,
+          "comments": 0,
+          "rank": 73
+        },
+        {
+          "id": "hn-50050469",
+          "points": 8,
+          "comments": 0,
+          "rank": 74
+        },
+        {
+          "id": "hn-50048731",
+          "points": 7,
+          "comments": 20,
+          "rank": 75
+        },
+        {
+          "id": "hn-49963508",
+          "points": 7,
+          "comments": 8,
+          "rank": 76
+        },
+        {
+          "id": "hn-50042240",
+          "points": 7,
+          "comments": 7,
+          "rank": 77
+        },
+        {
+          "id": "hn-49997240",
+          "points": 7,
+          "comments": 6,
+          "rank": 78
+        },
+        {
+          "id": "hn-49982997",
+          "points": 7,
+          "comments": 5,
+          "rank": 79
+        },
+        {
+          "id": "hn-50009580",
+          "points": 7,
+          "comments": 4,
+          "rank": 80
+        },
+        {
+          "id": "hn-49983573",
+          "points": 7,
+          "comments": 3,
+          "rank": 81
+        },
+        {
+          "id": "hn-50010250",
+          "points": 7,
+          "comments": 3,
+          "rank": 82
+        },
+        {
+          "id": "hn-50039633",
+          "points": 7,
+          "comments": 3,
+          "rank": 83
+        },
+        {
+          "id": "hn-49996408",
+          "points": 7,
+          "comments": 2,
+          "rank": 84
+        },
+        {
+          "id": "hn-50047792",
+          "points": 7,
+          "comments": 2,
+          "rank": 85
+        },
+        {
+          "id": "hn-50010564",
+          "points": 7,
+          "comments": 1,
+          "rank": 86
+        },
+        {
+          "id": "hn-50030849",
+          "points": 7,
+          "comments": 1,
+          "rank": 87
+        },
+        {
+          "id": "hn-49976996",
+          "points": 7,
+          "comments": 0,
+          "rank": 88
+        },
+        {
+          "id": "hn-49988001",
+          "points": 7,
+          "comments": 0,
+          "rank": 89
+        },
+        {
+          "id": "hn-49995687",
+          "points": 7,
+          "comments": 0,
+          "rank": 90
+        },
+        {
+          "id": "hn-50009562",
+          "points": 7,
+          "comments": 0,
+          "rank": 91
+        },
+        {
+          "id": "hn-50016052",
+          "points": 7,
+          "comments": 0,
+          "rank": 92
+        },
+        {
+          "id": "hn-50030811",
+          "points": 7,
+          "comments": 0,
+          "rank": 93
+        },
+        {
+          "id": "hn-50030988",
+          "points": 7,
+          "comments": 0,
+          "rank": 94
+        },
+        {
+          "id": "hn-49964046",
+          "points": 6,
+          "comments": 6,
+          "rank": 95
+        },
+        {
+          "id": "hn-49964379",
+          "points": 6,
+          "comments": 4,
+          "rank": 96
+        },
+        {
+          "id": "hn-49984522",
+          "points": 6,
+          "comments": 4,
+          "rank": 97
+        },
+        {
+          "id": "hn-49993256",
+          "points": 6,
+          "comments": 4,
+          "rank": 98
+        },
+        {
+          "id": "hn-49967539",
+          "points": 6,
+          "comments": 3,
+          "rank": 99
+        },
+        {
+          "id": "hn-50032374",
+          "points": 6,
+          "comments": 3,
+          "rank": 100
+        }
+      ]
+    },
+    {
+      "day": "2026-10-12",
+      "source": "ph",
+      "observedAt": "2026-10-12T06:29:24.250Z",
+      "items": [
+        {
+          "id": "ph-1276371",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275909",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275891",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275794",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275665",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275628",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275319",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275300",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275270",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275218",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275189",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275171",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275148",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1275117",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1274581",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1274432",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1274334",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1274214",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273845",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273549",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273545",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273258",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273246",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1273235",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272903",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272878",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272814",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272707",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272499",
+          "points": null,
+          "comments": null,
+          "rank": null
+        },
+        {
+          "id": "ph-1272046",
           "points": null,
           "comments": null,
           "rank": null
