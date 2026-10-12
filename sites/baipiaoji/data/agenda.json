@@ -1,9 +1,9 @@
 {
-  "generated": "2026-10-09",
+  "generated": "2026-10-12",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 37,
-    "category_hot": 1,
+    "candidate": 36,
+    "category_hot": 0,
     "stale": 5,
     "demand": 0
   },
@@ -26,38 +26,26 @@
   },
   "items": [
     {
-      "id": "drift:deepl",
+      "id": "drift:google-ai-studio",
       "type": "source_drift",
-      "title": "来源页变动：DeepL（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 5b；消失 无。本站条目仍是 2026-09-21 的版本",
-      "action": "打开 https://www.deepl.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Google AI Studio（2026-10-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $50 / 1,000美元 / 100,000美元 / 1000万；消失 $1,000 / $100 / $100,000 / $20,000。本站条目仍是 2026-09-29 的版本",
+      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "deepl",
-        "https://www.deepl.com/pricing"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:dify",
-      "type": "source_drift",
-      "title": "来源页变动：Dify（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 158k；消失 157k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://dify.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "dify",
-        "https://dify.ai"
+        "google-ai-studio",
+        "https://ai.google.dev/gemini-api/docs/rate-limits"
       ],
       "score": 75
     },
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×6、www.perplexity.ai×5、copilot.microsoft.com×2",
+      "title": "AI 助手引流出现：www.perplexity.ai×4、chatgpt.com×3、copilot.microsoft.com×2",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
-        "/c/api",
         "/en/c/image",
+        "/c/api",
         "/tools/qingying",
         "/tools/tusiart",
         "/en/tools/ms-copilot",
@@ -67,52 +55,88 @@
       "score": 70
     },
     {
-      "id": "drift:gaoding",
+      "id": "drift:cline",
       "type": "source_drift",
-      "title": "来源页变动：稿定 AI（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 15秒 / 16秒 / 1个 / 1秒。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://gaoding.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Cline（2026-10-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 70.1k；消失 70.0k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "gaoding",
-        "https://gaoding.com"
+        "cline",
+        "https://cline.bot"
       ],
       "score": 65
     },
     {
-      "id": "drift:continue",
+      "id": "drift:cloudflare-workers-ai",
       "type": "source_drift",
-      "title": "来源页变动：Continue（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 36.2k；消失 36.1k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Cloudflare Workers AI（2026-10-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $0.038；消失 $0.090。本站条目仍是 2026-09-16 的版本",
+      "action": "打开 https://developers.cloudflare.com/workers-ai/platform/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "continue",
-        "https://github.com/continuedev/continue"
+        "cloudflare-workers-ai",
+        "https://developers.cloudflare.com/workers-ai/platform/pricing"
       ],
       "score": 65
     },
     {
-      "id": "drift:huggingface",
+      "id": "drift:windsurf",
       "type": "source_drift",
-      "title": "来源页变动：Hugging Face（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 12months / 2hours；消失 $0.10,。本站条目仍是 2026-08-05 的版本",
-      "action": "打开 https://huggingface.co/docs/inference-providers/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Windsurf（2026-10-11 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $13 / $14 / $17 / $2；消失 $10 / $11 / $12 / $15。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://windsurf.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "huggingface",
-        "https://huggingface.co/docs/inference-providers/pricing"
+        "windsurf",
+        "https://windsurf.com"
       ],
       "score": 65
     },
     {
-      "id": "drift:vidu",
+      "id": "drift:n8n",
       "type": "source_drift",
-      "title": "来源页变动：Vidu（生数科技）（2026-10-09 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 $0.005 / $0.01 / $0.02 / $0.025。本站条目仍是 2026-08-06 的版本",
-      "action": "打开 https://platform.vidu.com/docs/terms-of-use 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：n8n（2026-10-10 确认）",
+      "why": "官方来源页的数字令牌变了——新增 15days；消失 21days。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://docs.n8n.io 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "vidu",
-        "https://platform.vidu.com/docs/terms-of-use"
+        "n8n",
+        "https://docs.n8n.io"
       ],
       "score": 65
+    },
+    {
+      "id": "drift:deepinfra",
+      "type": "source_drift",
+      "title": "来源页变动：DeepInfra（2026-10-10 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $0.003 / $0.004 / $0.042 / $0.105；消失 $0.006 / $0.091 / $0.136 / $0.15。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://deepinfra.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "deepinfra",
+        "https://deepinfra.com"
+      ],
+      "score": 65
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Let your AI agents paint big arrows, boxes and text on your screen",
+      "why": "HN 391 分 / 174 评论（2026-10-10 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/franzenzenhofer/big-arrow-on-the-screen；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
+        "https://news.ycombinator.com/item?id=50018817"
+      ],
+      "score": 60
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Talorys – A self-hosted personal AI agent on Cloudflare's free tier",
+      "why": "HN 275 分 / 128 评论（2026-10-11 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/rociiu/talorys；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/rociiu/talorys",
+        "https://news.ycombinator.com/item?id=50031614"
+      ],
+      "score": 60
     },
     {
       "id": "candidate:mysetup.ai",
@@ -127,33 +151,9 @@
       "score": 60
     },
     {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
-      "title": "核实候选：Mini-AGI – Dynamic continual learning model trained on 8GB VRAM",
-      "why": "HN 257 分 / 57 评论（2026-09-22 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/volotat/mini-AGI/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/volotat/mini-AGI/",
-        "https://news.ycombinator.com/item?id=49783133"
-      ],
-      "score": 60
-    },
-    {
-      "id": "candidate:unslop.news",
-      "type": "verify_candidate",
-      "title": "核实候选：Hacker News, Without AI",
-      "why": "HN 179 分 / 77 评论（2026-09-12 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://www.unslop.news/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://www.unslop.news/",
-        "https://news.ycombinator.com/item?id=49660783"
-      ],
-      "score": 60
-    },
-    {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 70 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 85 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -164,13 +164,13 @@
     {
       "id": "paidgap:feishu-miaoji",
       "type": "paid_gap",
-      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 17 次，无付费档）",
+      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 18 次，无付费档）",
       "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "feishu-miaoji"
       ],
-      "score": 47
+      "score": 48
     }
   ]
 }
