@@ -271,6 +271,9 @@ async function negatives(lang){
  const existing=lang==='zh'?'用户已经在写的目标，不可覆盖。':'The user is already writing this goal. Do not overwrite.';
  await page.locator('#goal').fill(existing);await page.locator('#handoff-apply').click();
  await assertClean(s,{goal:existing});assert.ok((await page.locator('#handoff-status').textContent()).trim());
+ // A new handoff must not erase the user's recovered composer draft. The
+ // user explicitly clears it before testing a separate handoff.
+ await page.locator('#goal').fill('');assert.equal(await page.evaluate(()=>sessionStorage.getItem('agi-jarvis-compose-v1')),null);
  // Every individual no/unknown fit suppresses maintenance recommendations.
  for(const field of ['recurring','records','owner'])for(const value of [false,null]){
   const envelope=valid();envelope.context.fit[field]=value;await inject(s,envelope);
