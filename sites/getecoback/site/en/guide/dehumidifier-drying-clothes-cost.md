@@ -10,15 +10,15 @@ EcoBack is funded through Amazon affiliate links. We have not tested these machi
 
 ## What does a dehumidifier cost per load?
 
-The table below assumes six hours at a constant average power and **€0.30/kWh**. These are arithmetic examples. They do not establish how long your laundry takes to dry. Replace both runtime and unit price with your own values.
+The table below assumes six hours at a constant average power and **GBP 0.35/kWh (35p/kWh)**. These are arithmetic examples. They do not establish how long your laundry takes to dry. Replace both runtime and unit price with your own values.
 
 Machine | Power | Per hour | 6 hours (assumed run) | 3 runs a week, 4 weeks |
 
-Example A | 200 W | 6.0 ct | €0.36 | €4.32 |
+Example A | 200 W | 7.0p | GBP 0.42 | GBP 5.04 |
 
-Example B | 300 W | 9.0 ct | €0.54 | €6.48 |
+Example B | 300 W | 10.5p | GBP 0.63 | GBP 7.56 |
 
-Example C | 500 W | 15.0 ct | €0.90 | €10.80 |
+Example C | 500 W | 17.5p | GBP 1.05 | GBP 12.60 |
 
 These are neither guaranteed upper limits nor measurements. Compressor cycling, fan operation, temperature and the selected programme affect average power and runtime. Read total kWh over a complete run for a more useful comparison.
 
@@ -30,7 +30,7 @@ Match the laundry mass, spin speed and final dryness before deciding which costs
 
 ## Where do I find my electricity rate?
 
-On your own bill or in your supplier's app, as the unit rate per kWh. Together with actual kWh, it determines direct electricity cost, and it varies a lot by country and by tariff — a fixed contract, a standard variable one and a time-of-use tariff can be far apart. The €0.30 used above is a round number to make the arithmetic checkable, not a claim about what you pay. Substitute your own rate and the table still works, whatever your currency.
+On your own bill or in your supplier's app, as the unit rate per kWh. Together with actual kWh, it determines direct electricity cost, and it varies a lot by country and by tariff — a fixed contract, a standard variable one and a time-of-use tariff can be far apart. The fictional GBP 0.35/kWh used above is a round number to make the arithmetic checkable, not a claim about what you pay. Substitute your own rate and the table still works, whatever your currency.
 
 ## The humidity rule that matters more than the cost
 
@@ -48,7 +48,7 @@ Indoor drying adds moisture to room air. The Verbraucherzentrale guidance on hea
 
 ## Frequently asked questions
 
-**How much does it cost to dry clothes with a dehumidifier?**Multiply the energy for the whole run in kWh by your unit price. As a fictional example, 250 W average power for eight hours uses 2 kWh and costs EUR 0.70 at EUR 0.35/kWh. Rated watts and an assumed runtime are estimates, not a measured cost per dry load.
+**How much does it cost to dry clothes with a dehumidifier?**Multiply the energy for the whole run in kWh by your unit price. As a fictional example, 250 W average power for eight hours uses 2 kWh and costs GBP 0.70 at GBP 0.35/kWh. Rated watts and an assumed runtime are estimates, not a measured cost per dry load.
 
 **Is a dehumidifier cheaper than a tumble dryer?**Either can cost less. Compare the same amount of equally dry laundry using whole-run kWh and the same tariff. For a dryer label showing kWh per 100 cycles, divide by 100. The label programme may differ from your actual use; a meter reading is more specific to your run.
 
@@ -67,7 +67,7 @@ Condition | Water per day | Power |
 10 °C / 60 % RH | 3.4 L | 180 W |
 20 °C / 60 % RH | 8.5 L | 216 W |
 
-Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
+Example calculation: 216 W × 6 h ÷ 1,000 × GBP 0.35/kWh = GBP 0.45 (rounded). This is not a measured laundry load or a savings promise.
 Sources checked on 1 October 2026: Meaco · Comfee manual · Verbraucherzentrale. No hands-on tests. Guidance, not a remote diagnosis.
 
 ## Reproducible laundry cost comparison
