@@ -2,6 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
+import fs from 'node:fs';
+const registry = JSON.parse(fs.readFileSync(new URL('./registry.json', import.meta.url), 'utf8'));
+const registeredHosts = Object.fromEntries(Object.values(registry).flatMap(site => site.hosts.map(host => [host, site.id])));
+test('Fleet account intent uses the current registry and a public route, never signup or identity data', () => {
+ for (const host of Object.keys(registeredHosts).filter(host => host !== 'baipiaoji.com')) {
+  assert.deepEqual(businessEvent(host, '/en/tools/example', {name:'fleet_account_entry'}, registeredHosts), {name:'fleet_account_entry', tool_id:'fleet-free-account', repeat:true});
+  for (const pathname of ['/auth/account','/auth/callback','/en/account','/account.html','/members/session','/api/private','/analytics-assets/frame.html','/packs-thanks.html','/en/studio/quote-builder','/discuss/moderate','/embed/tool','/__qa/probe','/%61ccount','/%2561ccount','/tools?email=SECRET','/tools#SECRET','/../account','//account']) {
+   assert.equal(businessEvent(host, pathname, {name:'fleet_account_entry'}, registeredHosts), null, host + pathname);
+  }
+ }
+ for (const host of ['baipiaoji.com','unknown.example','agiscorecard.com.evil.test','invest.agiscorecard.com']) assert.equal(businessEvent(host, '/', {name:'fleet_account_entry'}, registeredHosts), null);
+ assert.equal(businessEvent('agiscorecard.com', '/', {name:'fleet_account_entry'}), null, 'no default implicit host list');
+ for (const field of ['url','next','query','hash','email','username','site','source']) assert.equal(businessEvent('agiscorecard.com', '/', {name:'fleet_account_entry',[field]:'SECRET'}, registeredHosts), null);
+ for (const name of ['fleet_account_created','fleet_signup_success','purchase']) assert.equal(businessEvent('agiscorecard.com', '/', {name}, registeredHosts), null);
+});
 test('Consumer discovery measures fixed destination and sharing actions without private selections',()=>{
  for(const action of ['official_open','platform_search','intro_open','share_native','share_copy']){
   const name='manju_'+action;

@@ -9,7 +9,8 @@ const excluded = !/^G-[A-Z0-9]+$/.test(id || '') || location.hostname !== host |
   ['ci','__ci','__probe'].some(k => query.has(k)) || query.has('qa') || query.has('__qa') || query.get('utm_source') === 'verify' || location.pathname.startsWith('/__ci') ||
   navigator.webdriver || navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
 const key = host === 'thedollscout.com' ? 'tds_analytics_choice_v1' : 'fleet_ga4_choice_v1';
-const {businessEvent} = await import('./business.mjs' + new URL(import.meta.url).search);
+const {businessEvent, publicAccountEntryPath} = await import('./business.mjs' + new URL(import.meta.url).search);
+const {allowed} = await import('./registry.mjs' + new URL(import.meta.url).search);
 const copy = {
  en:['Disable analytics','Enable analytics'], zh:['关闭访问统计','开启访问统计'],
  de:['Analyse deaktivieren','Analyse aktivieren'], it:['Disattiva statistiche','Attiva statistiche'],
@@ -22,7 +23,7 @@ let frame, frameData, pageViewSent = false, ready = false;
 const sentActions = new Set(), pending = [];
 function accept(detail) {
  if (excluded || choice !== 'granted' || !frame) return;
- const action = businessEvent(host, new URL(canonical).pathname, detail);
+ const action = businessEvent(host, new URL(canonical).pathname, detail, allowed);
  if (!action || (!action.repeat && (sentActions.has(action.name) || pending.some(p => p.key === action.name)))) return;
  if (!ready) { if (pending.length < 100) pending.push({key:action.name, detail:{name:detail.name}}); }
  else { sentActions.add(action.name); frame.contentWindow.postMessage({type:'fleet-ga4-business',detail:{name:detail.name}},'https://'+host); }
@@ -74,6 +75,12 @@ if (!excluded && !document.getElementById('fleet-analytics-settings')) {
   document.addEventListener('click', event => {
     if (event.isTrusted === false) return;
     const a=event.target?.closest?.('a[href]');if(!a)return;
+    // Only this fixed intent crosses the analytics frame. Keep navigation and
+    // its private next/query context untouched; a click is not registration.
+    if ((a.matches?.('[data-fleet-account-entry]') || a.closest('.fleet-account-entry')) &&
+        allowed[host] === id && publicAccountEntryPath(location.pathname)) {
+      try { const destination = new URL(a.href); if (destination.origin === location.origin && destination.pathname === '/auth/account') accept({name:'fleet_account_entry'}); } catch {}
+    }
     const selectors=[['#eb-herbst','home-herbst'],['#eb-rising','home-rising'],['[data-eb-tp]','toppick'],['#eb-models','models'],['#eb-ac-finder','ac-finder'],['.eb-shop-grid','grid'],['#eb-seal-fit, #eb-heater-cost, [data-tool]','tool'],['.notice-bar','notice-bar'],['.hero','hero'],['.card','card'],['article','article']];
     const placement=selectors.find(([selector])=>a.closest(selector))?.[1]||'other';
     const action=affiliateAction(a.href,placement);if(action)accept(action);

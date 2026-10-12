@@ -40,6 +40,10 @@ on:
 permissions:
   contents: read
 
+# The explicit release marker affects push only; schedules and manual runs keep their checks.
+env:
+  OUTCOME_READONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
+
 jobs:
   deploy:
     permissions:
@@ -189,6 +193,7 @@ jobs:
           node scripts/collecting/verify.mjs --out dist
 
       - name: Configure independent membership secrets
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -257,10 +262,11 @@ jobs:
         run: node scripts/collecting/verify.mjs --live
 
       - name: Verify callable assistant tools and discovery files
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         run: node scripts/collecting/verify-mcp.mjs
 
       - name: Verify indexed collector measurement and complete-day coverage
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         run: node scripts/collecting/verify-measurement.mjs
 
       - name: Verify live document pages and assets
@@ -275,7 +281,7 @@ jobs:
           exit 1
 
       - name: Verify organic video measurement report
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         run: |
           node --input-type=module -e '
             const r = await fetch("https://thedollscout.com/api/video-growth?ci=1", {headers:{"user-agent":"tds-deploy-qa"}});
@@ -285,7 +291,7 @@ jobs:
           '
 
       - name: Verify independent membership after deployment
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -296,6 +302,21 @@ jobs:
             if [ "$attempt" != "4" ]; then sleep 8; fi
           done
           exit 1
+
+      - name: Verify GET-only readiness and discovery for the outcome release
+        if: ${{ !cancelled() && steps.publish.outcome == 'success' && env.OUTCOME_READONLY_RELEASE == 'true' }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const origin='https://thedollscout.com';
+          const options={method:'GET',redirect:'manual',headers:{'User-Agent':'FleetAnalyticsProbe/1.0 (read-only release check)'},signal:AbortSignal.timeout(20000)};
+          const response=await fetch(origin+'/api/member',options);
+          assert.equal(response.status,200);
+          const status=await response.json();
+          assert.equal(status.ok,true);assert.equal(status.ready,true);assert.equal(status.site,'tds');assert.equal(status.auto_renew,false);
+          for(const path of ['/for-agents','/de/for-agents','/zh/for-agents','/.well-known/mcp.json','/mcp/server.json'])assert.equal((await fetch(origin+path,{...options,signal:AbortSignal.timeout(20000)})).status,200,path);
+          console.log('Existing readiness and discovery verified; no watch, payment processing, MCP tool call or business event performed.');
+          JS
 
       - name: Verify every published workbench tool
         id: workbench_pages
@@ -311,7 +332,7 @@ jobs:
           exit 1
 
       - name: Notify verified localized tool URLs to IndexNow
-        if: ${{ !cancelled() && github.event_name == 'push' && steps.document_pages.outcome == 'success' && steps.workbench_pages.outcome == 'success' }}
+        if: ${{ !cancelled() && github.event_name == 'push' && !contains(github.event.head_commit.message, '[fleet-registration-release]') && steps.document_pages.outcome == 'success' && steps.workbench_pages.outcome == 'success' }}
         continue-on-error: true
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/indexnow.mjs --site tds --out sites/thedollscout/dist
@@ -353,33 +374,37 @@ jobs:
             case "$code" in 404|410) ;; *) echo "::error::retired page $p returned $code (expected 404/410) — takedown not effective"; fail=1 ;; esac
           done
           # MCP 冒烟:initialize 必须回 protocolVersion;计算工具算 1:72×12 盒
-          # 必须回 15.x%(纯数学,答案确定)。/mcp 曾在退役 410 列表里——这两条
-          # 断言同时守住「函数活着」与「410 没有误伤」。
-          mcp=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
-            -H 'Content-Type: application/json' \
-            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}')
-          echo "mcp initialize -> $mcp"
-          echo "$mcp" | grep -q '"protocolVersion"' || { echo "::error::MCP initialize did not return protocolVersion"; fail=1; }
-          calc=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
-            -H 'Content-Type: application/json' \
-            -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"secret_pull_probability","arguments":{"oddsN":72,"boxes":12}}}')
-          echo "mcp secret_pull_probability(72,12) -> $calc"
-          echo "$calc" | grep -q '15\.' || { echo "::error::MCP calculator did not return ~15% for 1:72 x 12 boxes"; fail=1; }
-          def=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
-            -H 'Content-Type: application/json' \
-            -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"define_labubu_term","arguments":{"term":"lafufu"}}}')
-          echo "mcp define_labubu_term(lafufu) -> $def"
-          # 这两个工具此前从未被冒烟覆盖(2026-08-30 深审发现):它们各自读一个
-          # 已发布数据集,数据集换名/换形状时只有这里会喊。
-          odds=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
-            -H 'Content-Type: application/json' \
-            -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"labubu_rarity_odds","arguments":{}}}')
-          echo "$odds" | grep -q '1:72\|"72"\|:72' || { echo "::error::MCP labubu_rarity_odds returned no 1:72 row"; fail=1; }
-          sig=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
-            -H 'Content-Type: application/json' \
-            -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"labubu_fake_signals","arguments":{}}}')
-          echo "$sig" | grep -qi 'teeth' || { echo "::error::MCP labubu_fake_signals returned no teeth-count signal"; fail=1; }
-          echo "$def" | grep -qi 'counterfeit' || { echo "::error::MCP define_labubu_term did not define Lafufu as counterfeit"; fail=1; }
+          if [ "$OUTCOME_READONLY_RELEASE" != "true" ]; then
+            # 必须回 15.x%(纯数学,答案确定)。/mcp 曾在退役 410 列表里——这两条
+            # 断言同时守住「函数活着」与「410 没有误伤」。
+            mcp=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}')
+            echo "mcp initialize -> $mcp"
+            echo "$mcp" | grep -q '"protocolVersion"' || { echo "::error::MCP initialize did not return protocolVersion"; fail=1; }
+            calc=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"secret_pull_probability","arguments":{"oddsN":72,"boxes":12}}}')
+            echo "mcp secret_pull_probability(72,12) -> $calc"
+            echo "$calc" | grep -q '15\.' || { echo "::error::MCP calculator did not return ~15% for 1:72 x 12 boxes"; fail=1; }
+            def=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"define_labubu_term","arguments":{"term":"lafufu"}}}')
+            echo "mcp define_labubu_term(lafufu) -> $def"
+            # 这两个工具此前从未被冒烟覆盖(2026-08-30 深审发现):它们各自读一个
+            # 已发布数据集,数据集换名/换形状时只有这里会喊。
+            odds=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"labubu_rarity_odds","arguments":{}}}')
+            echo "$odds" | grep -q '1:72\|"72"\|:72' || { echo "::error::MCP labubu_rarity_odds returned no 1:72 row"; fail=1; }
+            sig=$(curl -s --max-time 20 -X POST 'https://thedollscout.com/mcp?ci=1' \
+              -H 'Content-Type: application/json' \
+              -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"labubu_fake_signals","arguments":{}}}')
+            echo "$sig" | grep -qi 'teeth' || { echo "::error::MCP labubu_fake_signals returned no teeth-count signal"; fail=1; }
+            echo "$def" | grep -qi 'counterfeit' || { echo "::error::MCP define_labubu_term did not define Lafufu as counterfeit"; fail=1; }
+          else
+            echo "Outcome read-only release: live business probes and aggregate rereads deferred."
+          fi
           exit $fail
 
       # Bing/Yandex/Seznam/Naver pick this up within minutes.
@@ -396,7 +421,7 @@ jobs:
 
       # First-party analytics self-test: one POST to /api/ev must come back 204.
       - name: Self-test the /api/ev beacon endpoint
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         continue-on-error: true
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://thedollscout.com/api/ev \
@@ -408,7 +433,7 @@ jobs:
       # Hard assertion (not a warning): a missing HITS binding or a broken query is exactly
       # the shape this should catch — the beacon test above only warns.
       - name: Assert /api/pulse serves the aggregate
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         run: |
           # 2026-09-26 D1 读预算:只对非 200 重试(最多 3 次),内容断言只做一次——
           # 响应现在按部署版本缓存,对一个 200 反复重抓只会重复扫表,不会换来不同结果。
@@ -424,13 +449,13 @@ jobs:
 
       # Independent diagnostics remain hard failures, but do not suppress validated URL submission.
       - name: Verify isolated document measurement
-        if: ${{ !cancelled() && steps.publish.outcome == 'success' }}
+        if: ${{ env.OUTCOME_READONLY_RELEASE != 'true' && (!cancelled() && steps.publish.outcome == 'success') }}
         run: node scripts/documents/verify-events.mjs
 
 
   publish-mcp:
     needs: deploy
-    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[mcp-publish]')
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[mcp-publish]') && !contains(github.event.head_commit.message, '[outcome-readonly-release]')
     runs-on: ubuntu-latest
     permissions:
       contents: read

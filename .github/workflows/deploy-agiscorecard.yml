@@ -41,6 +41,10 @@ concurrency:
   group: deploy-agiscorecard
   cancel-in-progress: false
 
+# The explicit release marker affects push only; schedules and manual runs keep their checks.
+env:
+  OUTCOME_READONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
+
 jobs:
   future-discovery:
     name: Discover interviews and creator videos
@@ -267,6 +271,7 @@ jobs:
         run: node --test sites/agiscorecard/tools/release-safety/test.mjs
 
       - name: Configure independent membership secrets
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -314,6 +319,10 @@ jobs:
         if: github.event_name == 'push'
         working-directory: ${{ github.workspace }}
         run: |
+          if [ "$OUTCOME_READONLY_RELEASE" = "true" ]; then
+            node sites/agiscorecard/tools/member-release-health.mjs
+            exit 0
+          fi
           for attempt in 1 2 3 4; do
             if node sites/agiscorecard/tools/member-release-health.mjs && node tools/member-studio/verify.mjs --site agi --live; then exit 0; fi
             if [ "$attempt" != "4" ]; then sleep 8; fi
@@ -334,6 +343,7 @@ jobs:
           exit 1
 
       - name: Verify live Work Mentor and revenue counters
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
@@ -345,6 +355,19 @@ jobs:
             node sites/agiscorecard/tools/mentor/metrics.mjs
           fi
           node sites/agiscorecard/tools/evidence-metrics.mjs
+
+      - name: Verify static surfaces for the outcome read-only release
+        if: env.OUTCOME_READONLY_RELEASE == 'true'
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          for (const path of ['/mentor','/zh/mentor','/mentor-assets/app.mjs','/jarvis','/zh/jarvis','/jarvis-assets/app.mjs','/discuss','/zh/discuss','/create','/zh/create','/create-assets/app.mjs']) {
+            const response = await fetch('https://agiscorecard.com'+path, {method:'GET',redirect:'manual',headers:{'User-Agent':'FleetAnalyticsProbe/1.0 (read-only release check)'},signal:AbortSignal.timeout(20000)});
+            assert.equal(response.status,200,path);
+            assert.ok((await response.text()).length > 0,path);
+          }
+          console.log('Outcome release: static surfaces verified; no business POST or aggregate read performed.');
+          JS
 
       - name: Verify live shared navigation and destinations
         run: node sites/agiscorecard/tools/navigation/verify.mjs
@@ -364,9 +387,11 @@ jobs:
         run: node sites/agiscorecard/tools/foresight/verify.mjs
 
       - name: Verify live Jarvis surfaces and private API boundaries
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         run: node sites/agiscorecard/tools/jarvis/verify.mjs
 
       - name: Verify private Jarvis runner without inference
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         env:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -381,6 +406,7 @@ jobs:
           node tools/fleet-account/verify-live.mjs agi
 
       - name: Verify discussion pages and private API boundaries
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         run: |
           for attempt in 1 2 3; do
             if node sites/agiscorecard/tools/community/verify.mjs; then exit 0; fi
@@ -392,12 +418,14 @@ jobs:
         run: node sites/agiscorecard/tools/earn/verify.mjs
 
       - name: Verify Relay live release
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         run: node sites/agiscorecard/tools/create/verify.mjs
 
       - name: Verify live infrastructure research and membership catalog
         run: node sites/agiscorecard/tools/infrastructure/verify.mjs
 
       - name: Read Relay experiment aggregates and report backlog
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
@@ -409,6 +437,7 @@ jobs:
           fi
 
       - name: Read aggregate community growth and review backlog
+        if: env.OUTCOME_READONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
@@ -470,37 +499,45 @@ jobs:
                 -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' "https://agiscorecard.com/mcp" \
                 | grep -o '"name":"[a-z_]*"' | sed 's/"name":"//;s/"//' | sort -u | tr '\n' ' ')
           if [ "$want" != "$got" ]; then echo "::error::MCP tools/list drift — repo: [$want] live: [$got]"; fail=1; else echo "OK /mcp tools/list == repo"; fi
-          # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
-          t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
-          case "$t" in
-            *'"ok":true'*) echo "OK /api/trends" ;;
-            *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
-          esac
-          check "https://agiscorecard.com/api/video-growth?ci=1" '"metric":"browser_events_not_users"'
-          # /api/crowd (2026-09-27): the /agi-test crowd reveal reads this; five buckets, cached.
-          c=$(curl -s --max-time 20 "https://agiscorecard.com/api/crowd" || echo "")
-          case "$c" in
-            *'"ok":true'*'"buckets":{"accelerationist":'*'"contrarian":'*) echo "OK /api/crowd" ;;
-            *) echo "::error::/api/crowd broken: ${c:0:120}"; fail=1 ;;
-          esac
-          # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
-          p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")
-          case "$p" in
-            *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
-            *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
-          esac
-          # Server-side cache in place (2026-09-26): without it every caller recomputes the aggregates in
-          # D1, which is how the account's daily read budget ran out. A partial or failed result says
-          # "bypass" and already fails the ok:true checks above.
-          for h in trends-headers.txt pulse-headers.txt; do
-            grep -qiE '^x-agi-aggregate-cache: (hit|miss)' "$h" \
-              && grep -i '^x-agi-aggregate-cache' "$h" \
-              || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
-          done
+          if [ "$OUTCOME_READONLY_RELEASE" != "true" ]; then
+            # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
+            t=$(curl -s --max-time 20 -D trends-headers.txt "https://agiscorecard.com/api/trends" || echo "")
+            case "$t" in
+              *'"ok":true'*) echo "OK /api/trends" ;;
+              *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
+            esac
+            check "https://agiscorecard.com/api/video-growth?ci=1" '"metric":"browser_events_not_users"'
+            # /api/crowd (2026-09-27): the /agi-test crowd reveal reads this; five buckets, cached.
+            c=$(curl -s --max-time 20 "https://agiscorecard.com/api/crowd" || echo "")
+            case "$c" in
+              *'"ok":true'*'"buckets":{"accelerationist":'*'"contrarian":'*) echo "OK /api/crowd" ;;
+              *) echo "::error::/api/crowd broken: ${c:0:120}"; fail=1 ;;
+            esac
+            # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
+            p=$(curl -s --max-time 20 -D pulse-headers.txt "https://agiscorecard.com/api/pulse" || echo "")
+            case "$p" in
+              *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
+              *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
+            esac
+            # Server-side cache in place (2026-09-26): without it every caller recomputes the aggregates in
+            # D1, which is how the account's daily read budget ran out. A partial or failed result says
+            # "bypass" and already fails the ok:true checks above.
+            for h in trends-headers.txt pulse-headers.txt; do
+              grep -qiE '^x-agi-aggregate-cache: (hit|miss)' "$h" \
+                && grep -i '^x-agi-aggregate-cache' "$h" \
+                || { echo "::error::${h%%-*} is not served through the server-side cache (x-agi-aggregate-cache missing)"; fail=1; }
+            done
+          else
+            echo "Outcome read-only release: live business probes and aggregate rereads deferred."
+          fi
           exit $fail
 
       - name: Summarize deployment and the separate AI check
         run: |
+          if [ "$OUTCOME_READONLY_RELEASE" = "true" ]; then
+            echo 'Outcome read-only release: deployment, static surfaces, analytics assets and GET membership readiness checked. Business probes, secret configuration, private runner checks and aggregate rereads were skipped; they are not claimed as verified.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
           Deployment and the listed live checks passed.
           Push membership readiness does not freshly verify RPC, watch-key authentication

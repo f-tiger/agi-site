@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v13** — **Last updated: 2026-10-04**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v14** — **Last updated: 2026-10-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -15,6 +15,18 @@ For BPJ, help a reader make a specific tool decision with sourced allowances, ta
 For SunWatch, prioritize traceable official information and repeat research needs. Verify the current production coverage and actual customer delivery before advertising subscriptions or alerts; owner-only notifications are not a customer feature. Do not infer investment conclusions or returns from announcement metadata. Keep changes within the applicable repository's existing source, consent and deployment rules.
 
 Borrow the useful product pattern from customer-discovery tools: turn a stated need into a concrete, reviewable result, expose missing evidence, and require human review before consequential action. Evaluate reader task completion, useful feedback and return visits separately from payment. No new price, payment flow, recurring expense or community outreach is authorized by this positioning update.
+
+## Fleet registration — owner steering 2026-10-12
+
+The owner explicitly requires registration growth across the entire fleet, including subsites, not a BPJ-only campaign. Audit scope contains 52 site identities; 39 canonical domains share the free account entry (38 exact return hosts plus the BPJ hub). Historical aliases, independent products and unknown implementations are not automatically part of that account system.
+
+Start with a delivered result and a repeat-use reason to register. The current source audit verifies account-specific free value for BPJ (up to 40 followed tools synchronized across devices, matched public changes and existing free member resources) and AGI (continued bounded Jarvis tasks and a separate moderated discussion profile). On other shared-account sites, sign-in currently provides identity but no verified general cloud-result synchronization. Do not describe anonymous local storage, a paid workspace, a waitlist or an independent email/Telegram subscription as a free fleet-account entitlement.
+
+First repair the common completion path: retain a safe public source pathname and language, keep the original tool tab open, explain the source site's connection to the BPJ account service, and make the explicit return action visible after sign-in or recovery-code acknowledgement. Never send task inputs, query strings or result fragments through the hub. Free registration must not grant paid entitlements or silently enroll marketing. Non-Chinese hub forms are presently English; translated entry pages do not imply fully translated account forms. Email verification/reset availability and Google onboarding requirements must remain accurate.
+
+Public header entry clicks, server-created non-test accounts and first useful actions are independent measurements. The central account pool includes fleet signups and existing BPJ users, not AGI's independent native registrations. New registration counts are not independent external people; repeated authorizations are not new accounts. Use comparable UTC day rows when available, retain unknown source attribution, and keep private account pages outside GA4. Registration experiments must not add gates to currently anonymous tools or manufacture production signup/task events.
+
+See `docs/fleet-registration-2026-10-12.md` for the per-family value decisions, source coverage, implementation and acceptance record. No new price, paid plan, recurring task or third-party outreach is introduced.
 
 ## First service sale validation — historical steering 2026-10-03
 
@@ -78,6 +90,8 @@ No new paid features for the three discovery probes until repeated task evidence
 Owner rejected founder-only positioning and approved need-led segmentation, leading-site benchmarking and commercial user journeys. New bilingual Future Guide serves work/learning first, with understand/earn/family/forecast entry points. Segment needs and willingness to pay remain hypotheses. Free: source-linked interviews, editorial interpretation, private local judgments, action records and export. Optional paid value: the existing AGI cloud membership stores this same notebook with version history; 9 USDT/30 days plus matching decimal and network fees, unchanged quotas, no auto-renewal or extra AI. No paid video archive, personal-report subscription or autonomous Jarvis forecast is offered. Jarvis currently labels its guidance as editorial. Read `docs/agi-future-guide-design-2026-10-03.md`.
 
 ## Changelog
+
+- v14 (2026-10-12): Applied the whole-fleet registration goal, separated actual account benefits from shared identity, and defined source-preserving completion and honest registration measurements.
 
 - v13 (2026-10-04): Recorded the owner's AI-tool selection and SunWatch directions, stopped CRM acquisition, and required concrete decision outputs with comparable units and explicit unknowns. No new offer, checkout or external outreach was authorized.
 

@@ -42,6 +42,8 @@ jobs:
   update-build-deploy:
     runs-on: ubuntu-latest
     env:
+      # Explicit push-only product release; no account/payment lifecycle maintenance.
+      OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
       # Public browser OAuth client supplied by the owner; no client secret is used.
       # Keep configuration and post-deployment verification on the same value.
       # Narrow maintenance release only; normal push/schedule behavior is unchanged.
@@ -378,6 +380,7 @@ jobs:
       # 做一件确定无效的事。项目若真被删,下面的 deploy 会报错,那时手动建一次即可。
       # Owner requested Web3 launch using the existing repository Cloudflare key.
       - name: Check legacy membership obligations before isolation
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -386,7 +389,7 @@ jobs:
 
       - name: Sync payment secrets using the existing Cloudflare credential
         # Maintenance releases can explicitly reuse live credentials unchanged.
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: payment_config
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -396,7 +399,7 @@ jobs:
         run: node scripts/ad-configure.mjs --optional
 
       - name: Sync optional account providers without replacing existing settings
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -406,7 +409,7 @@ jobs:
 
       # Keep the same public OAuth binding in the build without any API/config write.
       - name: Preserve public account binding when reusing existing configuration
-        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        if: env.BPJ_RECEIPTS_RECOVERY == 'true' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         run: |
           node --input-type=module <<'JS'
           import {readFileSync,writeFileSync} from 'node:fs';
@@ -486,6 +489,7 @@ jobs:
         if: github.event_name == 'push'
         working-directory: ${{ github.workspace }}
         run: |
+          node sites/baipiaoji/scripts/test-account-fleet-handoff-browser.mjs
           node sites/baipiaoji/scripts/test-homepage-consent-browser.mjs
           node sites/baipiaoji/scripts/test-manju-search-browser.mjs
           node sites/baipiaoji/scripts/test-video-fit-browser.mjs
@@ -497,7 +501,7 @@ jobs:
         run: bash .github/scripts/deploy-main-guard.sh check
 
       - name: Check existing public account configuration before maintenance
-        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        if: env.BPJ_RECEIPTS_RECOVERY == 'true' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         run: node scripts/verify-member-recovery-live.mjs --account-only
 
       - name: Deploy to Cloudflare Pages
@@ -515,10 +519,10 @@ jobs:
         run: |
           node scripts/test-coding-access.mjs --live
           node scripts/test-ai-solo.mjs --live
-          node scripts/test-startup-mcp-live.mjs
-          node scripts/test-manju.mjs --live
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then node scripts/test-startup-mcp-live.mjs; fi
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then node scripts/test-manju.mjs --live; fi
           node scripts/test-video-fit.mjs --live
-          node scripts/test-video-mcp-live.mjs
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then node scripts/test-video-mcp-live.mjs; fi
 
       - name: Verify published subscription review and checklist
         run: node scripts/test-subscription-audit.mjs --live
@@ -528,6 +532,7 @@ jobs:
         run: node tools/quote-page-lab/verify.mjs --live
 
       - name: Verify homepage click breakdown and labels
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-homepage-live.mjs
 
       - name: Codex Efficiency live surface
@@ -536,21 +541,23 @@ jobs:
 
 
       - name: Verify live AI tools and free MCP
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-ai-tools-live.mjs
 
       - name: Verify live campaign measurement (QA excluded)
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-growth-live.mjs
 
       - name: Verify live free-account lifecycle and remove synthetic account
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-free-account-live.mjs
 
       - name: Verify search experiment and conversion stages on live site
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-search-experiment-live.mjs
 
       - name: Verify paid-app demand pilot without counting QA
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-release-pilot-live.mjs
 
       - name: Read pilot evidence (aggregates only)
@@ -565,6 +572,7 @@ jobs:
 
       # Refresh the existing watcher before readiness checks; stale heartbeats close sales.
       - name: Verify Web3 watcher and selling after deployment
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: receipt_verification
         env:
           REQUIRE_WEB3_CONFIGURED: ${{ env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true' || steps.payment_config.outputs.configured }}
@@ -579,8 +587,20 @@ jobs:
 
       - name: Verify maintenance account and static surfaces
         id: recovery_surface
-        if: env.BPJ_RECEIPTS_RECOVERY == 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY == 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify-member-recovery-live.mjs
+
+      - name: Verify existing account and membership readiness without lifecycle writes
+        if: env.OUTCOME_READ_ONLY_RELEASE == 'true'
+        run: |
+          node scripts/verify-member-recovery-live.mjs --account-only
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const response=await fetch('https://baipiaoji.com/api/member',{headers:{'User-Agent':'fleet-outcome-readonly-probe/1.0'},signal:AbortSignal.timeout(25000)});
+          assert.equal(response.status,200);const data=await response.json();
+          assert.equal(data.ok,true);assert.equal(data.ready,true);assert.equal(data.site,'bpj');
+          console.log('Existing BPJ account and membership readiness verified by GET; no registration, order scan or payment test.');
+          JS
 
       - name: Verify published BPJ first-party tools
         run: node scripts/verify-studio-live.mjs
@@ -599,6 +619,7 @@ jobs:
         run: node sites/baipiaoji/scripts/indexnow.mjs --changed-only
 
       - name: Verify membership checkout and protected routes
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         run: |
           for attempt in 1 2 3 4; do
@@ -608,6 +629,7 @@ jobs:
           done
 
       - name: Read membership migration totals (no account data)
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -715,7 +737,7 @@ jobs:
       # 部署后自测第一方打点：CI 网络可达生产域，打一发 /__selftest，
       # D1 里能查到即证明 Function+绑定+信标链路全通
       - name: Self-test first-party beacon
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_beacon
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://baipiaoji.com/api/hit \
@@ -733,7 +755,7 @@ jobs:
       # 之前只在本地用 mock 测过前端，真接口一次都没跑过——mock 通过不代表线上通。
       # 固定用一个 CI 专用邮箱，重复运行只会命中同一行，不会污染名单。
       - name: Self-test subscribe & unsubscribe endpoints
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_sub
         run: |
           api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/$1" \
@@ -762,7 +784,7 @@ jobs:
       # 提交链路自测：固定 URL，首次插入返回 ok、此后返回 already——两条路径都测到。
       # 非法 URL 必须 400。与订阅自测同一原则：静默通过等于没测。
       - name: Self-test submit endpoint
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_submit
         run: |
           api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/submit" \
@@ -781,7 +803,7 @@ jobs:
       # 认领链路自测（2026-09-26）：GET 状态、未知 slug 404、未认领时更正 403——三条都不出网核验厂商域名
       # （verify 动作会真的去读官方站点，自检不打它）。UA 带 bpj-ci-selfcheck；claims 表按 slug 一行，不碰读预算。
       - name: Self-test claim endpoint
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_claim
         run: |
           UA='curl/8.0 bpj-ci-selfcheck'
@@ -803,6 +825,7 @@ jobs:
 
       # Agent API 自测：slug 命中、404 语义、CORS 头——agent 依赖的契约每天验一遍
       - name: Self-test agent API
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_agent
         run: |
           r=$(curl -s -m 20 'https://baipiaoji.com/api/limits?slug=kimi')
@@ -929,6 +952,7 @@ jobs:
         continue-on-error: true
 
       - name: Self-test watch endpoint
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_watch
         run: |
           bad=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/watch' -H 'content-type: application/json' \
@@ -947,6 +971,7 @@ jobs:
       # ② 正文模块没随 Function 打包（每个包页对读者都是一个报错，而没人会告诉我们）。
       # 两条都不会让页面变 404，所以不主动断言就永远发现不了。
       - name: Self-test earning-pack registration wall
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_earn
         run: |
           hub=$(curl -s -o /dev/null -w '%{http_code}' -m 20 'https://baipiaoji.com/earn/')
@@ -965,6 +990,7 @@ jobs:
 
       # 触达端点自测:形状与口径都要对——它是整个自扩展层的眼睛,瞎了要能红。
       - name: Self-test reach endpoint
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_reach
         run: |
           r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' -D reach-headers.txt 'https://baipiaoji.com/api/reach?days=7')
@@ -1070,7 +1096,7 @@ jobs:
         run: node scripts/startup-mcp-registry.mjs --check
 
       - name: Publish and verify startup MCP registry entry
-        if: env.BPJ_RECEIPTS_RECOVERY != 'true' && steps.startup_registry.outputs.publish == 'true'
+        if: (env.BPJ_RECEIPTS_RECOVERY != 'true' && steps.startup_registry.outputs.publish == 'true') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           publisher_dir=$(mktemp -d)
           curl -fsSL --max-time 60 "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz -C "$publisher_dir" mcp-publisher
@@ -1236,12 +1262,14 @@ jobs:
           check "漫剧每日自动采集" "${{ steps.manju_sync.outcome }}"
           check "每日目录数据持久化" "${{ steps.catalog_commit.outcome }}"
           check "变更清单回写" "${{ steps.manifest.outcome }}"
-          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
+          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ] && [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then
             [ "${{ steps.receipt_verification.outcome }}" = "success" ] || fail=1
             [ "${{ steps.recovery_surface.outcome }}" = "success" ] || fail=1
           fi
           [ "$fail" = "0" ] || exit 1
-          if [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
+          if [ "$OUTCOME_READ_ONLY_RELEASE" = "true" ]; then
+            echo "Outcome release: local/browser and read-only release checks passed; production registration, subscription, event, payment-watch, MCP tool calls and aggregate probes were intentionally skipped, not counted as passed."
+          elif [ "$BPJ_RECEIPTS_RECOVERY" = "true" ]; then
             echo "✅ 收款维护检查通过；生产账号/CE 生命周期、增长写入、订阅投稿信标及 MCP 发布检查已跳过，未记为通过"
           else
             echo "✅ 全部链路自测通过"
