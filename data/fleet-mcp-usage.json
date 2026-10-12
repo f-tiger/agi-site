@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-11T14:31:49Z",
+ "generated": "2026-10-12T17:11:40Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
@@ -9,18 +9,18 @@
    "exposed": true,
    "missing": [],
    "days": 28,
-   "calls": 202,
+   "calls": 206,
    "ci": 45,
    "operator": 20,
-   "indexer": 66,
-   "other": 71,
+   "indexer": 68,
+   "other": 73,
    "with_args": 0,
    "callers": 8,
    "demand_callers": 0,
    "variety": "shape_only",
    "best_caller": {
-    "calls": 52,
-    "days": 10,
+    "calls": 53,
+    "days": 11,
     "shapes": 2
    }
   },
@@ -34,16 +34,16 @@
     "demand_callers"
    ],
    "days": 28,
-   "calls": 354,
+   "calls": 350,
    "by_tool": {
     "hitzewelle_vorschau": 83,
     "btu_empfehlung": 57,
     "fensterabdichtung_laenge": 56,
-    "geraet_wahl": 46,
+    "geraet_wahl": 44,
     "taupunkt_lueften": 28,
     "klimaanlage_stromkosten": 28,
     "heizleistung_watt": 28,
-    "balkonspeicher_foerderung": 28
+    "balkonspeicher_foerderung": 26
    },
    "ci": 0,
    "ci_note": "the worker already refuses to log its own smoke UA, so these are non-CI calls",
