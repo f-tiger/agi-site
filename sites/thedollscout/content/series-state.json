@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 18,
+  "cursor": 5,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-11"
+      "checked": "2026-10-12"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-11"
+      "checked": "2026-10-12"
     },
     {
       "id": "smiski-construction",
@@ -66,7 +66,7 @@
       "hash": "28f98009da31c60825cb66c561cfa26ba61308fb311b0ab0508a3c5ac62a0113",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-03"
+      "checked": "2026-10-12"
     },
     {
       "id": "smiski-sunday",
@@ -84,7 +84,7 @@
       "hash": "0c4d4655c6c04b1f24895150c9b6cb804a163f7f747b9864d34639bbb74f3a2e",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-03"
+      "checked": "2026-10-12"
     },
     {
       "id": "smiski-work",
@@ -157,9 +157,75 @@
       "published": "2026-10-11",
       "modified": "2026-10-11",
       "checked": "2026-10-11"
+    },
+    {
+      "id": "smiski-series1",
+      "brand": "smiski",
+      "title": "SMISKI Series1",
+      "names": [
+        "Smiski Hugging Knees",
+        "Smiski Sitting",
+        "Smiski Looking Back",
+        "Smiski Lounging",
+        "Smiski Hiding",
+        "Smiski Peeking"
+      ],
+      "source": "https://smiski.com/e/products/series-1/",
+      "hash": "de643babc3e412aa6ec6e0b88e2f892aa16647650cc3f74e477294e703062368",
+      "published": "2026-10-12",
+      "modified": "2026-10-12",
+      "checked": "2026-10-12"
+    },
+    {
+      "id": "smiski-birthday",
+      "brand": "smiski",
+      "title": "SMISKI Birthday",
+      "names": [
+        "SMISKI Giving a Bouquet",
+        "SMISKI Wrapped Up",
+        "SMISKI Popping Confetti",
+        "SMISKI Birthday Message",
+        "Little SMISKI Decorating",
+        "SMISKI Tasting"
+      ],
+      "source": "https://smiski.com/e/products/birthday-series/",
+      "hash": "97857a5523237c62d5cd9416237c2dc6d7cbb79a25de898a61e93a6b92586e99",
+      "published": "2026-10-12",
+      "modified": "2026-10-12",
+      "checked": "2026-10-12"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-12",
+      "status": "ok",
+      "added": [
+        "smiski-series1",
+        "smiski-birthday"
+      ],
+      "changed": [],
+      "eligible": 15,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 5,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": [
+        {
+          "source": "https://smiski.com/e/products/hippers-series/",
+          "reason": "No verified six-style SMISKI checklist"
+        }
+      ]
+    },
     {
       "date": "2026-10-11",
       "status": "ok",
@@ -267,19 +333,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-11",
+    "date": "2026-10-12",
     "status": "ok",
     "added": [
-      "smiski-living-series",
-      "smiski-bath-series"
+      "smiski-series1",
+      "smiski-birthday"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -289,6 +355,11 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   }
 }

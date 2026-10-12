@@ -1,19 +1,19 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-11",
+    "date": "2026-10-12",
     "status": "ok",
     "added": [
-      "smiski-living-series",
-      "smiski-bath-series"
+      "smiski-series1",
+      "smiski-birthday"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -23,7 +23,12 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -48,7 +53,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-11",
+      "checked": "2026-10-12",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +83,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-11",
+      "checked": "2026-10-12",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -102,7 +107,7 @@
       "source": "https://smiski.com/e/products/construction-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-03",
+      "checked": "2026-10-12",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-construction",
         "de": "https://thedollscout.com/de/series/smiski-construction",
@@ -126,7 +131,7 @@
       "source": "https://smiski.com/e/products/sunday-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-03",
+      "checked": "2026-10-12",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-sunday",
         "de": "https://thedollscout.com/de/series/smiski-sunday",
@@ -227,6 +232,54 @@
         "en": "https://thedollscout.com/series/smiski-bath-series",
         "de": "https://thedollscout.com/de/series/smiski-bath-series",
         "zh": "https://thedollscout.com/zh/series/smiski-bath-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-series1",
+      "brand": "smiski",
+      "title": "SMISKI Series1",
+      "names": [
+        "Smiski Hugging Knees",
+        "Smiski Sitting",
+        "Smiski Looking Back",
+        "Smiski Lounging",
+        "Smiski Hiding",
+        "Smiski Peeking"
+      ],
+      "source": "https://smiski.com/e/products/series-1/",
+      "published": "2026-10-12",
+      "modified": "2026-10-12",
+      "checked": "2026-10-12",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-series1",
+        "de": "https://thedollscout.com/de/series/smiski-series1",
+        "zh": "https://thedollscout.com/zh/series/smiski-series1"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-birthday",
+      "brand": "smiski",
+      "title": "SMISKI Birthday",
+      "names": [
+        "SMISKI Giving a Bouquet",
+        "SMISKI Wrapped Up",
+        "SMISKI Popping Confetti",
+        "SMISKI Birthday Message",
+        "Little SMISKI Decorating",
+        "SMISKI Tasting"
+      ],
+      "source": "https://smiski.com/e/products/birthday-series/",
+      "published": "2026-10-12",
+      "modified": "2026-10-12",
+      "checked": "2026-10-12",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-birthday",
+        "de": "https://thedollscout.com/de/series/smiski-birthday",
+        "zh": "https://thedollscout.com/zh/series/smiski-birthday"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
