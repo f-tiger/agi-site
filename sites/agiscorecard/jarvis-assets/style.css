@@ -13,3 +13,4 @@
 
 .handoff-receipt{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:inherit;max-width:100%;font-size:.88rem}.handoff-saved-evidence{margin:1rem 0}#handoff-preview h3{margin-top:0}
 .mission-item .mission-progress{color:var(--blue);line-height:1.55}.status-line .mission-progress{flex-basis:100%;color:var(--muted)}
+.draft-notice{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px}.draft-notice button{flex-shrink:0}@media(max-width:440px){.draft-notice{align-items:flex-start;flex-direction:column}}

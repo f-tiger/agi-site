@@ -1,9 +1,9 @@
 import {initHandoff} from './handoff-ui.mjs';
 import {contextReceipt} from './handoff.mjs';
-import {VERSION,relevantMemory,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,markdown,reportNotice,safeURL,citedSources,progressCue} from './core.mjs';
+import {VERSION,relevantMemory,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,markdown,reportNotice,safeURL,citedSources,progressCue,composerDraftRecord,composerDraftOf} from './core.mjs';
 const zh=document.body.dataset.lang==='zh',lang=zh?'zh':'en',t=(en,cn)=>zh?cn:en,$=s=>document.querySelector(s);
 const LINK='agi-jarvis-registration-v1';
-const KEY='agi-jarvis-key-v1',MEM='agi-jarvis-memory-v1',MEMBER_KEY='workbench-member-key:agi';let tasks=[],selected=null,busy=false,poll=null,membership=null,credential='',authEpoch=0,pendingCreate=null,followupPrepared=false,correctionPrepared=false;
+const KEY='agi-jarvis-key-v1',MEM='agi-jarvis-memory-v1',MEMBER_KEY='workbench-member-key:agi',DRAFT='agi-jarvis-compose-v1';let tasks=[],selected=null,busy=false,poll=null,membership=null,credential='',authEpoch=0,pendingCreate=null,followupPrepared=false,correctionPrepared=false;
 const observed=new Set();let handoff=null,refreshSequence=0;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const uid=bytes=>[...crypto.getRandomValues(new Uint8Array(bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
@@ -14,19 +14,30 @@ function storageSet(k,v){try{localStorage.setItem(k,v);return localStorage.getIt
 function memberKey(){try{return sessionStorage.getItem(MEMBER_KEY)||storageGet(KEY)||'';}catch{return storageGet(KEY)||'';}}
 function memorySlot(){return membership?MEM+':'+membership.scope:null;}
 function memories(){if(!membership)return [];try{const m=JSON.parse(storageGet(memorySlot())||'[]');return Array.isArray(m)?m.filter(s=>typeof s==='string'&&s.length<=300).slice(0,8):[];}catch{return [];}}
+function hideDraftNotice(){$('#draft-notice').hidden=true;}
+function clearDraft(clearGoal=false){try{sessionStorage.removeItem(DRAFT);}catch{}hideDraftNotice();if(clearGoal)$('#goal').value='';}
+function saveDraft(){
+ if(!membership)return false;const goal=$('#goal').value;if(!goal.trim()){clearDraft();return true;}
+ try{const value=JSON.stringify(composerDraftRecord(goal,membership.scope,lang));sessionStorage.setItem(DRAFT,value);return sessionStorage.getItem(DRAFT)===value;}catch{try{sessionStorage.removeItem(DRAFT);}catch{}return false;}
+}
+function restoreDraft(){
+ if(!membership||$('#goal').value)return;let raw=null;try{raw=sessionStorage.getItem(DRAFT);}catch{}if(!raw)return;
+ const value=composerDraftOf(raw,membership.scope,lang);if(!value){clearDraft();return;}
+ $('#goal').value=value.goal;$('#draft-notice').hidden=false;renderMemories();
+}
 function lock(message='',initial=false){
  if(!initial)handoff?.clear();
  authEpoch++;refreshSequence++;membership=null;pendingCreate=null;followupPrepared=false;correctionPrepared=false;$('#trial-notice').hidden=true;tasks=[];selected=null;observed.clear();clearTimeout(poll);
  $('#workspace').hidden=true;$('#member-bar').hidden=true;$('#member-gate').hidden=false;$('#member-status').textContent=message;
  $('#task-detail').replaceChildren();$('#task-list').replaceChildren();$('#memory').value='';$('#goal').value='';$('#selected-memories').replaceChildren();$('#public-query').value='';$('#cloud-consent').checked=false;
- $('#task-form').reset();$('#public-query-label').hidden=true;$('#public-query').required=false;status('');
+ $('#task-form').reset();$('#public-query-label').hidden=true;$('#public-query').required=false;hideDraftNotice();status('');
 }
 function permitted(){if(membership&&credential===memberKey())return true;lock(t('Open your private workspace to continue.','请打开私有工作区后继续。'));return false;}
 function unlock(value){
  const changed=membership?.scope!==value.scope;if(membership&&changed)lock();membership=value;$('#workspace').hidden=false;$('#member-gate').hidden=true;$('#member-bar').hidden=false;$('#member-key').value='';
  $('#member-until').textContent=value.member?t('AGI account · free Jarvis access','AGI 账号 · 贾维斯免费使用'):value.trialRemaining?t('Guest · 1 free task available','访客 · 剩余 1 次免费试用'):t('Guest trial used · register free to continue','访客试用已使用 · 免费注册后继续');
  updateTrial();handoff?.bind();
- if(changed){const legacy=storageGet(MEM);if(legacy&&storageGet(KEY)&&!storageGet(memorySlot())&&storageSet(memorySlot(),legacy)){try{localStorage.removeItem(MEM);}catch{}}$('#memory').value=memories().join('\n');renderMemories();}
+ if(changed){const legacy=storageGet(MEM);if(legacy&&storageGet(KEY)&&!storageGet(memorySlot())&&storageSet(memorySlot(),legacy)){try{localStorage.removeItem(MEM);}catch{}}$('#memory').value=memories().join('\n');renderMemories();restoreDraft();}
 
 }
 function registrationLink(){try{const link=JSON.parse(sessionStorage.getItem(LINK)||'null');return link&&/^[a-f0-9]{64}$/.test(link.key)&&/^[a-f0-9]{64}$/.test(link.scope)&&Date.now()-link.at<1800000?link:null;}catch{return null;}}
@@ -70,21 +81,21 @@ function prepareFollowup(task,nextAction){
  if(!startAllowed())return;
  handoff?.clear();selected=null;render();$('#task-form').reset();pendingCreate=null;$('#public-query-label').hidden=true;$('#public-query').required=false;
  for(const input of document.querySelectorAll('[data-memory]'))input.checked=false;
- $('#goal').value=followupDraft(task.input.goal,nextAction?.action,nextAction?.doneWhen,lang);followupPrepared=true;correctionPrepared=false;renderMemories();$('#goal').focus();
+ $('#goal').value=followupDraft(task.input.goal,nextAction?.action,nextAction?.doneWhen,lang);followupPrepared=true;correctionPrepared=false;saveDraft();renderMemories();$('#goal').focus();
  event('followup_prepare');status(t('Add what happened, review the context, then start a new mission. Nothing is submitted yet.','补充实际结果并核对上下文后，再开始新任务；目前尚未提交。'));
 }
 function prepareBlocker(task,nextAction){
  if(!startAllowed())return;
  handoff?.clear();selected=null;render();$('#task-form').reset();pendingCreate=null;$('#public-query-label').hidden=true;$('#public-query').required=false;
  for(const input of document.querySelectorAll('[data-memory]'))input.checked=false;
- $('#goal').value=blockerDraft(task.input.goal,nextAction?.action,nextAction?.doneWhen,lang);followupPrepared=true;correctionPrepared=false;renderMemories();$('#goal').focus();
+ $('#goal').value=blockerDraft(task.input.goal,nextAction?.action,nextAction?.doneWhen,lang);followupPrepared=true;correctionPrepared=false;saveDraft();renderMemories();$('#goal').focus();
  event('followup_prepare');status(t('Describe the blocker and review a smaller, safer next attempt. Nothing is submitted yet.','补充阻塞原因并核对一个更小、更安全的下一次尝试；目前尚未提交。'));
 }
 function prepareCorrection(task,reason,finding=null){
  if(!startAllowed())return;
  handoff?.clear();selected=null;render();$('#task-form').reset();pendingCreate=null;$('#public-query-label').hidden=true;$('#public-query').required=false;
  for(const input of document.querySelectorAll('[data-memory]'))input.checked=false;
- $('#goal').value=finding?findingCorrectionDraft(task.input.goal,finding,task.result?.sources,lang):correctionDraft(task.input.goal,reason,lang);followupPrepared=false;correctionPrepared=true;renderMemories();$('#goal').focus();
+ $('#goal').value=finding?findingCorrectionDraft(task.input.goal,finding,task.result?.sources,lang):correctionDraft(task.input.goal,reason,lang);followupPrepared=false;correctionPrepared=true;saveDraft();renderMemories();$('#goal').focus();
  event('correction_prepare');status(finding?t('The selected interpretation and its cited metadata are in an editable draft. Add what is missing, then review and submit it yourself.','已把所选解读及其引用信息放入可编辑草稿。请补充缺失内容，核对后再自行提交。'):t('Add the missing detail, review the context, then start a corrected mission. Nothing is submitted yet.','补充缺失信息并核对上下文后，再开始修正任务；目前尚未提交。'));
 }
 function render(){renderList();const task=tasks.find(x=>x.id===selected);$('#compose').hidden=!!task;const d=$('#task-detail');d.hidden=!task;if(!task)return;d.replaceChildren();
@@ -121,22 +132,22 @@ async function refresh(){const sequence=++refreshSequence;try{const j=await api(
 function schedulePoll(){clearTimeout(poll);if(!document.hidden&&tasks.some(x=>['queued','running'].includes(x.status)))poll=setTimeout(refresh,10000);}
 function renderMemories(){const selectedTexts=new Set([...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value)),m=memories(),suggested=relevantMemory($('#goal').value,m);const box=$('#selected-memories');box.replaceChildren();if(!m.length)return;box.append(el('p',t('Include up to 3 memories in this task:','为本次任务选择最多 3 条记忆：'),'quiet'));const sorted=[...suggested,...m.filter(x=>!suggested.includes(x))];for(const text of sorted){const label=el('label',undefined,'check'),input=el('input');input.type='checkbox';input.dataset.memory='';input.value=text;input.checked=selectedTexts.has(text);input.onchange=()=>{if(document.querySelectorAll('[data-memory]:checked').length>3){input.checked=false;status(t('Choose at most 3 memories.','最多选择 3 条记忆。'));}};label.append(input,document.createTextNode(text));box.append(label);}}
 $('#memory').value=memories().join('\n');$('#save-memory').onclick=()=>{if(!permitted())return;const lines=$('#memory').value.split('\n').map(s=>s.trim()).filter(Boolean);if(lines.length>8||lines.some(s=>s.length>300)){status(t('Use up to 8 lines, with at most 300 characters each.','最多 8 行，每行不超过 300 个字符。'));return;}if(!storageSet(memorySlot(),JSON.stringify([...new Set(lines)])))return fail(Error('storage_unavailable'));renderMemories();status(t('Memories saved on this device.','记忆已保存在本机。'));event('memory_save');};
-$('#goal').addEventListener('change',renderMemories);$('#new-task').onclick=()=>{if(!startAllowed())return;handoff?.clear();followupPrepared=false;correctionPrepared=false;selected=null;render();$('#goal').focus();};
+$('#goal').addEventListener('input',()=>{saveDraft();renderMemories();});$('#discard-draft').onclick=()=>{clearDraft(true);renderMemories();status(t('Unsent draft discarded.','未提交草稿已丢弃。'));$('#goal').focus();};$('#new-task').onclick=()=>{if(!startAllowed())return;handoff?.clear();followupPrepared=false;correctionPrepared=false;selected=null;render();$('#goal').focus();};
 const examples=zh?['我每周花两小时整理工作报告。研究可以采用的 AI 工作流程，并设计一个本周能验证的小测试。','研究一个面向独立开发者的低成本 AI 助手产品：比较已有方案，列出反对理由和最小需求验证。','我想用每周三小时学习 AI Agent 开发。制定一个以可运行作品为目标的学习计划，并找出可参考的来源。']:['I spend two hours preparing a weekly report. Research a practical AI workflow and design a small test I can run this week.','Research a low-cost AI assistant for solo developers. Compare existing approaches, state the strongest counterargument and propose a small demand test.','I have three hours a week to learn AI agent development. Build a learning plan around a working project and find useful sources.'];
 $('#web').onchange=()=>{$('#public-query-label').hidden=!$('#web').checked;$('#public-query').required=$('#web').checked;};
-for(const b of document.querySelectorAll('[data-example]'))b.onclick=()=>{if(!permitted())return;handoff?.clear();followupPrepared=false;correctionPrepared=false;$('#goal').value=examples[Number(b.dataset.example)];$('#public-query').value=['AI workflow','personal AI agent','AI agent tutorial'][Number(b.dataset.example)];renderMemories();$('#goal').focus();};
-$('#task-form').onsubmit=async e=>{e.preventDefault();if(busy||!startAllowed())return;busy=true;$('#start').disabled=true;status(t('Saving your mission…','正在保存任务…'));try{const input={action:'create',goal:$('#goal').value,lang,cadence:$('#cadence').value,web:$('#web').checked,publicQuery:$('#public-query').value,consent:$('#cloud-consent').checked,memory:[...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value),nonce:'',...(handoff?.context()?{context:handoff.context()}:{})},wasFollowup=followupPrepared,wasCorrection=correctionPrepared;const fingerprint=JSON.stringify(input);if(!pendingCreate||pendingCreate.fingerprint!==fingerprint)pendingCreate={fingerprint,nonce:uid(16)};input.nonce=pendingCreate.nonce;const j=await api(input);handoff?.clear();pendingCreate=null;followupPrepared=false;correctionPrepared=false;if(!membership.member)membership.trialRemaining=0;updateTrial();selected=j.task.id;tasks=tasks.filter(x=>x.id!==j.task.id);tasks.unshift(j.task);render();event('start');if(wasFollowup)event('followup_start');if(wasCorrection)event('correction_start');schedulePoll();status(t('Saved. Your mission is queued.','已保存，任务正在等待执行。'));}catch(e){fail(e);}finally{busy=false;updateTrial();}};
+for(const b of document.querySelectorAll('[data-example]'))b.onclick=()=>{if(!permitted())return;handoff?.clear();followupPrepared=false;correctionPrepared=false;$('#goal').value=examples[Number(b.dataset.example)];$('#public-query').value=['AI workflow','personal AI agent','AI agent tutorial'][Number(b.dataset.example)];saveDraft();renderMemories();$('#goal').focus();};
+$('#task-form').onsubmit=async e=>{e.preventDefault();if(busy||!startAllowed())return;busy=true;$('#start').disabled=true;status(t('Saving your mission…','正在保存任务…'));try{const input={action:'create',goal:$('#goal').value,lang,cadence:$('#cadence').value,web:$('#web').checked,publicQuery:$('#public-query').value,consent:$('#cloud-consent').checked,memory:[...document.querySelectorAll('[data-memory]:checked')].map(x=>x.value),nonce:'',...(handoff?.context()?{context:handoff.context()}:{})},wasFollowup=followupPrepared,wasCorrection=correctionPrepared;const fingerprint=JSON.stringify(input);if(!pendingCreate||pendingCreate.fingerprint!==fingerprint)pendingCreate={fingerprint,nonce:uid(16)};input.nonce=pendingCreate.nonce;const j=await api(input);handoff?.clear();clearDraft(true);pendingCreate=null;followupPrepared=false;correctionPrepared=false;if(!membership.member)membership.trialRemaining=0;updateTrial();selected=j.task.id;tasks=tasks.filter(x=>x.id!==j.task.id);tasks.unshift(j.task);render();event('start');if(wasFollowup)event('followup_start');if(wasCorrection)event('correction_start');schedulePoll();status(t('Saved. Your mission is queued.','已保存，任务正在等待执行。'));}catch(e){fail(e);}finally{busy=false;updateTrial();}};
 $('#member-form').onsubmit=async e=>{e.preventDefault();if(busy)return;const token=$('#member-key').value.trim();if(!/^[a-f0-9]{64}$/.test(token))return;lock();try{sessionStorage.setItem(MEMBER_KEY,token);credential=token;}catch{return fail(Error('storage_unavailable'));}$('#member-login').disabled=true;try{await refresh();if(membership?.member)event('member_verified');}finally{$('#member-login').disabled=false;}};
-$('#restore-workspace').onclick=()=>{try{rememberRegistration();}catch{return fail(Error('storage_unavailable'));}lock();};
+$('#restore-workspace').onclick=()=>{try{rememberRegistration();}catch{return fail(Error('storage_unavailable'));}clearDraft(true);lock();};
 $('#member-open').onclick=registerHere;$('#register-open').onclick=registerHere;$('#gate-register').onclick=registerHere;
-$('#member-logout').onclick=()=>{try{sessionStorage.removeItem(MEMBER_KEY);sessionStorage.removeItem(LINK);}catch{}credential='';lock();};
+$('#member-logout').onclick=()=>{clearDraft(true);try{sessionStorage.removeItem(MEMBER_KEY);sessionStorage.removeItem(LINK);}catch{}credential='';lock();};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(poll);else if(credential){if(memberKey()!==credential){lock();credential=memberKey();}if(credential)refresh();}});
 // DOM visibility is fail-closed; the server independently verifies every request.
 $('#workspace').addEventListener('click',e=>{if(!permitted()){e.preventDefault();e.stopImmediatePropagation();}},true);
 async function openBrowser(initial=false){lock('',initial);try{sessionStorage.removeItem(MEMBER_KEY);}catch{}let token=storageGet(KEY);if(!/^[a-f0-9]{64}$/.test(token||'')){token=uid(32);if(!storageSet(KEY,token))return fail(Error('storage_unavailable'));}credential=token;await refresh();}
 $('#continue-free').onclick=()=>openBrowser();
 const googleEntry=el('a',t('Register / sign in with Google','使用 Google 注册 / 登录'));googleEntry.href='/auth/account';googleEntry.onclick=registerHere;$('#member-gate').prepend(googleEntry);
-handoff=initHandoff({lang,getEpoch:()=>authEpoch,getScope:()=>membership?.scope,onApply:()=>{pendingCreate=null;followupPrepared=false;correctionPrepared=false;renderMemories();}});
+handoff=initHandoff({lang,getEpoch:()=>authEpoch,getScope:()=>membership?.scope,onApply:()=>{pendingCreate=null;followupPrepared=false;correctionPrepared=false;saveDraft();renderMemories();}});
 window.addEventListener('storage',e=>{if([KEY,MEMBER_KEY].includes(e.key)&&credential!==memberKey())lock();});
 window.addEventListener('pagehide',()=>handoff?.clear());
 document.body.dataset.ready='true';credential=memberKey();if(credential)refresh();else openBrowser(true);

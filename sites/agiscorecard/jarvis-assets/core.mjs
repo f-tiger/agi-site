@@ -1,7 +1,8 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261011-19';
+export const VERSION='jarvis-20261012-20';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
+export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;
 export const tools=['catalog_search','github_search','hackernews_search','calculate'];
 export function progressCue(task,lang='en'){
  const actions=task?.result?.report?.nextActions;if(!Array.isArray(actions)||!actions.length)return null;
@@ -17,6 +18,20 @@ export function progressCue(task,lang='en'){
  return {text:(zh?'用户自报':'Self-reported')+' · '+parts.filter(([count])=>count>0).map(([count,label])=>zh?label+' '+count:count+' '+label).join(' · '),updated};
 }
 const str=(s,n)=>typeof s==='string'&&s.trim().length>0&&s.length<=n;
+const draftControls=/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/u;
+export function composerDraftRecord(goal,scope,lang,at=Date.now()){
+ if(typeof goal!=='string'||!goal.trim()||goal.length>1200||draftControls.test(goal)||!(/^[a-f0-9]{64}$/).test(scope)||!['en','zh'].includes(lang)||!Number.isSafeInteger(at)||at<=0)throw Error('invalid_draft');
+ return {version:1,scope,lang,goal,at};
+}
+export function composerDraftOf(raw,scope,lang,now=Date.now()){
+ try{
+  if(typeof raw==='string'){if(raw.length>1600)return null;raw=JSON.parse(raw);}
+  if(!raw||typeof raw!=='object'||Array.isArray(raw)||Object.keys(raw).sort().join(',')!=='at,goal,lang,scope,version'||raw.version!==1)return null;
+  const value=composerDraftRecord(raw.goal,raw.scope,raw.lang,raw.at);
+  if(value.scope!==scope||value.lang!==lang||!Number.isSafeInteger(now)||value.at>now||now-value.at>COMPOSER_DRAFT_MAX_AGE_MS)return null;
+  return value;
+ }catch{return null;}
+}
 export function inputOf(b){
  if(!b||b.consent!==true||!str(b.goal,1200)||b.goal.trim().length<8||!['en','zh'].includes(b.lang)||!['once','daily'].includes(b.cadence)||typeof b.web!=='boolean'||typeof b.nonce!=='string'||!/^[a-f0-9]{32}$/.test(b.nonce))throw Error('invalid_request');
  if(!Array.isArray(b.memory)||b.memory.length>3||b.memory.some(m=>!str(m,300)))throw Error('invalid_request');
