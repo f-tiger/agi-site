@@ -1,5 +1,5 @@
 {
-  "checked": "2026-10-09",
+  "checked": "2026-10-12",
   "origin": "https://baipiaoji.com",
   "valid": true,
   "blocked": [],
@@ -11,15 +11,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 171
+          "ms": 256
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 105
+          "ms": 146
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 300
+          "ms": 280
         }
       }
     },
@@ -30,15 +30,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 101
+          "ms": 140
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 63
+          "ms": 99
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 126
+          "ms": 131
         }
       }
     },
@@ -49,15 +49,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 108
+          "ms": 169
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 42
+          "ms": 70
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 101
+          "ms": 145
         }
       }
     },
@@ -68,15 +68,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 90
+          "ms": 131
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 56
+          "ms": 104
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 128
+          "ms": 150
         }
       }
     },
@@ -87,15 +87,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 109
+          "ms": 148
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 78
+          "ms": 108
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 111
+          "ms": 180
         }
       }
     },
@@ -106,15 +106,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 106
+          "ms": 166
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 51
+          "ms": 54
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 111
+          "ms": 157
         }
       }
     },
@@ -125,15 +125,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 105
+          "ms": 148
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 52
+          "ms": 110
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 102
+          "ms": 107
         }
       }
     },
@@ -144,15 +144,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 106
+          "ms": 144
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 43
+          "ms": 49
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 108
+          "ms": 123
         }
       }
     },
@@ -163,15 +163,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 92
+          "ms": 142
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 54
+          "ms": 52
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 95
+          "ms": 134
         }
       }
     },
@@ -182,15 +182,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 104
+          "ms": 160
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 47
+          "ms": 71
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 96
+          "ms": 137
         }
       }
     }
