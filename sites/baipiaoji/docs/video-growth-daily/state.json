@@ -1,9 +1,14 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-12",
-  "stage": "initialized",
-  "lastCompletedIteration": null,
+  "updatedAt": "2026-10-12T15:33:07.991Z",
+  "stage": "measurement_export_ready_awaiting_daily_snapshot",
+  "lastCompletedIteration": {
+    "date": "2026-10-12",
+    "completedAt": "2026-10-12T15:33:07.991Z",
+    "status": "implementation_verified_daily_data_acceptance_pending",
+    "problemId": "persist-manju-signals"
+  },
   "lastWeeklyReview": null,
   "reviewTimezone": "Asia/Shanghai",
   "reviewAnchorDate": "2026-10-13",
@@ -13,30 +18,138 @@
     "status": "measurement_and_materials_preparation",
     "goal": "创作者用自己的草稿得到具体待办，并在下一次自然任务中自愿复用",
     "firstRealDistributionAt": null,
-    "measurementVersion": "legacy_unverified_for_conversion"
+    "measurementVersion": "legacy-manju-actions-v1_snapshot_pending"
   },
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "checkedOn": "2026-10-12",
+      "reviewedAt": "2026-10-12T15:33:07.991Z",
+      "sourceCommit": "88e67673ac53cf8448d0ccc395e9cd2ee0806b2a",
       "sourceCompletedAt": "2026-10-12T06:29:09.536Z",
       "status": "ok",
       "recordsIncludingSeasons": 681,
-      "note": "Content collection receipt only; not audience or revenue evidence"
+      "note": "Same existing collection receipt; rereading it is not another content update or adoption event."
+    },
+    {
+      "path": "sites/baipiaoji/data/reach.json",
+      "reviewedAt": "2026-10-12T15:33:07.991Z",
+      "sourceCommit": "88e67673ac53cf8448d0ccc395e9cd2ee0806b2a",
+      "sourceDate": "2026-10-12",
+      "sourceGeneratedAt": null,
+      "sourceTimePrecision": "date_only_in_legacy_snapshot",
+      "window": {
+        "requestedDays": 28,
+        "since": "2026-09-14",
+        "until": "2026-10-12",
+        "timezone": "UTC",
+        "includesCurrentPartialDay": true
+      },
+      "status": "legacy_snapshot_missing_manju_signals",
+      "note": "Original snapshot kept unchanged; exact API generation time cannot be reconstructed from the export log."
+    },
+    {
+      "url": "https://baipiaoji.com/api/reach?days=28",
+      "requestStartedAt": "2026-10-12T15:22:00.120174Z",
+      "sourceGeneratedAt": "2026-10-12T15:22:05.523Z",
+      "status": "ok_manju_signals_present",
+      "window": {
+        "requestedDays": 28,
+        "since": "2026-09-14",
+        "until": "2026-10-12",
+        "timezone": "UTC",
+        "includesCurrentPartialDay": true
+      },
+      "note": "One standard cached-endpoint request this iteration. Detailed counts remain in the private report; events are not users, plays or revenue."
     }
   ],
   "queue": [
-    {"id": "persist-manju-signals", "priority": "P1", "status": "pending", "evidence": "../video-marketing-kit/MEASUREMENT.md", "nextAction": "Recheck current reach-export summarise; preserve manju_signals in the existing daily snapshot with null/missing semantics"},
-    {"id": "video-measurement-semantics", "priority": "P1", "status": "pending", "evidence": "../video-marketing-kit/MEASUREMENT.md", "nextAction": "Separate tool exposure, substantive edit and report-render outcomes; preserve privacy and QA exclusions"},
-    {"id": "fixed-channel-attribution", "priority": "P1", "status": "pending", "evidence": "../video-marketing-kit/MEASUREMENT.md", "nextAction": "Register only actually used fixed campaign/source values; do not label unregistered URLs attributable"},
-    {"id": "general-tutorial-production", "priority": "P2", "status": "script_ready_not_recorded", "evidence": "../video-marketing-kit/CONTENT-KIT.md", "nextAction": "Advance the general tutorial to reproducible recorded material when a supported execution environment is available; verify motion, captions and audio"},
-    {"id": "rank-observation-discovery", "priority": "P2", "status": "repository_asset_ready", "evidence": "../video-marketing-kit/rank-report/README.md", "nextAction": "Verify a concrete reader/query need and prepare an accessible citation entry; preserve original source dates and reproducibility"}
+    {
+      "id": "persist-manju-signals",
+      "priority": "P1",
+      "status": "implemented_awaiting_scheduled_verification",
+      "evidence": "reach-snapshot-2026-10-12.md",
+      "nextAction": "After the original 2026-10-13 daily run completes, verify main data/reach.json contains manju_signals, measurement version, source_generated_at, exported_at and its UTC window; then close. Do not dispatch or recrawl for a date change.",
+      "implementationCommit": "789e0b2aa16a9e2cac42761da4de2f1ac9a52a48",
+      "pullRequest": 167
+    },
+    {
+      "id": "video-measurement-semantics",
+      "priority": "P1",
+      "status": "pending",
+      "evidence": "../video-marketing-kit/MEASUREMENT.md",
+      "nextAction": "After accepting the scheduled snapshot, implement independent tool exposure and substantive edit/report states against current main; preserve unknowns, privacy, QA and existing event meaning."
+    },
+    {
+      "id": "fixed-channel-attribution",
+      "priority": "P1",
+      "status": "pending",
+      "evidence": "../video-marketing-kit/MEASUREMENT.md",
+      "nextAction": "Wait for an actually usable authorized distribution channel before registering its fixed labels; clean tutorial links are not yet channel-attributable."
+    },
+    {
+      "id": "general-tutorial-production",
+      "priority": "P3",
+      "status": "script_ready_not_recorded",
+      "evidence": "../video-marketing-kit/CONTENT-KIT.md",
+      "nextAction": "Advance the general tutorial to reproducible recorded material when a supported execution environment is available; verify motion, captions and audio"
+    },
+    {
+      "id": "rank-observation-discovery",
+      "priority": "P3",
+      "status": "repository_asset_ready",
+      "evidence": "../video-marketing-kit/rank-report/README.md",
+      "nextAction": "Verify a concrete reader/query need and prepare an accessible citation entry; preserve original source dates and reproducibility"
+    }
   ],
   "currentBlockers": [
-    {"id": "tool-denominator", "status": "open", "description": "Existing directory view and report events do not establish a valid tool conversion denominator"},
-    {"id": "external-distribution", "status": "open", "description": "New social publishing and third-party contact are not authorized by this daily task; materials must not be counted as published or adopted"}
+    {
+      "id": "tool-denominator",
+      "status": "open",
+      "description": "Existing directory view and report events do not establish a valid tool conversion denominator"
+    },
+    {
+      "id": "external-distribution",
+      "status": "open",
+      "description": "New social publishing and third-party contact are not authorized by this daily task; materials must not be counted as published or adopted"
+    },
+    {
+      "id": "scheduled-snapshot-acceptance",
+      "status": "waiting_existing_schedule",
+      "description": "Exporter implementation and offline evidence are ready; the first real daily snapshot with manju_signals has not run.",
+      "nextCheckDate": "2026-10-13",
+      "unblockCondition": "Read the completed original daily workflow and main snapshot; retain last valid source times if delayed or failed."
+    }
   ],
-  "lastAction": null,
-  "recentActions": [],
+  "lastAction": {
+    "problemId": "persist-manju-signals",
+    "status": "implemented_and_locally_verified",
+    "implementationCommit": "789e0b2aa16a9e2cac42761da4de2f1ac9a52a48",
+    "pullRequest": 167,
+    "verification": "reach-snapshot-2026-10-12.md",
+    "review": {
+      "optimizationRounds": 3,
+      "adversarialSelfChecks": 2,
+      "independentReview": false
+    },
+    "deployment": {
+      "required": false,
+      "reason": "Only the scheduled exporter changed; push deployment does not execute it. No public page or Worker change.",
+      "lastVerifiedRun": "https://github.com/f-tiger/agi-site/actions/runs/38212381243",
+      "lastVerifiedEffectiveSource": "595f738283c7f23bc17758dfbcc06ca0b411dea6",
+      "newDailySnapshot": "pending",
+      "indexNowSubmitted": false
+    },
+    "nextAction": "After the original 2026-10-13 daily run completes, verify main data/reach.json contains manju_signals, measurement version, source_generated_at, exported_at and its UTC window; then close. Do not dispatch or recrawl for a date change."
+  },
+  "recentActions": [
+    {
+      "date": "2026-10-12",
+      "problemId": "persist-manju-signals",
+      "implementationCommit": "789e0b2aa16a9e2cac42761da4de2f1ac9a52a48",
+      "pullRequest": 167,
+      "status": "offline_verified_pending_original_daily_export",
+      "evidence": "reach-snapshot-2026-10-12.md"
+    }
+  ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file."
 }
