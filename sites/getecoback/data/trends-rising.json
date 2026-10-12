@@ -1,32 +1,32 @@
 {
- "fetched": "2026-10-11",
+ "fetched": "2026-10-12",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "rising": [
     {
      "q": "midea portasplit mobile split klimaanlage inklusive",
-     "v": 12800
+     "v": 12900
     },
     {
      "q": "bgh urteil klimaanlage",
-     "v": 7150
+     "v": 5100
     },
     {
      "q": "constantin schreiber axel springer",
-     "v": 3700
+     "v": 3550
     },
     {
      "q": "tabaksteuer",
-     "v": 1000
-    },
-    {
-     "q": "tronic klimaanlage 9000 btu",
-     "v": 600
+     "v": 2800
     },
     {
      "q": "totsoo klimaanlage",
-     "v": 400
+     "v": 550
+    },
+    {
+     "q": "tronic klimaanlage 9000 btu",
+     "v": 350
     },
     {
      "q": "haier klimaanlage",
@@ -37,8 +37,8 @@
      "v": 200
     },
     {
-     "q": "bodenkonsole klimaanlage",
-     "v": 200
+     "q": "daikin multisplit klimaanlage 2 innengeräte",
+     "v": 170
     },
     {
      "q": "heizen mit klimaanlage",
@@ -46,25 +46,55 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-11",
+   "fetched": "2026-10-12",
    "polluted": false
   },
   "schimmel entfernen": {
-   "auto": [
-    "schimmel entfernen",
-    "schimmel entfernen wand",
-    "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
-    "schimmel entfernen bad fugen",
-    "schimmel entfernen wand innen",
-    "schimmel entfernen dm",
-    "schimmel entfernen tapete",
-    "schimmel entfernen alkohol",
-    "schimmel entfernen spray"
+   "rising": [
+    {
+     "q": "schimmel aus holz entfernen",
+     "v": 62550
+    },
+    {
+     "q": "silikonfuge schimmel entfernen",
+     "v": 150
+    },
+    {
+     "q": "schimmel kleidung entfernen",
+     "v": 140
+    },
+    {
+     "q": "schwarzen schimmel entfernen",
+     "v": 130
+    },
+    {
+     "q": "schimmel in der dusche entfernen",
+     "v": 100
+    },
+    {
+     "q": "schimmel dusche entfernen",
+     "v": 90
+    },
+    {
+     "q": "schimmel aus fugen entfernen",
+     "v": 90
+    },
+    {
+     "q": "schimmel in dusche entfernen",
+     "v": 80
+    },
+    {
+     "q": "silikon entfernen",
+     "v": 60
+    },
+    {
+     "q": "schimmel silikon entfernen",
+     "v": 50
+    }
    ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-04"
+   "source": "related-queries",
+   "fetched": "2026-10-12",
+   "polluted": false
   },
   "infrarotheizung": {
    "rising": [
