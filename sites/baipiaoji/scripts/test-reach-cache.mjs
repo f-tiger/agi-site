@@ -115,21 +115,23 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   sql.exec('CREATE TABLE hits (d TEXT, path TEXT, lang TEXT, country TEXT, ref TEXT, ev TEXT)');
   sql.exec('CREATE TABLE free_accounts (id TEXT PRIMARY KEY,created INTEGER,qa INTEGER); CREATE TABLE free_account_identities (account_id TEXT PRIMARY KEY,email_verified INTEGER)');
   sql.prepare('INSERT INTO hits VALUES (?,?,?,?,?,?)').run(new Date().toISOString().slice(0, 10), '/tools/grok', 'en', 'US', 'www.google.com', '');
-  let reads = 0;
+  let reads = 0, accountReads = 0;
   const HITS = { prepare(q) { let a = []; const st = { bind(...v) { a = v; return st; },
-    async all() { if (/\bFROM hits\b/.test(q)) reads++; return { results: sql.prepare(q).all(...a) }; },
-    async first() { return sql.prepare(q).get(...a) ?? null; }, async run() { return sql.prepare(q).run(...a); } }; return st; } };
+    async all() { if (/\bFROM hits\b/.test(q)) reads++; if (/\bFROM free_accounts\b/.test(q)) accountReads++; return { results: sql.prepare(q).all(...a) }; },
+    async first() { if (/\bFROM free_accounts\b/.test(q)) accountReads++; return sql.prepare(q).get(...a) ?? null; }, async run() { return sql.prepare(q).run(...a); } }; return st; } };
   const call = () => onRequestGet({ request: new Request('https://baipiaoji.com/api/reach?days=7'), env: { HITS }, waitUntil: () => {} });
   const waits = [];
   const first = await onRequestGet({ request: new Request('https://baipiaoji.com/api/reach?days=7'), env: { HITS }, waitUntil: (p) => waits.push(p) });
   await Promise.all(waits);
-  const afterFirst = reads;
+  const afterFirst = reads, accountsAfterFirst = accountReads;
   const second = await call();
   ok(first.status === 200 && afterFirst >= 7, `第一次请求读 D1（${afterFirst} 条 hits 查询）`);
   ok(second.headers.get('x-bpj-reach-cache') === 'hit' && reads === afterFirst, '第二次请求一条 hits 查询都不发');
+  ok(accountsAfterFirst === 2 && accountReads === accountsAfterFirst, '账户总量和UTC日明细一起缓存，命中不重读账户表');
   const j = await second.json();
   ok(j.ok === true && j.window_days === 7 && j.humans_referred === 1 && Array.isArray(j.paths), '缓存里的是完整的 reach 响应');
   ok(j.conversion_stages.ok && j.conversion_stages.accounts.created === 0, '注册空表是已知零，完整分层统计一起命中缓存');
+  ok(j.conversion_stages.account_scope === 'fleet_shared_account_pool' && j.conversion_stages.accounts_daily.length === 7 && j.conversion_stages.accounts_daily.every(row=>row.created===0), '共享账户池UTC日明细仅成功读取才补零');
   ok(j.homepage_signals.ok && j.homepage_signals.clicks===0,'首页空表是已知零且一起命中缓存');
   // 商业触发那条查询失败（额度边缘时实见）→ 响应标 partial，不进缓存，下一次重算。
   cache.store.clear();
@@ -145,6 +147,11 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   const homeJSON=await homeResponse.json();
   ok(homeJSON.partial && homeJSON.homepage_signals.clicks===null,'首页明细缺失标记 partial 而不是零');
   ok(homeResponse.headers.get('x-bpj-reach-cache')==='bypass','缺失首页明细不缓存');
+  const dailyFailure={prepare(q){if(q.includes("SELECT date(a.created, 'unixepoch')"))return{bind(){return this;},async all(){throw Error('daily account read unavailable');}};return HITS.prepare(q);}};
+  const dailyResponse=await onRequestGet({request:new Request('https://baipiaoji.com/api/reach?days=7'),env:{HITS:dailyFailure}});
+  const dailyJSON=await dailyResponse.json();
+  ok(dailyJSON.partial && dailyJSON.conversion_stages.accounts.total_non_test===0 && dailyJSON.conversion_stages.accounts_daily===null,'账户日明细失败保留可读取总数，但日明细是未知');
+  ok(dailyResponse.headers.get('x-bpj-reach-cache')==='bypass','缺失账户日明细不能缓存或补零');
   sql.exec('DROP TABLE free_accounts');
   const accountFailure = await call();
   const failedStage = await accountFailure.json();

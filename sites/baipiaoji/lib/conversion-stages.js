@@ -12,6 +12,12 @@ export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
  COALESCE(SUM(CASE WHEN a.created >= ? AND a.created < ? AND i.email_verified = 1 THEN 1 ELSE 0 END),0) email_verified
  FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id = a.id
  WHERE a.qa = 0`;
+export const STAGE_ACCOUNTS_DAILY_SQL = `SELECT date(a.created, 'unixepoch') date,
+ count(*) created,
+ COALESCE(SUM(CASE WHEN i.email_verified = 1 THEN 1 ELSE 0 END),0) new_accounts_currently_email_verified
+ FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id = a.id
+ WHERE a.qa = 0 AND a.created >= ? AND a.created < ?
+ GROUP BY date(a.created, 'unixepoch') ORDER BY date`;
 
 export function stageCounts(rows) {
   const counts = { tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
@@ -56,19 +62,28 @@ export async function readConversionStages(db, days, clock = Date.now()) {
   const endSeconds = Date.parse(end + 'T00:00:00Z') / 1000;
   const startSeconds = endSeconds - days * 86400;
   const start = new Date(startSeconds * 1000).toISOString().slice(0,10);
-  const [events, accounts] = await Promise.allSettled([
+  const [events, accounts, accountDays] = await Promise.allSettled([
     db.prepare(STAGE_EVENTS_SQL).bind(start,end).all(),
     db.prepare(STAGE_ACCOUNTS_SQL).bind(startSeconds,endSeconds,startSeconds,endSeconds).first(),
+    db.prepare(STAGE_ACCOUNTS_DAILY_SQL).bind(startSeconds,endSeconds).all(),
   ]);
   const eventsOK = events.status === 'fulfilled';
   const accountsOK = accounts.status === 'fulfilled' && accounts.value != null;
+  const accountDaysOK = accountDays.status === 'fulfilled';
+  const byDate = new Map(accountDaysOK ? (accountDays.value.results || []).map(row => [row.date, row]) : []);
   return {
-    ok: eventsOK && accountsOK,
+    ok: eventsOK && accountsOK && accountDaysOK,
     window: { start, end_exclusive: end, complete_days: days, date_basis: 'UTC' },
     events: eventsOK ? stageCounts(events.value.results || []) : null,
     accounts: accountsOK ? { created: Number(accounts.value.created), new_accounts_currently_email_verified: Number(accounts.value.email_verified),
       total_non_test: Number(accounts.value.total_non_test), total_currently_email_verified: Number(accounts.value.total_email_verified) } : null,
-    missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : [])],
+    accounts_daily: accountDaysOK ? Array.from({length: days}, (_, index) => {
+      const date = new Date((startSeconds + index * 86400) * 1000).toISOString().slice(0,10);
+      const row = byDate.get(date);
+      return {date, created: Number(row?.created || 0), new_accounts_currently_email_verified: Number(row?.new_accounts_currently_email_verified || 0)};
+    }) : null,
+    account_scope: 'fleet_shared_account_pool',
+    missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
@@ -77,6 +92,8 @@ export async function readConversionStages(db, days, clock = Date.now()) {
       video_exports: 'Successful video or batch export actions; one batch is one action, not a clip count or unique user.',
       accounts: 'Surviving server-side accounts created within this UTC window with qa=0. Verified is their current email-ownership state, not a verification event during this window. Deleted accounts are absent; accounts are not unique humans.',
       account_totals: 'Current surviving accounts with qa=0, across all creation dates including today. Counts include unverified and legacy accounts; they do not prove distinct humans. Current mailbox-verified total is reported separately. Never add subscriber or paid-membership records to this count.',
+      account_scope: 'The fleet shared free-account pool hosted by BPJ, not BPJ-origin registrations. No source site or external-person attribution is stored in this aggregate. Separate AGI native registrations are not included; never sum the shared pool with per-site sessions as users.',
+      accounts_daily: 'Daily created counts use each surviving non-test account creation timestamp and complete UTC dates. Zero-filled only after a successful read. Deleted accounts are absent, so this is not a permanent historical signup ledger. new_accounts_currently_email_verified describes the current verification state of each creation-day cohort, not verifications performed on that day; past cohorts can change after later verification or deletion. The current partial UTC day is excluded.',
       account_tool_entries: 'Public tool-to-account link actions within the complete-day window. Repeated actions count again; they are not successful signups and have no person-level attribution.',
       coding_access: 'Fixed coding-access actions in the same complete UTC-day window. Selection copies mean the browser reported successful clipboard writing; generic checklist copies are separate. Repeated actions count again; neither action counts nor their ratios prove people, retained users, installs, purchases or revenue. No query or checklist content is collected.',
       attribution: 'Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.',

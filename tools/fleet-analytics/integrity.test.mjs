@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {campaignFields,validatedCampaign} from './campaign.mjs';
-import {businessEvent} from './business.mjs';
+import {businessEvent,publicAccountEntryPath} from './business.mjs';
 import {affiliateAction,legacyEvent} from './legacy.mjs';
 import {analyticsResponse,isAnalyticsPath} from './edge.mjs';
 
@@ -25,25 +25,49 @@ test('One merchant click classification, no raw URLs, arbitrary merchants or pur
  assert.equal(legacyEvent('preview.invalid','/','seal_fit'),null);
 });
 const consentSource=fs.readFileSync(new URL('./consent.mjs',import.meta.url),'utf8').replace(/^const \{[^}]+\} = await import\([^\n]+\);\n/gm,'');
+const registry=JSON.parse(fs.readFileSync(new URL('./registry.json',import.meta.url),'utf8'));
+const allowed=Object.fromEntries(Object.values(registry).flatMap(site=>site.hosts.map(host=>[host,site.id])));
 function fixture({choice='',query='',privacy={},host='getecoback.com',path='/',title='Public title'}={}) {
  const listeners={},clicks=[],elements=[],posts=[],cookies=[],store=new Map(choice?[['fleet_ga4_choice_v1',choice]]:[]);
  const on=(name,fn)=>{(listeners[name]??=[]).push(fn);};
  const element=tag=>{const e={tag,dataset:{},children:[],hidden:false,append(...v){this.children.push(...v);},setAttribute(){},addEventListener(n,f){this[n]=f;},querySelector(){return this.children.find(x=>x.tag==='button');},focus(){},remove(){this.removed=true;}};if(tag==='iframe')e.contentWindow={postMessage:(d,origin)=>posts.push({d,origin})};elements.push(e);return e;};
- const script={dataset:{ga4Id:'G-E2V0Q9SJ9V',ga4Host:host,ga4Page:'https://'+host+path,ga4Title:title},src:'https://'+host+'/analytics-assets/consent.mjs?v=test'};
+ const script={dataset:{ga4Id:allowed[host]||'G-E2V0Q9SJ9V',ga4Host:host,ga4Page:'https://'+host+path,ga4Title:title},src:'https://'+host+'/analytics-assets/consent.mjs?v=test'};
  const document={documentElement:{lang:'en'},referrer:'https://www.google.com/search?q=SECRET',body:element('body'),getElementById:()=>null,querySelector:s=>s.startsWith('script[')?script:null,createElement:element,addEventListener:(n,f)=>{if(n==='click')clicks.push(f);}};
  Object.defineProperty(document,'cookie',{get:()=>'_ga=old; fleet_'+host.replaceAll('.','_')+'_ga=new; unrelated=keep',set:v=>cookies.push(v)});
  const window={addEventListener:on,dataLayer:[]};window.self=window;window.top=window;
  window.gtag=function(){window.dataLayer.push(arguments);};
  const firstParty=[];const original=window.gtag;window.gtag=function(){firstParty.push(Array.from(arguments));original(...arguments);};
- const context={window,document,location:new URL('https://'+host+path+query),navigator:privacy,localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},URL,URLSearchParams,Date,Set,campaignFields,businessEvent,affiliateAction,legacyEvent};
+ const context={window,document,location:new URL('https://'+host+path+query),navigator:privacy,localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},URL,URLSearchParams,Date,Set,campaignFields,businessEvent,publicAccountEntryPath,allowed,affiliateAction,legacyEvent};
  vm.runInNewContext(consentSource.replaceAll('new URL(import.meta.url).search',"'?v=test'"),context);
  const frame=()=>elements.filter(e=>e.tag==='iframe'&&!e.removed).at(-1);
  const emit=(n,e)=>{for(const f of listeners[n]||[])f(e);};
  const click=value=>elements.find(e=>e.dataset.analyticsChoice===value)?.click();
  const handshake=()=>{const f=frame();emit('message',{source:f.contentWindow,origin:'https://'+host,data:{type:'fleet-ga4-ready'}});emit('message',{source:f.contentWindow,origin:'https://'+host,data:{type:'fleet-ga4-started'}});};
  const affiliateClick=()=>{const a={href:'https://www.amazon.de/s?k=SECRET&tag=getecoback-21',closest:s=>s==='#eb-herbst'?a:null};for(const f of clicks)f({isTrusted:true,target:{closest:()=>a}});window.gtag('event','affiliate_click',{source:'home-herbst',link_url:a.href});window.gtag('event','affiliate_click',{link_url:a.href});};
- return {window,posts,cookies,store,frame,click,handshake,affiliateClick,firstParty,emit,elements};
+ const accountClick=({native=false,marked=true,trusted=true,href='https://'+host+'/auth/account?next=SECRET_NEXT&lang=en#SECRET_HASH'}={})=>{
+  const a={href,matches:s=>marked&&native&&s==='[data-fleet-account-entry]',closest:s=>marked&&!native&&s==='.fleet-account-entry'?{}:null};
+  for(const f of clicks)f({isTrusted:trusted,target:{closest:()=>a}});
+ };
+ return {window,posts,cookies,store,frame,click,handshake,affiliateClick,accountClick,firstParty,emit,elements};
 }
+test('Shared and native account links emit one fixed entry action per trusted click without context',()=>{
+ const f=fixture({host:'agiscorecard.com',query:'?private=SECRET_QUERY'});f.handshake();
+ f.accountClick();f.accountClick({native:true});
+ f.accountClick({trusted:false});f.accountClick({marked:false});
+ f.accountClick({href:'https://other.example/auth/account'});f.accountClick({href:'https://agiscorecard.com/auth/google'});
+ const hits=f.posts.filter(x=>x.d.type==='fleet-ga4-business');
+ assert.equal(hits.length,2);assert(hits.every(x=>Object.keys(x.d.detail).join(',')==='name'&&x.d.detail.name==='fleet_account_entry'));
+ assert(!JSON.stringify(f.posts).includes('SECRET'));
+ f.click('denied');const n=f.posts.length;f.accountClick();assert.equal(f.posts.length,n);
+});
+test('Account entry stays excluded for BPJ existing tracking, unknown hosts, private routes and privacy signals',()=>{
+ for(const config of [{host:'baipiaoji.com'},{host:'preview.example'},{path:'/auth/account'},{path:'/en/account.html'},{path:'/api/private'},{path:'/studio/quote-builder'}]) {
+  const f=fixture(config);f.handshake();f.accountClick();assert.equal(f.posts.filter(x=>x.d.type==='fleet-ga4-business').length,0);
+ }
+ for(const config of [{choice:'denied'},{privacy:{doNotTrack:'1'}},{privacy:{globalPrivacyControl:true}},{privacy:{webdriver:true}},{query:'?__qa=1'}]) {
+  const f=fixture(config);f.accountClick();assert.equal(f.posts.length,0);assert.equal(f.frame(),undefined);
+ }
+});
 test('Consent runtime keeps D1 callbacks while exactly one GA affiliate action crosses the frame',()=>{
  const f=fixture({choice:'denied',query:'?utm_source=youtube&utm_medium=organic_video&utm_campaign=bpj-ai-service-01&private=SECRET'});
  f.affiliateClick();assert.equal(f.posts.length,0);assert.equal(f.firstParty.length,2);

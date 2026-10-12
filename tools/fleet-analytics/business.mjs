@@ -20,8 +20,23 @@ const documents = {
   'ai-audio-to-text': ['doc_ai_speech_complete','doc_ai_speech_sample','doc_ai_speech_export'],
   'ai-text-summarizer': ['doc_ai_summary_complete','doc_ai_summary_sample','doc_ai_summary_export']
 };
-export function businessEvent(host, pathname, detail) {
+// Registration intent is allowed only on a registered public page. Reject URL
+// context and encoded private routes; no origin path or identity enters fields.
+export function publicAccountEntryPath(pathname) {
+  if (typeof pathname !== 'string' || !pathname.startsWith('/') || /[?#\\\u0000-\u0020\u007f]/.test(pathname)) return false;
+  let path;
+  try { path = decodeURIComponent(pathname); } catch { return false; }
+  if (/[?#\\\u0000-\u0020\u007f]/.test(path) || /%[0-9a-f]{2}/i.test(path) || path.includes('//')) return false;
+  if (path.split('/').some(part => /^(?:auth|api|analytics-assets|\.well-known|account|accounts|member|members|private|share|shared|delivery|download|downloads|packs-thanks|checkout|payment|receipt|embed|widget|widgets)(?:[.~-]|$)/i.test(part) || /^__(?:ci|qa|probe)/i.test(part) || part === '.' || part === '..')) return false;
+  return !/^\/(?:[a-z]{2}\/)?(?:discuss\/moderate|studio\/quote-builder)(?:[/.]|$)/i.test(path);
+}
+export function businessEvent(host, pathname, detail, allowed = {}) {
   if (!detail || typeof detail !== 'object' || Object.keys(detail).some(k => k !== 'name') || typeof detail.name !== 'string') return null;
+  if (detail.name === 'fleet_account_entry') {
+    // BPJ keeps its existing tool account_entry and homepage entry definitions.
+    if (host === 'baipiaoji.com' || !Object.hasOwn(allowed, host) || !/^G-[A-Z0-9]+$/.test(allowed[host]) || !publicAccountEntryPath(pathname)) return null;
+    return {name: 'fleet_account_entry', tool_id: 'fleet-free-account', repeat: true};
+  }
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;

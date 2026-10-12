@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+import {runInNewContext} from 'node:vm';
 import {DatabaseSync} from 'node:sqlite';
 import {hubRoute} from './hub.mjs';
-import {accountRoute,withFleetAccount} from './edge.mjs';
-import {HOSTS,HUB,TOKEN,SESSION_COOKIE,FLOW_COOKIE,random,digest,now} from './config.mjs';
+import {accountRoute,withFleetAccount,accountPageCopy} from './edge.mjs';
+import {HOSTS,HUB,TOKEN,SESSION_COOKIE,FLOW_COOKIE,random,digest,now,ACCOUNT_LOCALES,accountLocale,publicReturnPath,accountEntryURL,b64} from './config.mjs';
 import {ensureAccounts,issueSession} from '../../sites/baipiaoji/lib/free-account.js';
 function database(){const sql=new DatabaseSync(':memory:');let queue=Promise.resolve();const HITS={prepare(query){let args=[];const q={bind(...values){args=values;return q},run(){return sql.prepare(query).run(...args)},async first(){return sql.prepare(query).get(...args)||null},async all(){return {results:sql.prepare(query).all(...args)}}};return q},batch(qs){const task=queue.then(()=>{sql.exec('BEGIN');try{const out=qs.map(q=>q.run());sql.exec('COMMIT');return out;}catch(e){sql.exec('ROLLBACK');throw e;}});queue=task.catch(()=>{});return task}};return {env:{HITS},sql};}
 const host='agiscorecard.com';
@@ -42,13 +43,13 @@ test('edge callback has browser state binding, real hub exchange, clean redirect
  const ar=await hubRoute(req('authorize',{challenge:target.searchParams.get('challenge'),state:target.searchParams.get('state'),confirmed:true,account_id:'fixture'},c.headers),c.env);const callback=(await ar.json()).redirect;
  assert.equal((await accountRoute(new Request(callback),{},service)).status,400);
  assert.equal((await accountRoute(new Request(callback.replace('state=','state=wrong'),{headers:{Cookie:flow}}),{},service)).status,400);
- const response=await accountRoute(new Request(callback,{headers:{Cookie:flow}}),{},service);assert.equal(response.status,303);assert.equal(response.headers.get('Location'),'/auth/account');const session=response.headers.getSetCookie().find(s=>s.startsWith(SESSION_COOKIE+'=')).split(';')[0];
+ const response=await accountRoute(new Request(callback,{headers:{Cookie:flow}}),{},service);assert.equal(response.status,303);assert.equal(response.headers.get('Location'),'/auth/account?next=%2F&lang=en');const session=response.headers.getSetCookie().find(s=>s.startsWith(SESSION_COOKIE+'=')).split(';')[0];
  const page=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:session}}),{},service);assert.equal(page.status,200);const html=await page.text();assert(html.includes('FixtureUser'));assert(!html.includes('googletagmanager'));assert.match(page.headers.get('Cache-Control'),/no-store/);assert.match(page.headers.get('X-Robots-Tag'),/noindex/);
  const status=await accountRoute(new Request('https://'+host+'/auth/status',{headers:{Cookie:session}}),{},service);
  assert.deepEqual(await status.json(),{ok:true,user:{username:'FixtureUser'}});assert.match(status.headers.get('Cache-Control'),/no-store/);
  assert.equal((await accountRoute(new Request('https://'+host+'/auth/logout',{method:'POST',headers:{Cookie:session,Origin:'https://evil.example'}}),{},service)).status,403);
  assert.equal((await accountRoute(new Request('https://'+host+'/auth/logout',{method:'POST',headers:{Cookie:session,Origin:'https://'+host}}),{},service)).status,200);
- const anonymous=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:session}}),{},service);assert((await anonymous.text()).includes('Continue with Google'));
+ const anonymous=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:session}}),{},service);assert((await anonymous.text()).includes('Continue to your free account'));
  assert.deepEqual(await(await accountRoute(new Request('https://'+host+'/auth/status',{headers:{Cookie:session}}),{},service)).json(),{ok:true,user:null});
  const unavailable=await accountRoute(new Request('https://'+host+'/auth/account',{headers:{Cookie:SESSION_COOKIE+'='+random()}}),{},async()=>{throw Error('offline')});assert.equal(unavailable.status,503);
 });
@@ -62,6 +63,50 @@ test('anonymous header status needs no database; redirects and outages never imp
 });
 test('wrapper preserves other handlers and ordinary responses',async()=>{
  const scheduled=()=>42;const wrapped=withFleetAccount({scheduled,fetch:async()=>new Response('original')});assert.equal(wrapped.scheduled(),42);assert.equal(await(await wrapped.fetch(new Request('https://'+host+'/api/original'),{},{})).text(),'original');assert.equal(await accountRoute(new Request('https://unknown.example/auth/account')),null);
+});
+
+test('return context accepts public pathnames and rejects private, external and ambiguous targets',()=>{
+ for(const path of ['/','/zh/jarvis','/de/guide/room.html','/tools/compare-models'])assert.equal(publicReturnPath(path),path);
+ for(const path of ['https://evil.example/x','//evil.example/x','/\\evil.example','/public?input=private','/public#result','/%2fauth','/%2561uth/account','/%61uth/account','/a/../public','/a/./public','/auth/account','/en/accounts/profile','/fr/member.html','/api/jarvis','/share/secret','/delivery/key','/download/export','/studio/quote-builder','/zh/discuss/moderate','/checkout/order','/go/affiliate','/out/item','/logout','/admin','/__qa/check','/'+'a'.repeat(513)])assert.equal(publicReturnPath(path),null,path);
+ assert.equal(accountLocale('ZH-cn'),'zh');assert.equal(accountLocale('unsupported'),'en');
+ assert.equal(accountEntryURL('/tool?input=private','de'),'/auth/account?next=%2F&lang=de');
+});
+
+test('seven-language pages keep provider choices honest and original context only in the host-only flow',async()=>{
+ for(const lang of ACCOUNT_LOCALES){
+  const context=accountEntryURL('/tools/example',lang),page=await accountRoute(new Request('https://getecoback.com'+context)),html=await page.text();
+  assert(html.includes(`<html lang="${lang}">`));assert(html.includes(accountPageCopy[lang].provider));assert(html.includes(accountPageCopy[lang].form));assert(html.includes('href="/tools/example"'));assert(!html.includes('data-fleet-app'));assert(!html.includes('googletagmanager'));assert.match(page.headers.get('Cache-Control'),/no-store/);
+  const head=await accountRoute(new Request('https://getecoback.com'+context,{method:'HEAD'}));assert.equal(await head.text(),'');
+  const start=await accountRoute(new Request('https://getecoback.com'+context.replace('/auth/account?','/auth/google?'))),target=new URL(start.headers.get('Location'));
+  assert.equal(target.pathname,lang==='zh'?'/account':'/en/account');assert.equal(target.searchParams.get('lang'),lang);assert(!target.searchParams.has('next'));assert(!target.href.includes('example'));assert.deepEqual([...target.searchParams.keys()].sort(),['challenge','fleet','lang','state']);
+  const encoded=start.headers.get('set-cookie').split(';')[0].split('.').at(-1),decoded=JSON.parse(Buffer.from(encoded,'base64url').toString());assert.deepEqual(decoded,['/tools/example',lang]);
+ }
+ const page=await accountRoute(new Request('https://getecoback.com/auth/account?next=%2Fone&next=%2Ftwo&lang=zh&lang=de'));const html=await page.text();assert(html.includes('<html lang="en">'));assert(html.includes('data-fleet-return href="/"'));
+});
+
+test('callback uses bound context, keeps the AGI bridge step and supports old in-flight cookies',async()=>{
+ for(const h of ['agiscorecard.com','getecoback.com']){
+  const start=await accountRoute(new Request('https://'+h+'/auth/google?next=%2Fzh%2Fjarvis&lang=zh')),target=new URL(start.headers.get('Location')),flow=start.headers.get('set-cookie').split(';')[0];let exchanges=0;
+  const service=async(input,options)=>{exchanges++;const body=JSON.parse(options.body);assert.equal(body.action,'exchange');assert.equal(body.host,h);return Response.json({ok:true,token:random()});};
+  const callback='https://'+h+'/auth/callback?state='+target.searchParams.get('state')+'&code='+random()+'&next=https%3A%2F%2Fevil.example&lang=fr';
+  const r=await accountRoute(new Request(callback,{headers:{Cookie:flow}}),{},service);assert.equal(r.status,303);assert.equal(r.headers.get('Location'),h==='agiscorecard.com'?'/auth/account?next=%2Fzh%2Fjarvis&lang=zh':'/zh/jarvis');assert.equal(exchanges,1);
+  const badFlow=flow.split('.').slice(0,2).join('.')+'.'+b64(new TextEncoder().encode(JSON.stringify(['//evil.example','zh'])));const bad=await accountRoute(new Request(callback,{headers:{Cookie:badFlow}}),{},service);assert.equal(bad.status,400);assert.equal(exchanges,1);
+  const duplicate=await accountRoute(new Request(callback,{headers:{Cookie:flow+'; '+flow}}),{},service);assert.equal(duplicate.status,400);assert.equal(exchanges,1);
+  const legacy=await accountRoute(new Request(callback,{headers:{Cookie:flow.split('.').slice(0,2).join('.')}}),{},service);assert.equal(legacy.status,303);assert.equal(legacy.headers.get('Location'),h==='agiscorecard.com'?'/auth/account?next=%2F&lang=en':'/');
+ }
+ const session={Cookie:SESSION_COOKIE+'='+random()},service=async()=>Response.json({ok:true,user:{username:'Synthetic',email:'synthetic@example.test'}});
+ const signed=await accountRoute(new Request('https://agiscorecard.com/auth/account?next=%2Fjarvis&lang=en',{headers:session}),{},service),html=await signed.text();assert.equal((html.match(/data-fleet-return data-fleet-app/g)||[]).length,2,'Both signed-in return links activate the explicit AGI bridge');
+ const guest=await accountRoute(new Request('https://agiscorecard.com/auth/account?next=%2Fjarvis&lang=en'));assert(!(await guest.text()).includes('data-fleet-app'));
+});
+
+test('explicit AGI continuation preserves existing keys and fails closed if session storage is unavailable',async()=>{
+ const script=await(await accountRoute(new Request('https://agiscorecard.com/auth/fleet.js'))).text(),key='workbench-member-key:agi',handoff='agi-jarvis-registration-v1';
+ for(const existing of ['', 'a'.repeat(64),'fleet']){
+  const data=new Map([[handoff,'original guest handoff']]);if(existing)data.set(key,existing);const link={},note={dataset:{storageError:'storage unavailable'}},localData=new Map([['agi-jarvis-key-v1','original guest key']]);
+  runInNewContext(script,{document:{getElementById:id=>id==='fleet-status'?note:null,querySelectorAll:()=>[link]},sessionStorage:{getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,v)},localStorage:{getItem:k=>localData.get(k),setItem:(k,v)=>localData.set(k,v)}});
+  assert.equal(data.get(key)||'',existing,'Loading a success page cannot select or replace a workspace');let prevented=false;link.onclick({preventDefault(){prevented=true;}});assert.equal(prevented,false);assert.equal(data.get(key),existing||'fleet');assert.equal(data.get(handoff),'original guest handoff');assert.equal(localData.get('agi-jarvis-key-v1'),'original guest key');
+ }
+ const link={},note={dataset:{storageError:'storage unavailable'}};runInNewContext(script,{document:{getElementById:id=>id==='fleet-status'?note:null,querySelectorAll:()=>[link]},sessionStorage:{getItem(){throw Error('storage blocked');}}});let prevented=false;link.onclick({preventDefault(){prevented=true;}});assert(prevented);assert.equal(note.textContent,'storage unavailable');
 });
 
 test('AGI native bridge requires real session and preserves free ownership and suspension',async()=>{

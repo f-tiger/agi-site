@@ -1,6 +1,21 @@
 # Fleet Google registration
 
-All canonical production hosts in `config.mjs` use the existing BPJ free account service. Each site exposes `/auth/account`, starts at `/auth/google`, and returns via `/auth/callback`. The BPJ account page offers Google registration and existing email login. Google GIS only executes on `https://baipiaoji.com`; this is the only Google JavaScript origin required by this architecture. Google Cloud configuration and a real owner sign-in still require verification outside synthetic tests.
+All canonical production hosts in `config.mjs` use the existing BPJ free account service: 38 return hosts plus the BPJ hub, 39 domains altogether. Each site exposes `/auth/account`, starts at `/auth/google`, and returns via `/auth/callback`. The BPJ account page offers email/password registration and Google when available. New Google users still choose a display name and backup password; this is not a one-click signup. Google GIS only executes on `https://baipiaoji.com`; this is the only Google JavaScript origin required by this architecture. Google Cloud configuration and a real owner sign-in still require verification outside synthetic tests.
+
+The public account entry carries only a validated public `next` pathname and a
+supported `lang`. It opens a separate tab to preserve the original tool. Query
+strings, fragments and private routes are never part of this context. The flow
+cookie binds the return path; the hub never receives it. Chinese flows use
+`/account`, others `/en/account`, with an explicit English-form notice. Ordinary
+sites return to the validated page. AGI uses a completion page and an explicit
+app action to select its native bridge without overwriting an existing workspace
+key. Jarvis's own task-registration link stays in its original tab so its bounded
+guest handoff receipt remains private in sessionStorage.
+
+The hub presents the verified source site's name and brings the explicit return
+button into view after sign-in or recovery-code acknowledgement. It never grants
+authorization automatically. Shared sign-in alone does not add result storage to
+each tool; see `docs/fleet-registration-2026-10-12.md` for the audited benefits.
 
 AGI additionally maps an authenticated fleet session to a stable free AGI identity for Jarvis and discussion-profile registration. Its server-only HMAC capability never reaches the browser; every request revalidates the fleet session. Existing paid workspace keys and discussion profiles are not automatically merged. It grants no paid entitlement. Existing BPJ accounts and Google identity validation are reused unchanged. Existing public tools stay accessible without a new gate. No 30-day trial is enabled.
 
@@ -13,7 +28,9 @@ Identity and session tables stay in BPJ's existing private D1 database. Other wo
 Tests:
 - `node tools/fleet-account/test.mjs`: real SQLite security and lifecycle tests.
 - `node tools/fleet-account/browser-test.mjs`: generated BPJ page, guest/owner confirmation, local SQLite exchange, mobile fit and logout. HTTP redirect boundaries are stepped offline so the fixture never contacts production; actual 303 contracts are covered separately. This is not proof of real Google consent.
-- `node tools/fleet-account/verify-live.mjs SITE`: per-host read-only deployed routing, entry and privacy checks.
+- `node tools/fleet-account/verify-live.mjs SITE`: per-host GET-only deployed entry, status and private-page checks. Does not start OAuth or exercise registration/callbacks.
+- `node sites/baipiaoji/scripts/test-account-fleet-handoff-browser.mjs`: locally intercepted hub source, language, recovery and explicit-return cases.
+- `node tools/fleet-analytics/account-entry-browser-test.mjs`: locally intercepted public entry measurement and privacy exclusions; no real GA4 request.
 - BPJ's existing disposable `qa=1` live-account test now checks real D1 code exchange, replay rejection, host isolation and logout before deleting the account.
 
 SunWatch lives in a separate repository. Its `src/fleet-account/{edge,config}.mjs` is an explicit source copy; synchronize it whenever the protocol changes. The hub allowlist includes its canonical `invest.agiscorecard.com` hostname. Legacy workers.dev links remain unchanged.

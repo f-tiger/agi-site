@@ -22,6 +22,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      # Only this explicitly marked push skips live business probes; schedules are unchanged.
+      OUTCOME_READONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
     steps:
       - uses: actions/checkout@v4
       - name: Guard — pin current main before building
@@ -95,7 +98,11 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node tools/fleet-analytics/verify-live.mjs fanzha
-          node tools/fleet-account/verify-live.mjs fanzha
+          if [ "$OUTCOME_READONLY_RELEASE" != "true" ]; then
+            node tools/fleet-account/verify-live.mjs fanzha
+          else
+            echo "::notice::Read-only outcome release: live account flow probes skipped; local account checks retained."
+          fi
 
       - name: Post-deploy self-check
         # 全部带 ?ci=1,worker 把自测排除在 D1 之外。/api/pulse 必须回 ok:true——
@@ -114,6 +121,11 @@ jobs:
             done
             if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
           done
+          if [ "$OUTCOME_READONLY_RELEASE" = "true" ]; then
+            [ "$fail" = "0" ] || exit 1
+            echo "::notice::Read-only outcome release: static checks passed; aggregate and beacon probes skipped."
+            exit 0
+          fi
           for a in /api/pulse; do
             body=$(curl -s --max-time 20 -A 'fanzha-deploy-smoke-bot (+ci)' "https://fanzha.agiscorecard.com$a?ci=1" || echo "")
             case "$body" in

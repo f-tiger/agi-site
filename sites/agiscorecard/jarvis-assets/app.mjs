@@ -149,7 +149,9 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeou
 $('#workspace').addEventListener('click',e=>{if(!permitted()){e.preventDefault();e.stopImmediatePropagation();}},true);
 async function openBrowser(initial=false){lock('',initial);try{sessionStorage.removeItem(MEMBER_KEY);}catch{}let token=storageGet(KEY);if(!/^[a-f0-9]{64}$/.test(token||'')){token=uid(32);if(!storageSet(KEY,token))return fail(Error('storage_unavailable'));}credential=token;await refresh();}
 $('#continue-free').onclick=()=>openBrowser();
-const googleEntry=el('a',t('Register / sign in with Google','使用 Google 注册 / 登录'));googleEntry.href='/auth/account';googleEntry.onclick=registerHere;$('#member-gate').prepend(googleEntry);
+// The explicit task handoff stays in this tab: its bounded capability receipt
+// is kept in sessionStorage and must never be copied into a URL or another tab.
+const googleEntry=el('a',t('Use a free account with email or Google','使用邮箱或 Google 免费注册 / 登录'));googleEntry.dataset.jarvisFleetEntry='';googleEntry.href='/auth/account?'+new URLSearchParams({next:(zh?'/zh':'')+'/jarvis',lang});googleEntry.onclick=registerHere;$('#member-gate').prepend(googleEntry);
 handoff=initHandoff({lang,getEpoch:()=>authEpoch,getScope:()=>membership?.scope,onApply:()=>{pendingCreate=null;followupPrepared=false;correctionPrepared=false;saveDraft();renderMemories();}});
 window.addEventListener('storage',e=>{if([KEY,MEMBER_KEY].includes(e.key)&&credential!==memberKey())lock();});
 window.addEventListener('pagehide',()=>handoff?.clear());

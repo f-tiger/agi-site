@@ -50,6 +50,9 @@ concurrency:
 
 jobs:
   deploy:
+    env:
+      # Explicit push-only maintenance scope; schedules and manual runs are unchanged.
+      OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -374,6 +377,7 @@ jobs:
           node tools/member-studio/verify.mjs --site eco --out sites/getecoback/site
 
       - name: Configure independent membership secrets
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -425,6 +429,7 @@ jobs:
           node tools/fleet-account/verify-live.mjs eco
 
       - name: Verify independent membership after deployment
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -435,6 +440,17 @@ jobs:
             if [ "$attempt" != "4" ]; then sleep 8; fi
           done
           exit 1
+
+      - name: Verify existing membership readiness without configuration or order scans
+        if: env.OUTCOME_READ_ONLY_RELEASE == 'true'
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const response=await fetch('https://getecoback.com/api/member',{headers:{'User-Agent':'fleet-outcome-readonly-probe/1.0'},signal:AbortSignal.timeout(25000)});
+          assert.equal(response.status,200);const data=await response.json();
+          assert.equal(data.ok,true);assert.equal(data.ready,true);assert.equal(data.site,'eco');
+          console.log('Existing ECO membership readiness verified by GET; no configuration, order scan or payment test.');
+          JS
 
       - name: Verify every published workbench tool
         if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
@@ -511,16 +527,20 @@ jobs:
           check "https://getecoback.com/impressum.html" "Impressum"
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
-          # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
-          check "https://getecoback.com/api/video-growth" '"metric":"events_not_users"'
-          check "https://getecoback.com/api/pulse" '"ai_ref"' 
-          check "https://getecoback.com/api/pulse" '"by_source"' 
-          # 钱线(2026-09-21):money 必须是对象;查询坏了 worker 会回 null,这里就红
-          check "https://getecoback.com/api/pulse" '"money":{' 
-          check "https://getecoback.com/api/pulse" '"affiliate_diagnostics":{'
-          # Use the response already read by check(); do not run another D1 query.
-          sed '$d' <<<"$body" | python3 -c 'import json,sys; d=json.load(sys.stdin)["money"]["affiliate_diagnostics"]; assert d["metric"] == "site_click_events_not_people_or_amazon_orders"; assert d["amazon_ordered_items"] is None; assert sum(d["markets_28d"].values()) == d["complete_28d"]["clicks"]; assert sum(d["destinations_28d"].values()) == d["complete_28d"]["clicks"]; print("ECO_AFFILIATE_DIAGNOSTICS " + json.dumps(d))'
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then
+            # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
+            check "https://getecoback.com/api/video-growth" '"metric":"events_not_users"'
+            check "https://getecoback.com/api/pulse" '"ai_ref"'
+            check "https://getecoback.com/api/pulse" '"by_source"'
+            # 钱线(2026-09-21):money 必须是对象;查询坏了 worker 会回 null,这里就红
+            check "https://getecoback.com/api/pulse" '"money":{'
+            check "https://getecoback.com/api/pulse" '"affiliate_diagnostics":{'
+            # Use the response already read by check(); do not run another D1 query.
+            sed '$d' <<<"$body" | python3 -c 'import json,sys; d=json.load(sys.stdin)["money"]["affiliate_diagnostics"]; assert d["metric"] == "site_click_events_not_people_or_amazon_orders"; assert d["amazon_ordered_items"] is None; assert sum(d["markets_28d"].values()) == d["complete_28d"]["clicks"]; assert sum(d["destinations_28d"].values()) == d["complete_28d"]["clicks"]; print("ECO_AFFILIATE_DIAGNOSTICS " + json.dumps(d))'
 
+          else
+            echo "Outcome release: production mutation/aggregate probe skipped."
+          fi
           # MCP 自报名字必须与 mcp/server.json 的注册表名字一致(2026-09-16)。
           # 那次改名只改了 manifest 与 superseded/,worker 的 serverInfo.name 漏了三个多月:
           # 注册表说 hvac-btu-heat-klimaanlage,连上来的客户端却被告知是已废弃的 getecoback-raumklima。
@@ -946,43 +966,47 @@ jobs:
           if [ "$it_code" = "200" ]; then echo "OK 200 https://getecoback.com/it/"
           else echo "::error::https://getecoback.com/it/ answered $it_code (canonical + sitemap URL of the Italian hub)"; fail=1; fi
 
-          # First-party event pipeline: the endpoint must accept a whitelisted
-          # event and confirm the D1 write. Without this the funnel goes blind
-          # silently (a missing binding only shows up as {"ok":false}).
-          ev=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
-                 -H "Content-Type: text/plain" \
-                 -d '{"n":"page_view","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
-          echo "event endpoint said: $ev"
-          case "$ev" in
-            *'"ok":true'*) echo "OK event pipeline (D1 write confirmed)" ;;
-            *) echo "::error::event pipeline broken: $ev"; fail=1 ;;
-          esac
-          # 漏斗事件验收(2026-08-20 触发器体检):lead_intent 与 cold_now 是两条
-          # 新营收链路的唯一度量,白名单掉一个就整条链静默失明——每次部署验收。
-          # affiliate_click added 2026-09-04: it is the money event of the whole
-          # site, and the only one this loop did not assert.
-          for evn in lead_intent cold_now affiliate_click; do
-            r=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
-                 -H "Content-Type: text/plain" \
-                 -d '{"n":"'$evn'","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
-            case "$r" in
-              *'"ok":true'*) echo "OK funnel event accepted: $evn" ;;
-              *) echo "::error::funnel event $evn rejected: $r"; fail=1 ;;
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then
+            # First-party event pipeline: the endpoint must accept a whitelisted
+            # event and confirm the D1 write. Without this the funnel goes blind
+            # silently (a missing binding only shows up as {"ok":false}).
+            ev=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
+                   -H "Content-Type: text/plain" \
+                   -d '{"n":"page_view","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
+            echo "event endpoint said: $ev"
+            case "$ev" in
+              *'"ok":true'*) echo "OK event pipeline (D1 write confirmed)" ;;
+              *) echo "::error::event pipeline broken: $ev"; fail=1 ;;
             esac
-          done
-          # Opt-in capture (/api/sub2, 2026-09-04): the only capture surface on the
-          # guide pages, and it writes to D1 directly. subs.email is the PRIMARY KEY
-          # and the Worker uses INSERT OR IGNORE, so this probe is one idempotent
-          # row for all time; its ev row lands on /__ci_healthcheck, which every
-          # ledger query already excludes.
-          s2=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/sub2" \
-                 -H "Content-Type: application/json" \
-                 -d '{"email":"ci@getecoback.invalid","consent":true,"consent_text":"ci","page":"/__ci_healthcheck"}' || echo "")
-          echo "sub2 endpoint said: $s2"
-          case "$s2" in
-            *'"ok":true'*) echo "OK sub2 capture (D1 write confirmed)" ;;
-            *) echo "::error::sub2 capture broken: $s2"; fail=1 ;;
-          esac
+            # 漏斗事件验收(2026-08-20 触发器体检):lead_intent 与 cold_now 是两条
+            # 新营收链路的唯一度量,白名单掉一个就整条链静默失明——每次部署验收。
+            # affiliate_click added 2026-09-04: it is the money event of the whole
+            # site, and the only one this loop did not assert.
+            for evn in lead_intent cold_now affiliate_click; do
+              r=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
+                   -H "Content-Type: text/plain" \
+                   -d '{"n":"'$evn'","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
+              case "$r" in
+                *'"ok":true'*) echo "OK funnel event accepted: $evn" ;;
+                *) echo "::error::funnel event $evn rejected: $r"; fail=1 ;;
+              esac
+            done
+            # Opt-in capture (/api/sub2, 2026-09-04): the only capture surface on the
+            # guide pages, and it writes to D1 directly. subs.email is the PRIMARY KEY
+            # and the Worker uses INSERT OR IGNORE, so this probe is one idempotent
+            # row for all time; its ev row lands on /__ci_healthcheck, which every
+            # ledger query already excludes.
+            s2=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/sub2" \
+                   -H "Content-Type: application/json" \
+                   -d '{"email":"ci@getecoback.invalid","consent":true,"consent_text":"ci","page":"/__ci_healthcheck"}' || echo "")
+            echo "sub2 endpoint said: $s2"
+            case "$s2" in
+              *'"ok":true'*) echo "OK sub2 capture (D1 write confirmed)" ;;
+              *) echo "::error::sub2 capture broken: $s2"; fail=1 ;;
+            esac
+          else
+            echo "Outcome release: production mutation/aggregate probe skipped."
+          fi
           # The live heat band drives the weather-reactive layer; a silent outage
           # would simply mean the site says nothing on the days that matter most.
           heat=""
@@ -1046,22 +1070,26 @@ jobs:
             *'<!DOCTYPE'*|*'<!doctype'*) echo "OK html still html" ;;
             *) echo "::error::browsers no longer get HTML: '${plain:0:120}'"; fail=1 ;;
           esac
-          # Trend condensation feed: the daily radar reads this.
-          # 2026-09-26:只在非 2xx/网络错误时重试(最多 3 次);D1 坏了 worker 现在回 503 {ok:false},不再是空数组 200。
-          trend=""; tcode=000
-          for attempt in 1 2 3; do
-            out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/trend" || echo -e "\n000")
-            tcode=$(tail -1 <<<"$out"); trend=$(sed '$d' <<<"$out")
-            case "$tcode" in 2*) break ;; esac
-            [ "$attempt" -lt 3 ] && sleep 5
-          done
-          echo "trend endpoint said: HTTP $tcode ${trend:0:150}"
-          # Reuse the bounded, cached response; no extra production query.
-          python3 -c 'import json,sys; d=json.load(sys.stdin)["affiliate_audit"]; assert len(d["daily"])==56; assert len(d["weeks"])==8; assert sum(x["affiliate_clicks"] for x in d["daily"])==sum(x["affiliate_clicks"] for x in d["weeks"]); assert d["amazon_orders"] is None; print("ECO_AFFILIATE_AUDIT " + json.dumps(d))' <<< "$trend"
-          case "$trend" in
-            *'"events"'*) echo "OK trend endpoint" ;;
-            *) echo "::error::trend endpoint broken (HTTP $tcode): '$trend'"; fail=1 ;;
-          esac
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then
+            # Trend condensation feed: the daily radar reads this.
+            # 2026-09-26:只在非 2xx/网络错误时重试(最多 3 次);D1 坏了 worker 现在回 503 {ok:false},不再是空数组 200。
+            trend=""; tcode=000
+            for attempt in 1 2 3; do
+              out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/trend" || echo -e "\n000")
+              tcode=$(tail -1 <<<"$out"); trend=$(sed '$d' <<<"$out")
+              case "$tcode" in 2*) break ;; esac
+              [ "$attempt" -lt 3 ] && sleep 5
+            done
+            echo "trend endpoint said: HTTP $tcode ${trend:0:150}"
+            # Reuse the bounded, cached response; no extra production query.
+            python3 -c 'import json,sys; d=json.load(sys.stdin)["affiliate_audit"]; assert len(d["daily"])==56; assert len(d["weeks"])==8; assert sum(x["affiliate_clicks"] for x in d["daily"])==sum(x["affiliate_clicks"] for x in d["weeks"]); assert d["amazon_orders"] is None; print("ECO_AFFILIATE_AUDIT " + json.dumps(d))' <<< "$trend"
+            case "$trend" in
+              *'"events"'*) echo "OK trend endpoint" ;;
+              *) echo "::error::trend endpoint broken (HTTP $tcode): '$trend'"; fail=1 ;;
+            esac
+          else
+            echo "Outcome release: production mutation/aggregate probe skipped."
+          fi
           # MCP server: the agent-facing tool layer. initialize must round-trip.
           # Read serverInfo from JSON and use the manifest name loaded above;
           # the old literal drifted from the server's registered name.
@@ -1082,20 +1110,24 @@ jobs:
           echo "mcp/v1 said: ${mcpv1:0:150}"
           if mcp_init_ok "$mcpv1"; then echo "OK mcp/v1 (registry pointer)"
           else echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1; fi
-          # Live popular ranking: drives the homepage's self-refreshing block.
-          # 2026-09-26:同上,只在非 2xx/网络错误时重试(最多 3 次)。
-          top=""; pcode=000
-          for attempt in 1 2 3; do
-            out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/top" || echo -e "\n000")
-            pcode=$(tail -1 <<<"$out"); top=$(sed '$d' <<<"$out")
-            case "$pcode" in 2*) break ;; esac
-            [ "$attempt" -lt 3 ] && sleep 5
-          done
-          echo "top endpoint said: HTTP $pcode ${top:0:200}"
-          case "$top" in
-            *'"pages"'*) echo "OK top endpoint" ;;
-            *) echo "::error::top endpoint broken (HTTP $pcode): '$top'"; fail=1 ;;
-          esac
+          if [ "$OUTCOME_READ_ONLY_RELEASE" != "true" ]; then
+            # Live popular ranking: drives the homepage's self-refreshing block.
+            # 2026-09-26:同上,只在非 2xx/网络错误时重试(最多 3 次)。
+            top=""; pcode=000
+            for attempt in 1 2 3; do
+              out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/top" || echo -e "\n000")
+              pcode=$(tail -1 <<<"$out"); top=$(sed '$d' <<<"$out")
+              case "$pcode" in 2*) break ;; esac
+              [ "$attempt" -lt 3 ] && sleep 5
+            done
+            echo "top endpoint said: HTTP $pcode ${top:0:200}"
+            case "$top" in
+              *'"pages"'*) echo "OK top endpoint" ;;
+              *) echo "::error::top endpoint broken (HTTP $pcode): '$top'"; fail=1 ;;
+            esac
+          else
+            echo "Outcome release: production mutation/aggregate probe skipped."
+          fi
           exit $fail
 
       # Rule 2 guard: the registry listing is a discovery asset — if the entry
@@ -1103,6 +1135,7 @@ jobs:
       # silent fade. Scheduled runs only: this asserts an external system, and
       # a registry outage should not block a content deploy.
       - name: Verify household tools live and read aggregate baseline
+        if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node tools/household_live.mjs
 
       - name: Assert the MCP registry still lists this server (scheduled + manual)

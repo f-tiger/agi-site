@@ -8,7 +8,7 @@ const sent = new Set();
 window.addEventListener('message', event => {
 if (event.source !== window.parent || event.origin !== location.origin) return;
 if (started && event.data?.type === 'fleet-ga4-business') {
-  const action = businessEvent(page.host, new URL(page.page).pathname, event.data.detail);
+  const action = businessEvent(page.host, new URL(page.page).pathname, event.data.detail, allowed);
   if (!action || (!action.repeat && sent.has(action.name))) return;
   sent.add(action.name);
   const {name, repeat, ...fields} = action;

@@ -39,8 +39,9 @@ try{for(const lang of ['en','zh']){const ctx=await browser.newContext({viewport:
  // the private-key registration path. Prevent navigation in this fixture and
  // inspect only the opaque capability receipt; no OAuth or live account runs.
  await page.locator('#restore-workspace').click();await page.locator('#member-gate').waitFor({state:'visible'});
- await page.evaluate(()=>document.querySelector('#member-gate a[href="/auth/account"]').addEventListener('click',event=>event.preventDefault(),{once:true}));
- await page.locator('#member-gate a[href="/auth/account"]').click();
+ await page.evaluate(()=>document.querySelector('#member-gate a[data-jarvis-fleet-entry]').addEventListener('click',event=>event.preventDefault(),{once:true}));
+ await page.locator('#member-gate a[data-jarvis-fleet-entry]').click();
+ const fleetEntry=page.locator('[data-jarvis-fleet-entry]');const entryURL=new URL(await fleetEntry.getAttribute('href'),base);assert.equal(entryURL.pathname,'/auth/account');assert.deepEqual([...entryURL.searchParams.keys()].sort(),['lang','next']);assert.equal(entryURL.searchParams.get('next'),(lang==='zh'?'/zh':'')+'/jarvis');assert.equal(entryURL.searchParams.get('lang'),lang);assert.equal(await fleetEntry.getAttribute('target'),null,'task handoff must stay in its original tab');
  const googleHandoff=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('agi-jarvis-registration-v1')||'null'));
  assert.deepEqual(Object.keys(googleHandoff).sort(),['at','key','scope']);assert.equal(googleHandoff.key,guest);assert.match(googleHandoff.scope,/^[a-f0-9]{64}$/);assert.ok(Date.now()-googleHandoff.at<5000&&googleHandoff.at<=Date.now());
  await page.locator('#continue-free').click();await page.locator('#workspace').waitFor({state:'visible'});
