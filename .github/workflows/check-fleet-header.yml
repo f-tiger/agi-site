@@ -20,7 +20,7 @@ jobs:
       - run: npm ci --prefix tools/revenue-studio --ignore-scripts
       - run: npm install --prefix /tmp/fleet-header-runtime --ignore-scripts --no-audit --no-fund esbuild@0.25.12 miniflare@4.20260730.0
       - run: node tools/fleet-account/test.mjs
-      - run: node --test tools/fleet-analytics/business.test.mjs tools/fleet-analytics/integrity.test.mjs
+      - run: node --test tools/fleet-analytics/business.test.mjs tools/fleet-analytics/integrity.test.mjs tools/fleet-analytics/verify-asset.test.mjs
       - run: node sites/baipiaoji/scripts/test-conversion-stages.mjs
       - run: node sites/baipiaoji/scripts/test-reach-cache.mjs
       - run: FREE_ACCOUNT_RUNTIME_MODULES=/tmp/fleet-header-runtime/node_modules node tools/fleet-account/header-test.mjs

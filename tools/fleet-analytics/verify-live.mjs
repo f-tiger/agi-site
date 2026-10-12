@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
+import {verifyPublishedAsset} from './verify-asset.mjs';
 const registry=JSON.parse(fs.readFileSync(new URL('registry.json',import.meta.url)));
 const site=process.argv[2],cfg=registry[site];assert(cfg,'Pass a site key from registry.json');
 const names=['consent.mjs','collector.mjs','consent.css','frame.html','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs'];
@@ -29,11 +30,7 @@ for(const host of cfg.hosts){
  }
  assert.equal(report.site,site);assert.equal(report.measurementId,cfg.id);
  assert.deepEqual(report.hosts,cfg.hosts);assert.equal(report.version,version,'Production analytics release is stale: '+host);
- await Promise.all(names.map(async(name,i)=>{
-  const live=await read(host,'/analytics-assets/'+name+'?v='+version);
-  assert.equal(live.text,local[i].toString(),host+'/'+name);
-  if(name==='frame.html')assert(live.headers.get('cache-control')?.includes('no-transform'),'Analytics frame must exclude injected third-party beacons');
- }));
+ await Promise.all(names.map((name,i)=>verifyPublishedAsset({host,name,version,expected:local[i].toString(),read})));
  const registryText=(await read(host,'/analytics-assets/registry.mjs')).text;
  assert.deepEqual(JSON.parse(registryText.replace(/^export const allowed = /,'').replace(/;\s*$/,'')),allowed,host+'/registry.mjs');
  const all=[...new Set(report.records.filter(r=>r.mode==='consent'&&new URL(r.url).hostname===host).map(r=>r.url))].sort();
