@@ -9,12 +9,11 @@ assert.match(deploy,/BPJ_RECEIPTS_RECOVERY: \$\{\{ github.event_name == 'push' &
 // deliberately limited to these local boolean conditions; never evaluate code.
 function allows(expression,{recovery=false,readOnly=false,publish=true}={}){
  const values={'env.BPJ_RECEIPTS_RECOVERY':String(recovery),'env.OUTCOME_READ_ONLY_RELEASE':String(readOnly),'steps.startup_registry.outputs.publish':String(publish)};
- const tokens=expression.match(/!=|==|&&|\|\||[()!]|'(?:true|false)'|[A-Za-z_][A-Za-z0-9_.]*/g)||[];
+ const tokens=expression.match(/!=|==|&&|\|\||[()]|'(?:true|false)'|[A-Za-z_][A-Za-z0-9_.]*/g)||[];
  assert.equal(tokens.join(''),expression.replace(/\s/g,''),'Unsupported workflow guard syntax');
  let index=0;
  function atom(){
   const token=tokens[index++];
-  if(token==='!')return !atom();
   if(token==='('){const value=or();assert.equal(tokens[index++],')','Unclosed guard group');return value;}
   if(token==='true'||token==='false')return token==='true';
   assert.ok(Object.hasOwn(values,token),'Unknown guard variable: '+token);
@@ -44,7 +43,7 @@ assert.throws(()=>checkGuard("env.OUTCOME_READ_ONLY_RELEASE != 'true'"),assert.A
 assert.throws(()=>checkGuard("env.BPJ_RECEIPTS_RECOVERY != 'true'"),assert.AssertionError,'Removing read-only protection must fail');
 assert.throws(()=>checkGuard(strict.replace('&&','||')),assert.AssertionError,'OR must not weaken either protection');
 assert.throws(()=>checkGuard(strict,{needsPublish:true}),assert.AssertionError,'Registry publication still requires the publish output');
-for(const expression of ["env.UNKNOWN == 'true'","env.BPJ_RECEIPTS_RECOVERY != 'true';","contains(env.BPJ_RECEIPTS_RECOVERY, 'true')","(env.BPJ_RECEIPTS_RECOVERY != 'true'"]){assert.throws(()=>allows(expression),assert.AssertionError,'Unknown or malformed syntax must fail closed');}
+for(const expression of ["!env.BPJ_RECEIPTS_RECOVERY == 'true'","env.UNKNOWN == 'true'","env.BPJ_RECEIPTS_RECOVERY != 'true';","contains(env.BPJ_RECEIPTS_RECOVERY, 'true')","(env.BPJ_RECEIPTS_RECOVERY != 'true'"]){assert.throws(()=>allows(expression),assert.AssertionError,'Unknown or malformed syntax must fail closed');}
 const binding=step('Preserve public account binding when reusing existing configuration');assert.match(binding,/withGoogleBinding/);assert.doesNotMatch(binding,/await configure|fetch\(/);
 assert.match(step('Check existing public account configuration before maintenance'),/--account-only/);
 assert.ok(deploy.indexOf('- name: Check existing public account configuration before maintenance')<deploy.indexOf('- name: Deploy to Cloudflare Pages'));
@@ -65,5 +64,5 @@ const result=spawnSync(process.execPath,['--input-type=module','-e',`
   if(!['/members','/en/members','/account','/en/account'].includes(u.pathname))throw Error('Unexpected source');
   return new Response('<html></html>');
  };await import(${JSON.stringify(live)});
-`],{encoding:'utf8',env:{...process.env,GOOGLE_CLIENT_ID:'fixture.apps.googleusercontent.com'}});assert.equal(result.status,0,result.stderr);
+`],{encoding:'utf8',env:{...process.env,GOOGLE_CLIENT_ID:'fixture.apps.googleusercontent.com'}});assert.ifError(result.error);assert.equal(result.status,0,result.stderr);
 console.log('PASS recovery/read-only/publish guard truth tables and unsafe mutations; maintenance routing, unchanged normal/scheduled behavior, credential reuse, local security gates, registry exclusion and bounded live checks');
