@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-11",
+ "fetched": "2026-10-12",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -463,33 +463,42 @@
   "rollator walker": {
    "rising": [
     {
-     "q": "zeen walker",
-     "v": 11000
+     "q": "quad cane",
+     "v": 13500
+    },
+    {
+     "q": "knee scooter",
+     "v": 4200
     },
     {
      "q": "rollator walker near me",
-     "v": 60
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-11"
+   "fetched": "2026-10-12"
   },
   "smart pill organizer": {
    "auto": [
     "smart pill organizer",
-    "smart pill organizer with alarm",
     "smart pill organizer with app",
+    "smart pill organizer with alarm",
     "smart pill organizer arduino",
     "smart pill organizer a170",
-    "smart pill organizers with reminders",
     "smart pill organizer reddit",
+    "smart pill organizers with reminders",
+    "smart pill organizer amazon",
     "smart medicine organizer",
-    "smart vitamin organizer",
-    "smart pill dispenser"
+    "smart vitamin organizer"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "smart pill organizer amazon",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-12"
+   "fetched": "2026-10-12"
   },
   "walking pad": {
    "rising": [
