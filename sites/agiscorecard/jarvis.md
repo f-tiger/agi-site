@@ -20,6 +20,10 @@ Research AI work, learning and product ideas using our editorial catalog. With y
 
 Submitted tasks are stored on the server. A background runner checks the queue about every two hours; scheduled checks can be delayed. After free registration, daily watch runs up to seven times over seven days; results appear here, with no email or push notifications. You can pause or delete a task. Resuming an interrupted run reuses saved steps; a model call with an unknown outcome is not silently repeated. The guest trial can finish in the background; further runs need free registration, not a paid membership. Previously paused tasks need an explicit resume.
 
+## Will my last task reopen when I return?
+
+Yes, on this device and browser. Opening or creating a task saves a strictly validated pointer for up to 30 days, so the same task can reopen after a reload or later visit. The pointer contains only its task identifier, workspace scope, language and time—not the goal, result, memories, consent or key—and it never authorizes access; the server still verifies the private workspace and returns the task before it can reopen. An unsent goal draft takes priority. New task, delete, sign-out, workspace switching, an expired or missing task, and any malformed or cross-workspace pointer clear or ignore it.
+
 ## What happens when AI is unavailable?
 
 You get the matching source pack and an explicit limited status. No preset is passed off as AI output. A new run gathers evidence with code and uses at most one synthesis call; an older checkpoint can total two calls. Explicit GitHub metadata reading-candidate requests can receive a limited rule-based packet with no new model call. It shares the existing site allowance of 12 attempts per 24-hour window and 3 per IP window. Failed attempts count too.

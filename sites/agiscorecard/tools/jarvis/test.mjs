@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {jarvisRoute} from './server.mjs';import {execute,tick} from './engine.mjs';import {ensure} from './store.mjs';import {runTool,boundedJSON} from './sources.mjs';
-import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
+import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS,taskFocusRecord,taskFocusOf,TASK_FOCUS_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 const key='1'.repeat(64),other='2'.repeat(64),origin='https://agiscorecard.com';
 const body=(extra={})=>({action:'create',goal:'Help me research AI agents and convert 3 hours to minutes',lang:'en',cadence:'once',web:false,publicQuery:'AI agents',consent:true,memory:[],nonce:crypto.randomUUID().replaceAll('-',''),...extra});
 function env(){return {EVENTS:database(),MEMBER_WATCH_SECRET:'test-only-secret',AI:{async run(){return {response:JSON.stringify({summary:'Start with one measured weekly task.',findings:[{text:'Three hours is 180 minutes.',sourceIds:['calc-3*60']}],nextActions:[{action:'Run a comparison on one weekly report.',doneWhen:'Record time and errors for both attempts.'}],uncertainties:['This does not demonstrate reliable autonomous work.']}),usage:{total_tokens:123}};}}};}
@@ -25,6 +25,26 @@ test('frozen 12-case composer draft set restores only a fresh same-workspace goa
  assert.equal(cases.length,12);
  for(const [index,c] of cases.entries()){const [raw,wantScope,wantLang,want]=c,value=composerDraftOf(raw,wantScope,wantLang,time);assert.deepEqual(value,want,'case '+index);if(value)assert.deepEqual(Object.keys(value).sort(),['at','goal','lang','scope','version']);}
  assert.throws(()=>composerDraftRecord('private\u2066text',scope,'en',time),/invalid_draft/);
+});
+test('frozen 12-case task focus set reopens only a returned task in the same workspace and language',()=>{
+ const id='1'.repeat(32),otherId='2'.repeat(32),missing='3'.repeat(32),scope='a'.repeat(64),otherScope='b'.repeat(64),time=Date.parse('2026-10-12T08:00:00Z'),focus=taskFocusRecord(id,scope,'en',time),ids=[id,otherId];
+ const cases=[
+  [JSON.stringify(focus),scope,'en',ids,focus],
+  [focus,scope,'en',ids,focus],
+  [{...focus,id:otherId},scope,'en',ids,{...focus,id:otherId}],
+  [{...focus,at:time-TASK_FOCUS_MAX_AGE_MS-1},scope,'en',ids,null],
+  [{...focus,at:time+1},scope,'en',ids,null],
+  [focus,otherScope,'en',ids,null],
+  [focus,scope,'zh',ids,null],
+  [{...focus,id:missing},scope,'en',ids,null],
+  [{...focus,goal:'private'},scope,'en',ids,null],
+  [{...focus,id:'../private'},scope,'en',ids,null],
+  ['{"version":1',scope,'en',ids,null],
+  [{...focus,version:2},scope,'en',ids,null]
+ ];
+ assert.equal(cases.length,12);
+ for(const [index,c] of cases.entries()){const [raw,wantScope,wantLang,wantIds,want]=c,value=taskFocusOf(raw,wantScope,wantLang,wantIds,time);assert.deepEqual(value,want,'case '+index);if(value)assert.deepEqual(Object.keys(value).sort(),['at','id','lang','scope','version']);}
+ assert.throws(()=>taskFocusRecord('not-an-id',scope,'en',time),/invalid_task_focus/);
 });
 test('arithmetic is parsed without eval and rejects code, infinity and excessive nesting',()=>{assert.equal(calculate('(100-20)*3/2').value,120);assert.equal(calculate('20%*100').value,20);for(const s of ['process.exit()','1/0','2**300','1;fetch(1)','('.repeat(17)+'1'+')'.repeat(17),'1 2','..2','1e999'])assert.throws(()=>calculate(s));});
 test('model cannot add tools or forge citations',()=>{for(const a of [{tool:'shell',query:'ls'},{tool:'github_search',query:'secret'}])assert.throws(()=>planOf(JSON.stringify({approach:'a',actions:[a]}),false));assert.throws(()=>reportOf(JSON.stringify({summary:'Some result',findings:[{text:'False source',sourceIds:['invented']}],nextActions:[{action:'a',doneWhen:'b'}],uncertainties:['unknown']}),[],'en'));});
