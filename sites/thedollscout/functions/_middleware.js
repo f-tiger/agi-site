@@ -1,6 +1,7 @@
 import {accountRoute,addAccountEntry} from '../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {isRetiredPath} from './retired-paths.mjs';
+import {canonicalHostRedirect} from './canonical-host.mjs';
 import {memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 // Server-side crawler visibility (added 2026-08-19, pattern proven on
 // baipiaoji 08-11 and agiscorecard 08-05): AI retrieval crawlers — GPTBot,
@@ -49,6 +50,7 @@ function botOf(ua) {
 }
 
 export async function onRequest(ctx) {
+  const canonicalRedirect=canonicalHostRedirect(ctx.request);if(canonicalRedirect)return canonicalRedirect;
   const account=await accountRoute(ctx.request,ctx.env);if(account)return account;
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   if(memberPage(new URL(ctx.request.url).pathname))return secureMemberPage(await ctx.next());

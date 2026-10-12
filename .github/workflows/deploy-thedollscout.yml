@@ -96,7 +96,7 @@ jobs:
           node scripts/documents/build.mjs
           node scripts/documents/verify.mjs
           node scripts/collecting/build.mjs
-          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs
+          node --test scripts/collecting/tests.mjs scripts/collecting/mcp-tests.mjs scripts/collecting/planning-tests.mjs scripts/collecting/series-share-tests.mjs scripts/collecting/measurement-tests.mjs scripts/collecting/canonical-host-tests.mjs
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
@@ -326,6 +326,12 @@ jobs:
             echo "::error::live build stamp is '${live:-<none>}', expected ${TDS_RELEASE_SHA:-$GITHUB_SHA} — this deploy did not reach production"; fail=1
           else
             echo "build stamp ok: $live"
+          fi
+          www_location=$(curl -s -o /dev/null -w "%{redirect_url}" --max-time 20 "https://www.thedollscout.com/series/smiski-museum?host-check=1")
+          if [ "$www_location" != "https://thedollscout.com/series/smiski-museum?host-check=1" ]; then
+            echo "::error::www host did not redirect to the apex URL; got '${www_location:-<none>}'"; fail=1
+          else
+            echo "www canonical-host redirect ok: $www_location"
           fi
           for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
