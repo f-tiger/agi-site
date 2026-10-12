@@ -21,6 +21,11 @@ def check_laundry_copy():
         assert row in html, row
         assert round(watts / 1000 * .35 * 6, 2) == float(run)
         assert round(watts / 1000 * .35 * 6 * 12, 2) == float(month)
+    price = re.search(r'<input[^>]*name="price"[^>]*>', html).group()
+    assert re.search(r'\bvalue="0\.35"', price), 'calculator tariff default drift'
+    currencies = re.search(r'<select name="currency"[^>]*>(.*?)</select>', html, re.S).group(1)
+    assert re.search(r'<option value="GBP"', currencies) and currencies.index('GBP') < currencies.index('EUR'), 'calculator currency default drift'
+    assert 'selected' not in currencies, 'explicit currency selection needs review'
     graphs = [json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)]
     faq = next(g for g in graphs if g.get('@type') == 'FAQPage')
     plain = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', visible))
