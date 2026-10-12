@@ -300,6 +300,7 @@ jobs:
         run: bash .github/scripts/deploy-main-guard.sh check
 
       - name: Deploy to Cloudflare Workers
+        id: worker_deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -514,6 +515,23 @@ jobs:
           Ordinary pushes do not consume the production inference allowance.
           EOF
 
+      # A receipt is meaningful only after ALL preceding deployment/live gates.
+      # No always(), head_sha fallback, new credentials or submission trigger.
+      - name: Record the effective live-verified AGI deployment
+        env:
+          DEPLOY_SHA: ${{ steps.release.outputs.sha }}
+          WRANGLER_OUTPUT: ${{ steps.worker_deploy.outputs.command-output }}
+        run: |
+          python3 .github/scripts/agi-deployment-receipt-test.py
+          python3 .github/scripts/agi-deployment-receipt.py record
+      - name: Preserve the verified AGI deployment receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: agi-deployment-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: agi-deployment-receipt.json
+          if-no-files-found: error
+          retention-days: 30
+
   relay-ai:
     name: Relay AI availability (existing quota)
     needs: deploy
@@ -534,3 +552,4 @@ jobs:
         # 429 and all other inference failures remain red. No retries, bypass,
         # extra identities, synthetic-success fallback or increased allowance.
         run: node sites/agiscorecard/tools/create/ai-check.mjs
+
