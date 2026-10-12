@@ -1185,6 +1185,8 @@ Release preflight: 18 Jarvis tests plus EN/ZH Jarvis and Future Guide browser jo
 
 Read the owner-requested expanded research before further feature work: `docs/agi-jarvis-expanded-research-2026-10-03.md`. Prioritize validated delivery, provenance-aware memory and measured model routing. JSON schema/native response support follows a failed real plan, not a successful model benchmark. New background schedule is about two hours and may be delayed; do not advertise 15-minute operation.
 
+V20 adds a two-hour, same-tab unsent goal draft in `sessionStorage`. Keep it limited to the exact `version/scope/lang/goal/at` record, bound to the server-verified workspace and language. Never persist consent, public search, keywords, cadence, memory selections, credentials, context receipts or task IDs in this draft. Restore goal text only; invalid or cross-scope records fail closed. Submit, discard, sign-out and explicit workspace switching clear it. This is best-effort continuity, not secure long-term memory or a submitted task. See `docs/agi-jarvis-draft-recovery-2026-10-12.md`.
+
 
 ## Investment roadmap hub (2026-10-03)
 Owner clarification: do not modify AGI homepages for this work; `/invest` and `/zh/invest` are the unified investment hub. `tools/roadmap/build.mjs` owns the marked roadmap fragments and `roadmap-assets/roadmap.json`; catalog joins reviewed video claims and issuer evidence. Daily discovery titles stay metadata-only and never revise reviewed hypotheses. Stock priority is conditional research, not an assessed current-price buy recommendation. Preserve the fixed 12-stock cohort, existing workbench and historical material.

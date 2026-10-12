@@ -1,11 +1,31 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {jarvisRoute} from './server.mjs';import {execute,tick} from './engine.mjs';import {ensure} from './store.mjs';import {runTool,boundedJSON} from './sources.mjs';
-import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
+import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 const key='1'.repeat(64),other='2'.repeat(64),origin='https://agiscorecard.com';
 const body=(extra={})=>({action:'create',goal:'Help me research AI agents and convert 3 hours to minutes',lang:'en',cadence:'once',web:false,publicQuery:'AI agents',consent:true,memory:[],nonce:crypto.randomUUID().replaceAll('-',''),...extra});
 function env(){return {EVENTS:database(),MEMBER_WATCH_SECRET:'test-only-secret',AI:{async run(){return {response:JSON.stringify({summary:'Start with one measured weekly task.',findings:[{text:'Three hours is 180 minutes.',sourceIds:['calc-3*60']}],nextActions:[{action:'Run a comparison on one weekly report.',doneWhen:'Record time and errors for both attempts.'}],uncertainties:['This does not demonstrate reliable autonomous work.']}),usage:{total_tokens:123}};}}};}
 async function call(e,b=null,token=key,extra={}){const r=await jarvisRoute(new Request(origin+(b?'/api/jarvis':'/api/jarvis/tasks'),{method:b?'POST':'GET',headers:{origin,'content-type':'application/json',authorization:'Bearer '+token,'CF-Connecting-IP':'test-ip',...extra},...(b?{body:JSON.stringify(b)}:{})}),e);return {status:r.status,data:await r.json(),headers:r.headers};}
 test('bounded input validates language, consent, cadence and memory',()=>{assert.equal(inputOf(body()).lang,'en');for(const x of [{consent:false},{cadence:'forever'},{memory:['x'.repeat(301)]},{nonce:'bad'},{goal:'tiny'},{lang:'unknown'}])assert.throws(()=>inputOf(body(x)));});
+test('frozen 12-case composer draft set restores only a fresh same-workspace goal',()=>{
+ const scope='a'.repeat(64),otherScope='b'.repeat(64),time=Date.parse('2026-10-12T08:00:00Z'),en=composerDraftRecord('Continue the edited blocker\nwith one observation.',scope,'en',time),zh=composerDraftRecord('继续修正这个目标。',scope,'zh',time);
+ const cases=[
+  [JSON.stringify(en),scope,'en',en],
+  [zh,scope,'zh',zh],
+  [{...en,at:time-COMPOSER_DRAFT_MAX_AGE_MS-1},scope,'en',null],
+  [{...en,at:time+1},scope,'en',null],
+  [en,otherScope,'en',null],
+  [en,scope,'zh',null],
+  [{...en,consent:true},scope,'en',null],
+  [{...en,goal:'x'.repeat(1201)},scope,'en',null],
+  [{...en,goal:'Review\u202ehidden'},scope,'en',null],
+  [{...en,goal:'Review\u0000hidden'},scope,'en',null],
+  ['{"version":1',scope,'en',null],
+  [{...en,version:2},scope,'en',null]
+ ];
+ assert.equal(cases.length,12);
+ for(const [index,c] of cases.entries()){const [raw,wantScope,wantLang,want]=c,value=composerDraftOf(raw,wantScope,wantLang,time);assert.deepEqual(value,want,'case '+index);if(value)assert.deepEqual(Object.keys(value).sort(),['at','goal','lang','scope','version']);}
+ assert.throws(()=>composerDraftRecord('private\u2066text',scope,'en',time),/invalid_draft/);
+});
 test('arithmetic is parsed without eval and rejects code, infinity and excessive nesting',()=>{assert.equal(calculate('(100-20)*3/2').value,120);assert.equal(calculate('20%*100').value,20);for(const s of ['process.exit()','1/0','2**300','1;fetch(1)','('.repeat(17)+'1'+')'.repeat(17),'1 2','..2','1e999'])assert.throws(()=>calculate(s));});
 test('model cannot add tools or forge citations',()=>{for(const a of [{tool:'shell',query:'ls'},{tool:'github_search',query:'secret'}])assert.throws(()=>planOf(JSON.stringify({approach:'a',actions:[a]}),false));assert.throws(()=>reportOf(JSON.stringify({summary:'Some result',findings:[{text:'False source',sourceIds:['invented']}],nextActions:[{action:'a',doneWhen:'b'}],uncertainties:['unknown']}),[],'en'));});
 test('link and retrieval handling rejects executable links and preserves no-match',()=>{for(const s of ['javascript:alert(1)','http://example.com','https://127.0.0.1/','https://localhost/','https://u:p@example.com','https://[::1]/'])assert.equal(safeURL(s),null);assert.equal(safeURL('https://github.com/a/b'),'https://github.com/a/b');assert.deepEqual(rank('unfindabletoken',[{title:'AI research'}]),[]);});
