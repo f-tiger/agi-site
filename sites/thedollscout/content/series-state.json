@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 5,
+  "cursor": 11,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-12"
+      "checked": "2026-10-13"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-12"
+      "checked": "2026-10-13"
     },
     {
       "id": "smiski-construction",
@@ -102,7 +102,7 @@
       "hash": "1a4bf4ab73b798c67d0a053ff7666f6f97942990baf42a4fa208a0cde621a824",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-04"
+      "checked": "2026-10-13"
     },
     {
       "id": "smiski-museum",
@@ -120,7 +120,7 @@
       "hash": "2cc938a6186ac007c469530ba759f29a3f246002f3904e4f9741be8eff5aea0d",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-04"
+      "checked": "2026-10-13"
     },
     {
       "id": "smiski-living-series",
@@ -193,9 +193,70 @@
       "published": "2026-10-12",
       "modified": "2026-10-12",
       "checked": "2026-10-12"
+    },
+    {
+      "id": "smiski-exercising",
+      "brand": "smiski",
+      "title": "SMISKI Exercising",
+      "names": [
+        "SMISKI Doing Crunches",
+        "SMISKI Aerobics",
+        "Little SMISKI Balance",
+        "SMISKI Dumbbell",
+        "SMISKI Hoop",
+        "SMISKI Stretch"
+      ],
+      "source": "https://smiski.com/e/products/exercising-series/",
+      "hash": "0b6856d66197dba3f3b8bea1eb08d75f8ec72f35d2875a4fe7b232a2883a261f",
+      "published": "2026-10-13",
+      "modified": "2026-10-13",
+      "checked": "2026-10-13"
+    },
+    {
+      "id": "smiski-dressing",
+      "brand": "smiski",
+      "title": "SMISKI Dressing",
+      "names": [
+        "SMISKI Underpants",
+        "SMISKI Struggling",
+        "SMISKI Loose Pants",
+        "SMISKI Putting On Socks",
+        "SMISKI Sweater",
+        "SMISKI Tight Pants"
+      ],
+      "source": "https://smiski.com/e/products/dressing-series/",
+      "hash": "bd9a9f51a07756e5b68c9bd8f01346b679883e246a43fa9c90fb33b29da280bf",
+      "published": "2026-10-13",
+      "modified": "2026-10-13",
+      "checked": "2026-10-13"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-13",
+      "status": "ok",
+      "added": [
+        "smiski-exercising",
+        "smiski-dressing"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-12",
       "status": "ok",
@@ -333,19 +394,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-12",
+    "date": "2026-10-13",
     "status": "ok",
     "added": [
-      "smiski-series1",
-      "smiski-birthday"
+      "smiski-exercising",
+      "smiski-dressing"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -355,11 +416,6 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   }
 }

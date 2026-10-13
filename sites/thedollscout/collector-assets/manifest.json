@@ -9,7 +9,7 @@
       "title": "Blind Box Checklists & Free Collection Tracker",
       "description": "Find SMISKI and Sonny Angel series checklists, save the figures you own, and plan your next purchase. Explore guides for Labubu, Jellycat and more.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/home.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "en",
@@ -54,7 +54,7 @@
       "title": "SMISKI — Calculate style odds",
       "description": "Build a small scene around the poses you like. The official Living Series page identifies six regular poses and a randomly distributed secret; it does not give a numerical secret rate.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/brands/smiski.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "en",
@@ -90,7 +90,7 @@
       "title": "Blindbox-Checklisten und kostenloser Sammlungstracker",
       "description": "SMISKI- und Sonny-Angel-Checklisten finden, vorhandene Figuren speichern und den nächsten Kauf planen. Dazu Ratgeber für Labubu, Jellycat und mehr.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/home.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "de",
@@ -135,7 +135,7 @@
       "title": "SMISKI — Chancen einer Figur berechnen",
       "description": "Eine kleine Szene aus Lieblingsposen gestalten. Die offizielle Living-Series-Seite nennt sechs Standardposen und ein zufällig verteiltes Secret, aber keine numerische Secret-Chance.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/brands/smiski.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "de",
@@ -171,7 +171,7 @@
       "title": "盲盒系列清单与免费收藏管理工具",
       "description": "查找 SMISKI 与 Sonny Angel 系列清单，保存已拥有的款式，规划下一次购买。也可探索 Labubu、Jellycat 等品牌指南。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/home.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "zh",
@@ -216,7 +216,7 @@
       "title": "SMISKI — 计算款式概率",
       "description": "围绕喜欢的姿态布置一个小场景。官方 Living Series 列出六个常规姿态及随机出现的隐藏款，但未提供数字化隐藏概率。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/brands/smiski.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "zh",
@@ -549,7 +549,7 @@
       "title": "SMISKI & Sonny Angel series checklists",
       "description": "Official names. Your checklist. A clearer plan before the next box.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/series.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "en",
@@ -642,13 +642,31 @@
       "modified": "2026-10-12"
     },
     {
+      "lang": "en",
+      "slug": "series/smiski-exercising",
+      "url": "https://thedollscout.com/series/smiski-exercising",
+      "title": "SMISKI Exercising — Collection checklist",
+      "description": "SMISKI Exercising — Official names. Your checklist. A clearer plan before the next box.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/series/smiski-exercising.txt",
+      "modified": "2026-10-13"
+    },
+    {
+      "lang": "en",
+      "slug": "series/smiski-dressing",
+      "url": "https://thedollscout.com/series/smiski-dressing",
+      "title": "SMISKI Dressing — Collection checklist",
+      "description": "SMISKI Dressing — Official names. Your checklist. A clearer plan before the next box.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/series/smiski-dressing.txt",
+      "modified": "2026-10-13"
+    },
+    {
       "lang": "de",
       "slug": "series",
       "url": "https://thedollscout.com/de/series",
       "title": "SMISKI & Sonny Angel: Serien-Checklisten",
       "description": "Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/series.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "de",
@@ -741,13 +759,31 @@
       "modified": "2026-10-12"
     },
     {
+      "lang": "de",
+      "slug": "series/smiski-exercising",
+      "url": "https://thedollscout.com/de/series/smiski-exercising",
+      "title": "SMISKI Exercising — Sammlungs-Checkliste",
+      "description": "SMISKI Exercising — Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/series/smiski-exercising.txt",
+      "modified": "2026-10-13"
+    },
+    {
+      "lang": "de",
+      "slug": "series/smiski-dressing",
+      "url": "https://thedollscout.com/de/series/smiski-dressing",
+      "title": "SMISKI Dressing — Sammlungs-Checkliste",
+      "description": "SMISKI Dressing — Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/series/smiski-dressing.txt",
+      "modified": "2026-10-13"
+    },
+    {
       "lang": "zh",
       "slug": "series",
       "url": "https://thedollscout.com/zh/series",
       "title": "SMISKI 与 Sonny Angel 系列收藏清单",
       "description": "官方款式清单，加上你的收藏进度。开下一盒前，先有计划。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/series.txt",
-      "modified": "2026-10-12"
+      "modified": "2026-10-13"
     },
     {
       "lang": "zh",
@@ -838,6 +874,24 @@
       "description": "SMISKI Birthday — 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/series/smiski-birthday.txt",
       "modified": "2026-10-12"
+    },
+    {
+      "lang": "zh",
+      "slug": "series/smiski-exercising",
+      "url": "https://thedollscout.com/zh/series/smiski-exercising",
+      "title": "SMISKI Exercising — 收藏清单",
+      "description": "SMISKI Exercising — 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/series/smiski-exercising.txt",
+      "modified": "2026-10-13"
+    },
+    {
+      "lang": "zh",
+      "slug": "series/smiski-dressing",
+      "url": "https://thedollscout.com/zh/series/smiski-dressing",
+      "title": "SMISKI Dressing — 收藏清单",
+      "description": "SMISKI Dressing — 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/series/smiski-dressing.txt",
+      "modified": "2026-10-13"
     }
   ]
 }

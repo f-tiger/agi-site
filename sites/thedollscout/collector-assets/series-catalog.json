@@ -1,19 +1,19 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-12",
+    "date": "2026-10-13",
     "status": "ok",
     "added": [
-      "smiski-series1",
-      "smiski-birthday"
+      "smiski-exercising",
+      "smiski-dressing"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -23,12 +23,7 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -53,7 +48,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-12",
+      "checked": "2026-10-13",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -83,7 +78,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-12",
+      "checked": "2026-10-13",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -155,7 +150,7 @@
       "source": "https://smiski.com/e/products/work-series/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-04",
+      "checked": "2026-10-13",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-work",
         "de": "https://thedollscout.com/de/series/smiski-work",
@@ -179,7 +174,7 @@
       "source": "https://smiski.com/e/products/museumseries/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-04",
+      "checked": "2026-10-13",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-museum",
         "de": "https://thedollscout.com/de/series/smiski-museum",
@@ -280,6 +275,54 @@
         "en": "https://thedollscout.com/series/smiski-birthday",
         "de": "https://thedollscout.com/de/series/smiski-birthday",
         "zh": "https://thedollscout.com/zh/series/smiski-birthday"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-exercising",
+      "brand": "smiski",
+      "title": "SMISKI Exercising",
+      "names": [
+        "SMISKI Doing Crunches",
+        "SMISKI Aerobics",
+        "Little SMISKI Balance",
+        "SMISKI Dumbbell",
+        "SMISKI Hoop",
+        "SMISKI Stretch"
+      ],
+      "source": "https://smiski.com/e/products/exercising-series/",
+      "published": "2026-10-13",
+      "modified": "2026-10-13",
+      "checked": "2026-10-13",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-exercising",
+        "de": "https://thedollscout.com/de/series/smiski-exercising",
+        "zh": "https://thedollscout.com/zh/series/smiski-exercising"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-dressing",
+      "brand": "smiski",
+      "title": "SMISKI Dressing",
+      "names": [
+        "SMISKI Underpants",
+        "SMISKI Struggling",
+        "SMISKI Loose Pants",
+        "SMISKI Putting On Socks",
+        "SMISKI Sweater",
+        "SMISKI Tight Pants"
+      ],
+      "source": "https://smiski.com/e/products/dressing-series/",
+      "published": "2026-10-13",
+      "modified": "2026-10-13",
+      "checked": "2026-10-13",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-dressing",
+        "de": "https://thedollscout.com/de/series/smiski-dressing",
+        "zh": "https://thedollscout.com/zh/series/smiski-dressing"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
