@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-12",
+ "fetched": "2026-10-13",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -50,97 +50,104 @@
    "polluted": false
   },
   "schimmel entfernen": {
+   "auto": [
+    "schimmel entfernen",
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen dusche",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
+    "schimmel entfernen tapete",
+    "schimmel entfernen alkohol",
+    "schimmel entfernen textilien"
+   ],
    "rising": [
     {
-     "q": "schimmel aus holz entfernen",
-     "v": 62550
+     "q": "schimmel entfernen wand",
+     "v": "new"
     },
     {
-     "q": "silikonfuge schimmel entfernen",
-     "v": 150
+     "q": "schimmel entfernen hausmittel",
+     "v": "new"
     },
     {
-     "q": "schimmel kleidung entfernen",
-     "v": 140
+     "q": "schimmel entfernen bad fugen",
+     "v": "new"
     },
     {
-     "q": "schwarzen schimmel entfernen",
-     "v": 130
+     "q": "schimmel entfernen dusche",
+     "v": "new"
     },
     {
-     "q": "schimmel in der dusche entfernen",
-     "v": 100
+     "q": "schimmel entfernen wand innen",
+     "v": "new"
     },
     {
-     "q": "schimmel dusche entfernen",
-     "v": 90
+     "q": "schimmel entfernen dm",
+     "v": "new"
     },
     {
-     "q": "schimmel aus fugen entfernen",
-     "v": 90
+     "q": "schimmel entfernen tapete",
+     "v": "new"
     },
     {
-     "q": "schimmel in dusche entfernen",
-     "v": 80
+     "q": "schimmel entfernen alkohol",
+     "v": "new"
     },
     {
-     "q": "silikon entfernen",
-     "v": 60
-    },
-    {
-     "q": "schimmel silikon entfernen",
-     "v": 50
+     "q": "schimmel entfernen textilien",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-12",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-13"
   },
   "infrarotheizung": {
    "rising": [
     {
-     "q": "steinfeld infrarotheizung",
-     "v": 50700
+     "q": "infrarotheizung wohnzimmer",
+     "v": 66100
     },
     {
-     "q": "elektrische heizung",
-     "v": 49150
+     "q": "heizlüfter oder infrarotheizung",
+     "v": 62850
     },
     {
-     "q": "infrarotheizung werkstatt",
-     "v": 48000
+     "q": "toom infrarotheizung",
+     "v": 42450
     },
     {
-     "q": "könighaus infrarotheizung 600 watt",
-     "v": 41850
+     "q": "gute infrarotheizung",
+     "v": 42150
     },
     {
-     "q": "stand infrarotheizung",
-     "v": 41550
+     "q": "könighaus infrarotheizung 1200 watt",
+     "v": 40250
+    },
+    {
+     "q": "infrarotheizung auf rollen",
+     "v": 36050
+    },
+    {
+     "q": "infarotheizung",
+     "v": 35350
+    },
+    {
+     "q": "heizlüfter bad",
+     "v": 29050
     },
     {
      "q": "infrarotheizung 100 watt",
-     "v": 34050
+     "v": 27850
     },
     {
-     "q": "marmony infrarotheizung",
-     "v": 34050
-    },
-    {
-     "q": "infrarot standheizung",
-     "v": 33400
-    },
-    {
-     "q": "infrarotheizung wand testsieger",
-     "v": 30150
-    },
-    {
-     "q": "infrarotheizung vor und nachteile",
-     "v": 29050
+     "q": "trotec infrarotheizung",
+     "v": 27400
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-05",
+   "fetched": "2026-10-13",
    "polluted": false
   },
   "luftentfeuchter": {
