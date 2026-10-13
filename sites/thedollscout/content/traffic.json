@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-11"
+    "until": "2026-10-12"
   },
   "days": {
     "2026-07-26": {
@@ -4232,6 +4232,74 @@
         "GB": 177,
         "FR": 139,
         "NL": 94
+      }
+    },
+    "2026-10-12": {
+      "date": "2026-10-12",
+      "requests": 4792,
+      "pageViews": 1656,
+      "uniques": 686,
+      "byIpType": {
+        "unknown": 2377,
+        "noRecord": 2263,
+        "searchEngine": 122,
+        "allowlist": 30
+      },
+      "byBrowser": {
+        "Unknown": 1080,
+        "Curl": 366,
+        "MobileSafari": 88,
+        "Chrome": 63,
+        "ChromeMobile": 24,
+        "GoogleBot": 21,
+        "Firefox": 4,
+        "Opera": 3,
+        "BingBot": 2,
+        "FirefoxMobile": 2,
+        "Edge": 2,
+        "ChromeDerivative": 1
+      },
+      "byContentType": {
+        "html": 1901,
+        "json": 1267,
+        "txt": 668,
+        "empty": 510,
+        "js": 14,
+        "css": 81,
+        "unknown": 40,
+        "xml": 31,
+        "pdf": 15,
+        "svg": 15,
+        "png": 11,
+        "zip": 2,
+        "jpeg": 1,
+        "webp": 1
+      },
+      "byStatus": {
+        "200": 3993,
+        "202": 250,
+        "204": 16,
+        "301": 179,
+        "303": 6,
+        "304": 32,
+        "308": 18,
+        "400": 1,
+        "401": 6,
+        "403": 4,
+        "404": 192,
+        "405": 57,
+        "410": 28,
+        "499": 10
+      },
+      "topCountries": {
+        "US": 3245,
+        "FI": 488,
+        "SG": 439,
+        "NL": 116,
+        "FR": 114,
+        "GB": 85,
+        "DE": 71,
+        "HK": 32
       }
     }
   }
