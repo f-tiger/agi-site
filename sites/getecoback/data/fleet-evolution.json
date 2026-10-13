@@ -16,8 +16,8 @@
       "has_underserved": true,
       "has_gaps": true,
       "has_hot_pages": true,
-      "top_underserved_page": "guide/infrarotheizung-badezimmer.html",
-      "top_hot_page": "/"
+      "top_underserved_page": "guide/schimmel-am-fenster.html",
+      "top_hot_page": "/en/guide/portable-ac-not-cooling.html"
     },
     "health": {
       "http": "200",
@@ -31,8 +31,8 @@
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
         "count_band": "10-99",
-        "query": "elektrische heizung",
-        "page": "guide/infrarotheizung-badezimmer.html",
+        "query": "schimmel aus holz entfernen",
+        "page": "guide/schimmel-am-fenster.html",
         "value_band": "100+"
       },
       "mode": "queue"
@@ -60,9 +60,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/",
+        "page": "/en/guide/portable-ac-not-cooling.html",
         "n7_band": "10-99",
-        "p7_band": "10-99"
+        "p7_band": "1-9"
       },
       "mode": "queue"
     }

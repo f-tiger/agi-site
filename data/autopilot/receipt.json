@@ -11,7 +11,7 @@
     "covered": 17,
     "demand_terms": 29,
     "gaps": 5,
-    "hot_pages": 3,
+    "hot_pages": 1,
     "lastmod_updated": 0,
     "offtopic": 7,
     "pages": 353,
@@ -21,11 +21,11 @@
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
     "sites/agiscorecard/trends-rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (13f filings, agi timeline, artificial general intelligence). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-10-12 (3 pages); no notes"
+    "heat: measured 2026-10-13 (1 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -51,11 +51,11 @@
    },
    "notes": [
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-10-12 (0 pages); no notes"
+    "heat: measured 2026-10-13 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -63,31 +63,27 @@
    ]
   },
   {
-   "changed_urls": [
-    "https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html",
-    "https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html",
-    "https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html"
-   ],
+   "changed_urls": [],
    "counts": {
     "bootstrapped": 0,
-    "changed": 3,
-    "covered": 20,
-    "demand_terms": 58,
+    "changed": 0,
+    "covered": 29,
+    "demand_terms": 68,
     "gaps": 32,
     "hot_pages": 15,
-    "offtopic": 6,
+    "offtopic": 7,
     "pages": 279,
     "undatable": 0,
-    "underserved": 13
+    "underserved": 14
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
     "sites/getecoback/data/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (heizlüfter, matratze). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-10-12 (25 pages); no notes"
+    "heat: measured 2026-10-13 (25 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -113,7 +109,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -139,24 +135,46 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://thedollscout.com/brands/smiski.html",
+    "https://thedollscout.com/de/brands/smiski.html",
+    "https://thedollscout.com/de/index.html",
+    "https://thedollscout.com/de/series.html",
+    "https://thedollscout.com/de/series/smiski-construction.html",
+    "https://thedollscout.com/de/series/smiski-sunday.html",
+    "https://thedollscout.com/de/series/sonny-angel-snack-series.html",
+    "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
+    "https://thedollscout.com/index.html",
+    "https://thedollscout.com/series.html",
+    "https://thedollscout.com/series/smiski-construction.html",
+    "https://thedollscout.com/series/smiski-sunday.html",
+    "https://thedollscout.com/series/sonny-angel-snack-series.html",
+    "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
+    "https://thedollscout.com/zh/brands/smiski.html",
+    "https://thedollscout.com/zh/index.html",
+    "https://thedollscout.com/zh/series.html",
+    "https://thedollscout.com/zh/series/smiski-construction.html",
+    "https://thedollscout.com/zh/series/smiski-sunday.html",
+    "https://thedollscout.com/zh/series/sonny-angel-snack-series.html",
+    "https://thedollscout.com/zh/series/sonny-angel-vegetable-series.html"
+   ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 0,
+    "bootstrapped": 6,
+    "changed": 21,
     "covered": 9,
     "demand_terms": 30,
     "gaps": 18,
     "hot_pages": 0,
-    "lastmod_updated": 27,
+    "lastmod_updated": 48,
     "offtopic": 3,
-    "pages": 222,
+    "pages": 228,
     "undatable": 0,
     "underserved": 0
    },
@@ -166,7 +184,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-10-12",
+   "today": "2026-10-13",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -174,5 +192,5 @@
    ]
   }
  ],
- "today": "2026-10-12"
+ "today": "2026-10-13"
 }

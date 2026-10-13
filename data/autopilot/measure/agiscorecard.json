@@ -3,16 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 27,
+    "n": 25,
     "q": "tool:portfolio_returns"
-   },
-   {
-    "n": 7,
-    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
     "q": "tool:verdicts"
+   },
+   {
+    "n": 6,
+    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
@@ -28,22 +28,14 @@
    }
   ]
  },
- "fetched": "2026-10-12",
+ "fetched": "2026-10-13",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/future-guide": {
-   "n7": 620,
-   "p7": 186
-  },
-  "/search": {
-   "n7": 107,
-   "p7": 50
-  },
   "/what-is-b-ai": {
-   "n7": 45,
-   "p7": 15
+   "n7": 50,
+   "p7": 23
   }
  },
  "site": "agiscorecard",

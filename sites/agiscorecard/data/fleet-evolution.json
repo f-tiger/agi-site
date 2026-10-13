@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": "invest/cathie-wood.html",
-      "top_hot_page": "/future-guide"
+      "top_hot_page": "/what-is-b-ai"
     },
     "health": {
       "http": "200",
@@ -60,9 +60,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/future-guide",
-        "n7_band": "100+",
-        "p7_band": "100+"
+        "page": "/what-is-b-ai",
+        "n7_band": "10-99",
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }

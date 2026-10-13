@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-12",
+  "as_of": "2026-10-13",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 10,
+    "opportunities": 11,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-11T09:16:21.033Z",
-    "health": "2026-10-11T14:31:16Z",
-    "ai_referrals": "2026-10-11T14:31:44Z",
-    "opportunities": "2026-10-11",
-    "autopilot_receipt": "2026-10-12"
+    "membership": "2026-10-12T09:42:39.446Z",
+    "health": "2026-10-12T17:11:05Z",
+    "ai_referrals": "2026-10-12T17:11:36Z",
+    "opportunities": "2026-10-12",
+    "autopilot_receipt": "2026-10-13"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-11T09:16:21.033Z",
+    "generated": "2026-10-12T09:42:39.446Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -128,7 +128,7 @@
       "theme": "locked out of google despite knowing password and having email access",
       "site": null,
       "state": "scout",
-      "score": 2.22,
+      "score": 2.24,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -137,7 +137,16 @@
       "theme": "fake abuse reports keep auto blocking my site on cloudflare",
       "site": null,
       "state": "scout",
-      "score": 2.08,
+      "score": 2.21,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "is there a program to run a command with a single flag and multiple arguments co",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -200,10 +209,10 @@
       "theme": "is there an android shell program to switch to any open application according to",
       "site": null,
       "state": "scout",
-      "score": 0.96,
+      "score": 1.96,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 0
     }
   ],
   "actions": [
@@ -226,10 +235,10 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 13,
-        "query": "elektrische heizung",
-        "page": "guide/infrarotheizung-badezimmer.html",
-        "value": 49150
+        "count": 14,
+        "query": "schimmel aus holz entfernen",
+        "page": "guide/schimmel-am-fenster.html",
+        "value": 62550
       },
       "mode": "queue"
     },
@@ -327,9 +336,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/future-guide",
-        "n7": 620,
-        "p7": 186
+        "page": "/what-is-b-ai",
+        "n7": 50,
+        "p7": 23
       },
       "mode": "queue"
     },
@@ -339,9 +348,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/",
-        "n7": 11,
-        "p7": 10
+        "page": "/en/guide/portable-ac-not-cooling.html",
+        "n7": 10,
+        "p7": 3
       },
       "mode": "queue"
     },
@@ -351,7 +360,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 250,
+        "human_pv_28d": 257,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -362,7 +371,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 269,
+        "human_pv_28d": 267,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -373,7 +382,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 1002,
+        "human_pv_28d": 997,
         "ai_ref_28d": 0
       },
       "mode": "queue"
