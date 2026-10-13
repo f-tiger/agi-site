@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-13T02:36:11Z",
-  "stage": "measurement_implemented_awaiting_product_release",
+  "updatedAt": "2026-10-13T03:07:16Z",
+  "stage": "measurement_live_release_acceptance_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-13",
-    "completedAt": null,
-    "status": "implementation_verified_release_pending",
+    "completedAt": "2026-10-13T03:07:16Z",
+    "status": "deployed_with_postdeploy_gate_failure",
     "problemId": "video-measurement-semantics"
   },
   "lastWeeklyReview": null,
@@ -15,25 +15,28 @@
   "nextWeeklyReviewDate": "2026-10-20",
   "primaryExperiment": {
     "id": "general-video-first-task",
-    "status": "measurement_and_materials_preparation",
+    "status": "instrumentation_live_waiting_real_distribution",
     "goal": "创作者用自己的草稿得到具体待办，并在下一次自然任务中自愿复用",
     "firstRealDistributionAt": null,
-    "measurementVersion": "legacy-manju-actions-v1_snapshot_pending"
+    "measurementVersion": "manju-video-actions-v2",
+    "measurementLiveFrom": "2026-10-13T02:55:43.632Z"
   },
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "reviewedAt": "2026-10-13T02:36:11Z",
-      "sourceCommit": "938bfcfdcd9b7fdc22c4d890a86c506f9ae3b3e7",
+      "reviewedAt": "2026-10-13T03:03:33Z",
+      "sourceCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
       "sourceCompletedAt": "2026-10-12T06:29:09.536Z",
       "status": "ok",
       "recordsIncludingSeasons": 681,
-      "note": "Same existing collection receipt; rereading it is not another content update or adoption event."
+      "note": "Same existing collection receipt; rereading it is not another content update or adoption event.",
+      "sourceTimezone": "UTC for completedAt; official board date timezone not declared in receipt",
+      "missingOrDelay": "No new original daily run observed as of reviewedAt; catalogue receipt unchanged."
     },
     {
       "path": "sites/baipiaoji/data/reach.json",
-      "reviewedAt": "2026-10-13T02:36:11Z",
-      "sourceCommit": "938bfcfdcd9b7fdc22c4d890a86c506f9ae3b3e7",
+      "reviewedAt": "2026-10-13T03:03:33Z",
+      "sourceCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
       "sourceDate": "2026-10-12",
       "sourceGeneratedAt": null,
       "sourceTimePrecision": "date_only_in_legacy_snapshot",
@@ -45,39 +48,55 @@
         "includesCurrentPartialDay": true
       },
       "status": "legacy_snapshot_missing_manju_signals",
-      "note": "Original snapshot kept unchanged; exact API generation time cannot be reconstructed from the export log."
+      "note": "Original snapshot kept unchanged; exact API generation time cannot be reconstructed from the export log.",
+      "missingOrDelay": "Original 2026-10-13 scheduled run not listed as of reviewedAt; no manual refresh."
     },
     {
       "url": "https://baipiaoji.com/api/reach?days=28",
-      "requestStartedAt": "2026-10-12T15:22:00.120174Z",
-      "sourceGeneratedAt": "2026-10-12T15:22:05.523Z",
-      "status": "ok_manju_signals_present",
+      "requestStartedAt": "2026-10-13T02:56:59.391Z",
+      "reviewedAt": "2026-10-13T02:57:00.703Z",
+      "sourceGeneratedAt": "2026-10-13T02:57:00.541Z",
+      "status": "ok_manju_signals_v2_present",
+      "measurementVersion": "manju-video-actions-v2",
       "window": {
         "requestedDays": 28,
-        "since": "2026-09-14",
-        "until": "2026-10-12",
+        "since": "2026-09-15",
+        "until": "2026-10-13",
         "timezone": "UTC",
         "includesCurrentPartialDay": true
       },
-      "note": "Last valid source from the previous iteration, not a new request or observation. Detailed counts remain private; events are not users, plays or revenue."
+      "missingOrDelay": "New event support began at this release; this response does not establish historical coverage, GA4 receipt or real tasks.",
+      "note": "Exactly one normal cached-endpoint read this iteration, HTTP 200; no cache bypass or retry. Detailed counts remain private. Counts are not people, plays, useful tasks, publication or revenue; do not subtract rolling windows."
     }
   ],
   "queue": [
+    {
+      "id": "bpj-release-readiness",
+      "priority": "P0",
+      "scope": "existing_release_gate_dependency",
+      "status": "blocked_pending_existing_membership_health_evidence",
+      "evidence": "video-measurement-2026-10-13.md",
+      "observedCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
+      "deploymentRun": "https://github.com/f-tiger/agi-site/actions/runs/38338631823",
+      "nextAction": "At the next existing BPJ maintenance/daily receipt, inspect membership readiness evidence and determine the failed predicate; do not rerun a product release, disable the gate, create orders or change payment configuration to make it green. Frame-selection checks already passed; later workflow gates and IndexNow did not run."
+    },
     {
       "id": "persist-manju-signals",
       "priority": "P1",
       "status": "implemented_awaiting_scheduled_verification",
       "evidence": "reach-snapshot-2026-10-12.md",
-      "nextAction": "After the original 2026-10-13 daily run completes, verify main data/reach.json contains manju_signals, measurement version, source_generated_at, exported_at and its UTC window; then close. Do not dispatch or recrawl for a date change.",
+      "nextAction": "Read the next completed original daily run and main data/reach.json; require manju_signals, measurement version, source_generated_at, exported_at and UTC window before closing. Original 2026-10-13 run was still absent at 03:03:33 UTC. Next review 2026-10-14; do not dispatch or recrawl for a date change.",
       "implementationCommit": "789e0b2aa16a9e2cac42761da4de2f1ac9a52a48",
       "pullRequest": 167
     },
     {
       "id": "video-measurement-semantics",
       "priority": "P1",
-      "status": "implemented_awaiting_release",
+      "status": "deployed_release_acceptance_blocked",
       "evidence": "video-measurement-2026-10-13.md",
-      "nextAction": "Verify the single BPJ product release and source version; then observe genuine tasks. Per-page states overlap and do not prove sufficient input, usefulness, unique people or reuse."
+      "nextAction": "Keep the actual deployment receipt and failed readiness gate distinct. Verify the existing release dependency when its owner has evidence; then observe genuine tasks and production GA4 receipt. Do not treat overlapping per-page states as users or useful tasks.",
+      "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
+      "pullRequest": 172
     },
     {
       "id": "fixed-channel-attribution",
@@ -103,9 +122,17 @@
   ],
   "currentBlockers": [
     {
+      "id": "bpj-release-readiness",
+      "status": "open",
+      "description": "The 2026-10-13 product deployment completed, but its post-deployment existing-membership gate received HTTP 200 / ok=true / ready=false. The failed readiness predicate is unknown; no account/payment lifecycle actions were run. IndexNow and remaining later gates were skipped.",
+      "evidence": "https://github.com/f-tiger/agi-site/actions/runs/38338631823",
+      "nextCheckDate": "2026-10-14",
+      "unblockCondition": "Obtain evidence for the existing readiness condition and pass the applicable remaining release acceptance; do not infer a video failure or bypass the gate."
+    },
+    {
       "id": "tool-denominator",
-      "status": "instrumentation_ready_awaiting_release_and_real_use",
-      "description": "Tool-only exposure and trusted edit/report states implemented. Production receipt and actual useful-task/reuse evidence remain unverified; status events are not a user funnel."
+      "status": "instrumentation_live_real_use_unverified",
+      "description": "Tool-only exposure and trusted edit/report states are deployed; the live reach response advertises v2. Production GA4 receipt, useful tasks and voluntary reuse remain unverified; states are not a user funnel."
     },
     {
       "id": "external-distribution",
@@ -115,14 +142,14 @@
     {
       "id": "scheduled-snapshot-acceptance",
       "status": "waiting_existing_schedule",
-      "description": "PR167 is merged; no 2026-10-13 original daily run was listed at the latest check. Keep the unchanged legacy snapshot and await the original schedule; no crawl or export is part of the product release.",
-      "nextCheckDate": "2026-10-13",
+      "description": "PR167 is merged; no 2026-10-13 original scheduled run was listed at 03:03:33 UTC. Existing Oct12 legacy snapshot remains unchanged; the live API v2 response does not close daily persistence acceptance.",
+      "nextCheckDate": "2026-10-14",
       "unblockCondition": "Read the completed original daily workflow and main snapshot; retain last valid source times if delayed or failed."
     }
   ],
   "lastAction": {
     "problemId": "video-measurement-semantics",
-    "status": "implemented_locally_verified_release_pending",
+    "status": "deployed_with_postdeploy_gate_failure",
     "verification": "video-measurement-2026-10-13.md",
     "review": {
       "optimizationRounds": 3,
@@ -132,15 +159,29 @@
     },
     "deployment": {
       "required": true,
-      "status": "not_dispatched",
+      "status": "deployed_postdeploy_gate_failed",
       "mode": "existing_bpj_workflow_explicit_readonly_release",
-      "lastObservedRun": "https://github.com/f-tiger/agi-site/actions/runs/38273574677",
-      "lastObservedEffectiveSource": "1bfe1421f4ab3f5e07458992466ed854fa2c6447",
-      "lastObservedOutcome": "deployed_but_post_registry_check_timed_out",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/38338631823",
+      "workflowConclusion": "failure",
+      "effectiveSource": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
+      "deployedAt": "2026-10-13T02:55:43.632Z",
+      "artifactUrl": "https://0e4874b1.aiyangmao.pages.dev",
+      "siteUrl": "https://baipiaoji.com/manju/video-fit/",
+      "sourceGuards": "both_current_main_guards_passed",
+      "verified": "Offline tests, full builds, browser tests, final GA4 coverage, canonical, live GA4 assets and video SEO/GEO surface checks passed. Frontend checks do not prove GA4 backend receipt.",
+      "failedStep": "Verify existing account and membership readiness without lifecycle writes",
+      "failure": "GET /api/member returned HTTP 200 and ok=true, then ready=false failed the assertion. Exact readiness cause unknown.",
       "newDailySnapshot": "pending_existing_schedule",
-      "indexNowSubmitted": false
+      "indexNowSubmitted": false,
+      "indexNowStatus": "step_skipped_after_readiness_failure",
+      "substantiveChangedUrls": 0,
+      "registrySuccessors": "both_skipped_after_failed_parent; not proof of the success-parent marker exclusion branch",
+      "dispatchCountThisIteration": 1,
+      "retryCount": 0
     },
-    "nextAction": "After local gates and independent review, merge once with broad push triggers suppressed, then dispatch the existing current-main BPJ workflow once with readonly_release=true. Read the actual deployment and gate outcomes; no extra daily refresh."
+    "nextAction": "First read existing maintenance/daily receipts for readiness and the persisted snapshot; retain one failure diagnosis and do not duplicate dispatch. For growth, use existing material only when a permitted real distribution channel exists; no new near-identical draft. Review the first observation window on 2026-10-20.",
+    "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
+    "pullRequest": 172
   },
   "recentActions": [
     {
@@ -154,8 +195,11 @@
     {
       "date": "2026-10-13",
       "problemId": "video-measurement-semantics",
-      "status": "implemented_locally_verified_release_pending",
-      "evidence": "video-measurement-2026-10-13.md"
+      "status": "deployed_with_postdeploy_gate_failure",
+      "evidence": "video-measurement-2026-10-13.md",
+      "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
+      "pullRequest": 172,
+      "deploymentRun": "https://github.com/f-tiger/agi-site/actions/runs/38338631823"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file."
