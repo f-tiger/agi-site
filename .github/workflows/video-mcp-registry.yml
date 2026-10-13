@@ -17,8 +17,12 @@ concurrency:
 jobs:
   register:
     # Never consume fork output or publish before the deployed endpoint passes its call tests.
+    # The parent validates this marker against its immutable GITHUB_SHA before
+    # an opted-in dispatch can run; do not replace it with floating-main text.
     if: >-
       github.repository == 'f-tiger/agi-site' &&
+      !(github.event_name == 'workflow_run' && contains(github.event.workflow_run.head_commit.message, '[outcome-readonly-release]') &&
+        (github.event.workflow_run.event == 'push' || (github.event.workflow_run.event == 'workflow_dispatch' && github.event.workflow_run.display_title == 'BPJ read-only product release'))) &&
       ((github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
        (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_branch == 'main' &&

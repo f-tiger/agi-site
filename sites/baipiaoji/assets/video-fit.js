@@ -7,13 +7,36 @@ if(form){
  const tierLabels={priority:'优先小测',alternative:'备选',test:'可作测试',revise:'先修改', 'needs-info':'待补充',verify:'先核对现行规则'};
  let media=null,objectURL=null,mediaTicket=0,cleanupMetadata=()=>{},reading=false,lastResult=null,lastInput=null,isExample=false;
  const track=action=>document.dispatchEvent(new CustomEvent('manju:action',{detail:'video_'+action}));
+ // Page-local measurement only: no identity, draft, filename or fingerprint is sent/stored.
+ let viewed=false,started=false,ownEdited=false,lastTrustedInput=null,userSubmit=false;
+ const reported=new Set();
+ const defaults=new Map([...form.elements].filter(field=>field.name&&!['mode','file'].includes(field.name)).map(field=>[field.name,field.value]));
+ function substantive(field){
+  if(!defaults.has(field?.name)||!field.validity.valid)return false;
+  const value=String(field.value).trim();
+  if(!value||value==='unknown'||value===defaults.get(field.name))return false;
+  return field.name!=='durationSeconds'||Number.isFinite(Number(value))&&Number(value)>0;
+ }
+ function signature(){return JSON.stringify({fields:[...new FormData(form)].filter(([name])=>name!=='file'),media});}
+ function rememberEdit(event){
+  if(!event.isTrusted||isExample||event.target===$('vf-file'))return;
+  if(substantive(event.target))ownEdited=true;
+  lastTrustedInput=ownEdited?signature():null;
+  if(ownEdited&&!started){started=true;track('start');}
+ }
+ function reportState(status){
+  const action={'needs-info':'report_needs_info',revise:'report_revise',test:'report_test'}[status];
+  if(!action||isExample||!ownEdited||lastTrustedInput!==signature()||![...form.elements].some(substantive)||reported.has(action))return;
+  reported.add(action);track(action);
+ }
+ function exposure(){if(!viewed&&document.visibilityState==='visible'){viewed=true;track('view');}}
  const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined&&text!==null)node.textContent=String(text);if(className)node.className=className;return node;};
  const say=(text,error=false)=>{$('vf-status').textContent=text;$('vf-status').dataset.error=String(error);};
  function invalidate(){lastResult=null;lastInput=null;$('vf-result').replaceChildren();$('vf-result').hidden=true;$('vf-report-actions').hidden=true;$('vf-export').disabled=true;$('vf-copy').disabled=true;$('vf-export-status').textContent='';}
  function updateUnknown(){const count=checkNames.filter(name=>form.elements[name].value==='unknown').length;$('vf-unknown-count').textContent=count?`${count} 项未确认`:'9 项已填写（本人自报）';}
  function clearMedia(){mediaTicket++;cleanupMetadata();cleanupMetadata=()=>{};reading=false;media=null;video.pause();video.removeAttribute('src');video.load();video.hidden=true;$('vf-preview-empty').hidden=false;if(objectURL){URL.revokeObjectURL(objectURL);objectURL=null;}invalidate();}
  function fileError(text){clearMedia();$('vf-media-status').textContent=text;say(text,true);track('file_error');}
- function readFile(file){
+ function readFile(file,trusted=false){
   clearMedia();say('');
   if(!file){$('vf-media-status').textContent='没有选择视频。可重新选择，或切换为草稿。';return;}
   form.elements.mode.value='file';
@@ -28,6 +51,7 @@ if(form){
    if(!Number.isFinite(durationSeconds)||durationSeconds<=0||!width||!height){fail();return;}
    cleanupMetadata();cleanupMetadata=()=>{};reading=false;
    media={durationSeconds,width,height,bytes:file.size};
+   if(trusted&&ownEdited&&!isExample)lastTrustedInput=signature();
    $('vf-media-status').textContent=`本机已读取：${Math.round(durationSeconds*10)/10} 秒 · ${width} × ${height} · ${(file.size/1024/1024).toFixed(1)} MiB。仅为媒体参数，不代表理解内容。`;
    say('视频已就绪。继续说明受众并检查发布准备。');track('file_ready');
   };
@@ -68,17 +92,21 @@ if(form){
   $('vf-report-actions').hidden=false;$('vf-export').disabled=isExample;$('vf-copy').disabled=isExample;
   $('vf-export-status').textContent=isExample?'此为示例编辑，修改后也不计入真实完成。点击“清空”后填写自己的信息即可导出。':'';
  }
- function evaluate(){
+ function evaluate(measureReport=false){
   if(reading){say('视频还在读取，请稍候，或切换为草稿。',true);return;}
-  try{lastInput=input();lastResult=evaluateVideo(lastInput,media,rules);render(lastResult);say(isExample?'已生成合成示例。可继续修改试用；点击“清空”后开始真实评估。':'评估已生成。文字与视频均未上传；修改输入后需重新评估。');track(isExample?'example':'complete');$('vf-result').focus({preventScroll:true});$('vf-result').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
+  try{lastInput=input();lastResult=evaluateVideo(lastInput,media,rules);render(lastResult);say(isExample?'已生成合成示例。可继续修改试用；点击“清空”后开始真实评估。':'评估已生成。文字与视频均未上传；修改输入后需重新评估。');track(isExample?'example':'complete');if(measureReport)reportState(lastResult.status);$('vf-result').focus({preventScroll:true});$('vf-result').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
   catch{invalidate();say('暂时无法生成报告，请检查输入或清空后重试。',true);}
  }
- form.addEventListener('submit',event=>{event.preventDefault();evaluate();});
+ // Native pointer/keyboard activation clicks the submit button; requestSubmit alone does not.
+ $('vf-evaluate').addEventListener('click',event=>{userSubmit=event.isTrusted;setTimeout(()=>{userSubmit=false;},0);});
+ form.addEventListener('submit',event=>{event.preventDefault();const trusted=userSubmit&&event.isTrusted;userSubmit=false;evaluate(trusted);});
  form.addEventListener('input',event=>{if(event.target===$('vf-file'))return;invalidate();updateUnknown();say(isExample?'示例输入已修改，可重新试评估；开始真实评估请先清空。':'输入已修改，请重新生成评估。');});
  form.addEventListener('change',event=>{if(event.target.name==='mode'){clearMedia();$('vf-file').value='';$('vf-media-status').textContent=event.target.value==='draft'?'草稿模式：请填写预计时长与画幅，未确定可留空。':'请选择本机视频；仅在当前浏览器读取。';}if(event.target!==$('vf-file')){invalidate();updateUnknown();}});
- $('vf-file').addEventListener('change',()=>readFile($('vf-file').files[0]));
+ form.addEventListener('input',rememberEdit);
+ form.addEventListener('change',rememberEdit);
+ $('vf-file').addEventListener('change',event=>readFile($('vf-file').files[0],event.isTrusted));
  video.addEventListener('error',()=>{if(media&&!reading)fileError('视频预览出现读取错误，已清除旧参数与报告。请换用兼容格式，或切换草稿。');});
- $('vf-reset').addEventListener('click',()=>{clearMedia();form.reset();isExample=false;updateUnknown();$('vf-performance-form').reset();$('vf-performance-result').replaceChildren();$('vf-performance-result').className='';$('vf-media-status').textContent='也可以直接填写草稿。文件上限 500 MiB；不会识别画面或台词。';say('已清空本页输入与报告，没有保存副本。');});
+ $('vf-reset').addEventListener('click',()=>{clearMedia();form.reset();isExample=false;ownEdited=false;lastTrustedInput=null;updateUnknown();$('vf-performance-form').reset();$('vf-performance-result').replaceChildren();$('vf-performance-result').className='';$('vf-media-status').textContent='也可以直接填写草稿。文件上限 500 MiB；不会识别画面或台词。';say('已清空本页输入与报告，没有保存副本。');});
  $('vf-example').addEventListener('click',()=>{clearMedia();form.reset();const sample={mode:'draft',contentType:'general',goal:'views',title:'把桌面收整齐的三个步骤',audience:'想改善居家工作桌面的人',hook:'先展示整理后的桌面，再展示整理前的状态。',summary:'用自己拍摄的画面演示三步整理方法，同时说明小桌面的限制。此为合成草稿示例。',durationSeconds:75,aspect:'vertical',opening:'result',proof:'steps',captions:'yes',audio:'clear',rights:'confirmed',ai:'not_applicable',commercial:'not_applicable',claim:'supported',destination:'not_applicable'};for(const [name,value] of Object.entries(sample))form.elements[name].value=value;isExample=true;updateUnknown();$('vf-media-status').textContent='合成草稿示例，没有读取真实视频。';evaluate();});
  function report(){return lastResult&&!isExample?reportMarkdown(lastResult,lastInput):null;}
  $('vf-export').addEventListener('click',()=>{const text=report();if(!text)return;const blob=new Blob([text],{type:'text/markdown;charset=utf-8'}),url=URL.createObjectURL(blob),link=el('a');link.href=url;link.download='帧选-视频发布评估.md';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('vf-export-status').textContent='已发起文字报告下载，请保管本机文件。';track('export');});
@@ -99,4 +127,6 @@ if(form){
  window.addEventListener('pagehide',clearMedia);
  updateUnknown();
  $('vf-evaluate').disabled=false;$('vf-compare').disabled=false;
+ document.addEventListener('visibilitychange',exposure);
+ exposure();
 }

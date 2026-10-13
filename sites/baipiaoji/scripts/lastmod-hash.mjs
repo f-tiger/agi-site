@@ -25,5 +25,9 @@ export const lmNormalize = (s) => s
       .replace(/(\/studio-assets\/[^"?]+)\?v=[^"]*/g, '$1')
       .replace(/(\/ai-solo\.(?:css|js))\?v=[^"]*/g, '$1')
       .replace(/(\/(?:site-shell\.(?:css|js)|account\.(?:css|js)|bpj\.js))\?v=[^"]*/g, '$1')
+      // Only the eight reviewed Manju/video resource paths, only on resource tags.
+      // Measurement/cache changes do not update a story. Body links, JSON-LD,
+      // other query parameters and unlisted assets remain content-sensitive.
+      .replace(/(<(?:script|link)\b[^>]*?\s(?:src|href)\s*=\s*)(["'])((?:https:\/\/baipiaoji\.com)?\/(?:manju(?:-home)?\.css|manju(?:-search|-live-search|-insights)?\.js|video-fit\.(?:css|js)))\?v=[A-Za-z0-9._-]+\2/g, '$1$2$3$2')
       .replace(/\d{4}-\d{2}-\d{2}/g, 'D');
 export const lmHashOf = (html) => createHash('sha1').update(lmNormalize(html)).digest('hex').slice(0, 16);

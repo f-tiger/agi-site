@@ -46,4 +46,23 @@ assert.equal(lmHashOf(page),lmHashOf(page+'<a href="/ai-solo/" data-ai-solo-foot
 assert.notEqual(lmHashOf(page),lmHashOf(page+'<main><a href="/ai-solo/">A relevant body link</a></main>'));n++;
 const soloAssets = '<link rel="stylesheet" href="https://baipiaoji.com/ai-solo.css?v=old"><script type="module" src="https://baipiaoji.com/ai-solo.js?v=old"></script>';
 assert.equal(lmHashOf(page+soloAssets),lmHashOf(page+soloAssets.replaceAll('?v=old','?v=new')));n++;
+// This local allowlist must not hide real stories, schema, links or asset changes.
+const videoAssets=['manju.css','manju-home.css','manju.js','manju-search.js','manju-live-search.js','manju-insights.js','video-fit.css','video-fit.js'];
+for(const asset of videoAssets)for(const base of ['/','https://baipiaoji.com/'])for(const quote of ['"',"'"]){
+ const tag=asset.endsWith('.css')?`<link rel="stylesheet" href=${quote}${base}${asset}?v=old${quote}>`:`<script type="module" src=${quote}${base}${asset}?v=old${quote}></script>`;
+ assert.equal(lmHashOf(page+tag),lmHashOf(page+tag.replace('?v=old','?v=new')),asset+' cache version is not content');n++;
+}
+for(const tag of [
+ '<a href="/manju.js?v=old">A body source link</a>',
+ '<script type="application/ld+json">{"url":"https://baipiaoji.com/manju.js?v=old"}</script>',
+ '<script src="https://other.example/manju.js?v=old"></script>',
+ '<script src="/manju-unlisted.js?v=old"></script>',
+ '<script data-src="/manju.js?v=old"></script>',
+ '<script src="/manju.js?v=old&mode=content"></script>',
+ '<script src="/manju.js?mode=content&v=old"></script>',
+]){assert.notEqual(lmHashOf(page+tag),lmHashOf(page+tag.replace('v=old','v=new')),'Non-allowlisted context must retain its value: '+tag);n++;}
+const videoPage='<main><h1>视频发布准备</h1><p>先确认素材权利</p></main><script type="application/ld+json">{"@type":"WebApplication","description":"本机检查"}</script><script src="/video-fit.js?v=old"></script>';
+for(const next of [videoPage.replace('先确认素材权利','先补齐字幕'),videoPage.replace('本机检查','上传检查'),videoPage.replace('/video-fit.js','/manju.js')]){
+ assert.notEqual(lmHashOf(videoPage),lmHashOf(next),'Real body/schema/resource-path changes must remain detectable');n++;
+}
 console.log(`✅ test-lastmod-hash: ${n} checks — rail counts, footer size, the latest-entry line and dates leave the hash alone; content edits change it${useDist ? ' (real dist page)' : ' (fixture)'}`);

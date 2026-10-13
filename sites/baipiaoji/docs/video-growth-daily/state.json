@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-12T15:33:07.991Z",
-  "stage": "measurement_export_ready_awaiting_daily_snapshot",
+  "updatedAt": "2026-10-13T02:36:11Z",
+  "stage": "measurement_implemented_awaiting_product_release",
   "lastCompletedIteration": {
-    "date": "2026-10-12",
-    "completedAt": "2026-10-12T15:33:07.991Z",
-    "status": "implementation_verified_daily_data_acceptance_pending",
-    "problemId": "persist-manju-signals"
+    "date": "2026-10-13",
+    "completedAt": null,
+    "status": "implementation_verified_release_pending",
+    "problemId": "video-measurement-semantics"
   },
   "lastWeeklyReview": null,
   "reviewTimezone": "Asia/Shanghai",
@@ -23,8 +23,8 @@
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "reviewedAt": "2026-10-12T15:33:07.991Z",
-      "sourceCommit": "88e67673ac53cf8448d0ccc395e9cd2ee0806b2a",
+      "reviewedAt": "2026-10-13T02:36:11Z",
+      "sourceCommit": "938bfcfdcd9b7fdc22c4d890a86c506f9ae3b3e7",
       "sourceCompletedAt": "2026-10-12T06:29:09.536Z",
       "status": "ok",
       "recordsIncludingSeasons": 681,
@@ -32,8 +32,8 @@
     },
     {
       "path": "sites/baipiaoji/data/reach.json",
-      "reviewedAt": "2026-10-12T15:33:07.991Z",
-      "sourceCommit": "88e67673ac53cf8448d0ccc395e9cd2ee0806b2a",
+      "reviewedAt": "2026-10-13T02:36:11Z",
+      "sourceCommit": "938bfcfdcd9b7fdc22c4d890a86c506f9ae3b3e7",
       "sourceDate": "2026-10-12",
       "sourceGeneratedAt": null,
       "sourceTimePrecision": "date_only_in_legacy_snapshot",
@@ -59,7 +59,7 @@
         "timezone": "UTC",
         "includesCurrentPartialDay": true
       },
-      "note": "One standard cached-endpoint request this iteration. Detailed counts remain in the private report; events are not users, plays or revenue."
+      "note": "Last valid source from the previous iteration, not a new request or observation. Detailed counts remain private; events are not users, plays or revenue."
     }
   ],
   "queue": [
@@ -75,9 +75,9 @@
     {
       "id": "video-measurement-semantics",
       "priority": "P1",
-      "status": "pending",
-      "evidence": "../video-marketing-kit/MEASUREMENT.md",
-      "nextAction": "After accepting the scheduled snapshot, implement independent tool exposure and substantive edit/report states against current main; preserve unknowns, privacy, QA and existing event meaning."
+      "status": "implemented_awaiting_release",
+      "evidence": "video-measurement-2026-10-13.md",
+      "nextAction": "Verify the single BPJ product release and source version; then observe genuine tasks. Per-page states overlap and do not prove sufficient input, usefulness, unique people or reuse."
     },
     {
       "id": "fixed-channel-attribution",
@@ -104,8 +104,8 @@
   "currentBlockers": [
     {
       "id": "tool-denominator",
-      "status": "open",
-      "description": "Existing directory view and report events do not establish a valid tool conversion denominator"
+      "status": "instrumentation_ready_awaiting_release_and_real_use",
+      "description": "Tool-only exposure and trusted edit/report states implemented. Production receipt and actual useful-task/reuse evidence remain unverified; status events are not a user funnel."
     },
     {
       "id": "external-distribution",
@@ -115,31 +115,32 @@
     {
       "id": "scheduled-snapshot-acceptance",
       "status": "waiting_existing_schedule",
-      "description": "Exporter implementation and offline evidence are ready; the first real daily snapshot with manju_signals has not run.",
+      "description": "PR167 is merged; no 2026-10-13 original daily run was listed at the latest check. Keep the unchanged legacy snapshot and await the original schedule; no crawl or export is part of the product release.",
       "nextCheckDate": "2026-10-13",
       "unblockCondition": "Read the completed original daily workflow and main snapshot; retain last valid source times if delayed or failed."
     }
   ],
   "lastAction": {
-    "problemId": "persist-manju-signals",
-    "status": "implemented_and_locally_verified",
-    "implementationCommit": "789e0b2aa16a9e2cac42761da4de2f1ac9a52a48",
-    "pullRequest": 167,
-    "verification": "reach-snapshot-2026-10-12.md",
+    "problemId": "video-measurement-semantics",
+    "status": "implemented_locally_verified_release_pending",
+    "verification": "video-measurement-2026-10-13.md",
     "review": {
       "optimizationRounds": 3,
-      "adversarialSelfChecks": 2,
-      "independentReview": false
+      "adversarialIndependentReviewRounds": 2,
+      "independentBrowserVerification": true,
+      "rootSelfCheck": true
     },
     "deployment": {
-      "required": false,
-      "reason": "Only the scheduled exporter changed; push deployment does not execute it. No public page or Worker change.",
-      "lastVerifiedRun": "https://github.com/f-tiger/agi-site/actions/runs/38212381243",
-      "lastVerifiedEffectiveSource": "595f738283c7f23bc17758dfbcc06ca0b411dea6",
-      "newDailySnapshot": "pending",
+      "required": true,
+      "status": "not_dispatched",
+      "mode": "existing_bpj_workflow_explicit_readonly_release",
+      "lastObservedRun": "https://github.com/f-tiger/agi-site/actions/runs/38273574677",
+      "lastObservedEffectiveSource": "1bfe1421f4ab3f5e07458992466ed854fa2c6447",
+      "lastObservedOutcome": "deployed_but_post_registry_check_timed_out",
+      "newDailySnapshot": "pending_existing_schedule",
       "indexNowSubmitted": false
     },
-    "nextAction": "After the original 2026-10-13 daily run completes, verify main data/reach.json contains manju_signals, measurement version, source_generated_at, exported_at and its UTC window; then close. Do not dispatch or recrawl for a date change."
+    "nextAction": "After local gates and independent review, merge once with broad push triggers suppressed, then dispatch the existing current-main BPJ workflow once with readonly_release=true. Read the actual deployment and gate outcomes; no extra daily refresh."
   },
   "recentActions": [
     {
@@ -149,6 +150,12 @@
       "pullRequest": 167,
       "status": "offline_verified_pending_original_daily_export",
       "evidence": "reach-snapshot-2026-10-12.md"
+    },
+    {
+      "date": "2026-10-13",
+      "problemId": "video-measurement-semantics",
+      "status": "implemented_locally_verified_release_pending",
+      "evidence": "video-measurement-2026-10-13.md"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file."

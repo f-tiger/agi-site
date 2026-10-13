@@ -28,7 +28,7 @@ test('Consumer discovery measures fixed destination and sharing actions without 
  for(const name of ['manju_playback_success','manju_share_published'])assert.equal(businessEvent('baipiaoji.com','/manju/',{name}),null);
 });
 test('Video publishing actions accept only fixed names, never files or report inputs',()=>{
- for(const action of ['file_ready','file_error','complete','example','export','compare']){
+ for(const action of ['file_ready','file_error','complete','example','export','compare','view','start','report_needs_info','report_revise','report_test']){
   const name='manju_video_'+action;
   assert.deepEqual(businessEvent('baipiaoji.com','/manju/video-fit',{name}),{name,tool_id:'manju',repeat:true});
   for(const field of ['filename','title','summary','report','audience'])assert.equal(businessEvent('baipiaoji.com','/manju/video-fit',{name,[field]:'PRIVATE'}),null);
@@ -36,6 +36,7 @@ test('Video publishing actions accept only fixed names, never files or report in
   assert.equal(businessEvent('getecoback.com','/manju/video-fit',{name}),null);
  }
  assert.equal(businessEvent('baipiaoji.com','/manju/video-fit',{name:'manju_video_purchase'}),null);
+ for(const action of ['view','start','report_needs_info','report_revise','report_test'])for(const path of ['/manju/','/manju/beipai','/manju/video-fit-private'])assert.equal(businessEvent('baipiaoji.com',path,{name:'manju_video_'+action}),null);
 });
 test('Fixed route and action whitelist excludes arbitrary labels and cross-site tools',()=>{
  assert.deepEqual(businessEvent('getecoback.com','/de/workbench/billlens.html',{name:'workbench_complete'}),{name:'tool_complete',tool_id:'billlens'});

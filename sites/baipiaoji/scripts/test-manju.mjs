@@ -9,7 +9,7 @@ import {importFacts,validateManju} from './manju-catalog.mjs';
 import {onRequestPost as inquiry} from '../functions/api/manju-inquiry.js';
 import {onRequestPost as hit} from '../functions/api/hit.js';
 import {businessEvent} from '../../../tools/fleet-analytics/business.mjs';
-import {parseManjuEvent,readManjuSignals} from '../lib/manju.mjs';
+import {parseManjuEvent,readManjuSignals,VIDEO_TASK_ACTIONS,MANJU_MEASUREMENT_VERSION} from '../lib/manju.mjs';
 const live=process.argv.includes('--live'),base='https://baipiaoji.com',ids=MANJU.items.map(x=>x.id);
 assert.equal(new Set(ids).size,ids.length);assert.ok(MANJU.items.length>=300,'Expanded directory must retain at least 300 sourced records');validateManju(MANJU);
 const example=MANJU.items.find(x=>x.recordType==='discovery'),fact={title:example.title,source:example.source,sourceTitle:example.evidence.sourceTitle,sourceClaim:example.evidence.sourceClaim,sourceHash:example.evidence.sourceHash,reportedTags:example.evidence.reportedTags,reportedReleaseDate:example.reportedReleaseDate.replace(/^(\d+)-(\d+)-(\d+)$/,'$1年$2月$3日'),checkedAt:example.checkedAt},empty={...MANJU,items:[]};
@@ -73,6 +73,13 @@ else{
  await hit({env,request:req('/manju/open/beipai')});assert.equal(sql.prepare('SELECT ref FROM hits').get().ref,'');
  for(const [p,h] of [['/manju/open/private@example.test',{}],['/manju/open/beipai',{DNT:'1'}],['/manju/open/beipai',{'sec-gpc':'1'}],['/manju/open/beipai',{'user-agent':'bpj-ci-selfcheck'}],['/manju/open/beipai',{referer:base+'/manju/?qa=1'}]])await hit({env,request:req(p,h)});
  assert.equal(sql.prepare('SELECT COUNT(*) n FROM hits').get().n,1);const report=await readManjuSignals(env.HITS,'2026-01-01');assert.equal(report.actions.open,1);assert.equal(report.inquiries.cooperate,1);assert.ok(!JSON.stringify(report).includes('example.test'));assert.ok(sql.prepare("EXPLAIN QUERY PLAN SELECT path, COUNT(*) FROM hits INDEXED BY hits_events WHERE d >= ? AND ev != '' AND ev = 'manju' GROUP BY path").all('2026-01-01').some(x=>x.detail.includes('hits_events')));
+ for(const action of VIDEO_TASK_ACTIONS){
+  assert.ok(parseManjuEvent('/manju/'+action+'/catalog',['beipai']));
+  assert.equal(parseManjuEvent('/manju/'+action+'/beipai',['beipai']),false);
+  await hit({env,request:req('/manju/'+action+'/catalog',{referer:base+'/manju/video-fit'})});
+ }
+ const measured=await readManjuSignals(env.HITS,'2026-01-01');assert.equal(measured.measurement_version,MANJU_MEASUREMENT_VERSION);for(const action of VIDEO_TASK_ACTIONS)assert.equal(measured.actions[action],1);
+ const unavailable=await readManjuSignals({prepare(){throw Error('quota');}},'2026-01-01');assert.equal(unavailable.measurement_version,MANJU_MEASUREMENT_VERSION);assert.equal(unavailable.actions,null);
  const failure=await inquiry({request:new Request(base+'/api/manju-inquiry',{method:'POST',headers:{origin:base,'content-type':'application/json'},body:JSON.stringify(good)}),env:{HITS:{prepare(){throw Error('quota');}}}});assert.equal(failure.status,503);
 }
 console.log('PASS manju '+(live?'live':'local')+': source distinctions, real routes, discovery, analytics privacy, inquiry validation'+(live?' and D1 schema (no synthetic lead).':', SQL persistence/dedup/failure and indexed aggregate report.'));

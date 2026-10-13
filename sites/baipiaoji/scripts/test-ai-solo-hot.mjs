@@ -78,7 +78,7 @@ test('malformed, empty, oversized and rejected requests cannot erase good data o
 });
 test('scheduler persists monitor snapshots before building without adding a cron',()=>{
  const yml=readFileSync(new URL('../../../.github/workflows/deploy-baipiaoji.yml',import.meta.url),'utf8');
- assert(yml.includes("if: github.event_name != 'push'\n        run: node scripts/ai-solo-hot.mjs"));
+ assert.match(yml,/if:\s*\(github\.event_name != 'push'\) && env\.OUTCOME_READ_ONLY_RELEASE != 'true'\s+run: node scripts\/ai-solo-hot\.mjs/);
  assert(yml.indexOf('run: node scripts/ai-solo-hot.mjs')<yml.indexOf('- name: Commit refreshed data'));
  assert.equal((yml.match(/- cron:/g)||[]).length,1);
 });

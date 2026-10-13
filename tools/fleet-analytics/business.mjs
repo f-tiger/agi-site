@@ -40,6 +40,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if(host==='baipiaoji.com' && pathname==='/manju/video-fit' && ['view','start','report_needs_info','report_revise','report_test'].some(action=>name==='manju_video_'+action)) return {name,tool_id:'manju',repeat:true};
   if (host === 'getecoback.com' && ['/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) &&
       ['view','example','calculate','compare','example_export','export','share','guide'].some(action=>name==='eco_laundry_'+action))
     return {name:name.slice(4),tool_id:'laundry-cost',repeat:true};
