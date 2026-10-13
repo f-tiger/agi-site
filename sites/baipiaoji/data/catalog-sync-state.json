@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 3,
   "pending": [
-   {
-    "repo": "The-Vibe-Company/quivr",
-    "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "VectifyAI/PageIndex",
     "topic": "knowledge",
@@ -37,11 +32,6 @@
    {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "Hmbown/Codewhale",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -122,11 +112,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "getagentseal/codeburn",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -215,11 +200,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "FoundationVision/Infinity",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "MiniMax-AI/MiniMax-MCP",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -287,11 +267,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "espnet/espnet",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -545,11 +520,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "noahgsolomon/brainrot.js",
-    "topic": "video",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "xixihhhh/clipforge",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -587,11 +557,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "datalab-to/chandra",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -675,11 +640,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "bentoml/OpenLLM",
-    "topic": "local",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "oumi-ai/oumi",
     "topic": "local",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -697,11 +657,6 @@
    {
     "repo": "predibase/lorax",
     "topic": "local",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "AIDotNet/OpenDeepWiki",
-    "topic": "models",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -762,11 +717,6 @@
    {
     "repo": "ray-project/llm-applications",
     "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "plotly/dash",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -1417,11 +1367,6 @@
    {
     "repo": "ray-project/ray",
     "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "NVIDIA/Megatron-LM",
-    "topic": "ai",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -2465,11 +2410,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "LibreChat-AI/docs",
-    "topic": "chat",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "slackapi/java-slack-sdk",
     "topic": "chat",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -3003,15 +2943,75 @@
     "repo": "ConardLi/garden-skills",
     "topic": "agents",
     "foundAt": "2026-10-12T06:28:11.186Z"
+   },
+   {
+    "repo": "TelegramBots/Telegram.Bot",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "chaskiq/chaskiq",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "FireRedTeam/FireRed-OpenStoryline",
+    "topic": "agents",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "wppconnect-team/wppconnect",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "johnbean393/Sidekick",
+    "topic": "agents",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "errbotio/errbot",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "irazasyed/telegram-bot-sdk",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "aandrew-me/tgpt",
+    "topic": "chat",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "AprilNEA/AChat",
+    "topic": "agents",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "SciSharp/BotSharp",
+    "topic": "agents",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "cheshire-cat-ai/core",
+    "topic": "agents",
+    "foundAt": "2026-10-13T07:04:30.117Z"
+   },
+   {
+    "repo": "pingcap/autoflow",
+    "topic": "knowledge",
+    "foundAt": "2026-10-13T07:04:30.117Z"
    }
   ],
   "checked": {
-   "gh-affaan-m-ecc-0658d7": "2026-10-05T06:14:17.704Z",
-   "gh-significant-gravitas-autogpt-dd500a": "2026-10-05T06:14:17.704Z",
-   "gh-f-prompts-chat-f63476": "2026-10-05T06:14:17.704Z",
-   "gh-dietrichgebert-ponytail-61b983": "2026-10-05T06:14:17.704Z",
-   "gh-langchain-ai-langchain-5d4aa1": "2026-10-05T06:14:17.704Z",
-   "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-05T06:14:17.704Z",
+   "gh-affaan-m-ecc-0658d7": "2026-10-13T07:04:30.117Z",
+   "gh-significant-gravitas-autogpt-dd500a": "2026-10-13T07:04:30.117Z",
+   "gh-f-prompts-chat-f63476": "2026-10-13T07:04:30.117Z",
+   "gh-dietrichgebert-ponytail-61b983": "2026-10-13T07:04:30.117Z",
+   "gh-langchain-ai-langchain-5d4aa1": "2026-10-13T07:04:30.117Z",
+   "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-13T07:04:30.117Z",
    "gh-graphify-labs-graphify-6d32f9": "2026-10-10T06:21:21.428Z",
    "gh-tauricresearch-tradingagents-317caa": "2026-10-10T06:21:21.428Z",
    "gh-juliusbrussee-caveman-72f8b4": "2026-10-10T06:21:21.428Z",
@@ -3045,7 +3045,7 @@
   }
  },
  "mcp": {
-  "cursor": "guide.manufacturingleader/guide-registry:1.0.0",
+  "cursor": "io.github.AnxForever/stylekit-mcp:0.4.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3409,7 +3409,47 @@
    "goalieip-trademark": "2026-10-12T06:28:11.186Z",
    "gocardless-gc-mcp": "2026-10-12T06:28:11.186Z",
    "gominddb-gomind": "2026-10-12T06:28:11.186Z",
-   "gondola-gondola": "2026-10-12T06:28:11.186Z"
+   "gondola-gondola": "2026-10-12T06:28:11.186Z",
+   "goodbarber-public-mcp": "2026-10-13T07:04:30.117Z",
+   "google-adk": "2026-10-13T07:04:30.117Z",
+   "goose": "2026-10-13T07:04:30.117Z",
+   "gpt-pilot": "2026-10-13T07:04:30.117Z",
+   "gpt-researcher": "2026-10-13T07:04:30.117Z",
+   "gpuquant-infrastructure": "2026-10-13T07:04:30.117Z",
+   "grafana-mcp": "2026-10-13T07:04:30.117Z",
+   "graphiti": "2026-10-13T07:04:30.117Z",
+   "gregbenza-openhouse": "2026-10-13T07:04:30.117Z",
+   "griptape": "2026-10-13T07:04:30.117Z",
+   "growaify-mcp": "2026-10-13T07:04:30.117Z",
+   "growsurf-growsurf": "2026-10-13T07:04:30.117Z",
+   "gtmotto-linkedin": "2026-10-13T07:04:30.117Z",
+   "guardrails-ai": "2026-10-13T07:04:30.117Z",
+   "guidance": "2026-10-13T07:04:30.117Z",
+   "gumballtools-equation-steps": "2026-10-13T07:04:30.117Z",
+   "gumloop": "2026-10-13T07:04:30.117Z",
+   "halffee-coinrebate": "2026-10-13T07:04:30.117Z",
+   "hamir-mcp": "2026-10-13T07:04:30.117Z",
+   "handsforagents-hands": "2026-10-13T07:04:30.117Z",
+   "hasdata-airbnb": "2026-10-13T07:04:30.117Z",
+   "hasdata-amazon": "2026-10-13T07:04:30.117Z",
+   "hasdata-bing": "2026-10-13T07:04:30.117Z",
+   "hasdata-booking": "2026-10-13T07:04:30.117Z",
+   "hasdata-duckduckgo": "2026-10-13T07:04:30.117Z",
+   "hasdata-facebook": "2026-10-13T07:04:30.117Z",
+   "hasdata-glassdoor": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-flights": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-hotels": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-images": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-maps": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-scholar": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-search": "2026-10-13T07:04:30.117Z",
+   "hasdata-google-trends": "2026-10-13T07:04:30.117Z",
+   "hasdata-indeed": "2026-10-13T07:04:30.117Z",
+   "hasdata-instagram": "2026-10-13T07:04:30.117Z",
+   "hasdata-redfin": "2026-10-13T07:04:30.117Z",
+   "hasdata-shopify": "2026-10-13T07:04:30.117Z",
+   "hasdata-tiktok": "2026-10-13T07:04:30.117Z",
+   "hasdata-walmart": "2026-10-13T07:04:30.117Z"
   }
  }
 }

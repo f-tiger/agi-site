@@ -1,47 +1,50 @@
 {
-  "generated": "2026-10-12",
+  "generated": "2026-10-13",
+  "source_generated_at": "2026-10-13T07:04:00.482Z",
+  "exported_at": "2026-10-13T07:04:00.568Z",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-09-14",
-  "until": "2026-10-12",
+  "since": "2026-09-15",
+  "until": "2026-10-13",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 514,
-  "per_day": 18.4,
+  "humans_referred": 531,
+  "per_day": 19,
   "by_kind": {
-    "tool": 414,
+    "tool": 429,
     "page": 48,
     "category": 25,
-    "alternatives": 10,
-    "upgrade": 3,
-    "vs": 9,
+    "alternatives": 9,
+    "upgrade": 4,
+    "vs": 10,
     "judgement": 3,
     "plans": 1,
-    "solutions": 1
+    "solutions": 1,
+    "wall": 1
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 163
+      "n": 167
     },
     {
       "cat": "coding",
       "n": 63
     },
     {
+      "cat": "video",
+      "n": 40
+    },
+    {
       "cat": "office",
       "n": 39
     },
     {
-      "cat": "video",
-      "n": 39
-    },
-    {
       "cat": "writing",
-      "n": 35
+      "n": 37
     },
     {
       "cat": "image",
-      "n": 35
+      "n": 37
     },
     {
       "cat": "api",
@@ -49,19 +52,19 @@
     },
     {
       "cat": "search",
-      "n": 15
+      "n": 19
     },
     {
       "cat": "local",
-      "n": 15
+      "n": 17
     },
     {
       "cat": "study",
-      "n": 14
+      "n": 15
     },
     {
       "cat": "audio",
-      "n": 10
+      "n": 11
     },
     {
       "cat": "agent",
@@ -76,36 +79,41 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 85
+      "n": 92
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 42
+      "n": 38
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 18
+      "n": 17
     },
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 18
+      "n": 17
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 12
+      "n": 11
     },
     {
-      "slug": "tongyi",
-      "cat": "chat",
-      "n": 8
+      "slug": "exa",
+      "cat": "search",
+      "n": 10
     },
     {
       "slug": "deepl",
       "cat": "writing",
+      "n": 9
+    },
+    {
+      "slug": "tongyi",
+      "cat": "chat",
       "n": 8
     },
     {
@@ -114,18 +122,18 @@
       "n": 8
     },
     {
-      "slug": "exa",
-      "cat": "search",
-      "n": 7
-    },
-    {
       "slug": "tongyi-wanxiang",
       "cat": "image",
-      "n": 7
+      "n": 8
     },
     {
       "slug": "google-flow",
       "cat": "video",
+      "n": 8
+    },
+    {
+      "slug": "immersive-translate",
+      "cat": "writing",
       "n": 7
     },
     {
@@ -139,18 +147,8 @@
       "n": 6
     },
     {
-      "slug": "immersive-translate",
-      "cat": "writing",
-      "n": 6
-    },
-    {
       "slug": "liblib",
       "cat": "image",
-      "n": 6
-    },
-    {
-      "slug": "fireworks",
-      "cat": "api",
       "n": 6
     },
     {
@@ -174,8 +172,18 @@
       "n": 5
     },
     {
+      "slug": "fireworks",
+      "cat": "api",
+      "n": 5
+    },
+    {
       "slug": "github-models",
       "cat": "coding",
+      "n": 4
+    },
+    {
+      "slug": "comfyui",
+      "cat": "local",
       "n": 4
     },
     {
@@ -186,6 +194,11 @@
     {
       "slug": "fish-audio",
       "cat": "audio",
+      "n": 4
+    },
+    {
+      "slug": "ima",
+      "cat": "office",
       "n": 4
     },
     {
@@ -209,6 +222,11 @@
       "n": 4
     },
     {
+      "slug": "anythingllm",
+      "cat": "local",
+      "n": 3
+    },
+    {
       "slug": "bolt",
       "cat": "coding",
       "n": 3
@@ -216,16 +234,6 @@
     {
       "slug": "cherry-studio",
       "cat": "local",
-      "n": 3
-    },
-    {
-      "slug": "ima",
-      "cat": "office",
-      "n": 3
-    },
-    {
-      "slug": "marscode",
-      "cat": "coding",
       "n": 3
     },
     {
@@ -249,8 +257,8 @@
       "n": 3
     },
     {
-      "slug": "comfyui",
-      "cat": "local",
+      "slug": "elevenlabs",
+      "cat": "audio",
       "n": 3
     },
     {
@@ -262,11 +270,6 @@
       "slug": "windsurf",
       "cat": "coding",
       "n": 3
-    },
-    {
-      "slug": "anythingllm",
-      "cat": "local",
-      "n": 2
     },
     {
       "slug": "caiyun",
@@ -291,11 +294,11 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 85
+      "n": 92
     },
     {
       "path": "grok",
-      "n": 42
+      "n": 38
     },
     {
       "path": "/",
@@ -307,22 +310,26 @@
     },
     {
       "path": "feishu-miaoji",
-      "n": 18
+      "n": 17
     },
     {
       "path": "cline",
-      "n": 18
+      "n": 17
     },
     {
       "path": "haiper",
-      "n": 12
+      "n": 11
     },
     {
-      "path": "tongyi",
-      "n": 8
+      "path": "exa",
+      "n": 10
     },
     {
       "path": "deepl",
+      "n": 9
+    },
+    {
+      "path": "tongyi",
       "n": 8
     },
     {
@@ -330,15 +337,15 @@
       "n": 8
     },
     {
-      "path": "exa",
-      "n": 7
-    },
-    {
       "path": "tongyi-wanxiang",
-      "n": 7
+      "n": 8
     },
     {
       "path": "google-flow",
+      "n": 8
+    },
+    {
+      "path": "immersive-translate",
       "n": 7
     },
     {
@@ -350,15 +357,7 @@
       "n": 6
     },
     {
-      "path": "immersive-translate",
-      "n": 6
-    },
-    {
       "path": "liblib",
-      "n": 6
-    },
-    {
-      "path": "fireworks",
       "n": 6
     },
     {
@@ -382,7 +381,15 @@
       "n": 5
     },
     {
+      "path": "fireworks",
+      "n": 5
+    },
+    {
       "path": "github-models",
+      "n": 4
+    },
+    {
+      "path": "comfyui",
       "n": 4
     },
     {
@@ -391,6 +398,10 @@
     },
     {
       "path": "fish-audio",
+      "n": 4
+    },
+    {
+      "path": "ima",
       "n": 4
     },
     {
@@ -414,19 +425,15 @@
       "n": 3
     },
     {
+      "path": "anythingllm",
+      "n": 3
+    },
+    {
       "path": "bolt",
       "n": 3
     },
     {
       "path": "cherry-studio",
-      "n": 3
-    },
-    {
-      "path": "ima",
-      "n": 3
-    },
-    {
-      "path": "marscode",
       "n": 3
     },
     {
@@ -454,7 +461,7 @@
       "n": 3
     },
     {
-      "path": "comfyui",
+      "path": "elevenlabs",
       "n": 3
     },
     {
@@ -467,10 +474,6 @@
     },
     {
       "path": "/work-plan",
-      "n": 2
-    },
-    {
-      "path": "anythingllm",
       "n": 2
     },
     {
@@ -490,6 +493,10 @@
       "n": 2
     },
     {
+      "path": "marscode",
+      "n": 2
+    },
+    {
       "path": "pollinations",
       "n": 2
     },
@@ -499,6 +506,10 @@
     },
     {
       "path": "qingying",
+      "n": 2
+    },
+    {
+      "path": "quark-ai",
       "n": 2
     },
     {
@@ -518,30 +529,22 @@
       "n": 2
     },
     {
-      "path": "elevenlabs",
-      "n": 2
-    },
-    {
       "path": "zhipu-glm",
       "n": 2
-    },
-    {
-      "path": "/agents/agentverse",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 239
+      "n": 255
     },
     {
       "ref": "www.google.com",
-      "n": 178
+      "n": 173
     },
     {
       "ref": "www.bing.com",
-      "n": 41
+      "n": 47
     },
     {
       "ref": "m.baidu.com",
@@ -650,35 +653,35 @@
     }
   ],
   "events": {
-    "sub_view": 416,
-    "go": 149,
-    "manju": 93,
-    "home": 60,
-    "biz": 53,
-    "star": 30,
+    "sub_view": 424,
+    "go": 153,
+    "manju": 109,
+    "home": 70,
+    "biz": 65,
+    "calc": 39,
+    "star": 36,
     "ai_solo": 29,
-    "calc": 28,
-    "github_tools": 13,
+    "gs": 21,
+    "github_tools": 14,
     "video": 12,
-    "gs": 11,
     "quote": 11,
+    "gs_go": 5,
     "earn": 4,
-    "gs_go": 4,
     "gate": 3,
     "sheet_dl": 2,
     "sub_ok": 2,
     "sub_submit": 2
   },
   "submissions": {
-    "new": 29,
-    "total": 29
+    "new": 36,
+    "total": 36
   },
   "ads": {},
   "commercial_triggers": {
     "ok": true,
     "started": "2026-09-26",
     "counts": {
-      "vendor-view": 9,
+      "vendor-view": 13,
       "vendor-sponsor": 0,
       "vendor-wait": 1,
       "ad-view": 0,
@@ -691,18 +694,18 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-09-14",
-      "end_exclusive": "2026-10-12",
+      "start": "2026-09-15",
+      "end_exclusive": "2026-10-13",
       "complete_days": 28,
       "date_basis": "UTC"
     },
     "events": {
-      "tool_results_own": 0,
+      "tool_results_own": 3,
       "tool_results_demo": 0,
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
-      "other_calc_events": 26,
-      "directory_outbound_clicks": 149,
+      "other_calc_events": 34,
+      "directory_outbound_clicks": 151,
       "homepage_limit_navigation": 0,
       "video_exports_own": 0,
       "video_exports_demo": 0,
@@ -721,6 +724,149 @@
       "total_non_test": 4,
       "total_currently_email_verified": 2
     },
+    "accounts_daily": [
+      {
+        "date": "2026-09-15",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-16",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-17",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-18",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-19",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-20",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-21",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-22",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-23",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-24",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-25",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-26",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-27",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-28",
+        "created": 1,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-29",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-09-30",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-01",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-02",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-03",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-04",
+        "created": 2,
+        "new_accounts_currently_email_verified": 1
+      },
+      {
+        "date": "2026-10-05",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-06",
+        "created": 1,
+        "new_accounts_currently_email_verified": 1
+      },
+      {
+        "date": "2026-10-07",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-08",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-09",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-10",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-11",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-12",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
+      }
+    ],
+    "account_scope": "fleet_shared_account_pool",
     "missing": [],
     "definitions": {
       "acquisition": "Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.",
@@ -730,6 +876,8 @@
       "video_exports": "Successful video or batch export actions; one batch is one action, not a clip count or unique user.",
       "accounts": "Surviving server-side accounts created within this UTC window with qa=0. Verified is their current email-ownership state, not a verification event during this window. Deleted accounts are absent; accounts are not unique humans.",
       "account_totals": "Current surviving accounts with qa=0, across all creation dates including today. Counts include unverified and legacy accounts; they do not prove distinct humans. Current mailbox-verified total is reported separately. Never add subscriber or paid-membership records to this count.",
+      "account_scope": "The fleet shared free-account pool hosted by BPJ, not BPJ-origin registrations. No source site or external-person attribution is stored in this aggregate. Separate AGI native registrations are not included; never sum the shared pool with per-site sessions as users.",
+      "accounts_daily": "Daily created counts use each surviving non-test account creation timestamp and complete UTC dates. Zero-filled only after a successful read. Deleted accounts are absent, so this is not a permanent historical signup ledger. new_accounts_currently_email_verified describes the current verification state of each creation-day cohort, not verifications performed on that day; past cohorts can change after later verification or deletion. The current partial UTC day is excluded.",
       "account_tool_entries": "Public tool-to-account link actions within the complete-day window. Repeated actions count again; they are not successful signups and have no person-level attribution.",
       "coding_access": "Fixed coding-access actions in the same complete UTC-day window. Selection copies mean the browser reported successful clipboard writing; generic checklist copies are separate. Repeated actions count again; neither action counts nor their ratios prove people, retained users, installs, purchases or revenue. No query or checklist content is collected.",
       "attribution": "Independent stages, no shared visitor identifier or channel attribution. Do not divide tool events or accounts by GSC clicks to claim a conversion rate.",
@@ -739,23 +887,23 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-09-14",
+      "requested_start": "2026-09-15",
       "start": "2026-09-22",
-      "until": "2026-10-12",
+      "until": "2026-10-13",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 55,
+    "clicks": 64,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 45,
+      "zh": 54,
       "en": 10,
       "other": 0
     },
     "by_block": [
       {
         "id": "directory",
-        "n": 20
+        "n": 23
       },
       {
         "id": "nav",
@@ -763,11 +911,11 @@
       },
       {
         "id": "hero",
-        "n": 7
+        "n": 9
       },
       {
         "id": "site-header",
-        "n": 5
+        "n": 7
       },
       {
         "id": "featured-tools",
@@ -790,6 +938,10 @@
         "n": 1
       },
       {
+        "id": "github-tools",
+        "n": 1
+      },
+      {
         "id": "header",
         "n": 1
       },
@@ -800,12 +952,16 @@
       {
         "id": "site-footer",
         "n": 1
+      },
+      {
+        "id": "task-lanes",
+        "n": 1
       }
     ],
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 20
+        "n": 23
       },
       {
         "id": "homepage",
@@ -816,16 +972,28 @@
         "n": 6
       },
       {
+        "id": "agents",
+        "n": 5
+      },
+      {
         "id": "other-destination",
         "n": 5
       },
       {
-        "id": "agents",
-        "n": 4
+        "id": "tool-directory",
+        "n": 5
       },
       {
-        "id": "tool-directory",
-        "n": 4
+        "id": "github-tools",
+        "n": 2
+      },
+      {
+        "id": "video-hub",
+        "n": 2
+      },
+      {
+        "id": "work-plan",
+        "n": 2
       },
       {
         "id": "ai-tools",
@@ -836,11 +1004,11 @@
         "n": 1
       },
       {
-        "id": "free-account",
+        "id": "feature-map",
         "n": 1
       },
       {
-        "id": "github-tools",
+        "id": "free-account",
         "n": 1
       },
       {
@@ -852,15 +1020,7 @@
         "n": 1
       },
       {
-        "id": "video-hub",
-        "n": 1
-      },
-      {
         "id": "video-variants",
-        "n": 1
-      },
-      {
-        "id": "work-plan",
         "n": 1
       }
     ],
@@ -1027,6 +1187,14 @@
       },
       {
         "date": "2026-10-12",
+        "complete": true,
+        "clicks": 9,
+        "zh": 9,
+        "en": 0,
+        "other": 0
+      },
+      {
+        "date": "2026-10-13",
         "complete": false,
         "clicks": 0,
         "zh": 0,
@@ -1039,7 +1207,7 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 14
+        "n": 17
       },
       {
         "language": "en",
@@ -1049,14 +1217,14 @@
       },
       {
         "language": "zh",
-        "block": "nav",
-        "destination": "agents",
-        "n": 4
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 5
       },
       {
         "language": "zh",
-        "block": "hero",
-        "destination": "tool-directory",
+        "block": "nav",
+        "destination": "agents",
         "n": 4
       },
       {
@@ -1177,6 +1345,36 @@
         "language": "zh",
         "block": "site-header",
         "destination": "ai-tools",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "github-tools",
+        "destination": "github-tools",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "hero",
+        "destination": "agents",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "site-header",
+        "destination": "feature-map",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "site-header",
+        "destination": "video-hub",
+        "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "task-lanes",
+        "destination": "work-plan",
         "n": 1
       }
     ],
@@ -1500,6 +1698,62 @@
         "block": "site-header",
         "destination": "ai-tools",
         "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 3
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "github-tools",
+        "destination": "github-tools",
+        "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "agents",
+        "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "site-header",
+        "destination": "feature-map",
+        "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "site-header",
+        "destination": "video-hub",
+        "n": 1
+      },
+      {
+        "date": "2026-10-12",
+        "complete": true,
+        "language": "zh",
+        "block": "task-lanes",
+        "destination": "work-plan",
+        "n": 1
       }
     ],
     "definitions": {
@@ -1512,7 +1766,7 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-09-14",
+    "since": "2026-09-15",
     "includes_current_partial_utc_day": true,
     "actions": {
       "entry_open": 5,
@@ -1545,5 +1799,76 @@
       "own": "An edit or creator confirmation is not independently verified real-client work. Client opens and copied summaries do not prove delivery, retention or payment.",
       "quality": "Known QA/DNT/GPC/automated-browser traffic is suppressed on the client; unlabeled automation and lost events remain possible. Missing data is null, not zero."
     }
+  },
+  "manju_signals": {
+    "schema_version": 1,
+    "measurement_version": "manju-video-actions-v2",
+    "source_generated_at": "2026-10-13T07:04:00.482Z",
+    "window": {
+      "requested_days": 28,
+      "since": "2026-09-15",
+      "until": "2026-10-13",
+      "timezone": "UTC",
+      "includes_current_partial_utc_day": true
+    },
+    "ok": true,
+    "partial": false,
+    "reason": null,
+    "actions": {
+      "view": 87,
+      "filter": 7,
+      "empty": 2,
+      "open": 9,
+      "source": 0,
+      "save": 0,
+      "unsave": 0,
+      "share": 0,
+      "export": 0,
+      "feed": 0,
+      "inquiry_start": 0,
+      "inquiry_ok": 0,
+      "inquiry_error": 0,
+      "return": 0,
+      "preview_open": 0,
+      "rank_sort": 0,
+      "topic_complete": 0,
+      "topic_empty": 0,
+      "topic_export": 0,
+      "search_start": 1,
+      "search_submit": 0,
+      "search_results": 1,
+      "search_empty": 0,
+      "suggest_view": 1,
+      "suggest_select": 0,
+      "recommend_select": 0,
+      "discover_start": 0,
+      "discover_found": 0,
+      "discover_empty": 0,
+      "discover_error": 0,
+      "discover_limited": 0,
+      "discover_cached": 0,
+      "video_file_ready": 0,
+      "video_file_error": 0,
+      "video_complete": 0,
+      "video_example": 0,
+      "video_export": 0,
+      "video_compare": 0,
+      "official_open": 1,
+      "platform_search": 0,
+      "intro_open": 0,
+      "share_native": 0,
+      "share_copy": 0,
+      "video_view": 0,
+      "video_start": 0,
+      "video_report_needs_info": 0,
+      "video_report_revise": 0,
+      "video_report_test": 0
+    },
+    "inquiries": {
+      "submit": 0,
+      "cooperate": 0,
+      "correction": 0
+    },
+    "definition": "Fixed action and inquiry counts, not unique users, qualified customers, retention or revenue. Legacy view includes non-title pages and is not a tool-exposure denominator. video_view is a visible initialized tool page; video_start is its first trusted substantive non-example edit. Each video_report status is counted at most once per page after such editing; statuses may overlap, not distinct tasks, sufficient input, usefulness or successful publication. New events only cover time after deployment, even when the source supports v2. video_complete retains non-example report rendering including incomplete input; video_export combines download initiation and successful copy. official_open is an official-entry click, not a play or commission. Missing reads or fields are null; rolling-window differences are not daily additions. Known QA exclusions do not prove human traffic."
   }
 }

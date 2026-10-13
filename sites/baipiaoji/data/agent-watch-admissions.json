@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-12",
+ "checked": "2026-10-13",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1473,6 +1473,132 @@
    "first_attempt": "2026-10-12",
    "last_attempt": "2026-10-12",
    "attemptedAt": "2026-10-12T06:28:11.186Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "autoblocks-ctxl-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-ahoy2": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-local02": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-py-test-2": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-watch2": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-eliu243-oura-mcp-server-2": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-luminati-io-brightdata-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-mayla-debug-mcp-google-calendar2": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-minionszyw-bazi": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-motorboy1-my-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-pythondev-pro-egw-writings-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-skr-cloudify-clickup-mcp-server-new": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-ai-github": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "spideriq-gate": {
+   "attempts": 1,
+   "first_attempt": "2026-10-13",
+   "last_attempt": "2026-10-13",
+   "attemptedAt": "2026-10-13T07:04:30.117Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -10338,6 +10464,282 @@
    "date": "2026-10-12",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "smithery-leandrogavidia-vechain-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-lineex-pubmed-mcp-smithery",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-lukaskostka99-marketing-miner-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-magenie33-quality-dimension-generator",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-mfukushim-map-traveler-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-miguelgarzons-mcp-cun",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-mjucius-cozi-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-morosss-sdfsdf",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-mrugankpednekar-bill-splitter-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-mrugankpednekar-mcp-optimizer",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-neverinfamous-memory-journal-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-oxylabs-oxylabs-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-pinion05-supabase-mcp-lite",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-pinkpixel-dev-web-scout-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-plainyogurt21-sec-edgar-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-rainbowgore-stealthee-mcp-tools",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-ramadasmr-networkcalc-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-rencosta2025-context7fork",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-rfdez-pvpc-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-saidsef-mcp-github-pr-issue-analyser",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-samihalawa-whatsapp-go-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-sebastianall1977-gmail-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-serkan-ozal-driflyte-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-shoumikdc-arxiv-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-slhad-aha-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-ai-cookbook-python-quickstart",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-sunub-obsidian-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-szge-lolwiki-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-truss44-mcp-crypto-price",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-turnono-datacommons-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-wgong-sqlite-mcp-server",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-xinkuang-china-stock-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-yuna0x0-anilist-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-yuna0x0-hackmd-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-zeta-chain-cli",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-zhaoganghao-hellomcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "smithery-zwldarren-akshare-one-mcp",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "snipget-snipget",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "snowdata-live-snow",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "sourcemill-au-hot-water-payback",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "sourcemill-au-towing-legality",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "spendline-spendline",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "spmos-spm",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "stackeasy-credit-cards",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "stackrate-comparisons",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "statey-statey",
+   "date": "2026-10-13",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
