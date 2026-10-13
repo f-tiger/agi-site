@@ -131,11 +131,31 @@ let staleCount = 0;
   for (const f of ['.well-known/mcp.json', 'openapi.json', 'llms.txt', 'llms-full.txt']) {
     if (existsSync(join(root, f))) files.push(join(root, f));
   }
+  // GitHub discovery keeps the publisher's verbatim description in one data
+  // field (e.g. codeburn supports "37 tools"). It is not BPJ's catalog size.
+  // Exclude only that field from this gate, not the page, all JSON, or even the
+  // rest of this block. All other gates above still inspect the original HTML.
+  const githubPages = new Set(['github-tools/index.html', 'en/github-tools/index.html'].map(p => join(root, p)));
+  const countText = (p, text) => !githubPages.has(p) ? text : text.replace(
+    /<script type="application\/json" id="github-tool-data">([\s\S]*?)<\/script>/g,
+    (block, json) => {
+      try {
+        const data = JSON.parse(json);
+        const serialize = value => JSON.stringify(value).replace(/</g, '\\u003c');
+        // Only accept the generator's exact serialization. Otherwise duplicate
+        // keys or a changed format could discard unrelated authored claims.
+        if (serialize(data) !== json || !Array.isArray(data?.tools)) return block;
+        const tools = data.tools.map(tool => tool?.origin === 'automatic' && typeof tool.publisherDescription === 'string'
+          ? {...tool, publisherDescription: ''} : tool);
+        return block.replace(json, () => serialize({...data, tools}));
+      } catch { return block; } // Unexpected/malformed data gets no exemption.
+    }
+  );
   for (const p of files) {
     // /agents/ 页面引用第三方（官方 MCP 注册表）发布者自己的描述原文——「exposes 187 tools」「1102tools.com」都是
     // 他们的话不是本站的规模声明；本站在 agents 面自己的文案一律说「records / 条记录」，由 test-agent-watch --dist 守。
     if (/(?:^|\/)agents\//.test(p)) continue;
-    const txt = readFileSync(p, 'utf8');
+    const txt = countText(p, readFileSync(p, 'utf8'));
     for (const m of txt.matchAll(RE)) {
       const n = Number(m[1]);
       if (n < 30 || ok.has(n)) continue;   // <30 是 MCP 工具数、每日配额一类的小数字，不在此门管辖

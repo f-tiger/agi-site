@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './test-verify-dist-counts.mjs';
 import {readFileSync} from 'node:fs';
 import {GITHUB_TOOLS} from './github-tools-pages.mjs';
 import {matchesTool,githubSearchURL,MODES,KINDS,TOPICS,PLATFORMS} from '../lib/github-tools.mjs';
