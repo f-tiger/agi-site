@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-12",
- "radar_fetched": "2026-10-12",
+ "generated": "2026-10-13",
+ "radar_fetched": "2026-10-13",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -17,9 +17,24 @@
   "demand_confirmed": 0,
   "recurring": 0,
   "scout": 11,
-  "supplied": 0
+  "supplied": 2
  },
  "opportunities": [
+  {
+   "theme": "locked out of google despite knowing password and having email access",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-10"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.33,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
   {
    "theme": "any solution for bookmarks on various services",
    "site": "",
@@ -36,21 +51,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "locked out of google despite knowing password and having email access",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-10-10"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.24,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "fake abuse reports keep auto blocking my site on cloudflare",
    "site": "",
    "kind": "request-board",
@@ -60,7 +60,37 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.21,
+   "score": 2.26,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "recommend phones for elderly",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-12"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.07,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "web push notifications server",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-10"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.05,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -75,22 +105,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there an android shell program which returns open windows titles in last focu",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
+   "score": 2.03,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -141,33 +156,28 @@
    "fleet_pages": []
   },
   {
-   "theme": "using google or any other search engine to search for pdfs with fixed page range",
+   "theme": "is there an android shell program which returns open windows titles in last focu",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-10-04"
+    "2026-10-08"
    ],
    "state": "scout",
-   "supplied": false,
-   "score": 2.0,
+   "supplied": true,
+   "score": 1.05,
    "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "web push notifications server",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-10"
+   "supply": [
+    {
+     "title": "Show HN: E2E – Open-source agentic testing framework for web, iOS and Android",
+     "url": "https://github.com/tester-army/e2e",
+     "src": "hn_show",
+     "shared": [
+      "android",
+      "open"
+     ]
+    }
    ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
    "fleet_pages": []
   },
   {
@@ -179,10 +189,20 @@
     "2026-10-08"
    ],
    "state": "scout",
-   "supplied": false,
-   "score": 1.96,
+   "supplied": true,
+   "score": 0.96,
    "demand": [],
-   "supply": [],
+   "supply": [
+    {
+     "title": "Show HN: E2E – Open-source agentic testing framework for web, iOS and Android",
+     "url": "https://github.com/tester-army/e2e",
+     "src": "hn_show",
+     "shared": [
+      "android",
+      "open"
+     ]
+    }
+   ],
    "fleet_pages": []
   }
  ]
