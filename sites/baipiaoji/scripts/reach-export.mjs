@@ -10,7 +10,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { MANJU_ACTIONS } from '../lib/manju.mjs';
+import { MANJU_ACTIONS, MANJU_MEASUREMENT_VERSION, VIDEO_TASK_ACTIONS } from '../lib/manju.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(root, 'data/reach.json');
@@ -55,12 +55,13 @@ function manjuSnapshot(api) {
   const counts = (value, keys) => object(value) ? Object.fromEntries(keys.map(key =>
     [key, Object.hasOwn(value, key) && Number.isSafeInteger(value[key]) && value[key] >= 0 ? value[key] : null])) : null;
   const ok = raw?.ok === true && !!object(raw.actions);
+  const knownVersion = raw?.measurement_version == null || raw.measurement_version === MANJU_MEASUREMENT_VERSION;
   const actions = ok ? counts(raw.actions, MANJU_ACTIONS) : null;
   const inquiries = ok ? counts(raw.inquiries, ['submit', 'cooperate', 'correction']) : null;
   const date = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
   return {
     schema_version: 1,
-    measurement_version: 'legacy-manju-actions-v1',
+    measurement_version: raw?.measurement_version === MANJU_MEASUREMENT_VERSION ? MANJU_MEASUREMENT_VERSION : raw?.measurement_version == null ? 'legacy-manju-actions-v1' : null,
     source_generated_at: sourceTimestamp(api.generated),
     window: {
       requested_days: Number.isSafeInteger(api.window_days) ? api.window_days : null,
@@ -68,10 +69,10 @@ function manjuSnapshot(api) {
       includes_current_partial_utc_day: true,
     },
     ok,
-    partial: !ok || !inquiries || [...Object.values(actions || {}), ...Object.values(inquiries || {})].includes(null),
-    reason: raw == null ? 'not_reported' : raw.ok === false ? 'source_unavailable' : !ok ? 'invalid_shape' : null,
+    partial: !ok || !knownVersion || !inquiries || [...Object.values(actions || {}), ...Object.values(inquiries || {})].includes(null),
+    reason: raw == null ? 'not_reported' : raw.ok === false ? 'source_unavailable' : !ok ? 'invalid_shape' : !knownVersion ? 'unknown_measurement_version' : null,
     actions, inquiries,
-    definition: 'Fixed action and inquiry counts, not unique users, qualified customers, retention or revenue. Legacy view includes non-title pages and is not a tool-exposure denominator. video_complete means a non-example report rendered, including incomplete input; video_export combines download initiation and successful copy. official_open is an official-entry click, not a play or commission. Missing reads or fields are null; rolling-window differences are not daily additions. Known QA exclusions do not prove human traffic.',
+    definition: 'Fixed action and inquiry counts, not unique users, qualified customers, retention or revenue. Legacy view includes non-title pages and is not a tool-exposure denominator. video_view is a visible initialized tool page; video_start is its first trusted substantive non-example edit. Each video_report status is counted at most once per page after such editing; statuses may overlap, not distinct tasks, sufficient input, usefulness or successful publication. New events only cover time after deployment, even when the source supports v2. video_complete retains non-example report rendering including incomplete input; video_export combines download initiation and successful copy. official_open is an official-entry click, not a play or commission. Missing reads or fields are null; rolling-window differences are not daily additions. Known QA exclusions do not prove human traffic.',
   };
 }
 
@@ -124,7 +125,7 @@ if (SELFTEST) {
   fixture.conversion_stages={ok:true,events:{tool_results_own:2},accounts:{created:1}};
   fixture.quote_signals={ok:true,actions:{builder_open:3,own_ready:1},builder_entries:{'video-guide':3}};
   fixture.homepage_signals={ok:true,clicks:2,entries:[{language:'zh',block:'hero',destination:'toolbox',n:2}],daily:[{date:'2026-10-01',complete:false,clicks:2}]};
-  fixture.manju_signals={ok:true,actions:Object.fromEntries(MANJU_ACTIONS.map(k=>[k,0])),inquiries:{submit:0,cooperate:0,correction:0}};
+  fixture.manju_signals={ok:true,measurement_version:MANJU_MEASUREMENT_VERSION,actions:Object.fromEntries(MANJU_ACTIONS.map(k=>[k,0])),inquiries:{submit:0,cooperate:0,correction:0}};
   fixture.manju_signals.actions.video_complete=2;
   const s = summarise(fixture);
   const grokCat = catOf.get('grok');
@@ -143,6 +144,13 @@ if (SELFTEST) {
   assert(summarise({...fixture,homepage_signals:null}).homepage_signals.clicks===null,'首页数据缺失不能当零');
   assert(s.per_day === 0.4, 'per_day 应四舍五入到一位小数');
   assert(s.manju_signals.actions.video_complete===2 && s.manju_signals.actions.official_open===0 && !s.manju_signals.partial, '帧选完整聚合和真实零必须保存');
+  assert(s.manju_signals.measurement_version===MANJU_MEASUREMENT_VERSION && s.manju_signals.actions.video_start===0, '只有来源明确支持 v2 才标新口径，保留真实零');
+  const legacy=summarise({...fixture,manju_signals:{...fixture.manju_signals,measurement_version:undefined,actions:Object.fromEntries(MANJU_ACTIONS.filter(k=>!VIDEO_TASK_ACTIONS.includes(k)).map(k=>[k,0]))}}).manju_signals;
+  assert(legacy.measurement_version==='legacy-manju-actions-v1' && legacy.partial && VIDEO_TASK_ACTIONS.every(k=>legacy.actions[k]===null), '旧源不能借用新口径或补出历史零');
+  const partialV2=summarise({...fixture,manju_signals:{...fixture.manju_signals,actions:{video_view:0}}}).manju_signals;
+  assert(partialV2.measurement_version===MANJU_MEASUREMENT_VERSION && partialV2.partial && partialV2.actions.video_start===null, '新源缺单项仍然未知');
+  const unknownVersion=summarise({...fixture,manju_signals:{...fixture.manju_signals,measurement_version:'PRIVATE_UNKNOWN_VERSION'}}).manju_signals;
+  assert(unknownVersion.measurement_version===null && unknownVersion.partial && unknownVersion.reason==='unknown_measurement_version' && unknownVersion.source_generated_at===fixture.generated && !JSON.stringify(unknownVersion).includes('PRIVATE_UNKNOWN_VERSION'), '未知版本不回显或冒充新版本，来源时间不变');
   assert(s.manju_signals.window.timezone==='UTC' && s.manju_signals.window.includes_current_partial_utc_day && s.manju_signals.window.since===fixture.since && s.manju_signals.window.until===fixture.until && s.manju_signals.window.requested_days===28, '保留真实 UTC 起止和部分日口径');
   const replay=summarise(fixture,'2026-10-12T00:00:00.000Z');
   assert(replay.source_generated_at===fixture.generated && replay.manju_signals.source_generated_at===fixture.generated && replay.exported_at==='2026-10-12T00:00:00.000Z', '重读缓存不得冒充新来源');

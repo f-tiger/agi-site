@@ -1,6 +1,9 @@
 # 全自动流水线：每日巡检数据 → 提交更新 → 构建 → 部署 Cloudflare Pages
 # 依赖仓库 Secret：CLOUDFLARE_API_TOKEN（需 Pages 编辑权限）。全程无需人工介入。
 name: Daily update & deploy
+# Empty preserves GitHub's default title for every existing trigger. Successor
+# jobs pair this fixed opt-in title with the immutable source-commit marker.
+run-name: ${{ github.event_name == 'workflow_dispatch' && inputs.readonly_release == true && 'BPJ read-only product release' || '' }}
 # ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
 # 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
 # 本 workflow 的 run 步骤默认 working-directory: sites/baipiaoji/。
@@ -23,14 +26,20 @@ on:
       - "sites/baipiaoji/**"
       - ".github/workflows/deploy-baipiaoji.yml"
   workflow_dispatch:
+    inputs:
+      readonly_release:
+        description: 'Release current main with full product gates; skip data refresh and production lifecycle writes'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   id-token: write # Publish the owner-authorized startup MCP after live verification.
 
 concurrency:
-  # A push skipped by the job gate must not cancel an actual deployment.
-  group: ${{ (github.event_name != 'push' || contains(github.event.head_commit.message, '[deploy]')) && 'deploy-baipiaoji' || format('skip-baipiaoji-{0}', github.run_id) }}
+  # Rejected pushes and non-main read-only dispatches never enter the real
+  # deployment group (and therefore cannot replace a pending real release).
+  group: ${{ ((github.event_name != 'workflow_dispatch' || inputs.readonly_release != true || github.ref == 'refs/heads/main') && (github.event_name != 'push' || contains(github.event.head_commit.message, '[deploy]'))) && 'deploy-baipiaoji' || format('skip-baipiaoji-{0}', github.run_id) }}
   # 2026-08-16:账号 Actions 额度 15 天用掉 90%(1803/2000),本仓是最大消耗源
   # (342 次运行 × 均 3.5 分)。根因不是定时任务,是会话开发期连续 push——默认分支
   # 就是 claude/**,每推一次都跑一次完整构建部署。改成取消被顶替的运行:一串连续
@@ -42,8 +51,9 @@ jobs:
   update-build-deploy:
     runs-on: ubuntu-latest
     env:
-      # Explicit push-only product release; no account/payment lifecycle maintenance.
-      OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
+      # Explicit product release: marked push or an opted-in current-main dispatch.
+      # This is not the daily refresh and never creates production test accounts.
+      OUTCOME_READ_ONLY_RELEASE: ${{ (github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]')) || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.readonly_release == true) }}
       # Public browser OAuth client supplied by the owner; no client secret is used.
       # Keep configuration and post-deployment verification on the same value.
       # Narrow maintenance release only; normal push/schedule behavior is unchanged.
@@ -63,13 +73,29 @@ jobs:
     #
     # 从今往后 push 默认**不部署**，提交信息里显式写 [deploy] 才部署。
     # 不会因此漏发布：每日 schedule 仍然照跑，最坏情况是晚一天上线。
+    # An opted-in read-only dispatch on another ref must stop, not silently fall
+    # back to the ordinary data-refresh/lifecycle workflow. Default modes retain
+    # their existing behavior; current-main guards below remain mandatory.
     if: >-
-      github.event_name != 'push' ||
-      contains(github.event.head_commit.message, '[deploy]')
+      (github.event_name != 'workflow_dispatch' || inputs.readonly_release != true || github.ref == 'refs/heads/main') &&
+      (github.event_name != 'push' || contains(github.event.head_commit.message, '[deploy]'))
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # Downstream workflow_run jobs see the immutable event head commit, not
+      # this workflow's inputs. Bind the opt-in to that trusted source marker.
+      - name: Verify read-only dispatch source marker
+        if: github.event_name == 'workflow_dispatch' && env.OUTCOME_READ_ONLY_RELEASE == 'true'
+        working-directory: ${{ github.workspace }}
+        run: |
+          source_message=$(git show -s --format=%B "$GITHUB_SHA")
+          if [[ "$source_message" != *"[outcome-readonly-release]"* ]]; then
+            echo "::error::Read-only dispatch requires [outcome-readonly-release] on its immutable source commit; registry successors must agree on this mode."
+            exit 1
+          fi
+          echo "Read-only dispatch source marker verified at $GITHUB_SHA"
 
       # 防回滚守卫(2026-08-26 事故):GitHub 曾乱序补发数小时前的 push 事件,
       # 每个旧事件都按自己那个历史提交部署,把线上反复滚回旧代码——gridlings 的
@@ -97,14 +123,14 @@ jobs:
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node ../../tools/fleet-account/runtime-test.mjs
 
       - name: Verify tool links & refresh dates (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/verify.mjs
 
       # 新工具自动发现：从 HN 公开 API 拉候选进 data/backlog.json（只排队，不上站）。
       # 发现自动化、核实不自动化——收录判断仍走人工/会话按硬规则执行。
       # 放在数据提交步骤之前，产出随下面那步一并入库。
       - name: Discover new tool candidates (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/discover-tools.mjs
         continue-on-error: true
 
@@ -118,12 +144,12 @@ jobs:
       #                空广告位自售行、雷达按触达排付费档缺口、每日循环免 MCP 读数。
       # 分钟账:drift ~1.5 分 + reach ~0.1 分,每日一次 ≈ 48 分/月,挂在已有 schedule 上不新增 cron。
       - name: Source-page drift check (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/source-drift.mjs
         continue-on-error: true
 
       - name: Export reach snapshot from /api/reach (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/reach-export.mjs
         continue-on-error: true
 
@@ -131,7 +157,7 @@ jobs:
       # 字段白名单在 claims-export.mjs 里）。构建期据此在工具页标「厂商已认领 · 域名验证」；limits-edit 会话读排队更正。
       # ~0.05 分/次，挂已有 schedule；产出随 `git add data/` 那步提交。
       - name: Export vendor claims from /api/claim (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/claims-export.mjs
         continue-on-error: true
 
@@ -145,7 +171,7 @@ jobs:
       # 它**只做发现与取证，一个数字都不写进 tools.json**（新数字永远走 limits-edit 两步）。
       # 分钟账：最坏 8 × 3 候选 × ~3.5s ≈ 1.4 分/次 ≈ 42 分/月，挂已有 schedule，不新增 cron。
       - name: Probe official pricing pages for paid-tier gaps (scheduled runs only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/pricing-probe.mjs
         continue-on-error: true
 
@@ -153,7 +179,7 @@ jobs:
       # Twelve new GitHub records, sixty MCP admission attempts and rotating rechecks per run.
       - name: Discover, validate and expand GitHub and MCP catalogues
         id: catalog_sync
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]')
+        if: (github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]')) && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/catalog-sync.mjs
@@ -161,7 +187,7 @@ jobs:
 
       - name: Refresh official manju rankings and expand the directory
         id: manju_sync
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[manju-sync]')
+        if: (github.event_name != 'push' || contains(github.event.head_commit.message, '[manju-sync]')) && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/manju-sync.mjs
         continue-on-error: true
 
@@ -170,24 +196,24 @@ jobs:
       - name: MCP discovery probe (scheduled runs only)
         id: mcp_discovery
         continue-on-error: true
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/mcp-discovery-probe.mjs
 
       # Existing daily schedule only. 5 cases × 2 sources, concurrency 2, 8s cap.
       # Worst ~40s/run (~20 min/month); no fact/date rewrites or new cron.
       - name: Monitor AI Solo sources for editorial recheck
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/ai-solo-refresh.mjs
 
       # Two public reads, 10s and 512 KiB each. Reuse this daily schedule;
       # persist launch snapshots before building, never alter reviewed case facts.
       - name: Monitor startup launches and discussion signals
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/ai-solo-hot.mjs
 
       - name: Commit refreshed data
         id: catalog_commit
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]') || contains(github.event.head_commit.message, '[manju-sync]')
+        if: (github.event_name != 'push' || contains(github.event.head_commit.message, '[catalog-sync]') || contains(github.event.head_commit.message, '[manju-sync]')) && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -436,9 +462,9 @@ jobs:
 
       # 2026-09-25: the paid save path (hand login, handoff nonce, revision follow-up, second account, new key, rotation) is only visible
       # in a real browser. Before this step the fixes for V1/V2/MV-1..MV-4 were guarded by a test nobody ran (review L5).
-      # Push only: the member/video code changes only by push, so the daily schedule would pay ~1 min for nothing.
+      # Product releases only: both push and opted-in dispatch run the full browser gates; the daily schedule is unchanged.
       - name: Paid save path in a real browser
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         working-directory: ${{ github.workspace }}
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
@@ -486,7 +512,7 @@ jobs:
           python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist
 
       - name: Verify homepage consent and Manju search measurement
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         working-directory: ${{ github.workspace }}
         run: |
           node sites/baipiaoji/scripts/test-account-fleet-handoff-browser.mjs
@@ -561,7 +587,7 @@ jobs:
         run: node scripts/verify-release-pilot-live.mjs
 
       - name: Read pilot evidence (aggregates only)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
@@ -613,7 +639,7 @@ jobs:
         run: node tools/revenue-studio/verify.mjs --site bpj --live
 
       - name: Notify only changed canonical pages to IndexNow
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         continue-on-error: true
         working-directory: ${{ github.workspace }}
         run: node sites/baipiaoji/scripts/indexnow.mjs --changed-only
@@ -664,7 +690,7 @@ jobs:
       # /dev/null,失败时打印猜测「snapshot skipped (no D1 access)」。与 tds 侧同一个缺陷家族,
       # 同日一并改造:直连 D1 REST API + 三个 token 逐个试 + 真错误 + ::warning::。
       - name: Export traffic snapshot from D1
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -726,7 +752,7 @@ jobs:
           rm -f d1-response.json d1-curl.err
 
       - name: Commit traffic snapshot
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -918,7 +944,7 @@ jobs:
       # 变更分发：部署完成后触发一次。端点幂等且不信任调用方——它自己从同源拉
       # changes.json 并按每个 watch 的 last_sent 去重，重复触发不重发。
       - name: Dispatch verified changes to watch webhooks
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         id: st_dispatch
         run: |
           r=$(curl -s -m 30 -X POST 'https://baipiaoji.com/api/dispatch-changes')
@@ -1106,7 +1132,7 @@ jobs:
           node ../scripts/startup-mcp-registry.mjs --verify
 
       - name: Probe AI crawler reachability
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/ai-crawler-probe.mjs
         continue-on-error: true
 
@@ -1135,7 +1161,7 @@ jobs:
           echo "✅ 边缘中间件自测通过（爬虫页 / 真人页 / API / llms.txt 均 200）"
 
       - name: Commit AI crawler probe result
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -1148,13 +1174,13 @@ jobs:
       # 走这条流水线回填要付一次完整巡检+构建+部署（实测 >10 分钟），
       # 而回填本身只需要几十秒。一件事只留一个入口，避免两处分叉。
       - name: Ping IndexNow (Bing/Yandex/Naver instant indexing)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/indexnow.mjs
 
       # Wayback Machine 快照：无需账号的外部索引面——存档页可被搜索与 AI 检索抓取且永久回链本站。
       # 按价值排序取前 N 个（方法论 → 拒绝清单 → 流言核查 → 首页 → 类目 → 对比页），见 scripts/wayback.mjs
       - name: Archive key pages to Wayback Machine
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: node scripts/wayback.mjs
         continue-on-error: true
 
@@ -1166,7 +1192,7 @@ jobs:
       # 修法:三处构建后的提交一律 --autostash;本步加 id 进下面的汇总门——它失败,run 要红。
       - name: Commit page change manifest
         id: manifest
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -1177,7 +1203,7 @@ jobs:
 
       # RSS ping：无需账号的聚合器分发——通知 Ping-O-Matic 站点 feed 有更新
       - name: Ping RSS aggregators
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
             -d '<?xml version="1.0"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>白嫖计</value></param><param><value>https://baipiaoji.com/</value></param><param><value>https://baipiaoji.com/feed.xml</value></param></params></methodCall>' \
@@ -1191,7 +1217,7 @@ jobs:
         continue-on-error: true
 
       - name: Ensure custom domain bound (baipiaoji.com)
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
@@ -1209,7 +1235,7 @@ jobs:
           done
 
       - name: Ensure DNS records point at Pages
-        if: github.event_name != 'push'
+        if: (github.event_name != 'push') && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
         run: |

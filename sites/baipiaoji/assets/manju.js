@@ -8,7 +8,17 @@
   try{const data=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(data))saved=new Set(data.filter(x=>ids.has(x)));}catch{storage=false;}
   const qa=/[?&](?:__ci|__probe|qa)(?:=|&|$)/.test(location.search);
   function canTrack(){let denied=false;try{denied=localStorage.getItem('fleet_ga4_choice_v1')==='denied';}catch{}return location.hostname==='baipiaoji.com'&&!qa&&!navigator.webdriver&&navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl&&!denied;}
-  function event(action,id='catalog'){if(!canTrack())return;fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({e:'manju',p:'/manju/'+action+'/'+(ids.has(id)?id:'catalog'),l:'zh'}),keepalive:true}).catch(()=>{});window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'manju_'+action}}));}
+  const videoTaskActions=['video_view','video_start','video_report_needs_info','video_report_revise','video_report_test'];
+  function event(action,id='catalog'){
+    if(!canTrack())return;
+    fetch('/api/hit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({e:'manju',p:'/manju/'+action+'/'+(ids.has(id)?id:'catalog'),l:'zh'}),keepalive:true}).catch(()=>{});
+    const forward=()=>{if(canTrack())window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'manju_'+action}}));};
+    // The tool can initialize before the shared module's async imports install its listener.
+    // Reuse that exact module promise; first-party events never wait on GA4 availability.
+    const loader=videoTaskActions.includes(action)&&document.querySelector('script[data-ga4-host="baipiaoji.com"][src^="/analytics-assets/consent.mjs?"]');
+    if(loader)import(loader.src).then(forward).catch(()=>{});else forward();
+  }
+  document.addEventListener('manju:action',e=>{if(location.pathname==='/manju/video-fit'&&videoTaskActions.includes(e.detail))event(e.detail);});
   document.addEventListener('manju:action',e=>{if(['rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy'].includes(e.detail))event(e.detail);});
   let timer;function toast(s){$('#mj-toast').textContent=s;clearTimeout(timer);timer=setTimeout(()=>{$('#mj-toast').textContent='';},6000);}
   function renderSaved(){document.querySelectorAll('[data-save]').forEach(b=>{const on=saved.has(b.dataset.save);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ 已收藏':'＋ 收藏';});document.querySelectorAll('[data-save-count]').forEach(e=>e.textContent=saved.size);}

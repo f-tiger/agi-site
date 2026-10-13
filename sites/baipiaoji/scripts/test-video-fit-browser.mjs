@@ -13,6 +13,23 @@ const fixture = Buffer.from('AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAANhbW9
 const secrets = ['VF_PRIVATE_FILE_2026.mp4', 'VF_PRIVATE_AUDIENCE_2026', 'VF_PRIVATE_HOOK_2026', 'VF_PRIVATE_TITLE_2026', 'VF_PRIVATE_SUMMARY_2026'];
 const checkNames = ['opening', 'proof', 'captions', 'audio', 'rights', 'ai', 'commercial', 'claim', 'destination'];
 const matchNames = ['accountMatch', 'platformMatch', 'windowMatch', 'trafficMatch', 'contentMatch'];
+const measuredActions = ['view', 'start', 'report_needs_info', 'report_revise', 'report_test'];
+const intercept = (requests, hits) => async request => {
+  const req = request.request(), url = new URL(req.url());
+  requests.push({ url: req.url(), method: req.method(), body: req.postData() });
+  if (url.hostname === 'www.googletagmanager.com') return request.fulfill({ contentType: 'application/javascript', body: '' });
+  if (url.origin !== origin) return request.abort();
+  if (url.pathname === '/api/hit') {
+    hits.push(req.postDataJSON());
+    return request.fulfill({ status: 204 });
+  }
+  if (url.pathname.startsWith('/api/')) return request.fulfill({ status: 204 });
+  const relative = url.pathname.endsWith('/') ? url.pathname + 'index.html' : path.extname(url.pathname) ? url.pathname : url.pathname + '.html';
+  const file = path.join(dist, relative);
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return request.fulfill({ status: 404, body: 'Missing test asset' });
+  const types = { '.js': 'application/javascript', '.mjs': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.html': 'text/html', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.woff2': 'font/woff2' };
+  return request.fulfill({ body: fs.readFileSync(file), contentType: types[path.extname(file)] || 'application/octet-stream' });
+};
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
 try {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce', acceptDownloads: true });
@@ -28,28 +45,28 @@ try {
     Storage.prototype.setItem = function (key, value) { window.__vfTest.storageWrites.push([key, value]); return setItem.call(this, key, value); };
     document.addEventListener('manju:action', event => window.__vfTest.actionEvents.push(event.detail));
   });
-  await context.route('**/*', async request => {
-    const req = request.request(), url = new URL(req.url());
-    requests.push({ url: req.url(), method: req.method(), body: req.postData() });
-    if (url.hostname === 'www.googletagmanager.com') return request.fulfill({ contentType: 'application/javascript', body: '' });
-    if (url.origin !== origin) return request.abort();
-    if (url.pathname === '/api/hit') {
-      hits.push(req.postDataJSON());
-      return request.fulfill({ status: 204 });
-    }
-    if (url.pathname.startsWith('/api/')) return request.fulfill({ status: 204 });
-    const relative = url.pathname.endsWith('/') ? url.pathname + 'index.html' : path.extname(url.pathname) ? url.pathname : url.pathname + '.html';
-    const file = path.join(dist, relative);
-    if (!fs.existsSync(file) || !fs.statSync(file).isFile()) return request.fulfill({ status: 404, body: 'Missing test asset' });
-    const types = { '.js': 'application/javascript', '.mjs': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.html': 'text/html', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.woff2': 'font/woff2' };
-    return request.fulfill({ body: fs.readFileSync(file), contentType: types[path.extname(file)] || 'application/octet-stream' });
-  });
+  await context.route('**/*', intercept(requests, hits));
+  const catalog = await context.newPage();
+  await catalog.goto(origin + '/manju/');
+  assert.equal(await catalog.evaluate(() => window.__vfTest.actionEvents.filter(action => action === 'video_view').length), 0, 'The catalogue is not a tool exposure');
+  await catalog.close();
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(route);
   await page.locator('#vf-form').waitFor();
   await page.waitForFunction(() => document.querySelector('iframe[title="Optional analytics"]')?.contentWindow.dataLayer?.length > 0);
   const field = (name, form = '#vf-form') => page.locator(`${form} [name="${name}"]`);
+  const select = async (name, value) => {
+    const control = field(name);
+    const index = await control.evaluate((element, value) => [...element.options].findIndex(option => option.value === value), value);
+    assert.ok(index >= 0, 'Missing select option: ' + name + '=' + value);
+    // Playwright selectOption dispatches synthetic events; use real keyboard input for trusted-edit cases.
+    await control.focus();
+    await control.press('Home');
+    for (let i = 0; i < index; i++) await control.press('ArrowDown');
+    await control.press('Enter');
+    assert.equal(await control.inputValue(), value);
+  };
   const actions = async action => page.evaluate(action => window.__vfTest.actionEvents.filter(event => event === 'video_' + action).length, action);
   const evaluate = async () => {
     await page.locator('#vf-evaluate').click();
@@ -69,11 +86,34 @@ try {
     await field('audience').fill(secrets[1]);
     await field('hook').fill(secrets[2]);
     await field('durationSeconds').fill(duration);
-    await field('aspect').selectOption(aspect);
-    for (const [name, value] of Object.entries({ opening: 'result', proof: 'demo', captions: 'yes', audio: 'not_applicable', rights: 'confirmed', ai: 'not_applicable', commercial: 'not_applicable', claim: 'not_applicable', destination: 'not_applicable' })) await field(name).selectOption(value);
+    await select('aspect', aspect);
+    for (const [name, value] of Object.entries({ opening: 'result', proof: 'demo', captions: 'yes', audio: 'not_applicable', rights: 'confirmed', ai: 'not_applicable', commercial: 'not_applicable', claim: 'not_applicable', destination: 'not_applicable' })) await select(name, value);
   };
   const setVideo = async (name = secrets[0]) => page.locator('#vf-file').setInputFiles({ name, mimeType: 'video/mp4', buffer: fixture });
   const readyVideo = async () => page.waitForFunction(() => document.querySelector('#vf-media-status')?.textContent.includes('本机已读取'));
+  const reportCounts = async () => Promise.all(measuredActions.slice(2).map(actions));
+
+  // Exposure belongs to this visible tool page; interaction alone is not meaningful editing.
+  await page.waitForFunction(() => window.__vfTest.actionEvents.includes('video_view'));
+  assert.equal(await actions('view'), 1);
+  await field('audience').focus();
+  await field('audience').fill('   ');
+  await page.locator('#vf-form [name="mode"][value="file"]').check();
+  await page.locator('#vf-form [name="mode"][value="draft"]').check();
+  await field('durationSeconds').fill('-1');
+  await field('durationSeconds').fill('0');
+  await field('durationSeconds').fill('');
+  assert.equal(await actions('start'), 0, 'Focus, whitespace, invalid durations and mode selection do not start a real task');
+  await page.evaluate(() => {
+    const input = document.querySelector('#vf-form [name="audience"]');
+    input.value = 'SCRIPT_ONLY_PRIVATE_AUDIENCE';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await evaluate();
+  assert.equal(await actions('start'), 0, 'Programmatic events cannot qualify as substantive editing');
+  assert.deepEqual(await reportCounts(), [0, 0, 0], 'Script-populated data cannot qualify a report');
+  await reset();
 
   // Unknown is the initial state; blank input cannot become a recommendation.
   for (const name of checkNames) assert.equal(await field(name).inputValue(), 'unknown');
@@ -81,6 +121,8 @@ try {
   await evaluate();
   assert.equal(await page.locator('[data-vf-priority]').count(), 0);
   assert.match(await page.locator('#vf-result').textContent(), /补充|确认/);
+  assert.equal(await actions('start'), 0);
+  assert.deepEqual(await reportCounts(), [0, 0, 0], 'The legacy empty completion is not a substantive report');
 
   // Trying a fictional example never increments a real completion or enables export.
   const beforeExample = await actions('complete');
@@ -92,6 +134,23 @@ try {
   assert.ok(await page.locator('#vf-copy').isDisabled());
   await field('audience').fill(secrets[1]);
   assert.ok(await page.locator('#vf-result').isHidden(), 'Any edited input invalidates the example report');
+  await evaluate();
+  assert.equal(await actions('start'), 0, 'Editing a synthetic example does not turn it into a real task');
+  assert.deepEqual(await reportCounts(), [0, 0, 0]);
+  await reset();
+
+  // One trustworthy edit qualifies a needs-info report, while repeated reports remain once per status/page.
+  await field('audience').fill(secrets[1]);
+  assert.equal(await actions('start'), 1);
+  await evaluate();
+  assert.deepEqual(await reportCounts(), [1, 0, 0]);
+  await evaluate();
+  assert.deepEqual(await reportCounts(), [1, 0, 0], 'Repeated report clicks do not inflate a status');
+  await reset();
+  await evaluate();
+  assert.deepEqual(await reportCounts(), [1, 0, 0], 'Reset clears report eligibility');
+  assert.equal(await actions('view'), 1, 'Reset does not count another tool exposure');
+  assert.equal(await actions('start'), 1, 'Reset does not count another first edit');
   await reset();
 
   // Explicit not-applicable is valid self-report; essential unknown still blocks priority.
@@ -100,18 +159,23 @@ try {
   await evaluate();
   assert.ok(await page.locator('[data-vf-priority]').count() > 0, 'The fully specified short demo has a test direction');
   assert.match(await page.locator('#vf-result').textContent(), /自报|本人|填写/);
-  await field('rights').selectOption('unknown');
+  assert.deepEqual(await reportCounts(), [1, 0, 1]);
+  await evaluate();
+  assert.deepEqual(await reportCounts(), [1, 0, 1], 'A repeated complete report is not another measured task');
+  await select('rights', 'unknown');
   assert.ok(await page.locator('#vf-result').isHidden());
   assert.ok(await page.locator('#vf-export').isDisabled());
   await evaluate();
   assert.equal(await page.locator('[data-vf-priority]').count(), 0, 'Unknown rights cannot be approved');
-  await field('rights').selectOption('confirmed');
-  await field('captions').selectOption('no');
+  assert.deepEqual(await reportCounts(), [1, 0, 1], 'Different inputs with the same report status remain once per page');
+  await select('rights', 'confirmed');
+  await select('captions', 'no');
   await evaluate();
   assert.equal(await page.locator('[data-vf-priority]').count(), 0, 'Known unreadable or missing captions must be fixed before priority');
   assert.ok(!(await page.locator('#vf-result').textContent()).includes('字幕可读性：用户自报，未确认'), 'Known defect must not be described as unknown');
-  await field('captions').selectOption('yes');
-  await field('audio').selectOption('unclear');
+  assert.deepEqual(await reportCounts(), [1, 1, 1], 'Revision-needed is a separate fixed report state');
+  await select('captions', 'yes');
+  await select('audio', 'unclear');
   await evaluate();
   assert.equal(await page.locator('[data-vf-priority]').count(), 0, 'Known unclear audio must be fixed before priority');
   await reset();
@@ -130,7 +194,7 @@ try {
   await ready({ mode: null, duration: '', aspect: 'unknown' });
   await evaluate();
   assert.ok(await page.locator('[data-vf-priority]').count() > 0);
-  await field('aspect').selectOption('horizontal');
+  await select('aspect', 'horizontal');
   await evaluate();
   assert.equal(await page.locator('[data-vf-priority]').count(), 0, 'Measured/self-reported aspect conflict blocks priority');
   assert.match(await page.locator('#vf-result').textContent(), /不一致|冲突/);
@@ -245,12 +309,17 @@ try {
   // Real UI actions reach the isolated GA4 queue and first-party count, without input data.
   await page.waitForFunction(() => Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).some(event => event[1] === 'manju_video_compare'));
   const events = await page.evaluate(() => Array.from(document.querySelector('iframe[title="Optional analytics"]').contentWindow.dataLayer).map(event => Array.from(event)));
-  const expected = ['file_ready', 'file_error', 'complete', 'example', 'export', 'compare'];
+  const expected = [...measuredActions, 'file_ready', 'file_error', 'complete', 'example', 'export', 'compare'];
   for (const action of expected) {
     assert.ok(events.some(event => event[1] === 'manju_video_' + action), 'Missing GA4 video action: ' + action);
     assert.ok(hits.some(hit => hit.p === '/manju/video_' + action + '/catalog'), 'Missing first-party video action: ' + action);
   }
   const uiEvents = await page.evaluate(() => window.__vfTest.actionEvents);
+  for (const action of measuredActions) {
+    assert.equal(uiEvents.filter(event => event === 'video_' + action).length, 1, 'At most one fixed measurement action per page: ' + action);
+    assert.equal(events.filter(event => event[1] === 'manju_video_' + action).length, 1, 'Exactly one GA4 queue event: ' + action);
+    assert.equal(hits.filter(hit => hit.p === '/manju/video_' + action + '/catalog').length, 1, 'Exactly one first-party event: ' + action);
+  }
   console.log('Intercepted test event counts: ' + JSON.stringify(expected.map(action => ({
     action,
     ui: uiEvents.filter(event => event === 'video_' + action).length,
@@ -261,7 +330,7 @@ try {
   assert.equal(events.filter(event => event[1] === 'page_view').length, 1, 'Exactly one isolated GA4 page view');
   const state = await page.evaluate(() => ({ storageWrites: window.__vfTest.storageWrites, local: { ...localStorage }, session: { ...sessionStorage }, url: location.href }));
   const telemetry = JSON.stringify({ events, hits, requests, state });
-  for (const secret of [...secrets, 'VF_PRIVATE_BROKEN', 'VF_PRIVATE_REPLACEMENT', payload]) assert.ok(!telemetry.includes(secret), 'Private input leaked or persisted: ' + secret);
+  for (const secret of [...secrets, 'VF_PRIVATE_BROKEN', 'VF_PRIVATE_REPLACEMENT', 'SCRIPT_ONLY_PRIVATE_AUDIENCE', payload]) assert.ok(!telemetry.includes(secret), 'Private input leaked or persisted: ' + secret);
   assert.equal(state.url, route, 'User input never enters the public URL');
   assert.ok(!requests.some(request => request.method !== 'GET' && !new URL(request.url).pathname.startsWith('/api/hit')), 'No video, draft or report upload');
   assert.deepEqual(errors, []);
@@ -275,7 +344,101 @@ try {
   assert.ok(await page.locator('#vf-result').isHidden());
   assert.ok(await page.locator('#vf-export').isDisabled());
   assert.deepEqual(errors, []);
-  console.log('PASS video-fit real local media, unknown/NA, conflict and replacement cleanup, safe export, comparable metrics, privacy, isolated GA4 actions and responsive layouts.');
+
+  // A later script mutation cannot borrow an earlier trusted edit to qualify a new report.
+  const tamper = await context.newPage();
+  await tamper.goto(route);
+  await tamper.locator('#vf-form [name="audience"]').fill('TRUSTED_PRIVATE_AUDIENCE');
+  await tamper.locator('h1').click(); // Finish the real input's blur/change before the later script mutation.
+  await tamper.evaluate(() => {
+    const input = document.querySelector('#vf-form [name="hook"]');
+    input.value = 'SCRIPT_MUTATION_PRIVATE_HOOK';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await tamper.locator('#vf-evaluate').click();
+  assert.deepEqual(await tamper.evaluate(() => window.__vfTest.actionEvents.filter(action => action.startsWith('video_report_'))), [], 'The evaluated input must still match the last trusted edit');
+  await tamper.locator('#vf-form [name="hook"]').fill('TRUSTED_PRIVATE_HOOK');
+  await tamper.locator('#vf-evaluate').click();
+  assert.deepEqual(await tamper.evaluate(() => window.__vfTest.actionEvents.filter(action => action.startsWith('video_report_'))), ['video_report_needs_info']);
+  await tamper.close();
+
+  const scriptSubmit = await context.newPage();
+  await scriptSubmit.goto(route);
+  await scriptSubmit.locator('#vf-form [name="audience"]').fill('SUBMIT_PRIVATE_AUDIENCE');
+  await scriptSubmit.locator('h1').click();
+  for (const method of ['event', 'requestSubmit', 'click']) {
+    await scriptSubmit.evaluate(method => {
+      const form = document.querySelector('#vf-form');
+      if (method === 'event') form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+      if (method === 'requestSubmit') form.requestSubmit();
+      if (method === 'click') document.querySelector('#vf-evaluate').click();
+    }, method);
+    assert.equal(await scriptSubmit.evaluate(() => window.__vfTest.actionEvents.filter(action => action.startsWith('video_report_')).length), 0, method + ' must not turn trusted edits into an automated report action');
+  }
+  await scriptSubmit.locator('#vf-form [name="audience"]').press('Enter');
+  assert.deepEqual(await scriptSubmit.evaluate(() => window.__vfTest.actionEvents.filter(action => action.startsWith('video_report_'))), ['video_report_needs_info'], 'Native Enter submission remains a real report action');
+  await scriptSubmit.close();
+
+  const fileOnly = await context.newPage();
+  await fileOnly.goto(route);
+  await fileOnly.locator('#vf-file').setInputFiles({ name: 'FILE_ONLY_PRIVATE.mp4', mimeType: 'video/mp4', buffer: fixture });
+  await fileOnly.waitForFunction(() => document.querySelector('#vf-media-status')?.textContent.includes('本机已读取'));
+  await fileOnly.locator('#vf-evaluate').click();
+  assert.equal(await fileOnly.evaluate(() => window.__vfTest.actionEvents.filter(action => action === 'video_start' || action.startsWith('video_report_')).length), 0, 'File metadata alone is not substantive self-report');
+  await fileOnly.close();
+
+  // Browser privacy choices and QA continue to protect both measurement channels.
+  for (const exclusion of ['qa', 'dnt', 'gpc', 'denied', 'webdriver']) {
+    const privateContext = await browser.newContext();
+    const privateRequests = [], privateHits = [];
+    await privateContext.addInitScript(exclusion => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => exclusion === 'webdriver' });
+      if (exclusion === 'dnt') Object.defineProperty(navigator, 'doNotTrack', { get: () => '1' });
+      if (exclusion === 'gpc') Object.defineProperty(navigator, 'globalPrivacyControl', { get: () => true });
+      if (exclusion === 'denied') localStorage.setItem('fleet_ga4_choice_v1', 'denied');
+      window.__vfActions = [];
+      document.addEventListener('manju:action', event => window.__vfActions.push(event.detail));
+    }, exclusion);
+    await privateContext.route('**/*', intercept(privateRequests, privateHits));
+    const privatePage = await privateContext.newPage();
+    await privatePage.goto(route + (exclusion === 'qa' ? '?qa=1' : ''));
+    await privatePage.locator('#vf-form [name="audience"]').fill('EXCLUDED_PRIVATE_AUDIENCE');
+    await privatePage.locator('#vf-evaluate').click();
+    assert.ok(await privatePage.evaluate(() => window.__vfActions.includes('video_complete')), exclusion + ' case must exercise the functioning tool');
+    assert.equal(privateHits.filter(hit => hit.e === 'manju').length, 0, exclusion + ' must suppress first-party manju events');
+    const privateEvents = await privatePage.evaluate(() => {
+      const frame = document.querySelector('iframe[title="Optional analytics"]');
+      return Array.from(frame?.contentWindow?.dataLayer || []).map(event => Array.from(event));
+    });
+    assert.equal(privateEvents.filter(event => String(event[1]).startsWith('manju_video_')).length, 0, exclusion + ' must suppress GA4 video events');
+    assert.ok(!privateRequests.some(request => new URL(request.url).hostname === 'www.googletagmanager.com'), exclusion + ' must not start Google measurement');
+    await privateContext.close();
+  }
+
+  // Background initialization counts exposure only when the tool first becomes visible.
+  const hiddenContext = await browser.newContext();
+  await hiddenContext.addInitScript(() => {
+    window.__vfVisibility = 'hidden';
+    window.__vfActions = [];
+    Object.defineProperty(document, 'visibilityState', { get: () => window.__vfVisibility });
+    document.addEventListener('manju:action', event => window.__vfActions.push(event.detail));
+  });
+  await hiddenContext.route('**/*', intercept([], []));
+  const hidden = await hiddenContext.newPage();
+  await hidden.goto(route);
+  await hidden.locator('#vf-example').click();
+  assert.equal(await hidden.evaluate(() => window.__vfActions.filter(action => action === 'video_view').length), 0);
+  await hidden.evaluate(() => { window.__vfVisibility = 'visible'; document.dispatchEvent(new Event('visibilitychange')); });
+  assert.equal(await hidden.evaluate(() => window.__vfActions.filter(action => action === 'video_view').length), 1);
+  await hidden.evaluate(() => {
+    window.__vfVisibility = 'hidden'; document.dispatchEvent(new Event('visibilitychange'));
+    window.__vfVisibility = 'visible'; document.dispatchEvent(new Event('visibilitychange'));
+  });
+  assert.equal(await hidden.evaluate(() => window.__vfActions.filter(action => action === 'video_view').length), 1, 'Returning to the same page does not add another exposure');
+  await hiddenContext.close();
+  const allTelemetry = JSON.stringify({ requests, hits });
+  for (const secret of ['TRUSTED_PRIVATE_AUDIENCE', 'SCRIPT_MUTATION_PRIVATE_HOOK', 'TRUSTED_PRIVATE_HOOK', 'SUBMIT_PRIVATE_AUDIENCE', 'FILE_ONLY_PRIVATE']) assert.ok(!allTelemetry.includes(secret), 'Additional measurement cases leaked input: ' + secret);
+  console.log('PASS video-fit local media, unknown/NA, replacement cleanup, safe export, comparable metrics, once-per-page exposure/edit/report states, synthetic-input exclusion, privacy controls, isolated GA4 actions and responsive layouts.');
 } finally {
   await browser.close();
 }

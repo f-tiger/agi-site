@@ -21,10 +21,14 @@ concurrency:
 
 jobs:
   register:
-    # Receipt recovery changes no MCP manifest and must not create registry auth.
+    # Source-event markers bind maintenance/product-only releases to the exact
+    # initiating commit; do not inspect a later floating main for this decision.
     if: >-
       !contains(github.event.head_commit.message, '[member-receipts-recovery]') &&
       !contains(github.event.workflow_run.head_commit.message, '[member-receipts-recovery]') &&
+      !contains(github.event.head_commit.message, '[outcome-readonly-release]') &&
+      !(github.event_name == 'workflow_run' && contains(github.event.workflow_run.head_commit.message, '[outcome-readonly-release]') &&
+        (github.event.workflow_run.event == 'push' || (github.event.workflow_run.event == 'workflow_dispatch' && github.event.workflow_run.display_title == 'BPJ read-only product release'))) &&
       (github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-latest
     timeout-minutes: 8
