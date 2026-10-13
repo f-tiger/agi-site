@@ -1,5 +1,5 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261012-21';
+export const VERSION='jarvis-20261013-22';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;
@@ -17,6 +17,18 @@ export function progressCue(task,lang='en'){
   [[counts.done,'已完成'],[counts.tried,'已尝试'],[counts.blocked,'受阻'],[remaining,'未标记']]:
   [[counts.done,'completed'],[counts.tried,'tried'],[counts.blocked,'blocked'],[remaining,'not marked']];
  return {text:(zh?'用户自报':'Self-reported')+' · '+parts.filter(([count])=>count>0).map(([count,label])=>zh?label+' '+count:count+' '+label).join(' · '),updated};
+}
+export function resumeActionCue(task){
+ const actions=task?.result?.report?.nextActions;if(!Array.isArray(actions)||!actions.length)return null;
+ const candidates=[];
+ for(let index=0;index<actions.length;index++){
+  const progress=task?.actionProgress?.[String(index)],state=['blocked','tried','done'].includes(progress?.state)?progress.state:'unmarked';
+  if(state==='done')continue;
+  const priority=state==='blocked'?0:state==='tried'?1:2,updated=Number.isSafeInteger(progress?.updated)&&progress.updated>0?progress.updated:0;
+  candidates.push({index,state,priority,updated});
+ }
+ candidates.sort((a,b)=>a.priority-b.priority||(a.priority<2?b.updated-a.updated:a.index-b.index)||a.index-b.index);
+ const best=candidates[0];return best?{index:best.index,state:best.state}:null;
 }
 const str=(s,n)=>typeof s==='string'&&s.trim().length>0&&s.length<=n;
 const draftControls=/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/u;

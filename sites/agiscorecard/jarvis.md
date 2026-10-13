@@ -24,6 +24,10 @@ Submitted tasks are stored on the server. A background runner checks the queue a
 
 Yes, on this device and browser. Opening or creating a task saves a strictly validated pointer for up to 30 days, so the same task can reopen after a reload or later visit. The pointer contains only its task identifier, workspace scope, language and time—not the goal, result, memories, consent or key—and it never authorizes access; the server still verifies the private workspace and returns the task before it can reopen. An unsent goal draft takes priority. New task, delete, sign-out, workspace switching, an expired or missing task, and any malformed or cross-workspace pointer clear or ignore it.
 
+## How does Jarvis suggest where to continue?
+
+For a report with next actions, Jarvis derives one optional review cue from the current run’s fixed self-reported states: a blocked step first, then the most recently tried unfinished step, then the first unmarked step. Completed steps are skipped. The cue contains only an action number and fixed state; it does not create memory, call AI, change progress, scroll automatically or prove that the suggested step is correct. Review every step before acting.
+
 ## What happens when AI is unavailable?
 
 You get the matching source pack and an explicit limited status. No preset is passed off as AI output. A new run gathers evidence with code and uses at most one synthesis call; an older checkpoint can total two calls. Explicit GitHub metadata reading-candidate requests can receive a limited rule-based packet with no new model call. It shares the existing site allowance of 12 attempts per 24-hour window and 3 per IP window. Failed attempts count too.
