@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {jarvisRoute} from './server.mjs';import {execute,tick} from './engine.mjs';import {ensure} from './store.mjs';import {runTool,boundedJSON} from './sources.mjs';
-import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS,taskFocusRecord,taskFocusOf,TASK_FOCUS_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
+import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,resumeActionCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS,taskFocusRecord,taskFocusOf,TASK_FOCUS_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 const key='1'.repeat(64),other='2'.repeat(64),origin='https://agiscorecard.com';
 const body=(extra={})=>({action:'create',goal:'Help me research AI agents and convert 3 hours to minutes',lang:'en',cadence:'once',web:false,publicQuery:'AI agents',consent:true,memory:[],nonce:crypto.randomUUID().replaceAll('-',''),...extra});
 function env(){return {EVENTS:database(),MEMBER_WATCH_SECRET:'test-only-secret',AI:{async run(){return {response:JSON.stringify({summary:'Start with one measured weekly task.',findings:[{text:'Three hours is 180 minutes.',sourceIds:['calc-3*60']}],nextActions:[{action:'Run a comparison on one weekly report.',doneWhen:'Record time and errors for both attempts.'}],uncertainties:['This does not demonstrate reliable autonomous work.']}),usage:{total_tokens:123}};}}};}
@@ -62,6 +62,23 @@ test('frozen 12-case blocker set creates bounded, reviewable recovery drafts',()
  for(const [lang,goal,action,done] of cases){const value=blockerDraft(goal,action,done,lang);assert.ok(value.length<=1200);assert.ok(!/[\u0000-\u0009\u000b-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/u.test(value));for(const want of lang==='zh'?['什么阻碍了这一步','必须保留什么约束','更安全替代方案']:['What blocked this step','constraint must the next attempt preserve','Smallest safer alternative'])assert.match(value,new RegExp(want,'i'));}
 });
 test('resumption cue summarizes only fixed self-reported states for the visible result',()=>{const task={result:{report:{nextActions:[{action:'a'},{action:'b'},{action:'c'}]}},actionProgress:{0:{state:'done',updated:100},1:{state:'blocked',updated:120},2:{state:'PRIVATE',updated:999},9:{state:'done',updated:1000}}};assert.deepEqual(progressCue(task,'en'),{text:'Self-reported · 1 completed · 1 blocked · 1 not marked',updated:120});assert.deepEqual(progressCue(task,'zh'),{text:'用户自报 · 已完成 1 · 受阻 1 · 未标记 1',updated:120});assert.equal(progressCue({...task,actionProgress:{}}),null);assert.equal(progressCue({result:{report:null},actionProgress:task.actionProgress}),null);assert.ok(!JSON.stringify(progressCue(task,'en')).includes('PRIVATE'));});
+test('frozen 12-case next-action cue selects one reviewable step without copying task text',()=>{
+ const actions=[{action:'PRIVATE A'},{action:'PRIVATE B'},{action:'PRIVATE C'}],task=progress=>({result:{report:{nextActions:actions}},actionProgress:progress});
+ const cases=[
+  [{}, {index:0,state:'unmarked'}],
+  [{0:{state:'done',updated:10}}, {index:1,state:'unmarked'}],
+  [{0:{state:'tried',updated:10}}, {index:0,state:'tried'}],
+  [{0:{state:'tried',updated:10},1:{state:'blocked',updated:5}}, {index:1,state:'blocked'}],
+  [{0:{state:'blocked',updated:10},2:{state:'blocked',updated:20}}, {index:2,state:'blocked'}],
+  [{0:{state:'tried',updated:30},1:{state:'tried',updated:20}}, {index:0,state:'tried'}],
+  [{0:{state:'done',updated:10},1:{state:'done',updated:20},2:{state:'done',updated:30}}, null],
+  [{0:{state:'PRIVATE',updated:999}}, {index:0,state:'unmarked'}],
+  [{9:{state:'blocked',updated:999}}, {index:0,state:'unmarked'}],
+  [{0:{state:'blocked',updated:'999'},1:{state:'blocked',updated:5}}, {index:1,state:'blocked'}]
+ ];
+ assert.equal(cases.length+2,12);for(const [progress,want] of cases){const cue=resumeActionCue(task(progress));assert.deepEqual(cue,want);assert.ok(!JSON.stringify(cue).includes('PRIVATE'));}
+ assert.equal(resumeActionCue({result:{report:null},actionProgress:{}}),null);assert.equal(resumeActionCue({result:{report:{nextActions:[]}},actionProgress:{}}),null);
+});
 test('correction draft uses only fixed reasons, stays editable and bounded',()=>{const value=correctionDraft('Goal\u202e<script>'.repeat(100),'sources','en');assert.ok(value.length<=1200);assert.match(value,/sources did not support/i);assert.match(value,/What should change this time/);assert.ok(!value.includes('\u202e'));assert.match(correctionDraft('验证一项任务','action','zh'),/下一步不够可执行/);for(const reason of ['','private reason','__proto__'])assert.throws(()=>correctionDraft('A valid goal',reason));});
 test('frozen 12-case finding correction set creates bounded, reviewable drafts without descriptions or URLs',()=>{
  const base=[{id:'s1',title:'Primary source',description:'DESCRIPTION_CANARY',url:'https://example.com/private-path'},{id:'s2',title:'Second source',description:'SECOND_DESCRIPTION_CANARY',url:'https://example.org/secret'}];
