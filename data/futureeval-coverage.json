@@ -1,14 +1,23 @@
 {
- "generated": "2026-10-12T17:11:38+00:00",
+ "generated": "2026-10-13T15:27:44+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 1,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
+  {
+   "post_id": 45963,
+   "title": "How many systems on the November 2026 TOP500 list will be exascale?",
+   "hosts": [
+    "www.top500.org"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
