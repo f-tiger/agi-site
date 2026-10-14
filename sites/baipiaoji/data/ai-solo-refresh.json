@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-14T05:22:04.112Z",
+  "lastRun": "2026-10-14T08:07:55.226Z",
   "status": "degraded",
-  "checkedSources": 8,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -284,6 +284,30 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://cognition.com/blog/windsurf",
       "lastChecked": "2026-10-14T05:22:04.112Z"
+    },
+    {
+      "caseId": "casetext",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "jasper",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "github-copilot",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "donotpay",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
     }
   ],
   "sources": {
@@ -896,18 +920,73 @@
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
+    },
+    "casetext|https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc": {
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "jasper|https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html": {
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "github-copilot|https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4": {
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "ross-intelligence|https://blog.rossintelligence.com/post/announcement": {
+      "caseId": "ross-intelligence",
+      "sourceUrl": "https://blog.rossintelligence.com/post/announcement",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T08:07:55.226Z",
+      "lastHash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
+      "hash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
+      "simhash": "02983b528ed8a79f",
+      "words": 678,
+      "consecutiveChange": 0
+    },
+    "donotpay|https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires": {
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 50,
+  "cursor": 55,
   "errors": [
     {
-      "caseId": "yara-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
       "reason": "body-limit"
     },
     {
-      "caseId": "windsurf",
-      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
       "reason": "body-limit"
     }
   ]

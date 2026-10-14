@@ -1,16 +1,16 @@
 {
   "generated": "2026-10-14",
-  "source_generated_at": "2026-10-14T05:18:55.759Z",
-  "exported_at": "2026-10-14T05:18:55.843Z",
+  "source_generated_at": "2026-10-14T08:04:38.419Z",
+  "exported_at": "2026-10-14T08:04:38.488Z",
   "source": "/api/reach",
   "window_days": 28,
   "since": "2026-09-16",
   "until": "2026-10-14",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 532,
-  "per_day": 19,
+  "humans_referred": 534,
+  "per_day": 19.1,
   "by_kind": {
-    "tool": 431,
+    "tool": 433,
     "page": 49,
     "category": 23,
     "alternatives": 9,
@@ -24,7 +24,7 @@
   "categories": [
     {
       "cat": "chat",
-      "n": 172
+      "n": 173
     },
     {
       "cat": "coding",
@@ -32,7 +32,7 @@
     },
     {
       "cat": "office",
-      "n": 40
+      "n": 41
     },
     {
       "cat": "video",
@@ -79,7 +79,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 97
+      "n": 98
     },
     {
       "slug": "grok",
@@ -294,7 +294,7 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 97
+      "n": 98
     },
     {
       "path": "grok",
@@ -536,7 +536,7 @@
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 256
+      "n": 258
     },
     {
       "ref": "www.google.com",
@@ -648,15 +648,15 @@
     }
   ],
   "events": {
-    "sub_view": 411,
-    "go": 142,
-    "manju": 131,
-    "biz": 87,
+    "sub_view": 413,
+    "manju": 148,
+    "go": 144,
+    "biz": 89,
     "home": 72,
     "calc": 40,
     "star": 39,
+    "gs": 30,
     "ai_solo": 29,
-    "gs": 29,
     "github_tools": 16,
     "quote": 13,
     "video": 12,
@@ -1824,7 +1824,7 @@
   "manju_signals": {
     "schema_version": 1,
     "measurement_version": "manju-video-actions-v2",
-    "source_generated_at": "2026-10-14T05:18:55.759Z",
+    "source_generated_at": "2026-10-14T08:04:38.419Z",
     "window": {
       "requested_days": 28,
       "since": "2026-09-16",
@@ -1836,7 +1836,7 @@
     "partial": false,
     "reason": null,
     "actions": {
-      "view": 107,
+      "view": 123,
       "filter": 7,
       "empty": 2,
       "open": 9,
@@ -1851,7 +1851,7 @@
       "inquiry_error": 0,
       "return": 0,
       "preview_open": 0,
-      "rank_sort": 1,
+      "rank_sort": 2,
       "topic_complete": 0,
       "topic_empty": 0,
       "topic_export": 0,

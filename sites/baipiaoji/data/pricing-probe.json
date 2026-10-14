@@ -4,16 +4,16 @@
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "playground-ai",
-  "poe",
-  "processon",
-  "qingying",
-  "qoder",
-  "quark-ai",
-  "ragflow",
-  "recraft"
+  "removebg",
+  "scispace",
+  "suno",
+  "tongyi-lingma",
+  "trae",
+  "ttsmaker",
+  "tusiart",
+  "udio"
  ],
- "cursor": "recraft",
+ "cursor": "udio",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -520,7 +520,7 @@
    "name": "TTSMaker",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -748,7 +748,7 @@
    "name": "通义灵码",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2560,20 +2560,20 @@
    "name": "remove.bg",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://remove.bg/pricing",
      "status": 200,
-     "bytes": 63584,
+     "bytes": 63583,
      "tokens": 0
     },
     {
      "url": "https://www.remove.bg/pricing",
      "status": 200,
-     "bytes": 63584,
+     "bytes": 63583,
      "tokens": 0
     },
     {
@@ -2594,14 +2594,14 @@
    "name": "SciSpace",
    "cat": "study",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://typeset.io/pricing",
      "status": 200,
-     "bytes": 135437,
+     "bytes": 136928,
      "tokens": 0
     },
     {
@@ -2628,21 +2628,21 @@
    "name": "Suno",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://suno.com/pricing",
      "status": 200,
-     "bytes": 274424,
+     "bytes": 286682,
      "tokens": 12
     }
    ],
    "best": {
     "url": "https://suno.com/pricing",
     "tokens": 12,
-    "excerpt": "ens if I exhaust my monthly credits? Can I upgrade or downgrade my plan? Monthly Annual save 20% Free Our starter plan. $0 /month Sign Up Access to our free models 50 credits per day Standard features only Upload up to 8 min of audio Shared creation queue No monthly song downloads No commercial rights No add-on credit purchases No stem separation Pro Most Popular Access to our best models and editing tools. $8 /month Saves $24 by billing yearly! Taxes calculated at checkout Subscribe Access to our best models 2,500 credits per month 20 song downloads per month Commercial use rights Standard + Pro features 2 stem separation types (Auto; Split from mix) Early access to new features Ability to "
+    "excerpt": "haust my monthly credits? Can I upgrade or downgrade my plan? 0:00 --:-- Monthly Annual save 20% Free Our starter plan. $0 /month Sign Up Access to our free models 50 credits per day Standard features only Upload up to 8 min of audio Shared creation queue No monthly song downloads No commercial rights No add-on credit purchases No stem separation Pro Most Popular Access to our best models and editing tools. $8 /month Saves $24 by billing yearly! Taxes calculated at checkout Subscribe Access to our best models 2,500 credits per month 20 song downloads per month Commercial use rights Standard + Pro features 2 stem separation types (Auto; Split from mix) Early access to new features Ability to "
    }
   },
   "trae": {
@@ -2650,21 +2650,21 @@
    "name": "Trae（字节跳动）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.trae.cn/pricing",
      "status": 200,
-     "bytes": 132880,
+     "bytes": 132547,
      "tokens": 11
     }
    ],
    "best": {
     "url": "https://www.trae.cn/pricing",
     "tokens": 11,
-    "excerpt": "定价 | TRAE - The Real AI Engineer TraeCode Hot TraeWork 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥239 包含免费版功能与积分，以及 12,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Ultra 低至 ¥ 629 /月 ¥699 包含免费版功能与积分，以及 40,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 新模型优先使用 20个云端任务同时执行 立即升级 "
+    "excerpt": "定价 | TRAE - The Real AI Engineer 产品 企业版 定价 文档 更新日志 社区 知识库 登录 下载中心 个人方案与定价 企业版选型与咨询， 前往火山引擎 ↗ 免费 Free ¥ 0 每月 500 积分 所有功能均可免费使用 支持 2 个云端任务同时执行 免费使用 会员 Lite 首月优惠 低至 ¥ 39 /月 ¥49 包含免费版功能与积分，以及 2,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 2个云端任务同时执行 立即升级 会员 Pro 首月优惠 低至 ¥ 69 /月 ¥99 包含免费版功能与积分，以及 4,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Pro+ 低至 ¥ 219 /月 ¥239 包含免费版功能与积分，以及 12,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 10个云端任务同时执行 立即升级 会员 Ultra 低至 ¥ 629 /月 ¥699 包含免费版功能与积分，以及 40,000 积分/月 会员签到多得 3000 积分 模型折扣：Seed-2.1 2.5折，GLM、Deepseek-V4.1 5折 高峰期优先响应 新模型优先使用 20个云端任务同时执行 立即升级 权益列表 免费 Free 免费使用 →"
    }
   },
   "tusiart": {
@@ -2672,7 +2672,7 @@
    "name": "吐司 AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2702,7 +2702,7 @@
    "name": "Udio",
    "cat": "audio",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2715,7 +2715,7 @@
     {
      "url": "https://www.udio.com/price",
      "status": 200,
-     "bytes": 162600,
+     "bytes": 162601,
      "tokens": 0
     },
     {

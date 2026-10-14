@@ -1638,6 +1638,60 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "smithery-arjunkmrm-test01": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-ai-slack": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "spideriq-media": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "whysaid-verify": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "wild-card-deepcontext": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wizideo-wizideo": {
+   "attempts": 1,
+   "first_attempt": "2026-10-14",
+   "last_attempt": "2026-10-14",
+   "attemptedAt": "2026-10-14T08:05:15.418Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
   }
  },
  "admitted": [
@@ -11109,6 +11163,330 @@
   },
   {
    "slug": "trayo-signals",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "trovefield-solved",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tru-stock-inventory",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "trustgrowth-trustgrowth",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "trycanonical-company-search",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tunnelmind-data",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "turnsignal-turnsignal",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tutorping-tutorping",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "twelfth-workspace",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "twistly-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "typesearch-news",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "undetectedgpt-humanizer",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "universalagents-universal-agents",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "unlimitless-unl",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "unpaper-cli",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "unquant-unquant",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usegigi-gigi",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usegoro-goro",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usenotch-notch",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usesuperflow-tools",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "uttera-uttera",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "uwear-uwear",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "uxbert-cms",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "uxgen-ecommerce-conversion",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "velarion-company-intelligence",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "verant-verant",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vergio-vergio",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vetaid-vetaid",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "videozero-engine-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vidocu-vidocu",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "viite-business-studio",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "villiers-charter",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "viralspin-viralspin",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "visuary-actuarial-value-calculator",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vocci-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vokse-vokse",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "voxplo-voxplo",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vuela-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "waiter24-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "waterr-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wavn-wavn",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "waystation-airtable",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "webhound-webhound",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "webmatik-audit",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "webrun-webrun",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "weio-site-check",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "wem3-wem-price-compare",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wiv-mcp",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "workforcegpt-workforcegpt",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "workingmemory-memory",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "workledge-workledge",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "yempik-company-brain",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "yokka-yokka",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "yourhuman-human-for-ai",
+   "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zdte-market-structure",
    "date": "2026-10-14",
    "source_http": 200,
    "repo_http": null

@@ -837,6 +837,31 @@
      "2,700images"
     ],
     "checked_then": "2026-08-06"
+   },
+   "pending": {
+    "seen": "2026-10-14",
+    "hash": "634a56f997a63774",
+    "added": [
+     "1,080images",
+     "1,111images",
+     "1,317images",
+     "1,350images",
+     "10,000images",
+     "10,285images",
+     "12,000images",
+     "157images",
+     "2,160images",
+     "2,222images",
+     "2,700images",
+     "20,000images"
+    ],
+    "removed": [
+     "$5.25/mo",
+     "$5/mo",
+     "$9",
+     "2images",
+     "4video"
+    ]
    }
   },
   "tongyi-wanxiang": {
@@ -994,15 +1019,15 @@
    "baseline": "2026-09-12",
    "pending": {
     "seen": "2026-10-14",
-    "hash": "304c2c68befb5748",
+    "hash": "01d5cd8ba60dd907",
     "added": [
      "$30",
-     "366.7b",
-     "5%",
+     "370.9b",
      "50%",
-     "59%",
+     "6%",
      "600hours",
-     "71.1b"
+     "61%",
+     "83.4b"
     ],
     "removed": [
      "368.9b",
@@ -1189,17 +1214,20 @@
    },
    "pending": {
     "seen": "2026-10-14",
-    "hash": "64af11680d851cb5",
+    "hash": "7aa54dc107e6567d",
     "added": [
      "100minutes",
+     "11,000minutes",
      "12,500seconds",
      "152minutes",
+     "192k",
      "2,000minutes",
+     "2,400minutes",
      "2,500seconds",
+     "275,000seconds",
      "31minutes",
      "50,000seconds",
-     "500minutes",
-     "550minutes"
+     "500minutes"
     ],
     "removed": []
    }
@@ -1616,30 +1644,28 @@
    "baseline": "2026-09-12",
    "pending": {
     "seen": "2026-10-14",
-    "hash": "2b94bf536bb92b87",
+    "hash": "810bc3b2794e96f2",
     "added": [
      "1.5k",
      "1.6k",
-     "1.7k",
      "1.9k",
-     "13k",
-     "1k",
-     "2.4k",
+     "14k",
+     "19video",
      "27k",
-     "47video",
+     "3.6k",
      "5.9k",
      "57k",
-     "58k"
+     "58k",
+     "68k"
     ],
     "removed": [
-     "1.1k",
+     "1.3k",
      "1.8k",
      "11k",
      "12k",
      "162video",
      "2.2k",
      "2.7video",
-     "3.3k",
      "44video",
      "50k",
      "5k",
@@ -1968,11 +1994,11 @@
    },
    "pending": {
     "seen": "2026-10-14",
-    "hash": "b139a33c45553ce6",
+    "hash": "5f2e94ce5fe96515",
     "added": [
-     "26b",
-     "31b",
-     "4b"
+     "120b",
+     "12b",
+     "9b"
     ],
     "removed": []
    }
@@ -2103,9 +2129,9 @@
    },
    "pending": {
     "seen": "2026-10-14",
-    "hash": "e4ad9e28510b19ed",
+    "hash": "9977277019a5ef56",
     "added": [
-     "21hours"
+     "1day"
     ],
     "removed": [
      "15days"
@@ -2460,6 +2486,25 @@
      "98b"
     ],
     "checked_then": "2026-08-04"
+   },
+   "pending": {
+    "seen": "2026-10-14",
+    "hash": "5490ee29c199cb23",
+    "added": [
+     "078b",
+     "10秒",
+     "15秒",
+     "20b",
+     "33b",
+     "362430b",
+     "3张",
+     "49808b",
+     "51b",
+     "52b",
+     "5张",
+     "63b"
+    ],
+    "removed": []
    }
   },
   "character-ai": {
@@ -2672,6 +2717,25 @@
      "5b"
     ],
     "checked_then": "2026-09-21"
+   },
+   "pending": {
+    "seen": "2026-10-14",
+    "hash": "e3b0c44298fc1c14",
+    "added": [],
+    "removed": [
+     "1,000,000个",
+     "100mb",
+     "10次",
+     "16%",
+     "1次",
+     "20万",
+     "300,000个",
+     "30mb",
+     "30分钟",
+     "30天",
+     "5mb",
+     "99.0%"
+    ]
    }
   },
   "kiro": {
