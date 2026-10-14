@@ -50,6 +50,22 @@ test('arithmetic is parsed without eval and rejects code, infinity and excessive
 test('model cannot add tools or forge citations',()=>{for(const a of [{tool:'shell',query:'ls'},{tool:'github_search',query:'secret'}])assert.throws(()=>planOf(JSON.stringify({approach:'a',actions:[a]}),false));assert.throws(()=>reportOf(JSON.stringify({summary:'Some result',findings:[{text:'False source',sourceIds:['invented']}],nextActions:[{action:'a',doneWhen:'b'}],uncertainties:['unknown']}),[],'en'));});
 test('link and retrieval handling rejects executable links and preserves no-match',()=>{for(const s of ['javascript:alert(1)','http://example.com','https://127.0.0.1/','https://localhost/','https://u:p@example.com','https://[::1]/'])assert.equal(safeURL(s),null);assert.equal(safeURL('https://github.com/a/b'),'https://github.com/a/b');assert.deepEqual(rank('unfindabletoken',[{title:'AI research'}]),[]);});
 test('claim inspection maps only cited source metadata and portable export labels its limit',()=>{const sources=[{id:'s1',title:'Primary <source>',description:'Observed **fact**',url:'https://example.com/a'},{id:'s2',title:'Uncited',description:'No'}],finding={text:'A claim',sourceIds:['s1','s1','missing']};assert.deepEqual(citedSources(finding,sources),[sources[0]]);const output=markdown({input:{goal:'Inspect evidence'},status:'completed',runs:1,result:{checkedAt:'2026-10-07',report:{summary:'Draft',findings:[finding],nextActions:[],uncertainties:[]},sources}});assert.match(output,/Cited source metadata \(not proof of support\)/);assert.match(output,/Primary &lt;source&gt;/);assert.doesNotMatch(output,/Uncited — No/);});
+test('frozen export cases preserve only current self-reported progress without changing the task',()=>{
+ const states=[['tried','tried','已尝试'],['done','completed','已完成'],['blocked','blocked','受阻'],['PRIVATE <img>','not marked','未标记'],['__proto__','not marked','未标记'],[null,'not marked','未标记']];
+ for(const lang of ['en','zh'])for(const [state,en,zh] of states){
+  const task={input:{goal:'Synthetic export',lang,memory:['PRIVATE_MEMORY']},status:'completed',runs:2,result:{report:{summary:'Draft',findings:[],nextActions:[{action:'Review <img>',doneWhen:'Record **one** result'}],uncertainties:[]}},actionProgress:{0:{state,updated:1791936000,secret:'PRIVATE_RECEIPT'},9:{state:'blocked',updated:1791937000}},previous:{actionProgress:'PRIVATE_OLD_RUN'}};
+  const before=JSON.stringify(task),output=markdown(task),known=['tried','done','blocked'].includes(state);
+  assert.ok(output.includes(lang==='zh'?'用户自报进展：'+zh:'Self-reported progress: '+en));
+  assert.ok(output.includes(lang==='zh'?'并非已验证成果':'not a verified outcome'));
+  assert.equal(output.includes('2026-10-14T00:00:00.000Z'),known);
+  assert.ok(!/PRIVATE_|<img>|2026-10-14T00:16:40/.test(output));assert.equal(JSON.stringify(task),before);
+ }
+});
+test('export rejects malformed progress timestamps and does not invent receipts for source packs',()=>{
+ const task={input:{goal:'Synthetic',lang:'en'},status:'limited',runs:1,result:{report:{summary:'Draft',findings:[],nextActions:[{action:'Check',doneWhen:'Observed'}],uncertainties:[]}}};
+ for(const updated of [null,'1791936000',-1,0,1.5,NaN,Infinity,Number.MAX_SAFE_INTEGER])assert.doesNotMatch(markdown({...task,actionProgress:{0:{state:'blocked',updated}}}),/Recorded at:/);
+ assert.doesNotMatch(markdown({...task,result:{report:null},actionProgress:{0:{state:'done',updated:1791936000}}}),/Self-reported progress|Recorded at:/);
+});
 test('follow-up draft is bounded, editable and treats prior output as plain text',()=>{const value=followupDraft('Goal\u202e<script>'.repeat(100),'Try one step\n<script>','Record the observed result','en');assert.ok(value.length<=1200);assert.match(value,/Next step to test: Try one step <script>/);assert.match(value,/What I tried or observed/);assert.ok(!value.includes('\u202e'));const zh=followupDraft('验证一项任务','执行小测试','记录耗时','zh');assert.match(zh,/本次选择的下一步/);assert.match(zh,/我实际尝试了什么/);});
 test('frozen 12-case blocker set creates bounded, reviewable recovery drafts',()=>{
  const cases=[
