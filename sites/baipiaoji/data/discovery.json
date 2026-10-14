@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "name": "Pulse Local, a Mac budgeting app whose AI models run on your machine",
+      "url": "https://pulseos.finance",
+      "host": "pulseos.finance",
+      "src": "https://news.ycombinator.com/item?id=50080275",
+      "points": 88,
+      "comments": 49,
+      "found": "2026-10-14",
+      "status": "candidate"
+    },
+    {
+      "name": "Parsimony – an open-source benchmark for how much code AI models add",
+      "url": "https://parsimony.lasu.dev/",
+      "host": "parsimony.lasu.dev",
+      "src": "https://news.ycombinator.com/item?id=50077619",
+      "points": 63,
+      "comments": 11,
+      "found": "2026-10-14",
+      "status": "candidate"
+    },
+    {
+      "name": "Edi Life OS – self-hosted life dashboard with an MCP server for AI",
+      "url": "https://github.com/edrisranjbar/lifeos",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50014150",
+      "points": 41,
+      "comments": 17,
+      "found": "2026-10-14",
+      "status": "candidate"
+    },
+    {
       "name": "Talorys – A self-hosted personal AI agent on Cloudflare's free tier",
       "url": "https://github.com/rociiu/talorys",
       "host": "github.com",
@@ -361,5 +391,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-10-13"
+  "updated": "2026-10-14"
 }

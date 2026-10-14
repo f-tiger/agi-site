@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-13",
+ "generated": "2026-10-14",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "notebooklm",
-  "notion-ai",
-  "nvidia-nim",
-  "opusclip",
-  "perplexity",
-  "phind",
-  "pika",
-  "pixlr"
+  "playground-ai",
+  "poe",
+  "processon",
+  "qingying",
+  "qoder",
+  "quark-ai",
+  "ragflow",
+  "recraft"
  ],
- "cursor": "pixlr",
+ "cursor": "recraft",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -375,8 +375,8 @@
    "slug": "qingying",
    "name": "智谱清影",
    "cat": "video",
-   "reach": 3,
-   "probed": "2026-10-06",
+   "reach": 0,
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2358,14 +2358,14 @@
    "name": "Playground AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-09-29",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://playgroundai.com/design/pricing",
      "status": 200,
-     "bytes": 173635,
+     "bytes": 170921,
      "tokens": 8
     }
    ],
@@ -2380,21 +2380,21 @@
    "name": "Poe",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-09-29",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://poe.com/subscription_plans",
      "status": 200,
-     "bytes": 120651,
+     "bytes": 120759,
      "tokens": 10
     }
    ],
    "best": {
     "url": "https://poe.com/subscription_plans",
     "tokens": 10,
-    "excerpt": "nnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 · 加入我们的Discord 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 $49.99/年 ( $4.17/月 ) 开始使用 66万积分/月 $199.99/年 ( $16.67/月 ) 开始使用 165万积分/月 $499.99/年 ( $41.67/月 ) 开始使用 330万积分/月 $999.99/年 ( $83.33/月 ) 开始使用 825万积分/月 $2,499.99/年 ( $208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
+    "excerpt": "nnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 · 加入我们的Discord 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 £49.99/年 ( £4.17/月 ) 开始使用 66万积分/月 £199.99/年 ( £16.67/月 ) 开始使用 165万积分/月 £499.99/年 ( £41.67/月 ) 开始使用 330万积分/月 £999.99/年 ( £83.33/月 ) 开始使用 825万积分/月 £2,499.99/年 ( £208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
    }
   },
   "processon": {
@@ -2402,7 +2402,7 @@
    "name": "ProcessOn",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2432,7 +2432,7 @@
    "name": "Qoder（阿里）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2466,7 +2466,7 @@
    "name": "夸克 AI",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2496,7 +2496,7 @@
    "name": "RAGFlow",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2526,21 +2526,21 @@
    "name": "Recraft",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-01",
+   "probed": "2026-10-14",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://recraft.ai/pricing",
      "status": 200,
-     "bytes": 52828,
-     "tokens": 0
+     "bytes": 50079,
+     "tokens": 1
     },
     {
      "url": "https://www.recraft.ai/pricing",
      "status": 200,
-     "bytes": 52828,
-     "tokens": 0
+     "bytes": 50079,
+     "tokens": 1
     },
     {
      "url": "https://www.recraft.ai/price",
@@ -2551,8 +2551,8 @@
    ],
    "best": {
     "url": "https://recraft.ai/pricing",
-    "tokens": 0,
-    "excerpt": ""
+    "tokens": 1,
+    "excerpt": "活方案 按月付费 按年付费 （节省 20%） 方案 API 深受品牌与创作者信赖 有疑问？ 订阅积分和充值积分有什么区别？ 订阅积分包含在您的方案中，并在每个账单周期开始时重置——未使用的积分不会结转。 充值积分需单独购买，永不过期，并会在每月积分用完后自动使用。在 Teams 工作空间中，充值积分由所有席位共享。充值适用于 Basic、Pro 和 Teams 方案。 各项操作的积分费用是多少？ 积分费用因操作类型和所用模型而异。 更多详情，请同时参阅 外部模型 定价。 支持哪些付款方式？ Recraft 支持信用卡、借记卡和银行转账。付款通过 Stripe 安全处理。 可以退款吗？ 如果您最近一次付款是在过去 30 天内完成的，并且您自该笔付款以来未使用任何积分，或者您的账户自创建以来累计使用不足 30 积分，我们可酌情提供退款。如需请求我们考虑退款，请通过 help@recraft.ai 联系支持团队。任何退款都将退回至您的原付款方式；有关付款和退款的更多详情，请参阅我们的 服务条款 。 账户一经删除，我们便无法再访问评估退款申请所需的记录，因此我们无法为已删除的账户提供退款。请在删除账户前联系我们。 如何取消订阅？ 您可以随时取消： — 点击右上角的个人资料，选择“管理订阅” — 点击“取消方案”并确认 您的方案将持续有效至当前账单周期结束。取消后，付费订阅期间创建的图像仍为私密且归您所有。 免费方案下生成的图像归谁所有？ 免费方案下生成的图像归 Recraft 所有。这些图像会公开显示在社区画廊中，且未授权用于商业用途。例如，通常无法将其上架到需要所有权证明的图库平台。"
    }
   },
   "removebg": {
