@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-13T13:51:37.966Z",
+  "generated": "2026-10-14T11:28:55.188Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -10,7 +10,7 @@
     "doc_video_load_shotcut": 1
   },
   "excluded": {
-    "doc_ci": 128
+    "doc_ci": 130
   },
   "daily": [
     {
@@ -172,7 +172,7 @@
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 77
+      "n": 78
     },
     {
       "path": "/image-compressor",
@@ -275,6 +275,10 @@
       "n": 10
     },
     {
+      "path": "/delivery-evidence",
+      "n": 10
+    },
+    {
       "path": "/document-tools",
       "n": 10
     },
@@ -364,10 +368,6 @@
     },
     {
       "path": "/de/videos/audacity",
-      "n": 9
-    },
-    {
-      "path": "/delivery-evidence",
       "n": 9
     },
     {
@@ -523,6 +523,10 @@
       "n": 7
     },
     {
+      "path": "/de/delivery-evidence",
+      "n": 6
+    },
+    {
       "path": "/de/document-tools",
       "n": 6
     },
@@ -531,8 +535,16 @@
       "n": 6
     },
     {
-      "path": "/de/delivery-evidence",
-      "n": 5
+      "path": "/document-assets/text/en/delivery-evidence.txt",
+      "n": 6
+    },
+    {
+      "path": "/document-assets/text/en/verify-file.txt",
+      "n": 6
+    },
+    {
+      "path": "/document-assets/text/en/videos/audacity.txt",
+      "n": 6
     },
     {
       "path": "/document-assets/text/de/open-source/audacity.txt",
@@ -540,10 +552,6 @@
     },
     {
       "path": "/document-assets/text/de/open-source/whisper.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/delivery-evidence.txt",
       "n": 5
     },
     {
@@ -571,15 +579,11 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/verify-file.txt",
+      "path": "/document-assets/text/en/pdf-to-text.txt",
       "n": 5
     },
     {
       "path": "/document-assets/text/en/videos.txt",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/en/videos/audacity.txt",
       "n": 5
     },
     {
@@ -644,10 +648,6 @@
     },
     {
       "path": "/document-assets/text/en/open-source/whisper.txt",
-      "n": 4
-    },
-    {
-      "path": "/document-assets/text/en/pdf-to-text.txt",
       "n": 4
     },
     {
@@ -786,11 +786,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "GPTBot",
-      "n": 286
+      "n": 287
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 257
+      "n": 259
     },
     {
       "claimed_agent": "YandexBot",
@@ -827,6 +827,10 @@
     {
       "claimed_agent": "Perplexity-User",
       "n": 21
+    },
+    {
+      "claimed_agent": "Applebot",
+      "n": 4
     }
   ],
   "source_events": [
@@ -906,5 +910,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 32,
-  "query_rows_read": 6982
+  "query_rows_read": 6935
 }
