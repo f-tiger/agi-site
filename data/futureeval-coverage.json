@@ -1,24 +1,14 @@
 {
- "generated": "2026-10-14T13:13:15+00:00",
+ "generated": "2026-10-15T12:59:35+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 1,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
-  {
-   "post_id": 46052,
-   "title": "How many daily average PLA incursions into Taiwan's ADIZ will occur for the week of October 19-25, 2026?",
-   "hosts": [
-    "www.mnd.gov.tw",
-    "x.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
