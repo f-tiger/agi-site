@@ -471,7 +471,18 @@ const fleetWrappedWorker = {
 
     // /api/trends 同样有服务端缓存:SunWatch、autopilot、部署自检与外部调用方(09-26 一天 53 次)共用一份结果。
     if (url.pathname === '/api/trends') {
-      return aggregateCache(request, ctx, 'trends', 1800, () => trendsResponse(env));
+      const allow = { 'allow': 'GET, HEAD, OPTIONS', 'access-control-allow-origin': '*', 'cache-control': 'no-store' };
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { status: 204, headers: { ...allow, 'access-control-allow-methods': 'GET, HEAD, OPTIONS' } });
+      }
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response('method', { status: 405, headers: allow });
+      }
+      // HEAD must share GET's cache key and computation; passing HEAD to aggregateCache
+      // would bypass the cache and run all four queries on every probe.
+      const getRequest = request.method === 'HEAD' ? new Request(request, { method: 'GET' }) : request;
+      const response = await aggregateCache(getRequest, ctx, 'trends', 1800, () => trendsResponse(env));
+      return request.method === 'HEAD' ? new Response(null, response) : response;
     }
 
     // Owner alert feed — the "major information only" channel (owner request 2026-08-16:
