@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14",
+  "generated": "2026-10-15",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 40,
@@ -26,6 +26,30 @@
   },
   "items": [
     {
+      "id": "drift:cursor",
+      "type": "source_drift",
+      "title": "来源页变动：Cursor（2026-10-15 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $0/月 / $100/月 / $200/月 / $30；消失 $20/mo / $40/user。本站条目仍是 2026-09-28 的版本",
+      "action": "打开 https://cursor.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "cursor",
+        "https://cursor.com/pricing"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:google-ai-studio",
+      "type": "source_drift",
+      "title": "来源页变动：Google AI Studio（2026-10-15 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $1,000 / $100 / $100,000 / $20,000；消失 1,000美元 / 100,000美元 / 1000万 / 100万。本站条目仍是 2026-09-29 的版本",
+      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "google-ai-studio",
+        "https://ai.google.dev/gemini-api/docs/rate-limits"
+      ],
+      "score": 75
+    },
+    {
       "id": "drift:deepl",
       "type": "source_drift",
       "title": "来源页变动：DeepL（2026-10-14 确认）",
@@ -34,18 +58,6 @@
       "refs": [
         "deepl",
         "https://www.deepl.com/pricing"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:google-ai-studio",
-      "type": "source_drift",
-      "title": "来源页变动：Google AI Studio（2026-10-11 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $50 / 1,000美元 / 100,000美元 / 1000万；消失 $1,000 / $100 / $100,000 / $20,000。本站条目仍是 2026-09-29 的版本",
-      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "google-ai-studio",
-        "https://ai.google.dev/gemini-api/docs/rate-limits"
       ],
       "score": 75
     },
@@ -66,50 +78,38 @@
       "score": 70
     },
     {
-      "id": "drift:cline",
+      "id": "drift:anythingllm",
       "type": "source_drift",
-      "title": "来源页变动：Cline（2026-10-14 确认）",
-      "why": "官方来源页的数字令牌变了——新增 70.3k；消失 70.1k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：AnythingLLM（2026-10-15 确认）",
+      "why": "官方来源页的数字令牌变了——新增 67k；消失 66k。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://anythingllm.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "cline",
-        "https://cline.bot"
+        "anythingllm",
+        "https://anythingllm.com"
       ],
       "score": 65
     },
     {
-      "id": "drift:cloudflare-workers-ai",
+      "id": "drift:krea",
       "type": "source_drift",
-      "title": "来源页变动：Cloudflare Workers AI（2026-10-11 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0.038；消失 $0.090。本站条目仍是 2026-09-16 的版本",
-      "action": "打开 https://developers.cloudflare.com/workers-ai/platform/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Krea AI（2026-10-15 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1,080images / 1,111images / 1,317images / 1,350images；消失 $5.25/mo / $5/mo / $9 / 2images。本站条目仍是 2026-08-06 的版本",
+      "action": "打开 https://krea.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "cloudflare-workers-ai",
-        "https://developers.cloudflare.com/workers-ai/platform/pricing"
+        "krea",
+        "https://krea.ai/pricing"
       ],
       "score": 65
     },
     {
       "id": "drift:windsurf",
       "type": "source_drift",
-      "title": "来源页变动：Windsurf（2026-10-11 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $13 / $14 / $17 / $2；消失 $10 / $11 / $12 / $15。本站条目仍是 2026-08-03 的版本",
+      "title": "来源页变动：Windsurf（2026-10-15 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $8 / $90 / $92 / $93；消失 2k / 9k。本站条目仍是 2026-08-03 的版本",
       "action": "打开 https://windsurf.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
         "windsurf",
         "https://windsurf.com"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:n8n",
-      "type": "source_drift",
-      "title": "来源页变动：n8n（2026-10-10 确认）",
-      "why": "官方来源页的数字令牌变了——新增 15days；消失 21days。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://docs.n8n.io 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "n8n",
-        "https://docs.n8n.io"
       ],
       "score": 65
     },
@@ -152,7 +152,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 98 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 104 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -161,15 +161,16 @@
       "score": 60
     },
     {
-      "id": "paidgap:feishu-miaoji",
-      "type": "paid_gap",
-      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 18 次，无付费档）",
-      "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
-      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "id": "mcpsurface:bad",
+      "type": "mcp_surface",
+      "title": "MCP 发现面异常：官方 Registry 未收录/掉线",
+      "why": "体检于 2026-10-14——发现面断一天，agent 生态就少看见一天",
+      "action": "查 mcp-publish workflow 日志与最近改动；Registry 未收录则核对 server.json 校验错误并重新发布",
       "refs": [
-        "feishu-miaoji"
+        "server.json",
+        ".github/workflows/mcp-publish.yml"
       ],
-      "score": 48
+      "score": 50
     }
   ]
 }
