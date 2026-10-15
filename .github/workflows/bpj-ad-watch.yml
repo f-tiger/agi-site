@@ -26,8 +26,14 @@ concurrency:
   group: bpj-ad-watch
   cancel-in-progress: false   # 两轮重叠会重复认领同一笔交易，宁可排队
 
+permissions:
+  contents: read
+
 jobs:
   watch:
+    permissions:
+      contents: read
+      actions: read
     runs-on: ubuntu-latest
     # Live doctor endpoint gates unconfigured Web3 without requiring a GitHub variable.
     defaults:
@@ -122,3 +128,43 @@ jobs:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node sites/agiscorecard/tools/jarvis/ops.mjs run
+
+
+      # Same privileged job, no new secret recipient or write-capable token.
+      # Fail closed until measured per-endpoint D1 rows_read evidence is reviewed.
+      # Existing watcher/receipt/Jarvis operations above remain independent.
+      - name: Claim at most one daily aggregate collection
+        id: membership_claim
+        if: always() && github.ref == 'refs/heads/main' && github.run_attempt == 1 && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'watch'))
+        timeout-minutes: 2
+        working-directory: ${{ github.workspace }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/fleet/membership_handoff.mjs claim "$RUNNER_TEMP/membership-claim"
+      - name: Persist the daily budget claim before any stats request
+        id: membership_claim_upload
+        if: always() && steps.membership_claim.outcome == 'success' && steps.membership_claim.outputs.eligible == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.membership_claim.outputs.name }}
+          path: ${{ runner.temp }}/membership-claim/membership-claim.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Produce only allowlisted membership aggregates
+        id: membership_aggregate
+        if: always() && steps.membership_claim_upload.outcome == 'success'
+        timeout-minutes: 2
+        working-directory: ${{ github.workspace }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node tools/fleet/membership_producer.mjs "$RUNNER_TEMP/membership-claim/membership-claim.json" "${{ steps.membership_claim_upload.outputs.artifact-id }}" "$RUNNER_TEMP/membership-aggregate/membership-aggregate.json"
+      - name: Publish only sanitized aggregate JSON
+        if: always() && steps.membership_aggregate.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fleet-membership-aggregate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/membership-aggregate/membership-aggregate.json
+          retention-days: 30
+          if-no-files-found: error
