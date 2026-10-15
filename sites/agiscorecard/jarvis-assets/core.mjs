@@ -1,5 +1,5 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261013-22';
+export const VERSION='jarvis-20261014-23';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;
@@ -167,7 +167,17 @@ export function markdown(task){
  if(task.input.context){lines.push('## Selected business evidence receipt',m(contextReceipt(task.input.context,task.input.lang)),'');}
  if(r.report)lines.push(m(reportNotice(r.report,r.version,task.input.lang)),'');
  for(const f of r.report?.findings||[]){lines.push('- '+m(f.text)+' ['+f.sourceIds.map(m).join(', ')+']');for(const field of f.sourceFields||[])lines.push('  - Returned field ['+m(field.sourceId)+'].'+m(field.field)+': '+m(field.value));for(const s of citedSources(f,r.sources))lines.push('  - Cited source metadata \(not proof of support\): '+m(s.title)+' — '+m(s.description||''));}
- lines.push('','## Next actions');for(const a of r.report?.nextActions||[])lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));
+ lines.push('','## Next actions');
+ const zh=task.input.lang==='zh',labels=zh?{tried:'已尝试',done:'已完成',blocked:'受阻'}:{tried:'tried',done:'completed',blocked:'blocked'};
+ if(r.report?.nextActions?.length)lines.push(zh?'进展为当前报告的用户自报快照，并非已验证成果；导出文件不会自动更新。':'Progress is a self-reported snapshot for this report, not a verified outcome; this export does not update automatically.','');
+ for(const [index,a] of (r.report?.nextActions||[]).entries()){
+  lines.push('- '+m(a.action)+'\n  Done when: '+m(a.doneWhen));
+  const value=task.actionProgress?.[String(index)],known=value&&Object.hasOwn(labels,value.state);
+  lines.push('  '+(zh?'用户自报进展：':'Self-reported progress: ')+(known?labels[value.state]:(zh?'未标记':'not marked')));
+  // API progress is scoped to this report's run. Export only fixed states and
+  // valid epoch seconds, never arbitrary receipt properties or free text.
+  if(known&&Number.isSafeInteger(value.updated)&&value.updated>0&&value.updated<=8640000000000)lines.push('  '+(zh?'记录时间：':'Recorded at: ')+new Date(value.updated*1000).toISOString());
+ }
  lines.push('','## Uncertainties');for(const s of r.report?.uncertainties||[])lines.push('- '+m(s));
  lines.push('','## Sources');for(const s of r.sources||[]){const url=safeURL(s.url);lines.push(`- [${m(s.id)}] ${m(s.title)}\n  ${url?'<'+url.replace(/</g,'%3C').replace(/>/g,'%3E')+'>':'Local arithmetic / unavailable link'}\n  ${m(s.description||'')}`);}
  lines.push('','## Execution record');for(const l of r.log||[])lines.push(`- ${m(l.at)}: ${m(l.step)} — ${m(l.outcome)}`);

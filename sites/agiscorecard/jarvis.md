@@ -47,3 +47,7 @@ An unsubmitted goal draft can stay for up to two hours in this browser tab, scop
 ## Is this AGI, and is it a paid product?
 
 No AGI capability has been established. This bounded research-agent pilot is free, with one guest trial followed by free account registration. No paid membership is required. There is no separate Jarvis plan. Shared model and search limits still apply, and availability is not guaranteed. We are testing whether people find these results useful and return with real tasks.
+
+## Does my exported report keep action progress?
+
+Yes. The export includes the current report’s fixed self-reported action states and recorded times. Unmarked steps remain unmarked. It is a static snapshot, not verified completion or a runnable checkpoint; it does not update automatically or include your private memories or access key.

@@ -175,3 +175,11 @@ Owner 最新要求“限制使用次数，免费单人一次使用然后引导�
 因此 v22 不让模型推测用户意图。确定性规则只在当前报告中选择一条可核阅行动：受阻优先，其次最近尝试但未完成，最后第一条未标记，跳过已完成。输出只有索引和固定状态；提示不复制正文、不自动滚动、不改进展、不建任务、不写记忆、不调用模型。小模型、当前 8B 和更强模型在这种固定排序上都没有冻结集优势证据，反而增加额度、延迟和不可解释错选。
 
 反证是自报状态可能过时，AI 行动本身也可能错误。界面故而明确“建议核阅”而非“下一步”，要求显式点击，并提醒核对全部步骤。冻结 12 个正常、未知、越界、畸形时间与缺失报告案例，再用中英文浏览器流程验证首次提示、显式聚焦、完成后隐藏、受阻后重现及模型/任务计数不变。该实验只验证工程边界，真实恢复速度、采用、留存和收入仍未知。完整记录见 [v22 实现说明](agi-jarvis-next-action-2026-10-13.md)。
+
+## 2026-10-14: portable action-progress snapshot
+
+See [bounded experiment and release record](agi-jarvis-progress-export-2026-10-14.md). Deterministic v23 export preserves current self-reported states and times, explicitly not verified outcomes or executable checkpoints. Official LangGraph persistence/checkpointer documentation motivates state fidelity, not retention claims. Frozen bilingual export contracts: baseline 0/12, candidate 12/12; synthetic regression suite 121/121. One live synthetic task used 965 tokens: correct arithmetic finding, malformed summary citation, overall quality not passed. No retry, quota reset or prompt retuning; publication still requires CI and live-version verification.
+
+## 2026-10-15：完成已有交付，不用重试掩盖失败
+
+新增核对 LangGraph 官方 [fault tolerance](https://docs.langchain.com/oss/javascript/langgraph/fault-tolerance) 与 [RFC 6585 §4](https://www.rfc-editor.org/rfc/rfc6585#section-4)：重试应有明确策略，取消、额度不足和来源限流不能混同；429 可带 Retry-After，但不证明马上重试会成功。反证是适当重试可能改善可用性，所以本轮不武断改变运行策略，而是区分真实发布阶段并完成既有导出修复。冻结原有 12 个双语案例，补充 API → 当前轮次 → 导出 → 删除的隔离实验，不新增模型调用或重置额度。三轮优化、两轮自检、候选比较与发布证据边界见 [本轮接续记录](agi-jarvis-release-followthrough-2026-10-15.md)。
