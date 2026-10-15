@@ -3,6 +3,8 @@
 from build_uk_opportunities import SITE,BASE,HUB,COMPARE
 import re,json
 from urllib.parse import urlsplit
+from test_uk_laundry_copy import check_laundry_copy
+check_laundry_copy()
 index={x['u']:x for x in json.loads((SITE/'search-index.json').read_text())}
 for path in [HUB,COMPARE]:
  f=SITE/path;s=f.read_text()
@@ -24,3 +26,4 @@ assert 'Everything beyond that condenses' not in s
 assert 'surface temperature and dew point' in s
 assert (SITE/'en/guide/dehumidifier-drying-clothes-cost.html').read_text().count('id="eb-moisture-choice"')==1
 print('PASS UK: sources, condition-matched figures, scope, local links, homepage entries and SEO/GEO discovery.')
+

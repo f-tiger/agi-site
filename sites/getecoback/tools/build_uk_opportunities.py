@@ -8,6 +8,25 @@ BASE='https://getecoback.com'
 HUB='en/guide/uk-damp-and-heating-decisions.html'
 COMPARE='en/guide/12l-vs-20l-dehumidifier-uk.html'
 def link(path,text):return f'<a href="/{path}">{text}</a>'
+def localize_laundry_copy(html):
+ """Keep this UK route's static examples aligned with its fictional GBP default.
+
+ Run after generic chrome/buyer injection; other markets remain unchanged.
+ These are new illustrative GBP amounts, not converted prices or live tariffs.
+ """
+ replacements={
+  'placeholder="Ratgeber durchsuchen …"':'placeholder="Search guides …"',
+  'aria-label="Suche"':'aria-label="Search guides"',
+  '€0.30/kWh':'GBP 0.35/kWh (35p/kWh)',
+  'The €0.30 used above':'The fictional GBP 0.35/kWh used above',
+  '<td>6.0 ct</td><td>€0.36</td><td>€4.32</td>':'<td>7.0p</td><td>GBP 0.42</td><td>GBP 5.04</td>',
+  '<td>9.0 ct</td><td>€0.54</td><td>€6.48</td>':'<td>10.5p</td><td>GBP 0.63</td><td>GBP 7.56</td>',
+  '<td>15.0 ct</td><td>€0.90</td><td>€10.80</td>':'<td>17.5p</td><td>GBP 1.05</td><td>GBP 12.60</td>',
+  'EUR 0.70 at EUR 0.35/kWh':'GBP 0.70 at GBP 0.35/kWh',
+  '€0.35/kWh = €0.45':'GBP 0.35/kWh = GBP 0.45 (rounded)',
+ }
+ for old,new in replacements.items():html=html.replace(old,new)
+ return html
 def main():
  cap=json.loads((ROOT/'data/ofgem-cap.json').read_text());rate=cap['electricity_p_per_kwh']
  routes=[('dehumidifier-drying-clothes-cost','Compare the cost of drying the same laundry load'),('heated-airer-vs-dehumidifier','Heated airer or dehumidifier: where does the moisture go?'),('desiccant-vs-compressor-dehumidifier','Cold room: desiccant or compressor?'),('rising-damp-penetrating-damp-or-condensation','Damp patches: investigate the cause before buying'),('keep-warm-working-from-home','Personal warmth versus heating a room'),('draughty-windows-rented-home','Draughty rental windows: reversible checks')]
@@ -21,6 +40,7 @@ def main():
  for path in ['index.html','en/index.html']+['en/guide/'+s+'.html' for s,_ in routes]+['en/guide/desiccant-vs-compressor-dehumidifier.html']:
   file=SITE/path;s=file.read_text();s=re.sub(r'<!--EB_UK_PATH-->.*?<!--/EB_UK_PATH-->','',s,flags=re.S)
   if path=='en/guide/dehumidifier-drying-clothes-cost.html':
+   s=localize_laundry_copy(s)
    # These generic promotions select a German store independently of the
    # buyer module's explicit market choice. No verified UK affiliate route yet.
    for marker in ['EB_STICKY','EB_PROFILE']:
@@ -31,3 +51,4 @@ def main():
   file.write_text(s[:marker.end()]+block+s[marker.end():])
  print('Built 2 UK decision pages and linked existing tools and homepages.')
 if __name__=='__main__':main()
+
