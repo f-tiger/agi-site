@@ -1,19 +1,19 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-14",
+    "date": "2026-10-15",
     "status": "ok",
     "added": [
-      "smiski-bed-series",
-      "sonny-angel-flower-series"
+      "smiski-series2",
+      "sonny-angel-marine-series"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -23,7 +23,12 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -48,7 +53,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +83,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -102,7 +107,7 @@
       "source": "https://smiski.com/e/products/construction-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-12",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-construction",
         "de": "https://thedollscout.com/de/series/smiski-construction",
@@ -126,7 +131,7 @@
       "source": "https://smiski.com/e/products/sunday-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-12",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-sunday",
         "de": "https://thedollscout.com/de/series/smiski-sunday",
@@ -246,7 +251,7 @@
       "source": "https://smiski.com/e/products/series-1/",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-12",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-series1",
         "de": "https://thedollscout.com/de/series/smiski-series1",
@@ -270,7 +275,7 @@
       "source": "https://smiski.com/e/products/birthday-series/",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-12",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-birthday",
         "de": "https://thedollscout.com/de/series/smiski-birthday",
@@ -372,11 +377,65 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-14",
+      "checked": "2026-10-15",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-flower-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-flower-series",
         "zh": "https://thedollscout.com/zh/series/sonny-angel-flower-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-series2",
+      "brand": "smiski",
+      "title": "SMISKI Series2",
+      "names": [
+        "Smiski Kneeling",
+        "Smiski Climbing",
+        "Smiski Daydreaming",
+        "Smiski Pushing",
+        "Smiski Peeking",
+        "Smiski Listening"
+      ],
+      "source": "https://smiski.com/e/products/series-2/",
+      "published": "2026-10-15",
+      "modified": "2026-10-15",
+      "checked": "2026-10-15",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-series2",
+        "de": "https://thedollscout.com/de/series/smiski-series2",
+        "zh": "https://thedollscout.com/zh/series/smiski-series2"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "sonny-angel-marine-series",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Marine Series",
+      "names": [
+        "Shark",
+        "Jellyfish",
+        "Dolphin",
+        "Seal",
+        "Seahorse",
+        "Whale",
+        "Clownfish",
+        "Shell",
+        "Penguin",
+        "Manta",
+        "Blowfish",
+        "Starfish"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "published": "2026-10-15",
+      "modified": "2026-10-15",
+      "checked": "2026-10-15",
+      "urls": {
+        "en": "https://thedollscout.com/series/sonny-angel-marine-series",
+        "de": "https://thedollscout.com/de/series/sonny-angel-marine-series",
+        "zh": "https://thedollscout.com/zh/series/sonny-angel-marine-series"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
