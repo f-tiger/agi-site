@@ -6,8 +6,8 @@ name: Record edge traffic
 
 # Cloudflare counts requests at the edge, so this number survives ad blockers,
 # privacy browsers and network-level blocking of Google — all of which produce
-# an empty GA4 property that looks exactly like "nobody came". It answers one
-# question GA4 currently cannot answer for this owner: did anyone arrive.
+# an empty GA4 property. Raw edge requests include bots and unclassified traffic;
+# they do not establish people, qualified visits or GA4 events.
 #
 # The result is committed to content/traffic.json so the two-day growth loop can
 # read real traffic without any credentials of its own, and printed to the job
@@ -150,7 +150,7 @@ jobs:
               echo "::warning::d1 snapshot 是空的(14 天窗 0 行)——查询跑通了但什么都没记到。先查信标,别读成「没有流量」。"
             fi
           else
-            echo "::warning::d1 snapshot FAILED —— 上面列出的每一个 token 都试过了,没有一个能读 D1。增长循环这一轮读不到任何第一方数字。若所有 token 都报 7403,就是都缺 Account · D1 · Read。"
+            echo "::warning::d1 snapshot FAILED —— 本轮 D1 导出不可用,不能当作零流量。上方是实际 API 错误;7403 本身不能区分账号不匹配与授权不足,不据此断言具体凭据缺陷。"
             git checkout -- content/d1-snapshot.json 2>/dev/null || true
           fi
           rm -f d1-response.json d1-curl.err
