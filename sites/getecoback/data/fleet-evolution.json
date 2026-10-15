@@ -30,8 +30,8 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count_band": "10-99",
-        "query": "infrarotheizung wohnzimmer",
+        "count_band": "1-9",
+        "query": "thermostat für infrarotheizung",
         "page": "guide/infrarotheizung-garage.html",
         "value_band": "100+"
       },
@@ -50,7 +50,7 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count_band": "10-99",
-        "query": "toom infrarotheizung",
+        "query": "infrarotheizung hornbach",
         "value_band": "100+"
       },
       "mode": "queue"

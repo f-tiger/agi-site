@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-14",
+  "as_of": "2026-10-15",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 11,
+    "opportunities": 12,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-13T09:43:09.736Z",
-    "health": "2026-10-13T15:27:12Z",
-    "ai_referrals": "2026-10-13T15:27:43Z",
-    "opportunities": "2026-10-13",
-    "autopilot_receipt": "2026-10-14"
+    "membership": "2026-10-14T07:59:21.312Z",
+    "health": "2026-10-14T13:12:39Z",
+    "ai_referrals": "2026-10-14T13:13:12Z",
+    "opportunities": "2026-10-14",
+    "autopilot_receipt": "2026-10-15"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-13T09:43:09.736Z",
+    "generated": "2026-10-14T07:59:21.312Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -143,7 +143,25 @@
       "supply": 0
     },
     {
+      "theme": "is there a way to manage the type of network access per app for pixel on graphen",
+      "site": null,
+      "state": "scout",
+      "score": 2.14,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "recommend phones for elderly",
+      "site": null,
+      "state": "scout",
+      "score": 2.09,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "need email deliverability expert",
       "site": null,
       "state": "scout",
       "score": 2.07,
@@ -170,28 +188,19 @@
       "supply": 0
     },
     {
-      "theme": "tool or service that tracks deprecations and breaking changes per library versio",
-      "site": null,
-      "state": "scout",
-      "score": 2.02,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "tool recommendation to sync backup local file server to sharepoint online",
-      "site": null,
-      "state": "scout",
-      "score": 2.02,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "software that converts pen hovering mode to pen contact down down mode",
       "site": null,
       "state": "scout",
       "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "is there an android shell program to switch to any open application according to",
+      "site": null,
+      "state": "scout",
+      "score": 1.96,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -206,13 +215,13 @@
       "supply": 1
     },
     {
-      "theme": "is there an android shell program to switch to any open application according to",
+      "theme": "open source tool to auto generate api regression tests from real traffic linux c",
       "site": null,
       "state": "scout",
-      "score": 0.96,
+      "score": 0.98,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 3
     }
   ],
   "actions": [
@@ -235,10 +244,10 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 11,
-        "query": "infrarotheizung wohnzimmer",
+        "count": 9,
+        "query": "thermostat für infrarotheizung",
         "page": "guide/infrarotheizung-garage.html",
-        "value": 66100
+        "value": 100900
       },
       "mode": "queue"
     },
@@ -313,8 +322,8 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count": 33,
-        "query": "toom infrarotheizung",
-        "value": 42450
+        "query": "infrarotheizung hornbach",
+        "value": 55350
       },
       "mode": "queue"
     },
@@ -337,8 +346,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/en/guide/portable-ac-not-cooling.html",
-        "n7": 11,
-        "p7": 3
+        "n7": 12,
+        "p7": 2
       },
       "mode": "queue"
     },
@@ -348,7 +357,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 270,
+        "human_pv_28d": 288,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -359,7 +368,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 254,
+        "human_pv_28d": 209,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -370,7 +379,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 986,
+        "human_pv_28d": 971,
         "ai_ref_28d": 0
       },
       "mode": "queue"

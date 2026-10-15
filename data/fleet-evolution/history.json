@@ -2166,5 +2166,178 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-10-15",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": null,
+      "active_members": null,
+      "opportunities": 12,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "measured demand reaches an existing page with zero recent referred readers",
+        "evidence": {
+          "count": 1,
+          "query": "cathie wood ark invest ai stocks",
+          "page": "invest/cathie-wood.html",
+          "value": 900
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "measured demand reaches an existing page with zero recent referred readers",
+        "evidence": {
+          "count": 9,
+          "query": "thermostat für infrarotheizung",
+          "page": "guide/infrarotheizung-garage.html",
+          "value": 100900
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 5,
+          "query": "ai infrastructure stocks comeback",
+          "value": 4700
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 2,
+          "query": "costco vegetable chopper",
+          "value": 110
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 33,
+          "query": "infrarotheizung hornbach",
+          "value": 55350
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 18,
+          "query": "lets try the viral crumbl labubu",
+          "value": 17850
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/en/guide/portable-ac-not-cooling.html",
+          "n7": 12,
+          "p7": 2
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 288,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 209,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gridlings",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 971,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
   }
 ]
