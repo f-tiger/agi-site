@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-14T02:31:12Z",
-  "stage": "tutorial_review_copy_delivered_distribution_blocked",
+  "updatedAt": "2026-10-15T02:26:02Z",
+  "stage": "existing_release_verified_distribution_blocked",
   "lastCompletedIteration": {
-    "date": "2026-10-14",
-    "completedAt": "2026-10-14T02:31:12Z",
-    "status": "review_copy_delivered_and_existing_snapshot_verified",
-    "problemId": "general-tutorial-production"
+    "date": "2026-10-15",
+    "completedAt": "2026-10-15T02:26:02Z",
+    "status": "existing_count_repair_and_live_deployment_verified",
+    "problemId": "bpj-catalogue-count-release"
   },
   "lastWeeklyReview": null,
   "reviewTimezone": "Asia/Shanghai",
@@ -15,7 +15,7 @@
   "nextWeeklyReviewDate": "2026-10-20",
   "primaryExperiment": {
     "id": "general-video-first-task",
-    "status": "instrumentation_deployed_daily_snapshot_verified_distribution_blocked",
+    "status": "instrumentation_and_daily_snapshot_verified_real_use_distribution_blocked",
     "goal": "创作者用自己的草稿得到具体待办，并在下一次自然任务中自愿复用",
     "firstRealDistributionAt": null,
     "measurementVersion": "manju-video-actions-v2",
@@ -24,37 +24,39 @@
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "reviewedAt": "2026-10-14T02:22:54Z",
-      "sourceCommit": "1b8c54e7ed0ecdb23e0d4ab70a0398ddf5ca5581",
-      "sourceCompletedAt": "2026-10-13T07:05:23.562Z",
-      "status": "ok",
-      "recordsIncludingSeasons": 702,
-      "note": "Original scheduled collection and repository persistence succeeded; that workflow failed before deployment. This is not proof the 702-record catalogue is live or adopted.",
+      "reviewedAt": "2026-10-15T02:23:58Z",
+      "sourceCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "sourceCompletedAt": "2026-10-14T08:07:31.068Z",
+      "status": "ok_persisted_and_live_verified",
+      "recordsIncludingSeasons": 727,
+      "note": "Existing workflow collected and deployed the 727-record catalogue (including seasons); direct read-only homepage verification on Oct15 confirms the current count and Oct14 source label. Not plays, users or adoption.",
       "sourceTimezone": "UTC for completedAt; official board date timezone not declared in receipt",
-      "missingOrDelay": "No new 2026-10-14 original BPJ deploy run observed in the inspected run list; no recrawl.",
+      "missingOrDelay": "No new Oct15 BPJ original schedule observed at initial inspection; no dispatch or recrawl by this iteration.",
       "sourceBoardDates": [
-        "2026-10-13"
-      ]
+        "2026-10-14"
+      ],
+      "liveVerifiedAt": "2026-10-15T02:21:07.897875Z",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38532281613"
     },
     {
       "path": "sites/baipiaoji/data/reach.json",
-      "reviewedAt": "2026-10-14T02:22:54Z",
-      "sourceCommit": "1b8c54e7ed0ecdb23e0d4ab70a0398ddf5ca5581",
-      "sourceDate": "2026-10-13",
-      "sourceGeneratedAt": "2026-10-13T07:04:00.482Z",
+      "reviewedAt": "2026-10-15T02:23:58Z",
+      "sourceCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "sourceDate": "2026-10-14",
+      "sourceGeneratedAt": "2026-10-14T08:04:38.419Z",
       "sourceTimePrecision": "source_and_export_timestamps",
       "window": {
         "requestedDays": 28,
-        "since": "2026-09-15",
-        "until": "2026-10-13",
+        "since": "2026-09-16",
+        "until": "2026-10-14",
         "timezone": "UTC",
         "includesCurrentPartialDay": true
       },
       "status": "verified_manju_signals_v2_persisted",
-      "note": "Original scheduled export includes all five new action keys, ok=true and partial=false. This closes persistence acceptance only. Counts stay private.",
-      "missingOrDelay": "Snapshot ends during 2026-10-13; it is not current-day data or a new live API request.",
-      "persistedByCommit": "e46ba437dc38ff7619b8b3a1083d64f3af61d1da",
-      "exportedAt": "2026-10-13T07:04:00.568Z",
+      "note": "Reused existing v2 persisted snapshot: five new action keys, ok=true and partial=false. Counts remain private; this is not verified creator adoption.",
+      "missingOrDelay": "Ends during Oct14; no fresh production API or Windsor read this iteration. New event coverage starts at the Oct13 deployment, not the beginning of the 28-day window.",
+      "persistedByCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "exportedAt": "2026-10-14T08:04:38.488Z",
       "measurementVersion": "manju-video-actions-v2"
     },
     {
@@ -72,7 +74,7 @@
         "includesCurrentPartialDay": true
       },
       "missingOrDelay": "New event support began at this release; this response does not establish historical coverage, GA4 receipt or real tasks.",
-      "note": "Previous iteration direct API observation retained. No direct /api/reach requests this iteration; the newer original daily persisted snapshot is sufficient. Counts are not people, plays or revenue."
+      "note": "Last direct API observation retained with its original timestamp. No direct /api/reach requests this iteration; reuse the newer persisted snapshot. Counts are not people, plays or revenue."
     },
     {
       "source": "Connected Windsor / BPJ GA4 /manju paths",
@@ -107,12 +109,16 @@
       "id": "bpj-catalogue-count-release",
       "priority": "P0",
       "scope": "existing_site_build_gate_dependency",
-      "status": "existing_draft_pr_awaiting_handoff",
-      "evidence": "iteration-2026-10-14.md",
-      "pullRequest": 173,
-      "pullRequestHead": "42b112ac00bf45f1e9451db3e5ad6c1e97ae2562",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38360088238",
-      "nextAction": "Obtain the existing PR173 handoff and complete applicable release gates before merging/deploying. Do not duplicate its publisherDescription patch, rerun the schedule, waive count checks or cancel other releases."
+      "status": "verified_closed",
+      "evidence": "iteration-2026-10-15.md",
+      "pullRequest": 175,
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38532281613",
+      "nextAction": "Closed from PR175 implementation, two real CI count checks and Oct15 public verification. PR173 remains an unchanged draft whose motivating defect is covered; no explicit author handoff claimed. Do not merge it or repeat deployment.",
+      "implementationCommit": "7d8fe7d8d84d5ed59216242e8b0fc727d7d26aec",
+      "deployedSourceCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "verifiedAt": "2026-10-15T02:23:58Z",
+      "coveredDraftPullRequest": 173,
+      "coveredDraftStatus": "open_draft_no_explicit_author_handoff"
     },
     {
       "id": "bpj-release-readiness",
@@ -140,9 +146,9 @@
     {
       "id": "video-measurement-semantics",
       "priority": "P1",
-      "status": "deployed_remaining_release_acceptance_pending",
-      "evidence": "iteration-2026-10-14.md",
-      "nextAction": "Instrumentation and daily persistence are present. New action backend receipt and genuine useful tasks remain unverified. Retain the prior failed-release receipt; the later directory build gate is covered by PR173 and awaits handoff.",
+      "status": "deployed_client_contract_verified_backend_real_use_unverified",
+      "evidence": "iteration-2026-10-15.md",
+      "nextAction": "Published source, public GA4 entry and persisted v2 contract verified. Keep genuine backend receipt, useful tasks and reuse unverified; workflow-wide MCP timeout and skipped browser step are separate. No synthetic events to fill counts.",
       "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
       "pullRequest": 172
     },
@@ -159,7 +165,8 @@
       "status": "captioned_review_copy_delivered_manual_acceptance_pending",
       "evidence": "iteration-2026-10-14.md",
       "nextAction": "Review this existing recording on a mobile device for continuous playback and subjective audio, then verify an authorized real publishing channel. Do not produce the App tutorial or another similar draft while distribution remains blocked.",
-      "artifactSha256": "f3a9a324a39b71269479ae912685c67a3702b6020cdd07a09660234cddec919f"
+      "artifactSha256": "f3a9a324a39b71269479ae912685c67a3702b6020cdd07a09660234cddec919f",
+      "lastArtifactIntegrityVerifiedAt": "2026-10-15T02:23:58Z"
     },
     {
       "id": "rank-observation-discovery",
@@ -171,74 +178,72 @@
   ],
   "currentBlockers": [
     {
-      "id": "bpj-catalogue-count-release",
-      "status": "existing_draft_pr_awaiting_handoff",
-      "description": "Original Oct13 daily run persisted its new snapshot/catalogue but failed before upload: automatic publisher description \"37 tools\" was mistaken for the site total in both github-tools routes. PR173 already prepares the bounded repair; deployment and IndexNow were skipped.",
-      "evidence": "https://github.com/f-tiger/agi-site/actions/runs/38360088238",
-      "pullRequest": 173,
-      "nextCheckDate": "2026-10-15",
-      "unblockCondition": "Inspect the existing PR handoff and pass full applicable acceptance; no duplicate patch or daily dispatch."
+      "id": "bpj-external-mcp-timeout",
+      "status": "existing_pipeline_external_dependency_unknown",
+      "scope": "existing_bpj_maintenance_not_a_new_video_feature",
+      "description": "Oct14 dispatch deployed successfully but the final chain gate failed on registry request timeouts and discovery-probe aborted/empty responses. Registry state is unknown, not verified delisting. Step47 browser check was skipped, not passed. The count defect is closed separately.",
+      "evidence": "https://github.com/f-tiger/agi-site/actions/runs/38532281613",
+      "sourceCompletedAt": "2026-10-14T08:07:05.705Z",
+      "lastValidCatalogSyncAt": "2026-10-14T05:19:33.308Z",
+      "nextCheckDate": "2026-10-16",
+      "unblockCondition": "Inspect the next original scheduled receipt for actual success or distinct failure. Do not duplicate dispatch, re-register, waive gates or cancel another release in this task."
     },
     {
       "id": "tool-denominator",
       "status": "instrumentation_live_real_use_unverified",
-      "description": "Deployed v2 instrumentation is now present in the original daily persisted snapshot. Windsor returned page events but no new tool-action rows. Useful tasks and voluntary reuse are unverified; absence of rows is not proof of product failure."
+      "description": "Live v2 source and original daily snapshot are verified. Reused Windsor evidence contains page events but no new tool-action rows; no new backend read this iteration. Useful tasks and voluntary reuse remain unverified; no-row results do not establish product failure."
     },
     {
       "id": "external-distribution",
       "status": "open",
       "description": "No authorized usable external publishing/contact channel is established for this daily task. The existing general tutorial now has one captioned review copy, not a publication; pause App/near-identical material production until distribution conditions are met.",
-      "nextCheckDate": "2026-10-15"
+      "nextCheckDate": "2026-10-16"
     },
     {
       "id": "tutorial-manual-playback",
       "status": "pending_manual_acceptance",
       "description": "Technical full decode and independent key-frame review passed. Continuous mobile playback, subjective listening, and target-channel/account checks have not been performed; the recording is a review copy, not publication-ready.",
       "evidence": "iteration-2026-10-14.md",
-      "nextCheckDate": "2026-10-15",
+      "nextCheckDate": "2026-10-16",
       "unblockCondition": "Review the delivered recording rather than creating another; retain unpublished status until actual review and publication evidence exist."
     }
   ],
   "lastAction": {
-    "problemId": "general-tutorial-production",
-    "status": "captioned_review_copy_delivered_manual_acceptance_pending",
-    "verification": "iteration-2026-10-14.md",
+    "problemId": "bpj-catalogue-count-release",
+    "status": "verified_closed_existing_repair",
+    "verification": "iteration-2026-10-15.md",
+    "implementationCommit": "7d8fe7d8d84d5ed59216242e8b0fc727d7d26aec",
+    "pullRequest": 175,
+    "sourceMainCommit": "57691db7e574f37fe70ce9855f998b5142087455",
     "review": {
       "optimizationRounds": 3,
       "adversarialIndependentReviewRounds": 2,
-      "firstRound": "Existing-run/PR/persistence evidence and bounded tutorial choice independently challenged.",
-      "secondRound": "Actual file/source/scripts independently reviewed; full video/audio decode exit0 and eight key frames inspected.",
+      "firstRound": "Independent GitHub run/PR review distinguished actual deployment, failed underlying MCP outcomes, skipped browser check and no explicit PR173 handoff.",
+      "secondRound": "Independent read-only review of four public documents, two private receipts, verification script, source snapshots, links and privacy boundaries passed without blockers. No production requests, browser interactions or backend validation; remote run facts came from the first independent review.",
       "implementationSelfCheck": true,
-      "rootSelfCheck": "Snapshot contract, one live readiness GET, four key frames, artifact hash and public/private receipt consistency.",
-      "continuousSubjectivePlaybackPerformed": false,
-      "subjectiveListeningPerformed": false
+      "rootSelfCheck": "Existing count regression, read-only video-fit SEO/GEO test, 3 live pages, 2 exact assets, source contracts and restored tutorial SHA-256. No production events."
+    },
+    "existingDeployment": {
+      "sourceCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/38532281613",
+      "deployedAt": "2026-10-14T08:10:42.7449488Z",
+      "workflowConclusion": "failure",
+      "reason": "External MCP timeout and discovery probe failed at final chain gate; browser step47 skipped. Not a full-workflow pass.",
+      "indexNow": {
+        "status": "existing_run_http_200_received",
+        "urlCount": 226,
+        "submittedWindowUtc": "2026-10-14T08:12:56Z/2026-10-14T08:12:59Z",
+        "meaning": "Reception, not indexing; changed-only step70 skipped."
+      }
     },
     "deployment": {
       "required": false,
-      "status": "not_required_for_private_media_and_docs",
+      "status": "not_required_docs_only",
       "dispatchCountThisIteration": 0,
       "indexNowSubmitted": false,
       "siteCodeChanged": false
     },
-    "nextAction": "Inspect the existing PR173 handoff and original scheduled receipts at the next iteration. Keep the delivered video at review stage until mobile playback/audio and an authorized distribution channel are confirmed; no similar material expansion. First weekly review remains 2026-10-20.",
-    "artifact": {
-      "filename": "tutorial-01-caption-review.mp4",
-      "sha256": "f3a9a324a39b71269479ae912685c67a3702b6020cdd07a09660234cddec919f",
-      "bytes": 8525504,
-      "durationSeconds": 123,
-      "width": 720,
-      "height": 1280,
-      "fps": 25,
-      "status": "captioned_review_copy_no_voiceover_not_published",
-      "delivery": "private_task_artifact; public repository contains receipt only",
-      "sourceCanonical": "https://baipiaoji.com/manju/video-fit",
-      "sourceRulesCheckedAt": "2026-10-10",
-      "sourceRulesVersion": "2026-10-10.1",
-      "sourceHtmlGeneratedAt": null,
-      "sourceHtmlObservedAt": "2026-10-14T02:18:02.615348+00:00",
-      "sourceGenerationMissingReason": "Live response did not expose HTML build generation time; observation time is not substituted."
-    },
-    "sourceMainCommit": "1b8c54e7ed0ecdb23e0d4ab70a0398ddf5ca5581"
+    "nextAction": "Review the existing tutorial continuously on mobile and verify an authorized usable publishing channel. Keep material unpublished and pause similar production while blocked. Inspect the next original schedule on Oct16; first weekly review remains Oct20."
   },
   "recentActions": [
     {
@@ -275,6 +280,17 @@
       "evidence": "iteration-2026-10-14.md",
       "sourceMainCommit": "1b8c54e7ed0ecdb23e0d4ab70a0398ddf5ca5581",
       "artifactSha256": "f3a9a324a39b71269479ae912685c67a3702b6020cdd07a09660234cddec919f",
+      "deploymentRequired": false
+    },
+    {
+      "date": "2026-10-15",
+      "problemId": "bpj-catalogue-count-release",
+      "status": "verified_closed_existing_repair",
+      "implementationCommit": "7d8fe7d8d84d5ed59216242e8b0fc727d7d26aec",
+      "pullRequest": 175,
+      "deployedSourceCommit": "b5c3cb0e156b8158a460e230086a85181db976e6",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38532281613",
+      "evidence": "iteration-2026-10-15.md",
       "deploymentRequired": false
     }
   ],
