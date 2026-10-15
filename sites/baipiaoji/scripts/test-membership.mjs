@@ -50,5 +50,36 @@ await test('public video revenue summary excludes old and other-tool orders and 
  const money=await summary();assert.deepEqual(money.video_orders_by_state,{paid:1,pending:1});assert.ok(money.video_order_definition.includes('not profit'));assert.ok(!JSON.stringify(money).includes(rows[0].id));
  d.sql.exec('DROP TABLE wb_order_sources');assert.equal((await summary()).video_orders_by_state,null);
 });
+const MCP_SOURCE='bpj-startup-research';
+await test('startup attribution is accepted only for BPJ orders, never workspace access',async()=>{
+ const{env,d}=await setup();const response=await onRequestPost({env,request:request(key(1),{action:'checkout',nonce:nonce(1),accept_terms:true,key_saved:true,source:MCP_SOURCE})});
+ assert.equal(response.status,200);const j=await response.json();assert.equal(j.order.state,'pending');assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(j.order.id).product,MCP_SOURCE);
+ for(const site of ['bpj','agi','eco','tds'])assert.equal(allowedProduct(site,MCP_SOURCE),false);
+ for(const site of ['agi','eco','tds'])await assert.rejects(()=>createOrder({...env,MEMBER_SITE:site},key(2),nonce(2),'fixture',MCP_SOURCE),/bad_source/);
+ await paid(env,1);assert.equal((await onRequestPost({env,request:request(key(1),{action:'save',...space(),data:{...backup,product:MCP_SOURCE}})})).status,400);
+ assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_spaces').get().n,0);
+});
+await test('startup source keeps first attribution through nonce retry and pending reuse in both directions',async()=>{
+ for(const [first,next] of [[MCP_SOURCE,VIDEO],[VIDEO,MCP_SOURCE],['',MCP_SOURCE]]){
+  const{env,d}=await setup();const a=await createOrder(env,key(1),nonce(1),'source-fixture',first);
+  const same=await createOrder(env,key(1),nonce(1),'source-fixture',next),pending=await createOrder(env,key(1),nonce(2),'source-fixture',next);
+  assert.equal(same.id,a.id);assert.equal(pending.id,a.id);assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(a.id).product,first);
+  assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_order_sources').get().n,1);
+ }
+});
+await test('unknown startup sources are rejected before retry lookup without changing attribution',async()=>{
+ const{env,d}=await setup();const a=await createOrder(env,key(1),nonce(1),'source-fixture',MCP_SOURCE);
+ for(const source of ['unknown','BPJ-STARTUP-RESEARCH',' bpj-startup-research',MCP_SOURCE+'-other',[MCP_SOURCE],{source:MCP_SOURCE}]){
+  const r=await onRequestPost({env,request:request(key(1),{action:'checkout',nonce:nonce(1),accept_terms:true,key_saved:true,source})});
+  assert.equal(r.status,400);assert.equal((await r.json()).code,'bad_source');
+ }
+ assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_orders').get().n,1);assert.equal(d.sql.prepare('SELECT product FROM wb_order_sources WHERE order_id=?').get(a.id).product,MCP_SOURCE);
+});
+await test('legacy orders without a source row are not backfilled on startup retries',async()=>{
+ const{env,d}=await setup();const a=await createOrder(env,key(1),nonce(1),'source-fixture','');d.sql.prepare('DELETE FROM wb_order_sources WHERE order_id=?').run(a.id);
+ assert.equal((await createOrder(env,key(1),nonce(1),'source-fixture',MCP_SOURCE)).id,a.id);assert.equal((await createOrder(env,key(1),nonce(2),'source-fixture',MCP_SOURCE)).id,a.id);
+ assert.equal(d.sql.prepare('SELECT COUNT(*) n FROM wb_order_sources').get().n,0);
+});
 console.log(count+' membership tests passed (real SQLite, mocked chain; no real funds).');
 }finally{globalThis.fetch=originalFetch;}
+

@@ -104,6 +104,12 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: Verify BPJ membership attribution with offline fixtures
+        run: |
+          node ../baipiaoji/scripts/test-membership.mjs
+          node ../baipiaoji/scripts/test-account-member.mjs
+          node --experimental-vm-modules ../../tools/member-studio/test-attribution-ui.mjs
+          WORKBENCH_PLAYWRIGHT="$RUNNER_TEMP/eco-playwright/node_modules/playwright" node ../../tools/member-studio/test-attribution-browser.mjs
       - name: Fetch fixed pre-shelf-change baseline for the affiliate audit
         run: |
           git fetch --depth=1 origin 902485034ee0598aed3dd8b21e718c9fca5569f7
@@ -138,3 +144,4 @@ jobs:
           name: eco-energy-browser-evidence
           path: ${{ runner.temp }}/eco-energy-qa
           retention-days: 7
+
