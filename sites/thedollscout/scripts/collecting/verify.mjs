@@ -12,7 +12,8 @@ const file=p=>path.join(out,p.replace(/^\//,'')+(p.endsWith('/')?'index.html':pa
 async function read(p,ready=()=>true){if(!live)return fs.readFileSync(file(p),'utf8');let last;for(let i=0;i<6;i++){try{const r=await fetch(origin+p,{headers:{'x-probe':'collector-release','user-agent':'tds-release-probe'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,p);const text=await r.text();assert.ok(ready(text),p+' is still propagating');return text;}catch(e){last=e;if(i<5)await new Promise(r=>setTimeout(r,3000));}}throw last;}
 const expectedRecords=Object.keys(locales).length*(brands.length+2+extraSlugs.length+seriesSlugs.length);
 const manifest=JSON.parse(await read('/collector-assets/manifest.json',text=>{const m=JSON.parse(text);return m.edition===edition&&m.records.length===expectedRecords;}));assert.equal(manifest.edition,edition);assert.equal(manifest.records.length,expectedRecords);
-const sitemap=await read('/sitemap.xml');
+// The manifest and sitemap can propagate at different times. Retry the same strict URL contract.
+const sitemap=await read('/sitemap.xml',text=>manifest.records.every(r=>text.split('<loc>'+r.url+'</loc>').length-1===1));
 const catalog=JSON.parse(await read('/collector-assets/series-catalog.json',text=>{const c=JSON.parse(text);return c.series.length===seriesState.series.length&&c.lastRun?.date===seriesState.lastRun?.date;}));
 assert.deepEqual(catalog.series.map(s=>[s.id,s.names,s.source,s.checked]),seriesState.series.map(s=>[s.id,s.names,s.source,s.checked]));
 const discovery=JSON.parse(await read('/.well-known/mcp.json'));assert.equal(discovery.version,SERVER.version);assert.deepEqual(discovery.tools,TOOLS.map(t=>t.name));const capabilities=JSON.parse(await read('/collector-assets/tool-capabilities.json'));assert.ok(capabilities.tools.some(t=>t.mcpTool==='plan_display_fit'));assert.ok(capabilities.tools.filter(t=>t.task==='collection').every(t=>t.execution==='browser-only'));
