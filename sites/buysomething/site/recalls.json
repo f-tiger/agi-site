@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-13",
+ "generated": "2026-10-14",
  "window_days": 365,
- "since": "2025-10-13",
+ "since": "2025-10-14",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -48,9 +48,24 @@
    "stale": false
   },
   "robot-pet": {
-   "n": 0,
-   "latest": null,
-   "items": [],
+   "n": 2,
+   "latest": "2026-01-29",
+   "items": [
+    {
+     "id": 10584,
+     "date": "2026-01-29",
+     "title": "Hobby Lobby Recalls Giraffe and Llama Plush Toys with Clips Due to Choking Hazard",
+     "hazard": "The legs of the plush toy can detach from the body allowing the release of small beads that are on the legs, posing a ch",
+     "url": "https://www.cpsc.gov/Recalls/2026/Hobby-Lobby-Recalls-Giraffe-and-Llama-Plush-Toys-with-Clips-Due-to-Choking-Hazard"
+    },
+    {
+     "id": 10585,
+     "date": "2026-01-29",
+     "title": "Hobby Lobby Recalls Giraffe and Llama Plush Toys with Clips Due to Drowning Hazard; Manufactured by Starmatrix Group Drowning Hazard; Manufa",
+     "hazard": "The compression strap that surrounds the outside of the pool legs may create a foothold, allowing a child access to the ",
+     "url": "https://www.cpsc.gov/Recalls/2026/Sunneday-and-Blue-Bay-Above-Ground-Pools-48-Inches-and-Taller-Recalled-Due-to-Drowning-Hazard-Manufactured-by-Starmatrix-Group"
+    }
+   ],
    "keywords": [
     "robot toy",
     "plush toy",
@@ -69,9 +84,31 @@
    "stale": false
   },
   "smart-plug": {
-   "n": 0,
-   "latest": null,
-   "items": [],
+   "n": 3,
+   "latest": "2026-03-26",
+   "items": [
+    {
+     "id": 10676,
+     "date": "2026-03-26",
+     "title": "CCCEI Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Fire; Sold by Middle Way Electronics",
+     "hazard": "The power strips do not contain supplementary overcurrent protection, which creates a risk of fire if the power strips a",
+     "url": "https://www.cpsc.gov/Recalls/2026/CCCEI-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fire-Sold-by-Middle-Way-Electronics"
+    },
+    {
+     "id": 10563,
+     "date": "2026-01-15",
+     "title": "HEZI Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Electrocution; Sold by HEZI HOME",
+     "hazard": "The power strips have an ungrounded metal enclosure that poses an electrocution hazard if energized, resulting in seriou",
+     "url": "https://www.cpsc.gov/Recalls/2026/HEZI-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-Sold-by-HEZI-HOME"
+    },
+    {
+     "id": 10536,
+     "date": "2025-12-18",
+     "title": "ANNQUAN Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Fire; Sold on Amazon by Hefei Juyuan Sporting Development",
+     "hazard": "The power strips do not contain supplementary overcurrent protection, which creates a risk of fire if the power strips a",
+     "url": "https://www.cpsc.gov/Recalls/2026/ANNQUAN-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fire-Sold-on-Amazon-by-Hefei-Juyuan-Sporting-Development"
+    }
+   ],
    "keywords": [
     "smart plug",
     "power strip"
@@ -99,9 +136,17 @@
    "stale": false
   },
   "flip-straw-bottle": {
-   "n": 0,
-   "latest": null,
-   "items": [],
+   "n": 1,
+   "latest": "2026-05-07",
+   "items": [
+    {
+     "id": 10763,
+     "date": "2026-05-07",
+     "title": "Analemma Water Bottles Recalled Due to Risk of Serious Injury or Death from Laceration and Ingestion Hazards; Imported by New Earth Technolo",
+     "hazard": "The recalled water bottle's inner glass liner can break, posing a risk of serious injury or death from laceration and in",
+     "url": "https://www.cpsc.gov/Recalls/2026/Analemma-Water-Bottles-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Laceration-and-Ingestion-Hazards-Imported-by-New-Earth-Technologies-d-o-o"
+    }
+   ],
    "keywords": [
     "water bottle",
     "tumbler lid"
@@ -109,9 +154,17 @@
    "stale": false
   },
   "heatless-curler": {
-   "n": 0,
-   "latest": null,
-   "items": [],
+   "n": 1,
+   "latest": "2025-10-23",
+   "items": [
+    {
+     "id": 10447,
+     "date": "2025-10-23",
+     "title": "J & D Brush Recalls Bio Ionic Hair Curling Irons Due to Burn Hazard",
+     "hazard": "The barrel of the curling iron can snap and detach, posing a burn hazard to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/J-D-Brush-Recalls-Bio-Ionic-Hair-Curling-Irons-Due-to-Burn-Hazard"
+    }
+   ],
    "keywords": [
     "hair curler",
     "curling"
@@ -119,9 +172,31 @@
    "stale": false
   },
   "hair-dryer": {
-   "n": 0,
-   "latest": null,
-   "items": [],
+   "n": 3,
+   "latest": "2026-09-10",
+   "items": [
+    {
+     "id": 10967,
+     "date": "2026-09-10",
+     "title": "Guang Zhou Recalls Wantefully Hair Dryer Brushes Due to Risk of Serious Injury or Death from Electrocution, Shock and Burn Hazards; Violate ",
+     "hazard": "The recalled hair dryer brushes are in violation of federal regulations for hair dryers as they lack an integrated immer",
+     "url": "https://www.cpsc.gov/Recalls/2026/Guang-Zhou-Recalls-Wantefully-Hair-Dryer-Brushes-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-Shock-and-Burn-Hazards-Violate-Federal-Regulations"
+    },
+    {
+     "id": 10971,
+     "date": "2026-09-10",
+     "title": "Junkins Recalls DHASUWT Hair Dryer Brushes Due to Risk of Serious Injury or Death from Electrocution, and Shock Hazards; Violate Federal Reg",
+     "hazard": "The recalled hair dryer brushes lack an integrated immersion protection device, which presents a substantial product haz",
+     "url": "https://www.cpsc.gov/Recalls/2026/Junkins-Recalls-DHASUWT-Hair-Dryer-Brushes-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards-Violate-Federal-Regulations-Smoking-and-Fire-Hazards"
+    },
+    {
+     "id": 10506,
+     "date": "2025-11-26",
+     "title": "McLee Creations Recalls MyOnlyStyler Root Booster Hair Dryers Due to Risk of Serious Injury or Death from Electrocution and Shock Hazards",
+     "hazard": "The handheld hair dryers lack an immersion protection device, which presents a substantial product hazard to consumers, ",
+     "url": "https://www.cpsc.gov/Recalls/2026/McLee-Creations-Recalls-MyOnlyStyler-Root-Booster-Hair-Dryers-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards"
+    }
+   ],
    "keywords": [
     "hair dryer"
    ],

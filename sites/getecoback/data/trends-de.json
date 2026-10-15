@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-10-13",
+ "fetched": "2026-10-14",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "nico sturm",
-   "traffic": "200+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "pflege",
+   "title": "otto stein",
    "traffic": "2000+"
   },
   {
-   "title": "kindergeld",
+   "title": "mitteldeutsche zeitung",
+   "traffic": "200+"
+  },
+  {
+   "title": "tour de france",
+   "traffic": "200+"
+  },
+  {
+   "title": "baumarkt",
+   "traffic": "200+"
+  },
+  {
+   "title": "feuerwehr münchen",
+   "traffic": "200+"
+  },
+  {
+   "title": "saudi aramco",
+   "traffic": "5000+"
+  },
+  {
+   "title": "moers",
+   "traffic": "200+"
+  },
+  {
+   "title": "reichshof",
    "traffic": "1000+"
   },
   {
-   "title": "doug loft",
-   "traffic": "200+"
-  },
-  {
-   "title": "emil nielsen",
-   "traffic": "200+"
-  },
-  {
-   "title": "ahrensburg",
-   "traffic": "200+"
-  },
-  {
-   "title": "frankenthal",
-   "traffic": "200+"
-  },
-  {
-   "title": "rückruf skoda",
+   "title": "geiselnahme",
    "traffic": "500+"
   },
   {
-   "title": "tornesch",
-   "traffic": "500+"
-  },
-  {
-   "title": "päckchen",
-   "traffic": "10000+"
-  },
-  {
-   "title": "nico sturm",
-   "traffic": "200+"
+   "title": "christian hecker",
+   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-29",
-   "matched": []
-  },
   {
    "d": "2026-09-30",
    "matched": []
@@ -116,6 +107,10 @@
    "matched": [
     "nico sturm"
    ]
+  },
+  {
+   "d": "2026-10-14",
+   "matched": []
   }
  ]
 }

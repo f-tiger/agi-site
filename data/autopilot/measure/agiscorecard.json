@@ -3,12 +3,8 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 25,
+    "n": 22,
     "q": "tool:portfolio_returns"
-   },
-   {
-    "n": 6,
-    "q": "tool:verdicts"
    },
    {
     "n": 6,
@@ -20,24 +16,23 @@
    },
    {
     "n": 6,
-    "q": "tool:invest_positions"
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 6,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+    "n": 5,
+    "q": "tool:verdicts"
+   },
+   {
+    "n": 5,
+    "q": "tool:invest_positions"
    }
   ]
  },
- "fetched": "2026-10-13",
+ "fetched": "2026-10-14",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {
-  "/what-is-b-ai": {
-   "n7": 50,
-   "p7": 23
-  }
- },
+ "pages": {},
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

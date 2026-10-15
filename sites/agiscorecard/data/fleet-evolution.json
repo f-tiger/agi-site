@@ -9,15 +9,15 @@
     },
     "traffic": {
       "human_pv_band": "100+",
-      "ai_ref_band": "10-99",
+      "ai_ref_band": "1-9",
       "reach_humans_referred_band": null
     },
     "demand": {
       "has_underserved": true,
       "has_gaps": true,
-      "has_hot_pages": true,
+      "has_hot_pages": false,
       "top_underserved_page": "invest/cathie-wood.html",
-      "top_hot_page": "/what-is-b-ai"
+      "top_hot_page": null
     },
     "health": {
       "http": "200",
@@ -52,17 +52,6 @@
         "count_band": "1-9",
         "query": "ai infrastructure stocks comeback",
         "value_band": "100+"
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/what-is-b-ai",
-        "n7_band": "10-99",
-        "p7_band": "10-99"
       },
       "mode": "queue"
     }

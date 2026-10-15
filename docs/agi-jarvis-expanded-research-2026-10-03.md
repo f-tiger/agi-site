@@ -179,3 +179,7 @@ Owner 最新要求“限制使用次数，免费单人一次使用然后引导�
 ## 2026-10-14: portable action-progress snapshot
 
 See [bounded experiment and release record](agi-jarvis-progress-export-2026-10-14.md). Deterministic v23 export preserves current self-reported states and times, explicitly not verified outcomes or executable checkpoints. Official LangGraph persistence/checkpointer documentation motivates state fidelity, not retention claims. Frozen bilingual export contracts: baseline 0/12, candidate 12/12; synthetic regression suite 121/121. One live synthetic task used 965 tokens: correct arithmetic finding, malformed summary citation, overall quality not passed. No retry, quota reset or prompt retuning; publication still requires CI and live-version verification.
+
+## 2026-10-15：完成已有交付，不用重试掩盖失败
+
+新增核对 LangGraph 官方 [fault tolerance](https://docs.langchain.com/oss/javascript/langgraph/fault-tolerance) 与 [RFC 6585 §4](https://www.rfc-editor.org/rfc/rfc6585#section-4)：重试应有明确策略，取消、额度不足和来源限流不能混同；429 可带 Retry-After，但不证明马上重试会成功。反证是适当重试可能改善可用性，所以本轮不武断改变运行策略，而是区分真实发布阶段并完成既有导出修复。冻结原有 12 个双语案例，补充 API → 当前轮次 → 导出 → 删除的隔离实验，不新增模型调用或重置额度。三轮优化、两轮自检、候选比较与发布证据边界见 [本轮接续记录](agi-jarvis-release-followthrough-2026-10-15.md)。

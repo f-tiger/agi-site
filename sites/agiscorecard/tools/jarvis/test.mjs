@@ -61,6 +61,18 @@ test('frozen export cases preserve only current self-reported progress without c
   assert.ok(!/PRIVATE_|<img>|2026-10-14T00:16:40/.test(output));assert.equal(JSON.stringify(task),before);
  }
 });
+test('API export uses current-run receipts without new work and cannot recover deleted progress',async()=>{
+ const e=env(),id=(await call(e,body())).data.task.id;await execute(e.EVENTS,e,id);
+ const task=(await call(e)).data.tasks[0],calls=task.result.modelCalls;
+ await call(e,{action:'action_progress',id,run:task.runs,index:0,value:'done'});
+ assert.match(markdown((await call(e)).data.tasks[0]),/Self-reported progress: completed/);
+ e.EVENTS.sqlite.prepare('UPDATE jarvis_tasks SET runs=2 WHERE id=?').run(id);
+ const next=(await call(e)).data.tasks[0],exported=markdown(next);
+ assert.match(exported,/Self-reported progress: not marked/);assert.doesNotMatch(exported,/Self-reported progress: completed/);
+ assert.equal(next.result.modelCalls,calls);assert.equal(e.EVENTS.sqlite.prepare('SELECT COUNT(*) n FROM jarvis_tasks').get().n,1);
+ await call(e,{action:'delete',id});assert.deepEqual((await call(e)).data.tasks,[]);
+ assert.equal(e.EVENTS.sqlite.prepare('SELECT COUNT(*) n FROM jarvis_action_progress').get().n,0);e.EVENTS.sqlite.close();
+});
 test('export rejects malformed progress timestamps and does not invent receipts for source packs',()=>{
  const task={input:{goal:'Synthetic',lang:'en'},status:'limited',runs:1,result:{report:{summary:'Draft',findings:[],nextActions:[{action:'Check',doneWhen:'Observed'}],uncertainties:[]}}};
  for(const updated of [null,'1791936000',-1,0,1.5,NaN,Infinity,Number.MAX_SAFE_INTEGER])assert.doesNotMatch(markdown({...task,actionProgress:{0:{state:'blocked',updated}}}),/Recorded at:/);

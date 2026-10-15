@@ -454,7 +454,7 @@ jobs:
           node sites/baipiaoji/scripts/finish-experience.mjs --out sites/baipiaoji/dist
           node sites/baipiaoji/scripts/test-site-journeys.mjs --dist
           node sites/baipiaoji/scripts/test-deck.mjs --dist
-          (cd sites/baipiaoji && node scripts/verify-dist.mjs && node scripts/check-canonical-routes.mjs)
+          (cd sites/baipiaoji && node scripts/test-count-claim-text.mjs && node scripts/verify-dist.mjs && node scripts/check-canonical-routes.mjs)
           node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
           node tools/member-studio/test-isolation.mjs

@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-13T07:05:33.905Z",
+  "lastRun": "2026-10-14T08:07:55.226Z",
   "status": "degraded",
-  "checkedSources": 8,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -272,6 +272,42 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://getpoppy.app/blog/sunset",
       "lastChecked": "2026-10-13T07:05:33.905Z"
+    },
+    {
+      "caseId": "yara-ai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+      "lastChecked": "2026-10-14T05:22:04.112Z"
+    },
+    {
+      "caseId": "windsurf",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "lastChecked": "2026-10-14T05:22:04.112Z"
+    },
+    {
+      "caseId": "casetext",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "jasper",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "github-copilot",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
+    },
+    {
+      "caseId": "donotpay",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "lastChecked": "2026-10-14T08:07:55.226Z"
     }
   ],
   "sources": {
@@ -790,23 +826,167 @@
       "simhash": "a412d97a8edc039e",
       "words": 1817,
       "consecutiveChange": 0
+    },
+    "yara-ai|https://www.meetyara.com/privacy": {
+      "caseId": "yara-ai",
+      "sourceUrl": "https://www.meetyara.com/privacy",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
+      "hash": "5e6975e6bdabb2a423b170160fa14be847e9ba23dddc59556ffb3c70e1211364",
+      "simhash": "6827315ae4e4d68c",
+      "words": 462,
+      "consecutiveChange": 0
+    },
+    "yara-ai|https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/": {
+      "caseId": "yara-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "brainstory|https://cassidoo.co/post/getting-paid-is-weird/": {
+      "caseId": "brainstory",
+      "sourceUrl": "https://cassidoo.co/post/getting-paid-is-weird/",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
+      "hash": "281689e2a2109dc4bca3c73d863039e29e99e7d412714f03d526304b6a7d0953",
+      "simhash": "b4163553cd7da715",
+      "words": 555,
+      "consecutiveChange": 0
+    },
+    "brainstory|https://cassidoo.co/post/adios-2024/": {
+      "caseId": "brainstory",
+      "sourceUrl": "https://cassidoo.co/post/adios-2024/",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
+      "hash": "1d58247358c85afa9918da94473bc8c2cc73fbcd0857ff829b6b835c6e58c6f3",
+      "simhash": "e2d23450c5f4a79d",
+      "words": 1944,
+      "consecutiveChange": 0
+    },
+    "contenda-studio|https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli": {
+      "caseId": "contenda-studio",
+      "sourceUrl": "https://dev.to/contenda/lessons-in-pivoting-from-studio-to-brainstory-cli",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "76d043d18d305a9a11c8fec9ab8de85f0c1b3ff302a7aec8b53525185f8bf97c",
+      "hash": "76d043d18d305a9a11c8fec9ab8de85f0c1b3ff302a7aec8b53525185f8bf97c",
+      "simhash": "286e88152c5aa317",
+      "words": 1057,
+      "consecutiveChange": 0
+    },
+    "contenda-studio|https://cassidoo.co/post/bye-bye-2023/": {
+      "caseId": "contenda-studio",
+      "sourceUrl": "https://cassidoo.co/post/bye-bye-2023/",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
+      "hash": "f88f5aefef56b4d5ece23b25d0f96b5669a7d589c37a1da889e8aae166f3b98e",
+      "simhash": "a24a26d04c34853f",
+      "words": 1574,
+      "consecutiveChange": 0
+    },
+    "otter-ai|https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite": {
+      "caseId": "otter-ai",
+      "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T05:22:04.112Z",
+      "lastHash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
+      "hash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
+      "simhash": "b27b3118eed2839d",
+      "words": 1065,
+      "consecutiveChange": 0
+    },
+    "windsurf|https://cognition.com/blog/windsurf": {
+      "caseId": "windsurf",
+      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "casetext|https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc": {
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "jasper|https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html": {
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "github-copilot|https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4": {
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "ross-intelligence|https://blog.rossintelligence.com/post/announcement": {
+      "caseId": "ross-intelligence",
+      "sourceUrl": "https://blog.rossintelligence.com/post/announcement",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-14T08:07:55.226Z",
+      "lastHash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
+      "hash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
+      "simhash": "02983b528ed8a79f",
+      "words": 678,
+      "consecutiveChange": 0
+    },
+    "donotpay|https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires": {
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
+      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 45,
+  "cursor": 55,
   "errors": [
     {
-      "caseId": "argo-ai",
-      "sourceUrl": "https://www.euronews.com/next/2022/11/01/ford-motor-autonomous-argo",
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
       "reason": "body-limit"
     },
     {
-      "caseId": "cruise-robotaxi",
-      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/gm-20251231.htm",
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
       "reason": "body-limit"
     },
     {
-      "caseId": "poppy",
-      "sourceUrl": "https://getpoppy.app/blog/sunset",
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
       "reason": "body-limit"
     }
   ]

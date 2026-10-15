@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-13",
- "radar_fetched": "2026-10-13",
+ "generated": "2026-10-14",
+ "radar_fetched": "2026-10-14",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,15 +8,15 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": false,
+  "lemmy_wish": true,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 11,
+  "candidates": 12,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 11,
+  "scout": 12,
   "supplied": 2
  },
  "opportunities": [
@@ -66,12 +66,42 @@
    "fleet_pages": []
   },
   {
+   "theme": "is there a way to manage the type of network access per app for pixel on graphen",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "lemmy:android",
+   "days_seen": [
+    "2026-10-14"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.14,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "recommend phones for elderly",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
     "2026-10-12"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.09,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "need email deliverability expert",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-13"
    ],
    "state": "scout",
    "supplied": false,
@@ -111,36 +141,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "tool or service that tracks deprecations and breaking changes per library versio",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-06"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.02,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "tool recommendation to sync backup local file server to sharepoint online",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-05"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.02,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "software that converts pen hovering mode to pen contact down down mode",
    "site": "",
    "kind": "request-board",
@@ -151,6 +151,21 @@
    "state": "scout",
    "supplied": false,
    "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "is there an android shell program to switch to any open application according to",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-08"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 1.96,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -169,37 +184,56 @@
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: E2E – Open-source agentic testing framework for web, iOS and Android",
-     "url": "https://github.com/tester-army/e2e",
+     "title": "Show HN: Sayso, free open source dictation for Mac, Windows, and Linux",
+     "url": "https://github.com/watzon/sayso",
      "src": "hn_show",
      "shared": [
-      "android",
-      "open"
+      "open",
+      "windows"
      ]
     }
    ],
    "fleet_pages": []
   },
   {
-   "theme": "is there an android shell program to switch to any open application according to",
+   "theme": "open source tool to auto generate api regression tests from real traffic linux c",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
-    "2026-10-08"
+    "2026-10-13"
    ],
    "state": "scout",
    "supplied": true,
-   "score": 0.96,
+   "score": 0.98,
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: E2E – Open-source agentic testing framework for web, iOS and Android",
-     "url": "https://github.com/tester-army/e2e",
+     "title": "Show HN: SolidCraft – Open-Source Parametric CAD in Rust (With MCP Support)",
+     "url": "https://github.com/bherbruck/solidcraft",
      "src": "hn_show",
      "shared": [
-      "android",
-      "open"
+      "open",
+      "source"
+     ]
+    },
+    {
+     "title": "Show HN: Parsimony – an open-source benchmark for how much code AI models add",
+     "url": "https://parsimony.lasu.dev/",
+     "src": "hn_show",
+     "shared": [
+      "open",
+      "source"
+     ]
+    },
+    {
+     "title": "Show HN: Sayso, free open source dictation for Mac, Windows, and Linux",
+     "url": "https://github.com/watzon/sayso",
+     "src": "hn_show",
+     "shared": [
+      "linux",
+      "open",
+      "source"
      ]
     }
    ],

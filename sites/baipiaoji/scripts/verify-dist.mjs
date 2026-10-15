@@ -6,6 +6,8 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {products} from '../../../tools/revenue-studio/catalog.mjs';
 import {pageURL} from '../../../tools/revenue-studio/i18n.mjs';
+import {GITHUB_TOOLS} from '../lib/github-catalog.mjs';
+import {countClaimText} from '../lib/count-claim-text.mjs';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -135,7 +137,7 @@ let staleCount = 0;
     // /agents/ 页面引用第三方（官方 MCP 注册表）发布者自己的描述原文——「exposes 187 tools」「1102tools.com」都是
     // 他们的话不是本站的规模声明；本站在 agents 面自己的文案一律说「records / 条记录」，由 test-agent-watch --dist 守。
     if (/(?:^|\/)agents\//.test(p)) continue;
-    const txt = readFileSync(p, 'utf8');
+    const txt = countClaimText(readFileSync(p, 'utf8'), p, GITHUB_TOOLS);
     for (const m of txt.matchAll(RE)) {
       const n = Number(m[1]);
       if (n < 30 || ok.has(n)) continue;   // <30 是 MCP 工具数、每日配额一类的小数字，不在此门管辖
