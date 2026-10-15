@@ -1,52 +1,52 @@
 {
- "fetched": "2026-10-14",
+ "fetched": "2026-10-15",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "rising": [
     {
      "q": "deepseek v4 flash 0731",
-     "v": 106450
-    },
-    {
-     "q": "dsh deepseek",
-     "v": 53150
-    },
-    {
-     "q": "dsh",
-     "v": 52900
-    },
-    {
-     "q": "deepseek v4 pro 0813",
-     "v": 37600
-    },
-    {
-     "q": "glm 5.3 flash",
-     "v": 22600
-    },
-    {
-     "q": "kimi k3",
-     "v": 14150
-    },
-    {
-     "q": "qwen 3.8 27b",
-     "v": 12700
-    },
-    {
-     "q": "deepseek harness 安装",
-     "v": 10700
-    },
-    {
-     "q": "deepseek v4 pro 正式 版",
-     "v": 10350
+     "v": 118500
     },
     {
      "q": "deepseek harness desktop",
-     "v": 9750
+     "v": 70400
+    },
+    {
+     "q": "dsh deepseek",
+     "v": 64400
+    },
+    {
+     "q": "dsh",
+     "v": 64200
+    },
+    {
+     "q": "deepseek v4 pro 0813",
+     "v": 42800
+    },
+    {
+     "q": "glm 5.3 flash",
+     "v": 31350
+    },
+    {
+     "q": "deepseek harness 插件",
+     "v": 21250
+    },
+    {
+     "q": "deepseek flash v4.1",
+     "v": 20500
+    },
+    {
+     "q": "qwen 3.8 27b",
+     "v": 15100
+    },
+    {
+     "q": "cordis",
+     "v": 12650
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-04"
+   "fetched": "2026-10-15"
   },
   "midjourney": {
    "rising": [
@@ -281,48 +281,48 @@
   "cursor": {
    "rising": [
     {
-     "q": "lurker",
-     "v": 36950
-    },
-    {
-     "q": "openai ends cursor contract spacex",
-     "v": 31100
+     "q": "cursor grok 4.6",
+     "v": 32800
     },
     {
      "q": "grokbot",
-     "v": 20550
+     "v": 30750
     },
     {
-     "q": "cursor grok bot",
-     "v": 17300
-    },
-    {
-     "q": "kimi k3 cursor",
-     "v": 16000
+     "q": "kimi k3",
+     "v": 18400
     },
     {
      "q": "grok bot",
-     "v": 11500
+     "v": 17000
     },
     {
-     "q": "cursor grok 4.6",
-     "v": 10450
+     "q": "cursor grok bot",
+     "v": 15750
+    },
+    {
+     "q": "lurker",
+     "v": 13400
+    },
+    {
+     "q": "vanity plate",
+     "v": 12800
     },
     {
      "q": "spammer",
-     "v": 9900
-    },
-    {
-     "q": "grok 4.5",
-     "v": 9050
+     "v": 12750
     },
     {
      "q": "spammer meaning",
-     "v": 8900
+     "v": 10600
+    },
+    {
+     "q": "nerd meaning",
+     "v": 9700
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-04"
+   "fetched": "2026-10-15"
   },
   "claude code": {
    "auto": [
