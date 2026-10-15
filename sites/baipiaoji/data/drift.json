@@ -1,10 +1,118 @@
 {
-  "generated": "2026-10-14",
+  "generated": "2026-10-15",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 16,
+  "pending": 9,
   "items": [
+    {
+      "slug": "anythingllm",
+      "url": "https://anythingllm.com",
+      "confirmed": "2026-10-15",
+      "first_seen": "2026-10-14",
+      "added": [
+        "67k"
+      ],
+      "removed": [
+        "66k"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "krea",
+      "url": "https://krea.ai/pricing",
+      "confirmed": "2026-10-15",
+      "first_seen": "2026-10-14",
+      "added": [
+        "1,080images",
+        "1,111images",
+        "1,317images",
+        "1,350images",
+        "10,000images",
+        "10,285images",
+        "12,000images",
+        "157images",
+        "2,160images",
+        "2,222images",
+        "2,700images",
+        "20,000images"
+      ],
+      "removed": [
+        "$5.25/mo",
+        "$5/mo",
+        "$9",
+        "2images",
+        "4video"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cursor",
+      "url": "https://cursor.com/pricing",
+      "confirmed": "2026-10-15",
+      "first_seen": "2026-10-14",
+      "added": [
+        "$0/月",
+        "$100/月",
+        "$200/月",
+        "$30",
+        "$30/月",
+        "$8/月",
+        "24小时",
+        "3%",
+        "6.00%"
+      ],
+      "removed": [
+        "$20/mo",
+        "$40/user"
+      ],
+      "checked_then": "2026-09-28"
+    },
+    {
+      "slug": "google-ai-studio",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "confirmed": "2026-10-15",
+      "first_seen": "2026-10-14",
+      "added": [
+        "$1,000",
+        "$100",
+        "$100,000",
+        "$20,000"
+      ],
+      "removed": [
+        "1,000美元",
+        "100,000美元",
+        "1000万",
+        "100万",
+        "100美元",
+        "10亿",
+        "2.7亿",
+        "20,000美元",
+        "200万",
+        "50万"
+      ],
+      "checked_then": "2026-09-29"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-15",
+      "first_seen": "2026-10-14",
+      "added": [
+        "$8",
+        "$90",
+        "$92",
+        "$93",
+        "1278,m",
+        "56,m",
+        "9b"
+      ],
+      "removed": [
+        "2k",
+        "9k"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -30,32 +138,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "google-ai-studio",
-      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
-      "confirmed": "2026-10-11",
-      "first_seen": "2026-10-10",
-      "added": [
-        "$50",
-        "1,000美元",
-        "100,000美元",
-        "1000万",
-        "100万",
-        "100美元",
-        "10亿",
-        "2.7亿",
-        "20,000美元",
-        "200万",
-        "50万"
-      ],
-      "removed": [
-        "$1,000",
-        "$100",
-        "$100,000",
-        "$20,000"
-      ],
-      "checked_then": "2026-09-29"
-    },
-    {
       "slug": "cloudflare-workers-ai",
       "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
       "confirmed": "2026-10-11",
@@ -67,39 +149,6 @@
         "$0.090"
       ],
       "checked_then": "2026-09-16"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-11",
-      "first_seen": "2026-10-10",
-      "added": [
-        "$13",
-        "$14",
-        "$17",
-        "$2",
-        "$21",
-        "$22",
-        "$24",
-        "$25",
-        "$26",
-        "$27",
-        "$28",
-        "$29"
-      ],
-      "removed": [
-        "$10",
-        "$11",
-        "$12",
-        "$15",
-        "$16",
-        "$6",
-        "$70",
-        "$77",
-        "$78",
-        "5k"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "n8n",
@@ -289,34 +338,6 @@
       "checked_then": "2026-08-02"
     },
     {
-      "slug": "krea",
-      "url": "https://krea.ai/pricing",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [
-        "$5.25/mo",
-        "$5/mo",
-        "$9",
-        "2images",
-        "4video"
-      ],
-      "removed": [
-        "1,080images",
-        "1,111images",
-        "1,317images",
-        "1,350images",
-        "10,000images",
-        "10,285images",
-        "111images",
-        "12,000images",
-        "157images",
-        "2,160images",
-        "2,222images",
-        "2,700images"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "codex",
       "url": "https://developers.openai.com/codex/pricing",
       "confirmed": "2026-10-04",
@@ -501,21 +522,6 @@
         "2000万"
       ],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "anythingllm",
-      "url": "https://anythingllm.com",
-      "confirmed": "2026-09-24",
-      "first_seen": "2026-09-23",
-      "added": [
-        "28months",
-        "37months"
-      ],
-      "removed": [
-        "27months",
-        "36months"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "kimi",

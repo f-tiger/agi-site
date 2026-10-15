@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "removebg",
-  "scispace",
-  "suno",
-  "tongyi-lingma",
-  "trae",
-  "ttsmaker",
-  "tusiart",
-  "udio"
+  "upscayl",
+  "v0",
+  "wps-ai",
+  "wujie",
+  "xinghuo",
+  "yige",
+  "youdao",
+  "zhihu-zhida"
  ],
- "cursor": "udio",
+ "cursor": "zhihu-zhida",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -2736,7 +2736,7 @@
    "name": "Upscayl",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2758,14 +2758,14 @@
    "name": "v0（Vercel）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://v0.app/pricing",
      "status": 200,
-     "bytes": 295005,
+     "bytes": 279770,
      "tokens": 44
     }
    ],
@@ -2780,7 +2780,7 @@
    "name": "WPS AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-03",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2810,7 +2810,7 @@
    "name": "无界 AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-04",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2840,7 +2840,7 @@
    "name": "讯飞星火",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-04",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2874,26 +2874,26 @@
    "name": "文心一格（百度）",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-04",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yige.baidu.com/pricing",
      "status": 200,
-     "bytes": 10985,
+     "bytes": 11141,
      "tokens": 0
     },
     {
      "url": "https://yige.baidu.com/price",
      "status": 200,
-     "bytes": 10967,
+     "bytes": 11135,
      "tokens": 0
     },
     {
      "url": "https://yige.baidu.com/plans",
      "status": 200,
-     "bytes": 11015,
+     "bytes": 11143,
      "tokens": 0
     }
    ],
@@ -2908,7 +2908,7 @@
    "name": "有道翻译",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-10-04",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2942,7 +2942,7 @@
    "name": "知乎直答",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-04",
+   "probed": "2026-10-15",
    "env": "runner",
    "state": "blocked",
    "tried": [

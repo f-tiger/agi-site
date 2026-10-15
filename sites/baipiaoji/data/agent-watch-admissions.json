@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-14",
+ "checked": "2026-10-15",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1692,6 +1692,69 @@
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
+  },
+  "smithery-arjunkmrm-time": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "smithery-notion": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "spideriq-publish": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "anamneseai-anamnese": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "askloop-askloop": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "asmhunter-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "docwand-pdf": {
+   "attempts": 1,
+   "first_attempt": "2026-10-15",
+   "last_attempt": "2026-10-15",
+   "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
   }
  },
  "admitted": [
@@ -11488,6 +11551,324 @@
   {
    "slug": "zdte-market-structure",
    "date": "2026-10-14",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zencap-zencap",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zentrik-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zevari-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zicron-claims-medical-chronology",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zrev-zrev",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "al-flytravel-travel-prices",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "al-toyshub-catalog",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "acornonaut-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "actiondock-actiondock",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agendaforge-agendaforge",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agendaforge-docs",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentnexus-agent-nexus",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentsknow-agentboard",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aibacktester-aibacktester",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aitho-aitho",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "allagents-directory",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "anjal-anjal",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "applybolt-applybolt",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "askqa-structforge",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auditae-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auditfellow-auditfellow",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "avatalks-avatalks",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "awayfolk-awayfolk",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "baozugong-landlord",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bauta-bauta",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bestappify-shopify-app-store",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blip-board-blipboard",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonsave-bonsave",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "botgigs-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brickway-brickway",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "busyboard-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "busymail-busymail",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cherrynotes-cherry-notes",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "citeme-citeme",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "clearpolicy-clearpolicy",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codaphone-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "commandmail-mail",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "conduitmail-conduit-mail",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "courtrules-court-rules",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dailystudio-teleprompter",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dazbench-dazbench",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dealermax-public-search",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "deepsearch-deepsearch",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "deviceshelf-server",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "devmargin-devmargin",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "divekit-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "docbin-docbin",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "donelane-donelane",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dreamfare-mcp",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dreamhall-dreamhall",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "edgelock-journal",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "epubtranslator-epub-translator",
+   "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "era-context",
+   "date": "2026-10-15",
    "source_http": 200,
    "repo_http": null
   }
