@@ -57,3 +57,7 @@ for(const el of document.querySelectorAll('[data-planning]'))initPlanning(el,rec
 
 import {initSeries} from './series-ui.mjs?v=2026-10-11.2';
 initSeries(recordAction);
+
+import {initSwapKit} from './swap-kit-ui.mjs?v=2026-10-15.1';
+const swapKit=document.querySelector('[data-swap-kit]');
+if(swapKit)initSwapKit(swapKit,recordAction);
