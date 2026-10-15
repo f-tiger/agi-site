@@ -241,12 +241,12 @@
   },
   "as_of": "2026-10-12",
   "revisions": [],
-  "attempted_at": "2026-10-14T01:21:27.801825+00:00",
+  "attempted_at": "2026-10-15T00:47:37.176759+00:00",
   "errors": [],
   "provider": "Yahoo Finance adjusted daily closes",
   "registered_date": "2026-10-03",
   "entry_session": "2026-10-02",
-  "status": "tracking",
+  "status": "stale",
   "last_success_at": "2026-10-14T01:21:27.801825+00:00",
   "entry_adjusted_close": {
     "AMD": 633.9099731445312,
@@ -264,5 +264,6 @@
     "SPY": 769.6400146484375,
     "QQQ": 749.5800170898438,
     "TQQQ": 81.01000213623047
-  }
+  },
+  "failure_reason": "incomplete_shared_window"
 }
