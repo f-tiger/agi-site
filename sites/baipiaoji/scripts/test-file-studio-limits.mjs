@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {File} from 'node:buffer';
+import {PDFDocument} from '../assets/studio/vendor/pdf-lib-1.17.1.mjs';
+import {openPDF,assemblePDF} from '../assets/studio/file-engine.mjs';
+import {LIMITS,checkFiles} from '../assets/studio/file-core.mjs';
+import {FILE_COPY} from '../assets/studio/file-copy.mjs';
+import {fileWorkspace} from '../assets/studio/file-view.mjs';
+const make=async(count)=>{const doc=await PDFDocument.create();for(let i=0;i<count;i++)doc.addPage([300,500]);return new File([await doc.save()],'synthetic-catalog.pdf',{type:'application/pdf'});};
+assert.equal(LIMITS.pages,200,'Keep the existing source and output page caps unchanged');
+const atLimit=await make(LIMITS.pages),overLimit=await make(LIMITS.pages+1);
+assert.ok(overLimit.size<LIMITS.fileBytes);
+assert.equal(checkFiles([],[overLimit],'pdf').length,1,'Page rejection is separate from byte limits');
+assert.equal((await openPDF(atLimit)).getPageCount(),LIMITS.pages);
+await assert.rejects(()=>openPDF(overLimit),{message:'sourcePages'});
+await assert.rejects(()=>assemblePDF([{file:overLimit,type:'pdf',range:'1',rotation:0}],{}),{message:'sourcePages'});
+const selected=await assemblePDF([{file:atLimit,type:'pdf',range:'1',rotation:0}],{});
+assert.equal((await PDFDocument.load(await selected.blob.arrayBuffer())).getPageCount(),1,'Valid input can still be used after rejected input');
+await assert.rejects(()=>assemblePDF([{file:atLimit,type:'pdf',range:'',rotation:0},{file:atLimit,type:'pdf',range:'1',rotation:0}],{}),{message:'pages'});
+const full=await assemblePDF([{file:atLimit,type:'pdf',range:'',rotation:0}],{});
+assert.equal(full.pages,LIMITS.pages,'Combined output cap remains inclusive');
+await assert.rejects(()=>openPDF(new File(['broken'],'broken.pdf')),{message:'pdf'});
+for(const lang of ['zh','en']){
+  const L=FILE_COPY[lang],html=fileWorkspace('pdf',lang);
+  assert.ok(html.includes(L.pdfLimits));
+  assert.ok(L.errors.sourcePages&&!L.errors.sourcePages.includes('undefined'));
+  assert.notEqual(L.errors.sourcePages,L.errors.pages);
+  assert.ok(!html.includes(L.errors.sourcePages),'Source error is shown by app only on failure');
+}
+assert.match(FILE_COPY.zh.pdfLimits,/每份输入 PDF 最多 200 页/);
+assert.match(FILE_COPY.zh.pdfLimits,/合并输出最多 200 页/);
+assert.match(FILE_COPY.en.pdfLimits,/each source PDF is limited to 200 pages/);
+assert.match(FILE_COPY.en.pdfLimits,/combined output to 200 pages/);
+assert.deepEqual(Object.keys(FILE_COPY.zh.errors).sort(),Object.keys(FILE_COPY.en.errors).sort());
+console.log('BPJ PDF limits: source/output boundaries, recovery and bilingual disclosure passed (synthetic inputs only).');
