@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-15",
+ "fetched": "2026-10-16",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -301,103 +301,96 @@
   "akku staubsauger": {
    "rising": [
     {
-     "q": "dyson cool ventilator",
-     "v": 32650
-    },
-    {
-     "q": "sky scanner",
-     "v": 26450
-    },
-    {
      "q": "ford puma",
-     "v": 850
+     "v": 20500
     },
     {
      "q": "levoit akku staubsauger lvac 200 max",
-     "v": 500
+     "v": 650
     },
     {
-     "q": "ford",
-     "v": 200
+     "q": "dyson cool ventilator",
+     "v": 550
+    },
+    {
+     "q": "sky scanner",
+     "v": 550
+    },
+    {
+     "q": "lululemon trinkflasche",
+     "v": 400
+    },
+    {
+     "q": "lululemon rucksack",
+     "v": 400
+    },
+    {
+     "q": "bosch unlimited 10 akku-staubsauger bts1042wac",
+     "v": 350
     },
     {
      "q": "ventilator dyson",
-     "v": 170
+     "v": 250
     },
     {
-     "q": "diesel top",
-     "v": 170
+     "q": "dyson tp7a",
+     "v": 250
     },
     {
-     "q": "dreame r20",
-     "v": 130
-    },
-    {
-     "q": "new balance herren sale",
-     "v": 110
-    },
-    {
-     "q": "grundig akku staubsauger",
-     "v": 110
+     "q": "ford",
+     "v": 190
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-15",
+   "fetched": "2026-10-16",
    "polluted": true
   },
   "matratze": {
-   "auto": [
-    "matratzen concord",
-    "matratze",
-    "matratze 140x200",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratzen",
-    "matratze 160x200",
-    "matratzenschoner",
-    "matratze 120x200",
-    "matratzen topper"
-   ],
    "rising": [
     {
-     "q": "matratzen concord",
-     "v": "new"
+     "q": "am qualitätsmatratzen",
+     "v": 130
     },
     {
-     "q": "matratze 140x200",
-     "v": "new"
+     "q": "emma performance matratze",
+     "v": 120
     },
     {
-     "q": "matratze 90x200",
-     "v": "new"
+     "q": "bett1 de",
+     "v": 110
     },
     {
-     "q": "matratze 180x200",
-     "v": "new"
+     "q": "emma original pro matratze",
+     "v": 90
     },
     {
-     "q": "matratzen",
-     "v": "new"
+     "q": "emma original matratze",
+     "v": 70
     },
     {
-     "q": "matratze 160x200",
-     "v": "new"
+     "q": "kinderbett mit matratze",
+     "v": 70
     },
     {
-     "q": "matratzenschoner",
-     "v": "new"
+     "q": "japanische matratze",
+     "v": 60
     },
     {
-     "q": "matratze 120x200",
-     "v": "new"
+     "q": "kinderbett 90x200",
+     "v": 60
     },
     {
-     "q": "matratzen topper",
-     "v": "new"
+     "q": "emma flip matratze",
+     "v": 50
+    },
+    {
+     "q": "jysk online",
+     "v": 40
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-08"
+   "source": "related-queries",
+   "fetched": "2026-10-16",
+   "polluted": false
   },
   "saugwischer": {
    "rising": [
