@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 4,
+  "cursor": 10,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-15"
+      "checked": "2026-10-16"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-15"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-construction",
@@ -102,7 +102,7 @@
       "hash": "1a4bf4ab73b798c67d0a053ff7666f6f97942990baf42a4fa208a0cde621a824",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-13"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-museum",
@@ -120,7 +120,7 @@
       "hash": "2cc938a6186ac007c469530ba759f29a3f246002f3904e4f9741be8eff5aea0d",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-13"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-living-series",
@@ -210,7 +210,7 @@
       "hash": "0b6856d66197dba3f3b8bea1eb08d75f8ec72f35d2875a4fe7b232a2883a261f",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-13"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-dressing",
@@ -228,7 +228,7 @@
       "hash": "bd9a9f51a07756e5b68c9bd8f01346b679883e246a43fa9c90fb33b29da280bf",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-13"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-bed-series",
@@ -270,7 +270,7 @@
       "hash": "9eda1b03a7a08ff2488e2fb8994dae0b0f3724a0d3c24eea4e2b2e750d189710",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-15"
+      "checked": "2026-10-16"
     },
     {
       "id": "smiski-series2",
@@ -312,10 +312,77 @@
       "hash": "f6631ea04d33856abfa527809115ee7aaaf287133d0d422b7a9593e74e7b388c",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-15"
+      "checked": "2026-10-16"
+    },
+    {
+      "id": "smiski-moving",
+      "brand": "smiski",
+      "title": "SMISKI Moving",
+      "names": [
+        "SMISKI Carrying Ladder",
+        "SMISKI Balancing Boxes",
+        "SMISKI Decorating",
+        "Little SMISKI Teamwork",
+        "Green Thumb SMISKI",
+        "SMISKI Falling Down"
+      ],
+      "source": "https://smiski.com/e/products/moving-series/",
+      "hash": "0f584de880fc44914f845ba672e5fda5c1caa8e0bb486a066714e2dbb668bf52",
+      "published": "2026-10-16",
+      "modified": "2026-10-16",
+      "checked": "2026-10-16"
+    },
+    {
+      "id": "sonny-angel-fruit-series",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Fruit Series",
+      "names": [
+        "Raspberry",
+        "Peach",
+        "Orange",
+        "Pear",
+        "Strawberry",
+        "Grape",
+        "Watermelon",
+        "Melon",
+        "Durian",
+        "DragonFruit",
+        "Pineapple",
+        "Apple"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "0dfd13773723862e8ecb5db6159e34edfc65f6283e4d3095be3a306399ed4c12",
+      "published": "2026-10-16",
+      "modified": "2026-10-16",
+      "checked": "2026-10-16"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-16",
+      "status": "ok",
+      "added": [
+        "smiski-moving",
+        "sonny-angel-fruit-series"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-15",
       "status": "ok",
@@ -533,19 +600,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "status": "ok",
     "added": [
-      "smiski-series2",
-      "sonny-angel-marine-series"
+      "smiski-moving",
+      "sonny-angel-fruit-series"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -555,11 +622,6 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   }
 }
