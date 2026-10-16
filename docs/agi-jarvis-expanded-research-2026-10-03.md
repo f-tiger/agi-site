@@ -183,3 +183,9 @@ See [bounded experiment and release record](agi-jarvis-progress-export-2026-10-1
 ## 2026-10-15：完成已有交付，不用重试掩盖失败
 
 新增核对 LangGraph 官方 [fault tolerance](https://docs.langchain.com/oss/javascript/langgraph/fault-tolerance) 与 [RFC 6585 §4](https://www.rfc-editor.org/rfc/rfc6585#section-4)：重试应有明确策略，取消、额度不足和来源限流不能混同；429 可带 Retry-After，但不证明马上重试会成功。反证是适当重试可能改善可用性，所以本轮不武断改变运行策略，而是区分真实发布阶段并完成既有导出修复。冻结原有 12 个双语案例，补充 API → 当前轮次 → 导出 → 删除的隔离实验，不新增模型调用或重置额度。三轮优化、两轮自检、候选比较与发布证据边界见 [本轮接续记录](agi-jarvis-release-followthrough-2026-10-15.md)。
+
+## 2026-10-16：区分尝试与成功的时钟，恢复可验证发布
+
+核对 [Node 24 的 Date 模拟](https://nodejs.org/docs/latest-v24.x/api/test.html#dates) 与 [Cloudflare JSON Mode](https://developers.cloudflare.com/workers-ai/features/json-mode/) 一手文档：固定测试时钟可用于任务恢复与到期边界；原生 JSON Schema 不保证每次请求都满足契约，更不等于结论正确。真实部署被另一模块的测试阻断：测试以旧成功时间推算当前时间，误拒较新的失败尝试。选择零模型调用的确定性夹具修复；小模型、现有 8B 和强模型没有解决此故障的优势证据。
+
+反证是固定夹具可能脱离发布数据，所以保留独立的已提交快照契约检查，增加成功 HTTP/MCP 断言和时间边界反例，不放宽生产校验。原五项 API 测试有两项复现失败；修复后十二项通过，四种防线破坏均被测试抓住。188 项工程回归不代表模型质量或用户完成率；本轮零推理，前次摘要引用失败仍未解决。三轮优化、两轮对抗自检与发布边界见 [本轮记录](agi-jarvis-release-clock-2026-10-16.md)。
