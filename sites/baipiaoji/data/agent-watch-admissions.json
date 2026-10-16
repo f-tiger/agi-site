@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-15",
+ "checked": "2026-10-16",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1752,6 +1752,24 @@
    "first_attempt": "2026-10-15",
    "last_attempt": "2026-10-15",
    "attemptedAt": "2026-10-15T05:07:40.051Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "humanform-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-16",
+   "last_attempt": "2026-10-16",
+   "attemptedAt": "2026-10-16T04:57:03.412Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "lightgen-lightgen": {
+   "attempts": 1,
+   "first_attempt": "2026-10-16",
+   "last_attempt": "2026-10-16",
+   "attemptedAt": "2026-10-16T04:57:03.412Z",
    "source_http": null,
    "repo_http": null,
    "reason": "network-or-response-error"
@@ -11869,6 +11887,354 @@
   {
    "slug": "era-context",
    "date": "2026-10-15",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "eurolytics-eurolytics",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "everjust-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "everpop-everpop",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "factscanai-factscan",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fairstash-roblox-trade-values",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fakto-fakturownia",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fakto-wfirma",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "favorize-assistant",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fawtar-fawtar",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fftcompanion-fft-companion",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "filmee-anime-video",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "finfam-calculators",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flamap-flamap",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "flowral-mcp-planner",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formedge-formedge",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "formmy-formmy",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fotify-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fotohub-fotohub",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "framezone-framezone",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fryd-mcp-server",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "g-guest-g-guest",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "gardeners-almanac-gardeners-almanac",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "genlook-virtual-try-on",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getcallme-call-me",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getdomus-domus",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getquieta-quieta-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "goaichat-tools",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hadl-portfolio",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "health-os-health-os",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "higgsfield-mizan-bazar-mizan",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hinducalendar-hinducalendar",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hologallery-pocket-pokemon-tcg-pocket-catalog",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hoodex-hoodex",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "htmldrop-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hvacbuilder-hvac-builder",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "immoapi-immoapi",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "insightsocial-insightsocial",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "interbang-interbang",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "iomarkets-topup",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ip-ipinfo",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "jadehosting-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "jetopolis-game",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "jobwyre-jobwyre",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "john11-john11",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "joinways-joinways",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "justemails-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "kanbai-discovery",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "katla-katla",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "keyslip-keyslip",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "lance-app-manager",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "leadsmarts-leadsmarts",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "learnwithagents-learn-with-agents",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "lediv-mcp",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "letterin-letterin",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "letx-letx",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "linear-linear",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "liquidvision-derivatives",
+   "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "listentosadhu-corpus",
+   "date": "2026-10-16",
    "source_http": 200,
    "repo_http": null
   }

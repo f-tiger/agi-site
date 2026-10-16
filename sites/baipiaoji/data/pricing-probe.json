@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-15",
+ "generated": "2026-10-16",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "upscayl",
-  "v0",
-  "wps-ai",
-  "wujie",
-  "xinghuo",
-  "yige",
-  "youdao",
-  "zhihu-zhida"
+  "zhipu-glm",
+  "kimi",
+  "feishu-miaoji",
+  "exa",
+  "tongyi-wanxiang",
+  "haiper",
+  "tongyi",
+  "quillbot"
  ],
- "cursor": "zhihu-zhida",
+ "cursor": "quillbot",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -25,27 +25,27 @@
    "slug": "kimi",
    "name": "Kimi（月之暗面）",
    "cat": "chat",
-   "reach": 56,
-   "probed": "2026-10-04",
+   "reach": 106,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://kimi.moonshot.cn/pricing",
      "status": 200,
-     "bytes": 143727,
+     "bytes": 142443,
      "tokens": 0
     },
     {
      "url": "https://kimi.moonshot.cn/price",
      "status": 200,
-     "bytes": 143727,
+     "bytes": 142443,
      "tokens": 0
     },
     {
      "url": "https://kimi.moonshot.cn/plans",
      "status": 200,
-     "bytes": 143727,
+     "bytes": 142443,
      "tokens": 0
     }
    ],
@@ -59,8 +59,8 @@
    "slug": "feishu-miaoji",
    "name": "飞书妙记",
    "cat": "office",
-   "reach": 17,
-   "probed": "2026-10-04",
+   "reach": 18,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -93,8 +93,8 @@
    "slug": "haiper",
    "name": "Haiper",
    "cat": "video",
-   "reach": 10,
-   "probed": "2026-10-04",
+   "reach": 8,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -151,8 +151,8 @@
    "slug": "quillbot",
    "name": "QuillBot",
    "cat": "writing",
-   "reach": 3,
-   "probed": "2026-09-18",
+   "reach": 7,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -454,7 +454,7 @@
    "name": "通义千问",
    "cat": "chat",
    "reach": 8,
-   "probed": "2026-10-05",
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -486,8 +486,8 @@
    "slug": "tongyi-wanxiang",
    "name": "通义万相",
    "cat": "image",
-   "reach": 5,
-   "probed": "2026-10-05",
+   "reach": 9,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1404,22 +1404,22 @@
    "slug": "exa",
    "name": "Exa",
    "cat": "search",
-   "reach": 0,
-   "probed": "2026-09-24",
+   "reach": 15,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://exa.ai/pricing",
      "status": 200,
-     "bytes": 140525,
-     "tokens": 37
+     "bytes": 144719,
+     "tokens": 40
     }
    ],
    "best": {
     "url": "https://exa.ai/pricing",
-    "tokens": 37,
-    "excerpt": "ers with structured outputs Web grounded citations Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use sub-200ms search options inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search $7 /1k "
+    "tokens": 40,
+    "excerpt": "ers with structured outputs Web grounded citations Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use sub-200ms search options inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search From $4"
    }
   },
   "felo": {
@@ -3069,27 +3069,27 @@
    "slug": "zhipu-glm",
    "name": "智谱开放平台",
    "cat": "api",
-   "reach": 3,
-   "probed": "2026-10-06",
+   "reach": 0,
+   "probed": "2026-10-16",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://open.bigmodel.cn/pricing",
      "status": 200,
-     "bytes": 3479,
+     "bytes": 5145,
      "tokens": 0
     },
     {
      "url": "https://open.bigmodel.cn/price",
      "status": 200,
-     "bytes": 3479,
+     "bytes": 5145,
      "tokens": 0
     },
     {
      "url": "https://open.bigmodel.cn/plans",
      "status": 200,
-     "bytes": 3479,
+     "bytes": 5145,
      "tokens": 0
     }
    ],

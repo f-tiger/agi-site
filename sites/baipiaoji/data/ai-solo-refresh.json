@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-15T05:09:36.277Z",
+  "lastRun": "2026-10-16T04:58:19.568Z",
   "status": "degraded",
-  "checkedSources": 7,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -344,6 +344,30 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://trustmrr.com/startup/glamour",
       "lastChecked": "2026-10-15T05:09:36.277Z"
+    },
+    {
+      "caseId": "social-wizard",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.starterstory.com/kelechi",
+      "lastChecked": "2026-10-16T04:58:19.568Z"
+    },
+    {
+      "caseId": "boltai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+      "lastChecked": "2026-10-16T04:58:19.568Z"
+    },
+    {
+      "caseId": "monai",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.starterstory.com/Florian",
+      "lastChecked": "2026-10-16T04:58:19.568Z"
+    },
+    {
+      "caseId": "erly",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+      "lastChecked": "2026-10-16T04:58:19.568Z"
     }
   ],
   "sources": {
@@ -1062,38 +1086,73 @@
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
+    },
+    "social-wizard|https://www.starterstory.com/kelechi": {
+      "caseId": "social-wizard",
+      "sourceUrl": "https://www.starterstory.com/kelechi",
+      "lastAttempt": "2026-10-16T04:58:19.568Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "solo-color-microcase|https://www.microns.io/startup-listings/ai-personal-color-analysis-platform": {
+      "caseId": "solo-color-microcase",
+      "sourceUrl": "https://www.microns.io/startup-listings/ai-personal-color-analysis-platform",
+      "lastAttempt": "2026-10-16T04:58:19.568Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-16T04:58:19.568Z",
+      "lastHash": "bb146f7ec633dfc4f79fdce10f15dc44f5f073d33164e00d94ed74d3eb5d4ef4",
+      "hash": "bb146f7ec633dfc4f79fdce10f15dc44f5f073d33164e00d94ed74d3eb5d4ef4",
+      "simhash": "067205528ac607ad",
+      "words": 1336,
+      "consecutiveChange": 0
+    },
+    "boltai|https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers": {
+      "caseId": "boltai",
+      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+      "lastAttempt": "2026-10-16T04:58:19.568Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "monai|https://www.starterstory.com/Florian": {
+      "caseId": "monai",
+      "sourceUrl": "https://www.starterstory.com/Florian",
+      "lastAttempt": "2026-10-16T04:58:19.568Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
+    },
+    "erly|https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month": {
+      "caseId": "erly",
+      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+      "lastAttempt": "2026-10-16T04:58:19.568Z",
+      "status": "unreachable",
+      "http": null,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 60,
+  "cursor": 65,
   "errors": [
     {
-      "caseId": "anki",
-      "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
+      "caseId": "social-wizard",
+      "sourceUrl": "https://www.starterstory.com/kelechi",
       "reason": "body-limit"
     },
     {
-      "caseId": "glam-up",
-      "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
+      "caseId": "boltai",
+      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
       "reason": "body-limit"
     },
     {
-      "caseId": "glam-up",
-      "sourceUrl": "https://www.starterstory.com/nicole",
+      "caseId": "monai",
+      "sourceUrl": "https://www.starterstory.com/Florian",
       "reason": "body-limit"
     },
     {
-      "caseId": "glow-ai",
-      "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "glowly-ai",
-      "sourceUrl": "https://www.starterstory.com/stories/the-lazy-method-how-i-build-10k-month-apps",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "glamour-color",
-      "sourceUrl": "https://trustmrr.com/startup/glamour",
+      "caseId": "erly",
+      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
       "reason": "body-limit"
     }
   ]

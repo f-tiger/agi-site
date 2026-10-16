@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 1,
   "pending": [
-   {
-    "repo": "datawhalechina/happy-llm",
-    "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "virgiliojr94/book-to-skill",
     "topic": "knowledge",
@@ -17,11 +12,6 @@
    {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "HKUDS/Vibe-Trading",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -82,11 +72,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "FlorianBruniaux/claude-code-ultimate-guide",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -155,11 +140,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "jenissimo/unfake.js",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "ChaofanTao/Autoregressive-Models-in-Vision-Survey",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -207,11 +187,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "espeak-ng/espeak-ng",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -450,11 +425,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "Blizaine/Maestro",
-    "topic": "video",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "EvoLinkAI/GPT-Image-2-Seedance-2.5-Workflow",
     "topic": "video",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -467,11 +437,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "zyddnys/manga-image-translator",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -555,16 +520,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "AI-Hypercomputer/maxtext",
-    "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "dstackai/dstack",
-    "topic": "local",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "kubeflow/trainer",
     "topic": "models",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -582,11 +537,6 @@
    {
     "repo": "ray-project/llm-applications",
     "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "danielmiessler/LifeOS",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -1232,11 +1182,6 @@
    {
     "repo": "Lightning-AI/litgpt",
     "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "KalyanKS-NLP/llm-engineer-toolkit",
-    "topic": "ai",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -2260,11 +2205,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "theopenconversationkit/tock",
-    "topic": "chat",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "lobehub/lobe-ui",
     "topic": "chat",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -2978,6 +2918,41 @@
     "repo": "rany2/edge-tts",
     "topic": "audio",
     "foundAt": "2026-10-15T05:07:40.051Z"
+   },
+   {
+    "repo": "evolution-foundation/evolution-api",
+    "topic": "chat",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "Vincentwei1021/anything2explainer",
+    "topic": "coding",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "mg-chao/snow-apps",
+    "topic": "documents",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "beam-cloud/beta9",
+    "topic": "local",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "NVIDIA-NeMo/Curator",
+    "topic": "models",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "Zettlr/Zettlr",
+    "topic": "everyday",
+    "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "elie222/inbox-zero",
+    "topic": "everyday",
+    "foundAt": "2026-10-16T04:57:03.412Z"
    }
   ],
   "checked": {
@@ -3028,11 +3003,17 @@
    "gh-pku-yuangroup-helios-9cfb67": "2026-10-14T08:05:15.418Z",
    "gh-naptha-tesseract-js-2298e8": "2026-10-14T08:05:15.418Z",
    "gh-files-community-files-986e61": "2026-10-14T08:05:15.418Z",
-   "gh-google-langextract-13c14e": "2026-10-14T08:05:15.418Z"
+   "gh-google-langextract-13c14e": "2026-10-14T08:05:15.418Z",
+   "gh-mem0ai-mem0-4eaa28": "2026-10-16T04:57:03.412Z",
+   "gh-bojieli-ai-agent-book-6ca4c8": "2026-10-16T04:57:03.412Z",
+   "gh-zhulinsen-daily-stock-analysis-9bbdee": "2026-10-16T04:57:03.412Z",
+   "gh-kilo-org-kilocode-23d22a": "2026-10-16T04:57:03.412Z",
+   "gh-hismax-redink-0b401d": "2026-10-16T04:57:03.412Z",
+   "gh-openbmb-voxcpm-aa49aa": "2026-10-16T04:57:03.412Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.Hutusion/dsh-cua:0.4.1",
+  "cursor": "io.github.Nekzus/npm-sentinel-mcp:1.26.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3556,7 +3537,47 @@
    "local-mcp-local-mcp": "2026-10-15T05:07:40.051Z",
    "loomascale-ads": "2026-10-15T05:07:40.051Z",
    "loopingagent-mcp": "2026-10-15T05:07:40.051Z",
-   "lotsofsounds-mcp": "2026-10-15T05:07:40.051Z"
+   "lotsofsounds-mcp": "2026-10-15T05:07:40.051Z",
+   "lyricpatch-lyricpatch": "2026-10-16T04:57:03.412Z",
+   "macaroonnetwork-bible-evidence": "2026-10-16T04:57:03.412Z",
+   "macaroonnetwork-mcp-server": "2026-10-16T04:57:03.412Z",
+   "made-mcp": "2026-10-16T04:57:03.412Z",
+   "magentic": "2026-10-16T04:57:03.412Z",
+   "magnemo-magnemo": "2026-10-16T04:57:03.412Z",
+   "magnitude": "2026-10-16T04:57:03.412Z",
+   "mahonia-mahonia": "2026-10-16T04:57:03.412Z",
+   "mailmcp-mailmcp": "2026-10-16T04:57:03.412Z",
+   "mailtea-mailtea": "2026-10-16T04:57:03.412Z",
+   "mailyond-mcp": "2026-10-16T04:57:03.412Z",
+   "mambabuilt-mcp-gtm-suite": "2026-10-16T04:57:03.412Z",
+   "mambabuilt-mcp-linkedin-post-engager-capture": "2026-10-16T04:57:03.412Z",
+   "manus": "2026-10-16T04:57:03.412Z",
+   "market-category-booster-mcb": "2026-10-16T04:57:03.412Z",
+   "marketcheck-ai-reports": "2026-10-16T04:57:03.412Z",
+   "marketcheck-api": "2026-10-16T04:57:03.412Z",
+   "marketinque-launch-plan": "2026-10-16T04:57:03.412Z",
+   "markitdown": "2026-10-16T04:57:03.412Z",
+   "marutap-marutap": "2026-10-16T04:57:03.412Z",
+   "marvin": "2026-10-16T04:57:03.412Z",
+   "mastra": "2026-10-16T04:57:03.412Z",
+   "materialscodegraph-mcg": "2026-10-16T04:57:03.412Z",
+   "matrajs-matra": "2026-10-16T04:57:03.412Z",
+   "maxkb": "2026-10-16T04:57:03.412Z",
+   "maxvideoai-maxvideoai": "2026-10-16T04:57:03.412Z",
+   "mcp-agent": "2026-10-16T04:57:03.412Z",
+   "mcp-csharp-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-go-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-inspector": "2026-10-16T04:57:03.412Z",
+   "mcp-java-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-kotlin-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-python-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-reference-servers": "2026-10-16T04:57:03.412Z",
+   "mcp-registry": "2026-10-16T04:57:03.412Z",
+   "mcp-ruby-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-rust-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-scan": "2026-10-16T04:57:03.412Z",
+   "mcp-so": "2026-10-16T04:57:03.412Z",
+   "mcp-swift-sdk": "2026-10-16T04:57:03.412Z"
   }
  }
 }

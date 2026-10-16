@@ -1,10 +1,21 @@
 {
-  "generated": "2026-10-15",
+  "generated": "2026-10-16",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 9,
+  "pending": 10,
   "items": [
+    {
+      "slug": "codex",
+      "url": "https://developers.openai.com/codex/pricing",
+      "confirmed": "2026-10-16",
+      "first_seen": "2026-10-15",
+      "added": [],
+      "removed": [
+        "12.50credits"
+      ],
+      "checked_then": "2026-09-25"
+    },
     {
       "slug": "anythingllm",
       "url": "https://anythingllm.com",
@@ -336,29 +347,6 @@
         "31minutes"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "codex",
-      "url": "https://developers.openai.com/codex/pricing",
-      "confirmed": "2026-10-04",
-      "first_seen": "2026-10-03",
-      "added": [
-        "$100,",
-        "$200,",
-        "$500",
-        "15credits"
-      ],
-      "removed": [
-        "$100",
-        "1.875credits",
-        "113credits",
-        "18.75credits",
-        "30days",
-        "375credits",
-        "6.250credits",
-        "62.50credits"
-      ],
-      "checked_then": "2026-09-25"
     },
     {
       "slug": "ollama",
