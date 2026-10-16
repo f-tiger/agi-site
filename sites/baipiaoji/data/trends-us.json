@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-10-15",
+ "fetched": "2026-10-16",
  "geo": "US",
- "matched": [],
+ "matched": [
+  {
+   "title": "artificial intelligence news",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "antigravity",
+   "title": "maja chwalińska",
+   "traffic": "200+"
+  },
+  {
+   "title": "jodar",
+   "traffic": "200+"
+  },
+  {
+   "title": "morris chestnut",
    "traffic": "100+"
   },
   {
-   "title": "汇率",
+   "title": "rhea ripley",
    "traffic": "100+"
   },
   {
-   "title": "chapman",
+   "title": "artificial intelligence news",
    "traffic": "200+"
-  },
-  {
-   "title": "jeļena ostapenko",
-   "traffic": "200+"
-  },
-  {
-   "title": "leylah fernandez",
-   "traffic": "200+"
-  },
-  {
-   "title": "league of legends",
-   "traffic": "500+"
-  },
-  {
-   "title": "fitness",
-   "traffic": "2000+"
   },
   {
    "title": "石油",
    "traffic": "200+"
   },
   {
-   "title": "loans",
-   "traffic": "5000+"
+   "title": "charissa thompson",
+   "traffic": "100+"
   },
   {
-   "title": "sonay kartal",
+   "title": "vct",
    "traffic": "200+"
+  },
+  {
+   "title": "little rock",
+   "traffic": "100+"
+  },
+  {
+   "title": "wandavision",
+   "traffic": "100+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-01",
-   "matched": []
-  },
   {
    "d": "2026-10-02",
    "matched": []
@@ -109,6 +110,12 @@
   {
    "d": "2026-10-15",
    "matched": []
+  },
+  {
+   "d": "2026-10-16",
+   "matched": [
+    "artificial intelligence news"
+   ]
   }
  ]
 }

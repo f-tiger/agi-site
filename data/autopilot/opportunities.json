@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-15",
- "radar_fetched": "2026-10-15",
+ "generated": "2026-10-16",
+ "radar_fetched": "2026-10-16",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -141,21 +141,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "does anything similar to a live dna editor exist",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-14"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "is there a program to retrieve information about the currently focused window on",
    "site": "",
    "kind": "request-board",
@@ -186,6 +171,21 @@
    "fleet_pages": []
   },
   {
+   "theme": "does anything similar to a live dna editor exist",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-14"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 1.98,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "is there an android shell program to switch to any open application according to",
    "site": "",
    "kind": "request-board",
@@ -210,7 +210,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 1.86,
+   "score": 1.88,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -229,8 +229,8 @@
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: Petal, open-source CoScreen/ScreenHero finally free",
-     "url": "https://petal.live/",
+     "title": "Show HN: GitVolt, open source fast Git GUI (Tauri/CEF)",
+     "url": "https://gitvolt.com/",
      "src": "hn_show",
      "shared": [
       "open",
