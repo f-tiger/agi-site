@@ -2,31 +2,31 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 10,
-    "p7": 23
+    "n7": 11,
+    "p7": 18
    },
    "btu_calc": {
-    "n7": 20,
-    "p7": 4
+    "n7": 10,
+    "p7": 10
    },
    "buyer_result": {
     "n7": 0,
     "p7": 1
    },
    "buyer_view": {
-    "n7": 2,
-    "p7": 4
+    "n7": 1,
+    "p7": 3
    },
    "cold_now": {
-    "n7": 1,
-    "p7": 4
+    "n7": 0,
+    "p7": 5
    },
    "feuchte_now": {
-    "n7": 7,
-    "p7": 15
+    "n7": 8,
+    "p7": 13
    },
    "heat_now": {
-    "n7": 3,
+    "n7": 2,
     "p7": 6
    },
    "laundry_view": {
@@ -34,44 +34,44 @@
     "p7": 1
    },
    "md_serve": {
-    "n7": 1,
-    "p7": 0
+    "n7": 0,
+    "p7": 1
    },
    "page_view": {
-    "n7": 121,
-    "p7": 189
+    "n7": 111,
+    "p7": 177
    },
    "popup_click": {
     "n7": 1,
     "p7": 2
    },
    "popup_close": {
-    "n7": 13,
-    "p7": 11
+    "n7": 11,
+    "p7": 13
    },
    "popup_view": {
-    "n7": 26,
-    "p7": 28
+    "n7": 24,
+    "p7": 30
    },
    "seal_fit": {
     "n7": 0,
     "p7": 1
    },
    "strom_now": {
-    "n7": 16,
-    "p7": 13
+    "n7": 15,
+    "p7": 12
    },
    "stromkosten_calc": {
     "n7": 8,
     "p7": 4
    },
    "strompreis_api": {
-    "n7": 4,
+    "n7": 3,
     "p7": 6
    },
    "video_play": {
     "n7": 1,
-    "p7": 1
+    "p7": 2
    },
    "watt_calc": {
     "n7": 2,
@@ -80,42 +80,38 @@
   },
   "zero_hits": []
  },
- "fetched": "2026-10-15",
+ "fetched": "2026-10-16",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 10,
-   "p7": 13
-  },
-  "/en/agents/compliance.html": {
-   "n7": 2,
-   "p7": 0
+   "n7": 7,
+   "p7": 17
   },
   "/en/guide/dehumidifier-drying-clothes-cost.html": {
    "n7": 4,
-   "p7": 3
+   "p7": 1
   },
   "/en/guide/evaporative-cooler-vs-fan.html": {
    "n7": 2,
    "p7": 0
   },
   "/en/guide/portable-ac-not-cooling.html": {
-   "n7": 12,
+   "n7": 13,
    "p7": 2
   },
   "/guide/abluftschlauch-verlaengern.html": {
-   "n7": 4,
-   "p7": 4
+   "n7": 3,
+   "p7": 5
   },
   "/guide/btu-rechner.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   },
   "/guide/heizluefter-stromverbrauch.html": {
-   "n7": 3,
-   "p7": 3
+   "n7": 2,
+   "p7": 4
   },
   "/guide/heizung-30-qm.html": {
    "n7": 2,
@@ -130,7 +126,7 @@
    "p7": 1
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 4,
+   "n7": 3,
    "p7": 3
   },
   "/guide/klimaanlage-zugluft-nackenschmerzen.html": {
@@ -139,14 +135,14 @@
   },
   "/guide/luftentfeuchter-keller.html": {
    "n7": 2,
-   "p7": 3
+   "p7": 4
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 2,
-   "p7": 5
+   "p7": 4
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 7,
+   "n7": 8,
    "p7": 9
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
@@ -154,16 +150,20 @@
    "p7": 2
   },
   "/guide/strompreis-radar.html": {
-   "n7": 4,
+   "n7": 3,
    "p7": 6
+  },
+  "/guide/thermovorhang-ratgeber.html": {
+   "n7": 3,
+   "p7": 5
   },
   "/guide/tineco-saugt-nicht-mehr.html": {
    "n7": 2,
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 7,
-   "p7": 4
+   "n7": 4,
+   "p7": 6
   },
   "/impressum.html": {
    "n7": 2,

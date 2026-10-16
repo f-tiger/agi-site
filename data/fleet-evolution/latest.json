@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-15",
+  "as_of": "2026-10-16",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 12,
+    "opportunities": 14,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-14T07:59:21.312Z",
-    "health": "2026-10-14T13:12:39Z",
-    "ai_referrals": "2026-10-14T13:13:12Z",
-    "opportunities": "2026-10-14",
-    "autopilot_receipt": "2026-10-15"
+    "membership": "2026-10-15T07:42:47.493Z",
+    "health": "2026-10-15T12:59:02Z",
+    "ai_referrals": "2026-10-15T12:59:31Z",
+    "opportunities": "2026-10-15",
+    "autopilot_receipt": "2026-10-16"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-14T07:59:21.312Z",
+    "generated": "2026-10-15T07:42:47.493Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -119,7 +119,7 @@
       "theme": "locked out of google despite knowing password and having email access",
       "site": null,
       "state": "scout",
-      "score": 2.33,
+      "score": 2.38,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -137,16 +137,7 @@
       "theme": "fake abuse reports keep auto blocking my site on cloudflare",
       "site": null,
       "state": "scout",
-      "score": 2.26,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "is there a way to manage the type of network access per app for pixel on graphen",
-      "site": null,
-      "state": "scout",
-      "score": 2.14,
+      "score": 2.28,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -170,6 +161,15 @@
       "supply": 0
     },
     {
+      "theme": "is there an android shell program which returns open windows titles in last focu",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "web push notifications server",
       "site": null,
       "state": "scout",
@@ -183,6 +183,24 @@
       "site": null,
       "state": "scout",
       "score": 2.03,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "does anything similar to a live dna editor exist",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "is there a program to retrieve information about the currently focused window on",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -206,13 +224,13 @@
       "supply": 0
     },
     {
-      "theme": "is there an android shell program which returns open windows titles in last focu",
+      "theme": "is there a program which destroys cancer",
       "site": null,
       "state": "scout",
-      "score": 1.05,
+      "score": 1.86,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 0
     },
     {
       "theme": "open source tool to auto generate api regression tests from real traffic linux c",
@@ -221,7 +239,7 @@
       "score": 0.98,
       "days_seen": 1,
       "demand": 0,
-      "supply": 3
+      "supply": 1
     }
   ],
   "actions": [
@@ -310,8 +328,8 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count": 2,
-        "query": "costco vegetable chopper",
-        "value": 110
+        "query": "refrigerator cost",
+        "value": 80
       },
       "mode": "queue"
     },
@@ -321,7 +339,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 33,
+        "count": 32,
         "query": "infrarotheizung hornbach",
         "value": 55350
       },
@@ -346,7 +364,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/en/guide/portable-ac-not-cooling.html",
-        "n7": 12,
+        "n7": 13,
         "p7": 2
       },
       "mode": "queue"
@@ -357,7 +375,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 288,
+        "human_pv_28d": 286,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -368,7 +386,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 209,
+        "human_pv_28d": 207,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -379,7 +397,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 971,
+        "human_pv_28d": 941,
         "ai_ref_28d": 0
       },
       "mode": "queue"

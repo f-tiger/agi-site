@@ -24,8 +24,8 @@
   },
   {
    "heat": {
-    "n7": 3,
-    "p7": 3
+    "n7": 2,
+    "p7": 4
    },
    "kind": "value",
    "match": 0.875,
@@ -115,8 +115,8 @@
   },
   {
    "heat": {
-    "n7": 10,
-    "p7": 13
+    "n7": 7,
+    "p7": 17
    },
    "kind": "value",
    "match": 0.967,
@@ -228,8 +228,8 @@
   },
   {
    "heat": {
-    "n7": 3,
-    "p7": 3
+    "n7": 2,
+    "p7": 4
    },
    "kind": "autocomplete-new",
    "match": 0.875,
@@ -346,18 +346,8 @@
    "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 20600
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "krups kaffeevollautomat intensity milk",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 14550
+   "stand": "2026-10-15",
+   "v": 15600
   },
   {
    "kind": "value",
@@ -366,28 +356,8 @@
    "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 11000
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 10600
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 10350
+   "stand": "2026-10-15",
+   "v": 11800
   },
   {
    "kind": "value",
@@ -396,8 +366,8 @@
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 5900
+   "stand": "2026-10-15",
+   "v": 6750
   },
   {
    "kind": "value",
@@ -406,8 +376,8 @@
    "q": "wmf perfection 840l kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 5450
+   "stand": "2026-10-15",
+   "v": 6600
   },
   {
    "kind": "value",
@@ -421,6 +391,26 @@
   },
   {
    "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "krups kaffeevollautomat intensity milk",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-15",
+   "v": 950
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-15",
+   "v": 650
+  },
+  {
+   "kind": "value",
    "match": 0.5,
    "page": "guide/air-zuma-erfahrungen.html",
    "q": "totsoo klimaanlage",
@@ -428,6 +418,16 @@
    "source": "related-queries",
    "stand": "2026-10-12",
    "v": 550
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-15",
+   "v": 300
   },
   {
    "kind": "value",
@@ -456,27 +456,17 @@
    "q": "mini kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
+   "stand": "2026-10-15",
    "v": 60
   },
   {
    "kind": "value",
    "match": 0.0,
    "page": null,
-   "q": "philips kaffeevollautomat lattego",
+   "q": "kaffeevollautomat philips lattego",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 60
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "samsung kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-14",
+   "stand": "2026-10-15",
    "v": 50
   },
   {
@@ -620,54 +610,39 @@
    "v": 1
   }
  ],
- "generated": "2026-10-15",
+ "generated": "2026-10-16",
  "geo": "DE",
- "heat_source": "measured 2026-10-15 (22 pages); no notes",
+ "heat_source": "measured 2026-10-16 (22 pages); no notes",
  "hot_pages": [
   {
-   "n7": 12,
+   "n7": 13,
    "p7": 2,
    "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
-   "n7": 10,
-   "p7": 13,
-   "page": "/"
-  },
-  {
-   "n7": 7,
+   "n7": 8,
    "p7": 9,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
    "n7": 7,
-   "p7": 4,
-   "page": "/guide/was-bedeutet-btu.html"
+   "p7": 17,
+   "page": "/"
   },
   {
    "n7": 4,
-   "p7": 3,
+   "p7": 1,
    "page": "/en/guide/dehumidifier-drying-clothes-cost.html"
   },
   {
    "n7": 4,
-   "p7": 4,
-   "page": "/guide/abluftschlauch-verlaengern.html"
-  },
-  {
-   "n7": 4,
-   "p7": 3,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 4,
    "p7": 6,
-   "page": "/guide/strompreis-radar.html"
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
-   "p7": 3,
-   "page": "/guide/heizluefter-stromverbrauch.html"
+   "p7": 5,
+   "page": "/guide/abluftschlauch-verlaengern.html"
   },
   {
    "n7": 3,
@@ -680,9 +655,19 @@
    "page": "/guide/klimaanlage-reinigen.html"
   },
   {
-   "n7": 2,
-   "p7": 0,
-   "page": "/en/agents/compliance.html"
+   "n7": 3,
+   "p7": 3,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 3,
+   "p7": 6,
+   "page": "/guide/strompreis-radar.html"
+  },
+  {
+   "n7": 3,
+   "p7": 5,
+   "page": "/guide/thermovorhang-ratgeber.html"
   },
   {
    "n7": 2,
@@ -691,8 +676,13 @@
   },
   {
    "n7": 2,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/btu-rechner.html"
+  },
+  {
+   "n7": 2,
+   "p7": 4,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 2,
@@ -711,7 +701,8 @@
   "roborock f25 ultra",
   "constantin schreiber axel springer",
   "tabaksteuer",
-  "comfee mddn-10den7"
+  "comfee mddn-10den7",
+  "philips lattego"
  ],
  "site": "getecoback",
  "source_notes": [

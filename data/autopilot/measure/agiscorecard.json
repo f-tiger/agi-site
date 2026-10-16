@@ -3,20 +3,8 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 19,
+    "n": 14,
     "q": "tool:portfolio_returns"
-   },
-   {
-    "n": 6,
-    "q": "tool:thesis_tracker"
-   },
-   {
-    "n": 6,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 6,
-    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
     "n": 5,
@@ -24,11 +12,23 @@
    },
    {
     "n": 5,
+    "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 5,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 5,
     "q": "tool:invest_positions"
+   },
+   {
+    "n": 5,
+    "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    }
   ]
  },
- "fetched": "2026-10-15",
+ "fetched": "2026-10-16",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
