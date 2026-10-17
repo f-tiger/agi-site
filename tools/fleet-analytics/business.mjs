@@ -45,6 +45,14 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if (host === 'baipiaoji.com' && pathname === '/en/ai-video/' &&
       ['view','search','filter','preview','outbound','save','unsave','related'].some(action => name === 'ai_video_' + action))
     return {name, tool_id:'ai-video', repeat:true};
+  const upkeepRoutes = {
+    '/guide/tineco-saugt-nicht-mehr.html': 'tineco-care',
+    '/guide/thermovorhang-ratgeber.html': 'curtain-fit',
+    '/en/guide/12l-vs-20l-dehumidifier-uk.html': 'meaco-filter'
+  };
+  if (host === 'getecoback.com' && Object.hasOwn(upkeepRoutes, pathname) &&
+      ['view','example','decision','share'].some(action => name === 'eco_upkeep_' + action))
+    return {name: name.slice(4), tool_id: upkeepRoutes[pathname], repeat: true};
   if(host==='baipiaoji.com' && pathname==='/manju/video-fit' && ['view','start','report_needs_info','report_revise','report_test'].some(action=>name==='manju_video_'+action)) return {name,tool_id:'manju',repeat:true};
   if (host === 'getecoback.com' && ['/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) &&
       ['view','example','calculate','compare','example_export','export','share','guide'].some(action=>name==='eco_laundry_'+action))

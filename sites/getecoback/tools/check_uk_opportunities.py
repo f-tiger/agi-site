@@ -17,6 +17,11 @@ for path in [HUB,COMPARE]:
   if u.fragment:assert f'id="{u.fragment}"' in target.read_text(),(path,href)
 s=(SITE/COMPARE).read_text()
 for v in ['1.95 L/day','3.4 L/day','5.23 L/day','8.5 L/day','130 W','180 W','151 W','216 W']:assert v in s,v
+assert s.count('id="meaco-care"')==1
+for v in ['/assets/meaco-care.mjs','/assets/meaco-care.css','£39.99','£59.98','17 October 2026','not a current stock promise','not a guaranteed filter lifespan','This is not verification for 20L','dehumidifying alone it is optional']:
+ assert v in s,v
+assert '/'+COMPARE+'#meaco-care' in (SITE/HUB).read_text()
+for asset in ['meaco-care.mjs','meaco-care.css']:assert (SITE/'assets'/asset).exists(),asset
 for path in ['index.html','en/index.html','en/guide/heated-airer-vs-dehumidifier.html','en/guide/keep-warm-working-from-home.html']:
  assert (SITE/path).read_text().count('<!--EB_UK_PATH-->')==1,path
 s=(SITE/'en/guide/heated-airer-vs-dehumidifier.html').read_text()

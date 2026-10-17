@@ -108,11 +108,10 @@ def render(today, trend, peak, peak_city, peak_day, next_season, days_left):
     lines.append("")
 
     lines.append("## 4. 未满足需求（站内搜索零命中，28 天）")
-    zh = [z for z in (trend or {}).get("zero_hits", []) if z.get("q")]
+    zh = [z for z in (trend or {}).get("zero_hits", []) if isinstance(z, dict) and z.get("q")]
     if zh:
-        for z in zh[:15]:
-            lines.append(f"- 「{z['q']}」 × {z['n']}")
-        lines.append("- → 这些是候选不是结论：逐条过 KGR/SERP 判定与蚕食检查后才允许成页")
+        lines.append(f"- 本轮有 {len(zh)} 条零命中聚合记录；原始搜索词不写入公开报告。")
+        lines.append("- 仅作为发现缺口的线索；不能由条数推断独立用户、搜索量或购买需求。")
     else:
         lines.append("- 队列为空（搜索功能刚上线或所有查询都有命中）")
     lines.append("")

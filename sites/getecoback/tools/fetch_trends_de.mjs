@@ -11,7 +11,7 @@
 const NICHE = [
   // 家居气候/能源核心
   'heiz', 'strom', 'energie', 'gas', 'klima', 'wärmepumpe', 'waermepumpe',
-  'balkonkraftwerk', 'solar', 'photovoltaik', 'infrarot',
+  'infrarot',
   // 天气事件(触发设备需求)
   'wetter', 'hitze', 'kälte', 'kaelte', 'frost', 'schnee', 'sturm', 'unwetter',
   'hochwasser', 'flut', 'gewitter', 'dürre', 'duerre',
@@ -21,6 +21,7 @@ const NICHE = [
   'strompreis', 'gaspreis', 'energiekrise', 'nebenkosten', 'blackout', 'stromausfall',
   'strompreisbremse', 'heizungsgesetz', 'ölpreis', 'oelpreis',
 ];
+const RETIRED = /balkonkraft|solar|photovolta|stromspeicher|energiespeicher|power.?station|growatt|ecoflow|solarbank/i;
 
 const url = 'https://trends.google.com/trending/rss?geo=DE';
 const out = 'data/trends-de.json';
@@ -50,7 +51,7 @@ try {
   if (!items.length) throw new Error('RSS parsed but zero items — format may have changed');
   const matched = items.filter((i) => {
     const t = i.title.toLowerCase();
-    return NICHE.some((k) => t.includes(k));
+    return !RETIRED.test(t) && NICHE.some((k) => t.includes(k));
   });
   history.push({ d: today, matched: matched.map((m) => m.title) });
   payload = { ok: true, fetched: today, source: url, matched, top: items.slice(0, 25), history };

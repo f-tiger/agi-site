@@ -17,7 +17,7 @@
 幂等:EB_RISING_RAIL 标记间整段替换。挂在 deploy 链 build_season 之后。
 """
 import json, os, re, sys, urllib.parse
-from datetime import datetime
+from datetime import datetime, timezone
 from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -115,8 +115,23 @@ def destination_for(q):
         return ('guide', *guide)
     if QUESTION.search(q) or NON_SHOP.search(q):
         return None
-    return ('shop', 'https://www.amazon.de/s?k='+urllib.parse.quote_plus(q)+'&tag='+TAG,
-            'Produkte auf Amazon suchen')
+    # A rising query alone verifies neither a model nor compatibility/merchant
+    # eligibility. Existing reviewed guides are the only automatic destination.
+    return None
+
+
+def fresh_related_seed(value, now=None):
+    """Do not turn stale, failed, polluted or autocomplete snapshots into trends."""
+    if value.get("source") != "related-queries" or value.get("polluted"):
+        return False
+    if value.get("last_attempt_status") in ("failed", "empty"):
+        return False
+    try:
+        fetched = datetime.fromisoformat(value.get("fetched", "")).replace(tzinfo=timezone.utc)
+    except (ValueError, TypeError):
+        return False
+    age = ((now or datetime.now(timezone.utc)) - fetched).total_seconds() / 86400
+    return 0 <= age <= 7
 
 
 def main():
@@ -131,13 +146,13 @@ def main():
     # Minimum across seeds is the conservative choice: it can understate
     # freshness, never overstate it.
     seed_dates = [str(v.get("fetched", "")) for v in data.get("seeds", {}).values()
-                  if v.get("fetched")]
+                  if fresh_related_seed(v)]
     stand = min(seed_dates) if seed_dates else data.get("fetched", "")
     VETO = vetoed_brands()
     STORAGE = storage_veto.load()
     rows = []
     for seed, v in data.get("seeds", {}).items():
-        if v.get("polluted"):
+        if not fresh_related_seed(v):
             continue  # the fetcher judged this seed's rows off-topic; see fetch_trends_rising
         for r in v.get("rising", []):
             q, val = str(r.get("q", "")).strip(), r.get("v", 0)
@@ -196,8 +211,7 @@ def main():
             '<h2 style="margin:0 0 4px;">Suchtrends aus der letzten Abfrage</h2>'
             f'<p style="margin:0 0 12px;font-size:13.5px;color:#5b6b78;max-width:74ch;">Gespeicherte '
             f'Google-Trends-Signale (Stand {stand_de}) — keine Testurteile, nicht selbst getestet. '
-            'Wo wir zu einem Suchbegriff einen Faktencheck haben, verlinken wir den statt eines Kauf-Links. '
-            'Anzeige · Kauf-Links sind Affiliate-Links — für dich derselbe Preis.</p>'
+            'Die Links führen zu vorhandenen Ratgebern. Ein Suchtrend belegt weder Eignung noch Kaufnachfrage.</p>'
             '<div>' + "".join(chips) + '</div></div></section>'
             '<script>(function(){var s=document.getElementById("eb-rising");if(!s)return;'
             's.querySelectorAll(\'a[href*="amazon."]\').forEach(function(a){a.addEventListener("click",function(){'

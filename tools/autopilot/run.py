@@ -155,12 +155,18 @@ def run_site(site, today, check=False, verbose=True):
             row["heat"] = h
             # A real-volume demand term (not the score-1 autocomplete fallback) that
             # maps to an existing page no human reached this week.
-            if row.get("kind") == "value" and row["v"] >= 200 and (not h or h.get("n7", 0) == 0):
+            observed_zero = isinstance(h, dict) and h.get("n7") == 0
+            low_heat = observed_zero if site == "getecoback" else (not h or h.get("n7", 0) == 0)
+            if row.get("kind") == "value" and row["v"] >= 200 and low_heat:
                 underserved.append(row)
         hot_pages = sorted(({"page": k, **v} for k, v in pages.items()),
                            key=lambda r: -r.get("n7", 0))[:15]
         first_party = {k: v for k, v in (snap.get("extra") or {}).items()
                        if k in ("site_search", "search_no_result", "picks", "zero_hits")}
+        if site == "getecoback":
+            # Also protect reads of legacy on-disk snapshots that still contain
+            # raw queries. Public evolution outputs only need aggregate counts.
+            first_party = {"zero_hit_records": (snap.get("extra") or {}).get("zero_hit_records")}
         heat_note = "measured %s (%d pages); %s" % (snap["fetched"], len(pages),
                     "; ".join(snap.get("notes") or []) or "no notes")
     receipt["counts"].update(underserved=len(underserved), hot_pages=len(hot_pages))
@@ -189,6 +195,16 @@ def run_site(site, today, check=False, verbose=True):
         "first_party_demand": first_party,
         "heat_source": heat_note,
     }
+    if site == "getecoback":
+        queue["how_to_read"] = (
+            "Research candidates only; token matching is not an editorial or market decision. "
+            "Relative growth is not search volume, and autocomplete is vocabulary evidence only. "
+            "Underserved requires an observed zero in the matching measurement window; missing "
+            "page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. "
+            "First-party evidence contains only aggregate zero-hit record counts, never raw search terms. "
+            "Freshness, country, independent evidence and the reviewed page catalog must pass "
+            "tools/eco_evolution.py before prioritising an existing page. No automatic publication follows."
+        )
     if not check:
         os.makedirs(RECEIPTS, exist_ok=True)
         ledger.save(site, data)

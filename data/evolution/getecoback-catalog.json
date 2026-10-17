@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "site": "getecoback",
+  "tasks": [
+    {
+      "id": "de-cleaner-maintenance",
+      "country": "DE",
+      "intent": "Diagnose loss of suction, odour and maintenance before buying compatible consumables",
+      "aliases": [
+        "tineco",
+        "saugwischer",
+        "nass trockensauger"
+      ],
+      "target": "/guide/tineco-saugt-nicht-mehr.html",
+      "local_pain": {
+        "status": "verified",
+        "url": "https://www.reddit.com/r/Ratschlag/comments/1qclq64/",
+        "country": "DE",
+        "reviewed_at": "2026-10-17",
+        "scope": "Public local user-reported friction, not market size, performance or technical proof."
+      },
+      "primary_guidance": {
+        "status": "verified",
+        "url": "https://de.tineco.com/support/troubleshooting/floor-one-s7-flashdry/solution/1432.html",
+        "country": "DE",
+        "reviewed_at": "2026-10-17",
+        "scope": "Manufacturer maintenance guidance for FLOOR ONE S5 and S7 FlashDry only; no cross-model filter or roller compatibility claim."
+      },
+      "required_intent_terms": [
+        "filter",
+        "geruch",
+        "saugt",
+        "reinigung",
+        "reinigen",
+        "wartung",
+        "rolle",
+        "bürste",
+        "stinkt"
+      ],
+      "reviewed_model_terms": [
+        "s5",
+        "s7 flashdry"
+      ]
+    },
+    {
+      "id": "de-draught-curtains",
+      "country": "DE",
+      "intent": "Check draught location and reversible curtain installation without blocking radiators",
+      "aliases": [
+        "thermovorhang",
+        "wohnungstür abdichten",
+        "fenster zugluft"
+      ],
+      "target": "/guide/thermovorhang-ratgeber.html",
+      "local_pain": {
+        "status": "verified",
+        "url": "https://www.reddit.com/r/wohnen/comments/1x6s0m9/",
+        "country": "DE",
+        "reviewed_at": "2026-10-17",
+        "scope": "Public local user-reported friction, not market size, performance or technical proof."
+      },
+      "primary_guidance": {
+        "status": "verified",
+        "url": "https://www.verbraucherzentrale.de/wissen/energie/heizen-und-warmwasser/heizung-10-einfache-tipps-zum-heizkosten-sparen-13892",
+        "country": "DE",
+        "reviewed_at": "2026-10-17",
+        "scope": "Consumer guidance on radiator clearance and draught diagnosis only; no product fit or guaranteed energy-saving claim."
+      },
+      "required_intent_terms": [
+        "montage",
+        "heizkörper",
+        "abdichten",
+        "zugluft",
+        "anbringen",
+        "miete",
+        "befestigen"
+      ],
+      "reviewed_model_terms": []
+    },
+    {
+      "id": "gb-meaco-maintenance",
+      "country": "GB",
+      "intent": "Check exact model, filter compatibility and whether replacement is needed",
+      "aliases": [
+        "meaco",
+        "arete filter",
+        "dehumidifier filter"
+      ],
+      "target": "/en/guide/12l-vs-20l-dehumidifier-uk.html",
+      "local_pain": {
+        "status": "verified",
+        "url": "https://www.reddit.com/r/UKFrugal/comments/1fv732i/",
+        "country": "GB",
+        "reviewed_at": "2026-10-17",
+        "scope": "Public local user-reported friction, not market size, performance or technical proof."
+      },
+      "primary_guidance": {
+        "status": "verified",
+        "url": "https://www.meaco.com/products/meacodryarete10l-12lhepafilter",
+        "country": "GB",
+        "reviewed_at": "2026-10-17",
+        "scope": "Meaco Arete 10L/12L filter listing and optional HEPA guidance only; no 20L/25L compatibility or current-stock guarantee."
+      },
+      "required_intent_terms": [
+        "filter",
+        "hepa",
+        "clean",
+        "replace",
+        "replacement",
+        "maintenance"
+      ],
+      "reviewed_model_terms": [
+        "10l",
+        "12l",
+        "10 l",
+        "12 l"
+      ]
+    },
+    {
+      "id": "de-laundry-cost",
+      "country": "DE",
+      "intent": "Compare equivalent drying results with visible running-cost assumptions",
+      "aliases": [
+        "wäsche trocknen",
+        "waesche trocknen",
+        "luftentfeuchter wäsche"
+      ],
+      "target": "/guide/waesche-trocknen-wohnung.html",
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
+    },
+    {
+      "id": "de-heater-electricity",
+      "country": "DE",
+      "intent": "Distinguish rated power, continuous operation and thermostat cycling",
+      "aliases": [
+        "heizlüfter strom",
+        "heizluefter strom",
+        "heizlüfter verbrauch",
+        "infrarotheizung berechnen"
+      ],
+      "target": "/guide/heizluefter-stromverbrauch.html",
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
+    },
+    {
+      "id": "gb-laundry-cost",
+      "country": "GB",
+      "intent": "Compare drying the same laundry load using GBP and explicit pence-per-kWh assumptions",
+      "aliases": [
+        "dry clothes",
+        "drying clothes",
+        "heated airer",
+        "dehumidifier laundry"
+      ],
+      "target": "/en/guide/dehumidifier-drying-clothes-cost.html",
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
+    }
+  ]
+}
