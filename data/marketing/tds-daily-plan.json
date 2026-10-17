@@ -322,6 +322,15 @@
   ],
   "preparation_iterations": [
     {
+      "date": "2026-10-17",
+      "phase": "morning",
+      "action": "Exclude unchanged demonstration dimensions from standalone display calculator completion events",
+      "status": "implemented_and_locally_verified_pending_release",
+      "receipt": "docs/tds-display-measurement-2026-10-17.md",
+      "external_posts": 0,
+      "note": "Preserves the organizer-kit acquisition priority; no source rerun, new campaign, private analytics or MCP contract change. Historical display events cannot be reclassified."
+    },
+    {
       "date": "2026-10-11",
       "phase": "afternoon",
       "action": "Prepare canonical owned links and registered Pinterest/Reddit/YouTube variants for three collector entries",

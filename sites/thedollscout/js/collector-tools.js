@@ -119,6 +119,15 @@
     render();
   } else {
     const form=q('form'); let unit='cm';
+    // The prefilled dimensions are a demo, not evidence of a visitor's own task.
+    // Compare in cm so changing units (including floating-point round trips) or
+    // rotating the same demo does not turn it into a completion. No input leaves
+    // the browser. A real task matching every demo dimension is conservatively excluded.
+    const dimensions=Array.from(form.querySelectorAll('input[type="number"]'));
+    const isOwnCalculation=()=>dimensions.some(input=>{
+      const value=Number(input.value)*(unit==='in'?2.54:1), example=Number(input.defaultValue);
+      return Number.isFinite(value)&&Math.abs(value-example)>1e-9*Math.max(1,Math.abs(example));
+    });
     q('[name="unit"]').addEventListener('change',event=>{
       const next=event.target.value, factor=next==='in'?1/2.54:2.54;
       if(next!==unit) for(const input of form.querySelectorAll('input[type="number"]')) {
@@ -148,7 +157,8 @@
           cell.style.height=(result.depth/Number(input.depth)*100)+'%';plan.append(cell);
         }
         q('[data-cap]').hidden=result.count<=120;
-        q('[data-result]').hidden=false; track('display_calc');
+        q('[data-result]').hidden=false;
+        if(isOwnCalculation()) track('display_calc');
       } catch (_) {announce(msg('invalid'));}
     });
   }
