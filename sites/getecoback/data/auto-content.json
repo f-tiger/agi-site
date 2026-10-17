@@ -1,4 +1,93 @@
 {
-  "schema_version": 1,
-  "pages": {}
+  "pages": {
+    "/guide/trotec-ttk-32-e-betriebskosten.html": {
+      "modified": "2026-10-17",
+      "product": {
+        "brand": "Trotec",
+        "checked_at": "2026-10-17T12:46:59.534762+00:00",
+        "country": "DE",
+        "facts": [
+          {
+            "context": "",
+            "key": "weight_kg",
+            "label": "Gewicht ohne Verpackung",
+            "unit": "kg",
+            "value": 11.0
+          },
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 2.1
+          },
+          {
+            "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
+            "key": "power_watts",
+            "label": "Leistungsaufnahme",
+            "unit": "W",
+            "value": 350.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "",
+            "key": "plug",
+            "label": "Anschlussstecker",
+            "unit": "",
+            "value": "CEE 7/7"
+          },
+          {
+            "context": "30 °C / 80 % r.F.",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 12.0
+          },
+          {
+            "context": "Abstand 1 m",
+            "key": "noise_db",
+            "label": "Geräuschangabe",
+            "unit": "dB(A)",
+            "value": 46.0
+          },
+          {
+            "context": "ohne Verpackung",
+            "key": "dimensions_mm",
+            "label": "Abmessungen L × B × H",
+            "unit": "mm",
+            "value": "215 × 320 × 420"
+          }
+        ],
+        "language": "de",
+        "market": {
+          "currency": "EUR",
+          "plug": "CEE 7/7"
+        },
+        "model": "TTK 32 E",
+        "name": "Luftentfeuchter TTK 32 E",
+        "power_watts": 350.0,
+        "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-32-e.html",
+        "source_hash": "70aeaad8888c76e616b5a90b4a6acdf26a4c500bd0224786d3a807bfa33792f5",
+        "source_id": "trotec-de:0b7f40c15588",
+        "source_urls": [
+          "https://de.trotec.com/shop/luftentfeuchter-ttk-32-e.html"
+        ]
+      },
+      "published": "2026-10-17"
+    }
+  },
+  "schema_version": 1
 }
