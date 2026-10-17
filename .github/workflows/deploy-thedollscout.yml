@@ -145,7 +145,7 @@ jobs:
 
       - name: Verify collector tools and generated pages
         run: |
-          node --test scripts/collector-tools.test.cjs scripts/collection-sync.test.cjs scripts/collection-tracker-ui.test.cjs scripts/legacy-analytics.test.cjs
+          node --test scripts/collector-tools.test.cjs scripts/display-calculator-ui.test.cjs scripts/collection-sync.test.cjs scripts/collection-tracker-ui.test.cjs scripts/legacy-analytics.test.cjs
           sha256sum index.html de/index.html zh/index.html > "$RUNNER_TEMP/tds-homepages.sha256"
           node scripts/gen-collector-pages.mjs
           sha256sum --check "$RUNNER_TEMP/tds-homepages.sha256"
