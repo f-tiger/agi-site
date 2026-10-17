@@ -386,7 +386,6 @@ jobs:
           node --test scripts/test-video-fit-core.mjs
           node scripts/test-video-fit.mjs
           node --test scripts/test-ai-video-core.mjs
-          node scripts/test-ai-video.mjs
           node --test scripts/test-video-mcp.mjs scripts/test-video-mcp-registry.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
@@ -515,6 +514,7 @@ jobs:
           node --test sites/baipiaoji/scripts/test-public-engagement.mjs
           node sites/baipiaoji/scripts/install-public-engagement.mjs --write
           node sites/baipiaoji/scripts/install-public-engagement.mjs
+          node sites/baipiaoji/scripts/test-ai-video.mjs
 
       - name: Verify homepage consent and Manju search measurement
         if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'

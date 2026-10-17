@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-17T02:00:03Z",
+  "updatedAt": "2026-10-17T02:07:35.655610Z",
   "stage": "browser_release_acceptance_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-16",
@@ -337,7 +337,7 @@
   "englishExpansion": {
     "problemId": "bpj-english-ai-video-discovery",
     "authorizedAt": "2026-10-17",
-    "status": "locally_verified_pending_release",
+    "status": "release_gate_order_fixed_pending_redeployment",
     "route": "https://baipiaoji.com/en/ai-video/",
     "sourceMainCommit": "6e013b0bfa7c2a76900fc3b870033bac48fd6c2e",
     "evidence": "../english-video-launch-2026-10-17.md",
@@ -348,17 +348,20 @@
     ],
     "rankingMeaning": "Separate official festival awards/selections and publisher series showcases; not a US/EU audience popularity chart.",
     "reviewedAt": "2026-10-17T02:00:03Z",
-    "implementationCommit": null,
-    "pullRequest": null,
+    "implementationCommit": "be9a28707d5516890e03c35f326007490d9e4c42",
+    "pullRequest": "https://github.com/f-tiger/agi-site/pull/181",
     "deployment": {
-      "status": "pending_existing_readonly_release",
-      "run": null,
+      "status": "blocked_before_deployment",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/38993307490",
       "deployedAt": null,
-      "indexNow": "not_submitted"
+      "indexNow": "not_submitted",
+      "completedAt": "2026-10-17T02:03:27Z",
+      "failure": "Full final-dist GA4 assertion ran before the existing GA4 injection step. Check moved after coverage write/check; assertion preserved.",
+      "failedJob": "https://github.com/f-tiger/agi-site/actions/runs/38993307490/job/117280193038"
     },
     "adoption": "unverified",
     "revenue": "unverified_no_affiliate_agreement",
-    "nextAction": "Complete independent review and full release gates, deploy current main once, then verify the actual English page and release receipt. Preserve the Chinese experiment and weekly review.",
+    "nextAction": "Finish independent review of release gate ordering, deploy current main after all gates, and verify public output. Research Chinese-origin viral videos on overseas platforms separately from festival awards; user clarified that viral does not mean brainrot only.",
     "catalogue": {
       "uniqueWorks": 40,
       "sourceEditions": 5,
@@ -371,7 +374,8 @@
       "sourceReview": "Primary sources and cross-source award meanings checked independently before implementation.",
       "finalReview": "Separate reviewer verified data cache, UI, privacy and real live-check implementation; no unresolved release blocker.",
       "authorSelfCheck": true,
-      "rootSelfCheck": "Full final builds, data/static/privacy tests, desktop/mobile browser, canonical/SEO/GEO, GA4 coverage and unchanged Chinese feature checks passed."
+      "rootSelfCheck": "Full final builds, data/static/privacy tests, desktop/mobile browser, canonical/SEO/GEO, GA4 coverage and unchanged Chinese feature checks passed.",
+      "releaseOrderFollowup": "Independent reviewer verified full generator → GA4 → final-dist → browser → deploy → live ordering and reran 6 catalogue tests. The original review had missed the CI injection order; no assertion was removed."
     }
   }
 }
