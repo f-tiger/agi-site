@@ -238,7 +238,12 @@ jobs:
       - name: Check the sitemap only claims "changed today" for pages that did (gate)
         run: |
           python3 tools/check_sitemap_lastmod.py --selftest
-          python3 tools/check_sitemap_lastmod.py
+          python3 tools/test_sitemap_pending_publication.py
+          if [ -f "$RUNNER_TEMP/eco-auto-content/publication.json" ]; then
+            python3 tools/check_sitemap_lastmod.py --publication-receipt "$RUNNER_TEMP/eco-auto-content/publication.json"
+          else
+            python3 tools/check_sitemap_lastmod.py
+          fi
 
       - name: Rebuild RSS feed (auto-sync new guides before deploy)
         run: python3 tools/build_feed.py
