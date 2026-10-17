@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-16",
+    "date": "2026-10-17",
     "status": "ok",
     "added": [
-      "smiski-moving",
-      "sonny-angel-fruit-series"
+      "smiski-yoga-series",
+      "smiski-toilet-series"
     ],
     "changed": [],
     "eligible": 16,
@@ -48,7 +48,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-16",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +78,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-16",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -198,7 +198,7 @@
       "source": "https://smiski.com/e/products/living/",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-14",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-living-series",
         "de": "https://thedollscout.com/de/series/smiski-living-series",
@@ -222,7 +222,7 @@
       "source": "https://smiski.com/e/products/bath-series/",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-14",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-bath-series",
         "de": "https://thedollscout.com/de/series/smiski-bath-series",
@@ -342,7 +342,7 @@
       "source": "https://smiski.com/e/products/bed-series/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-14",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-bed-series",
         "de": "https://thedollscout.com/de/series/smiski-bed-series",
@@ -372,7 +372,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-16",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-flower-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-flower-series",
@@ -426,7 +426,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-16",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-marine-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-marine-series",
@@ -480,11 +480,59 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-16",
+      "checked": "2026-10-17",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-fruit-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-fruit-series",
         "zh": "https://thedollscout.com/zh/series/sonny-angel-fruit-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-yoga-series",
+      "brand": "smiski",
+      "title": "SMISKI Yoga Series",
+      "names": [
+        "SMISKI Lotus Pose",
+        "SMISKI Twist Pose",
+        "SMISKI Shouldstand Pose",
+        "SMISKI Triangle Pose",
+        "SMISKI Tree Pose",
+        "SMISKI Ship Pose"
+      ],
+      "source": "https://smiski.com/e/products/yoga-series/",
+      "published": "2026-10-17",
+      "modified": "2026-10-17",
+      "checked": "2026-10-17",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-yoga-series",
+        "de": "https://thedollscout.com/de/series/smiski-yoga-series",
+        "zh": "https://thedollscout.com/zh/series/smiski-yoga-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-toilet-series",
+      "brand": "smiski",
+      "title": "SMISKI Toilet Series",
+      "names": [
+        "Smiski Peek-A-Boo",
+        "Smiski Little (Smelly)",
+        "Smiski Squatting",
+        "Smiski Helping Out",
+        "Smiski Resting",
+        "Smiski Holding In"
+      ],
+      "source": "https://smiski.com/e/products/toilet-series/",
+      "published": "2026-10-17",
+      "modified": "2026-10-17",
+      "checked": "2026-10-17",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-toilet-series",
+        "de": "https://thedollscout.com/de/series/smiski-toilet-series",
+        "zh": "https://thedollscout.com/zh/series/smiski-toilet-series"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."

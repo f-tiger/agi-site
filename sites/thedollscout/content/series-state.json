@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 10,
+  "cursor": 16,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-16"
+      "checked": "2026-10-17"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-16"
+      "checked": "2026-10-17"
     },
     {
       "id": "smiski-construction",
@@ -138,7 +138,7 @@
       "hash": "088735bc37da6b270eceee2c4cc3dad48394510153e8a9c5f13d0eee54db930b",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-14"
+      "checked": "2026-10-17"
     },
     {
       "id": "smiski-bath-series",
@@ -156,7 +156,7 @@
       "hash": "33793deb8ee702bc22a983f905cee9e02d0f827f10e836d1a2254bfe233cbb5f",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-14"
+      "checked": "2026-10-17"
     },
     {
       "id": "smiski-series1",
@@ -246,7 +246,7 @@
       "hash": "3a698b36f7c31f382aa352ac5bcb7300d85f537c11a7144123801b2058952f8c",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-14"
+      "checked": "2026-10-17"
     },
     {
       "id": "sonny-angel-flower-series",
@@ -270,7 +270,7 @@
       "hash": "9eda1b03a7a08ff2488e2fb8994dae0b0f3724a0d3c24eea4e2b2e750d189710",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-16"
+      "checked": "2026-10-17"
     },
     {
       "id": "smiski-series2",
@@ -312,7 +312,7 @@
       "hash": "f6631ea04d33856abfa527809115ee7aaaf287133d0d422b7a9593e74e7b388c",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-16"
+      "checked": "2026-10-17"
     },
     {
       "id": "smiski-moving",
@@ -354,10 +354,71 @@
       "hash": "0dfd13773723862e8ecb5db6159e34edfc65f6283e4d3095be3a306399ed4c12",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-16"
+      "checked": "2026-10-17"
+    },
+    {
+      "id": "smiski-yoga-series",
+      "brand": "smiski",
+      "title": "SMISKI Yoga Series",
+      "names": [
+        "SMISKI Lotus Pose",
+        "SMISKI Twist Pose",
+        "SMISKI Shouldstand Pose",
+        "SMISKI Triangle Pose",
+        "SMISKI Tree Pose",
+        "SMISKI Ship Pose"
+      ],
+      "source": "https://smiski.com/e/products/yoga-series/",
+      "hash": "ce3b297c69b6207c5cec9f23eae98287b3c37cdc469db7c13130e2e13967a707",
+      "published": "2026-10-17",
+      "modified": "2026-10-17",
+      "checked": "2026-10-17"
+    },
+    {
+      "id": "smiski-toilet-series",
+      "brand": "smiski",
+      "title": "SMISKI Toilet Series",
+      "names": [
+        "Smiski Peek-A-Boo",
+        "Smiski Little (Smelly)",
+        "Smiski Squatting",
+        "Smiski Helping Out",
+        "Smiski Resting",
+        "Smiski Holding In"
+      ],
+      "source": "https://smiski.com/e/products/toilet-series/",
+      "hash": "5ac355506add3e662d511e4b264ce410e80771bc9bc63b9b17af6f4f46f738f4",
+      "published": "2026-10-17",
+      "modified": "2026-10-17",
+      "checked": "2026-10-17"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-17",
+      "status": "ok",
+      "added": [
+        "smiski-yoga-series",
+        "smiski-toilet-series"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-16",
       "status": "ok",
@@ -600,11 +661,11 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-16",
+    "date": "2026-10-17",
     "status": "ok",
     "added": [
-      "smiski-moving",
-      "sonny-angel-fruit-series"
+      "smiski-yoga-series",
+      "smiski-toilet-series"
     ],
     "changed": [],
     "eligible": 16,
