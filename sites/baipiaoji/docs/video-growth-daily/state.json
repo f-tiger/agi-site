@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-17T07:10:30.032620Z",
+  "updatedAt": "2026-10-17T07:24:21.789581Z",
   "stage": "current_readonly_release_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-17",
@@ -326,34 +326,36 @@
     "authorizedAt": "2026-10-17",
     "status": "deployed_and_live_verified_distribution_blocked",
     "route": "https://baipiaoji.com/en/ai-video/",
-    "sourceMainCommit": "afaf3bbe36a3b7f4e88e5259a5952324ca03a370",
-    "evidence": "../framepick-discovery-release-2026-10-17.md",
+    "sourceMainCommit": "a3ebe61944fed602320d0da7e0f18308f12508ac",
+    "evidence": "../framepick-library-expansion-2026-10-17.md",
     "sources": [
       "Runway AI Festival 2026/2025/2024",
       "Reply AI Film Festival 2026",
       "Higgsfield Original Series 2026",
       "Runway Watch 2023/2024 archive",
-      "Curious Refuge October 2026 editorial gallery"
+      "Curious Refuge October 2026 editorial gallery",
+      "Runway Gen:48 2023/2024",
+      "Runway AI Film Festival 2023 archive",
+      "Curious Refuge Feel-Good competition 2026"
     ],
     "rankingMeaning": "Festival recognition, publisher showcases and editorial collections remain separate; historical source years are not new release dates. No comparable US/EU audience popularity chart is verified.",
-    "reviewedAt": "2026-10-17T06:47:32.080633Z",
-    "implementationCommit": "4c082e71f074132d6db0649c4ffb971a5519ab5c",
-    "pullRequest": "https://github.com/f-tiger/agi-site/pull/185",
+    "reviewedAt": "2026-10-17T07:24:21.789581Z",
+    "implementationCommit": "b2d52f51c68371fdd155ba3bf662ef68a9678f60",
+    "pullRequest": "https://github.com/f-tiger/agi-site/pull/186",
     "deployment": {
       "status": "success",
-      "run": "https://github.com/f-tiger/agi-site/actions/runs/39010558019",
-      "sourceCommit": "ac29ab005b9b42c47580366aca556ea0dbd6eebd",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777195",
+      "sourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
       "mode": "existing_push_readonly_product_release",
       "dispatchCount": 0,
-      "deployedAt": "2026-10-17T06:44:43.232Z",
+      "deployedAt": "2026-10-17T07:18:20.816Z",
       "workflowConclusion": "success",
-      "workflowUpdatedAt": "2026-10-17T06:45:49Z",
-      "observedAt": "2026-10-17T06:47:32.080633Z",
-      "artifactUrl": "https://b257b579.aiyangmao.pages.dev",
+      "workflowUpdatedAt": "2026-10-17T07:19:15Z",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "artifactUrl": "https://85aae61e.aiyangmao.pages.dev",
       "liveVerifiedResources": 11,
-      "liveVerifiedAt": "2026-10-17T06:45:10.004Z",
-      "localQuoteFixture": "blocked_by_managed_file_protocol_policy",
-      "ciQuoteFixture": "passed_2026-10-17T06:40:34.847Z_before_deployment",
+      "liveVerifiedAt": "2026-10-17T07:18:41.646Z",
+      "ciQuoteFixture": "passed_2026-10-17T07:15:26.326Z_before_deployment",
       "ga4": "installed_and_live_surface_verified_backend_receipt_unverified",
       "indexNow": {
         "status": "received_http200",
@@ -361,42 +363,44 @@
         "batchCounts": [
           2
         ],
-        "receivedAt": "2026-10-17T06:45:21.719Z",
+        "receivedAt": "2026-10-17T07:18:53.824Z",
         "canonicalUrls": [
           "https://baipiaoji.com/en/",
           "https://baipiaoji.com/en/ai-video/"
         ],
         "englishRouteInPublishedManifest": true,
-        "manifestObservedAt": "2026-10-17T06:46:28.466598Z",
-        "meaning": "Reception of the two changed canonical URLs, not indexing, search position, AI citations or traffic."
+        "manifestObservedAt": "2026-10-17T07:19:32.843751Z",
+        "meaning": "Reception of changed canonical URLs, not indexing, search position, AI citations or traffic."
       }
     },
     "adoption": "unverified_no_new_analytics_or_user_research_this_round",
     "revenue": "unverified_no_framepick_viewing_commission_agreement",
-    "nextAction": "Prioritize a usable existing distribution context and real reference-finding tasks; no more similar drafts while publication is blocked. Recheck English source/distribution readiness October 20. Popular Chinese-origin videos overseas still need original-author links and comparable dated counters before a popularity claim. Keep the Chinese October 20 review unchanged.",
+    "nextAction": "Prioritize real distribution and reference-finding tasks. Admit further recent/viral entries only with original-author access and comparable dated evidence. Preserve October 20 review. Existing marketing publication remains blocked; no new analytics query, outreach, account or draft was created.",
     "catalogue": {
-      "uniqueWorks": 124,
-      "previousUniqueWorks": 40,
-      "addedWorks": 84,
-      "sourceCollections": 8,
-      "sourceSnapshotUpdatedAt": "2026-10-17T06:20:51.508788Z",
+      "uniqueWorks": 217,
+      "previousUniqueWorks": 124,
+      "addedWorks": 93,
+      "sourceCollections": 12,
+      "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
       "additionComposition": {
-        "historicalRunwaySourceNotes": 71,
-        "curiousRefugeEditorialWorks": 13
+        "runwayGen48": 69,
+        "runwayMusicVideos": 8,
+        "runwayAIFF2023": 8,
+        "curiousFeelGood": 8
       },
-      "articlePublicationWindow": "2026-10-08/2026-10-16",
-      "meaning": "Metadata snapshot, not audience counts. Historical archive years, article publication, individual check times and video upload dates are distinct. Missing upload dates, regional availability and view counts remain unknown. The addition observation window covers the 84 new records; the original 40 keep their earlier check times.",
-      "evidence": "../framepick-catalogue-expansion-2026-10-17.md",
-      "additionSourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T06:18:51.666447Z"
+      "newAdditionSourcePublicationWindow": null,
+      "meaning": "Historical archive years and source check times are not film release dates or audience counts. All 93 additions retain unknown source publication and upload dates; the previous 124 entries preserve their original evidence.",
+      "evidence": "../framepick-library-expansion-2026-10-17.md",
+      "additionSourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z"
     },
     "review": {
       "optimizationRounds": 3,
       "independentAdversarialRounds": 2,
-      "firstRound": "Independent source, benchmark and SEO review informed imagery, date semantics, source-note labels and sharing metadata.",
-      "secondRound": "Independent source/technical and desktop/mobile reviews verified 124 records and 11 public resource contracts. Found and rechecked same-anchor search recovery and narrow-card title overlap fixes.",
-      "authorSelfCheck": "Implementation author ran final English data/dist and full browser checks.",
-      "rootSelfCheck": "Coordinator ran full build and local regression gates, then verified actual completed/success CI and published change manifest. The locally blocked quote file fixture passed unchanged in CI before deployment. Independent release observer read full job logs; 11-resource live acceptance and final readonly gates passed.",
-      "publicEvidence": "../framepick-discovery-release-2026-10-17.md"
+      "firstRound": "Independent pre-expansion risks: years, finalists, source-note semantics and nested recognition boundaries.",
+      "secondRound": "Independent final baseline comparison, 85 original HTML receipts and eight cached Curious identities; 217-record export/search agreement. Separate independent final-build browser acceptance at desktop/360/390px.",
+      "authorSelfCheck": "Data authors compared all additions with source receipts and original entries with baseline; core tests passed.",
+      "rootSelfCheck": "Full build/final GA4/public engagement/static/canonical/lastmod/IndexNow-selection passed; coordinator confirmed completed-success CI and published two-URL manifest, reusing independent observer and CI live receipts.",
+      "publicEvidence": "../framepick-library-expansion-2026-10-17.md"
     },
     "viralResearch": {
       "problemId": "bpj-english-viral-source-readiness",
@@ -415,7 +419,7 @@
       "nextReviewDate": "2026-10-20"
     },
     "initialReleaseEvidence": "../english-video-launch-2026-10-17.md",
-    "mergeCommit": "ac29ab005b9b42c47580366aca556ea0dbd6eebd",
+    "mergeCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
     "marketing": {
       "problemId": "bpj-english-distribution-readiness",
       "status": "review_materials_ready_distribution_blocked",
@@ -429,47 +433,64 @@
       ],
       "channelEligibility": "unknown_current_rules_unreadable_or_403",
       "nextReviewDate": "2026-10-20",
-      "nextAction": "Verify current rules and a real publishing context using an existing authorized account; obtain authorization for a specific publication before posting. Do not generate more similar drafts while distribution remains blocked.",
+      "nextAction": "Verify current community rules and an existing authorized publishing context before a specific authorized publication; use the verified live catalogue count then. Do not manufacture more drafts while distribution remains blocked.",
       "meaning": "Prepared review copies and owned-page publication are not independent distribution, referred users or adoption.",
-      "observationTimePrecision": "minute"
+      "observationTimePrecision": "minute",
+      "catalogueSnapshotInReviewCopies": 124
     },
     "dependentAutomation": {
       "trigger": "Existing ECO/AGI/TDS workflow path filters include sites/baipiaoji/lib/**.",
-      "sourceCommit": "ac29ab005b9b42c47580366aca556ea0dbd6eebd",
+      "sourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
       "runs": [
         {
           "site": "eco",
-          "run": "https://github.com/f-tiger/agi-site/actions/runs/39010558002",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777158",
           "deployed": true,
-          "conclusion": "failure",
-          "failure": "existing_readonly_membership_readiness"
-        },
-        {
-          "site": "agi",
-          "run": "https://github.com/f-tiger/agi-site/actions/runs/39010557970",
-          "deployed": true,
-          "conclusion": "failure",
-          "failure": "existing_readonly_membership_readiness"
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d"
         },
         {
           "site": "tds",
-          "run": "https://github.com/f-tiger/agi-site/actions/runs/39010557968",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777130",
           "deployed": true,
-          "conclusion": "failure",
-          "failure": "existing_readonly_membership_readiness"
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d"
+        },
+        {
+          "site": "agi",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777179",
+          "deployed": true,
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+          "finalMainGuardAt": "2026-10-17T07:21:43.101Z",
+          "deployedAt": "2026-10-17T07:21:56.112Z",
+          "workflowUpdatedAt": "2026-10-17T07:22:40Z"
         }
       ],
-      "meaning": "Automatically triggered dependencies, not non-BPJ source edits. No cancellation, extra dispatch or account-config repair was performed; actual deployments are not full gate acceptance."
+      "meaning": "All three automatically associated push runs completed success; the separate earlier AGI schedule failed after deployment. No non-BPJ source edits, extra dispatch/cancellation or account repair. Documentation commit waited for all publishers to complete.",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "earlierScheduledRun": {
+        "site": "agi",
+        "run": "https://github.com/f-tiger/agi-site/actions/runs/39012760312",
+        "eventSourceCommit": "0972597480509d888882f77f8daef97199519f92",
+        "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+        "deployed": true,
+        "conclusion": "failure",
+        "failure": "existing_postdeployment_github_source_connector_http429",
+        "workflowUpdatedAt": "2026-10-17T07:17:17Z",
+        "meaning": "Separate scheduled failure; not repaired or causally attributed to the BPJ change. No retry/cancellation."
+      }
     },
     "contentExpansion": {
       "problemId": "bpj-english-library-coverage",
-      "status": "local_acceptance_passed_pending_release",
+      "status": "deployed_and_live_verified",
       "baseMainCommit": "aec5af60dbd4d62b11f9285a55c4732c39d5e35c",
       "evidence": "../framepick-library-expansion-2026-10-17.md",
-      "candidateUniqueWorks": 217,
       "previousUniqueWorks": 124,
       "addedWorks": 93,
-      "candidateSourceCollections": 12,
       "additionComposition": {
         "runwayGen48": 69,
         "runwayMusicVideos": 8,
@@ -478,10 +499,10 @@
       },
       "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
       "sourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z",
-      "observedAt": "2026-10-17T07:10:30.032620Z",
-      "meaning": "Candidate metadata coverage; not new film releases, audience popularity, verified plays or independent adoption. Prior deployed catalogue and receipt remain in deployment/catalogue until this release is verified.",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "meaning": "Published metadata coverage, not new film releases, audience popularity, verified plays or independent adoption. Source snapshot generation and monitoring times are separate.",
       "sourceEvidence": "85 official Runway detail pages matched source identities and actual image/player references; eight Feel-Good selections reused the earlier official cached page. Original 124 works/eight sources are unchanged.",
-      "nextAction": "Merge once and let existing readonly product-release CI complete all gates; verify actual deployed 217-work snapshot and changed-canonical IndexNow before marking live.",
+      "nextAction": "Prioritize real distribution and reference-finding tasks. Admit further recent/viral entries only with original-author access and comparable dated evidence. Preserve October 20 review.",
       "validation": {
         "optimizationRounds": 3,
         "independentAdversarialRounds": 2,
@@ -489,10 +510,15 @@
         "finalEnglishTests": 6,
         "fullBuild": "passed",
         "independentBrowser": "passed_desktop_360_390_and_new_collections",
-        "rootSelfCheck": "full build/final GA4 and public engagement/static/canonical/lastmod/IndexNow-selection checks passed; no live claim",
+        "rootSelfCheck": "Full build/final GA4/public engagement/static/canonical/lastmod/IndexNow-selection passed; coordinator confirmed completed-success CI and published two-URL manifest, reusing independent observer and CI live receipts.",
         "dataAuthorSelfCheck": "original entries preserved and source receipts matched",
-        "limitations": "No live release yet; full mandatory CI including quote export remains required. No field performance or GA4 backend receipt proven."
-      }
+        "limitations": "No field performance, completed video playback, GA4 backend receipt or independent adoption established."
+      },
+      "implementationCommit": "b2d52f51c68371fdd155ba3bf662ef68a9678f60",
+      "pullRequest": "https://github.com/f-tiger/agi-site/pull/186",
+      "mergeCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+      "uniqueWorks": 217,
+      "sourceCollections": 12
     }
   },
   "operationalChecks": {
