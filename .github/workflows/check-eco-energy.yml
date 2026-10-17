@@ -44,6 +44,13 @@ jobs:
           node --test tools/test_affiliate_metrics.mjs
           node --test tools/test_affiliate_audit.mjs
           python3 tools/test_trend_radar.py
+          python3 tools/test_auto_content_sources.py
+          python3 tools/test_auto_content.py
+          python3 tools/test_auto_content_render.py
+          python3 tools/test_auto_discovery.py
+          python3 tools/test_commit_auto_content.py
+          python3 tools/test_check_auto_content_release.py
+          node --test tools/test_auto_product.mjs
           python3 -m unittest discover -s ../../tools -p test_eco_evolution.py
           node --test ../../tools/fleet-analytics/business.test.mjs
           python3 tools/test_affiliate_growth.py
@@ -75,6 +82,8 @@ jobs:
           node --test tools/test_home_fit.mjs
           python3 tools/build_upkeep_decisions.py
           python3 tools/build_upkeep_discovery.py
+          python3 tools/build_auto_content.py
+          python3 tools/build_auto_discovery.py
           python3 tools/build_onpage.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py
@@ -91,6 +100,7 @@ jobs:
           python3 tools/build_sitemap.py
           python3 tools/build_llmstxt.py
           python3 tools/build_agent_md.py
+          python3 tools/check_auto_content_release.py
           python3 tools/check_upkeep_release.py
           python3 tools/check_winter_locales.py
           python3 tools/check_au_cooling.py
@@ -145,6 +155,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_meaco_care.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_auto_product.cjs
           BASE_URL=http://127.0.0.1:8765 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_upkeep_decisions.cjs
           AFFILIATE_BASELINE_SHA=902485034ee0598aed3dd8b21e718c9fca5569f7 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_affiliate_audit.cjs
       - uses: actions/upload-artifact@v4

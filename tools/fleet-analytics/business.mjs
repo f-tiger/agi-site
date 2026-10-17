@@ -40,6 +40,11 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'getecoback.com' &&
+      (/^\/guide\/[a-z0-9]+(?:-[a-z0-9]+)*-betriebskosten\.html$/.test(pathname) ||
+       /^\/en\/guide\/[a-z0-9]+(?:-[a-z0-9]+)*-running-cost\.html$/.test(pathname)) &&
+      ['view','example','calculate','share'].some(action => name === 'eco_auto_' + action))
+    return {name: name.slice(4), tool_id: 'manufacturer-cost-scenario', repeat: true};
   // English AI-work discovery is a separate product and never enters manju signals.
   // These are UI actions, not video plays, people, referrals paid or popularity.
   if (host === 'baipiaoji.com' && pathname === '/en/ai-video/' &&

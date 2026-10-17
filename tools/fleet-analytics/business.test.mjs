@@ -3,6 +3,21 @@ import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
 
+test('autonomous product tools keep scenarios out of analytics and distinguish example actions', () => {
+ for (const path of ['/guide/trotec-ttk-66-e-betriebskosten.html','/en/guide/meaco-arete-two-12l-running-cost.html']) {
+  for (const action of ['view','example','calculate','share']) {
+   const name='eco_auto_'+action;
+   assert.deepEqual(businessEvent('getecoback.com',path,{name}),{name:'auto_'+action,tool_id:'manufacturer-cost-scenario',repeat:true});
+   for (const field of ['model','hours','price','cost','input','url','email','text']) assert.equal(businessEvent('getecoback.com',path,{name,[field]:'PRIVATE'}),null);
+   assert.equal(businessEvent('example.com',path,{name}),null);
+   assert.equal(businessEvent('getecoback.com',path+'?tariff=PRIVATE',{name}),null);
+  }
+ }
+ for(const path of ['/account','/api/private-running-cost.html','/guide/../private-betriebskosten.html','/guide/user@example-betriebskosten.html','/guide/a%2fb-betriebskosten.html'])
+  assert.equal(businessEvent('getecoback.com',path,{name:'eco_auto_calculate'}),null);
+ for(const name of ['eco_auto_purchase','eco_auto_revenue','eco_auto_published']) assert.equal(businessEvent('getecoback.com','/guide/trotec-ttk-66-e-betriebskosten.html',{name}),null);
+});
+
 test('English AI-work actions have an exact route and no private search or viewing payload', () => {
  for (const action of ['view','search','filter','preview','outbound','save','unsave','related']) {
   const name = 'ai_video_' + action;

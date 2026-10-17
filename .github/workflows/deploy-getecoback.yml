@@ -32,16 +32,15 @@ on:
   # Daily self-deploy: the season rotator, freshness badges and structure
   # injectors only run at deploy time, so without this the site could not turn
   # autumn on September 1st unless someone happened to push that day. The
-  # injectors are idempotent — on a quiet day this rebuilds byte-identical
-  # output, deploys the same assets, and the IndexNow step sees zero changed
-  # URLs and stays silent.
+  # content publisher discovers source-backed additions before these injectors.
+  # It commits only a validated bounded batch and deploys in this same run;
+  # unchanged source facts do not manufacture new page dates or content.
   schedule:
     - cron: "17 3 * * *"
 
 permissions:
-  # The scheduled run writes docs/trend-radar.md back to the repo — the
-  # condensation layer of the trend loop. docs/ is outside the trigger paths,
-  # so this can never recurse into another deploy.
+  # The existing daily run persists validated source facts and generated pages,
+  # then deploys them itself. GITHUB_TOKEN pushes do not start recursive runs.
   contents: write
 
 concurrency:
@@ -51,8 +50,9 @@ concurrency:
 jobs:
   deploy:
     env:
-      # Explicit push-only maintenance scope; schedules and manual runs are unchanged.
-      OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]') }}
+      # Automatic content releases verify production without synthetic customer
+      # events, membership configuration or payment/order probes.
+      OUTCOME_READ_ONLY_RELEASE: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[outcome-readonly-release]')) }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -70,7 +70,9 @@ jobs:
       - name: Guard — prepare current main and record the effective release
         id: release
         working-directory: ${{ github.workspace }}
-        run: bash .github/scripts/deploy-main-guard.sh prepare
+        run: |
+          bash .github/scripts/deploy-main-guard.sh prepare
+          echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
 
       - name: Test rollback prevention with isolated Git fixtures
         working-directory: ${{ github.workspace }}
@@ -82,6 +84,16 @@ jobs:
       # Fail-open: no baseline = no new-URL submissions this run, never a flood.
       - name: Snapshot the live sitemap (baseline for the IndexNow delta)
         run: curl -sf --max-time 20 -A "getecoback-ci" https://getecoback.com/sitemap.xml -o /tmp/prev_sitemap.xml || echo "::warning::live sitemap not reachable — new-URL detection is off for this run"
+      # Existing daily/manual release owns the full content transaction. This
+      # is independent of the paused Growth Loop and adds no scheduled trigger.
+      - name: Test automatic content persistence and concurrent-main rejection
+        run: python3 tools/test_commit_auto_content.py
+
+      - name: Discover and expand source-backed content within the daily allowance
+        id: auto_content
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 tools/auto_content.py --apply --receipts-dir "$RUNNER_TEMP/eco-auto-content"
+
       - name: Rotate homepage to current season (year-round positioning; idempotent)
         run: python3 tools/build_season.py
       - name: Refresh the homepage rising-demand rail (idempotent, honest-map)
@@ -209,6 +221,8 @@ jobs:
           node --test tools/test_home_fit.mjs
           python3 tools/build_upkeep_decisions.py
           python3 tools/build_upkeep_discovery.py
+          python3 tools/build_auto_content.py
+          python3 tools/build_auto_discovery.py
           python3 tools/build_onpage.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
@@ -413,10 +427,16 @@ jobs:
           python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site --write
           python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site
 
+      - name: Verify automatic content, source references and discovery after all generators
+        run: python3 tools/check_auto_content_release.py
+
+      - name: Persist the validated automatic content batch without rebasing
+        id: auto_commit
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 tools/commit_auto_content.py --receipt "$RUNNER_TEMP/eco-auto-content/publication.json"
+
       - name: Guard — main must still match the validated build
         working-directory: ${{ github.workspace }}
-        env:
-          DEPLOY_SHA: ${{ steps.release.outputs.sha }}
         run: bash .github/scripts/deploy-main-guard.sh check
 
       - name: Deploy to Cloudflare Workers
@@ -428,6 +448,18 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/getecoback
           command: deploy
+
+      - name: Verify every changed automatic guide live without generating events
+        id: auto_live
+        if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
+        env:
+          ECO_AUTO_RECEIPTS: ${{ runner.temp }}/eco-auto-content
+        run: |
+          if [ -f "$ECO_AUTO_RECEIPTS/publication.json" ]; then
+            python3 tools/check_auto_content_release.py --live --receipt "$ECO_AUTO_RECEIPTS/publication.json"
+          else
+            python3 tools/check_auto_content_release.py --live
+          fi
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}
@@ -1182,7 +1214,7 @@ jobs:
       # deploy. docs/ is outside this workflow's trigger paths, so the commit
       # cannot recurse.
       - name: Write the daily trend radar (scheduled + manual runs)
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && env.OUTCOME_READ_ONLY_RELEASE != 'true'
         run: |
           python3 tools/trend_radar.py
           if ! git diff --quiet docs/trend-radar.md 2>/dev/null; then
@@ -1221,16 +1253,23 @@ jobs:
         run: |
           sleep 20
           BEFORE="${{ github.event.before }}"
-          # On a scheduled run nothing was pushed: diff HEAD against itself so the
-          # authored set is empty and only genuinely new URLs (+ the homepage) go out.
-          if [ "${{ github.event_name }}" = "schedule" ]; then BEFORE="HEAD"; fi
-          case "$BEFORE" in ""|0000000000000000000000000000000000000000) BEFORE="HEAD~1" ;; esac
+          AFTER="$DEPLOY_SHA"
+          # The content bot commits and deploys in this run; github.sha still
+          # names the trigger commit. Use the verified before/after transaction,
+          # including existing-page updates, instead of losing them as churn.
+          if [ -n "${ECO_AUTO_BEFORE:-}" ]; then
+            BEFORE="$ECO_AUTO_BEFORE"
+            AFTER="$ECO_AUTO_AFTER"
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            BEFORE="$DEPLOY_SHA"
+          fi
+          case "$BEFORE" in ""|0000000000000000000000000000000000000000) BEFORE="${AFTER}~1" ;; esac
           if ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
             echo "::warning::previous commit $BEFORE not available, falling back to HEAD~1"
             BEFORE="HEAD~1"
           fi
           git cat-file -e "${BEFORE}^{commit}" || { echo "::error::cannot determine what changed"; exit 1; }
-          git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'site/*.html' 'site/**/*.html' \
+          git diff --name-only "$BEFORE" "$AFTER" -- 'site/*.html' 'site/**/*.html' \
             | sed 's|^sites/getecoback/||' | sort -u > /tmp/authored.txt
           # tracked files the injectors rewrote in this run (never submitted, only reported)
           git status --porcelain site | awk '$1=="M" || $1=="MM" {print $NF}' | grep '\.html$' \
@@ -1311,3 +1350,33 @@ jobs:
             -H "Content-Type: application/json; charset=utf-8" \
             -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
             -w "\nIndexNow HTTP status: %{http_code}\n" || true
+
+      - name: Record the automatic publication and live-verification outcome
+        if: ${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+        env:
+          ECO_AUTO_RECEIPTS: ${{ runner.temp }}/eco-auto-content
+          ECO_COMMIT_OUTCOME: ${{ steps.auto_commit.outcome }}
+          ECO_DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
+          ECO_LIVE_OUTCOME: ${{ steps.auto_live.outcome }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          target = Path(os.environ['ECO_AUTO_RECEIPTS'])
+          target.mkdir(parents=True, exist_ok=True)
+          result = {'commit_step': os.environ['ECO_COMMIT_OUTCOME'],
+                    'deploy_step': os.environ['ECO_DEPLOY_OUTCOME'],
+                    'live_verification_step': os.environ['ECO_LIVE_OUTCOME'],
+                    'release_sha': os.environ.get('DEPLOY_SHA'),
+                    'run_id': os.environ.get('GITHUB_RUN_ID')}
+          (target / 'deployment-result.json').write_text(json.dumps(result, indent=2) + '\n')
+          PY
+
+      - name: Preserve automatic content source and publication receipts
+        if: ${{ always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: eco-auto-content-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/eco-auto-content/
+          if-no-files-found: warn
+          retention-days: 14

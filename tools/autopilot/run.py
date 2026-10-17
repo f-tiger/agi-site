@@ -203,7 +203,9 @@ def run_site(site, today, check=False, verbose=True):
             "page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. "
             "First-party evidence contains only aggregate zero-hit record counts, never raw search terms. "
             "Freshness, country, independent evidence and the reviewed page catalog must pass "
-            "tools/eco_evolution.py before prioritising an existing page. No automatic publication follows."
+            "tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. "
+            "The separate getecoback scheduled deployment runs tools/auto_content.py to discover official "
+            "product specifications, validate evidence and publish at most one substantive guide change per UTC day."
         )
     if not check:
         os.makedirs(RECEIPTS, exist_ok=True)
