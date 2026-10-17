@@ -3,7 +3,9 @@ const fs=require('node:fs');const assert=require('node:assert/strict');
 const root=require('node:path').resolve(__dirname,'..');
 (async()=>{const browser=await chromium.launch({headless:true});
 try {for(const prefix of ['', '/de']) {
- const context=await browser.newContext();const page=await context.newPage();const sent=[];
+ // Simulate a normal UA only inside this fully network-intercepted fixture.
+ // Production intentionally excludes HeadlessChrome as well as webdriver.
+ const context=await browser.newContext({userAgent:'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'});const page=await context.newPage();const sent=[];
  // Every request is fulfilled locally or aborted. Nothing reaches production.
  await context.route('**/*',route=>{const url=new URL(route.request().url());
   if(url.pathname==='/api/ev'){sent.push(JSON.parse(route.request().postData()));return route.fulfill({status:204});}
