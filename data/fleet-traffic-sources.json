@@ -1,52 +1,52 @@
 {
- "generated": "2026-10-16T12:54:54Z",
+ "generated": "2026-10-17T11:53:48Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
  "errors": [],
  "fleet": {
-  "search": 1396,
+  "search": 1412,
   "ai": 21,
-  "fleet": 114,
-  "social": 9,
-  "self": 8243,
-  "direct": 45201,
-  "other": 32,
+  "fleet": 118,
+  "social": 10,
+  "self": 8335,
+  "direct": 45139,
+  "other": 29,
   "unattributed": 0
  },
- "fleet_human_pv": 55016,
+ "fleet_human_pv": 55064,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 49579,
+   "human_pv": 49659,
    "by_source": {
-    "search": 393,
+    "search": 394,
     "ai": 6,
-    "fleet": 56,
+    "fleet": 58,
     "social": 4,
-    "self": 7379,
-    "direct": 41724,
-    "other": 17
+    "self": 7468,
+    "direct": 41715,
+    "other": 14
    },
    "by_search": {
-    "google.com": 266,
-    "duckduckgo.com": 49,
+    "google.com": 264,
+    "duckduckgo.com": 50,
     "bing.com": 45,
     "cn.bing.com": 14,
     "google.com.hk": 6,
     "ecosia.org": 5,
+    "html.duckduckgo.com": 3,
     "qwant.com": 2,
-    "html.duckduckgo.com": 2,
     "sogou.com": 1,
+    "search.brave.com": 1,
     "noai.duckduckgo.com": 1,
-    "ca.search.yahoo.com": 1,
-    "br.search.yahoo.com": 1
+    "ca.search.yahoo.com": 1
    },
    "by_fleet": {
     "baipiaoji.com": 8,
+    "source.agiscorecard.com": 7,
     "gushen.agiscorecard.com": 7,
     "invest.agiscorecard.com": 6,
-    "source.agiscorecard.com": 5,
     "mcppulse.agiscorecard.com": 4,
     "evidence.agiscorecard.com": 3,
     "compass.agiscorecard.com": 3,
@@ -57,7 +57,6 @@
     "agentready.agiscorecard.com": 2
    },
    "by_other": {
-    "teams.public.onecdn.static.microsoft": 3,
     "lesswrong.com": 2,
     "twithority.com": 1,
     "mcpindex.ai": 1,
@@ -68,7 +67,8 @@
     "aihot.news": 1,
     "agilegrowthlabs.com": 1,
     "agialpha.com": 1,
-    "agentur-diana.de": 1
+    "agentur-diana.de": 1,
+    "aga-dent.com.pl": 1
    },
    "unattributed": 0,
    "via": "endpoint",
@@ -76,25 +76,25 @@
   },
   {
    "site": "baipiaoji",
-   "human_pv": 549,
+   "human_pv": 555,
    "by_source": {
-    "search": 531,
+    "search": 536,
     "ai": 9,
     "fleet": 0,
-    "social": 1,
+    "social": 2,
     "self": 0,
     "direct": 0,
     "other": 8
    },
    "by_search": {
-    "cn.bing.com": 271,
-    "google.com": 169,
-    "bing.com": 55,
+    "cn.bing.com": 274,
+    "google.com": 171,
+    "bing.com": 56,
     "m.baidu.com": 9,
     "duckduckgo.com": 7,
     "baidu.com": 6,
-    "yandex.com": 4,
     "yandex.ru": 4,
+    "yandex.com": 3,
     "search.brave.com": 2,
     "online.yandex.com": 1,
     "www4.bing.com": 1,
@@ -114,28 +114,28 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 730,
+   "human_pv": 734,
    "by_source": {
-    "search": 247,
+    "search": 254,
     "ai": 3,
     "fleet": 0,
     "social": 1,
-    "self": 120,
-    "direct": 356,
+    "self": 115,
+    "direct": 358,
     "other": 3
    },
    "by_search": {
+    "bing.com": 98,
     "duckduckgo.com": 95,
-    "bing.com": 95,
-    "ecosia.org": 19,
+    "ecosia.org": 21,
     "de.search.yahoo.com": 10,
     "sg.search.yahoo.com": 7,
     "qwant.com": 6,
-    "google.com": 3,
+    "google.com": 4,
+    "noai.duckduckgo.com": 3,
     "ch.search.yahoo.com": 3,
     "startpage.com": 2,
     "search.brave.com": 2,
-    "noai.duckduckgo.com": 2,
     "at.search.yahoo.com": 2
    },
    "by_fleet": {},
@@ -149,14 +149,14 @@
   },
   {
    "site": "thedollscout",
-   "human_pv": 560,
+   "human_pv": 558,
    "by_source": {
     "search": 6,
     "ai": 1,
     "fleet": 0,
     "social": 0,
     "self": 231,
-    "direct": 321,
+    "direct": 319,
     "other": 1
    },
    "by_search": {
@@ -174,21 +174,21 @@
   },
   {
    "site": "goldrush",
-   "human_pv": 203,
+   "human_pv": 206,
    "by_source": {
     "search": 3,
     "ai": 0,
-    "fleet": 7,
+    "fleet": 5,
     "social": 0,
-    "self": 40,
-    "direct": 153,
+    "self": 41,
+    "direct": 157,
     "other": 0
    },
    "by_search": {
     "google.com": 3
    },
    "by_fleet": {
-    "agiscorecard.com": 7
+    "agiscorecard.com": 5
    },
    "by_other": {},
    "unattributed": 0,
@@ -196,26 +196,26 @@
   },
   {
    "site": "gridlings",
-   "human_pv": 900,
+   "human_pv": 897,
    "by_source": {
-    "search": 111,
+    "search": 112,
     "ai": 0,
-    "fleet": 8,
+    "fleet": 9,
     "social": 0,
     "self": 190,
-    "direct": 589,
+    "direct": 584,
     "other": 2
    },
    "by_search": {
     "google.com": 77,
     "cn.bing.com": 24,
-    "bing.com": 5,
+    "bing.com": 6,
     "duckduckgo.com": 3,
     "yandex.com": 1,
     "yahoo.com": 1
    },
    "by_fleet": {
-    "agiscorecard.com": 8
+    "agiscorecard.com": 9
    },
    "by_other": {
     "html-classic.itch.zone": 2
@@ -225,14 +225,14 @@
   },
   {
    "site": "buysomething",
-   "human_pv": 260,
+   "human_pv": 274,
    "by_source": {
     "search": 8,
     "ai": 0,
     "fleet": 0,
     "social": 0,
-    "self": 50,
-    "direct": 202,
+    "self": 58,
+    "direct": 208,
     "other": 0
    },
    "by_search": {
@@ -245,25 +245,25 @@
   },
   {
    "site": "gamesledger",
-   "human_pv": 430,
+   "human_pv": 433,
    "by_source": {
-    "search": 16,
+    "search": 17,
     "ai": 2,
-    "fleet": 10,
+    "fleet": 11,
     "social": 2,
-    "self": 58,
-    "direct": 342,
+    "self": 55,
+    "direct": 346,
     "other": 0
    },
    "by_search": {
-    "duckduckgo.com": 6,
+    "duckduckgo.com": 7,
     "cn.bing.com": 5,
     "google.com": 3,
     "bing.com": 1,
     "noai.duckduckgo.com": 1
    },
    "by_fleet": {
-    "agiscorecard.com": 10
+    "agiscorecard.com": 11
    },
    "by_other": {},
    "unattributed": 0,
@@ -271,14 +271,14 @@
   },
   {
    "site": "after35",
-   "human_pv": 327,
+   "human_pv": 318,
    "by_source": {
     "search": 18,
     "ai": 0,
     "fleet": 1,
     "social": 0,
     "self": 53,
-    "direct": 255,
+    "direct": 246,
     "other": 0
    },
    "by_search": {
@@ -294,14 +294,14 @@
   },
   {
    "site": "learn",
-   "human_pv": 204,
+   "human_pv": 196,
    "by_source": {
     "search": 10,
     "ai": 0,
     "fleet": 2,
     "social": 0,
     "self": 14,
-    "direct": 177,
+    "direct": 169,
     "other": 1
    },
    "by_search": {
@@ -319,14 +319,14 @@
   },
   {
    "site": "fanzha",
-   "human_pv": 222,
+   "human_pv": 214,
    "by_source": {
     "search": 13,
     "ai": 0,
     "fleet": 2,
     "social": 0,
     "self": 23,
-    "direct": 184,
+    "direct": 176,
     "other": 0
    },
    "by_search": {
@@ -342,14 +342,14 @@
   },
   {
    "site": "firstjob",
-   "human_pv": 211,
+   "human_pv": 206,
    "by_source": {
     "search": 10,
     "ai": 0,
     "fleet": 2,
     "social": 0,
-    "self": 32,
-    "direct": 167,
+    "self": 33,
+    "direct": 161,
     "other": 0
    },
    "by_search": {
@@ -364,14 +364,14 @@
   },
   {
    "site": "codeword",
-   "human_pv": 429,
+   "human_pv": 407,
    "by_source": {
     "search": 21,
     "ai": 0,
-    "fleet": 13,
+    "fleet": 14,
     "social": 1,
     "self": 33,
-    "direct": 361,
+    "direct": 338,
     "other": 0
    },
    "by_search": {
@@ -379,7 +379,7 @@
     "baidu.com": 1
    },
    "by_fleet": {
-    "agiscorecard.com": 13
+    "agiscorecard.com": 14
    },
    "by_other": {},
    "unattributed": 0,
@@ -387,23 +387,23 @@
   },
   {
    "site": "powerbill",
-   "human_pv": 412,
+   "human_pv": 407,
    "by_source": {
-    "search": 9,
+    "search": 10,
     "ai": 0,
-    "fleet": 13,
+    "fleet": 14,
     "social": 0,
-    "self": 20,
-    "direct": 370,
+    "self": 21,
+    "direct": 362,
     "other": 0
    },
    "by_search": {
-    "google.com": 7,
+    "google.com": 8,
     "baidu.com": 1,
     "duckduckgo.com": 1
    },
    "by_fleet": {
-    "agiscorecard.com": 13
+    "agiscorecard.com": 14
    },
    "by_other": {},
    "unattributed": 0,

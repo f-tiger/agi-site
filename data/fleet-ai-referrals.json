@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-16T12:54:54Z",
+ "generated": "2026-10-17T11:53:48Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
@@ -13,15 +13,15 @@
  "fleet_ai_ref_excl_claude_ai": 18,
  "partial_ai_ref": null,
  "partial_ai_ref_claude_ai": null,
- "fleet_human_pv": 55016,
+ "fleet_human_pv": 55064,
  "partial_human_pv": null,
  "sites_read": 14,
  "sites_expected": 14,
- "fleet_human_pv_excl_flagged": 3632,
+ "fleet_human_pv_excl_flagged": 3657,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 49579,
+   "human_pv": 49659,
    "ai_ref": 6,
    "by_host": {
     "kagi.com": 3,
@@ -34,7 +34,7 @@
   },
   {
    "site": "baipiaoji",
-   "human_pv": 549,
+   "human_pv": 555,
    "ai_ref": 8,
    "by_host": {
     "www.perplexity.ai": 5,
@@ -46,7 +46,7 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 730,
+   "human_pv": 734,
    "ai_ref": 3,
    "by_host": {
     "www.perplexity.ai": 1,
@@ -58,7 +58,7 @@
   },
   {
    "site": "thedollscout",
-   "human_pv": 560,
+   "human_pv": 558,
    "ai_ref": 1,
    "by_host": {
     "chatgpt.com": 1
@@ -68,7 +68,7 @@
   },
   {
    "site": "goldrush",
-   "human_pv": 203,
+   "human_pv": 206,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -76,7 +76,7 @@
   },
   {
    "site": "gridlings",
-   "human_pv": 900,
+   "human_pv": 897,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -84,7 +84,7 @@
   },
   {
    "site": "buysomething",
-   "human_pv": 260,
+   "human_pv": 274,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -92,7 +92,7 @@
   },
   {
    "site": "gamesledger",
-   "human_pv": 430,
+   "human_pv": 433,
    "ai_ref": 2,
    "by_host": {
     "kagi.com": 1,
@@ -103,7 +103,7 @@
   },
   {
    "site": "after35",
-   "human_pv": 327,
+   "human_pv": 318,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -112,7 +112,7 @@
   },
   {
    "site": "learn",
-   "human_pv": 204,
+   "human_pv": 196,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -121,7 +121,7 @@
   },
   {
    "site": "fanzha",
-   "human_pv": 222,
+   "human_pv": 214,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -130,7 +130,7 @@
   },
   {
    "site": "firstjob",
-   "human_pv": 211,
+   "human_pv": 206,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -139,7 +139,7 @@
   },
   {
    "site": "codeword",
-   "human_pv": 429,
+   "human_pv": 407,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -148,7 +148,7 @@
   },
   {
    "site": "powerbill",
-   "human_pv": 412,
+   "human_pv": 407,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
