@@ -1,7 +1,14 @@
 {
- "d": "2026-10-16",
+ "d": "2026-10-17",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "the guardian",
+   "appid": 1592980,
+   "name": "The Guardian",
+   "sim": 1.0
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
@@ -37,6 +44,11 @@
    "appid": 3347670,
    "name": "BM General Hospital",
    "first_seen": "2026-10-07"
+  },
+  {
+   "appid": 1592980,
+   "name": "The Guardian",
+   "first_seen": "2026-10-17"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
