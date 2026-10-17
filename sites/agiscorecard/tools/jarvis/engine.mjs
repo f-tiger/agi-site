@@ -43,7 +43,12 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
   if(!(await save('thinking')).meta?.changes||!await active())throw Error('cancelled');
   let r;try{r=await timed(env.AI.run(MODEL,{messages:[{role:'system',content:system},{role:'user',content:JSON.stringify(data)}],max_tokens:maxTokens,temperature:.2,response_format:{type:'json_schema',json_schema:schema}}),Math.min(22000,deadline-Date.now()-2000));}catch(e){if(e.message==='model_timeout')throw e;throw Error('model_unavailable');}
   result.usage.push(r?.usage||null);
-  const output=modelOutput(r,maxTokens);result.diagnostics??=[];result.diagnostics.push(output.diagnostic);return output.raw;
+  const output=modelOutput(r,maxTokens);result.diagnostics??=[];result.diagnostics.push(output.diagnostic);
+  // A schema-shaped partial object is still incomplete when the provider says
+  // generation hit its length limit. Keep usage/evidence, never auto-retry it.
+  // Token counts alone (or an unknown finish reason) do not prove truncation.
+  if(output.diagnostic.finishReason==='length')throw Error('model_truncated');
+  return output.raw;
  }
  try{
   // A verified saved report only needs finalization. An unknown provider outcome
@@ -88,7 +93,7 @@ export async function execute(db,env,id,{interactive=false,budgetMs=24500}={}){
    result.continuation=true;log('checkpoint','Saved for the background runner; completed tool work will not repeat');
    await db.prepare("UPDATE jarvis_tasks SET status='queued',result=?,next_run=?,lease='',lease_until=0,updated=? WHERE id=? AND lease=? AND status='running'").bind(JSON.stringify(result),now(),now(),id,lease).run();return false;
   }
-  result.reason=['rate_limited','search_rate_limited','ai_unavailable','model_timeout','model_interrupted','model_unavailable','invalid_model_output','evidence_unavailable'].includes(e.message)?e.message:'run_failed';
+  result.reason=['rate_limited','search_rate_limited','ai_unavailable','model_timeout','model_interrupted','model_unavailable','model_truncated','invalid_model_output','evidence_unavailable'].includes(e.message)?e.message:'run_failed';
   log('synthesis',result.reason+'; source pack retained without fabricated AI output');
  }
  if(!await active())return false;

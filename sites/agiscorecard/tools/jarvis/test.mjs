@@ -178,6 +178,29 @@ test('OpenAI-shaped provider responses produce a validated report with one synth
  const e=env(),native=e.AI.run;let calls=0;e.AI.run=async(...args)=>{calls++;const value=await native(...args);return {choices:[{message:{content:value.response},finish_reason:'stop'}],usage:value.usage};};
  const id=(await call(e,body())).data.task.id;await execute(e.EVENTS,e,id);const task=(await call(e)).data.tasks[0];assert.equal(task.status,'completed');assert.equal(calls,1);assert.equal(task.result.diagnostics[0].envelope,'choices');e.EVENTS.sqlite.close();
 });
+
+// Frozen provider-completion contracts. Synthetic responses, not model-quality
+// scores: valid JSON alone must not override an explicit length termination.
+for(const lang of ['en','zh'])for(const mode of ['object-length','string-length','choices-length','stop-at-limit','unknown-at-limit','stop']){
+ test(`provider completion gate: ${lang}/${mode}`,async t=>{
+  const e=env();t.after(()=>e.EVENTS.sqlite.close());let calls=0;
+  const report={summary:lang==='zh'?'合成测试报告。':'Synthetic report.',findings:[{text:'180',sourceIds:['calc-3*60']}],nextActions:[{action:'Review the result.',doneWhen:'Result checked.'}],uncertainties:['Synthetic fixture only.']};
+  const usage={prompt_tokens:50,completion_tokens:mode.includes('limit')?1400:100,total_tokens:mode.includes('limit')?1450:150};
+  e.AI.run=async()=>{calls++;return mode==='object-length'?{response:report,finish_reason:'length',usage}:mode==='string-length'?{response:JSON.stringify(report),finish_reason:'length',usage}:mode==='unknown-at-limit'?{response:report,usage}:{choices:[{message:{content:JSON.stringify(report)},finish_reason:mode==='choices-length'?'length':'stop'}],usage};};
+  const id=(await call(e,body({lang,goal:lang==='zh'?'将 3 小时换算为分钟，给出核对步骤。':body().goal}))).data.task.id;
+  await execute(e.EVENTS,e,id);const task=(await call(e)).data.tasks[0],truncated=mode.endsWith('length');
+  assert.equal(task.status,truncated?'limited':'completed');assert.equal(task.stage,truncated?'source_pack':'complete');
+  assert.equal(task.result.reason,truncated?'model_truncated':null);
+  if(truncated)assert.equal(task.result.report,null);else assert.deepEqual(task.result.report,report);
+  assert.equal(task.result.sources.some(s=>s.id==='calc-3*60'),true);assert.equal(task.result.modelCalls,1);
+  assert.deepEqual(task.result.usage,[usage]);assert.equal(task.result.diagnostics[0].finishReason,truncated?'length':mode==='unknown-at-limit'?'unknown':'stop');
+  assert.equal(task.result.diagnostics[0].atTokenLimit,mode.includes('limit'));
+  assert.equal(JSON.stringify(task.result.diagnostics).includes(report.summary),false);
+  if(truncated){assert.equal(markdown(task).includes(report.summary),false);assert.equal(task.nextRun,0);}
+  await execute(e.EVENTS,e,id);await tick(e,{maxTasks:1});assert.equal(calls,1);
+  assert.equal(e.EVENTS.sqlite.prepare("SELECT n FROM relay_limits WHERE k='ai-global'").get().n,1);
+ });
+}
 test('pausing inside the first public tool prevents later tools and inference',async()=>{
  const e=env();let entered,release,fetches=0,modelCalls=0;const wait=new Promise(r=>entered=r);
  e.JARVIS_FETCH=async()=>{fetches++;entered();await new Promise(r=>release=r);return Response.json({items:[]});};e.AI.run=async()=>{modelCalls++;throw Error('must not infer');};
@@ -199,6 +222,13 @@ test('authenticated source health check uses fixed public words, no customer dat
 });
 
 // Frozen recovery cases (2026-10-04): synthetic SQLite/provider fixtures only.
+for(const action of ['pause','delete'])test(`length-terminated response cannot undo ${action} during inference`,async t=>{
+ const e=env();t.after(()=>e.EVENTS.sqlite.close());const id=(await call(e,body())).data.task.id;let calls=0;
+ e.AI.run=async()=>{calls++;await call(e,{action,id});return {response:{summary:'Rejected partial fixture'},finish_reason:'length',usage:{total_tokens:123}};};
+ await execute(e.EVENTS,e,id);const task=(await call(e)).data.tasks.find(t=>t.id===id);
+ if(action==='delete')assert.equal(task,undefined);else{assert.equal(task.status,'paused');assert.equal(task.result.report,null);}
+ assert.equal(calls,1);assert.equal(e.EVENTS.sqlite.prepare("SELECT n FROM relay_limits WHERE k='ai-global'").get().n,1);
+});
 const recoveryCheckpoint=()=>({version:'jarvis-20261003-6',continuation:false,plan:{approach:'Saved evidence',actions:[{tool:'calculate',query:'1/0'}]},toolIndex:1,sources:[{id:'calc-3*60',title:'3*60',description:'180',kind:'calculation'}],modelCalls:0,usage:[],log:[],checkedAt:'2026-10-03T12:00:00Z',report:null,reason:null});
 for(const stage of ['paused','interrupted'])test(`resume ${stage} keeps completed tools instead of starting over`,async()=>{const e=env(),id=(await call(e,body())).data.task.id;const cp=recoveryCheckpoint();e.EVENTS.sqlite.prepare('UPDATE jarvis_tasks SET status=?,stage=?,result=? WHERE id=?').run(stage==='paused'?'paused':'limited',stage,JSON.stringify(cp),id);assert.equal((await call(e,{action:'resume',id})).status,202);await execute(e.EVENTS,e,id);const task=(await call(e)).data.tasks[0];assert.equal(task.status,'completed');assert.equal(task.result.checkedAt,cp.checkedAt);assert.equal(task.result.log.some(l=>l.step==='calculate'),false);assert.equal(task.runs,1);e.EVENTS.sqlite.close();});
 test('uncertain interrupted inference never silently repeats or resets recorded attempts',async()=>{const e=env(),id=(await call(e,body())).data.task.id;let calls=0;e.AI.run=async()=>{calls++;throw Error('must not repeat');};const cp={...recoveryCheckpoint(),continuation:true,modelCalls:1,synthesisStarted:true};e.EVENTS.sqlite.prepare("UPDATE jarvis_tasks SET status='limited',stage='interrupted',result=? WHERE id=?").run(JSON.stringify(cp),id);await call(e,{action:'resume',id});await execute(e.EVENTS,e,id);const task=(await call(e)).data.tasks[0];assert.equal(calls,0);assert.equal(task.result.modelCalls,1);assert.equal(task.result.reason,'model_interrupted');assert.equal(task.status,'limited');assert.equal(task.runs,1);e.EVENTS.sqlite.close();});
