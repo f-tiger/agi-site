@@ -8,6 +8,7 @@ export const JOURNEY_GROUPS = [
 const REGISTERED_TOOL_PATHS = new Set(['/llm-api-calculator','/publish-check','/stack-builder','/video-quota-planner','/subscription-audit','/tokenizer','/pipeline/video','/free-for-you']);
 const entry=(id,path,group,type,zh,en,zhDesc,enDesc,next=[],extra={})=>({id,path,group,type,title:{zh,en},description:{zh:zhDesc,en:enDesc},requiresRegistration:REGISTERED_TOOL_PATHS.has(path),next,...extra});
 export const SITE_JOURNEYS = [
+  entry('ai-video','/ai-video/','choose','catalog','英文 AI 影像发现','AI film discovery','英文目录：按题材发现有公开来源的 AI 电影、短片与剧集，区分电影节入选、奖项与平台热度，不混用红果榜单。','An English guide to international AI films, shorts and series with public sources; festival selections and awards are distinct from audience popularity, independent of Hongguo rankings.',['video','video-quotas','manju'],{canonicalUrl:'https://baipiaoji.com/en/ai-video/',contentLanguage:'en'}),
   entry('manju','/manju/','choose','catalog','帧选：AI 漫剧与短剧找片','Zhenxuan: Chinese AI drama discovery','按题材找片、查看有日期的官方热度，跳转官方合集或平台搜索；本站不托管剧集。','Chinese-language catalogue of AI and short dramas with dated official heat evidence and clearly labelled collection or platform-search links; no hosted episodes.',['video-fit','video-quotas'],{canonicalUrl:'https://baipiaoji.com/manju/',contentLanguage:'zh-Hans'}),
   entry('video-fit','/manju/video-fit','create','tool','视频发布评估','Video publishing fit for Chinese platforms','免费在本机核对视频参数与本人填写的信息，对照六个平台生成修改清单与发布测试；不上传、不预测爆款。','Free Chinese-language workbench for six Chinese publishing platforms: local video metadata and self-reported checks produce revisions and test plans, without uploads or viral predictions.',['video','creatorops','manju'],{canonicalUrl:'https://baipiaoji.com/manju/video-fit',contentLanguage:'zh-Hans'}),
   entry('startup-mcp','/ai-solo/mcp/','connect','developer','创业研究 MCP','Startup research MCP','免费预览，会员按额度调用案例对比、每日热度与创业验证计划。','Free preview and metered member access to case comparisons, daily launch signals and validation plans.',['ai-solo-hot','ai-solo-categories','members']),
@@ -74,7 +75,7 @@ export const SITE_JOURNEYS = [
 export const JOURNEY_TYPES={guide:{zh:'额度指南',en:'Allowance guide'},tool:{zh:'直接使用',en:'Open tool'},hub:{zh:'工作台',en:'Workspace'},directory:{zh:'外部产品目录',en:'Product directory'},catalog:{zh:'找片目录',en:'Video discovery'},membership:{zh:'会员说明',en:'Membership'},developer:{zh:'开发者',en:'Developer'},vendor:{zh:'厂商入口',en:'For vendors'},pilot:{zh:'需求试点',en:'Demand pilot'}};
 export function localizedJourneys(lang='en',base=''){
   const locale=lang==='zh'?'zh':'en';
-  // Chinese-only products retain their real canonical URL in the English discovery map.
+  // Single-language products retain their real canonical URL in both discovery maps.
   return SITE_JOURNEYS.map(x=>({...x,title:x.title[locale],description:x.description[locale],url:x.canonicalUrl||base+x.path,typeLabel:JOURNEY_TYPES[x.type][locale],optionalRegistration:x.optionalRegistration?.[locale]||null,registrationNote:x.requiresRegistration?(locale==='zh'?'免费注册后使用交互工具；说明与来源公开。':'Free registration is required for interactive use; descriptions and sources are public.'):null}));
 }
 export function relatedJourneys(path,lang='en',base='',limit=3){

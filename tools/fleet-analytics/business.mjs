@@ -40,6 +40,11 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  // English AI-work discovery is a separate product and never enters manju signals.
+  // These are UI actions, not video plays, people, referrals paid or popularity.
+  if (host === 'baipiaoji.com' && pathname === '/en/ai-video/' &&
+      ['view','search','filter','preview','outbound','save','unsave','related'].some(action => name === 'ai_video_' + action))
+    return {name, tool_id:'ai-video', repeat:true};
   if(host==='baipiaoji.com' && pathname==='/manju/video-fit' && ['view','start','report_needs_info','report_revise','report_test'].some(action=>name==='manju_video_'+action)) return {name,tool_id:'manju',repeat:true};
   if (host === 'getecoback.com' && ['/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'].includes(pathname) &&
       ['view','example','calculate','compare','example_export','export','share','guide'].some(action=>name==='eco_laundry_'+action))
