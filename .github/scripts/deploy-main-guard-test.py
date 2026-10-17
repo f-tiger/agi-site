@@ -91,6 +91,20 @@ class GuardTest(unittest.TestCase):
         self.git(self.runner, 'reset', '--hard', self.old)
         self.assertNotEqual(self.run_guard('check', DEPLOY_SHA=self.new).returncode, 0)
 
+    def test_verified_content_commit_requires_its_actual_release_sha(self):
+        self.prepare()
+        self.git(self.runner, 'config', 'user.name', 'Content fixture')
+        self.git(self.runner, 'config', 'user.email', 'content@example.invalid')
+        (self.runner / 'page.txt').write_text('validated automatic content')
+        self.git(self.runner, 'add', 'page.txt')
+        self.git(self.runner, 'commit', '-m', 'verified content')
+        after = self.git(self.runner, 'rev-parse', 'HEAD')
+        # A local commit is insufficient: the remote must also match.
+        self.assertNotEqual(self.run_guard('check', DEPLOY_SHA=after).returncode, 0)
+        self.git(self.runner, 'push', 'origin', 'main')
+        self.assertNotEqual(self.run_guard('check', DEPLOY_SHA=self.new).returncode, 0)
+        self.assertEqual(self.run_guard('check', DEPLOY_SHA=after).returncode, 0)
+
     def test_workflows_serialize_and_check_immediately_before_deploy(self):
         for site in ('agiscorecard', 'getecoback'):
             text = (ROOT / f'.github/workflows/deploy-{site}.yml').read_text()
@@ -101,7 +115,15 @@ class GuardTest(unittest.TestCase):
             deploy = text.index('- name: Deploy to Cloudflare Workers')
             self.assertEqual(text.index('- name:', guard), deploy)
             self.assertNotIn('stale-run guard skipped', text)
-            self.assertIn('DEPLOY_SHA: ${{ steps.release.outputs.sha }}', text)
+            if site == 'getecoback':
+                self.assertIn('echo "DEPLOY_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"', text)
+                commit = text.index('python3 tools/commit_auto_content.py --receipt')
+                self.assertLess(commit, guard)
+                # A step-level copy of the initial SHA would override the
+                # validated content commit exported through GITHUB_ENV.
+                self.assertNotIn('DEPLOY_SHA: ${{ steps.release.outputs.sha }}', text)
+            else:
+                self.assertIn('DEPLOY_SHA: ${{ steps.release.outputs.sha }}', text)
 
 
 if __name__ == '__main__':
