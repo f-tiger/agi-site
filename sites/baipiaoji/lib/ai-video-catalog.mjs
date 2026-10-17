@@ -1,9 +1,9 @@
 import {readFileSync} from 'node:fs';
 
 const DATA_URL = new URL('../data/ai-video.json', import.meta.url);
-const SOURCE_HOSTS = new Set(['aif.runwayml.com', 'runway.com', 'www.reply.com', 'higgsfield.ai']);
+const SOURCE_HOSTS = new Set(['aif.runwayml.com', 'runway.com', 'watch.runwayml.com', 'www.reply.com', 'higgsfield.ai', 'curiousrefuge.com']);
 const POSTER_HOSTS = new Set(['d3phaj0sisr2ct.cloudfront.net', 'runway-static-assets.s3.us-east-1.amazonaws.com']);
-const WATCH_KINDS = new Set(['film', 'episode', 'trailer', 'source']);
+const WATCH_KINDS = new Set(['film', 'episode', 'trailer', 'source', 'video']);
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
 const fail = message => { throw new Error(`AI video catalogue: ${message}`); };
@@ -43,7 +43,7 @@ export function validateAiVideoCatalog(data) {
   const sources = new Map();
   for (const source of data.sources) {
     if (!source || !ID.test(source.id) || sources.has(source.id)) fail('missing or duplicate source id');
-    if (!Number.isInteger(source.year) || source.year < 2020 || source.year > 2100 || !['festival', 'series'].includes(source.kind)) fail(`invalid source edition ${source.id}`);
+    if (!Number.isInteger(source.year) || source.year < 2020 || source.year > 2100 || !['festival', 'series', 'curation'].includes(source.kind)) fail(`invalid source edition ${source.id}`);
     for (const key of ['label', 'publisher', 'rankMeaning', 'coverage', 'aiEvidence']) plain(source[key], `source.${key}`);
     officialUrl(source.url, 'source.url');
     officialUrl(source.publisherUrl, 'source.publisherUrl');
@@ -55,10 +55,15 @@ export function validateAiVideoCatalog(data) {
   }
   const ids = new Set();
   const titles = new Set();
+  const videoIds = new Set();
   for (const work of data.works) {
     if (!work || !ID.test(work.id) || ids.has(work.id)) fail('missing or duplicate work id');
     ids.add(work.id);
     for (const key of ['title', 'creator', 'summary', 'selectionLabel', 'playbackNote', 'aiEvidence']) plain(work[key], `work.${key}`, key === 'summary' ? 300 : 600);
+    if (work.aliases !== undefined) {
+      if (!Array.isArray(work.aliases) || new Set(work.aliases).size !== work.aliases.length) fail(`invalid aliases for ${work.id}`);
+      for (const alias of work.aliases) plain(alias, 'work.alias', 160);
+    }
     const title = work.title.normalize('NFKC').toLocaleLowerCase('en').replace(/[^\p{L}\p{N}]+/gu, '');
     if (titles.has(title)) fail(`duplicate work title ${work.title}; nest additional recognition instead`);
     titles.add(title);
@@ -68,13 +73,18 @@ export function validateAiVideoCatalog(data) {
     date(work.checkedAt, 'work.checkedAt', false);
     date(work.observedAt, 'work.observedAt', false);
     if (work.sourcePublishedAt && Date.parse(work.sourcePublishedAt) > Date.parse(work.checkedAt)) fail('work source published after observation');
-    if (!['short-film', 'series', 'episode'].includes(work.format) || !WATCH_KINDS.has(work.watchKind)) fail(`unknown format or watch kind for ${work.id}`);
+    if (!['short-film', 'series', 'episode', 'video'].includes(work.format) || !WATCH_KINDS.has(work.watchKind)) fail(`unknown format or watch kind for ${work.id}`);
+    if (work.summaryKind !== undefined && !['synopsis', 'source-note'].includes(work.summaryKind)) fail(`unknown summary kind for ${work.id}`);
+    if (work.summaryKind === 'source-note' && source.kind !== 'curation') fail(`source note requires editorial collection for ${work.id}`);
     if (work.durationSeconds !== null && (!Number.isInteger(work.durationSeconds) || work.durationSeconds <= 0)) fail(`invented or invalid runtime for ${work.id}`);
     if (!Array.isArray(work.genres) || new Set(work.genres).size !== work.genres.length || work.genreBasis !== 'editorial') fail(`invalid genre provenance for ${work.id}`);
     for (const genre of work.genres) plain(genre, 'work.genre', 60);
     if (source.kind === 'series' && (work.rank !== null || work.award !== null)) fail('publisher showcase cannot acquire festival rank or award');
+    if (source.kind === 'curation' && (work.rank !== null || work.award !== null)) fail('editorial collection cannot acquire festival rank or award');
     if (work.youtubeId !== null) {
       if (!VIDEO_ID.test(work.youtubeId)) fail(`invalid YouTube ID for ${work.id}`);
+      if (videoIds.has(work.youtubeId)) fail(`duplicate video identity for ${work.id}; nest additional recognition instead`);
+      videoIds.add(work.youtubeId);
       if (work.watchUrl !== `https://www.youtube.com/watch?v=${work.youtubeId}` || work.thumbnailUrl !== `https://i.ytimg.com/vi/${work.youtubeId}/hqdefault.jpg`) fail(`YouTube watch/thumbnail mismatch for ${work.id}`);
     } else {
       officialUrl(work.watchUrl, 'work.watchUrl');
