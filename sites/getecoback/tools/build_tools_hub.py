@@ -77,6 +77,10 @@ def card_summary(desc, limit=140):
 def is_tool(url, authored):
     if url in EXTRA:
         return True
+    # The module is shipped only by the validated product-content builder.
+    # New models must enter discovery without another hand-edited route list.
+    if 'src="/assets/auto-product.mjs"' in authored:
+        return True
     if re.search(r'<input[^>]+type="(number|range)"', authored):
         return True
     if re.search(r'<button[^>]+data-v=', authored):

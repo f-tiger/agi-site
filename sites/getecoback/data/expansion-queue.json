@@ -1,5 +1,5 @@
 {
- "note": "eco's standing expansion queue (owner 2026-09-24: 「站点应该持续扩展」). The daily fleet task (block C) takes the first item with status 'queued' and an empty 'blocked_by', builds it through the kgr-page checklist, flips it to 'built' with the page date and a bet id, and never builds more than one page a day. When fewer than three items are 'queued', the same run restocks from the season calendar in data/autopilot/demand-digest.md and records every SERP verdict here, rejections included, so no term is researched twice. Gate: tools/check_expansion_queue.py.",
+ "note": "Legacy EcoBack research backlog, with no automatic executor. Gate: tools/check_expansion_queue.py. Actual automatic content expansion is handled by tools/auto_content.py in the existing daily deployment, using dynamic official-source discovery and data/auto-content-ledger.json; it does not consume or restock this queue.",
  "updated": "2026-10-04",
  "items": [
   {

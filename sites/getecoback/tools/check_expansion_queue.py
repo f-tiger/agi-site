@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 """Gate for data/expansion-queue.json (2026-09-24, owner: 「站点应该持续扩展」).
 
-The queue is what makes expansion continuous instead of a thing the owner has to
-ask for: the daily fleet task builds the first unblocked 'queued' item and
-restocks when the queue runs low. A queue that drifts from the site is worse than
-none — the daily run would rebuild a page that exists, or trust a 'built' flag on
-a page that was never shipped. So this checks the shape of those accidents:
+This legacy research queue has no automatic executor. Actual daily publication
+now uses auto_content.py, official source discovery and its own persistent ledger.
+This gate keeps the historical queue consistent with the site:
 
-  * every item has the fields the daily run reads, and a known status;
+  * every item has the required research fields and a known status;
   * 'built' means the page file exists, carries the recorded datePublished, and
     its bet is registered in the fleet ledger or site public experiment definitions;
   * anything not 'built' must NOT have a page yet (else it is built and the flag
@@ -23,9 +21,8 @@ a page that was never shipped. So this checks the shape of those accidents:
     category off this site on 2026-09-27 (「后续记得不做储能品类」); an item whose
     slug or title matches tools/storage_veto.txt may be built (history),
     rejected or withdrawn, never queued, gated, blocked or on seasonal hold —
-    otherwise the daily run would build it the day its blocker clears.
-A queue with fewer than three buildable items only warns: running low is the
-signal to restock, not a reason to block a deploy.
+    retired topics must not remain marked as publishing candidates.
+A small legacy backlog is informational and does not block autonomous discovery.
 
 Run: python3 tools/check_expansion_queue.py [--selftest]
 """
@@ -93,8 +90,8 @@ def check(queue, page_exists, page_date, bet_ids):
         if st == "queued" and not it["blocked_by"]:
             buildable += 1
     if buildable < 3:
-        warnings.append(f"only {buildable} buildable item(s) queued — the next daily run should restock "
-                        "from the season calendar")
+        warnings.append(f"{buildable} legacy research item(s) queued; automatic content uses "
+                        "official-source discovery, not this backlog")
     return errors, warnings
 
 
