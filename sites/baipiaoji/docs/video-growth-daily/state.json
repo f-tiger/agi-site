@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-17T02:21:46.577836Z",
+  "updatedAt": "2026-10-17T02:24:45.832904Z",
   "stage": "current_readonly_release_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-17",
@@ -247,7 +247,8 @@
       "additionalIndexNowSubmitted": false,
       "siteCodeChangedForChineseDailyAction": false
     },
-    "nextAction": "Keep distribution/manual tutorial acceptance blocked without new drafts. Read next original scheduled receipt on Oct18 and complete original Oct20 weekly review even if real-use evidence remains insufficient."
+    "nextAction": "Keep distribution/manual tutorial acceptance blocked without new drafts. Read next original scheduled receipt on Oct18 and complete original Oct20 weekly review even if real-use evidence remains insufficient.",
+    "documentationPullRequest": "https://github.com/f-tiger/agi-site/pull/184"
   },
   "recentActions": [
     {
@@ -395,7 +396,8 @@
       ],
       "blockingEvidence": "Current original-author viewing entries and comparable country-specific counters remain incomplete. Historical media totals cannot be published as an October live chart.",
       "nextReviewDate": "2026-10-20"
-    }
+    },
+    "documentationPullRequest": "https://github.com/f-tiger/agi-site/pull/184"
   },
   "operationalChecks": {
     "observedAt": "2026-10-17T02:18:03Z",
