@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-16T07:29:26.124Z",
+  "asOf": "2026-10-17T07:10:11.339Z",
   "ok": true,
   "checks": [
     {
@@ -15,11 +15,11 @@
       "ok": true
     },
     {
-      "name": "route.agiscorecard.com",
+      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
+      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
@@ -27,27 +27,11 @@
       "ok": true
     },
     {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "disclosures.agiscorecard.com",
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +39,23 @@
       "ok": true
     },
     {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-16T07:29:27.313Z",
+      "retrievedAt": "2026-10-17T07:10:11.891Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 82155.29664838451,
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "price": 81544.49533910876,
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2453.142820911347,
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "price": 2430.7330764161584,
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9997865103685909,
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
-          "deviationBps": -2.134896314091028
+          "price": 0.9995520797571971,
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
+          "deviationBps": -4.47920242802935
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9991790606003462,
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
-          "deviationBps": -8.20939399653775
+          "price": 0.998850922668578,
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
+          "deviationBps": -11.490773314219993
         }
       ],
       "source": {
@@ -110,25 +110,34 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-16T07:29:26.726Z",
+      "retrievedAt": "2026-10-17T07:10:11.988Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-16T07:29:26.511Z"
+          "checkedAt": "2026-10-17T07:10:11.721Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-10-16T07:29:26.511Z"
+          "checkedAt": "2026-10-17T07:10:11.721Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-10-16T07:29:26.511Z"
+          "checkedAt": "2026-10-17T07:10:11.721Z"
         }
       ],
       "items": [
+        {
+          "title": "Glamsterdam Hoodi Testnet Announcement",
+          "url": "https://blog.ethereum.org/en/2026/10/16/glamsterdam-hoodi-announcement",
+          "publishedAt": "2026-10-16T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
         {
           "title": "security: update security.md (#3823)",
           "url": "https://github.com/x402-foundation/x402/commit/faa1c694c66a3732aaabbce93bdae140e521a67d",
@@ -209,148 +218,131 @@
           "sourceId": "ethereum",
           "kind": "rss",
           "task": "protocol-change"
-        },
-        {
-          "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
-          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
-          "publishedAt": "2026-09-07T00:00:00.000Z",
-          "source": "Ethereum Foundation",
-          "sourceId": "ethereum",
-          "kind": "rss",
-          "task": "protocol-change"
         }
       ]
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-16T07:29:28.073Z",
+      "retrievedAt": "2026-10-17T07:10:12.245Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 1.6392883615615528,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.6697348492492927,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": -0.43766137125660354,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -1.359937900922692,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 4.108304205807034,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.679515778481421,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": -1.792121024721749,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -2.4371620096887425,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 0.007496654132488345,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.024107955902430422,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": 0.014437281149115577,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.020218056390619576,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 0.001366572022121204,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.03510396764192514,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": -0.012789975244498208,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -0.04096462762513964,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 11.32879658340833,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -4.560753054051336,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": 4.849255643851613,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -2.214139903125545,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:27:07.000Z",
+          "sourceUpdatedAt": "2026-10-17T06:57:06.000Z",
           "day": {
-            "percent": 6.065335544327977,
-            "from": "2026-10-15T06:57:02.000Z",
-            "to": "2026-10-16T07:27:07.000Z"
+            "percent": -1.0219392324637977,
+            "from": "2026-10-16T06:57:02.000Z",
+            "to": "2026-10-17T06:57:06.000Z"
           },
           "week": {
-            "percent": 1.5608467923002856,
-            "from": "2026-10-09T07:02:59.000Z",
-            "to": "2026-10-16T07:27:07.000Z"
+            "percent": -0.523594852754794,
+            "from": "2026-10-10T07:02:52.000Z",
+            "to": "2026-10-17T06:57:06.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:29:00.000Z",
+          "sourceUpdatedAt": "2026-10-17T07:09:57.000Z",
           "day": {
-            "percent": 5.542833332280694,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -5.074342389010034,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           },
           "week": {
-            "percent": -7.653038782941124,
-            "from": "2026-10-09T07:00:00.000Z",
-            "to": "2026-10-16T07:29:00.000Z"
+            "percent": -14.394390124871437,
+            "from": "2026-10-10T07:00:00.000Z",
+            "to": "2026-10-17T07:09:57.000Z"
           }
         },
         {
           "symbol": "AKT",
-          "status": "fresh",
-          "sourceUpdatedAt": "2026-10-16T07:22:58.000Z",
-          "day": {
-            "percent": 8.721520205012489,
-            "from": "2026-10-15T06:53:00.000Z",
-            "to": "2026-10-16T07:22:58.000Z"
-          },
-          "week": {
-            "percent": -3.404955887358796,
-            "from": "2026-10-09T06:53:01.000Z",
-            "to": "2026-10-16T07:22:58.000Z"
-          }
+          "status": "stale",
+          "sourceUpdatedAt": "2026-10-17T06:53:00.000Z",
+          "day": null,
+          "week": null
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-16T07:29:28.000Z",
+    "asOf": "2026-10-17T07:10:12.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -361,37 +353,9 @@
   },
   "changes": [
     {
-      "url": "https://github.com/x402-foundation/x402/commit/faa1c694c66a3732aaabbce93bdae140e521a67d",
-      "title": "security: update security.md (#3823)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/e95b06661e1a2a8a9a21fce34cc28b9934834650",
-      "title": "fix: http resource server head bug (#3796)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/95680ec9e4d2fdbb39ce9777d83e4ee2bbd9844a",
-      "title": "fix(next): preserve settled null-body responses (#3733)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/a3e342eb67963177b3ad41a32ff9dbe605f5c0ea",
-      "title": "fix(svm): fail batch verify closed when afterVerify store calls fail (#3697)",
-      "task": "stablecoin",
-      "kind": "new_since_previous_check",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/a0f37d0e149c6fbcbb95e68282b30fcf37e7fbe8",
-      "title": "docs: update Celo facilitator entry with Sepolia and Permit2 assets (#3739)",
-      "task": "stablecoin",
+      "url": "https://blog.ethereum.org/en/2026/10/16/glamsterdam-hoodi-announcement",
+      "title": "Glamsterdam Hoodi Testnet Announcement",
+      "task": "protocol-change",
       "kind": "new_since_previous_check",
       "requiresReview": true
     }
