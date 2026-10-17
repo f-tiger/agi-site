@@ -13,6 +13,7 @@ on:
       - 'sites/baipiaoji/functions/api/member-watch.js'
       - '.github/workflows/check-eco-energy.yml'
       - '.github/workflows/deploy-getecoback.yml'
+      - '.github/scripts/deploy-main-guard*'
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -49,7 +50,9 @@ jobs:
           python3 tools/test_auto_content_render.py
           python3 tools/test_auto_discovery.py
           python3 tools/test_commit_auto_content.py
+          python3 ../../.github/scripts/deploy-main-guard-test.py
           python3 tools/test_check_auto_content_release.py
+          python3 tools/test_sitemap_pending_publication.py
           node --test tools/test_auto_product.mjs
           python3 -m unittest discover -s ../../tools -p test_eco_evolution.py
           node --test ../../tools/fleet-analytics/business.test.mjs
