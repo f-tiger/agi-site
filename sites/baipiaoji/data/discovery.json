@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "rStation – A shared research lab for your AI agents",
+      "url": "https://rstation.ai/",
+      "host": "rstation.ai",
+      "src": "https://news.ycombinator.com/item?id=50118876",
+      "points": 51,
+      "comments": 19,
+      "found": "2026-10-17",
+      "status": "candidate"
+    },
+    {
       "name": "I built a tool to track what AI leaders say and how their views change",
       "url": "https://blumify.io/people",
       "host": "blumify.io",
@@ -401,5 +411,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-10-16"
+  "updated": "2026-10-17"
 }

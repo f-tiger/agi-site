@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-16",
+ "checked": "2026-10-17",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1773,6 +1773,33 @@
    "source_http": null,
    "repo_http": null,
    "reason": "network-or-response-error"
+  },
+  "neotic-neotic": {
+   "attempts": 1,
+   "first_attempt": "2026-10-17",
+   "last_attempt": "2026-10-17",
+   "attemptedAt": "2026-10-17T04:57:48.620Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "postel-postel": {
+   "attempts": 1,
+   "first_attempt": "2026-10-17",
+   "last_attempt": "2026-10-17",
+   "attemptedAt": "2026-10-17T04:57:48.620Z",
+   "source_http": 429,
+   "repo_http": 200,
+   "reason": "source HTTP 429"
+  },
+  "qwady-thorns-thornguard": {
+   "attempts": 1,
+   "first_attempt": "2026-10-17",
+   "last_attempt": "2026-10-17",
+   "attemptedAt": "2026-10-17T04:57:48.620Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -12235,6 +12262,348 @@
   {
    "slug": "listentosadhu-corpus",
    "date": "2026-10-16",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "locize-mcp-server",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "luckdrop-luckdrop",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "lukija-lukija",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mailstream-mailstream",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "malinois-scan",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "manawa-terminal",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mapledger-land-and-zoning",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "marketgenius-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mastheads-newsroom",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "meistron-meistron",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "memol-memol",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "merron-ai-act-check",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "metadock-metadock",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "morphed-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "morya-morya",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "movemate-movemate",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mutator-mutator",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "myfinancebook-myfinancebook",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nanocorp-bidswarm-bidswarm",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-agent-rescue-desk-production-triage",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-gleaming-cassata-d41682-lion-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-japan-data-mcp-japan-data-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-meinlem-nexo",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-meinlem2-nexo",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-micropay-test-suite-micropay-test-suite",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-shigoto-dogu-order-eval",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netlify-tenderdelta-tenders",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "neurorank-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "newsmind-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nicetohave-kits",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nomac-nomac",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "notefit-notefit",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "novumos-novumos",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nudgebell-reminders",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "octopad-octopad",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ofia-latex",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "once-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "onesvibe-search",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "onlinefitness-coach",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "openclip-openclip",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "opendealer-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "owlx-owlx",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ownyourai-ownyourai",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "parrotnotes-parrotnotes",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "partli-partli",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "percher-percher",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "pinsuite-pinsuite",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "pivotbank-pivotbank",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "pixly-pixly",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "podstow-podstow",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "portamora-mcp",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "postdaily-postdaily",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "postpone-api",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "potto-japan",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "priorify-priorify",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "promvia-promvia",
+   "date": "2026-10-17",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "pumpx-pumpx",
+   "date": "2026-10-17",
    "source_http": 200,
    "repo_http": null
   }

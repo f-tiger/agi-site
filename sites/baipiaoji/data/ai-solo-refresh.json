@@ -1,31 +1,31 @@
 {
-  "lastRun": "2026-10-16T04:58:19.568Z",
+  "lastRun": "2026-10-17T04:59:58.047Z",
   "status": "degraded",
-  "checkedSources": 5,
+  "checkedSources": 6,
   "queue": [
     {
       "caseId": "photo-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastChecked": "2026-10-05T06:06:23.611Z"
+      "lastChecked": "2026-10-17T04:59:58.047Z"
     },
     {
       "caseId": "interior-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastChecked": "2026-10-05T06:06:23.611Z"
+      "lastChecked": "2026-10-17T04:59:58.047Z"
     },
     {
       "caseId": "typingmind",
       "reason": "source-unreachable",
       "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
-      "lastChecked": "2026-10-05T06:06:23.611Z"
+      "lastChecked": "2026-10-17T04:59:58.047Z"
     },
     {
       "caseId": "typingmind",
       "reason": "source-unreachable",
       "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
-      "lastChecked": "2026-10-05T06:06:23.611Z"
+      "lastChecked": "2026-10-17T04:59:58.047Z"
     },
     {
       "caseId": "pdf-ai",
@@ -368,13 +368,19 @@
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
       "lastChecked": "2026-10-16T04:58:19.568Z"
+    },
+    {
+      "caseId": "luca-running",
+      "reason": "source-unreachable",
+      "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+      "lastChecked": "2026-10-17T04:59:58.047Z"
     }
   ],
   "sources": {
     "photo-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
       "caseId": "photo-ai",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -382,7 +388,7 @@
     "interior-ai|https://levels.io/new-420k-mo-revenue-record-lex-fridman": {
       "caseId": "interior-ai",
       "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
-      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -390,7 +396,7 @@
     "typingmind|https://news.tonydinh.com/p/500k-milestone-my-reflections-after": {
       "caseId": "typingmind",
       "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
-      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -398,7 +404,7 @@
     "typingmind|https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees": {
       "caseId": "typingmind",
       "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
-      "lastAttempt": "2026-10-05T06:06:23.611Z",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1131,28 +1137,49 @@
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
+    },
+    "luca-running|https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr": {
+      "caseId": "luca-running",
+      "sourceUrl": "https://chalsarboleya.substack.com/p/how-ai-hype-pushed-us-to-100k-arr",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
+      "status": "unreachable",
+      "http": 403,
+      "consecutiveChange": 0
+    },
+    "humi-journal|https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0": {
+      "caseId": "humi-journal",
+      "sourceUrl": "https://www.linkedin.com/posts/sean-conerly-49063054_i-shut-down-my-app-not-because-it-failed-activity-7493074271565656064-oit0",
+      "lastAttempt": "2026-10-17T04:59:58.047Z",
+      "status": "baseline",
+      "http": 200,
+      "lastSuccess": "2026-10-17T04:59:58.047Z",
+      "lastHash": "eb89880e44df3531a5e5bf75c3b53f637e5eb4b527acd0710a2858d96710f95a",
+      "hash": "eb89880e44df3531a5e5bf75c3b53f637e5eb4b527acd0710a2858d96710f95a",
+      "simhash": "a4dbb553077280be",
+      "words": 491,
+      "consecutiveChange": 0
     }
   },
-  "cursor": 65,
+  "cursor": 3,
   "errors": [
     {
-      "caseId": "social-wizard",
-      "sourceUrl": "https://www.starterstory.com/kelechi",
+      "caseId": "photo-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
       "reason": "body-limit"
     },
     {
-      "caseId": "boltai",
-      "sourceUrl": "https://newsletter.danielnguyen.me/p/sep-2024-interview-on-indie-hackers",
+      "caseId": "interior-ai",
+      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
       "reason": "body-limit"
     },
     {
-      "caseId": "monai",
-      "sourceUrl": "https://www.starterstory.com/Florian",
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
       "reason": "body-limit"
     },
     {
-      "caseId": "erly",
-      "sourceUrl": "https://www.starterstory.com/stories/this-insanely-simple-app-makes-50k-month",
+      "caseId": "typingmind",
+      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
       "reason": "body-limit"
     }
   ]

@@ -1,22 +1,12 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 1,
   "pending": [
    {
-    "repo": "virgiliojr94/book-to-skill",
-    "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "Tencent/WeKnora",
     "topic": "knowledge",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "can1357/oh-my-pi",
-    "topic": "agents",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -72,11 +62,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "tw93/Kaku",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -140,11 +125,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "ChaofanTao/Autoregressive-Models-in-Vision-Survey",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "VigoZhao/AI-Visual-Prompt-Cookbook",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -187,11 +167,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "argmaxinc/argmax-oss-swift",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -425,11 +400,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "EvoLinkAI/GPT-Image-2-Seedance-2.5-Workflow",
-    "topic": "video",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "opendataloader-project/opendataloader-pdf",
     "topic": "knowledge",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -437,11 +407,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "YaoFANGUK/video-subtitle-extractor",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -520,11 +485,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "kubeflow/trainer",
-    "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "NVIDIA-NeMo/Nemotron",
     "topic": "models",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -537,11 +497,6 @@
    {
     "repo": "ray-project/llm-applications",
     "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "ActivityWatch/activitywatch",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -588,11 +543,6 @@
     "repo": "espanso/espanso",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "ultralytics/yolov5",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "deepspeedai/DeepSpeed",
@@ -1182,11 +1132,6 @@
    {
     "repo": "Lightning-AI/litgpt",
     "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "Mooler0410/LLMsPracticalGuide",
-    "topic": "ai",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -2205,11 +2150,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "lobehub/lobe-ui",
-    "topic": "chat",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "Mai-with-u/MaiBot",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -2953,6 +2893,21 @@
     "repo": "elie222/inbox-zero",
     "topic": "everyday",
     "foundAt": "2026-10-16T04:57:03.412Z"
+   },
+   {
+    "repo": "Th0rgal/orb",
+    "topic": "coding",
+    "foundAt": "2026-10-17T04:57:48.620Z"
+   },
+   {
+    "repo": "Stability-AI/StableSwarmUI",
+    "topic": "image",
+    "foundAt": "2026-10-17T04:57:48.620Z"
+   },
+   {
+    "repo": "pluja/whishper",
+    "topic": "audio",
+    "foundAt": "2026-10-17T04:57:48.620Z"
    }
   ],
   "checked": {
@@ -3009,11 +2964,17 @@
    "gh-zhulinsen-daily-stock-analysis-9bbdee": "2026-10-16T04:57:03.412Z",
    "gh-kilo-org-kilocode-23d22a": "2026-10-16T04:57:03.412Z",
    "gh-hismax-redink-0b401d": "2026-10-16T04:57:03.412Z",
-   "gh-openbmb-voxcpm-aa49aa": "2026-10-16T04:57:03.412Z"
+   "gh-openbmb-voxcpm-aa49aa": "2026-10-16T04:57:03.412Z",
+   "gh-deta-surf-8dfc85": "2026-10-17T04:57:48.620Z",
+   "gh-ai-shifu-chatall-209f88": "2026-10-17T04:57:48.620Z",
+   "gh-lingyichen-ai-aicomicbuilder-76cce5": "2026-10-17T04:57:48.620Z",
+   "gh-ocrmypdf-ocrmypdf-584c2a": "2026-10-17T04:57:48.620Z",
+   "gh-sxyazi-yazi-eead04": "2026-10-17T04:57:48.620Z",
+   "gh-langfuse-langfuse-e85578": "2026-10-17T04:57:48.620Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.Nekzus/npm-sentinel-mcp:1.26.1",
+  "cursor": "io.github.Skills03/scrimba-teaching:2.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3577,7 +3538,47 @@
    "mcp-rust-sdk": "2026-10-16T04:57:03.412Z",
    "mcp-scan": "2026-10-16T04:57:03.412Z",
    "mcp-so": "2026-10-16T04:57:03.412Z",
-   "mcp-swift-sdk": "2026-10-16T04:57:03.412Z"
+   "mcp-swift-sdk": "2026-10-16T04:57:03.412Z",
+   "mcp-typescript-sdk": "2026-10-17T04:57:48.620Z",
+   "mcp-use": "2026-10-17T04:57:48.620Z",
+   "mcpemails-emails": "2026-10-17T04:57:48.620Z",
+   "mcpo": "2026-10-17T04:57:48.620Z",
+   "meetsquad-squad": "2026-10-17T04:57:48.620Z",
+   "mem0": "2026-10-17T04:57:48.620Z",
+   "memcell-memcell": "2026-10-17T04:57:48.620Z",
+   "memgit-memgit": "2026-10-17T04:57:48.620Z",
+   "mencoro-mencoro": "2026-10-17T04:57:48.620Z",
+   "mentionagent-mentionagent": "2026-10-17T04:57:48.620Z",
+   "merchantflow-mcp": "2026-10-17T04:57:48.620Z",
+   "merofoundry-merofoundry": "2026-10-17T04:57:48.620Z",
+   "meshkore-meshkore": "2026-10-17T04:57:48.620Z",
+   "metagpt": "2026-10-17T04:57:48.620Z",
+   "metamcp": "2026-10-17T04:57:48.620Z",
+   "microsandbox": "2026-10-17T04:57:48.620Z",
+   "microsoft-agent-framework": "2026-10-17T04:57:48.620Z",
+   "microsoft-mcp": "2026-10-17T04:57:48.620Z",
+   "mightys-cairn": "2026-10-17T04:57:48.620Z",
+   "milewiseai-milewise": "2026-10-17T04:57:48.620Z",
+   "mini-swe-agent": "2026-10-17T04:57:48.620Z",
+   "minimax-agent": "2026-10-17T04:57:48.620Z",
+   "minitok-minitok": "2026-10-17T04:57:48.620Z",
+   "minradar-minradar": "2026-10-17T04:57:48.620Z",
+   "mirascope": "2026-10-17T04:57:48.620Z",
+   "mobopinions-survey-light": "2026-10-17T04:57:48.620Z",
+   "mochify-mochify": "2026-10-17T04:57:48.620Z",
+   "mock-server-mockserver": "2026-10-17T04:57:48.620Z",
+   "model-context-protocol": "2026-10-17T04:57:48.620Z",
+   "modelscope-agent": "2026-10-17T04:57:48.620Z",
+   "modelscope-mcp": "2026-10-17T04:57:48.620Z",
+   "moltlinestudio-catalog": "2026-10-17T04:57:48.620Z",
+   "mongodb-mcp-server": "2026-10-17T04:57:48.620Z",
+   "monnet-mcp": "2026-10-17T04:57:48.620Z",
+   "monopoly-gold-planner-mcp": "2026-10-17T04:57:48.620Z",
+   "moosejudge-alces-mcp": "2026-10-17T04:57:48.620Z",
+   "moosejudge-castor-mcp": "2026-10-17T04:57:48.620Z",
+   "mosadd-mcp": "2026-10-17T04:57:48.620Z",
+   "move-studios-staff-ops": "2026-10-17T04:57:48.620Z",
+   "mspmcp-instinct": "2026-10-17T04:57:48.620Z"
   }
  }
 }
