@@ -6,6 +6,7 @@ const POSTER_HOSTS = new Set(['d3phaj0sisr2ct.cloudfront.net', 'runway-static-as
 const WATCH_KINDS = new Set(['film', 'episode', 'trailer', 'source', 'video']);
 const ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
+const VIMEO_ID = /^[1-9]\d{5,11}$/;
 const fail = message => { throw new Error(`AI video catalogue: ${message}`); };
 
 function plain(value, field, max = 600) {
@@ -26,10 +27,13 @@ function officialUrl(value, field, hosts = SOURCE_HOSTS) {
   return u;
 }
 
-function recognition(value, field, sourceIds) {
-  if (!value || !sourceIds.has(value.sourceId)) fail(`unknown source for ${field}`);
+function recognition(value, field, sources) {
+  const source = value && sources.get(value.sourceId);
+  if (!source) fail(`unknown source for ${field}`);
   if (value.award !== null) plain(value.award, `${field}.award`, 160);
   if (value.rank !== null && (!Number.isInteger(value.rank) || value.rank < 1 || !value.award)) fail(`unsupported rank for ${field}`);
+  if (source.kind === 'series' && (value.rank !== null || value.award !== null)) fail('publisher showcase cannot acquire festival rank or award');
+  if (source.kind === 'curation' && (value.rank !== null || value.award !== null)) fail('editorial collection cannot acquire festival rank or award');
   officialUrl(value.sourceUrl, `${field}.sourceUrl`);
   date(value.sourcePublishedAt, `${field}.sourcePublishedAt`);
 }
@@ -56,6 +60,7 @@ export function validateAiVideoCatalog(data) {
   const ids = new Set();
   const titles = new Set();
   const videoIds = new Set();
+  const vimeoIds = new Set();
   for (const work of data.works) {
     if (!work || !ID.test(work.id) || ids.has(work.id)) fail('missing or duplicate work id');
     ids.add(work.id);
@@ -75,12 +80,18 @@ export function validateAiVideoCatalog(data) {
     if (work.sourcePublishedAt && Date.parse(work.sourcePublishedAt) > Date.parse(work.checkedAt)) fail('work source published after observation');
     if (!['short-film', 'series', 'episode', 'video'].includes(work.format) || !WATCH_KINDS.has(work.watchKind)) fail(`unknown format or watch kind for ${work.id}`);
     if (work.summaryKind !== undefined && !['synopsis', 'source-note'].includes(work.summaryKind)) fail(`unknown summary kind for ${work.id}`);
-    if (work.summaryKind === 'source-note' && source.kind !== 'curation') fail(`source note requires editorial collection for ${work.id}`);
     if (work.durationSeconds !== null && (!Number.isInteger(work.durationSeconds) || work.durationSeconds <= 0)) fail(`invented or invalid runtime for ${work.id}`);
     if (!Array.isArray(work.genres) || new Set(work.genres).size !== work.genres.length || work.genreBasis !== 'editorial') fail(`invalid genre provenance for ${work.id}`);
     for (const genre of work.genres) plain(genre, 'work.genre', 60);
-    if (source.kind === 'series' && (work.rank !== null || work.award !== null)) fail('publisher showcase cannot acquire festival rank or award');
-    if (source.kind === 'curation' && (work.rank !== null || work.award !== null)) fail('editorial collection cannot acquire festival rank or award');
+    // Vimeo IDs are provenance only: visitors open the official source page.
+    // They do not authorize a new player, thumbnail host or direct watch URL.
+    if (work.vimeoId != null) {
+      if (typeof work.vimeoId !== 'string' || !VIMEO_ID.test(work.vimeoId)) fail(`invalid Vimeo ID for ${work.id}`);
+      if (work.youtubeId !== null) fail(`conflicting video providers for ${work.id}`);
+      if (work.watchKind !== 'source' || work.watchUrl !== work.sourceUrl) fail(`Vimeo identity requires official source-only access for ${work.id}`);
+      if (vimeoIds.has(work.vimeoId)) fail(`duplicate Vimeo identity for ${work.id}; nest additional recognition instead`);
+      vimeoIds.add(work.vimeoId);
+    }
     if (work.youtubeId !== null) {
       if (!VIDEO_ID.test(work.youtubeId)) fail(`invalid YouTube ID for ${work.id}`);
       if (videoIds.has(work.youtubeId)) fail(`duplicate video identity for ${work.id}; nest additional recognition instead`);

@@ -20,20 +20,48 @@ test('duplicate cross-festival records must become additional recognitions', () 
 });
 
 test('editorial collections preserve source notes, historical years and unknown popularity', () => {
-  const history = catalog.works.filter(work => work.sourceId.startsWith('runway-watch-'));
+  const curationIds = new Set(catalog.sources.filter(source => source.kind === 'curation').map(source => source.id));
+  const history = catalog.works.filter(work => work.sourceId.startsWith('runway-watch-') && curationIds.has(work.sourceId));
   assert.ok(history.length > 0);
   assert.ok(history.every(work => work.summaryKind === 'source-note' && work.sourcePublishedAt === null && work.year < 2026));
   assert.ok(history.every(work => work.format === 'video' && work.durationSeconds === null && work.award === null && work.rank === null));
   const recent = catalog.works.filter(work => work.sourceId === 'curious-refuge-2026');
   assert.ok(recent.length > 0);
   assert.ok(recent.every(work => work.summaryKind === 'synopsis' && work.sourcePublishedAt.startsWith('2026-10-')));
-  assert.throws(() => validateAiVideoCatalog(altered(data => { data.works.find(work => work.summaryKind === 'source-note').award = 'Most popular'; })), /editorial collection cannot/);
-  assert.throws(() => validateAiVideoCatalog(altered(data => { data.works[0].summaryKind = 'source-note'; })), /requires editorial collection/);
+  assert.throws(() => validateAiVideoCatalog(altered(data => { data.works.find(work => curationIds.has(work.sourceId)).award = 'Most popular'; })), /editorial collection cannot/);
+  assert.doesNotThrow(() => validateAiVideoCatalog(altered(data => { data.works[0].summaryKind = 'source-note'; })));
   assert.throws(() => validateAiVideoCatalog(altered(data => { data.works[0].summaryKind = 'generated plot'; })), /unknown summary kind/);
   assert.throws(() => validateAiVideoCatalog(altered(data => { data.works.find(work => work.summaryKind === 'source-note').sourceUrl = 'https://watch.runwayml.com.attacker.example/movie'; })), /non-official/);
   assert.ok(catalog.works.find(work => work.id === 'runway-watch-eclipsed-horizons').aliases.includes('日食の地平線'));
   assert.throws(() => validateAiVideoCatalog(altered(data => { data.works[0].aliases = ['same', 'same']; })), /invalid aliases/);
   assert.throws(() => validateAiVideoCatalog(altered(data => { data.works[0].aliases = ['<script>alert(1)</script>']; })), /invalid work.alias/);
+});
+
+test('additional recognition cannot turn a publisher collection into an award', () => {
+  for (const kind of ['series', 'curation']) {
+    const source = catalog.sources.find(item => item.kind === kind);
+    assert.throws(() => validateAiVideoCatalog(altered(data => {
+      data.works[0].additionalRecognitions.push({sourceId: source.id, sourceUrl: source.url, sourcePublishedAt: null, award: 'Most popular', rank: 1});
+    })), /cannot acquire festival rank or award/);
+  }
+});
+
+test('Vimeo identity deduplicates source-page selections without enabling a new player', () => {
+  const entry = catalog.works.find(work => work.vimeoId);
+  assert.ok(entry);
+  assert.equal(entry.watchKind, 'source');
+  assert.equal(entry.watchUrl, entry.sourceUrl);
+  const changeEntry = change => altered(data => change(data.works.find(work => work.id === entry.id)));
+  for (const vimeoId of ['123/video', 'https://vimeo.com/12345678', 12345678, '01234567']) {
+    assert.throws(() => validateAiVideoCatalog(changeEntry(work => { work.vimeoId = vimeoId; })), /invalid Vimeo ID/);
+  }
+  assert.throws(() => validateAiVideoCatalog(altered(data => {
+    data.works.push({...structuredClone(entry), id: 'same-vimeo-alternate-title', title: 'An alternate title for the same Vimeo film'});
+  })), /duplicate Vimeo identity/);
+  assert.throws(() => validateAiVideoCatalog(changeEntry(work => { work.youtubeId = 'abcdefghijk'; })), /conflicting video providers/);
+  assert.throws(() => validateAiVideoCatalog(changeEntry(work => { work.watchKind = 'film'; })), /source-only access/);
+  assert.throws(() => validateAiVideoCatalog(changeEntry(work => { work.watchUrl = `https://vimeo.com/${work.vimeoId}`; })), /source-only access/);
+  assert.throws(() => validateAiVideoCatalog(changeEntry(work => { work.watchUrl = 'https://curiousrefuge.com/another-page'; })), /source-only access/);
 });
 
 test('unverified popularity and regional claims cannot leak into the catalogue', () => {
