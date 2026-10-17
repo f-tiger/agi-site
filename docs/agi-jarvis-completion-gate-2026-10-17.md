@@ -42,6 +42,8 @@ The bounded test command included deletion and absence verification in `finally`
 
 Combined local Jarvis/portfolio/analytics/release-safety suite: **202/202 pass**, 646 ms runner duration, not customer latency. The twelve cases measure a deterministic completion gate, not model quality. The model quality test remains failed. Browser CI and normal deployment receipts will be recorded in the associated PR only after completion.
 
+Release review also caught the generator reverting Jarvis sitemap dates to October 13; its fixed release date is updated to October 17. Initial PR browser CI failed because the new exact-text assertion omitted the existing source-pack disclaimer; the assertion now checks the entire visible message, without removing that disclaimer or weakening the production gate.
+
 ## Release and next handoff
 
 Version `jarvis-20261017-24`; normal PR CI and full current-main deployment required. GA4 fixed actions, opt-out/DNT/GPC/QA/private exclusions, bilingual SEO/GEO, homepage entry/countdown/poll and independent mentor remain unchanged. Existing weekly/manual IndexNow only; no new route, MCP/Skill, listing, cron or marketing action. No model-quality improvement, customer retention or AGI claim.

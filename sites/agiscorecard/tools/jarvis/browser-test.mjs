@@ -31,7 +31,7 @@ try{for(const lang of ['en','zh']){const ctx=await browser.newContext({viewport:
  // source pack, not a partial report or suggested actions, in both languages.
  const completeRow=env.EVENTS.sqlite.prepare('SELECT id,result FROM jarvis_tasks LIMIT 1').get(),incomplete={...JSON.parse(completeRow.result),report:null,reason:'model_truncated'};
  env.EVENTS.sqlite.prepare("UPDATE jarvis_tasks SET status='limited',stage='source_pack',result=? WHERE id=?").run(JSON.stringify(incomplete),completeRow.id);
- await page.getByRole('button',{name:lang==='zh'?'刷新':'Refresh',exact:true}).click();await page.getByText(lang==='zh'?'模型在输出长度限制处停止。未采纳 AI 报告，来源资料已保留，未自动重试此次调用。':'The model stopped at its output length limit. No AI report was accepted; sources are retained and this attempt was not retried.',{exact:true}).waitFor();
+ await page.getByRole('button',{name:lang==='zh'?'刷新':'Refresh',exact:true}).click();await page.getByText(lang==='zh'?'模型在输出长度限制处停止。未采纳 AI 报告，来源资料已保留，未自动重试此次调用。 以下是检索到的资料，不是已完成的 AI 报告。':'The model stopped at its output length limit. No AI report was accepted; sources are retained and this attempt was not retried. These are retrieved sources, not a completed AI report.',{exact:true}).waitFor();
  assert.equal(await page.locator('.report-summary').count(),0);assert.equal(await page.locator('.next-action').count(),0);
  env.EVENTS.sqlite.prepare("UPDATE jarvis_tasks SET status='completed',stage='complete',result=? WHERE id=?").run(completeRow.result,completeRow.id);await page.getByRole('button',{name:lang==='zh'?'刷新':'Refresh',exact:true}).click();await page.locator('.report-summary').waitFor();
  // Inject hostile model text only in the local synthetic row, then exercise the
