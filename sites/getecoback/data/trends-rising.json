@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-16",
+ "fetched": "2026-10-17",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -62,46 +62,10 @@
     "schimmel entfernen alkohol",
     "schimmel entfernen textilien"
    ],
-   "rising": [
-    {
-     "q": "schimmel entfernen wand",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen hausmittel",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen bad fugen",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen dusche",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen wand innen",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen dm",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen tapete",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen alkohol",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen textilien",
-     "v": "new"
-    }
-   ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-13"
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "fetched": "2026-10-13",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume"
   },
   "infrarotheizung": {
    "rising": [
@@ -210,46 +174,10 @@
     "heizlüfter kaufen",
     "heizlüfter test stiftung warentest"
    ],
-   "rising": [
-    {
-     "q": "heizlüfter test",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter bad",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter media markt",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter camping",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter mit akku",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter obi",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter energiesparend",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter kaufen",
-     "v": "new"
-    },
-    {
-     "q": "heizlüfter test stiftung warentest",
-     "v": "new"
-    }
-   ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-11"
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "fetched": "2026-10-11",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume"
   },
   "kaffeevollautomat": {
    "rising": [
@@ -348,64 +276,100 @@
   "matratze": {
    "rising": [
     {
-     "q": "am qualitätsmatratzen",
-     "v": 130
-    },
-    {
-     "q": "emma performance matratze",
-     "v": 120
+     "q": "fluss durch riga",
+     "v": 4500
     },
     {
      "q": "bett1 de",
+     "v": 120
+    },
+    {
+     "q": "am qualitätsmatratzen",
      "v": 110
+    },
+    {
+     "q": "emma performance matratze",
+     "v": 100
     },
     {
      "q": "emma original pro matratze",
      "v": 90
     },
     {
-     "q": "emma original matratze",
-     "v": 70
+     "q": "kinderbett 90x200",
+     "v": 90
     },
     {
      "q": "kinderbett mit matratze",
      "v": 70
     },
     {
+     "q": "emma original matratze",
+     "v": 70
+    },
+    {
+     "q": "alvi matratze",
+     "v": 60
+    },
+    {
      "q": "japanische matratze",
-     "v": 60
-    },
-    {
-     "q": "kinderbett 90x200",
-     "v": 60
-    },
-    {
-     "q": "emma flip matratze",
      "v": 50
-    },
-    {
-     "q": "jysk online",
-     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-16",
-   "polluted": false
+   "fetched": "2026-10-17",
+   "polluted": false,
+   "last_attempt_at": "2026-10-17T08:43:28.060794+00:00",
+   "last_attempt_status": "ok"
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "roborock f25 ultra",
-     "v": 9850
+     "q": "vorwerk akkusauger",
+     "v": 123950
     },
     {
-     "q": "bester saugwischer",
-     "v": 40
+     "q": "dampfreiniger",
+     "v": 110250
+    },
+    {
+     "q": "vorwerk saugwischer probleme",
+     "v": 91950
+    },
+    {
+     "q": "saugwischer vergleich",
+     "v": 84250
+    },
+    {
+     "q": "saugroboter mit wischfunktion",
+     "v": 29050
+    },
+    {
+     "q": "roborock f25 ultra",
+     "v": 7450
+    },
+    {
+     "q": "roborock saros 20",
+     "v": 6600
+    },
+    {
+     "q": "nasssauger test",
+     "v": 6450
+    },
+    {
+     "q": "tineco saugwischer",
+     "v": 70
+    },
+    {
+     "q": "tineco",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-09",
-   "polluted": false
+   "fetched": "2026-10-17",
+   "polluted": true,
+   "last_attempt_at": "2026-10-17T08:44:28.897654+00:00",
+   "last_attempt_status": "ok"
   }
  }
 }
