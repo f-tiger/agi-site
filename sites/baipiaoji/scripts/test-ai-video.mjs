@@ -63,12 +63,25 @@ test('Generated page is one source-backed English canonical with crawlable works
  assert.ok(schema.mainEntity.itemListElement.every(work=>work['@type']==='CreativeWork'&&work.citation));
  assert.equal(JSON.parse(output['en/ai-video/catalog.json']).works.length,works.length);
  assert.match(output['en/ai-video/catalog.md'],/No media licence is granted/);
+ const exported=JSON.parse(output['en/ai-video/catalog.json']);
+ assert.equal(exported.guides.length,3);
+ for(const guide of exported.guides){assert.ok(html.includes(`id="${guide.id}"`));assert.ok(html.includes(guide.intro));assert.ok(output['en/ai-video/catalog.md'].includes(guide.intro));for(const work of guide.works)assert.ok(works.some(item=>item.id===work.id));}
+ for(const work of works.filter(item=>item.summaryKind==='source-note'))assert.ok(html.includes('<strong>Source note:</strong> '+work.summary.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')));
+ assert.match(html,/property="og:image" content="https:\/\/baipiaoji\.com\/framepick-share\.png"/);assert.match(html,/name="twitter:card" content="summary_large_image"/);
+ assert.equal(schema.publisher.name,'BPJ');assert.equal(schema.isPartOf.url,'https://baipiaoji.com/');assert.equal(schema.image,'https://baipiaoji.com/framepick-share.png');
+ const share=output['framepick-share.png'];assert.equal(share.subarray(1,4).toString(),'PNG');assert.equal(share.readUInt32BE(16),1200);assert.equal(share.readUInt32BE(20),630);
+ assert.ok((html.match(/loading="eager"/g)||[]).length<=3,'Only the three featured images load eagerly');
+ assert.equal((html.match(/data-fp-work="[^"]+" hidden/g)||[]).length,0,'All catalogue entries are visible in SSR before progressive enhancement');
  assert.ok(aiVideoSearch().every(item=>item.q===item.q.toLowerCase()));
 });
 
 if(live||distCheck)test(`${live?'Live HTTP':'Final dist'} release contains the current catalogue, assets, GA4 and discovery links`,async()=>{
  const paths=['en/ai-video/index.html','en/ai-video/catalog.json','en/ai-video/catalog.md','ai-video.css','ai-video.js','ai-video-core.mjs','en/index.html','en/search-index.json','sitemap.xml','llms.txt'];
  const contents=await Promise.all(paths.map(publishedResource)),resources=Object.fromEntries(paths.map((path,index)=>[path,contents[index]]));
+ let share;
+ if(live){const response=await fetch('https://baipiaoji.com/framepick-share.png?__probe=1',{headers:{'User-Agent':'BPJ Framepick release verification (__probe; read-only)'},signal:AbortSignal.timeout(25000)});assert.equal(response.status,200);assert.match(response.headers.get('content-type')||'',/^image\/png(?:;|$)/i);share=Buffer.from(await response.arrayBuffer());}
+ else share=fs.readFileSync(new URL('../dist/framepick-share.png',import.meta.url));
+ assert.equal(share.subarray(1,4).toString(),'PNG');assert.equal(share.readUInt32BE(16),1200);assert.equal(share.readUInt32BE(20),630);assert.equal(sha(share),sha(generated['framepick-share.png']),'Current share image body');
  const html=resources['en/ai-video/index.html'];
  assert.match(html,/<html lang="en">/);assert.match(html,/<link rel="canonical" href="https:\/\/baipiaoji\.com\/en\/ai-video\/">/);
  assert.equal((html.match(/rel="canonical"/g)||[]).length,1);assert.doesNotMatch(html,/<meta[^>]+name="robots"[^>]+content="[^"]*noindex/i);
@@ -88,5 +101,5 @@ if(live||distCheck)test(`${live?'Live HTTP':'Final dist'} release contains the c
  const search=JSON.parse(resources['en/search-index.json']);assert.ok(search.some(item=>item.u===root&&/framepick/i.test(item.n)));
  assert.ok(search.some(item=>item.u===root+'#work-'+works[0].id));
  assert.ok(resources['sitemap.xml'].includes('<loc>'+root+'</loc>'));assert.ok(resources['llms.txt'].includes(root));
- console.log(`${live?'LIVE':'DIST'} verified ${paths.length} public resources; metadata source ${data.updatedAt}; HTTP checks do not prove GA4 backend receipt, viewing or adoption.`);
+ console.log(`${live?'LIVE':'DIST'} verified ${paths.length+1} public resources including the share image; metadata source ${data.updatedAt}; HTTP checks do not prove GA4 backend receipt, viewing or adoption.`);
 });
