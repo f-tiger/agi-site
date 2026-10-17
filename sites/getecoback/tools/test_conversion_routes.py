@@ -48,7 +48,7 @@ class ConversionRoutes(unittest.TestCase):
                 result=destination_for(query)
                 self.assertEqual(result[:2],('guide','/guide/'+slug+'.html'))
                 self.assertTrue((SITE / result[1].lstrip('/')).exists())
-        self.assertEqual(destination_for('ewt heizlüfter')[0],'shop')
+        self.assertIsNone(destination_for('ewt heizlüfter'))
 
     def test_household_tools_are_visible_before_autumn_shelf(self):
         html=(SITE/'index.html').read_text()

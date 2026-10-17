@@ -35,6 +35,9 @@ Shelter England’s damp and mould guidance explains why underlying causes need 
 
 ## Before spending money
 First establish whether this is a repair, ventilation, laundry or heating problem. Then check temperature-specific performance, noise at the intended setting, tank emptying or drainage, purchase cost and return conditions. No particular saving is guaranteed.
+
+## Already own a Meaco? Check the filter before buying
+Match the exact model, distinguish the standard dust filter from optional HEPA, and compare annual filter consumption with whole-pack spending. [Open the UK filter care check](https://getecoback.com/en/guide/12l-vs-20l-dehumidifier-uk.html#meaco-care). No verified UK affiliate buying link is added.
 [All UK decisions](https://getecoback.com/en/guide/uk-damp-and-heating-decisions.html) · [Editorial method](https://getecoback.com/en/how-we-recommend.html) · [Privacy (German)](https://getecoback.com/datenschutz.html)
 
 ---

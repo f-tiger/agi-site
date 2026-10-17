@@ -24,7 +24,9 @@ for(const item of SITE_JOURNEYS){
 const english=localizedJourneys('en','https://baipiaoji.com/en');
 assert(!/[\u3400-\u9fff]/u.test(JSON.stringify(english)),'Chinese leaked into the English feature map');
 const chineseOnly=new Map([['manju','https://baipiaoji.com/manju/'],['video-fit','https://baipiaoji.com/manju/video-fit']]);
-assert.deepEqual(SITE_JOURNEYS.filter(x=>x.canonicalUrl).map(x=>x.id).sort(),[...chineseOnly.keys()].sort(),'Canonical exceptions must stay limited to the Chinese-only products');
+const englishOnly=new Map([['ai-video','https://baipiaoji.com/en/ai-video/']]);
+const canonicalExceptions=new Map([...chineseOnly,...englishOnly]);
+assert.deepEqual(SITE_JOURNEYS.filter(x=>x.canonicalUrl).map(x=>x.id).sort(),[...canonicalExceptions.keys()].sort(),'Canonical exceptions must stay limited to explicitly single-language products');
 for(const lang of ['zh','en']){
  const base='https://baipiaoji.com'+(lang==='en'?'/en':'');
  for(const item of localizedJourneys(lang,base)){
@@ -33,6 +35,11 @@ for(const lang of ['zh','en']){
    assert.equal(item.contentLanguage,'zh-Hans','Disclose the destination language in the machine map');
    assert.equal(item.requiresRegistration,false,'These public products do not require signup');
    if(lang==='en')assert.match(item.description,/Chinese-language/,'English readers need to know the destination language');
+  }else if(englishOnly.has(item.id)){
+   assert.equal(item.url,englishOnly.get(item.id),'Do not invent a Chinese version of the independent English film catalogue');
+   assert.equal(item.contentLanguage,'en','Disclose the English destination in both maps');
+   assert.equal(item.requiresRegistration,false,'English film discovery does not require signup');
+   if(lang==='zh')assert.match(item.description,/英文/,'Chinese readers need to know the destination language');
   }else assert.equal(item.url,base+item.path,`${item.id}: existing locale routing changed`);
  }
  for(const path of ['/studio/video-variants','/workbench/creatorops'])assert(relatedJourneys(path,lang,base,2).some(x=>x.id==='video-fit'&&x.url===chineseOnly.get('video-fit')),'Video production should lead to a real publishing-check URL');
@@ -78,8 +85,8 @@ if(process.argv.includes('--dist')){
   for(const item of map.items){
    const url=new URL(item.url);
    assert.equal(url.origin,map.site,`${item.id}: wrong host`);
-   assert.equal(url.pathname.startsWith('/en/'),lang==='en'&&!chineseOnly.has(item.id),`${item.id}: wrong-language link`);
-   if(chineseOnly.has(item.id))assert.equal(item.url,chineseOnly.get(item.id),'Published video discovery must retain its real canonical destination');
+   assert.equal(url.pathname.startsWith('/en/'),englishOnly.has(item.id)||(lang==='en'&&!chineseOnly.has(item.id)),`${item.id}: wrong-language link`);
+   if(canonicalExceptions.has(item.id))assert.equal(item.url,canonicalExceptions.get(item.id),'Published video discovery must retain its real canonical destination');
    const relative=url.pathname.slice(1);
    const candidates=url.pathname.endsWith('/')?[join(dist,relative,'index.html')]:[join(dist,relative+'.html'),join(dist,relative,'index.html')];
    const target=candidates.find(p=>existsSync(p)&&statSync(p).isFile());

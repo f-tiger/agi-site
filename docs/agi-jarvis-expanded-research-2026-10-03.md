@@ -189,3 +189,9 @@ See [bounded experiment and release record](agi-jarvis-progress-export-2026-10-1
 核对 [Node 24 的 Date 模拟](https://nodejs.org/docs/latest-v24.x/api/test.html#dates) 与 [Cloudflare JSON Mode](https://developers.cloudflare.com/workers-ai/features/json-mode/) 一手文档：固定测试时钟可用于任务恢复与到期边界；原生 JSON Schema 不保证每次请求都满足契约，更不等于结论正确。真实部署被另一模块的测试阻断：测试以旧成功时间推算当前时间，误拒较新的失败尝试。选择零模型调用的确定性夹具修复；小模型、现有 8B 和强模型没有解决此故障的优势证据。
 
 反证是固定夹具可能脱离发布数据，所以保留独立的已提交快照契约检查，增加成功 HTTP/MCP 断言和时间边界反例，不放宽生产校验。原五项 API 测试有两项复现失败；修复后十二项通过，四种防线破坏均被测试抓住。188 项工程回归不代表模型质量或用户完成率；本轮零推理，前次摘要引用失败仍未解决。三轮优化、两轮对抗自检与发布边界见 [本轮记录](agi-jarvis-release-clock-2026-10-16.md)。
+
+## 2026-10-17：显式截断不算完成，格式成功不算任务成功
+
+核对 Cloudflare 的[结束原因契约](https://developers.cloudflare.com/workers/runtime-apis/bindings/ai-search/)、[含 length 终止的返回示例](https://developers.cloudflare.com/ai/models/unbiased/pareto/)和[结束原因修复记录](https://developers.cloudflare.com/workers-ai/changelog/)，以及 Anthropic 的[最终结果评测指南](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。推论：已有结束标记应控制完成判定，而不只存日志。反证：用满 token 不一定截断，正常 stop 也不保证相关或正确，所以不靠字数猜测，更不使用额外模型裁判代替明确标记。
+
+冻结十二个双语响应契约：旧代码六个 length 终止仍被标为完成，修复后全过；保留用量、来源、额度与暂停/删除保护。确定性规则无需新增推理，小模型/现有 8B/强模型在这项控制判断上没有实测优势。本轮另有且仅有一次真实任务，1,087 token、提交至读到结果 12,778ms；算术正确但建议偏题，整体质量失败。它返回 stop，不能冒称被此修复解决。清理最终回执未确认，不重试创建。完整证据、两轮自检与接续边界见 [v24 记录](agi-jarvis-completion-gate-2026-10-17.md)。

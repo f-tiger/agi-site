@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-10-16",
+ "generated": "2026-10-17",
  "pages": {
   "ai-audio-to-text.html": {
    "changed": "2026-09-27",
@@ -53,13 +53,13 @@
    "origin": "observed"
   },
   "brands/smiski.html": {
-   "changed": "2026-10-16",
-   "h": "668b33280a7fba96",
+   "changed": "2026-10-17",
+   "h": "85c23713c84955a5",
    "origin": "observed"
   },
   "brands/sonny-angel.html": {
-   "changed": "2026-10-16",
-   "h": "1f66149c15b941b1",
+   "changed": "2026-10-17",
+   "h": "60246eda00f93619",
    "origin": "observed"
   },
   "checker.html": {
@@ -193,13 +193,13 @@
    "origin": "observed"
   },
   "de/brands/smiski.html": {
-   "changed": "2026-10-16",
-   "h": "b64d4b4d0605d45b",
+   "changed": "2026-10-17",
+   "h": "95f80cc104389bf6",
    "origin": "observed"
   },
   "de/brands/sonny-angel.html": {
-   "changed": "2026-10-16",
-   "h": "99db87fd7a086974",
+   "changed": "2026-10-17",
+   "h": "2792293055cdf26d",
    "origin": "observed"
   },
   "de/checker.html": {
@@ -333,8 +333,8 @@
    "origin": "bootstrap"
   },
   "de/index.html": {
-   "changed": "2026-10-16",
-   "h": "ba2e099348d11a08",
+   "changed": "2026-10-17",
+   "h": "b8e665b8c4735b54",
    "origin": "observed"
   },
   "de/json-compare.html": {
@@ -458,8 +458,8 @@
    "origin": "observed"
   },
   "de/series.html": {
-   "changed": "2026-10-16",
-   "h": "05246dea923749e3",
+   "changed": "2026-10-17",
+   "h": "5867d96234d6f1d1",
    "origin": "observed"
   },
   "de/series/smiski-bath-series.html": {
@@ -483,23 +483,28 @@
    "origin": "observed"
   },
   "de/series/smiski-dressing.html": {
-   "changed": "2026-10-13",
-   "h": "69dce68a71df26a8",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "17c68cb8476d80f5",
+   "origin": "observed"
   },
   "de/series/smiski-exercising.html": {
-   "changed": "2026-10-13",
-   "h": "8c8a0963496e6866",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "396615ee1ca60f75",
+   "origin": "observed"
   },
   "de/series/smiski-living-series.html": {
    "changed": "2026-10-15",
    "h": "9f3f3bd034206d06",
    "origin": "observed"
   },
-  "de/series/smiski-museum.html": {
+  "de/series/smiski-moving.html": {
    "changed": "2026-10-16",
-   "h": "2a25bf338defb7e4",
+   "h": "f587b8d66ac10da8",
+   "origin": "bootstrap"
+  },
+  "de/series/smiski-museum.html": {
+   "changed": "2026-10-17",
+   "h": "13586a625bda0fc1",
    "origin": "observed"
   },
   "de/series/smiski-series1.html": {
@@ -518,28 +523,33 @@
    "origin": "observed"
   },
   "de/series/smiski-work.html": {
-   "changed": "2026-10-14",
-   "h": "9e31d3208a0813b8",
+   "changed": "2026-10-17",
+   "h": "dd8bcdca5d5c8145",
    "origin": "observed"
   },
   "de/series/sonny-angel-flower-series.html": {
-   "changed": "2026-10-16",
-   "h": "fc93bd9fd1c7377e",
+   "changed": "2026-10-17",
+   "h": "9936c694987f2877",
    "origin": "observed"
   },
-  "de/series/sonny-angel-marine-series.html": {
-   "changed": "2026-10-15",
-   "h": "e66ae438c90dc310",
+  "de/series/sonny-angel-fruit-series.html": {
+   "changed": "2026-10-16",
+   "h": "be7b1e1bcaad92fb",
    "origin": "bootstrap"
   },
+  "de/series/sonny-angel-marine-series.html": {
+   "changed": "2026-10-17",
+   "h": "5043192deb6373d2",
+   "origin": "observed"
+  },
   "de/series/sonny-angel-snack-series.html": {
-   "changed": "2026-10-16",
-   "h": "be89f763ba864dae",
+   "changed": "2026-10-17",
+   "h": "5180b187dde3161f",
    "origin": "observed"
   },
   "de/series/sonny-angel-vegetable-series.html": {
-   "changed": "2026-10-16",
-   "h": "a3d201c7e936a1c3",
+   "changed": "2026-10-17",
+   "h": "cd7a90401cf8b91c",
    "origin": "observed"
   },
   "de/start.html": {
@@ -638,8 +648,8 @@
    "origin": "bootstrap"
   },
   "index.html": {
-   "changed": "2026-10-16",
-   "h": "c1d394f26e9f3d83",
+   "changed": "2026-10-17",
+   "h": "83b69afbfacd28c0",
    "origin": "observed"
   },
   "json-compare.html": {
@@ -773,8 +783,8 @@
    "origin": "observed"
   },
   "series.html": {
-   "changed": "2026-10-16",
-   "h": "47f31dc7c607a821",
+   "changed": "2026-10-17",
+   "h": "1de34aac2e651eb5",
    "origin": "observed"
   },
   "series/smiski-bath-series.html": {
@@ -798,23 +808,28 @@
    "origin": "observed"
   },
   "series/smiski-dressing.html": {
-   "changed": "2026-10-13",
-   "h": "a72e9de0e718d0ac",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "54057420dcc904ce",
+   "origin": "observed"
   },
   "series/smiski-exercising.html": {
-   "changed": "2026-10-13",
-   "h": "e42aa079db610623",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "af0bf5fa3a8a9add",
+   "origin": "observed"
   },
   "series/smiski-living-series.html": {
    "changed": "2026-10-15",
    "h": "2d32f9c5384b7046",
    "origin": "observed"
   },
-  "series/smiski-museum.html": {
+  "series/smiski-moving.html": {
    "changed": "2026-10-16",
-   "h": "26250a227f518962",
+   "h": "5465aae92fbbd497",
+   "origin": "bootstrap"
+  },
+  "series/smiski-museum.html": {
+   "changed": "2026-10-17",
+   "h": "0d4b681d8af74fd2",
    "origin": "observed"
   },
   "series/smiski-series1.html": {
@@ -833,28 +848,33 @@
    "origin": "observed"
   },
   "series/smiski-work.html": {
-   "changed": "2026-10-14",
-   "h": "d7cd7967ab507f76",
+   "changed": "2026-10-17",
+   "h": "6ef8460f3827da72",
    "origin": "observed"
   },
   "series/sonny-angel-flower-series.html": {
-   "changed": "2026-10-16",
-   "h": "e51f59e427ac1c52",
+   "changed": "2026-10-17",
+   "h": "9346698cbe57317a",
    "origin": "observed"
   },
-  "series/sonny-angel-marine-series.html": {
-   "changed": "2026-10-15",
-   "h": "c4d208c443ca4249",
+  "series/sonny-angel-fruit-series.html": {
+   "changed": "2026-10-16",
+   "h": "66bc161bcce887c8",
    "origin": "bootstrap"
   },
+  "series/sonny-angel-marine-series.html": {
+   "changed": "2026-10-17",
+   "h": "60bdc762a178c53c",
+   "origin": "observed"
+  },
   "series/sonny-angel-snack-series.html": {
-   "changed": "2026-10-16",
-   "h": "0f750cf257bdcac8",
+   "changed": "2026-10-17",
+   "h": "55d81dd1aad995b9",
    "origin": "observed"
   },
   "series/sonny-angel-vegetable-series.html": {
-   "changed": "2026-10-16",
-   "h": "df7e22728c48ba8f",
+   "changed": "2026-10-17",
+   "h": "090b95d0a83b7e25",
    "origin": "observed"
   },
   "start.html": {
@@ -953,13 +973,13 @@
    "origin": "observed"
   },
   "zh/brands/smiski.html": {
-   "changed": "2026-10-16",
-   "h": "582de035a9342193",
+   "changed": "2026-10-17",
+   "h": "e0e0ccf50b3f912d",
    "origin": "observed"
   },
   "zh/brands/sonny-angel.html": {
-   "changed": "2026-10-16",
-   "h": "06329412800b7d23",
+   "changed": "2026-10-17",
+   "h": "32e24f80a05eccdb",
    "origin": "observed"
   },
   "zh/collecting.html": {
@@ -1053,8 +1073,8 @@
    "origin": "bootstrap"
   },
   "zh/index.html": {
-   "changed": "2026-10-16",
-   "h": "c193b7e90c29175b",
+   "changed": "2026-10-17",
+   "h": "73281b7ea245a6e1",
    "origin": "observed"
   },
   "zh/json-compare.html": {
@@ -1133,8 +1153,8 @@
    "origin": "bootstrap"
   },
   "zh/series.html": {
-   "changed": "2026-10-16",
-   "h": "8faa89e60ead261f",
+   "changed": "2026-10-17",
+   "h": "db8f1d6400aaf913",
    "origin": "observed"
   },
   "zh/series/smiski-bath-series.html": {
@@ -1158,23 +1178,28 @@
    "origin": "observed"
   },
   "zh/series/smiski-dressing.html": {
-   "changed": "2026-10-13",
-   "h": "3cbdf77f93770115",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "35095130f6f964fd",
+   "origin": "observed"
   },
   "zh/series/smiski-exercising.html": {
-   "changed": "2026-10-13",
-   "h": "55c6ea61fe0e4369",
-   "origin": "bootstrap"
+   "changed": "2026-10-17",
+   "h": "fe33a7547e79246c",
+   "origin": "observed"
   },
   "zh/series/smiski-living-series.html": {
    "changed": "2026-10-15",
    "h": "58ae2b445a2bb3b6",
    "origin": "observed"
   },
-  "zh/series/smiski-museum.html": {
+  "zh/series/smiski-moving.html": {
    "changed": "2026-10-16",
-   "h": "b362c9a95daec367",
+   "h": "00a0afcd3632fa7f",
+   "origin": "bootstrap"
+  },
+  "zh/series/smiski-museum.html": {
+   "changed": "2026-10-17",
+   "h": "202f18c583af5195",
    "origin": "observed"
   },
   "zh/series/smiski-series1.html": {
@@ -1193,28 +1218,33 @@
    "origin": "observed"
   },
   "zh/series/smiski-work.html": {
-   "changed": "2026-10-14",
-   "h": "59758741df67d911",
+   "changed": "2026-10-17",
+   "h": "bacb2d7f08567e2c",
    "origin": "observed"
   },
   "zh/series/sonny-angel-flower-series.html": {
-   "changed": "2026-10-16",
-   "h": "05a6f352c5a2b24d",
+   "changed": "2026-10-17",
+   "h": "67ada60937426ee8",
    "origin": "observed"
   },
-  "zh/series/sonny-angel-marine-series.html": {
-   "changed": "2026-10-15",
-   "h": "7f7bbe3dc00141e7",
+  "zh/series/sonny-angel-fruit-series.html": {
+   "changed": "2026-10-16",
+   "h": "f07f6e0f376ce213",
    "origin": "bootstrap"
   },
+  "zh/series/sonny-angel-marine-series.html": {
+   "changed": "2026-10-17",
+   "h": "344434dffce5759c",
+   "origin": "observed"
+  },
   "zh/series/sonny-angel-snack-series.html": {
-   "changed": "2026-10-16",
-   "h": "b2801eef7765dcb1",
+   "changed": "2026-10-17",
+   "h": "89a6a8784d5a2b69",
    "origin": "observed"
   },
   "zh/series/sonny-angel-vegetable-series.html": {
-   "changed": "2026-10-16",
-   "h": "ad225e8db4167170",
+   "changed": "2026-10-17",
+   "h": "96b40661c3f70da7",
    "origin": "observed"
   },
   "zh/time-zone-planner.html": {

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-16T02:18:43Z",
-  "stage": "browser_release_acceptance_verified_distribution_blocked",
+  "updatedAt": "2026-10-17T07:24:21.789581Z",
+  "stage": "current_readonly_release_verified_distribution_blocked",
   "lastCompletedIteration": {
-    "date": "2026-10-16",
-    "completedAt": "2026-10-16T02:18:43Z",
-    "status": "existing_browser_acceptance_verified_real_use_unverified",
-    "problemId": "video-measurement-semantics"
+    "date": "2026-10-17",
+    "completedAt": "2026-10-17T02:21:46.577836Z",
+    "status": "existing_readonly_release_gate_verified_real_use_unverified",
+    "problemId": "bpj-release-readiness"
   },
   "lastWeeklyReview": null,
   "reviewTimezone": "Asia/Shanghai",
@@ -24,39 +24,39 @@
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "reviewedAt": "2026-10-16T02:16:19Z",
-      "sourceCommit": "d046e961b09b24a84b3107e123564a811750aed7",
-      "sourceCompletedAt": "2026-10-15T05:09:12.263Z",
+      "reviewedAt": "2026-10-17T02:21:46.577836Z",
+      "sourceCommit": "f9fe1ad4280e28fce93a9caeeef7dd9e829b8de3",
+      "sourceCompletedAt": "2026-10-16T04:57:54.907Z",
       "status": "ok_persisted_and_live_verified",
-      "recordsIncludingSeasons": 747,
-      "note": "Original schedule persisted and deployed 747 records including seasons. Oct16 direct homepage read confirms current count and Oct15 source label; original sync added=20, not a rolling-difference estimate or adoption.",
+      "recordsIncludingSeasons": 767,
+      "note": "Both source sync and discovery import status are ok. Count includes seasons. Existing original source added field is 20; no rolling growth estimate or adoption inferred.",
       "sourceTimezone": "UTC for completedAt; official board date timezone not declared in receipt",
-      "missingOrDelay": "No Oct16 original BPJ deploy run observed at initial inspection. Source board timezone is not declared; no recrawl or dispatch by this iteration.",
+      "missingOrDelay": "Reused Oct16 original snapshot, not a new Oct17 crawl. Board timezone unspecified; source has no errors field.",
       "sourceBoardDates": [
-        "2026-10-15"
+        "2026-10-16"
       ],
-      "liveVerifiedAt": "2026-10-16T02:11:43.230201Z",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38684758473"
+      "liveVerifiedAt": "2026-10-17T02:20:13.890456Z",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897"
     },
     {
       "path": "sites/baipiaoji/data/reach.json",
-      "reviewedAt": "2026-10-16T02:16:19Z",
-      "sourceCommit": "d046e961b09b24a84b3107e123564a811750aed7",
-      "sourceDate": "2026-10-15",
-      "sourceGeneratedAt": "2026-10-15T05:06:53.183Z",
+      "reviewedAt": "2026-10-17T02:21:46.577836Z",
+      "sourceCommit": "f9fe1ad4280e28fce93a9caeeef7dd9e829b8de3",
+      "sourceDate": "2026-10-16",
+      "sourceGeneratedAt": "2026-10-16T04:55:12.334Z",
       "sourceTimePrecision": "source_and_export_timestamps",
       "window": {
         "requestedDays": 28,
-        "since": "2026-09-17",
-        "until": "2026-10-15",
+        "since": "2026-09-18",
+        "until": "2026-10-16",
         "timezone": "UTC",
         "includesCurrentPartialDay": true
       },
       "status": "verified_manju_signals_v2_persisted",
       "note": "Reused existing v2 persisted snapshot: five new action keys, ok=true and partial=false. Counts remain private; this is not verified creator adoption.",
-      "missingOrDelay": "Ends during Oct15; no direct production reach request. New actions cover only time since Oct13 deployment; current support is not 28-day historical coverage.",
-      "persistedByCommit": "d046e961b09b24a84b3107e123564a811750aed7",
-      "exportedAt": "2026-10-15T05:06:53.245Z",
+      "missingOrDelay": "Reused Oct16 partial-day source. New actions cover only since Oct13 deployment, not all 28 days. No direct reach or Windsor query in this follow-up.",
+      "persistedByCommit": "f9fe1ad4280e28fce93a9caeeef7dd9e829b8de3",
+      "exportedAt": "2026-10-16T04:55:12.405Z",
       "measurementVersion": "manju-video-actions-v2"
     },
     {
@@ -124,15 +124,17 @@
       "id": "bpj-release-readiness",
       "priority": "P0",
       "scope": "existing_release_gate_dependency",
-      "status": "recurring_postdeploy_failure_current_readonly_ready",
-      "evidence": "iteration-2026-10-16.md",
-      "deploymentRun": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
-      "nextAction": "Preserve Oct14 ready=true, Oct15 post-deploy ready=false, and Oct16 one GET ready=true separately. Next original release must verify its own gate; do not mark the failed workflow green or change account/payment settings.",
+      "status": "verified_current_readonly_release_gate",
+      "evidence": "iteration-2026-10-17.md",
+      "deploymentRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+      "nextAction": "Current read-only gate closed from real successful release; preserve historical failures. Observe next original scheduled release for recurrence without changing account/payment settings or dispatching again.",
       "lastFailedAt": "2026-10-15T15:46:02Z",
-      "currentReadyObservedAt": "2026-10-16T02:11:43.799830Z",
+      "currentReadyObservedAt": "2026-10-17T02:16:54.974Z",
       "previousPointResolvedAt": "2026-10-14T02:19:32.293Z",
       "previousObservedCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
-      "latestDeployedSourceCommit": "714c655e0329050e8f262806a72e7da025892461"
+      "latestDeployedSourceCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+      "verifiedAt": "2026-10-17T02:18:03Z"
     },
     {
       "id": "persist-manju-signals",
@@ -156,13 +158,14 @@
       "pullRequest": 172,
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
       "verifiedAt": "2026-10-16T02:16:19Z",
-      "latestDeployedSourceCommit": "714c655e0329050e8f262806a72e7da025892461",
+      "latestDeployedSourceCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
       "acceptance": {
         "browserReleaseGate": "verified_closed",
         "publicSourceContract": "verified",
         "backendToolActions": "unverified_no_rows_returned",
         "genuineUsefulTasks": "unverified"
-      }
+      },
+      "latestAcceptanceRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897"
     },
     {
       "id": "fixed-channel-attribution",
@@ -190,29 +193,6 @@
   ],
   "currentBlockers": [
     {
-      "id": "bpj-external-mcp-timeout",
-      "status": "catalog_sync_recovered_registry_probe_unknown",
-      "scope": "existing_bpj_maintenance_not_a_new_video_feature",
-      "description": "Oct15 original catalogue sync recovered (ok, no errors). Official registry discovery probe still aborted with http:null/empty response; registration state unknown, not delisting. Afternoon read-only product release skipped this probe; no recovery inferred.",
-      "evidence": "https://github.com/f-tiger/agi-site/actions/runs/38684758473",
-      "sourceCompletedAt": "2026-10-15T05:08:53.819Z",
-      "lastValidCatalogSyncAt": "2026-10-15T05:07:40.051Z",
-      "nextCheckDate": "2026-10-17",
-      "unblockCondition": "Read next original scheduled probe receipt for an actual successful response. Do not redispatch, re-register or waive the gate.",
-      "sourceTimeMeaning": "Catalogue-sync receipt completion, not registry probe completion"
-    },
-    {
-      "id": "bpj-release-readiness",
-      "status": "recurring_postdeploy_failure_current_readonly_ready",
-      "scope": "existing_release_gate_dependency_not_registration_growth",
-      "description": "Oct15 product release failed its post-deploy ready assertion. Oct16 one GET returned ready=true; current point is restored, but later skipped gates and workflow-wide acceptance remain unverified. No account/order/payment operation performed.",
-      "evidence": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
-      "lastFailedAt": "2026-10-15T15:46:02Z",
-      "currentReadyObservedAt": "2026-10-16T02:11:43.799830Z",
-      "nextCheckDate": "2026-10-17",
-      "unblockCondition": "Use the next original release receipt; do not turn the earlier failure green or trigger a replacement release."
-    },
-    {
       "id": "tool-denominator",
       "status": "instrumentation_live_real_use_unverified",
       "description": "Actual Oct15 browser release checks and Oct16 public source contract passed. Windsor returned viewer page/sort events but no tool-page/new-tool-action rows for Oct13–15. Backend tool receipt, useful tasks and voluntary reuse remain unverified; no-row results do not prove failure."
@@ -221,56 +201,54 @@
       "id": "external-distribution",
       "status": "open",
       "description": "No authorized usable external publishing/contact channel is established for this daily task. The existing general tutorial now has one captioned review copy, not a publication; pause App/near-identical material production until distribution conditions are met.",
-      "nextCheckDate": "2026-10-17"
+      "nextCheckDate": "2026-10-20"
     },
     {
       "id": "tutorial-manual-playback",
       "status": "pending_manual_acceptance",
       "description": "Technical full decode and independent key-frame review passed. Continuous mobile playback, subjective listening, and target-channel/account checks have not been performed; the recording is a review copy, not publication-ready.",
       "evidence": "iteration-2026-10-14.md",
-      "nextCheckDate": "2026-10-17",
+      "nextCheckDate": "2026-10-20",
       "unblockCondition": "Review the delivered recording rather than creating another; retain unpublished status until actual review and publication evidence exist."
     }
   ],
   "lastAction": {
-    "problemId": "video-measurement-semantics",
-    "status": "existing_browser_release_acceptance_verified",
-    "verification": "iteration-2026-10-16.md",
-    "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
-    "pullRequest": 172,
-    "sourceMainCommit": "4f8ea18e031c1ffb5c2ce9c1c10889eeb91e5950",
-    "supportingReleaseCommit": "714c655e0329050e8f262806a72e7da025892461",
-    "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
+    "problemId": "bpj-release-readiness",
+    "status": "existing_readonly_release_gate_verified",
+    "verification": "iteration-2026-10-17.md",
+    "sourceMainCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+    "supportingReleaseCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+    "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+    "pullRequest": 182,
+    "scope": "Chinese daily follow-up reused independently authorized English product release; no additional site change or dispatch.",
     "review": {
       "optimizationRounds": 3,
       "adversarialIndependentReviewRounds": 2,
-      "firstRound": "Independent GitHub jobs/logs and commit review: real browser gates passed on later product release; actual deployments and IndexNow distinguished from final failures and registry unknown.",
-      "secondRound": "Independent read-only review of four public documents, private report and original receipts passed. Corrected ambiguous old/new readiness commit fields and rechecked them. Verified source timing, scope, links and privacy; no browser/backend/production request performed by this reviewer.",
-      "implementationSelfCheck": true,
-      "rootSelfCheck": "Current original snapshots, one public readiness GET, three public pages and three exact assets, video-fit SEO/GEO test and scoped Windsor reads. No production analysis events."
+      "firstRound": "Independent GitHub snapshot/queue/PR/run review; five v2 keys and exact source times checked. Initial mistaken registry-skipped statement corrected against full job logs.",
+      "secondRound": "Completed independent review of five public documents and private receipt metadata: dates, scope, privacy, bounded history and original experiment retained. Reviewer did not independently refetch full GitHub logs. Fixed registry scope and stale latest-deployed commit before submission.",
+      "rootSelfCheck": "One public Chinese page and one published change-manifest GET; reused original caches and actual CI receipts. No direct reach, Windsor, user-event or lifecycle request."
     },
     "existingDeployment": {
-      "sourceCommit": "714c655e0329050e8f262806a72e7da025892461",
-      "run": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
-      "deployedAt": "2026-10-15T15:44:46.440Z",
-      "workflowConclusion": "failure",
-      "reason": "Post-deploy membership ready assertion failed; subsequent checks and IndexNow skipped. Browser and earlier public surface gates passed.",
+      "sourceCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+      "deployedAt": "2026-10-17T02:16:27.5844555Z",
+      "workflowConclusion": "success",
       "indexNow": {
-        "status": "skipped_in_this_product_release",
-        "sourceDailyRun": "https://github.com/f-tiger/agi-site/actions/runs/38684758473",
-        "sourceDailyReceivedCount": 254,
-        "sourceDailyReceiptWindowUtc": "2026-10-15T05:13:41Z/2026-10-15T05:13:44Z",
-        "meaning": "Original daily submission received HTTP200; reception is not indexing."
+        "status": "received_http200",
+        "count": 230,
+        "receiptWindowUtc": "2026-10-17T02:17:45Z/2026-10-17T02:17:47Z",
+        "meaning": "Changed site canonical URLs; not 230 English pages, indexing or traffic."
       }
     },
     "deployment": {
       "required": false,
-      "status": "not_required_docs_only",
-      "dispatchCountThisIteration": 0,
-      "indexNowSubmitted": false,
-      "siteCodeChanged": false
+      "status": "not_required_docs_only_for_chinese_followup",
+      "additionalDispatchCountForChineseDailyAction": 0,
+      "additionalIndexNowSubmitted": false,
+      "siteCodeChangedForChineseDailyAction": false
     },
-    "nextAction": "Complete existing tutorial manual playback/audio review and establish an authorized usable distribution channel; no similar production while blocked. Inspect next original scheduled receipts on Oct17. First weekly review remains Oct20."
+    "nextAction": "Keep distribution/manual tutorial acceptance blocked without new drafts. Read next original scheduled receipt on Oct18 and complete original Oct20 weekly review even if real-use evidence remains insufficient.",
+    "documentationPullRequest": "https://github.com/f-tiger/agi-site/pull/184"
   },
   "recentActions": [
     {
@@ -330,8 +308,229 @@
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
       "evidence": "iteration-2026-10-16.md",
       "deploymentRequired": false
+    },
+    {
+      "date": "2026-10-17",
+      "problemId": "bpj-release-readiness",
+      "status": "existing_readonly_release_gate_verified",
+      "supportingReleaseCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+      "evidence": "iteration-2026-10-17.md",
+      "additionalDeploymentRequired": false
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
-  "sourcePolicy": "Keep one latest observation per data source; preserve source generation separately from monitoring time and keep only bounded action history."
+  "sourcePolicy": "Keep one latest observation per data source; preserve source generation separately from monitoring time and keep only bounded action history.",
+  "englishExpansion": {
+    "problemId": "bpj-english-ai-video-discovery",
+    "authorizedAt": "2026-10-17",
+    "status": "deployed_and_live_verified_distribution_blocked",
+    "route": "https://baipiaoji.com/en/ai-video/",
+    "sourceMainCommit": "a3ebe61944fed602320d0da7e0f18308f12508ac",
+    "evidence": "../framepick-library-expansion-2026-10-17.md",
+    "sources": [
+      "Runway AI Festival 2026/2025/2024",
+      "Reply AI Film Festival 2026",
+      "Higgsfield Original Series 2026",
+      "Runway Watch 2023/2024 archive",
+      "Curious Refuge October 2026 editorial gallery",
+      "Runway Gen:48 2023/2024",
+      "Runway AI Film Festival 2023 archive",
+      "Curious Refuge Feel-Good competition 2026"
+    ],
+    "rankingMeaning": "Festival recognition, publisher showcases and editorial collections remain separate; historical source years are not new release dates. No comparable US/EU audience popularity chart is verified.",
+    "reviewedAt": "2026-10-17T07:24:21.789581Z",
+    "implementationCommit": "b2d52f51c68371fdd155ba3bf662ef68a9678f60",
+    "pullRequest": "https://github.com/f-tiger/agi-site/pull/186",
+    "deployment": {
+      "status": "success",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777195",
+      "sourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+      "mode": "existing_push_readonly_product_release",
+      "dispatchCount": 0,
+      "deployedAt": "2026-10-17T07:18:20.816Z",
+      "workflowConclusion": "success",
+      "workflowUpdatedAt": "2026-10-17T07:19:15Z",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "artifactUrl": "https://85aae61e.aiyangmao.pages.dev",
+      "liveVerifiedResources": 11,
+      "liveVerifiedAt": "2026-10-17T07:18:41.646Z",
+      "ciQuoteFixture": "passed_2026-10-17T07:15:26.326Z_before_deployment",
+      "ga4": "installed_and_live_surface_verified_backend_receipt_unverified",
+      "indexNow": {
+        "status": "received_http200",
+        "changedSiteUrls": 2,
+        "batchCounts": [
+          2
+        ],
+        "receivedAt": "2026-10-17T07:18:53.824Z",
+        "canonicalUrls": [
+          "https://baipiaoji.com/en/",
+          "https://baipiaoji.com/en/ai-video/"
+        ],
+        "englishRouteInPublishedManifest": true,
+        "manifestObservedAt": "2026-10-17T07:19:32.843751Z",
+        "meaning": "Reception of changed canonical URLs, not indexing, search position, AI citations or traffic."
+      }
+    },
+    "adoption": "unverified_no_new_analytics_or_user_research_this_round",
+    "revenue": "unverified_no_framepick_viewing_commission_agreement",
+    "nextAction": "Prioritize real distribution and reference-finding tasks. Admit further recent/viral entries only with original-author access and comparable dated evidence. Preserve October 20 review. Existing marketing publication remains blocked; no new analytics query, outreach, account or draft was created.",
+    "catalogue": {
+      "uniqueWorks": 217,
+      "previousUniqueWorks": 124,
+      "addedWorks": 93,
+      "sourceCollections": 12,
+      "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
+      "additionComposition": {
+        "runwayGen48": 69,
+        "runwayMusicVideos": 8,
+        "runwayAIFF2023": 8,
+        "curiousFeelGood": 8
+      },
+      "newAdditionSourcePublicationWindow": null,
+      "meaning": "Historical archive years and source check times are not film release dates or audience counts. All 93 additions retain unknown source publication and upload dates; the previous 124 entries preserve their original evidence.",
+      "evidence": "../framepick-library-expansion-2026-10-17.md",
+      "additionSourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z"
+    },
+    "review": {
+      "optimizationRounds": 3,
+      "independentAdversarialRounds": 2,
+      "firstRound": "Independent pre-expansion risks: years, finalists, source-note semantics and nested recognition boundaries.",
+      "secondRound": "Independent final baseline comparison, 85 original HTML receipts and eight cached Curious identities; 217-record export/search agreement. Separate independent final-build browser acceptance at desktop/360/390px.",
+      "authorSelfCheck": "Data authors compared all additions with source receipts and original entries with baseline; core tests passed.",
+      "rootSelfCheck": "Full build/final GA4/public engagement/static/canonical/lastmod/IndexNow-selection passed; coordinator confirmed completed-success CI and published two-URL manifest, reusing independent observer and CI live receipts.",
+      "publicEvidence": "../framepick-library-expansion-2026-10-17.md"
+    },
+    "viralResearch": {
+      "problemId": "bpj-english-viral-source-readiness",
+      "status": "research_reviewed_current_ranking_not_verified",
+      "evidence": "../english-video-viral-research-2026-10-17.md",
+      "observedAt": "2026-10-17T02:21:46.577836Z",
+      "latestPrimaryTrendSourcePublishedAt": "2026-09-23",
+      "sourceDateTimezone": "Not specified by source; observation is UTC.",
+      "userMeaning": "Very popular videos; not restricted to brainrot.",
+      "priorities": [
+        "AI mini-dramas",
+        "Visual fantasy and satisfying AI videos",
+        "Character and comedy shorts"
+      ],
+      "blockingEvidence": "Current original-author viewing entries and comparable country-specific counters remain incomplete. Historical media totals cannot be published as an October live chart.",
+      "nextReviewDate": "2026-10-20"
+    },
+    "initialReleaseEvidence": "../english-video-launch-2026-10-17.md",
+    "mergeCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+    "marketing": {
+      "problemId": "bpj-english-distribution-readiness",
+      "status": "review_materials_ready_distribution_blocked",
+      "evidence": "../english-video-marketing-2026-10-17.md",
+      "observationWindowUtc": "2026-10-17T06:15Z/2026-10-17T06:17Z",
+      "reviewCopies": 2,
+      "externalPostsSent": 0,
+      "candidateChannels": [
+        "r/aivideo",
+        "r/ArtificialInteligence"
+      ],
+      "channelEligibility": "unknown_current_rules_unreadable_or_403",
+      "nextReviewDate": "2026-10-20",
+      "nextAction": "Verify current community rules and an existing authorized publishing context before a specific authorized publication; use the verified live catalogue count then. Do not manufacture more drafts while distribution remains blocked.",
+      "meaning": "Prepared review copies and owned-page publication are not independent distribution, referred users or adoption.",
+      "observationTimePrecision": "minute",
+      "catalogueSnapshotInReviewCopies": 124
+    },
+    "dependentAutomation": {
+      "trigger": "Existing ECO/AGI/TDS workflow path filters include sites/baipiaoji/lib/**.",
+      "sourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+      "runs": [
+        {
+          "site": "eco",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777158",
+          "deployed": true,
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d"
+        },
+        {
+          "site": "tds",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777130",
+          "deployed": true,
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d"
+        },
+        {
+          "site": "agi",
+          "run": "https://github.com/f-tiger/agi-site/actions/runs/39012777179",
+          "deployed": true,
+          "conclusion": "success",
+          "status": "completed",
+          "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+          "finalMainGuardAt": "2026-10-17T07:21:43.101Z",
+          "deployedAt": "2026-10-17T07:21:56.112Z",
+          "workflowUpdatedAt": "2026-10-17T07:22:40Z"
+        }
+      ],
+      "meaning": "All three automatically associated push runs completed success; the separate earlier AGI schedule failed after deployment. No non-BPJ source edits, extra dispatch/cancellation or account repair. Documentation commit waited for all publishers to complete.",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "earlierScheduledRun": {
+        "site": "agi",
+        "run": "https://github.com/f-tiger/agi-site/actions/runs/39012760312",
+        "eventSourceCommit": "0972597480509d888882f77f8daef97199519f92",
+        "actualBuiltSourceCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+        "deployed": true,
+        "conclusion": "failure",
+        "failure": "existing_postdeployment_github_source_connector_http429",
+        "workflowUpdatedAt": "2026-10-17T07:17:17Z",
+        "meaning": "Separate scheduled failure; not repaired or causally attributed to the BPJ change. No retry/cancellation."
+      }
+    },
+    "contentExpansion": {
+      "problemId": "bpj-english-library-coverage",
+      "status": "deployed_and_live_verified",
+      "baseMainCommit": "aec5af60dbd4d62b11f9285a55c4732c39d5e35c",
+      "evidence": "../framepick-library-expansion-2026-10-17.md",
+      "previousUniqueWorks": 124,
+      "addedWorks": 93,
+      "additionComposition": {
+        "runwayGen48": 69,
+        "runwayMusicVideos": 8,
+        "runwayAIFF2023": 8,
+        "curiousFeelGood": 8
+      },
+      "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
+      "sourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z",
+      "observedAt": "2026-10-17T07:24:21.789581Z",
+      "meaning": "Published metadata coverage, not new film releases, audience popularity, verified plays or independent adoption. Source snapshot generation and monitoring times are separate.",
+      "sourceEvidence": "85 official Runway detail pages matched source identities and actual image/player references; eight Feel-Good selections reused the earlier official cached page. Original 124 works/eight sources are unchanged.",
+      "nextAction": "Prioritize real distribution and reference-finding tasks. Admit further recent/viral entries only with original-author access and comparable dated evidence. Preserve October 20 review.",
+      "validation": {
+        "optimizationRounds": 3,
+        "independentAdversarialRounds": 2,
+        "dataContractTests": 8,
+        "finalEnglishTests": 6,
+        "fullBuild": "passed",
+        "independentBrowser": "passed_desktop_360_390_and_new_collections",
+        "rootSelfCheck": "Full build/final GA4/public engagement/static/canonical/lastmod/IndexNow-selection passed; coordinator confirmed completed-success CI and published two-URL manifest, reusing independent observer and CI live receipts.",
+        "dataAuthorSelfCheck": "original entries preserved and source receipts matched",
+        "limitations": "No field performance, completed video playback, GA4 backend receipt or independent adoption established."
+      },
+      "implementationCommit": "b2d52f51c68371fdd155ba3bf662ef68a9678f60",
+      "pullRequest": "https://github.com/f-tiger/agi-site/pull/186",
+      "mergeCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
+      "uniqueWorks": 217,
+      "sourceCollections": 12
+    }
+  },
+  "operationalChecks": {
+    "observedAt": "2026-10-17T02:18:03Z",
+    "run": "https://github.com/f-tiger/agi-site/actions/runs/38993747897",
+    "sourceCommit": "48c4e20723aa69d0fe775a9649f676355dd060ca",
+    "readiness": "current_readonly_get_verified",
+    "registryDiscovery": "listed_with_two_static_http200_surfaces",
+    "startupRegistryVersion": "already_registered_check_passed_publish_skipped",
+    "previousFailureRun": "https://github.com/f-tiger/agi-site/actions/runs/38852851735",
+    "nextOriginalScheduleReviewDate": "2026-10-18",
+    "meaning": "Current successful checks do not rewrite historical failed runs or guarantee future maintenance. No registration or payment mutation.",
+    "registryScope": "Existing verified-ai-free-tiers discovery and startup MCP version; not a new video-specific registry recheck or independent adoption."
+  }
 }

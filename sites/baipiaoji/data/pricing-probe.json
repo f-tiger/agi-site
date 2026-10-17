@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-16",
+ "generated": "2026-10-17",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "zhipu-glm",
-  "kimi",
-  "feishu-miaoji",
-  "exa",
-  "tongyi-wanxiang",
-  "haiper",
   "tongyi",
-  "quillbot"
+  "liblib",
+  "elicit",
+  "immersive-translate",
+  "wordvice",
+  "github-models",
+  "ms-copilot",
+  "wenxin"
  ],
- "cursor": "quillbot",
+ "cursor": "wenxin",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -342,7 +342,7 @@
    "name": "沉浸式翻译",
    "cat": "writing",
    "reach": 6,
-   "probed": "2026-10-05",
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -454,7 +454,7 @@
    "name": "通义千问",
    "cat": "chat",
    "reach": 8,
-   "probed": "2026-10-16",
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -627,8 +627,8 @@
    "slug": "github-models",
    "name": "GitHub Models",
    "cat": "coding",
-   "reach": 2,
-   "probed": "2026-10-06",
+   "reach": 5,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -713,8 +713,8 @@
    "slug": "ms-copilot",
    "name": "微软 Copilot",
    "cat": "chat",
-   "reach": 3,
-   "probed": "2026-10-06",
+   "reach": 5,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -727,7 +727,7 @@
     {
      "url": "https://copilot.microsoft.com/price",
      "status": 200,
-     "bytes": 38545,
+     "bytes": 36821,
      "tokens": 0
     },
     {
@@ -1382,15 +1382,15 @@
    "slug": "elicit",
    "name": "Elicit",
    "cat": "study",
-   "reach": 3,
-   "probed": "2026-10-05",
+   "reach": 6,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://elicit.com/pricing",
      "status": 200,
-     "bytes": 540586,
+     "bytes": 541237,
      "tokens": 27
     }
    ],
@@ -2971,8 +2971,8 @@
    "slug": "liblib",
    "name": "LiblibAI 哩布哩布",
    "cat": "image",
-   "reach": 6,
-   "probed": "2026-10-05",
+   "reach": 7,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -3001,27 +3001,27 @@
    "slug": "wenxin",
    "name": "文心一言（百度）",
    "cat": "chat",
-   "reach": 4,
-   "probed": "2026-10-05",
+   "reach": 5,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yiyan.baidu.com/pricing",
      "status": 200,
-     "bytes": 10989,
+     "bytes": 11143,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/price",
      "status": 200,
-     "bytes": 10995,
+     "bytes": 11131,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/plans",
      "status": 200,
-     "bytes": 11001,
+     "bytes": 11167,
      "tokens": 0
     }
    ],
@@ -3035,8 +3035,8 @@
    "slug": "wordvice",
    "name": "Wordvice AI",
    "cat": "writing",
-   "reach": 4,
-   "probed": "2026-10-05",
+   "reach": 6,
+   "probed": "2026-10-17",
    "env": "runner",
    "state": "ready",
    "tried": [

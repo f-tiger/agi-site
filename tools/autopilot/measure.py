@@ -70,7 +70,10 @@ def eco_trend(data):
         notes.append("suspect_outage: /api/trend returned no pages; this site has known "
                      "human traffic, and the endpoint returns empty arrays on failure "
                      "without an error flag — treated as unreadable, not as zero")
-    return pages, {"events": events, "zero_hits": data.get("zero_hits") or []}, notes
+    # The snapshot is committed publicly. Preserve only a record count, never
+    # reader-entered queries (which may include contact details or private text).
+    zero_hits = data.get("zero_hits")
+    return pages, {"events": events, "zero_hit_records": len(zero_hits) if isinstance(zero_hits, list) else None}, notes
 
 
 def agi_trends(data):

@@ -6,6 +6,7 @@ Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/12l-vs-20l-dehum
 
 ## Compare the same temperature and humidity
 The figures below are manufacturer specifications for the MeacoDry Arete One family, read on 4 October 2026. They are not EcoBack measurements, an independent ranking, or a comparison with Arete Two. Litres/day describe water extraction at the stated test point.
+
 Model | Conditions | Extraction | Power |
 Arete One 12L | 10°C / 60% RH | 1.95 L/day | 130 W |
 Arete One 20L | 10°C / 60% RH | 3.4 L/day | 180 W |
@@ -26,6 +27,33 @@ Note the actual room volume, temperature, moisture source, door arrangement and 
 ## A cold room changes the decision
 Check the manufacturer’s operating range and performance curve. A cold-room decision may involve compressor versus desiccant operation, but do not assume that a technology label proves the lower whole-session cost. Follow the actual manual and account for the room’s moisture source.
 [Compare desiccant and compressor operation](https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html) · [Measure laundry running cost](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html#laundry-check).
+Keep the appliance you have · UK filter care
+
+## Does this Meaco filter fit, and do you need it?
+Choose from the labels on your appliance. No account, measurements or typing needed. This check covers the official Arete One/Two 10L/12L H13 filter listing only; other sizes remain unverified.
+The model and maintenance guidance below works without JavaScript. Interactive selection and copying require JavaScript.
+
+###
+
+See the dated cost example and its limits.
+Copy this guidance
+Guidance to copy
+
+### Model match and a no-purchase option
+The official Meaco 10L/12L H13 filter page, read on 17 October 2026, lists Arete One 10L, Arete One 12L, Arete Two 10L and Arete Two 12L. This is not verification for 20L, 25L, Platinum or a similar-looking filter.
+For this verified family, Meaco says the additional HEPA filter does not have to be fitted all the time. For dehumidifying alone it is optional. Keep and maintain the standard dust filter as directed in your model manual. The manufacturer says adding HEPA slightly reduces water extraction efficiency and increases noise. This page does not assess medical needs or promise health benefits.
+Do not wash, cut or improvise a HEPA filter. The standard dust filter and the replaceable HEPA filter are different parts; follow the exact model manual for cleaning and replacement.
+
+### Annual consumption is not the same as buying whole packs
+The official listing showed **£29.99 for three filters** when read on 17 October 2026. It showed unavailable stock at that reading; that is a dated observation, not a current stock promise. Check the exact item, current stock, delivery charges and return conditions with the seller before buying. This is an ordinary manufacturer source, not an affiliate buying link.
+The manufacturer gives roughly three months as a replacement reference, depending on conditions. It is not a guaranteed filter lifespan. The example below uses four filters in a year and starts with no filters in hand; any filter included with your appliance is excluded.
+Illustration at the dated pack price; not a quote or a replacement scheduleWhat is counted | Example |
+Annual filters consumed | 4 filters |
+Annual consumption cost | 4 × (£29.99 ÷ 3) = £39.99, rounded |
+Whole packs bought from zero stock | 2 packs × £29.99 = £59.98 |
+Filters left after that year | 6 bought − 4 used = 2 |
+
+Unused filters are inventory, not money lost or a cash saving. Delivery, future prices, disposal, electricity and any included filter are excluded. Follow your manual and filter condition instead of treating this example as a personal replacement schedule.
 
 ## UK purchase checklist
 Check the exact model and seller before paying. A German listing or an English-language page does not establish UK compatibility or delivery. EcoBack has not verified a UK affiliate buying link for these models; the manufacturer links below are ordinary sources, not commission links.

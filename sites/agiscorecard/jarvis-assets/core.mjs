@@ -1,5 +1,5 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261014-23';
+export const VERSION='jarvis-20261017-24';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;

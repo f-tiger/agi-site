@@ -41,6 +41,13 @@ Private account readings and commercial records are intentionally omitted.
 
 ## Remaining release verification
 
+Afternoon continuation: a narrow pull-request-only `check-tds-display.yml`
+reuses the repository's pinned Playwright dependency on a standard GitHub
+runner. It requires read-only contents, no secrets and an eight-minute limit;
+there is no schedule, source fetch, deployment or live measurement request.
+This preserves a repeatable browser regression gate rather than relying on an
+unavailable local binary. Its actual result must still be checked before release.
+
 PR #180 is intentionally a draft. Chromium was not installed in the editing
 environment, and the standard Playwright installer returned an empty/truncated
 archive. The browser smoke did not run; the passing VM UI tests above are not a

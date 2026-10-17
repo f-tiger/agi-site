@@ -169,6 +169,11 @@ def main():
     ok = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + good}, "2026-09-12")
     check("a well-formed measurement is accepted with its pages",
           ok["ok"] and ok["pages"]["/guide/a.html"]["n7"] == 12)
+    _, public_extra, _ = measure.eco_trend({"pages": [{"page": "/guide/a.html", "n7": 1, "p7": 0}],
+                                          "zero_hits": [{"q": "private@example.test SECRET", "n": 2}]})
+    check("Eco public snapshots never copy raw reader searches",
+          public_extra.get("zero_hit_records") == 1 and "SECRET" not in json.dumps(public_extra)
+          and "zero_hits" not in public_extra)
     rej = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + bad}, "2026-09-12")
     check("a malformed measurement is rejected whole, not half-parsed",
           not rej["ok"] and rej["pages"] == {} and "shape rejected" in rej.get("reason", ""),

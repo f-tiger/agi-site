@@ -4758,6 +4758,11 @@ def main():
         if "amazon.de/s?k=" in new:
             new = inject_usswitch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=False)
+        if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html'):
+            # These guides qualify a specific maintenance/fit decision. Generic
+            # shopping overlays bypass it and may advertise an unrelated device.
+            for marker in ('EB_TOPPICK', 'EB_MODELS', 'EB_STICKY', 'EB_PROFILE', 'EB_USMARKET', 'EB_POPUP', 'EB_USSWITCH'):
+                new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1
