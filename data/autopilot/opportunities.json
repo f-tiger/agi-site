@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-16",
- "radar_fetched": "2026-10-16",
+ "generated": "2026-10-17",
+ "radar_fetched": "2026-10-17",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 14,
+  "candidates": 10,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 14,
+  "scout": 10,
   "supplied": 1
  },
  "opportunities": [
@@ -31,21 +31,6 @@
    "state": "scout",
    "supplied": false,
    "score": 2.38,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "any solution for bookmarks on various services",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-10-09"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.29,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -96,21 +81,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there an android shell program which returns open windows titles in last focu",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "web push notifications server",
    "site": "",
    "kind": "request-board",
@@ -156,21 +126,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "software that converts pen hovering mode to pen contact down down mode",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-09"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "does anything similar to a live dna editor exist",
    "site": "",
    "kind": "request-board",
@@ -181,21 +136,6 @@
    "state": "scout",
    "supplied": false,
    "score": 1.98,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there an android shell program to switch to any open application according to",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 1.96,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -229,8 +169,17 @@
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: GitVolt, open source fast Git GUI (Tauri/CEF)",
-     "url": "https://gitvolt.com/",
+     "title": "Show HN: OneDeploy – Managed open-source apps with nightly backups and TLS",
+     "url": "https://onedeploy.co",
+     "src": "hn_show",
+     "shared": [
+      "open",
+      "source"
+     ]
+    },
+    {
+     "title": "Show HN: Anima, interactive biology models from plain English (open source)",
+     "url": "https://anima.arcumet.com",
      "src": "hn_show",
      "shared": [
       "open",

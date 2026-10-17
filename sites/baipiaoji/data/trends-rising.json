@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-16",
+ "fetched": "2026-10-17",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -189,94 +189,94 @@
   "gemini": {
    "rising": [
     {
-     "q": "gemini 3.8 flash",
-     "v": 7500
+     "q": "gemini 4 argon",
+     "v": 12650
     },
     {
-     "q": "gemini 4 argon",
-     "v": 4300
+     "q": "gemini 3.8 flash",
+     "v": 9550
+    },
+    {
+     "q": "gemini argon",
+     "v": 5150
     },
     {
      "q": "gemini 3.7 flash",
-     "v": 3000
+     "v": 2300
     },
     {
      "q": "sergey brin google gemini ban",
-     "v": 2350
-    },
-    {
-     "q": "gemini 3.6",
-     "v": 600
+     "v": 1900
     },
     {
      "q": "gemini notebook",
-     "v": 600
+     "v": 750
+    },
+    {
+     "q": "gemini 3.6",
+     "v": 550
+    },
+    {
+     "q": "what is gemini notebook",
+     "v": 250
     },
     {
      "q": "gemini notebook lm",
-     "v": 160
+     "v": 180
     },
     {
      "q": "notebook lm",
-     "v": 160
-    },
-    {
-     "q": "gemini student offer",
-     "v": 130
-    },
-    {
-     "q": "gemini lm",
-     "v": 80
+     "v": 180
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-06"
+   "fetched": "2026-10-17"
   },
   "perplexity": {
    "rising": [
     {
-     "q": "chatgpt claude perplexity financial advice",
-     "v": 15800
-    },
-    {
      "q": "best time to visit maldives",
-     "v": 10000
+     "v": 38800
     },
     {
      "q": "top tourist attractions in paris",
-     "v": 8800
-    },
-    {
-     "q": "cheapest flights to tokyo",
-     "v": 8550
+     "v": 38650
     },
     {
      "q": "how to bake a cake",
-     "v": 1900
+     "v": 35800
     },
     {
      "q": "how to make sushi",
-     "v": 1100
+     "v": 35150
+    },
+    {
+     "q": "cheapest flights to tokyo",
+     "v": 33350
+    },
+    {
+     "q": "chatgpt claude perplexity financial advice",
+     "v": 17100
+    },
+    {
+     "q": "datadog careers",
+     "v": 7150
+    },
+    {
+     "q": "kimi k3",
+     "v": 6600
     },
     {
      "q": "best pizza near me",
-     "v": 700
+     "v": 4250
     },
     {
-     "q": "perplexity nvidia local ai agent",
-     "v": 650
-    },
-    {
-     "q": "perplec",
-     "v": 500
-    },
-    {
-     "q": "perplex",
-     "v": 170
+     "q": "vanta careers",
+     "v": 2000
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-06"
+   "fetched": "2026-10-17"
   },
   "cursor": {
    "rising": [
