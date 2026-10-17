@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-17T06:47:32.080633Z",
+  "updatedAt": "2026-10-17T07:10:30.032620Z",
   "stage": "current_readonly_release_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-17",
@@ -460,6 +460,39 @@
         }
       ],
       "meaning": "Automatically triggered dependencies, not non-BPJ source edits. No cancellation, extra dispatch or account-config repair was performed; actual deployments are not full gate acceptance."
+    },
+    "contentExpansion": {
+      "problemId": "bpj-english-library-coverage",
+      "status": "local_acceptance_passed_pending_release",
+      "baseMainCommit": "aec5af60dbd4d62b11f9285a55c4732c39d5e35c",
+      "evidence": "../framepick-library-expansion-2026-10-17.md",
+      "candidateUniqueWorks": 217,
+      "previousUniqueWorks": 124,
+      "addedWorks": 93,
+      "candidateSourceCollections": 12,
+      "additionComposition": {
+        "runwayGen48": 69,
+        "runwayMusicVideos": 8,
+        "runwayAIFF2023": 8,
+        "curiousFeelGood": 8
+      },
+      "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
+      "sourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z",
+      "observedAt": "2026-10-17T07:10:30.032620Z",
+      "meaning": "Candidate metadata coverage; not new film releases, audience popularity, verified plays or independent adoption. Prior deployed catalogue and receipt remain in deployment/catalogue until this release is verified.",
+      "sourceEvidence": "85 official Runway detail pages matched source identities and actual image/player references; eight Feel-Good selections reused the earlier official cached page. Original 124 works/eight sources are unchanged.",
+      "nextAction": "Merge once and let existing readonly product-release CI complete all gates; verify actual deployed 217-work snapshot and changed-canonical IndexNow before marking live.",
+      "validation": {
+        "optimizationRounds": 3,
+        "independentAdversarialRounds": 2,
+        "dataContractTests": 8,
+        "finalEnglishTests": 6,
+        "fullBuild": "passed",
+        "independentBrowser": "passed_desktop_360_390_and_new_collections",
+        "rootSelfCheck": "full build/final GA4 and public engagement/static/canonical/lastmod/IndexNow-selection checks passed; no live claim",
+        "dataAuthorSelfCheck": "original entries preserved and source receipts matched",
+        "limitations": "No live release yet; full mandatory CI including quote export remains required. No field performance or GA4 backend receipt proven."
+      }
     }
   },
   "operationalChecks": {
