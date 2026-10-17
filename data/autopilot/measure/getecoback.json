@@ -3,11 +3,11 @@
   "events": {
    "affiliate_click": {
     "n7": 11,
-    "p7": 18
+    "p7": 15
    },
    "btu_calc": {
-    "n7": 10,
-    "p7": 10
+    "n7": 11,
+    "p7": 11
    },
    "buyer_result": {
     "n7": 0,
@@ -18,94 +18,94 @@
     "p7": 3
    },
    "cold_now": {
-    "n7": 0,
+    "n7": 1,
     "p7": 5
    },
    "feuchte_now": {
     "n7": 8,
-    "p7": 13
+    "p7": 10
    },
    "heat_now": {
-    "n7": 2,
+    "n7": 1,
     "p7": 6
    },
    "laundry_view": {
-    "n7": 2,
-    "p7": 1
+    "n7": 1,
+    "p7": 2
    },
    "md_serve": {
     "n7": 0,
     "p7": 1
    },
    "page_view": {
-    "n7": 111,
-    "p7": 177
+    "n7": 99,
+    "p7": 169
    },
    "popup_click": {
     "n7": 1,
     "p7": 2
    },
    "popup_close": {
-    "n7": 11,
-    "p7": 13
+    "n7": 9,
+    "p7": 11
    },
    "popup_view": {
-    "n7": 24,
-    "p7": 30
-   },
-   "seal_fit": {
-    "n7": 0,
-    "p7": 1
+    "n7": 20,
+    "p7": 29
    },
    "strom_now": {
-    "n7": 15,
-    "p7": 12
+    "n7": 9,
+    "p7": 13
    },
    "stromkosten_calc": {
     "n7": 8,
     "p7": 4
    },
    "strompreis_api": {
-    "n7": 3,
+    "n7": 2,
     "p7": 6
    },
    "video_play": {
-    "n7": 1,
+    "n7": 2,
     "p7": 2
    },
    "watt_calc": {
-    "n7": 2,
-    "p7": 0
+    "n7": 1,
+    "p7": 1
    }
   },
-  "zero_hits": []
+  "zero_hit_records": 0
  },
- "fetched": "2026-10-16",
+ "fetched": "2026-10-17",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 7,
-   "p7": 17
+   "n7": 6,
+   "p7": 18
+  },
+  "/en/guide/best-portable-air-conditioner-europe-heatwave.html": {
+   "n7": 2,
+   "p7": 0
   },
   "/en/guide/dehumidifier-drying-clothes-cost.html": {
    "n7": 4,
-   "p7": 1
+   "p7": 0
   },
   "/en/guide/evaporative-cooler-vs-fan.html": {
    "n7": 2,
    "p7": 0
   },
   "/en/guide/portable-ac-not-cooling.html": {
-   "n7": 13,
-   "p7": 2
+   "n7": 12,
+   "p7": 3
   },
-  "/guide/abluftschlauch-verlaengern.html": {
-   "n7": 3,
-   "p7": 5
+  "/en/guide/portable-ac-tilt-and-turn-windows.html": {
+   "n7": 2,
+   "p7": 6
   },
-  "/guide/btu-rechner.html": {
+  "/guide/comfee-geraete-test.html": {
    "n7": 2,
    "p7": 0
   },
@@ -113,21 +113,13 @@
    "n7": 2,
    "p7": 4
   },
-  "/guide/heizung-30-qm.html": {
-   "n7": 2,
-   "p7": 2
-  },
-  "/guide/infrarotheizung-watt-rechner.html": {
-   "n7": 3,
-   "p7": 0
-  },
   "/guide/klimaanlage-reinigen.html": {
    "n7": 3,
    "p7": 1
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 3,
-   "p7": 3
+   "n7": 5,
+   "p7": 4
   },
   "/guide/klimaanlage-zugluft-nackenschmerzen.html": {
    "n7": 2,
@@ -138,40 +130,32 @@
    "p7": 4
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 2,
-   "p7": 4
-  },
-  "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 8,
-   "p7": 9
-  },
-  "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 2
   },
+  "/guide/mobile-klimaanlage-ueberwintern.html": {
+   "n7": 7,
+   "p7": 10
+  },
   "/guide/strompreis-radar.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 6
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 3,
    "p7": 5
   },
-  "/guide/tineco-saugt-nicht-mehr.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 4,
-   "p7": 6
+   "n7": 2,
+   "p7": 8
   },
   "/impressum.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   },
-  "/waeschetrockner-oder-luftentfeuchter.html": {
+  "/kontakt.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   }
  },
  "site": "getecoback",
