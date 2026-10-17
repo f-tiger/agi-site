@@ -2,6 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {businessEvent} from './business.mjs';
+
+test('English AI-work actions have an exact route and no private search or viewing payload', () => {
+ for (const action of ['view','search','filter','preview','outbound','save','unsave','related']) {
+  const name = 'ai_video_' + action;
+  assert.deepEqual(businessEvent('baipiaoji.com','/en/ai-video/',{name}), {name,tool_id:'ai-video',repeat:true});
+  for (const route of ['/manju/','/en/ai-video/private','/ai-video/','/en/ai-video/catalog.json','/account'])
+   assert.equal(businessEvent('baipiaoji.com',route,{name}),null);
+  for (const host of ['getecoback.com','baipiaoji.com.evil.test']) assert.equal(businessEvent(host,'/en/ai-video/',{name}),null);
+  for (const key of ['query','title','id','url','saved','email']) assert.equal(businessEvent('baipiaoji.com','/en/ai-video/',{name,[key]:'PRIVATE'}),null);
+ }
+ for (const name of ['ai_video_play','ai_video_purchase','ai_video_viral','manju_save'])
+  assert.equal(businessEvent('baipiaoji.com','/en/ai-video/',{name}),null);
+});
 import fs from 'node:fs';
 const registry = JSON.parse(fs.readFileSync(new URL('./registry.json', import.meta.url), 'utf8'));
 const registeredHosts = Object.fromEntries(Object.values(registry).flatMap(site => site.hosts.map(host => [host, site.id])));

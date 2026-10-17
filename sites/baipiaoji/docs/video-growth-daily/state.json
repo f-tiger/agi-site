@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-16T02:18:43Z",
+  "updatedAt": "2026-10-17T02:00:03Z",
   "stage": "browser_release_acceptance_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-16",
@@ -333,5 +333,45 @@
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
-  "sourcePolicy": "Keep one latest observation per data source; preserve source generation separately from monitoring time and keep only bounded action history."
+  "sourcePolicy": "Keep one latest observation per data source; preserve source generation separately from monitoring time and keep only bounded action history.",
+  "englishExpansion": {
+    "problemId": "bpj-english-ai-video-discovery",
+    "authorizedAt": "2026-10-17",
+    "status": "locally_verified_pending_release",
+    "route": "https://baipiaoji.com/en/ai-video/",
+    "sourceMainCommit": "6e013b0bfa7c2a76900fc3b870033bac48fd6c2e",
+    "evidence": "../english-video-launch-2026-10-17.md",
+    "sources": [
+      "Runway AI Festival 2026/2025/2024",
+      "Reply AI Film Festival 2026",
+      "Higgsfield Original Series 2026"
+    ],
+    "rankingMeaning": "Separate official festival awards/selections and publisher series showcases; not a US/EU audience popularity chart.",
+    "reviewedAt": "2026-10-17T02:00:03Z",
+    "implementationCommit": null,
+    "pullRequest": null,
+    "deployment": {
+      "status": "pending_existing_readonly_release",
+      "run": null,
+      "deployedAt": null,
+      "indexNow": "not_submitted"
+    },
+    "adoption": "unverified",
+    "revenue": "unverified_no_affiliate_agreement",
+    "nextAction": "Complete independent review and full release gates, deploy current main once, then verify the actual English page and release receipt. Preserve the Chinese experiment and weekly review.",
+    "catalogue": {
+      "uniqueWorks": 40,
+      "sourceEditions": 5,
+      "sourceSnapshotUpdatedAt": "2026-10-17T01:49:01.776146Z",
+      "meaning": "Reviewed metadata snapshot, not live audience counts; observation and source publication dates are preserved per record."
+    },
+    "review": {
+      "optimizationRounds": 3,
+      "independentAdversarialRounds": 2,
+      "sourceReview": "Primary sources and cross-source award meanings checked independently before implementation.",
+      "finalReview": "Separate reviewer verified data cache, UI, privacy and real live-check implementation; no unresolved release blocker.",
+      "authorSelfCheck": true,
+      "rootSelfCheck": "Full final builds, data/static/privacy tests, desktop/mobile browser, canonical/SEO/GEO, GA4 coverage and unchanged Chinese feature checks passed."
+    }
+  }
 }
