@@ -15,6 +15,21 @@ test('English AI-work actions have an exact route and no private search or viewi
  for (const name of ['ai_video_play','ai_video_purchase','ai_video_viral','manju_save'])
   assert.equal(businessEvent('baipiaoji.com','/en/ai-video/',{name}),null);
 });
+
+test('Eco upkeep actions are fixed, route-bound and contain no answers', () => {
+ const routes = {'/guide/tineco-saugt-nicht-mehr.html':'tineco-care', '/guide/thermovorhang-ratgeber.html':'curtain-fit', '/en/guide/12l-vs-20l-dehumidifier-uk.html':'meaco-filter'};
+ for (const [path, tool_id] of Object.entries(routes)) {
+  for (const action of ['view','example','decision','share']) {
+   const detail = {name:'eco_upkeep_' + action};
+   assert.deepEqual(businessEvent('getecoback.com', path, detail), {name:'upkeep_' + action, tool_id, repeat:true});
+   for (const field of ['model','answers','price','tool_id','url','email']) assert.equal(businessEvent('getecoback.com', path, {...detail,[field]:'PRIVATE'}), null);
+   assert.equal(businessEvent('example.com', path, detail), null);
+   assert.equal(businessEvent('getecoback.com', path + '?model=PRIVATE', detail), null);
+  }
+  for (const action of ['purchase','revenue','published']) assert.equal(businessEvent('getecoback.com', path, {name:'eco_upkeep_'+action}), null);
+ }
+ for (const path of ['/','/account.html','/api/private','/guide/unknown.html']) assert.equal(businessEvent('getecoback.com', path, {name:'eco_upkeep_decision'}), null);
+});
 import fs from 'node:fs';
 const registry = JSON.parse(fs.readFileSync(new URL('./registry.json', import.meta.url), 'utf8'));
 const registeredHosts = Object.fromEntries(Object.values(registry).flatMap(site => site.hosts.map(host => [host, site.id])));

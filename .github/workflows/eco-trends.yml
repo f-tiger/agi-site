@@ -1,13 +1,17 @@
-name: getecoback DE trends trigger (daily)
+name: getecoback DE and GB trend evidence (daily)
 
-# 触发器数据面(2026-08-20,owner 指令「Google Trends 应成为站点的触发器」):
-# runner 每日抓德国热搜 → niche 过滤 → 提交 data/trends-de.json,05:00 UTC 的
-# 每日循环把它当输入。04:30 跑,赶在循环之前。公开仓分钟免费;外部副作用
-# (抓 Google)挂 schedule 不挂 push——舰队 CI 纪律第 3 条。
+# Keep the existing daily collection time. This workflow does not start a
+# growth loop or publish pages. A manual evidence-only run validates source
+# receipts and technical audits without refreshing committed snapshots.
 on:
   schedule:
     - cron: '30 4 * * *'
   workflow_dispatch:
+    inputs:
+      evidence_only:
+        description: Collect dated DE/GB evidence without changing committed snapshots
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,7 +31,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: node tools/fetch_trends_de.mjs
+        if: ${{ !inputs.evidence_only }}
       - name: Rising related queries (fast-capture signal)
+        if: ${{ !inputs.evidence_only }}
         run: |
           pip install -q trendspy
           python3 tools/fetch_trends_rising.py || echo "::warning::rising fetch failed — keep last good"
@@ -44,6 +50,7 @@ jobs:
       # queued or built term gets a number on the German scale, and the daily
       # run reads it before building. 2 batches ≈ +1 runner minute a month.
       - name: Monthly seasonality (5-year, only when ≥28 days old)
+        if: ${{ !inputs.evidence_only }}
         run: |
           if python3 -c "import sys, os; sys.path.insert(0,'tools'); import fetch_seasonality as f; q=os.path.join(f.ROOT,'data','seasonality-de-queue.json'); sys.exit(0 if f.is_fresh(f.OUT, 28) and f.is_fresh(q, 28) else 1)"; then
             echo "seasonality files are fresh — skipped"; exit 0
@@ -53,7 +60,24 @@ jobs:
           python3 tools/fetch_seasonality.py --if-older-than 28 || echo "::warning::seasonality refresh failed — keep last good"
           sleep 20
           python3 tools/fetch_seasonality.py --market DE-QUEUE --if-older-than 28 || echo "::warning::queue seasonality refresh failed — keep last good"
+      # Same daily trigger; no new schedule, publication queue or paid API.
+      # Evidence is run-specific: do not commit noisy reports or customer data.
+      - name: Validate bounded opportunity collection
+        working-directory: .
+        run: python3 -m unittest discover -s tools -p test_eco_evolution.py
+      - name: Collect DE and GB evidence and existing-page opportunities
+        working-directory: .
+        run: python3 tools/eco_evolution.py --output-dir "$RUNNER_TEMP/eco-evolution"
+      - name: Keep dated source receipts and candidate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eco-evolution-${{ github.run_id }}
+          path: ${{ runner.temp }}/eco-evolution/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Commit snapshot if changed
+        if: ${{ !inputs.evidence_only }}
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'

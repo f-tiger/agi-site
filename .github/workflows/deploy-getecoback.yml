@@ -207,6 +207,9 @@ jobs:
           node tools/test_product_decisions.mjs
           python3 tools/build_home_fit.py
           node --test tools/test_home_fit.mjs
+          python3 tools/build_upkeep_decisions.py
+          python3 tools/build_upkeep_discovery.py
+          python3 tools/build_onpage.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
 
@@ -259,6 +262,10 @@ jobs:
           python3 tools/test_demand_tools.py
           node --test tools/test_laundry.mjs
           python3 tools/test_trend_radar.py
+          node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
+          python3 tools/test_meaco_generator.py
+          python3 tools/test_upkeep_decisions.py
+          python3 tools/check_upkeep_release.py
 
       - name: Check every affiliate block carries a Werbekennzeichnung
         run: |

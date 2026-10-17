@@ -1,61 +1,53 @@
-# Tineco saugt nicht mehr? Die 4 Ursachen im Überblick (2026)
+# Tineco saugt nicht mehr: Pflege-Check für S5 und S7 FlashDry
 
-> Tineco saugt nicht oder nur schwach: zugesetzter Filter, verschmutzte Tank-Sensoren, gerissener Schlauch oder müder Akku — mit Lösung und Kosten je Ursache.
+> Modell, Symptom und Pflegezustand auswählen: kostenlose Prüfung, Kundendienst oder Ersatzteil-Abgleich. Keine pauschale Filter- oder Akku-Kaufempfehlung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/tineco-saugt-nicht-mehr.html
 
-**Die kurze Antwort:** In den dokumentierten Fällen ist die Reihenfolge fast immer dieselbe — **① zugesetzter Filter** (häufigste Ursache), **② verschmutzte Sensor-Stifte im Schmutzwassertank** (Waschsauger, die „voll" melden oder stoppen), **③ gerissener Schlauch** (Materialermüdung oder zu scharfe Reiniger), **④ verschlissener Akku**. Drei der vier Ursachen kosten zwischen null und wenigen Euro — ein Neugerät ist erst die Antwort, wenn ①–③ ausgeschlossen sind.
+**Die kurze Antwort:** Schwache Saugleistung, eine Tankmeldung oder automatisches Abschalten belegen noch keinen Teiledefekt. Dieser Check trennt kostenlose Pflege, Kundendienst und eine notwendige Ersatzteilprüfung. Er diagnostiziert weder Akku noch Motor.
 
-Diese Seite fasst zusammen, was in öffentlich dokumentierten Fällen tatsächlich geholfen hat — mit Quellenlinks zu den jeweiligen Anleitungen. Wir haben die Geräte nicht selbst zerlegt; wo eine Anleitung verlinkt ist, ist sie die Referenz, nicht wir.
+## Was dieser Check abdeckt
+Die modellbezogenen Grundlagen sind die offiziellen FLOOR-ONE-S5-FAQ und die S7-FlashDry-Hilfe zu Geruch. Die S7-Quelle belegt kein Verfahren für alle Saug- oder Startprobleme. Andere FLOOR-ONE-Varianten dürfen nicht gleichgesetzt werden. EcoBack hat diese Geräte nicht selbst geprüft.
 
-## Symptom → Ursache → Lösung
+## Pflege vor einem Teilekauf
+Beim S5 ist der Filter laut FAQ waschbar und muss vollständig trocknen. Tank-, Walzen- oder Kanalhinweise geben Anlass, die jeweils freigegebenen Pflegeschritte zu prüfen. Beim S7 FlashDry unterscheidet Tineco muffigen Geruch von elektrischem oder verbranntem Geruch. Im ersten Fall nennt der Hersteller die Reinigung von Filter, Tank, Walze und Kanal; im zweiten den Kundendienst.
+Kein pauschaler Tipp zu Essig auf Kontakten, geöffneten Akkus oder einem internen Schlauchtausch: Eine fremde Reparaturanleitung ersetzt die Freigabe für dein Modell nicht. Wiederholtes Abschalten ist kein Nachweis für einen verbrauchten Akku.
 
-Symptom | Häufigste Ursache | Lösung | Kostenrahmen |
+## Wenn ein Ersatzteil tatsächlich nötig ist
 
-Saugleistung lässt schleichend nach | Feinstaub in den Filterlamellen | Filter ausklopfen bzw. nach Herstellerangabe auswaschen, vollständig trocknen lassen; bei altem Filter: tauschen | 0 € / Ersatzfilter-Set |
+- Vollständige Modellvariante vom Typenschild mit der Herstelleranleitung abgleichen.
+- Passende Teilenummer und Lieferumfang vom Hersteller bestätigen lassen; eine Produktaufnahme allein genügt nicht.
+- Verkäufer, Lieferland, Rückgabe und Garantiebedingungen prüfen. Deutschland, Österreich und die Schweiz können unterschiedliche Bedingungen haben.
+Solange die Kompatibilität offen ist, geben wir keine generische „Tineco-kompatibel“-Kaufempfehlung. Bei unklarem Fehler ist Support der nächste Schritt, nicht ein neuer Sauger.
 
-Waschsauger meldet „Tank voll", obwohl leer — oder stoppt | Schmutz-/Kalkfilm auf den zwei Sensor-Stiften im Schmutzwassertank | Kontakte mit leicht feuchtem Tuch und etwas Essig abwischen | 0 € |
+**Was Nutzerberichte beitragen**In der deutschsprachigen Diskussion über Nass-Trocken-Sauger gehören Pflegeaufwand und unterschiedliche Alltagserfahrungen zur Kaufentscheidung. Das erklärt die Fragestellung dieses Checks, belegt aber weder Fehlerhäufigkeit noch eine Reparaturmethode.
 
-Saugt hörbar, aber am Boden kommt nichts an | Riss im Schlauch (Materialermüdung, zu scharfe Reiniger) oder blockierte Bürstenrolle | Schlauch nach Anleitung tauschen; Haare/Fasern von der Walze schneiden | Ersatzschlauch / Ersatzrolle |
+[Weitere EcoBack-Werkzeuge →](https://getecoback.com/tools.html)[Pflege einer mobilen Klimaanlage →](https://getecoback.com/guide/klimaanlage-reinigen.html)
 
-Läuft nur noch kurz oder startet gar nicht | Akku verschlissen | Bei entnehmbarem Akku: Ersatzakku; bei fest verbautem: Reparatur-vs-Neukauf-Rechnung | Ersatzakku oder Neugerät |
-
-## ① Der Filter — die unspektakuläre Ursache Nr. 1
-
-Der am häufigsten dokumentierte Grund für einen schwach saugenden Tineco-Akkusauger ist schlicht ein **zugesetzter oder überalterter Staubfilter**: Feinstaubpartikel setzen sich in den Lamellen fest und drosseln den Luftstrom Stück für Stück (Anleitung bei smarthomeassistent.de). Ausklopfen hilft kurzfristig; wer den Filter wäscht, muss ihn vor dem Einsetzen vollständig trocknen lassen. Ein Wechselrhythmus mit einem zweiten Filter im Schrank ist die billigste Saugkraft-Versicherung, die es gibt.
-
-## ② Die Sensor-Stifte im Schmutzwassertank (Waschsauger)
-
-Floor-One- und iFloor-Modelle messen den Füllstand über **zwei kleine Metallstifte im Schmutzwassertank**. Überzieht sie ein feiner Schmutz- oder Kalkfilm, meldet das Gerät „Tank voll" oder verweigert den Dienst — obwohl der Tank leer ist. Die dokumentierte Lösung ist banal: Kontakte mit einem leicht feuchten Tuch und etwas Essig abwischen (Anleitung bei fixhilfe.de). Wer hartes Wasser hat, kennt das Muster schon von der Kaffeemaschine.
-
-## ③ Der Schlauch-Riss — dokumentiert, reparierbar
-
-Bei Waschsaugern ist ein **gerissener interner Schlauch** ein wiederkehrend dokumentierter Defekt: Das Gerät läuft, aber die Saugleistung bricht ein. Als Ursachen nennt die Reparatur-Anleitung Materialermüdung — und **zu scharfe Reinigungsmittel**, die das Material angreifen (Schritt-für-Schritt-Anleitung bei techtest.org). Die gute Nachricht: Der Tausch ist mit der Anleitung machbar und deutlich billiger als ein Neugerät. Die Konsequenz für den Alltag: nur freigegebene Reinigungslösung verwenden.
-
-## ④ Der Akku — und die ehrliche Reparatur-Rechnung
-
-Lässt die Laufzeit deutlich nach oder startet das Gerät gar nicht mehr, obwohl Filter, Walze und Schlauch in Ordnung sind, bleibt der **Akku** als Verdächtiger. Ist er entnehmbar und als Ersatzteil erhältlich, ist der Tausch die günstigere Route. Ist er fest verbaut, wird aus der Reparaturfrage schnell eine Neukauffrage — und die gehört auf eine eigene Seite, nicht in einen Nebensatz. Herstellerseitige Diagnosehilfen: Tineco Troubleshooting.
-
-## Warum das auf einem Raumklima-Ratgeber steht
-
-Weil Bodenstaub Luftstaub ist: Ein Sauger mit zugesetztem Filter gibt einen Teil des Feinstaubs wieder in die Raumluft ab, statt ihn zu binden. Wer wegen Allergien oder Feinstaub bei der Luftqualität ansetzt, fängt sinnvollerweise beim Gerät an, das den Staub einsammeln soll — erst danach lohnt der Blick auf einen [Luftreiniger](https://getecoback.com/guide/luftreiniger-ratgeber.html).
+Quellen geprüft: 17. Oktober 2026. Technische Hinweise: Tineco S5-FAQ und S7-FlashDry-Geruchshilfe, oben direkt verlinkt. Nutzerbericht: einzelne Erfahrungen, keine repräsentative Erhebung.
 
 ## Häufige Fragen
+Muss ich bei schwacher Saugleistung einen neuen Filter kaufen?Nein. Schwache Saugleistung beweist keinen Filterdefekt. Beim FLOOR ONE S5 lässt sich der Filter laut Hersteller reinigen; er muss vor dem Einsetzen vollständig trocken sein. Bleibt der Fehler bestehen, zuerst die genaue Modellanleitung oder den Kundendienst nutzen.
+Beweist automatisches Abschalten einen defekten Akku?Nein. Die S5-FAQ nennt unter anderem einen vollen Schmutzwassertank als Grund für einen automatischen Stopp. Anzeige und Sprachmeldung prüfen. Ein Akkukauf lässt sich allein aus kurzem Betrieb oder Abschalten nicht begründen.
+Was gilt bei verbranntem Geruch?Das Gerät nicht weiter benutzen, laden oder erneut testen. Bei elektrischem oder verbranntem Geruch verweist die S7-FlashDry-Hilfe an den Kundendienst. Das ist ein anderer Fall als muffiger Geruch; bei unmittelbarer Gefahr gilt der Notruf.
+Passt ein als Tineco-kompatibel angebotenes Ersatzteil?Diese Angabe allein reicht nicht. Vollständige Modellvariante, Teilenummer und Lieferumfang müssen mit den Herstellerangaben übereinstimmen. Dieser Check zertifiziert keine Kompatibilität und empfiehlt keine ungeprüften Ersatzteile.
 
-**Warum saugt mein Tineco plötzlich nicht mehr richtig?**In den dokumentierten Fällen ist die häufigste Ursache ein zugesetzter Staubfilter: Feinstaub lagert sich in den Lamellen ab und drosselt die Saugleistung, lange bevor etwas defekt ist. Filter ausklopfen oder nach Anleitung auswaschen und vollständig trocknen lassen ist der erste Schritt — erst danach lohnt der Blick auf Sensoren, Schlauch und Akku.
+Transparenz: EcoBack wird unter anderem über gekennzeichnete Partnerlinks finanziert. Dieser Check enthält keine ungeprüften Ersatzteil-Kaufempfehlungen. Herstellerhilfen sind gewöhnliche Quellenlinks; wir haben die Geräte nicht selbst getestet.
 
-**Warum meldet mein Tineco Waschsauger einen vollen Schmutzwassertank, obwohl er leer ist?**Bei Waschsaugern sitzen im Schmutzwassertank zwei kleine Sensor-Stifte. Überzieht sie ein Schmutz- oder Kalkfilm, meldet das Gerät einen vollen Tank oder stoppt. Die dokumentierte Lösung: Kontakte mit einem leicht feuchten Tuch und etwas Essig abwischen — kostet nichts und ist in zwei Minuten erledigt.
+- EcoBack · zuerst prüfen
 
-**Lohnt sich die Reparatur, wenn der Schlauch gerissen ist?**Häufig ja: Für gängige Tineco-Modelle gibt es dokumentierte Schritt-für-Schritt-Anleitungen zum Schlauchtausch, und Ersatzschläuche kosten einen Bruchteil eines Neugeräts. Der Riss entsteht laut der verlinkten Anleitung durch Materialermüdung oder zu scharfe Reinigungsmittel — beim Nachkauf also auf freigegebene Reinigungslösung achten.
+## Drei Angaben zum nächsten Pflegeschritt
+Wähle das genaue Modell, die Beobachtung und den Pflegezustand. Keine Seriennummer, keine Texteingabe und kein Konto nötig.
+**Verbrannter oder elektrischer Geruch / Rauch:** Gerät ausschalten, nicht weiter benutzen, laden oder erneut testen. Kundendienst kontaktieren; bei unmittelbarer Gefahr den Notruf wählen.
+Fiktives Beispiel ansehen
 
-**Wann ist der Akku das Problem — und wann das Gerät?**Schaltet das Gerät nach kurzer Laufzeit ab oder springt gar nicht mehr an, obwohl Filter und Walze sauber sind, spricht das für einen verschlissenen Akku. Ob sich der Tausch lohnt, hängt vom Modell ab: Ist der Akku entnehmbar und als Ersatzteil verfügbar, ist er die günstigere Reparatur; ist er fest verbaut, wird aus der Akkufrage schnell eine Neukauffrage.
+###
 
-**Weiterlesen auf EcoBack:**
-[Luftreiniger-Ratgeber: HEPA, CADR und was davon zählt →](https://getecoback.com/guide/luftreiniger-ratgeber.html)
-[Klimaanlage reinigen: die gleiche Pflege-Logik, anderes Gerät →](https://getecoback.com/guide/klimaanlage-reinigen.html)
-[Gerät riecht muffig? Das steckt meist dahinter →](https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html)
+Offizielle Grundlage / Herstellerhilfe lesen →
+Ergebnis zum Teilen kopieren
 
-Transparenz: Wir haben die beschriebenen Geräte nicht selbst zerlegt oder getestet. Diese Seite bündelt öffentlich dokumentierte Fehlerbilder und verlinkt die jeweiligen Original-Anleitungen. Produktlinks auf dieser Seite sind Affiliate-Links (Anzeige) — für dich ändert sich am Preis nichts.
+Deine Auswahl bleibt in diesem Browser. Es werden keine Modell- oder Symptomauswahlen übertragen. Nutzung und Beispielaufruf werden getrennt gezählt; die Datenschutzeinstellung gilt weiterhin. Teilen ist freiwillig und veröffentlicht nichts automatisch.
+Ohne JavaScript: Bei gewöhnlichem Pflegebedarf zuerst die freigegebenen Schritte deiner Modellanleitung prüfen. S5-Filter müssen nach der Reinigung vollständig trocknen. Besteht das Problem weiter, den Kundendienst fragen; kein Filter- oder Akkukauf auf Verdacht.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

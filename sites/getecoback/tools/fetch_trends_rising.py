@@ -9,7 +9,7 @@ trendspy 拉德国 geo 的 related_queries rising,写 data/trends-rising.json。
 规则同舰队管线:≥30s 间隔、keep-last-good、抓不到绝不伪造。
 """
 import json
-import re, os, re, sys, time
+import re, os, sys, time
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +30,7 @@ SEEDS = ["luftentfeuchter", "heizlüfter",
 GEO = "DE"
 TIMEFRAME = "today 3-m"
 GAP_S = 60
-SEEDS_PER_RUN = 2  # 配额极严:每日轮换 2 个,3 天全覆盖
+SEEDS_PER_RUN = 2  # Existing request budget: two of nine seeds daily.
 
 
 def normalize(rq):
@@ -79,15 +79,14 @@ def fetch_rising_rows(tr, seed, geo, timeframe):
             msg = str(e)
             print(f"  rising error {seed!r}: {msg[:120]}", file=sys.stderr)
             if "quota" not in msg.lower():
-                return []
-    return []
+                return None
+    return None  # A failed request is distinct from a successful empty response.
 
 
 
 
 def autocomplete_terms(seed, hl, gl):
-    """Quota-free fallback signal: Google autocomplete for the seed. A term
-    APPEARING vs yesterday's snapshot is our rising proxy (v='new')."""
+    """Vocabulary fallback only. New suggestions are not rising or demand."""
     import urllib.parse, urllib.request
     url = ("https://suggestqueries.google.com/complete/search?client=firefox"
            f"&hl={hl}&gl={gl}&q=" + urllib.parse.quote(seed))
@@ -110,6 +109,13 @@ def main():
     # 未轮到的种子保留上次数据 — but only seeds still in SEEDS. A retired seed kept
     # forever would pin the rail's "Stand" (the oldest seed date) in the past.
     result = {k: v for k, v in previous.items() if k in SEEDS}
+    # Migrate old fallback records even when their seed is not rotated today.
+    # Existing readers treat rising as growth, so suggestions must never live there.
+    for value in result.values():
+        if value.get("source") == "autocomplete-diff":
+            value["source"] = "autocomplete-vocabulary"
+            value["rising"] = []
+            value["signal_limit"] = "vocabulary_only_not_growth_or_search_volume"
     off = datetime.now(timezone.utc).toordinal() % len(SEEDS)
     todays = [SEEDS[(off + k) % len(SEEDS)] for k in range(SEEDS_PER_RUN)]
     print(f"today's rotation: {todays}")
@@ -117,6 +123,7 @@ def main():
         if i:
             time.sleep(GAP_S)
         rows = fetch_rising_rows(tr, seed, GEO, TIMEFRAME)
+        attempted_at = datetime.now(timezone.utc).isoformat()
         if not rows:
             try:
                 terms = autocomplete_terms(seed, "de", "DE")
@@ -124,13 +131,20 @@ def main():
                 prev_terms = set(pv.get("auto", []))
                 new = [t for t in terms if t not in prev_terms and t.strip().lower() != seed.strip().lower()]
                 if terms:
-                    result[seed] = {"auto": terms, "rising": [{"q": t, "v": "new"} for t in new],
-                                    "source": "autocomplete-diff",
+                    result[seed] = {"auto": terms, "new_vocabulary": new, "rising": [],
+                                    "source": "autocomplete-vocabulary",
+                                    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+                                    "last_attempt_at": attempted_at,
+                                    "last_attempt_status": "empty" if rows == [] else "failed",
                                     "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
                     print(f"  autocomplete fallback {seed!r}: {len(terms)} terms, {len(new)} new")
                     continue
             except Exception as e:  # noqa: BLE001
                 print(f"  autocomplete error {seed!r}: {e}", file=sys.stderr)
+            if seed in result:
+                result[seed]["last_attempt_at"] = attempted_at
+                result[seed]["last_attempt_status"] = "empty" if rows == [] else "failed"
+                # Keep its old fetched date; today is only an attempt receipt.
         if rows:
             # Pollution check (2026-09-05). A seed with too little volume comes
             # back padded with whatever Germany is searching nationally —
@@ -161,7 +175,8 @@ def main():
             hits = sum(1 for r in rows if any(t in str(r.get("q", "")).lower() for t in toks))
             polluted = bool(rows) and hits * 3 < len(rows)
             result[seed] = {"rising": rows, "source": "related-queries", "fetched": today,
-                            "polluted": polluted}
+                            "polluted": polluted, "last_attempt_at": attempted_at,
+                            "last_attempt_status": "ok"}
             if polluted:
                 print(f"  seed {seed!r} looks polluted: {hits}/{len(rows)} rows on-topic — flagged")
     if result:
