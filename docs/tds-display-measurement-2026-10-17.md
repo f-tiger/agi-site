@@ -38,3 +38,23 @@ not change the independent collector-growth endpoint's fixed event families.
 Deployment is not established by this document. Consult the PR, successful
 production workflow and matching live build stamp before marking it released.
 Private account readings and commercial records are intentionally omitted.
+
+## Remaining release verification
+
+PR #180 is intentionally a draft. Chromium was not installed in the editing
+environment, and the standard Playwright installer returned an empty/truncated
+archive. The browser smoke did not run; the passing VM UI tests above are not a
+claim of real-browser verification. No production deployment was requested.
+
+On a runner with Chromium available, from the repository root run:
+
+```sh
+npm ci --prefix tools/revenue-studio --ignore-scripts
+node sites/thedollscout/scripts/display-calculator-browser.cjs
+```
+
+The smoke fulfills or aborts every browser request locally, including event
+beacons, so the production-looking URL cannot generate real traffic. Resolve
+this smoke, review CI and main freshness, then follow the normal release and
+live-readback gates. Do not bypass protection or use a successful old build as
+evidence that this patch shipped.
