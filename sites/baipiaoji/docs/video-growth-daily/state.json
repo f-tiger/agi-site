@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-10-17T07:24:21.789581Z",
+  "updatedAt": "2026-10-17T12:28:52.504099Z",
   "stage": "current_readonly_release_verified_distribution_blocked",
   "lastCompletedIteration": {
     "date": "2026-10-17",
@@ -485,40 +485,35 @@
       }
     },
     "contentExpansion": {
-      "problemId": "bpj-english-library-coverage",
-      "status": "deployed_and_live_verified",
-      "baseMainCommit": "aec5af60dbd4d62b11f9285a55c4732c39d5e35c",
-      "evidence": "../framepick-library-expansion-2026-10-17.md",
-      "previousUniqueWorks": 124,
-      "addedWorks": 93,
+      "problemId": "bpj-english-recent-source-coverage",
+      "status": "local_acceptance_passed_not_deployed",
+      "baseMainCommit": "4a4985c70872027d79dbd75cbee392b34779ea31",
+      "evidence": "../framepick-recent-discovery-2026-10-17.md",
+      "previousUniqueWorks": 217,
+      "candidateUniqueWorks": 226,
+      "addedWorks": 9,
+      "sourceCollections": 12,
       "additionComposition": {
-        "runwayGen48": 69,
-        "runwayMusicVideos": 8,
-        "runwayAIFF2023": 8,
-        "curiousFeelGood": 8
+        "shortFilms": 8,
+        "pilotEpisode": 1
       },
-      "sourceSnapshotUpdatedAt": "2026-10-17T07:03:56.031054Z",
-      "sourceObservationWindowUtc": "2026-10-17T06:15:58.230884Z/2026-10-17T07:02:19.255642Z",
-      "observedAt": "2026-10-17T07:24:21.789581Z",
-      "meaning": "Published metadata coverage, not new film releases, audience popularity, verified plays or independent adoption. Source snapshot generation and monitoring times are separate.",
-      "sourceEvidence": "85 official Runway detail pages matched source identities and actual image/player references; eight Feel-Good selections reused the earlier official cached page. Original 124 works/eight sources are unchanged.",
-      "nextAction": "Prioritize real distribution and reference-finding tasks. Admit further recent/viral entries only with original-author access and comparable dated evidence. Preserve October 20 review.",
-      "validation": {
+      "sourceSnapshotUpdatedAt": "2026-10-17T12:22:36.245276Z",
+      "articlePublicationWindowUtc": "2026-10-02T19:00:20Z/2026-10-08T19:00:06Z",
+      "sourceObservationWindowUtc": "2026-10-17T12:17:24.262235Z/2026-10-17T12:20:04.356711Z",
+      "observedAt": "2026-10-17T12:28:52.504099Z",
+      "meaning": "Candidate metadata from recently published source articles, not verified new film uploads or a regional popularity chart. Existing deployed catalogue remains 217 until live acceptance.",
+      "sourceEvidence": "Nine article bodies match film credits, story context, AI classification and actual embedded identities. Original 217 works and 12 sources remain unchanged.",
+      "excluded": "One article lacked a film creator; ten further creator/platform candidates retain unresolved date and counter semantics; two older Runway candidates are research-only.",
+      "review": {
         "optimizationRounds": 3,
         "independentAdversarialRounds": 2,
-        "dataContractTests": 8,
-        "finalEnglishTests": 6,
-        "fullBuild": "passed",
-        "independentBrowser": "passed_desktop_360_390_and_new_collections",
-        "rootSelfCheck": "Full build/final GA4/public engagement/static/canonical/lastmod/IndexNow-selection passed; coordinator confirmed completed-success CI and published two-URL manifest, reusing independent observer and CI live receipts.",
-        "dataAuthorSelfCheck": "original entries preserved and source receipts matched",
-        "limitations": "No field performance, completed video playback, GA4 backend receipt or independent adoption established."
+        "sourceReview": "passed_independent_saved_html_and_baseline_comparison",
+        "dataAuthorSelfCheck": "passed_import_comparison_and_eight_contract_tests",
+        "rootSelfCheck": "full_build_and_postbuild_steps_passed; eight_contract_five_generated_page_six_final_dist_checks_passed; dist_canonical_lastmod_indexnow_tests_passed",
+        "independentBrowserReview": "passed_existing_suite_and_nine_titles_pilot_alias_anchors_mobile_360_390; intercepted_network_not_actual_playback",
+        "browserReviewedAt": "2026-10-17T12:27:08.562Z"
       },
-      "implementationCommit": "b2d52f51c68371fdd155ba3bf662ef68a9678f60",
-      "pullRequest": "https://github.com/f-tiger/agi-site/pull/186",
-      "mergeCommit": "8895aa21fc54b1a803fa266fe541551cd3b74d2d",
-      "uniqueWorks": 217,
-      "sourceCollections": 12
+      "nextAction": "One PR and existing guarded readonly release; verify remote CI, live resources and changed-canonical IndexNow receipt. No extra collection or marketing draft."
     }
   },
   "operationalChecks": {
