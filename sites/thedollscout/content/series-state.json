@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 16,
+  "cursor": 3,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-17"
+      "checked": "2026-10-18"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-17"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-construction",
@@ -66,7 +66,7 @@
       "hash": "28f98009da31c60825cb66c561cfa26ba61308fb311b0ab0508a3c5ac62a0113",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-15"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-sunday",
@@ -84,7 +84,7 @@
       "hash": "0c4d4655c6c04b1f24895150c9b6cb804a163f7f747b9864d34639bbb74f3a2e",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-15"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-work",
@@ -174,7 +174,7 @@
       "hash": "de643babc3e412aa6ec6e0b88e2f892aa16647650cc3f74e477294e703062368",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-15"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-birthday",
@@ -192,7 +192,7 @@
       "hash": "97857a5523237c62d5cd9416237c2dc6d7cbb79a25de898a61e93a6b92586e99",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-15"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-exercising",
@@ -270,7 +270,7 @@
       "hash": "9eda1b03a7a08ff2488e2fb8994dae0b0f3724a0d3c24eea4e2b2e750d189710",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-17"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-series2",
@@ -288,7 +288,7 @@
       "hash": "7a77c7622146078f4572316707b752d1a8ecdd3281d12f0991623349b05cfae3",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-15"
+      "checked": "2026-10-18"
     },
     {
       "id": "sonny-angel-marine-series",
@@ -312,7 +312,7 @@
       "hash": "f6631ea04d33856abfa527809115ee7aaaf287133d0d422b7a9593e74e7b388c",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-17"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-moving",
@@ -354,7 +354,7 @@
       "hash": "0dfd13773723862e8ecb5db6159e34edfc65f6283e4d3095be3a306399ed4c12",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-17"
+      "checked": "2026-10-18"
     },
     {
       "id": "smiski-yoga-series",
@@ -391,9 +391,76 @@
       "published": "2026-10-17",
       "modified": "2026-10-17",
       "checked": "2026-10-17"
+    },
+    {
+      "id": "smiski-series3",
+      "brand": "smiski",
+      "title": "SMISKI Series3",
+      "names": [
+        "Smiski Bridge",
+        "Smiski Peeking",
+        "Smiski Climbing",
+        "Smiski Little",
+        "Smiski Hiding",
+        "Smiski Handstand"
+      ],
+      "source": "https://smiski.com/e/products/series-3/",
+      "hash": "e7b5d8bced638abcc64a60e858fce4f1c34126a9ecd70a8bf4ae23d173c5a75f",
+      "published": "2026-10-18",
+      "modified": "2026-10-18",
+      "checked": "2026-10-18"
+    },
+    {
+      "id": "sonny-angel-animal-series-1",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 1",
+      "names": [
+        "Rabbit",
+        "Elephant",
+        "Panda",
+        "Sloth",
+        "Tiger",
+        "White Bear",
+        "Cockerel",
+        "Dalmatian",
+        "Frog",
+        "Koala",
+        "Monkey",
+        "Owl"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "6cd5532373221409588192ef63be82b3129c8df9e0ec758a6ee30108a3ba6d8f",
+      "published": "2026-10-18",
+      "modified": "2026-10-18",
+      "checked": "2026-10-18"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-18",
+      "status": "ok",
+      "added": [
+        "smiski-series3",
+        "sonny-angel-animal-series-1"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-17",
       "status": "ok",
@@ -661,11 +728,11 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-17",
+    "date": "2026-10-18",
     "status": "ok",
     "added": [
-      "smiski-yoga-series",
-      "smiski-toilet-series"
+      "smiski-series3",
+      "sonny-angel-animal-series-1"
     ],
     "changed": [],
     "eligible": 16,

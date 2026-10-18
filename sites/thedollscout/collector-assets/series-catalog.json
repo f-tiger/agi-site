@@ -1,11 +1,11 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-17",
+    "date": "2026-10-18",
     "status": "ok",
     "added": [
-      "smiski-yoga-series",
-      "smiski-toilet-series"
+      "smiski-series3",
+      "sonny-angel-animal-series-1"
     ],
     "changed": [],
     "eligible": 16,
@@ -48,7 +48,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +78,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -102,7 +102,7 @@
       "source": "https://smiski.com/e/products/construction-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-15",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-construction",
         "de": "https://thedollscout.com/de/series/smiski-construction",
@@ -126,7 +126,7 @@
       "source": "https://smiski.com/e/products/sunday-series/",
       "published": "2026-10-03",
       "modified": "2026-10-03",
-      "checked": "2026-10-15",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-sunday",
         "de": "https://thedollscout.com/de/series/smiski-sunday",
@@ -246,7 +246,7 @@
       "source": "https://smiski.com/e/products/series-1/",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-15",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-series1",
         "de": "https://thedollscout.com/de/series/smiski-series1",
@@ -270,7 +270,7 @@
       "source": "https://smiski.com/e/products/birthday-series/",
       "published": "2026-10-12",
       "modified": "2026-10-12",
-      "checked": "2026-10-15",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-birthday",
         "de": "https://thedollscout.com/de/series/smiski-birthday",
@@ -372,7 +372,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-flower-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-flower-series",
@@ -396,7 +396,7 @@
       "source": "https://smiski.com/e/products/series-2/",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-15",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-series2",
         "de": "https://thedollscout.com/de/series/smiski-series2",
@@ -426,7 +426,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-marine-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-marine-series",
@@ -480,7 +480,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-fruit-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-fruit-series",
@@ -533,6 +533,60 @@
         "en": "https://thedollscout.com/series/smiski-toilet-series",
         "de": "https://thedollscout.com/de/series/smiski-toilet-series",
         "zh": "https://thedollscout.com/zh/series/smiski-toilet-series"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "smiski-series3",
+      "brand": "smiski",
+      "title": "SMISKI Series3",
+      "names": [
+        "Smiski Bridge",
+        "Smiski Peeking",
+        "Smiski Climbing",
+        "Smiski Little",
+        "Smiski Hiding",
+        "Smiski Handstand"
+      ],
+      "source": "https://smiski.com/e/products/series-3/",
+      "published": "2026-10-18",
+      "modified": "2026-10-18",
+      "checked": "2026-10-18",
+      "urls": {
+        "en": "https://thedollscout.com/series/smiski-series3",
+        "de": "https://thedollscout.com/de/series/smiski-series3",
+        "zh": "https://thedollscout.com/zh/series/smiski-series3"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "sonny-angel-animal-series-1",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 1",
+      "names": [
+        "Rabbit",
+        "Elephant",
+        "Panda",
+        "Sloth",
+        "Tiger",
+        "White Bear",
+        "Cockerel",
+        "Dalmatian",
+        "Frog",
+        "Koala",
+        "Monkey",
+        "Owl"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "published": "2026-10-18",
+      "modified": "2026-10-18",
+      "checked": "2026-10-18",
+      "urls": {
+        "en": "https://thedollscout.com/series/sonny-angel-animal-series-1",
+        "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-1",
+        "zh": "https://thedollscout.com/zh/series/sonny-angel-animal-series-1"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
