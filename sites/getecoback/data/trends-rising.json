@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-17",
+ "fetched": "2026-10-18",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -117,49 +117,51 @@
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "avreno",
-     "v": 31300
+     "q": "meacodry arete one 20l",
+     "v": 32800
     },
     {
-     "q": "luftentfeuchter wohnwagen",
-     "v": 24600
+     "q": "avreno",
+     "v": 31850
     },
     {
      "q": "pingi luftentfeuchter",
-     "v": 21150
+     "v": 17900
     },
     {
-     "q": "luftentfeuchter keller dauerbetrieb",
-     "v": 17450
+     "q": "luftentfeuchter wohnmobil",
+     "v": 17100
     },
     {
-     "q": "adsorptionstrockner",
-     "v": 12100
+     "q": "weltweite zeitumstellung 2027",
+     "v": 8400
+    },
+    {
+     "q": "salami",
+     "v": 8300
+    },
+    {
+     "q": "koordinierte weltzeit",
+     "v": 7600
+    },
+    {
+     "q": "selbstbedienungskasse",
+     "v": 7550
+    },
+    {
+     "q": "duschkopf",
+     "v": 4800
     },
     {
      "q": "pingi luftentfeuchter kompakt",
-     "v": 4400
-    },
-    {
-     "q": "luftentfeuchter fürs auto",
-     "v": 3150
-    },
-    {
-     "q": "luftentfeuchter aldi süd",
-     "v": 600
-    },
-    {
-     "q": "luftentfeuchter wäsche trocknen",
-     "v": 350
-    },
-    {
-     "q": "comfee mddn-10den7",
-     "v": 300
+     "v": 2100
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-10",
-   "polluted": false
+   "fetched": "2026-10-18",
+   "polluted": true,
+   "last_attempt_at": "2026-10-18T09:00:35.752800+00:00",
+   "last_attempt_status": "ok"
   },
   "heizlüfter": {
    "auto": [
@@ -325,50 +327,38 @@
   "saugwischer": {
    "rising": [
     {
-     "q": "vorwerk akkusauger",
-     "v": 123950
+     "q": "kärcher nass trockensauger",
+     "v": 54050
     },
     {
-     "q": "dampfreiniger",
-     "v": 110250
+     "q": "saug wisch roboter test",
+     "v": 45850
     },
     {
-     "q": "vorwerk saugwischer probleme",
-     "v": 91950
+     "q": "dyson wischsauger",
+     "v": 41150
     },
     {
-     "q": "saugwischer vergleich",
-     "v": 84250
-    },
-    {
-     "q": "saugroboter mit wischfunktion",
-     "v": 29050
-    },
-    {
-     "q": "roborock f25 ultra",
-     "v": 7450
-    },
-    {
-     "q": "roborock saros 20",
-     "v": 6600
-    },
-    {
-     "q": "nasssauger test",
-     "v": 6450
+     "q": "kobold sp600 saugwischer",
+     "v": 10400
     },
     {
      "q": "tineco saugwischer",
-     "v": 70
+     "v": 120
     },
     {
      "q": "tineco",
-     "v": 60
+     "v": 70
+    },
+    {
+     "q": "roborock saugwischer",
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-17",
-   "polluted": true,
-   "last_attempt_at": "2026-10-17T08:44:28.897654+00:00",
+   "fetched": "2026-10-18",
+   "polluted": false,
+   "last_attempt_at": "2026-10-18T08:59:34.507027+00:00",
    "last_attempt_status": "ok"
   }
  }
