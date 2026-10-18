@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17",
+  "generated": "2026-10-18",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 41,
@@ -26,30 +26,6 @@
   },
   "items": [
     {
-      "id": "drift:cursor",
-      "type": "source_drift",
-      "title": "来源页变动：Cursor（2026-10-15 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0/月 / $100/月 / $200/月 / $30；消失 $20/mo / $40/user。本站条目仍是 2026-09-28 的版本",
-      "action": "打开 https://cursor.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cursor",
-        "https://cursor.com/pricing"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:google-ai-studio",
-      "type": "source_drift",
-      "title": "来源页变动：Google AI Studio（2026-10-15 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $1,000 / $100 / $100,000 / $20,000；消失 1,000美元 / 100,000美元 / 1000万 / 100万。本站条目仍是 2026-09-29 的版本",
-      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "google-ai-studio",
-        "https://ai.google.dev/gemini-api/docs/rate-limits"
-      ],
-      "score": 75
-    },
-    {
       "id": "aiflow:first",
       "type": "ai_referral",
       "title": "AI 助手引流出现：www.perplexity.ai×5、chatgpt.com×1、copilot.microsoft.com×2",
@@ -64,6 +40,30 @@
         "/en/tools/bing-image"
       ],
       "score": 70
+    },
+    {
+      "id": "drift:elicit",
+      "type": "source_drift",
+      "title": "来源页变动：Elicit（2026-10-18 确认）",
+      "why": "官方来源页的数字令牌变了——新增 135% / 18k；消失 10.32m / 13.569m / 18.438m / 22.375m。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://elicit.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "elicit",
+        "https://elicit.com"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:zhipu-glm",
+      "type": "source_drift",
+      "title": "来源页变动：智谱开放平台（2026-10-18 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1,m / 1,s；消失 无。本站条目仍是 2026-08-01 的版本",
+      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "zhipu-glm",
+        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
+      ],
+      "score": 65
     },
     {
       "id": "drift:cline",
@@ -152,7 +152,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 106 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 105 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
