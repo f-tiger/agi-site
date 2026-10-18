@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-17",
- "radar_fetched": "2026-10-17",
+ "generated": "2026-10-18",
+ "radar_fetched": "2026-10-18",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,44 +8,44 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": false,
+  "lemmy_wish": true,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 10,
+  "candidates": 9,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 10,
+  "scout": 9,
   "supplied": 1
  },
  "opportunities": [
   {
-   "theme": "locked out of google despite knowing password and having email access",
+   "theme": "let s say you are a video content creator on youtube how hard is it currently to",
    "site": "",
    "kind": "request-board",
-   "subreddit": "ask_hn",
+   "subreddit": "lemmy:fediverse",
    "days_seen": [
-    "2026-10-10"
+    "2026-10-18"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.38,
+   "score": 2.61,
    "demand": [],
    "supply": [],
    "fleet_pages": []
   },
   {
-   "theme": "fake abuse reports keep auto blocking my site on cloudflare",
+   "theme": "is there a temp phone number like temp email",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-10-10"
+    "2026-10-17"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.28,
+   "score": 2.27,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -81,21 +81,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "web push notifications server",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-10"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "is there a program to run a command with a single flag and multiple arguments co",
    "site": "",
    "kind": "request-board",
@@ -105,7 +90,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.03,
+   "score": 2.05,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -165,21 +150,12 @@
    ],
    "state": "scout",
    "supplied": true,
-   "score": 0.98,
+   "score": 1.0,
    "demand": [],
    "supply": [
     {
-     "title": "Show HN: OneDeploy – Managed open-source apps with nightly backups and TLS",
-     "url": "https://onedeploy.co",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    },
-    {
-     "title": "Show HN: Anima, interactive biology models from plain English (open source)",
-     "url": "https://anima.arcumet.com",
+     "title": "Show HN: I reverse engineered serum 2 and build an open source alternative",
+     "url": "https://github.com/itsfabioroma/tessera",
      "src": "hn_show",
      "shared": [
       "open",
