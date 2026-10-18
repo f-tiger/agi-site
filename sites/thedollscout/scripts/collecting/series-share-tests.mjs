@@ -95,3 +95,5 @@ test('all official series in every language expose the localized preview with ac
   assert.ok(body.includes(shareCopy[language].note));assert.ok(text.includes(shareCopy[language].intro));
  }
 });
+
+test('official @Work source discrepancy is transparent in all generated languages and text exports',()=>{const generated=new Map();buildSeries({emit:(lang,slug,title,description,body,plain,ld,modified)=>generated.set(lang+':'+slug,{body,plain,ld,modified}),write:()=>{},route,esc:String,origin,locales,brands});for(const lang of ['en','de','zh']){const page=generated.get(lang+':series/smiski-work');assert.ok(page,lang);assert.match(page.body,/SMISKI On the Road/);assert.match(page.body,/SMISKI On the Rord/);assert.match(page.body,/https:\/\/smiski\.com\/e\/news\/220208\//);assert.ok(page.plain.some(x=>String(x).includes('SMISKI On the Road')));assert.ok(page.plain.some(x=>String(x).includes('https://smiski.com/e/news/220208/')));assert.equal(page.modified,'2026-10-18');}});

@@ -30,12 +30,16 @@ export function smiskiLinks(html){
  const links=[...section.matchAll(/href=["']([^"']+)["']/gi)].map(m=>{try{return new URL(m[1],SOURCES[0].index).href.replace(/\/?$/,'/');}catch{return '';}}).filter(u=>allowedURL(u)&&/^https:\/\/smiski\.com\/e\/products\/[a-z0-9-]+\/$/.test(u));
  const unique=[...new Set(links)];if(unique.length<3||unique.length>80)throw Error('SMISKI index shape changed');return unique;
 }
+const WORK_NAME_NOTE={"source":"https://smiski.com/e/news/220208/","en":"Name note: the official product page currently spells this style “SMISKI On the Rord”; the official launch announcement uses “SMISKI On the Road”. This checklist follows the launch announcement.","de":"Schreibweisenhinweis: Die offizielle Produktseite schreibt diese Figur derzeit „SMISKI On the Rord“; die offizielle Ankündigung zur Veröffentlichung verwendet „SMISKI On the Road“. Diese Checkliste folgt der Ankündigung.","zh":"名称说明：官方产品页目前将该款拼写为“SMISKI On the Rord”；官方发布公告使用“SMISKI On the Road”。本清单采用公告中的拼写。"};
 export function parseSmiski(html,url){
  const body=html.replace(/<!--[\s\S]*?-->/g,'');
  const title=([...body.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>/gi)].map(m=>clean(m[1])).find(t=>/^PRODUCTS\s*\//i.test(t))||'').replace(/^PRODUCTS\s*\/\s*/i,'');
- const names=[...body.matchAll(/<h5[^>]*>([\s\S]*?)<\/h5>/gi)].map(m=>clean(m[1]));
+ const rawNames=[...body.matchAll(/<h5[^>]*>([\s\S]*?)<\/h5>/gi)].map(m=>clean(m[1]));
+ const isWorkPage=new URL(url).pathname==='/e/products/work-series/';
+ const hasWorkTypo=isWorkPage&&rawNames.includes('SMISKI On the Rord');
+ const names=rawNames.map(n=>hasWorkTypo&&n==='SMISKI On the Rord'?'SMISKI On the Road':n);
  if(!/^SMISKI /i.test(title)||names.length!==6||!names.every(n=>/\bSMISKI\b/i.test(n))||!/(?:6|six)\s+Smiski\s+(?:variations|types)/i.test(clean(body)))throw Error('No verified six-style SMISKI checklist');
- return makeSeries('smiski',title,names,url);
+ return makeSeries('smiski',title,names,url,hasWorkTypo?WORK_NAME_NOTE:undefined);
 }
 export function parseSonny(html,url){
  const blocks=html.replace(/<!--[\s\S]*?-->/g,'').split(/<h2\b[^>]*class=["']tabtitle["'][^>]*>/i).slice(1),records=[];
@@ -46,15 +50,17 @@ export function parseSonny(html,url){
  }
  if(!records.length)throw Error('Sonny Angel named series unavailable');return records;
 }
-function makeSeries(brand,title,names,source){const x={id:brand+'-'+slug(title.replace(/^(smiski|sonny angel)\s+/i,'')),brand,title,names,source};validateSeries(x);return x;}
+function makeSeries(brand,title,names,source,sourceNotes){const x={id:brand+'-'+slug(title.replace(/^(smiski|sonny angel)\s+/i,'')),brand,title,names,source,...(sourceNotes?{sourceNotes}:{})};validateSeries(x);return x;}
 export function validateSeries(x){
- if(!SOURCES.some(s=>s.id===x.brand&&x.source.startsWith(s.index))||!allowedURL(x.source)||!safeName(x.title)||!x.id.startsWith(x.brand+'-')||!/^[a-z0-9-]{5,90}$/.test(x.id)||!Array.isArray(x.names)||x.names.length<6||x.names.length>24||new Set(x.names.map(n=>n.toLowerCase())).size!==x.names.length||!x.names.every(safeName))throw Error('Invalid official checklist');return x;
+ if(!SOURCES.some(s=>s.id===x.brand&&x.source.startsWith(s.index))||!allowedURL(x.source)||!safeName(x.title)||!x.id.startsWith(x.brand+'-')||!/^[a-z0-9-]{5,90}$/.test(x.id)||!Array.isArray(x.names)||x.names.length<6||x.names.length>24||new Set(x.names.map(n=>n.toLowerCase())).size!==x.names.length||!x.names.every(safeName))throw Error('Invalid official checklist');
+ if(x.sourceNotes&&(x.sourceNotes.source!=='https://smiski.com/e/news/220208/'||!['en','de','zh'].every(l=>typeof x.sourceNotes[l]==='string'&&x.sourceNotes[l].length>0)))throw Error('Invalid official source note');
+ return x;
 }
-const fingerprint=x=>createHash('sha256').update(JSON.stringify([x.title,x.names,x.source])).digest('hex');
+const fingerprint=x=>createHash('sha256').update(JSON.stringify(x.sourceNotes?[x.title,x.names,x.source,x.sourceNotes]:[x.title,x.names,x.source])).digest('hex');
 export function reconcile(previous,candidates,date){
  const state=structuredClone(previous),added=[],changed=[],seen=new Set();let remaining=Math.max(0,POLICY.maxNewPerDay-state.series.filter(s=>s.published===date).length);
  for(const raw of candidates){validateSeries(raw);if(seen.has(raw.id))continue;seen.add(raw.id);const old=state.series.find(s=>s.id===raw.id),hash=fingerprint(raw);
-  if(old){if(old.hash!==hash&&changed.length<POLICY.maxUpdates){Object.assign(old,raw,{hash,modified:date,checked:date});changed.push(old.id);}else if(old.hash===hash)old.checked=date;}
+  if(old){if(old.hash!==hash&&changed.length<POLICY.maxUpdates){Object.assign(old,raw,{hash,modified:date,checked:date});if(!raw.sourceNotes)delete old.sourceNotes;changed.push(old.id);}else if(old.hash===hash)old.checked=date;}
   else if(remaining&&state.series.length<POLICY.maxSeries){state.series.push({...raw,hash,published:date,modified:date,checked:date});added.push(raw.id);remaining--;}
  }
  return {state,added,changed,eligible:candidates.length};
