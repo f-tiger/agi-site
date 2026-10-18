@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-17",
+  "as_of": "2026-10-18",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 14,
+    "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-16T07:29:35.320Z",
-    "health": "2026-10-16T12:54:21Z",
-    "ai_referrals": "2026-10-16T12:54:54Z",
-    "opportunities": "2026-10-16",
-    "autopilot_receipt": "2026-10-17"
+    "membership": "2026-10-17T07:10:25.351Z",
+    "health": "2026-10-17T11:53:21Z",
+    "ai_referrals": "2026-10-17T11:53:48Z",
+    "opportunities": "2026-10-17",
+    "autopilot_receipt": "2026-10-18"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-16T07:29:35.320Z",
+    "generated": "2026-10-17T07:10:25.351Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -125,15 +125,6 @@
       "supply": 0
     },
     {
-      "theme": "any solution for bookmarks on various services",
-      "site": null,
-      "state": "scout",
-      "score": 2.29,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "fake abuse reports keep auto blocking my site on cloudflare",
       "site": null,
       "state": "scout",
@@ -156,15 +147,6 @@
       "site": null,
       "state": "scout",
       "score": 2.07,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "is there an android shell program which returns open windows titles in last focu",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -197,28 +179,10 @@
       "supply": 0
     },
     {
-      "theme": "software that converts pen hovering mode to pen contact down down mode",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "does anything similar to a live dna editor exist",
       "site": null,
       "state": "scout",
       "score": 1.98,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "is there an android shell program to switch to any open application according to",
-      "site": null,
-      "state": "scout",
-      "score": 1.96,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -239,7 +203,7 @@
       "score": 0.98,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 2
     }
   ],
   "actions": [
@@ -326,7 +290,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 30,
+        "count": 25,
         "query": "infrarotheizung hornbach",
         "value": 55350
       },
@@ -345,14 +309,26 @@
       "mode": "queue"
     },
     {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/zh/jarvis",
+        "n7": 57,
+        "p7": 27
+      },
+      "mode": "queue"
+    },
+    {
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/en/guide/portable-ac-not-cooling.html",
-        "n7": 12,
-        "p7": 3
+        "n7": 10,
+        "p7": 5
       },
       "mode": "queue"
     },
@@ -362,7 +338,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 260,
+        "human_pv_28d": 274,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -373,7 +349,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 203,
+        "human_pv_28d": 206,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -384,7 +360,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 900,
+        "human_pv_28d": 897,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -393,7 +369,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 4
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

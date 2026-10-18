@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 13,
+    "n": 15,
     "q": "tool:portfolio_returns"
    },
    {
@@ -28,11 +28,16 @@
    }
   ]
  },
- "fetched": "2026-10-17",
+ "fetched": "2026-10-18",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {},
+ "pages": {
+  "/zh/jarvis": {
+   "n7": 57,
+   "p7": 27
+  }
+ },
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

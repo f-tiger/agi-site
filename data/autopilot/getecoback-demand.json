@@ -24,8 +24,8 @@
   },
   {
    "heat": {
-    "n7": 2,
-    "p7": 4
+    "n7": 4,
+    "p7": 2
    },
    "kind": "value",
    "match": 0.875,
@@ -115,8 +115,8 @@
   },
   {
    "heat": {
-    "n7": 6,
-    "p7": 18
+    "n7": 5,
+    "p7": 19
    },
    "kind": "value",
    "match": 0.967,
@@ -126,163 +126,6 @@
    "source": "related-queries",
    "stand": "2026-10-12",
    "v": 160
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.917,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen wand",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen hausmittel",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.712,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel entfernen bad fugen",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen dusche",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.887,
-   "page": "guide/schimmel-wand-kommt-wieder.html",
-   "q": "schimmel entfernen wand innen",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen dm",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.917,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel entfernen tapete",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.917,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel entfernen alkohol",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel entfernen textilien",
-   "seed": "schimmel entfernen",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-13",
-   "v": 1
-  },
-  {
-   "heat": {
-    "n7": 2,
-    "p7": 4
-   },
-   "kind": "autocomplete-new",
-   "match": 0.875,
-   "page": "guide/heizluefter-stromverbrauch.html",
-   "q": "heizlüfter test",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.975,
-   "page": "guide/heizung-10-qm.html",
-   "q": "heizlüfter bad",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter mit akku",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.85,
-   "page": "wohnen.html",
-   "q": "heizlüfter kaufen",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.675,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "heizlüfter test stiftung warentest",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
   }
  ],
  "first_party_demand": {
@@ -456,8 +299,8 @@
    "q": "am qualitätsmatratzen",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
-   "v": 130
+   "stand": "2026-10-17",
+   "v": 110
   },
   {
    "kind": "value",
@@ -466,8 +309,8 @@
    "q": "emma performance matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
-   "v": 120
+   "stand": "2026-10-17",
+   "v": 100
   },
   {
    "kind": "value",
@@ -476,18 +319,8 @@
    "q": "emma original pro matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
+   "stand": "2026-10-17",
    "v": 90
-  },
-  {
-   "kind": "value",
-   "match": 0.267,
-   "page": "en/guide/smart-radiator-valves-worth-it.html",
-   "q": "emma original matratze",
-   "seed": "matratze",
-   "source": "related-queries",
-   "stand": "2026-10-16",
-   "v": 70
   },
   {
    "kind": "value",
@@ -496,7 +329,17 @@
    "q": "kinderbett mit matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
+   "stand": "2026-10-17",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.267,
+   "page": "en/guide/smart-radiator-valves-worth-it.html",
+   "q": "emma original matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-10-17",
    "v": 70
   },
   {
@@ -513,10 +356,10 @@
    "kind": "value",
    "match": 0.0,
    "page": null,
-   "q": "japanische matratze",
+   "q": "alvi matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
+   "stand": "2026-10-17",
    "v": 60
   },
   {
@@ -533,96 +376,46 @@
    "kind": "value",
    "match": 0.0,
    "page": null,
-   "q": "emma flip matratze",
+   "q": "japanische matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-16",
+   "stand": "2026-10-17",
    "v": 50
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/bester-luftkuehler.html",
-   "q": "bester saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-10-09",
-   "v": 40
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.5,
-   "page": "guide/heizkoerper-wird-nicht-warm.html",
-   "q": "heizlüfter media markt",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter camping",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter obi",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter energiesparend",
-   "seed": "heizlüfter",
-   "source": "autocomplete-diff",
-   "stand": "2026-10-11",
-   "v": 1
   }
  ],
- "generated": "2026-10-17",
+ "generated": "2026-10-18",
  "geo": "DE",
- "heat_source": "measured 2026-10-17 (19 pages); no notes",
+ "heat_source": "measured 2026-10-18 (18 pages); no notes",
  "hot_pages": [
   {
-   "n7": 12,
-   "p7": 3,
+   "n7": 10,
+   "p7": 5,
    "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
-   "n7": 7,
+   "n7": 6,
    "p7": 10,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
-   "n7": 6,
-   "p7": 18,
+   "n7": 5,
+   "p7": 19,
    "page": "/"
   },
   {
-   "n7": 5,
-   "p7": 4,
-   "page": "/guide/klimaanlage-wohnmobil.html"
+   "n7": 4,
+   "p7": 2,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 4,
-   "p7": 0,
-   "page": "/en/guide/dehumidifier-drying-clothes-cost.html"
+   "p7": 6,
+   "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
    "n7": 3,
-   "p7": 1,
-   "page": "/guide/klimaanlage-reinigen.html"
+   "p7": 3,
+   "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 3,
@@ -631,8 +424,13 @@
   },
   {
    "n7": 3,
-   "p7": 5,
+   "p7": 3,
    "page": "/guide/thermovorhang-ratgeber.html"
+  },
+  {
+   "n7": 3,
+   "p7": 8,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
@@ -641,12 +439,12 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/en/guide/evaporative-cooler-vs-fan.html"
+   "p7": 1,
+   "page": "/en/guide/portable-ac-skylight-roof-window.html"
   },
   {
    "n7": 2,
-   "p7": 6,
+   "p7": 5,
    "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
@@ -656,21 +454,16 @@
   },
   {
    "n7": 2,
-   "p7": 4,
-   "page": "/guide/heizluefter-stromverbrauch.html"
+   "p7": 2,
+   "page": "/guide/klimaanlage-reinigen.html"
   },
   {
    "n7": 2,
    "p7": 0,
-   "page": "/guide/klimaanlage-zugluft-nackenschmerzen.html"
-  },
-  {
-   "n7": 2,
-   "p7": 4,
-   "page": "/guide/luftentfeuchter-keller.html"
+   "page": "/guide/midea-geraete-test.html"
   }
  ],
- "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. No automatic publication follows.",
+ "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "infrarot heizkörper",
@@ -678,19 +471,16 @@
   "avreno",
   "radiator",
   "adsorptionstrockner",
-  "roborock f25 ultra",
+  "fluss durch riga",
   "constantin schreiber axel springer",
   "tabaksteuer",
   "comfee mddn-10den7",
   "bett1 de",
   "kinderbett 90x200",
-  "philips lattego",
-  "jysk online"
+  "philips lattego"
  ],
  "site": "getecoback",
- "source_notes": [
-  "sites/getecoback/data/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (heizlüfter, schimmel entfernen). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
- ],
+ "source_notes": [],
  "sources": [
   "sites/getecoback/data/trends-rising.json"
  ],

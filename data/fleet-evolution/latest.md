@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-10-17
+# Fleet evolution report — 2026-10-18
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 4 · paid members: unknown · active members: unknown
-- Opportunity candidates: 14 · stale inputs: 0
+- Opportunity candidates: 10 · stale inputs: 0
 
 ## Priority actions
 
@@ -19,22 +19,23 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 68 | thedollscout | membership_observability | observe | admin_ok=False |
 | 55 | agiscorecard | content_gap | queue | count=5; query=ai infrastructure stocks comeback; value=4700 |
 | 55 | buysomething | content_gap | queue | count=1; query=refrigerator cost; value=80 |
-| 55 | getecoback | content_gap | queue | count=30; query=infrarotheizung hornbach; value=55350 |
+| 55 | getecoback | content_gap | queue | count=25; query=infrarotheizung hornbach; value=55350 |
 | 55 | thedollscout | content_gap | queue | count=18; query=lets try the viral crumbl labubu; value=17850 |
-| 52 | getecoback | improve_hot_page | queue | page=/en/guide/portable-ac-not-cooling.html; n7=12; p7=3 |
-| 48 | buysomething | ai_discovery | queue | human_pv_28d=260; ai_ref_28d=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=203; ai_ref_28d=0 |
-| 48 | gridlings | ai_discovery | queue | human_pv_28d=900; ai_ref_28d=0 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/zh/jarvis; n7=57; p7=27 |
+| 52 | getecoback | improve_hot_page | queue | page=/en/guide/portable-ac-not-cooling.html; n7=10; p7=5 |
+| 48 | buysomething | ai_discovery | queue | human_pv_28d=274; ai_ref_28d=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=206; ai_ref_28d=0 |
+| 48 | gridlings | ai_discovery | queue | human_pv_28d=897; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-16T07:29:35.320Z | 1 |
-| health | 2026-10-16T12:54:21Z | 1 |
-| ai_referrals | 2026-10-16T12:54:54Z | 1 |
-| opportunities | 2026-10-16 | 1 |
-| autopilot_receipt | 2026-10-17 | 0 |
+| membership | 2026-10-17T07:10:25.351Z | 1 |
+| health | 2026-10-17T11:53:21Z | 1 |
+| ai_referrals | 2026-10-17T11:53:48Z | 1 |
+| opportunities | 2026-10-17 | 1 |
+| autopilot_receipt | 2026-10-18 | 0 |
 
 ## Autonomous boundary
 

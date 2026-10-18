@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 11,
-    "p7": 15
+    "n7": 14,
+    "p7": 17
    },
    "btu_calc": {
     "n7": 11,
@@ -14,11 +14,11 @@
     "p7": 1
    },
    "buyer_view": {
-    "n7": 1,
-    "p7": 3
+    "n7": 0,
+    "p7": 4
    },
    "cold_now": {
-    "n7": 1,
+    "n7": 7,
     "p7": 5
    },
    "feuchte_now": {
@@ -38,28 +38,28 @@
     "p7": 1
    },
    "page_view": {
-    "n7": 99,
+    "n7": 94,
     "p7": 169
    },
    "popup_click": {
     "n7": 1,
-    "p7": 2
+    "p7": 3
    },
    "popup_close": {
-    "n7": 9,
-    "p7": 11
+    "n7": 5,
+    "p7": 14
    },
    "popup_view": {
-    "n7": 20,
-    "p7": 29
+    "n7": 15,
+    "p7": 34
    },
    "strom_now": {
-    "n7": 9,
-    "p7": 13
+    "n7": 10,
+    "p7": 11
    },
    "stromkosten_calc": {
     "n7": 8,
-    "p7": 4
+    "p7": 3
    },
    "strompreis_api": {
     "n7": 2,
@@ -76,65 +76,61 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-17",
+ "fetched": "2026-10-18",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 6,
-   "p7": 18
+   "n7": 5,
+   "p7": 19
   },
   "/en/guide/best-portable-air-conditioner-europe-heatwave.html": {
    "n7": 2,
    "p7": 0
   },
-  "/en/guide/dehumidifier-drying-clothes-cost.html": {
-   "n7": 4,
-   "p7": 0
-  },
-  "/en/guide/evaporative-cooler-vs-fan.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/en/guide/portable-ac-not-cooling.html": {
-   "n7": 12,
-   "p7": 3
+   "n7": 10,
+   "p7": 5
+  },
+  "/en/guide/portable-ac-skylight-roof-window.html": {
+   "n7": 2,
+   "p7": 1
   },
   "/en/guide/portable-ac-tilt-and-turn-windows.html": {
    "n7": 2,
-   "p7": 6
+   "p7": 5
   },
   "/guide/comfee-geraete-test.html": {
    "n7": 2,
    "p7": 0
   },
   "/guide/heizluefter-stromverbrauch.html": {
-   "n7": 2,
-   "p7": 4
+   "n7": 4,
+   "p7": 2
   },
   "/guide/klimaanlage-reinigen.html": {
-   "n7": 3,
-   "p7": 1
+   "n7": 2,
+   "p7": 2
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 5,
-   "p7": 4
-  },
-  "/guide/klimaanlage-zugluft-nackenschmerzen.html": {
-   "n7": 2,
-   "p7": 0
+   "n7": 4,
+   "p7": 6
   },
   "/guide/luftentfeuchter-keller.html": {
+   "n7": 3,
+   "p7": 3
+  },
+  "/guide/midea-geraete-test.html": {
    "n7": 2,
-   "p7": 4
+   "p7": 0
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 3,
    "p7": 2
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 7,
+   "n7": 6,
    "p7": 10
   },
   "/guide/strompreis-radar.html": {
@@ -143,10 +139,10 @@
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 3,
-   "p7": 5
+   "p7": 3
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 8
   },
   "/impressum.html": {
