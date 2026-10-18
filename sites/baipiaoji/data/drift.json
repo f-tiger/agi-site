@@ -1,10 +1,44 @@
 {
-  "generated": "2026-10-17",
+  "generated": "2026-10-18",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 11,
+  "fetched_ok": 104,
+  "fetched_fail": 23,
+  "pending": 9,
   "items": [
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-10-18",
+      "first_seen": "2026-10-17",
+      "added": [
+        "135%",
+        "18k"
+      ],
+      "removed": [
+        "10.32m",
+        "13.569m",
+        "18.438m",
+        "22.375m",
+        "26.77m",
+        "27.458m",
+        "32.664m",
+        "8.904m",
+        "9.956m"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-18",
+      "first_seen": "2026-10-17",
+      "added": [
+        "1,m",
+        "1,s"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "cline",
       "url": "https://cline.bot",
@@ -210,17 +244,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-10",
-      "first_seen": "2026-10-09",
-      "added": [],
-      "removed": [
-        "1,s"
-      ],
-      "checked_then": "2026-08-01"
-    },
-    {
       "slug": "gaoding",
       "url": "https://gaoding.com",
       "confirmed": "2026-10-09",
@@ -386,20 +409,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-10-03",
-      "first_seen": "2026-10-01",
-      "added": [
-        "188s"
-      ],
-      "removed": [
-        "93%",
-        "94%"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "quark-ai",

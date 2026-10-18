@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-17",
+ "generated": "2026-10-18",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "tongyi",
-  "liblib",
-  "elicit",
+  "consensus",
+  "fish-audio",
   "immersive-translate",
-  "wordvice",
-  "github-models",
-  "ms-copilot",
-  "wenxin"
+  "bing-image",
+  "ima",
+  "mistral",
+  "caiyun",
+  "gamma"
  ],
- "cursor": "wenxin",
+ "cursor": "gamma",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -234,14 +234,14 @@
    "name": "Consensus",
    "cat": "search",
    "reach": 4,
-   "probed": "2026-10-05",
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://consensus.app/pricing",
      "status": 200,
-     "bytes": 52906,
+     "bytes": 52769,
      "tokens": 0
     },
     {
@@ -289,8 +289,8 @@
    "slug": "fish-audio",
    "name": "Fish Audio",
    "cat": "audio",
-   "reach": 3,
-   "probed": "2026-10-06",
+   "reach": 4,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -341,8 +341,8 @@
    "slug": "immersive-translate",
    "name": "沉浸式翻译",
    "cat": "writing",
-   "reach": 6,
-   "probed": "2026-10-17",
+   "reach": 4,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -901,8 +901,8 @@
    "slug": "bing-image",
    "name": "Bing 图像创作",
    "cat": "image",
-   "reach": 0,
-   "probed": "2026-10-07",
+   "reach": 3,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -931,8 +931,8 @@
    "slug": "caiyun",
    "name": "彩云小译",
    "cat": "writing",
-   "reach": 0,
-   "probed": "2026-10-07",
+   "reach": 2,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1504,8 +1504,8 @@
    "slug": "gamma",
    "name": "Gamma",
    "cat": "office",
-   "reach": 0,
-   "probed": "2026-10-10",
+   "reach": 2,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1763,7 +1763,7 @@
    "name": "腾讯 ima",
    "cat": "office",
    "reach": 3,
-   "probed": "2026-10-06",
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2020,8 +2020,8 @@
    "slug": "mistral",
    "name": "Mistral AI",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-09-27",
+   "reach": 3,
+   "probed": "2026-10-18",
    "env": "runner",
    "state": "blocked",
    "tried": [
