@@ -1,5 +1,79 @@
 {
   "pages": {
+    "/en/guide/meaco-meacodry-arete-one-10l-running-cost.html": {
+      "modified": "2026-10-19",
+      "product": {
+        "brand": "Meaco",
+        "checked_at": "2026-10-19T08:57:03.462831+00:00",
+        "country": "GB",
+        "facts": [
+          {
+            "context": "",
+            "key": "weight_kg",
+            "label": "Weight",
+            "unit": "kg",
+            "value": 10.7
+          },
+          {
+            "context": "",
+            "key": "dimensions_mm",
+            "label": "Dimensions H × W × D",
+            "unit": "mm",
+            "value": "472 × 319 × 237"
+          },
+          {
+            "context": "Manufacturer operating modes; measurement distance not stated in this table",
+            "key": "noise_db",
+            "label": "Manufacturer noise levels",
+            "unit": "dB(A)",
+            "value": "35 and 38"
+          },
+          {
+            "context": "Power consumption at 20 °C and 60 % RH",
+            "key": "power_watts",
+            "label": "Manufacturer power consumption",
+            "unit": "W",
+            "value": 151.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Minimum operating temperature",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Maximum operating temperature",
+            "unit": "°C",
+            "value": 35.0
+          },
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Water tank",
+            "unit": "L",
+            "value": 2.5
+          }
+        ],
+        "language": "en-GB",
+        "market": {
+          "currency": "GBP",
+          "plug": null
+        },
+        "model": "MeacoDry Arete® One 10L",
+        "name": "MeacoDry Arete® One 10L Dehumidifier / Air Purifier",
+        "power_watts": 151.0,
+        "product_url": "https://www.meaco.com/products/meacodryarete1-10l",
+        "source_hash": "3c0e2ae884b268e872e19a3f6bf93091694b708eb6202ff71b7825e9970b990c",
+        "source_id": "meaco-gb:2992ff8789bd",
+        "source_urls": [
+          "https://www.meaco.com/products/meacodryarete1-10l"
+        ]
+      },
+      "published": "2026-10-19"
+    },
     "/guide/trotec-ttk-32-e-betriebskosten.html": {
       "modified": "2026-10-17",
       "product": {

@@ -11,9 +11,23 @@
       "at": "2026-10-18T08:05:10Z",
       "country": "DE",
       "route": "/guide/trotec-ttk-95-e-betriebskosten.html"
+    },
+    "2026-10-19": {
+      "action": "new",
+      "at": "2026-10-19T08:57:03Z",
+      "country": "GB",
+      "route": "/en/guide/meaco-meacodry-arete-one-10l-running-cost.html"
     }
   },
   "pages": {
+    "/en/guide/meaco-meacodry-arete-one-10l-running-cost.html": {
+      "content_hash": "c8d036a2b337f14dc22301eb8ea9126de5e4faeb6fa38944e690af59c89e5ebf",
+      "country": "GB",
+      "created_at": "2026-10-19T08:57:03Z",
+      "modified_at": "2026-10-19T08:57:03Z",
+      "name": "MeacoDry Arete® One 10L Dehumidifier / Air Purifier",
+      "source_id": "meaco-gb:2992ff8789bd"
+    },
     "/guide/trotec-ttk-32-e-betriebskosten.html": {
       "content_hash": "644b45bc8c2d618049ddd1dab133dd2b35d5b8cea8fbc0097245475e80725fb0",
       "country": "DE",
