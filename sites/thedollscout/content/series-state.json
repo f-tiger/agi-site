@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 3,
+  "cursor": 9,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-construction",
@@ -102,7 +102,7 @@
       "hash": "1a4bf4ab73b798c67d0a053ff7666f6f97942990baf42a4fa208a0cde621a824",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-16"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-museum",
@@ -120,7 +120,7 @@
       "hash": "2cc938a6186ac007c469530ba759f29a3f246002f3904e4f9741be8eff5aea0d",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-16"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-living-series",
@@ -210,7 +210,7 @@
       "hash": "0b6856d66197dba3f3b8bea1eb08d75f8ec72f35d2875a4fe7b232a2883a261f",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-16"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-dressing",
@@ -228,7 +228,7 @@
       "hash": "bd9a9f51a07756e5b68c9bd8f01346b679883e246a43fa9c90fb33b29da280bf",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-16"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-bed-series",
@@ -270,7 +270,7 @@
       "hash": "9eda1b03a7a08ff2488e2fb8994dae0b0f3724a0d3c24eea4e2b2e750d189710",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-series2",
@@ -312,7 +312,7 @@
       "hash": "f6631ea04d33856abfa527809115ee7aaaf287133d0d422b7a9593e74e7b388c",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-moving",
@@ -330,7 +330,7 @@
       "hash": "0f584de880fc44914f845ba672e5fda5c1caa8e0bb486a066714e2dbb668bf52",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-16"
+      "checked": "2026-10-19"
     },
     {
       "id": "sonny-angel-fruit-series",
@@ -354,7 +354,7 @@
       "hash": "0dfd13773723862e8ecb5db6159e34edfc65f6283e4d3095be3a306399ed4c12",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
     },
     {
       "id": "smiski-yoga-series",
@@ -432,10 +432,88 @@
       "hash": "6cd5532373221409588192ef63be82b3129c8df9e0ec758a6ee30108a3ba6d8f",
       "published": "2026-10-18",
       "modified": "2026-10-18",
-      "checked": "2026-10-18"
+      "checked": "2026-10-19"
+    },
+    {
+      "id": "sonny-angel-animal-series-2",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 2",
+      "names": [
+        "Mouse",
+        "Lesser Panda",
+        "Hedgehog",
+        "Fawn",
+        "Duck",
+        "Cow",
+        "Chameleon",
+        "Uribou",
+        "Skunk",
+        "Sheep",
+        "Reindeer",
+        "Pig"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "f498012102feb99a9e441e813b504812984ff0c3c4a020d0f429a794d321f999",
+      "published": "2026-10-19",
+      "modified": "2026-10-19",
+      "checked": "2026-10-19"
+    },
+    {
+      "id": "sonny-angel-animal-series-3",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 3",
+      "names": [
+        "Parrot",
+        "Rhinoceros",
+        "Snake",
+        "Toy Poodle",
+        "Zebra",
+        "American Short Hair",
+        "Chihuahua",
+        "Crocodile",
+        "French Bulldog",
+        "Giraffe",
+        "Lop Ear Rabbit",
+        "Macaw"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "6a65023bce0369ac5ec682b33ec6eb17c1c71b6445bc74e4dbd47179e77b856c",
+      "published": "2026-10-19",
+      "modified": "2026-10-19",
+      "checked": "2026-10-19"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-19",
+      "status": "ok",
+      "added": [
+        "sonny-angel-animal-series-2",
+        "sonny-angel-animal-series-3"
+      ],
+      "changed": [],
+      "eligible": 15,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 5,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": [
+        {
+          "source": "https://smiski.com/e/products/hippers-series/",
+          "reason": "No verified six-style SMISKI checklist"
+        }
+      ]
+    },
     {
       "date": "2026-10-18",
       "status": "ok",
@@ -728,19 +806,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-18",
+    "date": "2026-10-19",
     "status": "ok",
     "added": [
-      "smiski-series3",
-      "sonny-angel-animal-series-1"
+      "sonny-angel-animal-series-2",
+      "sonny-angel-animal-series-3"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -750,6 +828,11 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   }
 }

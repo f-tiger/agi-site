@@ -1,19 +1,19 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-18",
+    "date": "2026-10-19",
     "status": "ok",
     "added": [
-      "smiski-series3",
-      "sonny-angel-animal-series-1"
+      "sonny-angel-animal-series-2",
+      "sonny-angel-animal-series-3"
     ],
     "changed": [],
-    "eligible": 16,
+    "eligible": 15,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 6,
+        "eligible": 5,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -23,7 +23,12 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": []
+    "rejected": [
+      {
+        "source": "https://smiski.com/e/products/hippers-series/",
+        "reason": "No verified six-style SMISKI checklist"
+      }
+    ]
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -48,7 +53,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -78,7 +83,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -150,7 +155,7 @@
       "source": "https://smiski.com/e/products/work-series/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-16",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-work",
         "de": "https://thedollscout.com/de/series/smiski-work",
@@ -174,7 +179,7 @@
       "source": "https://smiski.com/e/products/museumseries/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-16",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-museum",
         "de": "https://thedollscout.com/de/series/smiski-museum",
@@ -294,7 +299,7 @@
       "source": "https://smiski.com/e/products/exercising-series/",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-16",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-exercising",
         "de": "https://thedollscout.com/de/series/smiski-exercising",
@@ -318,7 +323,7 @@
       "source": "https://smiski.com/e/products/dressing-series/",
       "published": "2026-10-13",
       "modified": "2026-10-13",
-      "checked": "2026-10-16",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-dressing",
         "de": "https://thedollscout.com/de/series/smiski-dressing",
@@ -372,7 +377,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-flower-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-flower-series",
@@ -426,7 +431,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-marine-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-marine-series",
@@ -450,7 +455,7 @@
       "source": "https://smiski.com/e/products/moving-series/",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-16",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-moving",
         "de": "https://thedollscout.com/de/series/smiski-moving",
@@ -480,7 +485,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-fruit-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-fruit-series",
@@ -582,11 +587,71 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-18",
       "modified": "2026-10-18",
-      "checked": "2026-10-18",
+      "checked": "2026-10-19",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-animal-series-1",
         "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-1",
         "zh": "https://thedollscout.com/zh/series/sonny-angel-animal-series-1"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "sonny-angel-animal-series-2",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 2",
+      "names": [
+        "Mouse",
+        "Lesser Panda",
+        "Hedgehog",
+        "Fawn",
+        "Duck",
+        "Cow",
+        "Chameleon",
+        "Uribou",
+        "Skunk",
+        "Sheep",
+        "Reindeer",
+        "Pig"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "published": "2026-10-19",
+      "modified": "2026-10-19",
+      "checked": "2026-10-19",
+      "urls": {
+        "en": "https://thedollscout.com/series/sonny-angel-animal-series-2",
+        "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-2",
+        "zh": "https://thedollscout.com/zh/series/sonny-angel-animal-series-2"
+      },
+      "mcpProbabilityTool": "calculate_style_probability",
+      "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
+    },
+    {
+      "id": "sonny-angel-animal-series-3",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 3",
+      "names": [
+        "Parrot",
+        "Rhinoceros",
+        "Snake",
+        "Toy Poodle",
+        "Zebra",
+        "American Short Hair",
+        "Chihuahua",
+        "Crocodile",
+        "French Bulldog",
+        "Giraffe",
+        "Lop Ear Rabbit",
+        "Macaw"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "published": "2026-10-19",
+      "modified": "2026-10-19",
+      "checked": "2026-10-19",
+      "urls": {
+        "en": "https://thedollscout.com/series/sonny-angel-animal-series-3",
+        "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-3",
+        "zh": "https://thedollscout.com/zh/series/sonny-angel-animal-series-3"
       },
       "mcpProbabilityTool": "calculate_style_probability",
       "probabilityInput": "User supplies the probability printed for the exact style; no inferred odds."
