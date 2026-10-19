@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-18",
+ "checked": "2026-10-19",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -1836,6 +1836,195 @@
    "source_http": 503,
    "repo_http": null,
    "reason": "source HTTP 503"
+  },
+  "subvencioname-datos-publicos": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
+  },
+  "surewhynot-quantum-artificer-quantum-artificer": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "swissdeals-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "tanjiren-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "vercel-agent-svg-registry-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-algeria-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-argentina-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-argentina-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-australia-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-australia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-austria-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-bahrain-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-bangladesh-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-belgium-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-belgium-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-brazil-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-brazil-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-bulgaria-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-canada-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-chile-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-chile-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-19",
+   "last_attempt": "2026-10-19",
+   "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -12976,6 +13165,240 @@
   {
    "slug": "subdomain-subdomains",
    "date": "2026-10-18",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "surewhynot-quartermaster-quartermaster",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "swapwallet-mcp",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tabwork-tab",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tasg-tasg",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tbit-tbit",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tbrp-codex",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "teleboost-teleboost",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "terravue-terravue",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "theona-person-enrichment",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "thesignup-mcp",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "thoughtspot-mcp-server",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "threads-mcp-threads",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tomebound-tomebound",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tonebook-palette",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "toptik-tiktok",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tripeak-tripeak",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "triplogistics-trip-logistics-assistant",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "trvlrr-trvlrr",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "vercel-agentready-rho-agentready",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-auditflag-lac-auditflag",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-cloakcheck-wheat-cloakcheck",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-exploitwatch-kappa-exploitwatch",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-filingcheck-bot-filingcheck",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-interesting-concepts-ventures-threadkeep",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-renewalmatrix-renewalmatrix",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-slopcheck-one-slopcheck",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-stripecheckup-stripecheckup",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vercel-triageshield-triageshield",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "veteranhq-va-disability-benefits",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vidlet-vidlet",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vifo-vifo",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vixai-connect",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "waapi-waapi",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wallek-wallek",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "warplink-warplink",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wasync-whatsapp",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wemoveat-moveat",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "wenbu-mcp",
+   "date": "2026-10-19",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "wisepenny-wise-penny",
+   "date": "2026-10-19",
    "source_http": 200,
    "repo_http": null
   }
