@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-18",
+ "fetched": "2026-10-19",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -117,50 +117,50 @@
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "meacodry arete one 20l",
-     "v": 32800
-    },
-    {
      "q": "avreno",
-     "v": 31850
+     "v": 57350
     },
     {
      "q": "pingi luftentfeuchter",
-     "v": 17900
+     "v": 19800
     },
     {
-     "q": "luftentfeuchter wohnmobil",
-     "v": 17100
-    },
-    {
-     "q": "weltweite zeitumstellung 2027",
-     "v": 8400
+     "q": "luftentfeuchter fürs auto",
+     "v": 15800
     },
     {
      "q": "salami",
-     "v": 8300
-    },
-    {
-     "q": "koordinierte weltzeit",
-     "v": 7600
+     "v": 8450
     },
     {
      "q": "selbstbedienungskasse",
-     "v": 7550
+     "v": 6800
     },
     {
      "q": "duschkopf",
-     "v": 4800
+     "v": 4400
     },
     {
-     "q": "pingi luftentfeuchter kompakt",
-     "v": 2100
+     "q": "meacodry arete one 12l",
+     "v": 3600
+    },
+    {
+     "q": "dieter glawischnig",
+     "v": 3000
+    },
+    {
+     "q": "mini luftentfeuchter",
+     "v": 120
+    },
+    {
+     "q": "auto luftentfeuchter",
+     "v": 100
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-18",
-   "polluted": true,
-   "last_attempt_at": "2026-10-18T09:00:35.752800+00:00",
+   "fetched": "2026-10-19",
+   "polluted": false,
+   "last_attempt_at": "2026-10-19T10:08:13.017012+00:00",
    "last_attempt_status": "ok"
   },
   "heizlüfter": {
@@ -168,18 +168,23 @@
     "heizlüfter",
     "heizlüfter test",
     "heizlüfter bad",
-    "heizlüfter media markt",
+    "heizlüfter testsieger",
     "heizlüfter camping",
+    "heizlüfter media markt",
     "heizlüfter mit akku",
     "heizlüfter obi",
     "heizlüfter energiesparend",
-    "heizlüfter kaufen",
-    "heizlüfter test stiftung warentest"
+    "heizlüfter kaufen"
+   ],
+   "new_vocabulary": [
+    "heizlüfter testsieger"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
-   "fetched": "2026-10-11",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume"
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-19T10:11:13.099990+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-19"
   },
   "kaffeevollautomat": {
    "rising": [
