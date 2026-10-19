@@ -1,10 +1,12 @@
 import {styleProbability} from './style-odds-core.mjs';
 import {initSeriesShare} from './series-share-card.mjs?v=2026-10-11.2';
-export function initSeriesChecklist(root, record, {core=globalThis.DSCollector, storage=()=>globalThis.localStorage, events=globalThis.window, page=globalThis.document}={}) {
+export function initSeriesChecklist(root, record, {core=globalThis.DSCollector, storage=()=>globalThis.localStorage, events=globalThis.window, page=globalThis.document, print=()=>globalThis.print?.()}={}) {
  const boxes=[...root.querySelectorAll('input[type=checkbox]')];
  const labels=JSON.parse(root.querySelector('[data-checklist-labels]').textContent);
  const status=root.querySelector('[data-storage-status]');
  const share=initSeriesShare(root,record,{core,storage,events,page});
+ const printButton=root.querySelector('[data-checklist-print]');
+ if(printButton){printButton.disabled=false;printButton.addEventListener('click',()=>{record('collector_series_print_request');print();});}
  let snapshot;
  const figure=box=>({seriesId:labels.seriesId,styleId:box.dataset.styleId,name:box.nextElementSibling.textContent,series:labels.title});
  function render(items) {
