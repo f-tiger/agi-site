@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-18T10:39:13.736Z",
+  "generated": "2026-10-19T12:37:17.103Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -11,7 +11,7 @@
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 136
+    "doc_ci": 137
   },
   "daily": [
     {
@@ -192,7 +192,7 @@
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 83
+      "n": 84
     },
     {
       "path": "/image-compressor",
@@ -339,6 +339,10 @@
       "n": 10
     },
     {
+      "path": "/zh/delivery-evidence",
+      "n": 10
+    },
+    {
       "path": "/zh/open-source",
       "n": 10
     },
@@ -396,10 +400,6 @@
     },
     {
       "path": "/verify-file",
-      "n": 9
-    },
-    {
-      "path": "/zh/delivery-evidence",
       "n": 9
     },
     {
@@ -635,6 +635,10 @@
       "n": 5
     },
     {
+      "path": "/document-assets/tool-capabilities.json",
+      "n": 5
+    },
+    {
       "path": "/document-assets/text/de/delivery-evidence.txt",
       "n": 4
     },
@@ -695,6 +699,10 @@
       "n": 4
     },
     {
+      "path": "/document-assets/text/zh/delivery-evidence.txt",
+      "n": 4
+    },
+    {
       "path": "/document-assets/text/zh/open-source.txt",
       "n": 4
     },
@@ -739,10 +747,6 @@
       "n": 4
     },
     {
-      "path": "/document-assets/tool-capabilities.json",
-      "n": 4
-    },
-    {
       "path": "/document-assets/sample-results.json",
       "n": 3
     },
@@ -768,10 +772,6 @@
     },
     {
       "path": "/document-assets/text/zh/compare-pdf-text.txt",
-      "n": 3
-    },
-    {
-      "path": "/document-assets/text/zh/delivery-evidence.txt",
       "n": 3
     },
     {
@@ -806,7 +806,7 @@
   "crawler_agents": [
     {
       "claimed_agent": "GPTBot",
-      "n": 291
+      "n": 292
     },
     {
       "claimed_agent": "Amazonbot",
@@ -822,7 +822,7 @@
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 201
+      "n": 202
     },
     {
       "claimed_agent": "ChatGPT-User",
@@ -842,7 +842,7 @@
     },
     {
       "claimed_agent": "Applebot",
-      "n": 21
+      "n": 23
     },
     {
       "claimed_agent": "Claude-User",
@@ -935,5 +935,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 32,
-  "query_rows_read": 6610
+  "query_rows_read": 6515
 }
