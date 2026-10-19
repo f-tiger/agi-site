@@ -24,8 +24,8 @@
   },
   {
    "heat": {
-    "n7": 4,
-    "p7": 2
+    "n7": 3,
+    "p7": 3
    },
    "kind": "value",
    "match": 0.875,
@@ -35,28 +35,6 @@
    "source": "related-queries",
    "stand": "2026-10-14",
    "v": 29200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.875,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter wohnwagen",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 24600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.933,
-   "page": "guide/luftentfeuchter-40-qm.html",
-   "q": "luftentfeuchter keller dauerbetrieb",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 17450
   },
   {
    "heat": null,
@@ -83,17 +61,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.917,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter fürs auto",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 3150
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.75,
    "page": "guide/lidl-tronic-klimaanlage-test.html",
    "q": "tronic klimaanlage 9000 btu",
@@ -103,20 +70,9 @@
    "v": 350
   },
   {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/waesche-trocknen-wohnung.html",
-   "q": "luftentfeuchter wäsche trocknen",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 350
-  },
-  {
    "heat": {
     "n7": 5,
-    "p7": 19
+    "p7": 10
    },
    "kind": "value",
    "match": 0.967,
@@ -174,16 +130,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "pingi luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 21150
-  },
-  {
-   "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
    "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
@@ -204,6 +150,16 @@
   },
   {
    "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "kobold sp600 saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-10-18",
+   "v": 10400
+  },
+  {
+   "kind": "value",
    "match": 0.15,
    "page": "en/guide/best-portable-air-conditioner-italy.html",
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
@@ -221,16 +177,6 @@
    "source": "related-queries",
    "stand": "2026-10-15",
    "v": 6600
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "index.html",
-   "q": "pingi luftentfeuchter kompakt",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 4400
   },
   {
    "kind": "value",
@@ -291,6 +237,16 @@
    "source": "related-queries",
    "stand": "2026-10-12",
    "v": 170
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/tineco-saugt-nicht-mehr.html",
+   "q": "tineco saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-10-18",
+   "v": 120
   },
   {
    "kind": "value",
@@ -381,31 +337,36 @@
    "source": "related-queries",
    "stand": "2026-10-17",
    "v": 50
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "roborock saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-10-18",
+   "v": 40
   }
  ],
- "generated": "2026-10-18",
+ "generated": "2026-10-19",
  "geo": "DE",
- "heat_source": "measured 2026-10-18 (18 pages); no notes",
+ "heat_source": "measured 2026-10-19 (22 pages); no notes",
  "hot_pages": [
   {
-   "n7": 10,
+   "n7": 9,
    "p7": 5,
    "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
-   "n7": 6,
-   "p7": 10,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
    "n7": 5,
-   "p7": 19,
+   "p7": 10,
    "page": "/"
   },
   {
-   "n7": 4,
-   "p7": 2,
-   "page": "/guide/heizluefter-stromverbrauch.html"
+   "n7": 5,
+   "p7": 10,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
    "n7": 4,
@@ -413,13 +374,23 @@
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
-   "n7": 3,
-   "p7": 3,
+   "n7": 4,
+   "p7": 2,
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 3,
-   "p7": 2,
+   "p7": 3,
+   "page": "/guide/heizluefter-stromverbrauch.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/heizung-50-qm.html"
+  },
+  {
+   "n7": 3,
+   "p7": 1,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
@@ -429,8 +400,13 @@
   },
   {
    "n7": 3,
-   "p7": 8,
+   "p7": 7,
    "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 3,
+   "p7": 2,
+   "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
    "n7": 2,
@@ -444,23 +420,13 @@
   },
   {
    "n7": 2,
-   "p7": 5,
+   "p7": 2,
    "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/comfee-geraete-test.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-reinigen.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/midea-geraete-test.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -468,15 +434,16 @@
  "offtopic_dropped": [
   "infrarot heizkörper",
   "ölradiator",
-  "avreno",
+  "kärcher nass trockensauger",
+  "saug wisch roboter test",
+  "dyson wischsauger",
   "radiator",
-  "adsorptionstrockner",
   "fluss durch riga",
   "constantin schreiber axel springer",
   "tabaksteuer",
-  "comfee mddn-10den7",
   "bett1 de",
   "kinderbett 90x200",
+  "tineco",
   "philips lattego"
  ],
  "site": "getecoback",

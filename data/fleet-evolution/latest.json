@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-18",
+  "as_of": "2026-10-19",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 10,
+    "opportunities": 9,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-17T07:10:25.351Z",
-    "health": "2026-10-17T11:53:21Z",
-    "ai_referrals": "2026-10-17T11:53:48Z",
-    "opportunities": "2026-10-17",
-    "autopilot_receipt": "2026-10-18"
+    "membership": "2026-10-18T07:24:18.261Z",
+    "health": "2026-10-18T12:20:00Z",
+    "ai_referrals": "2026-10-18T12:20:22Z",
+    "opportunities": "2026-10-18",
+    "autopilot_receipt": "2026-10-19"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-17T07:10:25.351Z",
+    "generated": "2026-10-18T07:24:18.261Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -116,19 +116,19 @@
   },
   "opportunities": [
     {
-      "theme": "locked out of google despite knowing password and having email access",
+      "theme": "let s say you are a video content creator on youtube how hard is it currently to",
       "site": null,
       "state": "scout",
-      "score": 2.38,
+      "score": 2.61,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "fake abuse reports keep auto blocking my site on cloudflare",
+      "theme": "is there a temp phone number like temp email",
       "site": null,
       "state": "scout",
-      "score": 2.28,
+      "score": 2.27,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -152,19 +152,10 @@
       "supply": 0
     },
     {
-      "theme": "web push notifications server",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "is there a program to run a command with a single flag and multiple arguments co",
       "site": null,
       "state": "scout",
-      "score": 2.03,
+      "score": 2.05,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -200,26 +191,13 @@
       "theme": "open source tool to auto generate api regression tests from real traffic linux c",
       "site": null,
       "state": "scout",
-      "score": 0.98,
+      "score": 1.0,
       "days_seen": 1,
       "demand": 0,
-      "supply": 2
+      "supply": 1
     }
   ],
   "actions": [
-    {
-      "site": "agiscorecard",
-      "kind": "optimize_existing_page",
-      "priority": 80,
-      "reason": "measured demand reaches an existing page with zero recent referred readers",
-      "evidence": {
-        "count": 1,
-        "query": "cathie wood ark invest ai stocks",
-        "page": "invest/cathie-wood.html",
-        "value": 900
-      },
-      "mode": "queue"
-    },
     {
       "site": "agiscorecard",
       "kind": "membership_observability",
@@ -261,18 +239,6 @@
       "mode": "observe"
     },
     {
-      "site": "agiscorecard",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 5,
-        "query": "ai infrastructure stocks comeback",
-        "value": 4700
-      },
-      "mode": "queue"
-    },
-    {
       "site": "buysomething",
       "kind": "content_gap",
       "priority": 55,
@@ -290,7 +256,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 25,
+        "count": 26,
         "query": "infrarotheizung hornbach",
         "value": 55350
       },
@@ -302,7 +268,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 18,
+        "count": 17,
         "query": "lets try the viral crumbl labubu",
         "value": 17850
       },
@@ -315,8 +281,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/zh/jarvis",
-        "n7": 57,
-        "p7": 27
+        "n7": 60,
+        "p7": 26
       },
       "mode": "queue"
     },
@@ -327,7 +293,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/en/guide/portable-ac-not-cooling.html",
-        "n7": 10,
+        "n7": 9,
         "p7": 5
       },
       "mode": "queue"
@@ -338,7 +304,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 274,
+        "human_pv_28d": 280,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -349,7 +315,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 206,
+        "human_pv_28d": 199,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -360,7 +326,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 897,
+        "human_pv_28d": 889,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -369,7 +335,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 4
+      "action_count": 2
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

@@ -89,6 +89,16 @@
    "source": "related-queries",
    "stand": "2026-10-10",
    "v": 140
+  },
+  {
+   "kind": "value",
+   "match": 0.687,
+   "page": "series/sonny-angel-animal-series-1.html",
+   "q": "sonny angel cuddly bear",
+   "seed": "sonny angel",
+   "source": "related-queries",
+   "stand": "2026-10-10",
+   "v": 130
   }
  ],
  "first_party_demand": {},
@@ -115,8 +125,8 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "index.html",
+   "match": 0.5,
+   "page": "series/sonny-angel-animal-series-1.html",
    "q": "jellycat bizzlestomp bear",
    "seed": "jellycat",
    "source": "related-queries",
@@ -262,19 +272,9 @@
    "source": "related-queries",
    "stand": "2026-10-10",
    "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "sonny angel cuddly bear",
-   "seed": "sonny angel",
-   "source": "related-queries",
-   "stand": "2026-10-10",
-   "v": 130
   }
  ],
- "generated": "2026-10-18",
+ "generated": "2026-10-19",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],

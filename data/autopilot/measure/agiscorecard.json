@@ -7,35 +7,39 @@
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 5,
+    "n": 6,
     "q": "tool:verdicts"
    },
    {
-    "n": 5,
+    "n": 6,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 5,
+    "n": 6,
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 5,
+    "n": 6,
     "q": "tool:invest_positions"
    },
    {
-    "n": 5,
+    "n": 6,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    }
   ]
  },
- "fetched": "2026-10-18",
+ "fetched": "2026-10-19",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
+  "/privacy": {
+   "n7": 51,
+   "p7": 23
+  },
   "/zh/jarvis": {
-   "n7": 57,
-   "p7": 27
+   "n7": 60,
+   "p7": 26
   }
  },
  "site": "agiscorecard",
