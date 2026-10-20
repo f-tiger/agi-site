@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-19",
+ "fetched": "2026-10-20",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -717,48 +717,48 @@
   "pet water fountain": {
    "rising": [
     {
-     "q": "selene pets",
-     "v": 59700
+     "q": "selene cat water fountain",
+     "v": 76550
     },
     {
      "q": "vewo",
-     "v": 46100
+     "v": 63750
+    },
+    {
+     "q": "pet store near me",
+     "v": 4150
     },
     {
      "q": "vewo dog water fountain",
-     "v": 24100
-    },
-    {
-     "q": "aquapurr",
-     "v": 19850
-    },
-    {
-     "q": "fresh flow water fountain",
-     "v": 550
-    },
-    {
-     "q": "selene pet water fountain",
-     "v": 550
+     "v": 1800
     },
     {
      "q": "selene water fountain",
      "v": 500
     },
     {
-     "q": "selene pet fountain",
+     "q": "selene pet water fountain",
      "v": 500
+    },
+    {
+     "q": "selene pet fountain",
+     "v": 450
+    },
+    {
+     "q": "pet libro fountain",
+     "v": 250
     },
     {
      "q": "pet libro",
      "v": 250
     },
     {
-     "q": "pet libro fountain",
-     "v": 250
+     "q": "best cat water fountain",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-19"
+   "fetched": "2026-10-20"
   },
   "automatic pet feeder camera": {
    "auto": [
@@ -771,11 +771,16 @@
     "automatic pet feeder with camera nearby",
     "automatic pet feeder with camera near me",
     "automatic pet feeder with camera bunnings",
-    "wopet automatic pet feeder camera"
+    "automatic pet feeder with camera amazon"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "automatic pet feeder with camera amazon",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-20"
+   "fetched": "2026-10-20"
   },
   "self cleaning litter box": {
    "rising": [
