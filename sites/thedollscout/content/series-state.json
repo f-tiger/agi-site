@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cursor": 9,
+  "cursor": 15,
   "series": [
     {
       "id": "sonny-angel-snack-series",
@@ -24,7 +24,7 @@
       "hash": "94296079e74d833608336ad96559caeca74aafb29626c5cb185a4a01ed15ed78",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "sonny-angel-vegetable-series",
@@ -48,7 +48,7 @@
       "hash": "a809527d0c80437274d5653997ca53036a8abf18925726bd1c90e5fc2c90e010",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-construction",
@@ -138,7 +138,7 @@
       "hash": "088735bc37da6b270eceee2c4cc3dad48394510153e8a9c5f13d0eee54db930b",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-17"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-bath-series",
@@ -156,7 +156,7 @@
       "hash": "33793deb8ee702bc22a983f905cee9e02d0f827f10e836d1a2254bfe233cbb5f",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-17"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-series1",
@@ -246,7 +246,7 @@
       "hash": "3a698b36f7c31f382aa352ac5bcb7300d85f537c11a7144123801b2058952f8c",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-17"
+      "checked": "2026-10-20"
     },
     {
       "id": "sonny-angel-flower-series",
@@ -270,7 +270,7 @@
       "hash": "9eda1b03a7a08ff2488e2fb8994dae0b0f3724a0d3c24eea4e2b2e750d189710",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-series2",
@@ -312,7 +312,7 @@
       "hash": "f6631ea04d33856abfa527809115ee7aaaf287133d0d422b7a9593e74e7b388c",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-moving",
@@ -354,7 +354,7 @@
       "hash": "0dfd13773723862e8ecb5db6159e34edfc65f6283e4d3095be3a306399ed4c12",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-yoga-series",
@@ -372,7 +372,7 @@
       "hash": "ce3b297c69b6207c5cec9f23eae98287b3c37cdc469db7c13130e2e13967a707",
       "published": "2026-10-17",
       "modified": "2026-10-17",
-      "checked": "2026-10-17"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-toilet-series",
@@ -390,7 +390,7 @@
       "hash": "5ac355506add3e662d511e4b264ce410e80771bc9bc63b9b17af6f4f46f738f4",
       "published": "2026-10-17",
       "modified": "2026-10-17",
-      "checked": "2026-10-17"
+      "checked": "2026-10-20"
     },
     {
       "id": "smiski-series3",
@@ -432,7 +432,7 @@
       "hash": "6cd5532373221409588192ef63be82b3129c8df9e0ec758a6ee30108a3ba6d8f",
       "published": "2026-10-18",
       "modified": "2026-10-18",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "sonny-angel-animal-series-2",
@@ -456,7 +456,7 @@
       "hash": "f498012102feb99a9e441e813b504812984ff0c3c4a020d0f429a794d321f999",
       "published": "2026-10-19",
       "modified": "2026-10-19",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
     },
     {
       "id": "sonny-angel-animal-series-3",
@@ -480,10 +480,77 @@
       "hash": "6a65023bce0369ac5ec682b33ec6eb17c1c71b6445bc74e4dbd47179e77b856c",
       "published": "2026-10-19",
       "modified": "2026-10-19",
-      "checked": "2026-10-19"
+      "checked": "2026-10-20"
+    },
+    {
+      "id": "smiski-cheer",
+      "brand": "smiski",
+      "title": "SMISKI Cheer",
+      "names": [
+        "Smiski Marching",
+        "Smiski on Drums",
+        "Smiski on your side",
+        "Smiski Dancing",
+        "Little Smiski Cheerieding",
+        "Smiski Cheering"
+      ],
+      "source": "https://smiski.com/e/products/cheerseries/",
+      "hash": "314bce8435d2e506e9b6be78cf8eaa317c4c4b6866a7896a8d35f88494a994d7",
+      "published": "2026-10-20",
+      "modified": "2026-10-20",
+      "checked": "2026-10-20"
+    },
+    {
+      "id": "sonny-angel-animal-series-4",
+      "brand": "sonny-angel",
+      "title": "Sonny Angel Animal Series 4",
+      "names": [
+        "Hippopotamus",
+        "Horse",
+        "Lion",
+        "Peacock",
+        "Shiba Inu",
+        "Alpaca",
+        "Anteater",
+        "Buffalo",
+        "Calico Cat",
+        "Cheetah",
+        "Goat",
+        "Gorilla"
+      ],
+      "source": "https://www.sonnyangel.com/en/products/",
+      "hash": "2968e308d03a20dcebae84c46a29f59455a5d48915663cb35d6bf4de6dc5c9de",
+      "published": "2026-10-20",
+      "modified": "2026-10-20",
+      "checked": "2026-10-20"
     }
   ],
   "history": [
+    {
+      "date": "2026-10-20",
+      "status": "ok",
+      "added": [
+        "smiski-cheer",
+        "sonny-angel-animal-series-4"
+      ],
+      "changed": [],
+      "eligible": 16,
+      "sources": [
+        {
+          "id": "smiski",
+          "status": "ok",
+          "eligible": 6,
+          "url": "https://smiski.com/e/products/"
+        },
+        {
+          "id": "sonny-angel",
+          "status": "ok",
+          "eligible": 10,
+          "url": "https://www.sonnyangel.com/en/products/"
+        }
+      ],
+      "rejected": []
+    },
     {
       "date": "2026-10-19",
       "status": "ok",
@@ -806,19 +873,19 @@
     }
   ],
   "lastRun": {
-    "date": "2026-10-19",
+    "date": "2026-10-20",
     "status": "ok",
     "added": [
-      "sonny-angel-animal-series-2",
-      "sonny-angel-animal-series-3"
+      "smiski-cheer",
+      "sonny-angel-animal-series-4"
     ],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -828,11 +895,6 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   }
 }
