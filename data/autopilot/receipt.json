@@ -6,23 +6,22 @@
     "bootstrapped": 0,
     "changed": 0,
     "covered": 1,
-    "demand_terms": 10,
-    "gaps": 0,
-    "hot_pages": 2,
+    "demand_terms": 20,
+    "gaps": 4,
+    "hot_pages": 5,
     "lastmod_updated": 0,
-    "offtopic": 9,
+    "offtopic": 15,
     "pages": 353,
     "undatable": 34,
     "underserved": 0
    },
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
-    "sites/agiscorecard/trends-rising.json: 2 fresh seed(s) used; 2 stale and 0 undated dropped",
-    "heat: measured 2026-10-19 (2 pages); no notes"
+    "heat: measured 2026-10-20 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -37,11 +36,11 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 52,
+    "demand_terms": 61,
     "gaps": 1,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 51,
+    "offtopic": 60,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
@@ -49,11 +48,11 @@
    "notes": [
     "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (portable bottle warmer). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-10-19 (0 pages); no notes"
+    "heat: measured 2026-10-20 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -65,22 +64,22 @@
    "counts": {
     "bootstrapped": 0,
     "changed": 0,
-    "covered": 7,
-    "demand_terms": 46,
-    "gaps": 26,
+    "covered": 10,
+    "demand_terms": 56,
+    "gaps": 27,
     "hot_pages": 15,
-    "offtopic": 13,
+    "offtopic": 19,
     "pages": 279,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-10-19 (22 pages); no notes"
+    "heat: measured 2026-10-20 (22 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -106,7 +105,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -132,7 +131,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -140,17 +139,16 @@
   },
   {
    "changed_urls": [
-    "https://thedollscout.com/brands/smiski.html",
     "https://thedollscout.com/brands/sonny-angel.html",
-    "https://thedollscout.com/de/brands/smiski.html",
     "https://thedollscout.com/de/brands/sonny-angel.html",
     "https://thedollscout.com/de/index.html",
     "https://thedollscout.com/de/series.html",
-    "https://thedollscout.com/de/series/smiski-birthday.html",
-    "https://thedollscout.com/de/series/smiski-construction.html",
-    "https://thedollscout.com/de/series/smiski-series1.html",
-    "https://thedollscout.com/de/series/smiski-series2.html",
-    "https://thedollscout.com/de/series/smiski-sunday.html",
+    "https://thedollscout.com/de/series/smiski-dressing.html",
+    "https://thedollscout.com/de/series/smiski-exercising.html",
+    "https://thedollscout.com/de/series/smiski-moving.html",
+    "https://thedollscout.com/de/series/smiski-museum.html",
+    "https://thedollscout.com/de/series/smiski-work.html",
+    "https://thedollscout.com/de/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/de/series/sonny-angel-flower-series.html",
     "https://thedollscout.com/de/series/sonny-angel-fruit-series.html",
     "https://thedollscout.com/de/series/sonny-angel-marine-series.html",
@@ -158,25 +156,26 @@
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/index.html",
     "https://thedollscout.com/series.html",
-    "https://thedollscout.com/series/smiski-birthday.html",
-    "https://thedollscout.com/series/smiski-construction.html",
-    "https://thedollscout.com/series/smiski-series1.html",
-    "https://thedollscout.com/series/smiski-series2.html",
-    "https://thedollscout.com/series/smiski-sunday.html",
+    "https://thedollscout.com/series/smiski-dressing.html",
+    "https://thedollscout.com/series/smiski-exercising.html",
+    "https://thedollscout.com/series/smiski-moving.html",
+    "https://thedollscout.com/series/smiski-museum.html",
+    "https://thedollscout.com/series/smiski-work.html",
+    "https://thedollscout.com/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/series/sonny-angel-flower-series.html",
     "https://thedollscout.com/series/sonny-angel-fruit-series.html",
     "https://thedollscout.com/series/sonny-angel-marine-series.html",
     "https://thedollscout.com/series/sonny-angel-snack-series.html",
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
-    "https://thedollscout.com/zh/brands/smiski.html",
     "https://thedollscout.com/zh/brands/sonny-angel.html",
     "https://thedollscout.com/zh/index.html",
     "https://thedollscout.com/zh/series.html",
-    "https://thedollscout.com/zh/series/smiski-birthday.html",
-    "https://thedollscout.com/zh/series/smiski-construction.html",
-    "https://thedollscout.com/zh/series/smiski-series1.html",
-    "https://thedollscout.com/zh/series/smiski-series2.html",
-    "https://thedollscout.com/zh/series/smiski-sunday.html",
+    "https://thedollscout.com/zh/series/smiski-dressing.html",
+    "https://thedollscout.com/zh/series/smiski-exercising.html",
+    "https://thedollscout.com/zh/series/smiski-moving.html",
+    "https://thedollscout.com/zh/series/smiski-museum.html",
+    "https://thedollscout.com/zh/series/smiski-work.html",
+    "https://thedollscout.com/zh/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/zh/series/sonny-angel-flower-series.html",
     "https://thedollscout.com/zh/series/sonny-angel-fruit-series.html",
     "https://thedollscout.com/zh/series/sonny-angel-marine-series.html",
@@ -186,23 +185,23 @@
    "counts": {
     "bootstrapped": 6,
     "changed": 42,
-    "covered": 10,
-    "demand_terms": 30,
-    "gaps": 17,
+    "covered": 7,
+    "demand_terms": 10,
+    "gaps": 3,
     "hot_pages": 0,
-    "lastmod_updated": 90,
-    "offtopic": 3,
-    "pages": 267,
+    "lastmod_updated": 96,
+    "offtopic": 0,
+    "pages": 273,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/thedollscout/content/trends-rising.json: 3 fresh seed(s) used; 5 stale and 0 undated dropped",
+    "sites/thedollscout/content/trends-rising.json: 1 fresh seed(s) used; 7 stale and 0 undated dropped",
     "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-10-19",
+   "today": "2026-10-20",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -210,5 +209,5 @@
    ]
   }
  ],
- "today": "2026-10-19"
+ "today": "2026-10-20"
 }

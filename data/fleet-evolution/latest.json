@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-19",
+  "as_of": "2026-10-20",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 9,
+    "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-18T07:24:18.261Z",
-    "health": "2026-10-18T12:20:00Z",
-    "ai_referrals": "2026-10-18T12:20:22Z",
-    "opportunities": "2026-10-18",
-    "autopilot_receipt": "2026-10-19"
+    "membership": "2026-10-19T08:03:59.015Z",
+    "health": "2026-10-19T15:09:51Z",
+    "ai_referrals": "2026-10-19T15:10:44Z",
+    "opportunities": "2026-10-19",
+    "autopilot_receipt": "2026-10-20"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-18T07:24:18.261Z",
+    "generated": "2026-10-19T08:03:59.015Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -116,15 +116,6 @@
   },
   "opportunities": [
     {
-      "theme": "let s say you are a video content creator on youtube how hard is it currently to",
-      "site": null,
-      "state": "scout",
-      "score": 2.61,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "is there a temp phone number like temp email",
       "site": null,
       "state": "scout",
@@ -194,7 +185,7 @@
       "score": 1.0,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 3
     }
   ],
   "actions": [
@@ -239,6 +230,18 @@
       "mode": "observe"
     },
     {
+      "site": "agiscorecard",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 4,
+        "query": "jim cramer ai chip stocks",
+        "value": 11450
+      },
+      "mode": "queue"
+    },
+    {
       "site": "buysomething",
       "kind": "content_gap",
       "priority": 55,
@@ -256,7 +259,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 26,
+        "count": 27,
         "query": "infrarotheizung hornbach",
         "value": 55350
       },
@@ -268,9 +271,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 17,
-        "query": "lets try the viral crumbl labubu",
-        "value": 17850
+        "count": 3,
+        "query": "sonny angel advent calendar",
+        "value": 650
       },
       "mode": "queue"
     },
@@ -280,9 +283,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/zh/jarvis",
-        "n7": 60,
-        "p7": 26
+        "page": "/jarvis",
+        "n7": 89,
+        "p7": 33
       },
       "mode": "queue"
     },
@@ -292,9 +295,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/en/guide/portable-ac-not-cooling.html",
-        "n7": 9,
-        "p7": 5
+        "page": "/",
+        "n7": 5,
+        "p7": 8
       },
       "mode": "queue"
     },
@@ -304,7 +307,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 280,
+        "human_pv_28d": 288,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -315,7 +318,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 199,
+        "human_pv_28d": 208,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -326,7 +329,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 889,
+        "human_pv_28d": 937,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -335,7 +338,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-19T08:03:53.142Z",
+  "as_of": "2026-10-20T07:54:28.947Z",
   "kind": "owned_page_health_not_market_validation",
   "ok": false,
   "site_checks": [
@@ -643,24 +643,351 @@
   },
   "marketing": {
     "queue_fresh": true,
-    "draft_ready": 57,
+    "draft_ready": 3,
     "blocked": [
       {
         "id": "bpj-sponsored-placement",
         "reasons": [
+          "review_stale",
           "live_checkout_not_ready"
+        ]
+      },
+      {
+        "id": "bpj-free-quota",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "agi-evidence",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "eco-energy-decision",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "tds-collector-decision",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "localebatch-csv-check",
+        "reasons": [
+          "review_stale"
         ]
       },
       {
         "id": "studio-launchdesk-zh",
         "reasons": [
+          "review_stale",
           "live_checkout_not_ready"
         ]
       },
       {
         "id": "studio-launchdesk-en",
         "reasons": [
+          "review_stale",
           "live_checkout_not_ready"
+        ]
+      },
+      {
+        "id": "studio-quotawatch-pro-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-quotawatch-pro-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-creatorops-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-creatorops-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-evidencewatch-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-evidencewatch-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-agentfit-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-agentfit-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-filinglens-workspace-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-filinglens-workspace-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-billlens-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-billlens-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-billlens-it",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-appliancepayback-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-appliancepayback-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-appliancepayback-it",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-homeenergy-log-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-homeenergy-log-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-homeenergy-log-it",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-collectorledger-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-collectorledger-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-dropcalendar-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-dropcalendar-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-displayfit-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-displayfit-de",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-tradecheck-team-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-tradecheck-team-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-localebatch-qa-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-localebatch-qa-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-rfq-roundbook-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-rfq-roundbook-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-evidencebrief-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-evidencebrief-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-modelmeter-reconcile-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-modelmeter-reconcile-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-workflowcost-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-workflowcost-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-querysprint-projects-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-querysprint-projects-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-job-evidence-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-job-evidence-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-scamchecklist-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-scamchecklist-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-puzzleclub-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-puzzleclub-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-classroompuzzles-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-classroompuzzles-zh",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-embedpuzzles-en",
+        "reasons": [
+          "review_stale"
+        ]
+      },
+      {
+        "id": "studio-embedpuzzles-zh",
+        "reasons": [
+          "review_stale"
         ]
       }
     ],

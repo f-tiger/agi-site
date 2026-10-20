@@ -24,7 +24,7 @@
   },
   {
    "heat": {
-    "n7": 3,
+    "n7": 2,
     "p7": 3
    },
    "kind": "value",
@@ -35,6 +35,17 @@
    "source": "related-queries",
    "stand": "2026-10-14",
    "v": 29200
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.917,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter fürs auto",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-19",
+   "v": 15800
   },
   {
    "heat": null,
@@ -72,7 +83,7 @@
   {
    "heat": {
     "n7": 5,
-    "p7": 10
+    "p7": 8
    },
    "kind": "value",
    "match": 0.967,
@@ -82,6 +93,28 @@
    "source": "related-queries",
    "stand": "2026-10-12",
    "v": 160
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.975,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "mini luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-19",
+   "v": 120
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.95,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "auto luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-19",
+   "v": 100
   }
  ],
  "first_party_demand": {
@@ -127,6 +160,16 @@
    "source": "related-queries",
    "stand": "2026-10-14",
    "v": 39050
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "pingi luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-10-19",
+   "v": 19800
   },
   {
    "kind": "value",
@@ -349,29 +392,29 @@
    "v": 40
   }
  ],
- "generated": "2026-10-19",
+ "generated": "2026-10-20",
  "geo": "DE",
- "heat_source": "measured 2026-10-19 (22 pages); no notes",
+ "heat_source": "measured 2026-10-20 (22 pages); no notes",
  "hot_pages": [
   {
-   "n7": 9,
-   "p7": 5,
-   "page": "/en/guide/portable-ac-not-cooling.html"
-  },
-  {
    "n7": 5,
-   "p7": 10,
+   "p7": 8,
    "page": "/"
   },
   {
    "n7": 5,
-   "p7": 10,
+   "p7": 6,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 5,
+   "p7": 8,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
    "n7": 4,
-   "p7": 6,
-   "page": "/guide/klimaanlage-wohnmobil.html"
+   "p7": 10,
+   "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
    "n7": 4,
@@ -379,33 +422,28 @@
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
-   "n7": 3,
-   "p7": 3,
-   "page": "/guide/heizluefter-stromverbrauch.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/heizung-50-qm.html"
-  },
-  {
-   "n7": 3,
+   "n7": 4,
    "p7": 1,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
-   "n7": 3,
-   "p7": 3,
-   "page": "/guide/thermovorhang-ratgeber.html"
-  },
-  {
-   "n7": 3,
+   "n7": 4,
    "p7": 7,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
-   "p7": 2,
+   "p7": 0,
+   "page": "/guide/thermovorhang-ratgeber.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/kontakt.html"
+  },
+  {
+   "n7": 3,
+   "p7": 1,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
@@ -427,19 +465,30 @@
    "n7": 2,
    "p7": 0,
    "page": "/guide/comfee-geraete-test.html"
+  },
+  {
+   "n7": 2,
+   "p7": 3,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
+  "avreno",
   "infrarot heizkörper",
   "ölradiator",
   "kärcher nass trockensauger",
   "saug wisch roboter test",
   "dyson wischsauger",
   "radiator",
+  "salami",
+  "selbstbedienungskasse",
   "fluss durch riga",
+  "duschkopf",
+  "meacodry arete one 12l",
   "constantin schreiber axel springer",
+  "dieter glawischnig",
   "tabaksteuer",
   "bett1 de",
   "kinderbett 90x200",

@@ -14,10 +14,10 @@
     },
     "demand": {
       "has_underserved": false,
-      "has_gaps": false,
+      "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/zh/jarvis"
+      "top_hot_page": "/jarvis"
     },
     "health": {
       "http": "200",
@@ -33,11 +33,22 @@
       "mode": "observe"
     },
     {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count_band": "1-9",
+        "query": "jim cramer ai chip stocks",
+        "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
       "kind": "improve_hot_page",
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/zh/jarvis",
+        "page": "/jarvis",
         "n7_band": "10-99",
         "p7_band": "10-99"
       },

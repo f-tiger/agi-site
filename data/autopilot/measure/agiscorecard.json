@@ -3,16 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 15,
+    "n": 14,
     "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 7,
+    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
     "q": "tool:verdicts"
-   },
-   {
-    "n": 6,
-    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
@@ -28,18 +28,30 @@
    }
   ]
  },
- "fetched": "2026-10-19",
+ "fetched": "2026-10-20",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/privacy": {
-   "n7": 51,
-   "p7": 23
+  "/aschenbrenner-vs-metaculus": {
+   "n7": 57,
+   "p7": 26
+  },
+  "/jarvis": {
+   "n7": 89,
+   "p7": 33
+  },
+  "/narrow-vs-general-ai": {
+   "n7": 60,
+   "p7": 29
+  },
+  "/will-ai-replace-programmers": {
+   "n7": 64,
+   "p7": 31
   },
   "/zh/jarvis": {
-   "n7": 60,
-   "p7": 26
+   "n7": 62,
+   "p7": 19
   }
  },
  "site": "agiscorecard",
