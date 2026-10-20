@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-19",
+ "generated": "2026-10-20",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "marscode",
-  "ai360",
-  "aider",
-  "aippt",
-  "ante",
-  "canva",
-  "cerebras",
-  "character-ai"
+  "chatgpt",
+  "codebuddy",
+  "cody",
+  "cohere",
+  "comate",
+  "continue",
+  "coze",
+  "d-id"
  ],
- "cursor": "character-ai",
+ "cursor": "d-id",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -996,7 +996,7 @@
    "name": "ChatGPT",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1026,7 +1026,7 @@
    "name": "CodeBuddy（腾讯）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1040,7 +1040,7 @@
     {
      "url": "https://copilot.tencent.com/pricing",
      "status": 200,
-     "bytes": 6683,
+     "bytes": 6849,
      "tokens": 0
     },
     {
@@ -1061,14 +1061,14 @@
    "name": "Sourcegraph Cody",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
      "status": 200,
-     "bytes": 32102,
+     "bytes": 32042,
      "tokens": 5
     }
    ],
@@ -1083,14 +1083,14 @@
    "name": "Cohere",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://cohere.com/pricing",
      "status": 200,
-     "bytes": 538323,
+     "bytes": 577507,
      "tokens": 45
     }
    ],
@@ -1105,7 +1105,7 @@
    "name": "文心快码 Comate（百度）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1139,7 +1139,7 @@
    "name": "Continue",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1169,7 +1169,7 @@
    "name": "扣子 Coze（字节）",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-10-08",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1203,20 +1203,20 @@
    "name": "D-ID",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-09",
+   "probed": "2026-10-20",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://d-id.com/pricing/studio",
      "status": 200,
-     "bytes": 152959,
+     "bytes": 159343,
      "tokens": 0
     },
     {
      "url": "https://www.d-id.com/pricing",
      "status": 200,
-     "bytes": 152959,
+     "bytes": 159343,
      "tokens": 0
     },
     {

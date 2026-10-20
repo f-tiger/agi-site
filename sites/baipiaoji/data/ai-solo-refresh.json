@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-19T05:15:16.527Z",
+  "lastRun": "2026-10-20T05:17:09.409Z",
   "status": "degraded",
-  "checkedSources": 6,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -91,31 +91,31 @@
       "caseId": "julius-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastChecked": "2026-10-07T06:26:16.393Z"
+      "lastChecked": "2026-10-20T05:17:09.409Z"
     },
     {
       "caseId": "chatbase",
       "reason": "source-unreachable",
       "sourceUrl": "https://supabase.com/customers/chatbase",
-      "lastChecked": "2026-10-07T06:26:16.393Z"
+      "lastChecked": "2026-10-20T05:17:09.409Z"
     },
     {
       "caseId": "bolt",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
-      "lastChecked": "2026-10-08T06:37:57.062Z"
+      "lastChecked": "2026-10-20T05:17:09.409Z"
     },
     {
       "caseId": "cursor",
       "reason": "source-unreachable",
       "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "lastChecked": "2026-10-08T06:37:57.062Z"
+      "lastChecked": "2026-10-20T05:17:09.409Z"
     },
     {
       "caseId": "lovable",
       "reason": "source-unreachable",
       "sourceUrl": "https://lovable.dev/blog/agent",
-      "lastChecked": "2026-10-08T06:37:57.062Z"
+      "lastChecked": "2026-10-20T05:17:09.409Z"
     },
     {
       "caseId": "gamma",
@@ -531,7 +531,7 @@
     "julius-ai|https://julius.ai/home/ai-powered-business-intelligence": {
       "caseId": "julius-ai",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastAttempt": "2026-10-07T06:26:16.393Z",
+      "lastAttempt": "2026-10-20T05:17:09.409Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -539,7 +539,7 @@
     "chatbase|https://supabase.com/customers/chatbase": {
       "caseId": "chatbase",
       "sourceUrl": "https://supabase.com/customers/chatbase",
-      "lastAttempt": "2026-10-07T06:26:16.393Z",
+      "lastAttempt": "2026-10-20T05:17:09.409Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -547,7 +547,7 @@
     "bolt|https://www.lennysnewsletter.com/p/inside-bolt-eric-simons": {
       "caseId": "bolt",
       "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
-      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "lastAttempt": "2026-10-20T05:17:09.409Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -555,7 +555,7 @@
     "cursor|https://cursor.com/en-US/blog/series-c": {
       "caseId": "cursor",
       "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "lastAttempt": "2026-10-20T05:17:09.409Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -563,7 +563,7 @@
     "lovable|https://lovable.dev/blog/agent": {
       "caseId": "lovable",
       "sourceUrl": "https://lovable.dev/blog/agent",
-      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "lastAttempt": "2026-10-20T05:17:09.409Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1160,31 +1160,31 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 13,
+  "cursor": 18,
   "errors": [
     {
-      "caseId": "castmagic",
-      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+      "caseId": "julius-ai",
+      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
       "reason": "body-limit"
     },
     {
-      "caseId": "formula-bot",
-      "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
+      "caseId": "chatbase",
+      "sourceUrl": "https://supabase.com/customers/chatbase",
       "reason": "body-limit"
     },
     {
-      "caseId": "formula-bot",
-      "sourceUrl": "https://n8n.io/case-studies/formula-bot/",
+      "caseId": "bolt",
+      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
       "reason": "body-limit"
     },
     {
-      "caseId": "jenni-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
+      "caseId": "cursor",
+      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
       "reason": "body-limit"
     },
     {
-      "caseId": "customgpt",
-      "sourceUrl": "https://customgpt.ai/customers/",
+      "caseId": "lovable",
+      "sourceUrl": "https://lovable.dev/blog/agent",
       "reason": "body-limit"
     }
   ]

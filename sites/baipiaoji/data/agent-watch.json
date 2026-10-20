@@ -1,6 +1,6 @@
 {
  "version": "2.0.0",
- "checked": "2026-10-19",
+ "checked": "2026-10-20",
  "policy": {
   "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
   "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
@@ -1138,10 +1138,10 @@
    "source_url": "https://ai.pydantic.dev/",
    "repo_url": "https://github.com/pydantic/pydantic-ai",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "last_verified": "2026-10-20",
+   "status": "verified",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "transport": "Python SDK",
    "capabilities": [
     "structured output",
@@ -2232,8 +2232,8 @@
    "source_url": "https://microsoft.github.io/promptflow/",
    "repo_url": "https://github.com/microsoft/promptflow",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Python SDK",
    "zh_transport": "Python SDK",
    "capabilities": [
@@ -2268,8 +2268,8 @@
     "description": "Prompt flow Doc",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -5136,8 +5136,8 @@
    "source_url": "https://www.qodo.ai/",
    "repo_url": "https://github.com/qodo-ai/pr-agent",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Self-hosted or hosted cloud",
    "zh_transport": "自托管或托管云版",
    "capabilities": [
@@ -5169,8 +5169,8 @@
     "description": "Qodo is an AI code review tool giving teams deep codebase context to move faster and improve code quality, with 15+ agentic workflows for IDEs, PRs and security.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -5556,8 +5556,8 @@
    "source_url": "https://potpie.ai/",
    "repo_url": "https://github.com/potpie-ai/potpie",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Self-hosted or hosted cloud",
    "zh_transport": "自托管或托管云版",
    "capabilities": [
@@ -5592,8 +5592,8 @@
     "description": "Build task-oriented custom agents for your codebase that perform engineering tasks with high precision powered by intelligence and context from your data. Build agents for use cases like system design, debugging, integration testing, onboarding etc.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -6176,8 +6176,8 @@
    "source_url": "https://github.com/microsoft/playwright-mcp",
    "repo_url": "https://github.com/microsoft/playwright-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -6209,8 +6209,8 @@
     "description": "Playwright MCP server. Contribute to microsoft/playwright-mcp development by creating an account on GitHub.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -7189,8 +7189,8 @@
    "source_url": "https://www.pulsemcp.com/",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Web directory / registry",
    "zh_transport": "网页目录 / 注册表",
    "capabilities": [
@@ -7219,7 +7219,7 @@
     "description": "Browse and discover MCP use cases, servers, clients, and news",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -7416,8 +7416,8 @@
    "source_url": "https://mcp.pipedream.com/",
    "repo_url": "https://github.com/PipedreamHQ/pipedream",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -7449,8 +7449,8 @@
     "description": "Access MCP servers for more than 3,000 APIs with 10,000 prebuilt tools",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -7925,8 +7925,8 @@
    "source_url": "https://github.com/crystaldba/postgres-mcp",
    "repo_url": "https://github.com/crystaldba/postgres-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -7958,8 +7958,8 @@
     "description": "Postgres MCP Pro provides configurable read/write access and performance analysis for you and your AI agents. - crystaldba/postgres-mcp",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -8339,8 +8339,8 @@
    "source_url": "https://github.com/perplexityai/modelcontextprotocol",
    "repo_url": "https://github.com/perplexityai/modelcontextprotocol",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -8372,8 +8372,8 @@
     "description": "The official MCP server implementation for the Perplexity API Platform - perplexityai/modelcontextprotocol",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -11739,8 +11739,8 @@
    "source_url": "https://www.pipecat.ai/",
    "repo_url": "https://github.com/pipecat-ai/pipecat",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Python SDK",
    "zh_transport": "Python SDK",
    "capabilities": [
@@ -11775,8 +11775,8 @@
     "description": "Open-source framework for voice and multimodal conversational AI.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -12442,8 +12442,8 @@
    "source_url": "https://www.promptfoo.dev/",
    "repo_url": "https://github.com/promptfoo/promptfoo",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Command-line tool",
    "zh_transport": "命令行工具",
    "capabilities": [
@@ -12478,8 +12478,8 @@
     "description": "The AI Security Platform that catches vulnerabilities in development. Trusted by 156 of the Fortune 500 and 300,000+ developers worldwide.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -13488,8 +13488,8 @@
    "source_url": "https://portkey.ai/",
    "repo_url": "https://github.com/Portkey-AI/gateway",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Self-hosted or hosted cloud",
    "zh_transport": "自托管或托管云版",
    "capabilities": [
@@ -13524,8 +13524,8 @@
     "description": "Democratize and productionize Gen AI across your entire org with Portkey's suite of AI gateway, observability, guardrails, and prompt management modules.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -13672,8 +13672,8 @@
    "source_url": "https://github.com/ItzCrazyKns/Perplexica",
    "repo_url": "https://github.com/ItzCrazyKns/Perplexica",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Self-hosted server (Docker)",
    "zh_transport": "自托管服务（Docker）",
    "capabilities": [
@@ -13705,8 +13705,8 @@
     "description": "Vane is an AI-powered answering engine. Contribute to ItzCrazyKns/Vane development by creating an account on GitHub.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -16856,8 +16856,8 @@
    "source_url": "https://pubfi.ai/agents.md",
    "repo_url": "https://github.com/helixbox/pubfi-docs",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -16893,8 +16893,8 @@
     "description": "",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -17147,7 +17147,7 @@
     "description": "Connect Claude, ChatGPT, Cursor or Codex to your Prominara workspace over MCP. Included in every plan and the 14-day trial.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -17668,8 +17668,8 @@
    "source_url": "https://www.prereason.com",
    "repo_url": "https://github.com/PreReason/mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -17707,8 +17707,8 @@
     "description": "PreReason delivers market context for financial agents. Bitcoin on-chain metrics, macro indicators, and reasoning context in one API call.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -18535,8 +18535,8 @@
    "source_url": "https://www.postman.com/product/mcp-server/",
    "repo_url": "https://github.com/postmanlabs/postman-mcp-server",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -18577,8 +18577,8 @@
     "description": "Postman's Model Context Protocol (MCP) server connects AI agents and IDEs to your API workflows—collections, environments, workspaces, specs, and more.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -18590,8 +18590,8 @@
    "source_url": "https://mcp.povver.ai/?utm_source=mcp_registry&utm_medium=referral&utm_campaign=mcp_directory",
    "repo_url": "https://github.com/bvatech/povver-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -18627,8 +18627,8 @@
     "description": "Connect Claude Desktop or any MCP-compatible client to your Povver training data. 40 tools to read workout history, analyze progress, and manage routines. Endpoint: https://mcp.povver.ai/mcp",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -19465,8 +19465,8 @@
    "source_url": "https://pokemontcgapi.com/mcp",
    "repo_url": "https://github.com/pokemontcgapi/mcp-server",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -19504,8 +19504,8 @@
     "description": "An MCP server that gives Claude, Cursor, VS Code and any other MCP client 8 tools over the Pokémon TCG catalogue: search cards, list Japanese and international sets, read prices with their source and grade, identify a card from a photograph, and ask what the catalogue actually covers.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -20027,8 +20027,8 @@
    "source_url": "https://plori.ai",
    "repo_url": "https://github.com/plori-ai/plori",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -20064,8 +20064,8 @@
     "description": "plori gives you a cloud AI agent with its own persistent environment: a durable disk, real CLI tools, and memory. Use it yourself or from your own agent.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -20535,8 +20535,8 @@
    "source_url": "https://quantcalc.app/advisors/mcp/",
    "repo_url": "https://github.com/quantcalc-app/quantcalc-mcp-plugin",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -20572,8 +20572,8 @@
     "description": "Connect the QuantCalc retirement engine to Claude so an assistant can run real Monte Carlo projections instead of estimating them. Setup, tools and limits.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -21193,8 +21193,8 @@
    "source_url": "https://playwrightgen.com/mcp",
    "repo_url": "https://github.com/hmamut39/playwrightgen",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -21230,8 +21230,8 @@
     "description": "Connect your editor's AI assistant to PlaywrightGen over MCP: it writes Playwright tests from the real page, runs them on the live page until they pass, and proposes them for your team to review.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -24375,7 +24375,7 @@
     "description": "Instant, privacy-first peer-to-peer WebRTC video and text chat without accounts or downloads. Connect in seconds via an ephemeral shareable room link.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -25405,8 +25405,8 @@
    "source_url": "https://predictionmarketspicks.com/mcp",
    "repo_url": "https://github.com/predictionmarketspicks/mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -25442,8 +25442,8 @@
     "description": "Connect Claude, ChatGPT, Gemini, Cursor, or Copilot to the PredictionMarketsPicks MCP server: call expected-value, Kelly sizing, Bayesian updating, odds conversion, and base-rate tools on Kalshi and Polymarket contracts directly inside your agent. 3,110 decided signals graded against the market tha…",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -26063,8 +26063,8 @@
    "source_url": "https://playgama.com/mcp/",
    "repo_url": "https://github.com/Playgama/developer-cabinet-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -26100,8 +26100,8 @@
     "description": "Ask your agent to publish and it ships the game live from Codex or Claude Code over MCP — a link back in seconds, then first players, ads and DSP.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -26113,8 +26113,8 @@
    "source_url": "https://www.promptfrenzy.com/mcp",
    "repo_url": "https://github.com/Prompt-Frenzy/skills",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -26150,8 +26150,8 @@
     "description": "Connect Claude Code, Codex, Cursor or any MCP client to PromptFrenzy. Search a library of tested AI image and video prompts, then render them. Browsing needs no account, and agents can pay per generation in USDC with no signup.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -26163,8 +26163,8 @@
    "source_url": "https://plainrouter.com",
    "repo_url": "https://github.com/plainrouter/sdk",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -26200,8 +26200,8 @@
     "description": "Plainrouter is the paid ads platform for developers and agents: track first-party conversions, surface campaign evidence, and ship governed ad changes.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -29420,8 +29420,8 @@
    "source_url": "https://api.platequery.com/",
    "repo_url": "https://github.com/Veilkrand/platequery-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -29457,8 +29457,8 @@
     "description": "",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -29824,8 +29824,8 @@
    "source_url": "https://plainfreight.com/for-agents",
    "repo_url": "https://github.com/plainfreight-com/plainfreight-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -29861,8 +29861,8 @@
     "description": "AI assistants can quote a China to USA shipment directly: an open MCP server and JSON endpoint return an all-in DDP price (freight, customs, duties, delivery) in seconds. No API key, no sales call.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -32058,8 +32058,8 @@
    "source_url": "https://proxycove.com",
    "repo_url": "https://github.com/proxycove/mcp-server",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -32095,8 +32095,8 @@
     "description": "Buy the best proxy servers: residential, mobile, IPv4/IPv6. Verified proxies in 195+ countries. Paid proxies with a quality guarantee from $1.5/GB.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -38186,8 +38186,8 @@
    "source_url": "https://productnow.ai",
    "repo_url": "https://github.com/ProductNowAI/productnow-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -38223,8 +38223,8 @@
     "description": "ProductNow continually captures and reconciles context from your systems, people, and agents into one governed source of truth so everyone can understand, decide, and act with confidence.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -38930,7 +38930,7 @@
     "description": "Ideas, tools, and evidence — connecting research and application. A reference library of the field's canon, a robust package of people-analytics capabilities, and the magazine.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -38995,8 +38995,8 @@
    "source_url": "https://plexarm.com",
    "repo_url": "https://github.com/natalabs/plexarm-plugin",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -39032,8 +39032,8 @@
     "description": "Set direction. Receive results. The operating system for self-organised AI agent teams — goals, initiatives, action items, dependencies. One MCP client line.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -39990,7 +39990,7 @@
     "description": "Performix measures the conditions driving a team, names the one that's binding, and tracks whether the fix worked. The diagnostic is real; the math is research-grade. Measurement, not mining.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -40292,7 +40292,7 @@
     "description": "Continuously-updated, source-graded survey of organizational measurement and its Bayesian priors. Constructs, instruments, theoretical models, effect sizes, and synthesized priors — each row tracing back to a primary source.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -42684,8 +42684,8 @@
    "source_url": "https://memory.primaxiom.ai",
    "repo_url": "https://github.com/bgokden/reasongraph",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -42721,8 +42721,8 @@
     "description": "Memory for AI agents that links facts through entities and cause→effect relations, so agents get a path to an answer instead of a list of look-alikes. Free plan, remote MCP for Claude Code, open-source core.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -45366,8 +45366,8 @@
    "source_url": "https://physea.ai/mcp",
    "repo_url": "https://github.com/jaybro2042-alt/liminality-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -45403,8 +45403,8 @@
     "description": "Liminal MCP brings the shared intelligence workspace into Claude Code, Cursor, Claude Desktop, or any MCP client in one step. Hosted endpoint, key, copy-paste setup, and pricing. The first 50 solves are free. 22 tools; solve is the front door.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -46577,8 +46577,8 @@
    "source_url": "https://project-feldspar.com/scan/",
    "repo_url": "https://github.com/project-feldspar-resources/feldspar-scan",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -46614,8 +46614,8 @@
     "description": "",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },
@@ -47372,7 +47372,7 @@
     "description": "Add the free Promotion Pros catalog server to Claude, ChatGPT or any MCP client and shop for branded merchandise in your own words — real prices at real quantities, delivery dates, and a quote as a PDF.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -48339,8 +48339,8 @@
    "source_url": "https://postfleet.ai",
    "repo_url": "https://github.com/Thestral12/postfleet-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-20",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -48378,8 +48378,8 @@
     "description": "Email infrastructure for AI agents. Inbound is parsed, classified, extracted to your schema — and screened for prompt injection — before your agent reads a word.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-20",
+   "repo_checked": "2026-10-20",
    "source_http": 200,
    "repo_http": 200
   },

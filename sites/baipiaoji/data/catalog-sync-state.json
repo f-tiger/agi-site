@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 2,
   "pending": [
-   {
-    "repo": "feder-cr/invisible_playwright_mcp",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "googleworkspace/cli",
     "topic": "agents",
@@ -47,11 +42,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "zhukunpenglinyutong/desktop-cc-gui",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -100,11 +90,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "FoundationVision/Liquid",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "worldbench/DiffusionOPSD",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -132,11 +117,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "dograh-hq/dograh",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -242,11 +222,6 @@
    {
     "repo": "waybarrios/vllm-mlx",
     "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "axoviq-ai/synthadoc",
-    "topic": "knowledge",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -360,11 +335,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "zai-org/GLM-OCR",
-    "topic": "documents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "jev-chat/jev-chat-jarvis",
     "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -425,18 +395,8 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "ray-project/llm-applications",
-    "topic": "models",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "rowboatlabs/rowboat",
     "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "Flow-Launcher/Flow.Launcher",
-    "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -463,11 +423,6 @@
     "repo": "espanso/espanso",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "google-ai-edge/mediapipe",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "Tencent/ncnn",
@@ -852,11 +807,6 @@
    {
     "repo": "vercel/satori",
     "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "krillinai/OpenCreator",
-    "topic": "video",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -1450,11 +1400,6 @@
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
-    "repo": "openvinotoolkit/nncf",
-    "topic": "ai",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
     "repo": "tenstorrent/tt-metal",
     "topic": "image",
     "foundAt": "2026-10-06T06:50:25.349Z"
@@ -2042,11 +1987,6 @@
    {
     "repo": "Mai-with-u/MaiBot",
     "topic": "agents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "codigoencasa/builderbot",
-    "topic": "chat",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "genspark-ai/genoffice",
     "topic": "coding",
     "foundAt": "2026-10-19T05:13:57.229Z"
+   },
+   {
+    "repo": "obsei/obsei",
+    "topic": "agents",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Nehanth/pooled",
+    "topic": "local",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Roy3838/Observer",
+    "topic": "agents",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "ibrahimcetin/reins",
+    "topic": "local",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "StayLameBro/backburner",
+    "topic": "local",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Yzw202011/OmniSpace",
+    "topic": "knowledge",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Chevey339/kelivo",
+    "topic": "chat",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "netease-youdao/LobsterAI",
+    "topic": "agents",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "mrifqidaffaaditya/WA-AKG",
+    "topic": "chat",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Ch1rpy2613/Mirrai",
+    "topic": "chat",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "zjunlp/LightMem",
+    "topic": "agents",
+    "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "Cog-Creators/Red-DiscordBot",
+    "topic": "chat",
+    "foundAt": "2026-10-20T05:13:44.274Z"
    }
   ],
   "checked": {
@@ -3071,11 +3071,17 @@
    "gh-tradecatlabs-vibe-coding-cn-d8961e": "2026-10-19T05:13:57.229Z",
    "gh-lightricks-comfyui-ltxvideo-93dc39": "2026-10-19T05:13:57.229Z",
    "gh-jianchang512-pyvideotrans-44f704": "2026-10-19T05:13:57.229Z",
-   "gh-xyproto-algernon-a86ac9": "2026-10-19T05:13:57.229Z"
+   "gh-xyproto-algernon-a86ac9": "2026-10-19T05:13:57.229Z",
+   "gh-gaizhenbiao-chuanhuchatgpt-bb40c5": "2026-10-20T05:13:44.274Z",
+   "gh-vchitect-vbench-7611a3": "2026-10-20T05:13:44.274Z",
+   "gh-unstructured-io-unstructured-56e2c7": "2026-10-20T05:13:44.274Z",
+   "gh-huggingface-peft-e4a8e5": "2026-10-20T05:13:44.274Z",
+   "gh-corentinth-it-tools-22db9b": "2026-10-20T05:13:44.274Z",
+   "gh-handsonllm-hands-on-large-language-models-05753b": "2026-10-20T05:13:44.274Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.batchwatch/batchwatch-mcp:0.1.1",
+  "cursor": "io.github.comil27/etsy-tags-mcp:1.0.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3759,7 +3765,47 @@
    "parsestream-parsestream": "2026-10-19T05:13:57.229Z",
    "paxalabs-mcp": "2026-10-19T05:13:57.229Z",
    "paywithlocus-locus": "2026-10-19T05:13:57.229Z",
-   "pdfgate-mcp-server": "2026-10-19T05:13:57.229Z"
+   "pdfgate-mcp-server": "2026-10-19T05:13:57.229Z",
+   "peopleanalyst-discovery": "2026-10-20T05:13:44.274Z",
+   "peopleprincipia-principia": "2026-10-20T05:13:44.274Z",
+   "performix-site": "2026-10-20T05:13:44.274Z",
+   "perplexica": "2026-10-20T05:13:44.274Z",
+   "perplexity-mcp": "2026-10-20T05:13:44.274Z",
+   "physea-liminality": "2026-10-20T05:13:44.274Z",
+   "pipecat": "2026-10-20T05:13:44.274Z",
+   "pipedream-mcp": "2026-10-20T05:13:44.274Z",
+   "plainfreight-quotes": "2026-10-20T05:13:44.274Z",
+   "plainrouter-mcp": "2026-10-20T05:13:44.274Z",
+   "platequery-plate-api": "2026-10-20T05:13:44.274Z",
+   "playgama-developer-cabinet": "2026-10-20T05:13:44.274Z",
+   "playwright-mcp": "2026-10-20T05:13:44.274Z",
+   "playwrightgen-playwrightgen": "2026-10-20T05:13:44.274Z",
+   "plexarm-plexarm": "2026-10-20T05:13:44.274Z",
+   "plori-plori": "2026-10-20T05:13:44.274Z",
+   "pokemontcgapi-mcp": "2026-10-20T05:13:44.274Z",
+   "pondchat-pondchat": "2026-10-20T05:13:44.274Z",
+   "portkey": "2026-10-20T05:13:44.274Z",
+   "postfleet-postfleet": "2026-10-20T05:13:44.274Z",
+   "postgres-mcp": "2026-10-20T05:13:44.274Z",
+   "postman-mcp-server": "2026-10-20T05:13:44.274Z",
+   "potpie": "2026-10-20T05:13:44.274Z",
+   "povver-mcp-server": "2026-10-20T05:13:44.274Z",
+   "pr-agent": "2026-10-20T05:13:44.274Z",
+   "predictionmarketspicks-quant": "2026-10-20T05:13:44.274Z",
+   "prereason-mcp": "2026-10-20T05:13:44.274Z",
+   "primaxiom-memory-reasongraph": "2026-10-20T05:13:44.274Z",
+   "productnow-productnow": "2026-10-20T05:13:44.274Z",
+   "project-feldspar-scan": "2026-10-20T05:13:44.274Z",
+   "prominara-prominara": "2026-10-20T05:13:44.274Z",
+   "promotionpros-catalog": "2026-10-20T05:13:44.274Z",
+   "promptflow": "2026-10-20T05:13:44.274Z",
+   "promptfoo": "2026-10-20T05:13:44.274Z",
+   "promptfrenzy-promptfrenzy": "2026-10-20T05:13:44.274Z",
+   "proxycove-mcp-server": "2026-10-20T05:13:44.274Z",
+   "pubfi-mcp": "2026-10-20T05:13:44.274Z",
+   "pulsemcp": "2026-10-20T05:13:44.274Z",
+   "pydantic-ai": "2026-10-20T05:13:44.274Z",
+   "quantcalc-retirement-engine": "2026-10-20T05:13:44.274Z"
   }
  }
 }

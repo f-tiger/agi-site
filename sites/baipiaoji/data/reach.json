@@ -1,22 +1,22 @@
 {
-  "generated": "2026-10-19",
-  "source_generated_at": "2026-10-19T05:13:09.785Z",
-  "exported_at": "2026-10-19T05:13:09.853Z",
+  "generated": "2026-10-20",
+  "source_generated_at": "2026-10-20T05:12:50.274Z",
+  "exported_at": "2026-10-20T05:12:50.345Z",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-09-21",
-  "until": "2026-10-19",
+  "since": "2026-09-22",
+  "until": "2026-10-20",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 552,
-  "per_day": 19.7,
+  "humans_referred": 567,
+  "per_day": 20.3,
   "by_kind": {
-    "tool": 441,
-    "page": 53,
+    "tool": 454,
+    "page": 52,
     "category": 23,
-    "alternatives": 11,
+    "alternatives": 13,
     "upgrade": 6,
     "vs": 10,
-    "judgement": 4,
+    "judgement": 5,
     "plans": 1,
     "solutions": 1,
     "wall": 2
@@ -24,39 +24,39 @@
   "categories": [
     {
       "cat": "chat",
-      "n": 183
-    },
-    {
-      "cat": "coding",
-      "n": 48
+      "n": 186
     },
     {
       "cat": "image",
-      "n": 48
+      "n": 51
     },
     {
-      "cat": "office",
-      "n": 37
-    },
-    {
-      "cat": "video",
-      "n": 36
-    },
-    {
-      "cat": "writing",
-      "n": 33
+      "cat": "coding",
+      "n": 47
     },
     {
       "cat": "search",
-      "n": 31
+      "n": 39
+    },
+    {
+      "cat": "office",
+      "n": 36
+    },
+    {
+      "cat": "video",
+      "n": 35
+    },
+    {
+      "cat": "writing",
+      "n": 32
     },
     {
       "cat": "api",
-      "n": 25
+      "n": 27
     },
     {
       "cat": "local",
-      "n": 19
+      "n": 21
     },
     {
       "cat": "study",
@@ -64,7 +64,7 @@
     },
     {
       "cat": "audio",
-      "n": 9
+      "n": 11
     },
     {
       "cat": "agent",
@@ -83,17 +83,17 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 104
+      "n": 107
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 37
+      "n": 38
     },
     {
       "slug": "exa",
       "cat": "search",
-      "n": 21
+      "n": 26
     },
     {
       "slug": "feishu-miaoji",
@@ -101,24 +101,19 @@
       "n": 15
     },
     {
-      "slug": "cline",
-      "cat": "coding",
-      "n": 10
-    },
-    {
       "slug": "jimeng",
       "cat": "image",
-      "n": 10
+      "n": 11
     },
     {
       "slug": "tongyi-wanxiang",
       "cat": "image",
-      "n": 10
+      "n": 11
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 9
+      "n": 8
     },
     {
       "slug": "tongyi",
@@ -126,8 +121,18 @@
       "n": 8
     },
     {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 8
+    },
+    {
       "slug": "quillbot",
       "cat": "writing",
+      "n": 8
+    },
+    {
+      "slug": "comfyui",
+      "cat": "local",
       "n": 8
     },
     {
@@ -138,11 +143,6 @@
     {
       "slug": "deepl",
       "cat": "writing",
-      "n": 7
-    },
-    {
-      "slug": "comfyui",
-      "cat": "local",
       "n": 6
     },
     {
@@ -186,18 +186,13 @@
       "n": 5
     },
     {
-      "slug": "fireworks",
-      "cat": "api",
+      "slug": "fish-audio",
+      "cat": "audio",
       "n": 5
     },
     {
       "slug": "consensus",
       "cat": "search",
-      "n": 4
-    },
-    {
-      "slug": "fish-audio",
-      "cat": "audio",
       "n": 4
     },
     {
@@ -208,6 +203,16 @@
     {
       "slug": "fastgpt",
       "cat": "agent",
+      "n": 4
+    },
+    {
+      "slug": "fireworks",
+      "cat": "api",
+      "n": 4
+    },
+    {
+      "slug": "metaso",
+      "cat": "search",
       "n": 4
     },
     {
@@ -241,11 +246,6 @@
       "n": 3
     },
     {
-      "slug": "jianying",
-      "cat": "video",
-      "n": 3
-    },
-    {
       "slug": "mistral",
       "cat": "api",
       "n": 3
@@ -253,6 +253,11 @@
     {
       "slug": "anythingllm",
       "cat": "local",
+      "n": 2
+    },
+    {
+      "slug": "bolt",
+      "cat": "coding",
       "n": 2
     },
     {
@@ -266,18 +271,13 @@
       "n": 2
     },
     {
-      "slug": "gamma",
-      "cat": "office",
+      "slug": "google-ai-studio",
+      "cat": "api",
       "n": 2
     },
     {
-      "slug": "lm-studio",
-      "cat": "local",
-      "n": 2
-    },
-    {
-      "slug": "marscode",
-      "cat": "coding",
+      "slug": "groq",
+      "cat": "api",
       "n": 2
     }
   ],
@@ -297,24 +297,28 @@
     {
       "path": "/is-cline-still-free",
       "n": 1
+    },
+    {
+      "path": "/is-pixverse-still-free",
+      "n": 1
     }
   ],
   "pages": [
     {
       "path": "kimi",
-      "n": 104
+      "n": 107
     },
     {
       "path": "grok",
-      "n": 37
+      "n": 38
+    },
+    {
+      "path": "exa",
+      "n": 26
     },
     {
       "path": "/",
       "n": 24
-    },
-    {
-      "path": "exa",
-      "n": 21
     },
     {
       "path": "coding",
@@ -325,23 +329,23 @@
       "n": 15
     },
     {
-      "path": "cline",
-      "n": 10
-    },
-    {
       "path": "jimeng",
-      "n": 10
+      "n": 11
     },
     {
       "path": "tongyi-wanxiang",
-      "n": 10
+      "n": 11
     },
     {
       "path": "haiper",
-      "n": 9
+      "n": 8
     },
     {
       "path": "tongyi",
+      "n": 8
+    },
+    {
+      "path": "cline",
       "n": 8
     },
     {
@@ -349,19 +353,19 @@
       "n": 8
     },
     {
-      "path": "google-flow",
+      "path": "comfyui",
       "n": 8
     },
     {
-      "path": "deepl",
-      "n": 7
+      "path": "google-flow",
+      "n": 8
     },
     {
       "path": "/claim",
       "n": 7
     },
     {
-      "path": "comfyui",
+      "path": "deepl",
       "n": 6
     },
     {
@@ -397,15 +401,11 @@
       "n": 5
     },
     {
-      "path": "fireworks",
+      "path": "fish-audio",
       "n": 5
     },
     {
       "path": "consensus",
-      "n": 4
-    },
-    {
-      "path": "fish-audio",
       "n": 4
     },
     {
@@ -414,6 +414,14 @@
     },
     {
       "path": "fastgpt",
+      "n": 4
+    },
+    {
+      "path": "fireworks",
+      "n": 4
+    },
+    {
+      "path": "metaso",
       "n": 4
     },
     {
@@ -453,10 +461,6 @@
       "n": 3
     },
     {
-      "path": "jianying",
-      "n": 3
-    },
-    {
       "path": "mistral",
       "n": 3
     },
@@ -473,6 +477,10 @@
       "n": 2
     },
     {
+      "path": "bolt",
+      "n": 2
+    },
+    {
       "path": "caiyun",
       "n": 2
     },
@@ -481,7 +489,15 @@
       "n": 2
     },
     {
-      "path": "gamma",
+      "path": "google-ai-studio",
+      "n": 2
+    },
+    {
+      "path": "groq",
+      "n": 2
+    },
+    {
+      "path": "jianying",
       "n": 2
     },
     {
@@ -527,32 +543,20 @@
     {
       "path": "/upgrade/deepseek",
       "n": 2
-    },
-    {
-      "path": "/video-quota-planner",
-      "n": 2
-    },
-    {
-      "path": "/vs/siliconflow-vs-zhipu-glm",
-      "n": 2
-    },
-    {
-      "path": "video",
-      "n": 2
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 270
+      "n": 276
     },
     {
       "ref": "www.google.com",
-      "n": 175
+      "n": 177
     },
     {
       "ref": "www.bing.com",
-      "n": 52
+      "n": 59
     },
     {
       "ref": "m.baidu.com",
@@ -560,7 +564,7 @@
     },
     {
       "ref": "duckduckgo.com",
-      "n": 7
+      "n": 8
     },
     {
       "ref": "www.baidu.com",
@@ -579,10 +583,6 @@
       "n": 3
     },
     {
-      "ref": "yandex.com",
-      "n": 3
-    },
-    {
       "ref": "copilot.microsoft.com",
       "n": 2
     },
@@ -592,6 +592,10 @@
     },
     {
       "ref": "sm01.markhorseotool.com",
+      "n": 2
+    },
+    {
+      "ref": "yandex.com",
       "n": 2
     },
     {
@@ -656,17 +660,17 @@
     }
   ],
   "events": {
-    "manju": 702,
-    "sub_view": 345,
-    "biz": 150,
-    "go": 131,
-    "home": 85,
+    "manju": 867,
+    "sub_view": 338,
+    "biz": 160,
+    "go": 133,
+    "home": 89,
     "star": 47,
-    "calc": 41,
+    "calc": 42,
     "gs": 37,
+    "github_tools": 34,
     "ai_solo": 31,
-    "github_tools": 24,
-    "quote": 15,
+    "quote": 21,
     "video": 13,
     "gs_go": 8,
     "earn": 4,
@@ -676,15 +680,15 @@
     "sub_submit": 1
   },
   "submissions": {
-    "new": 73,
-    "total": 73
+    "new": 80,
+    "total": 80
   },
   "ads": {},
   "commercial_triggers": {
     "ok": true,
     "started": "2026-09-26",
     "counts": {
-      "vendor-view": 46,
+      "vendor-view": 49,
       "vendor-sponsor": 0,
       "vendor-wait": 7,
       "ad-view": 0,
@@ -697,8 +701,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-09-21",
-      "end_exclusive": "2026-10-19",
+      "start": "2026-09-22",
+      "end_exclusive": "2026-10-20",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -708,11 +712,11 @@
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
       "other_calc_events": 31,
-      "directory_outbound_clicks": 129,
+      "directory_outbound_clicks": 130,
       "homepage_limit_navigation": 0,
       "video_exports_own": 0,
       "video_exports_demo": 0,
-      "account_tool_entries": 6,
+      "account_tool_entries": 8,
       "coding_access_filters": 0,
       "coding_access_empty_results": 0,
       "coding_access_provider_opens": 0,
@@ -728,11 +732,6 @@
       "total_currently_email_verified": 3
     },
     "accounts_daily": [
-      {
-        "date": "2026-09-21",
-        "created": 0,
-        "new_accounts_currently_email_verified": 0
-      },
       {
         "date": "2026-09-22",
         "created": 0,
@@ -867,6 +866,11 @@
         "date": "2026-10-18",
         "created": 0,
         "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-19",
+        "created": 0,
+        "new_accounts_currently_email_verified": 0
       }
     ],
     "account_scope": "fleet_shared_account_pool",
@@ -890,27 +894,27 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-09-21",
+      "requested_start": "2026-09-22",
       "start": "2026-09-22",
-      "until": "2026-10-19",
+      "until": "2026-10-20",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 77,
+    "clicks": 81,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 66,
+      "zh": 70,
       "en": 11,
       "other": 0
     },
     "by_block": [
       {
         "id": "directory",
-        "n": 25
+        "n": 28
       },
       {
         "id": "hero",
-        "n": 13
+        "n": 14
       },
       {
         "id": "site-header",
@@ -964,14 +968,14 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 25
-      },
-      {
-        "id": "homepage",
-        "n": 7
+        "n": 28
       },
       {
         "id": "tool-directory",
+        "n": 8
+      },
+      {
+        "id": "homepage",
         "n": 7
       },
       {
@@ -1250,6 +1254,14 @@
       },
       {
         "date": "2026-10-19",
+        "complete": true,
+        "clicks": 4,
+        "zh": 4,
+        "en": 0,
+        "other": 0
+      },
+      {
+        "date": "2026-10-20",
         "complete": false,
         "clicks": 0,
         "zh": 0,
@@ -1262,13 +1274,13 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 19
+        "n": 22
       },
       {
         "language": "zh",
         "block": "hero",
         "destination": "tool-directory",
-        "n": 7
+        "n": 8
       },
       {
         "language": "en",
@@ -1915,6 +1927,22 @@
         "block": "site-header",
         "destination": "video-hub",
         "n": 1
+      },
+      {
+        "date": "2026-10-19",
+        "complete": true,
+        "language": "zh",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 3
+      },
+      {
+        "date": "2026-10-19",
+        "complete": true,
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-directory",
+        "n": 1
       }
     ],
     "definitions": {
@@ -1927,13 +1955,13 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-09-21",
+    "since": "2026-09-22",
     "includes_current_partial_utc_day": true,
     "actions": {
-      "entry_open": 7,
-      "builder_open": 5,
+      "entry_open": 10,
+      "builder_open": 6,
       "client_open": 0,
-      "demo_preview": 3,
+      "demo_preview": 5,
       "demo_start": 0,
       "own_edit": 0,
       "own_ready": 0,
@@ -1948,12 +1976,13 @@
     },
     "builder_entries": {
       "direct": 3,
-      "home": 2
+      "home": 3
     },
     "entry_sources": {
       "direct": 2,
-      "home": 2,
-      "share": 3
+      "home": 3,
+      "share": 3,
+      "video-tool": 2
     },
     "entry_definition": "entry_open counts each public entry document, including direct demo entries, starting with edition 2026-10-01.4. Client configuration links are excluded. Historical entry counts are not reconstructed. Native share requests are not proof of an opened chooser or a sent message.",
     "definitions": {
@@ -1966,11 +1995,11 @@
   "manju_signals": {
     "schema_version": 1,
     "measurement_version": "manju-video-actions-v2",
-    "source_generated_at": "2026-10-19T05:13:09.785Z",
+    "source_generated_at": "2026-10-20T05:12:50.274Z",
     "window": {
       "requested_days": 28,
-      "since": "2026-09-21",
-      "until": "2026-10-19",
+      "since": "2026-09-22",
+      "until": "2026-10-20",
       "timezone": "UTC",
       "includes_current_partial_utc_day": true
     },
@@ -1978,10 +2007,10 @@
     "partial": false,
     "reason": null,
     "actions": {
-      "view": 641,
-      "filter": 18,
+      "view": 773,
+      "filter": 20,
       "empty": 2,
-      "open": 14,
+      "open": 15,
       "source": 0,
       "save": 0,
       "unsave": 0,
@@ -1993,16 +2022,16 @@
       "inquiry_error": 0,
       "return": 0,
       "preview_open": 0,
-      "rank_sort": 5,
+      "rank_sort": 7,
       "topic_complete": 0,
       "topic_empty": 0,
       "topic_export": 0,
-      "search_start": 2,
-      "search_submit": 3,
-      "search_results": 5,
+      "search_start": 3,
+      "search_submit": 5,
+      "search_results": 10,
       "search_empty": 0,
-      "suggest_view": 5,
-      "suggest_select": 1,
+      "suggest_view": 22,
+      "suggest_select": 2,
       "recommend_select": 0,
       "discover_start": 0,
       "discover_found": 0,
@@ -2016,7 +2045,7 @@
       "video_example": 0,
       "video_export": 0,
       "video_compare": 0,
-      "official_open": 6,
+      "official_open": 8,
       "platform_search": 0,
       "intro_open": 0,
       "share_native": 0,

@@ -1,10 +1,78 @@
 {
-  "generated": "2026-10-19",
+  "generated": "2026-10-20",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 11,
+  "fetched_ok": 104,
+  "fetched_fail": 23,
+  "pending": 10,
   "items": [
+    {
+      "slug": "gptzero",
+      "url": "https://gptzero.me",
+      "confirmed": "2026-10-20",
+      "first_seen": "2026-10-19",
+      "added": [
+        "20m",
+        "2m"
+      ],
+      "removed": [
+        "17m",
+        "1m"
+      ],
+      "checked_then": "2026-08-17"
+    },
+    {
+      "slug": "n8n",
+      "url": "https://docs.n8n.io",
+      "confirmed": "2026-10-20",
+      "first_seen": "2026-10-19",
+      "added": [
+        "6days"
+      ],
+      "removed": [
+        "15days"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-10-20",
+      "first_seen": "2026-10-19",
+      "added": [
+        "1.5k",
+        "10.8k",
+        "11.1k",
+        "14.7k",
+        "20.8k",
+        "3.6k",
+        "6.7k",
+        "8.7k",
+        "9.8k"
+      ],
+      "removed": [
+        "10.7k",
+        "11k",
+        "14.4k",
+        "20.6k",
+        "6.6k",
+        "8.6k",
+        "8.9k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-10-20",
+      "first_seen": "2026-10-19",
+      "added": [
+        "36.3k"
+      ],
+      "removed": [
+        "36.2k"
+      ],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "elicit",
       "url": "https://elicit.com",
@@ -196,19 +264,6 @@
       "checked_then": "2026-09-16"
     },
     {
-      "slug": "n8n",
-      "url": "https://docs.n8n.io",
-      "confirmed": "2026-10-10",
-      "first_seen": "2026-10-09",
-      "added": [
-        "15days"
-      ],
-      "removed": [
-        "21days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "deepinfra",
       "url": "https://deepinfra.com",
       "confirmed": "2026-10-10",
@@ -274,19 +329,6 @@
       ],
       "removed": [
         "157k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-10-09",
-      "first_seen": "2026-10-08",
-      "added": [
-        "36.2k"
-      ],
-      "removed": [
-        "36.1k"
       ],
       "checked_then": "2026-08-04"
     },

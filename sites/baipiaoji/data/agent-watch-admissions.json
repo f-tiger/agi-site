@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-19",
+ "checked": "2026-10-20",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -2022,6 +2022,546 @@
    "first_attempt": "2026-10-19",
    "last_attempt": "2026-10-19",
    "attemptedAt": "2026-10-19T05:13:57.229Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-colombia-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-colombia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-costa-rica-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-costa-rica-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-croatia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-cyprus-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-czechia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-denmark-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-denmark-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-digital-goods-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-dominican-republic-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-ecuador-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-egypt-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-estonia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-finland-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-finland-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-france-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-france-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-georgia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-germany-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-germany-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-ghana-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-global-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-greece-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-greece-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-guatemala-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-hong-kong-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-hungary-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-hungary-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-india-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-india-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-india-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-indonesia-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-indonesia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-ireland-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-israel-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-italy-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-italy-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-italy-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-ivory-coast-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-japan-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-japan-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-jordan-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-kazakhstan-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-kenya-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-korea-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-korea-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-kuwait-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-latam-logistics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-latvia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-lithuania-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-luxembourg-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-luxembourg-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-malaysia-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-malaysia-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-malta-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-mexico-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-mexico-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-nepal-payments-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "wishpool-netherlands-invoice-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-20",
+   "last_attempt": "2026-10-20",
+   "attemptedAt": "2026-10-20T05:13:44.274Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
