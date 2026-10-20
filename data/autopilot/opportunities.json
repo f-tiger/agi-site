@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-19",
- "radar_fetched": "2026-10-19",
+ "generated": "2026-10-20",
+ "radar_fetched": "2026-10-20",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,18 +8,33 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": false,
+  "lemmy_wish": true,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 8,
+  "candidates": 7,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 8,
+  "scout": 7,
   "supplied": 1
  },
  "opportunities": [
+  {
+   "theme": "let s say you are a video content creator on youtube how hard is it currently to",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "lemmy:fediverse",
+   "days_seen": [
+    "2026-10-18"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 3.33,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
   {
    "theme": "is there a temp phone number like temp email",
    "site": "",
@@ -36,21 +51,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "recommend phones for elderly",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-10-12"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.09,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "need email deliverability expert",
    "site": "",
    "kind": "request-board",
@@ -61,21 +61,6 @@
    "state": "scout",
    "supplied": false,
    "score": 2.07,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there a program to run a command with a single flag and multiple arguments co",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-11"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -139,26 +124,26 @@
    "demand": [],
    "supply": [
     {
+     "title": "Show HN: Open-source early-reading reader with phonics help",
+     "url": "https://github.com/finereli/yarareads",
+     "src": "hn_show",
+     "shared": [
+      "open",
+      "source"
+     ]
+    },
+    {
+     "title": "Show HN: Free design canvas for your AI (open source)",
+     "url": "https://uidesigneditor.com/",
+     "src": "hn_show",
+     "shared": [
+      "open",
+      "source"
+     ]
+    },
+    {
      "title": "Show HN: AwesomeMap – Discover rising open-source projects before they get big",
      "url": "https://awesomemap.dev/",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    },
-    {
-     "title": "Show HN: An open-source curation of most useful ChatGPT Plugins",
-     "url": "https://github.com/Asdivyansh/Awesome-ChatGPT-Plugins",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    },
-    {
-     "title": "Show HN: OpenDesk, an open-source alternative to Zendesk and Intercom",
-     "url": "https://opendesk.sh/",
      "src": "hn_show",
      "shared": [
       "open",
