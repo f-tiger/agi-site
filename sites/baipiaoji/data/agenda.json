@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-19",
+  "generated": "2026-10-20",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 42,
+    "candidate": 43,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -42,6 +42,54 @@
       "score": 70
     },
     {
+      "id": "drift:gptzero",
+      "type": "source_drift",
+      "title": "来源页变动：GPTZero（2026-10-20 确认）",
+      "why": "官方来源页的数字令牌变了——新增 20m / 2m；消失 17m / 1m。本站条目仍是 2026-08-17 的版本",
+      "action": "打开 https://gptzero.me 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "gptzero",
+        "https://gptzero.me"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:n8n",
+      "type": "source_drift",
+      "title": "来源页变动：n8n（2026-10-20 确认）",
+      "why": "官方来源页的数字令牌变了——新增 6days；消失 15days。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://docs.n8n.io 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "n8n",
+        "https://docs.n8n.io"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:v0",
+      "type": "source_drift",
+      "title": "来源页变动：v0（Vercel）（2026-10-20 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1.5k / 10.8k / 11.1k / 14.7k；消失 10.7k / 11k / 14.4k / 20.6k。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://v0.app 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "v0",
+        "https://v0.app"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:continue",
+      "type": "source_drift",
+      "title": "来源页变动：Continue（2026-10-20 确认）",
+      "why": "官方来源页的数字令牌变了——新增 36.3k；消失 36.2k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "continue",
+        "https://github.com/continuedev/continue"
+      ],
+      "score": 65
+    },
+    {
       "id": "drift:elicit",
       "type": "source_drift",
       "title": "来源页变动：Elicit（2026-10-18 确认）",
@@ -62,54 +110,6 @@
       "refs": [
         "zhipu-glm",
         "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:cline",
-      "type": "source_drift",
-      "title": "来源页变动：Cline（2026-10-17 确认）",
-      "why": "官方来源页的数字令牌变了——新增 70.4k；消失 70.3k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cline",
-        "https://cline.bot"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:codex",
-      "type": "source_drift",
-      "title": "来源页变动：OpenAI Codex（2026-10-16 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 12.50credits。本站条目仍是 2026-09-25 的版本",
-      "action": "打开 https://developers.openai.com/codex/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "codex",
-        "https://developers.openai.com/codex/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:anythingllm",
-      "type": "source_drift",
-      "title": "来源页变动：AnythingLLM（2026-10-15 确认）",
-      "why": "官方来源页的数字令牌变了——新增 67k；消失 66k。本站条目仍是 2026-09-21 的版本",
-      "action": "打开 https://anythingllm.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "anythingllm",
-        "https://anythingllm.com"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:krea",
-      "type": "source_drift",
-      "title": "来源页变动：Krea AI（2026-10-15 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1,080images / 1,111images / 1,317images / 1,350images；消失 $5.25/mo / $5/mo / $9 / 2images。本站条目仍是 2026-08-06 的版本",
-      "action": "打开 https://krea.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "krea",
-        "https://krea.ai/pricing"
       ],
       "score": 65
     },
@@ -152,7 +152,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 104 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 107 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -163,13 +163,13 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 21 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 26 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "exa"
       ],
-      "score": 51
+      "score": 56
     }
   ]
 }
