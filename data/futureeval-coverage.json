@@ -1,14 +1,23 @@
 {
- "generated": "2026-10-19T15:10:47+00:00",
+ "generated": "2026-10-20T13:11:01+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 1,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
+  {
+   "post_id": 46069,
+   "title": "Will the FAA type-certify the Boeing 737 MAX 10 before 2027?",
+   "hosts": [
+    "www.faa.gov"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
