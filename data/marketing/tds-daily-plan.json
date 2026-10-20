@@ -40,7 +40,9 @@
       "task": "完成旧tds-image-01视频固定复盘；收藏内容单独立项",
       "deliverable": "保留09/30–10/13窗口与原门槛，发布/播放/到站分表",
       "gate": "旧视频读回；未取得指标写未知",
-      "status": "planned"
+      "status": "review_attempted_fixed_window_unavailable",
+      "result": "The fixed 2026-09-30 through 2026-10-13 UTC review could not be reconstructed because the historical site aggregate was not readable in this runtime. Current platform totals are not a substitute; no repost or new production was authorized.",
+      "receipt": "docs/tds-growth-review-2026-10-20.md"
     },
     {
       "day": 4,
@@ -49,7 +51,9 @@
       "task": "复查10月11日已上线分享卡的实际使用与两系列首轮Pin稿，完善分发入口",
       "deliverable": "已上线分享卡的使用证据及首轮Pin稿；有对应账号授权才发布并保存回执",
       "gate": "图片来源、线上下载和UTM核验；未授权不宣称发布",
-      "status": "partially_delivered_early"
+      "status": "implemented_main_source_live_receipt_unverified",
+      "result": "The localized organizer worksheet source and canonical sitemap entries are present on current main. Exact live build-stamp readback remains unverified; repeat use and organizer adoption are unknown.",
+      "receipt": "docs/tds-growth-review-2026-10-20.md"
     },
     {
       "day": 5,
@@ -85,7 +89,9 @@
       "task": "补一个有来源的任务答案，同时设计自愿反馈入口和更新周报价值",
       "deliverable": "来源答案及反馈/同意/退订文案草稿；不把注册自动视为邮件订阅",
       "gate": "按真实问题选题；无发送服务与同意记录不发邮件",
-      "status": "planned"
+      "status": "no_verified_receipt_carried_forward",
+      "result": "No completion receipt for the planned source-backed answer and feedback/weekly-value draft was found in current main. Do not assume another round completed it; carry the unfinished work forward.",
+      "receipt": "docs/tds-growth-review-2026-10-20.md"
     },
     {
       "day": 9,
@@ -94,7 +100,9 @@
       "task": "检查想要/已有/重复款的记录与导出摩擦",
       "deliverable": "修复一个可复现问题，或保留当前界面并给出原因",
       "gate": "用真实行为/问题证据选改动",
-      "status": "planned"
+      "status": "reviewed_no_reproducible_issue",
+      "result": "Reviewed current-main collection tracker, source and regression tests. Owned/wishlist/duplicate quantities, JSON backup, CSV export and restore/conflict protections are present; no reproducible friction defect justified a UI change. Detailed production analytics remain private.",
+      "receipt": "docs/tds-growth-review-2026-10-20.md"
     },
     {
       "day": 10,
@@ -325,10 +333,10 @@
       "date": "2026-10-17",
       "phase": "morning",
       "action": "Exclude unchanged demonstration dimensions from standalone display calculator completion events",
-      "status": "implemented_and_locally_verified_pending_release",
-      "receipt": "docs/tds-display-measurement-2026-10-17.md",
+      "status": "deployed_and_production_verified",
+      "receipt": "https://github.com/f-tiger/agi-site/pull/180",
       "external_posts": 0,
-      "note": "Preserves the organizer-kit acquisition priority; no source rerun, new campaign, private analytics or MCP contract change. Historical display events cannot be reclassified."
+      "note": "Supersedes the earlier pending-release note: PR #180 merged; normal deployment run 39019504518 completed successfully, the live build stamp and verified EN/DE collector-tools asset matched, and IndexNow accepted the changed URLs. Historical display events were not reclassified."
     },
     {
       "date": "2026-10-11",
@@ -338,13 +346,31 @@
       "receipt": "docs/tds-distribution-links-2026-10-11.md",
       "external_posts": 0,
       "note": "Existing PNG/MCP implementations reused. Channel/account/entry/asset review and specific publication authorization remain blockers."
+    },
+    {
+      "date": "2026-10-20",
+      "phase": "afternoon",
+      "action": "Review collection tracker and organizer worksheet task friction against current source, regression tests and private production evidence",
+      "status": "reviewed_no_ui_change_insufficient_evidence",
+      "receipt": "docs/tds-growth-review-2026-10-20.md",
+      "external_posts": 0,
+      "note": "No reproducible tracker defect. Existing worksheet already exposes print/Save as PDF and canonical link copy. No title churn, page expansion, source rerun, external post, outreach or expense."
+    },
+    {
+      "date": "2026-10-20",
+      "phase": "afternoon",
+      "action": "Attempt overdue tds-image-01 fixed-window review and Museum first-week readback without substituting a new window",
+      "status": "fixed_window_unrecoverable; museum_review_incomplete",
+      "receipt": "docs/tds-growth-review-2026-10-20.md",
+      "external_posts": 0,
+      "note": "The historical site aggregate endpoints were not readable in this runtime; platform snapshots cannot recover the exact site-referrer/action window. Preserve both existing posts, do not repost, and keep missing metrics unknown."
     }
   ],
   "acquisition_priority": {
-    "updated": "2026-10-15",
+    "updated": "2026-10-20",
     "owner_direction": "换其他方案",
     "primary": "Searchable, printable trading-meetup preparation kit with organizer reuse permission and canonical return links.",
-    "status": "implemented_pending_release_verification",
+    "status": "main_source_and_sitemap_ready_live_build_stamp_unverified",
     "receipt": "docs/tds-swap-kit-2026-10-15.md",
     "deprioritized": [
       "More video production without a verified acquisition path",
@@ -355,6 +381,7 @@
       "Existing native source schedule and quotas",
       "Already published video observation windows"
     ],
-    "external_distribution": "No new post, message, outreach, paid placement or partner adoption authorized or claimed."
+    "external_distribution": "No new post, message, outreach, paid placement or partner adoption authorized or claimed.",
+    "verification_note": "Current main contains the localized organizer worksheet and its canonical sitemap entries. This is source-side evidence only; the exact live build stamp was not retrievable in this run. Repeat use, organizer adoption and revenue remain unverified. External distribution remains unauthorized."
   }
 }
