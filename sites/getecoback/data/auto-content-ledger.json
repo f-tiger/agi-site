@@ -17,6 +17,12 @@
       "at": "2026-10-19T08:57:03Z",
       "country": "GB",
       "route": "/en/guide/meaco-meacodry-arete-one-10l-running-cost.html"
+    },
+    "2026-10-20": {
+      "action": "new",
+      "at": "2026-10-20T08:36:29Z",
+      "country": "DE",
+      "route": "/guide/trotec-ttk-52-e-betriebskosten.html"
     }
   },
   "pages": {
@@ -35,6 +41,14 @@
       "modified_at": "2026-10-17T12:46:59Z",
       "name": "Luftentfeuchter TTK 32 E",
       "source_id": "trotec-de:0b7f40c15588"
+    },
+    "/guide/trotec-ttk-52-e-betriebskosten.html": {
+      "content_hash": "431906f42cef05caa5f50d30d3eb7c3b9d830e3f7fe3c3da9a0d422c24bea496",
+      "country": "DE",
+      "created_at": "2026-10-20T08:36:29Z",
+      "modified_at": "2026-10-20T08:36:29Z",
+      "name": "Luftentfeuchter TTK 52 E",
+      "source_id": "trotec-de:156b486b94a9"
     },
     "/guide/trotec-ttk-95-e-betriebskosten.html": {
       "content_hash": "7117384e0d7df664feb243d74053087b9b944dc71797e83fd4b35da8c52196de",
