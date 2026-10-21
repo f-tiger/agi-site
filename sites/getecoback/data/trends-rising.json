@@ -1,73 +1,60 @@
 {
- "fetched": "2026-10-20",
+ "fetched": "2026-10-21",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
-   "rising": [
-    {
-     "q": "constantin schreiber axel springer",
-     "v": 4050
-    },
-    {
-     "q": "bodenkonsole klimaanlage",
-     "v": 250
-    },
-    {
-     "q": "heizen mit klimaanlage",
-     "v": 250
-    },
-    {
-     "q": "kabelkanal klimaanlage",
-     "v": 150
-    },
-    {
-     "q": "hisense klimaanlage",
-     "v": 150
-    },
-    {
-     "q": "klimavorteil",
-     "v": 150
-    },
-    {
-     "q": "mitsubishi heavy klimaanlage",
-     "v": 150
-    },
-    {
-     "q": "klimaanlage mit heizfunktion",
-     "v": 140
-    },
-    {
-     "q": "wandhalterung klimaanlage",
-     "v": 140
-    },
-    {
-     "q": "dometic klimaanlage",
-     "v": 140
-    }
+   "auto": [
+    "klimaanlage",
+    "klimaanlage mobil",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage wohnung",
+    "klimaanlagen",
+    "klimaanlage splitgerät",
+    "klimaanlage mobil mit schlauch",
+    "klimaanlage zuhause",
+    "klimaanlage ohne schlauch",
+    "klimaanlage lidl"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-20",
-   "polluted": false,
-   "last_attempt_at": "2026-10-20T09:36:56.389370+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "klimaanlage mobil",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage wohnung",
+    "klimaanlagen",
+    "klimaanlage splitgerät",
+    "klimaanlage mobil mit schlauch",
+    "klimaanlage zuhause",
+    "klimaanlage ohne schlauch",
+    "klimaanlage lidl"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-21T09:31:26.341666+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-21"
   },
   "schimmel entfernen": {
    "auto": [
     "schimmel entfernen",
     "schimmel entfernen wand",
     "schimmel entfernen hausmittel",
-    "schimmel entfernen bad fugen",
     "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
     "schimmel entfernen wand innen",
     "schimmel entfernen dm",
     "schimmel entfernen tapete",
     "schimmel entfernen alkohol",
-    "schimmel entfernen textilien"
+    "schimmel entfernen spray"
+   ],
+   "new_vocabulary": [
+    "schimmel entfernen spray"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
-   "fetched": "2026-10-13",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume"
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-21T09:34:26.616437+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-21"
   },
   "infrarotheizung": {
    "rising": [
