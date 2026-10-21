@@ -14,6 +14,39 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.667,
+   "page": "guide/akku-heizluefter.html",
+   "q": "akku heizlüfter auto",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 73200
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "heizlüfter oder infrarotheizung",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 58250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/akku-heizluefter.html",
+   "q": "12 volt heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 53650
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.775,
    "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
    "q": "stand infrarotheizung",
@@ -21,6 +54,42 @@
    "source": "related-queries",
    "stand": "2026-10-14",
    "v": 47900
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.85,
+   "page": "kategorie/heizen.html",
+   "q": "heizlüfter wenig stromverbrauch",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 35400
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.775,
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "elektrische heizung",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 34600
+  },
+  {
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/midea-geraete-test.html",
+   "q": "aeg heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 32900
   },
   {
    "heat": {
@@ -48,39 +117,6 @@
    "v": 15800
   },
   {
-   "heat": null,
-   "kind": "value",
-   "match": 0.808,
-   "page": "guide/portasplit-vs-monoblock.html",
-   "q": "midea portasplit mobile split klimaanlage inklusive",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 12900
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.833,
-   "page": "guide/klimaanlage-mietwohnung.html",
-   "q": "bgh urteil klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 5100
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/lidl-tronic-klimaanlage-test.html",
-   "q": "tronic klimaanlage 9000 btu",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 350
-  },
-  {
    "heat": {
     "n7": 5,
     "p7": 8
@@ -91,8 +127,22 @@
    "q": "heizen mit klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 160
+   "stand": "2026-10-20",
+   "v": 250
+  },
+  {
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/klimaanlage-mit-heizfunktion.html",
+   "q": "klimaanlage mit heizfunktion",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 140
   },
   {
    "heat": null,
@@ -150,6 +200,26 @@
    "source": "related-queries",
    "stand": "2026-10-14",
    "v": 46750
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "makita heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 44300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/akku-heizluefter.html",
+   "q": "güde heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 41950
   },
   {
    "kind": "value",
@@ -243,16 +313,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "totsoo klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 550
-  },
-  {
-   "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
    "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
@@ -265,21 +325,61 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/air-zuma-erfahrungen.html",
-   "q": "haier klimaanlage",
+   "q": "bodenkonsole klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-10-12",
+   "stand": "2026-10-20",
    "v": 250
   },
   {
    "kind": "value",
-   "match": 0.25,
+   "match": 0.5,
    "page": "guide/air-zuma-erfahrungen.html",
-   "q": "daikin multisplit klimaanlage 2 innengeräte",
+   "q": "kabelkanal klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-10-12",
-   "v": 170
+   "stand": "2026-10-20",
+   "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "hisense klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "mitsubishi heavy klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "wandhalterung klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 140
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "dometic klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-20",
+   "v": 140
   },
   {
    "kind": "value",
@@ -392,9 +492,9 @@
    "v": 40
   }
  ],
- "generated": "2026-10-20",
+ "generated": "2026-10-21",
  "geo": "DE",
- "heat_source": "measured 2026-10-20 (22 pages); no notes",
+ "heat_source": "measured 2026-10-21 (23 pages); no notes",
  "hot_pages": [
   {
    "n7": 5,
@@ -403,53 +503,53 @@
   },
   {
    "n7": 5,
-   "p7": 6,
+   "p7": 4,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
    "n7": 5,
-   "p7": 8,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 4,
-   "p7": 10,
-   "page": "/en/guide/portable-ac-not-cooling.html"
-  },
-  {
-   "n7": 4,
    "p7": 2,
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
-   "n7": 4,
-   "p7": 1,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 4,
-   "p7": 7,
+   "n7": 5,
+   "p7": 6,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
-   "n7": 3,
+   "n7": 5,
+   "p7": 1,
+   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+  },
+  {
+   "n7": 4,
    "p7": 0,
    "page": "/guide/thermovorhang-ratgeber.html"
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/kontakt.html"
+   "p7": 11,
+   "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
    "n7": 3,
-   "p7": 1,
-   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+   "p7": 2,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
-   "n7": 2,
+   "n7": 3,
+   "p7": 7,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
+  },
+  {
+   "n7": 3,
+   "p7": 2,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
+  },
+  {
+   "n7": 3,
    "p7": 0,
-   "page": "/en/guide/best-portable-air-conditioner-europe-heatwave.html"
+   "page": "/kontakt.html"
   },
   {
    "n7": 2,
@@ -458,18 +558,18 @@
   },
   {
    "n7": 2,
-   "p7": 2,
+   "p7": 1,
    "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
+   "page": "/guide/balkon-terrasse-beschatten.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/comfee-geraete-test.html"
-  },
-  {
-   "n7": 2,
-   "p7": 3,
-   "page": "/guide/heizluefter-stromverbrauch.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -481,15 +581,17 @@
   "kärcher nass trockensauger",
   "saug wisch roboter test",
   "dyson wischsauger",
+  "dreo atom 316",
+  "powerstation",
   "radiator",
   "salami",
   "selbstbedienungskasse",
   "fluss durch riga",
   "duschkopf",
-  "meacodry arete one 12l",
   "constantin schreiber axel springer",
+  "meacodry arete one 12l",
   "dieter glawischnig",
-  "tabaksteuer",
+  "klimavorteil",
   "bett1 de",
   "kinderbett 90x200",
   "tineco",

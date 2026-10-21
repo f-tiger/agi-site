@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-10-20
+# Fleet evolution report — 2026-10-21
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 4 · paid members: unknown · active members: unknown
-- Opportunity candidates: 8 · stale inputs: 0
+- Opportunity candidates: 7 · stale inputs: 0
 
 ## Priority actions
 
@@ -18,23 +18,23 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 68 | thedollscout | membership_observability | observe | admin_ok=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=jim cramer ai chip stocks; value=11450 |
 | 55 | buysomething | content_gap | queue | count=1; query=refrigerator cost; value=80 |
-| 55 | getecoback | content_gap | queue | count=27; query=infrarotheizung hornbach; value=55350 |
-| 55 | thedollscout | content_gap | queue | count=3; query=sonny angel advent calendar; value=650 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/jarvis; n7=89; p7=33 |
+| 55 | getecoback | content_gap | queue | count=32; query=infrarotheizung hornbach; value=55350 |
+| 55 | thedollscout | content_gap | queue | count=14; query=lets try the viral crumbl labubu; value=18550 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=149; p7=62 |
 | 52 | getecoback | improve_hot_page | queue | page=/; n7=5; p7=8 |
-| 48 | buysomething | ai_discovery | queue | human_pv_28d=288; ai_ref_28d=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=208; ai_ref_28d=0 |
-| 48 | gridlings | ai_discovery | queue | human_pv_28d=937; ai_ref_28d=0 |
+| 48 | buysomething | ai_discovery | queue | human_pv_28d=324; ai_ref_28d=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=206; ai_ref_28d=0 |
+| 48 | gridlings | ai_discovery | queue | human_pv_28d=1295; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-19T08:03:59.015Z | 1 |
-| health | 2026-10-19T15:09:51Z | 1 |
-| ai_referrals | 2026-10-19T15:10:44Z | 1 |
-| opportunities | 2026-10-19 | 1 |
-| autopilot_receipt | 2026-10-20 | 0 |
+| membership | 2026-10-20T07:54:34.776Z | 1 |
+| health | 2026-10-20T13:10:32Z | 1 |
+| ai_referrals | 2026-10-20T13:10:59Z | 1 |
+| opportunities | 2026-10-20 | 1 |
+| autopilot_receipt | 2026-10-21 | 0 |
 
 ## Autonomous boundary
 

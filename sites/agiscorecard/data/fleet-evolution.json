@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/jarvis"
+      "top_hot_page": "/search"
     },
     "health": {
       "http": "200",
@@ -48,8 +48,8 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/jarvis",
-        "n7_band": "10-99",
+        "page": "/search",
+        "n7_band": "100+",
         "p7_band": "10-99"
       },
       "mode": "queue"
