@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-19"
+    "until": "2026-10-20"
   },
   "days": {
     "2026-07-26": {
@@ -3971,20 +3971,20 @@
     },
     "2026-10-08": {
       "date": "2026-10-08",
-      "requests": 2692,
-      "pageViews": 457,
-      "uniques": 709,
+      "requests": 2686,
+      "pageViews": 455,
+      "uniques": 708,
       "byIpType": {
-        "noRecord": 2192,
-        "unknown": 386,
+        "noRecord": 2187,
+        "unknown": 385,
         "searchEngine": 95,
         "allowlist": 19
       },
       "byBrowser": {
-        "Unknown": 215,
+        "Unknown": 214,
         "Chrome": 121,
         "MobileSafari": 42,
-        "Edge": 34,
+        "Edge": 33,
         "GoogleBot": 13,
         "ChromeMobile": 10,
         "BingBot": 8,
@@ -3994,9 +3994,9 @@
         "ChromeHeadless": 1
       },
       "byContentType": {
-        "json": 1021,
-        "html": 982,
-        "empty": 304,
+        "json": 1020,
+        "html": 978,
+        "empty": 303,
         "txt": 273,
         "js": 3,
         "css": 19,
@@ -4007,24 +4007,24 @@
         "webp": 1
       },
       "byStatus": {
-        "200": 1842,
-        "202": 228,
+        "200": 1839,
+        "202": 227,
         "204": 9,
         "301": 81,
         "304": 7,
         "308": 9,
         "403": 6,
-        "404": 441,
+        "404": 439,
         "405": 55,
         "410": 11,
         "499": 3
       },
       "topCountries": {
-        "US": 1046,
+        "US": 1045,
         "FI": 441,
         "BR": 314,
         "SG": 150,
-        "FR": 140,
+        "FR": 136,
         "LT": 74,
         "NL": 68,
         "DE": 59
@@ -4568,12 +4568,12 @@
     },
     "2026-10-17": {
       "date": "2026-10-17",
-      "requests": 8678,
-      "pageViews": 3504,
+      "requests": 8682,
+      "pageViews": 3505,
       "uniques": 616,
       "byIpType": {
         "unknown": 4699,
-        "noRecord": 3795,
+        "noRecord": 3799,
         "searchEngine": 149,
         "allowlist": 35
       },
@@ -4588,10 +4588,10 @@
         "Edge": 8,
         "Safari": 7,
         "BingBot": 2,
-        "ChromeHeadless": 1
+        "ChromeHeadless": 2
       },
       "byContentType": {
-        "html": 3905,
+        "html": 3906,
         "txt": 1962,
         "json": 1118,
         "empty": 647,
@@ -4607,7 +4607,7 @@
         "jpeg": 1
       },
       "byStatus": {
-        "200": 7545,
+        "200": 7549,
         "202": 221,
         "204": 11,
         "206": 1,
@@ -4762,6 +4762,72 @@
         "NL": 134,
         "FR": 117,
         "CN": 83
+      }
+    },
+    "2026-10-20": {
+      "date": "2026-10-20",
+      "requests": 5804,
+      "pageViews": 1555,
+      "uniques": 791,
+      "byIpType": {
+        "noRecord": 3573,
+        "unknown": 1869,
+        "searchEngine": 327,
+        "allowlist": 35
+      },
+      "byBrowser": {
+        "Unknown": 1121,
+        "Chrome": 106,
+        "GoogleBot": 98,
+        "Curl": 90,
+        "MobileSafari": 56,
+        "AppleBot": 27,
+        "Edge": 27,
+        "Safari": 7,
+        "Firefox": 7,
+        "ChromeMobile": 7,
+        "BingBot": 5,
+        "ChromeMobileWebview": 4
+      },
+      "byContentType": {
+        "html": 2101,
+        "json": 1085,
+        "empty": 1042,
+        "txt": 689,
+        "js": 44,
+        "css": 189,
+        "unknown": 22,
+        "xml": 16,
+        "svg": 16,
+        "pdf": 9,
+        "webp": 6,
+        "png": 3,
+        "zip": 1
+      },
+      "byStatus": {
+        "200": 4131,
+        "202": 275,
+        "204": 31,
+        "301": 378,
+        "303": 54,
+        "304": 34,
+        "308": 305,
+        "401": 3,
+        "403": 13,
+        "404": 445,
+        "405": 61,
+        "410": 67,
+        "499": 7
+      },
+      "topCountries": {
+        "US": 2792,
+        "DE": 622,
+        "FI": 475,
+        "SG": 409,
+        "NL": 307,
+        "CN": 242,
+        "BE": 238,
+        "FR": 214
       }
     }
   }
