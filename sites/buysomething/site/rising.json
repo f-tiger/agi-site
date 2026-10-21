@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-20",
+ "fetched": "2026-10-21",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -773,60 +773,63 @@
     "automatic pet feeder with camera bunnings",
     "automatic pet feeder with camera amazon"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-21"
+  },
+  "self cleaning litter box": {
+   "auto": [
+    "self cleaning litter box",
+    "self cleaning litter box for multiple cats",
+    "self cleaning litter box for large cats",
+    "self cleaning litter box near me",
+    "self cleaning litter boxes for cats",
+    "self cleaning litter box nearby",
+    "self cleaning litter box amazon",
+    "self cleaning litter box reviews",
+    "self cleaning litter box reddit",
+    "self cleaning litter box walmart"
+   ],
    "rising": [
     {
-     "q": "automatic pet feeder with camera amazon",
+     "q": "self cleaning litter box for multiple cats",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box for large cats",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box near me",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter boxes for cats",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box nearby",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box amazon",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box reviews",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box reddit",
+     "v": "new"
+    },
+    {
+     "q": "self cleaning litter box walmart",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-20"
-  },
-  "self cleaning litter box": {
-   "rising": [
-    {
-     "q": "furrytail litter box",
-     "v": 23200
-    },
-    {
-     "q": "best cat litter box for odor control",
-     "v": 16400
-    },
-    {
-     "q": "moonbox cat litter box",
-     "v": 15750
-    },
-    {
-     "q": "petsafe self cleaning litter box reviews",
-     "v": 13000
-    },
-    {
-     "q": "moonbox litter box",
-     "v": 2250
-    },
-    {
-     "q": "litter genie",
-     "v": 250
-    },
-    {
-     "q": "petsafe self cleaning litter box",
-     "v": 70
-    },
-    {
-     "q": "petsafe litter box",
-     "v": 60
-    },
-    {
-     "q": "best self cleaning cat litter box",
-     "v": 40
-    },
-    {
-     "q": "best cat litter box",
-     "v": 40
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-09-21"
+   "fetched": "2026-10-21"
   },
   "robot pet companion": {
    "auto": [
