@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-10-20T05:17:09.409Z",
+  "lastRun": "2026-10-21T05:18:56.289Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -121,19 +121,19 @@
       "caseId": "gamma",
       "reason": "source-unreachable",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastChecked": "2026-10-08T06:37:57.062Z"
+      "lastChecked": "2026-10-21T05:18:56.289Z"
     },
     {
       "caseId": "elevenlabs",
       "reason": "source-unreachable",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastChecked": "2026-10-09T06:39:41.803Z"
+      "lastChecked": "2026-10-21T05:18:56.289Z"
     },
     {
       "caseId": "synthesia",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastChecked": "2026-10-09T06:39:41.803Z"
+      "lastChecked": "2026-10-21T05:18:56.289Z"
     },
     {
       "caseId": "heygen",
@@ -571,10 +571,10 @@
     "replit|https://replit.com/news/funding-announcement-series-c": {
       "caseId": "replit",
       "sourceUrl": "https://replit.com/news/funding-announcement-series-c",
-      "lastAttempt": "2026-10-08T06:37:57.062Z",
-      "status": "baseline",
+      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-08T06:37:57.062Z",
+      "lastSuccess": "2026-10-21T05:18:56.289Z",
       "lastHash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
       "hash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
       "simhash": "9252241e9f62870b",
@@ -584,7 +584,7 @@
     "gamma|https://gamma.app/insights/how-we-built-a-usd100m-business-differently": {
       "caseId": "gamma",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastAttempt": "2026-10-08T06:37:57.062Z",
+      "lastAttempt": "2026-10-21T05:18:56.289Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -592,7 +592,7 @@
     "elevenlabs|https://elevenlabs.io/blog/500m-arr-and-new-investors": {
       "caseId": "elevenlabs",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "lastAttempt": "2026-10-21T05:18:56.289Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -600,11 +600,11 @@
     "midjourney|https://www.cbinsights.com/research/midjourney-revenue-valuation/": {
       "caseId": "midjourney",
       "sourceUrl": "https://www.cbinsights.com/research/midjourney-revenue-valuation/",
-      "lastAttempt": "2026-10-09T06:39:41.803Z",
-      "status": "baseline",
+      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-09T06:39:41.803Z",
-      "lastHash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
+      "lastSuccess": "2026-10-21T05:18:56.289Z",
+      "lastHash": "35132f706a6383dd01ff921be6ae491a7289411f28dfc45f558f0206c17ade1b",
       "hash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
       "simhash": "a6082704b4c1a81e",
       "words": 387,
@@ -613,7 +613,7 @@
     "synthesia|https://www.synthesia.io/post/100-million-revenue-adobe-investment": {
       "caseId": "synthesia",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "lastAttempt": "2026-10-21T05:18:56.289Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1160,31 +1160,16 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 18,
+  "cursor": 23,
   "errors": [
     {
-      "caseId": "julius-ai",
-      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
+      "caseId": "elevenlabs",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
       "reason": "body-limit"
     },
     {
-      "caseId": "chatbase",
-      "sourceUrl": "https://supabase.com/customers/chatbase",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "bolt",
-      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "cursor",
-      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "lovable",
-      "sourceUrl": "https://lovable.dev/blog/agent",
+      "caseId": "synthesia",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
       "reason": "body-limit"
     }
   ]

@@ -1,6 +1,6 @@
 {
  "version": "2.0.0",
- "checked": "2026-10-20",
+ "checked": "2026-10-21",
  "policy": {
   "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
   "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
@@ -2088,8 +2088,8 @@
    "source_url": "https://rivet.ironcladapp.com/",
    "repo_url": "https://github.com/Ironclad/rivet",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Desktop app",
    "zh_transport": "桌面应用",
    "capabilities": [
@@ -2121,8 +2121,8 @@
     "description": "An open-source AI programming environment using a visual, node-based graph editor",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -2578,8 +2578,8 @@
    "source_url": "https://rig.rs/",
    "repo_url": "https://github.com/0xPlaygrounds/rig",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Rust SDK",
    "zh_transport": "Rust SDK",
    "capabilities": [
@@ -2611,8 +2611,8 @@
     "description": "Rig is a Rust library for building LLM-powered applications and AI agents — one unified API across 20+ providers, with type-safe tools, structured output, and production-ready performance.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -2673,8 +2673,8 @@
    "source_url": "https://github.com/QwenLM/Qwen-Agent",
    "repo_url": "https://github.com/QwenLM/Qwen-Agent",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Python SDK",
    "zh_transport": "Python SDK",
    "capabilities": [
@@ -2709,8 +2709,8 @@
     "description": "Agent framework and applications built upon Qwen>=3.0, featuring Function Calling, MCP, Code Interpreter, RAG, Chrome extension, etc. - QwenLM/Qwen-Agent",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -4279,8 +4279,8 @@
    "source_url": "https://roocode.com/",
    "repo_url": "https://github.com/RooCodeInc/Roo-Code",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "IDE extension",
    "zh_transport": "IDE 扩展",
    "capabilities": [
@@ -4316,8 +4316,8 @@
     "description": "Roomote is an AI engineering teammate that ships reviewable PRs — hosted by us in about two minutes, or self-hosted on your own infra. Single-tenant either way, source-available, bring any model. Solo dev or whole team.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -4378,8 +4378,8 @@
    "source_url": "https://github.com/QwenLM/qwen-code",
    "repo_url": "https://github.com/QwenLM/qwen-code",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Command-line tool",
    "zh_transport": "命令行工具",
    "capabilities": [
@@ -4411,8 +4411,8 @@
     "description": "An open-source AI coding agent that lives in your terminal. - QwenLM/qwen-code",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -4860,8 +4860,8 @@
    "source_url": "https://replit.com/ai",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Hosted product (web app)",
    "zh_transport": "托管产品（网页应用）",
    "capabilities": [
@@ -4894,7 +4894,7 @@
     "description": "Build production-ready apps and websites with Replit Agent. Describe what you need, then let AI write, test, fix, and publish your software.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -5510,8 +5510,8 @@
    "source_url": "https://refact.ai/",
    "repo_url": "https://github.com/smallcloudai/refact",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "IDE extension",
    "zh_transport": "IDE 扩展",
    "capabilities": [
@@ -5543,8 +5543,8 @@
     "description": "AI Agent for Coding - Refact.ai adapts to your workflow, automating coding, debugging, and testing with full context awareness. An open-source alternative to Cursor and Copilot, Refact.ai can be deployed on-premise.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -7879,8 +7879,8 @@
    "source_url": "https://github.com/redis/mcp-redis",
    "repo_url": "https://github.com/redis/mcp-redis",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -7912,8 +7912,8 @@
     "description": "The official Redis MCP Server is a natural language interface designed for agentic applications to manage and search data in Redis efficiently - redis/mcp-redis",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -8759,8 +8759,8 @@
    "source_url": "https://www.relay.app/",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Hosted product (web app)",
    "zh_transport": "托管产品（网页应用）",
    "capabilities": [
@@ -8795,7 +8795,7 @@
     "description": "Relay.app shut down in September 2026. All accounts, workflows and run history have been permanently deleted.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -8857,8 +8857,8 @@
    "source_url": "https://relevanceai.com/",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Hosted product (web app)",
    "zh_transport": "托管产品（网页应用）",
    "capabilities": [
@@ -8893,7 +8893,7 @@
     "description": "Deliver maximum ROI through optimized specialist agents. Build agents for sales, customer success, marketing and HR, and run millions of daily tasks on one platform.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -8955,8 +8955,8 @@
    "source_url": "https://rasa.com/",
    "repo_url": "https://github.com/RasaHQ/rasa",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Self-hosted or hosted cloud",
    "zh_transport": "自托管或托管云版",
    "capabilities": [
@@ -8988,8 +8988,8 @@
     "description": "Create AI agents you can trust with Rasa’s powerful platform, designed to scale, customize, and support real business needs across channels.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -10075,8 +10075,8 @@
    "source_url": "https://ragflow.io/",
    "repo_url": "https://github.com/infiniflow/ragflow",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Self-hosted server (Docker)",
    "zh_transport": "自托管服务（Docker）",
    "capabilities": [
@@ -10112,8 +10112,8 @@
     "description": "Build a superior context layer for AI agents - Empower your AI agents through the leading open-source RAG engine, delivering reliable context and an integrated agent platform, built for enterprise.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -11693,8 +11693,8 @@
    "source_url": "https://www.retellai.com/",
    "repo_url": null,
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Hosted API",
    "zh_transport": "托管 API",
    "capabilities": [
@@ -11726,7 +11726,7 @@
     "description": "Deploy AI voice agents in minutes with 95.7% workflow accuracy, benchmarked ahead of 6 platforms. Pilot on real calls before you sign anything.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
@@ -12580,8 +12580,8 @@
    "source_url": "https://ragas.io/",
    "repo_url": "https://github.com/explodinggradients/ragas",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Python SDK",
    "zh_transport": "Python SDK",
    "capabilities": [
@@ -12610,8 +12610,8 @@
     "description": "Ragas is an open source framework for testing and evaluating LLM applications. Ragas provides metrics , synthetic test data generation and workflows for ensuring the quality of your application while development and also monitoring it's quality in production.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -14194,8 +14194,8 @@
    "source_url": "https://github.com/rationalbloks/rationalbloks-mcp",
    "repo_url": "https://github.com/rationalbloks/rationalbloks-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -14233,8 +14233,8 @@
     "description": "Contribute to rationalbloks/rationalbloks-mcp development by creating an account on GitHub.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -17874,8 +17874,8 @@
    "source_url": "https://rithmo.ai/mcp",
    "repo_url": "https://github.com/Rithmo-Inc/rithmo-mcp-examples",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -17911,8 +17911,8 @@
     "description": "Connect Rithmo over MCP so your agents check what is current before they act, for reliable agent execution. Read-only access, connection steps, and the full tool reference.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -18126,8 +18126,8 @@
    "source_url": "https://contract.sallim.app",
    "repo_url": "https://github.com/sallim-app/contract-compass",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -18163,8 +18163,8 @@
     "description": "Claude·ChatGPT·Cursor에 붙이는 한국 공공계약 법령 MCP 서버. 국가계약법·지방계약법 룰엔진 판정, 조문 원문, 계약예규·적격심사 세부기준, 판례를 AI가 직접 조회합니다. 서버는 LLM을 쓰지 않아 근거가 조문까지 검증됩니다. 무료 50콜/일.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -19773,8 +19773,8 @@
    "source_url": "https://rocketlist.ai/open-data",
    "repo_url": "https://github.com/rocketlist-ai/startup-jobs",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -19810,8 +19810,8 @@
     "description": "Download RocketList’s daily startup jobs dataset, install its agent skill, or connect the public MCP to search current roles and hiring companies.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -20878,7 +20878,7 @@
     "description": "Track 1,142 AI laws, bills and policies from 110 countries and jurisdictions. 669 in force, 366 in the legislative pipeline. Free, updated continuously, with official sources for every entry.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -22814,8 +22814,8 @@
    "source_url": "https://www.robowrite.ai",
    "repo_url": "https://github.com/RoboAdApp/robowrite-plugin",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -22851,8 +22851,8 @@
     "description": "Transform any website URL into a complete content strategy — brand voice extraction, content pillars, SEO-scored topic banks, and multi-channel content generation.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -22966,8 +22966,8 @@
    "source_url": "https://robopartpicker.com",
    "repo_url": "https://github.com/brainbook0/robopartpicker-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -23003,8 +23003,8 @@
     "description": "Discover 2,445 source-linked robotics projects, compile their bills of materials, compare parts and suppliers, and plan reproducible builds.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -24831,7 +24831,7 @@
     "description": "Hand-curated remote jobs aggregated from top companies and boards. Every listing links to the original posting. Updated hourly.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -26814,7 +26814,7 @@
     "description": "REPSLog is a mobile app that helps real estate investors track hours, meet REPS and STR requirements, and maximize tax savings. With AI logging, multi-property management, and document upload, it’s the simple way to stay compliant and grow your business.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -27133,8 +27133,8 @@
    "source_url": "https://www.rhylthyme.com",
    "repo_url": "https://github.com/rhylthyme/rhylthyme-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -27170,8 +27170,8 @@
     "description": "Describe any multi-step, multi-track process once and run it on a live timeline: parallel tracks, shared-resource scheduling, and real timers.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -27333,8 +27333,8 @@
    "source_url": "https://github.com/RoboFinSystems/xbrlkit#readme",
    "repo_url": "https://github.com/RoboFinSystems/xbrlkit",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -27372,8 +27372,8 @@
     "description": "Work with XBRL filings above Arelle: one parse, portable models - RoboFinSystems/xbrlkit",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -28912,8 +28912,8 @@
    "source_url": "https://rightcard.ai/mcp",
    "repo_url": "https://github.com/rightcard/rightcard-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -28951,8 +28951,8 @@
     "description": "A free MCP server that tells an AI agent which of your credit cards to use at any store, from verified bank data. No bank login, no account, nothing stored.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -29407,10 +29407,10 @@
     "description": "AI decks you can edit: designed, animated presentations from a brief or your own AI, on your brand. AIs build here with no account: renderball.com/for-ai",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
    "repo_checked": "2026-09-22",
    "source_http": 200,
-   "repo_http": 200
+   "repo_http": 404
   },
   {
    "slug": "platequery-plate-api",
@@ -30076,8 +30076,8 @@
    "source_url": "https://replynodes.com/mcp",
    "repo_url": "https://github.com/replynodes/replynodes-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -30113,8 +30113,8 @@
     "description": "Connect Claude Code, Codex, Hermes, and other MCP clients to read-only public data through https://mcp.replynodes.com/mcp.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -30732,8 +30732,8 @@
    "source_url": "https://revelara.ai",
    "repo_url": "https://github.com/revelara-ai/revelara-plugin",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -30769,8 +30769,8 @@
     "description": "Revelara reads the change you are about to ship and finds the reliability risks in it, grounded in a corpus of thousands of public production incident reports.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -32868,8 +32868,8 @@
    "source_url": "https://rendobar.com/docs/mcp-server",
    "repo_url": "https://github.com/rendobar/mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -32907,8 +32907,8 @@
     "description": "Connect Claude Code, claude.ai, or any MCP client to Rendobar over OAuth, then submit jobs, upload files, and chain job outputs from the chat.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -33176,8 +33176,8 @@
    "source_url": "https://github.com/rwapis/realworldapis-mcp",
    "repo_url": "https://github.com/rwapis/realworldapis-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -33213,8 +33213,8 @@
     "description": "MCP server metadata and registry publishing for RealWorldAPIs - rwapis/realworldapis-mcp",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -33843,8 +33843,8 @@
    "source_url": "https://resustackapp.com",
    "repo_url": "https://github.com/koksalkapucuoglu/resume-enhance",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -33880,8 +33880,8 @@
     "description": "Build an ATS-friendly resume with AI: import a PDF or LinkedIn profile, pick from 14 designs, edit by form or by chat, keep every change reversible, and work on it straight from Claude.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -35101,8 +35101,8 @@
    "source_url": "https://retailreason.com/docs/connect/",
    "repo_url": "https://github.com/RetailReason/retail-reason-plugins",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -35138,8 +35138,8 @@
     "description": "Connect Retail Reason to a supported AI assistant. Check account requirements, follow the setup guide, verify your first answer, and get connection help.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -36618,8 +36618,8 @@
    "source_url": "https://rechtssysteem.ai",
    "repo_url": "https://github.com/rechtssysteem-ai/rechtssysteem-mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -36655,8 +36655,8 @@
     "description": "Voor €99 incl. btw controleren we of de afwijzing van je rechtsbijstandverzekering standhoudt. Vaste prijs, ongeacht de uitkomst.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -36818,8 +36818,8 @@
    "source_url": "https://ratchetgate.com",
    "repo_url": "https://github.com/thearchitect0x-glitch/ratchet",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -36857,8 +36857,8 @@
     "description": "Agents retry, and the charge goes out twice. Ratchet makes sure the action behind a retry is attempted at most once — enforced in the database, not by hope.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -37270,8 +37270,8 @@
    "source_url": "https://reqbeat.com/mcp/",
    "repo_url": "https://github.com/reqbeat/mcp-server",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -37307,8 +37307,8 @@
     "description": "Every tool the Reqbeat MCP server exposes, read from the running server and refreshed every 3 hours.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -37830,8 +37830,8 @@
    "source_url": "https://riskstate.ai/connect",
    "repo_url": "https://github.com/Riskstate/mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -37867,8 +37867,8 @@
     "description": "Add live BTC & ETH risk data to Claude or ChatGPT in 2 minutes. One MCP URL, no API key: risk policy, market structure and trading playbooks, straight into your chats.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -43088,8 +43088,8 @@
    "source_url": "https://runx.ai",
    "repo_url": "https://github.com/runxhq/runx",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -43125,8 +43125,8 @@
     "description": "runx is the governed runtime for agent skills. It connects tools and accounts to AI agents, limits each run to the authority a user grants, and records the result in a signed receipt.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -44960,8 +44960,8 @@
    "source_url": "https://ratevert.com/mcp",
    "repo_url": "https://github.com/ratevert/mcp",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -44997,8 +44997,8 @@
     "description": "Connect AI agents to Ratevert for currencies, stocks, ETFs, funds, and crypto: canonical assets, exact rates, amount conversion, comparisons, and source links.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -45568,8 +45568,8 @@
    "source_url": "https://www.rapidly.co",
    "repo_url": "https://github.com/Exponentially-Platform/Rapidly-MCP",
    "first_seen": "2026-09-22",
-   "last_verified": "2026-09-22",
-   "status": "new",
+   "last_verified": "2026-10-21",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -45605,8 +45605,8 @@
     "description": "Rapidly is a pretotyping platform that helps enterprise teams validate ideas with real customer evidence before they build. Test an idea free.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-22",
-   "repo_checked": "2026-09-22",
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
    "source_http": 200,
    "repo_http": 200
   },
@@ -106622,6 +106622,558 @@
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "withglint-recallradar-recallradar",
+   "name": "RecallRadar",
+   "category": "mcp",
+   "description": "Search U.S. FDA, USDA FSIS, and CPSC recalls, fetch one, or diff since a date. API key or x402.",
+   "source_url": "https://recallradar.withglint.app/docs",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.withglint.recallradar/recallradar",
+    "version": "1.0.0",
+    "updated": "2026-09-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "witwiki-witwiki",
+   "name": "WitWiki",
+   "category": "mcp",
+   "description": "A shared team wiki your coding agents read and write — across every repo and every MCP client.",
+   "source_url": "https://witwiki.app",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.witwiki/witwiki",
+    "version": "0.5.0",
+    "updated": "2026-09-06",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "work-handler-work-handler",
+   "name": "Work Handler",
+   "category": "mcp",
+   "description": "MCP server listed in the official MCP registry; the publisher did not provide an English description.",
+   "source_url": "https://work-handler.app/landing/",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "AI から使えるクラウドグループウェア Work Handler の MCP サーバー。組織・メンバーの参照、出退勤の共有、タイムカード、承認フロー等を本人の権限の範囲で操作できる。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.work-handler/work-handler",
+    "version": "1.0.1",
+    "updated": "2026-09-26",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "worthbase-worthbase",
+   "name": "Worthbase",
+   "category": "mcp",
+   "description": "Household net worth and portfolio tracker your AI keeps: priced daily, previewed and undoable.",
+   "source_url": "https://worthbase.app",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.worthbase/worthbase",
+    "version": "1.0.0",
+    "updated": "2026-10-01",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "xtiles-mcp",
+   "name": "xTiles",
+   "category": "mcp",
+   "description": "Read and structure notes, projects, tasks, and pages in the xTiles visual workspace.",
+   "source_url": "https://xtiles.app",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.xtiles/xtiles-mcp",
+    "version": "0.1.0",
+    "updated": "2026-07-22",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "yapl-yapl",
+   "name": "YAPL",
+   "category": "mcp",
+   "description": "Draft-safe project planning: tasks, dependencies, resources, schedules and cost metrics.",
+   "source_url": "https://yapl.app/en/mcp-integration",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.yapl/yapl",
+    "version": "1.5.5",
+    "updated": "2026-07-31",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "youb-coach",
+   "name": "YOUB",
+   "category": "mcp",
+   "description": "Manage your endurance training data and race preparation",
+   "source_url": "https://youb.app/mcp",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.youb/coach",
+    "version": "1.0.0",
+    "updated": "2026-08-28",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ytbulktranscript-transcripts",
+   "name": "YtBulkTranscript",
+   "category": "mcp",
+   "description": "Fetch YouTube video transcripts individually or in bulk via get_transcript and get_bulk_transcripts.",
+   "source_url": "https://ytbulktranscript.app",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.ytbulktranscript/transcripts",
+    "version": "1.0.2",
+    "updated": "2026-07-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zooza-mcp-server",
+   "name": "Zooza MCP Server",
+   "category": "mcp",
+   "description": "MCP server for Zooza — class scheduling, attendance, and booking for activity businesses.",
+   "source_url": "https://github.com/zooza-dev/zooza-mcp-server",
+   "repo_url": "https://github.com/zooza-dev/zooza-mcp-server",
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "public repository is the official page",
+   "zh_evidence_level": "公开仓库即官方页面",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "repo-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.zooza/mcp-server",
+    "version": "0.2.0",
+    "updated": "2026-06-10",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": "2026-10-21",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "zurc-kleos",
+   "name": "Kleos",
+   "category": "mcp",
+   "description": "Generate, schedule and measure UGC-style TikTok and Instagram posts for your app.",
+   "source_url": "https://ugc.zurc.app/docs/agentes",
+   "repo_url": null,
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "MCP server, local or remote",
+   "zh_transport": "MCP 服务器（本地或远程）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-stdio-or-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.zurc/kleos",
+    "version": "0.2.0",
+    "updated": "2026-09-26",
+    "packages": [
+     "npm"
+    ],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "zwier-mcp",
+   "name": "Zwier (Group event planner)",
+   "category": "mcp",
+   "description": "Plan group events together: dates, itineraries, expenses, polls, and tasks.",
+   "source_url": "https://zwier.app",
+   "repo_url": "https://github.com/elseee/wem",
+   "first_seen": "2026-10-21",
+   "last_verified": "2026-10-21",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "app.zwier/mcp",
+    "version": "1.0.0",
+    "updated": "2026-04-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-21"
+   },
+   "source_checked": "2026-10-21",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
   }
  ]
 }

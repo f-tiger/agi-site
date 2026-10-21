@@ -1,10 +1,57 @@
 {
-  "generated": "2026-10-20",
+  "generated": "2026-10-21",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 104,
-  "fetched_fail": 23,
-  "pending": 10,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
+  "pending": 14,
   "items": [
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-21",
+      "first_seen": "2026-10-20",
+      "added": [
+        "054b",
+        "1%",
+        "101b",
+        "15%",
+        "22%",
+        "24%",
+        "28%",
+        "3%",
+        "4%",
+        "48%",
+        "484b",
+        "5%"
+      ],
+      "removed": [
+        "0,b",
+        "0,s",
+        "0.05s",
+        "0.15s",
+        "0.25s",
+        "0.2s",
+        "0.35s",
+        "0.3s",
+        "0.4s",
+        "0.6s",
+        "0.8s",
+        "0026b"
+      ],
+      "checked_then": "2026-08-01"
+    },
+    {
+      "slug": "cloudflare-workers-ai",
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
+      "confirmed": "2026-10-21",
+      "first_seen": "2026-10-20",
+      "added": [
+        "$0.006",
+        "$1.200"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-16"
+    },
     {
       "slug": "gptzero",
       "url": "https://gptzero.me",
@@ -94,18 +141,6 @@
         "9.956m"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-18",
-      "first_seen": "2026-10-17",
-      "added": [
-        "1,m",
-        "1,s"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "cline",
@@ -249,19 +284,6 @@
         "5b"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "cloudflare-workers-ai",
-      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing",
-      "confirmed": "2026-10-11",
-      "first_seen": "2026-10-10",
-      "added": [
-        "$0.038"
-      ],
-      "removed": [
-        "$0.090"
-      ],
-      "checked_then": "2026-09-16"
     },
     {
       "slug": "deepinfra",

@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 2,
   "pending": [
-   {
-    "repo": "googleworkspace/cli",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "jackwener/OpenCLI",
     "topic": "agents",
@@ -42,11 +37,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "mvschwarz/openrig",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -90,11 +80,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "worldbench/DiffusionOPSD",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "ashbuilds/payload-ai",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -117,11 +102,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "liuzhao1225/YouDub-webui",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -265,11 +245,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "Cinnamon/kotaemon",
-    "topic": "knowledge",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "coze-dev/coze-studio",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -332,11 +307,6 @@
    {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "jev-chat/jev-chat-jarvis",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -405,11 +375,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "Bash-it/bash-it",
-    "topic": "everyday",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "plait-board/drawnix",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -423,11 +388,6 @@
     "repo": "espanso/espanso",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "Tencent/ncnn",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "stas00/ml-engineering",
@@ -925,11 +885,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "modelscope/FunClip",
-    "topic": "video",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "MahmoudAshraf97/whisper-diarization",
     "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -1422,11 +1377,6 @@
    {
     "repo": "Rheosoph/flow-like",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "lyogavin/airllm",
-    "topic": "ai",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -1990,11 +1940,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "FranciscoMoretti/chat-js",
-    "topic": "chat",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "1186258278/OpenClawChineseTranslation",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -2132,11 +2077,6 @@
    {
     "repo": "ballerine-io/ballerine",
     "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "datawhalechina/base-llm",
-    "topic": "models",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "Cog-Creators/Red-DiscordBot",
     "topic": "chat",
     "foundAt": "2026-10-20T05:13:44.274Z"
+   },
+   {
+    "repo": "trymirai/uzu",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "Helldez/BigMoeOnEdge",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "google/XNNPACK",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "openvinotoolkit/openvino_notebooks",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "FlashML-org/FreeVideo",
+    "topic": "video",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "spark-arena/sparkrun",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "huggingface/optimum",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "pytorch/ao",
+    "topic": "local",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "superlinear-ai/raglite",
+    "topic": "knowledge",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "EmbeddedLLM/JamAIBase",
+    "topic": "agents",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "samchon/nestia",
+    "topic": "agents",
+    "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "Raudaschl/rag-fusion",
+    "topic": "knowledge",
+    "foundAt": "2026-10-21T05:15:35.227Z"
    }
   ],
   "checked": {
@@ -3012,12 +3012,12 @@
    "gh-dietrichgebert-ponytail-61b983": "2026-10-13T07:04:30.117Z",
    "gh-langchain-ai-langchain-5d4aa1": "2026-10-13T07:04:30.117Z",
    "gh-harry0703-moneyprinterturbo-72bea5": "2026-10-13T07:04:30.117Z",
-   "gh-graphify-labs-graphify-6d32f9": "2026-10-10T06:21:21.428Z",
-   "gh-tauricresearch-tradingagents-317caa": "2026-10-10T06:21:21.428Z",
-   "gh-juliusbrussee-caveman-72f8b4": "2026-10-10T06:21:21.428Z",
-   "gh-rasbt-llms-from-scratch-0e357a": "2026-10-10T06:21:21.428Z",
-   "gh-unclecode-crawl4ai-f09556": "2026-10-10T06:21:21.428Z",
-   "gh-rtk-ai-rtk-dc41af": "2026-10-10T06:21:21.428Z",
+   "gh-graphify-labs-graphify-6d32f9": "2026-10-21T05:15:35.227Z",
+   "gh-tauricresearch-tradingagents-317caa": "2026-10-21T05:15:35.227Z",
+   "gh-juliusbrussee-caveman-72f8b4": "2026-10-21T05:15:35.227Z",
+   "gh-rasbt-llms-from-scratch-0e357a": "2026-10-21T05:15:35.227Z",
+   "gh-unclecode-crawl4ai-f09556": "2026-10-21T05:15:35.227Z",
+   "gh-rtk-ai-rtk-dc41af": "2026-10-21T05:15:35.227Z",
    "gh-datawhalechina-hello-agents-2b581f": "2026-10-15T05:07:40.051Z",
    "gh-thedotmack-claude-mem-1ba5bb": "2026-10-15T05:07:40.051Z",
    "gh-panniantong-agent-reach-7694a2": "2026-10-15T05:07:40.051Z",
@@ -3081,7 +3081,7 @@
   }
  },
  "mcp": {
-  "cursor": "io.github.comil27/etsy-tags-mcp:1.0.1",
+  "cursor": "io.github.drivenbymyai-max/sputnikx-market:1.0.2",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3805,7 +3805,47 @@
    "pubfi-mcp": "2026-10-20T05:13:44.274Z",
    "pulsemcp": "2026-10-20T05:13:44.274Z",
    "pydantic-ai": "2026-10-20T05:13:44.274Z",
-   "quantcalc-retirement-engine": "2026-10-20T05:13:44.274Z"
+   "quantcalc-retirement-engine": "2026-10-20T05:13:44.274Z",
+   "qwen-agent": "2026-10-21T05:15:35.227Z",
+   "qwen-code": "2026-10-21T05:15:35.227Z",
+   "ragas": "2026-10-21T05:15:35.227Z",
+   "ragflow": "2026-10-21T05:15:35.227Z",
+   "rapidly-rapidly": "2026-10-21T05:15:35.227Z",
+   "rasa": "2026-10-21T05:15:35.227Z",
+   "ratchetgate-ratchet": "2026-10-21T05:15:35.227Z",
+   "ratevert-mcp": "2026-10-21T05:15:35.227Z",
+   "rationalbloks-mcp": "2026-10-21T05:15:35.227Z",
+   "realworldapis-realworldapis": "2026-10-21T05:15:35.227Z",
+   "rechtssysteem-mcp": "2026-10-21T05:15:35.227Z",
+   "redis-mcp": "2026-10-21T05:15:35.227Z",
+   "refact": "2026-10-21T05:15:35.227Z",
+   "regulations-ai": "2026-10-21T05:15:35.227Z",
+   "relay-app": "2026-10-21T05:15:35.227Z",
+   "relevance-ai": "2026-10-21T05:15:35.227Z",
+   "remoshift-jobs": "2026-10-21T05:15:35.227Z",
+   "renderball-renderball": "2026-10-21T05:15:35.227Z",
+   "rendobar-mcp": "2026-10-21T05:15:35.227Z",
+   "replit-agent": "2026-10-21T05:15:35.227Z",
+   "replynodes-mcp": "2026-10-21T05:15:35.227Z",
+   "reps-log-repslog": "2026-10-21T05:15:35.227Z",
+   "reqbeat-hiring-signals": "2026-10-21T05:15:35.227Z",
+   "resustackapp-resustack": "2026-10-21T05:15:35.227Z",
+   "retailreason-intelligence": "2026-10-21T05:15:35.227Z",
+   "retell": "2026-10-21T05:15:35.227Z",
+   "revelara-mcp": "2026-10-21T05:15:35.227Z",
+   "rhylthyme-rhylthyme": "2026-10-21T05:15:35.227Z",
+   "rig": "2026-10-21T05:15:35.227Z",
+   "rightcard-mcp": "2026-10-21T05:15:35.227Z",
+   "riskstate-mcp": "2026-10-21T05:15:35.227Z",
+   "rithmo-rithmo": "2026-10-21T05:15:35.227Z",
+   "rivet": "2026-10-21T05:15:35.227Z",
+   "robopartpicker-robopartpicker": "2026-10-21T05:15:35.227Z",
+   "robosystems-xbrlkit": "2026-10-21T05:15:35.227Z",
+   "robowrite-mcp": "2026-10-21T05:15:35.227Z",
+   "rocketlist-rocketlist": "2026-10-21T05:15:35.227Z",
+   "roo-code": "2026-10-21T05:15:35.227Z",
+   "runx-runx": "2026-10-21T05:15:35.227Z",
+   "sallim-contract-compass": "2026-10-21T05:15:35.227Z"
   }
  }
 }

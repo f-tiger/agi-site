@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "Jev Cards, Can you beat a vision model at a picture quiz?",
+      "url": "https://jevcards.com",
+      "host": "jevcards.com",
+      "src": "https://news.ycombinator.com/item?id=50167617",
+      "points": 58,
+      "comments": 49,
+      "found": "2026-10-21",
+      "status": "candidate"
+    },
+    {
       "name": "Qwen3-4B with the AI writing tics trained out",
       "url": "https://100toolkit.com/blog/deslop-model/",
       "host": "100toolkit.com",
@@ -431,5 +441,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-10-20"
+  "updated": "2026-10-21"
 }
