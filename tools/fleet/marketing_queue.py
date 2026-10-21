@@ -35,7 +35,8 @@ def compile_plan(catalog, doctor, today):
         reasons=[]
         if age<0 or age>catalog['max_age_days']: reasons.append('review_stale')
         if c['status']!='approved_entry': reasons.append('entry_not_approved')
-        if c.get('campaign_tracking_ready') is False: reasons.append('tracking_not_registered')
+        if c.get('campaign_tracking_ready') is False or (c.get('site') == 'tds' and c.get('campaign_tracking_ready') is not True):
+            reasons.append('tracking_not_registered')
         if c['requires_checkout'] and not (doctor.get('ok') is True and doctor.get('selling') is True and doctor.get('mode')=='live'):
             reasons.append('live_checkout_not_ready')
         external=None
