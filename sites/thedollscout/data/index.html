@@ -3,30 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Labubu Open Data: Odds, Fake Signals, Glossary — DollScout</title>
-<meta name="description" content="Four CC-BY Labubu datasets: secret rarity odds per series format, 8 real-vs-fake signals, glossary, pull-probability table — sourced JSON, callable over MCP.">
+<title>Collector Data &amp; MCP Tools | The Doll Scout</title>
+<meta name="description" content="Current read-only collector MCP tools and dated Labubu reference datasets, with source links, tool schemas and clear limits.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="DollScout">
+<meta property="og:site_name" content="The Doll Scout">
 <meta property="og:url" content="https://thedollscout.com/data/">
-<meta property="og:title" content="Open data — DollScout">
-<meta property="og:description" content="Four CC-BY datasets behind the pages: rarity odds, authenticity signals, collecting glossary. Machine-readable, sourced, and callable over MCP.">
+<meta property="og:title" content="Collector data &amp; MCP tools — The Doll Scout">
+<meta property="og:description" content="Current multi-brand collector tools and machine-readable catalogs; Labubu JSON files remain dated historical snapshots, not live stock or odds.">
 <meta property="og:image" content="https://thedollscout.com/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Collector data &amp; MCP tools — The Doll Scout">
+<meta name="twitter:description" content="Current multi-brand collector tools and dated historical Labubu datasets, with clear limits and source links.">
 <link rel="canonical" href="https://thedollscout.com/data/">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
 <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
+<link rel="alternate" type="application/json" href="/mcp/server.json" title="MCP server manifest">
+<link rel="alternate" type="application/json" href="/.well-known/mcp.json" title="MCP discovery manifest">
+<link rel="alternate" type="application/json" href="/collector-assets/tool-capabilities.json" title="Collector tool catalog">
+<link rel="alternate" type="application/json" href="/collector-assets/series-catalog.json" title="Source-checked series catalog">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "The Doll Scout", "url": "https://thedollscout.com/" },
     { "@type": "BreadcrumbList", "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Data", "item": "https://thedollscout.com/data/" }]},
+      { "@type": "ListItem", "position": 2, "name": "Collector data & MCP", "item": "https://thedollscout.com/data/" }]},
+    { "@type": "WebPage", "@id": "https://thedollscout.com/data/#page", "url": "https://thedollscout.com/data/", "name": "Collector Data & MCP Tools | The Doll Scout", "description": "Current read-only collector MCP tools and dated Labubu reference datasets, with source links, tool schemas and clear limits.", "inLanguage": "en", "dateModified": "2026-10-22", "isAccessibleForFree": true, "publisher": { "@id": "https://thedollscout.com/#org" } },
     { "@type": "Dataset",
       "@id": "https://thedollscout.com/data/#fake-signals",
       "name": "Labubu authenticity signals (real vs fake / Lafufu checks)",
@@ -41,7 +48,7 @@
     { "@type": "Dataset",
       "@id": "https://thedollscout.com/data/#rarity-odds",
       "name": "Labubu secret/chase rarity odds by series format",
-      "description": "Commonly reported secret-figure odds for Labubu / The Monsters blind-box series by format — 6-figure (1:72), 12-figure (1:144), collabs (1:120–1:168), glow/ultra variants (down to 1:720) — with per-row sources, plus derived box counts for a 50% pull chance under the independent-draw model. The odds printed on a specific series' own box outrank every row; limitations stated in the file.",
+      "description": "Historical snapshot recorded 2026-08-30: commonly reported secret/chase odds by Labubu format, with per-row source links and independent-draw model caveats. The specific series box and current official product guidance take precedence.",
       "url": "https://thedollscout.com/data/",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "creator": { "@id": "https://thedollscout.com/#org" },
@@ -61,7 +68,7 @@
     { "@type": "Dataset",
       "@id": "https://thedollscout.com/data/#pull-math",
       "name": "Labubu secret-pull probability by purchase size",
-      "description": "Chance of at least one secret, expected secret count, and the 50%/90% box thresholds for every reported odds format across the purchase sizes people actually buy — one box, six, a full case of twelve, two cases, seventy-two. Computed from rarity-odds.json under an independent-draw model; it introduces no new rate of its own, only arithmetic.",
+      "description": "Chance of at least one secret, expected secret count, and the 50%/90% box thresholds for example purchase sizes — one box, six, a full case of twelve, two cases, seventy-two. Computed from rarity-odds.json under an independent-draw model; it introduces no new rate of its own and makes no claim about market demand or current availability.",
       "url": "https://thedollscout.com/data/",
       "isBasedOn": "https://thedollscout.com/data/rarity-odds.json",
       "license": "https://creativecommons.org/licenses/by/4.0/",
@@ -78,13 +85,14 @@
 <div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <a class="logo" href="/">The Doll<b>Scout</b></a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
-    <nav class="nav">
-      <a href="/rarity">Rarity &amp; Odds</a>
-      <a href="/fake-check">Real vs Fake</a>
-      <a href="/where-to-buy">Where to Buy</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/series">Series checklists</a>
+      <a href="/for-agents">AI &amp; MCP</a>
+      <a href="/collection-tracker">Collection tracker</a>
       <a href="/de/" lang="de">DE</a>
+      <a href="/zh/" lang="zh">中文</a>
     </nav>
   </div>
 </header>
@@ -92,17 +100,51 @@
 <main id="main" tabindex="-1">
 <section>
   <div class="wrap prose">
-    <p class="breadcrumb"><a href="/">Home</a> / Data</p>
-    <h1>Labubu open data: rarity odds, fake signals, glossary, pull math.</h1>
-    <p class="meta">The evidence behind our pages, published as machine-readable JSON under CC-BY&nbsp;4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop&nbsp;Mart's own current guidance disagrees with a dataset, follow Pop&nbsp;Mart's.</p>
+    <p class="breadcrumb"><a href="/">Home</a> / Collector data &amp; MCP</p>
+    <h1>Collector data, current MCP tools and historical Labubu datasets.</h1>
+    <p class="meta">This page separates the current multi-brand remote MCP contract from older Labubu-only JSON snapshots. Each dataset keeps its original recording date; updating this page does not refresh the underlying odds or authenticity signals.</p>
+
+    <div class="card" id="current-mcp" style="margin-top:22px">
+      <h2>Current multi-brand MCP</h2>
+      <p>The published server contract is <strong>2.4.0</strong> over remote <strong>Streamable HTTP</strong>. A compatible MCP host can connect to <a href="https://thedollscout.com/mcp"><code>https://thedollscout.com/mcp</code></a>. This is a hosted endpoint, not an npm package or local stdio command; client support varies. Use the <a href="/for-agents">connection guide and tool limitations</a> before adding it.</p>
+      <p><strong>Discovery:</strong> <a href="/mcp/server.json">MCP Registry manifest</a> · <a href="/.well-known/mcp.json">well-known discovery manifest</a> · <a href="/collector-assets/tool-capabilities.json">tool catalog</a> · <a href="/collector-assets/series-catalog.json">source-checked series catalog</a>.</p>
+
+      <h3>Tools exposed by the current contract</h3>
+      <ul>
+        <li><code>labubu_rarity_odds</code> — historical, source-linked reported odds; a specific box's printed odds take precedence.</li>
+        <li><code>labubu_fake_signals</code> — source-linked authenticity indicators, not a guarantee of authenticity.</li>
+        <li><code>secret_pull_probability</code> — independent-draw math using stated odds; sealed-case allocation can differ.</li>
+        <li><code>define_labubu_term</code> — plain-language collecting definitions with source dates.</li>
+        <li><code>calculate_style_probability</code> — calculations from explicit inputs and model assumptions, not official odds.</li>
+        <li><code>find_collector_tools</code> — returns links and capability limits; browser-only tasks are not executed remotely.</li>
+        <li><code>get_collecting_guide</code> — source-linked guides for supported brands, with review dates and limitations.</li>
+        <li><code>plan_display_fit</code> — a single-layer rectangular fit estimate, not 3D packing or a load/safety certificate.</li>
+        <li><code>compare_blind_box_budget</code> — arithmetic on supplied cost inputs, not live prices or inventory.</li>
+        <li><code>estimate_collection_progress</code> — an assumption-based estimate, not a guaranteed pull or collection outcome.</li>
+      </ul>
+
+      <h3>Published MCP resources</h3>
+      <ul>
+        <li><a href="/collector-assets/learning-guides.json">learning-guides.json</a> — practical guides with official source links.</li>
+        <li><a href="/collector-assets/tool-capabilities.json">tool-capabilities.json</a> — tool capabilities, inputs and execution boundaries.</li>
+        <li><a href="/collector-assets/brand-guides.json">brand-guides.json</a> — published brand guides.</li>
+        <li><a href="/document-assets/tool-capabilities.json">document-assets/tool-capabilities.json</a> — existing browser-only digital tools, not remotely executed by MCP.</li>
+      </ul>
+
+      <p class="meta">The MCP is read-only: it cannot read or edit a checklist stored in your browser, upload a private collection, or sync records across devices. It does not provide live stock, current prices, resale valuation, guaranteed authentication or affiliate links.</p>
+    </div>
+
+    <h2 style="margin-top:30px">Historical Labubu datasets (CC BY 4.0)</h2>
+    <p class="meta">These four JSON snapshots were recorded on the dates shown below. They are not a live product feed and do not establish current stock, price, popularity or manufacturer odds. Use the specific box's printed odds and the manufacturer's current guidance for the product in hand.</p>
 
     <div class="grid c2" style="margin-top:22px">
-      <div class="card"><h3><a href="/data/rarity-odds.json">rarity-odds.json</a></h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></div>
-      <div class="card"><h3><a href="/data/labubu-fake-signals.json">labubu-fake-signals.json</a></h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></div>
-      <div class="card"><h3><a href="/data/labubu-glossary.json">labubu-glossary.json</a></h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></div>
-      <div class="card"><h3><a href="/data/pull-math.json">pull-math.json</a></h3><p>Chance of at least one secret, expected count, and the 50%/90% thresholds for every odds format across real purchase sizes — the spine behind <a href="/odds/">the odds-by-box-count pages</a>. Computed from rarity-odds.json, so there is never a second source for the same numbers. Recorded 2026-08-31.</p></div>
+      <div class="card"><h3><a href="/data/rarity-odds.json">rarity-odds.json</a></h3><p>Historical reported secret/chase rates by Labubu format, with per-row source links and stated model caveats. Recorded 2026-08-30; a specific box's printed odds take precedence.</p></div>
+      <div class="card"><h3><a href="/data/labubu-fake-signals.json">labubu-fake-signals.json</a></h3><p>Eight source-linked authenticity indicators with stated limitations. Recorded 2026-08-30; these signals do not certify an item as genuine.</p></div>
+      <div class="card"><h3><a href="/data/labubu-glossary.json">labubu-glossary.json</a></h3><p>Ten collecting terms and aliases from the Labubu glossary. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/pull-math.json">pull-math.json</a></h3><p>Example box and case sizes computed from rarity-odds.json; no second source for odds and no claim about current availability. Recorded 2026-08-31.</p></div>
     </div>
-    <p style="margin-top:18px">These datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
+
+    <p style="margin-top:18px">For the current multi-brand series list, start with <a href="/series/smiski-museum">SMISKI Museum</a>, <a href="/series/sonny-angel-snack-series">Sonny Angel Snack Series</a>, or the <a href="/series">series directory</a>. These pages link to their own source references. The historical Labubu files remain available for attribution and research.</p>
   </div>
 </section>
 </main>
@@ -111,8 +153,8 @@
   <div class="wrap">
     <p class="disclosure">
       <strong>Independent guide.</strong> Not affiliated with Pop Mart or Kasing Lung.
-      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — DollScout may earn a commission at no cost to you. This page links to no store at all.
-      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — The Doll Scout may earn a commission at no cost to you. This page links to no store at all.
+      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> The Doll Scout
     </p>
   </div>
 </footer>

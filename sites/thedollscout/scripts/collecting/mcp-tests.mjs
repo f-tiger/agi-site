@@ -75,3 +75,48 @@ test('budget and progress MCP tools execute the browser core and validate cross-
  assert.equal((await rpc('tools/call',{name:'estimate_collection_progress',arguments:{regularStyles:6,ownedStyles:7,boxes:6,secretPercent:0}})).result.isError,true);
  for(const brand of ['smiski','hirono','dimoo','molly'])for(const language of ['en','de','zh']){const g=(await rpc('tools/call',{name:'get_collecting_guide',arguments:{brand,language}})).result.structuredContent;assert.equal(g.brand,brand);assert.equal(g.language,language);assert.ok(g.toolUrls.some(u=>u.endsWith('#display-fit')));}
 });
+
+test('public data page matches the current MCP contract and labels Labubu JSON as historical', async () => {
+  const html = await fs.readFile(path.join(root, 'data/index.html'), 'utf8');
+  const manifest = JSON.parse(await fs.readFile(path.join(root, 'mcp/server.json'), 'utf8'));
+  const discovery = JSON.parse(await fs.readFile(path.join(root, '.well-known/mcp.json'), 'utf8'));
+  const sitemap = await fs.readFile(path.join(root, 'sitemap.xml'), 'utf8');
+
+  assert.equal(manifest.version, SERVER.version);
+  assert.equal(manifest.remotes[0].url, 'https://thedollscout.com/mcp');
+  assert.equal(discovery.version, SERVER.version);
+  assert.deepEqual(discovery.tools, TOOLS.map(tool => tool.name));
+  assert.deepEqual(discovery.resources.map(resource => resource.uri), RESOURCES.map(resource => resource.uri));
+
+  for (const tool of TOOLS) assert.ok(html.includes(tool.name), `missing tool name: ${tool.name}`);
+  for (const resource of RESOURCES) {
+    const localPath = resource.uri.replace('https://thedollscout.com', '');
+    assert.ok(html.includes(localPath), `missing resource link: ${localPath}`);
+  }
+  for (const path of [
+    '/for-agents',
+    '/mcp/server.json',
+    '/.well-known/mcp.json',
+    '/collector-assets/tool-capabilities.json',
+    '/collector-assets/series-catalog.json',
+    '/series/smiski-museum',
+    '/series/sonny-angel-snack-series'
+  ]) assert.ok(html.includes(path), `missing current discovery/internal link: ${path}`);
+
+  assert.match(html, /rel="canonical" href="https:\/\/thedollscout\.com\/data\//);
+  assert.match(html, /Historical Labubu datasets/);
+  assert.match(html, /2026-08-30/);
+  assert.match(html, /2026-08-31/);
+  assert.doesNotMatch(html, /Four CC-BY Labubu datasets|four read-only tools|Every tool answer is read from these files at request time/i);
+
+  const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(ld, 'missing JSON-LD');
+  const graph = JSON.parse(ld[1])['@graph'];
+  assert.ok(graph.some(node => node['@type'] === 'WebPage' && node.dateModified === '2026-10-22'));
+  assert.equal(graph.find(node => node['@id'] === 'https://thedollscout.com/data/#rarity-odds')?.dateModified, '2026-08-30');
+  assert.equal(graph.find(node => node['@id'] === 'https://thedollscout.com/data/#pull-math')?.dateModified, '2026-08-31');
+
+  const dataEntry = sitemap.match(/<url>\s*<loc>https:\/\/thedollscout\.com\/data\/<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/);
+  assert.equal(dataEntry?.[1], '2026-10-22');
+});
+

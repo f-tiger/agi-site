@@ -38,9 +38,9 @@
       "date": "2026-10-14",
       "focus": "Video review",
       "task": "完成旧tds-image-01视频固定复盘；收藏内容单独立项",
-      "deliverable": "保留09/30–10/13窗口与原门槛，发布/播放/到站分表",
-      "gate": "旧视频读回；未取得指标写未知",
-      "status": "planned"
+      "deliverable": "固定窗口 2026-09-30 至 2026-10-13 未能从保留证据中恢复；不以当前滚动窗口替代，旧视频曝光、完成、导出和错误明细保持未知。",
+      "gate": "部署日志只记录滚动报告格式验证，没有保存固定窗口行明细；平台统计缺失或互相矛盾时不按零处理。",
+      "status": "fixed_window_unrecoverable"
     },
     {
       "day": 4,
@@ -101,18 +101,18 @@
       "date": "2026-10-21",
       "focus": "Pinterest",
       "task": "准备两系列第二轮Pin，表达不同收藏任务，并检查第一轮发布与点击",
-      "deliverable": "两系列各两个实质不同任务素材；发布回执与起始观察日，未发仍标草稿",
-      "gate": "核对账号、认领和授权；从实际首发观察28天，不以短窗定成败",
-      "status": "planned"
+      "deliverable": "SMISKI Museum 与 Sonny Angel Snack 各两种不同任务意图的 Pin 文案/视觉 brief 已备；最终图片、Pinterest 账号/站点认领和具体发布授权仍缺，未发帖。",
+      "gate": "文案不等于最终图片；账号/站点认领、最终素材审核及本次具体发布授权未验证前，不得标 ready 或发布。",
+      "status": "copy_ready_blocked"
     },
     {
       "day": 11,
       "date": "2026-10-22",
       "focus": "MCP distribution",
       "task": "验证官方Registry、Glama与客户端发现的当前事实",
-      "deliverable": "一个真实安装/工具任务测试及准确指南；不重复创建listing",
-      "gate": "现有身份、支持的提交机制与真实回执",
-      "status": "planned"
+      "deliverable": "修正 /data 旧四工具描述并保留历史数据日期；PR-only CI 检查本地 MCP handler、官方 Registry active/latest 与远程 tools/call；不改 2.4.0、不重复注册，未发布。",
+      "gate": "PR-only 检查不部署；现有 PR147 发布保护仍有效，需独立批准 content-only release route 后才能合并/发布。",
+      "status": "draft_pr_pending_release_gate"
     },
     {
       "day": 12,
@@ -316,8 +316,8 @@
     {
       "date": "2026-10-11",
       "item": "Museum continuous-operation demo",
-      "status": "private_asset_ready_technical_checks_passed",
-      "scope": "40 seconds; English voice/subtitles, original music. No external post. Subjective audio review and actual platform layout remain unverified."
+      "status": "published_once_provider_verified",
+      "scope": "40-second real UI walkthrough with English subtitles/voice and original music. One public YouTube Shorts and one TikTok post were provider-verified PUBLISHED at 2026-10-11 09:52:05 UTC; this is verification time, not the exact platform publish second. Do not repost. First complete UTC day 2026-10-12; seven-day window [2026-10-12, 2026-10-19), fourteen-day direction window [2026-10-12, 2026-10-26). Views, retention, useful visits, collector actions and revenue remain unknown."
     }
   ],
   "preparation_iterations": [

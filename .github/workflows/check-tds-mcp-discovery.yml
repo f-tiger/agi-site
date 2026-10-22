@@ -1,0 +1,40 @@
+name: Check TDS MCP discovery
+
+# Read-only pull-request validation only. No schedule, deployment, registry publish, or IndexNow submission.
+on:
+  pull_request:
+    paths:
+      - 'sites/thedollscout/data/index.html'
+      - 'sites/thedollscout/sitemap.xml'
+      - 'sites/thedollscout/scripts/collecting/mcp-tests.mjs'
+      - 'sites/thedollscout/scripts/collecting/registry-check.mjs'
+      - 'sites/thedollscout/scripts/collecting/verify-mcp.mjs'
+      - 'sites/thedollscout/collector-assets/mcp-contract.mjs'
+      - 'sites/thedollscout/.well-known/mcp.json'
+      - 'sites/thedollscout/mcp/server.json'
+      - 'sites/thedollscout/collector-assets/tool-capabilities.json'
+      - 'sites/thedollscout/collector-assets/series-catalog.json'
+      - '.github/workflows/check-tds-mcp-discovery.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tds-mcp-discovery-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test local MCP handler and data-page contract
+        run: node --test sites/thedollscout/scripts/collecting/mcp-tests.mjs
+      - name: Verify official Registry active/latest (read-only)
+        run: node sites/thedollscout/scripts/collecting/registry-check.mjs
+      - name: Execute read-only production MCP tools/call smoke with QA exclusion
+        run: node sites/thedollscout/scripts/collecting/verify-mcp.mjs
