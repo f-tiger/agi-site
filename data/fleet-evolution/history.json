@@ -3309,5 +3309,152 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-10-22",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": null,
+      "active_members": null,
+      "opportunities": 8,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 4,
+          "query": "jim cramer ai chip stocks",
+          "value": 11450
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 26,
+          "query": "infrarotheizung hornbach",
+          "value": 55350
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 17,
+          "query": "lets try the viral crumbl labubu",
+          "value": 18550
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/search",
+          "n7": 158,
+          "p7": 66
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/guide/klimaanlage-wohnmobil.html",
+          "n7": 5,
+          "p7": 4
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 365,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 205,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gridlings",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 1673,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
   }
 ]

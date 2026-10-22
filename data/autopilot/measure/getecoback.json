@@ -3,31 +3,27 @@
   "events": {
    "affiliate_click": {
     "n7": 13,
-    "p7": 14
+    "p7": 10
    },
    "btu_calc": {
-    "n7": 19,
-    "p7": 11
-   },
-   "buyer_result": {
-    "n7": 0,
-    "p7": 1
+    "n7": 11,
+    "p7": 20
    },
    "buyer_view": {
     "n7": 1,
-    "p7": 3
+    "p7": 2
    },
    "cold_now": {
     "n7": 8,
-    "p7": 5
+    "p7": 1
    },
    "feuchte_now": {
-    "n7": 11,
-    "p7": 9
+    "n7": 10,
+    "p7": 7
    },
    "heat_now": {
     "n7": 0,
-    "p7": 4
+    "p7": 3
    },
    "heizkosten_calc": {
     "n7": 1,
@@ -42,23 +38,27 @@
     "p7": 1
    },
    "page_view": {
-    "n7": 112,
-    "p7": 117
+    "n7": 107,
+    "p7": 118
    },
    "popup_click": {
     "n7": 2,
     "p7": 1
    },
    "popup_close": {
-    "n7": 8,
-    "p7": 12
+    "n7": 9,
+    "p7": 13
    },
    "popup_view": {
-    "n7": 23,
-    "p7": 27
+    "n7": 25,
+    "p7": 26
+   },
+   "seal_fit": {
+    "n7": 1,
+    "p7": 0
    },
    "strom_now": {
-    "n7": 11,
+    "n7": 12,
     "p7": 16
    },
    "stromkosten_calc": {
@@ -67,30 +67,30 @@
    },
    "strompreis_api": {
     "n7": 0,
-    "p7": 5
+    "p7": 4
    },
    "video_play": {
-    "n7": 2,
+    "n7": 3,
     "p7": 1
    },
    "watt_calc": {
-    "n7": 1,
-    "p7": 1
+    "n7": 0,
+    "p7": 2
    }
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-21",
+ "fetched": "2026-10-22",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 5,
-   "p7": 8
+   "n7": 3,
+   "p7": 10
   },
   "/en/guide/portable-ac-not-cooling.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 11
   },
   "/en/guide/portable-ac-skylight-roof-window.html": {
@@ -103,9 +103,13 @@
   },
   "/guide/balkon-terrasse-beschatten.html": {
    "n7": 2,
-   "p7": 2
+   "p7": 0
   },
   "/guide/comfee-geraete-test.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/guide/heizluefter-schaltet-sich-aus.html": {
    "n7": 2,
    "p7": 0
   },
@@ -125,12 +129,20 @@
    "n7": 2,
    "p7": 0
   },
+  "/guide/klimaanlage-kippfenster.html": {
+   "n7": 3,
+   "p7": 0
+  },
+  "/guide/klimaanlage-mietwohnung.html": {
+   "n7": 2,
+   "p7": 0
+  },
   "/guide/klimaanlage-mit-heizfunktion.html": {
    "n7": 2,
    "p7": 0
   },
   "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 1
   },
   "/guide/klimaanlage-wohnmobil.html": {
@@ -138,7 +150,7 @@
    "p7": 4
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 5,
+   "n7": 4,
    "p7": 2
   },
   "/guide/midea-geraete-test.html": {
@@ -150,7 +162,7 @@
    "p7": 2
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 7
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
@@ -158,20 +170,16 @@
    "p7": 2
   },
   "/guide/thermovorhang-ratgeber.html": {
-   "n7": 4,
+   "n7": 5,
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 5,
-   "p7": 6
-  },
-  "/impressum.html": {
-   "n7": 2,
-   "p7": 0
+   "n7": 3,
+   "p7": 7
   },
   "/kontakt.html": {
-   "n7": 3,
-   "p7": 0
+   "n7": 2,
+   "p7": 1
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
    "n7": 5,

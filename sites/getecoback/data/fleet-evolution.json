@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/"
+      "top_hot_page": "/guide/klimaanlage-wohnmobil.html"
     },
     "health": {
       "http": "200",
@@ -48,7 +48,7 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/",
+        "page": "/guide/klimaanlage-wohnmobil.html",
         "n7_band": "1-9",
         "p7_band": "1-9"
       },

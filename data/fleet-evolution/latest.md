@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-10-21
+# Fleet evolution report — 2026-10-22
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -6,7 +6,7 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 
 - Sites: 14 (healthy probes: 31)
 - Membership ready: 4 · paid members: unknown · active members: unknown
-- Opportunity candidates: 7 · stale inputs: 0
+- Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
@@ -17,24 +17,23 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 68 | getecoback | membership_observability | observe | admin_ok=False |
 | 68 | thedollscout | membership_observability | observe | admin_ok=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=jim cramer ai chip stocks; value=11450 |
-| 55 | buysomething | content_gap | queue | count=1; query=refrigerator cost; value=80 |
-| 55 | getecoback | content_gap | queue | count=32; query=infrarotheizung hornbach; value=55350 |
-| 55 | thedollscout | content_gap | queue | count=14; query=lets try the viral crumbl labubu; value=18550 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=149; p7=62 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=5; p7=8 |
-| 48 | buysomething | ai_discovery | queue | human_pv_28d=324; ai_ref_28d=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=206; ai_ref_28d=0 |
-| 48 | gridlings | ai_discovery | queue | human_pv_28d=1295; ai_ref_28d=0 |
+| 55 | getecoback | content_gap | queue | count=26; query=infrarotheizung hornbach; value=55350 |
+| 55 | thedollscout | content_gap | queue | count=17; query=lets try the viral crumbl labubu; value=18550 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/search; n7=158; p7=66 |
+| 52 | getecoback | improve_hot_page | queue | page=/guide/klimaanlage-wohnmobil.html; n7=5; p7=4 |
+| 48 | buysomething | ai_discovery | queue | human_pv_28d=365; ai_ref_28d=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=205; ai_ref_28d=0 |
+| 48 | gridlings | ai_discovery | queue | human_pv_28d=1673; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-20T07:54:34.776Z | 1 |
-| health | 2026-10-20T13:10:32Z | 1 |
-| ai_referrals | 2026-10-20T13:10:59Z | 1 |
-| opportunities | 2026-10-20 | 1 |
-| autopilot_receipt | 2026-10-21 | 0 |
+| membership | 2026-10-21T07:58:20.222Z | 1 |
+| health | 2026-10-21T13:20:22Z | 1 |
+| ai_referrals | 2026-10-21T13:20:46Z | 1 |
+| opportunities | 2026-10-21 | 1 |
+| autopilot_receipt | 2026-10-22 | 0 |
 
 ## Autonomous boundary
 

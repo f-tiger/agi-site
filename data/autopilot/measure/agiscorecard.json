@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 14,
+    "n": 15,
     "q": "tool:portfolio_returns"
    },
    {
@@ -25,33 +25,45 @@
    {
     "n": 6,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
+   },
+   {
+    "n": 1,
+    "q": "marketing services"
+   },
+   {
+    "n": 1,
+    "q": "jual chemical for any industry"
+   },
+   {
+    "n": 1,
+    "q": "baju olahraga"
    }
   ]
  },
- "fetched": "2026-10-21",
+ "fetched": "2026-10-22",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
+  "/about": {
+   "n7": 83,
+   "p7": 35
+  },
   "/ai-tools": {
-   "n7": 75,
+   "n7": 79,
    "p7": 36
   },
   "/invest": {
-   "n7": 75,
+   "n7": 77,
    "p7": 33
   },
-  "/jarvis": {
-   "n7": 99,
-   "p7": 27
+  "/narrow-vs-general-ai": {
+   "n7": 77,
+   "p7": 35
   },
   "/search": {
-   "n7": 149,
-   "p7": 62
-  },
-  "/zh/invest": {
-   "n7": 71,
-   "p7": 32
+   "n7": 158,
+   "p7": 66
   }
  },
  "site": "agiscorecard",

@@ -117,34 +117,6 @@
    "v": 15800
   },
   {
-   "heat": {
-    "n7": 5,
-    "p7": 8
-   },
-   "kind": "value",
-   "match": 0.967,
-   "page": "index.html",
-   "q": "heizen mit klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 250
-  },
-  {
-   "heat": {
-    "n7": 2,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/klimaanlage-mit-heizfunktion.html",
-   "q": "klimaanlage mit heizfunktion",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 140
-  },
-  {
    "heat": null,
    "kind": "value",
    "match": 0.975,
@@ -324,66 +296,6 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "bodenkonsole klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "kabelkanal klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 150
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "hisense klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 150
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "mitsubishi heavy klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 150
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "wandhalterung klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "dometic klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-10-20",
-   "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
    "page": "guide/tineco-saugt-nicht-mehr.html",
    "q": "tineco saugwischer",
    "seed": "saugwischer",
@@ -492,15 +404,10 @@
    "v": 40
   }
  ],
- "generated": "2026-10-21",
+ "generated": "2026-10-22",
  "geo": "DE",
- "heat_source": "measured 2026-10-21 (23 pages); no notes",
+ "heat_source": "measured 2026-10-22 (25 pages); no notes",
  "hot_pages": [
-  {
-   "n7": 5,
-   "p7": 8,
-   "page": "/"
-  },
   {
    "n7": 5,
    "p7": 4,
@@ -508,13 +415,8 @@
   },
   {
    "n7": 5,
-   "p7": 2,
-   "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 5,
-   "p7": 6,
-   "page": "/guide/was-bedeutet-btu.html"
+   "p7": 0,
+   "page": "/guide/thermovorhang-ratgeber.html"
   },
   {
    "n7": 5,
@@ -523,13 +425,23 @@
   },
   {
    "n7": 4,
-   "p7": 0,
-   "page": "/guide/thermovorhang-ratgeber.html"
+   "p7": 2,
+   "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 3,
-   "p7": 11,
-   "page": "/en/guide/portable-ac-not-cooling.html"
+   "p7": 10,
+   "page": "/"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/klimaanlage-kippfenster.html"
+  },
+  {
+   "n7": 3,
+   "p7": 1,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 3,
@@ -538,18 +450,18 @@
   },
   {
    "n7": 3,
-   "p7": 7,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 3,
    "p7": 2,
    "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/kontakt.html"
+   "p7": 7,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 2,
+   "p7": 11,
+   "page": "/en/guide/portable-ac-not-cooling.html"
   },
   {
    "n7": 2,
@@ -563,7 +475,7 @@
   },
   {
    "n7": 2,
-   "p7": 2,
+   "p7": 0,
    "page": "/guide/balkon-terrasse-beschatten.html"
   },
   {
@@ -588,10 +500,8 @@
   "selbstbedienungskasse",
   "fluss durch riga",
   "duschkopf",
-  "constantin schreiber axel springer",
   "meacodry arete one 12l",
   "dieter glawischnig",
-  "klimavorteil",
   "bett1 de",
   "kinderbett 90x200",
   "tineco",
