@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21",
+  "generated": "2026-10-22",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 44,
@@ -26,21 +26,81 @@
   },
   "items": [
     {
+      "id": "drift:deepl",
+      "type": "source_drift",
+      "title": "来源页变动：DeepL（2026-10-22 确认）",
+      "why": "官方来源页的数字令牌变了——新增 9b；消失 无。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://www.deepl.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "deepl",
+        "https://www.deepl.com/pricing"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:dify",
+      "type": "source_drift",
+      "title": "来源页变动：Dify（2026-10-22 确认）",
+      "why": "官方来源页的数字令牌变了——新增 159k；消失 158k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://dify.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "dify",
+        "https://dify.ai"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:notebooklm",
+      "type": "source_drift",
+      "title": "来源页变动：NotebookLM（Google）（2026-10-22 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 000b / 000k / 000m / 00b。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://support.google.com/gemininotebook 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "notebooklm",
+        "https://support.google.com/gemininotebook"
+      ],
+      "score": 75
+    },
+    {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：www.perplexity.ai×6、chatgpt.com×1、copilot.microsoft.com×2",
+      "title": "AI 助手引流出现：www.perplexity.ai×7、chatgpt.com×1、copilot.microsoft.com×2",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
         "/en/c/image",
+        "/en/plans/free-video-gen",
         "/tools/tusiart",
         "/en/tools/ms-copilot",
         "/tools/ms-copilot",
-        "/en/is-google-flow-still-free",
         "/en/tools/bing-image",
         "/mcp"
       ],
       "score": 70
+    },
+    {
+      "id": "drift:elevenlabs",
+      "type": "source_drift",
+      "title": "来源页变动：ElevenLabs（2026-10-22 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 $1 / $15 / 0.5credit / 0.5credits。本站条目仍是 2026-08-02 的版本",
+      "action": "打开 https://elevenlabs.io/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "elevenlabs",
+        "https://elevenlabs.io/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:cline",
+      "type": "source_drift",
+      "title": "来源页变动：Cline（2026-10-22 确认）",
+      "why": "官方来源页的数字令牌变了——新增 71k；消失 70.4k / 70k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "cline",
+        "https://cline.bot"
+      ],
+      "score": 65
     },
     {
       "id": "drift:zhipu-glm",
@@ -51,66 +111,6 @@
       "refs": [
         "zhipu-glm",
         "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:cloudflare-workers-ai",
-      "type": "source_drift",
-      "title": "来源页变动：Cloudflare Workers AI（2026-10-21 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $0.006 / $1.200；消失 无。本站条目仍是 2026-09-16 的版本",
-      "action": "打开 https://developers.cloudflare.com/workers-ai/platform/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cloudflare-workers-ai",
-        "https://developers.cloudflare.com/workers-ai/platform/pricing"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:gptzero",
-      "type": "source_drift",
-      "title": "来源页变动：GPTZero（2026-10-20 确认）",
-      "why": "官方来源页的数字令牌变了——新增 20m / 2m；消失 17m / 1m。本站条目仍是 2026-08-17 的版本",
-      "action": "打开 https://gptzero.me 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "gptzero",
-        "https://gptzero.me"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:n8n",
-      "type": "source_drift",
-      "title": "来源页变动：n8n（2026-10-20 确认）",
-      "why": "官方来源页的数字令牌变了——新增 6days；消失 15days。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://docs.n8n.io 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "n8n",
-        "https://docs.n8n.io"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:v0",
-      "type": "source_drift",
-      "title": "来源页变动：v0（Vercel）（2026-10-20 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1.5k / 10.8k / 11.1k / 14.7k；消失 10.7k / 11k / 14.4k / 20.6k。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://v0.app 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "v0",
-        "https://v0.app"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:continue",
-      "type": "source_drift",
-      "title": "来源页变动：Continue（2026-10-20 确认）",
-      "why": "官方来源页的数字令牌变了——新增 36.3k；消失 36.2k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "continue",
-        "https://github.com/continuedev/continue"
       ],
       "score": 65
     },
@@ -153,7 +153,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 114 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 112 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
