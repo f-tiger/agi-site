@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Labubu Open Data: Odds, Fake Signals, Glossary — DollScout</title>
-<meta name="description" content="Four CC-BY Labubu datasets: secret rarity odds per series format, 8 real-vs-fake signals, glossary, pull-probability table — sourced JSON, callable over MCP.">
+<title>Labubu Open Data: Odds, Fake Signals, Glossary | The Doll Scout</title>
+<meta name="description" content="Four sourced Labubu datasets under CC BY 4.0, with links to the current collector MCP tools and series checklists.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="DollScout">
+<meta property="og:site_name" content="The Doll Scout">
 <meta property="og:url" content="https://thedollscout.com/data/">
-<meta property="og:title" content="Open data — DollScout">
-<meta property="og:description" content="Four CC-BY datasets behind the pages: rarity odds, authenticity signals, collecting glossary. Machine-readable, sourced, and callable over MCP.">
+<meta property="og:title" content="Open data and collector MCP tools — The Doll Scout">
+<meta property="og:description" content="Four sourced Labubu datasets under CC BY 4.0, plus a link to the current collector MCP tool list and series checklists.">
 <meta property="og:image" content="https://thedollscout.com/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "The Doll Scout", "url": "https://thedollscout.com/" },
     { "@type": "BreadcrumbList", "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
       { "@type": "ListItem", "position": 2, "name": "Data", "item": "https://thedollscout.com/data/" }]},
@@ -78,7 +78,7 @@
 <div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <a class="logo" href="/">The Doll <b>Scout</b></a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
     <nav class="nav">
       <a href="/rarity">Rarity &amp; Odds</a>
@@ -102,7 +102,7 @@
       <div class="card"><h3><a href="/data/labubu-glossary.json">labubu-glossary.json</a></h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></div>
       <div class="card"><h3><a href="/data/pull-math.json">pull-math.json</a></h3><p>Chance of at least one secret, expected count, and the 50%/90% thresholds for every odds format across real purchase sizes — the spine behind <a href="/odds/">the odds-by-box-count pages</a>. Computed from rarity-odds.json, so there is never a second source for the same numbers. Recorded 2026-08-31.</p></div>
     </div>
-    <p style="margin-top:18px">These datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
+    <p style="margin-top:18px">These four files are Labubu-focused public datasets, not the full collector-tool catalog. The separate remote MCP endpoint at <code>https://thedollscout.com/mcp</code> exposes the current read-only collecting tools and public resources, including series discovery, probability calculations, source-backed guides, budget and progress estimates, and display planning. See <a href="https://thedollscout.com/for-agents">the current MCP tool list, exact schemas and client setup</a>. The MCP server cannot read or change a visitor’s browser-local collection, private files or account, and its tool output contains no affiliate links. Browse the <a href="https://thedollscout.com/series">series checklist catalog</a> or inspect the <a href="https://github.com/f-tiger/agi-site/tree/main/sites/thedollscout">public TDS source tree</a>. Human-readable Labubu datasets: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
   </div>
 </section>
 </main>
