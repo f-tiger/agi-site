@@ -40,7 +40,8 @@
       "task": "完成旧tds-image-01视频固定复盘；收藏内容单独立项",
       "deliverable": "保留09/30–10/13窗口与原门槛，发布/播放/到站分表",
       "gate": "旧视频读回；未取得指标写未知",
-      "status": "planned"
+      "status": "partial_fixed_window_unrecoverable",
+      "execution_note": "The fixed 2026-09-30–2026-10-13 video-growth snapshot could not be retrieved in this run, and no saved fixed-window snapshot was found in the current-main records reviewed. Post-level platform reads are separate and must not be used to reconstruct the fixed window."
     },
     {
       "day": 4,
@@ -110,9 +111,10 @@
       "date": "2026-10-22",
       "focus": "MCP distribution",
       "task": "验证官方Registry、Glama与客户端发现的当前事实",
-      "deliverable": "一个真实安装/工具任务测试及准确指南；不重复创建listing",
+      "deliverable": "可审阅的 MCP 分发核验记录与客户端测试步骤；真实工具调用未验收，不重复 listing",
       "gate": "现有身份、支持的提交机制与真实回执",
-      "status": "planned"
+      "status": "draft_pr_open_live_mcp_call_blocked",
+      "execution_note": "Public listing facts were reviewed and a runbook was added to this draft. No live MCP install/tool call or new registry submission was performed; this runtime could not reach the endpoint/client for a real call. The website-page change remains pending source/generated-output regeneration and client validation. Existing protocol version 2.4.0 remains unchanged."
     },
     {
       "day": 12,
