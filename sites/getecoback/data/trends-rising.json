@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-21",
+ "fetched": "2026-10-22",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -34,74 +34,98 @@
    "fetched": "2026-10-21"
   },
   "schimmel entfernen": {
-   "auto": [
-    "schimmel entfernen",
-    "schimmel entfernen wand",
-    "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
-    "schimmel entfernen bad fugen",
-    "schimmel entfernen wand innen",
-    "schimmel entfernen dm",
-    "schimmel entfernen tapete",
-    "schimmel entfernen alkohol",
-    "schimmel entfernen spray"
+   "rising": [
+    {
+     "q": "schimmel im badezimmer entfernen",
+     "v": 46150
+    },
+    {
+     "q": "stockflecken entfernen wand",
+     "v": 4650
+    },
+    {
+     "q": "schimmel aus textilien entfernen",
+     "v": 3900
+    },
+    {
+     "q": "holzfenster schimmel entfernen",
+     "v": 3900
+    },
+    {
+     "q": "schimmel kleidung entfernen",
+     "v": 130
+    },
+    {
+     "q": "schwarzen schimmel entfernen",
+     "v": 70
+    },
+    {
+     "q": "schimmel dusche entfernen",
+     "v": 50
+    },
+    {
+     "q": "schimmel fugen bad entfernen",
+     "v": 50
+    },
+    {
+     "q": "fugen schimmel entfernen",
+     "v": 40
+    }
    ],
-   "new_vocabulary": [
-    "schimmel entfernen spray"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-21T09:34:26.616437+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-10-21"
+   "source": "related-queries",
+   "fetched": "2026-10-22",
+   "polluted": false,
+   "last_attempt_at": "2026-10-22T09:32:43.397818+00:00",
+   "last_attempt_status": "ok"
   },
   "infrarotheizung": {
    "rising": [
     {
-     "q": "thermostat für infrarotheizung",
-     "v": 100900
+     "q": "papermoon infrarotheizung",
+     "v": 67150
     },
     {
-     "q": "infrarot heizkörper",
-     "v": 56300
+     "q": "stiftung warentest infrarotheizung",
+     "v": 55950
     },
     {
-     "q": "infrarotheizung hornbach",
-     "v": 55350
-    },
-    {
-     "q": "ölradiator",
-     "v": 55200
+     "q": "infrarotheizung bauhaus",
+     "v": 51100
     },
     {
      "q": "infrarotheizung wintergarten",
-     "v": 52700
+     "v": 43550
     },
     {
-     "q": "stand infrarotheizung",
-     "v": 47900
-    },
-    {
-     "q": "toom infrarotheizung",
-     "v": 46750
+     "q": "infrarotheizung energiesparend",
+     "v": 31200
     },
     {
      "q": "infrarotheizung schreibtisch",
-     "v": 39050
+     "v": 29300
     },
     {
-     "q": "radiator",
-     "v": 31000
+     "q": "infrarotheizung wohnmobil",
+     "v": 29050
     },
     {
-     "q": "infrarotheizung berechnen",
-     "v": 29200
+     "q": "ölradiator oder infrarotheizung",
+     "v": 27450
+    },
+    {
+     "q": "königstein infrarotheizung",
+     "v": 27400
+    },
+    {
+     "q": "steinfeld infrarotheizung",
+     "v": 26750
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-14",
-   "polluted": false
+   "fetched": "2026-10-22",
+   "polluted": false,
+   "last_attempt_at": "2026-10-22T09:33:44.797260+00:00",
+   "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
    "rising": [
