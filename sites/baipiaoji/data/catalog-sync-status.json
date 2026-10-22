@@ -8,33 +8,65 @@
  },
  "github": {
   "status": "ok",
-  "discovered": 75,
+  "discovered": 67,
   "admitted": 12,
   "checked": 6,
   "rejected": 0,
   "errors": [],
   "pending": 600,
-  "total": 302,
-  "attemptedAt": "2026-10-21T05:15:35.227Z",
-  "lastSuccessAt": "2026-10-21T05:15:35.227Z",
-  "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39548220458"
+  "total": 314,
+  "attemptedAt": "2026-10-22T05:18:29.886Z",
+  "lastSuccessAt": "2026-10-22T05:18:29.886Z",
+  "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39726969134"
  },
  "mcp": {
   "status": "ok",
-  "admitted": 11,
+  "admitted": 60,
   "checked": 40,
-  "rejected": 49,
+  "rejected": 0,
   "errors": [],
   "pages": 12,
   "seen": 1200,
-  "discovered": 1134,
-  "pending": 16614,
-  "total": 2142,
-  "attemptedAt": "2026-10-21T05:15:35.227Z",
-  "lastSuccessAt": "2026-10-21T05:15:35.227Z",
-  "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39548220458"
+  "discovered": 1136,
+  "pending": 17690,
+  "total": 2202,
+  "attemptedAt": "2026-10-22T05:18:29.886Z",
+  "lastSuccessAt": "2026-10-22T05:18:29.886Z",
+  "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39726969134"
  },
  "history": [
+  {
+   "at": "2026-10-22T05:18:29.886Z",
+   "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39726969134",
+   "github": {
+    "status": "ok",
+    "discovered": 67,
+    "admitted": 12,
+    "checked": 6,
+    "rejected": 0,
+    "errors": [],
+    "pending": 600,
+    "total": 314,
+    "attemptedAt": "2026-10-22T05:18:29.886Z",
+    "lastSuccessAt": "2026-10-22T05:18:29.886Z",
+    "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39726969134"
+   },
+   "mcp": {
+    "status": "ok",
+    "admitted": 60,
+    "checked": 40,
+    "rejected": 0,
+    "errors": [],
+    "pages": 12,
+    "seen": 1200,
+    "discovered": 1136,
+    "pending": 17690,
+    "total": 2202,
+    "attemptedAt": "2026-10-22T05:18:29.886Z",
+    "lastSuccessAt": "2026-10-22T05:18:29.886Z",
+    "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39726969134"
+   }
+  },
   {
    "at": "2026-10-21T05:15:35.227Z",
    "runURL": "https://github.com/f-tiger/agi-site/actions/runs/39548220458",
@@ -452,39 +484,7 @@
     "lastSuccessAt": "2026-10-10T06:21:21.428Z",
     "runURL": "https://github.com/f-tiger/agi-site/actions/runs/38030449376"
    }
-  },
-  {
-   "at": "2026-10-09T06:38:33.001Z",
-   "runURL": "https://github.com/f-tiger/agi-site/actions/runs/37894221544",
-   "github": {
-    "status": "ok",
-    "discovered": 90,
-    "admitted": 12,
-    "checked": 6,
-    "rejected": 0,
-    "errors": [],
-    "pending": 600,
-    "total": 152,
-    "attemptedAt": "2026-10-09T06:38:33.001Z",
-    "lastSuccessAt": "2026-10-09T06:38:33.001Z",
-    "runURL": "https://github.com/f-tiger/agi-site/actions/runs/37894221544"
-   },
-   "mcp": {
-    "status": "ok",
-    "admitted": 49,
-    "checked": 40,
-    "rejected": 11,
-    "errors": [],
-    "pages": 12,
-    "seen": 1200,
-    "discovered": 986,
-    "pending": 4599,
-    "total": 1578,
-    "attemptedAt": "2026-10-09T06:38:33.001Z",
-    "lastSuccessAt": "2026-10-09T06:38:33.001Z",
-    "runURL": "https://github.com/f-tiger/agi-site/actions/runs/37894221544"
-   }
   }
  ],
- "completedAt": "2026-10-21T05:17:17.363Z"
+ "completedAt": "2026-10-22T05:19:19.787Z"
 }

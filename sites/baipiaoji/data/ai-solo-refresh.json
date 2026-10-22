@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-10-21T05:18:56.289Z",
+  "lastRun": "2026-10-22T05:19:56.945Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -139,25 +139,25 @@
       "caseId": "heygen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastChecked": "2026-10-09T06:39:41.803Z"
+      "lastChecked": "2026-10-22T05:19:56.945Z"
     },
     {
       "caseId": "glean",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastChecked": "2026-10-10T06:22:34.563Z"
+      "lastChecked": "2026-10-22T05:19:56.945Z"
     },
     {
       "caseId": "harvey",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastChecked": "2026-10-10T06:22:34.563Z"
+      "lastChecked": "2026-10-22T05:19:56.945Z"
     },
     {
       "caseId": "fireflies",
       "reason": "source-unreachable",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastChecked": "2026-10-10T06:22:34.563Z"
+      "lastChecked": "2026-10-22T05:19:56.945Z"
     },
     {
       "caseId": "cydoc",
@@ -621,7 +621,7 @@
     "heygen|https://www.heygen.com/blog/heygen-surpasses-200m-arr": {
       "caseId": "heygen",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastAttempt": "2026-10-09T06:39:41.803Z",
+      "lastAttempt": "2026-10-22T05:19:56.945Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -629,10 +629,10 @@
     "photoroom|https://help.photoroom.com/en/articles/9626719-what-is-photoroom": {
       "caseId": "photoroom",
       "sourceUrl": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom",
-      "lastAttempt": "2026-10-09T06:39:41.803Z",
-      "status": "baseline",
+      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-09T06:39:41.803Z",
+      "lastSuccess": "2026-10-22T05:19:56.945Z",
       "lastHash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "hash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "simhash": "2ad22595e494c99c",
@@ -642,7 +642,7 @@
     "glean|https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months": {
       "caseId": "glean",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "lastAttempt": "2026-10-22T05:19:56.945Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -650,7 +650,7 @@
     "harvey|https://www.harvey.ai/blog/harveys-three-year-anniversary": {
       "caseId": "harvey",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "lastAttempt": "2026-10-22T05:19:56.945Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -658,7 +658,7 @@
     "fireflies|https://fireflies.ai/blog/fireflies-1-billion-valuation": {
       "caseId": "fireflies",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastAttempt": "2026-10-10T06:22:34.563Z",
+      "lastAttempt": "2026-10-22T05:19:56.945Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1160,16 +1160,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 23,
+  "cursor": 28,
   "errors": [
     {
-      "caseId": "elevenlabs",
-      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "caseId": "heygen",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
       "reason": "body-limit"
     },
     {
-      "caseId": "synthesia",
-      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "caseId": "glean",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "harvey",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "fireflies",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
       "reason": "body-limit"
     }
   ]

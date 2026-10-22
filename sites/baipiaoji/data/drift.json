@@ -1,10 +1,89 @@
 {
-  "generated": "2026-10-21",
+  "generated": "2026-10-22",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 14,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 12,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-10-22",
+      "first_seen": "2026-10-21",
+      "added": [
+        "9b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-10-22",
+      "first_seen": "2026-10-21",
+      "added": [
+        "159k"
+      ],
+      "removed": [
+        "158k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "notebooklm",
+      "url": "https://support.google.com/gemininotebook",
+      "confirmed": "2026-10-22",
+      "first_seen": "2026-10-21",
+      "added": [],
+      "removed": [
+        "000b",
+        "000k",
+        "000m",
+        "00b",
+        "00k",
+        "00m",
+        "0b",
+        "0k",
+        "0m"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-10-22",
+      "first_seen": "2026-10-21",
+      "added": [],
+      "removed": [
+        "$1",
+        "$15",
+        "0.5credit",
+        "0.5credits",
+        "0026video",
+        "10000credits",
+        "1000characters",
+        "1000credits",
+        "100words",
+        "10minutes",
+        "11minutes",
+        "13,500credits"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "cline",
+      "url": "https://cline.bot",
+      "confirmed": "2026-10-22",
+      "first_seen": "2026-10-21",
+      "added": [
+        "71k"
+      ],
+      "removed": [
+        "70.4k",
+        "70k"
+      ],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "zhipu-glm",
       "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
@@ -143,19 +222,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "cline",
-      "url": "https://cline.bot",
-      "confirmed": "2026-10-17",
-      "first_seen": "2026-10-16",
-      "added": [
-        "70.4k"
-      ],
-      "removed": [
-        "70.3k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "codex",
       "url": "https://developers.openai.com/codex/pricing",
       "confirmed": "2026-10-16",
@@ -275,17 +341,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-10-14",
-      "first_seen": "2026-10-13",
-      "added": [],
-      "removed": [
-        "5b"
-      ],
-      "checked_then": "2026-09-21"
-    },
-    {
       "slug": "deepinfra",
       "url": "https://deepinfra.com",
       "confirmed": "2026-10-10",
@@ -342,19 +397,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-10-09",
-      "first_seen": "2026-10-08",
-      "added": [
-        "158k"
-      ],
-      "removed": [
-        "157k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "huggingface",
       "url": "https://huggingface.co/docs/inference-providers/pricing",
       "confirmed": "2026-10-09",
@@ -401,39 +443,6 @@
         "14.7k"
       ],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "notebooklm",
-      "url": "https://support.google.com/gemininotebook",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [
-        "000b",
-        "000k",
-        "000m",
-        "00b",
-        "00k",
-        "00m",
-        "0b",
-        "0k",
-        "0m",
-        "18,gb"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [],
-      "removed": [
-        "100minutes",
-        "2,500seconds",
-        "31minutes"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "ollama",

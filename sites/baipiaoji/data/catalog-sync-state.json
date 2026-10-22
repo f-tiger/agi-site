@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 18,
-  "page": 2,
+  "queryIndex": 0,
+  "page": 3,
   "pending": [
-   {
-    "repo": "jackwener/OpenCLI",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "trycua/cua",
     "topic": "agents",
@@ -37,11 +32,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "ilysenko/codex-desktop-linux",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -80,11 +70,6 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "ashbuilds/payload-ai",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "aqm857886159/Nomi",
     "topic": "image",
     "foundAt": "2026-10-02T15:26:40.958Z"
@@ -102,11 +87,6 @@
    {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "remsky/Kokoro-FastAPI",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -300,11 +280,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "opendataloader-project/opendataloader-pdf",
-    "topic": "knowledge",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "yusufkaraaslan/Skill_Seekers",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -312,11 +287,6 @@
    {
     "repo": "Zipstack/unstract",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "xushengfeng/eSearch",
-    "topic": "documents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -375,11 +345,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "plait-board/drawnix",
-    "topic": "everyday",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "streetwriters/notesnook",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -388,11 +353,6 @@
     "repo": "espanso/espanso",
     "topic": "everyday",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "stas00/ml-engineering",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "GeeeekExplorer/nano-vllm",
@@ -1000,11 +960,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "KlingAIResearch/LivePortrait",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "duixcom/Duix-Avatar",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -1377,11 +1332,6 @@
    {
     "repo": "Rheosoph/flow-like",
     "topic": "agents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "mozilla-ai/otari",
-    "topic": "ai",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -1970,11 +1920,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "ntthanh2603/gemini-web-to-api",
-    "topic": "chat",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "xlrpa/FlowBot",
     "topic": "chat",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -2092,11 +2037,6 @@
    {
     "repo": "netease-youdao/Confucius4-TTS",
     "topic": "audio",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
-    "repo": "MrGiovanni/ModelsGenesis",
-    "topic": "models",
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "Raudaschl/rag-fusion",
     "topic": "knowledge",
     "foundAt": "2026-10-21T05:15:35.227Z"
+   },
+   {
+    "repo": "MLGroupJLU/LLM-eval-survey",
+    "topic": "ai",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "zjunlp/LLMAgentPapers",
+    "topic": "agents",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "whitecircle/halo",
+    "topic": "agents",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "ThomasVitale/llm-apps-java-spring-ai",
+    "topic": "knowledge",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "jonfairbanks/local-rag",
+    "topic": "knowledge",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "octotools/octotools",
+    "topic": "agents",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "xinxuxin/keystone-bench",
+    "topic": "ai",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "camel-ai/oasis",
+    "topic": "ai",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "Human-Agent-Society/CORAL",
+    "topic": "coding",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "NiuTrans/NLPBook",
+    "topic": "ai",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "EvolvingLMMs-Lab/lmms-engine",
+    "topic": "video",
+    "foundAt": "2026-10-22T05:18:29.886Z"
+   },
+   {
+    "repo": "macro-inc/macro",
+    "topic": "agents",
+    "foundAt": "2026-10-22T05:18:29.886Z"
    }
   ],
   "checked": {
@@ -3077,11 +3077,17 @@
    "gh-unstructured-io-unstructured-56e2c7": "2026-10-20T05:13:44.274Z",
    "gh-huggingface-peft-e4a8e5": "2026-10-20T05:13:44.274Z",
    "gh-corentinth-it-tools-22db9b": "2026-10-20T05:13:44.274Z",
-   "gh-handsonllm-hands-on-large-language-models-05753b": "2026-10-20T05:13:44.274Z"
+   "gh-handsonllm-hands-on-large-language-models-05753b": "2026-10-20T05:13:44.274Z",
+   "gh-milvus-io-milvus-9640e7": "2026-10-22T05:18:29.886Z",
+   "gh-hkuds-nanobot-f9b85f": "2026-10-22T05:18:29.886Z",
+   "gh-superset-sh-superset-c34504": "2026-10-22T05:18:29.886Z",
+   "gh-hunyuan-promptenhancer-promptenhancer-2b6d42": "2026-10-22T05:18:29.886Z",
+   "gh-leon-ai-leon-16fe01": "2026-10-22T05:18:29.886Z",
+   "gh-syv-ai-hyperqwen-7396f8": "2026-10-22T05:18:29.886Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.drivenbymyai-max/sputnikx-market:1.0.2",
+  "cursor": "io.github.getjobzi/getjobzi-mcp:1.0.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3845,7 +3851,47 @@
    "rocketlist-rocketlist": "2026-10-21T05:15:35.227Z",
    "roo-code": "2026-10-21T05:15:35.227Z",
    "runx-runx": "2026-10-21T05:15:35.227Z",
-   "sallim-contract-compass": "2026-10-21T05:15:35.227Z"
+   "sallim-contract-compass": "2026-10-21T05:15:35.227Z",
+   "sallim-korea-realty": "2026-10-22T05:18:29.886Z",
+   "saltapp-salt": "2026-10-22T05:18:29.886Z",
+   "sapiensinteticos-sapiens": "2026-10-22T05:18:29.886Z",
+   "satohub-onchain-agents": "2026-10-22T05:18:29.886Z",
+   "savingslast-calculators": "2026-10-22T05:18:29.886Z",
+   "savvly-savvly": "2026-10-22T05:18:29.886Z",
+   "saymaker-mcp": "2026-10-22T05:18:29.886Z",
+   "scfcontrolsplatform-mcp-server-scf": "2026-10-22T05:18:29.886Z",
+   "schedulenchill-mcp": "2026-10-22T05:18:29.886Z",
+   "scopeblind-protect-mcp": "2026-10-22T05:18:29.886Z",
+   "scrapegraph-ai": "2026-10-22T05:18:29.886Z",
+   "scriptmasterlabs-x402-gateway": "2026-10-22T05:18:29.886Z",
+   "sednasystem-genesis": "2026-10-22T05:18:29.886Z",
+   "see-geo-seegeo": "2026-10-22T05:18:29.886Z",
+   "seenpaid-seenpaid": "2026-10-22T05:18:29.886Z",
+   "selda-selda": "2026-10-22T05:18:29.886Z",
+   "self-operating-computer": "2026-10-22T05:18:29.886Z",
+   "sellermate-amazon-ads": "2026-10-22T05:18:29.886Z",
+   "semantic-kernel": "2026-10-22T05:18:29.886Z",
+   "sendinel-mcp-server": "2026-10-22T05:18:29.886Z",
+   "sendraven-mcp": "2026-10-22T05:18:29.886Z",
+   "sendseven-messaging": "2026-10-22T05:18:29.886Z",
+   "sensefold-sensefold": "2026-10-22T05:18:29.886Z",
+   "sentry-mcp": "2026-10-22T05:18:29.886Z",
+   "seomatic-seomatic": "2026-10-22T05:18:29.886Z",
+   "sequentum-mcp": "2026-10-22T05:18:29.886Z",
+   "shareseer-mcp": "2026-10-22T05:18:29.886Z",
+   "shiftinbits-constellation": "2026-10-22T05:18:29.886Z",
+   "shipstatic-mcp": "2026-10-22T05:18:29.886Z",
+   "shopify-dev-mcp": "2026-10-22T05:18:29.886Z",
+   "shortpixel-mcp-optimize": "2026-10-22T05:18:29.886Z",
+   "sierra": "2026-10-22T05:18:29.886Z",
+   "siftivo-siftivo": "2026-10-22T05:18:29.886Z",
+   "signal8-mcp": "2026-10-22T05:18:29.886Z",
+   "sim": "2026-10-22T05:18:29.886Z",
+   "skeletiq-mcp": "2026-10-22T05:18:29.886Z",
+   "skillmd-skillmd": "2026-10-22T05:18:29.886Z",
+   "skillsandagents-catalog-mcp": "2026-10-22T05:18:29.886Z",
+   "skilltotal-skilltotal": "2026-10-22T05:18:29.886Z",
+   "skyvern": "2026-10-22T05:18:29.886Z"
   }
  }
 }
