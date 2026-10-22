@@ -1,4 +1,4 @@
-export const FILE_EDITION='2026-10-02.1';
+export const FILE_EDITION='2026-10-11.1';
 export const LIMITS=Object.freeze({files:20,bytes:64*1024*1024,fileBytes:20*1024*1024,pages:200,pixels:16_000_000,outputBytes:100*1024*1024});
 export const DEFAULTS=Object.freeze({width:1200,height:1200,fit:'contain',format:'jpeg',quality:85,background:'#ffffff',remove:false,tolerance:30,paper:'a4'});
 export function settings(raw={}){
@@ -42,3 +42,4 @@ export function checkFiles(existing,added,kind){
   for(const f of added){if(!f.size||f.size>LIMITS.fileBytes)throw Error('fileBytes');if(kind==='image'&&classify(f)!=='image')throw Error('type');else classify(f);}return all;
 }
 export const bytes=n=>n<1024*1024?(n/1024).toFixed(1)+' KB':(n/1024/1024).toFixed(1)+' MB';
+
