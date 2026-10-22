@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-21T13:20:46Z",
+ "generated": "2026-10-22T13:20:39Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
@@ -8,20 +8,20 @@
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 21,
+ "fleet_ai_ref": 20,
  "fleet_ai_ref_claude_ai": 3,
- "fleet_ai_ref_excl_claude_ai": 18,
+ "fleet_ai_ref_excl_claude_ai": 17,
  "partial_ai_ref": null,
  "partial_ai_ref_claude_ai": null,
- "fleet_human_pv": 56156,
+ "fleet_human_pv": 57008,
  "partial_human_pv": null,
  "sites_read": 14,
  "sites_expected": 14,
- "fleet_human_pv_excl_flagged": 4522,
+ "fleet_human_pv_excl_flagged": 4464,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 49960,
+   "human_pv": 50691,
    "ai_ref": 6,
    "by_host": {
     "kagi.com": 3,
@@ -33,10 +33,10 @@
   },
   {
    "site": "baipiaoji",
-   "human_pv": 567,
-   "ai_ref": 9,
+   "human_pv": 564,
+   "ai_ref": 10,
    "by_host": {
-    "www.perplexity.ai": 6,
+    "www.perplexity.ai": 7,
     "chatgpt.com": 1,
     "copilot.microsoft.com": 2
    },
@@ -45,18 +45,17 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 658,
-   "ai_ref": 2,
+   "human_pv": 643,
+   "ai_ref": 1,
    "by_host": {
-    "www.perplexity.ai": 1,
-    "kagi.com": 1
+    "www.perplexity.ai": 1
    },
    "via": "endpoint",
    "ai_ref_claude_ai": 0
   },
   {
    "site": "thedollscout",
-   "human_pv": 539,
+   "human_pv": 249,
    "ai_ref": 1,
    "by_host": {
     "chatgpt.com": 1
@@ -66,7 +65,7 @@
   },
   {
    "site": "goldrush",
-   "human_pv": 205,
+   "human_pv": 213,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -74,7 +73,7 @@
   },
   {
    "site": "gridlings",
-   "human_pv": 1673,
+   "human_pv": 1881,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -82,7 +81,7 @@
   },
   {
    "site": "buysomething",
-   "human_pv": 365,
+   "human_pv": 379,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -90,18 +89,17 @@
   },
   {
    "site": "gamesledger",
-   "human_pv": 515,
-   "ai_ref": 3,
+   "human_pv": 535,
+   "ai_ref": 2,
    "by_host": {
-    "kagi.com": 2,
-    "copilot.microsoft.com": 1
+    "kagi.com": 2
    },
    "via": "endpoint",
    "ai_ref_claude_ai": 0
   },
   {
    "site": "after35",
-   "human_pv": 326,
+   "human_pv": 375,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -110,7 +108,7 @@
   },
   {
    "site": "learn",
-   "human_pv": 180,
+   "human_pv": 206,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -119,7 +117,7 @@
   },
   {
    "site": "fanzha",
-   "human_pv": 194,
+   "human_pv": 219,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -128,7 +126,7 @@
   },
   {
    "site": "firstjob",
-   "human_pv": 179,
+   "human_pv": 204,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -137,7 +135,7 @@
   },
   {
    "site": "codeword",
-   "human_pv": 386,
+   "human_pv": 417,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
@@ -146,7 +144,7 @@
   },
   {
    "site": "powerbill",
-   "human_pv": 409,
+   "human_pv": 432,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint",
