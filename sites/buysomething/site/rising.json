@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-21",
+ "fetched": "2026-10-22",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -783,53 +783,16 @@
     "self cleaning litter box for multiple cats",
     "self cleaning litter box for large cats",
     "self cleaning litter box near me",
-    "self cleaning litter boxes for cats",
     "self cleaning litter box nearby",
+    "self cleaning litter boxes for cats",
     "self cleaning litter box amazon",
     "self cleaning litter box reviews",
     "self cleaning litter box reddit",
     "self cleaning litter box walmart"
    ],
-   "rising": [
-    {
-     "q": "self cleaning litter box for multiple cats",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box for large cats",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box near me",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter boxes for cats",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box nearby",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box amazon",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box reviews",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box reddit",
-     "v": "new"
-    },
-    {
-     "q": "self cleaning litter box walmart",
-     "v": "new"
-    }
-   ],
+   "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-21"
+   "fetched": "2026-10-22"
   },
   "robot pet companion": {
    "auto": [
@@ -840,13 +803,18 @@
     "robot dog companion fallout 4",
     "robot animal companion",
     "robot dog companion new vegas",
-    "robot dog companion fallout",
     "robot dog companion nms",
-    "best robot pet companion"
+    "robot dog companion fallout",
+    "robot dog companion starfield"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "robot dog companion starfield",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-22"
+   "fetched": "2026-10-22"
   },
   "balkonkraftwerk speicher": {
    "rising": [
