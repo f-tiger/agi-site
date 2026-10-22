@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-21",
- "radar_fetched": "2026-10-21",
+ "generated": "2026-10-22",
+ "radar_fetched": "2026-10-22",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,13 +13,28 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 8,
+  "candidates": 10,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 8,
-  "supplied": 1
+  "scout": 10,
+  "supplied": 0
  },
  "opportunities": [
+  {
+   "theme": "samsamelo silicon valley selling trolley problem lies no link",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-22"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.42,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
   {
    "theme": "is there a temp phone number like temp email",
    "site": "",
@@ -60,7 +75,22 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.0,
+   "score": 2.07,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "are models getting better at software estimations of time effort cost",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-21"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.02,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -87,6 +117,21 @@
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-10-14"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "php based faq engine",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-21"
    ],
    "state": "scout",
    "supplied": false,
@@ -123,49 +168,6 @@
    "score": 1.88,
    "demand": [],
    "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "open source tool to auto generate api regression tests from real traffic linux c",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-13"
-   ],
-   "state": "scout",
-   "supplied": true,
-   "score": 1.0,
-   "demand": [],
-   "supply": [
-    {
-     "title": "Show HN: VoidAccess – open-source dark web OSINT, from query to a graph",
-     "url": "https://github.com/KatrielMoses/voidaccess",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    },
-    {
-     "title": "Show HN: Pug – open-source product analytics",
-     "url": "https://pug.sh/",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    },
-    {
-     "title": "Show HN: Gauge CLI – Open-Source Hillclimbing for Agent Experience",
-     "url": "https://github.com/gauge-sh/gauge-cli",
-     "src": "hn_show",
-     "shared": [
-      "open",
-      "source"
-     ]
-    }
-   ],
    "fleet_pages": []
   }
  ]

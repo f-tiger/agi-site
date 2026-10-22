@@ -1,52 +1,60 @@
 {
- "fetched": "2026-10-21",
+ "fetched": "2026-10-22",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
+   "auto": [
+    "condizionatore portatile",
+    "condizionatore portatile senza tubo",
+    "condizionatore portatile 12000 btu",
+    "condizionatore portatile con tubo",
+    "condizionatore portatile silenzioso",
+    "condizionatore portatile 9000 btu",
+    "condizionatore portatile unieuro",
+    "condizionatore portatile senza tubo esterno",
+    "condizionatore portatile mediaworld",
+    "condizionatore portatile lidl"
+   ],
    "rising": [
     {
-     "q": "pinguino aria condizionata",
-     "v": 700
+     "q": "condizionatore portatile senza tubo",
+     "v": "new"
     },
     {
-     "q": "ventilatore a colonna",
-     "v": 190
+     "q": "condizionatore portatile 12000 btu",
+     "v": "new"
     },
     {
-     "q": "trotec condizionatore portatile",
-     "v": 120
+     "q": "condizionatore portatile con tubo",
+     "v": "new"
     },
     {
-     "q": "beko bp 409 c",
-     "v": 100
+     "q": "condizionatore portatile silenzioso",
+     "v": "new"
     },
     {
-     "q": "expert",
-     "v": 90
+     "q": "condizionatore portatile 9000 btu",
+     "v": "new"
     },
     {
-     "q": "condizionatore portatile vinco",
-     "v": 80
+     "q": "condizionatore portatile unieuro",
+     "v": "new"
     },
     {
-     "q": "olimpia splendid dolceclima compact 10p",
-     "v": 70
+     "q": "condizionatore portatile senza tubo esterno",
+     "v": "new"
     },
     {
-     "q": "condizionatore portatile akai 9000 btu",
-     "v": 70
+     "q": "condizionatore portatile mediaworld",
+     "v": "new"
     },
     {
-     "q": "condizionatore portatile euronics",
-     "v": 70
-    },
-    {
-     "q": "euronics",
-     "v": 60
+     "q": "condizionatore portatile lidl",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-11"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-22"
   },
   "deumidificatore": {
    "auto": [
