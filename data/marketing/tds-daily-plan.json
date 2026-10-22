@@ -110,9 +110,9 @@
       "date": "2026-10-22",
       "focus": "MCP distribution",
       "task": "验证官方Registry、Glama与客户端发现的当前事实",
-      "deliverable": "一个真实安装/工具任务测试及准确指南；不重复创建listing",
-      "gate": "现有身份、支持的提交机制与真实回执",
-      "status": "planned"
+      "deliverable": "修正 /data/ 对 MCP 能力范围的过时描述，链接当前工具清单与系列目录；官方 Registry 元数据更新路径、Glama 可见性及真实外部客户端安装/调用仍未确认。",
+      "gate": "不重复创建 listing、不升级协议版本；须核实官方 Registry 既有条目的可支持元数据更新方式，并取得可核验的外部客户端/客户调用证据。",
+      "status": "partially_delivered"
     },
     {
       "day": 12,
