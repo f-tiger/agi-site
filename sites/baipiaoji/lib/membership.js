@@ -8,6 +8,8 @@ export const MEMBER_SITES={bpj:{offset:0},agi:{offset:10000},eco:{offset:20000},
 export function memberSite(env={}){const site=env.MEMBER_SITE||'bpj';if(!Object.hasOwn(MEMBER_SITES,site))throw Error('not_ready');return site;}
 export function memberPlan(env={}){const site=memberSite(env);return {...PLAN,id:site+'-workbench-30',site,quote_base:PLAN.price_units+MEMBER_SITES[site].offset};}
 export const allowedProduct=(site,id)=>products.some(p=>p.site===site&&p.id===id)||externalProducts.some(p=>p.site===site&&p.id===id);
+// Marketing entry sources are separate from the products allowed to save workspaces.
+const allowedOrderSource=(site,id)=>allowedProduct(site,id)||(site==='bpj'&&id==='bpj-startup-research');
 export const SCHEMA=[
  `CREATE TABLE IF NOT EXISTS wb_health(id INTEGER PRIMARY KEY,checked_at INTEGER NOT NULL)`,
  `CREATE TABLE IF NOT EXISTS wb_support(id TEXT PRIMARY KEY,member_id TEXT NOT NULL,message TEXT NOT NULL,created INTEGER NOT NULL,resolved INTEGER NOT NULL DEFAULT 0)`,
@@ -39,7 +41,7 @@ export async function createOrderForMember(env,member,nonce,ip,source=''){
 }
 async function createOrderWithIdentity(env,member,hash,nonce,ip,source){
  if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const plan=memberPlan(env),db=env.HITS,now=seconds();const id=await digest('membership:'+memberSite(env)+':'+hash+':'+nonce);
- if(source&&!allowedProduct(memberSite(env),source))throw Error('bad_source');
+ if(source&&!allowedOrderSource(memberSite(env),source))throw Error('bad_source');
  const old=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();if(old)return orderStatus(old);
  if(member?.suspended)throw Error('suspended');if(!await memberReady(env))throw Error('not_ready');
  await rate(db,'order:'+await digest(env.ADS_WATCH_SECRET+':'+ip),5);
@@ -113,3 +115,4 @@ export async function saveSpace(db,m,b){
  try{await db.batch(statements);}catch(e){if(/workspace_quota|storage_quota/.test(e.message))throw Error(e.message.includes('workspace_quota')?'workspace_quota':'storage_quota');throw Error('revision_conflict');}
  return {ok:true,id:b.id,revision:b.revision+1};
 }
+
