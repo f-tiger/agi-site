@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-22T07:55:10.494Z",
+  "asOf": "2026-10-23T07:54:18.262Z",
   "ok": true,
   "checks": [
     {
@@ -15,19 +15,11 @@
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "route.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
@@ -39,15 +31,23 @@
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "calls.agiscorecard.com",
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +55,7 @@
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-22T07:55:11.579Z",
+      "retrievedAt": "2026-10-23T07:54:18.669Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 82186.26327093487,
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "price": 81510.99288981568,
+          "sourceUpdatedAt": "2026-10-23T07:53:52.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2428.9763306700415,
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "price": 2398.656945562521,
+          "sourceUpdatedAt": "2026-10-23T07:53:52.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9996649965453789,
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
-          "deviationBps": -3.350034546211189
+          "price": 0.9995266410418736,
+          "sourceUpdatedAt": "2026-10-23T07:54:02.000Z",
+          "deviationBps": -4.733589581263908
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.999219113772069,
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
-          "deviationBps": -7.808862279310436
+          "price": 0.9989127688726015,
+          "sourceUpdatedAt": "2026-10-23T07:54:02.000Z",
+          "deviationBps": -10.872311273985025
         }
       ],
       "source": {
@@ -110,25 +110,79 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-22T07:55:11.114Z",
+      "retrievedAt": "2026-10-23T07:54:18.914Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-22T07:55:10.927Z"
+          "checkedAt": "2026-10-23T07:54:18.620Z"
         },
         {
           "id": "x402",
-          "status": "unavailable",
-          "checkedAt": "2026-10-22T07:55:10.956Z"
+          "status": "ok",
+          "checkedAt": "2026-10-23T07:54:18.620Z"
         },
         {
           "id": "ezkl",
-          "status": "unavailable",
-          "checkedAt": "2026-10-22T07:55:10.959Z"
+          "status": "ok",
+          "checkedAt": "2026-10-23T07:54:18.620Z"
         }
       ],
       "items": [
+        {
+          "title": "docs: add raxol_payments to third-party SDKs (#3107)",
+          "url": "https://github.com/x402-foundation/x402/commit/79263afac7eedf0133f0391945d73cd8ed3364fc",
+          "publishedAt": "2026-10-23T02:35:44.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(fetch): skip incompatible legacy accepts entries (#2730)",
+          "url": "https://github.com/x402-foundation/x402/commit/56054d8f6b05c5ed2994fca1dc81a6252afd9d42",
+          "publishedAt": "2026-10-22T23:50:47.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix: resolve post-merge SDK regressions (#3893)",
+          "url": "https://github.com/x402-foundation/x402/commit/2cf50ebbd76791a9a2905bc7df89be125b118eb4",
+          "publishedAt": "2026-10-22T19:30:31.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "docs(xrpl): add upto XRPL scheme specification (#3023)",
+          "url": "https://github.com/x402-foundation/x402/commit/2b06a54edf2b239c3bcf97aa5e514edcea63d777",
+          "publishedAt": "2026-10-22T17:00:56.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Document rpcUrl requirement for gas sponsoring extensions (#3889)",
+          "url": "https://github.com/x402-foundation/x402/commit/9c5090311d6dbe95dcf29b87a8fbb4b5b4162b7c",
+          "publishedAt": "2026-10-22T16:37:21.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Glamsterdam on Hoodi Postponed",
+          "url": "https://blog.ethereum.org/en/2026/10/22/glamsterdam-hoodi-delay",
+          "publishedAt": "2026-10-22T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
         {
           "title": "Glamsterdam Hoodi Testnet Announcement",
           "url": "https://blog.ethereum.org/en/2026/10/16/glamsterdam-hoodi-announcement",
@@ -164,148 +218,139 @@
           "sourceId": "ethereum",
           "kind": "rss",
           "task": "protocol-change"
-        },
-        {
-          "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
-          "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
-          "publishedAt": "2026-09-09T00:00:00.000Z",
-          "source": "Ethereum Foundation",
-          "sourceId": "ethereum",
-          "kind": "rss",
-          "task": "protocol-change"
         }
       ]
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-22T07:55:12.421Z",
+      "retrievedAt": "2026-10-23T07:54:19.548Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:53:52.000Z",
           "day": {
-            "percent": -0.6254164144577246,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -1.1067422261189952,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           },
           "week": {
-            "percent": 1.6775990439810817,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.7105445588151293,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:53:52.000Z",
           "day": {
-            "percent": -0.35616189955332,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -1.3425632691958733,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           },
           "week": {
-            "percent": 3.0827086733407283,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -1.9901561277842816,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:54:02.000Z",
           "day": {
-            "percent": 0.021429160357500088,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.01670212210461708,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:54:02.000Z"
           },
           "week": {
-            "percent": -0.004658234078425139,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.02665235384670117,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:54:02.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:54:02.000Z",
           "day": {
-            "percent": 0.019520129948302767,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.034617986420193425,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:54:02.000Z"
           },
           "week": {
-            "percent": 0.005375234799154249,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.02891440600174544,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:54:02.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:53:52.000Z",
           "day": {
-            "percent": -3.277431990360169,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -0.25519121807090484,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           },
           "week": {
-            "percent": 0.8169303584775633,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -9.183254802942331,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:53:52.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:41:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:41:57.000Z",
           "day": {
-            "percent": -0.7198154812806501,
-            "from": "2026-10-21T06:57:00.000Z",
-            "to": "2026-10-22T07:41:58.000Z"
+            "percent": -1.8513321322456422,
+            "from": "2026-10-22T06:57:01.000Z",
+            "to": "2026-10-23T07:41:57.000Z"
           },
           "week": {
-            "percent": -0.01401480863065796,
-            "from": "2026-10-15T06:57:02.000Z",
-            "to": "2026-10-22T07:41:58.000Z"
+            "percent": -7.139000315692545,
+            "from": "2026-10-16T06:57:02.000Z",
+            "to": "2026-10-23T07:41:57.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:54:58.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:41:57.000Z",
           "day": {
-            "percent": -4.648992880443981,
-            "from": "2026-10-21T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": 0.05950564535963654,
+            "from": "2026-10-22T07:00:00.000Z",
+            "to": "2026-10-23T07:41:57.000Z"
           },
           "week": {
-            "percent": -3.210983396813083,
-            "from": "2026-10-15T07:00:00.000Z",
-            "to": "2026-10-22T07:54:58.000Z"
+            "percent": -8.359450870728214,
+            "from": "2026-10-16T07:00:00.000Z",
+            "to": "2026-10-23T07:41:57.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-22T07:52:50.000Z",
+          "sourceUpdatedAt": "2026-10-23T07:52:47.000Z",
           "day": {
-            "percent": -6.362396193322029,
-            "from": "2026-10-21T06:52:59.000Z",
-            "to": "2026-10-22T07:52:50.000Z"
+            "percent": -0.3277849857910464,
+            "from": "2026-10-22T06:53:01.000Z",
+            "to": "2026-10-23T07:52:47.000Z"
           },
           "week": {
-            "percent": 7.205980223350994,
-            "from": "2026-10-15T06:53:00.000Z",
-            "to": "2026-10-22T07:52:50.000Z"
+            "percent": -0.373494781552397,
+            "from": "2026-10-16T06:53:01.000Z",
+            "to": "2026-10-23T07:52:47.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-22T07:55:12.000Z",
+    "asOf": "2026-10-23T07:54:19.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -314,7 +359,50 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/79263afac7eedf0133f0391945d73cd8ed3364fc",
+      "title": "docs: add raxol_payments to third-party SDKs (#3107)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/56054d8f6b05c5ed2994fca1dc81a6252afd9d42",
+      "title": "fix(fetch): skip incompatible legacy accepts entries (#2730)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/2cf50ebbd76791a9a2905bc7df89be125b118eb4",
+      "title": "fix: resolve post-merge SDK regressions (#3893)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/2b06a54edf2b239c3bcf97aa5e514edcea63d777",
+      "title": "docs(xrpl): add upto XRPL scheme specification (#3023)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/9c5090311d6dbe95dcf29b87a8fbb4b5b4162b7c",
+      "title": "Document rpcUrl requirement for gas sponsoring extensions (#3889)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/10/22/glamsterdam-hoodi-delay",
+      "title": "Glamsterdam on Hoodi Postponed",
+      "task": "protocol-change",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
