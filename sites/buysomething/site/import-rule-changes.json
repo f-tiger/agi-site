@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-22",
+ "generated": "2026-10-23",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-06-24",
+ "since": "2026-06-25",
  "queries": [
   "section 301",
   "section 232",
@@ -19,8 +19,24 @@
  "out_of_scope": "Case-specific trade-remedy paperwork is deliberately excluded: Commerce/ITA antidumping and countervailing notices, International Trade Commission investigation and scheduling notices, and Foreign-Trade Zones Board notices. They run to dozens a week and bind one product in one case; this radar is for the rules that apply across shipments. Check the ITC and ITA dockets directly if your product is under a case.",
  "failed_queries": [],
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
- "count": 21,
+ "count": 19,
  "changes": [
+  {
+   "document_number": "2026-21706",
+   "date": "2026-10-23",
+   "type": "Rule",
+   "title": "Implementing the Guiding and Establishing National Innovation for U.S. Stablecoins Act for the Issuance of Stablecoins by Entities Subject to the Jurisdiction of the Office of the Comptroller of the Currency",
+   "abstract": "The Office of the Comptroller of the Currency (OCC) is issuing regulations implementing the Guiding and Establishing National Innovation for U.S. Stablecoins Act regarding the issuance of payment stablecoins and certain related activities by entities subject to the OCC's jurisdiction.",
+   "agencies": [
+    "Treasury Department",
+    "Comptroller of the Currency"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/10/23/2026-21706/implementing-the-guiding-and-establishing-national-innovation-for-us-stablecoins-act-for-the",
+   "matched": [
+    "de minimis exemption"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-21600",
    "date": "2026-10-22",
@@ -305,54 +321,6 @@
    "url": "https://www.federalregister.gov/documents/2026/08/11/2026-16400/adjusting-imports-of-polysilicon-and-its-derivatives-into-the-united-states",
    "matched": [
     "section 232"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-12670",
-   "date": "2026-06-24",
-   "type": "Rule",
-   "title": "Indefinite Suspension of the De Minimis Exemption for Merchandise Arriving Through All Modes Other Than the International Postal Network",
-   "abstract": "This document amends the U.S. Customs and Border Protection (CBP) regulations to implement an indefinite suspension of the de minimis administrative exemption for imports valued at $800 or less arriving via all modes other than through the international postal network. This indefinite suspension means that all entri…",
-   "agencies": [
-    "Homeland Security Department",
-    "U.S. Customs and Border Protection"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other",
-   "matched": [
-    "de minimis exemption"
-   ],
-   "matched_in": "title_or_abstract"
-  },
-  {
-   "document_number": "2026-12669",
-   "date": "2026-06-24",
-   "type": "Rule",
-   "title": "Indefinite Suspension of the De Minimis Exemption for Mail Shipments and New Postal Informal Entry Process",
-   "abstract": "This document amends the U.S. Customs and Border Protection (CBP) regulations to implement an indefinite suspension of the de minimis administrative exemption for imports valued at $800 or less arriving through the international postal network. This document also establishes a new postal informal entry process for c…",
-   "agencies": [
-    "Homeland Security Department",
-    "U.S. Customs and Border Protection"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12669/indefinite-suspension-of-the-de-minimis-exemption-for-mail-shipments-and-new-postal-informal-entry",
-   "matched": [
-    "de minimis exemption"
-   ],
-   "matched_in": "title_or_abstract"
-  },
-  {
-   "document_number": "2026-12668",
-   "date": "2026-06-24",
-   "type": "Notice",
-   "title": "Test of the New Electronic Informal Entry Process for Mail",
-   "abstract": "This document announces that U.S. Customs and Border Protection (CBP) is conducting a test of a new electronic informal entry type for merchandise entering the United States through the international mail process. This notice provides a description of the new informal entry type 13--Informal Mail Entry, the eligible…",
-   "agencies": [
-    "Homeland Security Department",
-    "U.S. Customs and Border Protection"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12668/test-of-the-new-electronic-informal-entry-process-for-mail",
-   "matched": [
-    "de minimis exemption"
    ],
    "matched_in": "full_text_only"
   }
