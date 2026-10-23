@@ -74,6 +74,73 @@
       },
       "published": "2026-10-19"
     },
+    "/guide/trotec-ttk-30-e-betriebskosten.html": {
+      "modified": "2026-10-23",
+      "product": {
+        "brand": "Trotec",
+        "checked_at": "2026-10-23T08:35:42.070647+00:00",
+        "country": "DE",
+        "facts": [
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 2.2
+          },
+          {
+            "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
+            "key": "power_watts",
+            "label": "Leistungsaufnahme",
+            "unit": "W",
+            "value": 245.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "30 °C / 80 % r.F.",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 10.0
+          },
+          {
+            "context": "Abstand 1 m",
+            "key": "noise_db",
+            "label": "Geräuschangabe",
+            "unit": "dB(A)",
+            "value": 45.0
+          }
+        ],
+        "language": "de",
+        "market": {
+          "currency": "EUR",
+          "plug": null
+        },
+        "model": "TTK 30 E",
+        "name": "Luftentfeuchter TTK 30 E",
+        "power_watts": 245.0,
+        "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-30-e.html",
+        "source_hash": "664eb1d79550e22e319841c6feca45994bd4a8e16b80802062716436e360ff05",
+        "source_id": "trotec-de:573f8d06f6b2",
+        "source_urls": [
+          "https://de.trotec.com/shop/luftentfeuchter-ttk-30-e.html"
+        ]
+      },
+      "published": "2026-10-23"
+    },
     "/guide/trotec-ttk-32-e-betriebskosten.html": {
       "modified": "2026-10-17",
       "product": {
