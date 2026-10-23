@@ -28,6 +28,10 @@
    },
    {
     "n": 1,
+    "q": "use agi-scorecard for 8 graded agi-2027 predicti"
+   },
+   {
+    "n": 1,
     "q": "marketing services"
    },
    {
@@ -40,30 +44,30 @@
    }
   ]
  },
- "fetched": "2026-10-22",
+ "fetched": "2026-10-23",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/about": {
-   "n7": 83,
-   "p7": 35
-  },
-  "/ai-tools": {
    "n7": 79,
-   "p7": 36
+   "p7": 39
   },
-  "/invest": {
-   "n7": 77,
-   "p7": 33
+  "/agents/": {
+   "n7": 61,
+   "p7": 19
   },
-  "/narrow-vs-general-ai": {
-   "n7": 77,
-   "p7": 35
+  "/ai-infrastructure": {
+   "n7": 72,
+   "p7": 23
+  },
+  "/mentor": {
+   "n7": 142,
+   "p7": 55
   },
   "/search": {
-   "n7": 158,
-   "p7": 66
+   "n7": 241,
+   "p7": 73
   }
  },
  "site": "agiscorecard",

@@ -3,17 +3,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-garage.html",
-   "q": "thermostat für infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 100900
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.667,
    "page": "guide/akku-heizluefter.html",
    "q": "akku heizlüfter auto",
@@ -47,13 +36,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.775,
-   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
-   "q": "stand infrarotheizung",
-   "seed": "infrarotheizung",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel im badezimmer entfernen",
+   "seed": "schimmel entfernen",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 47900
+   "stand": "2026-10-22",
+   "v": 46150
   },
   {
    "heat": null,
@@ -92,18 +81,15 @@
    "v": 32900
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 3
-   },
+   "heat": null,
    "kind": "value",
-   "match": 0.875,
-   "page": "guide/heizluefter-stromverbrauch.html",
-   "q": "infrarotheizung berechnen",
+   "match": 0.667,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "ölradiator oder infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 29200
+   "stand": "2026-10-22",
+   "v": 27450
   },
   {
    "heat": null,
@@ -115,6 +101,39 @@
    "source": "related-queries",
    "stand": "2026-10-19",
    "v": 15800
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.7,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel aus textilien entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 3900
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "holzfenster schimmel entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 3900
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel kleidung entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 130
   },
   {
    "heat": null,
@@ -137,6 +156,50 @@
    "source": "related-queries",
    "stand": "2026-10-19",
    "v": 100
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schwarzen schimmel entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 70
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel dusche entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 50
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.712,
+   "page": "guide/schimmel-bad-fugen.html",
+   "q": "schimmel fugen bad entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 50
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "fugen schimmel entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 40
   }
  ],
  "first_party_demand": {
@@ -147,31 +210,31 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung hornbach",
+   "q": "papermoon infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 55350
+   "stand": "2026-10-22",
+   "v": 67150
+  },
+  {
+   "kind": "value",
+   "match": 0.567,
+   "page": "guide/epicooler-erfahrungen.html",
+   "q": "stiftung warentest infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 55950
   },
   {
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung wintergarten",
+   "q": "infrarotheizung bauhaus",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 52700
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "toom infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 46750
+   "stand": "2026-10-22",
+   "v": 51100
   },
   {
    "kind": "value",
@@ -182,6 +245,16 @@
    "source": "related-queries",
    "stand": "2026-10-20",
    "v": 44300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung wintergarten",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 43550
   },
   {
    "kind": "value",
@@ -197,11 +270,51 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung energiesparend",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 31200
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "infrarotheizung schreibtisch",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-14",
-   "v": 39050
+   "stand": "2026-10-22",
+   "v": 29300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung wohnmobil",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 29050
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "königstein infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 27400
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "steinfeld infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-22",
+   "v": 26750
   },
   {
    "kind": "value",
@@ -404,24 +517,14 @@
    "v": 40
   }
  ],
- "generated": "2026-10-22",
+ "generated": "2026-10-23",
  "geo": "DE",
- "heat_source": "measured 2026-10-22 (25 pages); no notes",
+ "heat_source": "measured 2026-10-23 (23 pages); no notes",
  "hot_pages": [
   {
    "n7": 5,
-   "p7": 4,
+   "p7": 3,
    "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 5,
-   "p7": 0,
-   "page": "/guide/thermovorhang-ratgeber.html"
-  },
-  {
-   "n7": 5,
-   "p7": 1,
-   "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
    "n7": 4,
@@ -429,14 +532,29 @@
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
+   "n7": 4,
+   "p7": 2,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+  },
+  {
+   "n7": 4,
+   "p7": 4,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 4,
+   "p7": 2,
+   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+  },
+  {
    "n7": 3,
-   "p7": 10,
+   "p7": 6,
    "page": "/"
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/guide/klimaanlage-kippfenster.html"
+   "p7": 2,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 3,
@@ -446,32 +564,17 @@
   {
    "n7": 3,
    "p7": 2,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
    "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
-   "n7": 3,
-   "p7": 7,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
    "n7": 2,
-   "p7": 11,
-   "page": "/en/guide/portable-ac-not-cooling.html"
+   "p7": 0,
+   "page": "/en/"
   },
   {
    "n7": 2,
    "p7": 1,
    "page": "/en/guide/portable-ac-skylight-roof-window.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
    "n7": 2,
@@ -482,22 +585,30 @@
    "n7": 2,
    "p7": 0,
    "page": "/guide/comfee-geraete-test.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/heizluefter-schaltet-sich-aus.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/heizluefter-stromsparend.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "avreno",
-  "infrarot heizkörper",
-  "ölradiator",
   "kärcher nass trockensauger",
   "saug wisch roboter test",
   "dyson wischsauger",
   "dreo atom 316",
   "powerstation",
-  "radiator",
   "salami",
   "selbstbedienungskasse",
+  "stockflecken entfernen wand",
   "fluss durch riga",
   "duschkopf",
   "meacodry arete one 12l",

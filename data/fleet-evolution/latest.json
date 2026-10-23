@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-22",
+  "as_of": "2026-10-23",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 8,
+    "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-21T07:58:20.222Z",
-    "health": "2026-10-21T13:20:22Z",
-    "ai_referrals": "2026-10-21T13:20:46Z",
-    "opportunities": "2026-10-21",
-    "autopilot_receipt": "2026-10-22"
+    "membership": "2026-10-22T07:55:25.112Z",
+    "health": "2026-10-22T13:20:06Z",
+    "ai_referrals": "2026-10-22T13:20:39Z",
+    "opportunities": "2026-10-22",
+    "autopilot_receipt": "2026-10-23"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-21T07:58:20.222Z",
+    "generated": "2026-10-22T07:55:25.112Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -116,6 +116,15 @@
   },
   "opportunities": [
     {
+      "theme": "samsamelo silicon valley selling trolley problem lies no link",
+      "site": null,
+      "state": "scout",
+      "score": 2.42,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "is there a temp phone number like temp email",
       "site": null,
       "state": "scout",
@@ -137,7 +146,16 @@
       "theme": "firefox add on to block the new credentials fill in behavior",
       "site": null,
       "state": "scout",
-      "score": 2.0,
+      "score": 2.07,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "are models getting better at software estimations of time effort cost",
+      "site": null,
+      "state": "scout",
+      "score": 2.02,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -153,6 +171,15 @@
     },
     {
       "theme": "is there a program to retrieve information about the currently focused window on",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "php based faq engine",
       "site": null,
       "state": "scout",
       "score": 2.0,
@@ -177,15 +204,6 @@
       "days_seen": 1,
       "demand": 0,
       "supply": 0
-    },
-    {
-      "theme": "open source tool to auto generate api regression tests from real traffic linux c",
-      "site": null,
-      "state": "scout",
-      "score": 1.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 3
     }
   ],
   "actions": [
@@ -247,9 +265,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 26,
-        "query": "infrarotheizung hornbach",
-        "value": 55350
+        "count": 31,
+        "query": "papermoon infrarotheizung",
+        "value": 67150
       },
       "mode": "queue"
     },
@@ -272,8 +290,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/search",
-        "n7": 158,
-        "p7": 66
+        "n7": 241,
+        "p7": 73
       },
       "mode": "queue"
     },
@@ -285,7 +303,7 @@
       "evidence": {
         "page": "/guide/klimaanlage-wohnmobil.html",
         "n7": 5,
-        "p7": 4
+        "p7": 3
       },
       "mode": "queue"
     },
@@ -295,7 +313,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 365,
+        "human_pv_28d": 379,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -306,7 +324,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 205,
+        "human_pv_28d": 213,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -317,7 +335,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 1673,
+        "human_pv_28d": 1881,
         "ai_ref_28d": 0
       },
       "mode": "queue"
