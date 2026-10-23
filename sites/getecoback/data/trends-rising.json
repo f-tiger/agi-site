@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-22",
+ "fetched": "2026-10-23",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -81,50 +81,50 @@
   "infrarotheizung": {
    "rising": [
     {
+     "q": "könighaus infrarotheizung thermostat",
+     "v": 113450
+    },
+    {
+     "q": "byecold infrarotheizung",
+     "v": 49950
+    },
+    {
      "q": "papermoon infrarotheizung",
-     "v": 67150
-    },
-    {
-     "q": "stiftung warentest infrarotheizung",
-     "v": 55950
-    },
-    {
-     "q": "infrarotheizung bauhaus",
-     "v": 51100
-    },
-    {
-     "q": "infrarotheizung wintergarten",
-     "v": 43550
-    },
-    {
-     "q": "infrarotheizung energiesparend",
-     "v": 31200
-    },
-    {
-     "q": "infrarotheizung schreibtisch",
-     "v": 29300
-    },
-    {
-     "q": "infrarotheizung wohnmobil",
-     "v": 29050
-    },
-    {
-     "q": "ölradiator oder infrarotheizung",
-     "v": 27450
-    },
-    {
-     "q": "königstein infrarotheizung",
-     "v": 27400
+     "v": 48250
     },
     {
      "q": "steinfeld infrarotheizung",
-     "v": 26750
+     "v": 37500
+    },
+    {
+     "q": "infrarotheizung garage",
+     "v": 35350
+    },
+    {
+     "q": "stand infrarotheizung",
+     "v": 34500
+    },
+    {
+     "q": "konvektorheizung",
+     "v": 33350
+    },
+    {
+     "q": "infrarotheizung auf rollen",
+     "v": 32550
+    },
+    {
+     "q": "infrarotheizung 600 watt mit thermostat",
+     "v": 32150
+    },
+    {
+     "q": "radiator",
+     "v": 31050
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-22",
+   "fetched": "2026-10-23",
    "polluted": false,
-   "last_attempt_at": "2026-10-22T09:33:44.797260+00:00",
+   "last_attempt_at": "2026-10-23T09:28:41.717217+00:00",
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
@@ -229,48 +229,50 @@
    "rising": [
     {
      "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 15600
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 11800
-    },
-    {
-     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 6750
-    },
-    {
-     "q": "wmf perfection 840l kaffeevollautomat",
-     "v": 6600
+     "v": 20850
     },
     {
      "q": "krups kaffeevollautomat intensity milk",
-     "v": 950
+     "v": 12700
+    },
+    {
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 10750
     },
     {
      "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 650
+     "v": 10600
     },
     {
      "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 300
+     "v": 9400
+    },
+    {
+     "q": "philips series 5500 kaffeevollautomat ep5547/90",
+     "v": 9300
+    },
+    {
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 8650
+    },
+    {
+     "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+     "v": 7350
+    },
+    {
+     "q": "de'longhi kaffeevollautomat",
+     "v": 150
     },
     {
      "q": "mini kaffeevollautomat",
-     "v": 60
-    },
-    {
-     "q": "kaffeevollautomat philips lattego",
-     "v": 50
-    },
-    {
-     "q": "philips lattego",
      "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-15",
-   "polluted": false
+   "fetched": "2026-10-23",
+   "polluted": false,
+   "last_attempt_at": "2026-10-23T09:29:42.914846+00:00",
+   "last_attempt_status": "ok"
   },
   "akku staubsauger": {
    "rising": [
