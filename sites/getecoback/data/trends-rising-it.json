@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-22",
+ "fetched": "2026-10-23",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
@@ -59,56 +59,28 @@
   "deumidificatore": {
    "auto": [
     "deumidificatore",
-    "deumidificatore casa",
     "deumidificatore portatile",
+    "deumidificatore casa",
     "deumidificatore dyson",
     "deumidificatore in inglese",
     "deumidificatore condizionatore",
-    "deumidificatore o condizionatore",
     "deumidificatore a parete",
-    "deumidificatore vs condizionatore",
-    "deumidificatore come funziona"
+    "deumidificatore o condizionatore",
+    "deumidificatore unieuro",
+    "deumidificatore industriale"
    ],
    "rising": [
     {
-     "q": "deumidificatore casa",
+     "q": "deumidificatore unieuro",
      "v": "new"
     },
     {
-     "q": "deumidificatore portatile",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore dyson",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore in inglese",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore condizionatore",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore o condizionatore",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore a parete",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore vs condizionatore",
-     "v": "new"
-    },
-    {
-     "q": "deumidificatore come funziona",
+     "q": "deumidificatore industriale",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-12"
+   "fetched": "2026-10-23"
   }
  }
 }
