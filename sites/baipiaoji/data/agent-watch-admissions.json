@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-22",
+ "checked": "2026-10-23",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3003,6 +3003,69 @@
    "first_attempt": "2026-10-21",
    "last_attempt": "2026-10-21",
    "attemptedAt": "2026-10-21T05:15:35.227Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "bg-namerimidom-namerimidom": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "biz-keepingtrack-dejavu": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "bot-loro-loro": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "br-music360-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "br-nineoneninetwo-9192": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "br-nvoip-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "br-pushinpay-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-23",
+   "last_attempt": "2026-10-23",
+   "attemptedAt": "2026-10-23T05:17:52.922Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -14808,6 +14871,324 @@
    "date": "2026-10-22",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "best-creditcards-mcp",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "best-uneed-directory",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bible-vineverse-vineverse",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bible-void-reader",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bid-scope-aec",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bio-atlarium-habitat-database",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bio-untangle-untangle",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "biz-nibiashara-shelves",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "biz-sri-test-verifier",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "biz-yappy-yappy",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "biz-yappy-yappy-docs",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blog-tenjin-tenjin",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bo-paralelo-mcp",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-beck-beck",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-bommel-bommel",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-forum-forum",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-goodbotbad-goodbotbadbot",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-mailbox-mailbox",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-myagi-openagent-registry",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bot-persnickety-bridal",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bot-yeehaw-events",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "br-9bot-mcp",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-adoteca-adoteca",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "br-agentspace-agentspace",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-babacerta-babacerta",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-brasilnfe-fiscal",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "br-carpedia-carpedia",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-escoladeradio-public",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-fipex-mcp",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "br-foxnfe-mcp",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-jettracker-jet-tracker",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-lensas-optical-intelligence",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-loqal-loqal",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-minutaia-pesquisa-juridica",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-mupag-mcp-server",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-notaguard-notaguard",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-obraaberta-obraaberta",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-oiair-marketplace",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-redentia-redentia",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-signdocs-mcp-server",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "br-sistemasinovadores-zp-nexus",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-upcampo-upi",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "br-wikijuridica-acervo-juridico",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brussels-toots-tickets",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "build-arca-mcp-arca-mcp-server",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "build-aurora-aurora",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "build-exascale-osint",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "build-pdfs-pdfs-build",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "build-uplink-uplink",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "builders-bridgetown-bridge-town",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "by-ai-belarus-registry",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "by-ai-tender-tenders",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bz-manda-manda",
+   "date": "2026-10-23",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "UI micro interactions prompts for AI",
+      "url": "https://www.typeui.sh/micro-interactions",
+      "host": "typeui.sh",
+      "src": "https://news.ycombinator.com/item?id=50199290",
+      "points": 75,
+      "comments": 42,
+      "found": "2026-10-23",
+      "status": "candidate"
+    },
+    {
       "name": "Jev Cards, Can you beat a vision model at a picture quiz?",
       "url": "https://jevcards.com",
       "host": "jevcards.com",
@@ -429,17 +439,7 @@
       "comments": 23,
       "found": "2026-09-09",
       "status": "candidate"
-    },
-    {
-      "name": "Engrim – A universal, local-first SQLite memory engine for AI CLIs",
-      "url": "https://github.com/timgordontg/engrim",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49594008",
-      "points": 85,
-      "comments": 50,
-      "found": "2026-09-08",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-22"
+  "updated": "2026-10-23"
 }

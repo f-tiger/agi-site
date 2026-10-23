@@ -1,10 +1,79 @@
 {
-  "generated": "2026-10-22",
+  "generated": "2026-10-23",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 12,
+  "pending": 11,
   "items": [
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-23",
+      "first_seen": "2026-10-22",
+      "added": [
+        "0026prompt",
+        "0026video",
+        "100%",
+        "10m",
+        "10mb",
+        "10minutes",
+        "10个",
+        "10分钟",
+        "12hours",
+        "12m",
+        "12mb",
+        "12months"
+      ],
+      "removed": [
+        "10张",
+        "114b",
+        "1b",
+        "1k",
+        "2k",
+        "3k",
+        "4b",
+        "50字",
+        "5b",
+        "5秒",
+        "608b",
+        "6b"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-10-23",
+      "first_seen": "2026-10-22",
+      "added": [
+        "$1",
+        "$12",
+        "$13",
+        "$14",
+        "$15",
+        "$16",
+        "$17",
+        "$18",
+        "$19",
+        "$2",
+        "$20",
+        "$21"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-23",
+      "first_seen": "2026-10-22",
+      "added": [],
+      "removed": [
+        "5b",
+        "77b"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
@@ -83,41 +152,6 @@
         "70k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-21",
-      "first_seen": "2026-10-20",
-      "added": [
-        "054b",
-        "1%",
-        "101b",
-        "15%",
-        "22%",
-        "24%",
-        "28%",
-        "3%",
-        "4%",
-        "48%",
-        "484b",
-        "5%"
-      ],
-      "removed": [
-        "0,b",
-        "0,s",
-        "0.05s",
-        "0.15s",
-        "0.25s",
-        "0.2s",
-        "0.35s",
-        "0.3s",
-        "0.4s",
-        "0.6s",
-        "0.8s",
-        "0026b"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "cloudflare-workers-ai",
@@ -376,27 +410,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-09",
-      "first_seen": "2026-10-08",
-      "added": [],
-      "removed": [
-        "15秒",
-        "16秒",
-        "1个",
-        "1秒",
-        "3064b",
-        "3207b",
-        "5个",
-        "72668b",
-        "786579b",
-        "9543b",
-        "98b"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "huggingface",
       "url": "https://huggingface.co/docs/inference-providers/pricing",
       "confirmed": "2026-10-09",
@@ -579,19 +592,6 @@
         "90%"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-09-25",
-      "first_seen": "2026-09-24",
-      "added": [
-        "3000万"
-      ],
-      "removed": [
-        "2000万"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "kimi",

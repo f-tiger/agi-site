@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-22",
+ "generated": "2026-10-23",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "gamma",
-  "gaoding",
-  "gemini",
-  "gemini-cli",
-  "gezhe",
-  "google-ai-studio",
-  "gptzero",
-  "grammarly"
+  "groq",
+  "guojia-fanzha",
+  "heygen",
+  "huggingface",
+  "ideogram",
+  "jsdesign",
+  "krea",
+  "languagetool"
  ],
- "cursor": "grammarly",
+ "cursor": "languagetool",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -650,7 +650,7 @@
    "name": "Groq",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -684,7 +684,7 @@
    "name": "国家反诈中心",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1689,7 +1689,7 @@
    "name": "HeyGen",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1697,13 +1697,13 @@
      "url": "https://heygen.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 35
+     "tokens": 20
     }
    ],
    "best": {
     "url": "https://heygen.com/pricing",
-    "tokens": 35,
-    "excerpt": "Paid plans include a monthly credit allocation you spend across all features. For solo creators, the Creator plan costs $29/month (or $24/month if you pay annually). For advanced individuals, Pro starts at $49/month and scales up to tiers with more credits per month. For teams looking to create and collaborate, the Business plan costs $149/month plus $20/seat/month. What are credits? Credits are HeyGen&#x27;s single currency for video and asset creation. Every paid plan includes a monthly credit allocation, which you can use across different HeyGen features. The number of credits a video or asset uses can vary based on which AI model is used, video duration, and the complexity of the generat"
+    "tokens": 20,
+    "excerpt": "onal video creation easier than ever. For Individuals For Businesses Free Creator Pro Monthly Yearly 2 months free Free $0/mo For trying it out Get started , Free Explore AI video creation 3 videos a month, watermarked Videos up to 1 minute each Access to Avatar IV and Video Agent One Custom Video Avatar, plus 500+ ready-made presenters 30+ languages Monthly Yearly 2 months free Creator $29 / mo For publishing video Get started , Creator Access to advanced AI video generation Avatar III and Avatar IV, our proven AI Avatar engines Avatar V, with limited usage Video Agent, with expanded access HeyGen Voice, with up to 10 hours of text to speech HeyGen Video 1: text, image, and reference to vid"
    }
   },
   "huggingface": {
@@ -1711,14 +1711,14 @@
    "name": "Hugging Face",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://huggingface.co/docs/inference-providers/pricing",
      "status": 200,
-     "bytes": 139825,
+     "bytes": 151461,
      "tokens": 4
     }
    ],
@@ -1733,7 +1733,7 @@
    "name": "Ideogram",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1793,7 +1793,7 @@
    "name": "即时设计",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1827,7 +1827,7 @@
    "name": "Krea AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-11",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1841,7 +1841,7 @@
    "best": {
     "url": "https://krea.ai/pricing",
     "tokens": 42,
-    "excerpt": "mparisons across different areas of our platform. Compare plans Select plans to compare 3 plans max Basic Pro Max Basic $5.25 /mo Pro $21 /mo Max $63 /mo svg]:-rotate-45 focus-visible:border-action focus-visible:ring-action text-primary-900 min-h-0 items-center gap-4 rounded-md py-0 text-base leading-6 font-medium shadow-none transition-opacity hover:no-underline focus-visible:ring-[3px] dark:text-white [&amp;[data-state=open]_.comparison-mobile-accordion-chevron]:rotate-180\" id=\"bits-s22\" aria-expanded=\"false\" aria-disabled=\"false\" data-state=\"closed\" data-orientation=\"vertical\" data-accordion-trigger=\"\" tabindex=\"0\"> Features &amp; License Access to Krea Agent svg]:pointer-events-none [&am"
+    "excerpt": "mparisons across different areas of our platform. Compare plans Select plans to compare 3 plans max Basic Pro Max Basic $5.25 /mo Pro $21 /mo Max $63 /mo svg]:-rotate-45 focus-visible:border-action focus-visible:ring-action text-primary-900 min-h-0 items-center gap-4 rounded-md py-0 text-base leading-6 font-medium shadow-none transition-opacity hover:no-underline focus-visible:ring-[3px] dark:text-white [&amp;[data-state=open]_.comparison-mobile-accordion-chevron]:rotate-180\" id=\"bits-s32\" aria-expanded=\"false\" aria-disabled=\"false\" data-state=\"closed\" data-orientation=\"vertical\" data-accordion-trigger=\"\" tabindex=\"0\"> Features &amp; License Access to Krea 3 svg]:pointer-events-none [&amp;>s"
    }
   },
   "languagetool": {
@@ -1849,7 +1849,7 @@
    "name": "LanguageTool",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-10-12",
+   "probed": "2026-10-23",
    "env": "runner",
    "state": "ready",
    "tried": [
