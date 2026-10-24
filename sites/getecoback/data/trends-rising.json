@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-23",
+ "fetched": "2026-10-24",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -228,36 +228,36 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 20850
-    },
-    {
      "q": "krups kaffeevollautomat intensity milk",
-     "v": 12700
-    },
-    {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 10750
-    },
-    {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 10600
-    },
-    {
-     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-     "v": 9400
+     "v": 14100
     },
     {
      "q": "philips series 5500 kaffeevollautomat ep5547/90",
-     "v": 9300
+     "v": 10250
     },
     {
-     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 10150
+    },
+    {
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 9800
+    },
+    {
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 9250
+    },
+    {
+     "q": "wmf perfection 840l kaffeevollautomat",
      "v": 8650
     },
     {
      "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 7350
+     "v": 7550
+    },
+    {
+     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+     "v": 6650
     },
     {
      "q": "de'longhi kaffeevollautomat",
@@ -269,57 +269,59 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-23",
+   "fetched": "2026-10-24",
    "polluted": false,
-   "last_attempt_at": "2026-10-23T09:29:42.914846+00:00",
+   "last_attempt_at": "2026-10-24T09:00:31.030202+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
    "rising": [
     {
-     "q": "ford puma",
-     "v": 20500
+     "q": "dyson purifier cool pc1",
+     "v": 10000
     },
     {
      "q": "levoit akku staubsauger lvac 200 max",
      "v": 650
     },
     {
-     "q": "dyson cool ventilator",
-     "v": 550
+     "q": "bosch unlimited 10 akku-staubsauger bts1042wac",
+     "v": 400
+    },
+    {
+     "q": "dreame r20",
+     "v": 300
+    },
+    {
+     "q": "philips friteuse",
+     "v": 170
     },
     {
      "q": "sky scanner",
-     "v": 550
+     "v": 140
     },
     {
-     "q": "lululemon trinkflasche",
-     "v": 400
+     "q": "dyson cool ventilator",
+     "v": 140
     },
     {
-     "q": "lululemon rucksack",
-     "v": 400
+     "q": "levoit akku staubsauger",
+     "v": 120
     },
     {
-     "q": "bosch unlimited 10 akku-staubsauger bts1042wac",
-     "v": 350
+     "q": "haarstyler",
+     "v": 120
     },
     {
-     "q": "ventilator dyson",
-     "v": 250
-    },
-    {
-     "q": "dyson tp7a",
-     "v": 250
-    },
-    {
-     "q": "ford",
-     "v": 190
+     "q": "grundig akku staubsauger",
+     "v": 120
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-16",
-   "polluted": true
+   "fetched": "2026-10-24",
+   "polluted": false,
+   "last_attempt_at": "2026-10-24T09:01:32.531443+00:00",
+   "last_attempt_status": "ok"
   },
   "matratze": {
    "rising": [
