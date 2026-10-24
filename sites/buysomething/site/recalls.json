@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-23",
+ "generated": "2026-10-24",
  "window_days": 365,
- "since": "2025-10-23",
+ "since": "2025-10-24",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -154,17 +154,9 @@
    "stale": false
   },
   "heatless-curler": {
-   "n": 1,
-   "latest": "2025-10-23",
-   "items": [
-    {
-     "id": 10447,
-     "date": "2025-10-23",
-     "title": "J & D Brush Recalls Bio Ionic Hair Curling Irons Due to Burn Hazard",
-     "hazard": "The barrel of the curling iron can snap and detach, posing a burn hazard to consumers.",
-     "url": "https://www.cpsc.gov/Recalls/2026/J-D-Brush-Recalls-Bio-Ionic-Hair-Curling-Irons-Due-to-Burn-Hazard"
-    }
-   ],
+   "n": 0,
+   "latest": null,
+   "items": [],
    "keywords": [
     "hair curler",
     "curling"
