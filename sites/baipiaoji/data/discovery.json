@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Corgi, a helpful {agent, terminal} multiplexer",
+      "url": "https://corgi.computer/",
+      "host": "corgi.computer",
+      "src": "https://news.ycombinator.com/item?id=50214373",
+      "points": 60,
+      "comments": 13,
+      "found": "2026-10-24",
+      "status": "candidate"
+    },
+    {
+      "name": "We had AI write a wiki from 45k Enron emails, every fact cited",
+      "url": "https://www.thisandthat.chat/enron/",
+      "host": "thisandthat.chat",
+      "src": "https://news.ycombinator.com/item?id=50207620",
+      "points": 58,
+      "comments": 53,
+      "found": "2026-10-24",
+      "status": "candidate"
+    },
+    {
       "name": "UI micro interactions prompts for AI",
       "url": "https://www.typeui.sh/micro-interactions",
       "host": "typeui.sh",
@@ -429,17 +449,7 @@
       "comments": 21,
       "found": "2026-09-10",
       "status": "candidate"
-    },
-    {
-      "name": "LLM Attention Visualization",
-      "url": "https://ishamf.dev/p/llm-attention-visualizer/",
-      "host": "ishamf.dev",
-      "src": "https://news.ycombinator.com/item?id=49613068",
-      "points": 147,
-      "comments": 23,
-      "found": "2026-09-09",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-23"
+  "updated": "2026-10-24"
 }

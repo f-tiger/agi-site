@@ -1,10 +1,64 @@
 {
-  "generated": "2026-10-23",
+  "generated": "2026-10-24",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
   "pending": 11,
   "items": [
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-10-24",
+      "first_seen": "2026-10-23",
+      "added": [
+        "$30",
+        "10,000credits",
+        "100,000credits",
+        "100gb",
+        "20,000credits",
+        "3,000credits",
+        "30,000credits",
+        "5,000credits",
+        "50,000credits"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-10-24",
+      "first_seen": "2026-10-23",
+      "added": [
+        "21.883m",
+        "22.849m",
+        "22.9m"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-10-24",
+      "first_seen": "2026-10-23",
+      "added": [
+        "$1",
+        "$17",
+        "$18",
+        "$2",
+        "$24",
+        "$25",
+        "$26",
+        "$27",
+        "$28",
+        "$29",
+        "$3",
+        "$30"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",
@@ -118,28 +172,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-10-22",
-      "first_seen": "2026-10-21",
-      "added": [],
-      "removed": [
-        "$1",
-        "$15",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100words",
-        "10minutes",
-        "11minutes",
-        "13,500credits"
-      ],
-      "checked_then": "2026-08-02"
-    },
-    {
       "slug": "cline",
       "url": "https://cline.bot",
       "confirmed": "2026-10-22",
@@ -230,28 +262,6 @@
       ],
       "removed": [
         "36.2k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-10-18",
-      "first_seen": "2026-10-17",
-      "added": [
-        "135%",
-        "18k"
-      ],
-      "removed": [
-        "10.32m",
-        "13.569m",
-        "18.438m",
-        "22.375m",
-        "26.77m",
-        "27.458m",
-        "32.664m",
-        "8.904m",
-        "9.956m"
       ],
       "checked_then": "2026-08-04"
     },
@@ -541,25 +551,6 @@
         "6047b"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-09-26",
-      "first_seen": "2026-09-25",
-      "added": [],
-      "removed": [
-        "$30",
-        "10,000credits",
-        "100,000credits",
-        "100gb",
-        "20,000credits",
-        "3,000credits",
-        "30,000credits",
-        "5,000credits",
-        "50,000credits"
-      ],
-      "checked_then": "2026-08-06"
     },
     {
       "slug": "fastgpt",

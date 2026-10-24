@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-23",
+ "checked": "2026-10-24",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3069,6 +3069,51 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "ca-veilpoint-opportunity-exchange": {
+   "attempts": 1,
+   "first_attempt": "2026-10-24",
+   "last_attempt": "2026-10-24",
+   "attemptedAt": "2026-10-24T04:59:36.505Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "ca-wiremi-marketing-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-24",
+   "last_attempt": "2026-10-24",
+   "attemptedAt": "2026-10-24T04:59:36.505Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "cards-klaro-klaro-cards": {
+   "attempts": 1,
+   "first_attempt": "2026-10-24",
+   "last_attempt": "2026-10-24",
+   "attemptedAt": "2026-10-24T04:59:36.505Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "unsafe-url"
+  },
+  "cash-flat-flatcash-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-24",
+   "last_attempt": "2026-10-24",
+   "attemptedAt": "2026-10-24T04:59:36.505Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "cash-forage-forage": {
+   "attempts": 1,
+   "first_attempt": "2026-10-24",
+   "last_attempt": "2026-10-24",
+   "attemptedAt": "2026-10-24T04:59:36.505Z",
+   "source_http": 503,
+   "repo_http": null,
+   "reason": "source HTTP 503"
   }
  },
  "admitted": [
@@ -15189,6 +15234,336 @@
    "date": "2026-10-23",
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "bzh-mana-mana",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-905trades-business-card",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-agenceelan-revoir",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-ai-arena-agent-tools",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-airiskmanagement-shadow-ai-list",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-artsdata-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ca-bakhour-profitcollector",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-bluecraneworks-forms",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ca-canada-payroll-canada-payroll",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-commercialgaragedoorman-business-card",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-creditgps-canadian-credit",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "ca-dinilu-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-entogo-knowledge",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-findmyfarmer-farms",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-freelancertax-freelancertax",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-garagedoorman-business-card",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-govradar-govradar",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-lovethenorth-public-videos",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-maplev-tesla-collision-parts",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-mattherbert-offers",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-myoutfitters-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-netgrant-canadian-grants",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ca-nlledger-nl-ledger",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-oathready-citizenship-test",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-omniaauto-listings-canada",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-omniapps-sairen",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-parksopen-parksopen",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-sreddy-sreddy",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-structureclerk-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-swiftsign-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ca-taparcelle-foncier",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ca-tradebasis-automotive-appraisal",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "camp-alert-alertcamp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "capital-hove-read-only-local-mysql-mcp-server",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "capital-hove-read-only-local-postgres-mcp-server",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cards-dearhuman-dearhuman",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "care-fysio-discovery",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "care-vitena-directory",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "casa-find-me-sub1-send-email-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cash-u-ucash-pay",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cat-2022-catalunya-2022",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cat-idescat-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cc-accrue-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-bestaffiliateprograms-directory",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-captcha-captchacc",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cc-contexta-contexta-mcp",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cc-easydata-data",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-joules-coach",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-operandi-operandi",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cc-orionlabsone-orion-agent-kit",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cc-pipic-pipic",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-placetobe-events",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-rockpool-ai-deals-ai-deals-sentinel",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-sendhq-sendhq",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-ssave-tiktok-instagram-downloader",
+   "date": "2026-10-24",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
