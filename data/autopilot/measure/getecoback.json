@@ -2,12 +2,12 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 11,
+    "n7": 12,
     "p7": 11
    },
    "btu_calc": {
-    "n7": 11,
-    "p7": 10
+    "n7": 9,
+    "p7": 11
    },
    "buyer_view": {
     "n7": 2,
@@ -18,12 +18,12 @@
     "p7": 0
    },
    "feuchte_now": {
-    "n7": 9,
+    "n7": 10,
     "p7": 8
    },
    "heat_now": {
     "n7": 0,
-    "p7": 2
+    "p7": 1
    },
    "heizkosten_calc": {
     "n7": 1,
@@ -31,31 +31,31 @@
    },
    "laundry_view": {
     "n7": 3,
-    "p7": 2
+    "p7": 1
    },
    "page_view": {
-    "n7": 101,
-    "p7": 109
+    "n7": 98,
+    "p7": 98
    },
    "popup_click": {
     "n7": 2,
     "p7": 1
    },
    "popup_close": {
-    "n7": 9,
-    "p7": 11
+    "n7": 11,
+    "p7": 9
    },
    "popup_view": {
-    "n7": 26,
-    "p7": 24
+    "n7": 27,
+    "p7": 20
    },
    "seal_fit": {
     "n7": 1,
     "p7": 0
    },
    "strom_now": {
-    "n7": 13,
-    "p7": 15
+    "n7": 16,
+    "p7": 9
    },
    "stromkosten_calc": {
     "n7": 1,
@@ -63,20 +63,20 @@
    },
    "strompreis_api": {
     "n7": 0,
-    "p7": 3
+    "p7": 2
    },
    "video_play": {
-    "n7": 2,
-    "p7": 1
+    "n7": 1,
+    "p7": 2
    },
    "watt_calc": {
     "n7": 0,
-    "p7": 2
+    "p7": 1
    }
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-23",
+ "fetched": "2026-10-24",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -97,10 +97,6 @@
    "n7": 2,
    "p7": 0
   },
-  "/guide/comfee-geraete-test.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/heizluefter-schaltet-sich-aus.html": {
    "n7": 2,
    "p7": 0
@@ -112,6 +108,10 @@
   "/guide/heizluefter-stromverbrauch.html": {
    "n7": 3,
    "p7": 2
+  },
+  "/guide/heizung-20-qm.html": {
+   "n7": 2,
+   "p7": 0
   },
   "/guide/heizung-50-qm.html": {
    "n7": 2,
@@ -138,11 +138,11 @@
    "p7": 1
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 5,
-   "p7": 3
+   "n7": 2,
+   "p7": 5
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 4,
+   "n7": 5,
    "p7": 2
   },
   "/guide/midea-geraete-test.html": {
@@ -154,8 +154,8 @@
    "p7": 2
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 3,
-   "p7": 2
+   "n7": 4,
+   "p7": 1
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 2,
@@ -163,15 +163,11 @@
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 4,
-   "p7": 4
-  },
-  "/kontakt.html": {
-   "n7": 2,
-   "p7": 1
+   "p7": 2
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
    "n7": 4,
-   "p7": 2
+   "p7": 1
   }
  },
  "site": "getecoback",

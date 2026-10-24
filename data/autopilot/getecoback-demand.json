@@ -4,6 +4,17 @@
    "heat": null,
    "kind": "value",
    "match": 0.667,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "könighaus infrarotheizung thermostat",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 113450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
    "page": "guide/akku-heizluefter.html",
    "q": "akku heizlüfter auto",
    "seed": "heizlüfter",
@@ -58,6 +69,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 1.0,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "infrarotheizung garage",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 35350
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.775,
    "page": "guide/infrarotheizung-badezimmer.html",
    "q": "elektrische heizung",
@@ -65,6 +87,17 @@
    "source": "related-queries",
    "stand": "2026-10-20",
    "v": 34600
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.775,
+   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
+   "q": "stand infrarotheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 34500
   },
   {
    "heat": {
@@ -84,12 +117,23 @@
    "heat": null,
    "kind": "value",
    "match": 0.667,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "ölradiator oder infrarotheizung",
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "infrarotheizung auf rollen",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 27450
+   "stand": "2026-10-23",
+   "v": 32550
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.96,
+   "page": "guide/infrarotheizung-ratgeber.html",
+   "q": "infrarotheizung 600 watt mit thermostat",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 32150
   },
   {
    "heat": null,
@@ -210,31 +254,21 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "papermoon infrarotheizung",
+   "q": "byecold infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 67150
-  },
-  {
-   "kind": "value",
-   "match": 0.567,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "stiftung warentest infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 55950
+   "stand": "2026-10-23",
+   "v": 49950
   },
   {
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung bauhaus",
+   "q": "papermoon infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 51100
+   "stand": "2026-10-23",
+   "v": 48250
   },
   {
    "kind": "value",
@@ -245,16 +279,6 @@
    "source": "related-queries",
    "stand": "2026-10-20",
    "v": 44300
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung wintergarten",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 43550
   },
   {
    "kind": "value",
@@ -270,51 +294,31 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung energiesparend",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 31200
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung schreibtisch",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 29300
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung wohnmobil",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 29050
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "königstein infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 27400
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "steinfeld infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 26750
+   "stand": "2026-10-23",
+   "v": 37500
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "konvektorheizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 33350
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 20850
   },
   {
    "kind": "value",
@@ -328,13 +332,13 @@
   },
   {
    "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "match": 0.0,
+   "page": null,
+   "q": "krups kaffeevollautomat intensity milk",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 15600
+   "stand": "2026-10-23",
+   "v": 12700
   },
   {
    "kind": "value",
@@ -343,8 +347,18 @@
    "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 11800
+   "stand": "2026-10-23",
+   "v": 10750
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 10600
   },
   {
    "kind": "value",
@@ -358,53 +372,53 @@
   },
   {
    "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
-   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 6750
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "wmf perfection 840l kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 6600
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "krups kaffeevollautomat intensity milk",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 950
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 650
-  },
-  {
-   "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
    "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 300
+   "stand": "2026-10-23",
+   "v": 9400
+  },
+  {
+   "kind": "value",
+   "match": 0.15,
+   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "q": "philips series 5500 kaffeevollautomat ep5547/90",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 9300
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 8650
+  },
+  {
+   "kind": "value",
+   "match": 0.15,
+   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 7350
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-23",
+   "v": 150
   },
   {
    "kind": "value",
@@ -468,16 +482,6 @@
   },
   {
    "kind": "value",
-   "match": 0.475,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-15",
-   "v": 60
-  },
-  {
-   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "alvi matratze",
@@ -488,12 +492,12 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "kaffeevollautomat philips lattego",
+   "match": 0.475,
+   "page": "guide/pro-breeze-luftentfeuchter-test.html",
+   "q": "mini kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-15",
+   "stand": "2026-10-23",
    "v": 50
   },
   {
@@ -517,17 +521,12 @@
    "v": 40
   }
  ],
- "generated": "2026-10-23",
+ "generated": "2026-10-24",
  "geo": "DE",
- "heat_source": "measured 2026-10-23 (23 pages); no notes",
+ "heat_source": "measured 2026-10-24 (22 pages); no notes",
  "hot_pages": [
   {
    "n7": 5,
-   "p7": 3,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 4,
    "p7": 2,
    "page": "/guide/luftentfeuchter-keller.html"
   },
@@ -538,12 +537,17 @@
   },
   {
    "n7": 4,
-   "p7": 4,
-   "page": "/guide/was-bedeutet-btu.html"
+   "p7": 1,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 4,
    "p7": 2,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 4,
+   "p7": 1,
    "page": "/waeschetrockner-oder-luftentfeuchter.html"
   },
   {
@@ -560,11 +564,6 @@
    "n7": 3,
    "p7": 1,
    "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 2,
@@ -584,17 +583,22 @@
   {
    "n7": 2,
    "p7": 0,
-   "page": "/guide/comfee-geraete-test.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
    "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/heizluefter-stromsparend.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/heizung-20-qm.html"
+  },
+  {
+   "n7": 2,
+   "p7": 1,
+   "page": "/guide/heizung-50-qm.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -606,6 +610,7 @@
   "dyson wischsauger",
   "dreo atom 316",
   "powerstation",
+  "radiator",
   "salami",
   "selbstbedienungskasse",
   "stockflecken entfernen wand",
@@ -615,8 +620,7 @@
   "dieter glawischnig",
   "bett1 de",
   "kinderbett 90x200",
-  "tineco",
-  "philips lattego"
+  "tineco"
  ],
  "site": "getecoback",
  "source_notes": [],

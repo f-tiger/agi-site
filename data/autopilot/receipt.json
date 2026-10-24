@@ -17,11 +17,11 @@
    },
    "notes": [
     "34 URL(s) left untouched for want of a defensible date",
-    "heat: measured 2026-10-23 (5 pages); no notes"
+    "heat: measured 2026-10-24 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -46,13 +46,13 @@
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (portable bottle warmer, robot pet companion). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (portable bottle warmer). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
-    "heat: measured 2026-10-23 (0 pages); no notes"
+    "heat: measured 2026-10-24 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -64,9 +64,9 @@
    "counts": {
     "bootstrapped": 0,
     "changed": 0,
-    "covered": 18,
+    "covered": 22,
     "demand_terms": 66,
-    "gaps": 31,
+    "gaps": 27,
     "hot_pages": 15,
     "offtopic": 17,
     "pages": 279,
@@ -75,11 +75,11 @@
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-10-23 (23 pages); no notes"
+    "heat: measured 2026-10-24 (22 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -105,7 +105,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -131,7 +131,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -140,11 +140,12 @@
   {
    "changed_urls": [
     "https://thedollscout.com/de/series.html",
-    "https://thedollscout.com/de/series/smiski-dressing.html",
-    "https://thedollscout.com/de/series/smiski-exercising.html",
-    "https://thedollscout.com/de/series/smiski-moving.html",
-    "https://thedollscout.com/de/series/smiski-sunday.html",
-    "https://thedollscout.com/de/series/smiski-work.html",
+    "https://thedollscout.com/de/series/smiski-bath-series.html",
+    "https://thedollscout.com/de/series/smiski-bed-series.html",
+    "https://thedollscout.com/de/series/smiski-cheer.html",
+    "https://thedollscout.com/de/series/smiski-living-series.html",
+    "https://thedollscout.com/de/series/smiski-museum.html",
+    "https://thedollscout.com/de/series/smiski-yoga-series.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/de/series/sonny-angel-animal-series-3.html",
@@ -156,11 +157,12 @@
     "https://thedollscout.com/de/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/de/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/series.html",
-    "https://thedollscout.com/series/smiski-dressing.html",
-    "https://thedollscout.com/series/smiski-exercising.html",
-    "https://thedollscout.com/series/smiski-moving.html",
-    "https://thedollscout.com/series/smiski-sunday.html",
-    "https://thedollscout.com/series/smiski-work.html",
+    "https://thedollscout.com/series/smiski-bath-series.html",
+    "https://thedollscout.com/series/smiski-bed-series.html",
+    "https://thedollscout.com/series/smiski-cheer.html",
+    "https://thedollscout.com/series/smiski-living-series.html",
+    "https://thedollscout.com/series/smiski-museum.html",
+    "https://thedollscout.com/series/smiski-yoga-series.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/series/sonny-angel-animal-series-3.html",
@@ -172,11 +174,12 @@
     "https://thedollscout.com/series/sonny-angel-sweets-series.html",
     "https://thedollscout.com/series/sonny-angel-vegetable-series.html",
     "https://thedollscout.com/zh/series.html",
-    "https://thedollscout.com/zh/series/smiski-dressing.html",
-    "https://thedollscout.com/zh/series/smiski-exercising.html",
-    "https://thedollscout.com/zh/series/smiski-moving.html",
-    "https://thedollscout.com/zh/series/smiski-sunday.html",
-    "https://thedollscout.com/zh/series/smiski-work.html",
+    "https://thedollscout.com/zh/series/smiski-bath-series.html",
+    "https://thedollscout.com/zh/series/smiski-bed-series.html",
+    "https://thedollscout.com/zh/series/smiski-cheer.html",
+    "https://thedollscout.com/zh/series/smiski-living-series.html",
+    "https://thedollscout.com/zh/series/smiski-museum.html",
+    "https://thedollscout.com/zh/series/smiski-yoga-series.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-1.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-2.html",
     "https://thedollscout.com/zh/series/sonny-angel-animal-series-3.html",
@@ -190,12 +193,12 @@
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 48,
+    "changed": 51,
     "covered": 8,
     "demand_terms": 30,
     "gaps": 17,
     "hot_pages": 0,
-    "lastmod_updated": 117,
+    "lastmod_updated": 120,
     "offtopic": 5,
     "pages": 285,
     "undatable": 0,
@@ -207,7 +210,7 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-10-23",
+   "today": "2026-10-24",
    "wrote": [
     "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
@@ -215,5 +218,5 @@
    ]
   }
  ],
- "today": "2026-10-23"
+ "today": "2026-10-24"
 }

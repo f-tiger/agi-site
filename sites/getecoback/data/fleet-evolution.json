@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/guide/klimaanlage-wohnmobil.html"
+      "top_hot_page": "/guide/luftentfeuchter-keller.html"
     },
     "health": {
       "http": "200",
@@ -38,7 +38,7 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count_band": "10-99",
-        "query": "papermoon infrarotheizung",
+        "query": "byecold infrarotheizung",
         "value_band": "100+"
       },
       "mode": "queue"
@@ -48,7 +48,7 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/klimaanlage-wohnmobil.html",
+        "page": "/guide/luftentfeuchter-keller.html",
         "n7_band": "1-9",
         "p7_band": "1-9"
       },

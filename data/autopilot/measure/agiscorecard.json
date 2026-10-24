@@ -8,19 +8,19 @@
    },
    {
     "n": 7,
+    "q": "tool:verdicts"
+   },
+   {
+    "n": 7,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 6,
-    "q": "tool:verdicts"
+    "n": 7,
+    "q": "tool:invest_positions"
    },
    {
     "n": 6,
     "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 6,
-    "q": "tool:invest_positions"
    },
    {
     "n": 6,
@@ -44,30 +44,30 @@
    }
   ]
  },
- "fetched": "2026-10-23",
+ "fetched": "2026-10-24",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/about": {
-   "n7": 79,
-   "p7": 39
-  },
-  "/agents/": {
-   "n7": 61,
-   "p7": 19
-  },
   "/ai-infrastructure": {
-   "n7": 72,
-   "p7": 23
+   "n7": 68,
+   "p7": 25
+  },
+  "/ai-stock-exposure": {
+   "n7": 183,
+   "p7": 86
+  },
+  "/future-guide": {
+   "n7": 829,
+   "p7": 301
   },
   "/mentor": {
-   "n7": 142,
-   "p7": 55
+   "n7": 144,
+   "p7": 48
   },
   "/search": {
-   "n7": 241,
-   "p7": 73
+   "n7": 233,
+   "p7": 65
   }
  },
  "site": "agiscorecard",
