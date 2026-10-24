@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-23",
+  "updated": "2026-10-24",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-22"
+    "until": "2026-10-23"
   },
   "days": {
     "2026-07-26": {
@@ -4962,6 +4962,74 @@
         "CH": 277,
         "CN": 199,
         "FR": 138
+      }
+    },
+    "2026-10-23": {
+      "date": "2026-10-23",
+      "requests": 5040,
+      "pageViews": 1161,
+      "uniques": 783,
+      "byIpType": {
+        "noRecord": 2882,
+        "unknown": 1933,
+        "searchEngine": 186,
+        "allowlist": 39
+      },
+      "byBrowser": {
+        "Unknown": 826,
+        "MobileSafari": 92,
+        "Curl": 90,
+        "Chrome": 49,
+        "BingBot": 37,
+        "AppleBot": 19,
+        "GoogleBot": 16,
+        "YandexBot": 16,
+        "Edge": 11,
+        "Firefox": 2,
+        "Safari": 1,
+        "ChromeMobile": 1,
+        "ChromeMobileWebview": 1
+      },
+      "byContentType": {
+        "html": 2009,
+        "json": 1161,
+        "empty": 715,
+        "txt": 579,
+        "js": 27,
+        "css": 99,
+        "unknown": 21,
+        "xml": 13,
+        "svg": 11,
+        "pdf": 9,
+        "png": 3,
+        "webp": 2,
+        "zip": 1
+      },
+      "byStatus": {
+        "200": 3448,
+        "202": 279,
+        "204": 14,
+        "206": 1,
+        "301": 380,
+        "303": 47,
+        "304": 35,
+        "308": 33,
+        "401": 3,
+        "403": 19,
+        "404": 693,
+        "405": 73,
+        "410": 11,
+        "499": 4
+      },
+      "topCountries": {
+        "US": 2917,
+        "FI": 483,
+        "BE": 351,
+        "SG": 312,
+        "NL": 288,
+        "FR": 247,
+        "CA": 73,
+        "DE": 66
       }
     }
   }
