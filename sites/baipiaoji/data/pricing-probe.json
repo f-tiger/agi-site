@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-24",
+ "generated": "2026-10-25",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "leonardo",
-  "lovable",
-  "luma",
-  "marscode",
-  "motiff",
-  "n8n",
-  "napkin",
-  "notebooklm"
+  "notion-ai",
+  "nvidia-nim",
+  "ollama",
+  "opusclip",
+  "perplexity",
+  "phind",
+  "pika",
+  "pixlr"
  ],
- "cursor": "notebooklm",
+ "cursor": "pixlr",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -2154,14 +2154,14 @@
    "name": "Notion AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.notion.so/pricing",
      "status": 200,
-     "bytes": 487234,
+     "bytes": 389882,
      "tokens": 18
     }
    ],
@@ -2176,26 +2176,26 @@
    "name": "NVIDIA NIM",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://build.nvidia.com/pricing",
      "status": 200,
-     "bytes": 53469,
+     "bytes": 39201,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/price",
      "status": 200,
-     "bytes": 53461,
+     "bytes": 39193,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/plans",
      "status": 200,
-     "bytes": 53461,
+     "bytes": 39193,
      "tokens": 0
     }
    ],
@@ -2210,21 +2210,21 @@
    "name": "Ollama",
    "cat": "local",
    "reach": 0,
-   "probed": "2026-09-29",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ollama.com/pricing",
      "status": 200,
-     "bytes": 50899,
-     "tokens": 76
+     "bytes": 50940,
+     "tokens": 86
     }
    ],
    "best": {
     "url": "https://ollama.com/pricing",
-    "tokens": 76,
-    "excerpt": "tasks $100 / mo. For power users who run multiple agents simultaneously Everything in Free, plus: $60 of usage credits per month Access to larger pro models Run multiple models concurrently Fast mode (coming soon) Get Pro Everything in Pro, plus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything "
+    "tokens": 86,
+    "excerpt": "h Access to larger pro models Run multiple models concurrently Fast mode (coming soon) Get Pro Everything in Pro, plus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything in Team, plus: Model access controls Limit team access to specific models Set cost budgets for users and API keys Private Slack"
    }
   },
   "opusclip": {
@@ -2232,20 +2232,20 @@
    "name": "OpusClip",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://help.opus.pro/docs/article/plans-and-credits",
      "status": 200,
-     "bytes": 461650,
-     "tokens": 4
+     "bytes": 221056,
+     "tokens": 8
     }
    ],
    "best": {
     "url": "https://help.opus.pro/docs/article/plans-and-credits",
-    "tokens": 4,
+    "tokens": 8,
     "excerpt": "is free forever! You can take advantage of the following benefits without needing to pay such as: 60 processing minutes per month AI Captions with emojis and keyword highlighter Importing video sources from YouTube and local files 1 Brand Template ​ Starter Our Starter Plan is our mid level plan just above the Free Forever Plan but below the Pro Plan. With the Starter Plan you can enjoy benefits such as: 150 processing minutes per month Faster processing time compared to Free and Trial users Additional importing video sources from Google Drive, Vimeo, Zoom, Rumble, StreamYard Editing capability Social media posting to YouTube, TikTok, and Instagram And much more! ​ Pro Our Pro Plan is our to"
    }
   },
@@ -2254,7 +2254,7 @@
    "name": "Perplexity",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2284,7 +2284,7 @@
    "name": "Phind",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2314,21 +2314,21 @@
    "name": "Pika",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pika.art/pricing",
      "status": 200,
-     "bytes": 218291,
-     "tokens": 40
+     "bytes": 277273,
+     "tokens": 46
     }
    ],
    "best": {
     "url": "https://pika.art/pricing",
-    "tokens": 40,
-    "excerpt": "uded: Priority queue Not included: Early access to new models Learn more about Starter Creator Best Value 3,150 credits / month $35 $ 3 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly Subscribe to Creator Included: All models Included: 8 video · 32 image + audio in parallel Included: No watermark Included: Commercial license Not included: Priority queue Not included: Early access to new models Learn more about Creator Fancy 8,550 credits / month 8.6k 26k 44k 62k 79k $95 $ 9 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly Subscribe to Fancy Included: All models Included: Unlimited parallel generations Included: No watermark Included: Commercial license Included: Prio"
+    "tokens": 46,
+    "excerpt": "u? Commercial use For clients, brands, and paid work. Priority generation Shorter waits when the queue is long. Creator $ 35 /mo 2,030 of 3,150 credits a month See plan Your match Recommended for you See why Creator Social content fits here, with room left over. $35 $ 3 0 1 2 3 4 5 6 7 8 9 5 0 1 2 3 4 5 6 7 8 9 /mo Billed monthly 3,150 credits / month Your monthly estimate 2,030 credits Videos 1,464 credits Images 160 credits Takes 406 credits Spare 1,120 credits Included: All models Included: No watermark Included: Commercial license Not included: Priority queue Subscribe to Creator Compare plans For enterprise Need more credits? Talk to our team to create a custom solution at scale with de"
    }
   },
   "pixlr": {
@@ -2336,14 +2336,14 @@
    "name": "Pixlr",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-13",
+   "probed": "2026-10-25",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://pixlr.com/pricing",
      "status": 200,
-     "bytes": 372739,
+     "bytes": 374234,
      "tokens": 18
     }
    ],

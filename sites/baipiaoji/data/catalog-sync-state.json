@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 3,
   "pending": [
-   {
-    "repo": "op7418/guizang-ppt-skill",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "titanwings/distilly",
     "topic": "agents",
@@ -22,11 +17,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "fuxicodex/Fuxi",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -50,18 +40,8 @@
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
-    "repo": "Isi-dev/Google-Colab_Notebooks",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
     "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
     "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "collabora/WhisperLive",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -250,11 +230,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "oomol-lab/pdf-craft",
-    "topic": "documents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "PaddlePaddle/PaddleX",
     "topic": "audio",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -288,11 +263,6 @@
     "repo": "YishenTu/claudian",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "FlashML-org/FreeToken",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "NVIDIA/TensorRT",
@@ -367,11 +337,6 @@
    {
     "repo": "deepset-ai/haystack",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "HKUDS/RAG-Anything",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -900,11 +865,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "hao-ai-lab/FastVideo",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "Robbyant/lingbot-world",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -1115,11 +1075,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "Stirling-Tools/Stirling-PDF",
-    "topic": "everyday",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "louislam/uptime-kuma",
     "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -1267,11 +1222,6 @@
    {
     "repo": "makecindy/cindy",
     "topic": "coding",
-    "foundAt": "2026-10-06T06:50:25.349Z"
-   },
-   {
-    "repo": "DSH-APP/DSHA",
-    "topic": "ai",
     "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
@@ -1950,11 +1900,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "georgian-io/LLM-Finetuning-Toolkit",
-    "topic": "models",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "lancedb/vectordb-recipes",
     "topic": "agents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -2228,11 +2173,6 @@
     "repo": "ConardLi/garden-skills",
     "topic": "agents",
     "foundAt": "2026-10-12T06:28:11.186Z"
-   },
-   {
-    "repo": "chaskiq/chaskiq",
-    "topic": "chat",
-    "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
     "repo": "FireRedTeam/FireRed-OpenStoryline",
@@ -3003,6 +2943,66 @@
     "repo": "Derpyu520/qq-bridge",
     "topic": "agents",
     "foundAt": "2026-10-24T04:59:36.505Z"
+   },
+   {
+    "repo": "StartLuxLabs/StartLux-Decision",
+    "topic": "agents",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "receptron/laya",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "stamparm/identYwaf",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "microsoft/vidur",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "TrenTorch/TrenTorch",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "xboot/libonnx",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "open-edge-platform/dlstreamer",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "WaveSpeedAI/waverless",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "zhongkaifu/TensorSharp",
+    "topic": "local",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "agentic-in/inferoa",
+    "topic": "agents",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "automataIA/graphrag-rs",
+    "topic": "knowledge",
+    "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "relari-ai/continuous-eval",
+    "topic": "knowledge",
+    "foundAt": "2026-10-25T05:12:22.736Z"
    }
   ],
   "checked": {
@@ -3089,11 +3089,17 @@
    "gh-tisfeng-easydict-01a91f": "2026-10-23T05:17:52.922Z",
    "gh-axolotl-ai-cloud-axolotl-056bef": "2026-10-23T05:17:52.922Z",
    "gh-dayuanjiang-next-ai-draw-io-992739": "2026-10-23T05:17:52.922Z",
-   "gh-ai4finance-foundation-fingpt-d08ed4": "2026-10-23T05:17:52.922Z"
+   "gh-ai4finance-foundation-fingpt-d08ed4": "2026-10-23T05:17:52.922Z",
+   "gh-hkuds-deeptutor-678f85": "2026-10-25T05:12:22.736Z",
+   "gh-zhayujie-cowagent-16034e": "2026-10-25T05:12:22.736Z",
+   "gh-zilliztech-claude-context-df74c1": "2026-10-25T05:12:22.736Z",
+   "gh-furkangozukara-stable-diffusion-cbddd4": "2026-10-25T05:12:22.736Z",
+   "gh-k2-fsa-sherpa-onnx-dd9327": "2026-10-25T05:12:22.736Z",
+   "gh-siddsachar-row-bot-fb915e": "2026-10-25T05:12:22.736Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.ivanstan/tle-satellite:1.0.0",
+  "cursor": "io.github.kofujimura/tctc-mcp:0.3.3",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3977,7 +3983,47 @@
    "trustysquire-trusty-squire": "2026-10-24T04:59:36.505Z",
    "truverif-panel-review": "2026-10-24T04:59:36.505Z",
    "tryperspect-perspect": "2026-10-24T04:59:36.505Z",
-   "tugra-ai-tugra": "2026-10-24T04:59:36.505Z"
+   "tugra-ai-tugra": "2026-10-24T04:59:36.505Z",
+   "tulimoa-platform": "2026-10-25T05:12:22.736Z",
+   "tuskcms-mcp": "2026-10-25T05:12:22.736Z",
+   "txtai": "2026-10-25T05:12:22.736Z",
+   "ufcalendar-fight-api": "2026-10-25T05:12:22.736Z",
+   "ui-tars-desktop": "2026-10-25T05:12:22.736Z",
+   "ultimaps-mcp": "2026-10-25T05:12:22.736Z",
+   "ultravox": "2026-10-25T05:12:22.736Z",
+   "undercurrentholdings-aegis": "2026-10-25T05:12:22.736Z",
+   "universalagentforum-forum": "2026-10-25T05:12:22.736Z",
+   "upload-post-mcp": "2026-10-25T05:12:22.736Z",
+   "usememra-memra": "2026-10-25T05:12:22.736Z",
+   "usepromise-promise": "2026-10-25T05:12:22.736Z",
+   "vaaya-mcp": "2026-10-25T05:12:22.736Z",
+   "vanna": "2026-10-25T05:12:22.736Z",
+   "vapi": "2026-10-25T05:12:22.736Z",
+   "vellum": "2026-10-25T05:12:22.736Z",
+   "vercel-ai-sdk": "2026-10-25T05:12:22.736Z",
+   "vercel-groundtruth-ruby-groundtruth": "2026-10-25T05:12:22.736Z",
+   "vercel-mcp": "2026-10-25T05:12:22.736Z",
+   "vercel-ora-x402-gateway-sensations-mergulho": "2026-10-25T05:12:22.736Z",
+   "vercel-proof-stack-lake-proofstack": "2026-10-25T05:12:22.736Z",
+   "verirouteintel-lookup": "2026-10-25T05:12:22.736Z",
+   "verlon-mcp": "2026-10-25T05:12:22.736Z",
+   "vertex-agent-builder": "2026-10-25T05:12:22.736Z",
+   "verticalflows-agent-gateway": "2026-10-25T05:12:22.736Z",
+   "vertodigital-mcp": "2026-10-25T05:12:22.736Z",
+   "vexa-vexa": "2026-10-25T05:12:22.736Z",
+   "vibe-kanban": "2026-10-25T05:12:22.736Z",
+   "vibgrate-ai-context": "2026-10-25T05:12:22.736Z",
+   "vibrai-vibrai": "2026-10-25T05:12:22.736Z",
+   "vidofy-mcp": "2026-10-25T05:12:22.736Z",
+   "visitelsewhere-resort": "2026-10-25T05:12:22.736Z",
+   "vithanco-vgraph-mcp": "2026-10-25T05:12:22.736Z",
+   "vocode": "2026-10-25T05:12:22.736Z",
+   "voiceflow": "2026-10-25T05:12:22.736Z",
+   "void": "2026-10-25T05:12:22.736Z",
+   "volunteerreminder-mcp": "2026-10-25T05:12:22.736Z",
+   "voxodds-voxodds": "2026-10-25T05:12:22.736Z",
+   "vruum-mcp": "2026-10-25T05:12:22.736Z",
+   "wa-campaigns-whatsapp-campaigns": "2026-10-25T05:12:22.736Z"
   }
  }
 }

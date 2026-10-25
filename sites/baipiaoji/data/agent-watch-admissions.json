@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-24",
+ "checked": "2026-10-25",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3114,6 +3114,51 @@
    "source_http": 503,
    "repo_http": null,
    "reason": "source HTTP 503"
+  },
+  "ch-elevai-commerce-demo": {
+   "attempts": 1,
+   "first_attempt": "2026-10-25",
+   "last_attempt": "2026-10-25",
+   "attemptedAt": "2026-10-25T05:12:22.736Z",
+   "source_http": 401,
+   "repo_http": null,
+   "reason": "source HTTP 401"
+  },
+  "ch-immoswipe-immoswipe-ai": {
+   "attempts": 1,
+   "first_attempt": "2026-10-25",
+   "last_attempt": "2026-10-25",
+   "attemptedAt": "2026-10-25T05:12:22.736Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "ch-lundio-lundio": {
+   "attempts": 1,
+   "first_attempt": "2026-10-25",
+   "last_attempt": "2026-10-25",
+   "attemptedAt": "2026-10-25T05:12:22.736Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "cl-repuestia-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-25",
+   "last_attempt": "2026-10-25",
+   "attemptedAt": "2026-10-25T05:12:22.736Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "click-tabula-tabula-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-25",
+   "last_attempt": "2026-10-25",
+   "attemptedAt": "2026-10-25T05:12:22.736Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -15564,6 +15609,336 @@
    "date": "2026-10-24",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "cc-ssearch-search",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-thecolony-mcp-server",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cc-ticktape-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cc-wealthos-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-1820-telefonbuch",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-antevo-executive",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-antevo-mandates",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-antevo-trademark",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-antevo-wealth",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-arvi-catalog",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-busik-fahrten",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-clino-household-employment",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-cowork24-booking",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-dinilu-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-entscheidsuche-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-fedlex-connector-fedlex-connector",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-firmenwatch-firmenwatch",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-getsharepa-sharepa",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-jassverband-jasswiki",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-kulalabs-agents-jobflow",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-latzerus-lernbereich",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-lumabill-lumabill",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-martinelli-jooq-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-neubau-radar-baupublikationen",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-opencaselaw-swiss-caselaw",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-pfx-mcp-server",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-servicekuhn-service-rechner",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-soljo-solar",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-spickme-swiss-public-transport",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-swisslivingindex-swiss-living-index",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-valetvoisin-valetvoisin",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-vetari-vetari",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-wejob-wejob",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ch-zenarion-booking",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ch-zuerstzuhause-neubauprojekte",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-1233-marketplace",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-avva-catalog",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-muro-support",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-prelim-prelim",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-smat-smat",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "chat-trilo-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "chat-uproar-uproar",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ci-git-mymlh-mcp-server",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "city-close-close-api",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cl-alfabot-mcp-server",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cl-tuki-travel-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "click-ciromaciel-tools",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "click-findyourrolefirst-jobfeed",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "click-toolcall-toolcall",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "clinic-enmente-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-aevia-warmnight-fishing",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-agentdomain-agentdomain-mcp",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-anythink-anythink",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-atatravel-travel-agency",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-bisque-presentations",
+   "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

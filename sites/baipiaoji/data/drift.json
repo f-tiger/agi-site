@@ -1,10 +1,91 @@
 {
-  "generated": "2026-10-24",
+  "generated": "2026-10-25",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 106,
   "fetched_fail": 21,
-  "pending": 11,
+  "pending": 8,
   "items": [
+    {
+      "slug": "civitai",
+      "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
+      "confirmed": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "added": [
+        "2min"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "krea",
+      "url": "https://krea.ai/pricing",
+      "confirmed": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "added": [
+        "$5.25/mo",
+        "$5/mo",
+        "$9",
+        "1,125images",
+        "1,285images",
+        "1,500images",
+        "102images",
+        "112images",
+        "164images",
+        "168images",
+        "2,500images",
+        "2.5videos"
+      ],
+      "removed": [
+        "0images",
+        "1video",
+        "2.0videos",
+        "4images",
+        "8images",
+        "8video"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "added": [
+        "2b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-01"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-25",
+      "first_seen": "2026-10-24",
+      "added": [
+        "$3",
+        "$58",
+        "108s",
+        "26b",
+        "2call",
+        "40minutes",
+        "50%"
+      ],
+      "removed": [
+        "$8",
+        "$86",
+        "$87",
+        "$90",
+        "$92",
+        "$93",
+        "10,m",
+        "1278,m",
+        "12m",
+        "1461,m",
+        "35,m",
+        "4,m"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "framer",
       "url": "https://framer.com/pricing",
@@ -115,18 +196,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-23",
-      "first_seen": "2026-10-22",
-      "added": [],
-      "removed": [
-        "5b",
-        "77b"
-      ],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "deepl",
@@ -290,34 +359,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "krea",
-      "url": "https://krea.ai/pricing",
-      "confirmed": "2026-10-15",
-      "first_seen": "2026-10-14",
-      "added": [
-        "1,080images",
-        "1,111images",
-        "1,317images",
-        "1,350images",
-        "10,000images",
-        "10,285images",
-        "12,000images",
-        "157images",
-        "2,160images",
-        "2,222images",
-        "2,700images",
-        "20,000images"
-      ],
-      "removed": [
-        "$5.25/mo",
-        "$5/mo",
-        "$9",
-        "2images",
-        "4video"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "cursor",
       "url": "https://cursor.com/pricing",
       "confirmed": "2026-10-15",
@@ -363,26 +404,6 @@
         "50万"
       ],
       "checked_then": "2026-09-29"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-15",
-      "first_seen": "2026-10-14",
-      "added": [
-        "$8",
-        "$90",
-        "$92",
-        "$93",
-        "1278,m",
-        "56,m",
-        "9b"
-      ],
-      "removed": [
-        "2k",
-        "9k"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "deepinfra",
