@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-24",
- "radar_fetched": "2026-10-24",
+ "generated": "2026-10-25",
+ "radar_fetched": "2026-10-25",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -45,22 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.34,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there a temp phone number like temp email",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-10-17"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.27,
+   "score": 2.39,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -166,6 +151,21 @@
    "state": "scout",
    "supplied": false,
    "score": 2.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "how do you compare different saas tools before choosing one",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-24"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 1.94,
    "demand": [],
    "supply": [],
    "fleet_pages": []
