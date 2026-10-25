@@ -100,10 +100,7 @@
    "v": 34500
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 0
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.75,
    "page": "guide/midea-geraete-test.html",
@@ -312,16 +309,6 @@
   },
   {
    "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 20850
-  },
-  {
-   "kind": "value",
    "match": 0.5,
    "page": "index.html",
    "q": "pingi luftentfeuchter",
@@ -337,28 +324,8 @@
    "q": "krups kaffeevollautomat intensity milk",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 12700
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 10750
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 10600
+   "stand": "2026-10-24",
+   "v": 14100
   },
   {
    "kind": "value",
@@ -372,32 +339,52 @@
   },
   {
    "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 9400
-  },
-  {
-   "kind": "value",
    "match": 0.15,
    "page": "en/guide/best-portable-air-conditioner-italy.html",
    "q": "philips series 5500 kaffeevollautomat ep5547/90",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 9300
+   "stand": "2026-10-24",
+   "v": 10250
   },
   {
    "kind": "value",
-   "match": 0.25,
-   "page": "guide/delonghi-pac-n90-test.html",
-   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
+   "stand": "2026-10-24",
+   "v": 10150
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 9800
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 9250
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "wmf perfection 840l kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-24",
    "v": 8650
   },
   {
@@ -407,8 +394,38 @@
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 7350
+   "stand": "2026-10-24",
+   "v": 7550
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 6650
+  },
+  {
+   "kind": "value",
+   "match": 0.283,
+   "page": "kategorie/heizen.html",
+   "q": "levoit akku staubsauger lvac 200 max",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 650
+  },
+  {
+   "kind": "value",
+   "match": 0.2,
+   "page": "guide/akku-heizluefter.html",
+   "q": "bosch unlimited 10 akku-staubsauger bts1042wac",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 400
   },
   {
    "kind": "value",
@@ -417,8 +434,38 @@
    "q": "de'longhi kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
+   "stand": "2026-10-24",
    "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "au/cool-bedroom-at-night.html",
+   "q": "dyson cool ventilator",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 140
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "levoit akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 120
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "grundig akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-24",
+   "v": 120
   },
   {
    "kind": "value",
@@ -497,7 +544,7 @@
    "q": "mini kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-23",
+   "stand": "2026-10-24",
    "v": 50
   },
   {
@@ -521,29 +568,24 @@
    "v": 40
   }
  ],
- "generated": "2026-10-24",
+ "generated": "2026-10-25",
  "geo": "DE",
- "heat_source": "measured 2026-10-24 (22 pages); no notes",
+ "heat_source": "measured 2026-10-25 (18 pages); no notes",
  "hot_pages": [
   {
-   "n7": 5,
-   "p7": 2,
+   "n7": 4,
+   "p7": 5,
+   "page": "/"
+  },
+  {
+   "n7": 4,
+   "p7": 3,
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 4,
-   "p7": 2,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 4,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
-  },
-  {
-   "n7": 4,
-   "p7": 2,
-   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 4,
@@ -552,38 +594,18 @@
   },
   {
    "n7": 3,
-   "p7": 6,
-   "page": "/"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
-   "page": "/guide/heizluefter-stromverbrauch.html"
-  },
-  {
-   "n7": 3,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
-   "n7": 2,
-   "p7": 0,
-   "page": "/en/"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/en/guide/portable-ac-skylight-roof-window.html"
+   "n7": 3,
+   "p7": 3,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/balkon-terrasse-beschatten.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 2,
@@ -599,6 +621,31 @@
    "n7": 2,
    "p7": 1,
    "page": "/guide/heizung-50-qm.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/klimaanlage-40-qm.html"
+  },
+  {
+   "n7": 2,
+   "p7": 1,
+   "page": "/guide/klimaanlage-kippfenster.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/klimaanlage-mietwohnung.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/klimaanlage-mit-heizfunktion.html"
+  },
+  {
+   "n7": 2,
+   "p7": 4,
+   "page": "/guide/klimaanlage-wohnmobil.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -611,6 +658,7 @@
   "dreo atom 316",
   "powerstation",
   "radiator",
+  "dyson purifier cool pc1",
   "salami",
   "selbstbedienungskasse",
   "stockflecken entfernen wand",
@@ -618,6 +666,10 @@
   "duschkopf",
   "meacodry arete one 12l",
   "dieter glawischnig",
+  "dreame r20",
+  "philips friteuse",
+  "sky scanner",
+  "haarstyler",
   "bett1 de",
   "kinderbett 90x200",
   "tineco"

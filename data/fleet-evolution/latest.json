@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-24",
+  "as_of": "2026-10-25",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 8,
+    "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-23T07:54:34.176Z",
-    "health": "2026-10-23T12:59:05Z",
-    "ai_referrals": "2026-10-23T12:59:37Z",
-    "opportunities": "2026-10-23",
-    "autopilot_receipt": "2026-10-24"
+    "membership": "2026-10-24T07:34:43.046Z",
+    "health": "2026-10-24T12:22:16Z",
+    "ai_referrals": "2026-10-24T12:22:42Z",
+    "opportunities": "2026-10-24",
+    "autopilot_receipt": "2026-10-25"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-23T07:54:34.176Z",
+    "generated": "2026-10-24T07:34:43.046Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -125,6 +125,15 @@
       "supply": 0
     },
     {
+      "theme": "when can we trust ai in coding and avoid the happy path issue",
+      "site": null,
+      "state": "scout",
+      "score": 2.34,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "is there a temp phone number like temp email",
       "site": null,
       "state": "scout",
@@ -165,6 +174,15 @@
       "site": null,
       "state": "scout",
       "score": 2.04,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "feature request manager",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -247,7 +265,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 27,
+        "count": 32,
         "query": "byecold infrarotheizung",
         "value": 49950
       },
@@ -272,8 +290,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/future-guide",
-        "n7": 829,
-        "p7": 301
+        "n7": 803,
+        "p7": 309
       },
       "mode": "queue"
     },
@@ -283,9 +301,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/luftentfeuchter-keller.html",
-        "n7": 5,
-        "p7": 2
+        "page": "/",
+        "n7": 4,
+        "p7": 5
       },
       "mode": "queue"
     },
@@ -295,7 +313,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 384,
+        "human_pv_28d": 388,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -306,7 +324,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 212,
+        "human_pv_28d": 234,
         "ai_ref_28d": 0
       },
       "mode": "queue"

@@ -8,19 +8,19 @@
    },
    {
     "n": 7,
-    "q": "tool:verdicts"
-   },
-   {
-    "n": 7,
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 7,
-    "q": "tool:invest_positions"
+    "n": 6,
+    "q": "tool:verdicts"
    },
    {
     "n": 6,
     "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 6,
+    "q": "tool:invest_positions"
    },
    {
     "n": 6,
@@ -32,42 +32,42 @@
    },
    {
     "n": 1,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
+   },
+   {
+    "n": 1,
+    "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
+   },
+   {
+    "n": 1,
     "q": "marketing services"
-   },
-   {
-    "n": 1,
-    "q": "jual chemical for any industry"
-   },
-   {
-    "n": 1,
-    "q": "baju olahraga"
    }
   ]
  },
- "fetched": "2026-10-24",
+ "fetched": "2026-10-25",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/ai-infrastructure": {
-   "n7": 68,
-   "p7": 25
-  },
-  "/ai-stock-exposure": {
-   "n7": 183,
-   "p7": 86
+  "/amodei-white-collar-bloodbath-prediction": {
+   "n7": 73,
+   "p7": 33
   },
   "/future-guide": {
-   "n7": 829,
-   "p7": 301
+   "n7": 803,
+   "p7": 309
+  },
+  "/future-guide/agents-take-time": {
+   "n7": 58,
+   "p7": 25
   },
   "/mentor": {
-   "n7": 144,
-   "p7": 48
+   "n7": 138,
+   "p7": 51
   },
   "/search": {
-   "n7": 233,
-   "p7": 65
+   "n7": 224,
+   "p7": 79
   }
  },
  "site": "agiscorecard",

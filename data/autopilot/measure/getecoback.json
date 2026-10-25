@@ -2,23 +2,23 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 12,
-    "p7": 11
+    "n7": 7,
+    "p7": 14
    },
    "btu_calc": {
     "n7": 9,
     "p7": 11
    },
    "buyer_view": {
-    "n7": 2,
-    "p7": 1
-   },
-   "cold_now": {
-    "n7": 8,
+    "n7": 3,
     "p7": 0
    },
+   "cold_now": {
+    "n7": 1,
+    "p7": 7
+   },
    "feuchte_now": {
-    "n7": 10,
+    "n7": 9,
     "p7": 8
    },
    "heat_now": {
@@ -34,35 +34,35 @@
     "p7": 1
    },
    "page_view": {
-    "n7": 98,
-    "p7": 98
+    "n7": 89,
+    "p7": 93
    },
    "popup_click": {
-    "n7": 2,
+    "n7": 1,
     "p7": 1
    },
    "popup_close": {
     "n7": 11,
-    "p7": 9
+    "p7": 5
    },
    "popup_view": {
     "n7": 27,
-    "p7": 20
+    "p7": 15
    },
    "seal_fit": {
     "n7": 1,
     "p7": 0
    },
    "strom_now": {
-    "n7": 16,
-    "p7": 9
+    "n7": 14,
+    "p7": 10
    },
    "stromkosten_calc": {
     "n7": 1,
     "p7": 8
    },
    "strompreis_api": {
-    "n7": 0,
+    "n7": 1,
     "p7": 2
    },
    "video_play": {
@@ -76,38 +76,22 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-24",
+ "fetched": "2026-10-25",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 3,
-   "p7": 6
-  },
-  "/en/": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/en/guide/portable-ac-skylight-roof-window.html": {
-   "n7": 2,
-   "p7": 1
+   "n7": 4,
+   "p7": 5
   },
   "/guide/balkon-terrasse-beschatten.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/guide/heizluefter-schaltet-sich-aus.html": {
    "n7": 2,
    "p7": 0
   },
   "/guide/heizluefter-stromsparend.html": {
    "n7": 2,
    "p7": 0
-  },
-  "/guide/heizluefter-stromverbrauch.html": {
-   "n7": 3,
-   "p7": 2
   },
   "/guide/heizung-20-qm.html": {
    "n7": 2,
@@ -135,35 +119,35 @@
   },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 3,
-   "p7": 1
+   "p7": 0
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 2,
-   "p7": 5
+   "p7": 4
   },
-  "/guide/luftentfeuchter-keller.html": {
-   "n7": 5,
-   "p7": 2
-  },
-  "/guide/midea-geraete-test.html": {
+  "/guide/luftentfeuchter-20-qm.html": {
    "n7": 2,
    "p7": 0
   },
-  "/guide/midea-portasplit-ausverkauft-alternativen.html": {
+  "/guide/luftentfeuchter-keller.html": {
    "n7": 4,
-   "p7": 2
+   "p7": 3
+  },
+  "/guide/midea-portasplit-ausverkauft-alternativen.html": {
+   "n7": 2,
+   "p7": 3
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
    "n7": 4,
-   "p7": 1
+   "p7": 0
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 2,
    "p7": 3
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 4,
-   "p7": 2
+   "n7": 3,
+   "p7": 3
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
    "n7": 4,
