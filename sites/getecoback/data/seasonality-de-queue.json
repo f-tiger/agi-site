@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-27",
+ "fetched": "2026-10-25",
  "geo": "DE",
  "basket": "DE-QUEUE",
  "timeframe": "today 5-y",
@@ -22,7 +22,7 @@
     "heizlüfter riecht",
     "heizkörper entlüften"
    ],
-   "factor": 1.0
+   "factor": 1.0213
   },
   {
    "terms": [
@@ -31,7 +31,7 @@
     "heizlüfter große räume",
     "mobile heizung"
    ],
-   "factor": 1.0
+   "factor": 0.9647
   },
   {
    "terms": [
@@ -40,82 +40,90 @@
     "heizlüfter auto",
     "heizlüfter bad"
    ],
-   "factor": 1.0
+   "factor": 0.9649
   }
  ],
  "weeks": 262,
  "terms": [
   {
    "term": "heizlüfter",
-   "sep": 25.3,
-   "peak": 29.5,
+   "sep": 25.1,
+   "peak": 28.4,
    "peak_month": 11,
-   "winter_mean": 21.5,
-   "win_over_sep": 0.85
+   "winter_mean": 20.6,
+   "win_over_sep": 0.82
   },
   {
    "term": "heizkörper entlüften",
    "sep": 3.7,
-   "peak": 6.4,
+   "peak": 6.2,
    "peak_month": 11,
-   "winter_mean": 4.2,
-   "win_over_sep": 1.13
+   "winter_mean": 4.1,
+   "win_over_sep": 1.11
   },
   {
    "term": "fenster beschlagen außen",
-   "sep": 0.7,
+   "sep": 0.6,
    "peak": 1.8,
    "peak_month": 10,
    "winter_mean": 0.2,
-   "win_over_sep": 0.32
+   "win_over_sep": 0.41
   },
   {
    "term": "akku heizlüfter",
-   "sep": 0.5,
+   "sep": 0.6,
    "peak": 1.7,
    "peak_month": 11,
-   "winter_mean": 1.1,
-   "win_over_sep": 2.32
-  },
-  {
-   "term": "mobile heizung",
-   "sep": 1.2,
-   "peak": 1.6,
-   "peak_month": 11,
-   "winter_mean": 1.3,
-   "win_over_sep": 1.04
+   "winter_mean": 1.0,
+   "win_over_sep": 1.88
   },
   {
    "term": "heizlüfter auto",
    "sep": 0.2,
    "peak": 1.6,
    "peak_month": 11,
-   "winter_mean": 1.0,
-   "win_over_sep": 5.57
+   "winter_mean": 0.9,
+   "win_over_sep": 5.08
   },
   {
-   "term": "heizlüfter bad",
-   "sep": 1.4,
+   "term": "mobile heizung",
+   "sep": 1.2,
    "peak": 1.4,
-   "peak_month": 9,
-   "winter_mean": 0.7,
-   "win_over_sep": 0.48
+   "peak_month": 11,
+   "winter_mean": 1.2,
+   "win_over_sep": 0.97
   },
   {
    "term": "infrarotheizung thermostat",
-   "sep": 1.1,
-   "peak": 1.1,
+   "sep": 1.2,
+   "peak": 1.2,
    "peak_month": 9,
-   "winter_mean": 0.8,
-   "win_over_sep": 0.73
+   "winter_mean": 0.9,
+   "win_over_sep": 0.7
+  },
+  {
+   "term": "heizlüfter bad",
+   "sep": 1.2,
+   "peak": 1.2,
+   "peak_month": 9,
+   "winter_mean": 0.6,
+   "win_over_sep": 0.51
   },
   {
    "term": "luftfeuchtigkeit messen",
    "sep": 0.5,
    "peak": 1.1,
    "peak_month": 11,
-   "winter_mean": 0.9,
-   "win_over_sep": 1.84
+   "winter_mean": 0.8,
+   "win_over_sep": 1.68
+  },
+  {
+   "term": "heizlüfter große räume",
+   "sep": 0.0,
+   "peak": 0.1,
+   "peak_month": 10,
+   "winter_mean": 0.0,
+   "win_over_sep": null
   },
   {
    "term": "beheizter wäscheständer",
@@ -129,14 +137,6 @@
    "term": "heizlüfter riecht",
    "sep": 0.0,
    "peak": 0.0,
-   "peak_month": 7,
-   "winter_mean": 0.0,
-   "win_over_sep": null
-  },
-  {
-   "term": "heizlüfter große räume",
-   "sep": 0.0,
-   "peak": 0.0,
    "peak_month": 1,
    "winter_mean": 0.0,
    "win_over_sep": null
@@ -145,7 +145,7 @@
    "term": "infrarotheizung 20 qm",
    "sep": 0.0,
    "peak": 0.0,
-   "peak_month": 3,
+   "peak_month": 1,
    "winter_mean": 0.0,
    "win_over_sep": null
   }

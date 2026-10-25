@@ -1,57 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-10-24",
+ "fetched": "2026-10-25",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "klimawandel",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "the voice of germany",
-   "traffic": "5000+"
-  },
-  {
-   "title": "marius borg høiby",
+   "title": "buy the dip",
    "traffic": "200+"
   },
   {
-   "title": "mikaela shiffrin",
-   "traffic": "200+"
+   "title": "landespolizeiinspektion suhl",
+   "traffic": "100+"
   },
   {
-   "title": "wanzen",
-   "traffic": "500+"
-  },
-  {
-   "title": "слави бинев",
-   "traffic": "200+"
-  },
-  {
-   "title": "aktienrückkauf",
-   "traffic": "200+"
-  },
-  {
-   "title": "remscheid",
-   "traffic": "200+"
-  },
-  {
-   "title": "gute zeiten, schlechte zeiten",
+   "title": "bundeswehr",
    "traffic": "1000+"
   },
   {
-   "title": "aktienwelt360",
+   "title": "vonovia",
+   "traffic": "1000+"
+  },
+  {
+   "title": "миша маваши",
    "traffic": "200+"
   },
   {
-   "title": "ines schwerdtner",
+   "title": "peter thiel",
+   "traffic": "200+"
+  },
+  {
+   "title": "this city is ours",
+   "traffic": "200+"
+  },
+  {
+   "title": "mantelsonntag würzburg",
+   "traffic": "100+"
+  },
+  {
+   "title": "prinz harry",
+   "traffic": "5000+"
+  },
+  {
+   "title": "klimawandel",
    "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-10",
-   "matched": [
-    "darmstadt 98 – energie"
-   ]
-  },
   {
    "d": "2026-10-11",
    "matched": []
@@ -109,6 +108,12 @@
   {
    "d": "2026-10-24",
    "matched": []
+  },
+  {
+   "d": "2026-10-25",
+   "matched": [
+    "klimawandel"
+   ]
   }
  ]
 }
