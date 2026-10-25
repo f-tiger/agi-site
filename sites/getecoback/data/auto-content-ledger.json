@@ -47,6 +47,12 @@
       "at": "2026-10-24T08:11:07Z",
       "country": "DE",
       "route": "/guide/trotec-ttk-72-e-betriebskosten.html"
+    },
+    "2026-10-25": {
+      "action": "new",
+      "at": "2026-10-25T08:28:26Z",
+      "country": "DE",
+      "route": "/guide/trotec-ttk-27-e-betriebskosten.html"
     }
   },
   "pages": {
@@ -57,6 +63,14 @@
       "modified_at": "2026-10-19T08:57:03Z",
       "name": "MeacoDry Arete® One 10L Dehumidifier / Air Purifier",
       "source_id": "meaco-gb:2992ff8789bd"
+    },
+    "/guide/trotec-ttk-27-e-betriebskosten.html": {
+      "content_hash": "30b84687b4704a257cff8c4db413f57bbe292013a9e3d82917126f8240cb6ea2",
+      "country": "DE",
+      "created_at": "2026-10-25T08:28:26Z",
+      "modified_at": "2026-10-25T08:28:26Z",
+      "name": "Luftentfeuchter TTK 27 E",
+      "source_id": "trotec-de:81f4d3513952"
     },
     "/guide/trotec-ttk-30-e-betriebskosten.html": {
       "content_hash": "62dab60cb8cb02cda6d12dc7796a2fbf7462a54adf1d161153272022d6f5fa22",
