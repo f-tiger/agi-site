@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-10-25",
+ "fetched": "2026-10-26",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "klimawandel",
-   "traffic": "200+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "buy the dip",
+   "title": "mil mi-28",
    "traffic": "200+"
   },
   {
-   "title": "landespolizeiinspektion suhl",
-   "traffic": "100+"
+   "title": "adin ličina",
+   "traffic": "200+"
   },
   {
-   "title": "bundeswehr",
+   "title": "queens of the dead",
+   "traffic": "200+"
+  },
+  {
+   "title": "ozempic",
+   "traffic": "500+"
+  },
+  {
+   "title": "eike immel",
+   "traffic": "200+"
+  },
+  {
+   "title": "bitcoin gold",
+   "traffic": "200+"
+  },
+  {
+   "title": "jonathan rea",
+   "traffic": "200+"
+  },
+  {
+   "title": "wohnwagen",
+   "traffic": "500+"
+  },
+  {
+   "title": "seelze",
+   "traffic": "500+"
+  },
+  {
+   "title": "a72",
    "traffic": "1000+"
-  },
-  {
-   "title": "vonovia",
-   "traffic": "1000+"
-  },
-  {
-   "title": "миша маваши",
-   "traffic": "200+"
-  },
-  {
-   "title": "peter thiel",
-   "traffic": "200+"
-  },
-  {
-   "title": "this city is ours",
-   "traffic": "200+"
-  },
-  {
-   "title": "mantelsonntag würzburg",
-   "traffic": "100+"
-  },
-  {
-   "title": "prinz harry",
-   "traffic": "5000+"
-  },
-  {
-   "title": "klimawandel",
-   "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-11",
-   "matched": []
-  },
   {
    "d": "2026-10-12",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "klimawandel"
    ]
+  },
+  {
+   "d": "2026-10-26",
+   "matched": []
   }
  ]
 }

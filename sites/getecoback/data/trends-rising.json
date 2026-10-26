@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-25",
+ "fetched": "2026-10-26",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -324,89 +324,83 @@
    "last_attempt_status": "ok"
   },
   "matratze": {
-   "rising": [
-    {
-     "q": "fluss durch riga",
-     "v": 4100
-    },
-    {
-     "q": "schlafsofa mit matratze und lattenrost 180x200",
-     "v": 3500
-    },
-    {
-     "q": "emma original pro matratze",
-     "v": 110
-    },
-    {
-     "q": "bett1 de",
-     "v": 100
-    },
-    {
-     "q": "am qualitätsmatratzen",
-     "v": 90
-    },
-    {
-     "q": "emma performance matratze",
-     "v": 90
-    },
-    {
-     "q": "emma original matratze",
-     "v": 80
-    },
-    {
-     "q": "kinderbett mit matratze",
-     "v": 70
-    },
-    {
-     "q": "kindermatratze 90x200",
-     "v": 70
-    },
-    {
-     "q": "jysk matratze 100x200",
-     "v": 60
-    }
+   "auto": [
+    "matratze",
+    "matratzen concord",
+    "matratze 140x200",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratze 160x200",
+    "matratzen",
+    "matratze 120x200",
+    "matratzenschoner",
+    "matratzen topper"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-25",
-   "polluted": false,
-   "last_attempt_at": "2026-10-25T09:18:28.546484+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "matratzen concord",
+    "matratze 140x200",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratze 160x200",
+    "matratzen",
+    "matratze 120x200",
+    "matratzenschoner",
+    "matratzen topper"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-26T10:24:57.687791+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-26"
   },
   "saugwischer": {
    "rising": [
     {
+     "q": "saugwischroboter",
+     "v": 113550
+    },
+    {
+     "q": "roborock saros 20",
+     "v": 69350
+    },
+    {
      "q": "kärcher nass trockensauger",
-     "v": 54050
+     "v": 58850
     },
     {
-     "q": "saug wisch roboter test",
-     "v": 45850
-    },
-    {
-     "q": "dyson wischsauger",
-     "v": 41150
+     "q": "saugroboter mit wischfunktion",
+     "v": 56850
     },
     {
      "q": "kobold sp600 saugwischer",
-     "v": 10400
+     "v": 44450
     },
     {
-     "q": "tineco saugwischer",
-     "v": 120
+     "q": "nasswischer",
+     "v": 44350
+    },
+    {
+     "q": "lidl saugwischer",
+     "v": 44000
+    },
+    {
+     "q": "bissel saugwischer",
+     "v": 7400
+    },
+    {
+     "q": "roborock f25 ace",
+     "v": 7200
     },
     {
      "q": "tineco",
-     "v": 70
-    },
-    {
-     "q": "roborock saugwischer",
-     "v": 40
+     "v": 120
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-18",
-   "polluted": false,
-   "last_attempt_at": "2026-10-18T08:59:34.507027+00:00",
+   "fetched": "2026-10-26",
+   "polluted": true,
+   "last_attempt_at": "2026-10-26T10:25:58.565674+00:00",
    "last_attempt_status": "ok"
   }
  }
