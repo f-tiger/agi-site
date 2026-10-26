@@ -585,6 +585,73 @@
       },
       "published": "2026-10-21"
     },
+    "/guide/trotec-ttk-90-e-betriebskosten.html": {
+      "modified": "2026-10-26",
+      "product": {
+        "brand": "Trotec",
+        "checked_at": "2026-10-26T08:59:59.818536+00:00",
+        "country": "DE",
+        "facts": [
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 5.2
+          },
+          {
+            "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
+            "key": "power_watts",
+            "label": "Leistungsaufnahme",
+            "unit": "W",
+            "value": 500.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "30 °C / 80 % r.F.",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 28.4
+          },
+          {
+            "context": "Abstand 1 m",
+            "key": "noise_db",
+            "label": "Geräuschangabe",
+            "unit": "dB(A)",
+            "value": 50.0
+          }
+        ],
+        "language": "de",
+        "market": {
+          "currency": "EUR",
+          "plug": null
+        },
+        "model": "TTK 90 E",
+        "name": "Luftentfeuchter TTK 90 E",
+        "power_watts": 500.0,
+        "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-90-e.html",
+        "source_hash": "203aa397b632157fa962470ffa68ac5daeca3328dcb43cc7e150c94249306390",
+        "source_id": "trotec-de:7e9c7c636fbf",
+        "source_urls": [
+          "https://de.trotec.com/shop/luftentfeuchter-ttk-90-e.html"
+        ]
+      },
+      "published": "2026-10-26"
+    },
     "/guide/trotec-ttk-95-e-betriebskosten.html": {
       "modified": "2026-10-18",
       "product": {
