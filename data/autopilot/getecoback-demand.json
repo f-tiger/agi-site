@@ -409,23 +409,33 @@
   },
   {
    "kind": "value",
+   "match": 0.333,
+   "page": "geraete-austausch-rechner.html",
+   "q": "schlafsofa mit matratze und lattenrost 180x200",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-10-25",
+   "v": 3500
+  },
+  {
+   "kind": "value",
    "match": 0.283,
    "page": "kategorie/heizen.html",
    "q": "levoit akku staubsauger lvac 200 max",
    "seed": "akku staubsauger",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 650
+   "stand": "2026-10-25",
+   "v": 800
   },
   {
    "kind": "value",
-   "match": 0.2,
-   "page": "guide/akku-heizluefter.html",
-   "q": "bosch unlimited 10 akku-staubsauger bts1042wac",
+   "match": 0.333,
+   "page": "au/cool-bedroom-at-night.html",
+   "q": "dyson cool ventilator",
    "seed": "akku staubsauger",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 400
+   "stand": "2026-10-25",
+   "v": 160
   },
   {
    "kind": "value",
@@ -440,32 +450,12 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "au/cool-bedroom-at-night.html",
-   "q": "dyson cool ventilator",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "levoit akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 120
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
    "page": "guide/akku-heizluefter.html",
    "q": "grundig akku staubsauger",
    "seed": "akku staubsauger",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 120
+   "stand": "2026-10-25",
+   "v": 130
   },
   {
    "kind": "value",
@@ -479,13 +469,53 @@
   },
   {
    "kind": "value",
+   "match": 0.25,
+   "page": "guide/aeg-chillflex-pro-test.html",
+   "q": "emma original pro matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-10-25",
+   "v": 110
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "würth akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-25",
+   "v": 100
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "guide/abluftschlauch-verlaengern.html",
+   "q": "dyson staubsauger ohne beutel",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-25",
+   "v": 100
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/akku-heizluefter.html",
+   "q": "levoit akku staubsauger",
+   "seed": "akku staubsauger",
+   "source": "related-queries",
+   "stand": "2026-10-25",
+   "v": 90
+  },
+  {
+   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "am qualitätsmatratzen",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-17",
-   "v": 110
+   "stand": "2026-10-25",
+   "v": 90
   },
   {
    "kind": "value",
@@ -494,28 +524,18 @@
    "q": "emma performance matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-17",
-   "v": 100
-  },
-  {
-   "kind": "value",
-   "match": 0.25,
-   "page": "guide/aeg-chillflex-pro-test.html",
-   "q": "emma original pro matratze",
-   "seed": "matratze",
-   "source": "related-queries",
-   "stand": "2026-10-17",
+   "stand": "2026-10-25",
    "v": 90
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "geraete-austausch-rechner.html",
-   "q": "kinderbett mit matratze",
-   "seed": "matratze",
+   "match": 0.5,
+   "page": "guide/haustier-hitze-kuehlen.html",
+   "q": "ventilator dyson",
+   "seed": "akku staubsauger",
    "source": "related-queries",
-   "stand": "2026-10-17",
-   "v": 70
+   "stand": "2026-10-25",
+   "v": 80
   },
   {
    "kind": "value",
@@ -524,17 +544,37 @@
    "q": "emma original matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-17",
+   "stand": "2026-10-25",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "geraete-austausch-rechner.html",
+   "q": "kinderbett mit matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-10-25",
    "v": 70
   },
   {
    "kind": "value",
    "match": 0.0,
    "page": null,
-   "q": "alvi matratze",
+   "q": "kindermatratze 90x200",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-10-17",
+   "stand": "2026-10-25",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "jysk matratze 100x200",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-10-25",
    "v": 60
   },
   {
@@ -551,16 +591,6 @@
    "kind": "value",
    "match": 0.0,
    "page": null,
-   "q": "japanische matratze",
-   "seed": "matratze",
-   "source": "related-queries",
-   "stand": "2026-10-17",
-   "v": 50
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
    "q": "roborock saugwischer",
    "seed": "saugwischer",
    "source": "related-queries",
@@ -568,9 +598,9 @@
    "v": 40
   }
  ],
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "geo": "DE",
- "heat_source": "measured 2026-10-25 (18 pages); no notes",
+ "heat_source": "measured 2026-10-26 (18 pages); no notes",
  "hot_pages": [
   {
    "n7": 4,
@@ -579,23 +609,28 @@
   },
   {
    "n7": 4,
-   "p7": 3,
-   "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 4,
-   "p7": 0,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
-  },
-  {
-   "n7": 4,
    "p7": 1,
-   "page": "/waeschetrockner-oder-luftentfeuchter.html"
+   "page": "/guide/klimaanlage-kippfenster.html"
   },
   {
    "n7": 3,
    "p7": 0,
+   "page": "/guide/heizung-20-qm.html"
+  },
+  {
+   "n7": 3,
+   "p7": 1,
    "page": "/guide/klimaanlage-wann-kaufen.html"
+  },
+  {
+   "n7": 3,
+   "p7": 4,
+   "page": "/guide/luftentfeuchter-keller.html"
+  },
+  {
+   "n7": 3,
+   "p7": 2,
+   "page": "/guide/strompreis-radar.html"
   },
   {
    "n7": 3,
@@ -615,26 +650,6 @@
   {
    "n7": 2,
    "p7": 0,
-   "page": "/guide/heizung-20-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/guide/heizung-50-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-40-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/guide/klimaanlage-kippfenster.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
    "page": "/guide/klimaanlage-mietwohnung.html"
   },
   {
@@ -644,8 +659,23 @@
   },
   {
    "n7": 2,
+   "p7": 0,
+   "page": "/guide/klimaanlage-ohne-balkon.html"
+  },
+  {
+   "n7": 2,
    "p7": 4,
    "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/luftentfeuchter-20-qm.html"
+  },
+  {
+   "n7": 2,
+   "p7": 3,
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -658,20 +688,17 @@
   "dreo atom 316",
   "powerstation",
   "radiator",
-  "dyson purifier cool pc1",
+  "sky scanner",
   "salami",
   "selbstbedienungskasse",
   "stockflecken entfernen wand",
-  "fluss durch riga",
   "duschkopf",
+  "fluss durch riga",
   "meacodry arete one 12l",
   "dieter glawischnig",
-  "dreame r20",
-  "philips friteuse",
-  "sky scanner",
-  "haarstyler",
+  "balenciaga city bag",
   "bett1 de",
-  "kinderbett 90x200",
+  "dreame r20",
   "tineco"
  ],
  "site": "getecoback",

@@ -2,7 +2,7 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 7,
+    "n7": 6,
     "p7": 14
    },
    "btu_calc": {
@@ -18,51 +18,51 @@
     "p7": 7
    },
    "feuchte_now": {
-    "n7": 9,
-    "p7": 8
+    "n7": 7,
+    "p7": 10
    },
    "heat_now": {
     "n7": 0,
     "p7": 1
    },
    "heizkosten_calc": {
-    "n7": 1,
-    "p7": 0
-   },
-   "laundry_view": {
-    "n7": 3,
+    "n7": 0,
     "p7": 1
    },
+   "laundry_view": {
+    "n7": 2,
+    "p7": 2
+   },
    "page_view": {
-    "n7": 89,
-    "p7": 93
+    "n7": 82,
+    "p7": 104
    },
    "popup_click": {
     "n7": 1,
     "p7": 1
    },
    "popup_close": {
-    "n7": 11,
-    "p7": 5
+    "n7": 12,
+    "p7": 4
    },
    "popup_view": {
-    "n7": 27,
-    "p7": 15
+    "n7": 26,
+    "p7": 16
    },
    "seal_fit": {
     "n7": 1,
     "p7": 0
    },
    "strom_now": {
-    "n7": 14,
+    "n7": 13,
     "p7": 10
    },
    "stromkosten_calc": {
     "n7": 1,
-    "p7": 8
+    "p7": 1
    },
    "strompreis_api": {
-    "n7": 1,
+    "n7": 3,
     "p7": 2
    },
    "video_play": {
@@ -76,7 +76,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-25",
+ "fetched": "2026-10-26",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -94,19 +94,11 @@
    "p7": 0
   },
   "/guide/heizung-20-qm.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/guide/heizung-50-qm.html": {
-   "n7": 2,
-   "p7": 1
-  },
-  "/guide/klimaanlage-40-qm.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 0
   },
   "/guide/klimaanlage-kippfenster.html": {
-   "n7": 2,
+   "n7": 4,
    "p7": 1
   },
   "/guide/klimaanlage-mietwohnung.html": {
@@ -117,9 +109,13 @@
    "n7": 2,
    "p7": 0
   },
+  "/guide/klimaanlage-ohne-balkon.html": {
+   "n7": 2,
+   "p7": 0
+  },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 3,
-   "p7": 0
+   "p7": 1
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 2,
@@ -130,16 +126,20 @@
    "p7": 0
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 4,
-   "p7": 3
+   "n7": 3,
+   "p7": 4
   },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
    "n7": 2,
    "p7": 3
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 4,
-   "p7": 0
+   "n7": 2,
+   "p7": 2
+  },
+  "/guide/strompreis-radar.html": {
+   "n7": 3,
+   "p7": 2
   },
   "/guide/thermovorhang-ratgeber.html": {
    "n7": 2,
@@ -150,8 +150,8 @@
    "p7": 3
   },
   "/waeschetrockner-oder-luftentfeuchter.html": {
-   "n7": 4,
-   "p7": 1
+   "n7": 2,
+   "p7": 3
   }
  },
  "site": "getecoback",

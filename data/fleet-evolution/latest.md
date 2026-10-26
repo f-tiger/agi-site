@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-10-25
+# Fleet evolution report — 2026-10-26
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -17,22 +17,21 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 68 | getecoback | membership_observability | observe | admin_ok=False |
 | 68 | thedollscout | membership_observability | observe | admin_ok=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=jim cramer ai chip stocks; value=11450 |
-| 55 | getecoback | content_gap | queue | count=32; query=byecold infrarotheizung; value=49950 |
+| 55 | getecoback | content_gap | queue | count=35; query=byecold infrarotheizung; value=49950 |
 | 55 | thedollscout | content_gap | queue | count=17; query=lets try the viral crumbl labubu; value=18550 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/future-guide; n7=803; p7=309 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/amodei-white-collar-bloodbath-prediction; n7=70; p7=35 |
 | 52 | getecoback | improve_hot_page | queue | page=/; n7=4; p7=5 |
-| 48 | buysomething | ai_discovery | queue | human_pv_28d=388; ai_ref_28d=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=234; ai_ref_28d=0 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=251; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-24T07:34:43.046Z | 1 |
-| health | 2026-10-24T12:22:16Z | 1 |
-| ai_referrals | 2026-10-24T12:22:42Z | 1 |
-| opportunities | 2026-10-24 | 1 |
-| autopilot_receipt | 2026-10-25 | 0 |
+| membership | 2026-10-25T07:47:43.730Z | 1 |
+| health | 2026-10-25T12:52:30Z | 1 |
+| ai_referrals | 2026-10-25T12:52:58Z | 1 |
+| opportunities | 2026-10-25 | 1 |
+| autopilot_receipt | 2026-10-26 | 0 |
 
 ## Autonomous boundary
 

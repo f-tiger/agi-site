@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-25",
+  "as_of": "2026-10-26",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-24T07:34:43.046Z",
-    "health": "2026-10-24T12:22:16Z",
-    "ai_referrals": "2026-10-24T12:22:42Z",
-    "opportunities": "2026-10-24",
-    "autopilot_receipt": "2026-10-25"
+    "membership": "2026-10-25T07:47:43.730Z",
+    "health": "2026-10-25T12:52:30Z",
+    "ai_referrals": "2026-10-25T12:52:58Z",
+    "opportunities": "2026-10-25",
+    "autopilot_receipt": "2026-10-26"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-24T07:34:43.046Z",
+    "generated": "2026-10-25T07:47:43.730Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -128,16 +128,7 @@
       "theme": "when can we trust ai in coding and avoid the happy path issue",
       "site": null,
       "state": "scout",
-      "score": 2.34,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "is there a temp phone number like temp email",
-      "site": null,
-      "state": "scout",
-      "score": 2.27,
+      "score": 2.39,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -204,6 +195,15 @@
       "days_seen": 1,
       "demand": 0,
       "supply": 0
+    },
+    {
+      "theme": "how do you compare different saas tools before choosing one",
+      "site": null,
+      "state": "scout",
+      "score": 1.94,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
     }
   ],
   "actions": [
@@ -265,7 +265,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 32,
+        "count": 35,
         "query": "byecold infrarotheizung",
         "value": 49950
       },
@@ -289,9 +289,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/future-guide",
-        "n7": 803,
-        "p7": 309
+        "page": "/amodei-white-collar-bloodbath-prediction",
+        "n7": 70,
+        "p7": 35
       },
       "mode": "queue"
     },
@@ -308,23 +308,12 @@
       "mode": "queue"
     },
     {
-      "site": "buysomething",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 388,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
       "site": "goldrush",
       "kind": "ai_discovery",
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 234,
+        "human_pv_28d": 251,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -349,7 +338,7 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",
