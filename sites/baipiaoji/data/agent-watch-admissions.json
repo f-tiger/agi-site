@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-25",
+ "checked": "2026-10-26",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3159,6 +3159,60 @@
    "source_http": 404,
    "repo_http": null,
    "reason": "source HTTP 404"
+  },
+  "cloud-iox-iox-cloud": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "cloud-nordicdata-nordic-data": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "cloud-nttzen-secdb-zen-secdb": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "cn-jiewang-jiewang": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "axiom-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "callendar-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-26",
+   "last_attempt": "2026-10-26",
+   "attemptedAt": "2026-10-26T05:14:44.073Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
   }
  },
  "admitted": [
@@ -15937,6 +15991,330 @@
   {
    "slug": "cloud-bisque-presentations",
    "date": "2026-10-25",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-coredls-vigia-vigia",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-fetcher-fetcher",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-findagent-marketplace",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-freebase-freebase",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-hoboworks-agent-market",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-hstgr-srv1024618-aval-trust",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-kodshop-catalog",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-korpus-korpus",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-mengi-mengi-cloud",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-metrifyr-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-mynextadventure-trip-planner",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-opendocs-opendocs",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-prince-prince",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-serpent-salesforce-devops",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-spider-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-swigs-swigs-cloud",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-tatnet-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-tocbien-tocbien",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-tri2b-projects",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cloud-verifi-human-verification",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cloud-wavehouse-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "club-boringstuff-the-scribble-thing",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "club-goodleads-new-business-owner-contacts",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "club-lity-lity",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "club-parser-parser-club",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "club-pilotex-kyc",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-3ceng-kuailian",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-550wai-550w-ai-media-cn",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-550wai-550w-ai-media-global",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-soloteam-soloteam",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-tpool-tpool",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-kindlemusic-kindlemusic",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-mackorn-mackorn-cone-crusher",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cn-one1-trademark",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cn-tutulife-aijiayao",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "cn-whylingxi-insurance",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "addcal-addcal",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "addressintel-permits",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ainumbers-tools",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aistoryhub-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apillow-zillow",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asksteps-asksteps",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atendio-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "besteor-eor-data",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "betterchess-betterchess",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bitcoinyield-yields",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bizverify-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackcarservice-ride-quotes",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brightkey-education-data",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bulktranscripts-youtube",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "canopyapi-mcp",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "chatbase-chatbase",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-blogger-agent",
+   "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-browsergpt-agent",
+   "date": "2026-10-26",
    "source_http": 200,
    "repo_http": null
   }

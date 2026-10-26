@@ -1,14 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 18,
-  "page": 3,
+  "queryIndex": 0,
+  "page": 1,
   "pending": [
-   {
-    "repo": "titanwings/distilly",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "activepieces/activepieces",
     "topic": "agents",
@@ -17,11 +12,6 @@
    {
     "repo": "nocobase/nocobase",
     "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "agent-of-empires/agent-of-empires",
-    "topic": "coding",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -37,16 +27,6 @@
    {
     "repo": "QwenAudio/qwen-audio-agent",
     "topic": "coding",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "SamurAIGPT/AI-Faceless-Video-Generator",
-    "topic": "image",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "OpenMOSS/MOSS-TTS",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -265,11 +245,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "NVIDIA/TensorRT",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "LMCache/LMCache",
     "topic": "local",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -337,11 +312,6 @@
    {
     "repo": "deepset-ai/haystack",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "memvid/memvid",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -865,11 +835,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "Robbyant/lingbot-world",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "darkzOGx/youtube-automation-agent",
     "topic": "agents",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -902,11 +867,6 @@
    {
     "repo": "NVlabs/LongLive",
     "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "run-llama/llama_cloud_services",
-    "topic": "documents",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1072,11 +1032,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "louislam/uptime-kuma",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -2060,11 +2015,6 @@
     "foundAt": "2026-10-11T06:21:02.155Z"
    },
    {
-    "repo": "Helicone/helicone",
-    "topic": "ai",
-    "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
     "repo": "intel/neural-compressor",
     "topic": "ai",
     "foundAt": "2026-10-11T06:21:02.155Z"
@@ -2177,11 +2127,6 @@
    {
     "repo": "FireRedTeam/FireRed-OpenStoryline",
     "topic": "agents",
-    "foundAt": "2026-10-13T07:04:30.117Z"
-   },
-   {
-    "repo": "wppconnect-team/wppconnect",
-    "topic": "chat",
     "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
@@ -2397,11 +2342,6 @@
    {
     "repo": "beam-cloud/beta9",
     "topic": "local",
-    "foundAt": "2026-10-16T04:57:03.412Z"
-   },
-   {
-    "repo": "NVIDIA-NeMo/Curator",
-    "topic": "models",
     "foundAt": "2026-10-16T04:57:03.412Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "relari-ai/continuous-eval",
     "topic": "knowledge",
     "foundAt": "2026-10-25T05:12:22.736Z"
+   },
+   {
+    "repo": "zi-yue-1129/DATAGEN",
+    "topic": "coding",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "ExtensityAI/symbolicai",
+    "topic": "ai",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "amitshekhariitbhu/llm-internals",
+    "topic": "ai",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "bytedance/Sa2VA",
+    "topic": "ai",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "TokenRhythm/NeoHorse",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "xLLM-AI/xllm",
+    "topic": "local",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "allenai/dolma",
+    "topic": "ai",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "assafelovic/gpt-researcher",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "alibaba/page-agent",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "OtterMind/Chat2DB",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "PrefectHQ/fastmcp",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "t8y2/dbx",
+    "topic": "agents",
+    "foundAt": "2026-10-26T05:14:44.073Z"
    }
   ],
   "checked": {
@@ -3095,11 +3095,17 @@
    "gh-zilliztech-claude-context-df74c1": "2026-10-25T05:12:22.736Z",
    "gh-furkangozukara-stable-diffusion-cbddd4": "2026-10-25T05:12:22.736Z",
    "gh-k2-fsa-sherpa-onnx-dd9327": "2026-10-25T05:12:22.736Z",
-   "gh-siddsachar-row-bot-fb915e": "2026-10-25T05:12:22.736Z"
+   "gh-siddsachar-row-bot-fb915e": "2026-10-25T05:12:22.736Z",
+   "gh-assistant-ui-assistant-ui-db392d": "2026-10-26T05:14:44.073Z",
+   "gh-openmoss-mova-d61fee": "2026-10-26T05:14:44.073Z",
+   "gh-hillya51-lunatranslator-234698": "2026-10-26T05:14:44.073Z",
+   "gh-ludwig-ai-ludwig-b5fee9": "2026-10-26T05:14:44.073Z",
+   "gh-wox-launcher-wox-7de0bd": "2026-10-26T05:14:44.073Z",
+   "gh-stefan-jansen-machine-learning-for-trading-a251dc": "2026-10-26T05:14:44.073Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.kofujimura/tctc-mcp:0.3.3",
+  "cursor": "io.github.mattoddie/crunch-mcp:0.4.1",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4023,7 +4029,47 @@
    "volunteerreminder-mcp": "2026-10-25T05:12:22.736Z",
    "voxodds-voxodds": "2026-10-25T05:12:22.736Z",
    "vruum-mcp": "2026-10-25T05:12:22.736Z",
-   "wa-campaigns-whatsapp-campaigns": "2026-10-25T05:12:22.736Z"
+   "wa-campaigns-whatsapp-campaigns": "2026-10-25T05:12:22.736Z",
+   "waitingforpower-energy-permitting-tracker": "2026-10-26T05:14:44.073Z",
+   "warp": "2026-10-26T05:14:44.073Z",
+   "watsonx-orchestrate": "2026-10-26T05:14:44.073Z",
+   "weave": "2026-10-26T05:14:44.073Z",
+   "web3-studio": "2026-10-26T05:14:44.073Z",
+   "weftly-weftly": "2026-10-26T05:14:44.073Z",
+   "wellnessproject-wellness-project": "2026-10-26T05:14:44.073Z",
+   "westerncontainersales-wcs": "2026-10-26T05:14:44.073Z",
+   "whimsical-mcp": "2026-10-26T05:14:44.073Z",
+   "windmill": "2026-10-26T05:14:44.073Z",
+   "windsock-windsock": "2026-10-26T05:14:44.073Z",
+   "windsurf": "2026-10-26T05:14:44.073Z",
+   "wingmanprotocol-agent-gateway": "2026-10-26T05:14:44.073Z",
+   "withtallied-tallied": "2026-10-26T05:14:44.073Z",
+   "wizeb-ai-native-index": "2026-10-26T05:14:44.073Z",
+   "wordware": "2026-10-26T05:14:44.073Z",
+   "workos-mcp": "2026-10-26T05:14:44.073Z",
+   "worldmonitor-mcp": "2026-10-26T05:14:44.073Z",
+   "wren-ai": "2026-10-26T05:14:44.073Z",
+   "wyrdmcp-wyrd": "2026-10-26T05:14:44.073Z",
+   "xagent": "2026-10-26T05:14:44.073Z",
+   "xoomar-mcp": "2026-10-26T05:14:44.073Z",
+   "xverum-mcp": "2026-10-26T05:14:44.073Z",
+   "xweather-weather": "2026-10-26T05:14:44.073Z",
+   "yachtcharterquotes-site": "2026-10-26T05:14:44.073Z",
+   "yanlinglabs-video-extract-mcp": "2026-10-26T05:14:44.073Z",
+   "yentaknows-directory": "2026-10-26T05:14:44.073Z",
+   "youspot-youspot": "2026-10-26T05:14:44.073Z",
+   "youtu-agent": "2026-10-26T05:14:44.073Z",
+   "zapier-agents": "2026-10-26T05:14:44.073Z",
+   "zapier-mcp": "2026-10-26T05:14:44.073Z",
+   "zarla-website-builder": "2026-10-26T05:14:44.073Z",
+   "zep": "2026-10-26T05:14:44.073Z",
+   "aidoo-aidoo": "2026-10-26T05:14:44.073Z",
+   "algovesta-trading": "2026-10-26T05:14:44.073Z",
+   "cherry-studio": "2026-10-26T05:14:44.073Z",
+   "cloud-massdriver-mcp-server": "2026-10-26T05:14:44.073Z",
+   "elfa-mcp": "2026-10-26T05:14:44.073Z",
+   "fintechstudios-studio": "2026-10-26T05:14:44.073Z",
+   "fivexer-mcp": "2026-10-26T05:14:44.073Z"
   }
  }
 }

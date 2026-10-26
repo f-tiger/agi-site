@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "notion-ai",
-  "nvidia-nim",
-  "ollama",
-  "opusclip",
-  "perplexity",
-  "phind",
-  "pika",
-  "pixlr"
+  "playground-ai",
+  "poe",
+  "qingying",
+  "qoder",
+  "quark-ai",
+  "ragflow",
+  "recraft",
+  "removebg"
  ],
- "cursor": "pixlr",
+ "cursor": "removebg",
  "summary": {
   "ready": 42,
   "empty": 35,
@@ -376,7 +376,7 @@
    "name": "智谱清影",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2358,14 +2358,14 @@
    "name": "Playground AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://playgroundai.com/design/pricing",
      "status": 200,
-     "bytes": 170921,
+     "bytes": 170923,
      "tokens": 8
     }
    ],
@@ -2380,21 +2380,21 @@
    "name": "Poe",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://poe.com/subscription_plans",
      "status": 200,
-     "bytes": 120759,
+     "bytes": 120334,
      "tokens": 10
     }
    ],
    "best": {
     "url": "https://poe.com/subscription_plans",
     "tokens": 10,
-    "excerpt": "nnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 · 加入我们的Discord 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 £49.99/年 ( £4.17/月 ) 开始使用 66万积分/月 £199.99/年 ( £16.67/月 ) 开始使用 165万积分/月 £499.99/年 ( £41.67/月 ) 开始使用 330万积分/月 £999.99/年 ( £83.33/月 ) 开始使用 825万积分/月 £2,499.99/年 ( £208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
+    "excerpt": "GPT-5、Claude-Sonnet-5、DeepSeek-R1、Veo-3.1及数千款其他模型。 下载应用 在 X 上关注我们 职业 · 帮助中心 · 隐私政策 · 服务条款 0 订阅套餐 按年计费 节省17% 按月计费 每天1万积分 £49.99/年 ( £4.17/月 ) 开始使用 66万积分/月 £199.99/年 ( £16.67/月 ) 开始使用 165万积分/月 £499.99/年 ( £41.67/月 ) 开始使用 330万积分/月 £999.99/年 ( £83.33/月 ) 开始使用 825万积分/月 £2,499.99/年 ( £208.33/月 ) 开始使用 包括什么？ 所有 Poe 订阅套餐均匀允许您： 发送和接收更多消息 访问更多顶尖模型，包括GPT-5.5、Claude-Opus-4.7、Gemini-3.5-Flash、Nano-Banana-Pro和Veo-3.1 解锁每个机器人的最大输入大小和聊天记录 价格以美元显示。您的最终价格可能因地区税费和货币兑换而有所不同。 有关订阅服务的可用地区，请参见 此处 。 订阅即表示您同意自动付款（如适用，需加税费）。可通过设置中的 Stripe 客户门户取消或管理您的订阅。适用 销售条款 。"
    }
   },
   "processon": {
@@ -2432,7 +2432,7 @@
    "name": "Qoder（阿里）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2466,7 +2466,7 @@
    "name": "夸克 AI",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2496,7 +2496,7 @@
    "name": "RAGFlow",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2526,20 +2526,20 @@
    "name": "Recraft",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://recraft.ai/pricing",
      "status": 200,
-     "bytes": 50079,
+     "bytes": 48962,
      "tokens": 1
     },
     {
      "url": "https://www.recraft.ai/pricing",
      "status": 200,
-     "bytes": 50079,
+     "bytes": 48962,
      "tokens": 1
     },
     {
@@ -2560,20 +2560,20 @@
    "name": "remove.bg",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-14",
+   "probed": "2026-10-26",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://remove.bg/pricing",
      "status": 200,
-     "bytes": 63583,
+     "bytes": 63585,
      "tokens": 0
     },
     {
      "url": "https://www.remove.bg/pricing",
      "status": 200,
-     "bytes": 63583,
+     "bytes": 63585,
      "tokens": 0
     },
     {
