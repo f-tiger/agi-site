@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-25",
+  "generated": "2026-10-26",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 44,
+    "candidate": 43,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -28,14 +28,14 @@
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：www.perplexity.ai×10、chatgpt.com×1、copilot.microsoft.com×1",
+      "title": "AI 助手引流出现：www.perplexity.ai×9、chatgpt.com×1、copilot.microsoft.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
         "/en/plans/free-video-gen",
-        "/en/c/image",
         "/tools/tusiart",
         "/tools/ms-copilot",
+        "/en/c/image",
         "/en/tools/bing-image",
         "/mcp"
       ],
@@ -152,7 +152,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 112 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 110 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -163,13 +163,13 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 29 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 31 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "exa"
       ],
-      "score": 59
+      "score": 60
     }
   ]
 }
