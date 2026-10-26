@@ -1,16 +1,16 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "status": "ok",
     "added": [],
     "changed": [],
-    "eligible": 15,
+    "eligible": 16,
     "sources": [
       {
         "id": "smiski",
         "status": "ok",
-        "eligible": 5,
+        "eligible": 6,
         "url": "https://smiski.com/e/products/"
       },
       {
@@ -20,12 +20,7 @@
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
-    "rejected": [
-      {
-        "source": "https://smiski.com/e/products/hippers-series/",
-        "reason": "No verified six-style SMISKI checklist"
-      }
-    ]
+    "rejected": []
   },
   "scope": "Official named checklists only; not stock, release dates, prices or probabilities.",
   "series": [
@@ -50,7 +45,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-snack-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-snack-series",
@@ -80,7 +75,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-02",
       "modified": "2026-10-02",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-vegetable-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-vegetable-series",
@@ -152,7 +147,7 @@
       "source": "https://smiski.com/e/products/work-series/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-22",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-work",
         "de": "https://thedollscout.com/de/series/smiski-work",
@@ -176,7 +171,7 @@
       "source": "https://smiski.com/e/products/museumseries/",
       "published": "2026-10-04",
       "modified": "2026-10-04",
-      "checked": "2026-10-23",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-museum",
         "de": "https://thedollscout.com/de/series/smiski-museum",
@@ -200,7 +195,7 @@
       "source": "https://smiski.com/e/products/living/",
       "published": "2026-10-11",
       "modified": "2026-10-11",
-      "checked": "2026-10-23",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-living-series",
         "de": "https://thedollscout.com/de/series/smiski-living-series",
@@ -344,7 +339,7 @@
       "source": "https://smiski.com/e/products/bed-series/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-23",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-bed-series",
         "de": "https://thedollscout.com/de/series/smiski-bed-series",
@@ -374,7 +369,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-14",
       "modified": "2026-10-14",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-flower-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-flower-series",
@@ -428,7 +423,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-15",
       "modified": "2026-10-15",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-marine-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-marine-series",
@@ -482,7 +477,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-16",
       "modified": "2026-10-16",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-fruit-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-fruit-series",
@@ -506,7 +501,7 @@
       "source": "https://smiski.com/e/products/yoga-series/",
       "published": "2026-10-17",
       "modified": "2026-10-17",
-      "checked": "2026-10-23",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-yoga-series",
         "de": "https://thedollscout.com/de/series/smiski-yoga-series",
@@ -584,7 +579,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-18",
       "modified": "2026-10-18",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-animal-series-1",
         "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-1",
@@ -614,7 +609,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-19",
       "modified": "2026-10-19",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-animal-series-2",
         "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-2",
@@ -644,7 +639,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-19",
       "modified": "2026-10-19",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-animal-series-3",
         "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-3",
@@ -668,7 +663,7 @@
       "source": "https://smiski.com/e/products/cheerseries/",
       "published": "2026-10-20",
       "modified": "2026-10-20",
-      "checked": "2026-10-23",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/smiski-cheer",
         "de": "https://thedollscout.com/de/series/smiski-cheer",
@@ -698,7 +693,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-20",
       "modified": "2026-10-20",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-animal-series-4",
         "de": "https://thedollscout.com/de/series/sonny-angel-animal-series-4",
@@ -752,7 +747,7 @@
       "source": "https://www.sonnyangel.com/en/products/",
       "published": "2026-10-21",
       "modified": "2026-10-21",
-      "checked": "2026-10-25",
+      "checked": "2026-10-26",
       "urls": {
         "en": "https://thedollscout.com/series/sonny-angel-sweets-series",
         "de": "https://thedollscout.com/de/series/sonny-angel-sweets-series",
