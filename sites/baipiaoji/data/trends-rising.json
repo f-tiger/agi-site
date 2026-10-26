@@ -1,52 +1,60 @@
 {
- "fetched": "2026-10-25",
+ "fetched": "2026-10-26",
  "geo": "US",
  "seeds": {
   "deepseek": {
+   "auto": [
+    "deepseek",
+    "deepseek ai",
+    "deepseek api",
+    "deepseek v4.1 flash",
+    "deepseek harness desktop",
+    "deepseek v4.1 flash 1017",
+    "deepseek v4 flash",
+    "deepseek v4",
+    "deepseek chat",
+    "deepseek login"
+   ],
    "rising": [
     {
-     "q": "deepseek v4 flash 0731",
-     "v": 118500
+     "q": "deepseek ai",
+     "v": "new"
+    },
+    {
+     "q": "deepseek api",
+     "v": "new"
+    },
+    {
+     "q": "deepseek v4.1 flash",
+     "v": "new"
     },
     {
      "q": "deepseek harness desktop",
-     "v": 70400
+     "v": "new"
     },
     {
-     "q": "dsh deepseek",
-     "v": 64400
+     "q": "deepseek v4.1 flash 1017",
+     "v": "new"
     },
     {
-     "q": "dsh",
-     "v": 64200
+     "q": "deepseek v4 flash",
+     "v": "new"
     },
     {
-     "q": "deepseek v4 pro 0813",
-     "v": 42800
+     "q": "deepseek v4",
+     "v": "new"
     },
     {
-     "q": "glm 5.3 flash",
-     "v": 31350
+     "q": "deepseek chat",
+     "v": "new"
     },
     {
-     "q": "deepseek harness 插件",
-     "v": 21250
-    },
-    {
-     "q": "deepseek flash v4.1",
-     "v": 20500
-    },
-    {
-     "q": "qwen 3.8 27b",
-     "v": 15100
-    },
-    {
-     "q": "cordis",
-     "v": 12650
+     "q": "deepseek login",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-15"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-26"
   },
   "midjourney": {
    "rising": [
@@ -279,50 +287,58 @@
    "fetched": "2026-10-17"
   },
   "cursor": {
+   "auto": [
+    "cursor",
+    "cursor ai",
+    "cursory",
+    "cursory definition",
+    "cursor download",
+    "cursor library",
+    "cursor ide",
+    "cursor pricing",
+    "cursor vs claude code",
+    "cursor cli"
+   ],
    "rising": [
     {
-     "q": "cursor grok 4.6",
-     "v": 32800
+     "q": "cursor ai",
+     "v": "new"
     },
     {
-     "q": "grokbot",
-     "v": 30750
+     "q": "cursory",
+     "v": "new"
     },
     {
-     "q": "kimi k3",
-     "v": 18400
+     "q": "cursory definition",
+     "v": "new"
     },
     {
-     "q": "grok bot",
-     "v": 17000
+     "q": "cursor download",
+     "v": "new"
     },
     {
-     "q": "cursor grok bot",
-     "v": 15750
+     "q": "cursor library",
+     "v": "new"
     },
     {
-     "q": "lurker",
-     "v": 13400
+     "q": "cursor ide",
+     "v": "new"
     },
     {
-     "q": "vanity plate",
-     "v": 12800
+     "q": "cursor pricing",
+     "v": "new"
     },
     {
-     "q": "spammer",
-     "v": 12750
+     "q": "cursor vs claude code",
+     "v": "new"
     },
     {
-     "q": "spammer meaning",
-     "v": 10600
-    },
-    {
-     "q": "nerd meaning",
-     "v": 9700
+     "q": "cursor cli",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-15"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-26"
   },
   "claude code": {
    "rising": [

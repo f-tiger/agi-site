@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-25",
- "radar_fetched": "2026-10-25",
+ "generated": "2026-10-26",
+ "radar_fetched": "2026-10-26",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -66,6 +66,21 @@
    "fleet_pages": []
   },
   {
+   "theme": "did crates io stop processing new crate publishes",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-26"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.12,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "is there a credible gut health test out there",
    "site": "",
    "kind": "request-board",
@@ -81,12 +96,42 @@
    "fleet_pages": []
   },
   {
+   "theme": "feature request manager",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-23"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.05,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "firefox add on to block the new credentials fill in behavior",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-10-20"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.05,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "php based faq engine",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-10-21"
    ],
    "state": "scout",
    "supplied": false,
@@ -111,21 +156,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "feature request manager",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-23"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "frictionless vivaldi browser extension to quickly save viewport screenshots",
    "site": "",
    "kind": "request-board",
@@ -136,36 +166,6 @@
    "state": "scout",
    "supplied": false,
    "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "php based faq engine",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-21"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "how do you compare different saas tools before choosing one",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-24"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 1.94,
    "demand": [],
    "supply": [],
    "fleet_pages": []
