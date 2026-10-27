@@ -2,16 +2,16 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-26T12:32:27.115Z",
+  "generated": "2026-10-27T11:50:20.023Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
-    "doc_view": 15,
+    "doc_view": 10,
     "doc_video_load_shotcut": 1,
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 121
+    "doc_ci": 116
   },
   "daily": [
     {
@@ -58,21 +58,12 @@
       "d": "2026-09-30",
       "ev": "doc_view",
       "n": 2
-    },
-    {
-      "d": "2026-09-29",
-      "ev": "doc_view",
-      "n": 5
     }
   ],
   "pages": [
     {
       "path": "/",
-      "n": 4
-    },
-    {
-      "path": "/image-compressor",
-      "n": 2
+      "n": 3
     },
     {
       "path": "/zh/videos/upscayl",
@@ -95,14 +86,6 @@
       "n": 1
     },
     {
-      "path": "/open-source/upscayl",
-      "n": 1
-    },
-    {
-      "path": "/verify-file",
-      "n": 1
-    },
-    {
       "path": "/zh/videos/shotcut",
       "n": 1
     }
@@ -110,7 +93,7 @@
   "referrers": [
     {
       "ref": "",
-      "n": 10
+      "n": 5
     },
     {
       "ref": "www.google.com",
@@ -124,15 +107,15 @@
   "crawler_fetches": [
     {
       "path": "/",
-      "n": 173
+      "n": 145
     },
     {
       "path": "/llms.txt",
-      "n": 106
+      "n": 98
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 81
+      "n": 94
     },
     {
       "path": "/document-tools",
@@ -148,10 +131,6 @@
     },
     {
       "path": "/document-assets/text/en/learn/pdf-accessibility-checklist.txt",
-      "n": 7
-    },
-    {
-      "path": "/llms-full.txt",
       "n": 7
     },
     {
@@ -199,6 +178,18 @@
       "n": 6
     },
     {
+      "path": "/document-assets/text/en/open-source/audacity.txt",
+      "n": 6
+    },
+    {
+      "path": "/document-assets/text/en/open-source/obs.txt",
+      "n": 6
+    },
+    {
+      "path": "/document-assets/text/en/open-source/shotcut.txt",
+      "n": 6
+    },
+    {
       "path": "/document-assets/text/en/open-source/upscayl.txt",
       "n": 6
     },
@@ -231,10 +222,6 @@
       "n": 6
     },
     {
-      "path": "/image-compressor",
-      "n": 6
-    },
-    {
       "path": "/zh/ai-portrait-background-remover",
       "n": 6
     },
@@ -263,15 +250,15 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/open-source/audacity.txt",
+      "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/open-source/obs.txt",
+      "path": "/image-compressor",
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/open-source/shotcut.txt",
+      "path": "/llms-full.txt",
       "n": 5
     },
     {
@@ -280,10 +267,6 @@
     },
     {
       "path": "/zh/pdf-accessibility-checker",
-      "n": 5
-    },
-    {
-      "path": "/zh/pdf-batch-audit",
       "n": 5
     },
     {
@@ -315,7 +298,35 @@
       "n": 4
     },
     {
-      "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
+      "path": "/document-assets/text/de/compare-pdf-text.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/delivery-evidence.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/open-source.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/open-source/audacity.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/open-source/shotcut.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/pdf-accessibility-checker.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/pdf-batch-audit.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/pdf-to-text.txt",
       "n": 4
     },
     {
@@ -343,10 +354,6 @@
       "n": 4
     },
     {
-      "path": "/zh/learn/pdf-accessibility-checklist",
-      "n": 4
-    },
-    {
       "path": "/zh/learn/pdf-reading-order",
       "n": 4
     },
@@ -356,6 +363,10 @@
     },
     {
       "path": "/zh/open-source/whisper",
+      "n": 4
+    },
+    {
+      "path": "/zh/pdf-batch-audit",
       "n": 4
     },
     {
@@ -387,23 +398,43 @@
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/compare-pdf-text.txt",
+      "path": "/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt",
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/open-source.txt",
+      "path": "/document-assets/text/de/open-source/obs.txt",
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/open-source/shotcut.txt",
+      "path": "/document-assets/text/de/open-source/ollama.txt",
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/pdf-accessibility-checker.txt",
+      "path": "/document-assets/text/de/open-source/upscayl.txt",
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/pdf-batch-audit.txt",
+      "path": "/document-assets/text/de/open-source/whisper.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/de/verify-file.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/de/videos.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/de/videos/audacity.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/de/videos/shotcut.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/de/videos/upscayl.txt",
       "n": 3
     },
     {
@@ -419,6 +450,78 @@
       "n": 3
     },
     {
+      "path": "/document-assets/text/zh/compare-pdf-text.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/delivery-evidence.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/learn/pdf-accessibility-checklist.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/learn/pdf-reading-order.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/audacity.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/obs.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/ollama.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/shotcut.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/upscayl.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/open-source/whisper.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/pdf-accessibility-checker.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/pdf-batch-audit.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/pdf-to-text.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/verify-file.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/videos.txt",
+      "n": 3
+    },
+    {
+      "path": "/document-assets/text/zh/videos/upscayl.txt",
+      "n": 3
+    },
+    {
       "path": "/learn/pdf-accessibility-checklist",
       "n": 3
     },
@@ -431,11 +534,11 @@
       "n": 3
     },
     {
-      "path": "/videos/upscayl",
+      "path": "/zh/creator-kit",
       "n": 3
     },
     {
-      "path": "/zh/creator-kit",
+      "path": "/zh/learn/pdf-accessibility-checklist",
       "n": 3
     },
     {
@@ -531,131 +634,15 @@
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/delivery-evidence.txt",
-      "n": 2
-    },
-    {
       "path": "/document-assets/text/de/learn/pdf-accessibility-checklist.txt",
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt",
+      "path": "/document-assets/text/zh/videos/audacity.txt",
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/open-source/audacity.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/open-source/obs.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/open-source/ollama.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/open-source/upscayl.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/open-source/whisper.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/pdf-to-text.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/verify-file.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/videos.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/videos/audacity.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/videos/shotcut.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/de/videos/upscayl.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/compare-pdf-text.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/delivery-evidence.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/learn/pdf-accessibility-checklist.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/learn/pdf-reading-order.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/audacity.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/obs.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/ollama.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/shotcut.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/upscayl.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/open-source/whisper.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-accessibility-checker.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-batch-audit.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/pdf-to-text.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/verify-file.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/videos.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/videos/upscayl.txt",
+      "path": "/document-assets/text/zh/videos/shotcut.txt",
       "n": 2
     },
     {
@@ -715,6 +702,10 @@
       "n": 2
     },
     {
+      "path": "/videos/upscayl",
+      "n": 2
+    },
+    {
       "path": "/zh/learn/scanned-pdf-vs-text-pdf",
       "n": 2
     },
@@ -733,75 +724,67 @@
     {
       "path": "/zh/open-source/upscayl",
       "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/videos/audacity.txt",
-      "n": 1
-    },
-    {
-      "path": "/document-assets/text/zh/videos/shotcut.txt",
-      "n": 1
     }
   ],
   "crawler_agents": [
     {
       "claimed_agent": "Amazonbot",
-      "n": 302
-    },
-    {
-      "claimed_agent": "ChatGPT-User",
-      "n": 97
-    },
-    {
-      "claimed_agent": "Googlebot",
-      "n": 86
+      "n": 304
     },
     {
       "claimed_agent": "ClaudeBot",
-      "n": 74
+      "n": 83
+    },
+    {
+      "claimed_agent": "Googlebot",
+      "n": 83
+    },
+    {
+      "claimed_agent": "ChatGPT-User",
+      "n": 81
     },
     {
       "claimed_agent": "Applebot",
       "n": 64
     },
     {
-      "claimed_agent": "Bingbot",
-      "n": 60
+      "claimed_agent": "Meta-ExternalAgent",
+      "n": 64
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 60
+      "n": 59
     },
     {
-      "claimed_agent": "PerplexityBot",
-      "n": 30
+      "claimed_agent": "Bingbot",
+      "n": 53
     },
     {
       "claimed_agent": "YandexBot",
       "n": 29
     },
     {
-      "claimed_agent": "OAI-SearchBot",
-      "n": 26
+      "claimed_agent": "PerplexityBot",
+      "n": 27
     },
     {
-      "claimed_agent": "Meta-ExternalAgent",
-      "n": 22
+      "claimed_agent": "OAI-SearchBot",
+      "n": 23
     },
     {
       "claimed_agent": "Claude-User",
-      "n": 17
+      "n": 15
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 17
+      "n": 15
     }
   ],
   "source_events": [
     {
       "source": "direct_or_unknown",
       "events": {
-        "doc_view": 10,
+        "doc_view": 5,
         "doc_video_load_shotcut": 1
       }
     },
@@ -819,8 +802,8 @@
       }
     }
   ],
-  "homepage_views": 4,
-  "dedicated_tool_views": 3,
+  "homepage_views": 3,
+  "dedicated_tool_views": 0,
   "homepage_selections": {
     "portrait": 0,
     "speech": 0,
@@ -835,7 +818,7 @@
     "text": 0,
     "compare": 0
   },
-  "resource_views": 5,
+  "resource_views": 4,
   "resource_actions": {
     "doc_library_open_source": 0,
     "doc_library_videos": 0,
@@ -874,6 +857,6 @@
   "revenue_scope": "Equipment outbound clicks are purchase intent, not orders or revenue. Actual earned commission must be reconciled with Amazon reports; no sales attribution is inferred from these anonymous actions. Video loads are not plays or completed watches.",
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
-  "tool_views": 7,
-  "query_rows_read": 4439
+  "tool_views": 3,
+  "query_rows_read": 4535
 }
