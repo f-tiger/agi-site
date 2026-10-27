@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-26T08:05:05.252Z",
+  "asOf": "2026-10-27T08:21:00.593Z",
   "ok": true,
   "checks": [
     {
@@ -15,15 +15,7 @@
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
+      "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
@@ -31,7 +23,15 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "evidence.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
@@ -40,10 +40,6 @@
     },
     {
       "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -59,6 +55,10 @@
       "ok": true
     },
     {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "public AI access OAI-SearchBot",
       "ok": true
     },
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-10-26T08:05:06.250Z",
+      "retrievedAt": "2026-10-27T08:21:01.026Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 79887.51013104523,
-          "sourceUpdatedAt": "2026-10-26T08:03:53.000Z",
+          "price": 79774.55226038831,
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2312.2841129457884,
-          "sourceUpdatedAt": "2026-10-26T08:03:53.000Z",
+          "price": 2312.5942256570406,
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9997413739164572,
-          "sourceUpdatedAt": "2026-10-26T08:03:43.000Z",
-          "deviationBps": -2.5862608354276784
+          "price": 0.99931993045724,
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
+          "deviationBps": -6.80069542760009
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9992641907945619,
-          "sourceUpdatedAt": "2026-10-26T08:03:43.000Z",
-          "deviationBps": -7.3580920543814265
+          "price": 0.9986644656448945,
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
+          "deviationBps": -13.355343551054721
         }
       ],
       "source": {
@@ -110,65 +110,65 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-10-26T08:05:05.890Z",
+      "retrievedAt": "2026-10-27T08:21:01.162Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-10-26T08:05:05.587Z"
+          "checkedAt": "2026-10-27T08:21:01.003Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-10-26T08:05:05.587Z"
+          "checkedAt": "2026-10-27T08:21:01.003Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-10-26T08:05:05.587Z"
+          "checkedAt": "2026-10-27T08:21:01.003Z"
         }
       ],
       "items": [
         {
-          "title": "fix(examples/python): parse facilitator payment requirements by x402 version (#3934)",
-          "url": "https://github.com/x402-foundation/x402/commit/2ff672c256f6ab67f3496de911d38fd141cd7f7f",
-          "publishedAt": "2026-10-26T07:18:58.000Z",
+          "title": "Go gas-sponsoring extension: document warning behavior for missing RPC/signer (#3871)",
+          "url": "https://github.com/x402-foundation/x402/commit/7121dad544baa6338bc53295eed65f9f6167fbf7",
+          "publishedAt": "2026-10-27T06:49:43.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "docs(specs): align the SVM SettlementResponse payer description with the core spec (#3941)",
-          "url": "https://github.com/x402-foundation/x402/commit/c99f931fe1c3180be1fab421bc5833d27fbc91b1",
-          "publishedAt": "2026-10-26T06:41:01.000Z",
+          "title": "Update docs/guides/mcp-server-with-x402.mdx (#3869)",
+          "url": "https://github.com/x402-foundation/x402/commit/aa711d1750204dc453800712806547a84915278c",
+          "publishedAt": "2026-10-27T06:49:03.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "Update docs/sdk-features.md (#3911)",
-          "url": "https://github.com/x402-foundation/x402/commit/f63591eb463ad155c88753fbec42a161fd2c257c",
-          "publishedAt": "2026-10-26T06:32:00.000Z",
+          "title": "Docs: batch-settlement facilitator custody & AfterSettleAbortError (#3985)",
+          "url": "https://github.com/x402-foundation/x402/commit/3d41f71d0f1c6767122129031ac50e05c6b695b0",
+          "publishedAt": "2026-10-27T06:37:07.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "docs: add Sui facilitator to the facilitators directory (#2619)",
-          "url": "https://github.com/x402-foundation/x402/commit/4241d56cae2fb7ed06cd18e3a9ff2a3457b1ce54",
-          "publishedAt": "2026-10-24T00:48:53.000Z",
+          "title": "feat(go): facilitator-managed voucher custody for EVM batch settlement (#3726)",
+          "url": "https://github.com/x402-foundation/x402/commit/2318d04d565524c5a05bba5158fbfa387d246c52",
+          "publishedAt": "2026-10-27T06:29:53.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(core): load @x402/paywall when no paywall provider is registered (#3600)",
-          "url": "https://github.com/x402-foundation/x402/commit/8c2b431a634d56a100964aac3ede8a4551163c02",
-          "publishedAt": "2026-10-24T00:12:31.000Z",
+          "title": "feat(svm): support for transaction v1 in `upto` (#3710)",
+          "url": "https://github.com/x402-foundation/x402/commit/57e703e5dbb5e5cfdbeaaaa3ff6cde5dca0f0b93",
+          "publishedAt": "2026-10-26T21:52:29.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
@@ -223,134 +223,126 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-10-26T08:05:06.940Z",
+      "retrievedAt": "2026-10-27T08:21:01.377Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T08:03:53.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "day": {
-            "percent": -0.8833604854423083,
-            "from": "2026-10-25T08:00:00.000Z",
-            "to": "2026-10-26T08:03:53.000Z"
+            "percent": -0.23957724992166307,
+            "from": "2026-10-26T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           },
           "week": {
-            "percent": -3.360571545128588,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T08:03:53.000Z"
+            "percent": -2.090078453428379,
+            "from": "2026-10-20T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T08:03:53.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "day": {
-            "percent": -1.42477333983827,
-            "from": "2026-10-25T08:00:00.000Z",
-            "to": "2026-10-26T08:03:53.000Z"
+            "percent": -0.16460591233531385,
+            "from": "2026-10-26T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           },
           "week": {
-            "percent": -4.804024884189905,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T08:03:53.000Z"
+            "percent": -3.161057706707282,
+            "from": "2026-10-20T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T08:03:43.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "day": {
-            "percent": 0.016449961757269982,
-            "from": "2026-10-25T08:00:00.000Z",
-            "to": "2026-10-26T08:03:43.000Z"
+            "percent": -0.04566458874571966,
+            "from": "2026-10-26T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           },
           "week": {
-            "percent": -0.010062042678049554,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T08:03:43.000Z"
+            "percent": -0.06238278251637919,
+            "from": "2026-10-20T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T08:03:43.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "day": {
-            "percent": 0.02243301701221334,
-            "from": "2026-10-25T08:00:00.000Z",
-            "to": "2026-10-26T08:03:43.000Z"
+            "percent": -0.0639743815202265,
+            "from": "2026-10-26T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           },
           "week": {
-            "percent": -0.005275271763749423,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T08:03:43.000Z"
+            "percent": -0.05514019072224707,
+            "from": "2026-10-20T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T07:57:00.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:19:57.000Z",
           "day": {
-            "percent": 0.05356722258633706,
-            "from": "2026-10-25T07:59:59.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": -0.16326780948320296,
+            "from": "2026-10-26T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           },
           "week": {
-            "percent": -9.127142379492115,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": -5.878239911833216,
+            "from": "2026-10-20T08:00:00.000Z",
+            "to": "2026-10-27T08:19:57.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T07:57:00.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:12:05.000Z",
           "day": {
-            "percent": -0.08202787834979963,
-            "from": "2026-10-25T07:56:58.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": -0.40742322904454564,
+            "from": "2026-10-26T07:57:00.000Z",
+            "to": "2026-10-27T08:12:05.000Z"
           },
           "week": {
-            "percent": -7.841573842468497,
-            "from": "2026-10-19T07:56:54.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": -6.2632042128829895,
+            "from": "2026-10-20T07:56:59.000Z",
+            "to": "2026-10-27T08:12:05.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T07:57:00.000Z",
+          "sourceUpdatedAt": "2026-10-27T08:12:05.000Z",
           "day": {
-            "percent": -2.2880341267443427,
-            "from": "2026-10-25T07:56:58.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": 1.144006147445631,
+            "from": "2026-10-26T07:57:00.000Z",
+            "to": "2026-10-27T08:12:05.000Z"
           },
           "week": {
-            "percent": -10.113545521057043,
-            "from": "2026-10-19T08:00:00.000Z",
-            "to": "2026-10-26T07:57:00.000Z"
+            "percent": -7.640852727723157,
+            "from": "2026-10-20T07:56:59.000Z",
+            "to": "2026-10-27T08:12:05.000Z"
           }
         },
         {
           "symbol": "AKT",
-          "status": "fresh",
-          "sourceUpdatedAt": "2026-10-26T07:52:58.000Z",
-          "day": {
-            "percent": -0.16740614620216476,
-            "from": "2026-10-25T07:53:00.000Z",
-            "to": "2026-10-26T07:52:58.000Z"
-          },
-          "week": {
-            "percent": -6.704957168416026,
-            "from": "2026-10-19T07:52:48.000Z",
-            "to": "2026-10-26T07:52:58.000Z"
-          }
+          "status": "stale",
+          "sourceUpdatedAt": "2026-10-27T07:53:01.000Z",
+          "day": null,
+          "week": null
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-10-26T08:05:06.000Z",
+    "asOf": "2026-10-27T08:21:01.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -361,22 +353,36 @@
   },
   "changes": [
     {
-      "url": "https://github.com/x402-foundation/x402/commit/2ff672c256f6ab67f3496de911d38fd141cd7f7f",
-      "title": "fix(examples/python): parse facilitator payment requirements by x402 version (#3934)",
+      "url": "https://github.com/x402-foundation/x402/commit/7121dad544baa6338bc53295eed65f9f6167fbf7",
+      "title": "Go gas-sponsoring extension: document warning behavior for missing RPC/signer (#3871)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/c99f931fe1c3180be1fab421bc5833d27fbc91b1",
-      "title": "docs(specs): align the SVM SettlementResponse payer description with the core spec (#3941)",
+      "url": "https://github.com/x402-foundation/x402/commit/aa711d1750204dc453800712806547a84915278c",
+      "title": "Update docs/guides/mcp-server-with-x402.mdx (#3869)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/f63591eb463ad155c88753fbec42a161fd2c257c",
-      "title": "Update docs/sdk-features.md (#3911)",
+      "url": "https://github.com/x402-foundation/x402/commit/3d41f71d0f1c6767122129031ac50e05c6b695b0",
+      "title": "Docs: batch-settlement facilitator custody & AfterSettleAbortError (#3985)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/2318d04d565524c5a05bba5158fbfa387d246c52",
+      "title": "feat(go): facilitator-managed voucher custody for EVM batch settlement (#3726)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/57e703e5dbb5e5cfdbeaaaa3ff6cde5dca0f0b93",
+      "title": "feat(svm): support for transaction v1 in `upto` (#3710)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
