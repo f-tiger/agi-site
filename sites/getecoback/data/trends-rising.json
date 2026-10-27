@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-26",
+ "fetched": "2026-10-27",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -128,53 +128,35 @@
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
-   "rising": [
-    {
-     "q": "avreno",
-     "v": 57350
-    },
-    {
-     "q": "pingi luftentfeuchter",
-     "v": 19800
-    },
-    {
-     "q": "luftentfeuchter fürs auto",
-     "v": 15800
-    },
-    {
-     "q": "salami",
-     "v": 8450
-    },
-    {
-     "q": "selbstbedienungskasse",
-     "v": 6800
-    },
-    {
-     "q": "duschkopf",
-     "v": 4400
-    },
-    {
-     "q": "meacodry arete one 12l",
-     "v": 3600
-    },
-    {
-     "q": "dieter glawischnig",
-     "v": 3000
-    },
-    {
-     "q": "mini luftentfeuchter",
-     "v": 120
-    },
-    {
-     "q": "auto luftentfeuchter",
-     "v": 100
-    }
+   "auto": [
+    "luftentfeuchter",
+    "luftentfeuchter keller",
+    "luftentfeuchter test",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter granulat",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter keller testsieger",
+    "luftentfeuchter badezimmer",
+    "luftentfeuchter nachfüllpack"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-19",
-   "polluted": false,
-   "last_attempt_at": "2026-10-19T10:08:13.017012+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "luftentfeuchter keller",
+    "luftentfeuchter test",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter granulat",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter keller testsieger",
+    "luftentfeuchter badezimmer",
+    "luftentfeuchter nachfüllpack"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-27T10:02:37.259049+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-27"
   },
   "heizlüfter": {
    "rising": [
@@ -355,53 +337,35 @@
    "fetched": "2026-10-26"
   },
   "saugwischer": {
-   "rising": [
-    {
-     "q": "saugwischroboter",
-     "v": 113550
-    },
-    {
-     "q": "roborock saros 20",
-     "v": 69350
-    },
-    {
-     "q": "kärcher nass trockensauger",
-     "v": 58850
-    },
-    {
-     "q": "saugroboter mit wischfunktion",
-     "v": 56850
-    },
-    {
-     "q": "kobold sp600 saugwischer",
-     "v": 44450
-    },
-    {
-     "q": "nasswischer",
-     "v": 44350
-    },
-    {
-     "q": "lidl saugwischer",
-     "v": 44000
-    },
-    {
-     "q": "bissel saugwischer",
-     "v": 7400
-    },
-    {
-     "q": "roborock f25 ace",
-     "v": 7200
-    },
-    {
-     "q": "tineco",
-     "v": 120
-    }
+   "auto": [
+    "saugwischer",
+    "saugwischer test",
+    "saugwischer testsieger",
+    "saugwischer testsieger stiftung warentest",
+    "saugwischer vorwerk",
+    "saugwischer roboter",
+    "saugwischer akku testsieger",
+    "saugwischer akku",
+    "saugwischer kärcher",
+    "saugwischer roborock"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-26",
-   "polluted": true,
-   "last_attempt_at": "2026-10-26T10:25:58.565674+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "saugwischer test",
+    "saugwischer testsieger",
+    "saugwischer testsieger stiftung warentest",
+    "saugwischer vorwerk",
+    "saugwischer roboter",
+    "saugwischer akku testsieger",
+    "saugwischer akku",
+    "saugwischer kärcher",
+    "saugwischer roborock"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-27T09:59:37.121082+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-27"
   }
  }
 }
