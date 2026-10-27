@@ -1,22 +1,22 @@
 {
   "schema": 1,
   "lastRun": {
-    "date": "2026-10-26",
-    "status": "ok",
+    "date": "2026-10-27",
+    "status": "failed",
     "added": [],
     "changed": [],
-    "eligible": 16,
+    "eligible": 0,
     "sources": [
       {
         "id": "smiski",
-        "status": "ok",
-        "eligible": 6,
+        "status": "error",
+        "reason": "fetch failed",
         "url": "https://smiski.com/e/products/"
       },
       {
         "id": "sonny-angel",
-        "status": "ok",
-        "eligible": 10,
+        "status": "error",
+        "reason": "fetch failed",
         "url": "https://www.sonnyangel.com/en/products/"
       }
     ],
