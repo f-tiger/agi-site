@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-27",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-25T07:47:43.730Z",
-    "health": "2026-10-25T12:52:30Z",
-    "ai_referrals": "2026-10-25T12:52:58Z",
-    "opportunities": "2026-10-25",
-    "autopilot_receipt": "2026-10-26"
+    "membership": "2026-10-26T08:05:20.683Z",
+    "health": "2026-10-26T14:42:59Z",
+    "ai_referrals": "2026-10-26T14:43:37Z",
+    "opportunities": "2026-10-26",
+    "autopilot_receipt": "2026-10-27"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-25T07:47:43.730Z",
+    "generated": "2026-10-26T08:05:20.683Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -143,6 +143,15 @@
       "supply": 0
     },
     {
+      "theme": "did crates io stop processing new crate publishes",
+      "site": null,
+      "state": "scout",
+      "score": 2.12,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "is there a credible gut health test out there",
       "site": null,
       "state": "scout",
@@ -152,7 +161,25 @@
       "supply": 0
     },
     {
+      "theme": "feature request manager",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "firefox add on to block the new credentials fill in behavior",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "php based faq engine",
       "site": null,
       "state": "scout",
       "score": 2.05,
@@ -170,37 +197,10 @@
       "supply": 0
     },
     {
-      "theme": "feature request manager",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "frictionless vivaldi browser extension to quickly save viewport screenshots",
       "site": null,
       "state": "scout",
       "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "php based faq engine",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "how do you compare different saas tools before choosing one",
-      "site": null,
-      "state": "scout",
-      "score": 1.94,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -265,7 +265,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 35,
+        "count": 24,
         "query": "byecold infrarotheizung",
         "value": 49950
       },
@@ -284,26 +284,14 @@
       "mode": "queue"
     },
     {
-      "site": "agiscorecard",
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/amodei-white-collar-bloodbath-prediction",
-        "n7": 70,
-        "p7": 35
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/",
-        "n7": 4,
-        "p7": 5
+        "page": "/guide/heizluefter-stromsparend.html",
+        "n7": 5,
+        "p7": 1
       },
       "mode": "queue"
     },
@@ -322,7 +310,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

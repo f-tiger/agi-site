@@ -15,9 +15,9 @@
     "demand": {
       "has_underserved": false,
       "has_gaps": true,
-      "has_hot_pages": true,
+      "has_hot_pages": false,
       "top_underserved_page": null,
-      "top_hot_page": "/amodei-white-collar-bloodbath-prediction"
+      "top_hot_page": null
     },
     "health": {
       "http": "200",
@@ -40,17 +40,6 @@
         "count_band": "1-9",
         "query": "jim cramer ai chip stocks",
         "value_band": "100+"
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/amodei-white-collar-bloodbath-prediction",
-        "n7_band": "10-99",
-        "p7_band": "10-99"
       },
       "mode": "queue"
     }

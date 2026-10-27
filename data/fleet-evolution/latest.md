@@ -1,4 +1,4 @@
-# Fleet evolution report — 2026-10-26
+# Fleet evolution report — 2026-10-27
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
@@ -17,21 +17,20 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
 | 68 | getecoback | membership_observability | observe | admin_ok=False |
 | 68 | thedollscout | membership_observability | observe | admin_ok=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=jim cramer ai chip stocks; value=11450 |
-| 55 | getecoback | content_gap | queue | count=35; query=byecold infrarotheizung; value=49950 |
+| 55 | getecoback | content_gap | queue | count=24; query=byecold infrarotheizung; value=49950 |
 | 55 | thedollscout | content_gap | queue | count=17; query=lets try the viral crumbl labubu; value=18550 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/amodei-white-collar-bloodbath-prediction; n7=70; p7=35 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=4; p7=5 |
+| 52 | getecoback | improve_hot_page | queue | page=/guide/heizluefter-stromsparend.html; n7=5; p7=1 |
 | 48 | goldrush | ai_discovery | queue | human_pv_28d=251; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-25T07:47:43.730Z | 1 |
-| health | 2026-10-25T12:52:30Z | 1 |
-| ai_referrals | 2026-10-25T12:52:58Z | 1 |
-| opportunities | 2026-10-25 | 1 |
-| autopilot_receipt | 2026-10-26 | 0 |
+| membership | 2026-10-26T08:05:20.683Z | 1 |
+| health | 2026-10-26T14:42:59Z | 1 |
+| ai_referrals | 2026-10-26T14:43:37Z | 1 |
+| opportunities | 2026-10-26 | 1 |
+| autopilot_receipt | 2026-10-27 | 0 |
 
 ## Autonomous boundary
 

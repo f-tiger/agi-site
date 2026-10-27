@@ -8,19 +8,19 @@
    },
    {
     "n": 7,
+    "q": "tool:verdicts"
+   },
+   {
+    "n": 7,
+    "q": "tool:thesis_tracker"
+   },
+   {
+    "n": 7,
     "q": "tool:sunwatch_ledger"
    },
    {
     "n": 7,
     "q": "tool:invest_positions"
-   },
-   {
-    "n": 6,
-    "q": "tool:verdicts"
-   },
-   {
-    "n": 6,
-    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
@@ -44,16 +44,11 @@
    }
   ]
  },
- "fetched": "2026-10-26",
+ "fetched": "2026-10-27",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {
-  "/amodei-white-collar-bloodbath-prediction": {
-   "n7": 70,
-   "p7": 35
-  }
- },
+ "pages": {},
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }
