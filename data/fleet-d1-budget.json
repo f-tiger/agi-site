@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-26T14:43:28Z",
+ "generated": "2026-10-27T13:49:58Z",
  "status": "ok",
  "plan": "workers-free",
  "limit": 5000000,
@@ -10,111 +10,111 @@
  },
  "token_env": "CLOUDFLARE_API_TOKEN",
  "yesterday": {
-  "date": "2026-10-25",
-  "rows_read": 668790,
-  "rows_written": 22211,
-  "read_queries": 9298,
-  "pct_of_limit": 13.4,
+  "date": "2026-10-26",
+  "rows_read": 634895,
+  "rows_written": 25778,
+  "read_queries": 9142,
+  "pct_of_limit": 12.7,
   "by_db": {
    "agiscorecard-events": {
-    "rows_read": 285153,
-    "rows_written": 9119,
-    "read_queries": 1681
+    "rows_read": 286573,
+    "rows_written": 15525,
+    "read_queries": 1944
    },
    "baipiaoji-hits": {
-    "rows_read": 178193,
-    "rows_written": 8751,
-    "read_queries": 6253
+    "rows_read": 150576,
+    "rows_written": 5817,
+    "read_queries": 5905
    },
    "ecoback-events": {
-    "rows_read": 102196,
-    "rows_written": 1857,
-    "read_queries": 199
+    "rows_read": 96504,
+    "rows_written": 1930,
+    "read_queries": 171
    },
    "after35-events": {
-    "rows_read": 45399,
-    "rows_written": 535,
-    "read_queries": 929
+    "rows_read": 45942,
+    "rows_written": 599,
+    "read_queries": 912
    },
    "dollscout-events": {
-    "rows_read": 24657,
-    "rows_written": 598,
-    "read_queries": 220
+    "rows_read": 22066,
+    "rows_written": 625,
+    "read_queries": 194
    },
    "gridlings-events": {
-    "rows_read": 14815,
-    "rows_written": 642,
+    "rows_read": 14788,
+    "rows_written": 541,
     "read_queries": 2
    },
    "sourceradar-events": {
-    "rows_read": 6816,
-    "rows_written": 310,
+    "rows_read": 6810,
+    "rows_written": 296,
     "read_queries": 9
    },
    "gamesledger-events": {
-    "rows_read": 6771,
-    "rows_written": 274,
+    "rows_read": 6792,
+    "rows_written": 315,
     "read_queries": 2
    },
    "goldrush-events": {
-    "rows_read": 4790,
-    "rows_written": 125,
+    "rows_read": 4844,
+    "rows_written": 130,
     "read_queries": 3
    }
   }
  },
  "today": {
-  "date": "2026-10-26",
-  "hours_elapsed": 14.72,
-  "rows_read_so_far": 379008,
-  "rows_written_so_far": 17035,
-  "read_queries_so_far": 5561,
-  "pace_rows_read": 617761,
-  "pct_of_limit_at_pace": 12.4,
+  "date": "2026-10-27",
+  "hours_elapsed": 13.83,
+  "rows_read_so_far": 545946,
+  "rows_written_so_far": 16109,
+  "read_queries_so_far": 5409,
+  "pace_rows_read": 947221,
+  "pct_of_limit_at_pace": 18.9,
   "by_db": {
    "agiscorecard-events": {
-    "rows_read": 191598,
-    "rows_written": 11170,
-    "read_queries": 1263
+    "rows_read": 315364,
+    "rows_written": 9689,
+    "read_queries": 1539
    },
    "baipiaoji-hits": {
-    "rows_read": 88211,
-    "rows_written": 3296,
-    "read_queries": 3595
+    "rows_read": 93137,
+    "rows_written": 3780,
+    "read_queries": 3185
    },
    "ecoback-events": {
-    "rows_read": 51360,
-    "rows_written": 1311,
-    "read_queries": 108
+    "rows_read": 86359,
+    "rows_written": 1070,
+    "read_queries": 136
    },
    "dollscout-events": {
-    "rows_read": 18260,
-    "rows_written": 163,
+    "rows_read": 18777,
+    "rows_written": 343,
     "read_queries": 138
    },
    "after35-events": {
-    "rows_read": 10266,
-    "rows_written": 242,
-    "read_queries": 446
+    "rows_read": 10351,
+    "rows_written": 217,
+    "read_queries": 398
    },
    "gridlings-events": {
-    "rows_read": 7446,
-    "rows_written": 421,
+    "rows_read": 7605,
+    "rows_written": 572,
     "read_queries": 1
    },
    "goldrush-events": {
-    "rows_read": 4820,
-    "rows_written": 56,
-    "read_queries": 3
+    "rows_read": 7264,
+    "rows_written": 125,
+    "read_queries": 5
    },
    "sourceradar-events": {
-    "rows_read": 3656,
-    "rows_written": 184,
+    "rows_read": 3657,
+    "rows_written": 145,
     "read_queries": 6
    },
    "gamesledger-events": {
-    "rows_read": 3391,
-    "rows_written": 192,
+    "rows_read": 3432,
+    "rows_written": 168,
     "read_queries": 1
    }
   }
@@ -122,18 +122,18 @@
  "top3": [
   {
    "db": "agiscorecard-events",
-   "rows_read_yesterday": 285153,
-   "rows_read_today": 191598
+   "rows_read_yesterday": 286573,
+   "rows_read_today": 315364
   },
   {
    "db": "baipiaoji-hits",
-   "rows_read_yesterday": 178193,
-   "rows_read_today": 88211
+   "rows_read_yesterday": 150576,
+   "rows_read_today": 93137
   },
   {
    "db": "ecoback-events",
-   "rows_read_yesterday": 102196,
-   "rows_read_today": 51360
+   "rows_read_yesterday": 96504,
+   "rows_read_today": 86359
   }
  ],
  "unknown_database_ids": [],
