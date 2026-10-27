@@ -1,24 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 0,
+  "queryIndex": 6,
   "page": 1,
   "pending": [
-   {
-    "repo": "activepieces/activepieces",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "nocobase/nocobase",
-    "topic": "agents",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "vercel-labs/opensrc",
-    "topic": "coding",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
    {
     "repo": "rohitg00/pro-workflow",
     "topic": "coding",
@@ -27,11 +12,6 @@
    {
     "repo": "QwenAudio/qwen-audio-agent",
     "topic": "coding",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "KoljaB/RealtimeTTS",
-    "topic": "audio",
     "foundAt": "2026-10-02T15:26:40.958Z"
    },
    {
@@ -230,11 +210,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "bghira/SimpleTuner",
-    "topic": "image",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "rowboatlabs/rowboat",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -243,11 +218,6 @@
     "repo": "YishenTu/claudian",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "LMCache/LMCache",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "triton-inference-server/server",
@@ -317,11 +287,6 @@
    {
     "repo": "llmware-ai/llmware",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "StarTrail-org/LEANN",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -840,11 +805,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "GVCLab/PersonaLive",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "thu-ml/TurboDiffusion",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -867,11 +827,6 @@
    {
     "repo": "NVlabs/LongLive",
     "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "landing-ai/ade-cli",
-    "topic": "documents",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1032,11 +987,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "usememos/memos",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -2015,11 +1965,6 @@
     "foundAt": "2026-10-11T06:21:02.155Z"
    },
    {
-    "repo": "intel/neural-compressor",
-    "topic": "ai",
-    "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
     "repo": "vndee/llm-sandbox",
     "topic": "coding",
     "foundAt": "2026-10-11T06:21:02.155Z"
@@ -2132,11 +2077,6 @@
    {
     "repo": "johnbean393/Sidekick",
     "topic": "agents",
-    "foundAt": "2026-10-13T07:04:30.117Z"
-   },
-   {
-    "repo": "errbotio/errbot",
-    "topic": "chat",
     "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
@@ -3003,6 +2943,41 @@
     "repo": "t8y2/dbx",
     "topic": "agents",
     "foundAt": "2026-10-26T05:14:44.073Z"
+   },
+   {
+    "repo": "ParadevAI/Paradev",
+    "topic": "coding",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "OrchestratorInc/agent-orchestrator",
+    "topic": "coding",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "automazeio/ccpm",
+    "topic": "coding",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "OpenMOSS/MOSS-Image",
+    "topic": "image",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "scenario-labs/blender-plugin",
+    "topic": "agents",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "lemomo-ai/lemo-opuscar",
+    "topic": "coding",
+    "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "gradio-app/fastrtc",
+    "topic": "audio",
+    "foundAt": "2026-10-27T05:31:45.486Z"
    }
   ],
   "checked": {
@@ -3036,12 +3011,12 @@
    "gh-tirth8205-code-review-graph-152ccb": "2026-10-24T04:59:36.505Z",
    "gh-hbai-ltd-toonflow-app-e1ff64": "2026-10-24T04:59:36.505Z",
    "gh-debpalash-voicestudio-90d094": "2026-10-24T04:59:36.505Z",
-   "gh-maziyarpanahi-openmed-8ac2aa": "2026-10-12T06:28:11.186Z",
-   "gh-python-telegram-bot-python-telegram-bot-8478bc": "2026-10-12T06:28:11.186Z",
-   "gh-tencent-hunyuan-hunyuanvideo-1-5-41519e": "2026-10-12T06:28:11.186Z",
-   "gh-paperless-ngx-paperless-ngx-93f757": "2026-10-12T06:28:11.186Z",
-   "gh-ayghri-i-have-adhd-32d438": "2026-10-12T06:28:11.186Z",
-   "gh-headroomlabs-ai-headroom-822d9b": "2026-10-12T06:28:11.186Z",
+   "gh-maziyarpanahi-openmed-8ac2aa": "2026-10-27T05:31:45.486Z",
+   "gh-python-telegram-bot-python-telegram-bot-8478bc": "2026-10-27T05:31:45.486Z",
+   "gh-tencent-hunyuan-hunyuanvideo-1-5-41519e": "2026-10-27T05:31:45.486Z",
+   "gh-paperless-ngx-paperless-ngx-93f757": "2026-10-27T05:31:45.486Z",
+   "gh-ayghri-i-have-adhd-32d438": "2026-10-27T05:31:45.486Z",
+   "gh-headroomlabs-ai-headroom-822d9b": "2026-10-27T05:31:45.486Z",
    "gh-asgeirtj-system-prompts-leaks-a7e33a": "2026-10-14T05:19:33.308Z",
    "gh-run-llama-llama-index-48562c": "2026-10-14T05:19:33.308Z",
    "gh-career-ops-hq-career-ops-f53f43": "2026-10-14T05:19:33.308Z",
@@ -3105,7 +3080,7 @@
   }
  },
  "mcp": {
-  "cursor": "io.github.mattoddie/crunch-mcp:0.4.1",
+  "cursor": "io.github.mcpassure/mcp-anvisa-bulario:2.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4069,7 +4044,47 @@
    "cloud-massdriver-mcp-server": "2026-10-26T05:14:44.073Z",
    "elfa-mcp": "2026-10-26T05:14:44.073Z",
    "fintechstudios-studio": "2026-10-26T05:14:44.073Z",
-   "fivexer-mcp": "2026-10-26T05:14:44.073Z"
+   "fivexer-mcp": "2026-10-26T05:14:44.073Z",
+   "generect-mcp": "2026-10-27T05:31:45.486Z",
+   "getecoback-mcp": "2026-10-27T05:31:45.486Z",
+   "gotincan-tincan": "2026-10-27T05:31:45.486Z",
+   "greenlitbooks-catalog": "2026-10-27T05:31:45.486Z",
+   "lightbringer-connector": "2026-10-27T05:31:45.486Z",
+   "maatsii-linreg": "2026-10-27T05:31:45.486Z",
+   "mambabuilt-mcp-creator-change-monitor": "2026-10-27T05:31:45.486Z",
+   "mambabuilt-mcp-creator-finder": "2026-10-27T05:31:45.486Z",
+   "mambabuilt-mcp-creator-lead-list-all-in-one": "2026-10-27T05:31:45.486Z",
+   "mambabuilt-mcp-creator-profile-reader": "2026-10-27T05:31:45.486Z",
+   "mambabuilt-mcp-link-in-bio-newsletter-checker": "2026-10-27T05:31:45.486Z",
+   "mcp-pulse": "2026-10-27T05:31:45.486Z",
+   "megalens-mcp": "2026-10-27T05:31:45.486Z",
+   "mythsensus-mcp": "2026-10-27T05:31:45.486Z",
+   "pageree-landing-pages": "2026-10-27T05:31:45.486Z",
+   "powmcp-caption-file-check": "2026-10-27T05:31:45.486Z",
+   "quillhub-mcp": "2026-10-27T05:31:45.486Z",
+   "searchconsole-ai": "2026-10-27T05:31:45.486Z",
+   "snaphost-snaphost": "2026-10-27T05:31:45.486Z",
+   "sourceradar-mcp": "2026-10-27T05:31:45.486Z",
+   "tensormaster-pdf": "2026-10-27T05:31:45.486Z",
+   "tractorscope-mcp": "2026-10-27T05:31:45.486Z",
+   "trypinchy-pinchy": "2026-10-27T05:31:45.486Z",
+   "upscrape-mcp": "2026-10-27T05:31:45.486Z",
+   "yourfinancejob-job-tracker": "2026-10-27T05:31:45.486Z",
+   "aiapplyd-aiapplyd": "2026-10-27T05:31:45.486Z",
+   "alternativeassetliteracy-aal-advisor-mcp": "2026-10-27T05:31:45.486Z",
+   "br-adseditor-mcp": "2026-10-27T05:31:45.486Z",
+   "brianbooms-quiet-menders": "2026-10-27T05:31:45.486Z",
+   "cartviral-cartviral": "2026-10-27T05:31:45.486Z",
+   "celigo-celigo": "2026-10-27T05:31:45.486Z",
+   "cloud-basebalance-basebalance": "2026-10-27T05:31:45.486Z",
+   "cn-savantcat-answers": "2026-10-27T05:31:45.486Z",
+   "comos-federation-gateway": "2026-10-27T05:31:45.486Z",
+   "daedalmap-boundaries": "2026-10-27T05:31:45.486Z",
+   "datasparc-dbhawk": "2026-10-27T05:31:45.486Z",
+   "devart-mcp-dynamics365": "2026-10-27T05:31:45.486Z",
+   "devart-mcp-mysql": "2026-10-27T05:31:45.486Z",
+   "devart-mcp-oracle": "2026-10-27T05:31:45.486Z",
+   "devart-mcp-postgresql": "2026-10-27T05:31:45.486Z"
   }
  }
 }

@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "ADRs for AI – Deliberation records for human–AI work, versioned in Git",
+      "url": "https://adrs.systems",
+      "host": "adrs.systems",
+      "src": "https://news.ycombinator.com/item?id=50227041",
+      "points": 65,
+      "comments": 54,
+      "found": "2026-10-27",
+      "status": "candidate"
+    },
+    {
       "name": "Corgi, a helpful {agent, terminal} multiplexer",
       "url": "https://corgi.computer/",
       "host": "corgi.computer",
@@ -419,17 +429,7 @@
       "comments": 78,
       "found": "2026-09-15",
       "status": "candidate"
-    },
-    {
-      "name": "Hacker News, Without AI",
-      "url": "https://www.unslop.news/",
-      "host": "unslop.news",
-      "src": "https://news.ycombinator.com/item?id=49660783",
-      "points": 179,
-      "comments": 77,
-      "found": "2026-09-12",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-26"
+  "updated": "2026-10-27"
 }

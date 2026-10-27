@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-26",
+ "checked": "2026-10-27",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3213,6 +3213,33 @@
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
+  },
+  "clutch-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-27",
+   "last_attempt": "2026-10-27",
+   "attemptedAt": "2026-10-27T05:31:45.486Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "fingersai-fingers": {
+   "attempts": 1,
+   "first_attempt": "2026-10-27",
+   "last_attempt": "2026-10-27",
+   "attemptedAt": "2026-10-27T05:31:45.486Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "heyspark-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-27",
+   "last_attempt": "2026-10-27",
+   "attemptedAt": "2026-10-27T05:31:45.486Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -16315,6 +16342,348 @@
   {
    "slug": "civai-nova-browsergpt-agent",
    "date": "2026-10-26",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-calendar-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-code-interpreter-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-content-calendar-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-gmail-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-google-docs-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-google-sheets-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-instagram-web-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-interviewer-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-leads-discovery-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-music-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-nova-inbox-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-openclaw-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-pdf-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-research-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-slidegen-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-support-agent-admin",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-telegram-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-terminal-command-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-twitter-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "civai-nova-whatsapp-web-agent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "meteor-meteor",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "connic-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "contraption-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "cookie-compliance-cookie-consent",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "creativeclaw-creative-claw",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "crevio-crevio",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "curie-commerce",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "cuvo-website",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "datummarket-datum-mcp-server",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "dealwize-dealwize",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dijin-memory",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "dockai-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "encorehq-encore",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "everypage-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "fastaf-fastaf",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "fastgpu-fastgpu",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "finalpeace-estate-planning",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "firecms-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "flow2-flow2",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "flowleap-flowleap",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "g3m-g3m",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getbasin-basin",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getclippy-clippy",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getlasso-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getrefine-refine",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "getvalyou-valyou",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "geztio-platform",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "gitresume-gitresume",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "glide-banking-connector",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "golfdata-golfdata",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "heista-api",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "herafertility-hera",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "hilead-hilead",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "homemaster-homemaster",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "incarn-photo-animation",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "instantreply-mcp",
+   "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "instapi-instagram",
+   "date": "2026-10-27",
    "source_http": 200,
    "repo_http": null
   }

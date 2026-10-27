@@ -1,10 +1,73 @@
 {
-  "generated": "2026-10-26",
+  "generated": "2026-10-27",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 106,
-  "fetched_fail": 21,
-  "pending": 11,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 12,
   "items": [
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-27",
+      "first_seen": "2026-10-26",
+      "added": [
+        "2字",
+        "30seconds"
+      ],
+      "removed": [
+        "0026prompt",
+        "2min",
+        "400credits",
+        "5min"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-10-27",
+      "first_seen": "2026-10-26",
+      "added": [
+        "209b"
+      ],
+      "removed": [
+        "6441b",
+        "76b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "v0",
+      "url": "https://v0.app",
+      "confirmed": "2026-10-27",
+      "first_seen": "2026-10-26",
+      "added": [
+        "100%",
+        "10k",
+        "6.8k",
+        "8.8k",
+        "9%"
+      ],
+      "removed": [
+        "1.5k",
+        "6.7k",
+        "8.7k",
+        "9.8k"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "vidu",
+      "url": "https://platform.vidu.com/docs/terms-of-use",
+      "confirmed": "2026-10-27",
+      "first_seen": "2026-10-26",
+      "added": [],
+      "removed": [
+        "1image",
+        "2image"
+      ],
+      "checked_then": "2026-08-06"
+    },
     {
       "slug": "civitai",
       "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
@@ -141,63 +204,6 @@
       "checked_then": "2026-08-02"
     },
     {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-23",
-      "first_seen": "2026-10-22",
-      "added": [
-        "0026prompt",
-        "0026video",
-        "100%",
-        "10m",
-        "10mb",
-        "10minutes",
-        "10个",
-        "10分钟",
-        "12hours",
-        "12m",
-        "12mb",
-        "12months"
-      ],
-      "removed": [
-        "10张",
-        "114b",
-        "1b",
-        "1k",
-        "2k",
-        "3k",
-        "4b",
-        "50字",
-        "5b",
-        "5秒",
-        "608b",
-        "6b"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-10-23",
-      "first_seen": "2026-10-22",
-      "added": [
-        "$1",
-        "$12",
-        "$13",
-        "$14",
-        "$15",
-        "$16",
-        "$17",
-        "$18",
-        "$19",
-        "$2",
-        "$20",
-        "$21"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "deepl",
       "url": "https://www.deepl.com/pricing",
       "confirmed": "2026-10-22",
@@ -293,33 +299,6 @@
         "15days"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "v0",
-      "url": "https://v0.app",
-      "confirmed": "2026-10-20",
-      "first_seen": "2026-10-19",
-      "added": [
-        "1.5k",
-        "10.8k",
-        "11.1k",
-        "14.7k",
-        "20.8k",
-        "3.6k",
-        "6.7k",
-        "8.7k",
-        "9.8k"
-      ],
-      "removed": [
-        "10.7k",
-        "11k",
-        "14.4k",
-        "20.6k",
-        "6.6k",
-        "8.6k",
-        "8.9k"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "continue",
@@ -453,28 +432,6 @@
         "$0.10,"
       ],
       "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "vidu",
-      "url": "https://platform.vidu.com/docs/terms-of-use",
-      "confirmed": "2026-10-09",
-      "first_seen": "2026-10-08",
-      "added": [],
-      "removed": [
-        "$0.005",
-        "$0.01",
-        "$0.02",
-        "$0.025",
-        "$0.03",
-        "$0.03,",
-        "$0.035",
-        "$0.04",
-        "$0.04,",
-        "$0.045",
-        "$0.05",
-        "$0.05,"
-      ],
-      "checked_then": "2026-08-06"
     },
     {
       "slug": "gemini-cli",

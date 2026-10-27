@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-26T05:16:10.172Z",
+  "lastRun": "2026-10-27T05:32:53.430Z",
   "status": "degraded",
-  "checkedSources": 8,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -283,25 +283,25 @@
       "caseId": "windsurf",
       "reason": "source-unreachable",
       "sourceUrl": "https://cognition.com/blog/windsurf",
-      "lastChecked": "2026-10-14T05:22:04.112Z"
+      "lastChecked": "2026-10-27T05:32:53.430Z"
     },
     {
       "caseId": "casetext",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
-      "lastChecked": "2026-10-14T08:07:55.226Z"
+      "lastChecked": "2026-10-27T05:32:53.430Z"
     },
     {
       "caseId": "jasper",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
-      "lastChecked": "2026-10-14T08:07:55.226Z"
+      "lastChecked": "2026-10-27T05:32:53.430Z"
     },
     {
       "caseId": "github-copilot",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
-      "lastChecked": "2026-10-14T08:07:55.226Z"
+      "lastChecked": "2026-10-27T05:32:53.430Z"
     },
     {
       "caseId": "donotpay",
@@ -969,20 +969,20 @@
     "otter-ai|https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite": {
       "caseId": "otter-ai",
       "sourceUrl": "https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite",
-      "lastAttempt": "2026-10-14T05:22:04.112Z",
-      "status": "baseline",
+      "lastAttempt": "2026-10-27T05:32:53.430Z",
+      "status": "change-pending",
       "http": 200,
-      "lastSuccess": "2026-10-14T05:22:04.112Z",
-      "lastHash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
+      "lastSuccess": "2026-10-27T05:32:53.430Z",
+      "lastHash": "cf0bc77e0935b7a0bcc80e254793604c7565eb5e013f4581274c0ace95448553",
       "hash": "dd7e913edc1229f76ee72ced886e8700b872712073767af5fb19ec27c5505cb7",
       "simhash": "b27b3118eed2839d",
       "words": 1065,
-      "consecutiveChange": 0
+      "consecutiveChange": 1
     },
     "windsurf|https://cognition.com/blog/windsurf": {
       "caseId": "windsurf",
       "sourceUrl": "https://cognition.com/blog/windsurf",
-      "lastAttempt": "2026-10-14T05:22:04.112Z",
+      "lastAttempt": "2026-10-27T05:32:53.430Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -990,7 +990,7 @@
     "casetext|https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc": {
       "caseId": "casetext",
       "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
-      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "lastAttempt": "2026-10-27T05:32:53.430Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -998,7 +998,7 @@
     "jasper|https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html": {
       "caseId": "jasper",
       "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
-      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "lastAttempt": "2026-10-27T05:32:53.430Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1006,7 +1006,7 @@
     "github-copilot|https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4": {
       "caseId": "github-copilot",
       "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
-      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "lastAttempt": "2026-10-27T05:32:53.430Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1160,11 +1160,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 48,
+  "cursor": 53,
   "errors": [
     {
-      "caseId": "yara-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/joebraidwood_after-a-year-of-building-yara-ai-its-time-activity-7394436184648736769-T_Z1/",
+      "caseId": "windsurf",
+      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "casetext",
+      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "jasper",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "github-copilot",
+      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
       "reason": "body-limit"
     }
   ]
