@@ -4,7 +4,7 @@ import {engagementVersion} from './install-public-engagement.mjs';
 const expected=fs.readFileSync(new URL('../site/assets/public-engagement.mjs',import.meta.url),'utf8');
 async function read(route){
   const url=new URL(route,'https://getecoback.com');url.searchParams.set('__ci','1');
-  const r=await fetch(url,{headers:{'User-Agent':'eco-ci-selfcheck'},signal:AbortSignal.timeout(25000)});
+  const r=await fetch(url,{headers:{'User-Agent':'getecoback-ci-selfcheck'},signal:AbortSignal.timeout(25000)});
   assert.equal(r.status,200,route);return r.text();
 }
 assert.equal(await read('/eco-engagement.mjs?v='+engagementVersion),expected);
