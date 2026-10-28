@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-27",
+ "fetched": "2026-10-28",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -50,92 +50,112 @@
    "fetched": "2026-10-27"
   },
   "flip straw water bottle": {
+   "auto": [
+    "flip straw water bottle",
+    "flip straw water bottle kids",
+    "flip straw water bottle with handle",
+    "flip straw water bottle stanley",
+    "flip straw water bottle o frio da estrada",
+    "flip straw water bottle 1l",
+    "flip straw water bottle 500ml",
+    "flip straw water bottle 40 oz",
+    "flip straw water bottle lid",
+    "flip straw water bottle insulated"
+   ],
    "rising": [
     {
-     "q": "brumate water bottle",
-     "v": 300
+     "q": "flip straw water bottle kids",
+     "v": "new"
     },
     {
-     "q": "brumate",
-     "v": 300
+     "q": "flip straw water bottle with handle",
+     "v": "new"
     },
     {
-     "q": "brumate era flip",
-     "v": 250
+     "q": "flip straw water bottle stanley",
+     "v": "new"
     },
     {
-     "q": "owala water bottle",
-     "v": 170
+     "q": "flip straw water bottle o frio da estrada",
+     "v": "new"
     },
     {
-     "q": "stanley ice flow flip straw",
-     "v": 140
+     "q": "flip straw water bottle 1l",
+     "v": "new"
     },
     {
-     "q": "yeti",
-     "v": 130
+     "q": "flip straw water bottle 500ml",
+     "v": "new"
     },
     {
-     "q": "owala",
-     "v": 110
+     "q": "flip straw water bottle 40 oz",
+     "v": "new"
     },
     {
-     "q": "hydrojug",
-     "v": 90
+     "q": "flip straw water bottle lid",
+     "v": "new"
     },
     {
-     "q": "yeti water bottle",
-     "v": 80
+     "q": "flip straw water bottle insulated",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-27"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-28"
   },
   "heatless curls": {
+   "auto": [
+    "heatless curls",
+    "heatless curls with socks",
+    "heatless curls for short hair",
+    "heatless curls tutorial",
+    "heatless curls rod",
+    "heatless curls headband",
+    "heatless curls for side sleepers",
+    "heatless curls for shoulder length hair",
+    "heatless curls headband tutorial",
+    "heatless curls for long hair"
+   ],
    "rising": [
     {
-     "q": "kitch",
-     "v": 32600
+     "q": "heatless curls with socks",
+     "v": "new"
     },
     {
-     "q": "how to use heatless curlers",
-     "v": 24500
+     "q": "heatless curls for short hair",
+     "v": "new"
     },
     {
-     "q": "sleepy tie hair",
-     "v": 13800
+     "q": "heatless curls tutorial",
+     "v": "new"
     },
     {
-     "q": "heatless curl headband",
-     "v": 13050
-    },
-    {
-     "q": "how to do heatless curls with leggings",
-     "v": 6500
-    },
-    {
-     "q": "kitsch set and flow headband",
-     "v": 3450
-    },
-    {
-     "q": "kitsch headband",
-     "v": 650
-    },
-    {
-     "q": "kitsch heatless curls",
-     "v": 90
-    },
-    {
-     "q": "kitsch",
-     "v": 90
+     "q": "heatless curls rod",
+     "v": "new"
     },
     {
      "q": "heatless curls headband",
-     "v": 40
+     "v": "new"
+    },
+    {
+     "q": "heatless curls for side sleepers",
+     "v": "new"
+    },
+    {
+     "q": "heatless curls for shoulder length hair",
+     "v": "new"
+    },
+    {
+     "q": "heatless curls headband tutorial",
+     "v": "new"
+    },
+    {
+     "q": "heatless curls for long hair",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-28"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-28"
   },
   "high speed hair dryer": {
    "rising": [
