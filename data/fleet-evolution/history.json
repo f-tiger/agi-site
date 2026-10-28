@@ -4113,5 +4113,130 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-10-28",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": null,
+      "active_members": null,
+      "opportunities": 11,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 4,
+          "query": "jim cramer ai chip stocks",
+          "value": 11450
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 23,
+          "query": "byecold infrarotheizung",
+          "value": 49950
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 17,
+          "query": "lets try the viral crumbl labubu",
+          "value": 18550
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/earn/cases/clip-service",
+          "n7": 38,
+          "p7": 16
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/guide/luftentfeuchter-keller.html",
+          "n7": 6,
+          "p7": 5
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 266,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
   }
 ]

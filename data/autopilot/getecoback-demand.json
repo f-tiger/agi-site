@@ -135,17 +135,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.917,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter fürs auto",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-19",
-   "v": 15800
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.7,
    "page": "guide/schimmel-am-fenster.html",
    "q": "schimmel aus textilien entfernen",
@@ -175,28 +164,6 @@
    "source": "related-queries",
    "stand": "2026-10-22",
    "v": 130
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.975,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-19",
-   "v": 120
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "auto luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-19",
-   "v": 100
   },
   {
    "heat": null,
@@ -306,16 +273,6 @@
    "source": "related-queries",
    "stand": "2026-10-23",
    "v": 33350
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "pingi luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-19",
-   "v": 19800
   },
   {
    "kind": "value",
@@ -488,10 +445,15 @@
    "v": 50
   }
  ],
- "generated": "2026-10-27",
+ "generated": "2026-10-28",
  "geo": "DE",
- "heat_source": "measured 2026-10-27 (17 pages); no notes",
+ "heat_source": "measured 2026-10-28 (12 pages); no notes",
  "hot_pages": [
+  {
+   "n7": 6,
+   "p7": 5,
+   "page": "/guide/luftentfeuchter-keller.html"
+  },
   {
    "n7": 5,
    "p7": 1,
@@ -514,17 +476,7 @@
   },
   {
    "n7": 3,
-   "p7": 4,
-   "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
-  },
-  {
-   "n7": 3,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/strompreis-radar.html"
   },
   {
@@ -539,16 +491,6 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-mietwohnung.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-ohne-balkon.html"
-  },
-  {
-   "n7": 2,
    "p7": 2,
    "page": "/guide/klimaanlage-wann-kaufen.html"
   },
@@ -559,29 +501,23 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/luftentfeuchter-20-qm.html"
+   "p7": 3,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/guide/thermovorhang-ratgeber.html"
+   "p7": 5,
+   "page": "/guide/was-bedeutet-btu.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "avreno",
   "dreo atom 316",
   "powerstation",
   "radiator",
   "sky scanner",
-  "salami",
-  "selbstbedienungskasse",
   "stockflecken entfernen wand",
-  "duschkopf",
-  "meacodry arete one 12l",
-  "dieter glawischnig",
   "balenciaga city bag",
   "dreame r20"
  ],

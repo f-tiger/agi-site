@@ -15,9 +15,9 @@
     "demand": {
       "has_underserved": false,
       "has_gaps": true,
-      "has_hot_pages": false,
+      "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": null
+      "top_hot_page": "/earn/cases/clip-service"
     },
     "health": {
       "http": "200",
@@ -40,6 +40,17 @@
         "count_band": "1-9",
         "query": "jim cramer ai chip stocks",
         "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/earn/cases/clip-service",
+        "n7_band": "10-99",
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 10,
+    "opportunities": 11,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-26T08:05:20.683Z",
-    "health": "2026-10-26T14:42:59Z",
-    "ai_referrals": "2026-10-26T14:43:37Z",
-    "opportunities": "2026-10-26",
-    "autopilot_receipt": "2026-10-27"
+    "membership": "2026-10-27T08:21:22.872Z",
+    "health": "2026-10-27T13:49:33Z",
+    "ai_referrals": "2026-10-27T13:50:07Z",
+    "opportunities": "2026-10-27",
+    "autopilot_receipt": "2026-10-28"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-26T08:05:20.683Z",
+    "generated": "2026-10-27T08:21:22.872Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -161,6 +161,15 @@
       "supply": 0
     },
     {
+      "theme": "can we do something about this impending ai dystopia",
+      "site": null,
+      "state": "scout",
+      "score": 2.07,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "feature request manager",
       "site": null,
       "state": "scout",
@@ -171,6 +180,15 @@
     },
     {
       "theme": "firefox add on to block the new credentials fill in behavior",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "frictionless vivaldi browser extension to quickly save viewport screenshots",
       "site": null,
       "state": "scout",
       "score": 2.05,
@@ -192,15 +210,6 @@
       "site": null,
       "state": "scout",
       "score": 2.04,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "frictionless vivaldi browser extension to quickly save viewport screenshots",
-      "site": null,
-      "state": "scout",
-      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -265,7 +274,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 24,
+        "count": 23,
         "query": "byecold infrarotheizung",
         "value": 49950
       },
@@ -284,14 +293,26 @@
       "mode": "queue"
     },
     {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/earn/cases/clip-service",
+        "n7": 38,
+        "p7": 16
+      },
+      "mode": "queue"
+    },
+    {
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/heizluefter-stromsparend.html",
-        "n7": 5,
-        "p7": 1
+        "page": "/guide/luftentfeuchter-keller.html",
+        "n7": 6,
+        "p7": 5
       },
       "mode": "queue"
     },
@@ -301,7 +322,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 251,
+        "human_pv_28d": 266,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -310,7 +331,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

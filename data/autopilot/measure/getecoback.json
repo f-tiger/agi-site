@@ -2,48 +2,56 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 6,
+    "n7": 8,
     "p7": 13
    },
    "btu_calc": {
     "n7": 1,
     "p7": 19
    },
-   "buyer_view": {
-    "n7": 3,
+   "buyer_next": {
+    "n7": 1,
     "p7": 0
+   },
+   "buyer_result": {
+    "n7": 1,
+    "p7": 0
+   },
+   "buyer_view": {
+    "n7": 5,
+    "p7": 1
    },
    "cold_now": {
     "n7": 1,
     "p7": 7
    },
    "feuchte_now": {
-    "n7": 5,
-    "p7": 9
+    "n7": 11,
+    "p7": 11
    },
    "heizkosten_calc": {
     "n7": 0,
     "p7": 1
    },
    "laundry_view": {
-    "n7": 2,
-    "p7": 2
+    "n7": 0,
+    "p7": 4
    },
    "page_view": {
-    "n7": 77,
-    "p7": 102
+    "n7": 72,
+    "p7": 108
    },
    "popup_click": {
     "n7": 0,
     "p7": 2
    },
    "popup_close": {
-    "n7": 9,
+    "n7": 8,
     "p7": 8
    },
    "popup_view": {
-    "n7": 21,
-    "p7": 22
+    "n7": 17,
+    "p7": 23
    },
    "seal_fit": {
     "n7": 1,
@@ -59,10 +67,10 @@
    },
    "strompreis_api": {
     "n7": 3,
-    "p7": 1
+    "p7": 0
    },
    "video_play": {
-    "n7": 1,
+    "n7": 2,
     "p7": 2
    },
    "watt_calc": {
@@ -72,7 +80,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-27",
+ "fetched": "2026-10-28",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -101,14 +109,6 @@
    "n7": 4,
    "p7": 1
   },
-  "/guide/klimaanlage-mietwohnung.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/guide/klimaanlage-ohne-balkon.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/klimaanlage-wann-kaufen.html": {
    "n7": 2,
    "p7": 2
@@ -117,33 +117,21 @@
    "n7": 2,
    "p7": 5
   },
-  "/guide/luftentfeuchter-20-qm.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 3,
-   "p7": 4
+   "n7": 6,
+   "p7": 5
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 3,
-   "p7": 2
+   "n7": 2,
+   "p7": 3
   },
   "/guide/strompreis-radar.html": {
    "n7": 3,
-   "p7": 1
-  },
-  "/guide/thermovorhang-ratgeber.html": {
-   "n7": 2,
-   "p7": 3
+   "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 2,
-   "p7": 4
-  },
-  "/waeschetrockner-oder-luftentfeuchter.html": {
-   "n7": 2,
-   "p7": 3
+   "p7": 5
   }
  },
  "site": "getecoback",

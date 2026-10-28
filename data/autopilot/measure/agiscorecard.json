@@ -27,16 +27,16 @@
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 1,
-    "q": "use agi-scorecard for 8 graded agi-2027 predicti"
-   },
-   {
-    "n": 1,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 1,
+    "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
+   },
+   {
+    "n": 1,
+    "q": "use agi-scorecard for 8 graded agi-2027 predicti"
    },
    {
     "n": 1,
@@ -44,11 +44,16 @@
    }
   ]
  },
- "fetched": "2026-10-27",
+ "fetched": "2026-10-28",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {},
+ "pages": {
+  "/earn/cases/clip-service": {
+   "n7": 38,
+   "p7": 16
+  }
+ },
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }
