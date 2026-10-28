@@ -2,16 +2,16 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-10-27T11:50:20.023Z",
+  "generated": "2026-10-28T12:25:17.028Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
-    "doc_view": 10,
+    "doc_view": 8,
     "doc_video_load_shotcut": 1,
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 116
+    "doc_ci": 114
   },
   "daily": [
     {
@@ -53,21 +53,16 @@
       "d": "2026-10-01",
       "ev": "doc_view",
       "n": 3
-    },
-    {
-      "d": "2026-09-30",
-      "ev": "doc_view",
-      "n": 2
     }
   ],
   "pages": [
     {
-      "path": "/",
-      "n": 3
-    },
-    {
       "path": "/zh/videos/upscayl",
       "n": 2
+    },
+    {
+      "path": "/",
+      "n": 1
     },
     {
       "path": "/collectors",
@@ -93,29 +88,25 @@
   "referrers": [
     {
       "ref": "",
-      "n": 5
+      "n": 4
     },
     {
       "ref": "www.google.com",
       "n": 4
-    },
-    {
-      "ref": "thedollscout.com",
-      "n": 1
     }
   ],
   "crawler_fetches": [
     {
       "path": "/",
-      "n": 145
-    },
-    {
-      "path": "/llms.txt",
-      "n": 98
+      "n": 118
     },
     {
       "path": "/document-sitemap.xml",
-      "n": 94
+      "n": 93
+    },
+    {
+      "path": "/llms.txt",
+      "n": 89
     },
     {
       "path": "/document-tools",
@@ -134,16 +125,16 @@
       "n": 7
     },
     {
+      "path": "/document-assets/text/en/videos/audacity.txt",
+      "n": 7
+    },
+    {
+      "path": "/document-assets/text/en/videos/shotcut.txt",
+      "n": 7
+    },
+    {
       "path": "/zh/compare-pdf-text",
       "n": 7
-    },
-    {
-      "path": "/zh/delivery-evidence",
-      "n": 7
-    },
-    {
-      "path": "/compare-pdf-text",
-      "n": 6
     },
     {
       "path": "/de/delivery-evidence",
@@ -155,6 +146,10 @@
     },
     {
       "path": "/delivery-evidence",
+      "n": 6
+    },
+    {
+      "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
       "n": 6
     },
     {
@@ -214,19 +209,11 @@
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/videos/audacity.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/videos/shotcut.txt",
-      "n": 6
-    },
-    {
-      "path": "/zh/ai-portrait-background-remover",
-      "n": 6
-    },
-    {
       "path": "/zh/ai-text-summarizer",
+      "n": 6
+    },
+    {
+      "path": "/zh/delivery-evidence",
       "n": 6
     },
     {
@@ -234,27 +221,11 @@
       "n": 6
     },
     {
-      "path": "/zh/open-source/ollama",
-      "n": 6
-    },
-    {
-      "path": "/zh/verify-file",
-      "n": 6
-    },
-    {
-      "path": "/zh/videos",
-      "n": 6
+      "path": "/compare-pdf-text",
+      "n": 5
     },
     {
       "path": "/de/compare-pdf-text",
-      "n": 5
-    },
-    {
-      "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
-      "n": 5
-    },
-    {
-      "path": "/image-compressor",
       "n": 5
     },
     {
@@ -266,7 +237,11 @@
       "n": 5
     },
     {
-      "path": "/zh/pdf-accessibility-checker",
+      "path": "/zh/ai-portrait-background-remover",
+      "n": 5
+    },
+    {
+      "path": "/zh/open-source/ollama",
       "n": 5
     },
     {
@@ -274,23 +249,11 @@
       "n": 5
     },
     {
-      "path": "/zh/videos/shotcut",
-      "n": 5
-    },
-    {
-      "path": "/zh/videos/upscayl",
+      "path": "/zh/verify-file",
       "n": 5
     },
     {
       "path": "/de/image-compressor",
-      "n": 4
-    },
-    {
-      "path": "/de/json-compare",
-      "n": 4
-    },
-    {
-      "path": "/de/learn/scanned-pdf-vs-text-pdf",
       "n": 4
     },
     {
@@ -303,6 +266,10 @@
     },
     {
       "path": "/document-assets/text/de/delivery-evidence.txt",
+      "n": 4
+    },
+    {
+      "path": "/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt",
       "n": 4
     },
     {
@@ -330,31 +297,15 @@
       "n": 4
     },
     {
-      "path": "/open-source/ollama",
+      "path": "/document-assets/text/de/verify-file.txt",
       "n": 4
     },
     {
-      "path": "/pdf-batch-audit",
-      "n": 4
-    },
-    {
-      "path": "/verify-file",
-      "n": 4
-    },
-    {
-      "path": "/videos/audacity",
-      "n": 4
-    },
-    {
-      "path": "/zh/",
+      "path": "/image-compressor",
       "n": 4
     },
     {
       "path": "/zh/json-compare",
-      "n": 4
-    },
-    {
-      "path": "/zh/learn/pdf-reading-order",
       "n": 4
     },
     {
@@ -366,7 +317,7 @@
       "n": 4
     },
     {
-      "path": "/zh/pdf-batch-audit",
+      "path": "/zh/pdf-accessibility-checker",
       "n": 4
     },
     {
@@ -374,11 +325,31 @@
       "n": 4
     },
     {
+      "path": "/zh/videos",
+      "n": 4
+    },
+    {
       "path": "/zh/videos/audacity",
       "n": 4
     },
     {
+      "path": "/zh/videos/shotcut",
+      "n": 4
+    },
+    {
+      "path": "/zh/videos/upscayl",
+      "n": 4
+    },
+    {
+      "path": "/de/json-compare",
+      "n": 3
+    },
+    {
       "path": "/de/learn/pdf-accessibility-checklist",
+      "n": 3
+    },
+    {
+      "path": "/de/learn/scanned-pdf-vs-text-pdf",
       "n": 3
     },
     {
@@ -398,7 +369,7 @@
       "n": 3
     },
     {
-      "path": "/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt",
+      "path": "/document-assets/text/de/learn/pdf-accessibility-checklist.txt",
       "n": 3
     },
     {
@@ -415,10 +386,6 @@
     },
     {
       "path": "/document-assets/text/de/open-source/whisper.txt",
-      "n": 3
-    },
-    {
-      "path": "/document-assets/text/de/verify-file.txt",
       "n": 3
     },
     {
@@ -518,19 +485,27 @@
       "n": 3
     },
     {
+      "path": "/document-assets/text/zh/videos/audacity.txt",
+      "n": 3
+    },
+    {
       "path": "/document-assets/text/zh/videos/upscayl.txt",
       "n": 3
     },
     {
-      "path": "/learn/pdf-accessibility-checklist",
+      "path": "/pdf-batch-audit",
       "n": 3
     },
     {
-      "path": "/learn/pdf-reading-order",
+      "path": "/verify-file",
       "n": 3
     },
     {
-      "path": "/open-source/shotcut",
+      "path": "/videos/audacity",
+      "n": 3
+    },
+    {
+      "path": "/zh/",
       "n": 3
     },
     {
@@ -542,20 +517,16 @@
       "n": 3
     },
     {
+      "path": "/zh/learn/pdf-reading-order",
+      "n": 3
+    },
+    {
       "path": "/zh/open-source/shotcut",
       "n": 3
     },
     {
-      "path": "/ai-audio-to-text",
-      "n": 2
-    },
-    {
-      "path": "/ai-portrait-background-remover",
-      "n": 2
-    },
-    {
-      "path": "/ai-text-summarizer",
-      "n": 2
+      "path": "/zh/pdf-batch-audit",
+      "n": 3
     },
     {
       "path": "/creator-kit",
@@ -634,14 +605,6 @@
       "n": 2
     },
     {
-      "path": "/document-assets/text/de/learn/pdf-accessibility-checklist.txt",
-      "n": 2
-    },
-    {
-      "path": "/document-assets/text/zh/videos/audacity.txt",
-      "n": 2
-    },
-    {
       "path": "/document-assets/text/zh/videos/shotcut.txt",
       "n": 2
     },
@@ -650,19 +613,11 @@
       "n": 2
     },
     {
-      "path": "/json-compare",
+      "path": "/learn/pdf-accessibility-checklist",
       "n": 2
     },
     {
-      "path": "/learn/scanned-pdf-vs-text-pdf",
-      "n": 2
-    },
-    {
-      "path": "/methodology",
-      "n": 2
-    },
-    {
-      "path": "/open-source",
+      "path": "/learn/pdf-reading-order",
       "n": 2
     },
     {
@@ -674,35 +629,11 @@
       "n": 2
     },
     {
-      "path": "/open-source/upscayl",
+      "path": "/open-source/ollama",
       "n": 2
     },
     {
-      "path": "/open-source/whisper",
-      "n": 2
-    },
-    {
-      "path": "/pdf-accessibility-checker",
-      "n": 2
-    },
-    {
-      "path": "/pdf-to-text",
-      "n": 2
-    },
-    {
-      "path": "/time-zone-planner",
-      "n": 2
-    },
-    {
-      "path": "/videos",
-      "n": 2
-    },
-    {
-      "path": "/videos/shotcut",
-      "n": 2
-    },
-    {
-      "path": "/videos/upscayl",
+      "path": "/open-source/shotcut",
       "n": 2
     },
     {
@@ -724,74 +655,128 @@
     {
       "path": "/zh/open-source/upscayl",
       "n": 2
+    },
+    {
+      "path": "/ai-audio-to-text",
+      "n": 1
+    },
+    {
+      "path": "/ai-portrait-background-remover",
+      "n": 1
+    },
+    {
+      "path": "/ai-text-summarizer",
+      "n": 1
+    },
+    {
+      "path": "/json-compare",
+      "n": 1
+    },
+    {
+      "path": "/learn/scanned-pdf-vs-text-pdf",
+      "n": 1
+    },
+    {
+      "path": "/methodology",
+      "n": 1
+    },
+    {
+      "path": "/open-source",
+      "n": 1
+    },
+    {
+      "path": "/open-source/upscayl",
+      "n": 1
+    },
+    {
+      "path": "/open-source/whisper",
+      "n": 1
+    },
+    {
+      "path": "/pdf-accessibility-checker",
+      "n": 1
+    },
+    {
+      "path": "/pdf-to-text",
+      "n": 1
+    },
+    {
+      "path": "/time-zone-planner",
+      "n": 1
+    },
+    {
+      "path": "/videos",
+      "n": 1
+    },
+    {
+      "path": "/videos/shotcut",
+      "n": 1
+    },
+    {
+      "path": "/videos/upscayl",
+      "n": 1
     }
   ],
   "crawler_agents": [
     {
       "claimed_agent": "Amazonbot",
-      "n": 304
+      "n": 283
     },
     {
       "claimed_agent": "ClaudeBot",
-      "n": 83
+      "n": 80
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 83
+      "n": 70
     },
     {
       "claimed_agent": "ChatGPT-User",
-      "n": 81
+      "n": 66
     },
     {
       "claimed_agent": "Applebot",
-      "n": 64
+      "n": 65
     },
     {
       "claimed_agent": "Meta-ExternalAgent",
-      "n": 64
+      "n": 65
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 59
+      "n": 57
     },
     {
       "claimed_agent": "Bingbot",
-      "n": 53
-    },
-    {
-      "claimed_agent": "YandexBot",
-      "n": 29
+      "n": 49
     },
     {
       "claimed_agent": "PerplexityBot",
-      "n": 27
+      "n": 25
     },
     {
-      "claimed_agent": "OAI-SearchBot",
+      "claimed_agent": "YandexBot",
       "n": 23
     },
     {
+      "claimed_agent": "OAI-SearchBot",
+      "n": 22
+    },
+    {
       "claimed_agent": "Claude-User",
-      "n": 15
+      "n": 13
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 15
+      "n": 13
     }
   ],
   "source_events": [
     {
       "source": "direct_or_unknown",
       "events": {
-        "doc_view": 5,
+        "doc_view": 4,
         "doc_video_load_shotcut": 1
-      }
-    },
-    {
-      "source": "internal",
-      "events": {
-        "doc_view": 1
       }
     },
     {
@@ -802,7 +787,7 @@
       }
     }
   ],
-  "homepage_views": 3,
+  "homepage_views": 1,
   "dedicated_tool_views": 0,
   "homepage_selections": {
     "portrait": 0,
@@ -857,6 +842,6 @@
   "revenue_scope": "Equipment outbound clicks are purchase intent, not orders or revenue. Actual earned commission must be reconciled with Amazon reports; no sales attribution is inferred from these anonymous actions. Video loads are not plays or completed watches.",
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
-  "tool_views": 3,
-  "query_rows_read": 4535
+  "tool_views": 1,
+  "query_rows_read": 4393
 }
