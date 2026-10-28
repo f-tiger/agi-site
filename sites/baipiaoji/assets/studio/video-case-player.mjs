@@ -1,3 +1,4 @@
+import {videoEvent} from './video-events.mjs';
 import {CASES,caseByID,caseProject} from './video-cases.mjs';
 import {SIZES,duration,brief,csv,srt,zip} from './video-core.mjs';
 import {draw,drawDemoAsset} from './video-render.mjs';
@@ -5,7 +6,7 @@ import {draw,drawDemoAsset} from './video-render.mjs';
 const $=id=>document.getElementById('vc-'+id),lang=document.documentElement.lang.startsWith('zh')?'zh':'en',zh=lang==='zh';
 const qa=new URLSearchParams(location.search).has('__ci');
 let selected=CASES[0],p,variant=0,time=0,playing=false,raf,downloadURL;
-const track=action=>{if(!qa&&window.bpjEv)window.bpjEv('calc','/video/case-'+action);};
+const track=action=>{if(!qa&&window.bpjEv)window.bpjEv('calc','/video/case-'+action);videoEvent(action,'case');};
 const stamp=s=>'0:'+String(Math.floor(s)).padStart(2,'0');
 function stop(){playing=false;cancelAnimationFrame(raf);$('play').textContent=zh?'播放 9 秒示范':'Play the 9-second example';}
 function links(){

@@ -207,3 +207,17 @@ test('Eco home fit actions accept only fixed mode and action without user data',
 });
 
 for(const action of ['search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached']) { const name='manju_'+action; assert.equal(businessEvent('baipiaoji.com','/manju/',{name})?.name,name); assert.equal(businessEvent('baipiaoji.com','/manju/',{name,query:'PRIVATE'}),null); assert.equal(businessEvent('baipiaoji.com','/account',{name}),null); }
+
+test('BPJ video production keeps examples, own exports and intent separate on exact public routes',()=>{
+ for(const route of ['/studio/video-variants','/en/studio/video-variants'])for(const kind of ['demo','own']){
+  const name='video_export_video_'+kind;
+  assert.deepEqual(businessEvent('baipiaoji.com',route,{name}),{name,tool_id:'video-variants',repeat:true});
+  for(const host of ['getecoback.com','evil.baipiaoji.com'])assert.equal(businessEvent(host,route,{name}),null);
+  assert.equal(businessEvent('baipiaoji.com',route,{name,filename:'private.mp4'}),null);
+ }
+ for(const route of ['/members','/account','/studio/quote-builder','/manju/','/en/ai-video/','/video/secret','/studio/video-variants/private'])assert.equal(businessEvent('baipiaoji.com',route,{name:'video_export_video_own'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_export_video_own'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_example_play'}).tool_id,'video-studio');
+ assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_membership_open'}).name,'video_membership_open');
+ assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_purchase'}),null);
+});
