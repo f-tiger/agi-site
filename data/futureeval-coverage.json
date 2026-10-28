@@ -1,23 +1,14 @@
 {
- "generated": "2026-10-27T13:50:15+00:00",
+ "generated": "2026-10-28T14:44:30+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 1,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
-  {
-   "post_id": 46206,
-   "title": "Will Argentina's Senate pass the 'Super RIGI' bill before January 1, 2027?",
-   "hosts": [
-    "www.senado.gob.ar"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",

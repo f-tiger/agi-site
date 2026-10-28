@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-27T13:50:16+00:00",
+ "generated": "2026-10-28T14:44:30+00:00",
  "note": "aggregate counts read from each site's public pulse/reach endpoint; owner_reported figures are hand-entered from PartnerNet screenshots with their data window and are never extrapolated",
  "sites": [
   {
@@ -7,7 +7,7 @@
    "via": "endpoint",
    "money": {
     "days": 28,
-    "affiliate_click_28d": 54,
+    "affiliate_click_28d": 57,
     "affiliate_click_us_market_28d": 0,
     "affiliate_click_amazon_com_28d": 6,
     "affiliate_diagnostics": {
@@ -15,29 +15,29 @@
      "legacy_window": "28d key includes today plus 28 previous UTC dates",
      "timezone": "UTC",
      "complete_28d": {
-      "start": "2026-09-29",
-      "end_exclusive": "2026-10-27",
-      "clicks": 53
+      "start": "2026-09-30",
+      "end_exclusive": "2026-10-28",
+      "clicks": 56
      },
      "recent_7d": {
-      "start": "2026-10-20",
-      "end_exclusive": "2026-10-27",
-      "clicks": 6
+      "start": "2026-10-21",
+      "end_exclusive": "2026-10-28",
+      "clicks": 8
      },
      "previous_7d": {
-      "start": "2026-10-13",
-      "end_exclusive": "2026-10-20",
+      "start": "2026-10-14",
+      "end_exclusive": "2026-10-21",
       "clicks": 13
      },
      "today_partial": 1,
      "markets_28d": {
-      "de": 47,
+      "de": 50,
       "us": 6,
       "unknown": 0
      },
      "destinations_28d": {
-      "product": 11,
-      "search": 42,
+      "product": 13,
+      "search": 43,
       "prime_trial": 0,
       "other_or_unknown": 0
      },
@@ -49,7 +49,7 @@
     "member_orders_by_state": {}
    },
    "summary": {
-    "affiliate_click_28d": 54,
+    "affiliate_click_28d": 57,
     "paid_orders": 0,
     "subscribers": 1
    }
@@ -63,9 +63,9 @@
     "ev_calc_use_28d": 2,
     "ev_subscribe_click_28d": 3,
     "ev_tool_click_28d": 636,
-    "pv_advertise_28d": 139,
-    "pv_audits_28d": 55,
-    "pv_workbench_28d": 285,
+    "pv_advertise_28d": 150,
+    "pv_audits_28d": 62,
+    "pv_workbench_28d": 289,
     "member_orders_by_state": {},
     "discuss_profiles": 0
    },
@@ -92,9 +92,9 @@
     "video_orders_by_state": {},
     "video_order_definition": "Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.",
     "scope_note": "Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.",
-    "submissions_total": 149,
-    "go_28d": 140,
-    "biz_28d": 380,
+    "submissions_total": 181,
+    "go_28d": 150,
+    "biz_28d": 463,
     "claims_verified": 0,
     "attestations_queued": 0
    },
@@ -125,7 +125,7 @@
     "days": 28,
     "calc_use_28d": 8,
     "mcp_call_28d": 178,
-    "pick_open_28d": 1
+    "pick_open_28d": 2
    },
    "summary": {
     "affiliate_click_28d": null,
@@ -166,6 +166,6 @@
   "spend_usd_30d": 0,
   "net_usd_30d": null,
   "north_star_resolved_prelogged": 0,
-  "generated": "2026-10-27T13:50:15+00:00"
+  "generated": "2026-10-28T14:44:29+00:00"
  }
 }
