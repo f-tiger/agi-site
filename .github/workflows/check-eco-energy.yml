@@ -124,6 +124,9 @@ jobs:
           python3 tools/build_language_nav.py
           python3 tools/test_language_nav.py
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
+          node --test tools/test-public-engagement.mjs
+          node tools/install-public-engagement.mjs --write
+          node tools/install-public-engagement.mjs
 
       - name: Install browser test runtime
         run: |
@@ -148,6 +151,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_moisture_analytics.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/test-public-engagement-browser.mjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_winter.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_au_cooling.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_language_nav.cjs
