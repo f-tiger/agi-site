@@ -431,6 +431,9 @@ jobs:
           python3 tools/fleet-analytics/test_coverage.py
           python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site --write
           python3 tools/fleet-analytics/coverage.py --site eco --out sites/getecoback/site
+          node --test sites/getecoback/tools/test-public-engagement.mjs
+          node sites/getecoback/tools/install-public-engagement.mjs --write
+          node sites/getecoback/tools/install-public-engagement.mjs
 
       - name: Verify automatic content, source references and discovery after all generators
         run: python3 tools/check_auto_content_release.py
@@ -470,6 +473,7 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node tools/fleet-analytics/verify-live.mjs eco
+          node sites/getecoback/tools/verify-public-engagement-live.mjs
           node tools/fleet-account/verify-live.mjs eco
 
       - name: Verify independent membership after deployment
