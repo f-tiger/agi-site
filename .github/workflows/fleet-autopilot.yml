@@ -312,3 +312,4 @@ jobs:
       dry_run: ${{ inputs.dry_run == true }}
     secrets:
       ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

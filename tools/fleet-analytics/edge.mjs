@@ -1,5 +1,5 @@
 // Only the empty analytics frame may contact Google. Tool documents retain CSP.
-export const analyticsFiles = new Set(['consent.mjs','collector.mjs','consent.css','frame.html','frame','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs','registry.mjs','coverage.json']);
+export const analyticsFiles = new Set(['consent.mjs','collector.mjs','consent.css','frame.html','frame','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs','engagement.mjs','registry.mjs','coverage.json']);
 export function isAnalyticsPath(path) { return path.startsWith('/analytics-assets/') && analyticsFiles.has(path.slice('/analytics-assets/'.length)); }
 export async function analyticsResponse(request, env, prefix = '') {
  const url = new URL(request.url);

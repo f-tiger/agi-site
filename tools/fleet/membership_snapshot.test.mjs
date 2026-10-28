@@ -25,6 +25,7 @@ function snapshot(mode, secret = true) {
         const admin = parsed.pathname === '/api/member-admin';
         if (!admin && parsed.pathname !== '/api/member') throw Error('Unexpected path');
         if (admin && (options.method !== 'POST' || options.body !== '{"action":"stats"}')) throw Error('Unexpected operation');
+        if(admin && options.headers.Authorization.includes('fixture-cloudflare-credential'))throw Error('Raw runner credential leaked');
         fs.appendFileSync(process.env.REQUEST_LOG, JSON.stringify({path: parsed.pathname}) + '\\n');
         const failed = admin && (process.env.CASE === 'failed' || (process.env.CASE === 'partial' && parsed.hostname !== 'baipiaoji.com'));
         const body = admin ? {
@@ -41,12 +42,14 @@ function snapshot(mode, secret = true) {
       collector, '--check', '--out', output], {
       encoding: 'utf8',
       env: {PATH: process.env.PATH, CASE: mode, REQUEST_LOG: requests,
-        ADS_WATCH_SECRET: secret ? 'unit-test-only-never-a-real-secret-000000' : ''}
+        ADS_WATCH_SECRET: secret === true ? 'unit-test-only-never-a-real-secret-000000' : '',
+        CLOUDFLARE_API_TOKEN: secret === 'fallback' ? 'fixture-cloudflare-credential' : ''}
     });
     assert.equal(result.status, 0, result.stderr);
     assert.equal(fs.readFileSync(output, 'utf8'), 'old observation must remain unchanged');
     assert.ok(!result.stdout.includes('fixture-not-for-public-output'));
     assert.ok(!result.stdout.includes('unit-test-only-never-a-real-secret'));
+    assert.ok(!result.stdout.includes('fixture-cloudflare-credential'));
     return {report: JSON.parse(result.stdout), calls: fs.readFileSync(requests, 'utf8').trim().split('\n').length};
   } finally {
     fs.rmSync(dir, {recursive: true, force: true});
@@ -81,4 +84,10 @@ test('HTTP success with a missing counter is incomplete', () => {
     assert.equal(report.totals.paid_orders, null);
     assert.equal(report.counters_complete, false);
   }
+});
+
+test('existing watcher credential fallback enables aggregate reads without transmitting the runner credential',()=>{
+ const {report,calls}=snapshot('zero','fallback');
+ assert.equal(calls,8);assert.equal(report.counters_complete,true);
+ assert.deepEqual(Object.values(report.totals),[0,0,0,0]);
 });

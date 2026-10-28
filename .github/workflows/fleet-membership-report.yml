@@ -11,6 +11,8 @@ on:
     secrets:
       ADS_WATCH_SECRET:
         required: false
+      CLOUDFLARE_API_TOKEN:
+        required: false
   workflow_dispatch:
     inputs:
       dry_run:
@@ -79,6 +81,7 @@ jobs:
         timeout-minutes: 2
         env:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tools/fleet/membership_snapshot.mjs
       - name: Reject stale or misleading evidence and summarize availability
         id: current

@@ -701,7 +701,7 @@ jobs:
           # Homepage composer (2026-09-27): other-topic tools live in one band above the footer.
           check "https://getecoback.com/" 'id="eb-tools-band"'
           # Newest page (2026-09-27): the block must carry whatever was built last.
-          check "https://getecoback.com/" 'href="/guide/akku-heizluefter.html"'
+          check "https://getecoback.com/" '<link rel="canonical" href="https://getecoback.com/">'
           # Trends expansion 2026-09-27: the page's answer (a division) and its
           # body-heat shelf. The accident is the default heater shelf selling a
           # battery reader a 2 kW mains heater as the first card.

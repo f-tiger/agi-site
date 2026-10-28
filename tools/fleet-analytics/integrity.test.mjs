@@ -37,7 +37,7 @@ function fixture({choice='',query='',privacy={},host='getecoback.com',path='/',t
  const window={addEventListener:on,dataLayer:[]};window.self=window;window.top=window;
  window.gtag=function(){window.dataLayer.push(arguments);};
  const firstParty=[];const original=window.gtag;window.gtag=function(){firstParty.push(Array.from(arguments));original(...arguments);};
- const context={window,document,location:new URL('https://'+host+path+query),navigator:privacy,localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},URL,URLSearchParams,Date,Set,campaignFields,businessEvent,publicAccountEntryPath,allowed,affiliateAction,legacyEvent};
+ const context={window,document,location:new URL('https://'+host+path+query),navigator:privacy,localStorage:{getItem:k=>store.get(k),setItem:(k,v)=>store.set(k,v)},URL,URLSearchParams,Date,Set,installPublicEngagement:()=>{},campaignFields,businessEvent,publicAccountEntryPath,allowed,affiliateAction,legacyEvent};
  vm.runInNewContext(consentSource.replaceAll('new URL(import.meta.url).search',"'?v=test'"),context);
  const frame=()=>elements.filter(e=>e.tag==='iframe'&&!e.removed).at(-1);
  const emit=(n,e)=>{for(const f of listeners[n]||[])f(e);};
