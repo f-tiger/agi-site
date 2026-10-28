@@ -785,6 +785,73 @@
         ]
       },
       "published": "2026-10-18"
+    },
+    "/guide/trotec-ttk-96-e-betriebskosten.html": {
+      "modified": "2026-10-28",
+      "product": {
+        "brand": "Trotec",
+        "checked_at": "2026-10-28T09:44:08.099424+00:00",
+        "country": "DE",
+        "facts": [
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 3.0
+          },
+          {
+            "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
+            "key": "power_watts",
+            "label": "Leistungsaufnahme",
+            "unit": "W",
+            "value": 720.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "30 °C / 80 % r.F.",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 28.3
+          },
+          {
+            "context": "Abstand 1 m",
+            "key": "noise_db",
+            "label": "Geräuschangabe",
+            "unit": "dB(A)",
+            "value": 50.0
+          }
+        ],
+        "language": "de",
+        "market": {
+          "currency": "EUR",
+          "plug": null
+        },
+        "model": "TTK 96 E",
+        "name": "Luftentfeuchter TTK 96 E",
+        "power_watts": 720.0,
+        "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-96-e.html",
+        "source_hash": "a042ad3f2cec138187f31b9c00e497ab9711e489c073ce45c49932291237cde1",
+        "source_id": "trotec-de:cd50efec13f1",
+        "source_urls": [
+          "https://de.trotec.com/shop/luftentfeuchter-ttk-96-e.html"
+        ]
+      },
+      "published": "2026-10-28"
     }
   },
   "schema_version": 1
