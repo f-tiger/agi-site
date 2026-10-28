@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'tools/fleet-analytics/**'
+      - 'sites/agiscorecard/tools/gen_matrix_odds.py'
+      - 'sites/agiscorecard/matrix-odds.html'
+      - 'sites/agiscorecard/zh/matrix-odds.html'
       - 'tools/fleet/membership_snapshot*'
       - 'tools/fleet/traffic_sources.py'
       - '.github/workflows/fleet-membership-report.yml'
@@ -46,6 +49,7 @@ jobs:
           JS
       - name: Prove foreground time against real Google tags without sending production events
         run: |
+          node tools/fleet-analytics/matrix-browser-test.mjs
           for site in agi tds goldrush bpj eco; do
             FLEET_ENGAGEMENT_SITE="$site" node tools/fleet-analytics/engagement-browser-test.mjs
           done

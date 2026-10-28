@@ -296,8 +296,15 @@ function render(){
   document.getElementById('bandnote').textContent=band[2];
   syncUrl();
 }
-function setP(i,v){p[i]=+v;render();
-  try{gtag('event','tool_click',{location:'matrix_odds',label:LINKS[i]});}catch(e){}}
+function setP(i,v){p[i]=+v;render();}
+var calculationRecorded=false;
+function commitP(event){
+  if(!event.isTrusted||calculationRecorded)return;
+  calculationRecorded=true;
+  var forward=function(){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'matrix_calculate'}}));};
+  var loader=document.querySelector('script[data-ga4-host="agiscorecard.com"][src^="/analytics-assets/consent.mjs?"]');
+  if(loader)import(loader.src).then(forward).catch(function(){});else forward();
+}
 function resetAll(){p=LINKS.map(function(){return 50;});render();}
 function shareLink(){try{navigator.clipboard.writeText(location.href).then(function(){
   var c=document.getElementById('shared');c.style.display='inline';
@@ -438,7 +445,7 @@ def links_html(lang):
         out.append(f"""<div class="link">
 <div class="lhead"><span class="num">{i + 1}</span><span class="ltitle">{title}</span><span class="val" id="v{i}">50%</span></div>
 <input type="range" id="r{i}" min="0" max="100" step="1" value="50"
-  aria-label="{esc(title)}" oninput="setP({i},this.value)">
+  aria-label="{esc(title)}" oninput="setP({i},this.value)" onchange="commitP(event)">
 <div class="why">{why}</div>{ev}</div>""")
     return "\n".join(out)
 

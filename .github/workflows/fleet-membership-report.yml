@@ -95,8 +95,11 @@ jobs:
           path: data/fleet-evolution/membership.json
           retention-days: 30
           if-no-files-found: error
+      # Push-triggered collection keeps its evidence as an artifact. A report
+      # commit during a fleet release would invalidate every current-main guard.
+      # The existing daily/manual reporting paths retain durable writeback.
       - name: Commit only the validated current report
-        if: always() && steps.current.outcome == 'success'
+        if: always() && steps.current.outcome == 'success' && github.event_name != 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

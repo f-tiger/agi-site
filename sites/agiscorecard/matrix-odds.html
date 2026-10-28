@@ -100,27 +100,27 @@ body.embed .wrap{padding:14px 12px 20px}
 <div class="link">
 <div class="lhead"><span class="num">1</span><span class="ltitle">AGI arrives at all</span><span class="val" id="v0">50%</span></div>
 <input type="range" id="r0" min="0" max="100" step="1" value="50"
-  aria-label="AGI arrives at all" oninput="setP(0,this.value)">
+  aria-label="AGI arrives at all" oninput="setP(0,this.value)" onchange="commitP(event)">
 <div class="why">Nothing downstream can happen without it. The site tracks the 2027 target specifically; set your own probability for AGI ever, on any timeline.</div><div class="ev"><div class="kicker">What this site grades on this link</div><div style="margin-top:4px"><span class="tag mid">Open</span><b>AGI: models do the work of an AI researcher/engineer</b> — Agentic coding strong; autonomous AI research undemonstrated; resolves 2028-01-01 · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">2</span><span class="ltitle">…and it keeps improving itself far past human level</span><span class="val" id="v1">50%</span></div>
 <input type="range" id="r1" min="0" max="100" step="1" value="50"
-  aria-label="…and it keeps improving itself far past human level" oninput="setP(1,this.value)">
+  aria-label="…and it keeps improving itself far past human level" oninput="setP(1,this.value)" onchange="commitP(event)">
 <div class="why">An AGI that plateaus near human level cannot run the scenario. This is the step from “as smart as us” to “beyond argument.”</div><div class="ev"><div class="kicker">What this site grades on this link</div><div style="margin-top:4px"><span class="tag mid">Pending</span><b>Intelligence explosion: a decade of progress in ~1 year</b> — Precondition (autonomous AI research) undemonstrated · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">3</span><span class="ltitle">…and it commands enough energy, compute and physical industry</span><span class="val" id="v2">50%</span></div>
 <input type="range" id="r2" min="0" max="100" step="1" value="50"
-  aria-label="…and it commands enough energy, compute and physical industry" oninput="setP(2,this.value)">
+  aria-label="…and it commands enough energy, compute and physical industry" oninput="setP(2,this.value)" onchange="commitP(event)">
 <div class="why">The scenario is a physical-world takeover, not a chatbot. This is the one link where the site's evidence is currently strongest — the buildout is real and ahead of schedule.</div><div class="ev"><div class="kicker">What this site grades on this link</div><div style="margin-top:4px"><span class="tag ok">Exceeded</span><b>Massive AI capex acceleration</b> — Investment exceeded the essay's projections; revenue lags the spend · <a href="https://epoch.ai/topics/finances" target="_blank" rel="noopener">Epoch AI — Finances of AI</a></div><div style="margin-top:4px"><span class="tag ok">On track</span><b>Compute + algorithmic scaling continues at trend</b> — Effective-compute pace roughly held through mid-2026 · <a href="https://epoch.ai/trends" target="_blank" rel="noopener">Epoch AI — Trends in AI</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">4</span><span class="ltitle">…and humans fail to keep control of it</span><span class="val" id="v3">50%</span></div>
 <input type="range" id="r3" min="0" max="100" step="1" value="50"
-  aria-label="…and humans fail to keep control of it" oninput="setP(3,this.value)">
+  aria-label="…and humans fail to keep control of it" oninput="setP(3,this.value)" onchange="commitP(event)">
 <div class="why">Capability is not takeover. This link is about whether the off-switch, the labs and the state actually fail.</div><div class="ev"><div class="kicker">What this site grades on this link</div><div style="margin-top:4px"><span class="tag mid">Pending</span><b>Superintelligence; decisive strategic advantage</b> — Downstream of AGI and intelligence explosion · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div><div style="margin-top:4px"><span class="tag mid">Open</span><b>US government launches formal AGI project</b> — National-security involvement growing; no formal project · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">5</span><span class="ltitle">…and it chooses to keep humans alive inside a simulation</span><span class="val" id="v4">50%</span></div>
 <input type="range" id="r4" min="0" max="100" step="1" value="50"
-  aria-label="…and it chooses to keep humans alive inside a simulation" oninput="setP(4,this.value)">
+  aria-label="…and it chooses to keep humans alive inside a simulation" oninput="setP(4,this.value)" onchange="commitP(event)">
 <div class="why">This is the link that makes it <em>The Matrix</em> rather than ordinary AI risk — and it is the one link this site has <strong>no falsifiable evidence about, in either direction</strong>. Nothing in the dataset supports it and nothing refutes it. Indifference, extinction, and cooperation are all separate branches here; the film picked one.</div><div class="ev"><span class="tag none">No tracked prediction. No falsifiable evidence either way.</span></div></div>
 
 <div class="panel">
@@ -199,8 +199,15 @@ function render(){
   document.getElementById('bandnote').textContent=band[2];
   syncUrl();
 }
-function setP(i,v){p[i]=+v;render();
-  try{gtag('event','tool_click',{location:'matrix_odds',label:LINKS[i]});}catch(e){}}
+function setP(i,v){p[i]=+v;render();}
+var calculationRecorded=false;
+function commitP(event){
+  if(!event.isTrusted||calculationRecorded)return;
+  calculationRecorded=true;
+  var forward=function(){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'matrix_calculate'}}));};
+  var loader=document.querySelector('script[data-ga4-host="agiscorecard.com"][src^="/analytics-assets/consent.mjs?"]');
+  if(loader)import(loader.src).then(forward).catch(function(){});else forward();
+}
 function resetAll(){p=LINKS.map(function(){return 50;});render();}
 function shareLink(){try{navigator.clipboard.writeText(location.href).then(function(){
   var c=document.getElementById('shared');c.style.display='inline';

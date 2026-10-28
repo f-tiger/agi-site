@@ -221,3 +221,10 @@ test('BPJ video production keeps examples, own exports and intent separate on ex
  assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_membership_open'}).name,'video_membership_open');
  assert.equal(businessEvent('baipiaoji.com','/video/',{name:'video_purchase'}),null);
 });
+
+test('Matrix calculation uses a fixed public action without slider values',()=>{
+ for(const path of ['/matrix-odds','/zh/matrix-odds'])assert.deepEqual(businessEvent('agiscorecard.com',path,{name:'matrix_calculate'}),{name:'matrix_calculate',tool_id:'matrix-odds'});
+ assert.equal(businessEvent('agiscorecard.com','/matrix-odds',{name:'matrix_calculate',probability:50}),null);
+ assert.equal(businessEvent('agiscorecard.com','/account',{name:'matrix_calculate'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/matrix-odds',{name:'matrix_calculate'}),null);
+});
