@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-27",
+ "fetched": "2026-10-28",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -128,83 +128,101 @@
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
-   "auto": [
-    "luftentfeuchter",
-    "luftentfeuchter keller",
-    "luftentfeuchter test",
-    "luftentfeuchter elektrisch",
-    "luftentfeuchter granulat",
-    "luftentfeuchter wohnung",
-    "luftentfeuchter ohne strom",
-    "luftentfeuchter keller testsieger",
-    "luftentfeuchter badezimmer",
-    "luftentfeuchter nachfüllpack"
+   "rising": [
+    {
+     "q": "pattex luftentfeuchter",
+     "v": 53050
+    },
+    {
+     "q": "meacodry arete one 12l",
+     "v": 28750
+    },
+    {
+     "q": "pingi luftentfeuchter",
+     "v": 20700
+    },
+    {
+     "q": "luftentfeuchter kissen auto",
+     "v": 13850
+    },
+    {
+     "q": "notlandung",
+     "v": 11800
+    },
+    {
+     "q": "steckdosenleiste",
+     "v": 8600
+    },
+    {
+     "q": "weltweite zeitumstellung 2027",
+     "v": 8000
+    },
+    {
+     "q": "auto luftentfeuchter",
+     "v": 140
+    },
+    {
+     "q": "luftentfeuchter auto",
+     "v": 130
+    },
+    {
+     "q": "nachfüllpack luftentfeuchter",
+     "v": 110
+    }
    ],
-   "new_vocabulary": [
-    "luftentfeuchter keller",
-    "luftentfeuchter test",
-    "luftentfeuchter elektrisch",
-    "luftentfeuchter granulat",
-    "luftentfeuchter wohnung",
-    "luftentfeuchter ohne strom",
-    "luftentfeuchter keller testsieger",
-    "luftentfeuchter badezimmer",
-    "luftentfeuchter nachfüllpack"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-27T10:02:37.259049+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-10-27"
+   "source": "related-queries",
+   "fetched": "2026-10-28",
+   "polluted": false,
+   "last_attempt_at": "2026-10-28T10:45:57.567320+00:00",
+   "last_attempt_status": "ok"
   },
   "heizlüfter": {
    "rising": [
     {
-     "q": "akku heizlüfter auto",
-     "v": 73200
+     "q": "akku heizung",
+     "v": 56150
     },
     {
-     "q": "heizlüfter oder infrarotheizung",
-     "v": 58250
+     "q": "kaufland heizlüfter",
+     "v": 44350
     },
     {
-     "q": "12 volt heizlüfter",
-     "v": 53650
-    },
-    {
-     "q": "makita heizlüfter",
-     "v": 44300
-    },
-    {
-     "q": "güde heizlüfter",
-     "v": 41950
+     "q": "heizlüfter 12 volt",
+     "v": 39550
     },
     {
      "q": "dreo atom 316",
-     "v": 36100
+     "v": 38750
+    },
+    {
+     "q": "heizlüfter mit timer",
+     "v": 36250
+    },
+    {
+     "q": "heizlüfter große räume",
+     "v": 34150
+    },
+    {
+     "q": "dreo solaris slim h3",
+     "v": 33250
+    },
+    {
+     "q": "mobile heizung",
+     "v": 33050
+    },
+    {
+     "q": "heizlüfter globus",
+     "v": 31900
     },
     {
      "q": "heizlüfter wenig stromverbrauch",
-     "v": 35400
-    },
-    {
-     "q": "elektrische heizung",
-     "v": 34600
-    },
-    {
-     "q": "aeg heizlüfter",
-     "v": 32900
-    },
-    {
-     "q": "powerstation",
-     "v": 31150
+     "v": 30100
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-20",
+   "fetched": "2026-10-28",
    "polluted": false,
-   "last_attempt_at": "2026-10-20T09:33:54.968888+00:00",
+   "last_attempt_at": "2026-10-28T10:46:58.450489+00:00",
    "last_attempt_status": "ok"
   },
   "kaffeevollautomat": {
