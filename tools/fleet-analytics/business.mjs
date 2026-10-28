@@ -73,6 +73,16 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
+  // BPJ video production is distinct from manju discovery and AI-work browsing.
+  // Demos never become own exports, and cloud intent is never a payment event.
+  if(host==='baipiaoji.com'){
+    const hub=route==='/video/',editor=route==='/studio/video-variants';
+    const entry=hub||editor||['/','/en','/c/video'].includes(route)||/^\/tools\/[a-z0-9-]+$/.test(route);
+    if(entry&&['hub_open','example_open','editor_open','membership_open'].some(a=>name==='video_'+a))return {name,tool_id:'video-studio',repeat:true};
+    if((hub||editor)&&['compare','brief_open','cloud_open','projects_open','directory_open','quota_open','rights_open','sponsor_open','share_copy'].some(a=>name==='video_'+a))return {name,tool_id:'video-studio',repeat:true};
+    if(hub&&/^video_example_(select|opening|format|play|download)$/.test(name))return {name,tool_id:'video-studio',repeat:true};
+    if(editor&&(name==='video_example_start'||/^video_(attach_media|import_project|export_video|export_batch|export_project|export_brief|export_handoff|cloud_open|cloud_saved|restore_cloud)_(demo|own)$/.test(name)))return {name,tool_id:'video-variants',repeat:true};
+  }
   if(host==='baipiaoji.com' && /^\/ai-solo(?:\/[a-z0-9/-]*)?\/?$/.test(route) &&
       ['plan_complete','plan_export','case_open','filter','source_open','example','skill_export','save_local','mcp_preview','mcp_setup'].some(a=>name==='ai_solo_'+a))
     return {name,tool_id:'ai-solo',repeat:true};

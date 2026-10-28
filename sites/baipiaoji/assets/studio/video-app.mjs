@@ -1,3 +1,4 @@
+import {videoEvent} from './video-events.mjs';
 import {caseByID,caseProject} from './video-cases.mjs';
 import {newProject,restore,projectFromBackup,cloudBackup,PRODUCT,duration,sceneAt,cost,srt,brief,csv,zip} from './video-core.mjs';
 import {COPY} from './video-view.mjs';
@@ -6,7 +7,7 @@ const root=document.getElementById('video-workspace'),lang=root.dataset.locale,L
 let p=newProject(lang),assets=[null,null,null],audioBuffer=null,audioContext,previewSource,variant=0,time=0,raf,playing=false,locked=false,controller,dirty=false,downloadUrl,cloudContext=null;
 const mime=chooseMime(),supported=!!mime&&!!canvas.captureStream;
 const status=message=>{$('status').textContent=message;};
-function event(action){if(window.bpjEv&&!new URLSearchParams(location.search).has('__ci'))window.bpjEv('calc','/studio/video-variants/'+action+'/'+(p.demo?'demo':'own'));}
+function event(action){if(window.bpjEv&&!new URLSearchParams(location.search).has('__ci'))window.bpjEv('calc','/studio/video-variants/'+action+'/'+(p.demo?'demo':'own'));videoEvent(action,'editor',p.demo);}
 function failure(e){status(L.errors[e.message]||L.errors.UNKNOWN);}
 function read(){const q=structuredClone(p);for(const k of ['name','brand','ratio','accent'])q[k]=$(k).value;q.hooks=q.hooks.map((h,i)=>$('hook-'+i).value);q.scenes=q.scenes.map((s,i)=>({...s,seconds:Number($('seconds-'+i).value),text:i?$('text-'+i).value:'',asset:s.asset?{...s.asset,source:$('source-'+i).value,ai:$('ai-'+i).checked}:null}));q.budget={shots:Number($('shots').value),seconds:Number($('gen-seconds').value),attempts:Number($('attempts').value),rate:Number($('rate').value)};if([...root.querySelectorAll('input[type=number]')].some(n=>!n.value||!n.checkValidity()))throw Error('PROJECT');return restore(q);}
 function show(){draw(canvas,p,assets,time,variant);$('scrub').max=duration(p);$('scrub').value=time;const stamp=n=>Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0');$('time').textContent=stamp(time)+' / '+stamp(duration(p));}
