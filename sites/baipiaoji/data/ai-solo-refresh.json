@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-27T05:32:53.430Z",
+  "lastRun": "2026-10-28T06:15:49.747Z",
   "status": "degraded",
-  "checkedSources": 5,
+  "checkedSources": 6,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -307,31 +307,31 @@
       "caseId": "donotpay",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
-      "lastChecked": "2026-10-14T08:07:55.226Z"
+      "lastChecked": "2026-10-28T06:15:49.747Z"
     },
     {
       "caseId": "anki",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
-      "lastChecked": "2026-10-15T05:09:36.277Z"
+      "lastChecked": "2026-10-28T06:15:49.747Z"
     },
     {
       "caseId": "glam-up",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
-      "lastChecked": "2026-10-15T05:09:36.277Z"
+      "lastChecked": "2026-10-28T06:15:49.747Z"
     },
     {
       "caseId": "glam-up",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/nicole",
-      "lastChecked": "2026-10-15T05:09:36.277Z"
+      "lastChecked": "2026-10-28T06:15:49.747Z"
     },
     {
       "caseId": "glow-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
-      "lastChecked": "2026-10-15T05:09:36.277Z"
+      "lastChecked": "2026-10-28T06:15:49.747Z"
     },
     {
       "caseId": "glowly-ai",
@@ -1014,10 +1014,10 @@
     "ross-intelligence|https://blog.rossintelligence.com/post/announcement": {
       "caseId": "ross-intelligence",
       "sourceUrl": "https://blog.rossintelligence.com/post/announcement",
-      "lastAttempt": "2026-10-14T08:07:55.226Z",
-      "status": "baseline",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
+      "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-14T08:07:55.226Z",
+      "lastSuccess": "2026-10-28T06:15:49.747Z",
       "lastHash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
       "hash": "527e97ecea00971adf19bba3d5f3c09be8f13d474ae1862717ccb7daba28f410",
       "simhash": "02983b528ed8a79f",
@@ -1027,7 +1027,7 @@
     "donotpay|https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires": {
       "caseId": "donotpay",
       "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
-      "lastAttempt": "2026-10-14T08:07:55.226Z",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1035,7 +1035,7 @@
     "anki|https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/": {
       "caseId": "anki",
       "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
-      "lastAttempt": "2026-10-15T05:09:36.277Z",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1043,7 +1043,7 @@
     "glam-up|https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3": {
       "caseId": "glam-up",
       "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
-      "lastAttempt": "2026-10-15T05:09:36.277Z",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1051,7 +1051,7 @@
     "glam-up|https://www.starterstory.com/nicole": {
       "caseId": "glam-up",
       "sourceUrl": "https://www.starterstory.com/nicole",
-      "lastAttempt": "2026-10-15T05:09:36.277Z",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1059,7 +1059,7 @@
     "glow-ai|https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days": {
       "caseId": "glow-ai",
       "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
-      "lastAttempt": "2026-10-15T05:09:36.277Z",
+      "lastAttempt": "2026-10-28T06:15:49.747Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1160,26 +1160,31 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 53,
+  "cursor": 58,
   "errors": [
     {
-      "caseId": "windsurf",
-      "sourceUrl": "https://cognition.com/blog/windsurf",
+      "caseId": "donotpay",
+      "sourceUrl": "https://www.ftc.gov/news-events/news/press-releases/2025/02/ftc-finalizes-order-donotpay-prohibits-deceptive-ai-lawyer-claims-imposes-monetary-relief-requires",
       "reason": "body-limit"
     },
     {
-      "caseId": "casetext",
-      "sourceUrl": "https://www.thomsonreuters.com/en/press-releases/2023/august/thomson-reuters-completes-acquisition-of-casetext-inc",
+      "caseId": "anki",
+      "sourceUrl": "https://www.macrumors.com/2019/04/29/anki-robotics-company-shutting-down/",
       "reason": "body-limit"
     },
     {
-      "caseId": "jasper",
-      "sourceUrl": "https://www.prnewswire.com/news-releases/jasper-accelerates-enterprise-strategy-following-record-growth-introduces-new-purpose-built-products-for-marketers-302291388.html",
+      "caseId": "glam-up",
+      "sourceUrl": "https://www.starterstory.com/stories/notion-fe7a6b35-c4fa-48f3-a3ef-d76f1623e1e3",
       "reason": "body-limit"
     },
     {
-      "caseId": "github-copilot",
-      "sourceUrl": "https://www.microsoft.com/en-us/investor/events/fy-2025/earnings-fy-2025-q4",
+      "caseId": "glam-up",
+      "sourceUrl": "https://www.starterstory.com/nicole",
+      "reason": "body-limit"
+    },
+    {
+      "caseId": "glow-ai",
+      "sourceUrl": "https://startupspells.com/p/glow-ai-viral-skincare-app-10k-mrr-3-days",
       "reason": "body-limit"
     }
   ]

@@ -1,32 +1,12 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 1,
   "pending": [
    {
-    "repo": "rohitg00/pro-workflow",
-    "topic": "coding",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "QwenAudio/qwen-audio-agent",
-    "topic": "coding",
-    "foundAt": "2026-10-02T15:26:40.958Z"
-   },
-   {
-    "repo": "mozilla-ai/llamafile",
-    "topic": "audio",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "open-multi-agent/open-multi-agent",
     "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "langroid/langroid",
-    "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -220,18 +200,8 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "triton-inference-server/server",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "aws/amazon-sagemaker-examples",
     "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "openvinotoolkit/openvino",
-    "topic": "image",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -297,11 +267,6 @@
    {
     "repo": "simular-ai/Agent-S",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "FlagOpen/FlagEmbedding",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -805,11 +770,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "thu-ml/TurboDiffusion",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "SandAI-org/MAGI-1",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -827,11 +787,6 @@
    {
     "repo": "NVlabs/LongLive",
     "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "enoch3712/ExtractThinker",
-    "topic": "documents",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -987,11 +942,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "coollabsio/coolify",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1970,11 +1920,6 @@
     "foundAt": "2026-10-11T06:21:02.155Z"
    },
    {
-    "repo": "datajuicer/data-juicer",
-    "topic": "ai",
-    "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
     "repo": "zjunlp/SkillNet",
     "topic": "agents",
     "foundAt": "2026-10-11T06:21:02.155Z"
@@ -2077,11 +2022,6 @@
    {
     "repo": "johnbean393/Sidekick",
     "topic": "agents",
-    "foundAt": "2026-10-13T07:04:30.117Z"
-   },
-   {
-    "repo": "irazasyed/telegram-bot-sdk",
-    "topic": "chat",
     "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
@@ -2978,6 +2918,41 @@
     "repo": "gradio-app/fastrtc",
     "topic": "audio",
     "foundAt": "2026-10-27T05:31:45.486Z"
+   },
+   {
+    "repo": "papersgpt/papersgpt-for-zotero",
+    "topic": "agents",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "mw00/project-maya",
+    "topic": "local",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "AienTech/dossier",
+    "topic": "local",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "shaxiu/XianyuAutoAgent",
+    "topic": "agents",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "DozenTwelve/Papermorph",
+    "topic": "coding",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "HeyChengC/vibe-knowledge-film",
+    "topic": "coding",
+    "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "haidrrrry/claude-remotion-skill",
+    "topic": "coding",
+    "foundAt": "2026-10-28T06:14:13.487Z"
    }
   ],
   "checked": {
@@ -3076,11 +3051,17 @@
    "gh-hillya51-lunatranslator-234698": "2026-10-26T05:14:44.073Z",
    "gh-ludwig-ai-ludwig-b5fee9": "2026-10-26T05:14:44.073Z",
    "gh-wox-launcher-wox-7de0bd": "2026-10-26T05:14:44.073Z",
-   "gh-stefan-jansen-machine-learning-for-trading-a251dc": "2026-10-26T05:14:44.073Z"
+   "gh-stefan-jansen-machine-learning-for-trading-a251dc": "2026-10-26T05:14:44.073Z",
+   "gh-hkuds-lightrag-233bb4": "2026-10-28T06:14:13.487Z",
+   "gh-siyuan-note-siyuan-e1e946": "2026-10-28T06:14:13.487Z",
+   "gh-cobusgreyling-loop-engineering-c58f11": "2026-10-28T06:14:13.487Z",
+   "gh-llmsresearch-paperbanana-cab4bb": "2026-10-28T06:14:13.487Z",
+   "gh-abus-aikorea-voice-pro-faa4da": "2026-10-28T06:14:13.487Z",
+   "gh-nobodywho-ooo-nobodywho-58d52c": "2026-10-28T06:14:13.487Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.mcpassure/mcp-anvisa-bulario:2.0.0",
+  "cursor": "io.github.mrfentmen/math-tools-mcp:1.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4084,7 +4065,47 @@
    "devart-mcp-dynamics365": "2026-10-27T05:31:45.486Z",
    "devart-mcp-mysql": "2026-10-27T05:31:45.486Z",
    "devart-mcp-oracle": "2026-10-27T05:31:45.486Z",
-   "devart-mcp-postgresql": "2026-10-27T05:31:45.486Z"
+   "devart-mcp-postgresql": "2026-10-27T05:31:45.486Z",
+   "devart-mcp-quickbooks": "2026-10-28T06:14:13.487Z",
+   "devart-mcp-salesforce": "2026-10-28T06:14:13.487Z",
+   "devart-mcp-salesforcemc": "2026-10-28T06:14:13.487Z",
+   "devart-mcp-sqlite": "2026-10-28T06:14:13.487Z",
+   "devart-mcp-zohocrm": "2026-10-28T06:14:13.487Z",
+   "devart-mcp-zohodesk": "2026-10-28T06:14:13.487Z",
+   "getmcpads-google-ads": "2026-10-28T06:14:13.487Z",
+   "getmcpads-google-analytics": "2026-10-28T06:14:13.487Z",
+   "getmcpads-google-search-console": "2026-10-28T06:14:13.487Z",
+   "getmcpads-meta-ads": "2026-10-28T06:14:13.487Z",
+   "getmcpads-pinterest-ads": "2026-10-28T06:14:13.487Z",
+   "getmcpads-tiktok-ads": "2026-10-28T06:14:13.487Z",
+   "getmcpads-x-ads": "2026-10-28T06:14:13.487Z",
+   "golproductions-envie": "2026-10-28T06:14:13.487Z",
+   "golproductions-exnos": "2026-10-28T06:14:13.487Z",
+   "hutchdb-hutchdb": "2026-10-28T06:14:13.487Z",
+   "jidoseal-mcp": "2026-10-28T06:14:13.487Z",
+   "jithox-jithox": "2026-10-28T06:14:13.487Z",
+   "laboriq-mcp-server": "2026-10-28T06:14:13.487Z",
+   "mambabuilt-mcp-talent-agency-lookup": "2026-10-28T06:14:13.487Z",
+   "maskbreak-mcp": "2026-10-28T06:14:13.487Z",
+   "mettakin-mettakin": "2026-10-28T06:14:13.487Z",
+   "microsoft-powerbi-modeling-mcp": "2026-10-28T06:14:13.487Z",
+   "neuronto-x402-payments-facilitator": "2026-10-28T06:14:13.487Z",
+   "osir-domain-registrar": "2026-10-28T06:14:13.487Z",
+   "overwing-mcp": "2026-10-28T06:14:13.487Z",
+   "polytranslator-translator": "2026-10-28T06:14:13.487Z",
+   "ravenmcp-raven-mcp": "2026-10-28T06:14:13.487Z",
+   "surfingdog-inbox": "2026-10-28T06:14:13.487Z",
+   "vibe-fixer-vibefix": "2026-10-28T06:14:13.487Z",
+   "warmthengine-observatory": "2026-10-28T06:14:13.487Z",
+   "zettoai-zetto": "2026-10-28T06:14:13.487Z",
+   "anthonyhunts-shaart-agency-docs": "2026-10-28T06:14:13.487Z",
+   "cheap-doc-mcp": "2026-10-28T06:14:13.487Z",
+   "cn-savantcat-geo-cn": "2026-10-28T06:14:13.487Z",
+   "crosscheckapi-crosscheck": "2026-10-28T06:14:13.487Z",
+   "dabradata-mcp": "2026-10-28T06:14:13.487Z",
+   "deckodex-deckodex": "2026-10-28T06:14:13.487Z",
+   "docsautomator-mcp": "2026-10-28T06:14:13.487Z",
+   "factuarea-mcp": "2026-10-28T06:14:13.487Z"
   }
  }
 }

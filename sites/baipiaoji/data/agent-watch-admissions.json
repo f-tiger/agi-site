@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-27",
+ "checked": "2026-10-28",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3237,6 +3237,123 @@
    "first_attempt": "2026-10-27",
    "last_attempt": "2026-10-27",
    "attemptedAt": "2026-10-27T05:31:45.486Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "jacktrade-crm": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "kymac-feeds-feed-digest": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "kymac-inbox-webhook-inbox": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "kymac-ocr-image-ocr": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "kymac-pdf-pdf-text": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "kymac-shelf-shelf-smoke": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "launchtrust-launchtrust": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "loopgolf-tee-times": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
+  },
+  "pixelcove-topic-scorer": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "promptguard-security": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "raisekit-raisekit": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 503,
+   "repo_http": null,
+   "reason": "source HTTP 503"
+  },
+  "respawnmedia-signal-respawn-signal": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "superforms-superforms": {
+   "attempts": 1,
+   "first_attempt": "2026-10-28",
+   "last_attempt": "2026-10-28",
+   "attemptedAt": "2026-10-28T06:14:13.487Z",
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
@@ -16684,6 +16801,288 @@
   {
    "slug": "instapi-instagram",
    "date": "2026-10-27",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "internationalcall-dialing",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "itseasy-easy-mcp",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "junely-junely",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "lbm-contact",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "leadproof-leadproof",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "listdrop-listdrop",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "lovie-company-formation",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "lumman-mail",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "machins-marketplace",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "macrocyber-attack-surface",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "majorlabs-major-labs",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "milemarker-lp-mcp",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mindlify-mindlify",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "mycheck-mycheck",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nautilinks-mcp",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "conexcol-mcp-hosting-cloud-colombia",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "netstate-netstate",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "neverapply-neverapply",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nexalink-manage",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "nextlang-nextlang",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "oneschema-mcp",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "orbilo-orbilo",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "parahuman-parahuman",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "pentatrail-ctem",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "promptui-promptui",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "provel-provel",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "quibbly-linkedin-inbox",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "quickpeek-quickpeek",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "rahuldsarker-growth-tools",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "rakuda-atlas-atlas",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "rho-api",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "rulebase-rulebase",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "sailrides-sail",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "schoolscope-mcp",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "scrappa-scrappa",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "servicegraph-mcp-servicegraph",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ship-safe-scanner",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "sickslip-verify",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "sivut-pay-sec-crypto-filing-radar",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "sofya-sofya",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "spark-apps-spark-apps",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "split-mcp-split",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "startupperks-startup-perks",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "tempguru-event-staffing",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "thecoindaily-research",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "thinair-data",
+   "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "thinair-geo",
+   "date": "2026-10-28",
    "source_http": 200,
    "repo_http": null
   }

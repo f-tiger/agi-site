@@ -1,10 +1,75 @@
 {
-  "generated": "2026-10-27",
+  "generated": "2026-10-28",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 12,
+  "pending": 14,
   "items": [
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "added": [
+        "18.438m",
+        "22.375m",
+        "27.458m",
+        "8.904m",
+        "9.956m"
+      ],
+      "removed": [
+        "21.883m",
+        "22.849m",
+        "22.9m"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "civitai",
+      "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
+      "confirmed": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "added": [
+        "3min"
+      ],
+      "removed": [
+        "2min"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "google-ai-studio",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "confirmed": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "added": [
+        "1,000美元",
+        "1000万",
+        "100万",
+        "100美元",
+        "10亿",
+        "200万",
+        "50万"
+      ],
+      "removed": [
+        "$1,000",
+        "$100",
+        "$100,000",
+        "$20,000"
+      ],
+      "checked_then": "2026-09-29"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-28",
+      "first_seen": "2026-10-27",
+      "added": [],
+      "removed": [
+        "26b"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",
@@ -69,17 +134,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "civitai",
-      "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
-      "confirmed": "2026-10-25",
-      "first_seen": "2026-10-24",
-      "added": [
-        "2min"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-06"
-    },
-    {
       "slug": "krea",
       "url": "https://krea.ai/pricing",
       "confirmed": "2026-10-25",
@@ -120,36 +174,6 @@
       "checked_then": "2026-08-01"
     },
     {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-25",
-      "first_seen": "2026-10-24",
-      "added": [
-        "$3",
-        "$58",
-        "108s",
-        "26b",
-        "2call",
-        "40minutes",
-        "50%"
-      ],
-      "removed": [
-        "$8",
-        "$86",
-        "$87",
-        "$90",
-        "$92",
-        "$93",
-        "10,m",
-        "1278,m",
-        "12m",
-        "1461,m",
-        "35,m",
-        "4,m"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "framer",
       "url": "https://framer.com/pricing",
       "confirmed": "2026-10-24",
@@ -167,19 +191,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-10-24",
-      "first_seen": "2026-10-23",
-      "added": [
-        "21.883m",
-        "22.849m",
-        "22.9m"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "elevenlabs",
@@ -358,31 +369,6 @@
         "$40/user"
       ],
       "checked_then": "2026-09-28"
-    },
-    {
-      "slug": "google-ai-studio",
-      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
-      "confirmed": "2026-10-15",
-      "first_seen": "2026-10-14",
-      "added": [
-        "$1,000",
-        "$100",
-        "$100,000",
-        "$20,000"
-      ],
-      "removed": [
-        "1,000美元",
-        "100,000美元",
-        "1000万",
-        "100万",
-        "100美元",
-        "10亿",
-        "2.7亿",
-        "20,000美元",
-        "200万",
-        "50万"
-      ],
-      "checked_then": "2026-09-29"
     },
     {
       "slug": "deepinfra",
