@@ -17,6 +17,13 @@ def fixture():
             'totals': dict.fromkeys(COUNTERS, 0)}
 
 class MembershipSnapshotTests(unittest.TestCase):
+    def test_push_report_preserves_evidence_without_invalidating_concurrent_deployments(self):
+        workflow = (ROOT / '.github/workflows/fleet-membership-report.yml').read_text()
+        commit = workflow.split('- name: Commit only the validated current report', 1)[1].split('run: |', 1)[0]
+        self.assertIn("github.event_name != 'push'", commit)
+        artifact = workflow.split('- name: Preserve only this run', 1)[1].split('- name: Commit only', 1)[0]
+        self.assertIn('actions/upload-artifact@v4', artifact)
+
     def test_current_complete_observed_zero(self):
         self.assertEqual(check(fixture(), now=NOW, since=NOW.isoformat()), 0)
         self.assertIn('paid_orders=0', summary(fixture()))

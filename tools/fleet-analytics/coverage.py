@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 REGISTRY = json.loads((HERE / 'registry.json').read_text())
-FILES = ['consent.mjs', 'collector.mjs', 'consent.css', 'frame.html', 'frame-loader.mjs', 'business.mjs', 'legacy.mjs', 'campaign.mjs']
+FILES = ['consent.mjs', 'collector.mjs', 'consent.css', 'frame.html', 'frame-loader.mjs', 'business.mjs', 'legacy.mjs', 'campaign.mjs', 'engagement.mjs']
 SITES = {
     'agi': ('agiscorecard.com', 'G-FZXLMBB5QB'),
     'eco': ('getecoback.com', 'G-E2V0Q9SJ9V'),

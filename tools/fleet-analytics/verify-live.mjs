@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {verifyPublishedAsset} from './verify-asset.mjs';
 const registry=JSON.parse(fs.readFileSync(new URL('registry.json',import.meta.url)));
 const site=process.argv[2],cfg=registry[site];assert(cfg,'Pass a site key from registry.json');
-const names=['consent.mjs','collector.mjs','consent.css','frame.html','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs'];
+const names=['consent.mjs','collector.mjs','consent.css','frame.html','frame-loader.mjs','business.mjs','legacy.mjs','campaign.mjs','engagement.mjs'];
 const local=names.map(n=>fs.readFileSync(new URL(n,import.meta.url)));
 const version=createHash('sha256').update(Buffer.concat([...local,fs.readFileSync(new URL('registry.json',import.meta.url))])).digest('hex').slice(0,12);
 const allowed=Object.fromEntries(Object.values(registry).flatMap(c=>c.hosts.map(h=>[h,c.id])));

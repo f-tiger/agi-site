@@ -53,7 +53,7 @@ SELF_HOST = {
     "codeword": "codeword.agiscorecard.com", "powerbill": "powerbill.agiscorecard.com",
 }
 NOTES = {
-    "baipiaoji": "分母是「有来源的真人」(该站真人线 A):无来源的直接访问不入库,本域 ref 入库时已清空,所以 direct/self 结构性为 0",
+    "baipiaoji": "分母是带来源的浏览器上报记录，不证明真人或独立人数:无来源的直接访问不入库,本域 ref 入库时已清空,所以 direct/self 结构性为 0",
     "agiscorecard": "服务端口径,含不自报家门的爬虫;真人量级以 JS 口径为准(站规 2026-09-14)",
 }
 
@@ -142,8 +142,10 @@ def parse(site, body):
            "by_fleet": dict(sorted(by_fleet.items(), key=lambda kv: -kv[1])[:12]),
            "by_other": dict(sorted(by_other.items(), key=lambda kv: -kv[1])[:12]),
            "unattributed": human - sum(by_source.values()), "via": "endpoint"}
-    if site in NOTES:
-        row["note"] = NOTES[site]
+    row["observations"] = human
+    row["measurement"] = {"unit": "endpoint_observations", "verified_people": False,
+                          "scope": "referred_only" if site == "baipiaoji" else "endpoint_specific_filters"}
+    row["note"] = NOTES.get(site, "Endpoint observations may include unrecognized automated requests; not verified people.")
     return row
 
 
@@ -171,7 +173,7 @@ def age_days(snap, today):
 
 def table(sites):
     w = max([len(s["site"]) for s in sites] + [6])
-    head = f"{'site'.ljust(w)}  {'human':>6} {'search':>6} {'ai':>4} {'fleet':>5} {'social':>6} {'self':>5} {'direct':>6} {'other':>5} {'??':>4}  top search"
+    head = f"{'site'.ljust(w)}  {'obs':>6} {'search':>6} {'ai':>4} {'fleet':>5} {'social':>6} {'self':>5} {'direct':>6} {'other':>5} {'??':>4}  top search"
     print(head)
     for s in sites:
         b = s["by_source"]
@@ -235,6 +237,7 @@ console.log(JSON.stringify(%s.map((c) => srcBucket(srcHost(c[0]), SELF))));
         ("外链域名进 by_other", bo == {"someblog.example.org": 4} and bs["other"] == 4),
         ("bpj 形状能解析", parse("baipiaoji", {"ok": True, "humans_referred": 4,
                                               "referrers": [{"ref": "www.google.com", "n": 4}]})["by_source"]["search"] == 4),
+        ("observations do not claim verified people", parse("learn", {"ok": True, "human_pv": 10, "by_source": {"search": 3}})["measurement"]["verified_people"] is False),
         ("缺 by_source 要抛而不是猜", _raises(lambda: parse("learn", {"ok": True, "human_pv": 5}))),
         ("端点 not ok 要抛", _raises(lambda: parse("learn", {"ok": False, "error": "no_db"}))),
         ("unattributed 算得出", parse("learn", {"ok": True, "human_pv": 10,
@@ -285,7 +288,13 @@ def main(argv):
     snap = {"generated": dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"), "window_days": WINDOW,
             "ok": not errors, "read_via": "endpoints" + (" (partial)" if errors else ""),
             "errors": errors, "fleet": fleet,
-            "fleet_human_pv": sum(s["human_pv"] for s in sites), "sites": sites}
+            "fleet_human_pv": sum(s["human_pv"] for s in sites),
+            "fleet_observations": sum(s["observations"] for s in sites),
+            "measurement": {"unit": "endpoint_observations", "verified_people": False,
+                            "window_alignment": "endpoint_specific_may_include_partial_day",
+                            "legacy_fields": ["fleet_human_pv", "sites[].human_pv"],
+                            "note": "Legacy human fields are observation counts, not verified people or GA4 sessions. Different endpoint filters prevent a joined acquisition or conversion funnel."},
+            "sites": sites}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(snap, f, ensure_ascii=False, indent=1)
     table(sites)

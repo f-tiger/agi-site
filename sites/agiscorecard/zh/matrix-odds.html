@@ -100,27 +100,27 @@ body.embed .wrap{padding:14px 12px 20px}
 <div class="link">
 <div class="lhead"><span class="num">1</span><span class="ltitle">AGI 真的出现</span><span class="val" id="v0">50%</span></div>
 <input type="range" id="r0" min="0" max="100" step="1" value="50"
-  aria-label="AGI 真的出现" oninput="setP(0,this.value)">
+  aria-label="AGI 真的出现" oninput="setP(0,this.value)" onchange="commitP(event)">
 <div class="why">后面每一环都以它为前提。本站追踪的是「2027 年」这个具体靶子;这里请填你对「AGI 终究会出现」的估计，不限年份。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">未决</span><b>AGI: models do the work of an AI researcher/engineer</b> — Agentic coding strong; autonomous AI research undemonstrated; resolves 2028-01-01 · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">2</span><span class="ltitle">…并且持续自我改进，远远超过人类</span><span class="val" id="v1">50%</span></div>
 <input type="range" id="r1" min="0" max="100" step="1" value="50"
-  aria-label="…并且持续自我改进，远远超过人类" oninput="setP(1,this.value)">
+  aria-label="…并且持续自我改进，远远超过人类" oninput="setP(1,this.value)" onchange="commitP(event)">
 <div class="why">停在人类水平附近的 AGI 演不了这出戏。这一环是从「和我们一样聪明」跨到「无法与之争辩」。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">待验证</span><b>Intelligence explosion: a decade of progress in ~1 year</b> — Precondition (autonomous AI research) undemonstrated · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">3</span><span class="ltitle">…并且掌握足够的能源、算力与实体工业</span><span class="val" id="v2">50%</span></div>
 <input type="range" id="r2" min="0" max="100" step="1" value="50"
-  aria-label="…并且掌握足够的能源、算力与实体工业" oninput="setP(2,this.value)">
+  aria-label="…并且掌握足够的能源、算力与实体工业" oninput="setP(2,this.value)" onchange="commitP(event)">
 <div class="why">这个剧本讲的是物理世界，不是聊天框。这也是本站证据目前**最强**的一环——基建是真的，而且超前。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag ok">超额兑现</span><b>Massive AI capex acceleration</b> — Investment exceeded the essay's projections; revenue lags the spend · <a href="https://epoch.ai/topics/finances" target="_blank" rel="noopener">Epoch AI — Finances of AI</a></div><div style="margin-top:4px"><span class="tag ok">兑现中</span><b>Compute + algorithmic scaling continues at trend</b> — Effective-compute pace roughly held through mid-2026 · <a href="https://epoch.ai/trends" target="_blank" rel="noopener">Epoch AI — Trends in AI</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">4</span><span class="ltitle">…并且人类没能保住控制权</span><span class="val" id="v3">50%</span></div>
 <input type="range" id="r3" min="0" max="100" step="1" value="50"
-  aria-label="…并且人类没能保住控制权" oninput="setP(3,this.value)">
+  aria-label="…并且人类没能保住控制权" oninput="setP(3,this.value)" onchange="commitP(event)">
 <div class="why">有能力不等于夺权。这一环问的是：关机键、实验室、国家机器，是不是真的失效了。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">待验证</span><b>Superintelligence; decisive strategic advantage</b> — Downstream of AGI and intelligence explosion · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div><div style="margin-top:4px"><span class="tag mid">未决</span><b>US government launches formal AGI project</b> — National-security involvement growing; no formal project · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
 <div class="link">
 <div class="lhead"><span class="num">5</span><span class="ltitle">…并且它选择把人类活着养在一个模拟世界里</span><span class="val" id="v4">50%</span></div>
 <input type="range" id="r4" min="0" max="100" step="1" value="50"
-  aria-label="…并且它选择把人类活着养在一个模拟世界里" oninput="setP(4,this.value)">
+  aria-label="…并且它选择把人类活着养在一个模拟世界里" oninput="setP(4,this.value)" onchange="commitP(event)">
 <div class="why">这一环才是「黑客帝国」区别于一般 AI 风险的地方——也是本站<strong>完全没有可证伪证据</strong>的一环，正反都没有。数据集里没有任何东西支持它，也没有任何东西否定它。无视人类、消灭人类、与人类合作，在这里是三条各不相同的岔路；电影只挑了其中一条。</div><div class="ev"><span class="tag none">没有对应的追踪项。正反两个方向都没有可证伪的证据。</span></div></div>
 
 <div class="panel">
@@ -199,8 +199,15 @@ function render(){
   document.getElementById('bandnote').textContent=band[2];
   syncUrl();
 }
-function setP(i,v){p[i]=+v;render();
-  try{gtag('event','tool_click',{location:'matrix_odds',label:LINKS[i]});}catch(e){}}
+function setP(i,v){p[i]=+v;render();}
+var calculationRecorded=false;
+function commitP(event){
+  if(!event.isTrusted||calculationRecorded)return;
+  calculationRecorded=true;
+  var forward=function(){window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:'matrix_calculate'}}));};
+  var loader=document.querySelector('script[data-ga4-host="agiscorecard.com"][src^="/analytics-assets/consent.mjs?"]');
+  if(loader)import(loader.src).then(forward).catch(function(){});else forward();
+}
 function resetAll(){p=LINKS.map(function(){return 50;});render();}
 function shareLink(){try{navigator.clipboard.writeText(location.href).then(function(){
   var c=document.getElementById('shared');c.style.display='inline';

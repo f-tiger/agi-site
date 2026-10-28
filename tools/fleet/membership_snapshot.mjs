@@ -63,8 +63,9 @@ async function inspectSite(site) {
     row.errors.push(`public:${error.message}`);
   }
 
-  const operatorSecret = String(process.env.ADS_WATCH_SECRET || '');
-  if (operatorSecret.length < 32) {
+  // Match the existing watcher: explicit secret first, otherwise a dedicated
+  // subkey derived from the runner credential. Never send that credential.
+  if (!process.env.ADS_WATCH_SECRET && !process.env.CLOUDFLARE_API_TOKEN) {
     row.errors.push('admin:operator_secret_unset');
     return row;
   }
@@ -74,7 +75,7 @@ async function inspectSite(site) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${memberSecret(site, {ADS_WATCH_SECRET: operatorSecret})}`
+        Authorization: `Bearer ${memberSecret(site, process.env)}`
       },
       body: JSON.stringify({action: 'stats'})
     });

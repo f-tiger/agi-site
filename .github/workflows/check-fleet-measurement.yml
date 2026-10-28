@@ -1,0 +1,57 @@
+name: Check fleet measurement recovery
+on:
+  pull_request:
+    paths:
+      - 'tools/fleet-analytics/**'
+      - 'sites/agiscorecard/tools/gen_matrix_odds.py'
+      - 'sites/agiscorecard/matrix-odds.html'
+      - 'sites/agiscorecard/zh/matrix-odds.html'
+      - 'tools/fleet/membership_snapshot*'
+      - 'tools/fleet/traffic_sources.py'
+      - '.github/workflows/fleet-membership-report.yml'
+      - '.github/workflows/fleet-autopilot.yml'
+      - '.github/workflows/check-fleet-measurement.yml'
+permissions:
+  contents: read
+concurrency:
+  group: fleet-measurement-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  measurement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Verify clock, privacy, exact routes and reporting credential fallback
+        run: |
+          node --test tools/fleet-analytics/*.test.mjs
+          python3 tools/fleet-analytics/test_coverage.py
+          python3 tools/fleet-analytics/check-registry.py
+          node --test tools/fleet/membership_snapshot.test.mjs tools/fleet/test_membership_totals.mjs
+          python3 tools/fleet/test_membership_snapshot.py
+          python3 tools/fleet/traffic_sources.py --selftest
+      - name: Prepare intercepted browser fixtures
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          for(const [site,id] of [['agi','G-FZXLMBB5QB'],['tds','G-2SEHFY33H8']]){
+            const r=await fetch('https://www.googletagmanager.com/gtag/js?id='+id,{signal:AbortSignal.timeout(30000)});
+            if(!r.ok)throw Error('Google tag fixture unavailable');
+            fs.writeFileSync('/tmp/fleet-'+site+'-gtag.js',await r.text());
+          }
+          JS
+      - name: Prove foreground time against real Google tags without sending production events
+        run: |
+          node tools/fleet-analytics/matrix-browser-test.mjs
+          for site in agi tds goldrush bpj eco; do
+            FLEET_ENGAGEMENT_SITE="$site" node tools/fleet-analytics/engagement-browser-test.mjs
+          done
+          FLEET_ENGAGEMENT_SITE=agi FLEET_REAL_GTAG=/tmp/fleet-agi-gtag.js node tools/fleet-analytics/engagement-browser-test.mjs
+          FLEET_ENGAGEMENT_SITE=tds FLEET_REAL_GTAG=/tmp/fleet-tds-gtag.js node tools/fleet-analytics/engagement-browser-test.mjs

@@ -242,6 +242,7 @@ jobs:
         run: |
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node tools/fleet-analytics/matrix-browser-test.mjs
           node sites/agiscorecard/tools/navigation/browser-test.mjs
           node sites/agiscorecard/tools/browser_home_focus.mjs
           node sites/agiscorecard/tools/foresight/home-rotation.browser.mjs
