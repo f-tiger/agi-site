@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款，无清理或 Jarvis；inspect=只读代币勘察'
+        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款；eco-watch=仅 Eco 原有会员维护；inspect=只读勘察'
         type: choice
-        options: [watch, ads-only, receipts-only, inspect]
+        options: [watch, ads-only, receipts-only, eco-watch, inspect]
         default: watch
 
 concurrency:
@@ -99,6 +99,19 @@ jobs:
           else
             node scripts/ad-watch.mjs
           fi
+
+      # Targeted recovery uses the unchanged Eco watcher: real chain probe,
+      # pending-order verification and existing retention cleanup, at most seven
+      # batches. This is NOT read-only. No secret sync, other site, advertisement
+      # or Jarvis operation; no additional schedule or change to health expiry.
+      - name: Recover Eco membership only (manual, current main)
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.mode == 'eco-watch'
+        timeout-minutes: 5
+        working-directory: ${{ github.workspace }}
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node tools/member-studio/ops.mjs watch eco
 
 
       - name: Check each independent site membership
