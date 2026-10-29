@@ -39,3 +39,13 @@ Node tests cover all allowed branches, critical-part blocking, invalid dimension
 ## Clean-checkout correction
 
 The first PR run reached the final analytics gate, then exposed a missing `/eco-engagement.mjs` build artifact already referenced by committed public HTML. The installer normally writes it after coverage, creating a clean-checkout ordering cycle. Commit the current public source's exact 4.5 KB artifact; the existing installer still refreshes and verifies it after coverage on every build. No tracker logic, measurement exclusions or gate is weakened. First failed run: 40863647934.
+
+## Published acceptance record
+
+PR https://github.com/f-tiger/agi-site/pull/201 merged to main as `a3b56e1d2bf8981f2ebdcecc376441b8e92de0a8`. All four final PR checks passed, including the full ECO build/browser check (40864503665). The local browser suite passed 34 checks, including real text and STL downloads; it ran against the local release build, not production.
+
+Production deploy https://github.com/f-tiger/agi-site/actions/runs/40865442894 published both pages successfully. The dedicated production verifier passed for HTML, assets, GA4 script presence, sitemap and discovery links, and the postdeploy page-health check passed. A separate trusted-TLS Node fetch verification also passed. Local Chromium could not complete a production browser pass because its trust store rejected the execution environment's proxy certificate; TLS checks were not disabled. Build browser tests and production HTTP checks are separate evidence.
+
+IndexNow returned HTTP 200 for the two new pages plus six updated discovery pages (8 URLs). This is submission receipt, not search indexing or traffic. Genuine GA4 backend events, affiliate revenue and physical print suitability remain unverified.
+
+The overall deploy workflow is red solely because its existing membership readiness assertion received `{ok:true,ready:false,site:"eco"}` from `/api/member`. The cause is not established: readiness combines recent watcher health with configuration and payment-network conditions. No claim is made that this predates the release. The free workshop has no membership dependency and adds no checkout. The existing watcher can settle pending orders and delete expired stored data, so it was not invoked merely to make this release green. No payment configuration, readiness gate or customer record was changed. Paid membership must not be described as ready based on this release.
