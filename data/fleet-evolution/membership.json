@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated": "2026-10-28T08:57:10.978Z",
+  "generated": "2026-10-29T08:52:32.621Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
   "ok": true,
-  "counters_complete": false,
+  "counters_complete": true,
   "sites": [
     {
       "site": "bpj",
@@ -18,11 +18,14 @@
         "plan_days": 30
       },
       "admin": {
-        "ok": false
+        "ok": true,
+        "paid_orders": 0,
+        "paid_members": 0,
+        "active_members": 0,
+        "unexpired_pending": 0,
+        "recurring_billing": false
       },
-      "errors": [
-        "admin:operator_secret_unset"
-      ]
+      "errors": []
     },
     {
       "site": "agi",
@@ -36,11 +39,14 @@
         "plan_days": 30
       },
       "admin": {
-        "ok": false
+        "ok": true,
+        "paid_orders": 0,
+        "paid_members": 0,
+        "active_members": 0,
+        "unexpired_pending": 0,
+        "recurring_billing": false
       },
-      "errors": [
-        "admin:operator_secret_unset"
-      ]
+      "errors": []
     },
     {
       "site": "eco",
@@ -54,11 +60,14 @@
         "plan_days": 30
       },
       "admin": {
-        "ok": false
+        "ok": true,
+        "paid_orders": 0,
+        "paid_members": 0,
+        "active_members": 0,
+        "unexpired_pending": 0,
+        "recurring_billing": false
       },
-      "errors": [
-        "admin:operator_secret_unset"
-      ]
+      "errors": []
     },
     {
       "site": "tds",
@@ -72,17 +81,20 @@
         "plan_days": 30
       },
       "admin": {
-        "ok": false
+        "ok": true,
+        "paid_orders": 0,
+        "paid_members": 0,
+        "active_members": 0,
+        "unexpired_pending": 0,
+        "recurring_billing": false
       },
-      "errors": [
-        "admin:operator_secret_unset"
-      ]
+      "errors": []
     }
   ],
   "totals": {
-    "paid_orders": null,
-    "paid_members": null,
-    "active_members": null,
-    "unexpired_pending": null
+    "paid_orders": 0,
+    "paid_members": 0,
+    "active_members": 0,
+    "unexpired_pending": 0
   }
 }
