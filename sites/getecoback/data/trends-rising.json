@@ -1,37 +1,32 @@
 {
- "fetched": "2026-10-28",
+ "fetched": "2026-10-29",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "auto": [
     "klimaanlage",
     "klimaanlage mobil",
-    "klimaanlage mit abluftschlauch",
-    "klimaanlage wohnung",
-    "klimaanlagen",
     "klimaanlage splitgerät",
-    "klimaanlage mobil mit schlauch",
-    "klimaanlage zuhause",
-    "klimaanlage ohne schlauch",
-    "klimaanlage lidl"
+    "klimaanlage wohnung",
+    "klimaanlage für zuhause",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage ohne abluftschlauch",
+    "klimaanlagen",
+    "klimaanlage wohnwagen",
+    "klimaanlage mitsubishi"
    ],
    "new_vocabulary": [
-    "klimaanlage mobil",
-    "klimaanlage mit abluftschlauch",
-    "klimaanlage wohnung",
-    "klimaanlagen",
-    "klimaanlage splitgerät",
-    "klimaanlage mobil mit schlauch",
-    "klimaanlage zuhause",
-    "klimaanlage ohne schlauch",
-    "klimaanlage lidl"
+    "klimaanlage für zuhause",
+    "klimaanlage ohne abluftschlauch",
+    "klimaanlage wohnwagen",
+    "klimaanlage mitsubishi"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-21T09:31:26.341666+00:00",
+   "last_attempt_at": "2026-10-29T11:06:04.579463+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-10-21"
+   "fetched": "2026-10-29"
   },
   "schimmel entfernen": {
    "rising": [
@@ -177,53 +172,35 @@
    "last_attempt_status": "ok"
   },
   "heizlüfter": {
-   "rising": [
-    {
-     "q": "akku heizung",
-     "v": 56150
-    },
-    {
-     "q": "kaufland heizlüfter",
-     "v": 44350
-    },
-    {
-     "q": "heizlüfter 12 volt",
-     "v": 39550
-    },
-    {
-     "q": "dreo atom 316",
-     "v": 38750
-    },
-    {
-     "q": "heizlüfter mit timer",
-     "v": 36250
-    },
-    {
-     "q": "heizlüfter große räume",
-     "v": 34150
-    },
-    {
-     "q": "dreo solaris slim h3",
-     "v": 33250
-    },
-    {
-     "q": "mobile heizung",
-     "v": 33050
-    },
-    {
-     "q": "heizlüfter globus",
-     "v": 31900
-    },
-    {
-     "q": "heizlüfter wenig stromverbrauch",
-     "v": 30100
-    }
+   "auto": [
+    "heizlüfter",
+    "heizlüfter test",
+    "heizlüfter bad",
+    "heizlüfter camping",
+    "heizlüfter media markt",
+    "heizlüfter mit akku",
+    "heizlüfter energiesparend",
+    "heizlüfter test stiftung warentest",
+    "heizlüfter kaufen",
+    "heizlüfter obi"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-28",
-   "polluted": false,
-   "last_attempt_at": "2026-10-28T10:46:58.450489+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "heizlüfter test",
+    "heizlüfter bad",
+    "heizlüfter camping",
+    "heizlüfter media markt",
+    "heizlüfter mit akku",
+    "heizlüfter energiesparend",
+    "heizlüfter test stiftung warentest",
+    "heizlüfter kaufen",
+    "heizlüfter obi"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-29T11:03:04.378503+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-29"
   },
   "kaffeevollautomat": {
    "rising": [
