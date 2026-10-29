@@ -1,14 +1,24 @@
 {
- "generated": "2026-10-28T14:44:30+00:00",
+ "generated": "2026-10-29T14:51:25+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 1,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
+  {
+   "post_id": 46281,
+   "title": "What will be the nationwide wastewater detection category of enterovirus D68 on December 1, 2026?",
+   "hosts": [
+    "data.wastewaterscan.org",
+    "wwscan.ghost.io"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
