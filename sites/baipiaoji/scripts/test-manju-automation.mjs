@@ -31,7 +31,7 @@ test('two boards retain distinct titles and metrics for one ID with a determinis
  assert.match(pages.get(renamedId),/榜单中的记录名/);assert.ok(pages.get(renamedId).includes(a.title));assert.ok(exported.get('manju/'+renamedId+'.md').includes('来源记录名'));assert.ok(exported.get('manju/'+renamedId+'.md').includes(a.title));
  const json=JSON.parse(exported.get('manju/'+renamedId+'.json'));assert.equal(json.name,'合成后续标题');assert.equal(json.observations.find(e=>e.kind==='ai-drama').title,a.title);
  // Synthetic next-day observation, relative to the persisted fixture rather than a calendar deadline.
- const latest=p.cohorts.map(c=>c.observedAt).sort().at(-1),newerDate=new Date(Date.parse(latest+'T00:00:00Z')+86400000).toISOString().slice(0,10);
+ const latest=[p.checkedAt,...p.cohorts.map(c=>c.observedAt)].sort().at(-1),newerDate=new Date(Date.parse(latest+'T00:00:00Z')+86400000).toISOString().slice(0,10);
  const newer=structuredClone(p);newer.cohorts.find(c=>c.kind==='ai-drama').observedAt=newerDate;newer.checkedAt=newerDate;newer.checkedAtTime=newerDate+'T08:00:00Z';
  const newest=refresh(catalog,insights,newer).catalog.items.find(x=>x.id===renamedId);assert.equal(newest.title,a.title);assert.equal(newest.lastSeenAt,newerDate);
 });
