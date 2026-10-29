@@ -30,8 +30,10 @@ test('two boards retain distinct titles and metrics for one ID with a determinis
  const exported=new Map(),pages=new Map();buildWorkPages({catalog:refreshed.catalog,insights:refreshed.insights,publish:(id,html)=>pages.set(id,html),page:x=>x.body,write:(path,body)=>exported.set(path,body),external:(u,label)=>label,plotFor:()=>null,save:()=>''});
  assert.match(pages.get(renamedId),/榜单中的记录名/);assert.ok(pages.get(renamedId).includes(a.title));assert.ok(exported.get('manju/'+renamedId+'.md').includes('来源记录名'));assert.ok(exported.get('manju/'+renamedId+'.md').includes(a.title));
  const json=JSON.parse(exported.get('manju/'+renamedId+'.json'));assert.equal(json.name,'合成后续标题');assert.equal(json.observations.find(e=>e.kind==='ai-drama').title,a.title);
- const older=structuredClone(p);older.cohorts.find(c=>c.kind==='ai-drama').observedAt='2026-10-23';older.checkedAt='2026-10-23';older.checkedAtTime='2026-10-23T08:00:00Z';
- const newest=refresh(catalog,insights,older).catalog.items.find(x=>x.id===renamedId);assert.equal(newest.title,a.title);assert.equal(newest.lastSeenAt,'2026-10-23');
+ // Synthetic next-day observation, relative to the persisted fixture rather than a calendar deadline.
+ const latest=[p.checkedAt,...p.cohorts.map(c=>c.observedAt)].sort().at(-1),newerDate=new Date(Date.parse(latest+'T00:00:00Z')+86400000).toISOString().slice(0,10);
+ const newer=structuredClone(p);newer.cohorts.find(c=>c.kind==='ai-drama').observedAt=newerDate;newer.checkedAt=newerDate;newer.checkedAtTime=newerDate+'T08:00:00Z';
+ const newest=refresh(catalog,insights,newer).catalog.items.find(x=>x.id===renamedId);assert.equal(newest.title,a.title);assert.equal(newest.lastSeenAt,newerDate);
 });
 test('different official IDs sharing a normalized title fail without changing prior data',()=>{
  const p=structuredClone(payload),row=p.cohorts.flatMap(c=>c.records).find(r=>r.url===renamedURL),before=JSON.stringify([catalog,insights]);
@@ -76,3 +78,13 @@ test('recommendations exclude seeds, respect channel and explain matches',()=>{c
 
 test('new top entries get stable detail pages and retained evidence when off the next board',()=>{const p=structuredClone(payload),row=p.cohorts[0].records[0];row.title='测试新入榜作品';row.url='https://hongguoduanju.com/detail?series_id=987654321';const a=refresh(catalog,insights,p),x=a.catalog.items.find(x=>x.id==='hg-987654321');assert.ok(x.searchEvidence.length);const url=workURL(x);assert.equal(url,'https://baipiaoji.com/manju/hg-987654321');const b=refresh(a.catalog,a.insights,payload),retained=b.catalog.items.find(y=>y.id===x.id);assert.equal(workURL(retained),url);assert.deepEqual(retained.searchEvidence,x.searchEvidence);const exported=new Map();buildWorkPages({catalog:b.catalog,insights:b.insights,publish(){},page:x=>x.body,write:(p,s)=>exported.set(p,s),external:(u,label)=>label,plotFor:()=>null,save:()=>''});const json=JSON.parse(exported.get('manju/'+x.id+'.json'));assert.equal(json.currentlyInVerifiedSnapshot,false);assert.ok(exported.get('manju/'+x.id+'.md').includes('保留历史快照'));});
 test('retained detail evidence rejects untrusted sources and invalid metrics',()=>{for(const edit of [e=>e.source='https://evil.test',e=>e.url='javascript:alert(1)',e=>e.rank=0,e=>e.heat=-1,e=>e.observedAt='2099-01-01',e=>e.title='不同作品']){const copy=structuredClone(catalog);edit(copy.items.find(x=>x.searchEvidence).searchEvidence[0]);assert.throws(()=>validateWorkEvidence(copy));}});
+
+test('older snapshots are rejected for either board without mutating the inputs',()=>{
+ for(const kind of ['ai-drama','comic-drama']){
+  const p=structuredClone(payload),board=p.cohorts.find(c=>c.kind===kind);
+  board.observedAt=new Date(Date.parse(board.observedAt+'T00:00:00Z')-86400000).toISOString().slice(0,10);
+  const before=JSON.stringify([catalog,insights,p]);
+  assert.throws(()=>refresh(catalog,insights,p),/Snapshot moved backwards/);
+  assert.equal(JSON.stringify([catalog,insights,p]),before);
+ }
+});
