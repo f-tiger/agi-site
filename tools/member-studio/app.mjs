@@ -112,7 +112,7 @@ if(site==='bpj'){
   const url=URL.createObjectURL(blob);link.href=url;link.download='bpj-customer-quotes.zip';output.replaceChildren(link);link.click();setTimeout(()=>URL.revokeObjectURL(url),300000);
   notice(lang==='zh'?'交付包已生成。包含展示页、首条评价图片和项目备份。':'Package generated: wall, first-quote image and project backup.');
  });exportButton.id='testimonial-export';
- const note=el('p',lang==='zh'?'客户评价素材台：使用有效 BPJ 付费会员生成去品牌交付包。先核对下方项目内容；生成会将内容发送服务器处理，不自动保存。':'Customer quote studio: active BPJ paid membership generates an unbranded package. Review the project below first. Generating sends it for server processing, without automatically saving it.');
+ const note=el('p',lang==='zh'?'客户评价素材台：使用有效 BPJ 付费会员生成去品牌交付包，每24小时最多30包。先核对下方项目内容；生成会将内容发送服务器处理，不自动保存。':'Customer quote studio: active BPJ paid membership generates up to 30 unbranded packages per 24 hours. Review the project below first. Generating sends it for server processing, without automatically saving it.');
  const block=el('section');block.append(note,exportButton,output);$('payload').after(block);
  const update=()=>{let data;try{data=JSON.parse($('payload').value);}catch{}block.hidden=data?.product!=='bpj-testimonial-kit';};
  setInterval(update,500);update();
