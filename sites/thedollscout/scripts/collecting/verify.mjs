@@ -1,3 +1,4 @@
+import {inspectCollectorHome} from '../../../../tools/revenue-studio/collector-discovery.mjs';
 import {seriesSlugs,seriesState} from './series-pages.mjs';
 import {extraSlugs} from './expansion.mjs';
 import fs from 'node:fs';
@@ -25,6 +26,7 @@ for(const record of manifest.records){const p=new URL(record.url).pathname,html=
  if(record.slug.startsWith('series/')){assert.ok(html.includes('data-series-checklist'));assert.ok(html.includes('data-series-odds'));assert.ok(html.includes('name="probability"'));}
  if(record.slug.startsWith('brands/')){assert.ok(html.includes('data-fit-tool'));assert.ok(html.includes('id="display-fit"'));assert.ok(html.includes('name="itemHeight"'));}
  if(record.slug.startsWith('brands/')){const b=brands.find(b=>'brands/'+b.id===record.slug);const target=b[record.lang].tool;assert.ok(html.includes('href="'+target+'"'));assert.ok(html.includes('id="'+target.split('#')[1]+'"'));}
+ if(!record.slug&&['en','de'].includes(record.lang))assert.deepEqual(inspectCollectorHome(record.lang,html),[],p+' collector task discovery');
  if(!record.slug){assert.ok(html.includes('id="watch"'));assert.ok(html.includes('data-video-load'));assert.ok(!html.includes('<iframe'));assert.ok(html.includes('collector-world.webp'));assert.ok(html.includes('fetchpriority="high"'));assert.ok(html.includes('id="tools"'));assert.ok(html.includes('data-demo-play'));assert.ok(html.includes('for-agents'));assert.ok(html.includes('https://baipiaoji.com'));}
 }
 for(const url of [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]))assert.equal(isRetiredPath(new URL(url).pathname),false,url);

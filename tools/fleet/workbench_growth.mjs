@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {inspectCollectorHome} from '../revenue-studio/collector-discovery.mjs';
 import {products,sites} from '../revenue-studio/catalog.mjs';
 import {languages,siteLanguages,route} from '../revenue-studio/i18n.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
@@ -40,6 +41,12 @@ export async function audit({get,now=new Date().toISOString(),queue=null}={}){
      source=await read(sourceUrl);
     }
     if(source.status!==200||!source.text.includes('workbench-discovery'))siteCheck.errors.push('discovery:'+relative);
+    siteCheck.discovery_pages++;
+   }
+   if(site==='tds')for(const lang of ['en','de']){
+    const home=await read(sites[site].origin+(lang==='de'?'/de/':'/'));
+    if(home.status!==200)siteCheck.errors.push('collector_home:'+lang);
+    else siteCheck.errors.push(...inspectCollectorHome(lang,home.text));
     siteCheck.discovery_pages++;
    }
    for(const asset of ['app.mjs','core.mjs',...siteLanguages[site].map(l=>'locales/'+l+'.json')]){
