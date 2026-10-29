@@ -27,7 +27,7 @@ export async function onRequestPost(ctx) {
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
     // Unknown event names are dropped, not stored — an open-name endpoint is
     // write-anything storage, and the table stays honest by refusing it.
-    const ALLOWED = new Set(['', 'affiliate_click', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc', 'collector_video_request', 'collector_video_tool','collector_budget_calc','collector_progress_calc','collector_series_calc','collector_series_save','collector_series_export','collector_mcp_copy','collector_swap_print_request','collector_swap_link_copy']);
+    const ALLOWED = new Set(['', 'affiliate_click', 'price_check', 'odds_calc', 'cost_calc', 'checker_use', 'finder_use', 'lookup_use', 'collection_save', 'collection_export', 'collection_import', 'display_calc','display_plan_export','display_plan_example', 'collector_video_request', 'collector_video_tool','collector_budget_calc','collector_progress_calc','collector_series_calc','collector_series_save','collector_series_export','collector_mcp_copy','collector_swap_print_request','collector_swap_link_copy']);
     if (body.e && !ALLOWED.has(body.e)) return new Response(null, { status: 204 });
     if (COLLECTOR_EVENTS.has(body.e) && (body.p !== path || !collectorEventAllowed(body.e, path))) return new Response(null, {status:204});
     // These are player requests and tool-link clicks, never watch time or completed plays.

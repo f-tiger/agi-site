@@ -132,7 +132,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_export')return {name:'collector_checklist_export',tool_id:'series-checklist'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_save')return {name:'collector_checklist_save',tool_id:'series-checklist'};
     if(route==='/collection-tracker'&&['collection_save','collection_export','collection_import'].includes(name))return {name,tool_id:'collection-tracker'};
-    if(route==='/display-calculator'&&name==='display_calc')return {name,tool_id:'display-calculator'};
+    if(route==='/display-calculator'&&['display_calc','display_plan_export','display_plan_example'].includes(name))return {name,tool_id:'display-calculator'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_calc')return {name:'collector_series_complete',tool_id:'series-style-probability'};
     const planning={'/collecting/budget':'collector_budget_calc','/collecting/duplicates':'collector_progress_calc'};
     if(planning[route]===name)return {name:'tool_complete',tool_id:route.slice(1).replaceAll('/','-')};

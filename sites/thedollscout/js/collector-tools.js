@@ -13,7 +13,7 @@
       if(localStorage.getItem('tds_analytics_choice_v1')==='denied') return;
       const collection=/^\/(?:de\/)?collection-tracker(?:\.html)?\/?$/.test(location.pathname);
       const display=/^\/(?:de\/)?display-calculator(?:\.html)?\/?$/.test(location.pathname);
-      if(!(collection&&['collection_save','collection_export','collection_import'].includes(event))&&!(display&&event==='display_calc'))return;
+      if(!(collection&&['collection_save','collection_export','collection_import'].includes(event))&&!(display&&['display_calc','display_plan_export','display_plan_example'].includes(event)))return;
       const body = JSON.stringify({p: location.pathname, e: event, r: ''});
       if (!navigator.sendBeacon || !navigator.sendBeacon('/api/ev', body)) fetch('/api/ev', {method:'POST', body, keepalive:true}).catch(() => {});
       window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name:event}}));
@@ -118,7 +118,8 @@
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
     render();
   } else {
-    const form=q('form'); let unit='cm';
+    const form=q('form'); let unit='cm', buyingPlan=null;
+    q('[data-buying-brief]').addEventListener('click',()=>{if(!buyingPlan)return;download(buyingPlan.text,'text/plain;charset=utf-8','dollscout-display-checklist.txt');track(buyingPlan.own?'display_plan_export':'display_plan_example');});
     // The prefilled dimensions are a demo, not evidence of a visitor's own task.
     // Compare in cm so changing units (including floating-point round trips) or
     // rotating the same demo does not turn it into a completion. No input leaves
@@ -133,9 +134,9 @@
       if(next!==unit) for(const input of form.querySelectorAll('input[type="number"]')) {
         if(input.value!=='') input.value=String(Number(input.value)*factor);
       }
-      unit=next; q('[data-result]').hidden=true;
+      unit=next; buyingPlan=null; q('[data-result]').hidden=true;
     });
-    form.addEventListener('input',()=>{q('[data-result]').hidden=true;announce('');});
+    form.addEventListener('input',()=>{buyingPlan=null;q('[data-result]').hidden=true;announce('');});
     form.addEventListener('submit',event=>{
       event.preventDefault();
       try {
@@ -158,7 +159,19 @@
         }
         q('[data-cap]').hidden=result.count<=120;
         q('[data-result]').hidden=false;
-        if(isOwnCalculation()) track('display_calc');
+        const de=document.documentElement.lang==='de';
+        buyingPlan={own:isOwnCalculation(),text:[
+          de?'DollScout · Maß-Checkliste vor dem Kauf':'DollScout · pre-purchase measurement checklist',
+          isOwnCalculation()?(de?'Eigene Eingaben':'Your entered measurements'):(de?'BEISPIEL — vor dem Kauf selbst messen':'EXAMPLE — measure your own space before buying'),
+          (de?'Nutzbarer Innenraum':'Usable inside space')+`: ${input.width} × ${input.depth} × ${input.height} ${unit}`,
+          (de?'Figur inklusive Ständer':'Figure including stand')+`: ${input.itemWidth} × ${input.itemDepth} × ${input.itemHeight} ${unit}`,
+          (de?'Abstand zwischen Figuren':'Gap between figures')+`: ${input.gap} ${unit}`,
+          (de?'Geschätzte Plätze in einer Ebene':'Estimated positions in one layer')+`: ${result.count}`,
+          de?'Vor dem Kauf prüfen: Innenmaße, Tür-/Scharnierfreiraum, Traglast, Standfestigkeit und Rückgabebedingungen.':'Before buying: verify inside dimensions, door/hinge clearance, load limits, stability and return terms.',
+          de?'Keine Passformgarantie oder Produktempfehlung. Wenn nichts passt, Maße ändern statt dieses Gehäuse kaufen.':'Not a fit guarantee or product recommendation. If nothing fits, revise the dimensions before buying that enclosure.',
+          'https://thedollscout.com/'+(de?'de/':'')+'display-calculator'
+        ].join('\n')};
+        if(buyingPlan.own) track('display_calc');
       } catch (_) {announce(msg('invalid'));}
     });
   }

@@ -27,7 +27,7 @@ try{
  await p.locator('#vv-brief').click();await has('video_export_brief_demo');
  // Successful rendered output, distinct from a button click or project backup.
  for(let i=0;i<3;i++)await p.locator('#vv-seconds-'+i).fill('3');
- await p.locator('#vv-export').click();await has('video_export_video_demo');
+ await p.locator('#vv-export').click();await has('video_export_video_demo');assert.equal(await p.locator('#video-next-step').isHidden(),true);
  await p.locator('#vv-new').click();await p.locator('#vv-export').click();
  assert.ok(!(await events()).some(x=>x[1]==='video_export_video_own'),'Incomplete own project must not count as an export');
  const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aHeYAAAAASUVORK5CYII=','base64');
@@ -35,6 +35,15 @@ try{
  await has('video_attach_media_own');await p.locator('#vv-name').fill('PRIVATE_PROJECT_DO_NOT_SEND');
  for(let i=0;i<3;i++){await p.locator('#vv-hook-'+i).fill('PRIVATE_COPY_'+i);await p.locator('#vv-seconds-'+i).fill('3');if(i)await p.locator('#vv-text-'+i).fill('PRIVATE_CAPTION_'+i);}
  await p.locator('#vv-export').click();await has('video_export_video_own');
+ await p.locator('#video-next-step').scrollIntoViewIfNeeded();await p.waitForTimeout(300);
+ assert.equal(await p.locator('#video-next-step').isVisible(),true);
+ await p.locator('#video-next-step summary').click();await p.locator('[data-next="payment"]').click();
+ assert.equal(await p.locator('[data-next="local"]').isDisabled(),true);
+ const backup=p.waitForEvent('download');await p.locator('[data-next="backup"]').click();await backup;
+ assert.ok(requests.some(x=>x.includes('/biz/trigger/video-payment')));
+ assert.ok(requests.some(x=>x.includes('/biz/trigger/video-backup')));
+ await p.locator('[data-next="dismiss"]').click();assert.equal(await p.locator('#video-next-step').isHidden(),true);
+
  const measured=await events();assert.equal(measured.filter(x=>x[1]==='video_export_video_demo').length,1);assert.equal(measured.filter(x=>x[1]==='video_export_video_own').length,1);assert.equal(measured.filter(x=>x[1]==='page_view').length,1);
  assert.ok(!JSON.stringify([measured,requests]).includes('PRIVATE_'));
  // Stored opt-out and QA must suppress even directly invoked bridge actions.

@@ -161,7 +161,9 @@ jobs:
         run: python3 tools/build_tools_hub.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
-        run: python3 tools/build_structure.py
+        run: |
+          python3 tools/test_home_commercial.py
+          python3 tools/build_structure.py
 
       # Deal-calendar band (2026-09-24). Date-driven: it renders only while an
       # announced Amazon event from data/deal-calendar.json is inside its window,
