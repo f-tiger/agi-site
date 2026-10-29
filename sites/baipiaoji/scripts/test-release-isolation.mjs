@@ -8,3 +8,5 @@ const yaml=readFileSync(new URL('../../../.github/workflows/deploy-baipiaoji.yml
 const core=yaml.slice(0,yaml.indexOf('\n  membership-readiness:'));const monitor=yaml.slice(yaml.indexOf('\n  membership-readiness:'));
 assert.ok(!core.includes('assert.equal(data.ready,true)'));assert.ok(core.includes('node scripts/verify-member-recovery-live.mjs --account-only'));assert.ok(core.includes('Notify only changed canonical pages to IndexNow'));assert.ok(monitor.includes('needs: update-build-deploy'));assert.ok(monitor.includes("needs.update-build-deploy.result == 'success'"));assert.ok(!monitor.includes('continue-on-error'));assert.ok(monitor.includes('verify-payment-readiness.mjs'));assert.ok(!core.includes('verify-payment-readiness.mjs'));
 console.log('PASS free-release/payment isolation; non-ready and unavailable remain failing commerce checks');
+
+const studio=readFileSync(new URL('./verify-studio-live.mjs',import.meta.url),'utf8');assert.ok(studio.includes("if(process.env.OUTCOME_READ_ONLY_RELEASE!=='true')assert.equal(member.ready,true"));assert.ok(studio.includes("typeof member.ready==='boolean'"));

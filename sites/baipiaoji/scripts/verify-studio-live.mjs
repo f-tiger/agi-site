@@ -53,7 +53,9 @@ for(const prefix of ['','/en']){
 const products=JSON.parse(await get('/member-assets/products.json'));
 assert.ok(products.some(p=>p.id==='bpj-video-variants'&&new URL(p.urls.zh).origin===origin),'video member product registration');
 const member=JSON.parse(await get('/api/member'));
-assert.ok(member.ok&&member.ready&&member.site==='bpj','BPJ membership service readiness');
+assert.ok(member.ok&&typeof member.ready==='boolean'&&member.site==='bpj','BPJ membership response contract');
+if(process.env.OUTCOME_READ_ONLY_RELEASE!=='true')assert.equal(member.ready,true,'BPJ membership service readiness');
+else console.log('Free-product surface check: payment readiness is checked by the independent membership job.');
 assert.equal(member.plan.price_units,PLAN.price_units,'membership price');
 assert.equal(member.plan.versions,PLAN.versions,'membership version allowance');
 const digest=text=>createHash('sha256').update(text).digest('hex');
@@ -71,4 +73,4 @@ for(let attempt=0;attempt<5;attempt++){
     await pause(delay);
   }
 }
-console.log('BPJ video commerce hub, directory entries, paid cloud offer, member registration and exact tool assets are live: '+EDITION+' / '+VIDEO_EDITION);
+console.log('BPJ public studio pages, membership metadata and exact tool assets are live (payment readiness is separate in read-only mode): '+EDITION+' / '+VIDEO_EDITION);
