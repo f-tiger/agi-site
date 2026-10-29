@@ -1,5 +1,5 @@
 import {messages} from './messages.mjs?v=independent1';
-const lang=document.body.dataset.language||'en',t=messages[lang],$=id=>document.getElementById(id),products=await fetch('/member-assets/products.json?v=independent1').then(r=>r.json());
+const lang=document.body.dataset.language||'en',t=messages[lang],$=id=>document.getElementById(id),products=await fetch('/member-assets/products.json?v=independent1',{cache:'no-store'}).then(r=>r.json());
 const site=document.body.dataset.memberSite||'bpj',keySlot='workbench-member-key:'+site,service=site==='bpj'?'baipiaoji-workbench':site+'-workbench';
 const random=n=>[...crypto.getRandomValues(new Uint8Array(n))].map(x=>x.toString(16).padStart(2,'0')).join('');
 let key='',member=null,selected=null,version=null,orders=[],ready=false,busy=false,handoff=null,spaces=null;
@@ -102,3 +102,18 @@ try{const r=await fetch('/api/member',{cache:'no-store'}),j=await r.json();ready
 setInterval(async()=>{const o=orders.find(o=>o.state==='pending'&&o.payment.expires>Date.now()/1000);if(!o||(authMode==='account'?!accountUser:!key)||document.hidden||busy)return;busy=true;try{await api('check',{id:o.id});await refresh();}catch(e){notice(e.message,true);}finally{busy=false;}},60000);
 
 if(site==='bpj'&&document.getElementById('startup-mcp')){const {mountStartupMcp}=await import('./startup-mcp.mjs?v=1');clearStartup=mountStartupMcp({api,lang,root:document.getElementById('startup-mcp')});}
+
+// Explicit paid delivery, inside the private member page. No customer content in analytics.
+if(site==='bpj'){
+ const output=el('div'),exportButton=button(lang==='zh'?'生成客户评价交付包':'Generate customer quote package',async()=>{
+  const data=parseBackup($('payload').value);if(data.product!=='bpj-testimonial-kit')throw Error(t.badBackup);
+  const j=await api('testimonial_export',{data}),{zip}=await import('/studio-assets/video-core.mjs');
+  const blob=await zip(j.files),link=el('a',lang==='zh'?'下载去品牌 ZIP 交付包':'Download unbranded ZIP package');
+  const url=URL.createObjectURL(blob);link.href=url;link.download='bpj-customer-quotes.zip';output.replaceChildren(link);link.click();setTimeout(()=>URL.revokeObjectURL(url),300000);
+  notice(lang==='zh'?'交付包已生成。包含展示页、首条评价图片和项目备份。':'Package generated: wall, first-quote image and project backup.');
+ });exportButton.id='testimonial-export';
+ const note=el('p',lang==='zh'?'客户评价素材台：使用有效 BPJ 付费会员生成去品牌交付包，每24小时最多30包。先核对下方项目内容；生成会将内容发送服务器处理，不自动保存。':'Customer quote studio: active BPJ paid membership generates up to 30 unbranded packages per 24 hours. Review the project below first. Generating sends it for server processing, without automatically saving it.');
+ const block=el('section');block.append(note,exportButton,output);$('payload').after(block);
+ const update=()=>{let data;try{data=JSON.parse($('payload').value);}catch{}block.hidden=data?.product!=='bpj-testimonial-kit';};
+ setInterval(update,500);update();
+}

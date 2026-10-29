@@ -1,3 +1,4 @@
+import {paidFiles} from '../../assets/studio/testimonial-core.mjs';
 import {json,digest,seconds} from '../../lib/ad-commerce.js';
 import {PLAN,memberSite,memberPlan,allowedProduct,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,createOrderForMember,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
 import {startupKeyAction} from '../../lib/startup-mcp-access.mjs';
@@ -28,6 +29,13 @@ export async function memberAction({request,env,b,token=null,m=null}){
   }
   if(!m)return json({ok:false,code:'unauthorized'},401);
   await rate(db,'api:'+m.id,120,60);
+  if(b.action==='testimonial_export'){
+   if(memberSite(env)!=='bpj')return json({ok:false,code:'wrong_site'},403);
+   if(!memberStatus(m).active)return json({ok:false,code:'membership_required'},403);
+   let files;try{files=paidFiles(b.data);}catch{return json({ok:false,code:'bad_backup'},400);}
+   await rate(db,'testimonial-export:'+m.id,30,86400);
+   return json({ok:true,files});
+  }
   if(typeof b.action==='string'&&b.action.startsWith('startup_mcp_')){
    if(memberSite(env)!=='bpj')return json({ok:false,code:'wrong_site'},403);
    if(b.action==='startup_mcp_create')await rate(db,'startup-key:'+m.id,6,3600);
