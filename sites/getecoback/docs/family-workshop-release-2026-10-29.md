@@ -35,3 +35,7 @@ Public experiment `eco-family-workshop-1128` uses a minimum of 100 relevant visi
 ## Verification
 
 Node tests cover all allowed branches, critical-part blocking, invalid dimensions, closed STL edges, positive/correct volume and analytics privacy allowlisting. Browser checks cover both languages, 320/390/1280 widths, green-water and narrow-path no-shopping outcomes, selected-market tags, actual checklist/STL downloads, stale-result removal, invalid dimension blocking and zero probe events. Mesh validation is not a physical print test. Final deployment, live tests and IndexNow receipt are recorded after publication.
+
+## Clean-checkout correction
+
+The first PR run reached the final analytics gate, then exposed a missing `/eco-engagement.mjs` build artifact already referenced by committed public HTML. The installer normally writes it after coverage, creating a clean-checkout ordering cycle. Commit the current public source's exact 4.5 KB artifact; the existing installer still refreshes and verifies it after coverage on every build. No tracker logic, measurement exclusions or gate is weakened. First failed run: 40863647934.
