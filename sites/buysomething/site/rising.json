@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-28",
+ "fetched": "2026-10-29",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -106,66 +106,78 @@
   "heatless curls": {
    "auto": [
     "heatless curls",
+    "heatless curls overnight",
+    "heatless curls headband",
     "heatless curls with socks",
     "heatless curls for short hair",
     "heatless curls tutorial",
     "heatless curls rod",
-    "heatless curls headband",
     "heatless curls for side sleepers",
     "heatless curls for shoulder length hair",
-    "heatless curls headband tutorial",
-    "heatless curls for long hair"
+    "heatless curls headband tutorial"
    ],
    "rising": [
     {
-     "q": "heatless curls with socks",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls for short hair",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls tutorial",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls rod",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls headband",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls for side sleepers",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls for shoulder length hair",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls headband tutorial",
-     "v": "new"
-    },
-    {
-     "q": "heatless curls for long hair",
+     "q": "heatless curls overnight",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-28"
+   "fetched": "2026-10-29"
   },
   "high speed hair dryer": {
+   "auto": [
+    "high speed hair dryer",
+    "high speed hair dryer for curly hair",
+    "high speed hair dryer with diffuser",
+    "high speed hair dryer brush",
+    "high speed hair dryer reviews",
+    "high speed hair dryer vs regular",
+    "high speed hair dryer amazon",
+    "high speed hair dryer kmart",
+    "what hair dryer dries hair the fastest",
+    "hair dryers that dry the fastest"
+   ],
    "rising": [
     {
-     "q": "conair infiniti pro hair dryer",
-     "v": 300
+     "q": "high speed hair dryer for curly hair",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer with diffuser",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer brush",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer reviews",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer vs regular",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer amazon",
+     "v": "new"
+    },
+    {
+     "q": "high speed hair dryer kmart",
+     "v": "new"
+    },
+    {
+     "q": "what hair dryer dries hair the fastest",
+     "v": "new"
+    },
+    {
+     "q": "hair dryers that dry the fastest",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-29"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-29"
   },
   "mini massage gun": {
    "auto": [
