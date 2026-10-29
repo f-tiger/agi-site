@@ -18,5 +18,6 @@ for(const root of document.querySelectorAll('[data-workshop]')){
  root.querySelector('[data-export]').addEventListener('click',()=>{if(!latest)return;download(['EcoBack',root.querySelector('h2').textContent,...latest.answers,'',latest.title,latest.step,'',root.querySelector('.fw-evidence p').textContent,root.querySelector('[data-official]').href,cfg.checked,location.origin+location.pathname+'#'+mode].join('\n'),'ecoback-'+mode+'-checklist.txt','text/plain;charset=utf-8');emit(mode,'export');});
  root.querySelector('[data-official]').addEventListener('click',()=>emit(mode,'official'));
  if(stl){const f=stl.querySelector('form'),status=stl.querySelector('[data-stl-status]');f.addEventListener('input',()=>status.textContent='');f.addEventListener('submit',e=>{e.preventDefault();if(stl.hidden||!latest)return;const v=Object.fromEntries(new FormData(f)),data=v.confirmed?dividerSTL(v):null;if(!data){status.textContent=cfg.invalid;return;}download(data,'ecoback-divider-mm.stl','model/stl');status.textContent=cfg.stlOK;emit(mode,'stl');});}
+ for(const fieldset of root.querySelectorAll('fieldset'))fieldset.disabled=false;
  root.dataset.ready='true';
 }

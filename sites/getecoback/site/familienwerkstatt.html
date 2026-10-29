@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://getecoback.com/familienwerkstatt.html">
 <link rel="icon" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/family-workshop.css?v=f961a28752ee">
+<link rel="stylesheet" href="/assets/family-workshop.css?v=ae663deac4a9">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Pool, Garten & 3D-Druck: Familienwerkstatt | EcoBack", "url": "https://getecoback.com/familienwerkstatt.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web browser", "inLanguage": "de", "description": "Prüfe Poolroboter, Mähroboter und kleine 3D-Druck-Projekte für dein Zuhause. Erhalte nächste Schritte, eine Checkliste und einen Schubladentrenner als STL.", "datePublished": "2026-10-29", "dateModified": "2026-10-29", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "@id": "https://getecoback.com/#org", "name": "EcoBack"}}</script>
 </head>
 <body>
@@ -54,6 +54,7 @@
 <section class="fw-tool" id="pool" data-workshop="pool">
 <h2>Passt ein Poolroboter zu meinem Pool?</h2>
 <form data-check>
+<fieldset disabled>
 <label>Was soll entfernt werden?<select name="debris" required>
 <option value="">Bitte wählen</option>
 <option value="leaves">Blätter / grober Schmutz</option>
@@ -77,6 +78,7 @@
 </select>
 </label>
 <button type="submit">Nächsten Schritt anzeigen</button>
+</fieldset>
 </form>
 <div class="fw-result" data-result hidden tabindex="-1" aria-live="polite">
 <p class="fw-note">Das ist ein eigener Check, keine Produktprüfung.</p>
@@ -106,6 +108,7 @@
 <section class="fw-tool" id="garden" data-workshop="garden">
 <h2>Kann ein Mähroboter meinen Garten erreichen?</h2>
 <form data-check>
+<fieldset disabled>
 <label>Verbindung zwischen den Rasenflächen?<select name="route" required>
 <option value="">Bitte wählen</option>
 <option value="open">Offene, bekannte Verbindung</option>
@@ -127,6 +130,7 @@
 </select>
 </label>
 <button type="submit">Nächsten Schritt anzeigen</button>
+</fieldset>
 </form>
 <div class="fw-result" data-result hidden tabindex="-1" aria-live="polite">
 <p class="fw-note">Das ist ein eigener Check, keine Produktprüfung.</p>
@@ -156,6 +160,7 @@
 <section class="fw-tool" id="repair" data-workshop="repair">
 <h2>Kaufen, drucken oder erst ausmessen?</h2>
 <form data-check>
+<fieldset disabled>
 <label>Was möchtest du machen?<select name="use" required>
 <option value="">Bitte wählen</option>
 <option value="organizer">Einfacher Schubladentrenner / Ordnung</option>
@@ -177,6 +182,7 @@
 </select>
 </label>
 <button type="submit">Nächsten Schritt anzeigen</button>
+</fieldset>
 </form>
 <div class="fw-result" data-result hidden tabindex="-1" aria-live="polite">
 <p class="fw-note">Das ist ein eigener Check, keine Produktprüfung.</p>
@@ -192,10 +198,11 @@
 <div data-shop hidden>
 </div>
 </div>
-<section class="fw-stl" aria-labelledby="stl-heading">
+<section class="fw-stl" hidden aria-labelledby="stl-heading">
 <h3 id="stl-heading">Eigene Trennplatte als STL</h3>
 <p>Eine rechteckige Platte für ein eigenes Ordnungsprojekt. Kein Testbericht und kein universell passendes Ersatzteil. Maße in Millimetern; in der Vorschau deines Slicers prüfen.</p>
 <form data-stl>
+<fieldset disabled>
 <div class="fw-fields">
 <label>Länge (20–250 mm)<input type="number" name="length" min="20" max="250" step="0.1" required>
 </label>
@@ -238,7 +245,7 @@
 <noscript>
 <p class="fw-wrap">Für Checks und STL-Download JavaScript aktivieren. Die Herstellerquellen oben bleiben zugänglich.</p>
 </noscript>
-<script type="module" src="/assets/family-workshop.mjs?v=f961a28752ee">
+<script type="module" src="/assets/family-workshop.mjs?v=ae663deac4a9">
 </script>
 <link rel="stylesheet" href="/analytics-assets/consent.css?v=e93a9260ba29"><script type="module" src="/analytics-assets/consent.mjs?v=e93a9260ba29" data-ga4-id="G-E2V0Q9SJ9V" data-ga4-host="getecoback.com" data-ga4-page="https://getecoback.com/familienwerkstatt.html" data-ga4-title="Pool, Garten &amp; 3D-Druck: Familienwerkstatt | EcoBack"></script><script type="module" src="/eco-engagement.mjs?v=f99e095af0d1"></script></body>
 </html>
