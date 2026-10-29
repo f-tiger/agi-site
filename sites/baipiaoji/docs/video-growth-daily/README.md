@@ -27,6 +27,8 @@
 
 原有 v2 reach 快照已到 10 月 28 日，五新增计量键完整。原日任务同日因重复官方作品身份失败，最后有效榜单仍为 10 月 22 日，890 条记录含分季；最近产品发布成功不代表采集恢复。本轮只修复该身份匹配路径，下一次原日任务才验证实际来源恢复，不新建或补跑抓取。见[复盘、问题定位与验收记录](review-and-sync-2026-10-29.md)及 [state.json](state.json)。
 
+[PR #195](https://github.com/f-tiger/agi-site/pull/195) 的修复已部署，帧选公开页面验证通过；但[本轮发布](https://github.com/f-tiger/agi-site/actions/runs/40809209416)随后因既有会员 `ready=false` 门禁失败，整条发布未通过，IndexNow 未执行。已重新打开原发布就绪问题，保留一次日志定位；不修改账户/支付设置或重复调度。代码上线、完整验收、源采集恢复与真实使用分别记录。
+
 ## 每轮执行
 
 1. 通过当前 GitHub main 恢复仓库规则、本文件、[状态](state.json)、[营销方案](../video-marketing-expansion-2026-10-11.md)、[计量清单](../video-marketing-kit/MEASUREMENT.md)与当前未完成材料；不依赖上次临时目录。读取相关开放 PR、部署运行与前轮成果，避免同目标重复施工。

@@ -57,4 +57,16 @@
 - 独立浏览器检查：目录、观众体验、搜索三套拦截测试通过，覆盖 320/390/768/1440px；不访问生产 API，不产生生产 GA4/D1 事件，不证明真实播放或后台收到事件。三套 UI 结果在最终纯后端名称占用补丁之前；最终 dist 的 `hg-7693084026969525273` 页另于 02:51:46 UTC 补验 320/390px，通过原名提示、稳定 canonical、无横溢出与无页面错误。该作品保留自己的 10 月 16 日历史证据日期，不用全站最新 10 月 22 日覆盖。
 - 生产目录、insights、sync status、reach 与部署 workflow 均未改动；英文状态对象与恢复时 main 完全一致。构建产生的两份无关数据输出已排除。
 
-拟发布范围为五份 BPJ 脚本和四份文档。当前路径过滤没有适用 PR CI；不能称 PR CI 已通过。合并后沿用现有 `[deploy] [outcome-readonly-release]` 的完整产品验收和两次 main 防回滚门禁；跳过榜单采集和 reach 导出，不重复 dispatch。此处尚无本轮部署或 IndexNow 成功声明，实际 commit/PR/运行结果将在完成后回填。
+本轮产品合并范围为五份 BPJ 脚本和四份文档。当前路径过滤没有适用 PR CI；不能称 PR CI 已通过。合并沿用现有 `[deploy] [outcome-readonly-release]` 的完整产品验收和两次 main 防回滚门禁；跳过榜单采集和 reach 导出，不重复 dispatch。实际部署已发生，但下面的后置门禁失败，整条发布未验收通过，IndexNow 未提交。
+
+## 实际发布回执与未通过门禁
+
+- [PR #195](https://github.com/f-tiger/agi-site/pull/195) 一次 squash 合并；实现提交 `32c64c12bf6c33dd1156a7b4993fde2ea9040804`，合并/实际构建源 `09aede6ce76a0b1078a14ce786c04bc27673b228`。
+- [唯一自动 push 运行 40809209416](https://github.com/f-tiger/agi-site/actions/runs/40809209416/job/123235266852) 的 prepare（02:55:45.0208101 UTC）与最终 main 守卫（03:01:36.1939915 UTC）均确认该源。完整产品/浏览器门禁通过，Cloudflare 于 **03:01:55.4315625 UTC** 部署；产物为 [167c39a1.aiyangmao.pages.dev](https://167c39a1.aiyangmao.pages.dev)。没有 dispatch、重试、取消或抓取。
+- CI 线上 GA4 检查及视频工具检查通过；video-fit 回执 **03:02:30.1288469 UTC**。协调者随后只读 GET 的 10 个公开静态资源均 HTTP 200：帧选首页、工具、榜单、目标作品 HTML/JSON/Markdown、sitemap、robots、llms 与变更清单。观察 **03:02:49–50 UTC**；确认 canonical/结构化资料/GA4 安装面、允许 Googlebot/Bingbot/OAI-SearchBot、作品 10 月 16 日历史记录与榜单 10 月 22 日日期，不产生浏览器模拟事件。这不证明 GA4 后台收到真人事件或搜索/AI 引用。
+- **整条运行于 03:02:38 UTC 以 failure 结束。** 唯一失败是 step 66 `Verify existing account and membership readiness without lifecycle writes`：03:02:35.6280389 UTC 的 account-only 检查通过，随后 `/api/member` 的 HTTP 200 与 `ok=true` 断言通过，**`ready=false`** 在 03:02:35.9362953 UTC 触发断言。日志没有记录响应体/底层原因，不能推断账户或财务状态。原始日志由独立观察者一次读取；本任务不重复生产 readiness 请求、不改账号/支付设置。重新打开已有 `bpj-release-readiness`，保留过去成功回执，不制造重复修复。
+- **IndexNow step 70 与其后普通步骤被跳过，没有本轮提交回执。** 公开变更清单有 9 个 URL，其中本轮帧选作品 URL 为 1 个，其余 8 个是已有 BPJ 构建差异；清单生成不是提交、索引或流量。不得以手动 IndexNow 绕过门禁。两个现有注册后继 [40809872825](https://github.com/f-tiger/agi-site/actions/runs/40809872825)、[40809872208](https://github.com/f-tiger/agi-site/actions/runs/40809872208) 均 completed/skipped；03:05:29 UTC active/queued/pending 均 0，03:06:11 UTC main 仍为本轮合并源。
+
+本轮结论为 **修复已部署、帧选公开面通过、完整发布验收失败；采集恢复仍待原日任务**。会员就绪属已有跨任务依赖，本任务保留一次可复核定位后，完成不依赖该阻塞的两次周复盘；不扩展到注册增长、支付配置或其他站点。最后有效榜单仍为 10 月 22 日，不能写成 10 月 29 日新榜。下一日优先读取原任务与已有 readiness 工作的恢复回执；具体修复/交接出现前不重跑相同发布。原教程验收/实际渠道条件仍未满足，下一周复盘为 11 月 3 日。
+
+发布结束后的状态收尾仅修改文档，使用 `[skip ci]`；不触发另一次站点部署或 IndexNow。
