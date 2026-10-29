@@ -9,3 +9,5 @@ Owner要求优化会员未就绪阻断免费页发布的问题。三轮任务优
 新检查输出仅固定状态ready/not_ready/unavailable，不输出原响应、凭据、钱包或客户信息。免费发布job成功不代表整体支付健康；独立支付job失败会使workflow仍显示失败，其摘要注明免费页已完成。既有定时watcher仍负责真实链路维护。
 
 验证：模拟ready=false/错误站点/HTTP失败/非布尔/网络失败；验证核心job不执行支付可用性检查，独立检查仍失败。上线使用当前main的新发布，禁止重跑旧workflow。
+
+线上复核补充：verify-studio-live也强制要求ready=true。只读发布改为验证ok/site/ready布尔结构、套餐和真实资源，正常发布继续要求支付就绪；只读支付真实状态由独立job验证。ProposalDeck已将支付状态单列，不要求为真。
