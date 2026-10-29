@@ -1,5 +1,5 @@
 import {messages} from './messages.mjs?v=independent1';
-const lang=document.body.dataset.language||'en',t=messages[lang],$=id=>document.getElementById(id),products=await fetch('/member-assets/products.json?v=independent1').then(r=>r.json());
+const lang=document.body.dataset.language||'en',t=messages[lang],$=id=>document.getElementById(id),products=await fetch('/member-assets/products.json?v=independent1',{cache:'no-store'}).then(r=>r.json());
 const site=document.body.dataset.memberSite||'bpj',keySlot='workbench-member-key:'+site,service=site==='bpj'?'baipiaoji-workbench':site+'-workbench';
 const random=n=>[...crypto.getRandomValues(new Uint8Array(n))].map(x=>x.toString(16).padStart(2,'0')).join('');
 let key='',member=null,selected=null,version=null,orders=[],ready=false,busy=false,handoff=null,spaces=null;
