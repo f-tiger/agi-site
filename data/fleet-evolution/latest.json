@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-28",
+  "as_of": "2026-10-29",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": null,
     "active_members": null,
-    "opportunities": 11,
+    "opportunities": 12,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-27T08:21:22.872Z",
-    "health": "2026-10-27T13:49:33Z",
-    "ai_referrals": "2026-10-27T13:50:07Z",
-    "opportunities": "2026-10-27",
-    "autopilot_receipt": "2026-10-28"
+    "membership": "2026-10-28T08:57:10.978Z",
+    "health": "2026-10-28T14:43:52Z",
+    "ai_referrals": "2026-10-28T14:44:27Z",
+    "opportunities": "2026-10-28",
+    "autopilot_receipt": "2026-10-29"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-27T08:21:22.872Z",
+    "generated": "2026-10-28T08:57:10.978Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -116,6 +116,15 @@
   },
   "opportunities": [
     {
+      "theme": "can we do something about this impending ai dystopia",
+      "site": null,
+      "state": "scout",
+      "score": 2.6,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "samsamelo silicon valley selling trolley problem lies no link",
       "site": null,
       "state": "scout",
@@ -152,16 +161,7 @@
       "supply": 0
     },
     {
-      "theme": "is there a credible gut health test out there",
-      "site": null,
-      "state": "scout",
-      "score": 2.09,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "can we do something about this impending ai dystopia",
+      "theme": "i m surprised claude doesn t cite well",
       "site": null,
       "state": "scout",
       "score": 2.07,
@@ -210,6 +210,15 @@
       "site": null,
       "state": "scout",
       "score": 2.04,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "do u think there should be a auto recovery tool for agents",
+      "site": null,
+      "state": "scout",
+      "score": 2.02,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -274,9 +283,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 23,
-        "query": "byecold infrarotheizung",
-        "value": 49950
+        "count": 25,
+        "query": "pattex luftentfeuchter",
+        "value": 53050
       },
       "mode": "queue"
     },
@@ -299,8 +308,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/earn/cases/clip-service",
-        "n7": 38,
-        "p7": 16
+        "n7": 46,
+        "p7": 18
       },
       "mode": "queue"
     },
@@ -312,7 +321,7 @@
       "evidence": {
         "page": "/guide/luftentfeuchter-keller.html",
         "n7": 6,
-        "p7": 5
+        "p7": 4
       },
       "mode": "queue"
     },
@@ -322,7 +331,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 266,
+        "human_pv_28d": 436,
         "ai_ref_28d": 0
       },
       "mode": "queue"

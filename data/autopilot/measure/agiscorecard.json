@@ -3,8 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 16,
+    "n": 17,
     "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 8,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 8,
+    "q": "tool:invest_positions"
    },
    {
     "n": 7,
@@ -13,14 +21,6 @@
    {
     "n": 7,
     "q": "tool:thesis_tracker"
-   },
-   {
-    "n": 7,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 7,
-    "q": "tool:invest_positions"
    },
    {
     "n": 6,
@@ -37,21 +37,21 @@
    {
     "n": 1,
     "q": "use agi-scorecard for 8 graded agi-2027 predicti"
-   },
-   {
-    "n": 1,
-    "q": "marketing services"
    }
   ]
  },
- "fetched": "2026-10-28",
+ "fetched": "2026-10-29",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/earn/cases/clip-service": {
-   "n7": 38,
-   "p7": 16
+   "n7": 46,
+   "p7": 18
+  },
+  "/zh/earn/cases/launch-acceptance": {
+   "n7": 42,
+   "p7": 13
   }
  },
  "site": "agiscorecard",
