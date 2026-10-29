@@ -40,6 +40,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if(host==='baipiaoji.com'&&['/studio/testimonial-kit','/en/studio/testimonial-kit'].includes(pathname)&&/^proofkit_(preview|backup|export|image|canva)_(demo|own)$|^proofkit_(member_open|import_own)$/.test(name))return {name,tool_id:'testimonial-kit',repeat:true};
   if (host === 'getecoback.com' &&
       (/^\/guide\/[a-z0-9]+(?:-[a-z0-9]+)*-betriebskosten\.html$/.test(pathname) ||
        /^\/en\/guide\/[a-z0-9]+(?:-[a-z0-9]+)*-running-cost\.html$/.test(pathname)) &&

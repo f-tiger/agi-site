@@ -1,0 +1,26 @@
+name: Check customer quote delivery
+on:
+  pull_request:
+    paths:
+      - 'sites/baipiaoji/**/testimonial*'
+      - 'sites/baipiaoji/scripts/test-testimonial*'
+      - 'sites/baipiaoji/functions/api/member.js'
+      - 'tools/member-studio/**'
+      - 'tools/revenue-studio/catalog.mjs'
+      - '.github/workflows/check-testimonial.yml'
+permissions:
+  contents: read
+jobs:
+  quote-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci --prefix tools/revenue-studio --ignore-scripts
+      - run: node --test sites/baipiaoji/scripts/test-testimonial.mjs
+      - run: node sites/baipiaoji/scripts/build.mjs && node tools/member-studio/build.mjs --site bpj --out sites/baipiaoji/dist
+      - run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+      - run: node sites/baipiaoji/scripts/test-testimonial-browser.mjs

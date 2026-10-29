@@ -81,7 +81,7 @@ export async function computeReach(env, days) {
   const today = new Date().toISOString().slice(0, 10);
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, claimRows, attRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders, proofkitOrders, claimRows, attRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC, path LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC, ref LIMIT 30`, since),
@@ -104,6 +104,7 @@ export async function computeReach(env, days) {
       q('SELECT count(*) n FROM watches').catch(() => [{ n: null }]),
       q('SELECT state, count(*) n FROM wb_orders GROUP BY state').catch(() => []),
       q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-video-variants' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
+      q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-testimonial-kit' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
       // 厂商认领层(2026-09-26,functions/api/claim.js):已验证认领数与排队中的厂商更正数,判定线 bpj-claim-* 的读数源。
       // 两张表首次认领时才建,按 slug 一行,极小;表不存在按 null 计。
       q("SELECT count(*) n FROM claims WHERE last_result = 'ok'").catch(() => [{ n: null }]),
@@ -145,6 +146,8 @@ export async function computeReach(env, days) {
         ad_web3_orders: web3Rows[0] ? web3Rows[0].n : null,
         watches: watchRows[0] ? watchRows[0].n : null,
         member_orders_by_state: Object.fromEntries(wbOrderRows.map((r) => [String(r.state || ''), r.n])),
+        proofkit_orders_by_state: proofkitOrders===null?null:Object.fromEntries(proofkitOrders.map(r=>[String(r.state||''),r.n])),
+        proofkit_order_definition:'BPJ membership orders first attributed to the customer quote studio; states are not export counts or profit. Other membership tools and older orders excluded; failed query is null.',
         video_orders_by_state: videoOrders===null?null:Object.fromEntries(videoOrders.map(r=>[String(r.state||''),r.n])),
         video_order_definition: 'Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.',
         scope_note: 'Inventory/state counts are lifetime unless a metric explicitly says window; go_28d and biz_28d retain legacy names and use the requested window. Video-order states are windowed. These are not an attributed acquisition funnel.',

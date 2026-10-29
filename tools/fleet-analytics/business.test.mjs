@@ -236,3 +236,11 @@ test('display checklist export is distinct from demo, route bound and contains n
   assert.equal(businessEvent('thedollscout.com','/display-calculator',{name,width:51}),null);
  }
 });
+
+test('quote workflow accepts fixed public outcomes, never content or private member events',()=>{
+ for(const path of ['/studio/testimonial-kit','/en/studio/testimonial-kit'])for(const name of ['proofkit_import_own','proofkit_export_demo','proofkit_export_own','proofkit_canva_own','proofkit_member_open']){
+  assert.ok(businessEvent('baipiaoji.com',path,{name}));assert.equal(businessEvent('baipiaoji.com',path,{name,quote:'PRIVATE'}),null);
+ }
+ assert.equal(businessEvent('baipiaoji.com','/members',{name:'proofkit_export_own'}),null);
+ assert.equal(businessEvent('baipiaoji.com','/studio/testimonial-kit',{name:'proofkit_paid'}),null);
+});

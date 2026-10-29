@@ -469,6 +469,8 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node --test sites/baipiaoji/scripts/test-testimonial.mjs
+          node sites/baipiaoji/scripts/test-testimonial-browser.mjs
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
           node sites/baipiaoji/scripts/test-deck-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
