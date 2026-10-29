@@ -1,19 +1,22 @@
-import {promoteSearchDetails} from './manju-work-urls.mjs';
+import {promoteSearchDetails,officialWorkId} from './manju-work-urls.mjs';
 import {readFileSync,writeFileSync,renameSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
-import {normalizeTitle,validateManju,importFacts} from './manju-catalog.mjs';
+import {normalizeTitle,isExcludedTitle,validateManju,importFacts} from './manju-catalog.mjs';
 import {validateInsights} from './manju-insights.mjs';
 const dir=new URL('../data/',import.meta.url),read=name=>JSON.parse(readFileSync(new URL(name,dir),'utf8'));
 const categoryTags=[['仙侠','cultivation'],['修真','cultivation'],['末世','apocalypse'],['悬疑','suspense'],['怪谈','suspense'],['科幻','scifi'],['玄幻','fantasy'],['奇幻','fantasy'],['古装','historical'],['古代','historical'],['恋爱','romance'],['甜宠','romance'],['萌宝','family'],['家庭','family'],['种田','rural'],['乡村','rural'],['都市','urban'],['年代','period'],['武侠','martial'],['搞笑','comedy']];
 export function refresh(catalog,insights,payload){
- const next=structuredClone(catalog),data=structuredClone(insights),seen=new Map(next.items.map(x=>[normalizeTitle(x.title),x]));
+ const next=structuredClone(catalog),data=structuredClone(insights),seen=new Map(next.items.map(x=>[normalizeTitle(x.title),x])),byId=new Map(next.items.filter(x=>x.evidence?.sourceKind==='hongguo-ranking').map(x=>[x.id,x]));
  if(payload.cohorts.length!==2||new Set(payload.cohorts.map(c=>c.kind)).size!==2)throw Error('Missing cohorts');
  const previous=new Map(data.cohorts.filter(c=>c.metric==='snapshot_heat').map(c=>[c.id.includes('comic-drama')?'comic-drama':'ai-drama',c]));
  let added=0;const changes=[];
- for(const incoming of payload.cohorts){
+ // The newer source snapshot owns current metadata; comic wins same-day ties.
+ // Each cohort keeps its own original title, rank and heat in the evidence.
+ for(const incoming of [...payload.cohorts].sort((a,b)=>a.observedAt.localeCompare(b.observedAt)||a.kind.localeCompare(b.kind))){
   const kind=incoming.kind;if(!['ai-drama','comic-drama'].includes(kind)||incoming.records.length!==100)throw Error('Unexpected cohort');
+  if(new Set(incoming.records.map(r=>r.url)).size!==100)throw Error('Duplicate official work in cohort');
   const old=previous.get(kind),report=data.reports.find(r=>r.id===old.reportId),oldId=old.id;
   if(incoming.observedAt<report.observedAt)throw Error('Snapshot moved backwards');
   const id='hongguo-'+kind+'-'+incoming.observedAt,label=kind==='ai-drama'?'AI剧':'漫剧';
@@ -28,13 +31,18 @@ export function refresh(catalog,insights,payload){
    t.evidence=`${incoming.observedAt} 红果官方${label}榜前 ${old.records.length} 条中，${rows.length} 条带“${t.sample.tag}”标签（含分季）。标签覆盖仅说明这份榜单的题材分布，不代表该细分题材必火；创作切口为本站建议。`;
   }
   for(const r of old.records){
-   const key=normalizeTitle(r.title),existing=seen.get(key);
-   if(existing){if(existing.evidence?.sourceKind==='hongguo-ranking'){existing.checkedAt=payload.checkedAt;existing.lastSeenAt=incoming.observedAt;existing.thumbnail=r.thumbnail;existing.source=r.thumbnail.source;existing.sourceDate=incoming.observedAt;existing.evidence.reportedTags=r.tags;existing.evidence.sourceHash=incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256;existing.tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));existing.category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama';existing.genre=next.taxonomy.genres.find(g=>g.id===existing.category).label;existing.caption=r.tags.join(' · ');existing.synopsis='红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。';}continue;}
+   const identity=officialWorkId(r.url);
+   if(!identity||typeof r.title!=='string'||!r.title.trim()||r.title.length>100||isExcludedTitle(r.title))throw Error('Invalid official work identity/title');
+   const key=normalizeTitle(r.title),named=seen.get(key),identified=byId.get(identity),existing=identified||named;
+   if(identified&&named&&identified!==named||named?.evidence?.sourceKind==='hongguo-ranking'&&named.id!==identity)throw Error('Conflicting official title identity: '+identity);
+   // Keep every title encountered in this batch reserved to its identity. A later
+   // alias must not free an earlier name for a different work in the same batch.
+   if(existing){if(existing.evidence?.sourceKind==='hongguo-ranking'){existing.title=r.title;existing.seriesTitle=r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,'');seen.set(key,existing);existing.checkedAt=payload.checkedAt;existing.lastSeenAt=incoming.observedAt;existing.thumbnail=r.thumbnail;existing.source=r.thumbnail.source;existing.sourceDate=incoming.observedAt;existing.evidence.reportedTags=r.tags;existing.evidence.sourceHash=incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256;existing.tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));existing.category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama';existing.genre=next.taxonomy.genres.find(g=>g.id===existing.category).label;existing.caption=r.tags.join(' · ');existing.synopsis='红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。';}continue;}
    const category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama',genre=next.taxonomy.genres.find(g=>g.id===category)?.label;
    if(!genre)throw Error('Unknown taxonomy');
    const tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));
-   const x={id:'hg-'+new URL(r.url).searchParams.get('series_id'),title:r.title,genre,format:label+'（红果分类）',year:'年份未核实',platform:'红果',linkType:'collection',destination:r.url,cta:'到红果查看',synopsis:'红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。',angle:'按官方分类发现作品，播放和更新情况以原站为准。',aiEvidence:'收录于红果'+label+'榜；平台分类不代表本站独立核验 AI 制作流程。',source:r.thumbnail.source,publisher:'红果官方公开榜单',sourceDate:incoming.observedAt,status:'自动核对公开榜单元数据；未核验播放、集数、完结或素材授权。',caption:r.tags.join(' · '),checkedAt:payload.checkedAt,firstSeenAt:payload.checkedAt,lastSeenAt:incoming.observedAt,watched:false,sponsored:false,affiliate:false,channel:'stories',category,tags,recordType:'discovery',aiStatus:'platform-classified',seriesTitle:r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,''),thumbnail:r.thumbnail,evidence:{sourceKind:'hongguo-ranking',reportedTags:r.tags,sourceHash:incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256}};
-   next.items.push(x);seen.set(key,x);added++;
+   const x={id:identity,title:r.title,genre,format:label+'（红果分类）',year:'年份未核实',platform:'红果',linkType:'collection',destination:r.url,cta:'到红果查看',synopsis:'红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。',angle:'按官方分类发现作品，播放和更新情况以原站为准。',aiEvidence:'收录于红果'+label+'榜；平台分类不代表本站独立核验 AI 制作流程。',source:r.thumbnail.source,publisher:'红果官方公开榜单',sourceDate:incoming.observedAt,status:'自动核对公开榜单元数据；未核验播放、集数、完结或素材授权。',caption:r.tags.join(' · '),checkedAt:payload.checkedAt,firstSeenAt:payload.checkedAt,lastSeenAt:incoming.observedAt,watched:false,sponsored:false,affiliate:false,channel:'stories',category,tags,recordType:'discovery',aiStatus:'platform-classified',seriesTitle:r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,''),thumbnail:r.thumbnail,evidence:{sourceKind:'hongguo-ranking',reportedTags:r.tags,sourceHash:incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256}};
+   next.items.push(x);seen.set(key,x);byId.set(identity,x);added++;
   }
  }
  next.updatedAt=payload.checkedAt;data.reviewedAt=payload.checkedAt;
