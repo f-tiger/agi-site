@@ -225,6 +225,8 @@ jobs:
           python3 tools/build_upkeep_discovery.py
           python3 tools/build_auto_content.py
           python3 tools/build_auto_discovery.py
+          python3 tools/build_family_workshop.py
+          node --test tools/test_family_workshop.mjs
           python3 tools/build_onpage.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
@@ -477,6 +479,7 @@ jobs:
           node tools/fleet-analytics/verify-live.mjs eco
           node sites/getecoback/tools/verify-public-engagement-live.mjs
           node tools/fleet-account/verify-live.mjs eco
+          node sites/getecoback/tools/verify-family-workshop-live.mjs
 
       - name: Verify independent membership after deployment
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'

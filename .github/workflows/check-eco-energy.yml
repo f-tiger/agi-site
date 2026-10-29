@@ -87,6 +87,8 @@ jobs:
           python3 tools/build_upkeep_discovery.py
           python3 tools/build_auto_content.py
           python3 tools/build_auto_discovery.py
+          python3 tools/build_family_workshop.py
+          node --test tools/test_family_workshop.mjs
           python3 tools/build_onpage.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py
@@ -158,6 +160,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_experience.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_product_decisions.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_home_fit.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_family_workshop.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_tool_audit.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_task_flows.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_laundry.cjs

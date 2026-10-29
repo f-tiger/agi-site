@@ -172,7 +172,11 @@ def main():
         "",
     ]
     from build_household import PAGES
-    lines += ["## Haushaltswerkstatt", ""]
+    from build_family_workshop import DATA as FAMILY
+    lines += ["## Pool, Garten und kleine Reparaturen", ""]
+    for t in FAMILY.values():
+        lines.append(f"- [{t['title']}]({BASE}/{t['path']}): {t['desc']}")
+    lines += ["", "## Haushaltswerkstatt", ""]
     for slug, (title, desc) in PAGES.items():
         lines.append(f"- [{title}]({BASE}/{slug}.html): {desc}")
     lines.append("")
