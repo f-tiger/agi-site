@@ -34,6 +34,7 @@ SKIP_PREFIX = ("/widgets/", "/workbench", "/member")
 EXTRA.update({"/guide/tineco-saugt-nicht-mehr.html", "/guide/thermovorhang-ratgeber.html", "/en/guide/12l-vs-20l-dehumidifier-uk.html"})
 
 FAMILIES = [
+    ("family", "Pool, Garten & Reparieren", "🛠", r"familienwerkstatt|home-workshop"),
     # key, heading, emoji, slug regex
     ("feuchte", "💧 Feuchte, Schimmel & Lüften", "💧", r"taupunkt|(?<!heiz)lueft|feucht|schimmel|dehumid|airer|mould|condens|desiccant|wasser|keller|damp"),
     ("heizen", "🔥 Heizen", "🔥", r"heiz|thermostat|infrarot|watt|stromausfall|heater|radiator-valves|valvole-termostatiche"),
@@ -45,10 +46,10 @@ FAMILIES = [
     ("english", "🇬🇧 English tools", "🇬🇧", r"^/en/"),
 ]
 SEASON_ORDER = {
-    "herbst":    ["feuchte", "heizen", "strom", "solar", "kuehlen", "laender", "pro", "english"],
-    "winter":    ["heizen", "feuchte", "strom", "solar", "kuehlen", "laender", "pro", "english"],
-    "fruehjahr": ["solar", "feuchte", "kuehlen", "strom", "heizen", "laender", "pro", "english"],
-    "sommer":    ["kuehlen", "strom", "solar", "feuchte", "heizen", "laender", "pro", "english"],
+    "herbst":    ["family", "feuchte", "heizen", "strom", "solar", "kuehlen", "laender", "pro", "english"],
+    "winter":    ["family", "heizen", "feuchte", "strom", "solar", "kuehlen", "laender", "pro", "english"],
+    "fruehjahr": ["family", "solar", "feuchte", "kuehlen", "strom", "heizen", "laender", "pro", "english"],
+    "sommer":    ["family", "kuehlen", "strom", "solar", "feuchte", "heizen", "laender", "pro", "english"],
 }
 
 

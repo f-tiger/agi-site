@@ -87,6 +87,8 @@ jobs:
           python3 tools/build_upkeep_discovery.py
           python3 tools/build_auto_content.py
           python3 tools/build_auto_discovery.py
+          python3 tools/build_family_workshop.py
+          node --test tools/test_family_workshop.mjs
           python3 tools/build_onpage.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
           python3 tools/test_upkeep_decisions.py

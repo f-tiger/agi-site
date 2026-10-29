@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v14** — **Last updated: 2026-10-12**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v15** — **Last updated: 2026-10-29**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -89,7 +89,12 @@ No new paid features for the three discovery probes until repeated task evidence
 
 Owner rejected founder-only positioning and approved need-led segmentation, leading-site benchmarking and commercial user journeys. New bilingual Future Guide serves work/learning first, with understand/earn/family/forecast entry points. Segment needs and willingness to pay remain hypotheses. Free: source-linked interviews, editorial interpretation, private local judgments, action records and export. Optional paid value: the existing AGI cloud membership stores this same notebook with version history; 9 USDT/30 days plus matching decimal and network fees, unchanged quotas, no auto-renewal or extra AI. No paid video archive, personal-report subscription or autonomous Jarvis forecast is offered. Jarvis currently labels its guidance as editorial. Read `docs/agi-future-guide-design-2026-10-03.md`.
 
+## Eco household expansion — owner steering 2026-10-29
+
+The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
+
 ## Changelog
+- v15 (2026-10-29): Added the owner-authorized Eco household expansion, bounded free deliverables and commercialization/measurement limits.
 
 - v14 (2026-10-12): Applied the whole-fleet registration goal, separated actual account benefits from shared identity, and defined source-preserving completion and honest registration measurements.
 

@@ -42,6 +42,21 @@
         "/guide/homeoffice-warm-bleiben.html",
         "/guide/lichterkette-stromkosten.html"
       ]
+    },
+    {
+      "id": "eco-family-workshop-1128",
+      "site": "getecoback",
+      "due": "2026-11-28",
+      "metric": "Workshop GA4 pageviews and fixed eco_workshop_decision/export/official/shop/stl actions, by tool_id. Exclude QA, automation and opt-outs. Shop intent is not a purchase; STL export is not fit-tested delivery. Merchant commissions require separate matching merchant reports.",
+      "threshold": "At least 100 relevant visits before judging utility; then at least 10 deliberate decisions and 3 checklist or STL exports support further user research. These are operating gates, not statistical proof. Low reach is inconclusive.",
+      "win": "Deepen the observed task with reliable model evidence and actual household fit feedback. Paid files require separate delivery acceptance and real buyers; no checkout is introduced.",
+      "lose": "At sufficient reach with no decisions, revise the task entry once. With decisions but no useful follow-through, do not add model databases or subscriptions. Pool seasonality must be separated from repair use.",
+      "source": "sites/getecoback/docs/family-workshop-release-2026-10-29.md",
+      "status": "open",
+      "built_pages": [
+        "/familienwerkstatt.html",
+        "/en/home-workshop.html"
+      ]
     }
   ]
 }

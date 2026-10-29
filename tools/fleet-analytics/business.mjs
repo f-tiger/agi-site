@@ -52,6 +52,12 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if (host === 'baipiaoji.com' && pathname === '/en/ai-video/' &&
       ['view','search','filter','preview','outbound','save','unsave','related'].some(action => name === 'ai_video_' + action))
     return {name, tool_id:'ai-video', repeat:true};
+  if(host==='getecoback.com' && ['/familienwerkstatt.html','/en/home-workshop.html'].includes(pathname) && /^eco_workshop_(pool|garden|repair)_(decision|export|official|shop|stl)$/.test(name)) {
+    const [,mode,action]=/^eco_workshop_(pool|garden|repair)_(.+)$/.exec(name);
+    if(action==='stl' && mode!=='repair')return null;
+    if(action==='shop' && mode==='repair')return null;
+    return {name:'eco_workshop_'+action,tool_id:'eco-workshop-'+mode,repeat:true};
+  }
   const upkeepRoutes = {
     '/guide/tineco-saugt-nicht-mehr.html': 'tineco-care',
     '/guide/thermovorhang-ratgeber.html': 'curtain-fit',
