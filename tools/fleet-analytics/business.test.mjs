@@ -228,3 +228,11 @@ test('Matrix calculation uses a fixed public action without slider values',()=>{
  assert.equal(businessEvent('agiscorecard.com','/account',{name:'matrix_calculate'}),null);
  assert.equal(businessEvent('baipiaoji.com','/matrix-odds',{name:'matrix_calculate'}),null);
 });
+
+test('display checklist export is distinct from demo, route bound and contains no dimensions',()=>{
+ for(const name of ['display_plan_export','display_plan_example']) {
+  for(const route of ['/display-calculator','/de/display-calculator'])assert.deepEqual(businessEvent('thedollscout.com',route,{name}),{name,tool_id:'display-calculator'});
+  assert.equal(businessEvent('thedollscout.com','/members',{name}),null);
+  assert.equal(businessEvent('thedollscout.com','/display-calculator',{name,width:51}),null);
+ }
+});

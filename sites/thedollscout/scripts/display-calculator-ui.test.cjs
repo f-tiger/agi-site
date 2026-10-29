@@ -6,6 +6,7 @@ const core=require('../js/collector-core.js');
 const script=fs.readFileSync(require('node:path').join(__dirname,'../js/collector-tools.js'),'utf8');
 
 class Element {
+ click(){}
  constructor(){this.handlers=new Map();this.children=[];this.style={};this.hidden=true;}
  addEventListener(type,fn){this.handlers.set(type,[...(this.handlers.get(type)||[]),fn]);}
  emit(type,event={}){for(const fn of this.handlers.get(type)||[])fn(event);}
@@ -16,14 +17,14 @@ function calculator(options={}) {
  const defaults={width:40,depth:30,height:25,itemWidth:8,itemDepth:10,itemHeight:18,gap:1};
  const numbers=Object.entries(defaults).map(([name,value])=>Object.assign(new Element(),{name,value:String(value),defaultValue:String(value)}));
  const fields=Object.fromEntries(numbers.map(input=>[input.name,input]));
- for(const key of ['form','unit','rotate','data-result','data-message','data-count','data-layout','data-zero','data-plan','data-cap'])fields[key]=new Element();
+ for(const key of ['form','unit','rotate','data-result','data-message','data-count','data-layout','data-zero','data-plan','data-cap','data-buying-brief'])fields[key]=new Element();
  fields.unit.value='cm';fields.rotate.checked=true;
  fields.form.querySelectorAll=()=>numbers;
  const app={dataset:{collector:'display',normal:'{cols}/{rows}',rotated:'{cols}/{rows}',invalid:'invalid'},querySelector:selector=>fields[selector==='form'?'form':selector.startsWith('[name=')?selector.slice(7,-2):selector.slice(1,-1)]};
- const document={querySelector:()=>app,createElement:()=>new Element()};
+ const document={documentElement:{lang:'en'},querySelector:()=>app,createElement:()=>new Element()};
  const sent=[],business=[],window={DSCollector:core,dispatchEvent:event=>business.push(event.detail)};
  window.top=window.self=window;
- const context={window,document,URLSearchParams,
+ const downloads=[];const context={window,document,URLSearchParams,Blob,URL:{createObjectURL:b=>{downloads.push(b);return "blob:test";},revokeObjectURL(){}},setTimeout:()=>0,
   location:{hostname:'thedollscout.com',pathname:'/display-calculator',search:'',...options.location},
   localStorage:{getItem:()=>options.denied?'denied':null},
   navigator:{userAgent:'Mozilla/5.0',sendBeacon:(url,body)=>{sent.push(JSON.parse(body));return true;},...options.navigator},
@@ -31,7 +32,7 @@ function calculator(options={}) {
   FormData:class{constructor(){return [...numbers.map(input=>[input.name,input.value]),['unit',fields.unit.value]];}}
  };
  vm.runInNewContext(script,context);
- return {fields,sent,business,submit(){fields.form.emit('submit',{preventDefault(){}});},unit(value){fields.unit.value=value;fields.unit.emit('change',{target:fields.unit});}};
+ return {fields,sent,business,downloads,submit(){fields.form.emit('submit',{preventDefault(){}});},unit(value){fields.unit.value=value;fields.unit.emit('change',{target:fields.unit});}};
 }
 test('initial render, example submit, rotation and unit-only changes never count as own calculation',()=>{
  const ui=calculator();assert.equal(ui.sent.length,0);
@@ -59,4 +60,14 @@ test('own calculations retain preview, QA, automation and privacy exclusions',()
   {location:{search:'?utm_source=verify'}},{navigator:{webdriver:true}},{navigator:{userAgent:'HeadlessChrome'}},
   {navigator:{doNotTrack:'1'}},{navigator:{globalPrivacyControl:true}},{denied:true}];
  for(const options of cases){const ui=calculator(options);ui.fields.width.value='50';ui.submit();assert.equal(ui.sent.length,0);assert.equal(ui.business.length,0);}
+});
+
+test('download distinguishes examples, contains local dimensions and refuses stale plans',async()=>{
+ const ui=calculator();ui.submit();ui.fields['data-buying-brief'].emit('click');
+ assert.equal(ui.sent.at(-1).e,'display_plan_example');assert.match(await ui.downloads[0].text(),/EXAMPLE/);
+ ui.fields.width.value='51';ui.submit();ui.fields['data-buying-brief'].emit('click');
+ assert.equal(ui.sent.at(-1).e,'display_plan_export');assert.match(await ui.downloads[1].text(),/51 × 30 × 25 cm/);
+ assert.ok(!JSON.stringify(ui.sent).includes('51'));
+ ui.fields.form.emit('input');ui.fields['data-buying-brief'].emit('click');assert.equal(ui.downloads.length,2);
+ ui.unit('in');ui.fields['data-buying-brief'].emit('click');assert.equal(ui.downloads.length,2);
 });

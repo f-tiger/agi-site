@@ -70,7 +70,7 @@ export function collectorWindow(now = new Date()) {
   const start = new Date(end+'T00:00:00Z');start.setUTCDate(start.getUTCDate()-28);
   const expected = start.toISOString().slice(0,10), measured = expected > FIRST_FULL_UTC_DAY ? expected : FIRST_FULL_UTC_DAY;
   const days = Math.max(0, Math.round((Date.parse(end)-Date.parse(measured))/86400000));
-  return {first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
+  return {event_releases:{display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display plan events only exist after the commercial release; earlier absence is unmeasured. The overall window does not imply 28 days of coverage for these events.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
     measuredWindow:days ? {start:measured,end_exclusive:end} : null,coveredDays:days,full28Days:days===28,
     coverage:days ? 'measured_complete_utc_days' : 'pending_first_complete_day'};
 }

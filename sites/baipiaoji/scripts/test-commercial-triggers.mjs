@@ -8,3 +8,5 @@ const env={prepare(sql){let args=[];return{bind(...v){args=v;return this},async 
 const r=await readCommercialTriggers(env,'2026-09-01');assert.equal(r.ok,true);assert.equal(r.counts['vendor-view'],1);assert.equal(r.counts['ad-wallet'],1);assert.equal(r.counts['ad-reach'],0);assert.equal(Object.keys(r.counts).length,COMMERCIAL_ACTIONS.length);assert.ok(!JSON.stringify(r).includes('example.test'));
 const unavailable=await readCommercialTriggers({prepare(){throw Error('secret text')}},'2026-09-01');assert.equal(unavailable.counts,null);assert.equal(unavailable.ok,false);assert.ok(!JSON.stringify(unavailable).includes('secret'));
 console.log('PASS commercial aggregates: bounded fields, QA/event/date filters, unavailable stays unknown.');
+
+const missing=await readCommercialTriggers({prepare(){return{bind(){return this},async all(){return {};}}}},'2026-09-01');assert.equal(missing.ok,false);assert.equal(missing.counts,null);

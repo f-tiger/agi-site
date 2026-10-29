@@ -3657,15 +3657,24 @@ def home_storage_block():
            '<circle cx="32" cy="34" r="8" fill="none" stroke="#2ea86b" stroke-width="2.5"/>'
            '<path d="M32 30v8M28 34h8" stroke="#2ea86b" stroke-width="2" stroke-linecap="round"/></svg>')
     def card(badge, bg, svg, title, desc, pros, cons, term):
+        checks = {
+            'Comfee MDDF-20DEN7': ('Temperatur im Raum, Entzugsleistung bei diesen Bedingungen, Schlauchanschluss und Geräusch prüfen.', '/guide/luftentfeuchter-keller.html'),
+            'Adsorptions-Luftentfeuchter': ('Für die gemessene Raumtemperatur vergleichen; Stromaufnahme und geplante Laufzeit mitrechnen.', '/guide/luftentfeuchter-keller.html'),
+            'Infrarotheizung mit Thermostat': ('Wattzahl und tägliche Nutzungsdauer rechnen; Montageort und Herstellerfreigabe prüfen.', '/guide/heizkosten-vergleich-rechner.html'),
+            'Hygrometer': ('Vorhandenes Messgerät zuerst nutzen. Sonst Messbereich und Genauigkeit vergleichen.', '/guide/fenster-beschlagen-innen.html'),
+        }
+        check, guide = checks[title]
         return ('<div class="eb-shop-card"><div class="th" style="background:' + bg + ';"><span class="rl">' + badge + '</span>' + svg + '</div>'
                 '<div class="bd"><h3>' + title + '</h3><p class="ds">' + desc + '</p>'
                 '<p class="ds" style="margin:0 0 9px;"><span style="color:#177245;">✓ ' + pros + '</span><br>'
                 '<span style="color:#9a3412;">✕ ' + cons + '</span></p>'
-                '<div class="pr">Preis vor Ort prüfen</div>'
+                '<p class="ds"><strong>Vor dem Kauf:</strong> ' + check + '</p>'
+                '<p><a href="' + guide + '">Passt das zu meinem Raum? →</a></p>'
+                '<div class="pr">Preis, Variante und Lieferumfang beim Händler prüfen</div>'
                 '<a class="go" href="' + amazon_url(term, title) + '" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
     cards = (
-        card('Der Keller-Favorit', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Comfee MDDF-20DEN7',
-             'In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.',
+        card('Modell vergleichen', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Comfee MDDF-20DEN7',
+             'Kompressor-Modell mit Hygrostat und Dauerablauf. Die Nennleistung ist kein Versprechen für deinen Keller.',
              'Hygrostat &amp; Schlauchanschluss an Bord', 'Kompressor verliert unter ca. 10–15 °C Leistung',
              'Comfee+MDDF-20DEN7+Luftentfeuchter')
         # 2026-09-27: this card was "Pro Breeze 20 L — das aktuell meistgesuchte
@@ -3710,11 +3719,18 @@ def home_storage_block():
         '<p style="margin:0 0 14px;max-width:74ch;">' + lead + ' Kondenswasser an kühlen Wänden (und der Schimmel, der daraus wird) — '
         'und die Frage, womit sich einzelne Räume effizient heizen lassen. Erst messen und rechnen, dann kaufen.</p>'
         '<div style="margin-bottom:16px;">' + toolrow + '</div>'
-        '<div class="eb-shop-h" style="margin-bottom:2px;">Was jetzt wirklich hilft</div>'
+        '<div class="eb-shop-h" style="margin-bottom:2px;">Passend auswählen, dann das Angebot prüfen</div>'
         '<p class="eb-shop-sub" style="margin-bottom:4px;"><span style="font-size:11px;color:#8a99a6;">'
         + AD_LABEL[False] + '</span></p>'
         '<p class="eb-shop-sub">Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
         '<div class="eb-shop-grid">' + cards + '</div>'
+        '<details style="margin-top:16px;"><summary>Vor dem Bestellen: meine kurze Kaufprüfung</summary>'
+        '<ul><li>Raumtemperatur und Feuchte gemessen? Ein vorhandenes Gerät reicht für den ersten Check.</li>'
+        '<li>Modellnummer, Betriebsbedingungen und Stromaufnahme verglichen?</li>'
+        '<li>Gesamtpreis, Lieferumfang, Händler und Rückgabebedingungen geprüft?</li>'
+        '<li>Bei Feuchteschäden: Ursache klären; ein Gerät ersetzt keine Reparatur.</li></ul>'
+        '<p>Herstellerinformationen: <a href="https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7">Comfee MDDF-20DEN7</a>. '
+        'Keine eigene Produktprüfung. Suchergebnisse können andere Varianten enthalten.</p></details>'
         '<p style="margin:14px 0 0;font-size:13.5px;">📖 Mehr dazu: '
         '<a href="/guide/schimmel-im-keller-entfernen.html">Schimmel im Keller entfernen</a> · '
         '<a href="/guide/luftentfeuchter-keller.html">Luftentfeuchter für den Keller</a> · '
