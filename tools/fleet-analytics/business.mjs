@@ -37,6 +37,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     if (host === 'baipiaoji.com' || !Object.hasOwn(allowed, host) || !/^G-[A-Z0-9]+$/.test(allowed[host]) || !publicAccountEntryPath(pathname)) return null;
     return {name: 'fleet_account_entry', tool_id: 'fleet-free-account', repeat: true};
   }
+  if (host === 'baipiaoji.com' && ['/dev-buying/', '/en/dev-buying/'].includes(pathname) && ['dev_buy_guidance','dev_buy_calculate','dev_buy_export','dev_buy_official'].includes(detail.name)) return {name:detail.name,tool_id:'dev-buying',repeat:true};
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
