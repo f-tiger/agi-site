@@ -1,27 +1,12 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 1,
   "pending": [
    {
-    "repo": "open-multi-agent/open-multi-agent",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "raullenchai/Rapid-MLX",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "nicedreamzapp/claude-code-local",
     "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "AtomicBot-ai/atomic-agent",
-    "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -37,11 +22,6 @@
    {
     "repo": "inferstep/ATLAS",
     "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "fikrikarim/parlor",
-    "topic": "audio",
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
@@ -200,11 +180,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "aws/amazon-sagemaker-examples",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "ultralytics/yolov3",
     "topic": "local",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -287,11 +262,6 @@
    {
     "repo": "GiovanniPasq/agentic-rag-for-dummies",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "NVIDIA/GenerativeAIExamples",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -507,11 +477,6 @@
    {
     "repo": "Th0rgal/sandboxed.sh",
     "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "vercel/satori",
-    "topic": "image",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -770,11 +735,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "SandAI-org/MAGI-1",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "microsoft/ResearchStudio",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -787,11 +747,6 @@
    {
     "repo": "NVlabs/LongLive",
     "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "Topdu/OpenOCR",
-    "topic": "documents",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -942,11 +897,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "go-gitea/gitea",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1925,11 +1875,6 @@
     "foundAt": "2026-10-11T06:21:02.155Z"
    },
    {
-    "repo": "codelion/adaptive-classifier",
-    "topic": "ai",
-    "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
     "repo": "RobRoyce/knowledge",
     "topic": "knowledge",
     "foundAt": "2026-10-11T06:21:02.155Z"
@@ -2022,11 +1967,6 @@
    {
     "repo": "johnbean393/Sidekick",
     "topic": "agents",
-    "foundAt": "2026-10-13T07:04:30.117Z"
-   },
-   {
-    "repo": "aandrew-me/tgpt",
-    "topic": "chat",
     "foundAt": "2026-10-13T07:04:30.117Z"
    },
    {
@@ -2953,6 +2893,41 @@
     "repo": "haidrrrry/claude-remotion-skill",
     "topic": "coding",
     "foundAt": "2026-10-28T06:14:13.487Z"
+   },
+   {
+    "repo": "tencentmusic/cube-studio",
+    "topic": "local",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "Infisical/infisical",
+    "topic": "agents",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "sno-ai/sno-station",
+    "topic": "coding",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "sno-ai/sno-station-skills",
+    "topic": "coding",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "Agent-Field/CodeAF",
+    "topic": "coding",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "EricTechPro/super-board",
+    "topic": "coding",
+    "foundAt": "2026-10-29T06:24:02.425Z"
+   },
+   {
+    "repo": "Arekejoker/qwen21-nsfw-pose-skill",
+    "topic": "image",
+    "foundAt": "2026-10-29T06:24:02.425Z"
    }
   ],
   "checked": {
@@ -3057,11 +3032,17 @@
    "gh-cobusgreyling-loop-engineering-c58f11": "2026-10-28T06:14:13.487Z",
    "gh-llmsresearch-paperbanana-cab4bb": "2026-10-28T06:14:13.487Z",
    "gh-abus-aikorea-voice-pro-faa4da": "2026-10-28T06:14:13.487Z",
-   "gh-nobodywho-ooo-nobodywho-58d52c": "2026-10-28T06:14:13.487Z"
+   "gh-nobodywho-ooo-nobodywho-58d52c": "2026-10-28T06:14:13.487Z",
+   "gh-baptistearno-typebot-io-8e6740": "2026-10-29T06:24:02.425Z",
+   "gh-thu-ml-causal-forcing-4badca": "2026-10-29T06:24:02.425Z",
+   "gh-run-llama-liteparse-29b690": "2026-10-29T06:24:02.425Z",
+   "gh-h2oai-h2o-llmstudio-c9773f": "2026-10-29T06:24:02.425Z",
+   "gh-lissy93-dashy-b79661": "2026-10-29T06:24:02.425Z",
+   "gh-ymcui-chinese-llama-alpaca-00d7df": "2026-10-29T06:24:02.425Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.mrfentmen/math-tools-mcp:1.0.0",
+  "cursor": "io.github.nowi333/monerometrics:0.4.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4105,7 +4086,47 @@
    "dabradata-mcp": "2026-10-28T06:14:13.487Z",
    "deckodex-deckodex": "2026-10-28T06:14:13.487Z",
    "docsautomator-mcp": "2026-10-28T06:14:13.487Z",
-   "factuarea-mcp": "2026-10-28T06:14:13.487Z"
+   "factuarea-mcp": "2026-10-28T06:14:13.487Z",
+   "filetypeconverters-converter": "2026-10-29T06:24:02.425Z",
+   "gmapsleadfinder-gmaps-lead-finder": "2026-10-29T06:24:02.425Z",
+   "goaimoat-email-person-lookup": "2026-10-29T06:24:02.425Z",
+   "hotker-hotker": "2026-10-29T06:24:02.425Z",
+   "hypnothera-hypnothera": "2026-10-29T06:24:02.425Z",
+   "justpublish-just-publish": "2026-10-29T06:24:02.425Z",
+   "kawacode-mcp": "2026-10-29T06:24:02.425Z",
+   "ksaworks-goldseam": "2026-10-29T06:24:02.425Z",
+   "markaestro-mcp": "2026-10-29T06:24:02.425Z",
+   "neuhausre-followupboss": "2026-10-29T06:24:02.425Z",
+   "qmailing-mcp-server": "2026-10-29T06:24:02.425Z",
+   "rolnia-mcp": "2026-10-29T06:24:02.425Z",
+   "saaskly-mcp": "2026-10-29T06:24:02.425Z",
+   "sentfrom-mcp": "2026-10-29T06:24:02.425Z",
+   "shumi-mcp": "2026-10-29T06:24:02.425Z",
+   "siglata-mcp": "2026-10-29T06:24:02.425Z",
+   "slickfast-mcp": "2026-10-29T06:24:02.425Z",
+   "snoopscan-snoopscan": "2026-10-29T06:24:02.425Z",
+   "sourcey-sourcey": "2026-10-29T06:24:02.425Z",
+   "spelunking-hub": "2026-10-29T06:24:02.425Z",
+   "store-api-store-api": "2026-10-29T06:24:02.425Z",
+   "swarmmemo-bulletin": "2026-10-29T06:24:02.425Z",
+   "synapticrelay-board": "2026-10-29T06:24:02.425Z",
+   "tryatria-atria": "2026-10-29T06:24:02.425Z",
+   "useorgx-orgx-mcp": "2026-10-29T06:24:02.425Z",
+   "vepathos-vepathos": "2026-10-29T06:24:02.425Z",
+   "withone-mcp": "2026-10-29T06:24:02.425Z",
+   "airroi-mcp": "2026-10-29T06:24:02.425Z",
+   "asksakina-islamic-knowledge": "2026-10-29T06:24:02.425Z",
+   "br-pegarex-mcp": "2026-10-29T06:24:02.425Z",
+   "cc-roboparts-roboparts": "2026-10-29T06:24:02.425Z",
+   "clawfetch-mcp": "2026-10-29T06:24:02.425Z",
+   "cloud-blitz-mcp": "2026-10-29T06:24:02.425Z",
+   "cnrcode-corroborateme": "2026-10-29T06:24:02.425Z",
+   "digitaltableteur-mcp": "2026-10-29T06:24:02.425Z",
+   "duami-intent-exchange": "2026-10-29T06:24:02.425Z",
+   "esimkenya-mcp": "2026-10-29T06:24:02.425Z",
+   "faivelo-mail": "2026-10-29T06:24:02.425Z",
+   "familiaplanner-familia": "2026-10-29T06:24:02.425Z",
+   "fodda-mcp-server": "2026-10-29T06:24:02.425Z"
   }
  }
 }

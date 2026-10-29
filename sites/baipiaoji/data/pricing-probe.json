@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-28",
+ "generated": "2026-10-29",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "wps-ai",
-  "wujie",
-  "xinghuo",
-  "yige",
-  "youdao",
-  "zhihu-zhida",
-  "zhipu-glm",
-  "kimi"
+  "exa",
+  "tongyi-wanxiang",
+  "feishu-miaoji",
+  "haiper",
+  "quillbot",
+  "consensus",
+  "immersive-translate",
+  "elicit"
  ],
- "cursor": "kimi",
+ "cursor": "elicit",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -59,8 +59,8 @@
    "slug": "feishu-miaoji",
    "name": "飞书妙记",
    "cat": "office",
-   "reach": 18,
-   "probed": "2026-10-16",
+   "reach": 11,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -93,8 +93,8 @@
    "slug": "haiper",
    "name": "Haiper",
    "cat": "video",
-   "reach": 8,
-   "probed": "2026-10-16",
+   "reach": 10,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -151,8 +151,8 @@
    "slug": "quillbot",
    "name": "QuillBot",
    "cat": "writing",
-   "reach": 7,
-   "probed": "2026-10-16",
+   "reach": 9,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -233,15 +233,15 @@
    "slug": "consensus",
    "name": "Consensus",
    "cat": "search",
-   "reach": 4,
-   "probed": "2026-10-18",
+   "reach": 7,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://consensus.app/pricing",
      "status": 200,
-     "bytes": 52769,
+     "bytes": 52771,
      "tokens": 0
     },
     {
@@ -341,8 +341,8 @@
    "slug": "immersive-translate",
    "name": "沉浸式翻译",
    "cat": "writing",
-   "reach": 4,
-   "probed": "2026-10-18",
+   "reach": 6,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -368,7 +368,7 @@
    "best": {
     "url": "https://immersivetranslate.com/pricing",
     "tokens": 1,
-    "excerpt": "。 为了确保服务的高可用性并防止恶意滥用，我们近期设置了防滥用和公平使用原则： 免费用户： 依然可以享受优质翻译，但单日翻译请求设有合理上限（注册后额度更高）。针对需要 DeepL、OpenAI、Claude 等顶级翻译服务的用户，我们提供每月最高 5000 万 Token 的超大额度，打造低成本、开箱即用的专业体验。 付费会员： 您的权益不受此策略影响，且拥有更高的频率权限。 我们会持续优化调度算法，在保障系统稳定的同时，尽可能让每一位用户都能顺畅翻译。 安装沉浸式翻译扩展后，我该如何使用？ 快速开始使用的话，看下面的内容就够了（我们也在这里准备了一份 更详细的使用指南 ）： 安装后，浏览器默认会把沉浸式翻译的扩展图标折叠起来，所以第一步，你需要在 浏览器右上角的折叠菜单里 将沉浸式翻译放出来，如下： 接下来就可以翻译网页了，以 USA Today 为例，打开 USA Today 的英文网页 ，在任何区域点击右键，在菜单里选择【翻译网页/还原原文】按钮，网页就会以双语的形式显示。如果你喜欢快捷键的话，可以直接按下【Alt+A】(MacOS 是【Option+A】) 来触发网页翻译。还有一种办法，就是点击浏览器工具栏里的沉浸式翻译图标，然后点击【翻译】，如下： 如果你想翻译文档，比如 PDF，Epub，字幕文件等，你可以在浏览器工具栏里点击【沉浸式翻译】图标，点击【更多】，即可看到。 我很喜欢沉浸式翻译，想推荐给朋友，你们有联盟计划吗？ 是的，我们有一个易于加入的联盟计划，任何人都可以 点击这里自助申请 ，之后你会得到一个专属的推广链接，使用这个链接，您可以向朋友推荐沉浸式翻译"
+    "excerpt": "。 为了确保服务的高可用性并防止恶意滥用，我们近期设置了防滥用和公平使用原则： 免费用户： 依然可以享受优质翻译，但单日翻译请求设有合理上限（注册后额度更高）。针对需要 DeepL、OpenAI、Claude 等顶级翻译服务的用户，我们提供每月最高 5000 万 Token 的超大额度，打造低成本、开箱即用的专业体验。 付费会员： 您的权益不受此策略影响，且拥有更高的频率权限。 我们会持续优化调度算法，在保障系统稳定的同时，尽可能让每一位用户都能顺畅翻译。 安装沉浸式翻译扩展后，我该如何使用？ 快速开始使用的话，看下面的内容就够了（我们也在这里准备了一份 更详细的使用指南 ）： 安装后，浏览器默认会把沉浸式翻译的扩展图标折叠起来，所以第一步，你需要在 浏览器右上角的折叠菜单里 将沉浸式翻译放出来，如下： 接下来就可以翻译网页了，以 USA Today 为例，打开 USA Today 的英文网页 ，在任何区域点击右键，在菜单里选择【翻译网页/还原原文】按钮，网页就会以双语的形式显示。如果你喜欢快捷键的话，可以直接按下【Alt+A】(MacOS 是【Option+A】) 来触发网页翻译。还有一种办法，就是点击浏览器工具栏里的沉浸式翻译图标，然后点击【翻译】，如下： 如果你想翻译文档，比如 PDF，Epub，字幕文件等，你可以在浏览器工具栏里点击【沉浸式翻译】图标，点击【更多】，即可看到。 我很喜欢沉浸式翻译，想推荐给朋友，你们有联盟计划吗？ 是的，我们有一个易于加入的联盟计划，任何人都可以 点击这里自助申请 。用户首次通过你的推广链接访问后，在 365 天内首次购买 Pro 或 M"
    }
   },
   "qingying": {
@@ -486,8 +486,8 @@
    "slug": "tongyi-wanxiang",
    "name": "通义万相",
    "cat": "image",
-   "reach": 9,
-   "probed": "2026-10-16",
+   "reach": 14,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1382,44 +1382,44 @@
    "slug": "elicit",
    "name": "Elicit",
    "cat": "study",
-   "reach": 6,
-   "probed": "2026-10-17",
+   "reach": 5,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://elicit.com/pricing",
      "status": 200,
-     "bytes": 541237,
+     "bytes": 526006,
      "tokens": 27
     }
    ],
    "best": {
     "url": "https://elicit.com/pricing",
     "tokens": 27,
-    "excerpt": "hat with papers with full-text access View sources for answers Import from Zotero Try for free Plus For deeper research $11 Save 42% Per user/month, billed as $132 annually Export to RIS, CSV, BIB, PDF and DOCX Add 5 columns to your tables at a tim e Unlimited search across more than 500 thousand clinical trials Standard usage for Research Agent, Research Reports, and Systematic Literature Reviews Sign up Pro For systematic reviews $39 Save 43% Per user/month, billed as $468 annually 5x usage for Research Agent, Research Reports, and Systematic Literature Reviews Dedicated Systematic Review Workflow that can screen 5,000 papers Add 20 columns to your tables at a tim e Reports extract from up"
+    "excerpt": "hat with papers with full-text access View sources for answers Import from Zotero Try for free Plus For deeper research $11 Save 42% Per user/month, billed as $132 annually Export to RIS, CSV, BIB, PDF and DOCX Add 5 columns to your tables at a tim e Unlimited search across more than 500 thousand clinical trials Standard usage for Research Agent and Research Reports Sign up Pro For systematic reviews $39 Save 43% Per user/month, billed as $468 annually 5x usage for Research Agent, Research Reports, and Systematic Literature Reviews Dedicated Systematic Review Workflow that can screen 5,000 papers Add 20 columns to your tables at a tim e Reports extract from up to 135 data sources Access to R"
    }
   },
   "exa": {
    "slug": "exa",
    "name": "Exa",
    "cat": "search",
-   "reach": 15,
-   "probed": "2026-10-16",
+   "reach": 37,
+   "probed": "2026-10-29",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://exa.ai/pricing",
      "status": 200,
-     "bytes": 144719,
-     "tokens": 40
+     "bytes": 142267,
+     "tokens": 36
     }
    ],
    "best": {
     "url": "https://exa.ai/pricing",
-    "tokens": 40,
-    "excerpt": "ers with structured outputs Web grounded citations Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use sub-200ms search options inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search From $4"
+    "tokens": 36,
+    "excerpt": "ficient highlights Configurable livecrawl policies Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use low-latency Lite search inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search From $4 "
    }
   },
   "felo": {

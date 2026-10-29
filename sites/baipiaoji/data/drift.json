@@ -1,10 +1,59 @@
 {
-  "generated": "2026-10-28",
+  "generated": "2026-10-29",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 14,
+  "pending": 17,
   "items": [
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-29",
+      "first_seen": "2026-10-28",
+      "added": [
+        "50mb",
+        "5seconds",
+        "5秒"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "bailian",
+      "url": "https://aliyun.com",
+      "confirmed": "2026-10-29",
+      "first_seen": "2026-10-28",
+      "added": [
+        "10k",
+        "1mo",
+        "70m"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "notebooklm",
+      "url": "https://support.google.com/gemininotebook",
+      "confirmed": "2026-10-29",
+      "first_seen": "2026-10-28",
+      "added": [],
+      "removed": [
+        "18,gb"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "gemini",
+      "url": "https://support.google.com",
+      "confirmed": "2026-10-29",
+      "first_seen": "2026-10-28",
+      "added": [
+        "1.5s",
+        "4.5s"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
     {
       "slug": "elicit",
       "url": "https://elicit.com",
@@ -69,23 +118,6 @@
         "26b"
       ],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-27",
-      "first_seen": "2026-10-26",
-      "added": [
-        "2字",
-        "30seconds"
-      ],
-      "removed": [
-        "0026prompt",
-        "2min",
-        "400credits",
-        "5min"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "immersive-translate",
@@ -237,25 +269,6 @@
         "158k"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "notebooklm",
-      "url": "https://support.google.com/gemininotebook",
-      "confirmed": "2026-10-22",
-      "first_seen": "2026-10-21",
-      "added": [],
-      "removed": [
-        "000b",
-        "000k",
-        "000m",
-        "00b",
-        "00k",
-        "00m",
-        "0b",
-        "0k",
-        "0m"
-      ],
-      "checked_then": "2026-08-13"
     },
     {
       "slug": "cline",
@@ -569,19 +582,6 @@
         "70k"
       ],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "bailian",
-      "url": "https://aliyun.com",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [],
-      "removed": [
-        "10k",
-        "1mo",
-        "70m"
-      ],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "pika",

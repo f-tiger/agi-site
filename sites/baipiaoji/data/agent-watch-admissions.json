@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-28",
+ "checked": "2026-10-29",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3357,6 +3357,33 @@
    "source_http": 404,
    "repo_http": 404,
    "reason": "source HTTP 404"
+  },
+  "truncus-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-10-29",
+   "last_attempt": "2026-10-29",
+   "attemptedAt": "2026-10-29T06:24:02.425Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "1stcollab-influencers": {
+   "attempts": 1,
+   "first_attempt": "2026-10-29",
+   "last_attempt": "2026-10-29",
+   "attemptedAt": "2026-10-29T06:24:02.425Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "unsafe-url"
+  },
+  "530amodel-calculator": {
+   "attempts": 1,
+   "first_attempt": "2026-10-29",
+   "last_attempt": "2026-10-29",
+   "attemptedAt": "2026-10-29T06:24:02.425Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
   }
  },
  "admitted": [
@@ -17083,6 +17110,348 @@
   {
    "slug": "thinair-geo",
    "date": "2026-10-28",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "thisdot-docusign-navigator-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "trawlia-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "truemarkets-marketdata",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "truerent-rental-review",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "trypitch-pitch",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usegro-gro",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "usercall-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "valid-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "vantaj-mcp-server",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "webhook-webhook",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "whooshly-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "widgy-widgy",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "workix-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "yachtfinder-yachtfinder",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "yougame-yougame",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coach-freddy-freddy",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "coach-marian-eng-leadership-toolkit",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "coach-marian-mentoring-inquiry-builder",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "codes-find-verified-codes",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "codes-qrflow-qrflow",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "00widget-00widget",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "0dteconfluence-confluence",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "1001locals-catalog",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "100hires-100hires",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "1099policy-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "1211holding-merch",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "1inch-business-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "24haowan-marketing",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "24haowan-space",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "25karats-storefront",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "304notfound-304notmodified",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "3doptix-optical-design",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "3dtexel-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "3gppscout-scout",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "3lgrouptechnology-3lt-letter-mail",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "402oracle-402oracle",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "402post-402post",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "402rates-compass",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "402rates-rates",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "409acost-site",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "409aproviders-site",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "6ducklearn-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "7275-adwhiz",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "80percentsilver-silver-melt",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "83blue-upload-agent-cloud-tools",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "8b-ai-website-builder",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "99datarooms-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "a11ychk-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "a2a2p-a2a2p",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "a2apark-a2apark",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "a2bflight-fares",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aave-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "abbyseo-mcp-server",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ablakunio-nyilaszaro-mcp",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "abundanceapis-abundance-apis",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "abutly-site",
+   "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "abyssale-mcp",
+   "date": "2026-10-29",
    "source_http": 200,
    "repo_http": null
   }
