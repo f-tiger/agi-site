@@ -494,6 +494,7 @@ jobs:
           node sites/baipiaoji/scripts/test-search-ui-browser.mjs
           node sites/baipiaoji/scripts/test-catalog-browser.mjs
           node sites/baipiaoji/scripts/test-github-tools-browser.mjs
+          node sites/baipiaoji/scripts/test-dev-buying.mjs
           node sites/baipiaoji/scripts/test-coding-access-browser.mjs
           node sites/baipiaoji/scripts/test-ai-solo-browser.mjs
           node sites/baipiaoji/scripts/test-startup-mcp-browser.mjs

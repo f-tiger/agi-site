@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {buildDevBuying} from './dev-buying-pages.mjs';
 import {buildManju,manjuSearch,manjuHome,manjuEvidenceSummary} from './manju-pages.mjs';
 import {buildAiVideo,aiVideoSearch,aiVideoHome} from './ai-video-pages.mjs';
 import {auditQuota, assessAudit, auditAdvice} from './subscription-audit.mjs';
@@ -5867,6 +5868,7 @@ buildAccountPages({layout,esc,BASE,LOCALE,write:(relative,html)=>{const target=j
 buildSiteJourneys({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 buildGithubTools({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 buildCodingAccess({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
+buildDevBuying({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 buildAiSolo({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 if(LOCALE.code==='zh')buildManju({write:(relative,html)=>{const target=join(dist,relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 if(LOCALE.code==='en')buildAiVideo({write:(relative,html)=>{const target=join(dist,relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
@@ -7692,7 +7694,7 @@ for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cp
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
-for(const f of ['ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-insights.js','video-fit.js','video-fit.css','video-fit-core.mjs','ai-video.css','ai-video.js','ai-video-core.mjs'])cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['dev-buying.js','ai-solo.css','ai-solo.js','github-tools.css','github-tools.js','coding-access.css','coding-access.js','manju.css','manju-home.css','manju-search.js','manju-live-search.js','manju.js','manju-insights.js','video-fit.js','video-fit.css','video-fit-core.mjs','ai-video.css','ai-video.js','ai-video-core.mjs'])cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root,'lib/ai-solo-core.mjs'),join(dist,'ai-solo-core.mjs'));
 cpSync(join(root,'lib/github-tools.mjs'),join(dist,'github-tools-core.mjs'));
 for(const f of ['work-plan-distribution.js','work-plan-embed.css'])cpSync(join(root,'assets',f),join(dist,f));
@@ -8214,7 +8216,7 @@ Video publishing fit workbench: ${site.base_url}/manju/video-fit . General video
 Startup launch radar: ${site.base_url}/ai-solo/hot/ and ${site.base_url}/en/ai-solo/hot/ . Daily bounded Show HN vote samples and Product Hunt launches are separate signals, not a combined leaderboard or evidence of revenue. /ai-solo-hot.json includes observations and up to 14 calendar days of snapshots; timestamps and outages are explicit. Unreviewed candidates never enter case training automatically.
 AI Solo business evidence: ${site.base_url}/ai-solo/ and ${site.base_url}/en/ai-solo/ . Success means sourced revenue or market adoption within a dated scope; profit can be unknown or negative. Failures distinguish shutdown, discontinued product, pivot and setbacks. Solo, small-team and company comparisons are labeled. Local neural case retrieval and structured 14-day guidance: /ai-solo/agent/ . No external LLM, income promise, calibrated success probability or autonomous selling. Readable sources: /ai-solo-cases.json and /ai-solo/method/ . Case changes rebuild the model; page drift creates a review queue, never new revenue facts.
 
-Coding access directory: ${site.base_url}/coding-access/ ; English ${site.base_url}/en/coding-access/ . Source-linked original subscriptions, API relay candidates and domestic compatible models. Reviewed means public documents read, never payment, reliability or model authentication. Pending entries are not recommendations. Region/account eligibility must be checked before payment. No affiliate links or BPJ checkout. Machine-readable equivalents: /coding-access.json and /coding-access.md (localized English equivalents exist).
+AI code review buying guide: ${site.base_url}/dev-buying/ ; English ${site.base_url}/en/dev-buying/ . Local buying guidance and user-input monthly budget scenarios; no quality benchmark or enabled affiliate links.\nCoding access directory: ${site.base_url}/coding-access/ ; English ${site.base_url}/en/coding-access/ . Source-linked original subscriptions, API relay candidates and domestic compatible models. Reviewed means public documents read, never payment, reliability or model authentication. Pending entries are not recommendations. Region/account eligibility must be checked before payment. No affiliate links or BPJ checkout. Machine-readable equivalents: /coding-access.json and /coding-access.md (localized English equivalents exist).
 
 ## GitHub tools for everyday tasks
 
