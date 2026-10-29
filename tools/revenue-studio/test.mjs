@@ -17,3 +17,27 @@ test('SQL projects execute and catch their intended join/grouping edge cases',as
 
 test('localized product metadata, labels, methods and report notes are translated',async()=>{const fs=await import('node:fs');const {siteLanguages,translator,route}=await import('./i18n.mjs');const {formulas}=await import('./methods.mjs');let count=0;for(const p of products)for(const lang of siteLanguages[p.site]){count++;assert.ok(route(p.site,lang,p.id).includes(p.id));if(lang==='en')continue;const d=JSON.parse(fs.readFileSync(new URL('./locales/'+lang+'.json',import.meta.url))),t=translator(d,lang);assert.ok(d['title:'+p.id],lang+' title '+p.id);for(const key of [p.description,formulas[p.id],...p.fields.map(f=>f.label),...p.fields.flatMap(f=>(f.options||[]).map(o=>o[1]))])assert.ok(d[key],lang+' '+key);if(!p.kind){const r=engines[p.id](sample(p.id));for(const key of [r.title,...r.columns,...r.notes])if(key!=='#'&&!Object.hasOwn(d,key))assert.notEqual(t(key),key,lang+' '+key);}}assert.equal(count,51);});
 test('language paths and visible numbers use the correct locale without changing units',async()=>{const {route,displayNumber,translator}=await import('./i18n.mjs');assert.equal(route('bpj','zh','creatorops'),'/workbench/creatorops');assert.equal(route('bpj','en','creatorops'),'/en/workbench/creatorops');assert.equal(route('eco','de','billlens'),'/workbench/billlens.html');assert.equal(displayNumber('1004.00','de'),'1.004,00');assert.equal(displayNumber('1004.00','en'),'1,004.00');assert.equal(displayNumber('2026-09-19','de'),'2026-09-19');assert.equal(translator({},'de')('Missing CSV column: meter'),'Fehlende CSV-Spalte: meter');const r=engines.appliancepayback(sample('appliancepayback'));assert.equal(r.rows[0][1],'0.2250');assert.equal(r.rows[0][3],'29.70');});
+
+import {collectorHomeLinks,inspectCollectorHome} from './collector-discovery.mjs';
+test('collector discovery requires each actual localized task anchor, not a legacy marker',()=>{
+ for(const lang of ['en','de']){
+  const links=collectorHomeLinks(lang),html=links.map(h=>`<a href="${h}">Task</a>`).join('');
+  assert.deepEqual(inspectCollectorHome(lang,html),[]);
+  for(const h of links){const missing=html.replace(`<a href="${h}">Task</a>`,'');
+   for(const fake of [`<!-- <a href="${h}">Task</a> -->`,`<script>const x='<a href="${h}">Task</a>'</script>`,'workbench-discovery',`<a data-href="${h}">Task</a>`])assert.deepEqual(inspectCollectorHome(lang,missing+fake),['collector_entry:'+h]);
+  }
+ }
+});
+test('TDS workbench owns four contextual entries, never collector homepages',async()=>{
+ const fs=await import('node:fs'),os=await import('node:os'),path=await import('node:path'),{execFileSync}=await import('node:child_process');
+ const out=fs.mkdtempSync(path.join(os.tmpdir(),'tds-discovery-'));
+ const homes=['index.html','de/index.html'],context=['rarity.html','de/rarity.html','where-to-buy.html','de/where-to-buy.html'];
+ try{
+  for(const file of [...homes,...context]){fs.mkdirSync(path.dirname(path.join(out,file)),{recursive:true});fs.writeFileSync(path.join(out,file),'<html><body>Collector-owned content</body></html>');}
+  execFileSync(process.execPath,[new URL('./build.mjs',import.meta.url).pathname,'--site','tds','--out',out],{stdio:'pipe'});
+  const manifest=JSON.parse(fs.readFileSync(path.join(out,'workbench-assets/manifest.json')));
+  assert.deepEqual(manifest.wired,context);assert.equal(manifest.urls.length,8);
+  for(const file of homes)assert.equal(fs.readFileSync(path.join(out,file),'utf8'),'<html><body>Collector-owned content</body></html>');
+  for(const file of context)assert.match(fs.readFileSync(path.join(out,file),'utf8'),/workbench-discovery/);
+ }finally{fs.rmSync(out,{recursive:true,force:true});}
+});
