@@ -17,7 +17,7 @@ try {for(const prefix of ['', '/de']) {
  });
  await page.addInitScript(()=>Object.defineProperty(navigator,'webdriver',{get:()=>false}));
  await page.goto('https://thedollscout.com'+prefix+'/display-calculator');
- const submit=async()=>{await page.locator('[data-collector] button.btn').click();await page.waitForTimeout(100);};
+ const submit=async()=>{await page.locator('[data-collector] form button.btn').click();await page.waitForTimeout(100);};
  await submit();assert.equal(sent.length,0);assert.equal(await page.locator('[data-count]').innerText(),'9');
  await page.locator('[name=unit]').selectOption('in');await submit();assert.equal(sent.length,0);
  await page.locator('[name=width]').fill('20');await submit();assert.equal(sent.length,1);
