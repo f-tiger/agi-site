@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-29",
+ "checked": "2026-10-30",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3384,6 +3384,42 @@
    "source_http": 403,
    "repo_http": 200,
    "reason": "source HTTP 403"
+  },
+  "admaxxer-ads-manager": {
+   "attempts": 1,
+   "first_attempt": "2026-10-30",
+   "last_attempt": "2026-10-30",
+   "attemptedAt": "2026-10-30T06:22:11.133Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "admitbase-admissions": {
+   "attempts": 1,
+   "first_attempt": "2026-10-30",
+   "last_attempt": "2026-10-30",
+   "attemptedAt": "2026-10-30T06:22:11.133Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "advocatemcp-advocate": {
+   "attempts": 1,
+   "first_attempt": "2026-10-30",
+   "last_attempt": "2026-10-30",
+   "attemptedAt": "2026-10-30T06:22:11.133Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "afdinstitute-afd-knowledge": {
+   "attempts": 1,
+   "first_attempt": "2026-10-30",
+   "last_attempt": "2026-10-30",
+   "attemptedAt": "2026-10-30T06:22:11.133Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "unsafe-url"
   }
  },
  "admitted": [
@@ -17452,6 +17488,342 @@
   {
    "slug": "abyssale-mcp",
    "date": "2026-10-29",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "abyssfallgame-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "accountancyvaluation-site",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "accountingfirmvalue-site",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "accountingqb-accountingqb",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "achivx-stablescan",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "achriom-achriom",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "acjlabs-catalog-normalizer",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "acjlabs-receipt-extraction",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "acjlabs-x402-listing-monitor",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "acprompt-acprompt",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "acquislaw-acquis",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "actablesite-ai-crawler-robots-monitor",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "actikidz-actikidz",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "actuallycare-actuallycare",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "actuato-actuator",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "acuiq-acuiq",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "acuris-geo-acuris-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "adadiamonds-ada-diamonds",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adbloop-meta-ads",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adbtd-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adbutler-mcp-server",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "adcritter-mcp-agent",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adcritter-mcp-dev",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aditus-developers-developer-portal",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "admakeai-admakeai",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adminlanding-french-rental-compliance",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "admit-coach-university-data",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adologyai-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adpeekly-linkedin-ads-library",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adpilotmcp-adpilot",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adrianhomelab-mall-directory",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adsbiq-adsbiq",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "adskub-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adspirer-ads",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "adsuploader-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aduanafacilandorra-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adviserry-adviserry",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "advisorfinder-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "advisorppc-advisorppc",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "adwhispr-adwhispr",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aegeanbot-direct-stays",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aex402-rpc",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "afeleos-af360",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "affiliaterail-affiliaterail",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agencygrowth-agencygrowth",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenshive-agenshive",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agent-manifest-amp-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agent-observatory-agent-observatory",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agent-preflight-agent-preflight",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agent-tune-agenttune",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agentalog-meta-agent-tools",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentanthill-agent-anthill",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentbookable-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentbrink-mcp",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcat-agentcat",
+   "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcdn-arv",
+   "date": "2026-10-30",
    "source_http": 200,
    "repo_http": null
   }

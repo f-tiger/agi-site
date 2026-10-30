@@ -1,29 +1,29 @@
 {
-  "generated": "2026-10-29",
-  "source_generated_at": "2026-10-29T06:22:54.184Z",
-  "exported_at": "2026-10-29T06:22:54.243Z",
+  "generated": "2026-10-30",
+  "source_generated_at": "2026-10-30T06:21:33.090Z",
+  "exported_at": "2026-10-30T06:21:33.183Z",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-10-01",
-  "until": "2026-10-29",
+  "since": "2026-10-02",
+  "until": "2026-10-30",
   "definition": "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
-  "humans_referred": 595,
-  "per_day": 21.3,
+  "humans_referred": 610,
+  "per_day": 21.8,
   "by_kind": {
-    "tool": 453,
+    "tool": 463,
     "page": 54,
-    "category": 22,
+    "category": 23,
     "plans": 8,
     "upgrade": 14,
-    "alternatives": 19,
-    "vs": 14,
+    "alternatives": 20,
+    "vs": 17,
     "judgement": 8,
     "wall": 3
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 170
+      "n": 178
     },
     {
       "cat": "image",
@@ -31,11 +31,15 @@
     },
     {
       "cat": "search",
-      "n": 56
+      "n": 58
     },
     {
       "cat": "coding",
-      "n": 44
+      "n": 41
+    },
+    {
+      "cat": "api",
+      "n": 40
     },
     {
       "cat": "video",
@@ -47,11 +51,7 @@
     },
     {
       "cat": "office",
-      "n": 34
-    },
-    {
-      "cat": "api",
-      "n": 33
+      "n": 35
     },
     {
       "cat": "local",
@@ -82,22 +82,22 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 112
+      "n": 118
     },
     {
       "slug": "exa",
       "cat": "search",
-      "n": 37
+      "n": 39
     },
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 20
+      "n": 24
     },
     {
       "slug": "tongyi-wanxiang",
       "cat": "image",
-      "n": 14
+      "n": 13
     },
     {
       "slug": "jimeng",
@@ -107,7 +107,7 @@
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 11
+      "n": 12
     },
     {
       "slug": "haiper",
@@ -140,7 +140,7 @@
       "n": 7
     },
     {
-      "slug": "immersive-translate",
+      "slug": "wordvice",
       "cat": "writing",
       "n": 6
     },
@@ -160,13 +160,13 @@
       "n": 5
     },
     {
-      "slug": "liblib",
-      "cat": "image",
+      "slug": "immersive-translate",
+      "cat": "writing",
       "n": 5
     },
     {
-      "slug": "wordvice",
-      "cat": "writing",
+      "slug": "liblib",
+      "cat": "image",
       "n": 5
     },
     {
@@ -180,11 +180,6 @@
       "n": 5
     },
     {
-      "slug": "wenxin",
-      "cat": "chat",
-      "n": 5
-    },
-    {
       "slug": "fish-audio",
       "cat": "audio",
       "n": 5
@@ -195,23 +190,28 @@
       "n": 5
     },
     {
-      "slug": "tongyi",
-      "cat": "chat",
-      "n": 4
-    },
-    {
       "slug": "cherry-studio",
       "cat": "local",
       "n": 4
     },
     {
-      "slug": "cline",
-      "cat": "coding",
+      "slug": "google-ai-studio",
+      "cat": "api",
       "n": 4
     },
     {
-      "slug": "google-ai-studio",
+      "slug": "tongyi",
+      "cat": "chat",
+      "n": 4
+    },
+    {
+      "slug": "groq",
       "cat": "api",
+      "n": 4
+    },
+    {
+      "slug": "wenxin",
+      "cat": "chat",
       "n": 4
     },
     {
@@ -221,6 +221,16 @@
     },
     {
       "slug": "civitai",
+      "cat": "image",
+      "n": 3
+    },
+    {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 3
+    },
+    {
+      "slug": "playground-ai",
       "cat": "image",
       "n": 3
     },
@@ -255,11 +265,6 @@
       "n": 3
     },
     {
-      "slug": "qwen-chat",
-      "cat": "chat",
-      "n": 2
-    },
-    {
       "slug": "bolt",
       "cat": "coding",
       "n": 2
@@ -267,11 +272,6 @@
     {
       "slug": "cohere",
       "cat": "api",
-      "n": 2
-    },
-    {
-      "slug": "grammarly",
-      "cat": "writing",
       "n": 2
     },
     {
@@ -317,19 +317,19 @@
   "pages": [
     {
       "path": "kimi",
-      "n": 112
+      "n": 118
     },
     {
       "path": "exa",
-      "n": 37
+      "n": 39
     },
     {
       "path": "/",
-      "n": 29
+      "n": 28
     },
     {
       "path": "grok",
-      "n": 20
+      "n": 24
     },
     {
       "path": "coding",
@@ -337,7 +337,7 @@
     },
     {
       "path": "tongyi-wanxiang",
-      "n": 14
+      "n": 13
     },
     {
       "path": "jimeng",
@@ -345,7 +345,7 @@
     },
     {
       "path": "feishu-miaoji",
-      "n": 11
+      "n": 12
     },
     {
       "path": "haiper",
@@ -380,7 +380,7 @@
       "n": 7
     },
     {
-      "path": "immersive-translate",
+      "path": "wordvice",
       "n": 6
     },
     {
@@ -396,11 +396,11 @@
       "n": 5
     },
     {
-      "path": "liblib",
+      "path": "immersive-translate",
       "n": 5
     },
     {
-      "path": "wordvice",
+      "path": "liblib",
       "n": 5
     },
     {
@@ -412,10 +412,6 @@
       "n": 5
     },
     {
-      "path": "wenxin",
-      "n": 5
-    },
-    {
       "path": "fish-audio",
       "n": 5
     },
@@ -424,15 +420,7 @@
       "n": 5
     },
     {
-      "path": "tongyi",
-      "n": 4
-    },
-    {
       "path": "cherry-studio",
-      "n": 4
-    },
-    {
-      "path": "cline",
       "n": 4
     },
     {
@@ -440,11 +428,35 @@
       "n": 4
     },
     {
+      "path": "tongyi",
+      "n": 4
+    },
+    {
+      "path": "groq",
+      "n": 4
+    },
+    {
+      "path": "wenxin",
+      "n": 4
+    },
+    {
+      "path": "api",
+      "n": 3
+    },
+    {
       "path": "canva",
       "n": 3
     },
     {
       "path": "civitai",
+      "n": 3
+    },
+    {
+      "path": "cline",
+      "n": 3
+    },
+    {
+      "path": "playground-ai",
       "n": 3
     },
     {
@@ -468,6 +480,10 @@
       "n": 3
     },
     {
+      "path": "/alternatives/youdao",
+      "n": 3
+    },
+    {
       "path": "image",
       "n": 3
     },
@@ -488,23 +504,11 @@
       "n": 2
     },
     {
-      "path": "/alternatives/youdao",
-      "n": 2
-    },
-    {
-      "path": "api",
-      "n": 2
-    },
-    {
       "path": "/alternatives/google-flow",
       "n": 2
     },
     {
       "path": "video",
-      "n": 2
-    },
-    {
-      "path": "qwen-chat",
       "n": 2
     },
     {
@@ -520,10 +524,6 @@
       "n": 2
     },
     {
-      "path": "grammarly",
-      "n": 2
-    },
-    {
       "path": "ima",
       "n": 2
     },
@@ -533,10 +533,6 @@
     },
     {
       "path": "ollama",
-      "n": 2
-    },
-    {
-      "path": "playground-ai",
       "n": 2
     },
     {
@@ -554,16 +550,20 @@
     {
       "path": "researchrabbit",
       "n": 2
+    },
+    {
+      "path": "runway",
+      "n": 2
     }
   ],
   "referrers": [
     {
       "ref": "cn.bing.com",
-      "n": 289
+      "n": 299
     },
     {
       "ref": "www.google.com",
-      "n": 168
+      "n": 175
     },
     {
       "ref": "www.bing.com",
@@ -583,7 +583,7 @@
     },
     {
       "ref": "m.baidu.com",
-      "n": 6
+      "n": 5
     },
     {
       "ref": "yandex.com",
@@ -676,25 +676,25 @@
     }
   ],
   "events": {
-    "manju": 3096,
-    "biz": 477,
-    "sub_view": 327,
-    "go": 148,
-    "home": 116,
+    "manju": 3161,
+    "biz": 495,
+    "sub_view": 338,
+    "go": 150,
+    "home": 113,
+    "github_tools": 82,
+    "gs": 76,
     "star": 74,
-    "gs": 71,
-    "github_tools": 70,
     "ai_solo": 50,
-    "calc": 42,
-    "quote": 39,
+    "calc": 43,
+    "quote": 34,
     "gs_go": 12,
-    "video": 11,
+    "video": 12,
     "earn": 4,
     "distribution": 1
   },
   "submissions": {
-    "new": 189,
-    "total": 189
+    "new": 199,
+    "total": 199
   },
   "ads": {},
   "commercial_triggers": {
@@ -705,9 +705,9 @@
       "video_post_export": "2026-10-29"
     },
     "counts": {
-      "vendor-view": 186,
+      "vendor-view": 195,
       "vendor-sponsor": 0,
-      "vendor-wait": 24,
+      "vendor-wait": 26,
       "ad-view": 0,
       "ad-wallet": 0,
       "ad-reach": 0,
@@ -726,8 +726,8 @@
   "conversion_stages": {
     "ok": true,
     "window": {
-      "start": "2026-10-01",
-      "end_exclusive": "2026-10-29",
+      "start": "2026-10-02",
+      "end_exclusive": "2026-10-30",
       "complete_days": 28,
       "date_basis": "UTC"
     },
@@ -737,7 +737,7 @@
       "tool_download_actions_own": 0,
       "tool_download_actions_demo": 0,
       "other_calc_events": 23,
-      "directory_outbound_clicks": 146,
+      "directory_outbound_clicks": 147,
       "homepage_limit_navigation": 1,
       "video_exports_own": 0,
       "video_exports_demo": 0,
@@ -751,17 +751,12 @@
       "coding_access_vendor_entries": 0
     },
     "accounts": {
-      "created": 10,
+      "created": 11,
       "new_accounts_currently_email_verified": 6,
-      "total_non_test": 11,
+      "total_non_test": 13,
       "total_currently_email_verified": 6
     },
     "accounts_daily": [
-      {
-        "date": "2026-10-01",
-        "created": 0,
-        "new_accounts_currently_email_verified": 0
-      },
       {
         "date": "2026-10-02",
         "created": 0,
@@ -896,6 +891,11 @@
         "date": "2026-10-28",
         "created": 0,
         "new_accounts_currently_email_verified": 0
+      },
+      {
+        "date": "2026-10-29",
+        "created": 1,
+        "new_accounts_currently_email_verified": 0
       }
     ],
     "account_scope": "fleet_shared_account_pool",
@@ -919,23 +919,23 @@
   "homepage_signals": {
     "ok": true,
     "window": {
-      "requested_start": "2026-10-01",
-      "start": "2026-10-01",
-      "until": "2026-10-29",
+      "requested_start": "2026-10-02",
+      "start": "2026-10-02",
+      "until": "2026-10-30",
       "date_basis": "UTC",
       "includes_current_partial_day": true
     },
-    "clicks": 107,
+    "clicks": 105,
     "unclassified_records": 0,
     "by_language": {
-      "zh": 95,
-      "en": 12,
+      "zh": 94,
+      "en": 11,
       "other": 0
     },
     "by_block": [
       {
         "id": "directory",
-        "n": 36
+        "n": 28
       },
       {
         "id": "hero",
@@ -946,16 +946,16 @@
         "n": 18
       },
       {
-        "id": "featured-tools",
-        "n": 7
-      },
-      {
         "id": "other",
-        "n": 6
+        "n": 10
       },
       {
         "id": "site-footer",
-        "n": 6
+        "n": 8
+      },
+      {
+        "id": "featured-tools",
+        "n": 7
       },
       {
         "id": "agents",
@@ -977,15 +977,15 @@
     "by_destination": [
       {
         "id": "tool-category",
-        "n": 37
+        "n": 29
+      },
+      {
+        "id": "other-destination",
+        "n": 19
       },
       {
         "id": "tool-directory",
         "n": 15
-      },
-      {
-        "id": "other-destination",
-        "n": 14
       },
       {
         "id": "tool-profile",
@@ -997,7 +997,7 @@
       },
       {
         "id": "free-account",
-        "n": 4
+        "n": 5
       },
       {
         "id": "homepage",
@@ -1041,14 +1041,6 @@
       }
     ],
     "daily": [
-      {
-        "date": "2026-10-01",
-        "complete": true,
-        "clicks": 8,
-        "zh": 7,
-        "en": 1,
-        "other": 0
-      },
       {
         "date": "2026-10-02",
         "complete": true,
@@ -1267,9 +1259,17 @@
       },
       {
         "date": "2026-10-29",
+        "complete": true,
+        "clicks": 2,
+        "zh": 2,
+        "en": 0,
+        "other": 0
+      },
+      {
+        "date": "2026-10-30",
         "complete": false,
-        "clicks": 0,
-        "zh": 0,
+        "clicks": 4,
+        "zh": 4,
         "en": 0,
         "other": 0
       }
@@ -1279,7 +1279,7 @@
         "language": "zh",
         "block": "directory",
         "destination": "tool-category",
-        "n": 29
+        "n": 22
       },
       {
         "language": "zh",
@@ -1288,27 +1288,27 @@
         "n": 11
       },
       {
-        "language": "en",
-        "block": "directory",
-        "destination": "tool-category",
-        "n": 7
-      },
-      {
-        "language": "zh",
-        "block": "hero",
-        "destination": "tool-profile",
-        "n": 6
-      },
-      {
         "language": "zh",
         "block": "other",
         "destination": "other-destination",
-        "n": 6
+        "n": 10
       },
       {
         "language": "zh",
         "block": "site-footer",
         "destination": "other-destination",
+        "n": 7
+      },
+      {
+        "language": "en",
+        "block": "directory",
+        "destination": "tool-category",
+        "n": 6
+      },
+      {
+        "language": "zh",
+        "block": "hero",
+        "destination": "tool-profile",
         "n": 6
       },
       {
@@ -1436,25 +1436,15 @@
         "block": "hero",
         "destination": "pdf-tools",
         "n": 1
+      },
+      {
+        "language": "zh",
+        "block": "site-footer",
+        "destination": "free-account",
+        "n": 1
       }
     ],
     "daily_entries": [
-      {
-        "date": "2026-10-01",
-        "complete": true,
-        "language": "en",
-        "block": "directory",
-        "destination": "tool-category",
-        "n": 1
-      },
-      {
-        "date": "2026-10-01",
-        "complete": true,
-        "language": "zh",
-        "block": "directory",
-        "destination": "tool-category",
-        "n": 7
-      },
       {
         "date": "2026-10-02",
         "complete": true,
@@ -2086,6 +2076,30 @@
         "block": "other",
         "destination": "other-destination",
         "n": 1
+      },
+      {
+        "date": "2026-10-29",
+        "complete": true,
+        "language": "zh",
+        "block": "site-footer",
+        "destination": "free-account",
+        "n": 1
+      },
+      {
+        "date": "2026-10-29",
+        "complete": true,
+        "language": "zh",
+        "block": "site-footer",
+        "destination": "other-destination",
+        "n": 1
+      },
+      {
+        "date": "2026-10-30",
+        "complete": false,
+        "language": "zh",
+        "block": "other",
+        "destination": "other-destination",
+        "n": 4
       }
     ],
     "definitions": {
@@ -2098,14 +2112,14 @@
   },
   "quote_signals": {
     "ok": true,
-    "since": "2026-10-01",
+    "since": "2026-10-02",
     "includes_current_partial_utc_day": true,
     "actions": {
-      "entry_open": 19,
-      "builder_open": 10,
+      "entry_open": 16,
+      "builder_open": 8,
       "client_open": 0,
-      "demo_preview": 10,
-      "demo_start": 0,
+      "demo_preview": 9,
+      "demo_start": 1,
       "own_edit": 0,
       "own_ready": 0,
       "file_generated": 0,
@@ -2118,16 +2132,16 @@
       "tool_share_requested": 0
     },
     "builder_entries": {
-      "direct": 6,
+      "direct": 3,
       "home": 3,
-      "video-guide": 1
+      "video-guide": 2
     },
     "entry_sources": {
-      "direct": 5,
+      "direct": 3,
       "home": 4,
-      "share": 3,
+      "share": 1,
       "video-category": 4,
-      "video-guide": 1,
+      "video-guide": 2,
       "video-tool": 2
     },
     "entry_definition": "entry_open counts each public entry document, including direct demo entries, starting with edition 2026-10-01.4. Client configuration links are excluded. Historical entry counts are not reconstructed. Native share requests are not proof of an opened chooser or a sent message.",
@@ -2141,11 +2155,11 @@
   "manju_signals": {
     "schema_version": 1,
     "measurement_version": "manju-video-actions-v2",
-    "source_generated_at": "2026-10-29T06:22:54.184Z",
+    "source_generated_at": "2026-10-30T06:21:33.090Z",
     "window": {
       "requested_days": 28,
-      "since": "2026-10-01",
-      "until": "2026-10-29",
+      "since": "2026-10-02",
+      "until": "2026-10-30",
       "timezone": "UTC",
       "includes_current_partial_utc_day": true
     },
@@ -2153,10 +2167,10 @@
     "partial": false,
     "reason": null,
     "actions": {
-      "view": 1678,
+      "view": 1733,
       "filter": 121,
       "empty": 130,
-      "open": 23,
+      "open": 25,
       "source": 5,
       "save": 0,
       "unsave": 0,
@@ -2168,7 +2182,7 @@
       "inquiry_error": 0,
       "return": 0,
       "preview_open": 0,
-      "rank_sort": 66,
+      "rank_sort": 71,
       "topic_complete": 7,
       "topic_empty": 0,
       "topic_export": 2,
@@ -2178,7 +2192,7 @@
       "search_empty": 178,
       "suggest_view": 181,
       "suggest_select": 10,
-      "recommend_select": 2,
+      "recommend_select": 3,
       "discover_start": 178,
       "discover_found": 42,
       "discover_empty": 45,
@@ -2191,7 +2205,7 @@
       "video_example": 0,
       "video_export": 0,
       "video_compare": 0,
-      "official_open": 44,
+      "official_open": 46,
       "platform_search": 0,
       "intro_open": 0,
       "share_native": 5,

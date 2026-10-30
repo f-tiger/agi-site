@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-29",
+ "generated": "2026-10-30",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "exa",
-  "tongyi-wanxiang",
-  "feishu-miaoji",
-  "haiper",
-  "quillbot",
-  "consensus",
+  "fish-audio",
+  "github-models",
   "immersive-translate",
-  "elicit"
+  "liblib",
+  "metaso",
+  "ms-copilot",
+  "google-ai-studio",
+  "groq"
  ],
- "cursor": "elicit",
+ "cursor": "groq",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -289,8 +289,8 @@
    "slug": "fish-audio",
    "name": "Fish Audio",
    "cat": "audio",
-   "reach": 4,
-   "probed": "2026-10-18",
+   "reach": 5,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -319,30 +319,30 @@
    "slug": "google-ai-studio",
    "name": "Google AI Studio",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-10-22",
+   "reach": 4,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ai.google.dev/gemini-api/docs/pricing",
      "status": 200,
-     "bytes": 239881,
-     "tokens": 81
+     "bytes": 241134,
+     "tokens": 83
     }
    ],
    "best": {
     "url": "https://ai.google.dev/gemini-api/docs/pricing",
-    "tokens": 81,
-    "excerpt": "高效的模型，针对高调用量智能体任务、翻译和简单的数据处理进行了优化。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.30 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 Token） 免费 $2.50 上下文缓存价格 不可用 0.03 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次搜索查询 14 美元计费。 用于改进 Google 产品 是 否 批量 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.15 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 Token） 免费 $1.25 上下文缓存价格 不可用 0.02 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次请求 14 美元计费。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次搜索查询 14 美元计费"
+    "tokens": 83,
+    "excerpt": "高效的模型，针对高调用量智能体任务、翻译和简单的数据处理进行了优化。 标准 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.30 美元（文本 / 图片 / 视频 / 音频） 输出价格（包括思考 Token） 免费 $2.50 上下文缓存价格 不可用 0.03 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新型号之间共享），超出后按每 1,000 次请求 14 美元计费（ 每日上限 为 1,500 次请求）。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次搜索查询 14 美元计费。 用于改进 Google 产品 是 否 批量 免费层级 付费层级（美元/100 万个 token） 输入价格 免费 0.15 美元（文本/图片/视频/音频） 输出价格（包括思考 Token） 免费 $1.25 上下文缓存价格 不可用 0.02 美元 1.00 美元/100 万个 token/小时（存储价格） 依托 Google 搜索进行接地 * 不适用 ** 每月 5,000 次免费搜索请求（在所有 Gemini 3 及更新的模型中共享），超出后按每 1,000 次请求 14 美元计费（ 每日上限 为 1,500 次请求）。 依托 Google 地图进行接地 不适用 ** 每月 5,000 个请求（免费，在所有 Gemini 3 及更新的"
    }
   },
   "immersive-translate": {
    "slug": "immersive-translate",
    "name": "沉浸式翻译",
    "cat": "writing",
-   "reach": 6,
-   "probed": "2026-10-29",
+   "reach": 5,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -628,7 +628,7 @@
    "name": "GitHub Models",
    "cat": "coding",
    "reach": 5,
-   "probed": "2026-10-17",
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -636,21 +636,21 @@
      "url": "https://github.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 51
+     "tokens": 17
     }
    ],
    "best": {
     "url": "https://github.com/pricing",
-    "tokens": 51,
-    "excerpt": "es on team Switch plans Select a plan to review its features Free Team Enterprise Features Free Team Enterprise Pricing $ 0 USD per month $ 0 USD per month forever $ 4 USD per user/month $ 4 USD per user/month for the first 12 months * $ 21 USD per user/month $ 21 USD per user/month for the first 12 months * How to get started Join for free Continue with Team Start a free trial Contact Sales Code management Public repositories Unlimited Unlimited Unlimited Host open source projects in public GitHub repositories, accessible via web or command line. Public repositories are accessible to anyone at GitHub.com. Uh oh! There was an error while loading. Please reload this page . Unlimited Unlimited"
+    "tokens": 17,
+    "excerpt": "ize your Dependabot alerts with automated triage rules. Enterprise AI-powered development, governed at enterprise scale $ 21 USD per user / month Start a free trial Contact Sales GitHub Enterprise now includes access to GitHub Copilot. Learn more Everything from Team, plus: GitHub Copilot access Agent governance Data residency Enterprise Managed Users User provisioning through SCIM Enterprise Account to centrally manage multiple organizations Environment protection rules Repository rules Audit Log API SOC1, SOC2, type 2 reports annually FedRAMP Tailored Authority to Operate (ATO) SAML single sign-on Advanced auditing GitHub Connect 50,000 CI/CD minutes/month 50GB of Packages storage Exclusiv"
    }
   },
   "groq": {
    "slug": "groq",
    "name": "Groq",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-10-23",
+   "reach": 4,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -714,7 +714,7 @@
    "name": "微软 Copilot",
    "cat": "chat",
    "reach": 5,
-   "probed": "2026-10-17",
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -727,13 +727,13 @@
     {
      "url": "https://copilot.microsoft.com/price",
      "status": 200,
-     "bytes": 36821,
+     "bytes": 36822,
      "tokens": 0
     },
     {
      "url": "https://copilot.microsoft.com/plans",
      "status": 200,
-     "bytes": 38545,
+     "bytes": 38544,
      "tokens": 0
     }
    ],
@@ -1990,8 +1990,8 @@
    "slug": "metaso",
    "name": "秘塔 AI 搜索",
    "cat": "search",
-   "reach": 0,
-   "probed": "2026-10-12",
+   "reach": 5,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2975,8 +2975,8 @@
    "slug": "liblib",
    "name": "LiblibAI 哩布哩布",
    "cat": "image",
-   "reach": 7,
-   "probed": "2026-10-17",
+   "reach": 5,
+   "probed": "2026-10-30",
    "env": "runner",
    "state": "blocked",
    "tried": [

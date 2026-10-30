@@ -1,10 +1,68 @@
 {
-  "generated": "2026-10-29",
+  "generated": "2026-10-30",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
-  "pending": 17,
+  "pending": 15,
   "items": [
+    {
+      "slug": "lovable",
+      "url": "https://docs.lovable.dev",
+      "confirmed": "2026-10-30",
+      "first_seen": "2026-10-29",
+      "added": [
+        "0026s",
+        "89b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-10-30",
+      "first_seen": "2026-10-29",
+      "added": [
+        "36.4k"
+      ],
+      "removed": [
+        "36.3k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-10-30",
+      "first_seen": "2026-10-29",
+      "added": [
+        "28b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-01"
+    },
+    {
+      "slug": "google-ai-studio",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "confirmed": "2026-10-30",
+      "first_seen": "2026-10-29",
+      "added": [
+        "1,500个"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-29"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-10-30",
+      "first_seen": "2026-10-29",
+      "added": [
+        "6k"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",
@@ -87,39 +145,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "google-ai-studio",
-      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
-      "confirmed": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "added": [
-        "1,000美元",
-        "1000万",
-        "100万",
-        "100美元",
-        "10亿",
-        "200万",
-        "50万"
-      ],
-      "removed": [
-        "$1,000",
-        "$100",
-        "$100,000",
-        "$20,000"
-      ],
-      "checked_then": "2026-09-29"
-    },
-    {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "added": [],
-      "removed": [
-        "26b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "immersive-translate",
       "url": "https://immersivetranslate.com",
       "confirmed": "2026-10-27",
@@ -193,17 +218,6 @@
         "8video"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-10-25",
-      "first_seen": "2026-10-24",
-      "added": [
-        "2b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-01"
     },
     {
       "slug": "framer",
@@ -321,19 +335,6 @@
       ],
       "removed": [
         "15days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "continue",
-      "url": "https://github.com/continuedev/continue",
-      "confirmed": "2026-10-20",
-      "first_seen": "2026-10-19",
-      "added": [
-        "36.3k"
-      ],
-      "removed": [
-        "36.2k"
       ],
       "checked_then": "2026-08-04"
     },
