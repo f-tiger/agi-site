@@ -1,76 +1,103 @@
 {
- "fetched": "2026-10-29",
+ "fetched": "2026-10-30",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
-   "auto": [
-    "klimaanlage",
-    "klimaanlage mobil",
-    "klimaanlage splitgerät",
-    "klimaanlage wohnung",
-    "klimaanlage für zuhause",
-    "klimaanlage mit abluftschlauch",
-    "klimaanlage ohne abluftschlauch",
-    "klimaanlagen",
-    "klimaanlage wohnwagen",
-    "klimaanlage mitsubishi"
+   "rising": [
+    {
+     "q": "constantin schreiber axel springer",
+     "v": 5050
+    },
+    {
+     "q": "unfall italien bus wohnmobil",
+     "v": 900
+    },
+    {
+     "q": "heizen mit klimaanlage",
+     "v": 300
+    },
+    {
+     "q": "bodenkonsole klimaanlage",
+     "v": 200
+    },
+    {
+     "q": "klimaanlage mit heizfunktion",
+     "v": 180
+    },
+    {
+     "q": "environ klimaanlage",
+     "v": 180
+    },
+    {
+     "q": "daikin perfera",
+     "v": 160
+    },
+    {
+     "q": "hisense klimaanlage",
+     "v": 160
+    },
+    {
+     "q": "klimaanlage samsung",
+     "v": 150
+    },
+    {
+     "q": "daikin split klimaanlage 2 innengeräte",
+     "v": 150
+    }
    ],
-   "new_vocabulary": [
-    "klimaanlage für zuhause",
-    "klimaanlage ohne abluftschlauch",
-    "klimaanlage wohnwagen",
-    "klimaanlage mitsubishi"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-29T11:06:04.579463+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-10-29"
+   "source": "related-queries",
+   "fetched": "2026-10-30",
+   "polluted": false,
+   "last_attempt_at": "2026-10-30T10:58:30.050781+00:00",
+   "last_attempt_status": "ok"
   },
   "schimmel entfernen": {
    "rising": [
     {
-     "q": "schimmel im badezimmer entfernen",
-     "v": 46150
+     "q": "schimmel mit spiritus entfernen",
+     "v": 74650
     },
     {
-     "q": "stockflecken entfernen wand",
-     "v": 4650
+     "q": "schimmel aus silikonfugen entfernen",
+     "v": 57950
     },
     {
-     "q": "schimmel aus textilien entfernen",
-     "v": 3900
+     "q": "schimmel entferner wand",
+     "v": 33600
     },
     {
-     "q": "holzfenster schimmel entfernen",
-     "v": 3900
+     "q": "kalkfarbe",
+     "v": 23250
     },
     {
-     "q": "schimmel kleidung entfernen",
-     "v": 130
+     "q": "schimmel an silikon entfernen",
+     "v": 4350
     },
     {
-     "q": "schwarzen schimmel entfernen",
-     "v": 70
+     "q": "schimmel am fensterrahmen entfernen",
+     "v": 3750
     },
     {
-     "q": "schimmel dusche entfernen",
-     "v": 50
+     "q": "schimmel an fensterdichtung entfernen",
+     "v": 3700
     },
     {
-     "q": "schimmel fugen bad entfernen",
-     "v": 50
+     "q": "schimmel an der wand entfernen hausmittel",
+     "v": 3450
     },
     {
-     "q": "fugen schimmel entfernen",
-     "v": 40
+     "q": "isopropanol kaufen",
+     "v": 2350
+    },
+    {
+     "q": "isopropanol",
+     "v": 80
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-22",
+   "fetched": "2026-10-30",
    "polluted": false,
-   "last_attempt_at": "2026-10-22T09:32:43.397818+00:00",
+   "last_attempt_at": "2026-10-30T10:59:31.105441+00:00",
    "last_attempt_status": "ok"
   },
   "infrarotheizung": {
