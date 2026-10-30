@@ -1,88 +1,110 @@
-# Luftentfeuchter Keller 2026: gegen Feuchte & Schimmel
+# Luftentfeuchter Keller: kalte Räume, Leistung & Stromkosten
 
-> Luftentfeuchter für den Keller: Ziel-Luftfeuchte unter 60 %, passende Entzugsleistung nach Kellergröße, Hygrostat, Dauerablauf und Stromkosten.
+> Luftentfeuchter für kalte Keller auswählen: Leistung bei 10–15 °C, Kompressor oder Adsorption, Ablauf und Stromkosten prüfen. Mit Checkliste für DE, AT und CH.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-keller.html
 
 Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
-Ein muffiger Keller ist selten Zufall. Feuchte Wände, klamme Luft und Modergeruch entstehen, weil warme, feuchte Luft auf kalte Kellerwände trifft und dort auskondensiert. Bleibt das über Wochen so, wird Schimmel fast unvermeidlich. Ein Luftentfeuchter löst das Problem an der Wurzel — vorausgesetzt, er ist richtig dimensioniert und läuft mit dem passenden Zubehör. Diese Anleitung zeigt dir, welche Ziel-Luftfeuchte du anpeilen solltest, wie viel Entzugsleistung du wirklich brauchst und wann ein günstiges Granulat reicht.
+Ein Luftentfeuchter kann Kellerluft trocknen. Ob er sinnvoll arbeitet, hängt aber stärker von Temperatur, Feuchtenachschub und Aufstellung ab als von einer großen Literzahl auf dem Karton. Dieser Ratgeber hilft dir, Datenblätter vor dem Kauf zu vergleichen. Keine eigenen Gerätetests und keine Bauwerksdiagnose.
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
+Anzeige: Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die gekennzeichnete Produktsuche führt zu Amazon.de, nicht zu einer geprüften Modellrangliste.
 
-**Kurz gesagt:** Halte die Luftfeuchte im Keller dauerhaft **unter 60 %** (ideal 50–55 %), sonst droht Schimmel. Kleine, mäßig feuchte Keller schaffen rund **10–12 L/Tag**, große oder stark durchfeuchtete Räume brauchen **20–30 L/Tag**. Achte auf einen **Hygrostat** (schaltet automatisch) und einen **Dauerablauf-Schlauch**, damit du keinen Tank leeren musst. Granulat lohnt nur in Mini-Räumen; für den ganzen Keller braucht es ein elektrisches Gerät.
+**Die kurze Entscheidung**Erst Feuchteursache und Raumtemperatur prüfen. Dann Geräte bei vergleichbaren Prüfbedingungen gegenüberstellen. Für einen kalten Keller sind Werte bei 10 oder 15 °C hilfreicher als eine alleinige Maximalangabe. Bei eindringendem Wasser zuerst die Ursache klären; ein größeres Gerät ersetzt keine Reparatur.
 
-## Warum Keller feucht werden
+## 1. Keller entfeuchten: wann Lüften reicht und wann Hilfe nötig ist
 
-Kellerwände sind ganzjährig kühl — sie liegen im Erdreich und erwärmen sich kaum. Strömt wärmere, feuchte Luft in den Keller, kühlt sie an diesen Wänden ab. Kalte Luft hält weniger Wasser als warme, also fällt die überschüssige Feuchtigkeit als Kondenswasser an der Wand aus — wie das Beschlagen einer kalten Getränkeflasche im Sommer. Der Effekt ist im Sommer am stärksten, weil die Außenluft dann am meisten Feuchtigkeit trägt. Dazu kommen Quellen wie aufsteigende Bodenfeuchte, undichte Kellerfenster oder im Keller trocknende Wäsche. Das Ergebnis ist immer gleich: Luftfeuchte über 60 %, feuchte Ecken und mit der Zeit Schimmel und muffiger Geruch.
+Notiere Temperatur, relative Luftfeuchtigkeit und sichtbare feuchte Stellen über mehrere Tage am selben Messort. Ein Raumwert allein sagt nicht, wie feucht eine kalte Wandoberfläche ist. Eine feste Prozentzahl garantiert deshalb keine schimmelfreien Bauteile. Wie du vergleichbar misst, erklärt der [Hygrometer-Leitfaden](https://getecoback.com/guide/luftfeuchtigkeit-richtig-messen.html).
 
-## Ziel-Luftfeuchte: unter 60 %
+Die Verbraucherzentrale erläutert: Kalte Außenluft kann im Winter beim Lüften Feuchtigkeit abführen; warme, feuchte Sommerluft kann im kühlen Keller dagegen ungünstig sein. Vergleiche die Bedingungen, statt allein nach Uhrzeit zu lüften. Unser [Taupunkt-Check für den Keller](https://getecoback.com/guide/keller-lueften-sommer.html) hilft bei dieser Einordnung. Bei nassen Bauteilen, Wassereintritt oder wiederkehrendem Schimmel fachliche Unterstützung einholen.
 
-Die wichtigste Kennzahl ist die relative Luftfeuchte. Ab etwa 60 % an kühlen Oberflächen wird Schimmelbildung wahrscheinlich, ab 70 % praktisch sicher. Peile deshalb dauerhaft **50 bis 55 %** an. Bevor du überhaupt ein Gerät kaufst, lohnt ein einfaches Hygrometer für wenige Euro: Erst wenn du weißt, ob dein Keller bei 65 % oder bei 85 % liegt, kannst du die nötige Leistung realistisch einschätzen. Stelle das Messgerät für ein paar Tage in den feuchtesten Raum, bevor du entscheidest.
+## 2. Kalter Keller bei 10–15 °C: Kompressor oder Adsorption?
 
-## Wie viel Entzugsleistung brauchst du?
+Die Bauart ist ein erster Filter, keine Kaufgarantie. Stiftung Warentest beschreibt die unterschiedliche Temperaturabhängigkeit der Verfahren. Entscheidend bleibt die Anleitung des konkreten Modells. Eine zulässige Mindesttemperatur sagt noch nicht, wie viel Wasser das Gerät dort pro Tag entzieht.
 
-Die Leistung eines Entfeuchters wird in **Litern pro Tag** angegeben. Diese Zahl gilt aber unter Idealbedingungen (meist 30 °C und 80 % Feuchte) — im kühlen Keller mit 15–18 °C liegt die reale Entzugsleistung deutlich darunter. Plane deshalb lieber etwas Reserve ein. Als grobe Orientierung:
+Situation | Vor dem Kauf vergleichen | Nicht daraus ableiten |
 
-- **Kleiner, mäßig feuchter Keller** (Abstell- oder Hobbyraum, bis ~20 m²): ein Gerät mit rund **10–12 L/Tag** genügt meist.
+Beheizter Keller | Kompressorgeräte: Entzug und Stromaufnahme bei passender Temperatur und Feuchte. | Eine höhere Nennleistung ist nicht automatisch sparsamer. |
 
-- **Mittlerer Keller mit spürbarer Feuchte:** etwa **12–20 L/Tag**.
+Kalter, unbeheizter Keller | Leistungsdaten bei 10 oder 15 °C, Mindesttemperatur und Abtauverhalten; auch Adsorptionsgeräte vergleichen. | „Ab 5 °C geeignet“ bedeutet nicht volle Literleistung bei 5 °C. |
 
-- **Großer oder stark durchfeuchteter Keller** (z. B. nach Wasserschaden, frisch verputzt): **20–30 L/Tag** oder mehr.
+Wasser dringt laufend ein | Ursache, Abdichtung oder Leitung fachlich prüfen lassen. | Kein Gerät saniert die Wasserquelle. |
 
-Wichtig: Die meisten Modelle sind Kompressor-Geräte und arbeiten unter etwa 10–15 °C schlechter, weil der Verdampfer vereist. Ist dein Keller ganzjährig sehr kalt, ist ein Adsorptionstrockner die bessere, wenn auch stromhungrigere Wahl. Passende Luftentfeuchter für den Keller gibt es in allen Leistungsklassen. Wie du die Größe für einen konkreten Raum berechnest, zeigt unser [Ratgeber für 20 m²](https://getecoback.com/guide/luftentfeuchter-20-qm.html).
+Fehlen niedrigere Prüftemperaturen im Datenblatt, frage beim Anbieter nach, bevor du eine Größe auswählst. Eine pauschale Regel wie „20 m² brauchen 12 Liter“ übersieht Raumhöhe, Luftwechsel und Feuchtenachschub.
 
-## Hygrostat und Dauerablauf — die zwei Funktionen, die zählen
+## 3. Datenblatt-Check: fünf Angaben für einen fairen Vergleich
 
-Zwei Ausstattungsmerkmale entscheiden darüber, ob das Gerät im Keller wirklich praktisch ist:
+- **Prüfbedingungen:** Temperatur und relative Luftfeuchtigkeit müssen zu jeder Literangabe gehören. Werte bei verschiedenen Bedingungen nicht gegeneinander ausspielen.
 
-- **Hygrostat:** Damit stellst du eine Ziel-Feuchte ein (z. B. 55 %), und das Gerät schaltet sich automatisch ab, sobald der Wert erreicht ist, und wieder an, wenn es feuchter wird. Ohne Hygrostat läuft der Entfeuchter dauerhaft durch und verbraucht unnötig Strom.
+- **Leistungsaufnahme:** Wattangabe ebenfalls den Prüfbedingungen zuordnen; maximale Anschlussleistung ist kein gemessener Tagesverbrauch.
 
-- **Dauerablauf (Dauerablauf-Schlauch):** Ein Keller ist der klassische Ort, an dem niemand täglich den Tank leeren will. Fast alle Geräte haben einen Anschluss für einen Ablaufschlauch, den du in einen Bodenablauf oder Gully legst. So läuft das Kondenswasser kontinuierlich ab und du musst nie einen vollen Tank tragen — bei Schwerkraft-Ablauf muss das Gerät allerdings höher stehen als der Abfluss.
+- **Regelung:** Einstellbaren Hygrostat, Wiederanlauf und Verhalten des Lüfters laut Anleitung prüfen.
 
-Fehlt ein Bodenablauf, gibt es Modelle mit eingebauter Kondensatpumpe, die das Wasser auch nach oben ins Waschbecken pumpen. Wer nachrüsten will, findet günstige Luftentfeuchter mit Schlauch für den Dauerbetrieb.
+- **Aufstellung:** Abstände, Geräusch, Tankgröße und Zugänglichkeit im eigenen Keller prüfen.
 
-## Was kostet der Betrieb an Strom?
+- **Ablauf:** Schlauchmaß, Gefälle und gegebenenfalls Pumpe klären. Den Tankalarm nicht umgehen.
 
-Ein Kompressor-Entfeuchter zieht je nach Größe etwa 200 bis 500 Watt. Läuft er dank Hygrostat nur rund acht Stunden am Tag, sind das grob 1,5 bis 4 kWh täglich — bei rund 30 Cent pro kWh also etwa 0,50 bis 1,20 Euro pro Tag. Der Hygrostat ist der größte Hebel: Ein Gerät, das nur bei Bedarf anspringt, kostet einen Bruchteil eines dauerhaft durchlaufenden. Wie du solche Verbrauchsrechnungen aufstellst, zeigen wir im [Ratgeber zu den Stromkosten](https://getecoback.com/guide/klimaanlage-stromkosten.html).
+Als Recherchehilfe zeigt die Schweizer Plattform Topten separat Entzugsleistung bei 10, 15 und 20 °C sowie Leistungsaufnahme bei 15 °C. Das ist ein Beispiel für vergleichbare Datenfelder, keine pauschale Empfehlung eines gelisteten Geräts.
 
-## Granulat oder elektrisch?
+## 4. Stromkosten pro Tag und Monat berechnen
 
-Ein Raumentfeuchter mit Granulat braucht keinen Strom und ist günstig — entzieht der Luft aber pro Woche nur wenige hundert Milliliter. Das reicht für einen Schrank, einen Abstellraum oder ein Wohnmobil, nicht für einen echten feuchten Kellerraum. Faustregel: Granulat für abgeschlossene Mini-Volumen, elektrischer Entfeuchter für alles, was ein bewohnbarer Raum ist.
+**Kosten = gemessene kWh × eigener Preis pro kWh.** Ohne Messung lässt sich zunächst ein Szenario rechnen: Watt ÷ 1.000 × aktive Stunden × Preis pro kWh. Laufzeit, Abtauen und Regelung bleiben dabei Annahmen.
 
-## Richtig lüften — nur wenn die Außenluft trockener ist
+Rechenbeispiele: 300 W während der angesetzten Laufzeit, angenommene 0,30 €/kWh; kein Produktvergleich, kein aktueller TarifAktive Stunden/Tag | kWh/Tag | €/Tag | €/30 Tage |
+4 | 1,2 | 0,36 | 10,80 |
+8 | 2,4 | 0,72 | 21,60 |
+12 | 3,6 | 1,08 | 32,40 |
 
-Viele lüften den feuchten Keller im Sommer stundenlang bei offenem Fenster — und wundern sich, dass es feuchter wird. Der Grund: Warme Sommerluft trägt viel Wasser und kondensiert an den kühlen Wänden sofort. Lüften hilft nur, wenn die Außenluft absolut trockener ist als die Kellerluft. Praktisch heißt das: **im Sommer bevorzugt nachts oder früh morgens lüften** und tagsüber die Fenster zu lassen — in den feuchtwarmen Stunden übernimmt der Entfeuchter. Im Winter ist kurzes Stoßlüften meist unproblematisch, weil kalte Außenluft wenig Wasser enthält.
+Rechne deinen Tarif im [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html) nach oder lies die [Erklärung zum Dauerbetrieb](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html). Für einen Vergleich zu Hause einen vollständigen Einsatz messen, Temperatur und Feuchte mitnotieren und nur ein für die Last geeignetes Messgerät verwenden. Für die Schweiz in CHF rechnen; Euro-Beispiele sind keine Währungsumrechnung.
 
-**🏆 Keller-Tipp: Comfee MDDF-20DEN7** — 20 L/Tag mit Hygrostat und Dauerablauf-Anschluss
+## 5. Kaufen in Deutschland, Österreich und der Schweiz
 
-✓ In mehreren Fachvergleichen der Keller-Favorit; genug Reserve für mittlere bis größere Keller, Hygrostat und Schlauchanschluss an Bord · ✕ Als Kompressor-Gerät verliert er in sehr kalten Kellern unter ca. 10–15 °C spürbar Leistung. Basierend auf öffentlich verfügbaren Tests — wir haben das Gerät nicht selbst getestet.
+- **Deutschland:** Die gekennzeichnete Produktsuche unten führt zu Amazon.de. Lies dort das Datenblatt der genauen Modellvariante.
+- **Österreich:** Lieferadresse, Gesamtkosten, Rückgabe und angebotene Variante beim Händler prüfen. Die Energieberatung Niederösterreich erklärt richtiges Lüften; diese lokale Orientierung ersetzt keine Gebäudeprüfung.
+- **Schweiz:** Die Topten-Liste für Luftentfeuchter auf dem Schweizer Markt hilft bei der Datenrecherche. Angebot in CHF, lokale Ausführung, Anschluss und Lieferbedingungen separat prüfen.
 
-Preis auf Amazon.de ansehen →
+Die deutschen Kauflinks sind keine Zusage für Lieferung nach Österreich oder in die Schweiz. Die beiden lokalen Quellenlinks sind keine EcoBack-Affiliate-Links. Wir vergeben keinen eigenen Testsieger.
 
-## Häufige Fragen
+**Messwerte und Datenblatt liegen vor?** Vergleiche erst dann passende Modelle. Prüfe Temperaturbereich, Ablauf und Gesamtpreis.
+Anzeige · Affiliate-Produktsuche bei Amazon.de · keine geprüfte Modell-Empfehlung
+Keller-Luftentfeuchter auf Amazon.de vergleichen →
 
-**Welche Luftfeuchtigkeit sollte ein Keller haben?**Dauerhaft unter 60 % relative Luftfeuchte, idealerweise 50 bis 55 %. Ab etwa 60 % an kühlen Wandflächen wird Schimmel wahrscheinlich. Ein einfaches Hygrometer für wenige Euro zeigt dir, wo dein Keller wirklich steht.
+## Checkliste zum Mitnehmen
 
-**Wie viel Entzugsleistung brauche ich für den Keller?**Für einen kleinen, mäßig feuchten Kellerraum reicht meist ein Gerät mit rund 10 bis 12 Litern pro Tag. Große oder stark durchfeuchtete Keller brauchen 20 bis 30 Liter pro Tag. Die Angabe gilt für Idealbedingungen; im kühlen Keller liegt die reale Leistung darunter, plane also etwas Reserve ein.
+Vor dem Einkauf notieren oder diesen Abschnitt ausdrucken:
 
-**Reicht ein Granulat-Entfeuchter für den Keller?**Nur für sehr kleine, geschlossene Räume wie Abstellraum, Schrank oder Wohnmobil. Granulat entzieht pro Woche nur wenige hundert Milliliter und kommt gegen einen echten feuchten Keller nicht an. Für einen ganzen Raum brauchst du ein elektrisches Gerät.
+- Raumtemperatur und Feuchteverlauf; sichtbare Feuchtequelle bereits geklärt?
+- Entzug und Leistungsaufnahme unter denselben Prüfbedingungen vorhanden?
+- Aufstellabstand, Ablaufhöhe und Tankzugang passend?
+- Eigener Tarif und geplante Laufzeit für eine Kostenrechnung notiert?
+- Exakte Modellvariante, Lieferland, Gesamtpreis und Rückgabe geprüft?
 
-**Sollte ich den feuchten Keller einfach lüften?**Nur wenn die Außenluft trockener ist als die Kellerluft. Im Sommer ist warme Außenluft feucht und kondensiert an den kühlen Wänden — dann macht Lüften den Keller nasser. Lüfte bevorzugt nachts oder früh morgens und lass sonst den Entfeuchter arbeiten.
+## Häufige Fragen zum Keller-Luftentfeuchter
 
-**Hilft ein Luftentfeuchter bei Hitze?**Gegen Kellerfeuchte in Hitzeperioden: ja — gerade dann trägt die Außenluft am meisten Wasser und kondensiert an den kühlen Kellerwänden, der Entfeuchter ist das richtige Werkzeug. Als Kühlgerät: nein. Trockenere Luft fühlt sich zwar etwas angenehmer an, aber ein Kompressor-Entfeuchter gibt Abwärme in den Raum ab und senkt die Temperatur nicht. Zum Kühlen von Wohnräumen siehe unseren Vergleich [Klimaanlage oder Ventilator](https://getecoback.com/guide/klimaanlage-oder-ventilator.html).
+### Welcher Luftentfeuchter eignet sich für einen kalten Keller?
+Vergleiche den erlaubten Temperaturbereich und die Entzugsleistung bei deiner Kellertemperatur. Die große Literzahl auf der Verpackung reicht dafür nicht. Bei Kompressorgeräten kann Abtauen die nutzbare Laufzeit verringern; Adsorption ist eine Alternative, deren Strombedarf du mitprüfen solltest.
 
-**Welcher Luftentfeuchter für den Keller ist Testsieger?**Wir testen Geräte nicht selbst und vergeben deshalb keinen „Testsieger“-Titel. Vorsicht bei Suchtreffern, die genau das versprechen: Gerade bei stark beworbenen Geräten stammen solche „Testsieger“-Seiten oft von Verkäufern selbst — [ein dokumentiertes Beispiel haben wir hier zerlegt](https://getecoback.com/guide/epicooler-erfahrungen.html). Verlässlicher: unabhängige Prüforganisationen wie die Stiftung Warentest heranziehen und auf die drei Merkmale achten, die im Keller wirklich zählen — reale Entzugsleistung bei Kellertemperatur, Hygrostat und Dauerablauf. [Wie wir auswählen, steht hier offen.](https://getecoback.com/wie-wir-empfehlen.html)
+### Reicht ein Luftentfeuchter mit 20 Litern pro Tag für den Keller?
+Das lässt sich aus der Nennleistung allein nicht ableiten. Prüftemperatur, Luftfeuchte, Raumvolumen und laufender Feuchtenachschub entscheiden mit. Vergleiche Leistungsangaben unter denselben Bedingungen, möglichst nahe an deinem Raum.
 
-**Keller dauerhaft trocken halten? Ein Gerät mit Hygrostat und Dauerablauf-Schlauch macht die Arbeit von allein.**
-Luftentfeuchter für den Keller auf Amazon.de ansehen →
+### Was kostet ein Luftentfeuchter mit 300 Watt am Tag?
+Ein Rechenbeispiel: 300 Watt mal 8 aktive Stunden sind 2,4 kWh. Bei angenommenen 0,30 Euro pro kWh sind das 0,72 Euro pro Tag oder 21,60 Euro für 30 gleiche Tage. Das ist kein aktueller Tarif und kein gemessener Verbrauch; Abtauen, Lüfter und Regelung können das Ergebnis ändern.
 
-**Weitere Ratgeber**
-[Keller lüften im Sommer: Wann es hilft, wann es schadet →](https://getecoback.com/guide/keller-lueften-sommer.html)
-[Luftentfeuchter gegen Schimmel: Was er wirklich kann →](https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html)
-[Luftentfeuchter Ratgeber: welches Gerät passt? →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)
-[Luftentfeuchter für 20 m² richtig dimensionieren →](https://getecoback.com/guide/luftentfeuchter-20-qm.html)
-[Was kostet der Betrieb an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
+### Kann ein Luftentfeuchter einen feuchten Keller dauerhaft sanieren?
+Nein. Er kann Feuchtigkeit aus der Raumluft entfernen, behebt aber keine undichte Leitung, eindringendes Wasser oder mangelhafte Abdichtung. Bei anhaltend nassen Bauteilen oder wiederkehrendem Schimmel muss die Ursache fachlich geklärt werden.
+
+### Kann ich das Kondenswasser direkt ablaufen lassen?
+Nur nach der Anleitung des konkreten Modells. Ein Schwerkraftablauf braucht ein passendes Gefälle und einen geeigneten Abfluss. Liegt der Ablauf höher, prüfe eine freigegebene Pumpenlösung. Schlauchanschluss bedeutet nicht automatisch, dass das Gerät eine Pumpe hat.
+
+## Quellen und Grenzen
+Redaktionell geprüft am 30. Oktober 2026. Technische Einordnung anhand öffentlicher Quellen; keine eigenen Produkttests, keine Preis- oder Liefergarantie. Kostenbeispiele sind eigene Rechnungen mit ausdrücklich angenommenen Werten.
+
+- Verbraucherzentrale: Heizen und Lüften — Feuchte und Lüftung.
+- Stiftung Warentest: Luftentfeuchter, was sie leisten — Verfahren und Einsatzbedingungen; keine Übernahme einer Modellrangliste.
+- Topten Schweiz: Luftentfeuchter — Datenfelder für Temperatur, Entzug und Leistungsaufnahme.
+- Energieberatung NÖ: Richtig lüften — lokale Orientierung für Österreich.
+
+**Der nächste Schritt**[Luftentfeuchter auswählen: Einsatzort und Gerätetyp →](https://getecoback.com/guide/luftentfeuchter-ratgeber.html)[Vorhandenes Gerät zieht kein Wasser: erst prüfen →](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html)[Wäsche trocknen: Feuchte und Kosten vergleichen →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)[Wohnen im Herbst und Winter: alle Einstiege →](https://getecoback.com/wohnen.html)
 
 ## Herstellerdaten vor dem Kauf prüfen
 Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
