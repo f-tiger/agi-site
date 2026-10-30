@@ -4172,7 +4172,7 @@ VIDEOS = {
  # balkonkraftwerk-speicher-nachruesten carried "Balkonkraftwerk mit Speicher:
  # Top 5 im Test" until 2026-09-27 — a product ranking of storage units, i.e. a
  # shelf in video form. Removed with the storage shelf; inject_video strips it.
- "luftentfeuchter-keller": ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)", "Unabhängiger Test im Video"),
+ "luftentfeuchter-keller": ("NCdYI6HdQi8", "Comfee-Luftentfeuchter im externen Anwendungsvideo", "Externes Video (kein EcoBack-Test)"),
  "keller-lueften-sommer": ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)", "Video-Anleitung"),
  # Winter pages, 2026-09-27 (owner: 「补充热门视频」). Chosen for pages that
  # already get search visits or are among bingbot's most-crawled; every ID

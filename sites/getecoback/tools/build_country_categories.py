@@ -49,7 +49,7 @@ def shell(c, page, content, hub=False):
         alternates += f'<link rel="alternate" hreflang="x-default" href="{BASE}/wohnen.html">\n'
     schema = {'@context': 'https://schema.org', '@type': 'CollectionPage' if hub else 'Article',
               'name': title, 'headline': heading, 'description': description, 'url': url,
-              'inLanguage': c['lang'], 'datePublished': DATE, 'dateModified': DATE,
+              'inLanguage': c['lang'], 'datePublished': DATE, 'dateModified': c.get('modified', DATE) if hub else DATE,
               'author': {'@type': 'Organization', 'name': 'EcoBack', 'url': BASE + '/ueber-uns.html'}}
     crumbs = f'<a href="{c["path"]}">{esc(c["country"])}</a> / {esc(c["guide_label"])}' if not hub else esc(c['eyebrow'])
     sources = ''.join(f'<li><a href="{esc(s[1])}">{esc(s[0])}</a></li>' for s in c['sources'])
@@ -68,7 +68,7 @@ def shell(c, page, content, hub=False):
 <a class="skip" href="#main">{esc(c['skip'])}</a>
 <header class="site-header"><a class="wordmark" href="/">EcoBack<span>home & energy</span></a><nav aria-label="{esc(c['country_label'])}">{nav}</nav></header>
 <main id="main"><article>
-<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p><p class="edition">{esc(c['edition'])} · <time datetime="{DATE}">{DATE}</time></p></header>
+<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p><p class="edition">{esc(c['edition'])} · <time datetime="{c.get('modified', DATE) if hub else DATE}">{c.get('modified', DATE) if hub else DATE}</time></p></header>
 {content}
 <section class="sources" id="sources"><h2>{esc(c['sources_label'])}</h2><p>{esc(c['method'])}</p><ul>{sources}</ul></section>
 </article></main>
@@ -93,7 +93,12 @@ def hub_body(c):
 <div class="category-title"><span class="number">0{n}</span><h2>{esc(t['title'])}</h2></div>
 <div class="category-detail"><p>{esc(t['summary'])}</p><h3>{esc(c['check_label'])}</h3><ul>{checks}</ul>
 <ul class="reading">{links}</ul><div class="commerce"><p class="disclosure">{esc(c['shop_disclosure'])}</p>{merchant(c, t['query'], t['shop_label'])}</div></div></section>''')
-    return chooser + jump + f'<aside class="decision-note"><strong>{esc(c["note_title"])}</strong><p>{esc(c["note"])}</p></aside>' + ''.join(sections)
+    regional = ''
+    if c.get('regional'):
+        r = c['regional']
+        links = ''.join('<li>' + internal(p, label) + '</li>' for label, p in r['links'])
+        regional = f'<section class="guide-section" id="dach"><h2>{esc(r["title"])}</h2><p>{esc(r["text"])}</p><ul>{links}</ul></section>'
+    return chooser + jump + f'<aside class="decision-note"><strong>{esc(c["note_title"])}</strong><p>{esc(c["note"])}</p></aside>' + ''.join(sections) + regional
 
 
 def guide_body(c):

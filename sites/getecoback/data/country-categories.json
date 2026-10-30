@@ -9,8 +9,8 @@
       "merchant": "amazon.de",
       "title": "Wohnen in Deutschland: Feuchte, Wäsche & Wärme | EcoBack",
       "description": "Raumklima und Energiekosten im Alltag: Luftfeuchte messen, Wäsche in der Wohnung trocknen und Wärme halten. Mit Checklisten vor dem Gerätekauf.",
-      "heading": "Erst den Raum verstehen. Dann passend kaufen.",
-      "intro": "Beschlagene Fenster, ein voller Wäscheständer oder ein kalter Arbeitsplatz? Hier findest du drei Wege zu einem angenehmeren Zuhause — mit Messung, einfachen Maßnahmen und einer passenden Einkaufsliste.",
+      "heading": "Feuchte, Wäsche und Heizkosten im Herbst und Winter",
+      "intro": "Beschlagene Fenster, ein feuchter Keller oder ein kalter Arbeitsplatz? Wähle dein Problem, prüfe den vorhandenen Raum und vergleiche erst danach Geräte und Betriebskosten.",
       "eyebrow": "Deutschland · Wohnen & Energie",
       "edition": "Kostenlose Ratgeber · EUR · Redaktion geprüft",
       "skip": "Zum Inhalt",
@@ -53,6 +53,10 @@
             [
               "Luftfeuchtigkeit richtig messen: der neue Leitfaden",
               "/guide/luftfeuchtigkeit-richtig-messen.html"
+            ],
+            [
+              "Kalter Keller: Entfeuchter bei 10–15 °C auswählen",
+              "/guide/luftentfeuchter-keller.html#kalter-keller"
             ],
             [
               "Lüften im Winter: den nächsten Schritt wählen",
@@ -105,6 +109,10 @@
             [
               "Heizlüfter: Stromverbrauch statt Sparversprechen",
               "/guide/heizluefter-stromverbrauch.html"
+            ],
+            [
+              "Stromsparender Heizlüfter? Kosten und Grenzen verstehen",
+              "/guide/heizluefter-stromsparend.html"
             ]
           ],
           "query": "Strommessgeraet Steckdose",
@@ -190,6 +198,25 @@
         "title": "Was möchtest du zu Hause verbessern?",
         "label": "Wähle dein Thema",
         "placeholder": "Bitte auswählen"
+      },
+      "modified": "2026-10-30",
+      "regional": {
+        "title": "Du liest aus Österreich oder der Schweiz?",
+        "text": "Die technischen Checklisten helfen beim Vergleichen. Deutsche Shoplinks und Euro-Beispiele bestätigen aber keine lokale Lieferbarkeit oder passende Modellvariante. Verwende deinen eigenen Tarif und prüfe die Bedingungen am Lieferort.",
+        "links": [
+          [
+            "Österreich: Energieberatung NÖ zum richtigen Lüften",
+            "https://www.energie-noe.at/richtig-lueften"
+          ],
+          [
+            "Schweiz: Topten-Daten zu Luftentfeuchtern",
+            "https://www.topten.ch/de/products/dehumidifiers"
+          ],
+          [
+            "Keller-Kaufcheck für Deutschland, Österreich und die Schweiz",
+            "/guide/luftentfeuchter-keller.html#dach-kauf"
+          ]
+        ]
       }
     },
     {

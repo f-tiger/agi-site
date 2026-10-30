@@ -439,6 +439,12 @@ jobs:
           node sites/getecoback/tools/install-public-engagement.mjs --write
           node sites/getecoback/tools/install-public-engagement.mjs
 
+      - name: Verify German buying paths on mobile and without JavaScript
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium
+          node sites/getecoback/tools/browser_dach_growth.mjs
+
       - name: Verify automatic content, source references and discovery after all generators
         run: python3 tools/check_auto_content_release.py
 

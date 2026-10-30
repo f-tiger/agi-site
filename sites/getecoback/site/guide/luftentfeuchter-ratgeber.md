@@ -12,6 +12,14 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 **Kurz gesagt:** Für Wohnräume und Keller im Sommer ist ein **Kompressor-Luftentfeuchter** mit 10–20 Litern/Tag die richtige Wahl; in kalten, ungeheizten Räumen unter 15 °C ein **Adsorptionstrockner**. Kleine Granulat-Entfeuchter helfen nur in Schränken und Wohnwagen. Ziel: 40–60 % relative Luftfeuchte. Ein 300-W-Gerät kostet bei 0,30 €/kWh rund **0,09 € pro Stunde**. Wichtig: Ein Entfeuchter **kühlt die Luft nicht**.
 
+## Luftentfeuchter auswählen: welcher Einsatzort?
+
+- [Kalter Keller: Leistung bei 10–15 °C und Ablauf vergleichen](https://getecoback.com/guide/luftentfeuchter-keller.html#kalter-keller).
+- [Wäsche in der Wohnung: Feuchte, Platz und Trocknung prüfen](https://getecoback.com/guide/waesche-trocknen-wohnung.html).
+- [Lange Laufzeit: Stromkosten mit dem eigenen Tarif rechnen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
+- [Vorhandenes Gerät zieht kein Wasser: vor einem Ersatz prüfen](https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html).
+Eine Literangabe allein reicht nicht zur Auswahl. Vergleiche Temperatur und Luftfeuchtigkeit der Leistungsprüfung. Bei nassen Bauteilen behebt ein Entfeuchter nicht die Ursache.
+
 ## Warum die Luftfeuchtigkeit so wichtig ist
 
 Feuchtigkeit steht hinter zwei sehr unterschiedlichen Problemen. Im Sommer sorgt sie für das schwüle, klebrige Gefühl: Bei 30 °C und 70 Prozent Luftfeuchte kann der Körper sich kaum durch Schwitzen kühlen, weil die Luft schon fast gesättigt ist — dieselbe Temperatur bei 45 Prozent fühlt sich deutlich erträglicher an. Im Winter kehrt sich das Problem um: Die warme, feuchte Raumluft trifft auf kalte Außenwände und kondensiert. Ab etwa 70 Prozent relativer Feuchte an der Wandoberfläche beginnt Schimmel zu wachsen, oft unsichtbar hinter Möbeln. Ein Entfeuchter greift bei beidem an derselben Stelle an: Er senkt den Wassergehalt der Luft.
