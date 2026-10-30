@@ -41,13 +41,16 @@
       }
     }
     function reset() { edit=-1; q('form').reset(); q('[data-save]').textContent=msg('add'); q('[data-cancel]').hidden=true; }
-    function render() {
+    function visibleItems() {
       const filter=q('[data-filter]').value, search=q('[data-search]').value.trim().toLowerCase();
+      return items.map((item,index)=>({item,index})).filter(({item:i})=>(filter==='all'||filter===i.status||(filter==='duplicates'&&i.status==='owned'&&i.quantity>1)) && (i.name+' '+i.series).toLowerCase().includes(search));
+    }
+    function render() {
       const list=q('[data-items]'); list.replaceChildren();
       const owned=items.filter(i=>i.status==='owned').reduce((n,i)=>n+i.quantity,0);
       const wish=items.filter(i=>i.status==='wish').reduce((n,i)=>n+i.quantity,0);
       q('[data-summary]').textContent=msg('summary').replace('{owned}',owned).replace('{wish}',wish);
-      const visible=items.map((item,index)=>({item,index})).filter(({item:i})=>(filter==='all'||filter===i.status||(filter==='duplicates'&&i.status==='owned'&&i.quantity>1)) && (i.name+' '+i.series).toLowerCase().includes(search));
+      const visible=visibleItems();
       q('[data-empty]').hidden=visible.length>0;
       for (const {item,index} of visible) {
         const card=document.createElement('article'); card.className='collection-item';
@@ -97,7 +100,7 @@
     q('[data-cancel]').addEventListener('click',reset);
     q('[data-filter]').addEventListener('change',render); q('[data-search]').addEventListener('input',render);
     q('[data-backup]').addEventListener('click',()=>{if(refresh()){download(core.backup(items),'application/json','dollscout-collection.json');track('collection_export');}});
-    q('[data-csv]').addEventListener('click',()=>{if(refresh()){download(core.csv(items),'text/csv;charset=utf-8','dollscout-collection.csv');track('collection_export');}});
+    q('[data-csv]').addEventListener('click',()=>{if(refresh()){download(core.csv(visibleItems().map(({item})=>item)),'text/csv;charset=utf-8','dollscout-'+q('[data-filter]').value+'.csv');track('collection_export');}});
     q('[data-import]').addEventListener('change',async event=>{
       const file=event.target.files[0]; if(!file) return;
       try {
@@ -116,6 +119,8 @@
     window.addEventListener('focus',()=>refresh());
     window.addEventListener('pageshow',()=>refresh());
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
+    const initialList=location.hash?.slice(1);
+    if(['wish','duplicates','owned'].includes(initialList))q('[data-filter]').value=initialList;
     render();
   } else {
     const form=q('form'); let unit='cm', buyingPlan=null;
