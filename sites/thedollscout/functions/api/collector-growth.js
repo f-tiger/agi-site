@@ -70,7 +70,7 @@ export function collectorWindow(now = new Date()) {
   const start = new Date(end+'T00:00:00Z');start.setUTCDate(start.getUTCDate()-28);
   const expected = start.toISOString().slice(0,10), measured = expected > FIRST_FULL_UTC_DAY ? expected : FIRST_FULL_UTC_DAY;
   const days = Math.max(0, Math.round((Date.parse(end)-Date.parse(measured))/86400000));
-  return {event_releases:{display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display plan events only exist after the commercial release; earlier absence is unmeasured. The overall window does not imply 28 days of coverage for these events.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
+  return {event_releases:{collector_wish_generate:'2026-10-30',collector_wish_export:'2026-10-30',collector_wish_response_reported:'2026-10-30',collector_wish_fulfilled_reported:'2026-10-30',display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display-plan events start 2026-10-29. Wish-card events start 2026-10-30, with first complete UTC day 2026-10-31. Earlier absence is unmeasured; the overall window is not coverage for every event.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
     measuredWindow:days ? {start:measured,end_exclusive:end} : null,coveredDays:days,full28Days:days===28,
     coverage:days ? 'measured_complete_utc_days' : 'pending_first_complete_day'};
 }
@@ -101,7 +101,7 @@ export async function onRequestGet(ctx) {
       if (!query) return json({ok:false,error:'missing_date_index',reason:'schema',counts:null},503);
       const base = {ok:true,...window,generated:new Date().toISOString(),cache_seconds:300,
         unit:'anonymous_events_not_users',
-        notes:'Browser actions are deduplicated per event per page load. Export records a generated download action, not a verified saved file or share. MCP counts validated successful tools/call responses; no_result is separate. No user, session, citation, attribution or revenue measurement. QA and declared privacy opt-outs are excluded; open requests and user agents can be spoofed. Historical periods and the partial release day are excluded. Zero means no stored eligible events in a successfully queried measured window; silent write failures and unreported outages cannot be reconstructed.'};
+        notes:'Wish response/fulfilled events are user-reported local status changes, not verified responses, matches, sales or unique requests. Card export is not proof of publication. Browser actions are deduplicated per event per page load. Export records a generated download action, not a verified saved file or share. MCP counts validated successful tools/call responses; no_result is separate. No user, session, citation, attribution or revenue measurement. QA and declared privacy opt-outs are excluded; open requests and user agents can be spoofed. Historical periods and the partial release day are excluded. Zero means no stored eligible events in a successfully queried measured window; silent write failures and unreported outages cannot be reconstructed.'};
       if (!window.coveredDays) return json({...base,counts:null,browser:[],mcp:[],query_rows_read:0});
       const result = await read(query,bounds),rows=resultRows(result);
       if (rows.length > 10000) return json({ok:false,error:'aggregate_capacity',counts:null},503);

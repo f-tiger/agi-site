@@ -2,6 +2,8 @@ name: Check TDS display measurement
 on:
   pull_request:
     paths:
+      - 'sites/thedollscout/collector-assets/wish-card*'
+      - 'sites/thedollscout/scripts/collecting/wish-card*'
       - 'sites/thedollscout/js/collector-core.js'
       - 'sites/thedollscout/js/collector-tools.js'
       - 'sites/thedollscout/scripts/gen-collector-pages.mjs'
@@ -37,3 +39,8 @@ jobs:
         run: node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
       - name: EN and DE browser smoke (all requests locally intercepted)
         run: node sites/thedollscout/scripts/display-calculator-browser.cjs
+
+      - name: Wanted card validation and local browser flow
+        run: |
+          node --test sites/thedollscout/scripts/collecting/wish-card-tests.mjs
+          node sites/thedollscout/scripts/collecting/wish-card-browser.mjs

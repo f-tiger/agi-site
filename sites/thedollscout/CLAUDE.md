@@ -462,3 +462,20 @@ Evidence read on 2026-10-30 (public originals; no outreach):
 Decision: do not keep building generic odds calculators, broad brand pages or forced registration in response to this research. Keep existing core usable; prioritize carrying an explicit cross-series wishlist into shopping and export, then validate actual independent usage before larger feature bets. Visual recognition/custom-photo gaps remain unresolved; existing text-only cards should not be claimed to solve them. No mass catalog scrape or unlicensed image reuse.
 
 Concrete follow-up: homepage links directly to the combined wishlist; tracker CSV exports the currently filtered/search-matched list, while JSON remains a complete backup. Duplicate entries are not declared available for trade. Tested in EN/DE with two brands, search, empty results, duplicates and full backup retention. This fixes a verified TDS workflow defect; it does not establish a unique competitor advantage or new revenue.
+
+## 2026-10-30: wanted/trade card release
+
+Owner requested two adversarial rounds, three successive plan revisions, then execution and deployment. These are documented self-reviews, not independent reviewers.
+
+Adversarial round 1: a public wish marketplace would need supply and moderation before it could deliver matches. Existing Reddit wishlist requests establish a task, not willingness to join another marketplace. Decision: a local wanted/trade card taken by its owner to an existing community; reply in the original post. No auto-posting, outreach, invented listings or guaranteed fulfillment.
+Adversarial round 2: generation/export could falsely look like success; automatic missing/duplicate records could misstate purchase/trade intent; dates and edits can make a shared card stale. Decision: explicit item/offer selection, pre-export review, expiry and edit invalidation, and separately named user-reported response/completion states. No personal contact fields or user content in analytics.
+
+Plan revision 1: focus exact-series buying/trading requests, general region, condition, budget/currency and validity.
+Plan revision 2: local single-draft storage, explicit wishlist import excluding checklistMissing entries, preview/copy/TXT/PNG, no collection mutation; response takes place in the user's own community post. The card is not proof of possession; community proof-of-life/photo rules remain necessary.
+Plan revision 3: EN/DE/ZH `/collecting/wish-card`, homepage and tool-directory discovery, canonical/hreflang/sitemap/AI text parity, bounded GA4/D1 events with release dates, CI plus real browser tests, deploy and IndexNow receipts.
+
+Free value: turn an explicit wish into a clear, portable request without rebuilding a post each time. Intended user: a collector seeking an exact item or a deliberate swap. No new paid offer or payment handling; willingness to pay for this feature is unknown. Existing competitor tracking/sharing tools and free community templates remain alternatives.
+
+Local response states are self-reports, not verified external users, replies, trades or revenue. Existing `/api/collector-growth` reports only fixed event totals and marks wish coverage starting 2026-10-30 (first full UTC day 2026-10-31). No future report may count these as independent people or confirmed transactions. First assess genuine exports and voluntary external response evidence; do not expand into a marketplace until actual counterparties and a workable moderation plan are demonstrated. Lack of traffic does not demonstrate lack of demand.
+
+Self-checks: schema/date/budget/route/privacy regression tests; EN/DE/ZH Playwright clipboard/TXT/PNG downloads, stale/expired/closed export blocking, response persistence, explicit-only wishlist import, hostile text rendering, corrupt-storage preservation and no production requests. Initial import field-name collision was caught and fixed with namedItem. Desktop/mobile and generated PNG visually reviewed. GA4 assembly check: 296 public pages and five intentional exclusions. No new cron, external posts, MCP API changes or spending.
