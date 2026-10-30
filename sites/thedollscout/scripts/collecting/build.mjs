@@ -1,3 +1,4 @@
+import {buildWishCards} from './wish-card.mjs';
 import {workspaceHTML,workspaceCopy} from './workspace.mjs';
 import {buildSeries,seriesLinks,seriesState} from './series-pages.mjs';
 import {buildExpansion,readingLinks,relatedPlanning,expansionParagraphs} from './expansion.mjs';
@@ -41,6 +42,7 @@ for(const lang of Object.keys(locales)){
 buildExpansion({brands,locales,origin,updated,write,emit,route,esc,art,copy});
 buildDiscovery({brands,locales,origin,updated,write,emit,route,esc});
 buildSeries({brands,locales,origin,write,emit,route,esc});
+buildWishCards({emit,route,esc,locales,origin,series:seriesState.series});
 write('collector-assets/icon.svg','<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="white"/><path d="M13 20L32 12L51 20V44L32 53L13 44Z" fill="white" stroke="#111114" stroke-width="3"/><path d="M13 20L32 29L51 20M32 29V53" fill="none" stroke="#111114" stroke-width="3"/><path d="M21 17L41 26V34" stroke="#e4002b" stroke-width="5"/></svg>');
 write('collector-assets/manifest.json',JSON.stringify({edition,updated,records},null,2)+'\n');
 const sm=path.join(out,'sitemap.xml');let xml=fs.readFileSync(sm,'utf8');

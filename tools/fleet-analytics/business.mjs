@@ -135,6 +135,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     if (action) return {name:'tool_' + (action[1] || '') + action[2], tool_id:match[1]};
   }
   if (host === 'thedollscout.com') {
+    if(route==='/collecting/wish-card'&&['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported'].includes(name))return {name,tool_id:'wish-card'};
     if(route==='/collecting/trading-meetup-checklist'&&['collector_swap_print_request','collector_swap_link_copy'].includes(name))return {name,tool_id:'trading-meetup-checklist'};
     if(route==='/for-agents'&&name==='collector_mcp_copy')return {name,tool_id:'collector-mcp'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_export')return {name:'collector_checklist_export',tool_id:'series-checklist'};

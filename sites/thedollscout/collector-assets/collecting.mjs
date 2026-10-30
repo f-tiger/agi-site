@@ -61,3 +61,7 @@ initSeries(recordAction);
 import {initSwapKit} from './swap-kit-ui.mjs?v=2026-10-15.1';
 const swapKit=document.querySelector('[data-swap-kit]');
 if(swapKit)initSwapKit(swapKit,recordAction);
+
+import {initWishCard} from './wish-card-ui.mjs?v=2026-10-30.1';
+const wishApp=document.querySelector('[data-wish-app]');
+if(wishApp)initWishCard(wishApp,recordAction);
