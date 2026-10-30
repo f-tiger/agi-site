@@ -7,8 +7,8 @@ const step=name=>{const start=deploy.indexOf('      - name: '+name+'\n');assert.
 assert.match(deploy,/BPJ_RECEIPTS_RECOVERY: \$\{\{ github.event_name == 'push' && contains\(github.event.head_commit.message, '\[member-receipts-recovery\]'\) \}\}/);
 // Check the guard's behavior, not its parentheses or formatting. The grammar is
 // deliberately limited to these local boolean conditions; never evaluate code.
-function allows(expression,{recovery=false,readOnly=false,publish=true,event='push',ref='refs/heads/main',message='',readonlyInput=false,sourceMessage='',sourceEvent='push',sourceTitle='',repository='f-tiger/agi-site',sourceRepository='f-tiger/agi-site',sourceBranch='main',conclusion='success'}={}){
- const values={'env.BPJ_RECEIPTS_RECOVERY':String(recovery),'env.OUTCOME_READ_ONLY_RELEASE':String(readOnly),'steps.startup_registry.outputs.publish':String(publish),'github.event_name':event,'github.ref':ref,'github.event.head_commit.message':message,'inputs.readonly_release':readonlyInput,'github.repository':repository,'github.event.workflow_run.head_commit.message':sourceMessage,'github.event.workflow_run.head_repository.full_name':sourceRepository,'github.event.workflow_run.head_branch':sourceBranch,'github.event.workflow_run.conclusion':conclusion,'github.event.workflow_run.event':sourceEvent,'github.event.workflow_run.display_title':sourceTitle};
+function allows(expression,{recovery=false,readOnly=false,publish=true,event='push',ref='refs/heads/main',message='',readonlyInput=false,sourceMessage='',sourceEvent='push',sourceTitle='',repository='f-tiger/agi-site',sourceRepository='f-tiger/agi-site',sourceBranch='main',conclusion='success',mode='watch'}={}){
+ const values={'inputs.mode':mode,'env.BPJ_RECEIPTS_RECOVERY':String(recovery),'env.OUTCOME_READ_ONLY_RELEASE':String(readOnly),'steps.startup_registry.outputs.publish':String(publish),'github.event_name':event,'github.ref':ref,'github.event.head_commit.message':message,'inputs.readonly_release':readonlyInput,'github.repository':repository,'github.event.workflow_run.head_commit.message':sourceMessage,'github.event.workflow_run.head_repository.full_name':sourceRepository,'github.event.workflow_run.head_branch':sourceBranch,'github.event.workflow_run.conclusion':conclusion,'github.event.workflow_run.event':sourceEvent,'github.event.workflow_run.display_title':sourceTitle};
  const tokens=expression.match(/!=|==|&&|\|\||[!(),]|'[^']*'|[A-Za-z_][A-Za-z0-9_.]*/g)||[];
  assert.equal(tokens.join(''),expression.replace(/'[^']*'|\s+/g,token=>token.startsWith("'")?token:''),'Unsupported workflow guard syntax');
  let index=0;
@@ -18,6 +18,7 @@ function allows(expression,{recovery=false,readOnly=false,publish=true,event='pu
   if(token==='true'||token==='false')return token==='true';
   if(token==='!'){const operand=value();assert.equal(typeof operand,'boolean');return !operand;}
   if(token?.startsWith("'"))return token.slice(1,-1);
+  if(token==='always'){assert.equal(tokens[index++],'(');assert.equal(tokens[index++],')');return true;}
   if(token==='contains'){
    assert.equal(tokens[index++],'(','Expected contains arguments');const source=value();
    assert.equal(tokens[index++],',','Expected contains separator');const search=value();
@@ -115,6 +116,32 @@ for(const name of ['Guard — pin current main before building','Guard — refus
  assert.match(step(name),/deploy-main-guard\.sh (?:prepare|check)/);
 }
 assert.match(deploy,/cancel-in-progress: false/);
+// PR #203 added an explicit Eco-only maintenance mode. Check its isolation,
+// not merely its presence in the dispatch menu. No watcher is executed here.
+function watchStep(source,name){
+ const start=source.indexOf('      - name: '+name+'\n');assert.ok(start>=0,name);
+ const end=source.indexOf('\n      - ',start+1);return source.slice(start,end<0?undefined:end);
+}
+function checkEcoIsolation(source){
+ const eco=watchStep(source,'Recover Eco membership only (manual, current main)');
+ assert.equal(eco.match(/^        run: (.+)$/m)?.[1],'node tools/member-studio/ops.mjs watch eco');
+ assert.match(eco,/^        timeout-minutes: 5$/m);
+ assert.match(eco,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
+ const names=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Match on-chain payments to pending ad slots','Check each independent site membership','Continue bounded Jarvis missions'];
+ const guard=block=>{const match=block.match(/^        if: (.+)$/m);assert.ok(match);return match[1];};
+ for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of ['watch','ads-only','receipts-only','eco-watch','inspect','unknown']){
+  const context={event,ref,mode};
+  assert.equal(allows(guard(eco),context),event==='workflow_dispatch'&&ref==='refs/heads/main'&&mode==='eco-watch','Eco admission '+JSON.stringify(context));
+  if(event==='workflow_dispatch'&&mode==='eco-watch')for(const name of names)assert.equal(allows(guard(watchStep(source,name)),context),false,'Eco must not run '+name);
+ }
+}
+checkEcoIsolation(watch);
+for(const mutated of [
+ watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == 'eco-watch'"," && inputs.mode == 'eco-watch'"),
+ watch.replace('node tools/member-studio/ops.mjs watch eco','node tools/member-studio/ops.mjs watch-all'),
+ watch.replace("inputs.mode == 'watch'","inputs.mode == 'eco-watch'"),
+ watch.replace("inputs.mode == 'eco-watch'","inputs.mode == 'watch'"),
+])assert.throws(()=>checkEcoIsolation(mutated),assert.AssertionError,'Eco isolation regression must fail');
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Build site','Build and validate practical tool workbench','Verify fleet account security','Complete and verify GA4 coverage after all page generators','Deploy to Cloudflare Pages','Verify live GA4 coverage and analytics asset version','Check startup MCP registry version'])assert.doesNotMatch(step(name),/^\s+if:/m,name+' must remain mandatory');
 const readOnlySkipped=['Check legacy membership obligations before isolation','Verify homepage click breakdown and labels','Verify live AI tools and free MCP','Verify search experiment and conversion stages on live site','Verify Web3 watcher and selling after deployment','Verify membership checkout and protected routes','Read membership migration totals (no account data)','Self-test agent API','Self-test watch endpoint','Self-test earning-pack registration wall','Self-test reach endpoint'];
 for(const name of readOnlySkipped)for(const readOnly of [false,true])assert.equal(allows(guardOf(name),{readOnly}),!readOnly,name);
@@ -149,7 +176,7 @@ assert.ok(deploy.indexOf('- name: Check existing public account configuration be
 const verify=step('Verify Web3 watcher and selling after deployment');assert.match(verify,/if \[ "\$BPJ_RECEIPTS_RECOVERY" = "true" \]; then\s+node scripts\/ad-watch-v2.mjs --if-configured --member-receipts-only\s+else\s+node scripts\/ad-watch-v2.mjs --if-configured --members\s+fi/);assert.match(verify,/REQUIRE_WEB3_CONFIGURED:.*env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true'/);
 checkGuard(guardOf('Publish and verify startup MCP registry entry'),{needsPublish:true});
 assert.match(registry,/!contains\(github.event.head_commit.message, '\[member-receipts-recovery\]'\)/);assert.match(registry,/!contains\(github.event.workflow_run.head_commit.message, '\[member-receipts-recovery\]'\)/);
-assert.match(watch,/cron: '7 \*\/2 \* \* \*'/);assert.match(watch,/options: \[watch, ads-only, receipts-only, inspect\]/);
+assert.match(watch,/cron: '7 \*\/2 \* \* \*'/);assert.match(watch,/options: \[watch, ads-only, receipts-only, eco-watch, inspect\]/);
 assert.equal((watch.match(/inputs.mode == 'receipts-only'/g)||[]).length,1);assert.equal((watch.match(/inputs.mode == 'ads-only'/g)||[]).length,1);
 assert.equal((watch.match(/github.event_name != 'workflow_dispatch' \|\| inputs.mode == 'watch'/g)||[]).length,3);
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Paid save path in a real browser','Verify fleet account security'])assert.doesNotMatch(step(name),/BPJ_RECEIPTS_RECOVERY/,name);
