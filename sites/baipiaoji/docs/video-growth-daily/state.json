@@ -348,7 +348,8 @@
       "secondRound": "Independent final four-document review passed: source/monitor times, failure/free-job distinction, private counts, unchanged English/weekly history and links; historical readiness fields separated to prevent stale status ambiguity.",
       "rootSelfCheck": "JSON parsed; four docs only; relative links valid; English, prior weekly-review object and original history preserved; source timestamps and bounded recent history verified. No product code/build needed."
     },
-    "nextAction": "Keep free tools and viewer discovery operating; read next original source artifact without date-based retry. Prioritize existing tutorial manual acceptance and an actually authorized channel; no duplicate draft or speculative registration implementation. Next weekly review Nov3 for Oct27–Nov2."
+    "nextAction": "Keep free tools and viewer discovery operating; read next original source artifact without date-based retry. Prioritize existing tutorial manual acceptance and an actually authorized channel; no duplicate draft or speculative registration implementation. Next weekly review Nov3 for Oct27–Nov2.",
+    "recordedInPullRequest": "https://github.com/f-tiger/agi-site/pull/207"
   },
   "recentActions": [
     {
@@ -439,7 +440,8 @@
       "recoveryDataCommit": "5f6a29fd32aa29c889360bceff15203954392910",
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/40854885332",
       "evidence": "iteration-2026-10-30.md",
-      "deploymentRequired": false
+      "deploymentRequired": false,
+      "recordedInPullRequest": 207
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
