@@ -27,7 +27,9 @@ for(const record of manifest.records){const p=new URL(record.url).pathname,html=
  if(record.slug.startsWith('brands/')){assert.ok(html.includes('data-fit-tool'));assert.ok(html.includes('id="display-fit"'));assert.ok(html.includes('name="itemHeight"'));}
  if(record.slug.startsWith('brands/')){const b=brands.find(b=>'brands/'+b.id===record.slug);const target=b[record.lang].tool;assert.ok(html.includes('href="'+target+'"'));assert.ok(html.includes('id="'+target.split('#')[1]+'"'));}
  if(!record.slug&&['en','de'].includes(record.lang))assert.deepEqual(inspectCollectorHome(record.lang,html),[],p+' collector task discovery');
- if(!record.slug){assert.ok(html.includes('id="watch"'));assert.ok(html.includes('data-video-load'));assert.ok(!html.includes('<iframe'));assert.ok(html.includes('collector-world.webp'));assert.ok(html.includes('fetchpriority="high"'));assert.ok(html.includes('id="tools"'));assert.ok(html.includes('data-demo-play'));assert.ok(html.includes('for-agents'));assert.ok(html.includes('https://baipiaoji.com'));}
+ if(!record.slug){assert.ok(html.includes('data-desk-config'));assert.ok(html.includes('id="series-search"'));assert.ok(html.includes('data-desk-summary'));assert.ok(!html.includes('collector-world.webp'));assert.ok(html.includes('id="tools"'));assert.ok(html.includes('for-agents'));}
+ if(record.slug==='series')assert.ok(html.includes('data-desk-config'));
+ if(record.slug.startsWith('series/'))assert.ok(html.includes('data-checklist-print'));
 }
 for(const url of [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]))assert.equal(isRetiredPath(new URL(url).pathname),false,url);
 for(const file of ['/llms.txt','/llms-full.txt']){const text=await read(file);assert.ok(text.startsWith('# The Doll Scout'));for(const b of brands)assert.ok(text.includes('/brands/'+b.id));assert.ok(text.includes('/document-assets/llms.txt'));}

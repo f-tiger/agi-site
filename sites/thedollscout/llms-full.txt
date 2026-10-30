@@ -1,8 +1,8 @@
 # The Doll Scout
 
-Independent collectible-toy guides and free collection tools. Focus: eight brand guides with probability, budget, collection progress and display planning. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
+Independent collectible-toy guides and free collection tools. Focus: searchable official-series checklists, browser-local collection progress, printable missing lists and buying plans. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
 
-- [Blind Box Checklists & Free Collection Tracker](https://thedollscout.com/) (en): Find SMISKI and Sonny Angel series checklists, save the figures you own, and plan your next purchase. Explore guides for Labubu, Jellycat and more.
+- [Find your series. Build your collection.](https://thedollscout.com/) (en): A checklist for what you have. A plan for what comes next.
   Text: https://thedollscout.com/collector-assets/text/en/home.txt
 - [Labubu / THE MONSTERS — Calculate a style’s odds](https://thedollscout.com/brands/labubu) (en): Start with the exact series and format. THE MONSTERS figures, vinyl plush and pendants are different products.
   Text: https://thedollscout.com/collector-assets/text/en/brands/labubu.txt
@@ -12,7 +12,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/en/brands/jellycat.txt
 - [Sonny Angel — Calculate my target’s odds](https://thedollscout.com/brands/sonny-angel) (en): Find the series you like, then use the official regional store and retailer directory to check where you buy.
   Text: https://thedollscout.com/collector-assets/text/en/brands/sonny-angel.txt
-- [SMISKI — Calculate style odds](https://thedollscout.com/brands/smiski) (en): Build a small scene around the poses you like. The official Living Series page identifies six regular poses and a randomly distributed secret; it does not give a numerical secret rate.
+- [SMISKI Collection Checklists by Series](https://thedollscout.com/brands/smiski) (en): Browse SMISKI series checklists, mark the figures you own and save your collection. Check series names, plan display space and use your printed odds.
   Text: https://thedollscout.com/collector-assets/text/en/brands/smiski.txt
 - [HIRONO — Calculate style odds](https://thedollscout.com/brands/hirono) (en): Use HIRONO Mime as a concrete starting point, then compare the exact piece with the scene you want to build. A whole-set assortment and separate loose boxes need different probability models.
   Text: https://thedollscout.com/collector-assets/text/en/brands/hirono.txt
@@ -20,7 +20,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/en/brands/dimoo.txt
 - [MOLLY — Calculate style odds](https://thedollscout.com/brands/molly) (en): Match the full MOLLY format and release. MEGA SPACE MOLLY 100% Series4 lists Basic, Regular, Special and Secret labels; those labels alone do not establish equal probabilities.
   Text: https://thedollscout.com/collector-assets/text/en/brands/molly.txt
-- [Blindbox-Checklisten und kostenloser Sammlungstracker](https://thedollscout.com/de/) (de): SMISKI- und Sonny-Angel-Checklisten finden, vorhandene Figuren speichern und den nächsten Kauf planen. Dazu Ratgeber für Labubu, Jellycat und mehr.
+- [Serie finden. Sammlung aufbauen.](https://thedollscout.com/de/) (de): Eine Liste für das, was Sie haben. Ein Plan für das, was noch fehlt.
   Text: https://thedollscout.com/collector-assets/text/de/home.txt
 - [Labubu / THE MONSTERS — Chancen einer Figur berechnen](https://thedollscout.com/de/brands/labubu) (de): Zuerst Serie und Format bestimmen. Figuren, Vinyl-Plüsch und Anhänger von THE MONSTERS sind unterschiedliche Produkte.
   Text: https://thedollscout.com/collector-assets/text/de/brands/labubu.txt
@@ -38,7 +38,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/de/brands/dimoo.txt
 - [MOLLY — Chancen einer Figur berechnen](https://thedollscout.com/de/brands/molly) (de): Das vollständige MOLLY-Format und die Veröffentlichung prüfen. MEGA SPACE MOLLY 100% Series4 nennt Basic, Regular, Special und Secret; diese Namen belegen keine gleichen Chancen.
   Text: https://thedollscout.com/collector-assets/text/de/brands/molly.txt
-- [盲盒系列清单与免费收藏管理工具](https://thedollscout.com/zh/) (zh): 查找 SMISKI 与 Sonny Angel 系列清单，保存已拥有的款式，规划下一次购买。也可探索 Labubu、Jellycat 等品牌指南。
+- [找到系列，把收藏理清楚。](https://thedollscout.com/zh/) (zh): 记住已经拥有的，也知道下一件想要什么。
   Text: https://thedollscout.com/collector-assets/text/zh/home.txt
 - [Labubu / THE MONSTERS — 计算想要款式的概率](https://thedollscout.com/zh/brands/labubu) (zh): 先确认具体系列和形态。THE MONSTERS 的手办、搪胶毛绒和挂件是不同产品。
   Text: https://thedollscout.com/collector-assets/text/zh/brands/labubu.txt
@@ -319,7 +319,6 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
 - [Jellycat plush size and fit](https://thedollscout.com/brands/jellycat#display-fit) — EN/DE/ZH; measure the intended pose, no compression model.
 - [Sonny Angel style probability](https://thedollscout.com/brands/sonny-angel#style-probability) — EN/DE/ZH; exact-series odds required, no official rate prefilled.
 - [Labubu regular-style and secret probability calculator](https://thedollscout.com/brands/labubu#style-probability) — EN/DE/ZH; editable independent-draw models, also callable with MCP calculate_style_probability.
-- [Selected creator videos](https://thedollscout.com/#watch) — creator attribution, original links and related tool actions.
 - [Labubu odds reference and calculator](https://thedollscout.com/rarity)
 - [Collection tracker](https://thedollscout.com/collection-tracker)
 - [Display fit calculator](https://thedollscout.com/display-calculator)
@@ -332,136 +331,72 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
 - [Existing TDS digital tools](https://thedollscout.com/document-tools)
 - [Digital tool index](https://thedollscout.com/document-assets/llms.txt)
 
-# Blind Box Checklists & Free Collection Tracker
+# Find your series. Build your collection.
 
 https://thedollscout.com/
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
-Find SMISKI and Sonny Angel series checklists, save the figures you own, and plan your next purchase. Explore guides for Labubu, Jellycat and more.
+A checklist for what you have. A plan for what comes next.
 
-Sonny Angel & SMISKI trading meetup checklist
-Bring only figures you are happy to let go. Make a short wanted list, note condition, and take this free blank sheet to your next swap.
-https://thedollscout.com/collecting/trading-meetup-checklist
+Saved on this browser. No account or cloud sync. Export a backup before changing devices.
 
-Which blind-box probability model fits?
-Use independent-draw math only when each box has the same chance and previous outcomes give no information about the next one.
-https://thedollscout.com/collecting/blind-box-rules
+Each checklist links to its official source. We do not verify live stock, prices or authenticity. Other brands have planning guides rather than complete series catalogs.
 
-Check a toy retailer before paying
-Begin with the official regional store or directory, then verify the exact seller and item. Product photos and a familiar logo do not establish authorization.
-https://thedollscout.com/collecting/check-retailers
+Sonny Angel Snack Series — https://thedollscout.com/series/sonny-angel-snack-series
 
-Measure a display that actually fits
-Use the empty inside space and the full outline of the object in its intended pose. Outside box dimensions and nominal toy height are not enough.
-https://thedollscout.com/collecting/display-checklist
+Sonny Angel Vegetable Series — https://thedollscout.com/series/sonny-angel-vegetable-series
 
-Start a collection you can keep enjoying
-Choose a small theme, a spending limit and a place to display it. A clear wish list is more useful than treating every new release as a missing piece.
-https://thedollscout.com/collecting/start-a-collection
+SMISKI Construction — https://thedollscout.com/series/smiski-construction
 
-Blind boxes or a confirmed figure?
-https://thedollscout.com/collecting/budget
+SMISKI Sunday — https://thedollscout.com/series/smiski-sunday
 
-How many new styles could I add?
-https://thedollscout.com/collecting/duplicates
+SMISKI @Work — https://thedollscout.com/series/smiski-work
 
-Press play. Find your favourite.
+SMISKI Museum — https://thedollscout.com/series/smiski-museum
 
-Three creator videos to explore real collections. Watch, then use a tool to make your own plan.
+SMISKI Living Series — https://thedollscout.com/series/smiski-living-series
 
-Meet the Have a Seat lineup — Lorien’s Toy Box
-POP MART Labubu Have A Seat Blind Box FULL SET Unboxing
-https://www.youtube.com/watch?v=xtvGm3qH1sc
-See the named styles in an unboxing, then calculate your own single-box chances. The video’s case result is not a probability estimate.
-https://thedollscout.com/brands/labubu#style-probability
+SMISKI Bath Series — https://thedollscout.com/series/smiski-bath-series
 
-A closer look at Image of Reality — Toy Chat
-Pop Mart: Skullpanda "Image of Reality" Series FULL CASE UNBOXING! ~Mysterious & Beautiful Figures~
-https://www.youtube.com/watch?v=yS-JAOeq2i8
-Use the series unboxing to compare designs, then read the source-linked buying guide.
-https://thedollscout.com/brands/skullpanda
+SMISKI Series1 — https://thedollscout.com/series/smiski-series1
 
-A shelf full of personality — Vic In The Meadow
-my 100+ jellycat collection tour!🧸🧺
-https://www.youtube.com/watch?v=wZF5TygoARs
-Browse a creator’s collection tour for inspiration, then plan around your own space and measurements.
-https://thedollscout.com/brands/jellycat#display-fit
+SMISKI Birthday — https://thedollscout.com/series/smiski-birthday
 
-Preview images come from YouTube. Loading a player connects to YouTube/Google; no video starts automatically. Captions and regional availability depend on the original video.
+SMISKI Exercising — https://thedollscout.com/series/smiski-exercising
 
-Give every favourite a place.
+SMISKI Dressing — https://thedollscout.com/series/smiski-dressing
 
-Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 cm gaps. Explain the limits.
+SMISKI Bed Series — https://thedollscout.com/series/smiski-bed-series
 
-Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations, stacking, weight or stability check.
+Sonny Angel Flower Series — https://thedollscout.com/series/sonny-angel-flower-series
 
-Labubu / THE MONSTERS: Start with the exact series and format. THE MONSTERS figures, vinyl plush and pendants are different products.
-https://thedollscout.com/brands/labubu
+SMISKI Series2 — https://thedollscout.com/series/smiski-series2
 
-SKULLPANDA: Explore the design, then check the format. A figure series and a plush pendant series need separate size and contents checks.
-https://thedollscout.com/brands/skullpanda
+Sonny Angel Marine Series — https://thedollscout.com/series/sonny-angel-marine-series
 
-Jellycat: Choose a character, size and use. The same name can appear in several sizes, so compare the full product details before buying.
-https://thedollscout.com/brands/jellycat
+SMISKI Moving — https://thedollscout.com/series/smiski-moving
 
-Sonny Angel: Find the series you like, then use the official regional store and retailer directory to check where you buy.
-https://thedollscout.com/brands/sonny-angel
+Sonny Angel Fruit Series — https://thedollscout.com/series/sonny-angel-fruit-series
 
-SMISKI: Build a small scene around the poses you like. The official Living Series page identifies six regular poses and a randomly distributed secret; it does not give a numerical secret rate.
-https://thedollscout.com/brands/smiski
+SMISKI Yoga Series — https://thedollscout.com/series/smiski-yoga-series
 
-HIRONO: Use HIRONO Mime as a concrete starting point, then compare the exact piece with the scene you want to build. A whole-set assortment and separate loose boxes need different probability models.
-https://thedollscout.com/brands/hirono
+SMISKI Toilet Series — https://thedollscout.com/series/smiski-toilet-series
 
-DIMOO: Pick a theme before chasing a complete shelf. Animal Kingdom is a figure release; record its exact identity so other DIMOO formats do not get mixed into the same checklist.
-https://thedollscout.com/brands/dimoo
+SMISKI Series3 — https://thedollscout.com/series/smiski-series3
 
-MOLLY: Match the full MOLLY format and release. MEGA SPACE MOLLY 100% Series4 lists Basic, Regular, Special and Secret labels; those labels alone do not establish equal probabilities.
-https://thedollscout.com/brands/molly
+Sonny Angel Animal Series 1 — https://thedollscout.com/series/sonny-angel-animal-series-1
 
-Understand blind-box odds — Calculate independent draws using the odds for the exact series.
-https://thedollscout.com/brands/labubu#style-probability
+Sonny Angel Animal Series 2 — https://thedollscout.com/series/sonny-angel-animal-series-2
 
-Plan your display — Check dimensions and clearance before choosing a display case.
-https://thedollscout.com/brands/skullpanda#display-fit
+Sonny Angel Animal Series 3 — https://thedollscout.com/series/sonny-angel-animal-series-3
 
-Track your collection — Keep owned figures, a wishlist and duplicate quantities in one private list.
-https://thedollscout.com/collection-tracker
+SMISKI Cheer — https://thedollscout.com/series/smiski-cheer
 
-Choose a sealed box if the surprise is part of the appeal. If you only want one character, compare a confirmed item with the budget you could spend on repeated draws. More boxes never make a secret guaranteed.
+Sonny Angel Animal Series 4 — https://thedollscout.com/series/sonny-angel-animal-series-4
 
-Match the product: Check the full series, format, dimensions and box contents.
+SMISKI Series4 — https://thedollscout.com/series/smiski-series4
 
-Check the source: Start with the brand’s official store or retailer directory.
-
-Set your total budget: Include delivery and any import costs. Keep a hard stop for repeat draws.
-
-Does TDS sell toys?
-No. TDS provides independent collecting guides and tools. Follow a brand’s official source to check current products and retailers.
-
-Is every featured collection trending?
-No. These are starting points for different collecting tasks, not a live popularity ranking. We only label trends when we have dated evidence.
-
-Can a checklist prove authenticity?
-No. A checklist can help spot mismatches and prepare questions. It is not a certificate or an official authentication service.
-
-Independent guides, free tools and links to official sources. We do not sell the toys, certify authenticity, or publish live stock and resale-price guarantees.
-
-POP MART US: https://www.popmart.com/us
-
-POP MART · Image Of Reality: https://www.popmart.com/us/products/953
-
-Jellycat US: https://us.jellycat.com/
-
-Sonny Angel · Official stores: https://www.sonnyangel.com/en/store/
-
-SMISKI · Living Series: https://smiski.com/e/products/living/
-
-POP MART · HIRONO Mime: https://www.popmart.com/us/products/365/hirono-mime-series-figures
-
-POP MART · DIMOO Animal Kingdom: https://www.popmart.com/us/products/1019/dimoo-animal-kingdom-series-figures
-
-POP MART · MEGA SPACE MOLLY 100% Series4: https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4
+Sonny Angel Sweets Series — https://thedollscout.com/series/sonny-angel-sweets-series
 
 
 # Labubu / THE MONSTERS — Calculate a style’s odds
@@ -790,10 +725,10 @@ Official source: https://www.sonnyangel.com/en/store/
 Independent guides, free tools and links to official sources. We do not sell the toys, certify authenticity, or publish live stock and resale-price guarantees.
 
 
-# SMISKI — Calculate style odds
+# SMISKI Collection Checklists by Series
 
 https://thedollscout.com/brands/smiski
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Build a small scene around the poses you like. The official Living Series page identifies six regular poses and a randomly distributed secret; it does not give a numerical secret rate.
 
@@ -1124,136 +1059,72 @@ Official source: https://www.popmart.com/us/products/3152/mega-space-molly-100pe
 Independent guides, free tools and links to official sources. We do not sell the toys, certify authenticity, or publish live stock and resale-price guarantees.
 
 
-# Blindbox-Checklisten und kostenloser Sammlungstracker
+# Serie finden. Sammlung aufbauen.
 
 https://thedollscout.com/de/
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
-SMISKI- und Sonny-Angel-Checklisten finden, vorhandene Figuren speichern und den nächsten Kauf planen. Dazu Ratgeber für Labubu, Jellycat und mehr.
+Eine Liste für das, was Sie haben. Ein Plan für das, was noch fehlt.
 
-Tauschbörsen-Checkliste für Sonny Angel & SMISKI
-Nur Figuren mitnehmen, die Sie wirklich abgeben möchten. Wünsche und Zustand notieren und dieses kostenlose Leerblatt zum nächsten Treffen mitnehmen.
-https://thedollscout.com/de/collecting/trading-meetup-checklist
+In diesem Browser gespeichert. Kein Konto und keine Cloud-Synchronisierung. Vor dem Gerätewechsel eine Sicherung exportieren.
 
-Welches Blindbox-Modell passt?
-Unabhängige Ziehungen nur nutzen, wenn jede Box dieselbe Chance hat und frühere Ergebnisse nichts über die nächste verraten.
-https://thedollscout.com/de/collecting/blind-box-rules
+Jede Checkliste verlinkt ihre offizielle Quelle. Keine geprüften Live-Bestände, Preise oder Echtheitsgarantien. Für andere Marken gibt es Ratgeber statt vollständiger Serienkataloge.
 
-Spielzeughändler vor der Zahlung prüfen
-Beim offiziellen regionalen Shop oder Verzeichnis beginnen und dann Verkäufer und Artikel abgleichen. Bilder und Logos allein belegen keine Autorisierung.
-https://thedollscout.com/de/collecting/check-retailers
+Sonny Angel Snack Series — https://thedollscout.com/de/series/sonny-angel-snack-series
 
-Eine wirklich passende Vitrine ausmessen
-Den freien Innenraum und die vollständige Kontur in der gewünschten Pose nutzen. Außenmaße und nominelle Figurenhöhe reichen nicht.
-https://thedollscout.com/de/collecting/display-checklist
+Sonny Angel Vegetable Series — https://thedollscout.com/de/series/sonny-angel-vegetable-series
 
-Eine Sammlung beginnen, die Freude macht
-Ein kleines Thema, eine Ausgabengrenze und einen Ausstellungsplatz wählen. Eine klare Wunschliste hilft mehr, als jede Neuerscheinung als fehlendes Stück zu sehen.
-https://thedollscout.com/de/collecting/start-a-collection
+SMISKI Construction — https://thedollscout.com/de/series/smiski-construction
 
-Blindboxen oder bestätigte Figur?
-https://thedollscout.com/de/collecting/budget
+SMISKI Sunday — https://thedollscout.com/de/series/smiski-sunday
 
-Wie viele neue Varianten könnten dazukommen?
-https://thedollscout.com/de/collecting/duplicates
+SMISKI @Work — https://thedollscout.com/de/series/smiski-work
 
-Play drücken. Lieblingsstücke finden.
+SMISKI Museum — https://thedollscout.com/de/series/smiski-museum
 
-Drei Creator-Videos zeigen echte Sammlungen. Anschauen und danach mit einem Werkzeug selbst planen.
+SMISKI Living Series — https://thedollscout.com/de/series/smiski-living-series
 
-Die Have-a-Seat-Serie kennenlernen — Lorien’s Toy Box
-POP MART Labubu Have A Seat Blind Box FULL SET Unboxing
-https://www.youtube.com/watch?v=xtvGm3qH1sc
-Figuren im Unboxing ansehen, danach eigene Einzelbox-Chancen berechnen. Das Ergebnis eines Sets ist keine Wahrscheinlichkeitsmessung.
-https://thedollscout.com/de/brands/labubu#style-probability
+SMISKI Bath Series — https://thedollscout.com/de/series/smiski-bath-series
 
-Image of Reality genauer ansehen — Toy Chat
-Pop Mart: Skullpanda "Image of Reality" Series FULL CASE UNBOXING! ~Mysterious & Beautiful Figures~
-https://www.youtube.com/watch?v=yS-JAOeq2i8
-Designs beim Unboxing vergleichen und anschließend den Ratgeber mit Quellen lesen.
-https://thedollscout.com/de/brands/skullpanda
+SMISKI Series1 — https://thedollscout.com/de/series/smiski-series1
 
-Ein Regal voller Charakter — Vic In The Meadow
-my 100+ jellycat collection tour!🧸🧺
-https://www.youtube.com/watch?v=wZF5TygoARs
-Inspiration beim Sammlungsrundgang finden, danach den eigenen Platz mit echten Maßen planen.
-https://thedollscout.com/de/brands/jellycat#display-fit
+SMISKI Birthday — https://thedollscout.com/de/series/smiski-birthday
 
-Vorschaubilder stammen von YouTube. Beim Laden des Players wird eine Verbindung zu YouTube/Google hergestellt; kein Video startet automatisch. Untertitel und regionale Verfügbarkeit hängen vom Originalvideo ab.
+SMISKI Exercising — https://thedollscout.com/de/series/smiski-exercising
 
-Ein Platz für jedes Lieblingsstück.
+SMISKI Dressing — https://thedollscout.com/de/series/smiski-dressing
 
-Mit TDS planen: Figuren von 8 × 6 × 15 cm in einer Vitrine mit 40 × 25 × 30 cm Innenmaß und 1 cm Abstand. Grenzen erklären.
+SMISKI Bed Series — https://thedollscout.com/de/series/smiski-bed-series
 
-Beispielergebnis: 12 Figuren in 4 × 3 Positionen, auf einer Ebene. Keine gemischten Ausrichtungen, Stapelung, Gewichts- oder Stabilitätsprüfung.
+Sonny Angel Flower Series — https://thedollscout.com/de/series/sonny-angel-flower-series
 
-Labubu / THE MONSTERS: Zuerst Serie und Format bestimmen. Figuren, Vinyl-Plüsch und Anhänger von THE MONSTERS sind unterschiedliche Produkte.
-https://thedollscout.com/de/brands/labubu
+SMISKI Series2 — https://thedollscout.com/de/series/smiski-series2
 
-SKULLPANDA: Design entdecken, dann Format prüfen. Figurenserien und Plüschanhänger benötigen eigene Maß- und Lieferumfangsprüfungen.
-https://thedollscout.com/de/brands/skullpanda
+Sonny Angel Marine Series — https://thedollscout.com/de/series/sonny-angel-marine-series
 
-Jellycat: Figur, Größe und Verwendungszweck auswählen. Derselbe Name kann mehrere Größen bezeichnen; vor dem Kauf alle Produktangaben vergleichen.
-https://thedollscout.com/de/brands/jellycat
+SMISKI Moving — https://thedollscout.com/de/series/smiski-moving
 
-Sonny Angel: Eine passende Serie wählen und anschließend den regionalen Händler über das offizielle Verzeichnis prüfen.
-https://thedollscout.com/de/brands/sonny-angel
+Sonny Angel Fruit Series — https://thedollscout.com/de/series/sonny-angel-fruit-series
 
-SMISKI: Eine kleine Szene aus Lieblingsposen gestalten. Die offizielle Living-Series-Seite nennt sechs Standardposen und ein zufällig verteiltes Secret, aber keine numerische Secret-Chance.
-https://thedollscout.com/de/brands/smiski
+SMISKI Yoga Series — https://thedollscout.com/de/series/smiski-yoga-series
 
-HIRONO: HIRONO Mime bietet einen konkreten Einstieg. Die gewünschte Figur mit der geplanten Szene vergleichen. Komplettset und einzelne lose Boxen brauchen unterschiedliche Wahrscheinlichkeitsmodelle.
-https://thedollscout.com/de/brands/hirono
+SMISKI Toilet Series — https://thedollscout.com/de/series/smiski-toilet-series
 
-DIMOO: Ein Thema wählen, bevor das ganze Regal gefüllt wird. Animal Kingdom ist eine Figurenserie; ihre genaue Bezeichnung verhindert Verwechslungen mit anderen DIMOO-Formaten.
-https://thedollscout.com/de/brands/dimoo
+SMISKI Series3 — https://thedollscout.com/de/series/smiski-series3
 
-MOLLY: Das vollständige MOLLY-Format und die Veröffentlichung prüfen. MEGA SPACE MOLLY 100% Series4 nennt Basic, Regular, Special und Secret; diese Namen belegen keine gleichen Chancen.
-https://thedollscout.com/de/brands/molly
+Sonny Angel Animal Series 1 — https://thedollscout.com/de/series/sonny-angel-animal-series-1
 
-Blindbox-Chancen verstehen — Unabhängige Ziehungen mit den Chancen der konkreten Serie berechnen.
-https://thedollscout.com/de/brands/labubu#style-probability
+Sonny Angel Animal Series 2 — https://thedollscout.com/de/series/sonny-angel-animal-series-2
 
-Ausstellungsplatz planen — Maße und Spielraum prüfen, bevor Sie eine Vitrine auswählen.
-https://thedollscout.com/de/brands/skullpanda#display-fit
+Sonny Angel Animal Series 3 — https://thedollscout.com/de/series/sonny-angel-animal-series-3
 
-Sammlung verwalten — Figuren, Wunschliste und doppelte Exemplare in einer privaten Liste verwalten.
-https://thedollscout.com/de/collection-tracker
+SMISKI Cheer — https://thedollscout.com/de/series/smiski-cheer
 
-Eine versiegelte Box passt, wenn die Überraschung dazugehört. Wenn Sie nur eine bestimmte Figur möchten, vergleichen Sie ein bestätigtes Exemplar mit dem Budget für wiederholte Ziehungen. Mehr Boxen garantieren kein Secret.
+Sonny Angel Animal Series 4 — https://thedollscout.com/de/series/sonny-angel-animal-series-4
 
-Produkt abgleichen: Serie, Format, Maße und Lieferumfang prüfen.
+SMISKI Series4 — https://thedollscout.com/de/series/smiski-series4
 
-Quelle prüfen: Beim offiziellen Shop oder Händlerverzeichnis beginnen.
-
-Gesamtbudget festlegen: Versand und mögliche Einfuhrkosten einplanen. Eine feste Grenze für weitere Ziehungen setzen.
-
-Verkauft TDS Spielzeug?
-Nein. TDS bietet unabhängige Sammelratgeber und Werkzeuge. Aktuelle Produkte und Händler finden Sie über die offizielle Quelle der Marke.
-
-Sind alle gezeigten Sammlungen im Trend?
-Nein. Sie sind Einstiege für unterschiedliche Sammelaufgaben, keine aktuelle Beliebtheitsrangliste. Trends kennzeichnen wir nur mit datierten Belegen.
-
-Beweist eine Checkliste die Echtheit?
-Nein. Eine Checkliste hilft bei Abweichungen und Rückfragen. Sie ist kein Zertifikat und kein offizieller Authentifizierungsdienst.
-
-Unabhängige Ratgeber, kostenlose Werkzeuge und offizielle Quellen. Wir verkaufen keine Figuren, zertifizieren keine Echtheit und garantieren weder Live-Bestände noch Wiederverkaufspreise.
-
-POP MART US: https://www.popmart.com/us
-
-POP MART · Image Of Reality: https://www.popmart.com/us/products/953
-
-Jellycat US: https://us.jellycat.com/
-
-Sonny Angel · Official stores: https://www.sonnyangel.com/en/store/
-
-SMISKI · Living Series: https://smiski.com/e/products/living/
-
-POP MART · HIRONO Mime: https://www.popmart.com/us/products/365/hirono-mime-series-figures
-
-POP MART · DIMOO Animal Kingdom: https://www.popmart.com/us/products/1019/dimoo-animal-kingdom-series-figures
-
-POP MART · MEGA SPACE MOLLY 100% Series4: https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4
+Sonny Angel Sweets Series — https://thedollscout.com/de/series/sonny-angel-sweets-series
 
 
 # Labubu / THE MONSTERS — Chancen einer Figur berechnen
@@ -1585,7 +1456,7 @@ Unabhängige Ratgeber, kostenlose Werkzeuge und offizielle Quellen. Wir verkaufe
 # SMISKI — Chancen einer Figur berechnen
 
 https://thedollscout.com/de/brands/smiski
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Eine kleine Szene aus Lieblingsposen gestalten. Die offizielle Living-Series-Seite nennt sechs Standardposen und ein zufällig verteiltes Secret, aber keine numerische Secret-Chance.
 
@@ -1916,136 +1787,72 @@ Offizielle Quelle: https://www.popmart.com/us/products/3152/mega-space-molly-100
 Unabhängige Ratgeber, kostenlose Werkzeuge und offizielle Quellen. Wir verkaufen keine Figuren, zertifizieren keine Echtheit und garantieren weder Live-Bestände noch Wiederverkaufspreise.
 
 
-# 盲盒系列清单与免费收藏管理工具
+# 找到系列，把收藏理清楚。
 
 https://thedollscout.com/zh/
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
-查找 SMISKI 与 Sonny Angel 系列清单，保存已拥有的款式，规划下一次购买。也可探索 Labubu、Jellycat 等品牌指南。
+记住已经拥有的，也知道下一件想要什么。
 
-Sonny Angel 与 SMISKI 换娃活动准备清单
-只带你确实愿意交换的款式。列出想要的款式、写明品相，带上这张免费空白表参加下次活动。
-https://thedollscout.com/zh/collecting/trading-meetup-checklist
+只保存在当前浏览器，无需账户，不会同步到云端。更换设备前请导出备份。
 
-你的盲盒适合哪一种概率模型？
-只有每盒概率相同、前面结果不会提供下一盒信息时，才适合使用独立抽取模型。
-https://thedollscout.com/zh/collecting/blind-box-rules
+每份清单都链接到官方资料。本站不提供已核实的实时库存、售价或鉴定服务。其他品牌目前提供规划指南，而非完整系列图鉴。
 
-购买潮玩前，怎样核对零售商？
-从官方地区商店或目录开始，再核对具体卖家与商品。熟悉的标志和产品照片不能单独证明授权。
-https://thedollscout.com/zh/collecting/check-retailers
+Sonny Angel Snack Series — https://thedollscout.com/zh/series/sonny-angel-snack-series
 
-展示柜尺寸，怎样测才真的放得下？
-测量空柜内部可用空间，以及物品在实际摆放姿态下的完整外形。盒体外尺寸和标称高度都不够。
-https://thedollscout.com/zh/collecting/display-checklist
+Sonny Angel Vegetable Series — https://thedollscout.com/zh/series/sonny-angel-vegetable-series
 
-建立一份能持续享受的收藏
-先选一个小主题、支出上限与展示位置。清楚的愿望单，比把每一次上新都视作缺少的一件更实用。
-https://thedollscout.com/zh/collecting/start-a-collection
+SMISKI Construction — https://thedollscout.com/zh/series/smiski-construction
 
-继续抽盒，还是购买确认款？
-https://thedollscout.com/zh/collecting/budget
+SMISKI Sunday — https://thedollscout.com/zh/series/smiski-sunday
 
-再开几盒，能增加多少新款？
-https://thedollscout.com/zh/collecting/duplicates
+SMISKI @Work — https://thedollscout.com/zh/series/smiski-work
 
-点开看看，找到你的心头好。
+SMISKI Museum — https://thedollscout.com/zh/series/smiski-museum
 
-三条创作者视频，看看真实收藏；看完就用工具，为自己的收藏做个计划。
+SMISKI Living Series — https://thedollscout.com/zh/series/smiski-living-series
 
-先看 Have a Seat 有哪些款 — Lorien’s Toy Box
-POP MART Labubu Have A Seat Blind Box FULL SET Unboxing
-https://www.youtube.com/watch?v=xtvGm3qH1sc
-看看开箱中的各个款式，再计算自己的独立抽盒概率。视频里一整箱的结果不代表单盒概率。
-https://thedollscout.com/zh/brands/labubu#style-probability
+SMISKI Bath Series — https://thedollscout.com/zh/series/smiski-bath-series
 
-近距离看看 Image of Reality — Toy Chat
-Pop Mart: Skullpanda "Image of Reality" Series FULL CASE UNBOXING! ~Mysterious & Beautiful Figures~
-https://www.youtube.com/watch?v=yS-JAOeq2i8
-通过系列开箱比较造型，再用有来源的购买指南核对产品。
-https://thedollscout.com/zh/brands/skullpanda
+SMISKI Series1 — https://thedollscout.com/zh/series/smiski-series1
 
-把收藏摆成自己喜欢的样子 — Vic In The Meadow
-my 100+ jellycat collection tour!🧸🧺
-https://www.youtube.com/watch?v=wZF5TygoARs
-从创作者的收藏展示中找灵感，再按自己的空间和实际尺寸做规划。
-https://thedollscout.com/zh/brands/jellycat#display-fit
+SMISKI Birthday — https://thedollscout.com/zh/series/smiski-birthday
 
-预览图来自 YouTube。加载播放器会连接 YouTube/Google，视频不会自动播放。字幕与地区可用性以原视频为准。
+SMISKI Exercising — https://thedollscout.com/zh/series/smiski-exercising
 
-让每一份喜欢，都有位置。
+SMISKI Dressing — https://thedollscout.com/zh/series/smiski-dressing
 
-用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。
+SMISKI Bed Series — https://thedollscout.com/zh/series/smiski-bed-series
 
-示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
+Sonny Angel Flower Series — https://thedollscout.com/zh/series/sonny-angel-flower-series
 
-Labubu / THE MONSTERS: 先确认具体系列和形态。THE MONSTERS 的手办、搪胶毛绒和挂件是不同产品。
-https://thedollscout.com/zh/brands/labubu
+SMISKI Series2 — https://thedollscout.com/zh/series/smiski-series2
 
-SKULLPANDA: 先选喜欢的设计，再核对产品形态。手办系列和毛绒挂件需要分别确认尺寸与包装内容。
-https://thedollscout.com/zh/brands/skullpanda
+Sonny Angel Marine Series — https://thedollscout.com/zh/series/sonny-angel-marine-series
 
-Jellycat: 按角色、尺寸和用途选择。同一个名字可能有多个尺寸，购买前需要核对完整产品信息。
-https://thedollscout.com/zh/brands/jellycat
+SMISKI Moving — https://thedollscout.com/zh/series/smiski-moving
 
-Sonny Angel: 先找到喜欢的系列，再通过官方分地区店铺及零售商目录核对购买渠道。
-https://thedollscout.com/zh/brands/sonny-angel
+Sonny Angel Fruit Series — https://thedollscout.com/zh/series/sonny-angel-fruit-series
 
-SMISKI: 围绕喜欢的姿态布置一个小场景。官方 Living Series 列出六个常规姿态及随机出现的隐藏款，但未提供数字化隐藏概率。
-https://thedollscout.com/zh/brands/smiski
+SMISKI Yoga Series — https://thedollscout.com/zh/series/smiski-yoga-series
 
-HIRONO: 从 HIRONO Mime 这样的具体系列开始，再选择符合场景的角色。整套配货与单独散盒需要不同的概率模型。
-https://thedollscout.com/zh/brands/hirono
+SMISKI Toilet Series — https://thedollscout.com/zh/series/smiski-toilet-series
 
-DIMOO: 先选主题，再考虑是否集齐一整架。Animal Kingdom 是手办系列，记录准确名称，避免把不同 DIMOO 形态混在同一清单中。
-https://thedollscout.com/zh/brands/dimoo
+SMISKI Series3 — https://thedollscout.com/zh/series/smiski-series3
 
-MOLLY: 核对 MOLLY 的完整形态与系列。MEGA SPACE MOLLY 100% Series4 标注 Basic、Regular、Special、Secret 等类别，这些名称本身不能证明各款等概率。
-https://thedollscout.com/zh/brands/molly
+Sonny Angel Animal Series 1 — https://thedollscout.com/zh/series/sonny-angel-animal-series-1
 
-读懂盲盒概率 — 使用对应系列的概率，计算独立抽盒的结果。
-https://thedollscout.com/zh/brands/labubu#style-probability
+Sonny Angel Animal Series 2 — https://thedollscout.com/zh/series/sonny-angel-animal-series-2
 
-规划展示空间 — 先核对尺寸与预留空间，再选择展示盒。
-https://thedollscout.com/zh/brands/skullpanda#display-fit
+Sonny Angel Animal Series 3 — https://thedollscout.com/zh/series/sonny-angel-animal-series-3
 
-整理收藏清单 — 在私人清单中整理已拥有、愿望单与重复款数量。
-https://thedollscout.com/collection-tracker
+SMISKI Cheer — https://thedollscout.com/zh/series/smiski-cheer
 
-如果享受随机体验，可以选择未拆封盲盒。如果只想要某个角色，先比较确认款的总成本与反复抽盒可能花费的预算。多买几盒也不能保证得到隐藏款。
+Sonny Angel Animal Series 4 — https://thedollscout.com/zh/series/sonny-angel-animal-series-4
 
-认清产品: 核对完整系列名、产品形态、尺寸与包装内容。
+SMISKI Series4 — https://thedollscout.com/zh/series/smiski-series4
 
-核对渠道: 从品牌官网或其零售商目录开始查证。
-
-设定总预算: 计入运费和可能的进口费用，为重复抽盒设定上限。
-
-TDS 直接卖玩具吗？
-不卖。TDS 提供独立收藏指南和工具，最新商品及零售商信息请前往品牌官方来源核对。
-
-这里展示的都是正在爆火的系列吗？
-不是。这些是不同收藏任务的入门方向，不是实时热度榜。趋势判断需要标注日期并有证据支持。
-
-检查清单能证明真品吗？
-不能。清单可以帮助发现不一致、准备向商家询问的问题，但不是真伪证书或官方鉴定服务。
-
-独立指南、免费工具和官方来源入口。本站不销售玩具，不提供真伪认证，也不保证实时库存或转售价格。
-
-POP MART US: https://www.popmart.com/us
-
-POP MART · Image Of Reality: https://www.popmart.com/us/products/953
-
-Jellycat US: https://us.jellycat.com/
-
-Sonny Angel · Official stores: https://www.sonnyangel.com/en/store/
-
-SMISKI · Living Series: https://smiski.com/e/products/living/
-
-POP MART · HIRONO Mime: https://www.popmart.com/us/products/365/hirono-mime-series-figures
-
-POP MART · DIMOO Animal Kingdom: https://www.popmart.com/us/products/1019/dimoo-animal-kingdom-series-figures
-
-POP MART · MEGA SPACE MOLLY 100% Series4: https://www.popmart.com/us/products/3152/mega-space-molly-100percent-series4
+Sonny Angel Sweets Series — https://thedollscout.com/zh/series/sonny-angel-sweets-series
 
 
 # Labubu / THE MONSTERS — 计算想要款式的概率
@@ -2377,7 +2184,7 @@ Fruit Series: Raspberry, Peach, Orange, Pear, Strawberry, Grape, Watermelon, Mel
 # SMISKI — 计算款式概率
 
 https://thedollscout.com/zh/brands/smiski
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 围绕喜欢的姿态布置一个小场景。官方 Living Series 列出六个常规姿态及随机出现的隐藏款，但未提供数字化隐藏概率。
 
@@ -3788,7 +3595,7 @@ https://thedollscout.com/document-assets/tool-capabilities.json
 # SMISKI & Sonny Angel series checklists
 
 https://thedollscout.com/series
-Content updated: 2026-10-29
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -3884,7 +3691,7 @@ https://thedollscout.com/series/sonny-angel-sweets-series
 # Sonny Angel Snack Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-snack-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -3918,7 +3725,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Vegetable Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-vegetable-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -3950,7 +3757,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Construction — Collection checklist
 
 https://thedollscout.com/series/smiski-construction
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -3982,7 +3789,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Sunday — Collection checklist
 
 https://thedollscout.com/series/smiski-sunday
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4014,7 +3821,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI @Work — Collection checklist
 
 https://thedollscout.com/series/smiski-work
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4046,7 +3853,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Museum — Collection checklist
 
 https://thedollscout.com/series/smiski-museum
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4080,7 +3887,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Living Series — Collection checklist
 
 https://thedollscout.com/series/smiski-living-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4112,7 +3919,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Bath Series — Collection checklist
 
 https://thedollscout.com/series/smiski-bath-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4144,7 +3951,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Series1 — Collection checklist
 
 https://thedollscout.com/series/smiski-series1
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4176,7 +3983,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Birthday — Collection checklist
 
 https://thedollscout.com/series/smiski-birthday
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4208,7 +4015,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Exercising — Collection checklist
 
 https://thedollscout.com/series/smiski-exercising
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4240,7 +4047,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Dressing — Collection checklist
 
 https://thedollscout.com/series/smiski-dressing
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4272,7 +4079,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Bed Series — Collection checklist
 
 https://thedollscout.com/series/smiski-bed-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4304,7 +4111,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Flower Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-flower-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4336,7 +4143,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Series2 — Collection checklist
 
 https://thedollscout.com/series/smiski-series2
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4368,7 +4175,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Marine Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-marine-series
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4400,7 +4207,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Moving — Collection checklist
 
 https://thedollscout.com/series/smiski-moving
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4432,7 +4239,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Fruit Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-fruit-series
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4464,7 +4271,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Yoga Series — Collection checklist
 
 https://thedollscout.com/series/smiski-yoga-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4496,7 +4303,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Toilet Series — Collection checklist
 
 https://thedollscout.com/series/smiski-toilet-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4528,7 +4335,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Series3 — Collection checklist
 
 https://thedollscout.com/series/smiski-series3
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4560,7 +4367,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Animal Series 1 — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-animal-series-1
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4592,7 +4399,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Animal Series 2 — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-animal-series-2
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4624,7 +4431,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Animal Series 3 — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-animal-series-3
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4656,7 +4463,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Cheer — Collection checklist
 
 https://thedollscout.com/series/smiski-cheer
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4688,7 +4495,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Animal Series 4 — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-animal-series-4
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4720,7 +4527,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI Series4 — Collection checklist
 
 https://thedollscout.com/series/smiski-series4
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4752,7 +4559,7 @@ https://thedollscout.com/collecting/budget
 # Sonny Angel Sweets Series — Collection checklist
 
 https://thedollscout.com/series/sonny-angel-sweets-series
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Official names. Your checklist. A clearer plan before the next box.
 
@@ -4784,7 +4591,7 @@ https://thedollscout.com/collecting/budget
 # SMISKI & Sonny Angel: Serien-Checklisten
 
 https://thedollscout.com/de/series
-Content updated: 2026-10-29
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -4880,7 +4687,7 @@ https://thedollscout.com/de/series/sonny-angel-sweets-series
 # Sonny Angel Snack Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-snack-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -4914,7 +4721,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Vegetable Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-vegetable-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -4946,7 +4753,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Construction — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-construction
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -4978,7 +4785,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Sunday — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-sunday
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5010,7 +4817,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI @Work — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-work
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5042,7 +4849,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Museum — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-museum
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5076,7 +4883,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Living Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-living-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5108,7 +4915,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Bath Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-bath-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5140,7 +4947,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Series1 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-series1
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5172,7 +4979,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Birthday — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-birthday
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5204,7 +5011,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Exercising — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-exercising
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5236,7 +5043,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Dressing — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-dressing
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5268,7 +5075,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Bed Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-bed-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5300,7 +5107,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Flower Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-flower-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5332,7 +5139,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Series2 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-series2
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5364,7 +5171,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Marine Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-marine-series
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5396,7 +5203,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Moving — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-moving
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5428,7 +5235,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Fruit Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-fruit-series
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5460,7 +5267,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Yoga Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-yoga-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5492,7 +5299,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Toilet Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-toilet-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5524,7 +5331,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Series3 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-series3
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5556,7 +5363,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Animal Series 1 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-animal-series-1
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5588,7 +5395,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Animal Series 2 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-animal-series-2
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5620,7 +5427,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Animal Series 3 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-animal-series-3
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5652,7 +5459,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Cheer — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-cheer
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5684,7 +5491,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Animal Series 4 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-animal-series-4
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5716,7 +5523,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI Series4 — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/smiski-series4
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5748,7 +5555,7 @@ https://thedollscout.com/de/collecting/budget
 # Sonny Angel Sweets Series — Sammlungs-Checkliste
 
 https://thedollscout.com/de/series/sonny-angel-sweets-series
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 Offizielle Namen. Ihre Checkliste. Ein klarer Plan vor der nächsten Box.
 
@@ -5780,7 +5587,7 @@ https://thedollscout.com/de/collecting/budget
 # SMISKI 与 Sonny Angel 系列收藏清单
 
 https://thedollscout.com/zh/series
-Content updated: 2026-10-29
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -5876,7 +5683,7 @@ https://thedollscout.com/zh/series/sonny-angel-sweets-series
 # Sonny Angel Snack Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-snack-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -5910,7 +5717,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Vegetable Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-vegetable-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -5942,7 +5749,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Construction — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-construction
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -5974,7 +5781,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Sunday — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-sunday
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6006,7 +5813,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI @Work — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-work
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6038,7 +5845,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Museum — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-museum
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6072,7 +5879,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Living Series — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-living-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6104,7 +5911,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Bath Series — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-bath-series
-Content updated: 2026-10-11
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6136,7 +5943,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Series1 — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-series1
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6168,7 +5975,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Birthday — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-birthday
-Content updated: 2026-10-12
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6200,7 +6007,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Exercising — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-exercising
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6232,7 +6039,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Dressing — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-dressing
-Content updated: 2026-10-13
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6264,7 +6071,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Bed Series — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-bed-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6296,7 +6103,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Flower Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-flower-series
-Content updated: 2026-10-14
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6328,7 +6135,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Series2 — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-series2
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6360,7 +6167,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Marine Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-marine-series
-Content updated: 2026-10-15
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6392,7 +6199,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Moving — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-moving
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6424,7 +6231,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Fruit Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-fruit-series
-Content updated: 2026-10-16
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6456,7 +6263,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Yoga Series — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-yoga-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6488,7 +6295,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Toilet Series — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-toilet-series
-Content updated: 2026-10-17
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6520,7 +6327,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Series3 — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-series3
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6552,7 +6359,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Animal Series 1 — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-animal-series-1
-Content updated: 2026-10-18
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6584,7 +6391,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Animal Series 2 — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-animal-series-2
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6616,7 +6423,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Animal Series 3 — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-animal-series-3
-Content updated: 2026-10-19
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6648,7 +6455,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Cheer — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-cheer
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6680,7 +6487,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Animal Series 4 — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-animal-series-4
-Content updated: 2026-10-20
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6712,7 +6519,7 @@ https://thedollscout.com/zh/collecting/budget
 # SMISKI Series4 — 收藏清单
 
 https://thedollscout.com/zh/series/smiski-series4
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 
@@ -6744,7 +6551,7 @@ https://thedollscout.com/zh/collecting/budget
 # Sonny Angel Sweets Series — 收藏清单
 
 https://thedollscout.com/zh/series/sonny-angel-sweets-series
-Content updated: 2026-10-21
+Content updated: 2026-10-30
 
 官方款式清单，加上你的收藏进度。开下一盒前，先有计划。
 

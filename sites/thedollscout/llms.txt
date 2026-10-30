@@ -1,8 +1,8 @@
 # The Doll Scout
 
-Independent collectible-toy guides and free collection tools. Focus: eight brand guides with probability, budget, collection progress and display planning. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
+Independent collectible-toy guides and free collection tools. Focus: searchable official-series checklists, browser-local collection progress, printable missing lists and buying plans. Not a toy seller or official authentication service. No live stock, popularity, resale-price or investment-return claims.
 
-- [Blind Box Checklists & Free Collection Tracker](https://thedollscout.com/) (en): Find SMISKI and Sonny Angel series checklists, save the figures you own, and plan your next purchase. Explore guides for Labubu, Jellycat and more.
+- [Find your series. Build your collection.](https://thedollscout.com/) (en): A checklist for what you have. A plan for what comes next.
   Text: https://thedollscout.com/collector-assets/text/en/home.txt
 - [Labubu / THE MONSTERS — Calculate a style’s odds](https://thedollscout.com/brands/labubu) (en): Start with the exact series and format. THE MONSTERS figures, vinyl plush and pendants are different products.
   Text: https://thedollscout.com/collector-assets/text/en/brands/labubu.txt
@@ -12,7 +12,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/en/brands/jellycat.txt
 - [Sonny Angel — Calculate my target’s odds](https://thedollscout.com/brands/sonny-angel) (en): Find the series you like, then use the official regional store and retailer directory to check where you buy.
   Text: https://thedollscout.com/collector-assets/text/en/brands/sonny-angel.txt
-- [SMISKI — Calculate style odds](https://thedollscout.com/brands/smiski) (en): Build a small scene around the poses you like. The official Living Series page identifies six regular poses and a randomly distributed secret; it does not give a numerical secret rate.
+- [SMISKI Collection Checklists by Series](https://thedollscout.com/brands/smiski) (en): Browse SMISKI series checklists, mark the figures you own and save your collection. Check series names, plan display space and use your printed odds.
   Text: https://thedollscout.com/collector-assets/text/en/brands/smiski.txt
 - [HIRONO — Calculate style odds](https://thedollscout.com/brands/hirono) (en): Use HIRONO Mime as a concrete starting point, then compare the exact piece with the scene you want to build. A whole-set assortment and separate loose boxes need different probability models.
   Text: https://thedollscout.com/collector-assets/text/en/brands/hirono.txt
@@ -20,7 +20,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/en/brands/dimoo.txt
 - [MOLLY — Calculate style odds](https://thedollscout.com/brands/molly) (en): Match the full MOLLY format and release. MEGA SPACE MOLLY 100% Series4 lists Basic, Regular, Special and Secret labels; those labels alone do not establish equal probabilities.
   Text: https://thedollscout.com/collector-assets/text/en/brands/molly.txt
-- [Blindbox-Checklisten und kostenloser Sammlungstracker](https://thedollscout.com/de/) (de): SMISKI- und Sonny-Angel-Checklisten finden, vorhandene Figuren speichern und den nächsten Kauf planen. Dazu Ratgeber für Labubu, Jellycat und mehr.
+- [Serie finden. Sammlung aufbauen.](https://thedollscout.com/de/) (de): Eine Liste für das, was Sie haben. Ein Plan für das, was noch fehlt.
   Text: https://thedollscout.com/collector-assets/text/de/home.txt
 - [Labubu / THE MONSTERS — Chancen einer Figur berechnen](https://thedollscout.com/de/brands/labubu) (de): Zuerst Serie und Format bestimmen. Figuren, Vinyl-Plüsch und Anhänger von THE MONSTERS sind unterschiedliche Produkte.
   Text: https://thedollscout.com/collector-assets/text/de/brands/labubu.txt
@@ -38,7 +38,7 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
   Text: https://thedollscout.com/collector-assets/text/de/brands/dimoo.txt
 - [MOLLY — Chancen einer Figur berechnen](https://thedollscout.com/de/brands/molly) (de): Das vollständige MOLLY-Format und die Veröffentlichung prüfen. MEGA SPACE MOLLY 100% Series4 nennt Basic, Regular, Special und Secret; diese Namen belegen keine gleichen Chancen.
   Text: https://thedollscout.com/collector-assets/text/de/brands/molly.txt
-- [盲盒系列清单与免费收藏管理工具](https://thedollscout.com/zh/) (zh): 查找 SMISKI 与 Sonny Angel 系列清单，保存已拥有的款式，规划下一次购买。也可探索 Labubu、Jellycat 等品牌指南。
+- [找到系列，把收藏理清楚。](https://thedollscout.com/zh/) (zh): 记住已经拥有的，也知道下一件想要什么。
   Text: https://thedollscout.com/collector-assets/text/zh/home.txt
 - [Labubu / THE MONSTERS — 计算想要款式的概率](https://thedollscout.com/zh/brands/labubu) (zh): 先确认具体系列和形态。THE MONSTERS 的手办、搪胶毛绒和挂件是不同产品。
   Text: https://thedollscout.com/collector-assets/text/zh/brands/labubu.txt
@@ -319,7 +319,6 @@ Independent collectible-toy guides and free collection tools. Focus: eight brand
 - [Jellycat plush size and fit](https://thedollscout.com/brands/jellycat#display-fit) — EN/DE/ZH; measure the intended pose, no compression model.
 - [Sonny Angel style probability](https://thedollscout.com/brands/sonny-angel#style-probability) — EN/DE/ZH; exact-series odds required, no official rate prefilled.
 - [Labubu regular-style and secret probability calculator](https://thedollscout.com/brands/labubu#style-probability) — EN/DE/ZH; editable independent-draw models, also callable with MCP calculate_style_probability.
-- [Selected creator videos](https://thedollscout.com/#watch) — creator attribution, original links and related tool actions.
 - [Labubu odds reference and calculator](https://thedollscout.com/rarity)
 - [Collection tracker](https://thedollscout.com/collection-tracker)
 - [Display fit calculator](https://thedollscout.com/display-calculator)
