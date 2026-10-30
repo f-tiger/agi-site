@@ -4363,5 +4363,111 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-10-30",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 2,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 10,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "agiscorecard",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "membership API is not ready",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_health",
+        "priority": 92,
+        "reason": "membership API is not ready",
+        "evidence": {
+          "public_ok": true,
+          "ready": false
+        },
+        "mode": "alert"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 23,
+          "query": "pattex luftentfeuchter",
+          "value": 53050
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 18,
+          "query": "lets try the viral crumbl labubu",
+          "value": 18550
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/earn/cases/clip-service",
+          "n7": 49,
+          "p7": 18
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/guide/luftentfeuchter-keller.html",
+          "n7": 5,
+          "p7": 4
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 461,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 250,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
   }
 ]

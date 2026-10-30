@@ -1,7 +1,7 @@
 # 工具增长运行报告
 
-检查时间：2026-10-29T08:52:23.698Z
-整体结果：需处理；入口/运行文件异常站点 1。
+检查时间：2026-10-30T08:56:45.646Z
+整体结果：通过；入口/运行文件异常站点 0。
 工具 24；语言页面 60；通过 60；异常 0。
 独立嵌入版本 43；BPJ Web3 就绪：是。
 营销草稿就绪：3；本流程外发：0。
@@ -17,5 +17,4 @@
 
 ## 待处理
 
-- repair: https://thedollscout.com discovery:index.html, discovery:de/index.html
 - evidence:  Import dated Search Console/Bing, referral and settled-payment evidence before claiming acquisition or revenue.

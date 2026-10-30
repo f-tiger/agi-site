@@ -4,8 +4,8 @@
   "signals": {
     "membership": {
       "ready": true,
-      "has_paid_members": null,
-      "has_active_members": null
+      "has_paid_members": false,
+      "has_active_members": false
     },
     "traffic": {
       "human_pv_band": "100+",
@@ -25,13 +25,6 @@
     }
   },
   "actions": [
-    {
-      "kind": "membership_observability",
-      "priority": 68,
-      "reason": "membership aggregate counters are unavailable",
-      "evidence": {},
-      "mode": "observe"
-    },
     {
       "kind": "content_gap",
       "priority": 55,

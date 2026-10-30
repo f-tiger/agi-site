@@ -3,8 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 17,
+    "n": 19,
     "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 8,
+    "q": "tool:verdicts"
+   },
+   {
+    "n": 8,
+    "q": "tool:thesis_tracker"
    },
    {
     "n": 8,
@@ -13,14 +21,6 @@
    {
     "n": 8,
     "q": "tool:invest_positions"
-   },
-   {
-    "n": 7,
-    "q": "tool:verdicts"
-   },
-   {
-    "n": 7,
-    "q": "tool:thesis_tracker"
    },
    {
     "n": 6,
@@ -33,25 +33,21 @@
    {
     "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
-   },
-   {
-    "n": 1,
-    "q": "use agi-scorecard for 8 graded agi-2027 predicti"
    }
   ]
  },
- "fetched": "2026-10-29",
+ "fetched": "2026-10-30",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/earn/cases/clip-service": {
-   "n7": 46,
+   "n7": 49,
    "p7": 18
   },
   "/zh/earn/cases/launch-acceptance": {
-   "n7": 42,
-   "p7": 13
+   "n7": 43,
+   "p7": 12
   }
  },
  "site": "agiscorecard",

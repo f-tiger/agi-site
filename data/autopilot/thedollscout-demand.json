@@ -22,23 +22,13 @@
   },
   {
    "kind": "value",
-   "match": 0.662,
+   "match": 0.687,
    "page": "brands/jellycat.html",
    "q": "jellycat halloween collection 2026",
    "seed": "jellycat",
    "source": "related-queries",
    "stand": "2026-10-20",
    "v": 1900
-  },
-  {
-   "kind": "value",
-   "match": 0.6,
-   "page": "series.html",
-   "q": "sonny angel advent calendar 2026",
-   "seed": "sonny angel",
-   "source": "related-queries",
-   "stand": "2026-10-21",
-   "v": 1550
   },
   {
    "kind": "value",
@@ -86,7 +76,7 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "index.html",
+   "page": "rarity.html",
    "q": "lets try the viral crumbl labubu",
    "seed": "labubu",
    "source": "related-queries",
@@ -106,7 +96,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "jellycat gargoyle",
    "seed": "jellycat",
    "source": "related-queries",
@@ -125,8 +115,18 @@
   },
   {
    "kind": "value",
+   "match": 0.59,
+   "page": "collecting/trading-meetup-checklist.html",
+   "q": "sonny angel advent calendar 2026",
+   "seed": "sonny angel",
+   "source": "related-queries",
+   "stand": "2026-10-21",
+   "v": 1550
+  },
+  {
+   "kind": "value",
    "match": 0.333,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "jellycat pigeon keychain",
    "seed": "jellycat",
    "source": "related-queries",
@@ -136,7 +136,7 @@
   {
    "kind": "value",
    "match": 0.2,
-   "page": "index.html",
+   "page": "rarity.html",
    "q": "crumbl labubu ube dot cake",
    "seed": "labubu",
    "source": "related-queries",
@@ -146,7 +146,7 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "index.html",
+   "page": "rarity.html",
    "q": "labubu halloween costume",
    "seed": "labubu",
    "source": "related-queries",
@@ -166,7 +166,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "spiderman jellycat",
    "seed": "jellycat",
    "source": "related-queries",
@@ -186,7 +186,7 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "spiderman jellycat bunny",
    "seed": "jellycat",
    "source": "related-queries",
@@ -196,7 +196,7 @@
   {
    "kind": "value",
    "match": 0.333,
-   "page": "index.html",
+   "page": "time-zone-planner.html",
    "q": "jellycat advent calendar",
    "seed": "jellycat",
    "source": "related-queries",
@@ -206,7 +206,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "coraline jellycat",
    "seed": "jellycat",
    "source": "related-queries",
@@ -216,7 +216,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "brands/jellycat.html",
    "q": "jellycat halloween",
    "seed": "jellycat",
    "source": "related-queries",
@@ -226,7 +226,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "rarity.html",
    "q": "chopped labubu",
    "seed": "labubu",
    "source": "related-queries",
@@ -236,7 +236,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "rarity.html",
    "q": "labubu halloween",
    "seed": "labubu",
    "source": "related-queries",
@@ -254,7 +254,7 @@
    "v": 170
   }
  ],
- "generated": "2026-10-29",
+ "generated": "2026-10-30",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],

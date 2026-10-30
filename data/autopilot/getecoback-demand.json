@@ -12,20 +12,6 @@
    "v": 113450
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 0
-   },
-   "kind": "value",
-   "match": 0.775,
-   "page": "tools.html",
-   "q": "akku heizung",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 56150
-  },
-  {
    "heat": null,
    "kind": "value",
    "match": 0.667,
@@ -35,31 +21,6 @@
    "source": "related-queries",
    "stand": "2026-10-22",
    "v": 46150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.875,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter 12 volt",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 39550
-  },
-  {
-   "heat": {
-    "n7": 4,
-    "p7": 2
-   },
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/heizluefter-stromsparend.html",
-   "q": "heizlüfter mit timer",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 36250
   },
   {
    "heat": null,
@@ -86,28 +47,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.6,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "heizlüfter große räume",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 34150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.85,
-   "page": "guide/klimaanlage-mietwohnung-oesterreich.html",
-   "q": "mobile heizung",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 33050
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.667,
    "page": "guide/infrarotheizung-badezimmer.html",
    "q": "infrarotheizung auf rollen",
@@ -126,17 +65,6 @@
    "source": "related-queries",
    "stand": "2026-10-23",
    "v": 32150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.85,
-   "page": "kategorie/heizen.html",
-   "q": "heizlüfter wenig stromverbrauch",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 30100
   },
   {
    "heat": null,
@@ -297,16 +225,6 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "kaufland heizlüfter",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 44350
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "steinfeld infrarotheizung",
    "seed": "infrarotheizung",
@@ -323,16 +241,6 @@
    "source": "related-queries",
    "stand": "2026-10-23",
    "v": 33350
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/akku-heizluefter.html",
-   "q": "heizlüfter globus",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 31900
   },
   {
    "kind": "value",
@@ -515,12 +423,12 @@
    "v": 50
   }
  ],
- "generated": "2026-10-29",
+ "generated": "2026-10-30",
  "geo": "DE",
- "heat_source": "measured 2026-10-29 (15 pages); no notes",
+ "heat_source": "measured 2026-10-30 (16 pages); no notes",
  "hot_pages": [
   {
-   "n7": 6,
+   "n7": 5,
    "p7": 4,
    "page": "/guide/luftentfeuchter-keller.html"
   },
@@ -536,11 +444,6 @@
   },
   {
    "n7": 4,
-   "p7": 2,
-   "page": "/guide/klimaanlage-kippfenster.html"
-  },
-  {
-   "n7": 4,
    "p7": 3,
    "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
@@ -551,8 +454,13 @@
   },
   {
    "n7": 3,
+   "p7": 0,
+   "page": "/guide/klimaanlage-dachfenster.html"
+  },
+  {
+   "n7": 3,
    "p7": 2,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
+   "page": "/guide/klimaanlage-kippfenster.html"
   },
   {
    "n7": 3,
@@ -565,9 +473,9 @@
    "page": "/guide/strompreis-radar.html"
   },
   {
-   "n7": 3,
-   "p7": 3,
-   "page": "/guide/was-bedeutet-btu.html"
+   "n7": 2,
+   "p7": 1,
+   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
    "n7": 2,
@@ -576,13 +484,8 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/heizung-10-qm.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-dachfenster.html"
+   "p7": 3,
+   "page": "/guide/klimaanlage-wann-kaufen.html"
   },
   {
    "n7": 2,
@@ -591,15 +494,18 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/tools.html"
+   "p7": 1,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
+  },
+  {
+   "n7": 2,
+   "p7": 4,
+   "page": "/guide/was-bedeutet-btu.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "dreo atom 316",
-  "dreo solaris slim h3",
   "radiator",
   "meacodry arete one 12l",
   "sky scanner",

@@ -3,9 +3,9 @@
   "site": "baipiaoji",
   "signals": {
     "membership": {
-      "ready": true,
-      "has_paid_members": null,
-      "has_active_members": null
+      "ready": false,
+      "has_paid_members": false,
+      "has_active_members": false
     },
     "traffic": {
       "human_pv_band": "100+",
@@ -26,11 +26,11 @@
   },
   "actions": [
     {
-      "kind": "membership_observability",
-      "priority": 68,
-      "reason": "membership aggregate counters are unavailable",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
       "evidence": {},
-      "mode": "observe"
+      "mode": "alert"
     }
   ],
   "autonomous_changes": [

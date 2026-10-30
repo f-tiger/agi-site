@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 11,
-    "p7": 13
+    "n7": 12,
+    "p7": 11
    },
    "btu_calc": {
     "n7": 0,
@@ -18,16 +18,16 @@
     "p7": 0
    },
    "buyer_view": {
-    "n7": 5,
-    "p7": 1
+    "n7": 4,
+    "p7": 2
    },
    "cold_now": {
-    "n7": 4,
+    "n7": 8,
     "p7": 8
    },
    "feuchte_now": {
-    "n7": 13,
-    "p7": 10
+    "n7": 12,
+    "p7": 9
    },
    "heizkosten_calc": {
     "n7": 0,
@@ -35,31 +35,31 @@
    },
    "laundry_view": {
     "n7": 0,
-    "p7": 4
+    "p7": 3
    },
    "page_view": {
-    "n7": 77,
-    "p7": 101
+    "n7": 71,
+    "p7": 99
    },
    "popup_click": {
     "n7": 1,
     "p7": 2
    },
    "popup_close": {
-    "n7": 10,
-    "p7": 7
+    "n7": 8,
+    "p7": 9
    },
    "popup_view": {
-    "n7": 18,
-    "p7": 23
+    "n7": 14,
+    "p7": 26
    },
    "seal_fit": {
     "n7": 0,
     "p7": 1
    },
    "strom_now": {
-    "n7": 16,
-    "p7": 10
+    "n7": 14,
+    "p7": 12
    },
    "stromkosten_calc": {
     "n7": 2,
@@ -71,12 +71,12 @@
    },
    "video_play": {
     "n7": 2,
-    "p7": 3
+    "p7": 2
    }
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-29",
+ "fetched": "2026-10-30",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -84,6 +84,10 @@
   "/": {
    "n7": 4,
    "p7": 3
+  },
+  "/en/guide/portable-ac-tilt-and-turn-windows.html": {
+   "n7": 2,
+   "p7": 1
   },
   "/guide/heizluefter-stromsparend.html": {
    "n7": 4,
@@ -93,37 +97,37 @@
    "n7": 2,
    "p7": 2
   },
-  "/guide/heizung-10-qm.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/heizung-20-qm.html": {
    "n7": 3,
    "p7": 0
   },
   "/guide/klimaanlage-dachfenster.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 0
   },
   "/guide/klimaanlage-kippfenster.html": {
-   "n7": 4,
+   "n7": 3,
    "p7": 2
   },
   "/guide/klimaanlage-wann-kaufen.html": {
-   "n7": 3,
-   "p7": 2
+   "n7": 2,
+   "p7": 3
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 2,
    "p7": 5
   },
   "/guide/luftentfeuchter-keller.html": {
-   "n7": 6,
+   "n7": 5,
    "p7": 4
   },
   "/guide/luftentfeuchter-ratgeber.html": {
    "n7": 3,
    "p7": 0
+  },
+  "/guide/mobile-klimaanlage-ueberwintern.html": {
+   "n7": 2,
+   "p7": 1
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
    "n7": 4,
@@ -134,8 +138,8 @@
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 3,
-   "p7": 3
+   "n7": 2,
+   "p7": 4
   },
   "/tools.html": {
    "n7": 2,
