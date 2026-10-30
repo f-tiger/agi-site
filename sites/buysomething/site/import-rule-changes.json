@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-29",
+ "generated": "2026-10-30",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-07-01",
+ "since": "2026-07-02",
  "queries": [
   "section 301",
   "section 232",
@@ -21,6 +21,23 @@
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
  "count": 18,
  "changes": [
+  {
+   "document_number": "2026-22292",
+   "date": "2026-10-30",
+   "type": "Presidential Document",
+   "title": "Further Modifying the Scope of Products of Canada Subject to the Additional Duties Imposed To Offset Canadian Discrimination Against the Commerce of the United States With Respect to Motor Vehicles",
+   "abstract": "",
+   "agencies": [
+    "Executive Office of the President"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/10/30/2026-22292/further-modifying-the-scope-of-products-of-canada-subject-to-the-additional-duties-imposed-to-offset",
+   "matched": [
+    "harmonized tariff schedule",
+    "section 232",
+    "section 301"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-22049",
    "date": "2026-10-28",
@@ -197,7 +214,6 @@
    ],
    "url": "https://www.federalregister.gov/documents/2026/10/05/2026-20228/agency-information-collection-activities-court-ordered-refunds-under-the-international-emergency",
    "matched": [
-    "harmonized tariff schedule",
     "section 232"
    ],
    "matched_in": "full_text_only"
@@ -291,21 +307,6 @@
    "url": "https://www.federalregister.gov/documents/2026/08/14/2026-16605/unified-agenda-of-federal-regulatory-and-deregulatory-actions",
    "matched": [
     "de minimis exemption"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-16400",
-   "date": "2026-08-11",
-   "type": "Presidential Document",
-   "title": "Adjusting Imports of Polysilicon and Its Derivatives Into the United States",
-   "abstract": "",
-   "agencies": [
-    "Executive Office of the President"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/08/11/2026-16400/adjusting-imports-of-polysilicon-and-its-derivatives-into-the-united-states",
-   "matched": [
-    "section 232"
    ],
    "matched_in": "full_text_only"
   }
