@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-29",
+ "fetched": "2026-10-30",
  "geo": "US",
  "seeds": {
   "artificial general intelligence": {
@@ -81,65 +81,78 @@
   "13f filings": {
    "auto": [
     "13f filings",
-    "13f filings of top investors",
-    "13f filings situational awareness",
-    "13f filings berkshire hathaway",
     "13f filings search",
-    "13f filings dates",
+    "13f filings of top investors",
     "13f filings whalewisdom",
-    "13f filings meaning",
+    "13f filings dates",
+    "13f filings berkshire hathaway",
     "13f filings deadline",
-    "13f filings sec"
+    "13f filings meaning",
+    "13f filings sec",
+    "13f filings list"
    ],
-   "rising": [],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-19"
-  },
-  "ai stocks": {
    "rising": [
     {
-     "q": "top tourist attractions in paris",
-     "v": 12300
-    },
-    {
-     "q": "jim cramer ai chip stocks",
-     "v": 11450
-    },
-    {
-     "q": "nvidia versus asml ai stocks",
-     "v": 11100
-    },
-    {
-     "q": "cheapest flights to tokyo",
-     "v": 10450
-    },
-    {
-     "q": "best time to visit maldives",
-     "v": 9500
-    },
-    {
-     "q": "how to bake a cake",
-     "v": 8400
-    },
-    {
-     "q": "joinem",
-     "v": 7250
-    },
-    {
-     "q": "shop lc live",
-     "v": 6500
-    },
-    {
-     "q": "ai infrastructure stocks comeback",
-     "v": 6400
-    },
-    {
-     "q": "jpmorgan ai stocks warning",
-     "v": 2350
+     "q": "13f filings list",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-19"
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-30"
+  },
+  "ai stocks": {
+   "auto": [
+    "ai stocks",
+    "ai stocks to buy",
+    "ai stocks today",
+    "ai stocks to invest in",
+    "ai stocks down",
+    "ai stocks to buy now",
+    "ai stocks crash",
+    "ai stocks list",
+    "ai stocks down today",
+    "ai stocks to watch"
+   ],
+   "rising": [
+    {
+     "q": "ai stocks to buy",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks today",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks to invest in",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks down",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks to buy now",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks crash",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks list",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks down today",
+     "v": "new"
+    },
+    {
+     "q": "ai stocks to watch",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-10-30"
   }
  }
 }

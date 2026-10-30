@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-29",
- "radar_fetched": "2026-10-29",
+ "generated": "2026-10-30",
+ "radar_fetched": "2026-10-30",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -30,7 +30,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 3.62,
+   "score": 3.92,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -45,7 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.79,
+   "score": 2.89,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -66,16 +66,31 @@
    "fleet_pages": []
   },
   {
-   "theme": "update anthropic s non existant customer support",
+   "theme": "are knuth s stanford pages down",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-10-22"
+    "2026-10-29"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.19,
+   "score": 2.32,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "everything i post doesn t go through",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-29"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.24,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -91,6 +106,21 @@
    "state": "scout",
    "supplied": false,
    "score": 2.12,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "alternative to tldraw draw fast",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-10-28"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.09,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -121,36 +151,6 @@
    "state": "scout",
    "supplied": false,
    "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "php based faq engine",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-10-21"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "alternative to tldraw draw fast",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-10-28"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.04,
    "demand": [],
    "supply": [],
    "fleet_pages": []
