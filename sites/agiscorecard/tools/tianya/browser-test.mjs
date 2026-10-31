@@ -76,7 +76,9 @@ const cloudPopup=async page=>{
  return popup;
 };
 try{
- const executablePath=process.env.TIANYA_CHROMIUM_EXECUTABLE||(fs.existsSync('/usr/bin/chromium')?'/usr/bin/chromium':undefined);
+ // Use Playwright's locked browser by default, including on CI hosts that also
+ // provide an unrelated system Chromium. Local overrides must be explicit.
+ const executablePath=process.env.TIANYA_CHROMIUM_EXECUTABLE||process.env.CHROMIUM_EXECUTABLE;
  browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
  for(const lang of ['en','zh']){
   const prefix=lang==='zh'?'/zh':'',context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true});
