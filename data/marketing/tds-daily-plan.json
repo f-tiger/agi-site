@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -189,11 +189,11 @@
     {
       "day": 20,
       "date": "2026-10-31",
-      "focus": "Data quality",
-      "task": "检查官方来源失效、重复系列、陈旧时间和未覆盖款式",
-      "deliverable": "修复一个真实数据问题；无新事实就保持日期",
-      "gate": "沿用每天最多2系列、6详情抓取上限",
-      "status": "planned"
+      "focus": "Search entry and activation",
+      "task": "落实已核实的SMISKI搜索意图错位、心愿卡入口断点和空表单示例；同步三语发现面",
+      "deliverable": "现有入口的准确说明、直接下一步和独立示例；复用既有工具",
+      "gate": "测试、浏览器验收、准确部署SHA、GA4、SEO/GEO及适用IndexNow",
+      "status": "implemented_and_locally_verified_release_verification_required"
     },
     {
       "day": 21,
@@ -356,5 +356,58 @@
       "Already published video observation windows"
     ],
     "external_distribution": "No new post, message, outreach, paid placement or partner adoption authorized or claimed."
+  },
+  "current_experiment": {
+    "id": "smiski-checklist-entry-20261031",
+    "updated": "2026-10-31",
+    "audience": "SMISKI collectors looking for a printable named series checklist; existing collectors with an explicit wanted item.",
+    "hypothesis": "A search-matched SMISKI entry plus direct series/tracker/meetup links helps people use the existing printable checklist and wanted card.",
+    "pages": [
+      "/brands/smiski",
+      "/series/smiski-museum",
+      "/series/smiski-construction",
+      "/collection-tracker",
+      "/collecting/trading-meetup-checklist",
+      "/collecting/wish-card"
+    ],
+    "changes": [
+      "EN/DE/ZH SMISKI search title, first-screen purpose and print/PDF instructions",
+      "Series, tracker and meetup guide link to the existing wanted-card tool",
+      "Static labeled example before the empty wanted-card form; no sample conversion events"
+    ],
+    "status": "implemented_and_locally_verified_release_verification_required",
+    "measurement_window": {
+      "start": "2026-11-01",
+      "end_inclusive": "2026-11-07",
+      "search_review_not_before": "2026-11-10",
+      "timezone": "UTC"
+    },
+    "daily_checks": [
+      "Reuse existing fleet analytics report and successful cached collector-growth totals; do not duplicate collection runs.",
+      "Check release health, qualified landing sessions and actual saved/exported actions separately. Exclude QA, examples and known owner use.",
+      "New card event coverage starts 2026-10-30; first complete UTC day 2026-10-31. Missing earlier coverage is not zero.",
+      "Keep GA4, GSC, first-party event counts and verified external feedback separate. No inferred cross-source conversion rate."
+    ],
+    "decision_rules": [
+      "Below 20 production target-page sessions over the full window: insufficient acquisition; inspect reach and snippet/query match before adding features. This is an operational gate, not statistical significance.",
+      "At least 20 target-page sessions but fewer than 3 relevant genuine save/export actions: inspect the task and entry friction; events are not unique people.",
+      "At least 3 genuine task actions: continue one focused observation cycle; repeat use and paid demand still require independent evidence.",
+      "Search results lag. Use only available complete days and postpone the search comparison until the defined window is available; no daily title churn."
+    ],
+    "channel_constraints": [
+      "r/smiskis prohibits AI-generated or edited posts/comments; do not post assistant drafts there.",
+      "r/SonnyAngel restricts external-platform promotion; r/Labubuswap forbids ISO/service ads. Observe demand without unsolicited promotion.",
+      "Preserve organizer-kit acquisition priority. Do not make more video assets without a verified relevant audience and clickable path.",
+      "No new spend, cron, social post or external message is part of this site optimization."
+    ],
+    "public_evidence": [
+      "https://www.blindboxtracker.com/app/",
+      "https://www.reddit.com/r/SonnyAngel/comments/1x824od/new_app/",
+      "https://www.reddit.com/r/smiskis/comments/1xfon1q/updated_smiski_check_list_102026/",
+      "https://www.reddit.com/r/smiskis/",
+      "https://www.reddit.com/r/SonnyAngel/",
+      "https://www.reddit.com/r/Labubuswap/"
+    ],
+    "privacy": "Account exports, counts, identities and private automation state stay outside this public plan."
   }
 }
