@@ -13,7 +13,7 @@ export const smiskiEntry = {
  },
  de: {
   title: 'SMISKI-Checklisten nach Serie — Drucken oder als PDF speichern',
-  heading: 'SMISKI-Sammlungschecklisten',
+  heading: 'SMISKI Checklisten',
   intro: 'SMISKI-Serie wählen, vorhandene Figuren markieren und die Checkliste drucken oder als PDF speichern. Kostenlos im Browser, ohne Konto.',
   primary: 'Meine Serie wählen',
   printTitle: 'Eine SMISKI-Checkliste zum Ausdrucken',
