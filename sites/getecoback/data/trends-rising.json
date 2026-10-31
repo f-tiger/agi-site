@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-30",
+ "fetched": "2026-10-31",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -52,101 +52,83 @@
    "last_attempt_status": "ok"
   },
   "schimmel entfernen": {
-   "rising": [
-    {
-     "q": "schimmel mit spiritus entfernen",
-     "v": 74650
-    },
-    {
-     "q": "schimmel aus silikonfugen entfernen",
-     "v": 57950
-    },
-    {
-     "q": "schimmel entferner wand",
-     "v": 33600
-    },
-    {
-     "q": "kalkfarbe",
-     "v": 23250
-    },
-    {
-     "q": "schimmel an silikon entfernen",
-     "v": 4350
-    },
-    {
-     "q": "schimmel am fensterrahmen entfernen",
-     "v": 3750
-    },
-    {
-     "q": "schimmel an fensterdichtung entfernen",
-     "v": 3700
-    },
-    {
-     "q": "schimmel an der wand entfernen hausmittel",
-     "v": 3450
-    },
-    {
-     "q": "isopropanol kaufen",
-     "v": 2350
-    },
-    {
-     "q": "isopropanol",
-     "v": 80
-    }
+   "auto": [
+    "schimmel entfernen",
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
+    "schimmel entfernen firma in der nähe",
+    "schimmel entfernen tapete",
+    "schimmel entfernen alkohol"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-30",
-   "polluted": false,
-   "last_attempt_at": "2026-10-30T10:59:31.105441+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen dm",
+    "schimmel entfernen firma in der nähe",
+    "schimmel entfernen tapete",
+    "schimmel entfernen alkohol"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-10-31T10:33:08.541095+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-10-31"
   },
   "infrarotheizung": {
    "rising": [
     {
      "q": "könighaus infrarotheizung thermostat",
-     "v": 113450
+     "v": 110550
     },
     {
-     "q": "byecold infrarotheizung",
-     "v": 49950
+     "q": "heizlüfter oder infrarotheizung",
+     "v": 59800
     },
     {
      "q": "papermoon infrarotheizung",
-     "v": 48250
+     "v": 44050
     },
     {
-     "q": "steinfeld infrarotheizung",
-     "v": 37500
+     "q": "infrarotheizung schreibtisch",
+     "v": 40800
     },
     {
-     "q": "infrarotheizung garage",
-     "v": 35350
+     "q": "infrarotheizung vor und nachteile",
+     "v": 38450
     },
     {
-     "q": "stand infrarotheizung",
-     "v": 34500
+     "q": "infrarotheizung werkstatt",
+     "v": 34800
     },
     {
-     "q": "konvektorheizung",
-     "v": 33350
+     "q": "infrarot wandheizung",
+     "v": 31550
     },
     {
-     "q": "infrarotheizung auf rollen",
-     "v": 32550
+     "q": "infrarotheizung bei amazon",
+     "v": 31250
     },
     {
-     "q": "infrarotheizung 600 watt mit thermostat",
-     "v": 32150
+     "q": "könighaus infrarotheizung 1200 watt",
+     "v": 30550
     },
     {
-     "q": "radiator",
-     "v": 31050
+     "q": "elektrische heizung",
+     "v": 28600
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-23",
+   "fetched": "2026-10-31",
    "polluted": false,
-   "last_attempt_at": "2026-10-23T09:28:41.717217+00:00",
+   "last_attempt_at": "2026-10-31T10:36:09.947856+00:00",
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
