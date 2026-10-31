@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-30",
+  "as_of": "2026-10-31",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 2,
+    "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
     "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-29T15:32:33.708Z",
-    "health": "2026-10-29T14:50:48Z",
-    "ai_referrals": "2026-10-29T14:51:22Z",
-    "opportunities": "2026-10-29",
-    "autopilot_receipt": "2026-10-30"
+    "membership": "2026-10-30T08:56:59.674Z",
+    "health": "2026-10-30T14:43:51Z",
+    "ai_referrals": "2026-10-30T14:44:21Z",
+    "opportunities": "2026-10-30",
+    "autopilot_receipt": "2026-10-31"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-29T15:32:33.708Z",
+    "generated": "2026-10-30T08:56:59.674Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": false,
+    "ok": true,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -131,7 +131,7 @@
       "theme": "looking for a tool for browsing contents of unmounted cold storage",
       "site": null,
       "state": "scout",
-      "score": 3.62,
+      "score": 3.92,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -140,7 +140,7 @@
       "theme": "can we do something about this impending ai dystopia",
       "site": null,
       "state": "scout",
-      "score": 2.79,
+      "score": 2.89,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -155,10 +155,19 @@
       "supply": 0
     },
     {
-      "theme": "update anthropic s non existant customer support",
+      "theme": "are knuth s stanford pages down",
       "site": null,
       "state": "scout",
-      "score": 2.19,
+      "score": 2.32,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "everything i post doesn t go through",
+      "site": null,
+      "state": "scout",
+      "score": 2.24,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -168,6 +177,15 @@
       "site": null,
       "state": "scout",
       "score": 2.12,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "alternative to tldraw draw fast",
+      "site": null,
+      "state": "scout",
+      "score": 2.09,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -191,24 +209,6 @@
       "supply": 0
     },
     {
-      "theme": "php based faq engine",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "alternative to tldraw draw fast",
-      "site": null,
-      "state": "scout",
-      "score": 2.04,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "do u think there should be a auto recovery tool for agents",
       "site": null,
       "state": "scout",
@@ -220,26 +220,27 @@
   ],
   "actions": [
     {
-      "site": "agiscorecard",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
+      "site": "baipiaoji",
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "referred_humans_28d": 618,
+        "paid_members": 0
       },
-      "mode": "alert"
+      "mode": "queue"
     },
     {
-      "site": "baipiaoji",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
+      "site": "agiscorecard",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "count": 3,
+        "query": "ai stocks down",
+        "value": 1
       },
-      "mode": "alert"
+      "mode": "queue"
     },
     {
       "site": "getecoback",
@@ -247,7 +248,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 23,
+        "count": 28,
         "query": "pattex luftentfeuchter",
         "value": 53050
       },
@@ -259,21 +260,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 18,
-        "query": "lets try the viral crumbl labubu",
-        "value": 18550
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "agiscorecard",
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/earn/cases/clip-service",
-        "n7": 49,
-        "p7": 18
+        "count": 4,
+        "query": "sonny angel advent calendar 2026",
+        "value": 1550
       },
       "mode": "queue"
     },
@@ -283,9 +272,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/luftentfeuchter-keller.html",
+        "page": "/",
         "n7": 5,
-        "p7": 4
+        "p7": 1
       },
       "mode": "queue"
     },
@@ -295,7 +284,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 461,
+        "human_pv_28d": 493,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -306,7 +295,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 250,
+        "human_pv_28d": 254,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -315,7 +304,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

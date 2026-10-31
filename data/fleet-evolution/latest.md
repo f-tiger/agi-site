@@ -1,35 +1,34 @@
-# Fleet evolution report — 2026-10-30
+# Fleet evolution report — 2026-10-31
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 2 · paid members: 0 · active members: 0
+- Membership ready: 4 · paid members: 0 · active members: 0
 - Opportunity candidates: 10 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
-| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
-| 55 | getecoback | content_gap | queue | count=23; query=pattex luftentfeuchter; value=53050 |
-| 55 | thedollscout | content_gap | queue | count=18; query=lets try the viral crumbl labubu; value=18550 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/earn/cases/clip-service; n7=49; p7=18 |
-| 52 | getecoback | improve_hot_page | queue | page=/guide/luftentfeuchter-keller.html; n7=5; p7=4 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=461; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=250; ai_ref_28d=0 |
+| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=618; paid_members=0 |
+| 55 | agiscorecard | content_gap | queue | count=3; query=ai stocks down; value=1 |
+| 55 | getecoback | content_gap | queue | count=28; query=pattex luftentfeuchter; value=53050 |
+| 55 | thedollscout | content_gap | queue | count=4; query=sonny angel advent calendar 2026; value=1550 |
+| 52 | getecoback | improve_hot_page | queue | page=/; n7=5; p7=1 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=493; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=254; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-10-29T15:32:33.708Z | 1 |
-| health | 2026-10-29T14:50:48Z | 1 |
-| ai_referrals | 2026-10-29T14:51:22Z | 1 |
-| opportunities | 2026-10-29 | 1 |
-| autopilot_receipt | 2026-10-30 | 0 |
+| membership | 2026-10-30T08:56:59.674Z | 1 |
+| health | 2026-10-30T14:43:51Z | 1 |
+| ai_referrals | 2026-10-30T14:44:21Z | 1 |
+| opportunities | 2026-10-30 | 1 |
+| autopilot_receipt | 2026-10-31 | 0 |
 
 ## Autonomous boundary
 

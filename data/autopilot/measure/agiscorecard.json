@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 19,
+    "n": 20,
     "q": "tool:portfolio_returns"
    },
    {
@@ -27,29 +27,20 @@
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-10-30",
+ "fetched": "2026-10-31",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {
-  "/earn/cases/clip-service": {
-   "n7": 49,
-   "p7": 18
-  },
-  "/zh/earn/cases/launch-acceptance": {
-   "n7": 43,
-   "p7": 12
-  }
- },
+ "pages": {},
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

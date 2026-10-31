@@ -14,13 +14,24 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel im badezimmer entfernen",
+   "match": 0.737,
+   "page": "guide/schimmel-im-keller-entfernen.html",
+   "q": "schimmel mit spiritus entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 46150
+   "stand": "2026-10-30",
+   "v": 74650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.7,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel aus silikonfugen entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 57950
   },
   {
    "heat": null,
@@ -43,6 +54,17 @@
    "source": "related-queries",
    "stand": "2026-10-23",
    "v": 34500
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/schimmel-wand-kommt-wieder.html",
+   "q": "schimmel entferner wand",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 33600
   },
   {
    "heat": null,
@@ -80,24 +102,71 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.7,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel aus textilien entfernen",
+   "match": 1.0,
+   "page": "guide/schimmel-bad-fugen.html",
+   "q": "schimmel an silikon entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 3900
+   "stand": "2026-10-30",
+   "v": 4350
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.95,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel am fensterrahmen entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 3750
   },
   {
    "heat": null,
    "kind": "value",
    "match": 0.667,
    "page": "guide/schimmel-am-fenster.html",
-   "q": "holzfenster schimmel entfernen",
+   "q": "schimmel an fensterdichtung entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 3900
+   "stand": "2026-10-30",
+   "v": 3700
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/schimmel-am-fenster.html",
+   "q": "schimmel an der wand entfernen hausmittel",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 3450
+  },
+  {
+   "heat": {
+    "n7": 5,
+    "p7": 1
+   },
+   "kind": "value",
+   "match": 0.967,
+   "page": "index.html",
+   "q": "heizen mit klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 300
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/klimaanlage-mit-heizfunktion.html",
+   "q": "klimaanlage mit heizfunktion",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 180
   },
   {
    "heat": null,
@@ -109,17 +178,6 @@
    "source": "related-queries",
    "stand": "2026-10-28",
    "v": 140
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel kleidung entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 130
   },
   {
    "heat": null,
@@ -142,50 +200,6 @@
    "source": "related-queries",
    "stand": "2026-10-28",
    "v": 110
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.933,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schwarzen schimmel entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 70
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel dusche entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 50
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.712,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel fugen bad entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 50
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "fugen schimmel entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-22",
-   "v": 40
   }
  ],
  "first_party_demand": {
@@ -344,6 +358,36 @@
   },
   {
    "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "bodenkonsole klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 200
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "environ klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 180
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "hisense klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 160
+  },
+  {
+   "kind": "value",
    "match": 0.333,
    "page": "au/cool-bedroom-at-night.html",
    "q": "dyson cool ventilator",
@@ -351,6 +395,26 @@
    "source": "related-queries",
    "stand": "2026-10-25",
    "v": 160
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "klimaanlage samsung",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 150
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
+   "q": "daikin split klimaanlage 2 innengeräte",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-10-30",
+   "v": 150
   },
   {
    "kind": "value",
@@ -423,18 +487,13 @@
    "v": 50
   }
  ],
- "generated": "2026-10-30",
+ "generated": "2026-10-31",
  "geo": "DE",
- "heat_source": "measured 2026-10-30 (16 pages); no notes",
+ "heat_source": "measured 2026-10-31 (16 pages); no notes",
  "hot_pages": [
   {
    "n7": 5,
-   "p7": 4,
-   "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 4,
-   "p7": 3,
+   "p7": 1,
    "page": "/"
   },
   {
@@ -444,13 +503,8 @@
   },
   {
    "n7": 4,
-   "p7": 3,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/heizung-20-qm.html"
+   "p7": 5,
+   "page": "/guide/luftentfeuchter-keller.html"
   },
   {
    "n7": 3,
@@ -469,18 +523,28 @@
   },
   {
    "n7": 3,
+   "p7": 4,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
+  },
+  {
+   "n7": 3,
    "p7": 0,
    "page": "/guide/strompreis-radar.html"
   },
   {
+   "n7": 3,
+   "p7": 4,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
    "n7": 2,
    "p7": 1,
-   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
+   "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
    "n7": 2,
    "p7": 2,
-   "page": "/guide/heizluefter-stromverbrauch.html"
+   "page": "/guide/klimaanlage-40-qm.html"
   },
   {
    "n7": 2,
@@ -489,7 +553,7 @@
   },
   {
    "n7": 2,
-   "p7": 5,
+   "p7": 2,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
@@ -499,8 +563,8 @@
   },
   {
    "n7": 2,
-   "p7": 4,
-   "page": "/guide/was-bedeutet-btu.html"
+   "p7": 1,
+   "page": "/guide/mobile-klimaanlage-zu-laut.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -508,12 +572,17 @@
  "offtopic_dropped": [
   "radiator",
   "meacodry arete one 12l",
+  "kalkfarbe",
   "sky scanner",
   "notlandung",
   "steckdosenleiste",
   "weltweite zeitumstellung 2027",
-  "stockflecken entfernen wand",
+  "constantin schreiber axel springer",
+  "isopropanol kaufen",
+  "unfall italien bus wohnmobil",
+  "daikin perfera",
   "balenciaga city bag",
+  "isopropanol",
   "dreame r20"
  ],
  "site": "getecoback",

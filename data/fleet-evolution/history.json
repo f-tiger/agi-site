@@ -4469,5 +4469,100 @@
         "mode": "queue"
       }
     ]
+  },
+  {
+    "as_of": "2026-10-31",
+    "fleet": {
+      "sites": 14,
+      "healthy": 31,
+      "membership_ready": 4,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 10,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "baipiaoji",
+        "kind": "membership_conversion",
+        "priority": 64,
+        "reason": "ready membership has qualified referred traffic but no paid members",
+        "evidence": {
+          "referred_humans_28d": 618,
+          "paid_members": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 3,
+          "query": "ai stocks down",
+          "value": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 28,
+          "query": "pattex luftentfeuchter",
+          "value": 53050
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 4,
+          "query": "sonny angel advent calendar 2026",
+          "value": 1550
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/",
+          "n7": 5,
+          "p7": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 493,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 254,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
   }
 ]
