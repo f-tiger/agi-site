@@ -1,5 +1,5 @@
 import {cachedAggregate} from '../../lib/aggregate-cache.js';
-import {COLLECTOR_EVENTS, collectorEventAllowed, MCP_EVENT, MCP_RESULTS, MCP_TOOLS} from '../../lib/collector-measurement.js';
+import {COLLECTOR_EVENTS, collectorEventAllowed, MCP_EVENT, MCP_RESULTS, MCP_TOOLS, MCP_TOOL_RELEASES, MCP_TOOL_FIRST_FULL_DAY} from '../../lib/collector-measurement.js';
 import {databaseFailure} from './doc-events.js';
 
 // Release marker, not a rolling date or a date inferred from the first visitor.
@@ -70,7 +70,10 @@ export function collectorWindow(now = new Date()) {
   const start = new Date(end+'T00:00:00Z');start.setUTCDate(start.getUTCDate()-28);
   const expected = start.toISOString().slice(0,10), measured = expected > FIRST_FULL_UTC_DAY ? expected : FIRST_FULL_UTC_DAY;
   const days = Math.max(0, Math.round((Date.parse(end)-Date.parse(measured))/86400000));
-  return {event_releases:{collector_wish_generate:'2026-10-30',collector_wish_export:'2026-10-30',collector_wish_response_reported:'2026-10-30',collector_wish_fulfilled_reported:'2026-10-30',display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display-plan events start 2026-10-29. Wish-card events start 2026-10-30, with first complete UTC day 2026-10-31. Earlier absence is unmeasured; the overall window is not coverage for every event.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
+  const toolStart=expected>MCP_TOOL_FIRST_FULL_DAY?expected:MCP_TOOL_FIRST_FULL_DAY;
+  const toolDays=Math.max(0,Math.round((Date.parse(end)-Date.parse(toolStart))/86400000));
+  const toolCoverage=Object.fromEntries(Object.entries(MCP_TOOL_RELEASES).map(([tool,released])=>[tool,{released,first_full_utc_day:MCP_TOOL_FIRST_FULL_DAY,measuredWindow:toolDays?{start:toolStart,end_exclusive:end}:null,coveredDays:toolDays}]));
+  return {mcp_tool_coverage:toolCoverage,event_releases:{collector_wish_generate:'2026-10-30',collector_wish_export:'2026-10-30',collector_wish_response_reported:'2026-10-30',collector_wish_fulfilled_reported:'2026-10-30',display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display-plan events start 2026-10-29. Wish-card events start 2026-10-30, with first complete UTC day 2026-10-31. Collection MCP tasks start 2026-10-31, with first complete UTC day 2026-11-01. Earlier absence is unmeasured; the overall window is not coverage for every event or tool.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
     measuredWindow:days ? {start:measured,end_exclusive:end} : null,coveredDays:days,full28Days:days===28,
     coverage:days ? 'measured_complete_utc_days' : 'pending_first_complete_day'};
 }
@@ -81,7 +84,7 @@ export function aggregateCollector(rows) {
     const n = Number(row.n);
     if (!Number.isSafeInteger(n) || n < 0 || !/^\d{4}-\d{2}-\d{2}$/.test(row.d)) throw Error('Invalid aggregate');
     if (COLLECTOR_EVENTS.has(row.ev) && collectorEventAllowed(row.ev,row.path)) browser.push({date:row.d,event:row.ev,path:row.path,n});
-    if (row.ev === MCP_EVENT && row.path.startsWith('/mcp/') && MCP_TOOLS.has(row.path.slice(5)) && MCP_RESULTS.has(row.result)) mcp.push({date:row.d,tool:row.path.slice(5),result:row.result,n});
+    if (row.ev === MCP_EVENT && row.path.startsWith('/mcp/') && MCP_TOOLS.has(row.path.slice(5)) && MCP_RESULTS.has(row.result) && (!Object.hasOwn(MCP_TOOL_RELEASES,row.path.slice(5)) || row.d>=MCP_TOOL_FIRST_FULL_DAY)) mcp.push({date:row.d,tool:row.path.slice(5),result:row.result,n});
   }
   browser.sort((a,b)=>a.date.localeCompare(b.date)||a.path.localeCompare(b.path)||a.event.localeCompare(b.event));
   mcp.sort((a,b)=>a.date.localeCompare(b.date)||a.tool.localeCompare(b.tool)||a.result.localeCompare(b.result));

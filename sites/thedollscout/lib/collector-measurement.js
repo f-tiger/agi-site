@@ -2,6 +2,8 @@ import {TOOLS} from '../collector-assets/mcp-contract.mjs';
 
 // These labels are fixed public capabilities, never caller-supplied dimensions.
 export const MCP_TOOLS = new Set(TOOLS.map(tool => tool.name));
+export const MCP_TOOL_RELEASES = Object.freeze({search_collection_series:'2026-10-31',prepare_collection_checklist:'2026-10-31'});
+export const MCP_TOOL_FIRST_FULL_DAY = '2026-11-01';
 export const MCP_EVENT = 'collector_mcp_call';
 export const MCP_RESULTS = new Set(['result', 'no_result']);
 export const COLLECTOR_EVENTS = new Set(['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','display_plan_export','display_plan_example','collection_save', 'collection_export', 'collection_import', 'collector_series_save', 'collector_series_export', 'collector_mcp_copy']);

@@ -201,3 +201,21 @@ test('MCP copy counts only clipboard success, with no endpoint value or other in
 test('Successful clipboard use in QA, preview and privacy-refusing browsers never sends growth',async()=>{
   for(const options of [{url:'https://thedollscout.com/for-agents?ci=1'},{url:'https://preview.pages.dev/for-agents'},{denied:true},{storageError:true},{navigator:{webdriver:true}},{navigator:{globalPrivacyControl:true}},{navigator:{doNotTrack:'1'}}]){const b=browser(options);await b.handlers.click();assert.equal(b.status.textContent,'Copied');assert.equal(b.sent.length,0);assert.equal(b.events.length,0);}
 });
+
+
+test('new collection task counters retain no figure names and respect QA',async()=>{
+ const museum={id:'smiski-museum',brand:'smiski',title:'SMISKI Museum',names:['Smiski Dali'],source:'https://smiski.com/e/products/museum/',checked:'2026-10-30',modified:'2026-10-30'};
+ for(const options of [{}, {headers:{'x-probe':'mcp-test'}}]){
+  const rec=recorder();rec.env.ASSETS={fetch:async()=>Response.json({scope:'Official named checklists only; not stock, release dates, prices or probabilities.',series:[museum]})};
+  const answer=await rpc(rec,'tools/call',{name:'prepare_collection_checklist',arguments:{seriesId:museum.id,owned:['PRIVATE unknown figure']}},options);
+  assert.equal(answer.result.isError,false);assert.doesNotMatch(JSON.stringify(rec.rows),/PRIVATE|unknown figure|Smiski Dali/);
+  assert.equal(rec.rows.length,options.headers?0:1);
+  if(rec.rows.length)assert.deepEqual(rec.rows[0].slice(1),['/mcp/prepare_collection_checklist','','','result','collector_mcp_call']);
+ }
+});
+test('collection MCP tasks have their own complete-day coverage and exclude the release day',()=>{
+ const before=collectorWindow(new Date('2026-10-31T23:59:00Z'));assert.equal(before.mcp_tool_coverage.prepare_collection_checklist.coveredDays,0);
+ const partial=collectorWindow(new Date('2026-11-01T23:59:00Z'));assert.equal(partial.mcp_tool_coverage.search_collection_series.measuredWindow,null);
+ const first=collectorWindow(new Date('2026-11-02T00:00:00Z'));assert.equal(first.mcp_tool_coverage.search_collection_series.coveredDays,1);assert.deepEqual(first.mcp_tool_coverage.search_collection_series.measuredWindow,{start:'2026-11-01',end_exclusive:'2026-11-02'});
+ const rows=['2026-10-30','2026-10-31','2026-11-01'].map(d=>({d,ev:'collector_mcp_call',path:'/mcp/prepare_collection_checklist',result:'result',n:2}));assert.deepEqual(aggregateCollector(rows).mcp,[{date:'2026-11-01',tool:'prepare_collection_checklist',result:'result',n:2}]);
+});

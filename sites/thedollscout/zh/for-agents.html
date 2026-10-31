@@ -1,4 +1,26 @@
-<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>供 AI 助手使用的收藏工具 | The Doll Scout</title><meta name="description" content="通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#e4002b"><link rel="canonical" href="https://thedollscout.com/zh/for-agents"><link rel="alternate" hreflang="en" href="https://thedollscout.com/for-agents"><link rel="alternate" hreflang="de" href="https://thedollscout.com/de/for-agents"><link rel="alternate" hreflang="zh-Hans" href="https://thedollscout.com/zh/for-agents"><link rel="alternate" hreflang="x-default" href="https://thedollscout.com/for-agents"><link rel="alternate" type="text/plain" href="/collector-assets/text/zh/for-agents.txt" title="纯文本"><link rel="alternate" type="application/json" href="/collector-assets/tool-capabilities.json" title="TDS tool catalog"><link rel="icon" type="image/svg+xml" href="/collector-assets/icon.svg?v=2026-10-30.3"><meta property="og:type" content="website"><meta property="og:site_name" content="The Doll Scout"><meta property="og:title" content="供 AI 助手使用的收藏工具"><meta property="og:description" content="通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。"><meta property="og:url" content="https://thedollscout.com/zh/for-agents"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://thedollscout.com/collector-assets/collection-guide.jpg"><meta property="og:image:alt" content="The Doll Scout: collectible toy guides and collection tools"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/css/brand.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/collecting.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/field-guide.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/workspace.css?v=2026-10-30.3"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedollscout.com/#publisher","name":"The Doll Scout","url":"https://thedollscout.com/","logo":"https://thedollscout.com/collector-assets/icon.svg"},{"@type":"WebSite","@id":"https://thedollscout.com/#website","name":"The Doll Scout","url":"https://thedollscout.com/","inLanguage":["en","de","zh-Hans"],"publisher":{"@id":"https://thedollscout.com/#publisher"}},{"@type":"WebPage","@id":"https://thedollscout.com/zh/for-agents#page","name":"供 AI 助手使用的收藏工具","description":"通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。","url":"https://thedollscout.com/zh/for-agents","inLanguage":"zh-Hans","dateModified":"2026-10-11","isPartOf":{"@id":"https://thedollscout.com/#website"}}]}</script></head><body data-collector-edition="2026-10-30.3"><a class="skip" href="#main">跳到正文</a><header class="collect-header"><div class="wrap header-inner"><a class="wordmark" href="/zh/" aria-label="The Doll Scout — 首页"><span class="mark">t<span>d</span>s<span class="dot">.</span></span><span>The Doll Scout</span></a><nav class="site-nav" aria-label="首页"><a href="/zh/">收藏工作台</a><a href="/zh/series">系列清单</a><a href="/collection-tracker">你的收藏</a><a href="/zh/collecting/trading-meetup-checklist">购买与交换</a></nav><nav class="language-nav" aria-label="Language"><a href="/for-agents" lang="en">EN</a><a href="/de/for-agents" lang="de">DE</a><a href="/zh/for-agents" lang="zh-Hans" aria-current="page">中文</a></nav></div></header><main id="main" class="wrap"><section class="agent-hero"><p class="eyebrow">TDS / MCP</p><h1>供 AI 助手使用的收藏工具</h1><p class="brand-lead">通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。</p></section><section class="agent-connect"><h2>连接远程 MCP 服务</h2><p>在支持远程 MCP 的客户端中添加以下地址。公开只读工具无需账户或 API 密钥；具体添加方式与可用性取决于客户端。目录被收录不代表连接已经自动启用。</p><code class="mcp-url">https://thedollscout.com/mcp</code><button type="button" class="button primary" data-copy-mcp data-success="MCP 地址已复制。" data-failure="请手动复制下方显示的地址。">复制 MCP 地址</button><p data-mcp-status role="status"></p></section><section class="agent-catalog"><h2>助手可以使用什么</h2><p>下列接口名与英文说明是供客户端读取的原始协议字段。</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
+<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>让 AI 助手直接整理收藏清单 | The Doll Scout</title><meta name="description" content="让助手查找 SMISKI 或 Sonny Angel 系列，核对你提供的已拥有款式，并在对话中返回有来源、可直接使用的收藏清单。"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="theme-color" content="#e4002b"><link rel="canonical" href="https://thedollscout.com/zh/for-agents"><link rel="alternate" hreflang="en" href="https://thedollscout.com/for-agents"><link rel="alternate" hreflang="de" href="https://thedollscout.com/de/for-agents"><link rel="alternate" hreflang="zh-Hans" href="https://thedollscout.com/zh/for-agents"><link rel="alternate" hreflang="x-default" href="https://thedollscout.com/for-agents"><link rel="alternate" type="text/plain" href="/collector-assets/text/zh/for-agents.txt" title="纯文本"><link rel="alternate" type="application/json" href="/collector-assets/tool-capabilities.json" title="TDS tool catalog"><link rel="icon" type="image/svg+xml" href="/collector-assets/icon.svg?v=2026-10-30.3"><meta property="og:type" content="website"><meta property="og:site_name" content="The Doll Scout"><meta property="og:title" content="让 AI 助手直接整理收藏清单"><meta property="og:description" content="让助手查找 SMISKI 或 Sonny Angel 系列，核对你提供的已拥有款式，并在对话中返回有来源、可直接使用的收藏清单。"><meta property="og:url" content="https://thedollscout.com/zh/for-agents"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://thedollscout.com/collector-assets/collection-guide.jpg"><meta property="og:image:alt" content="The Doll Scout: collectible toy guides and collection tools"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/css/brand.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/collecting.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/field-guide.css?v=2026-10-30.3"><link rel="stylesheet" href="/collector-assets/workspace.css?v=2026-10-30.3"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://thedollscout.com/#publisher","name":"The Doll Scout","url":"https://thedollscout.com/","logo":"https://thedollscout.com/collector-assets/icon.svg"},{"@type":"WebSite","@id":"https://thedollscout.com/#website","name":"The Doll Scout","url":"https://thedollscout.com/","inLanguage":["en","de","zh-Hans"],"publisher":{"@id":"https://thedollscout.com/#publisher"}},{"@type":"WebPage","@id":"https://thedollscout.com/zh/for-agents#page","name":"让 AI 助手直接整理收藏清单","description":"让助手查找 SMISKI 或 Sonny Angel 系列，核对你提供的已拥有款式，并在对话中返回有来源、可直接使用的收藏清单。","url":"https://thedollscout.com/zh/for-agents","inLanguage":"zh-Hans","dateModified":"2026-10-31","isPartOf":{"@id":"https://thedollscout.com/#website"}}]}</script></head><body data-collector-edition="2026-10-30.3"><a class="skip" href="#main">跳到正文</a><header class="collect-header"><div class="wrap header-inner"><a class="wordmark" href="/zh/" aria-label="The Doll Scout — 首页"><span class="mark">t<span>d</span>s<span class="dot">.</span></span><span>The Doll Scout</span></a><nav class="site-nav" aria-label="首页"><a href="/zh/">收藏工作台</a><a href="/zh/series">系列清单</a><a href="/collection-tracker">你的收藏</a><a href="/zh/collecting/trading-meetup-checklist">购买与交换</a></nav><nav class="language-nav" aria-label="Language"><a href="/for-agents" lang="en">EN</a><a href="/de/for-agents" lang="de">DE</a><a href="/zh/for-agents" lang="zh-Hans" aria-current="page">中文</a></nav></div></header><main id="main" class="wrap"><section class="agent-hero"><p class="eyebrow">TDS / MCP</p><h1>让 AI 助手直接整理收藏清单</h1><p class="brand-lead">让助手查找 SMISKI 或 Sonny Angel 系列，核对你提供的已拥有款式，并在对话中返回有来源、可直接使用的收藏清单。</p><blockquote>用 TDS 查找 SMISKI Museum 系列。我已有 Smiski Dali 和 Smiski Pearl Earring。列出目录中我尚未标记拥有的款式，附来源和核对日期。我只明确想要 Smiski Bacchus。返回可复制的清单，无法识别的名字保留为待核对。</blockquote><a class="button primary" href="#mcp-connect">连接远程 MCP 服务</a></section><section id="mcp-connect" class="agent-connect agent-catalog"><h2>连接远程 MCP 服务</h2><p>在支持远程 MCP 的客户端中添加以下地址。公开只读工具无需账户或 API 密钥；具体添加方式与可用性取决于客户端。目录被收录不代表连接已经自动启用。</p><code class="mcp-url">https://thedollscout.com/mcp</code><button type="button" class="button primary" data-copy-mcp data-success="MCP 地址已复制。" data-failure="请手动复制下方显示的地址。">复制 MCP 地址</button><p data-mcp-status role="status"></p><h3>在 Claude Code 中连接</h3><p>已安装 Claude Code 时，在当前项目的终端运行以下命令并检查连接。第一条命令添加的是配置，并不代表工具已成功调用。</p><pre>claude mcp add --transport http tds https://thedollscout.com/mcp
+claude mcp get tds</pre><p>在 Claude Code 中打开 /mcp 检查服务与工具，再发送上面的收藏任务。不同客户端的可用性、套餐要求和组织规则可能不同。</p><a href="https://code.claude.com/docs/en/mcp" rel="noopener">Claude Code MCP 官方接入文档</a></section><section id="collection-workflow" class="agent-example agent-catalog"><h2>试一个具体收藏任务</h2><blockquote>用 TDS 查找 SMISKI Museum 系列。我已有 Smiski Dali 和 Smiski Pearl Earring。列出目录中我尚未标记拥有的款式，附来源和核对日期。我只明确想要 Smiski Bacchus。返回可复制的清单，无法识别的名字保留为待核对。</blockquote><h3>找到准确系列</h3><p>先调用 search_collection_series，再使用返回的 seriesId 和有来源的款式名称进行核对。</p><pre aria-label="可复制的 tools/call 参数">{
+  &quot;name&quot;: &quot;search_collection_series&quot;,
+  &quot;arguments&quot;: {
+    &quot;query&quot;: &quot;Museum&quot;,
+    &quot;brand&quot;: &quot;smiski&quot;,
+    &quot;limit&quot;: 5,
+    &quot;language&quot;: &quot;zh&quot;
+  }
+}</pre><h3>生成收藏清单</h3><p>下面是 tools/call 的参数。只有明确提供的 wanted 款式才进入愿望单；未标记拥有不代表想购买。</p><pre aria-label="可复制的 tools/call 参数">{
+  &quot;name&quot;: &quot;prepare_collection_checklist&quot;,
+  &quot;arguments&quot;: {
+    &quot;seriesId&quot;: &quot;smiski-museum&quot;,
+    &quot;owned&quot;: [
+      &quot;Smiski Dali&quot;,
+      &quot;Smiski Pearl Earring&quot;
+    ],
+    &quot;wanted&quot;: [
+      &quot;Smiski Bacchus&quot;
+    ],
+    &quot;language&quot;: &quot;zh&quot;
+  }
+}</pre><h2>基于当前具名目录的示例结果</h2><h3>已标记拥有 (2)</h3><ul><li>Smiski Dali</li><li>Smiski Pearl Earring</li></ul><h3>尚未标记拥有 (4)</h3><ul><li>Smiski The Source</li><li>Smiski Fuzin&amp;Raijin</li><li>Smiski Bacchus</li><li>Smiski Vela’zquez</li></ul><h3>明确愿望单 (1)</h3><ul><li>Smiski Bacchus</li></ul><p><a href="https://smiski.com/e/products/museumseries/" rel="noopener">官方系列来源</a> · 来源核对日期: <time datetime="2026-10-30">2026-10-30</time></p><p>比较范围仅是 TDS 已核实的具名款式，不代表所有已发售商品。目录可能缺少隐藏款或其他版本；结果不能证明全系列集齐、持有、真伪、库存或价值。重复输入同一名字不等于重复藏品数量，也不等于愿意交换。</p><p class="small">仅为示例。阅读此页不会调用工具、保存收藏或计为收藏任务完成。</p></section><section class="agent-catalog"><h2>助手可以使用什么</h2><p>下列接口名与英文说明是供客户端读取的原始协议字段。</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
   &quot;type&quot;: &quot;object&quot;,
   &quot;properties&quot;: {},
   &quot;additionalProperties&quot;: false
@@ -258,4 +280,84 @@
     &quot;secretPercent&quot;
   ],
   &quot;additionalProperties&quot;: false
-}</pre></details></section><section class="agent-example"><h2>试试一个明确的问题</h2><blockquote>用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。</blockquote><p>示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。</p><a href="/zh/brands/skullpanda#display-fit">规划我的展示空间 →</a></section><section class="agent-limits"><h2>你的收藏数据仍由你掌握</h2><p>此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。成功调用可按固定工具名和结果类别匿名计数，不保存输入参数或识别个人。</p><h2>公开发现入口</h2><ul><li><a href="/collector-assets/tool-capabilities.json">Collector tool catalog · JSON</a></li><li><a href="/collector-assets/brand-guides.json">Brand guides · JSON</a></li><li><a href="/collector-assets/series-catalog.json">Daily series checklists · JSON</a></li><li><a href="/collector-assets/learning-guides.json">Collecting field guide · JSON</a></li><li><a href="/.well-known/mcp.json">MCP discovery · JSON</a></li><li><a href="/mcp/server.json">MCP Registry manifest · JSON</a></li><li><a href="/document-assets/tool-capabilities.json">Digital tools · JSON</a></li><li><a href="/llms.txt">Site index · text</a></li></ul><h2>可以被发现，是接入的起点</h2><p>公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。</p></section></main><footer class="wrap collect-footer"><p>本站与 POP MART、Jellycat、Dreams / Sonny Angel 无隶属关系，品牌名仅用于识别讨论的产品。部分现有购买指南含明确标注的联盟链接。</p><nav><a href="/">首页</a><a href="/legal/privacy">隐私政策</a><a href="/legal/affiliate-disclosure">联盟披露</a><a href="/collector-assets/text/zh/for-agents.txt">纯文本</a><a href="/zh/for-agents">连接 AI 助手</a><a href="/zh/editorial">TDS 如何制作指南</a><a href="/zh/collector-tools">全部工具</a><a href="/zh/document-tools">TDS 数字工具</a><a href="https://baipiaoji.com/studio/toolkit">浏览 BPJ 工具汇总</a><a href="/data/">Data &amp; MCP</a></nav></footer><script src="/js/collector-core.js?v=2026-10-30.3" defer></script><script type="module" src="/collector-assets/collecting.mjs?v=2026-10-30.3"></script><script type="module" src="/collector-assets/workspace.mjs?v=2026-10-30.3"></script></body></html>
+}</pre></details><details><summary><code>search_collection_series</code></summary><p lang="en">Search the source-linked SMISKI and Sonny Angel catalog by series or figure name. Returns candidate series IDs, verified named styles, source URLs and per-series check dates directly. Catalog coverage can omit secret or discontinued figures; choose the exact series before comparing a collection.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;query&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;maxLength&quot;: 120
+    },
+    &quot;brand&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;smiski&quot;,
+        &quot;sonny-angel&quot;
+      ]
+    },
+    &quot;limit&quot;: {
+      &quot;type&quot;: &quot;integer&quot;,
+      &quot;minimum&quot;: 1,
+      &quot;maximum&quot;: 10,
+      &quot;default&quot;: 5
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;required&quot;: [
+    &quot;query&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>prepare_collection_checklist</code></summary><p lang="en">Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;seriesId&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;maxLength&quot;: 100
+    },
+    &quot;owned&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 100,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers.&quot;
+    },
+    &quot;wanted&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 100,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically.&quot;
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;required&quot;: [
+    &quot;seriesId&quot;,
+    &quot;owned&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details></section><section class="agent-limits"><h2>由你决定发送哪些数据</h2><p>助手会把你选择提供的款式名称发送给 TDS MCP 服务以计算结果。TDS 不保存这些输入参数，也不将其写入使用统计；成功调用仅可能按固定工具名和结果类别计数。助手提供方有自己的数据处理方式。MCP 无法读取或修改你的浏览器收藏、私人文件、账户或会员信息；浏览器收藏与备份仍单独管理。</p><h2>公开发现入口</h2><ul><li><a href="/collector-assets/tool-capabilities.json">Collector tool catalog · JSON</a></li><li><a href="/collector-assets/brand-guides.json">Brand guides · JSON</a></li><li><a href="/collector-assets/series-catalog.json">Daily series checklists · JSON</a></li><li><a href="/collector-assets/learning-guides.json">Collecting field guide · JSON</a></li><li><a href="/.well-known/mcp.json">MCP discovery · JSON</a></li><li><a href="/mcp/server.json">MCP Registry manifest · JSON</a></li><li><a href="/document-assets/tool-capabilities.json">Digital tools · JSON</a></li><li><a href="/llms.txt">Site index · text</a></li></ul><h2>可以被发现，是接入的起点</h2><p>公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。</p></section></main><footer class="wrap collect-footer"><p>本站与 POP MART、Jellycat、Dreams / Sonny Angel 无隶属关系，品牌名仅用于识别讨论的产品。部分现有购买指南含明确标注的联盟链接。</p><nav><a href="/">首页</a><a href="/legal/privacy">隐私政策</a><a href="/legal/affiliate-disclosure">联盟披露</a><a href="/collector-assets/text/zh/for-agents.txt">纯文本</a><a href="/zh/for-agents">连接 AI 助手</a><a href="/zh/editorial">TDS 如何制作指南</a><a href="/zh/collector-tools">全部工具</a><a href="/zh/document-tools">TDS 数字工具</a><a href="https://baipiaoji.com/studio/toolkit">浏览 BPJ 工具汇总</a><a href="/data/">Data &amp; MCP</a></nav></footer><script src="/js/collector-core.js?v=2026-10-30.3" defer></script><script type="module" src="/collector-assets/collecting.mjs?v=2026-10-30.3"></script><script type="module" src="/collector-assets/workspace.mjs?v=2026-10-30.3"></script></body></html>

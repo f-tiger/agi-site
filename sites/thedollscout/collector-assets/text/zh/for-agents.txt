@@ -1,13 +1,56 @@
-# 供 AI 助手使用的收藏工具
+# 让 AI 助手直接整理收藏清单
 
 https://thedollscout.com/zh/for-agents
-Content updated: 2026-10-11
+Content updated: 2026-10-31
 
-通过兼容 MCP 的助手发现、读取和调用 TDS 收藏工具。
+让助手查找 SMISKI 或 Sonny Angel 系列，核对你提供的已拥有款式，并在对话中返回有来源、可直接使用的收藏清单。
 
 在支持远程 MCP 的客户端中添加以下地址。公开只读工具无需账户或 API 密钥；具体添加方式与可用性取决于客户端。目录被收录不代表连接已经自动启用。
 
 https://thedollscout.com/mcp
+
+试一个具体收藏任务
+
+用 TDS 查找 SMISKI Museum 系列。我已有 Smiski Dali 和 Smiski Pearl Earring。列出目录中我尚未标记拥有的款式，附来源和核对日期。我只明确想要 Smiski Bacchus。返回可复制的清单，无法识别的名字保留为待核对。
+
+找到准确系列
+
+先调用 search_collection_series，再使用返回的 seriesId 和有来源的款式名称进行核对。
+
+{"name":"search_collection_series","arguments":{"query":"Museum","brand":"smiski","limit":5,"language":"zh"}}
+
+生成收藏清单
+
+下面是 tools/call 的参数。只有明确提供的 wanted 款式才进入愿望单；未标记拥有不代表想购买。
+
+{"name":"prepare_collection_checklist","arguments":{"seriesId":"smiski-museum","owned":["Smiski Dali","Smiski Pearl Earring"],"wanted":["Smiski Bacchus"],"language":"zh"}}
+
+基于当前具名目录的示例结果
+
+已标记拥有: Smiski Dali, Smiski Pearl Earring
+
+尚未标记拥有: Smiski The Source, Smiski Fuzin&Raijin, Smiski Bacchus, Smiski Vela’zquez
+
+明确愿望单: Smiski Bacchus
+
+官方系列来源: https://smiski.com/e/products/museumseries/
+
+来源核对日期: 2026-10-30
+
+比较范围仅是 TDS 已核实的具名款式，不代表所有已发售商品。目录可能缺少隐藏款或其他版本；结果不能证明全系列集齐、持有、真伪、库存或价值。重复输入同一名字不等于重复藏品数量，也不等于愿意交换。
+
+仅为示例。阅读此页不会调用工具、保存收藏或计为收藏任务完成。
+
+在 Claude Code 中连接
+
+已安装 Claude Code 时，在当前项目的终端运行以下命令并检查连接。第一条命令添加的是配置，并不代表工具已成功调用。
+
+claude mcp add --transport http tds https://thedollscout.com/mcp
+claude mcp get tds
+
+在 Claude Code 中打开 /mcp 检查服务与工具，再发送上面的收藏任务。不同客户端的可用性、套餐要求和组织规则可能不同。
+
+https://code.claude.com/docs/en/mcp
 
 labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
 {"type":"object","properties":{},"additionalProperties":false}
@@ -39,13 +82,17 @@ compare_blind_box_budget: Compare a capped independent blind-box budget with a u
 estimate_collection_progress: Estimate new distinct regular styles, repeated regular draws and secret draws from independent boxes. Assumes equally likely regular styles after combined secret probability is removed. Owned means distinct regular styles from this exact series. Not sealed-case allocation or completion probability.
 {"type":"object","properties":{"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"ownedStyles":{"type":"integer","minimum":0,"maximum":1000},"boxes":{"type":"integer","minimum":0,"maximum":100000},"secretPercent":{"type":"number","minimum":0,"maximum":100}},"required":["regularStyles","ownedStyles","boxes","secretPercent"],"additionalProperties":false}
 
-用 TDS 计算：40 × 25 × 30 厘米的展示柜，放 8 × 6 × 15 厘米的公仔，间距 1 厘米，能放多少件？请说明限制。
+search_collection_series: Search the source-linked SMISKI and Sonny Angel catalog by series or figure name. Returns candidate series IDs, verified named styles, source URLs and per-series check dates directly. Catalog coverage can omit secret or discontinued figures; choose the exact series before comparing a collection.
+{"type":"object","properties":{"query":{"type":"string","minLength":1,"maxLength":120},"brand":{"type":"string","enum":["smiski","sonny-angel"]},"limit":{"type":"integer","minimum":1,"maximum":10,"default":5},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["query"],"additionalProperties":false}
 
-示例结果：单层 4 × 3 排布，共 12 件；不包含混合方向、叠放、承重或稳定性检验。
+prepare_collection_checklist: Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.
+{"type":"object","properties":{"seriesId":{"type":"string","minLength":1,"maxLength":100},"owned":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers."},"wanted":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["seriesId","owned"],"additionalProperties":false}
 
-此服务无法读取你的本地收藏、云账户、私人文件或会员信息。收藏记录和数字文件工具在各自浏览器页面中运行，目录只返回入口与要求，不宣称可以远程操作这些数据。成功调用可按固定工具名和结果类别匿名计数，不保存输入参数或识别个人。
+助手会把你选择提供的款式名称发送给 TDS MCP 服务以计算结果。TDS 不保存这些输入参数，也不将其写入使用统计；成功调用仅可能按固定工具名和结果类别计数。助手提供方有自己的数据处理方式。MCP 无法读取或修改你的浏览器收藏、私人文件、账户或会员信息；浏览器收藏与备份仍单独管理。
 
 公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。
+
+https://thedollscout.com/collector-assets/series-catalog.json
 
 https://thedollscout.com/collector-assets/learning-guides.json
 

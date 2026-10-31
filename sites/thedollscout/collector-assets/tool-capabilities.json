@@ -1,13 +1,42 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-11",
+  "updated": "2026-10-31",
   "server": {
     "name": "dollscout",
-    "version": "2.4.0"
+    "version": "2.5.0"
   },
   "endpoint": "https://thedollscout.com/mcp",
   "documentation": "https://thedollscout.com/for-agents",
   "tools": [
+    {
+      "id": "collection-search",
+      "task": "collection",
+      "name": "Search named collectible series",
+      "inputs": "Series or figure query, optional SMISKI/Sonny Angel brand, result limit and language",
+      "mcpTool": "search_collection_series",
+      "execution": "read-published-evidence",
+      "urls": {
+        "en": "https://thedollscout.com/for-agents#collection-workflow",
+        "de": "https://thedollscout.com/de/for-agents#collection-workflow",
+        "zh": "https://thedollscout.com/zh/for-agents#collection-workflow"
+      },
+      "seriesCatalog": "https://thedollscout.com/collector-assets/series-catalog.json",
+      "limitations": "Returns verified catalog names, stable series IDs and each source check date. Catalog coverage may omit secrets or variants; no stock, prices or full-set guarantee."
+    },
+    {
+      "id": "collection-checklist",
+      "task": "collection",
+      "name": "Prepare a source-backed collection checklist",
+      "inputs": "A returned seriesId, owned figure names, optional explicitly wanted names and language",
+      "mcpTool": "prepare_collection_checklist",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/for-agents#collection-workflow",
+        "de": "https://thedollscout.com/de/for-agents#collection-workflow",
+        "zh": "https://thedollscout.com/zh/for-agents#collection-workflow"
+      },
+      "limitations": "Processes only the names you send; cannot read or update browser storage. Returns owned, not marked owned, explicit wanted, unresolved inputs and copyable Markdown. Unmarked is not wanted; repeated input is not a trade offer. Inputs are not retained in usage telemetry."
+    },
     {
       "id": "budget",
       "task": "budget",
@@ -308,7 +337,7 @@
         "zh": "https://thedollscout.com/zh/series"
       },
       "seriesCatalog": "https://thedollscout.com/collector-assets/series-catalog.json",
-      "limitations": "Saved in the same browser profile and shared with the collection tracker across site languages and tabs. Export/import JSON backups in the tracker; clearing browser data removes local records. You can preview and download a text PNG card of the current series and owned quantities in the browser; no collection upload or automatic sharing. No cloud sync. MCP cannot read or edit the checklist."
+      "limitations": "Saved in the same browser profile and shared with the collection tracker across site languages and tabs. Export/import JSON backups in the tracker; clearing browser data removes local records. You can preview and download a text PNG card of the current series and owned quantities in the browser; no collection upload or automatic sharing. No cloud sync. MCP cannot read or edit the saved browser checklist."
     },
     {
       "id": "series-style-odds",
@@ -347,7 +376,7 @@
     "execution": "browser-only"
   },
   "limitations": [
-    "Read-only public tools; no purchase, private file, account or collection access.",
+    "Stateless collection comparisons use only names explicitly sent by the client. No purchase, private file, account or browser-storage access.",
     "Listing and crawl access do not guarantee indexing, citation or automatic tool activation."
   ]
 }

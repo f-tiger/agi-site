@@ -34,6 +34,8 @@ rsync -a \
   --exclude '*.md' \
   --exclude '.gitignore' \
   --exclude 'wrangler.toml' \
+  --exclude '/mcp/package.json' \
+  --exclude '/mcp/package-lock.json' \
   ./ dist/
 
 echo "--- files that will be published:"

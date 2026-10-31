@@ -1,13 +1,56 @@
-# Collector tools for AI assistants
+# Collection checklists for your AI assistant
 
 https://thedollscout.com/for-agents
-Content updated: 2026-10-11
+Content updated: 2026-10-31
 
-Find, read and call TDS collecting tools from an MCP-compatible assistant.
+Ask your assistant to find a SMISKI or Sonny Angel series, compare the figures you own, and return a sourced checklist you can use in the conversation.
 
 In a client that supports remote MCP, add this URL. No account or API key is needed for these read-only public tools. Setup and connector availability depend on your client; adding a catalog does not enable a connection automatically.
 
 https://thedollscout.com/mcp
+
+Try a collection task
+
+Use TDS to find the SMISKI Museum series. I own Smiski Dali and Smiski Pearl Earring. Show the catalog names I have not marked as owned, with the source and check date. Only Smiski Bacchus is on my wishlist. Return a copyable checklist and keep any unrecognized names unresolved.
+
+Find the exact series
+
+Call search_collection_series first. Use a returned seriesId and the source names for the comparison.
+
+{"name":"search_collection_series","arguments":{"query":"Museum","brand":"smiski","limit":5,"language":"en"}}
+
+Prepare the checklist
+
+These are tools/call parameters. Only explicitly supplied wanted names become the wishlist; an unmarked figure is not automatically a purchase request.
+
+{"name":"prepare_collection_checklist","arguments":{"seriesId":"smiski-museum","owned":["Smiski Dali","Smiski Pearl Earring"],"wanted":["Smiski Bacchus"],"language":"en"}}
+
+Example result from the current named catalog
+
+Marked owned: Smiski Dali, Smiski Pearl Earring
+
+Not marked owned: Smiski The Source, Smiski Fuzin&Raijin, Smiski Bacchus, Smiski Vela’zquez
+
+Explicit wishlist: Smiski Bacchus
+
+Official series source: https://smiski.com/e/products/museumseries/
+
+Source checked: 2026-10-30
+
+This compares the named figures verified in TDS, not every item ever released. Secret figures or variants may be absent. It cannot certify a complete set, ownership, authenticity, stock or value. Repeated name inputs are not duplicate-figure quantities or trade offers.
+
+Example only. Reading this page does not call a tool, save a collection or count as a completed collection task.
+
+Connect with Claude Code
+
+With Claude Code installed, run this in the terminal for your current project, then inspect the connection. The first command adds the configuration; it is not proof of a successful tool call.
+
+claude mcp add --transport http tds https://thedollscout.com/mcp
+claude mcp get tds
+
+In Claude Code, open /mcp to check the server and its tools, then send the collection request above. Client availability, plan requirements and organization rules may differ.
+
+https://code.claude.com/docs/en/mcp
 
 labubu_rarity_odds: Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.
 {"type":"object","properties":{},"additionalProperties":false}
@@ -39,13 +82,17 @@ compare_blind_box_budget: Compare a capped independent blind-box budget with a u
 estimate_collection_progress: Estimate new distinct regular styles, repeated regular draws and secret draws from independent boxes. Assumes equally likely regular styles after combined secret probability is removed. Owned means distinct regular styles from this exact series. Not sealed-case allocation or completion probability.
 {"type":"object","properties":{"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"ownedStyles":{"type":"integer","minimum":0,"maximum":1000},"boxes":{"type":"integer","minimum":0,"maximum":100000},"secretPercent":{"type":"number","minimum":0,"maximum":100}},"required":["regularStyles","ownedStyles","boxes","secretPercent"],"additionalProperties":false}
 
-Use TDS to fit 8 × 6 × 15 cm figures inside a 40 × 25 × 30 cm case, with 1 cm gaps. Explain the limits.
+search_collection_series: Search the source-linked SMISKI and Sonny Angel catalog by series or figure name. Returns candidate series IDs, verified named styles, source URLs and per-series check dates directly. Catalog coverage can omit secret or discontinued figures; choose the exact series before comparing a collection.
+{"type":"object","properties":{"query":{"type":"string","minLength":1,"maxLength":120},"brand":{"type":"string","enum":["smiski","sonny-angel"]},"limit":{"type":"integer","minimum":1,"maximum":10,"default":5},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["query"],"additionalProperties":false}
 
-Example result: 12 figures in a 4 × 3 grid, in one layer. No mixed orientations, stacking, weight or stability check.
+prepare_collection_checklist: Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.
+{"type":"object","properties":{"seriesId":{"type":"string","minLength":1,"maxLength":100},"owned":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers."},"wanted":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["seriesId","owned"],"additionalProperties":false}
 
-The server cannot read your local collection, cloud account, private files or membership. Collection tracking and digital file tools run in their own browser pages; the catalog returns links and requirements. It does not claim to execute them remotely. Successful calls may add anonymous counts of the fixed tool name and result category, without storing arguments or identifying a person.
+The assistant sends the names you choose to the TDS MCP server to prepare the result. TDS does not save those arguments or include them in its usage telemetry; successful calls may record only a fixed tool name and result category. Your assistant provider has its own data handling. MCP cannot read or update your browser collection, private files, account or membership. Browser tracking and backups remain separate.
 
 Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.
+
+https://thedollscout.com/collector-assets/series-catalog.json
 
 https://thedollscout.com/collector-assets/learning-guides.json
 

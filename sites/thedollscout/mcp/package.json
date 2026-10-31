@@ -1,0 +1,12 @@
+{
+  "name": "tds-mcp-client-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify:local": "node ../scripts/collecting/verify-mcp-client.mjs --local",
+    "verify:live": "node --use-env-proxy ../scripts/collecting/verify-mcp-client.mjs --live"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2"
+  }
+}
