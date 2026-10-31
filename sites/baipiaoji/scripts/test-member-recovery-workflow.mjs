@@ -111,10 +111,13 @@ assert.equal(allows(releaseGuard,dispatch),true);
 assert.equal(allows(jobGuard,{...dispatch,ref:'refs/heads/feature'}),false);
 assert.equal(allows("github.event_name != 'push'",dispatch),true,'Old refresh condition would run extra work');
 assert.equal(allows("github.event_name == 'push'",dispatch),false,'Old product condition would omit browser gates');
-for(const name of ['Guard — pin current main before building','Guard — refuse deployment if main changed during the build']){
+for(const name of ['Guard — pin current main before building','Guard — verify BPJ release inputs immediately before deployment']){
  assert.equal(guardOf(name),"github.ref == 'refs/heads/main'");
- assert.match(step(name),/deploy-main-guard\.sh (?:prepare|check)/);
 }
+assert.match(step('Guard — pin current main before building'),/deploy-main-guard\.sh prepare/);
+assert.match(step('Guard — verify BPJ release inputs immediately before deployment'),/node sites\/baipiaoji\/scripts\/check-release-inputs\.mjs/);
+const releaseCheck=deploy.indexOf('run: node sites/baipiaoji/scripts/check-release-inputs.mjs');
+assert.equal(deploy.indexOf('      - name:',releaseCheck),deploy.indexOf('      - name: Deploy to Cloudflare Pages'),'No mutation may follow freshness verification before upload');
 assert.match(deploy,/cancel-in-progress: false/);
 // PR #203 added an explicit Eco-only maintenance mode. Check its isolation,
 // not merely its presence in the dispatch menu. No watcher is executed here.

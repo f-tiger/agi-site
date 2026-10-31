@@ -24,7 +24,13 @@ for file in (root/'.github/workflows').glob('deploy-*.yml'):
  assert f'coverage.py --site {key}' in text, f'Missing final coverage: {owner}'
  assert f'verify-live.mjs {key}' in text, f'Missing live verification: {owner}'
  assert 'tools/fleet-analytics/**' in text, f'Missing shared trigger: {owner}'
- assert 'deploy-main-guard.sh check' in text, f'Missing freshness check: {owner}'
+ if owner=='baipiaoji':
+  # BPJ still pins current main before building, then rejects every protected or
+  # unknown input change. Only its audited unrelated-content allowlist differs.
+  assert 'bash .github/scripts/deploy-main-guard.sh prepare' in text, 'Missing BPJ source pin'
+  assert re.search(r'^\s*run: node sites/baipiaoji/scripts/check-release-inputs\.mjs\s*$',text,re.M), 'Missing BPJ release-input check'
+ else:
+  assert 'deploy-main-guard.sh check' in text, f'Missing freshness check: {owner}'
  assert 'cancel-in-progress: true' not in text, f'Non-serial production release: {owner}'
 assert seen==set(cfg),f'Unverified registered releases: {set(cfg)-seen}'
 print(f'GA4 release contract: {len(seen)} deployments, {len(hosts)} explicit hostnames')

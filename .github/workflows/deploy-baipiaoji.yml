@@ -349,6 +349,9 @@ jobs:
       - name: Verify IndexNow selection and URL migration
         run: node scripts/test-indexnow-plan.mjs
 
+      - name: Verify BPJ release input isolation
+        run: node scripts/test-release-inputs.mjs
+
       # 2026-09-25：导航计数、页脚收录数、订阅框「最近一条」三处全站外壳随任一编辑而变，曾让加 2 个工具就把 1 700 页全标成「今天变了」。
       # 哈希忽略它们，但正文数字必须仍然触发变化——两个方向都断言，5 个变异（删任一条规则 / 抹掉全部数字 / 抹掉正文）全红。
       - name: Page-change hash ignores chrome, not content (zero network)
@@ -538,14 +541,14 @@ jobs:
           node sites/baipiaoji/scripts/test-manju-consumer-browser.mjs
           node sites/baipiaoji/scripts/test-depth-browser.mjs
 
-      - name: Guard — refuse deployment if main changed during the build
-        if: github.ref == 'refs/heads/main'
-        working-directory: ${{ github.workspace }}
-        run: bash .github/scripts/deploy-main-guard.sh check
-
       - name: Check existing public account configuration before maintenance
         if: env.BPJ_RECEIPTS_RECOVERY == 'true' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         run: node scripts/verify-member-recovery-live.mjs --account-only
+
+      - name: Guard — verify BPJ release inputs immediately before deployment
+        if: github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: node sites/baipiaoji/scripts/check-release-inputs.mjs
 
       - name: Deploy to Cloudflare Pages
         env:
