@@ -8,6 +8,7 @@ from build_season import season_of
 class HomeOrderTest(unittest.TestCase):
     def test_all_months_preserve_links_and_cold_months_prioritise_german_tasks(self):
         source=(Path(__file__).resolve().parents[1]/'site/index.html').read_text()
+        self.assertEqual(compose(source,'fruehjahr'),compose(source,'frühjahr'))
         links=sorted(re.findall(r'href="([^"]*)"',source))
         for month in range(1,13):
             with self.subTest(month=month):
