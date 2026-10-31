@@ -380,7 +380,7 @@
       "/zh/for-agents"
     ],
     "repository_guide": "sites/thedollscout/mcp/README.md",
-    "status": "implemented_pending_release_verification",
+    "status": "deployed_live_sdk_verified_registry_updated",
     "measurement_window": {
       "start": "2026-11-01",
       "end_inclusive": "2026-11-14",
@@ -418,13 +418,29 @@
     "previous_experiment_id": "smiski-checklist-entry-20261031",
     "release": {
       "target_version": "2.5.0",
-      "status": "pending_deployment_live_verification_and_registry_readback",
+      "status": "verified",
       "required_evidence": [
         "Exact deployed build and version",
         "Official SDK local and production task verification with QA excluded",
         "Official Registry version and endpoint readback"
       ],
-      "scheduling": "This document does not create or enable automation. Legacy iteration_schedule fields are historical, not activation instructions. Existing native 07:20 UTC source checks and quotas remain unchanged."
+      "scheduling": "This document does not create or enable automation. Legacy iteration_schedule fields are historical, not activation instructions. Existing native 07:20 UTC source checks and quotas remain unchanged.",
+      "commit": "1588b9f3947af1f8fedb7c34d3d278eb7a96d11d",
+      "pull_request": "https://github.com/f-tiger/agi-site/pull/215",
+      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41215167670",
+      "verified_at": "2026-10-31",
+      "version": "2.5.0",
+      "endpoint": "https://thedollscout.com/mcp",
+      "registry_name": "io.github.f-tiger/dollscout-collecting",
+      "checks": [
+        "Exact production build and MCP 2.5.0 / 12-tool contract verified",
+        "Official MCP SDK 1.32.2 completed the production HTTP task workflow with QA excluded",
+        "Official Registry reads back version 2.5.0, active and latest, at the existing endpoint",
+        "Local logic, RPC, input-boundary, measurement, generated-page and browser checks passed",
+        "SEO/GEO and GA4 configuration gates passed; GA4 backend ingestion was not independently tested",
+        "IndexNow accepted 11 changed public URLs with HTTP 200; indexing remains unknown"
+      ],
+      "adoption": "Not established by this release. SDK tests, directory registration and anonymous call counts are not external users or repeat adoption."
     }
   },
   "previous_experiments": [

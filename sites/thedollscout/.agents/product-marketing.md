@@ -3,7 +3,7 @@
 **Document version:** v5
 **Last updated:** 2026-10-31
 
-**Current direction:** the owner's latest instruction is “Mcp，工具化，而不是一个无用的站点”. Prioritize a real collection task completed inside an MCP-compatible assistant. Target release **2.5.0 is pending deployment and live verification**; repository implementation and documentation do not establish production availability, registration or adoption. The repository setup and acceptance guide is `mcp/README.md` relative to the site root.
+**Current direction:** the owner's latest instruction is “Mcp，工具化，而不是一个无用的站点”. Prioritize a real collection task completed inside an MCP-compatible assistant. Release **2.5.0 is deployed and production-verified**: the official SDK completed the HTTP workflow and the existing Registry entry reads back active/latest. Receipts: https://github.com/f-tiger/agi-site/pull/215 and https://github.com/f-tiger/agi-site/actions/runs/41215167670. These checks do not establish external adoption. The repository setup and acceptance guide is `mcp/README.md` relative to the site root.
 
 **Daily execution:** use the repository-root `data/marketing/tds-daily-plan.json` current experiment for 2026-11-01 through 2026-11-14 UTC, with a review on 2026-11-15. If deployment slips, record the real first complete day and observation duration. Keep the previous search experiment as history. This plan does not create or activate a scheduler. Native source checks, quotas and release scheduling remain unchanged. Separate drafted, published, called, used again and paid evidence; private account metrics and identities stay outside the public repository.
 

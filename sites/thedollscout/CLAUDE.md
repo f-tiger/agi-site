@@ -1,7 +1,8 @@
-## 2026-10-31 MCP 真实收藏任务优先（2.5.0 待发布）
+## 2026-10-31 MCP 真实收藏任务优先（2.5.0 已上线并验收）
 
 - Owner 最新方向是「Mcp，工具化，而不是一个无用的站点」。本轮优先让已有 MCP 助手的收藏者和收藏助手开发者在对话里完成具体任务；先验证能用与复用，不把目录曝光、匿名调用或浏览量当客户数。
-- 目标版本 2.5.0，新增 `search_collection_series` 和 `prepare_collection_checklist`，保留既有端点与工具。先搜索当前 SMISKI/Sonny Angel 具名目录，再对照用户明确提供的 owned/wanted，返回来源、核对日期、未匹配输入和可复制 Markdown。当前状态是待发布；部署、线上验收与 Registry 实际回读成功之前不得写已上线/已注册。
+- 已发布版本 2.5.0，新增 `search_collection_series` 和 `prepare_collection_checklist`，保留既有端点与工具。先搜索当前 SMISKI/Sonny Angel 具名目录，再对照用户明确提供的 owned/wanted，返回来源、核对日期、未匹配输入和可复制 Markdown。生产构建、官方 SDK 真实 HTTP 任务及官方 Registry 的 active/latest 版本回读均已通过；测试不计外部采用。
+- 发布回执：https://github.com/f-tiger/agi-site/pull/215；https://github.com/f-tiger/agi-site/actions/runs/41215167670；生产构建 `1588b9f3947af1f8fedb7c34d3d278eb7a96d11d`。沿用 `io.github.f-tiger/dollscout-collecting`，不重复建立条目。
 - Museum 示例已有 `Smiski Dali`、`Smiski Pearl Earring`；当前六个具名条目里四个尚未标记拥有，不能声称还差四个就集齐。目录可能没有隐藏款；未拥有不等于想要，重复输入不等于数量或愿意交换。工具不核实持有、真伪、库存或价值。
 - 用户选择的款式名会发给 MCP 服务计算，应用不持久保存参数，也不把参数写入使用统计；助手提供方另有数据处理方式。MCP 不读取或修改浏览器本地收藏，不提供云同步。浏览器账本、备份与仅浏览器运行的入口继续独立。
 - 接入与验收见 `mcp/README.md`；三语 `/for-agents` 要展示真实两步调用、官方 Claude Code HTTP 接入/检查方法及结果边界。安装配置不等于调用成功，不承诺 ChatGPT 自动安装、推荐或自然获客。
