@@ -1321,7 +1321,7 @@ export const __test = { clean, cleanText, LABEL_MAX };
 
 // Fixed assessment action contract. Aggregate uses the existing event-name index,
 // shares pulse's one-hour cache, and exposes no individual choices or identifiers.
-const FOCUS_LABELS = new Set(['hero_evidence','hero_grade','route_evidence','route_work','route_invest','nav_evidence','nav_work','nav_invest','nav_tools','nav_discuss','nav_directory','nav_language','grade_source','grade_evidence','changelog','context_method','context_data','context_history','asset_progress','asset_agi2027','asset_open','asset_work']);
+const FOCUS_LABELS = new Set(['capital_open','capital_method','capital_agents','capital_models','capital_robotics','capital_infrastructure','capital_applications','hero_evidence','hero_grade','route_evidence','route_work','route_invest','nav_evidence','nav_work','nav_invest','nav_tools','nav_discuss','nav_directory','nav_language','grade_source','grade_evidence','changelog','context_method','context_data','context_history','asset_progress','asset_agi2027','asset_open','asset_work']);
 export function validFocusEvent(name, location, label) {
   if (name === 'evidence_action') return /^evidence_(progress|agi2027|open|work)_(en|zh)$/.test(location || '') && ['source_open','citation_copy','share_copy','chart_download','png_download','assessment_open'].includes(label);
   if (name === 'share_arrival') return /^reader_share_(en|zh)$/.test(location || '') && ['evidence_link','assessment_link'].includes(label);

@@ -20,6 +20,8 @@ test('assessment collector accepts fixed actions, drops arbitrary scores, QA and
   for(const headers of [{dnt:'1'},{'sec-gpc':'1'}])await send({n:'task_complete',l:'grade_game_en',b:'assessment'},headers);
   assert.equal(writes.length,4);
   assert.ok(validFocusEvent('focus_entry','evidence_context_en','context_data'));
+  for(const label of ['capital_open','capital_method','capital_agents','capital_models','capital_robotics','capital_infrastructure','capital_applications'])assert.ok(validFocusEvent('focus_entry','home_focus_zh',label));
+  assert.equal(validFocusEvent('focus_entry','home_focus_zh','capital_private_search'),false);
   await send({n:'vote_cast',l:'home_vote_en',b:'true-believer',p:'/'});
   await send({n:'vote_cast',l:'home_vote_zh',b:'true-believer',p:'/cn'});
   assert.equal(writes.length,6,'both homepages can record the existing poll event');
