@@ -27,7 +27,9 @@
    row.querySelector('.access-brand p').textContent+' · '+row.querySelector('.access-state').textContent,
    row.querySelector('.access-facts>p').textContent,
    ...[...row.querySelectorAll('dt')].map(dt=>dt.textContent+': '+dt.nextElementSibling.textContent),
-   (zh?'来源':'Source')+': '+row.querySelector('[data-access-action="source"]').href,
+   (zh?'入口':'Entry')+': '+row.querySelector('[data-access-action="open"]').href,
+   (zh?'来源':'Source')+': '+row.querySelector('.access-actions [data-access-action="source"]').href,
+   ...[...row.querySelectorAll('.access-reference')].map(a=>a.textContent+' ('+a.dataset.referenceKind+'; '+a.dataset.referenceDate+'): '+a.href),
    ...[...row.querySelectorAll('.access-actions small')].map(el=>el.textContent)
   ].join('\n')),checklist()].join('\n\n');
   copying=true;selectionCopy.disabled=true;selectionFallback.hidden=true;selectionStatus.textContent='';

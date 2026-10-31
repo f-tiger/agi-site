@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-10-04",
-  "scope": "Source-linked discovery, not a transaction service or safety endorsement. Reviewed means public documentation was read, not a purchase or installation test.",
+  "updated": "2026-10-31",
+  "scope": "Source-linked discovery, not a transaction service, popularity ranking or safety endorsement. Public discussions, promotions and provider claims are separately labeled. Reviewed means public documentation was read, not a purchase or installation test.",
   "items": [
     {
       "id": "codex",
@@ -198,34 +198,445 @@
     },
     {
       "id": "packycode",
-      "name": "PackyCode",
+      "name": "PackyCode / PackyAPI",
       "type": "relay",
       "tools": [
         "codex",
         "claude-code"
       ],
       "operator": "Third party",
-      "url": "https://www.packycode.com",
-      "source": "https://www.packycode.com",
+      "url": "https://www.packyapi.com",
+      "source": "https://docs.packyapi.ai/",
+      "status": "reviewed",
+      "checkedAt": "2026-10-31",
+      "summary": {
+        "zh": "原 PackyCode 官网已转到 PackyAPI；文档列出 Claude Code、Codex 的中转接入。",
+        "en": "The former PackyCode site redirects to PackyAPI; its documentation lists Claude Code and Codex relay integrations."
+      },
+      "billing": {
+        "zh": "按模型与渠道核对用量价格、分组倍率及缓存费用；本轮未核验最低充值和支付方式。",
+        "en": "Check model/channel usage rates, multipliers and cache charges. Minimum top-up and payment methods were not verified."
+      },
+      "ownership": {
+        "zh": "使用平台账号与 Key；运营法律主体、数据保存和现行退款条件待进一步核对。",
+        "en": "Uses a platform account and key; legal operator, retention and current refund conditions need further verification."
+      },
+      "caution": {
+        "zh": "已读文档仅确认公开接入说明；上游模型身份、实时可用率和付款体验未实测。",
+        "en": "Documentation confirms published integration guidance only; model identity, live availability and payment were not tested."
+      },
+      "discovery": {
+        "zh": "V2EX 有站方促销及回复；这证明有公开讨论，不代表独立好评。",
+        "en": "V2EX hosts a vendor promotion with replies; this is an exposure signal, not an independent endorsement."
+      },
+      "references": [
+        {
+          "url": "https://www.v2ex.com/t/1173250",
+          "label": {
+            "zh": "V2EX：站方活动帖（2025-11）",
+            "en": "V2EX: vendor campaign (Nov 2025)"
+          },
+          "kind": "promotion",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "anyrouter",
+      "name": "AnyRouter (anyrouter.top)",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://anyrouter.top",
+      "source": "https://anyrouter.top",
       "status": "pending",
       "checkedAt": null,
       "summary": {
-        "zh": "第三方中转候选，暂不提供购买推荐；需补充运营主体、模型与接入证据。",
-        "en": "A third-party relay candidate, not a purchase recommendation. Operator, model and integration evidence are needed."
+        "zh": "社区常见的公益中转入口；有面向 Claude Code 和 Codex 的社区适配项目。",
+        "en": "A community-mentioned public relay with community adapters for Claude Code and Codex."
       },
       "billing": {
-        "zh": "价格、支付、倍率和退款均未核验，不用低价宣传计算性价比。",
-        "en": "Prices, payment methods, billing multipliers and refunds are unverified."
-      },
-      "caution": {
-        "zh": "本轮网站返回 403；名称不证明支持任何工具或原厂模型，匹配仅作待核验分类。",
-        "en": "The site returned HTTP 403. Its name does not prove tool or original-model support; matching is provisional."
+        "zh": "本轮未读到官方额度或充值条款；赠送额度、签到奖励和付费能力以当前账户页面为准。",
+        "en": "Official allowance and top-up terms were not readable in this review; confirm current grants, rewards and payment availability in the account UI."
       },
       "ownership": {
-        "zh": "账号归属、数据保存与运营主体待核验。",
-        "en": "Account ownership, data retention and operator identity are unverified."
+        "zh": "平台账号与 Key，运营主体、数据保存、退款及服务地区尚待核验。",
+        "en": "Platform account and key; legal operator, retention, refunds and supported regions remain unverified."
       },
-      "lastAttempt": "2026-10-04",
+      "caution": {
+        "zh": "仅收录 anyrouter.top；不与 anyrouter.dev 或 anyrouter.win 合并。社区适配不保证原生客户端完整兼容。",
+        "en": "This entry covers anyrouter.top only, not anyrouter.dev or anyrouter.win. Community adapters do not establish full native-client compatibility."
+      },
+      "discovery": {
+        "zh": "V2EX 有使用入口讨论，GitHub 有接入项目；官方页面正文未读取成功，保留待核验。",
+        "en": "V2EX discusses access and GitHub hosts integrations. The official page had no readable body, so review remains pending."
+      },
+      "references": [
+        {
+          "url": "https://origin.v2ex.com/t/1143533",
+          "label": {
+            "zh": "V2EX：AnyRouter 讨论（含邀请推广）",
+            "en": "V2EX: AnyRouter discussion (includes referral promotion)"
+          },
+          "kind": "promotion",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://github.com/liar-ac/Codex-AnyRouter-Transfer",
+          "label": {
+            "zh": "GitHub：社区 Codex 适配",
+            "en": "GitHub: community Codex adapter"
+          },
+          "kind": "docs",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://github.com/xifan2333/pi-anyrouter",
+          "label": {
+            "zh": "GitHub：社区接入项目",
+            "en": "GitHub: community integration"
+          },
+          "kind": "docs",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "88code",
+      "name": "88Code",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://www.88code.ai",
+      "source": "https://docs.88code.org/88code/introduction.html",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "原 88code.org 已跳转至 88code.ai；旧官方文档列出 Claude Code 和 Codex 接入。",
+        "en": "The former 88code.org redirects to 88code.ai; older official documentation lists Claude Code and Codex integrations."
+      },
+      "billing": {
+        "zh": "旧文档介绍按量和包月；索引内容较旧，当前价格、额度、支付与退款规则未完成复核。",
+        "en": "Older docs describe metered and subscription plans. Indexed content is old; current prices, allowances, payment and refunds remain unverified."
+      },
+      "ownership": {
+        "zh": "平台账号与 Key；不要把旧版按日退款说明当作当前承诺，下单前核对新站条款。",
+        "en": "Platform account and key. Verify current terms rather than relying on older descriptions of prorated refunds."
+      },
+      "caution": {
+        "zh": "V2EX 有稳定性及退款投诉，均属用户陈述；BPJ 未独立核实争议结果，也未实测当前服务。",
+        "en": "V2EX contains user complaints about reliability and refunds; BPJ has not independently verified their resolution or tested current service."
+      },
+      "discovery": {
+        "zh": "存在多条公开社区讨论；本轮旧文档直接读取超时，仅找到搜索索引，因此仍待核验。",
+        "en": "Multiple public discussions exist. Direct access to older docs timed out and only search-index evidence was available; review remains pending."
+      },
+      "references": [
+        {
+          "url": "https://docs.88code.org/88code/pricing.html",
+          "label": {
+            "zh": "旧计费文档：当前规则待复核",
+            "en": "Older billing docs: current rules unverified"
+          },
+          "kind": "pricing",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://v2ex.com/t/1184117",
+          "label": {
+            "zh": "V2EX：稳定性反馈（2026-01）",
+            "en": "V2EX: reliability report (Jan 2026)"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://v2ex.com/t/1190496",
+          "label": {
+            "zh": "V2EX：退款争议（2026-02）",
+            "en": "V2EX: refund dispute (Feb 2026)"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "aicodemirror",
+      "name": "AICodeMirror",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://www.aicodemirror.ai",
+      "source": "https://www.aicodemirror.ai/",
+      "status": "reviewed",
+      "checkedAt": "2026-10-31",
+      "summary": {
+        "zh": "原 .com 官网已转到 .ai；官网列出 Claude Code、Codex 等工具，详细安装指南需登录。",
+        "en": "The former .com site redirects to .ai. The public site lists Claude Code and Codex; detailed installation guides require login."
+      },
+      "billing": {
+        "zh": "公开页面提供按量充值和限期订阅额度；具体模型单价、套餐有效期与支付方式以订单页面为准。",
+        "en": "Public pages offer usage-based credit and time-limited subscriptions. Confirm model rates, validity and payment methods at checkout."
+      },
+      "ownership": {
+        "zh": "条款署名 Ma Ji Ke Hong Kong Technology Co., Ltd.（仅站方声明）。充值政策允许申请未用余额退款，但有通道费及邀请奖励扣除规则。 订阅开通后原则上不退。",
+        "en": "Terms name Ma Ji Ke Hong Kong Technology Co., Ltd. (provider statement only). Unused top-up balance may be refunded under processing and referral-deduction rules. Activated subscriptions are generally non-refundable."
+      },
+      "caution": {
+        "zh": "2025 年有周额度披露争议；旧用户反馈不代表当前套餐。账户、订阅与充值退款规则须分别核对。",
+        "en": "A 2025 discussion disputed weekly-limit disclosure; it does not establish current plan behavior. Check account, subscription and top-up refund rules separately."
+      },
+      "discovery": {
+        "zh": "V2EX 有商家活动与用户额度反馈；已读当前官网和条款，未验证商业宣传中的用户数量或稳定性。",
+        "en": "V2EX includes vendor campaigns and user allowance reports. Current public pages and terms were read; marketing adoption and reliability claims were not verified."
+      },
+      "references": [
+        {
+          "url": "https://www.aicodemirror.ai/terms",
+          "label": {
+            "zh": "服务商条款与主体声明",
+            "en": "Provider terms and operator statement"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://www.aicodemirror.ai/recharge-policy",
+          "label": {
+            "zh": "充值余额与退款政策",
+            "en": "Top-up balance and refund policy"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://www.aicodemirror.ai/subscription-policy",
+          "label": {
+            "zh": "订阅政策",
+            "en": "Subscription policy"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://www.v2ex.com/t/1170150",
+          "label": {
+            "zh": "V2EX：旧套餐额度反馈（2025-11）",
+            "en": "V2EX: older plan allowance report (Nov 2025)"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "yescode",
+      "name": "YesCode",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://co.yes.vg",
+      "source": "https://co.yes.vg/docs",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "社区有 Claude Code 中转讨论；官方页面搜索索引列出 Claude Code、Codex 和 Gemini 接入。",
+        "en": "Community discussions cover its relay; indexed provider pages list Claude Code, Codex and Gemini integrations."
+      },
+      "billing": {
+        "zh": "公开资料描述按量与订阅；当前页面依赖脚本，实时套餐、倍率和付款方式尚待核验。",
+        "en": "Public sources describe metered and subscription options; script-rendered current pricing, multipliers and payment methods remain unverified."
+      },
+      "ownership": {
+        "zh": "平台账号与 Key；条款索引提到按使用比例退款及处理费，当前完整条款须在网站重新核对。",
+        "en": "Platform account and key. Indexed terms mention prorated refunds and processing fees; recheck the complete current terms on the site."
+      },
+      "caution": {
+        "zh": "此条仅指 co.yes.vg，与名称相近的 YesCodex 网站分开；未确认当前地区支持与客户端限制。",
+        "en": "This entry covers co.yes.vg, separately from similarly named YesCodex sites; current regions and client restrictions remain unverified."
+      },
+      "discovery": {
+        "zh": "LINUX DO 有 2025 年商家发布帖和用户讨论；当前官网直接读取仅返回脚本壳，保留待核验。",
+        "en": "LINUX DO hosts a 2025 vendor launch and user discussion. Direct reads of the current website returned a script shell; review remains pending."
+      },
+      "references": [
+        {
+          "url": "https://linux.do/t/topic/801547",
+          "label": {
+            "zh": "LINUX DO：商家发布帖（2025-07）",
+            "en": "LINUX DO: vendor launch (Jul 2025)"
+          },
+          "kind": "promotion",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://linux.do/t/topic/810273/2",
+          "label": {
+            "zh": "LINUX DO：用户讨论",
+            "en": "LINUX DO: user discussion"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://co.yes.vg/terms",
+          "label": {
+            "zh": "服务条款：当前正文待核对",
+            "en": "Terms: current text needs review"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "aigocode",
+      "name": "AIGoCode",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://aigocode.com",
+      "source": "https://aigocode.com/docs/coding-tools/claude-code",
+      "status": "reviewed",
+      "checkedAt": "2026-10-31",
+      "summary": {
+        "zh": "提供 Claude Code、Codex 接入文档；现行条款明确不面向中国大陆用户提供商业 API 服务。",
+        "en": "Publishes Claude Code and Codex integration guides; current terms explicitly exclude commercial API service for users in mainland China."
+      },
+      "billing": {
+        "zh": "预付额度及订阅；订阅默认 28 天并有周额度。价格、倍率与支付方式须按服务地区和订单核对。",
+        "en": "Prepaid credit and subscriptions; the default subscription spans 28 days with weekly limits. Check pricing, multipliers and payments for the eligible region."
+      },
+      "ownership": {
+        "zh": "自有平台账号与 Key；已消费额度和已进入订阅周不退，剩余部分申请仍受处理费、最低退款额等条件约束。",
+        "en": "Own platform account and key. Consumed credit and entered subscription weeks are non-refundable; remaining portions are subject to fees, minimums and review."
+      },
+      "caution": {
+        "zh": "地区限制：条款禁止中国大陆用户注册、购买、充值和 API 调用；作为可查询记录收录，不作为大陆购买选项。",
+        "en": "Region restriction: terms exclude mainland China registration, purchase, top-up and API calls. Listed for reference, not as a mainland purchase option."
+      },
+      "discovery": {
+        "zh": "有社区退款讨论；已读当前接入文档、地区条款和退款政策，未实测交易。",
+        "en": "Community refund discussion exists. Integration, regional and refund policies were read; transactions were not tested."
+      },
+      "references": [
+        {
+          "url": "https://aigocode.com/docs/coding-tools/codex",
+          "label": {
+            "zh": "Codex 接入文档",
+            "en": "Codex integration guide"
+          },
+          "kind": "docs",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://www.aigocode.com/terms-of-service",
+          "label": {
+            "zh": "服务条款：大陆地区限制",
+            "en": "Terms: mainland China restriction"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://aigocode.com/refund-policy",
+          "label": {
+            "zh": "退款政策",
+            "en": "Refund policy"
+          },
+          "kind": "terms",
+          "observedAt": "2026-10-31"
+        },
+        {
+          "url": "https://linux.do/t/topic/2105987",
+          "label": {
+            "zh": "LINUX DO：退款讨论（2026-05）",
+            "en": "LINUX DO: refund discussion (May 2026)"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
+      "handsOnTested": false,
+      "affiliate": false
+    },
+    {
+      "id": "duckcoding",
+      "name": "DuckCoding",
+      "type": "relay",
+      "tools": [
+        "codex",
+        "claude-code"
+      ],
+      "operator": "Third party",
+      "url": "https://www.duckcoding.ai",
+      "source": "https://docs.duckcoding.ai/",
+      "status": "pending",
+      "checkedAt": null,
+      "summary": {
+        "zh": "社区讨论中的 Claude Code / Codex 中转站，当前入口为 .ai；旧 .com 文档的价格不沿用。",
+        "en": "A community-mentioned Claude Code / Codex relay with a current .ai entry; old .com documentation prices are not carried forward."
+      },
+      "billing": {
+        "zh": "历史资料描述按量服务；当前价格、分组倍率、付款方式和免费额度尚待核验。",
+        "en": "Historical sources describe metered service; current prices, group multipliers, payments and free allowances remain unverified."
+      },
+      "ownership": {
+        "zh": "平台账号与 Key；当前运营主体、账户规则、数据处理和退款政策待核验。",
+        "en": "Platform account and key; current operator, account rules, data handling and refunds remain unverified."
+      },
+      "caution": {
+        "zh": "2026 年 7 月社区帖子转述大陆地区服务限制；本轮官方页面正文不可读，须先核实地区资格，不作为已确认大陆可用渠道。",
+        "en": "A July 2026 community post reports mainland service restrictions. Official text was not readable in this review; regional eligibility needs confirmation."
+      },
+      "discovery": {
+        "zh": "LINUX DO 有迁域与地区限制讨论；帖子为用户转述，不能替代现行官方条款。",
+        "en": "LINUX DO discusses domain migration and regional restrictions. User reports are not a substitute for current provider terms."
+      },
+      "references": [
+        {
+          "url": "https://linux.do/t/topic/2532074",
+          "label": {
+            "zh": "LINUX DO：迁域与地区限制讨论（2026-07）",
+            "en": "LINUX DO: migration and regional limits (Jul 2026)"
+          },
+          "kind": "discussion",
+          "observedAt": "2026-10-31"
+        }
+      ],
+      "lastAttempt": "2026-10-31",
       "handsOnTested": false,
       "affiliate": false
     }

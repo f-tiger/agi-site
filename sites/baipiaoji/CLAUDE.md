@@ -1,3 +1,7 @@
+## 2026-10-31 社区中转渠道补录
+
+Owner 要求录入热门中转站：目录现有 13 条、其中 8 个 API 中转，新增 6 条并更新 PackyAPI 迁域。`data/coding-access.json` 的 discovery/references 区分社区讨论、商家推广和官方条款；日期是来源记录日期，不是原文发布日期。保留 pending、旧文档说明与地区限制，不做热门可靠榜。HTML/JSON/Markdown/选型复制须保留全部出处；计量仅固定目录 ID。研究、两轮检查及发布记录见 `docs/coding-access-relays-2026-10-31.md`。
+
 ## 2026-10-31 跨境商品上新包（owner 明确启动）
 
 `/studio/listing-pack` 与英文页提供本机 CSV 事实检查、外部 AI 指令包、JSON 草稿核对、原图归属和审核后 ZIP。Owner 明确选择已有 AI 助手，不接站内模型、不新增 API 费用。SKU 不静默改写；来源必需，人工审核不能表述成事实验证。内置示例复导仍按 demo，QA 不作真实使用。独立询盘经明确同意写入私有 D1 队列，可用回执撤回；没有自动通知、报价、收款或接单承诺。维护与运营边界见 `docs/PRD-listing-pack-2026-10-31.md`。固定 listing 动作纳入现有 conversion_stages 索引查询及 GA4，商品内容、图片和联系方式不得进入统计。沿用真实变更 IndexNow，不加 cron。此次 owner 指令只授权这个明确的产品扩展。
