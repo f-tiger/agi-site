@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款；eco-watch=仅 Eco 原有会员维护；agi-watch=仅 AGI 原有会员维护；inspect=只读勘察'
+        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款；eco-watch=仅 Eco 原有会员维护；agi-watch=仅 AGI 原有会员验款与到期清理（非只读）；inspect=只读勘察'
         type: choice
         options: [watch, ads-only, receipts-only, eco-watch, agi-watch, inspect]
         default: watch

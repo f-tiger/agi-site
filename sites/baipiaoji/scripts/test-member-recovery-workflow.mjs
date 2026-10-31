@@ -119,32 +119,39 @@ assert.match(step('Guard — verify BPJ release inputs immediately before deploy
 const releaseCheck=deploy.indexOf('run: node sites/baipiaoji/scripts/check-release-inputs.mjs');
 assert.equal(deploy.indexOf('      - name:',releaseCheck),deploy.indexOf('      - name: Deploy to Cloudflare Pages'),'No mutation may follow freshness verification before upload');
 assert.match(deploy,/cancel-in-progress: false/);
-// PR #203 added an explicit Eco-only maintenance mode. Check its isolation,
-// not merely its presence in the dispatch menu. No watcher is executed here.
+// Explicit Eco/AGI maintenance modes must remain isolated from each other and
+// the wider scheduled job. No watcher is executed by these truth tables.
 function watchStep(source,name){
+ assert.equal(source.split('      - name: '+name+'\n').length-1,1,'Each maintenance step must be unique: '+name);
  const start=source.indexOf('      - name: '+name+'\n');assert.ok(start>=0,name);
  const end=source.indexOf('\n      - ',start+1);return source.slice(start,end<0?undefined:end);
 }
-function checkEcoIsolation(source){
- const eco=watchStep(source,'Recover Eco membership only (manual, current main)');
- assert.equal(eco.match(/^        run: (.+)$/m)?.[1],'node tools/member-studio/ops.mjs watch eco');
- assert.match(eco,/^        timeout-minutes: 5$/m);
- assert.match(eco,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
- const names=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Match on-chain payments to pending ad slots','Check each independent site membership','Continue bounded Jarvis missions'];
+function checkTargetedIsolation(source,site){
+ const label=site==='agi'?'AGI':'Eco',other=site==='agi'?'Eco':'AGI',modeName=site+'-watch';
+ const target=watchStep(source,'Recover '+label+' membership only (manual, current main)');
+ const run=target.match(/^        run: (.+)$/m)?.[1];
+ const commands=run==='|'?[...target.split('        run: |')[1].matchAll(/^          (\S.*)$/gm)].map(m=>m[1]):[run];
+ assert.deepEqual(commands,['node tools/member-studio/ops.mjs watch '+site,...(site==='agi'?['node sites/agiscorecard/tools/member-release-health.mjs']:[])]);
+ assert.match(target,/^        timeout-minutes: 5$/m);
+ assert.match(target,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
+ const names=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Match on-chain payments to pending ad slots','Recover '+other+' membership only (manual, current main)','Check each independent site membership','Continue bounded Jarvis missions'];
  const guard=block=>{const match=block.match(/^        if: (.+)$/m);assert.ok(match);return match[1];};
- for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of ['watch','ads-only','receipts-only','eco-watch','inspect','unknown']){
+ for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of ['watch','ads-only','receipts-only','eco-watch','agi-watch','inspect','unknown']){
   const context={event,ref,mode};
-  assert.equal(allows(guard(eco),context),event==='workflow_dispatch'&&ref==='refs/heads/main'&&mode==='eco-watch','Eco admission '+JSON.stringify(context));
-  if(event==='workflow_dispatch'&&mode==='eco-watch')for(const name of names)assert.equal(allows(guard(watchStep(source,name)),context),false,'Eco must not run '+name);
+  assert.equal(allows(guard(target),context),event==='workflow_dispatch'&&ref==='refs/heads/main'&&mode===modeName,label+' admission '+JSON.stringify(context));
+  if(event==='workflow_dispatch'&&mode===modeName)for(const name of names)assert.equal(allows(guard(watchStep(source,name)),context),false,label+' must not run '+name);
  }
 }
-checkEcoIsolation(watch);
-for(const mutated of [
- watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == 'eco-watch'"," && inputs.mode == 'eco-watch'"),
- watch.replace('node tools/member-studio/ops.mjs watch eco','node tools/member-studio/ops.mjs watch-all'),
- watch.replace("inputs.mode == 'watch'","inputs.mode == 'eco-watch'"),
- watch.replace("inputs.mode == 'eco-watch'","inputs.mode == 'watch'"),
-])assert.throws(()=>checkEcoIsolation(mutated),assert.AssertionError,'Eco isolation regression must fail');
+for(const site of ['eco','agi']){
+ checkTargetedIsolation(watch,site);
+ const mode=site+'-watch';
+ for(const mutated of [
+  watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == '"+mode+"'"," && inputs.mode == '"+mode+"'"),
+  watch.replace('node tools/member-studio/ops.mjs watch '+site,'node tools/member-studio/ops.mjs watch-all'),
+  watch.replace("inputs.mode == 'watch'","inputs.mode == '"+mode+"'"),
+  watch.replace("inputs.mode == '"+mode+"'","inputs.mode == 'watch'"),
+ ])assert.throws(()=>checkTargetedIsolation(mutated,site),assert.AssertionError,site+' isolation regression must fail');
+}
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Build site','Build and validate practical tool workbench','Verify fleet account security','Complete and verify GA4 coverage after all page generators','Deploy to Cloudflare Pages','Verify live GA4 coverage and analytics asset version','Check startup MCP registry version'])assert.doesNotMatch(step(name),/^\s+if:/m,name+' must remain mandatory');
 const readOnlySkipped=['Check legacy membership obligations before isolation','Verify homepage click breakdown and labels','Verify live AI tools and free MCP','Verify search experiment and conversion stages on live site','Verify Web3 watcher and selling after deployment','Verify membership checkout and protected routes','Read membership migration totals (no account data)','Self-test agent API','Self-test watch endpoint','Self-test earning-pack registration wall','Self-test reach endpoint'];
 for(const name of readOnlySkipped)for(const readOnly of [false,true])assert.equal(allows(guardOf(name),{readOnly}),!readOnly,name);
@@ -179,7 +186,7 @@ assert.ok(deploy.indexOf('- name: Check existing public account configuration be
 const verify=step('Verify Web3 watcher and selling after deployment');assert.match(verify,/if \[ "\$BPJ_RECEIPTS_RECOVERY" = "true" \]; then\s+node scripts\/ad-watch-v2.mjs --if-configured --member-receipts-only\s+else\s+node scripts\/ad-watch-v2.mjs --if-configured --members\s+fi/);assert.match(verify,/REQUIRE_WEB3_CONFIGURED:.*env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true'/);
 checkGuard(guardOf('Publish and verify startup MCP registry entry'),{needsPublish:true});
 assert.match(registry,/!contains\(github.event.head_commit.message, '\[member-receipts-recovery\]'\)/);assert.match(registry,/!contains\(github.event.workflow_run.head_commit.message, '\[member-receipts-recovery\]'\)/);
-assert.match(watch,/cron: '7 \*\/2 \* \* \*'/);assert.match(watch,/options: \[watch, ads-only, receipts-only, eco-watch, inspect\]/);
+assert.match(watch,/cron: '7 \*\/2 \* \* \*'/);assert.match(watch,/options: \[watch, ads-only, receipts-only, eco-watch, agi-watch, inspect\]/);
 assert.equal((watch.match(/inputs.mode == 'receipts-only'/g)||[]).length,1);assert.equal((watch.match(/inputs.mode == 'ads-only'/g)||[]).length,1);
 assert.equal((watch.match(/github.event_name != 'workflow_dispatch' \|\| inputs.mode == 'watch'/g)||[]).length,3);
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Paid save path in a real browser','Verify fleet account security'])assert.doesNotMatch(step(name),/BPJ_RECEIPTS_RECOVERY/,name);
@@ -194,4 +201,4 @@ const result=spawnSync(process.execPath,['--input-type=module','-e',`
   return new Response('<html></html>');
  };await import(${JSON.stringify(live)});
 `],{encoding:'utf8',env:{...process.env,GOOGLE_CLIENT_ID:'fixture.apps.googleusercontent.com'}});assert.ifError(result.error);assert.equal(result.status,0,result.stderr);
-console.log('PASS recovery/read-only/publish truth tables; main-only opt-in dispatch with full product gates, no daily refresh/lifecycle writes, unchanged default modes, current-main guards, changed-only IndexNow, credential reuse and bounded live checks');
+console.log('PASS recovery/read-only/publish truth tables; main-only isolated Eco/AGI maintenance modes; product dispatch with full gates, no extra daily refresh/lifecycle writes, unchanged default modes, current-main guards, changed-only IndexNow, credential reuse and bounded fixture checks');
