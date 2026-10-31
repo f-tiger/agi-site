@@ -1,9 +1,10 @@
 import { EVENT_ROWS } from './hits-schema.js';
+import {parseListingEvent,emptyListingCounts} from './listing-signals.mjs';
 
 // Separate stage counts, deliberately not a user-level or Google-attributed funnel.
 // Reuse the hourly reach cache and the partial event index; never fetch identity fields.
 export const STAGE_EVENTS_SQL = `SELECT ev, path, count(*) n FROM hits
- WHERE d >= ? AND d < ? AND ${EVENT_ROWS} AND ev IN ('calc','go','home','coding_access')
+ WHERE d >= ? AND d < ? AND ${EVENT_ROWS} AND ev IN ('calc','go','home','coding_access','listing')
  AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND COALESCE(lang,'') != 'ci'
  GROUP BY ev, path`;
 export const STAGE_ACCOUNTS_SQL = `SELECT count(*) total_non_test,
@@ -20,7 +21,7 @@ export const STAGE_ACCOUNTS_DAILY_SQL = `SELECT date(a.created, 'unixepoch') dat
  GROUP BY date(a.created, 'unixepoch') ORDER BY date`;
 
 export function stageCounts(rows) {
-  const counts = { tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
+  const counts = { listing_actions: emptyListingCounts(), tool_results_own: 0, tool_results_demo: 0, tool_download_actions_own: 0,
     tool_download_actions_demo: 0, other_calc_events: 0, directory_outbound_clicks: 0,
     homepage_limit_navigation: 0, video_exports_own: 0, video_exports_demo: 0,
     account_tool_entries: 0, coding_access_filters: 0, coding_access_empty_results: 0,
@@ -29,6 +30,11 @@ export function stageCounts(rows) {
     coding_access_vendor_entries: 0 };
   for (const row of rows) {
     const n = Number(row.n) || 0, path = String(row.path || '');
+    if (row.ev === 'listing') {
+      const parsed = parseListingEvent(path);
+      if (parsed) counts.listing_actions[parsed.mode][parsed.action] += n;
+      continue;
+    }
     if (row.ev === 'coding_access') {
       const fixed = {
         '/coding-access/filter/catalog': 'coding_access_filters',
@@ -85,6 +91,7 @@ export async function readConversionStages(db, days, clock = Date.now()) {
     account_scope: 'fleet_shared_account_pool',
     missing: [...(!eventsOK ? ['events'] : []), ...(!accountsOK ? ['accounts'] : []), ...(!accountDaysOK ? ['accounts_daily'] : [])],
     definitions: {
+      listing_actions: 'Measured from the 2026-10-31 listing-pack release. Fixed browser action counts, separated into fictional demo and declared own inputs. Review is a user acknowledgement, not semantic verification; export initiates a download, not platform acceptance. Inquiry counts a browser success response, not a unique lead, paid order or revenue. QA, lost events and unlabeled automation limitations still apply.',
       acquisition: 'Search clicks and CTR come only from GSC; not supplied by this endpoint. GSC uses Pacific reporting days.',
       usage: 'Client-reported successful result actions from PDF, image and quote tools only; repeats are not deduplicated. Demo and own-input actions are separate. Image completion can include partial batch success. Download means an action, not a verified saved file.',
       other_calc_events: 'Unclassified calc events include navigation, edits and tools without a reviewed success contract; never count the whole calc bucket as completed work.',

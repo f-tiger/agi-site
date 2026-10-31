@@ -1,3 +1,7 @@
+## 2026-10-31 跨境商品上新包（owner 明确启动）
+
+`/studio/listing-pack` 与英文页提供本机 CSV 事实检查、外部 AI 指令包、JSON 草稿核对、原图归属和审核后 ZIP。Owner 明确选择已有 AI 助手，不接站内模型、不新增 API 费用。SKU 不静默改写；来源必需，人工审核不能表述成事实验证。内置示例复导仍按 demo，QA 不作真实使用。独立询盘经明确同意写入私有 D1 队列，可用回执撤回；没有自动通知、报价、收款或接单承诺。维护与运营边界见 `docs/PRD-listing-pack-2026-10-31.md`。固定 listing 动作纳入现有 conversion_stages 索引查询及 GA4，商品内容、图片和联系方式不得进入统计。沿用真实变更 IndexNow，不加 cron。此次 owner 指令只授权这个明确的产品扩展。
+
 ## 2026-10-05 编程选型结果与搜索一致性
 
 现有 `/coding-access/` 中英页支持复制当前可见候选的来源选型清单，搜索纳入已有工具标签与 Claude Code 别名。来源日期、pending 状态与未实测说明不可随构建刷新。新成功动作 `/coding-access/copy/selection` 与通用清单 `copy/catalog` 分开；沿用 `conversion_stages` 索引查询和 reach 小时缓存，无新查询或 cron。动作不是用户或成交；legacy reach 曝光含当天，不能与完整 UTC 日动作混算转化率。协议及 10/12 执行检查、10/13 完整七日复核见 `docs/coding-access-selection-2026-10-05.md`；原 11/01 商业窗口不重置。当前免费目录及独立厂商赞助定位保持，不提供代充、中转收款或新的收费方案。

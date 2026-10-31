@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readConversionStages,STAGE_EVENTS_SQL,STAGE_ACCOUNTS_DAILY_SQL} from '../lib/conversion-stages.js';
+import {emptyListingCounts} from '../lib/listing-signals.mjs';
 import {HITS_INDEXES} from '../lib/hits-schema.js';
 const db=new DatabaseSync(':memory:');
 db.exec(`CREATE TABLE hits(d TEXT,path TEXT,lang TEXT,ev TEXT,ref TEXT); ${HITS_INDEXES.join(';')};
@@ -37,7 +38,7 @@ for(const [id,date,qa,verified] of [['real','2026-09-26',0,1],['unverified','202
 const out=await readConversionStages(binding,28,Date.parse('2026-09-27T15:01:00Z'));
 assert.deepEqual(out.window,{start:'2026-08-30',end_exclusive:'2026-09-27',complete_days:28,date_basis:'UTC'});
 assert.equal(out.ok,true);
-assert.deepEqual(out.events,{tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:4,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
+assert.deepEqual(out.events,{listing_actions:emptyListingCounts(),tool_results_own:2,tool_results_demo:1,tool_download_actions_own:1,tool_download_actions_demo:1,other_calc_events:4,directory_outbound_clicks:1,homepage_limit_navigation:1,video_exports_own:1,video_exports_demo:1,account_tool_entries:1,coding_access_filters:1,coding_access_empty_results:1,coding_access_provider_opens:1,coding_access_source_opens:1,coding_access_selection_copies:2,coding_access_checklist_copies:1,coding_access_vendor_entries:1});
 assert.deepEqual(out.accounts,{created:2,new_accounts_currently_email_verified:1,total_non_test:4,total_currently_email_verified:3});
 assert.equal(out.account_scope,'fleet_shared_account_pool');
 assert.equal(out.accounts_daily.length,28);

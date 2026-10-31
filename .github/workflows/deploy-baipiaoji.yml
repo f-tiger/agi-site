@@ -391,6 +391,8 @@ jobs:
           node --test scripts/test-video-mcp.mjs scripts/test-video-mcp-registry.mjs
           node scripts/test-catalog-sync.mjs --dist
           node scripts/test-studio.mjs --dist
+          node --test scripts/test-listing-core.mjs scripts/test-listing-inquiry.mjs scripts/test-listing-signals.mjs
+          node scripts/test-listing-pack.mjs --dist
           node ../../tools/quote-page-lab/verify.mjs --dist
           node ../../tools/quote-page-lab/test-growth.mjs --dist
           node scripts/test-ai-tools.mjs
@@ -529,6 +531,7 @@ jobs:
           node sites/baipiaoji/scripts/test-homepage-consent-browser.mjs
           node sites/baipiaoji/scripts/test-public-engagement-browser.mjs
           node sites/baipiaoji/scripts/test-manju-search-browser.mjs
+          node sites/baipiaoji/scripts/test-listing-browser.mjs
           node sites/baipiaoji/scripts/test-video-events-browser.mjs
           node sites/baipiaoji/scripts/test-video-fit-browser.mjs
           node sites/baipiaoji/scripts/test-ai-video-browser.mjs
@@ -548,6 +551,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify listing pack public routes and inquiry readiness
+        run: node scripts/test-listing-pack.mjs --live
 
       - name: Verify live GA4 coverage and analytics asset version
         working-directory: ${{ github.workspace }}

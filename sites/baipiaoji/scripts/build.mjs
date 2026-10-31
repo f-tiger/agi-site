@@ -8050,6 +8050,7 @@ Details: ${site.base_url}/pricing.html
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
 ## BPJ first-party AI workflow tools
+- Listing pack: https://baipiaoji.com/en/studio/listing-pack . Free local CSV checks, external AI handoff, draft review and ZIP export. Not automatic translation, platform publishing or semantic verification. Optional assistance inquiry is not an order or payment.
 - Hub: https://baipiaoji.com/en/studio/ai/
 - Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop

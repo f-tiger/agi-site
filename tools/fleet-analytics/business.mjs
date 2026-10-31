@@ -41,6 +41,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   const affiliate = affiliateEvent(host, detail);
   if (affiliate) return affiliate;
   const name = detail.name;
+  if (host === 'baipiaoji.com' && ['/studio/listing-pack','/en/studio/listing-pack'].includes(pathname) && /^listing_(import|check|handoff|draft|review|export|inquiry)_(demo|own)$/.test(name)) return {name,tool_id:'listing-pack',repeat:true};
   if(host==='baipiaoji.com' && ((pathname==='/tools/kimi' && ['plan_select','plan_save','plan_copy','plan_export'].some(a=>name==='bpj_depth_'+a)) || (/^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['watch_save','watch_resume','watch_export'].some(a=>name==='bpj_depth_'+a)))) return {name,tool_id:'bpj-depth',repeat:true};
   if(host==='baipiaoji.com'&&['/studio/testimonial-kit','/en/studio/testimonial-kit'].includes(pathname)&&/^proofkit_(preview|backup|export|image|canva)_(demo|own)$|^proofkit_(member_open|import_own)$/.test(name))return {name,tool_id:'testimonial-kit',repeat:true};
   if (host === 'getecoback.com' &&

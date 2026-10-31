@@ -12,9 +12,11 @@ import {EDITION} from '../assets/studio/quote-core.mjs';
 import {renderWorkspace} from '../assets/studio/quote-view.mjs';
 import {buildVideo} from './video-pages.mjs';
 import {buildFileStudio} from './file-pages.mjs';
+import {buildListingPack} from './listing-pages.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:'/studio/listing-pack',zh:'跨境商品上新包',en:'Cross-border listing pack',zhDesc:'检查商品事实，交接 AI 英文草稿，逐项核对后导出上新资料包。',enDesc:'Check product facts, hand off English AI drafts and export a reviewed listing worksheet.',zhOutput:'商品事实 · 英文草稿 · 核对清单 · ZIP',enOutput:'Source facts · English drafts · review checklist · ZIP',search:'listing sku product ecommerce cross border catalog csv 商品 跨境 上新 英文 校验'},
   {featured:true,path:'/studio/testimonial-kit',zh:'客户评价素材台',en:'Customer quote studio',zhDesc:'把已授权的真实评价制作成网站展示页和图片，会员可导出去品牌交付包。',enDesc:'Turn permissioned customer quotes into a website wall and image; members can export an unbranded package.',zhOutput:'HTML 展示页 · SVG 图片 · 项目备份',enOutput:'HTML wall · SVG image · project backup',search:'testimonial customer review social proof wall quote 评价 客户 证言 营销 素材'},
   {featured:true,path:'/studio/toolkit',zh:'通用工具导航',en:'Everyday toolkit',zhDesc:'按任务找到 AI、图片、PDF、数据与协作工具，标明本站与 TDS 原站入口。',enDesc:'Find AI, image, PDF, data and collaboration tools, with clear BPJ and TDS destinations.',zhOutput:'任务分类 · 免费基础工具 · 原站入口',enOutput:'Task categories · free core tools · clear origins',search:'toolkit ai image pdf json timezone file utilities 工具 汇总 导航 图片 文件 时区'},
   {featured:true,path:'/studio/proposal-deck',zh:'客户提案演示工作台',en:'Client proposal deck studio',zhDesc:'把客户需求与 AI 草稿整理成可编辑 PowerPoint，保留来源、讲稿和改稿版本。',enDesc:'Turn client requirements and AI drafts into editable PowerPoint with sources, speaker notes and revision history.',zhOutput:'原生 PPTX · 讲稿 · 项目备份',enOutput:'Editable PPTX · speaker notes · project backup',search:'presentation powerpoint pptx deck proposal agent 客户 提案 演示 幻灯片 讲稿'},
@@ -65,4 +67,5 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   buildReleasePilot({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildVideo({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildFileStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
+  buildListingPack({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
 }
