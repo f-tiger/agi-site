@@ -59,7 +59,7 @@ COLD = [
     "EB_HOMETOOL", "deals", "disclosure", "situationen", "guide", "how", "faq",
     "EB_COUNTRIES", "EB_UK_PATH", "EB_AU_COOLING", "TOOLS_BAND",
 ]
-ORDER = {"sommer": WARM, "frühjahr": WARM, "herbst": COLD, "winter": COLD}
+ORDER = {"sommer": WARM, "fruehjahr": WARM, "herbst": COLD, "winter": COLD}
 # Units that belong to other topics' tools; they go into one band above the footer.
 TOOLS = ("EB_ENERGY_WORKBENCH", "eu-evidence", "task-workbench")
 WB_OPEN, WB_CLOSE = "<!-- task-workbench:start -->", "<!-- task-workbench:end -->"

@@ -411,7 +411,9 @@ jobs:
       # Country/UK/AU and workbench builders also inject homepage sections.
       # Order only after those builders; otherwise they undo the winter order.
       - name: Order homepage sections by season
-        run: python3 tools/build_home_order.py
+        run: |
+          python3 tools/test_home_order.py
+          python3 tools/build_home_order.py
 
       - name: Configure independent membership secrets
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
