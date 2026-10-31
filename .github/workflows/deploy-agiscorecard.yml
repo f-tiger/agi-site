@@ -26,7 +26,7 @@ on:
         type: boolean
         default: false
       refresh_future:
-        description: "Refresh public interview and creator feeds before deploying"
+        description: "Refresh public interview, creator and AI company feeds before deploying"
         type: boolean
         default: false
   # 每日兜底部署(2026-09-11)。本站此前**没有自己的 schedule**——它每天能重新部署
@@ -47,7 +47,7 @@ env:
 
 jobs:
   future-discovery:
-    name: Discover interviews and creator videos
+    name: Discover interviews, creator videos and AI company updates
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh_future == true) }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -62,13 +62,18 @@ jobs:
         run: python3 sites/agiscorecard/tools/foresight/test_refresh.py
       - name: Read bounded public publisher feeds
         run: python3 sites/agiscorecard/tools/foresight/refresh.py
+      - name: Validate and refresh bounded AI company sources
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/futures/test_refresh.py
+          python3 tools/futures/refresh.py
       - name: Preserve the current snapshot and visible source status
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add sites/agiscorecard/foresight-assets/discovery.json
+          git add sites/agiscorecard/foresight-assets/discovery.json sites/agiscorecard/futures-assets/snapshot.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore(agi): refresh public interview discovery and source health'
+          git commit -m 'chore(agi): refresh public interview and company source health'
           git pull --rebase origin main
           git push origin HEAD:main
       - name: Report any unavailable source after preserving its last good content
@@ -78,6 +83,9 @@ jobs:
           s=json.load(open('sites/agiscorecard/foresight-assets/discovery.json'))
           print(s['checkedAt'], len(s['items']), 'items')
           bad=[x['id'] for x in s['sources'] if x['status']!='ok']
+          f=json.load(open('sites/agiscorecard/futures-assets/snapshot.json'))
+          print(f['checkedAt'], len(f['items']), 'company updates')
+          bad += ['company:'+x['id'] for x in f['sources'] if not x['ok']]
           assert not bad, 'Sources unavailable (cached content retained): '+', '.join(bad)
           PY
   deploy:
@@ -133,6 +141,14 @@ jobs:
           node sites/agiscorecard/tools/foresight/build.mjs --check
           node --test sites/agiscorecard/tools/foresight/test.mjs sites/agiscorecard/tools/foresight/home-rotation.test.mjs sites/agiscorecard/tools/foresight/planner.test.mjs
           node sites/agiscorecard/tools/foresight/member-test.mjs
+
+      - name: Build and validate AI future simulator
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/futures/test_refresh.py
+          node tools/futures/build.mjs
+          node --test tools/futures/test.mjs
+          node tools/futures/member-test.mjs
 
       - name: Build and test bounded Jarvis research agent
         run: |
@@ -256,6 +272,7 @@ jobs:
           node sites/agiscorecard/tools/browser_evidence.mjs
           node sites/agiscorecard/tools/tianya/browser-test.mjs
           node sites/agiscorecard/tools/foresight/browser-test.mjs
+          node sites/agiscorecard/tools/futures/browser-test.mjs
           node sites/agiscorecard/tools/foresight/planner.browser.mjs
           node tools/revenue-studio/browser-test.mjs
           node sites/agiscorecard/tools/browser_invest_research.cjs
@@ -397,6 +414,9 @@ jobs:
 
       - name: Verify live future-guide content, assets and member catalog
         run: node sites/agiscorecard/tools/foresight/verify.mjs
+
+      - name: Verify live AI future simulator and independent member product
+        run: node sites/agiscorecard/tools/futures/verify-live.mjs
 
       - name: Verify live Jarvis surfaces and private API boundaries
         if: env.OUTCOME_READONLY_RELEASE != 'true'

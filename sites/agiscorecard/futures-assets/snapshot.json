@@ -1,0 +1,1572 @@
+{
+  "checkedAt": "2026-10-31T15:47:37Z",
+  "sources": [
+    {
+      "id": "openai",
+      "company": "OpenAI",
+      "url": "https://openai.com/news/rss.xml",
+      "checkedAt": "2026-10-31T15:47:37Z",
+      "lastSuccessAt": "2026-10-31T15:47:37Z",
+      "ok": true,
+      "error": null
+    },
+    {
+      "id": "anthropic",
+      "company": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "checkedAt": "2026-10-31T15:47:37Z",
+      "lastSuccessAt": "2026-10-31T15:47:37Z",
+      "ok": true,
+      "error": null
+    },
+    {
+      "id": "meta",
+      "company": "Meta",
+      "url": "https://about.fb.com/news/feed/",
+      "checkedAt": "2026-10-31T15:47:37Z",
+      "lastSuccessAt": "2026-10-31T15:47:37Z",
+      "ok": true,
+      "error": null
+    },
+    {
+      "id": "xai",
+      "company": "xAI / SpaceX",
+      "url": "https://x.ai/news",
+      "checkedAt": "2026-10-31T15:47:37Z",
+      "lastSuccessAt": "2026-10-31T15:47:37Z",
+      "ok": true,
+      "error": null
+    },
+    {
+      "id": "deepmind",
+      "company": "Google DeepMind",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "checkedAt": "2026-10-31T15:47:37Z",
+      "lastSuccessAt": "2026-10-31T15:47:37Z",
+      "ok": true,
+      "error": null
+    }
+  ],
+  "items": [
+    {
+      "id": "84abd1857de5dfd951d90dcf",
+      "company": "OpenAI",
+      "title": "Making it easier for websites to express AI training preferences",
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+      "publishedAt": "2026-10-30T09:30:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a86d24c59c826150d16deb11",
+      "company": "OpenAI",
+      "title": "Community safety report and new protections for teens",
+      "url": "https://openai.com/index/community-safety-report-and-new-protections-for-teens",
+      "publishedAt": "2026-10-30T09:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "574dbaf7fc8731e405753fdd",
+      "company": "OpenAI",
+      "title": "Fair use benefits everyone",
+      "url": "https://openai.com/index/fair-use-benefits-everyone",
+      "publishedAt": "2026-10-30T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "41804386d21a770b2b19b283",
+      "company": "Meta",
+      "title": "L’avenir appartient à tous: Meta et INCA s’associent pour soutenir les personnes aveugles, sourdes et aveugles ou ayant une basse vision au Canada",
+      "url": "https://about.fb.com/news/2026/10/lavenir-appartient-a-tous-meta-et-inca-sassocient-pour-soutenir-les-personnes-aveugles-sourdes-et-aveugles-ou-ayant-une-basse-vision-au-canada",
+      "publishedAt": "2026-10-29T17:00:55Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fe3342fed45e766d57919d30",
+      "company": "Meta",
+      "title": "The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision",
+      "url": "https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision",
+      "publishedAt": "2026-10-29T17:00:36Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "9349f418e7bc7ab45091d36c",
+      "company": "OpenAI",
+      "title": "An updated Model Spec for more capable and beneficial AI",
+      "url": "https://openai.com/index/updated-model-spec",
+      "publishedAt": "2026-10-29T17:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0f01adb2acab0a67ba71c0b0",
+      "company": "OpenAI",
+      "title": "How we detect frontier model misalignment",
+      "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
+      "publishedAt": "2026-10-29T09:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d948735545c20cf3072195db",
+      "company": "OpenAI",
+      "title": "How Ropes & Gray is developing AI for transactional diligence",
+      "url": "https://openai.com/index/ropes-gray-ai-diligence",
+      "publishedAt": "2026-10-29T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "85f94c0fe8f02a81789bf108",
+      "company": "OpenAI",
+      "title": "Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot",
+      "url": "https://openai.com/index/credit-saison",
+      "publishedAt": "2026-10-29T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3e32bae570ff21ee59e510c6",
+      "company": "Google DeepMind",
+      "title": "Gemini 4 Carbon: Our next frontier model",
+      "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model",
+      "publishedAt": "2026-10-28T17:00:58Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0581385f35cc1b6867a0c100",
+      "company": "Meta",
+      "title": "Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs",
+      "url": "https://about.fb.com/news/2026/10/meta-partners-with-five-us-universities-to-accelerate-medical-and-scientific-breakthroughs",
+      "publishedAt": "2026-10-28T17:00:49Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a395c7da350b5086cc15f6b6",
+      "company": "OpenAI",
+      "title": "OpenAI and ServiceNow expand partnership across enterprise workflows",
+      "url": "https://openai.com/index/openai-servicenow-partnership-expansion",
+      "publishedAt": "2026-10-28T13:15:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e2ed7680c50ae3f074e04f96",
+      "company": "OpenAI",
+      "title": "The future of the firm",
+      "url": "https://openai.com/index/the-future-of-the-firm",
+      "publishedAt": "2026-10-28T10:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "709cc8e2bd467b7916899fb3",
+      "company": "OpenAI",
+      "title": "Legora is building the agentic operating system for legal work",
+      "url": "https://openai.com/index/legora",
+      "publishedAt": "2026-10-28T09:30:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "13347cc46aef6df7e315d0f4",
+      "company": "Meta",
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built for Everyone",
+      "url": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone",
+      "publishedAt": "2026-10-28T00:00:03Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f7219ee448f554bda650d3c0",
+      "company": "Anthropic",
+      "title": "AI for Science expands to foundations and research institutions",
+      "url": "https://anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+      "publishedAt": "2026-10-28T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e960e8891f7d7ad86d1b82fb",
+      "company": "Google DeepMind",
+      "title": "Genie 4: A new generation of world simulation",
+      "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation",
+      "publishedAt": "2026-10-27T16:01:38Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1e3ebf94e41ebe19793bfa16",
+      "company": "OpenAI",
+      "title": "Retell uses OpenAI models to help power 100M monthly calls",
+      "url": "https://openai.com/index/retell-ai",
+      "publishedAt": "2026-10-27T15:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c417f8e3d39d0b893c07541b",
+      "company": "OpenAI",
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT",
+      "url": "https://openai.com/index/oracle-apps-in-chatgpt",
+      "publishedAt": "2026-10-27T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2cf69418651c9e4ae19010e7",
+      "company": "xAI / SpaceX",
+      "title": "Your next sales teammate should be a Grok Bot",
+      "url": "https://x.ai/news/grok-bot-sales",
+      "publishedAt": "2026-10-27T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c44dc9ed271ff418b14ac5c9",
+      "company": "OpenAI",
+      "title": "How Check Point accelerates vulnerability research with Daybreak",
+      "url": "https://openai.com/index/check-point-daybreak",
+      "publishedAt": "2026-10-27T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "86f3cc373bd875eed34fe0af",
+      "company": "Anthropic",
+      "title": "Expanding our partnership with GSA to bring Claude to all levels of government",
+      "url": "https://anthropic.com/news/expanding-partnership-gsa",
+      "publishedAt": "2026-10-27T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a9c488820a62ac4adcd9d66c",
+      "company": "OpenAI",
+      "title": "Greptile takes bug detection beyond code review with GPT-6 Astra",
+      "url": "https://openai.com/index/greptile-code-review-codex-astra",
+      "publishedAt": "2026-10-26T22:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "8eb6001a836a6e50b8fb133e",
+      "company": "OpenAI",
+      "title": "Working with academic communities to build scientific understanding",
+      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities",
+      "publishedAt": "2026-10-26T14:30:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "7d972df501d01ba1f64ace9f",
+      "company": "OpenAI",
+      "title": "GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases",
+      "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security",
+      "publishedAt": "2026-10-26T13:45:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "27334100e818b98514ff3198",
+      "company": "OpenAI",
+      "title": "ChatGPT’s expanding world of work",
+      "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
+      "publishedAt": "2026-10-26T10:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "742d30efdc4090c11a97794f",
+      "company": "OpenAI",
+      "title": "How Ultrafast cut incident investigation from hours to minutes at OpenAI",
+      "url": "https://openai.com/index/openai-cut-incident-investigation",
+      "publishedAt": "2026-10-26T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "7e73eebe3e909303c4c59a7d",
+      "company": "OpenAI",
+      "title": "How Fanatics and OpenAI streamline the fan experience",
+      "url": "https://openai.com/index/fanatics-streamline-fan-experience",
+      "publishedAt": "2026-10-26T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "35e334c198740f7416638922",
+      "company": "OpenAI",
+      "title": "Introducing GPT-6.1 Terra",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+      "publishedAt": "2026-10-26T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "138f8fbf64952c3ea1f975aa",
+      "company": "Anthropic",
+      "title": "Anthropic files S-1 with the SEC for proposed initial public offering",
+      "url": "https://anthropic.com/news/s1-sec",
+      "publishedAt": "2026-10-26T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ee4c22366ef7e7abd786b0a4",
+      "company": "OpenAI",
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+      "publishedAt": "2026-10-23T17:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "39c09c367649ab612f2c74b4",
+      "company": "Meta",
+      "title": "New Tools for the Admins Who Build Communities on Forum",
+      "url": "https://about.fb.com/news/2026/10/new-tools-for-the-admins-who-build-communities-on-forum",
+      "publishedAt": "2026-10-23T16:00:06Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f8c156dba7886826388b35c0",
+      "company": "OpenAI",
+      "title": "Securing our frontier model training environment",
+      "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "publishedAt": "2026-10-23T10:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1a543055a02f9816518cc039",
+      "company": "OpenAI",
+      "title": "OpenAI and Poland’s NASK partner to advance AI safety and security",
+      "url": "https://openai.com/index/openai-nask-ai-safety-security-partnership",
+      "publishedAt": "2026-10-23T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3b5a2a6a27ab5490f80a6876",
+      "company": "OpenAI",
+      "title": "Anima helps clinics cut call waits by 75% with GPT-6 and GPT-Live",
+      "url": "https://openai.com/index/anima",
+      "publishedAt": "2026-10-23T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "891b7e0bbf66f86d27b770f3",
+      "company": "OpenAI",
+      "title": "Build more responsive apps with the Decisions API",
+      "url": "https://openai.com/index/decisions-api",
+      "publishedAt": "2026-10-22T19:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "8f93170faf71fda6558b8b2f",
+      "company": "Google DeepMind",
+      "title": "Beyond tree cover: mapping the world’s forest types",
+      "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types",
+      "publishedAt": "2026-10-22T14:30:24Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6400feb681472530a689e8c5",
+      "company": "OpenAI",
+      "title": "What FDE means at OpenAI",
+      "url": "https://openai.com/index/forward-deployed-engineering-means",
+      "publishedAt": "2026-10-22T06:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "da5fa7cddb0bb32116f9d2af",
+      "company": "xAI / SpaceX",
+      "title": "Introducing the SpaceX Super Intelligence Partner Network",
+      "url": "https://x.ai/news/partnernetworkannouncement",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "eda525050cea8fce4b138233",
+      "company": "OpenAI",
+      "title": "Uber brings ChatGPT Work to all employees with OpenAI",
+      "url": "https://openai.com/index/uber-chatgpt-work-rollout",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0dc73e009fc04960daf82f59",
+      "company": "Anthropic",
+      "title": "Open call for guest investigators in the life sciences",
+      "url": "https://anthropic.com/news/open-call-guest-investigators-life-sciences",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f9a9e399ecd4c4fa8a6e1578",
+      "company": "Anthropic",
+      "title": "Donating Agent Skills to the Agentic AI Foundation",
+      "url": "https://anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+      "publishedAt": "2026-10-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3f1a11956436b167380065dc",
+      "company": "OpenAI",
+      "title": "Broad access through consistent standards",
+      "url": "https://openai.com/index/broad-access-through-consistent-standards",
+      "publishedAt": "2026-10-21T21:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "39cad894cdd240fbe2dba606",
+      "company": "OpenAI",
+      "title": "How AT&T is rethinking in-house legal work with OpenAI",
+      "url": "https://openai.com/index/att-legal",
+      "publishedAt": "2026-10-21T17:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b1215e1aefc04c61e203617a",
+      "company": "OpenAI",
+      "title": "ChatGPT Ads expands to 26 new countries as over 100,000 advertisers have used the platform",
+      "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
+      "publishedAt": "2026-10-21T13:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "95dedf578de78f3ec264f66e",
+      "company": "OpenAI",
+      "title": "OpenAI models are coming to Google Cloud",
+      "url": "https://openai.com/index/openai-models-google-cloud",
+      "publishedAt": "2026-10-21T12:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "de9db6f384cbc788775550a9",
+      "company": "OpenAI",
+      "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
+      "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+      "publishedAt": "2026-10-21T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ea92da5c121ecb4527027c2b",
+      "company": "OpenAI",
+      "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+      "url": "https://openai.com/index/building-chatgpt-ad-stack",
+      "publishedAt": "2026-10-21T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "64ddfb139fec8a1cb4597ec2",
+      "company": "OpenAI",
+      "title": "Using thousands of AI agents to uncover new leads in biological data",
+      "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
+      "publishedAt": "2026-10-21T04:50:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e270f5ba4688033de075906d",
+      "company": "OpenAI",
+      "title": "Democratic governance of frontier AI, part II: Empowering cyber defenders",
+      "url": "https://openai.com/index/empowering-cyber-defenders",
+      "publishedAt": "2026-10-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3fe372fb2e8166f0e8146fd8",
+      "company": "OpenAI",
+      "title": "Cloudflare links vulnerability discovery to defense with OpenAI",
+      "url": "https://openai.com/index/cloudflare-cyber",
+      "publishedAt": "2026-10-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1d7075b06143eaf3ac20fb31",
+      "company": "Anthropic",
+      "title": "Physicist Christopher Stubbs joins Anthropic's Long-Term Benefit Trust",
+      "url": "https://anthropic.com/news/christopher-stubbs-joins-long-term-benefit-trust",
+      "publishedAt": "2026-10-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1725d137aa3debc0d8ae9b76",
+      "company": "OpenAI",
+      "title": "Franchisee reconciles cash in 94% less time with ChatGPT Work",
+      "url": "https://openai.com/index/ted-taylor-restaurant",
+      "publishedAt": "2026-10-20T10:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "aa8847d44cbae3328f3c5cbb",
+      "company": "OpenAI",
+      "title": "Terminal X matches senior investor judgment 88.6% with GPT-6.1",
+      "url": "https://openai.com/index/terminal-x",
+      "publishedAt": "2026-10-20T07:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0de9428d3548b15fe7f408cf",
+      "company": "xAI / SpaceX",
+      "title": "Using Grok Bot to detect and respond to incidents",
+      "url": "https://x.ai/news/incident-sweep",
+      "publishedAt": "2026-10-20T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1cfb6291fa158d05a5bad0e6",
+      "company": "OpenAI",
+      "title": "OpenAI acquires Orchestra Bio",
+      "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
+      "publishedAt": "2026-10-20T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1dbe22633003a2af4fddcdba",
+      "company": "OpenAI",
+      "title": "Advancing coding in low‑resource programming languages",
+      "url": "https://openai.com/index/low-resource-programming-languages",
+      "publishedAt": "2026-10-19T12:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d3ccea06eed400947004d79d",
+      "company": "Anthropic",
+      "title": "Investing in the public benefit",
+      "url": "https://anthropic.com/news/public-benefit-fund",
+      "publishedAt": "2026-10-18T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3b88e631408680364ea9a152",
+      "company": "Google DeepMind",
+      "title": "Accelerating the search for antimicrobial peptides with Google Antigravity",
+      "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery",
+      "publishedAt": "2026-10-15T16:08:03Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "144647f83aa6804e0bebec0f",
+      "company": "Meta",
+      "title": "More Than Three Quarters of Small Business Owners Say AI Makes Them More Productive, But Most Need More Guidance",
+      "url": "https://about.fb.com/news/2026/10/more-than-three-quarters-of-small-business-owners-say-ai-makes-them-more-productive-but-most-need-more-guidance",
+      "publishedAt": "2026-10-15T00:50:50Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b79f3ae1e52917dfd681f1e2",
+      "company": "Anthropic",
+      "title": "An update on independent evaluators",
+      "url": "https://anthropic.com/news/an-update-on-independent-evaluators",
+      "publishedAt": "2026-10-15T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fb9782751b5c994c8a858daf",
+      "company": "Meta",
+      "title": "Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses",
+      "url": "https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses",
+      "publishedAt": "2026-10-14T16:00:57Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1104c6ccbb54fde787959876",
+      "company": "Meta",
+      "title": "Now You Can Invite Anyone to a WhatsApp Call",
+      "url": "https://about.fb.com/news/2026/10/introducing-whatsapp-guest-calling",
+      "publishedAt": "2026-10-14T14:24:37Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "de9331fc6124994af3457337",
+      "company": "Meta",
+      "title": "Farah Khan at Edits Film Festival: “Content breakthroughs come from spontaneity, relatability and realness”",
+      "url": "https://about.fb.com/news/2026/10/farah-khan-at-edits-film-festival-content-breakthroughs-come-from-spontaneity-relatability-and-realness",
+      "publishedAt": "2026-10-14T11:39:32Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b76b11a1199f73b7027f051c",
+      "company": "Google DeepMind",
+      "title": "Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection",
+      "url": "https://deepmind.google/blog/on-device-ai-scam-detection-mddi",
+      "publishedAt": "2026-10-14T02:00:14Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "12251940b3b4d2234012ad5b",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok Voice 3.0",
+      "url": "https://x.ai/news/grok-voice-3",
+      "publishedAt": "2026-10-14T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e9e144fc152f32599ae66ba9",
+      "company": "Anthropic",
+      "title": "Anthropic opens Singapore office and signs MOU with the Government of Singapore",
+      "url": "https://anthropic.com/news/singapore-office-opening",
+      "publishedAt": "2026-10-14T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "762a2da9be9c9b0129c39c56",
+      "company": "Anthropic",
+      "title": "Preparing for the 2026 US midterms",
+      "url": "https://anthropic.com/news/2026-us-midterms",
+      "publishedAt": "2026-10-14T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1dc99b611b2499a3b88164db",
+      "company": "Google DeepMind",
+      "title": "Developing Gemini 4 Argon responsibly and safely",
+      "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely",
+      "publishedAt": "2026-10-13T19:43:07Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d96a2391b623b2cb26cccc90",
+      "company": "Google DeepMind",
+      "title": "Gemini 4 Argon for Robotics",
+      "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics",
+      "publishedAt": "2026-10-13T16:01:58Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "4e31b829ae6885914a657352",
+      "company": "Google DeepMind",
+      "title": "Gemini 4 Argon: Built to solve your hardest problems",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-argon",
+      "publishedAt": "2026-10-13T16:01:52Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "677117a6476c9ea93f6947db",
+      "company": "Meta",
+      "title": "Your Algorithm, Your Words: New Ways to Shape What You See on Facebook",
+      "url": "https://about.fb.com/news/2026/10/introducing-your-algorithm-facebook",
+      "publishedAt": "2026-10-13T16:00:29Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ec0714e7c8ff94385ec1bbe8",
+      "company": "xAI / SpaceX",
+      "title": "Introducing The X Subscription",
+      "url": "https://x.ai/news/x-subscription",
+      "publishedAt": "2026-10-12T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e80312ced00a18ef45f91ce8",
+      "company": "Anthropic",
+      "title": "Strengthening our defenses against distillation attacks",
+      "url": "https://anthropic.com/news/distillation-defenses",
+      "publishedAt": "2026-10-12T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fd0dc27ca8ea6554b9f917e9",
+      "company": "Anthropic",
+      "title": "Building on our commitment to American scientific discovery",
+      "url": "https://anthropic.com/news/genesis-mission-commitment",
+      "publishedAt": "2026-10-08T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "db9affcbdb973e525d2f937e",
+      "company": "Anthropic",
+      "title": "Introducing the Anthropic Cyber Mission",
+      "url": "https://anthropic.com/news/anthropic-cyber-mission",
+      "publishedAt": "2026-10-08T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d0113c0cdfc861ace98ebe0f",
+      "company": "Anthropic",
+      "title": "2026 Usage Policy update",
+      "url": "https://anthropic.com/news/2026-usage-policy-update",
+      "publishedAt": "2026-10-08T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6b1b69f74c1fd122bfcc0f6a",
+      "company": "Anthropic",
+      "title": "Introducing Claude Haiku 5.5",
+      "url": "https://anthropic.com/claude-haiku-5-5",
+      "publishedAt": "2026-10-07T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2ee55c894d54d6ef378cd7d1",
+      "company": "Google DeepMind",
+      "title": "EmbeddingGemma 2: an open, lightweight multimodal embedding model",
+      "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model",
+      "publishedAt": "2026-10-06T19:57:04Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "dedfd77a2ec2f331934b094f",
+      "company": "Anthropic",
+      "title": "Expanding the Cyber Verification Program",
+      "url": "https://anthropic.com/news/cyber-verification-program",
+      "publishedAt": "2026-10-06T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b79d22df6b0123ab2c9645ae",
+      "company": "Anthropic",
+      "title": "Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap",
+      "url": "https://anthropic.com/news/claude-frontier-academy",
+      "publishedAt": "2026-10-02T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ae05aec856e89806cf6416c6",
+      "company": "Anthropic",
+      "title": "Barclays scales Claude to upgrade operations and improve client experience",
+      "url": "https://anthropic.com/news/barclays-scales-claude",
+      "publishedAt": "2026-10-01T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b49099cde7e97e60f531fdab",
+      "company": "Google DeepMind",
+      "title": "Gemini 4 Argon: our next era of frontier intelligence",
+      "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence",
+      "publishedAt": "2026-09-30T20:01:45Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "08aa8115cb5d9c8920990d12",
+      "company": "Google DeepMind",
+      "title": "Introducing SynthID Bio",
+      "url": "https://deepmind.google/blog/introducing-synthid-bio",
+      "publishedAt": "2026-09-30T15:03:07Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "52b14ec01b86fb13f0c928f5",
+      "company": "xAI / SpaceX",
+      "title": "Team Bots: shared AI teammates that learn as they work",
+      "url": "https://x.ai/news/team-bots",
+      "publishedAt": "2026-09-28T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "264dae8ef56c37c92ef4ff9d",
+      "company": "Anthropic",
+      "title": "Introducing Claude Sonnet 5.5",
+      "url": "https://anthropic.com/claude-sonnet-5-5",
+      "publishedAt": "2026-09-28T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6add3dd62456569f19427e45",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.8 Live with Live Avatar",
+      "url": "https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar",
+      "publishedAt": "2026-09-24T16:20:39Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1043d9fe80283e6f409b90e0",
+      "company": "Google DeepMind",
+      "title": "Advancing Private AI Compute with secure, server-side memory",
+      "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory",
+      "publishedAt": "2026-09-23T16:00:57Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "infrastructure",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "721de6922a1a6b9fd6bd57fa",
+      "company": "Google DeepMind",
+      "title": "Gemini 3.8 text-to-speech says hello",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech",
+      "publishedAt": "2026-09-23T15:25:14Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "03d2992c5a1bb0eba51196ba",
+      "company": "xAI / SpaceX",
+      "title": "How SpaceXSI is using Grok Bot to scale customer support",
+      "url": "https://x.ai/news/grok-bot-customer-support",
+      "publishedAt": "2026-09-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "70dd77e15b4f7f3a5b3f04c0",
+      "company": "Anthropic",
+      "title": "Introducing Claude Opus 5.5",
+      "url": "https://anthropic.com/claude-opus-5-5",
+      "publishedAt": "2026-09-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "39b901174b54337602684590",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok 4.7",
+      "url": "https://x.ai/news/grok-4-7",
+      "publishedAt": "2026-09-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ce5508c16c0a4e202edcba58",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok Voice Transcribe 2.0",
+      "url": "https://x.ai/news/grok-voice-transcribe-2",
+      "publishedAt": "2026-09-18T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f90b8881a8c68a2ccc565ad9",
+      "company": "Anthropic",
+      "title": "Partnering with Accenture on embedded evaluation",
+      "url": "https://anthropic.com/news/accenture-embedded-evaluation",
+      "publishedAt": "2026-09-18T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "eba96cdd2cacda4342457f51",
+      "company": "Anthropic",
+      "title": "Introducing the Life Sciences Verification Program",
+      "url": "https://anthropic.com/news/life-sciences-verification-program",
+      "publishedAt": "2026-09-17T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e3779e8809a662a02642ba35",
+      "company": "xAI / SpaceX",
+      "title": "Memory in Grok Build",
+      "url": "https://x.ai/news/grok-build-memory",
+      "publishedAt": "2026-09-16T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6aae488b1bb65e59bc913efd",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking",
+      "publishedAt": "2026-09-15T17:05:57Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "825546b9e9e150a70467a533",
+      "company": "Google DeepMind",
+      "title": "AlphaGenome Atlas: A predictive map of every possible DNA letter change in the human genome",
+      "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome",
+      "publishedAt": "2026-09-08T14:00:15Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "b0f85a5b072300fb986434f1",
+      "company": "xAI / SpaceX",
+      "title": "Setting Grok Bot loose on procurement",
+      "url": "https://x.ai/news/grok-bot-procurement",
+      "publishedAt": "2026-09-04T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d5ea4bcadd66b1af0f565c09",
+      "company": "Google DeepMind",
+      "title": "Introducing WeatherNext 3, our most advanced and accurate global weather AI model",
+      "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model",
+      "publishedAt": "2026-09-03T15:02:08Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "eef9c9e362bd416f50ab8603",
+      "company": "xAI / SpaceX",
+      "title": "Grok Bot for Enterprise",
+      "url": "https://x.ai/news/grok-bot-for-enterprise",
+      "publishedAt": "2026-09-03T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c3a0d443767e88bd97e52b0a",
+      "company": "xAI / SpaceX",
+      "title": "Designing Grok Bot for a world of persistent agents",
+      "url": "https://x.ai/news/designing-grok-bot",
+      "publishedAt": "2026-09-03T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "bf94848b24bf5829af64116a",
+      "company": "Google DeepMind",
+      "title": "Proactive cyber defense for governments and enterprises",
+      "url": "https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises",
+      "publishedAt": "2026-09-02T16:24:24Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "355be2cf6d2d139c093acbd4",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.8 Flash and 3.8 Flash Cyber",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber",
+      "publishedAt": "2026-09-02T16:18:31Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6bf5b05134dd23a67198b53a",
+      "company": "Google DeepMind",
+      "title": "Introducing agentic video understanding with Gemini",
+      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini",
+      "publishedAt": "2026-09-01T17:08:51Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d4276b2db9013a3c4dc47255",
+      "company": "xAI / SpaceX",
+      "title": "Biosecurity at the frontier",
+      "url": "https://x.ai/news/biosafety-at-the-frontier",
+      "publishedAt": "2026-09-01T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a39ebb9cbdf1604de14fc0d3",
+      "company": "xAI / SpaceX",
+      "title": "Grok Bot now works with X",
+      "url": "https://x.ai/news/grok-bot-and-x",
+      "publishedAt": "2026-08-29T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "90ba20dc32b53edf52ab24a1",
+      "company": "Google DeepMind",
+      "title": "Gemini Omni 1.1 Flash lets you build with more control",
+      "url": "https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control",
+      "publishedAt": "2026-08-27T16:11:32Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f0dc85dcc6d3444f64828299",
+      "company": "Google DeepMind",
+      "title": "Piloting the world's first double-blind AI evaluations",
+      "url": "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations",
+      "publishedAt": "2026-08-27T12:59:16Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "737331cbffc8a092b5afd218",
+      "company": "Google DeepMind",
+      "title": "Intelligent transcription with Gemini 3.5 Transcribe",
+      "url": "https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe",
+      "publishedAt": "2026-08-26T17:01:00Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a68f4a2bcd37136bc2771bdf",
+      "company": "xAI / SpaceX",
+      "title": "Grok Bot is now included with more plans",
+      "url": "https://x.ai/news/grok-bot-more-plans",
+      "publishedAt": "2026-08-26T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f13ed961c41442c5dabe7f74",
+      "company": "xAI / SpaceX",
+      "title": "Grok 4.6 on Microsoft Foundry",
+      "url": "https://x.ai/news/grok-4-6-microsoft-foundry",
+      "publishedAt": "2026-08-26T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "76900827bd8bbfff398d6c8f",
+      "company": "Google DeepMind",
+      "title": "From Atari to EVE Online: Building on 15 Years of AI Research in Games",
+      "url": "https://deepmind.google/blog/from-atari-to-eve-online-building-on-15-years-of-ai-research-in-games",
+      "publishedAt": "2026-08-21T11:59:48Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f2610a1bfd1fbf1f77007e56",
+      "company": "xAI / SpaceX",
+      "title": "Grok 4.6 on Gemini Enterprise Agent Platform",
+      "url": "https://x.ai/news/grok-4-6-vertex-ai",
+      "publishedAt": "2026-08-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3355d4417267671a018a4173",
+      "company": "xAI / SpaceX",
+      "title": "Grok Build on web and mobile",
+      "url": "https://x.ai/news/grok-build-for-everyone",
+      "publishedAt": "2026-08-19T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "aacd3776a4d3e0782764b4e0",
+      "company": "xAI / SpaceX",
+      "title": "Grok 4.6 on Amazon Bedrock",
+      "url": "https://x.ai/news/grok-4-6-amazon-bedrock",
+      "publishedAt": "2026-08-19T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "2a68d8196b36b7f0a632b098",
+      "company": "xAI / SpaceX",
+      "title": "Grok 4.6 in GitHub Copilot",
+      "url": "https://x.ai/news/grok-4-6-github-copilot",
+      "publishedAt": "2026-08-14T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "d8531b3bebbaf6641750e3ef",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.7 Flash",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash",
+      "publishedAt": "2026-08-13T17:04:18Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c26c8d5a4e90c67829e9c660",
+      "company": "Google DeepMind",
+      "title": "Putting sign language AI into users’ hands",
+      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands",
+      "publishedAt": "2026-08-12T14:01:59Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "66321e57ae7a50676743cff3",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok 4.6",
+      "url": "https://x.ai/news/grok-4-6",
+      "publishedAt": "2026-08-12T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "61f8622f16d38d847e83cb05",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok Bot",
+      "url": "https://x.ai/news/introducing-grok-bot",
+      "publishedAt": "2026-08-11T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ccbfd7bc75a8593ef52b56d3",
+      "company": "xAI / SpaceX",
+      "title": "Imagine Image 2.0",
+      "url": "https://x.ai/news/grok-imagine-image-2",
+      "publishedAt": "2026-08-07T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ebc5821a44c45c7a5386a7b9",
+      "company": "Google DeepMind",
+      "title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
+      "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones",
+      "publishedAt": "2026-08-06T15:06:15Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3c59c1683b41ea574f8147b0",
+      "company": "xAI / SpaceX",
+      "title": "Imagine Video 1.5 with References",
+      "url": "https://x.ai/news/grok-imagine-video-1-5-references",
+      "publishedAt": "2026-07-31T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c8c2521853f8de9e5b687c00",
+      "company": "Google DeepMind",
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration",
+      "publishedAt": "2026-07-30T15:00:59Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c469407231ee79071f886186",
+      "company": "Google DeepMind",
+      "title": "We’re launching Lyria 3.5 in Google Flow Music, with advances across musicality, lyrics, vocals, and creative control",
+      "url": "https://deepmind.google/blog/were-launching-lyria-35-in-google-flow-music-with-advances-across-musicality-lyrics-vocals-and-creative-control",
+      "publishedAt": "2026-07-29T16:02:10Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a4ea106eb8577dfb86b96f71",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok Voice 2.0",
+      "url": "https://x.ai/news/grok-voice-think-fast-2",
+      "publishedAt": "2026-07-29T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "bba16244a7af23a2584cbd65",
+      "company": "Google DeepMind",
+      "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots",
+      "publishedAt": "2026-07-28T13:21:37Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "17328a0f00ee174ef6436ba8",
+      "company": "xAI / SpaceX",
+      "title": "Grok 4.5 in GitHub Copilot",
+      "url": "https://x.ai/news/grok-github-copilot",
+      "publishedAt": "2026-07-28T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "bdb7d10d11340ac242e461ad",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Build Mode",
+      "url": "https://x.ai/news/grok-build-mode",
+      "publishedAt": "2026-07-28T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "ff9a5c1479e9780ea10ea565",
+      "company": "xAI / SpaceX",
+      "title": "Grok in Google Workspace",
+      "url": "https://x.ai/news/introducing-google-workspace-addon",
+      "publishedAt": "2026-07-24T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6415582bccdc3afe0c909e68",
+      "company": "xAI / SpaceX",
+      "title": "Workflows in Grok Build",
+      "url": "https://x.ai/news/workflows",
+      "publishedAt": "2026-07-23T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "e08c4d4e6d11f25f77a6eb4c",
+      "company": "Google DeepMind",
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission",
+      "publishedAt": "2026-07-22T13:38:54Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "68223e75ebd40eaa64a7477a",
+      "company": "xAI / SpaceX",
+      "title": "Bringing Grok 4.5 to iOS, Android, Web, and X",
+      "url": "https://x.ai/news/grok-4-5-everywhere",
+      "publishedAt": "2026-07-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "5e431bbf920c7ba36bf7a9d2",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber",
+      "publishedAt": "2026-07-21T15:16:30Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "f8f038096d193f1b2d692aae",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok for Outlook",
+      "url": "https://x.ai/news/introducing-outlook-addin",
+      "publishedAt": "2026-07-21T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c56614b1f012b2d05e6ad8e8",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok for Excel",
+      "url": "https://x.ai/news/introducing-excel-addin",
+      "publishedAt": "2026-07-20T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "969044f63ea6bfa4b0495f3d",
+      "company": "Google DeepMind",
+      "title": "Introducing Gemini 3.5 Flash Cyber",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber",
+      "publishedAt": "2026-07-17T15:00:11Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "16e13c52f7cd02d4ace3d47a",
+      "company": "Google DeepMind",
+      "title": "Our approach to bioresilience",
+      "url": "https://deepmind.google/blog/our-approach-to-bioresilience",
+      "publishedAt": "2026-07-16T09:30:42Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "be250a2523098377f89c61fc",
+      "company": "xAI / SpaceX",
+      "title": "Automations in Grok",
+      "url": "https://x.ai/news/grok-automations",
+      "publishedAt": "2026-07-16T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "c5fe4e158440bf6accd86d9e",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok 4.5",
+      "url": "https://x.ai/news/grok-4-5",
+      "publishedAt": "2026-07-16T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "9efc9cea8bbe31887a1bac12",
+      "company": "xAI / SpaceX",
+      "title": "Grok Build is Now Open Source",
+      "url": "https://x.ai/news/grok-build-open-source",
+      "publishedAt": "2026-07-15T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "13a6d9819972b9b7d709cc9f",
+      "company": "Google DeepMind",
+      "title": "Empowering India’s next generation of innovators with ATL Saathi",
+      "url": "https://deepmind.google/blog/empowering-indias-next-generation-of-innovators-with-atl-saathi",
+      "publishedAt": "2026-07-13T12:37:28Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fb328d59b08e23898f8885d1",
+      "company": "xAI / SpaceX",
+      "title": "21 New Flagship Grok Voices",
+      "url": "https://x.ai/news/new-flagship-voices",
+      "publishedAt": "2026-07-06T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "4e2b1466249cf48f87696edc",
+      "company": "Google DeepMind",
+      "title": "Google DeepMind and A24 announce first-of-its-kind research partnership",
+      "url": "https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership",
+      "publishedAt": "2026-07-03T14:25:43Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "1dafde049d0ad3abead079d7",
+      "company": "xAI / SpaceX",
+      "title": "Introducing the Voice Agent Builder",
+      "url": "https://x.ai/news/grok-voice-agent-builder",
+      "publishedAt": "2026-07-01T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "8cc1837ba6892f6f01dc3818",
+      "company": "Google DeepMind",
+      "title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash",
+      "publishedAt": "2026-06-30T16:02:40Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "72286a4388d15b6d16668041",
+      "company": "Google DeepMind",
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash",
+      "publishedAt": "2026-06-24T16:30:01Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "6830ec0eb797cc53db15970d",
+      "company": "xAI / SpaceX",
+      "title": "Introducing /goal",
+      "url": "https://x.ai/news/introducing-goal",
+      "publishedAt": "2026-06-22T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fc5d348dcff7dfb8977daff0",
+      "company": "xAI / SpaceX",
+      "title": "Introducing Grok for Word",
+      "url": "https://x.ai/news/introducing-word-addin",
+      "publishedAt": "2026-06-18T00:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "212a353b8729f56376b36bed",
+      "company": "Google DeepMind",
+      "title": "Unlocking UK house-building with AI-accelerated planning",
+      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning",
+      "publishedAt": "2026-06-16T21:29:50Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "3d293869c3ae62396dc43f6e",
+      "company": "Google DeepMind",
+      "title": "Securing the future of AI agents",
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents",
+      "publishedAt": "2026-06-16T15:46:31Z",
+      "discoveredAt": "2026-10-31T15:47:37Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    }
+  ]
+}

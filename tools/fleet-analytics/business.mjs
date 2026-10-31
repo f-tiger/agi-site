@@ -113,12 +113,16 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
       ['future_medium','future_topic','future_video_open','future_audio_open'].includes(name)) {
     return {name, tool_id:'future-guide', repeat:true};
   }
+  if (host === 'agiscorecard.com' && ['/ai-futures','/zh/ai-futures'].includes(pathname) &&
+      ['futures_run_own','futures_export_own','futures_save_local','futures_cloud_intent','futures_source_open','futures_neural','futures_research_open','futures_register_intent'].includes(name)) {
+    return {name, tool_id:'ai-futures', repeat:true};
+  }
   if (host === 'agiscorecard.com' && ['/', '/cn'].includes(route) &&
       ['home_library','home_audio','home_video_open','home_view','home_topic','home_latest','home_notebook','home_jarvis'].includes(name)) {
     return {name, tool_id:'agi-home', site_edition:route==='/cn'?'zh':'en', repeat:true};
   }
   if (host === 'agiscorecard.com' && !/^\/(?:members|discuss\/(?:account|moderate))(?:\/|$)/.test(route) &&
-      ['menu_open','home','videos','evidence','jarvis','tools','invest','discuss','search','workbench','earn','mentor','create','agents','portfolio','infrastructure','exposure','notebook','account','members','newsletter','language'].some(a=>name==='nav_'+a)) {
+      ['menu_open','home','videos','evidence','jarvis','tools','invest','discuss','search','workbench','earn','mentor','create','agents','portfolio','infrastructure','futures','tianya','exposure','notebook','account','members','newsletter','language'].some(a=>name==='nav_'+a)) {
     return {name, tool_id:'agi-navigation', site_edition:pathname.startsWith('/zh/')||pathname==='/cn'?'zh':'en',repeat:true};
   }
   // Homepage events use fixed public labels only, never destinations or search input.
