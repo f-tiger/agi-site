@@ -37,3 +37,13 @@ New pages have canonical/hreflang, WebApplication and breadcrumb schema, tool-hu
 - Check bilingual/mobile rendering, successful scenario change, local save/export/import, correct account return links and exact-window cloud handoff. Private account/member surfaces remain untracked.
 - Run existing site validation, hreflang, breadcrumbs, navigation and GA4 coverage gates. After release, use `tools/futures/verify-live.mjs`, shared account and GA4 live probes. These are read-only production checks; they do not create accounts, orders or fake conversions.
 - Read payment readiness without calling the watcher to make it green. Report live status separately from mock checkout verification. Actual registration, payment and delivery require real evidence; this document is the release contract, not proof those outcomes occurred.
+
+## Production evidence — 2026-10-31
+
+PR #218 is merged. Deployment run 41219389218 attempt 1 passed browser tests and the main guard, and Cloudflare deployed at 16:30 UTC. Its later readiness check failed because the existing membership health observation had expired; this historical run is not described as fully green. The previous scheduled AGI maintenance succeeded at 12:12 UTC, then no subsequent scheduled run refreshed the four-hour health window.
+
+Explicit existing-maintenance recovery run 41220921711 used only the main-only `agi-watch` mode and succeeded. This is real chain/order/retention maintenance, separate from deployment verification, not a fabricated payment or direct health write. Subsequent read-only member checks returned `ready:true` with the existing price and quotas. Neither registration nor a real purchase was created for this release.
+
+Independent production checks verified both public language routes, exact model/source/share assets, directory and Future Guide links, member product identity, sitemap and Markdown. Actual browser checks verified changed-input runs, desktop/mobile fit, safe account destinations and currently available membership; anonymous telemetry attempts were blocked during QA. Shared navigation passed across 24 live pages and 37 menu routes. GA4 release 3619f27dd3bc covered 375 public routes and passed 73 live-route checks; backend receipt is not tested.
+
+The five-source snapshot checked at 16:20:44 UTC contains 152 entries with no unavailable source. The existing incremental IndexNow submitter verified and submitted 95 changed public URLs, including both futures routes, and received HTTP 200 at 16:45 UTC. No account/member routes were submitted. This is receipt, not proof of search indexing or traffic. The successful cursor is preserved in data/indexnow/agi.json.
