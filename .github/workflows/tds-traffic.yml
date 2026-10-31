@@ -29,6 +29,9 @@ jobs:
         working-directory: sites/thedollscout
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
 
       - name: Pull traffic from the Cloudflare Analytics API
         # Every token secret is passed, and the script tries each in turn. It
@@ -163,6 +166,14 @@ jobs:
           bash scripts/commit-generated.sh traffic-bot \
             "chore: record daily metrics (edge / GA4 / GSC)" \
             content/traffic.json content/ga4.json content/gsc.json content/d1-snapshot.json content/document-metrics.json
+
+      # Reuse one cached, indexed aggregate read. Public summary omits counts and inputs.
+      # Existing 06:00 UTC cadence is unchanged; no new schedule or model call.
+      - name: Check event-kit measurement and next review action
+        if: always()
+        run: |
+          set -o pipefail
+          node scripts/collecting/event-report.mjs --health-only 2>&1 | tee -a "$GITHUB_STEP_SUMMARY"
 
       # content/ is excluded from the published site, so there is nothing to
       # deploy here — the file exists for the growth loop, not for visitors.

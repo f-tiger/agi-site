@@ -3,11 +3,25 @@
   "updated": "2026-10-31",
   "server": {
     "name": "dollscout",
-    "version": "2.5.0"
+    "version": "2.6.0"
   },
   "endpoint": "https://thedollscout.com/mcp",
   "documentation": "https://thedollscout.com/for-agents",
   "tools": [
+    {
+      "id": "event-kit",
+      "task": "events",
+      "name": "Prepare a collector event template or personal card",
+      "inputs": "User-supplied event name/date/rules, exchange mode, and explicitly selected wanted/offered names",
+      "mcpTool": "prepare_swap_event_card",
+      "execution": "remote-calculation",
+      "urls": {
+        "en": "https://thedollscout.com/collecting/event-kit",
+        "de": "https://thedollscout.com/de/collecting/event-kit",
+        "zh": "https://thedollscout.com/zh/collecting/event-kit"
+      },
+      "limitations": "Unverified user-supplied event information. Returns a reviewable link containing readable data; anyone holding it can read or forward it. No event registration, matching, organizer verification or transaction. Browser creation does not upload inputs; MCP processes only supplied arguments without persisting them."
+    },
     {
       "id": "collection-search",
       "task": "collection",

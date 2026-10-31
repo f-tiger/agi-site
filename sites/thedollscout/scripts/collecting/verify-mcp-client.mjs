@@ -11,6 +11,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {SERVER, PROTOCOL_VERSION, TOOLS, RESOURCES} from '../../collector-assets/mcp-contract.mjs';
+import {decodeEventPayload,makeParticipantPayload} from '../../collector-assets/event-kit-core.mjs';
 
 const require = createRequire(new URL('../../mcp/package.json', import.meta.url));
 const {Client} = require('@modelcontextprotocol/sdk/client/index.js');
@@ -109,11 +110,22 @@ try {
  assert.deepEqual(unresolved.wanted, []);
  assert.ok(unresolved.markdown.includes(unknown), 'Unknown input must remain visible.');
  assert.ok(unresolved.markdown.includes(unknownWanted), 'Unknown wanted input must remain visible.');
+ const eventArgs={kind:'event',eventName:'TDS QA fictional meetup',eventDate:'2099-01-01',exchangeMode:'store',note:'QA example only, not a real event.',language:'en'};
+ const event=await call('prepare_swap_event_card',eventArgs);
+ assert.equal(event.kind,'event');assert.equal(event.event.unverified,true);assert.deepEqual(event.offered,[]);
+ assert.ok(event.shareUrl.startsWith('https://thedollscout.com/collecting/event-kit#event='));
+ const eventPayload=decodeEventPayload(new URL(event.shareUrl).hash);
+ assert.equal(eventPayload.kind,'event');
+ const card=await call('prepare_swap_event_card',{...eventArgs,kind:'card',wanted:['Smiski Bacchus'],offered:['Smiski Dali']});
+ assert.equal(card.event.exchangeMode,'store');assert.equal(card.unmatchedWanted.length,0);assert.equal(card.unmatchedOffered.length,0);
+ assert.ok(card.sources.some(source=>source.seriesId===actual.id&&source.source===actual.source));
+ const recipientDraft=makeParticipantPayload(decodeEventPayload(new URL(card.shareUrl).hash));
+ assert.deepEqual(recipientDraft.wanted,[]);assert.deepEqual(recipientDraft.offered,[]);assert.equal(recipientDraft.eventName,eventArgs.eventName);
  const sdk = JSON.parse(await readFile(path.join(site,'mcp/node_modules/@modelcontextprotocol/sdk/package.json'),'utf8'));
  verification = {
   verification:'official_sdk_http_client_passed', target:local?'local_http_adapter':'production',
   sdk:{name:sdk.name,version:sdk.version}, server:client.getServerVersion(), protocol:transport.protocolVersion,
-  steps:['initialize','listTools','listResources','readResource','search_collection_series','prepare_collection_checklist','preserve_unmatched_input','close'],
+  steps:['initialize','listTools','listResources','readResource','search_collection_series','prepare_collection_checklist','preserve_unmatched_input','prepare_swap_event_card','decode_shared_card','clear_recipient_lists','close'],
   example:{seriesId:found.seriesId,ownedStyles:prepared.owned.length,notMarkedOwnedStyles:prepared.notMarkedOwned.length,explicitWantedStyles:prepared.wanted.length},
   qaExcluded:true, adoption:'not_measured', noLocalCollectionAccess:true
  };

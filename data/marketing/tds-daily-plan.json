@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "site": "tds",
   "start_date": "2026-10-12",
   "days": 30,
@@ -358,89 +358,69 @@
     "external_distribution": "No new post, message, outreach, paid placement or partner adoption authorized or claimed."
   },
   "current_experiment": {
-    "id": "mcp-collection-tasks-20261031",
+    "id": "collector-event-pilot-20261031",
     "updated": "2026-10-31",
-    "owner_direction": "Mcp，工具化，而不是一个无用的站点",
-    "audience": "SMISKI/Sonny Angel collectors already using an MCP-compatible assistant, and developers building collector assistants; these are target segments, not verified users.",
-    "hypothesis": "A source-backed series search and explicit owned/wanted comparison can complete a useful collection task inside an existing assistant and earn a second real task.",
-    "task": {
-      "endpoint": "https://thedollscout.com/mcp",
-      "transport": "Streamable HTTP",
-      "sequence": [
-        "search_collection_series",
-        "prepare_collection_checklist"
-      ],
-      "example": "Museum: Smiski Dali and Smiski Pearl Earring are marked owned. Four of the current six catalogued names remain unmarked; only explicit wanted input becomes the wishlist.",
-      "result": "Source, check date, owned/not-marked-owned/explicit-wanted/unmatched names and copyable Markdown.",
-      "scope": "Published named-series catalog only; secrets/variants may be missing. No complete-set, ownership, authenticity, stock or value claim; no browser collection access or cloud sync."
-    },
+    "owner_direction": "不光是调研，要最终落地",
+    "audience": "Retailers or organizers who already host collector meetups, and participants preparing explicit wanted/offered lists.",
+    "hypothesis": "A rules-aware event template and a recipient-to-own-card workflow reduce preparation work enough for an organizer to distribute and reuse the tool.",
+    "status": "implemented_pending_live_verification",
+    "endpoint": "https://thedollscout.com/mcp",
+    "mcp_tool": "prepare_swap_event_card",
     "pages": [
-      "/for-agents",
-      "/de/for-agents",
-      "/zh/for-agents"
+      "/collecting/event-kit",
+      "/de/collecting/event-kit",
+      "/zh/collecting/event-kit"
     ],
-    "repository_guide": "sites/thedollscout/mcp/README.md",
-    "status": "deployed_live_sdk_verified_registry_updated",
+    "previous_experiment_id": "mcp-collection-tasks-20261031",
     "measurement_window": {
       "start": "2026-11-01",
       "end_inclusive": "2026-11-14",
       "review_on": "2026-11-15",
-      "timezone": "UTC",
-      "late_release_rule": "If deployment is later, record the actual first complete production day and available complete days. Keep the review date as a checkpoint, extend observation if needed, and never backfill or call a partial window fourteen days."
+      "timezone": "UTC"
     },
     "learning_gates": {
-      "independently_confirmed_external_trialers": 3,
-      "confirmed_repeat_trialers": 1,
-      "repeat_definition": "One of the external trialers voluntarily returns to complete a separate real collection task; repeated calls, retries, assisted QA or a second step in the same task do not establish repeat use.",
-      "interpretation": "Chosen exploratory thresholds, not statistical significance, forecasts or evidence of paid demand. Verify voluntary external use independently; anonymous tool counts cannot supply people or retention."
+      "organizers_with_independently_confirmed_distribution": 1,
+      "participants_completing_their_own_real_preparation_task": 10,
+      "organizers_reusing_at_a_later_real_event": 1,
+      "interpretation": "Exploratory gates, not forecasts or statistical significance. Independent voluntary evidence is required; anonymous actions cannot establish people or adoption. Later-event reuse may require an extended observation window."
+    },
+    "delivered_flow": [
+      "Organizer supplies event name/date and peer/store/display rules without participant lists",
+      "Participant explicitly selects wanted/offered items; source matches and unresolved names remain visible",
+      "Reviewed share link opens read-only; recipient can start a new personal card with both lists cleared",
+      "No registration, marketplace, messaging, automatic posting or transaction guarantee"
+    ],
+    "owned_distribution": [
+      "Homepage first-screen link",
+      "Existing trading-meetup guide and wanted-card entry",
+      "Collector tool directory, localized for-agents and repository MCP README",
+      "Recipient can create and share a separate personal preparation card"
+    ],
+    "external_distribution": {
+      "status": "invitations_prepared_not_sent",
+      "candidates": [
+        "Friends NYC",
+        "TATE’S Comics + Toys + More"
+      ],
+      "blocked_candidate": "SONIANDSMI official downstream contact form unavailable at research time; no delivery claimed",
+      "private_materials": "Target contact details, invitation copies and replies remain outside the public repository."
     },
     "daily_checks": [
-      "Read the existing release receipt and reuse the existing cached collector-growth report when available; do not duplicate collection jobs or invent missing days.",
-      "Check connection and task failures separately from discovery visits and successful tool counts. Run marked QA only when a new change or failure warrants it; exclude QA, sample tasks and known maintainer self-tests from adoption.",
-      "Separate configuration, Registry discovery, successful calls, independently confirmed external trialers and repeat real tasks. A two-tool task can generate multiple calls; anonymous calls are not people, installs or retention cohorts.",
-      "Record voluntary external feedback and the smallest evidenced blocker privately; improve setup clarity or task output only when supported. Do not add fingerprints or send collection names/identities into usage telemetry.",
-      "On 2026-11-15 review release timing, available complete days, external task evidence, repeated use and acquisition gaps. Missing telemetry or failed reports remain unknown, not zero."
+      "Existing 06:00 UTC tds-traffic job reads one cached collector-growth report and reports coverage/health/next review focus. It does not publish raw counts, customer inputs or identities.",
+      "Generation, link copying, valid recipient opening, own-card starts and print requests are distinct fixed actions; no inferred people, delivered shares, prints, event attendance, matches or revenue.",
+      "Investigate missing coverage or broken paths before interpreting zero counts. QA, DNT/GPC and stored opt-outs remain excluded.",
+      "Review voluntary organizer and participant feedback before another feature expansion. Existing MCP 3-trial/1-repeat gate remains a separate initial technical-adoption experiment."
     ],
     "decision_rules": [
-      "Fewer than 3 independently confirmed external trialers: insufficient acquisition evidence. Reassess the reachable assistant-using audience and connection path before expanding features or declaring no demand.",
-      "External trials encounter reproducible failures: repair the demonstrated connection, catalog or task blocker and verify it with QA excluded.",
-      "At least 3 external trialers but no confirmed repeat real task: inspect task frequency and value through voluntary feedback; additional anonymous calls do not satisfy repeat use.",
-      "At least 3 external trialers including 1 confirmed repeat: continue one focused learning cycle. This small gate does not justify a paid subscription, a profitability claim or statistical confidence.",
-      "Keep browser saves/exports, MCP task evidence, affiliate clicks and merchant-confirmed revenue separate. No invented cross-source conversion rate or attribution."
+      "No organizer actually distributes: examine acquisition and the organizer value proposition before expanding features.",
+      "Real participants encounter a reproducible blocker: repair the smallest demonstrated failure.",
+      "Successful preparation but no later reuse: investigate event cadence and ongoing value; do not infer retention from repeated calls."
     ],
-    "channel_constraints": [
-      "Public task docs, repository README and successful official MCP Registry publication are discovery entry points, not proof of audience reach, automatic assistant installation or AI recommendation.",
-      "r/smiskis prohibits AI-generated or edited posts/comments; r/SonnyAngel restricts external-platform promotion; r/Labubuswap forbids ISO/service ads. These remain demand-research sources, not automatic distribution permission.",
-      "This plan does not send outbound messages, publish social posts, buy placement or claim partner adoption. Voluntary external trials require real evidence.",
-      "The previous organizer-kit/search acquisition work remains historical context; the current priority is real MCP task adoption, not more video production or broad site expansion."
-    ],
-    "privacy": "Tool arguments are processed remotely but not persisted in application usage telemetry; assistant providers have their own data handling. Private account exports, counts, feedback identities and automation state stay outside this public plan.",
-    "previous_experiment_id": "smiski-checklist-entry-20261031",
+    "privacy": "Browser creation stays local. Shared links contain readable, editable data and cannot revoke copies. MCP processes supplied arguments statelessly. No free-text inputs, fragment, event ID or participant identity enter telemetry.",
     "release": {
-      "target_version": "2.5.0",
-      "status": "verified",
-      "required_evidence": [
-        "Exact deployed build and version",
-        "Official SDK local and production task verification with QA excluded",
-        "Official Registry version and endpoint readback"
-      ],
-      "scheduling": "This document does not create or enable automation. Legacy iteration_schedule fields are historical, not activation instructions. Existing native 07:20 UTC source checks and quotas remain unchanged.",
-      "commit": "1588b9f3947af1f8fedb7c34d3d278eb7a96d11d",
-      "pull_request": "https://github.com/f-tiger/agi-site/pull/215",
-      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41215167670",
-      "verified_at": "2026-10-31",
-      "version": "2.5.0",
-      "endpoint": "https://thedollscout.com/mcp",
-      "registry_name": "io.github.f-tiger/dollscout-collecting",
-      "checks": [
-        "Exact production build and MCP 2.5.0 / 12-tool contract verified",
-        "Official MCP SDK 1.32.2 completed the production HTTP task workflow with QA excluded",
-        "Official Registry reads back version 2.5.0, active and latest, at the existing endpoint",
-        "Local logic, RPC, input-boundary, measurement, generated-page and browser checks passed",
-        "SEO/GEO and GA4 configuration gates passed; GA4 backend ingestion was not independently tested",
-        "IndexNow accepted 11 changed public URLs with HTTP 200; indexing remains unknown"
-      ],
-      "adoption": "Not established by this release. SDK tests, directory registration and anonymous call counts are not external users or repeat adoption."
+      "target_version": "2.6.0",
+      "status": "pending",
+      "scheduling": "Existing 06:00 UTC reporting and 07:20 UTC source checks retained; no new cron, paid model or enabled chat automation."
     }
   },
   "previous_experiments": [
@@ -508,6 +488,92 @@
           "IndexNow accepted 97 changed public URLs with HTTP 200; indexing remains unknown"
         ],
         "scheduling": "Existing native schedule unchanged. This plan does not create or enable a separate automation."
+      }
+    },
+    {
+      "id": "mcp-collection-tasks-20261031",
+      "updated": "2026-10-31",
+      "owner_direction": "Mcp，工具化，而不是一个无用的站点",
+      "audience": "SMISKI/Sonny Angel collectors already using an MCP-compatible assistant, and developers building collector assistants; these are target segments, not verified users.",
+      "hypothesis": "A source-backed series search and explicit owned/wanted comparison can complete a useful collection task inside an existing assistant and earn a second real task.",
+      "task": {
+        "endpoint": "https://thedollscout.com/mcp",
+        "transport": "Streamable HTTP",
+        "sequence": [
+          "search_collection_series",
+          "prepare_collection_checklist"
+        ],
+        "example": "Museum: Smiski Dali and Smiski Pearl Earring are marked owned. Four of the current six catalogued names remain unmarked; only explicit wanted input becomes the wishlist.",
+        "result": "Source, check date, owned/not-marked-owned/explicit-wanted/unmatched names and copyable Markdown.",
+        "scope": "Published named-series catalog only; secrets/variants may be missing. No complete-set, ownership, authenticity, stock or value claim; no browser collection access or cloud sync."
+      },
+      "pages": [
+        "/for-agents",
+        "/de/for-agents",
+        "/zh/for-agents"
+      ],
+      "repository_guide": "sites/thedollscout/mcp/README.md",
+      "status": "deployed_live_sdk_verified_registry_updated",
+      "measurement_window": {
+        "start": "2026-11-01",
+        "end_inclusive": "2026-11-14",
+        "review_on": "2026-11-15",
+        "timezone": "UTC",
+        "late_release_rule": "If deployment is later, record the actual first complete production day and available complete days. Keep the review date as a checkpoint, extend observation if needed, and never backfill or call a partial window fourteen days."
+      },
+      "learning_gates": {
+        "independently_confirmed_external_trialers": 3,
+        "confirmed_repeat_trialers": 1,
+        "repeat_definition": "One of the external trialers voluntarily returns to complete a separate real collection task; repeated calls, retries, assisted QA or a second step in the same task do not establish repeat use.",
+        "interpretation": "Chosen exploratory thresholds, not statistical significance, forecasts or evidence of paid demand. Verify voluntary external use independently; anonymous tool counts cannot supply people or retention."
+      },
+      "daily_checks": [
+        "Read the existing release receipt and reuse the existing cached collector-growth report when available; do not duplicate collection jobs or invent missing days.",
+        "Check connection and task failures separately from discovery visits and successful tool counts. Run marked QA only when a new change or failure warrants it; exclude QA, sample tasks and known maintainer self-tests from adoption.",
+        "Separate configuration, Registry discovery, successful calls, independently confirmed external trialers and repeat real tasks. A two-tool task can generate multiple calls; anonymous calls are not people, installs or retention cohorts.",
+        "Record voluntary external feedback and the smallest evidenced blocker privately; improve setup clarity or task output only when supported. Do not add fingerprints or send collection names/identities into usage telemetry.",
+        "On 2026-11-15 review release timing, available complete days, external task evidence, repeated use and acquisition gaps. Missing telemetry or failed reports remain unknown, not zero."
+      ],
+      "decision_rules": [
+        "Fewer than 3 independently confirmed external trialers: insufficient acquisition evidence. Reassess the reachable assistant-using audience and connection path before expanding features or declaring no demand.",
+        "External trials encounter reproducible failures: repair the demonstrated connection, catalog or task blocker and verify it with QA excluded.",
+        "At least 3 external trialers but no confirmed repeat real task: inspect task frequency and value through voluntary feedback; additional anonymous calls do not satisfy repeat use.",
+        "At least 3 external trialers including 1 confirmed repeat: continue one focused learning cycle. This small gate does not justify a paid subscription, a profitability claim or statistical confidence.",
+        "Keep browser saves/exports, MCP task evidence, affiliate clicks and merchant-confirmed revenue separate. No invented cross-source conversion rate or attribution."
+      ],
+      "channel_constraints": [
+        "Public task docs, repository README and successful official MCP Registry publication are discovery entry points, not proof of audience reach, automatic assistant installation or AI recommendation.",
+        "r/smiskis prohibits AI-generated or edited posts/comments; r/SonnyAngel restricts external-platform promotion; r/Labubuswap forbids ISO/service ads. These remain demand-research sources, not automatic distribution permission.",
+        "This plan does not send outbound messages, publish social posts, buy placement or claim partner adoption. Voluntary external trials require real evidence.",
+        "The previous organizer-kit/search acquisition work remains historical context; the current priority is real MCP task adoption, not more video production or broad site expansion."
+      ],
+      "privacy": "Tool arguments are processed remotely but not persisted in application usage telemetry; assistant providers have their own data handling. Private account exports, counts, feedback identities and automation state stay outside this public plan.",
+      "previous_experiment_id": "smiski-checklist-entry-20261031",
+      "release": {
+        "target_version": "2.5.0",
+        "status": "verified",
+        "required_evidence": [
+          "Exact deployed build and version",
+          "Official SDK local and production task verification with QA excluded",
+          "Official Registry version and endpoint readback"
+        ],
+        "scheduling": "This document does not create or enable automation. Legacy iteration_schedule fields are historical, not activation instructions. Existing native 07:20 UTC source checks and quotas remain unchanged.",
+        "commit": "1588b9f3947af1f8fedb7c34d3d278eb7a96d11d",
+        "pull_request": "https://github.com/f-tiger/agi-site/pull/215",
+        "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41215167670",
+        "verified_at": "2026-10-31",
+        "version": "2.5.0",
+        "endpoint": "https://thedollscout.com/mcp",
+        "registry_name": "io.github.f-tiger/dollscout-collecting",
+        "checks": [
+          "Exact production build and MCP 2.5.0 / 12-tool contract verified",
+          "Official MCP SDK 1.32.2 completed the production HTTP task workflow with QA excluded",
+          "Official Registry reads back version 2.5.0, active and latest, at the existing endpoint",
+          "Local logic, RPC, input-boundary, measurement, generated-page and browser checks passed",
+          "SEO/GEO and GA4 configuration gates passed; GA4 backend ingestion was not independently tested",
+          "IndexNow accepted 11 changed public URLs with HTTP 200; indexing remains unknown"
+        ],
+        "adoption": "Not established by this release. SDK tests, directory registration and anonymous call counts are not external users or repeat adoption."
       }
     }
   ]

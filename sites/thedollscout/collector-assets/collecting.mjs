@@ -65,3 +65,6 @@ if(swapKit)initSwapKit(swapKit,recordAction);
 import {initWishCard} from './wish-card-ui.mjs?v=2026-10-30.1';
 const wishApp=document.querySelector('[data-wish-app]');
 if(wishApp)initWishCard(wishApp,recordAction);
+import {initEventKit} from './event-kit-ui.mjs?v=2026-10-31.1';
+const eventKit=document.querySelector('[data-event-kit]');
+if(eventKit)initEventKit(eventKit,recordAction);

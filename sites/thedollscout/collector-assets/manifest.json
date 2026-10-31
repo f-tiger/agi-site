@@ -261,7 +261,7 @@
       "title": "Free collector tools",
       "description": "A calculator for the next decision: probability, budget, collection progress or display space.",
       "textUrl": "https://thedollscout.com/collector-assets/text/en/collector-tools.txt",
-      "modified": "2026-10-11"
+      "modified": "2026-10-31"
     },
     {
       "lang": "en",
@@ -360,7 +360,7 @@
       "title": "Kostenlose Sammlerwerkzeuge",
       "description": "Ein Rechner für die nächste Entscheidung: Chance, Budget, Sammlungsfortschritt oder Ausstellungsplatz.",
       "textUrl": "https://thedollscout.com/collector-assets/text/de/collector-tools.txt",
-      "modified": "2026-10-11"
+      "modified": "2026-10-31"
     },
     {
       "lang": "de",
@@ -459,7 +459,7 @@
       "title": "免费收藏工具",
       "description": "为下一步决定准备的计算器：概率、预算、收藏进度与展示空间。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/collector-tools.txt",
-      "modified": "2026-10-11"
+      "modified": "2026-10-31"
     },
     {
       "lang": "zh",
@@ -1377,6 +1377,33 @@
       "title": "制作求购或交换心愿卡",
       "description": "把想要的具体款式和条件说清楚。预览卡片，再带到你自己的社区帖子，让有货的人回应。",
       "textUrl": "https://thedollscout.com/collector-assets/text/zh/collecting/wish-card.txt",
+      "modified": "2026-10-31"
+    },
+    {
+      "lang": "en",
+      "slug": "collecting/event-kit",
+      "url": "https://thedollscout.com/collecting/event-kit",
+      "title": "A shareable plan for your next collectible meetup",
+      "description": "Make an activity template for your group, or a personal card of the figures you want and explicitly offer. Share one link; each recipient can start their own card.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/en/collecting/event-kit.txt",
+      "modified": "2026-10-31"
+    },
+    {
+      "lang": "de",
+      "slug": "collecting/event-kit",
+      "url": "https://thedollscout.com/de/collecting/event-kit",
+      "title": "Ein teilbarer Plan für das nächste Sammlertreffen",
+      "description": "Eine Aktivitätsvorlage für Ihre Gruppe oder eine persönliche Karte mit ausdrücklich gewünschten und angebotenen Figuren erstellen. Empfänger können über denselben Link ihre eigene Karte beginnen.",
+      "textUrl": "https://thedollscout.com/collector-assets/text/de/collecting/event-kit.txt",
+      "modified": "2026-10-31"
+    },
+    {
+      "lang": "zh",
+      "slug": "collecting/event-kit",
+      "url": "https://thedollscout.com/zh/collecting/event-kit",
+      "title": "为下一场收藏活动，做好可分享的准备",
+      "description": "为社群制作活动模板，或列出自己明确想要、愿意交换的款式。分享一个链接，接收者就能开始制作自己的卡。",
+      "textUrl": "https://thedollscout.com/collector-assets/text/zh/collecting/event-kit.txt",
       "modified": "2026-10-31"
     }
   ]

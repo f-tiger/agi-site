@@ -20,7 +20,7 @@ claude mcp get tds</pre><p>在 Claude Code 中打开 /mcp 检查服务与工具�
     ],
     &quot;language&quot;: &quot;zh&quot;
   }
-}</pre><h2>基于当前具名目录的示例结果</h2><h3>已标记拥有 (2)</h3><ul><li>Smiski Dali</li><li>Smiski Pearl Earring</li></ul><h3>尚未标记拥有 (4)</h3><ul><li>Smiski The Source</li><li>Smiski Fuzin&amp;Raijin</li><li>Smiski Bacchus</li><li>Smiski Vela’zquez</li></ul><h3>明确愿望单 (1)</h3><ul><li>Smiski Bacchus</li></ul><p><a href="https://smiski.com/e/products/museumseries/" rel="noopener">官方系列来源</a> · 来源核对日期: <time datetime="2026-10-30">2026-10-30</time></p><p>比较范围仅是 TDS 已核实的具名款式，不代表所有已发售商品。目录可能缺少隐藏款或其他版本；结果不能证明全系列集齐、持有、真伪、库存或价值。重复输入同一名字不等于重复藏品数量，也不等于愿意交换。</p><p class="small">仅为示例。阅读此页不会调用工具、保存收藏或计为收藏任务完成。</p></section><section class="agent-catalog"><h2>助手可以使用什么</h2><p>下列接口名与英文说明是供客户端读取的原始协议字段。</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
+}</pre><h2>基于当前具名目录的示例结果</h2><h3>已标记拥有 (2)</h3><ul><li>Smiski Dali</li><li>Smiski Pearl Earring</li></ul><h3>尚未标记拥有 (4)</h3><ul><li>Smiski The Source</li><li>Smiski Fuzin&amp;Raijin</li><li>Smiski Bacchus</li><li>Smiski Vela’zquez</li></ul><h3>明确愿望单 (1)</h3><ul><li>Smiski Bacchus</li></ul><p><a href="https://smiski.com/e/products/museumseries/" rel="noopener">官方系列来源</a> · 来源核对日期: <time datetime="2026-10-30">2026-10-30</time></p><p>比较范围仅是 TDS 已核实的具名款式，不代表所有已发售商品。目录可能缺少隐藏款或其他版本；结果不能证明全系列集齐、持有、真伪、库存或价值。重复输入同一名字不等于重复藏品数量，也不等于愿意交换。</p><p class="small">仅为示例。阅读此页不会调用工具、保存收藏或计为收藏任务完成。</p></section><section class="agent-catalog"><h2>准备一场收藏活动</h2><p>助手可调用 prepare_swap_event_card，按你提供的活动规则和明确想要、愿意交换的款式，返回可审阅的准备卡及分享链接。链接中的活动信息由使用者提供，TDS 未核验组织者，不提供报名或匹配。</p><a class="button primary" href="/zh/collecting/event-kit">打开活动工具</a></section><section class="agent-catalog"><h2>助手可以使用什么</h2><p>下列接口名与英文说明是供客户端读取的原始协议字段。</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
   &quot;type&quot;: &quot;object&quot;,
   &quot;properties&quot;: {},
   &quot;additionalProperties&quot;: false
@@ -111,7 +111,8 @@ claude mcp get tds</pre><p>在 Claude Code 中打开 /mcp 检查服务与工具�
         &quot;collection&quot;,
         &quot;guides&quot;,
         &quot;budget&quot;,
-        &quot;progress&quot;
+        &quot;progress&quot;,
+        &quot;events&quot;
       ],
       &quot;default&quot;: &quot;all&quot;
     },
@@ -358,6 +359,82 @@ claude mcp get tds</pre><p>在 Claude Code 中打开 /mcp 检查服务与工具�
   &quot;required&quot;: [
     &quot;seriesId&quot;,
     &quot;owned&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>prepare_swap_event_card</code></summary><p lang="en">Prepare a user-supplied collector event template or personal preparation card, with explicit wanted/offered names, source matches, Markdown and a reviewable share link. Supports participant swaps, store-only swaps or display-only rules. Does not verify the organizer, event, ownership, matches or trades. The link contains readable user-supplied data: anyone holding it can read, edit or forward it. Review before sharing; expired cards are read-only. No browser storage access or automatic publication.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;kind&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;event&quot;,
+        &quot;card&quot;
+      ]
+    },
+    &quot;eventName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;maxLength&quot;: 80
+    },
+    &quot;eventDate&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 10,
+      &quot;maxLength&quot;: 10,
+      &quot;description&quot;: &quot;Calendar date YYYY-MM-DD as supplied for the event; no attendance or timing verification.&quot;
+    },
+    &quot;exchangeMode&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;peer&quot;,
+        &quot;store&quot;,
+        &quot;display&quot;
+      ]
+    },
+    &quot;rulesUrl&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;maxLength&quot;: 500,
+      &quot;description&quot;: &quot;Optional user-supplied HTTPS rules link; not fetched or verified.&quot;
+    },
+    &quot;note&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;maxLength&quot;: 240
+    },
+    &quot;wanted&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 8,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Explicit names only, preferably Series title / figure name. Unknown names remain unresolved; no inferred trade intent.&quot;
+    },
+    &quot;offered&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 8,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Only items explicitly offered; prohibited in display-only mode. Repeated names do not establish quantities.&quot;
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;required&quot;: [
+    &quot;kind&quot;,
+    &quot;eventName&quot;,
+    &quot;eventDate&quot;,
+    &quot;exchangeMode&quot;
   ],
   &quot;additionalProperties&quot;: false
 }</pre></details></section><section class="agent-limits"><h2>由你决定发送哪些数据</h2><p>助手会把你选择提供的款式名称发送给 TDS MCP 服务以计算结果。TDS 不保存这些输入参数，也不将其写入使用统计；成功调用仅可能按固定工具名和结果类别计数。助手提供方有自己的数据处理方式。MCP 无法读取或修改你的浏览器收藏、私人文件、账户或会员信息；浏览器收藏与备份仍单独管理。</p><h2>公开发现入口</h2><ul><li><a href="/collector-assets/tool-capabilities.json">Collector tool catalog · JSON</a></li><li><a href="/collector-assets/brand-guides.json">Brand guides · JSON</a></li><li><a href="/collector-assets/series-catalog.json">Daily series checklists · JSON</a></li><li><a href="/collector-assets/learning-guides.json">Collecting field guide · JSON</a></li><li><a href="/.well-known/mcp.json">MCP discovery · JSON</a></li><li><a href="/mcp/server.json">MCP Registry manifest · JSON</a></li><li><a href="/document-assets/tool-capabilities.json">Digital tools · JSON</a></li><li><a href="/llms.txt">Site index · text</a></li></ul><h2>可以被发现，是接入的起点</h2><p>公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。</p></section></main><footer class="wrap collect-footer"><p>本站与 POP MART、Jellycat、Dreams / Sonny Angel 无隶属关系，品牌名仅用于识别讨论的产品。部分现有购买指南含明确标注的联盟链接。</p><nav><a href="/">首页</a><a href="/legal/privacy">隐私政策</a><a href="/legal/affiliate-disclosure">联盟披露</a><a href="/collector-assets/text/zh/for-agents.txt">纯文本</a><a href="/zh/for-agents">连接 AI 助手</a><a href="/zh/editorial">TDS 如何制作指南</a><a href="/zh/collector-tools">全部工具</a><a href="/zh/document-tools">TDS 数字工具</a><a href="https://baipiaoji.com/studio/toolkit">浏览 BPJ 工具汇总</a><a href="/data/">Data &amp; MCP</a></nav></footer><script src="/js/collector-core.js?v=2026-10-30.3" defer></script><script type="module" src="/collector-assets/collecting.mjs?v=2026-10-30.3"></script><script type="module" src="/collector-assets/workspace.mjs?v=2026-10-30.3"></script></body></html>

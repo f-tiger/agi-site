@@ -1,6 +1,6 @@
 {
   "name": "dollscout",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Source-backed series search, collection checklists, blind-box math and display planning.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
@@ -17,7 +17,8 @@
     "compare_blind_box_budget",
     "estimate_collection_progress",
     "search_collection_series",
-    "prepare_collection_checklist"
+    "prepare_collection_checklist",
+    "prepare_swap_event_card"
   ],
   "resources": [
     {
