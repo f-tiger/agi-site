@@ -34,7 +34,8 @@ try{
    assert(await page.locator(anchor).isVisible(),path+' authored section lost');
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://getecoback.com'+path);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,path+' overflows at '+width);
-   if(path==='/'){
+   // The daily build rotates in March/June too; winter ordering is a cold-season contract.
+   if(path==='/' && [0,1,8,9,10,11].includes(new Date().getMonth())){
     const html=await page.content(), season=html.indexOf('<!--EB_SEASON-->'), winter=html.indexOf('<!--EB_WINTER_LINK-->');
     assert(season>=0 && winter>season,'German task routes precede the winter guide entry');
     for(const marker of ['EB_COUNTRIES','EB_UK_PATH','EB_AU_COOLING'])assert(html.indexOf('<!--'+marker+'-->')>winter,marker+' must not displace German winter discovery');
