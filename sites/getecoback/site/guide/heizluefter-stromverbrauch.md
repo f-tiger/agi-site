@@ -4,12 +4,15 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromverbrauch.html
 
-## Deine Heizlüfter-Kosten berechnen
-Nutze die eingestellte Leistung und deinen Arbeitspreis. Die Vorgaben sind Rechenbeispiele, kein aktueller Durchschnittstarif.
+## Was kosten 20 Minuten, zwei Stunden oder ein Abend?
+Vergleiche zuerst drei kurze Rechenbeispiele ohne Eingabe. Alle rechnen mit 2.000 W bei voller Heizleistung und einem frei gewählten Arbeitspreis von 0,40 €/kWh. Das ist kein aktueller Durchschnittstarif und keine Messung deines Geräts.
+20 Minuten · 0,27 €2 Stunden · 1,60 €4 Stunden · 3,20 €
+Die Auswahl lädt jeweils das vollständige Beispiel. Für deinen Tarif oder eine andere Leistung öffne die Einstellungen.
 
-Heizanteil: 100 % = ununterbrochen mit der eingestellten Leistung. 50 % ist nur eine Annahme für halbe Heizzeit, keine garantierte Thermostat-Ersparnis. Für genaue Kosten den gesamten Verbrauch messen; Standby und Lüfternachlauf sind hier nicht enthalten.
-[Vor einem Neukauf: Heizarten vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html) · Verbraucherzentrale: direkte Elektroheizung
-Formel: W ÷ 1.000 × Stunden × Heizanteil ÷ 100 × €/kWh × Tage. Beispiel: 2.000 W, 4 h, 100 %, 0,40 €/kWh, 30 Tage = 96 €.
+100 % bedeutet ununterbrochen mit der eingestellten Leistung. Eine kleinere Prozentzahl ist eine Annahme, keine garantierte Thermostat-Ersparnis. Für tatsächliche Kosten den gesamten kWh-Verbrauch messen; Standby und Lüfternachlauf fehlen in der Leistungsrechnung.
+**Erst den Zweck prüfen:** Kurzzeitige Zusatzwärme ist eine andere Aufgabe als Raumheizung über viele Stunden. Eine niedrigere Wattzahl beweist weder gleiche Wärme noch niedrigere Gesamtkosten. Feuchte Wäsche gehört nicht auf das Heizgerät; dafür gibt es den [Vergleich für eine gleich trockene Ladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
+[Tatsächlichen Verbrauch messen](https://getecoback.com/strommess-protokoll.html) · [Vor einem Neukauf: Heizarten vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html) · Verbraucherzentrale: Vorsicht bei Sparversprechen für Steckdosen-Heizgeräte
+Die drei Beispielkosten oben funktionieren ohne JavaScript. Formel: W ÷ 1.000 × Stunden × Heizanteil ÷ 100 × €/kWh × Tage. 20 Minuten sind ein Drittel einer Stunde: 2 kW × ⅓ h × 0,40 €/kWh = rund 0,27 €. Eigene Werte lassen sich mit JavaScript berechnen.
 
 Der Heizlüfter ist das klassische „schnell warm"-Gerät: 25 Euro im Baumarkt, einstecken, und nach Sekunden kommt Wärme. Was auf dem Preisschild nicht steht: Er ist eines der stromhungrigsten Geräte im Haushalt. Bevor du ihn im Herbst wieder täglich laufen lässt, lohnt der Blick auf die Zahlen — sie sind einfach zu rechnen und ziemlich eindeutig. Hier bekommst du die Kosten pro Stunde, pro Abend und pro Monat für alle gängigen Wattzahlen, die Formel zum Nachrechnen mit deinem eigenen Tarif und eine ehrliche Antwort auf die Frage, wann sich das Gerät trotzdem lohnt.
 
@@ -19,7 +22,7 @@ Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unte
 
 ## Wie viel Strom verbraucht ein Heizlüfter?
 
-Die meisten Heizlüfter für die Steckdose haben **zwei Stufen um 1000 und 2000 Watt** — für Anschluss und zulässige Last gilt die Herstelleranleitung. Kleine Bad- und Tischgeräte beginnen bei etwa 500 Watt, kompakte Keramikmodelle liegen oft bei 1500 Watt. Der Verbrauch ist dabei brutal ehrlich: Ein Heizlüfter ist eine reine Widerstandsheizung, die Wattzahl auf dem Typenschild fließt eins zu eins als Strom durch den Zähler. 2000 Watt bedeuten 2 Kilowattstunden pro Betriebsstunde — ohne Wenn und Aber.
+Die meisten Heizlüfter für die Steckdose haben **zwei Stufen um 1000 und 2000 Watt** — für Anschluss und zulässige Last gilt die Herstelleranleitung. Kleine Bad- und Tischgeräte beginnen bei etwa 500 Watt, kompakte Keramikmodelle liegen oft bei 1500 Watt. Der Verbrauch ist dabei brutal ehrlich: Ein Heizlüfter ist eine reine Widerstandsheizung, die eingestellte Leistung und die tatsächliche Heizzeit bestimmen den Verbrauch. 2.000 Watt über eine volle Stunde ohne Abschaltung ergeben 2 kWh. Das Typenschild allein sagt nicht, wie lange ein Thermostat tatsächlich heizt.
 
 Zum Einordnen: Das ist rund das **40-Fache eines Ventilators** (~50 Watt) und mehr als das Doppelte einer mobilen Klimaanlage im Kühlbetrieb (800–1200 Watt). Unter den typischen Steckdosengeräten im Haushalt spielt der Heizlüfter damit in der obersten Verbrauchsliga — zusammen mit Wasserkocher und Backofen, die aber nur Minuten laufen, nicht Stunden.
 
@@ -148,6 +151,19 @@ Heizlüfter mit Thermostat auf Amazon.de ansehen →
 [Heizlüfter stromsparend: Welcher lohnt sich? →](https://getecoback.com/guide/heizluefter-stromsparend.html)
 [Infrarotheizung: Ratgeber und Kostenvergleich →](https://getecoback.com/guide/infrarotheizung-ratgeber.html)
 [Stromkosten-Rechner für alle Geräte →](https://getecoback.com/guide/stromkosten-rechner.html)
+
+## Was kosten 20 Minuten, zwei Stunden oder ein Abend?
+Vergleiche zuerst drei kurze Rechenbeispiele ohne Eingabe. Alle rechnen mit 2.000 W bei voller Heizleistung und einem frei gewählten Arbeitspreis von 0,40 €/kWh. Das ist kein aktueller Durchschnittstarif und keine Messung deines Geräts.
+20 Minuten · 0,27 €
+2 Stunden · 1,60 €
+4 Stunden · 3,20 €
+
+Die Auswahl lädt jeweils das vollständige Beispiel. Für deinen Tarif oder eine andere Leistung öffne die Einstellungen.
+
+100 % bedeutet ununterbrochen mit der eingestellten Leistung. Eine kleinere Prozentzahl ist eine Annahme, keine garantierte Thermostat-Ersparnis. Für tatsächliche Kosten den gesamten kWh-Verbrauch messen; Standby und Lüfternachlauf fehlen in der Leistungsrechnung.
+**Erst den Zweck prüfen:** Kurzzeitige Zusatzwärme ist eine andere Aufgabe als Raumheizung über viele Stunden. Eine niedrigere Wattzahl beweist weder gleiche Wärme noch niedrigere Gesamtkosten. Feuchte Wäsche gehört nicht auf das Heizgerät; dafür gibt es den [Vergleich für eine gleich trockene Ladung](https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html).
+[Tatsächlichen Verbrauch messen](https://getecoback.com/strommess-protokoll.html) · [Vor einem Neukauf: Heizarten vergleichen](https://getecoback.com/guide/heizkosten-vergleich-rechner.html) · Verbraucherzentrale: Vorsicht bei Sparversprechen für Steckdosen-Heizgeräte
+Die drei Beispielkosten oben funktionieren ohne JavaScript. Formel: W ÷ 1.000 × Stunden × Heizanteil ÷ 100 × €/kWh × Tage. 20 Minuten sind ein Drittel einer Stunde: 2 kW × ⅓ h × 0,40 €/kWh = rund 0,27 €. Eigene Werte lassen sich mit JavaScript berechnen.
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

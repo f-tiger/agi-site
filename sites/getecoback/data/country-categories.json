@@ -249,6 +249,10 @@
       "note": "Een luchtontvochtiger haalt vocht uit de lucht, maar zorgt niet voor verse buitenlucht. Houd de ventilatievoorzieningen in gebruik. Welke combinatie nodig is, hangt af van je woning en de bron van het vocht.",
       "sources": [
         [
+          "Milieu Centraal: woning ventileren",
+          "https://www.milieucentraal.nl/energie-besparen/ventilatie/woning-ventileren/"
+        ],
+        [
           "Milieu Centraal: natuurlijke ventilatie",
           "https://www.milieucentraal.nl/energie-besparen/ventilatie/natuurlijke-ventilatie/"
         ],
@@ -283,7 +287,7 @@
         {
           "id": "was",
           "title": "Was binnen drogen",
-          "summary": "Voor woningen zonder aparte droogruimte. Breng de beschikbare plek, wasfrequentie en afvoer van vocht in kaart voordat je een droogrek of apparaat kiest.",
+          "summary": "Geen droger en weinig ruimte? Kies direct advies voor een droogrek in de weg, langzaam drogende kleding of vocht dat ook zonder was blijft.",
           "checks": [
             "Meet het droogrek uitgeklapt, inclusief ruimte om erlangs te lopen.",
             "Noteer hoe vaak je droogt en hoeveel was er tegelijk staat.",
@@ -291,8 +295,8 @@
           ],
           "related": [
             [
-              "Was en vocht: maak een plan voor jouw kamer",
-              "/nl/ventilatie-of-luchtontvochtiger.html#was"
+              "Was drogen in een klein appartement: kies je situatie",
+              "/nl/ventilatie-of-luchtontvochtiger.html#was-keuze"
             ]
           ],
           "query": "inklapbaar droogrek",
@@ -319,10 +323,10 @@
       ],
       "guide": {
         "path": "/nl/ventilatie-of-luchtontvochtiger.html",
-        "title": "Ventilatie of luchtontvochtiger? Keuzehulp | EcoBack",
-        "description": "Vochtige ramen of was in huis? Vergelijk ventilatie en ontvochtiging, maak een meetplan en gebruik de koopchecklist voordat je een apparaat kiest.",
-        "heading": "Ventilatie of een luchtontvochtiger: waar begin je?",
-        "intro": "Je wilt van het vocht af, maar een extra apparaat is niet automatisch de eerste stap. Deze keuzehulp ordent de vragen over je woning, je was en de plek waar het vocht ontstaat.",
+        "title": "Was drogen in een klein appartement | EcoBack",
+        "description": "Was binnen drogen zonder droger? Kies direct advies voor een studio, langzaam drogende kleding of vocht zonder was. Met ventilatie- en aankoopchecklist.",
+        "heading": "Was drogen in een klein appartement zonder droger",
+        "intro": "Een droogrek in je woonruimte, kleding die lang vochtig blijft of condens op de ramen? Kies hieronder je situatie. Je krijgt meteen een eerste stap, zonder account of meetwaarden in te vullen.",
         "answer_title": "De eerste keuze",
         "answer": "Houd de bestaande ventilatie in gebruik en zoek naar de vochtbron. Een ontvochtiger voert geen verse buitenlucht aan. Blijft het probleem terugkomen, kijk dan verder dan alleen het cijfer op de vochtmeter.",
         "sections": [
@@ -392,13 +396,50 @@
             "Was binnen drogen",
             "/nl/wonen.html#was"
           ]
-        ]
+        ],
+        "modified": "2026-10-31",
+        "scenarios": {
+          "id": "was-keuze",
+          "title": "Welke situatie herken je?",
+          "intro": "Open een situatie voor praktische stappen. Deze keuzehulp stelt geen diagnose en voorspelt geen droogtijd.",
+          "items": [
+            {
+              "id": "space",
+              "title": "Studio: het droogrek staat in de weg",
+              "paragraphs": [
+                "Controleer eerst de uitgeklapte voetafdruk én de ruimte om erlangs te lopen. Een verticaal of opvouwbaar rek kan passen, maar controleer draagvermogen, stabiliteit en afstand tussen kleding. Een deurrek mag het sluiten of de doorgang niet blokkeren. Vergelijk die maten voordat je koopt; wandmontage vraagt een geschikte ondergrond en eventuele toestemming.",
+                "Gebruik de bestaande ventilatie. Een ander rek verwijdert geen vocht uit de kamer. Als je huidige rek veilig past en de lucht kan doorstromen, is een nieuw rek niet nodig."
+              ]
+            },
+            {
+              "id": "slow",
+              "title": "Kleding droogt langzaam, maar er is geen lekkage zichtbaar",
+              "paragraphs": [
+                "Controleer het waslabel en gebruik een passende centrifugestand. Hang kleding met ruimte ertussen. Gebruik de extra ventilatiestand tijdens het binnen drogen als de handleiding van jouw systeem dat aangeeft. Een ventilator verplaatst lucht, maar voert geen vocht af.",
+                "Vergelijk een ontvochtiger pas op kamertemperatuur, geluid, afvoer en werkelijk verbruik. Bereken kosten als gemeten kWh × jouw €/kWh, voor dezelfde hoeveelheid was en dezelfde uiteindelijke droogte. Een ontvochtiger vervangt geen ventilatie; een vaste droogtijd of besparing kunnen we niet voorspellen."
+              ]
+            },
+            {
+              "id": "damp",
+              "title": "Condens of natte plekken, ook wanneer er geen was hangt",
+              "paragraphs": [
+                "Noteer waar en wanneer dit gebeurt, en of regen of watergebruik eraan voorafgaat. Laat een mogelijke lekkage of ventilatiestoring beoordelen; bij huur meld je dit bij de verhuurder. Een grotere ontvochtiger herstelt geen bouwkundig gebrek.",
+                "Een hygrometer meet luchtvochtigheid; een CO₂-meter geeft andere informatie over ventilatie tijdens gebruik. Geen van beide stelt de oorzaak vast. Leen zo mogelijk eerst een meter."
+              ]
+            }
+          ],
+          "note": "De ruimte- en aankoopchecklist is redactionele begeleiding, geen producttest. Houd de bestaande ventilatie in gebruik.",
+          "link_label": "Bewaar de aankoopchecklist",
+          "link": "#checklist-heading"
+        }
       },
       "chooser": {
         "title": "Waar wil je thuis mee beginnen?",
         "label": "Kies je onderwerp",
         "placeholder": "Maak een keuze"
-      }
+      },
+      "modified": "2026-10-31",
+      "visible_routes": true
     },
     {
       "market": "AU",

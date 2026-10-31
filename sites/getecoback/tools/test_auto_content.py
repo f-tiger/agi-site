@@ -48,11 +48,22 @@ class AutoContentTests(unittest.TestCase):
         (self.root / "site/guide").mkdir(parents=True)
         self.addCleanup(self.temp.cleanup)
 
-    def execute(self, products=None, day=0, apply=True, renderer=render, receipts=None):
+    def execute(self, products=None, day=0, apply=True, renderer=render, receipts=None, demand_fixture=True):
         products = copy.deepcopy(products if products is not None else [product()])
         for item in products:
             if isinstance(item, dict) and item.get("checked_at") == engine.iso(NOW):
                 item["checked_at"] = engine.iso(NOW + timedelta(days=day))
+        # Transaction/rendering tests isolate their own boundary using explicit
+        # validated-demand fixtures. Demand-gate tests below use real snapshots
+        # (or demand_fixture=False for missing evidence), never this mock.
+        if demand_fixture and not (self.root / "data/trends-rising.json").exists():
+            signals = [{"source_id": "offline-test-demand", "country": item.get("country"),
+                        "query": item.get("brand", "") + " " + item.get("model", ""),
+                        "captured_at": engine.iso(NOW + timedelta(days=day)), "source_status": "ok",
+                        "relative_growth": 100, "metric": "relative_growth_not_search_volume"}
+                       for item in products if isinstance(item, dict)]
+            with patch.object(engine, "trend_signals", return_value=(signals, [])):
+                return engine.execute(self.root, {"products": products, "receipts": receipts or []}, NOW + timedelta(days=day), apply=apply, renderer=renderer, before_sha=HEAD)
         return engine.execute(self.root, {"products": products, "receipts": receipts or []}, NOW + timedelta(days=day), apply=apply, renderer=renderer, before_sha=HEAD)
 
     def snapshot(self):
@@ -259,12 +270,52 @@ class AutoContentTests(unittest.TestCase):
         self.assertEqual(selection["status"], "blocked_preserving_existing_state")
         self.assertEqual(self.snapshot(), {})
 
-    def write_trend(self, **overrides):
+    def write_trend(self, country="DE", **overrides):
         record = {"source": "related-queries", "fetched": "2026-10-17", "last_attempt_status": "ok", "polluted": False, "rising": [{"q": "Trotec TTK 75 E", "v": 300}]}
         record.update(overrides)
         path = self.root / "data/trends-rising.json"
         path.parent.mkdir(exist_ok=True)
-        path.write_text(json.dumps({"geo": "DE", "seeds": {"luftentfeuchter": record}}))
+        path.write_text(json.dumps({"geo": country, "seeds": {"luftentfeuchter": record}}))
+
+    def test_catalogue_without_demand_keeps_candidate_and_writes_nothing(self):
+        receipt, selection = self.execute(demand_fixture=False)
+        self.assertFalse(receipt["changed"])
+        self.assertEqual(selection["status"], "no_eligible_change")
+        self.assertNotIn("selected", selection)
+        self.assertEqual(selection["decisions"][0]["status"], "awaiting_model_demand_evidence")
+        self.assertEqual(selection["trend_receipts"][0]["status"], "missing_or_invalid_snapshot")
+        self.assertEqual(self.snapshot(), {})
+
+    def test_existing_factual_correction_does_not_need_new_demand(self):
+        self.write_trend(rising=[{"q": "Trotec TTK 53 E Stromverbrauch", "v": 100}])
+        first, _ = self.execute()
+        (self.root / "data/trends-rising.json").unlink()
+        receipt, selection = self.execute([product(power=250)], day=1, demand_fixture=False)
+        self.assertTrue(receipt["changed"], selection)
+        self.assertEqual(first["canonical_urls"], receipt["canonical_urls"])
+        self.assertEqual(selection["selected"]["action"], "update")
+        self.assertEqual(selection["selected"]["selection_reason"], "existing_page_verified_fact_update")
+        self.assertIsNone(selection["selected"]["trend_evidence"])
+
+    def test_brand_only_or_unrelated_query_cannot_authorise_new_page(self):
+        for query in ["Trotec Heizlüfter", "Trotec", "waschmaschine stromverbrauch"]:
+            with self.subTest(query=query):
+                self.write_trend(rising=[{"q": query, "v": 100}])
+                before = self.snapshot()
+                receipt, selection = self.execute()
+                self.assertFalse(receipt["changed"])
+                self.assertNotIn("selected", selection)
+                self.assertEqual(selection["decisions"][0]["status"], "awaiting_model_demand_evidence")
+                self.assertEqual(before, self.snapshot())
+
+    def test_same_model_query_from_other_country_does_not_transfer(self):
+        self.write_trend(country="GB", rising=[{"q": "Trotec TTK 53 E running cost", "v": 100}])
+        before = self.snapshot()
+        receipt, selection = self.execute()
+        self.assertFalse(receipt["changed"])
+        self.assertNotIn("selected", selection)
+        self.assertEqual(selection["decisions"][0]["status"], "awaiting_model_demand_evidence")
+        self.assertEqual(before, self.snapshot())
 
     def test_fresh_exact_model_trend_prioritises_that_verified_product(self):
         self.write_trend()
@@ -285,18 +336,83 @@ class AutoContentTests(unittest.TestCase):
         ]:
             with self.subTest(change=change):
                 self.write_trend(**change)
-                receipt, selection = self.execute([product(), product(model="TTK 75 E", power=400, tank=8)], apply=False)
+                before = self.snapshot()
+                receipt, selection = self.execute([product(), product(model="TTK 75 E", power=400, tank=8)])
                 self.assertFalse(receipt["changed"])
-                self.assertIn("ttk-53-e", selection["selected"]["route"])
-                self.assertEqual(selection["selected"]["selection_reason"], "official_catalogue_specification_coverage_gap")
-                self.assertIsNone(selection["selected"]["trend_evidence"])
+                self.assertNotIn("selected", selection)
+                self.assertTrue(all(row["status"] == "awaiting_model_demand_evidence" for row in selection["decisions"]))
+                self.assertEqual(before, self.snapshot())
 
     def test_category_trend_does_not_claim_model_popularity_or_transfer_market(self):
         self.write_trend(rising=[{"q": "luftentfeuchter keller dauerbetrieb", "v": 200}])
         _, selection = self.execute(apply=False)
-        self.assertEqual(selection["selected"]["trend_evidence"]["match_scope"], "category_only_not_model_popularity")
+        self.assertNotIn("selected", selection)
+        self.assertEqual(selection["decisions"][0]["trend_evidence"]["match_scope"], "category_only_not_model_popularity")
+        self.assertEqual(selection["decisions"][0]["next_action"], "review_existing_guide")
         _, selection = self.execute([product("GB", "Arete One 12L", power=165, tank=2.5)], apply=False)
-        self.assertIsNone(selection["selected"]["trend_evidence"])
+        self.assertNotIn("selected", selection)
+        self.assertEqual(selection["decisions"][0]["status"], "awaiting_model_demand_evidence")
+
+    def test_category_growth_cannot_authorise_multiple_model_pages(self):
+        self.write_trend(rising=[{"q": "luftentfeuchter keller dauerbetrieb", "v": 100}])
+        before = self.snapshot()
+        receipt, selection = self.execute([product(), product(model="TTK 75 E", power=400, tank=8)])
+        self.assertFalse(receipt["changed"])
+        self.assertNotIn("selected", selection)
+        self.assertEqual(len(selection["decisions"]), 2)
+        self.assertTrue(all(row["next_action"] == "review_existing_guide" for row in selection["decisions"]))
+        self.assertEqual(before, self.snapshot())
+
+    def test_partial_model_code_is_not_exact_model_demand(self):
+        for query in ["Trotec TTK 530 E", "Trotec TTK 53 EX", "Trotecaster TTK 53 E"]:
+            with self.subTest(query=query):
+                self.write_trend(rising=[{"q": query, "v": 100}])
+                receipt, selection = self.execute()
+                self.assertFalse(receipt["changed"])
+                self.assertNotIn("selected", selection)
+
+    def test_compact_exact_model_query_is_eligible(self):
+        self.write_trend(rising=[{"q": "Trotec TTK53E stromverbrauch", "v": 100}])
+        receipt, selection = self.execute()
+        self.assertTrue(receipt["changed"], selection)
+        self.assertEqual(selection["selected"]["trend_evidence"]["match_scope"], "exact_model")
+
+    def test_variant_suffix_does_not_authorise_base_model(self):
+        for model, query in [
+            ("TTK 53 E", "Trotec TTK53E Plus Stromverbrauch"),
+            ("TTK 53 E", "Trotec TTK 53 E Pro test"),
+            ("TTK 53 E", "Trotec TTK 53 E Max erfahrungen"),
+            ("TTK 53 E", "Trotec TTK 53 E HEPA"),
+            ("TTK 64 HEPA", "Trotec TTK 64 HEPA-Plus stromverbrauch"),
+        ]:
+            with self.subTest(model=model, query=query):
+                self.write_trend(rising=[{"q": query, "v": 100}])
+                receipt, selection = self.execute([product(model=model)])
+                self.assertFalse(receipt["changed"])
+                self.assertNotIn("selected", selection)
+
+    def test_full_variant_and_normal_following_intent_remain_eligible(self):
+        for model, query in [
+            ("TTK 64 HEPA Plus", "Trotec TTK 64 HEPA-Plus stromverbrauch"),
+            ("TTK 53 E", "Trotec TTK53E stromverbrauch"),
+            ("TTK 53 E", "Trotec TTK 53 E test"),
+            ("TTK 53 E", "Trotec TTK 53 E erfahrungen"),
+        ]:
+            with self.subTest(model=model, query=query):
+                self.write_trend(rising=[{"q": query, "v": 100}])
+                receipt, selection = self.execute([product(model=model)], apply=False)
+                self.assertEqual(selection["status"], "eligible_read_only")
+                self.assertEqual(selection["selected"]["trend_evidence"]["match_scope"], "exact_model")
+
+    def test_existing_unchanged_page_does_not_refresh_without_demand(self):
+        self.write_trend(rising=[{"q": "Trotec TTK 53 E Stromverbrauch", "v": 100}])
+        self.execute()
+        (self.root / "data/trends-rising.json").unlink()
+        before = self.snapshot()
+        receipt, selection = self.execute(day=1, demand_fixture=False)
+        self.assertFalse(receipt["changed"])
+        self.assertEqual(selection["decisions"][0]["status"], "unchanged_specifications")
+        self.assertEqual(before, self.snapshot())
 
     def test_render_exception_produces_no_publication_and_no_state_change(self):
         def broken(*args):

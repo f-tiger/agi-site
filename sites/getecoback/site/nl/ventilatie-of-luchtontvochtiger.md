@@ -1,16 +1,29 @@
-# Ventilatie of luchtontvochtiger? Keuzehulp | EcoBack
+# Was drogen in een klein appartement | EcoBack
 
-> Vochtige ramen of was in huis? Vergelijk ventilatie en ontvochtiging, maak een meetplan en gebruik de koopchecklist voordat je een apparaat kiest.
+> Was binnen drogen zonder droger? Kies direct advies voor een studio, langzaam drogende kleding of vocht zonder was. Met ventilatie- en aankoopchecklist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/nl/ventilatie-of-luchtontvochtiger.html
 
 [Nederland](https://getecoback.com/nl/wonen.html) / Keuzehulp
 
-# Ventilatie of een luchtontvochtiger: waar begin je?
-Je wilt van het vocht af, maar een extra apparaat is niet automatisch de eerste stap. Deze keuzehulp ordent de vragen over je woning, je was en de plek waar het vocht ontstaat.
-Gratis gidsen · EUR · Redactioneel gecontroleerd · 2026-10-01
+# Was drogen in een klein appartement zonder droger
+Een droogrek in je woonruimte, kleding die lang vochtig blijft of condens op de ramen? Kies hieronder je situatie. Je krijgt meteen een eerste stap, zonder account of meetwaarden in te vullen.
+Gratis gidsen · EUR · Redactioneel gecontroleerd · 2026-10-31
 
 **De eerste keuze**Houd de bestaande ventilatie in gebruik en zoek naar de vochtbron. Een ontvochtiger voert geen verse buitenlucht aan. Blijft het probleem terugkomen, kijk dan verder dan alleen het cijfer op de vochtmeter.
+
+## Welke situatie herken je?
+Open een situatie voor praktische stappen. Deze keuzehulp stelt geen diagnose en voorspelt geen droogtijd.
+**Studio: het droogrek staat in de weg**
+Controleer eerst de uitgeklapte voetafdruk én de ruimte om erlangs te lopen. Een verticaal of opvouwbaar rek kan passen, maar controleer draagvermogen, stabiliteit en afstand tussen kleding. Een deurrek mag het sluiten of de doorgang niet blokkeren. Vergelijk die maten voordat je koopt; wandmontage vraagt een geschikte ondergrond en eventuele toestemming.
+Gebruik de bestaande ventilatie. Een ander rek verwijdert geen vocht uit de kamer. Als je huidige rek veilig past en de lucht kan doorstromen, is een nieuw rek niet nodig.
+**Kleding droogt langzaam, maar er is geen lekkage zichtbaar**
+Controleer het waslabel en gebruik een passende centrifugestand. Hang kleding met ruimte ertussen. Gebruik de extra ventilatiestand tijdens het binnen drogen als de handleiding van jouw systeem dat aangeeft. Een ventilator verplaatst lucht, maar voert geen vocht af.
+Vergelijk een ontvochtiger pas op kamertemperatuur, geluid, afvoer en werkelijk verbruik. Bereken kosten als gemeten kWh × jouw €/kWh, voor dezelfde hoeveelheid was en dezelfde uiteindelijke droogte. Een ontvochtiger vervangt geen ventilatie; een vaste droogtijd of besparing kunnen we niet voorspellen.
+**Condens of natte plekken, ook wanneer er geen was hangt**
+Noteer waar en wanneer dit gebeurt, en of regen of watergebruik eraan voorafgaat. Laat een mogelijke lekkage of ventilatiestoring beoordelen; bij huur meld je dit bij de verhuurder. Een grotere ontvochtiger herstelt geen bouwkundig gebrek.
+Een hygrometer meet luchtvochtigheid; een CO₂-meter geeft andere informatie over ventilatie tijdens gebruik. Geen van beide stelt de oorzaak vast. Leen zo mogelijk eerst een meter.
+De ruimte- en aankoopchecklist is redactionele begeleiding, geen producttest. Houd de bestaande ventilatie in gebruik. Bewaar de aankoopchecklist →
 
 ## 1. Breng je ventilatie in kaart
 Milieu Centraal maakt onderscheid tussen voortdurend ventileren en kort luchten met een open raam. Bij natuurlijke ventilatie horen open ventilatieroosters en een luchtweg door de woning. Dicht zulke voorzieningen niet af als tochtmaatregel.
@@ -52,6 +65,7 @@ Luchtontvochtigers bekijken op Amazon.nl ↗
 ## Bronnen en werkwijze
 Redactionele uitleg op basis van de onderstaande bronnen. We hebben geen eigen apparaattests uitgevoerd. De checklist is onze praktische vergelijkhulp, geen diagnose van je woning.
 
+- Milieu Centraal: woning ventileren
 - Milieu Centraal: natuurlijke ventilatie
 - Milieu Centraal: beter en energiezuiniger ventileren
 - Consumentenbond: koopadvies luchtontvochtigers

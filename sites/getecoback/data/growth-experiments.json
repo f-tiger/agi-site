@@ -57,6 +57,29 @@
         "/familienwerkstatt.html",
         "/en/home-workshop.html"
       ]
+    },
+    {
+      "id": "eco-eu-intent-20261031",
+      "site": "getecoback",
+      "due": "2026-11-28",
+      "status": "release_ready",
+      "start_rule": "First full property-timezone day after successful production verification; do not use this file date as experiment start.",
+      "metric": "DE and NL separately: organic landing sessions and engaged sessions on the listed pages. Search Console country/query/page impressions and clicks reported separately. Tool examples, deliberate calculations, guide openings and affiliate events remain distinct. No event/user conversion ratio.",
+      "layout": "Single product rollout; staggered observational comparison, not a randomized A/B experiment. Do not pool countries or sources. Keep analytics version and release timestamp in the observation record.",
+      "observation": "At least 14 complete days after verified release and analytics processing; review at 28 days. Missing reach or attribution is inconclusive, not zero demand or revenue.",
+      "threshold": "Do not expand a new country cluster from page publication alone. Require repeated country-relevant organic arrivals and deliberate use in two complete 14-day windows; this is an operating continuation gate, not proof of causal uplift.",
+      "win": "Deepen the observed local intent on existing URLs. New model URLs additionally require fresh exact-model same-country demand evidence and source facts.",
+      "lose": "If reach is low, inspect discovery and indexing before adding URLs. If relevant arrivals exist but no useful actions, revise decision usefulness and navigation. Never infer failed sales without readable matched merchant reports.",
+      "source": "sites/getecoback/docs/auto-content-demand-gate.md",
+      "built_pages": [
+        "/guide/heizluefter-stromverbrauch.html",
+        "/waeschetrockner-oder-luftentfeuchter.html",
+        "/nl/wonen.html",
+        "/nl/ventilatie-of-luchtontvochtiger.html"
+      ],
+      "revenue": "Unknown until authorized merchant reports provide commission status, refunds, currency and attribution window. No hypothetical EPC.",
+      "rollback": "Revert this scoped change if page, calculation, privacy or publishing regression appears. Preserve truthful source corrections; do not restart the paused Growth Loop.",
+      "due_note": "Reminder only. Compute day 14 and day 28 after the first full Asia/Shanghai day following verified deployment; analytics processing delay applies."
     }
   ]
 }

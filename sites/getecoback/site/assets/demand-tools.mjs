@@ -23,17 +23,23 @@ export function heaterCost({watts,hours,tariff,days,duty}){
  if(!Number.isInteger(d))throw new RangeError('Whole days required');
  return {hour:w/1000*p,day:w/1000*h*f*p,total:w/1000*h*f*p*d,kwh:w/1000*h*f*d};
 }
+export function heaterExample(id){
+ const hours={'20min':1/3,'2h':2,'4h':4}[id];
+ if(hours===undefined)throw new RangeError('Unknown example');
+ return {watts:2000,hours,tariff:.4,days:1,duty:100};
+}
 function event(name,extra){
- if(navigator.globalPrivacyControl||navigator.doNotTrack==='1'||navigator.webdriver||/[?&]__probe(?:=|&|$)/.test(location.search))return;
+ if(window.__ecoToolExample||navigator.globalPrivacyControl||navigator.doNotTrack==='1'||navigator.webdriver||/[?&]__(probe|qa|ci)(?:=|&|$)/.test(location.search))return;
  if(window.gtag)window.gtag('event',name,extra);
 }
 if(typeof document!=='undefined'){
  const seal=document.getElementById('eb-seal-fit'),heat=document.getElementById('eb-heater-cost');
  for(const root of [seal,heat].filter(Boolean)){
   const form=root.querySelector('form'),out=root.querySelector('[data-result]'),en=root.dataset.lang==='en';
-  form.addEventListener('input',()=>{out.hidden=true;out.replaceChildren();});
-  form.addEventListener('submit',e=>{
-   e.preventDefault();if(!form.reportValidity())return;
+  let exampleMode=root===heat;
+  form.addEventListener('input',()=>{exampleMode=false;out.hidden=true;out.replaceChildren();});
+  function calculate({example=false,focus=true}={}){
+   if(!form.reportValidity())return;
    const fields=Object.fromEntries(new FormData(form));out.replaceChildren();
    function p(text){const el=document.createElement('p');el.textContent=text;out.append(el);}
    function link(href,text,shop=false){const el=document.createElement('a');el.href=href;el.textContent=text;if(shop){el.target='_blank';el.rel='sponsored nofollow noopener';}out.append(el);}
@@ -51,13 +57,26 @@ if(typeof document!=='undefined'){
      event('seal_fit',{len:r.perimeter,type:fields.window,source:'demand-tool',market:fields.market});
     }else{
      const r=heaterCost(fields),fmt=n=>n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});
+     p(example?'Rechenbeispiel · 2.000 W, 0,40 €/kWh, volle Heizleistung. Kein aktueller Tarif oder gemessener Verbrauch.':'Berechnung mit den eingestellten Annahmen · keine Verbrauchsmessung.');
      p(`${fmt(r.hour)} € pro voller Heizstunde · ${fmt(r.day)} € pro Tag`);
      p(`${fmt(r.total)} € für ${fields.days} Tage · ${fmt(r.kwh)} kWh`);
      p('Rechenwert mit deinen Angaben; der tatsächliche Verbrauch hängt von Laufzeit und Regelung ab. Ein anderes Widerstandsheizgerät spart bei gleicher elektrischer Leistung und Heizzeit nicht automatisch Strom.');
-     event('stromkosten_calc',{source:'heater-inline'});
+     if(!example)event('stromkosten_calc',{source:'heater-inline'});
     }
    }catch{p(en?'Check all inputs; no shopping recommendation was generated.':'Bitte alle Eingaben prüfen; es wurde keine Kaufempfehlung erstellt.');}
-   out.hidden=false;out.focus();
+   out.hidden=false;if(focus)out.focus();
+  }
+  form.addEventListener('submit',e=>{
+   e.preventDefault();calculate({example:exampleMode});
   });
+  if(root===heat){
+   for(const button of root.querySelectorAll('[data-heater-example]'))button.addEventListener('click',()=>{
+    const values=heaterExample(button.dataset.heaterExample);
+    for(const [key,value]of Object.entries(values))form.elements.namedItem(key).value=String(value);
+    exampleMode=true;
+    calculate({example:true,focus:false});
+   });
+   calculate({example:true,focus:false});
+  }
  }
 }

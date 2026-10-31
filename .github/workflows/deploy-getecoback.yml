@@ -87,7 +87,11 @@ jobs:
       # Existing daily/manual release owns the full content transaction. This
       # is independent of the paused Growth Loop and adds no scheduled trigger.
       - name: Test automatic content persistence and concurrent-main rejection
-        run: python3 tools/test_commit_auto_content.py
+        run: |
+          python3 tools/test_commit_auto_content.py
+          python3 tools/test_auto_content.py
+          python3 tools/test_auto_content_sources.py
+          python3 tools/test_auto_content_render.py
 
       - name: Discover and expand source-backed content within the daily allowance
         id: auto_content
@@ -282,7 +286,9 @@ jobs:
           node --test tools/test_affiliate_audit.mjs
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_demand_tools.mjs
+          node --test tools/test_country_scenarios.mjs
           python3 tools/test_demand_tools.py
+          python3 tools/test_de_decision_surfaces.py
           node --test tools/test_laundry.mjs
           python3 tools/test_trend_radar.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
@@ -444,6 +450,7 @@ jobs:
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium
           node sites/getecoback/tools/browser_dach_growth.mjs
+          node sites/getecoback/tools/browser_heater_examples.cjs
 
       - name: Verify automatic content, source references and discovery after all generators
         run: python3 tools/check_auto_content_release.py

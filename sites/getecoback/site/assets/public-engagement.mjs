@@ -14,6 +14,16 @@ export function engagementClock() {
   };
 }
 
+// Fixed navigation actions, never a household answer, completed tool or sale.
+export function countryScenarioEvent(pathname, detail) {
+  if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  const actions = {
+    '/nl/wonen.html': 'eco_country_scenario_open',
+    '/nl/ventilatie-of-luchtontvochtiger.html': 'eco_country_scenario_read'
+  };
+  return Object.hasOwn(actions, pathname) && detail.name === actions[pathname] ? detail.name : null;
+}
+
 export function installPublicEngagement() {
   const host = 'getecoback.com', id = 'G-E2V0Q9SJ9V';
   const query = new URLSearchParams(location.search);
@@ -35,6 +45,16 @@ export function installPublicEngagement() {
     try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return false; } catch {}
     return !!frame?.isConnected && !frame.contentWindow['ga-disable-' + id];
   };
+  const countryActionsSent = new Set();
+  window.addEventListener('fleet:business', event => {
+    const name = countryScenarioEvent(page.pathname, event.detail);
+    if (!name || !permitted() || countryActionsSent.has(name)) return;
+    countryActionsSent.add(name);
+    // No replay of actions before the existing analytics frame was enabled.
+    (function () { frame.contentWindow.dataLayer.push(arguments); })('event', name, {
+      ...fields, tool_id:'eco-country-nl', transport_type:'beacon'
+    });
+  });
   const stop = () => { clearInterval(timer); timer = undefined; frame = undefined; clock.reset(); };
   const active = () => document.visibilityState === 'visible' && document.hasFocus();
   const sample = value => {
