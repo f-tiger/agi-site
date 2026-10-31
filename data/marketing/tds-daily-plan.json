@@ -363,7 +363,7 @@
     "owner_direction": "不光是调研，要最终落地",
     "audience": "Retailers or organizers who already host collector meetups, and participants preparing explicit wanted/offered lists.",
     "hypothesis": "A rules-aware event template and a recipient-to-own-card workflow reduce preparation work enough for an organizer to distribute and reuse the tool.",
-    "status": "implemented_pending_live_verification",
+    "status": "deployed_live_verified",
     "endpoint": "https://thedollscout.com/mcp",
     "mcp_tool": "prepare_swap_event_card",
     "pages": [
@@ -397,7 +397,7 @@
       "Recipient can create and share a separate personal preparation card"
     ],
     "external_distribution": {
-      "status": "invitations_prepared_not_sent",
+      "status": "two_unsent_gmail_drafts_prepared_for_review",
       "candidates": [
         "Friends NYC",
         "TATE’S Comics + Toys + More"
@@ -419,8 +419,31 @@
     "privacy": "Browser creation stays local. Shared links contain readable, editable data and cannot revoke copies. MCP processes supplied arguments statelessly. No free-text inputs, fragment, event ID or participant identity enter telemetry.",
     "release": {
       "target_version": "2.6.0",
-      "status": "pending",
-      "scheduling": "Existing 06:00 UTC reporting and 07:20 UTC source checks retained; no new cron, paid model or enabled chat automation."
+      "status": "verified",
+      "scheduling": "Existing 06:00 UTC reporting and 07:20 UTC source checks retained; no new cron, paid model or enabled chat automation.",
+      "version": "2.6.0",
+      "commit": "06efe45b89e00ae14cdb79776edeb8f90b9377aa",
+      "pull_request": "https://github.com/f-tiger/agi-site/pull/220",
+      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41217960707",
+      "verified_at": "2026-10-31T16:11:03.417Z",
+      "endpoint": "https://thedollscout.com/mcp",
+      "registry_name": "io.github.f-tiger/dollscout-collecting",
+      "checks": [
+        "Four pull-request CI checks passed",
+        "Production build, three localized event pages and official SDK event/card/recipient workflow verified",
+        "Official Registry reads back 2.6.0 active/latest at the existing MCP endpoint",
+        "Existing daily health reporter successfully reads the new coverage; no complete observation day yet",
+        "27 local browser scenarios passed including actual clipboard and cross-context recipient reuse",
+        "Final GA4 configuration covers 299 public pages with 5 explicit exclusions; backend ingestion was not independently tested"
+      ],
+      "adoption": "External distribution, organizer adoption and repeat use are not established by QA or publication.",
+      "indexnow": {
+        "changed_urls": 23,
+        "status": 200,
+        "accepted": true,
+        "indexing": "unknown",
+        "note": "Verified current production URLs before manual notification after original push range was skipped."
+      }
     }
   },
   "previous_experiments": [
