@@ -14,6 +14,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import pain_radar
+
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 EVOLUTION = DATA / "fleet-evolution"
@@ -142,7 +144,7 @@ def compact_action(action: dict[str, Any]) -> dict[str, Any]:
     """Keep stable evidence in site files; exact numbers remain in latest.json."""
     compact: dict[str, Any] = {}
     for key, value in (action.get("evidence") or {}).items():
-        if key in {"page", "query", "http", "site"}:
+        if key in {"page", "query", "http", "site", "pain_id", "scope", "acceptance", "source_refs", "gate_reasons", "verified_sources"}:
             compact[key] = value
         elif key in {"count", "value", "n7", "p7", "human_pv_28d", "ai_ref_28d", "referred_humans_28d", "paid_members", "active_members"}:
             compact[f"{key}_band"] = band(value)
@@ -173,6 +175,8 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
     }
     opportunities = read_json(DATA / "autopilot/opportunities.json", {}) or {}
     opportunity_rows = opportunities.get("opportunities") if isinstance(opportunities.get("opportunities"), list) else []
+    pain_rows = pain_radar.evaluate(pain_radar.load(DATA / "user-pain-radar.json"), today, SITE_DIRS)
+    pain_actions = pain_radar.actions(pain_rows)
     receipt = read_json(DATA / "autopilot/receipt.json", {}) or {}
     receipt_rows = {
         row.get("site"): row for row in receipt.get("runs", [])
@@ -216,7 +220,8 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         active = member_count(admin.get("active_members")) if member_observed else None
         health_row = health_rows.get(site, {})
         receipt_row = receipt_rows.get(site, {})
-        site_actions: list[dict[str, Any]] = []
+        site_actions: list[dict[str, Any]] = [{key: value for key, value in row.items() if key != "site"}
+                                                   for row in pain_actions if row["site"] == site]
 
         if health_row and str(health_row.get("http")) != "200":
             site_actions.append(safe_action("site_health", 100, "live probe is not HTTP 200", {"http": health_row.get("http")}, "alert"))
@@ -299,6 +304,7 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
         "stale_inputs": stale,
         "membership": membership,
         "opportunities": top_opportunities[:20],
+        "user_pain_radar": pain_rows,
         "actions": actions[:50],
         "site_manifests": {site: {"path": f"{site_dir}/data/fleet-evolution.json", "action_count": len(manifests[site]["actions"])} for site, site_dir in SITE_DIRS.items()},
         "rules": {
@@ -327,6 +333,7 @@ def render_markdown(latest: dict[str, Any]) -> str:
     for name, value in latest["input_dates"].items():
         lines.append(f"| {name} | {value or 'unknown'} | {latest['input_ages_days'].get(name) if latest['input_ages_days'].get(name) is not None else 'unknown'} |")
     lines += ["", "## Autonomous boundary", "", "- Refresh measured snapshots and derived queues.", "- Keep sitemap lastmod tied to content hashes and ping only changed URLs.", "- Queue copy, pricing, new products and membership experiments for judgement; do not fabricate evidence.", ""]
+    lines += ["", pain_radar.markdown(latest.get("user_pain_radar", []))]
     return "\n".join(lines)
 
 
