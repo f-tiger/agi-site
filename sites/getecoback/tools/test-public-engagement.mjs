@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {engagementClock,countryScenarioEvent} from '../site/assets/public-engagement.mjs';
+import {engagementClock,countryScenarioEvent,ecoPublicBusinessEvent} from '../site/assets/public-engagement.mjs';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 
 test('Country actions accept exact NL route and fixed name only', () => {
-  const pairs = [['/nl/wonen.html','eco_country_scenario_open'],['/nl/ventilatie-of-luchtontvochtiger.html','eco_country_scenario_read']];
+  const pairs = [['/wohnen.html','eco_country_scenario_open'],['/nl/wonen.html','eco_country_scenario_open'],['/nl/ventilatie-of-luchtontvochtiger.html','eco_country_scenario_read']];
   for (const [path,name] of pairs) {
     assert.equal(countryScenarioEvent(path,{name}),name);
     for (const key of ['query','url','answers','price','email']) assert.equal(countryScenarioEvent(path,{name,[key]:'PRIVATE'}),null);
@@ -14,6 +14,37 @@ test('Country actions accept exact NL route and fixed name only', () => {
   }
   assert.equal(countryScenarioEvent('/nl/wonen.html',{name:'eco_country_scenario_read'}),null);
   assert.equal(countryScenarioEvent('/nl/wonen.html',Object.assign(Object.create({name:'eco_country_scenario_open'}),{email:'PRIVATE'})),null);
+});
+
+test('DACH actions are bound to their own tool; no inputs, private paths or inherited actions', () => {
+  const pairs = [
+    ['/guide/heizdecke-stromverbrauch.html','eco-personal-warmth',['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']],
+    ['/guide/smarte-heizkoerperthermostate-lohnen-sich.html','eco-valve-fit',['eco_valve_result','eco_valve_official','eco_valve_share']],
+    ['/guide/richtig-lueften-im-winter.html','eco-wall-moisture',['eco_dewpoint_example','eco_dewpoint_check']]
+  ];
+  for (const [path,tool_id,names] of pairs) for (const name of names) {
+    assert.deepEqual(ecoPublicBusinessEvent(path,{name}),{name,tool_id});
+    for (const other of pairs.filter(p=>p[0]!==path)) assert.equal(ecoPublicBusinessEvent(other[0],{name}),null);
+    for (const key of ['watts','tariff','valve','answer','url','email']) assert.equal(ecoPublicBusinessEvent(path,{name,[key]:'PRIVATE'}),null);
+    for (const invalid of [path+'?private=x',path+'#input','/account','/members',path.replace('/guide/','/en/guide/')]) assert.equal(ecoPublicBusinessEvent(invalid,{name}),null);
+    assert.equal(ecoPublicBusinessEvent(path,Object.create({name})),null);
+  }
+  assert.deepEqual(ecoPublicBusinessEvent('/wohnen.html',{name:'eco_country_scenario_open'}),{name:'eco_country_scenario_open',tool_id:'eco-country-de'});
+  assert.equal(ecoPublicBusinessEvent('/guide/richtig-lueften-im-winter.html',{name:'legacy:taupunkt_check'}),null);
+});
+
+test('Wall-moisture check separates untouched examples from edited calculations and suppresses automated examples', () => {
+  const html=readFileSync(new URL('../site/guide/richtig-lueften-im-winter.html',import.meta.url),'utf8');
+  const script=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].find(m=>m[1].includes('initialInputs'))[1];
+  let click; const events=[];
+  const fields={ta:{value:'20'},rh:{value:'50'},tk:{value:'14'},go:{addEventListener:(_n,fn)=>{click=fn;}},verdict:{style:{}},sub:{},res:{style:{}}};
+  const window={dispatchEvent:e=>events.push(e.detail)};
+  vm.runInNewContext(script,{window,document:{getElementById:id=>fields[id]},CustomEvent:class{constructor(_n,init){this.detail=init.detail;}}});
+  click(); assert.equal(events.at(-1).name,'eco_dewpoint_example');
+  fields.rh.value='60';click();assert.equal(events.at(-1).name,'eco_dewpoint_check');
+  assert.equal(Object.keys(events.at(-1)).join(','),'name');
+  window.__ecoToolExample=true;click();assert.equal(events.length,2);
+  window.__ecoToolExample=false;fields.rh.value='200';click();assert.equal(events.length,2);
 });
 
 test('Country bridge uses existing frame, excludes opt-out and does not replay or duplicate actions', () => {

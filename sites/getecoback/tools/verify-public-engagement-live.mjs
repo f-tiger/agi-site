@@ -8,7 +8,7 @@ async function read(route){
   assert.equal(r.status,200,route);return r.text();
 }
 assert.equal(await read('/eco-engagement.mjs?v='+engagementVersion),expected);
-for(const route of ['/guide/klimaanlage-wohnmobil.html','/en/guide/portable-ac-tilt-and-turn-windows.html','/','/en/','/stromtarif-werkstatt.html']) {
+for(const route of ['/guide/klimaanlage-wohnmobil.html','/en/guide/portable-ac-tilt-and-turn-windows.html','/','/en/','/stromtarif-werkstatt.html','/wohnen.html','/guide/heizdecke-stromverbrauch.html','/guide/smarte-heizkoerperthermostate-lohnen-sich.html','/guide/richtig-lueften-im-winter.html']) {
   const html=await read(route);assert.equal((html.match(/src="\/eco-engagement\.mjs\?v=/g)||[]).length,1,route);
   assert(html.includes('/eco-engagement.mjs?v='+engagementVersion),route);
 }

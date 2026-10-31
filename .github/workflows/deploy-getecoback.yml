@@ -198,12 +198,6 @@ jobs:
       - name: Link electricity workbenches from existing content
         run: |
           python3 tools/link_energy_workbench.py
-      # Last homepage step: orders the sections by season (the H1 rotated, the
-      # page underneath did not) and groups other-topic tool blocks above the
-      # footer. Idempotent; refuses if a second run would differ.
-      - name: Order homepage sections by season
-        run: python3 tools/build_home_order.py
-
       - name: Verify household calculation examples and edge cases
         run: node tools/test_household.mjs
 
@@ -287,8 +281,10 @@ jobs:
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_demand_tools.mjs
           node --test tools/test_country_scenarios.mjs
+          node --test tools/test_personal_warmth.mjs tools/test_thermostat_fit.mjs
           python3 tools/test_demand_tools.py
           python3 tools/test_de_decision_surfaces.py
+          python3 tools/test_personal_warmth.py
           node --test tools/test_laundry.mjs
           python3 tools/test_trend_radar.py
           node --test tools/test_upkeep_decisions.mjs tools/test_meaco_care.mjs
@@ -412,6 +408,11 @@ jobs:
           node tools/member-studio/test-failure.mjs
           node tools/member-studio/verify.mjs --site eco --out sites/getecoback/site
 
+      # Country/UK/AU and workbench builders also inject homepage sections.
+      # Order only after those builders; otherwise they undo the winter order.
+      - name: Order homepage sections by season
+        run: python3 tools/build_home_order.py
+
       - name: Configure independent membership secrets
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
         working-directory: ${{ github.workspace }}
@@ -451,6 +452,8 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium
           node sites/getecoback/tools/browser_dach_growth.mjs
           node sites/getecoback/tools/browser_heater_examples.cjs
+          node sites/getecoback/tools/browser_personal_warmth.cjs
+          node sites/getecoback/tools/browser_thermostat_fit.cjs
 
       - name: Verify automatic content, source references and discovery after all generators
         run: python3 tools/check_auto_content_release.py

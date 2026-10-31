@@ -1,8 +1,50 @@
-# Smarte Heizkörperthermostate: Lohnt sich der Wechsel? | EcoBack
+# Smarte Heizkörperthermostate: Ventil prüfen, Kosten rechnen | EcoBack
 
-> Smarte Heizkörperthermostate für Mietwohnungen prüfen: Ventil, Tagesablauf und laufende Kosten vergleichen. Mit einem Rechner für eigene Sparannahmen.
+> Passt der smarte Thermostatkopf? Ventilcheck für tado° V3+: Heimeier, Herz, Danfoss RA und Oventrop unterscheiden. Danach eigene Kosten und Sparannahmen rechnen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/smarte-heizkoerperthermostate-lohnen-sich.html
+
+Vor dem Kauf · zwei Auswahlen, keine Texteingabe
+
+## Welcher Thermostatkopf passt zu meinem Ventil?
+
+Wähle zuerst die genaue Gerätegeneration, dann ein bereits identifiziertes Ventil. Der Check sortiert den nächsten Prüfschritt; er erkennt kein Ventil und erteilt keine Montagefreigabe.
+
+### Unbekannt ist ein sinnvolles Ergebnis
+Notiere die genaue Gerätegeneration und vergleiche Ventilkennzeichnung und Bilder mit der Herstelleranleitung. Kein Adapterkauf nur nach Markenname oder Gewindedurchmesser.
+
+Der Link enthält nur diese beiden festen Auswahlkategorien, keine Fotos, Adresse oder Heizkosten. Geteilt wird ein Prüfschritt, kein bestätigter Kompatibilitätsnachweis.
+
+**Geprüfte Orientierung ohne JavaScript**
+**Nur tado° V3+ und frühere Generationen.** Nicht auf tado° X, TP-Link oder andere Thermostatköpfe übertragen. Bei unklarer Generation gibt es hier keine Zuordnung.
+Begrenzte Auswahl aus Herstellerunterlagen, geprüft am 31. Oktober 2026
+Identifiziertes Ventil | Nächster Prüfschritt | Quelle / Abbildung |
+Heimeier · M30 × 1,5 | **In der Herstellerliste ohne Adapter geführt** Gilt für den dort gezeigten thermostatischen Heimeier-Anschluss M30 × 1,5. Ventil und Bild in der Liste abgleichen; die Gewindegröße allein reicht nicht als Nachweis.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
+Herz 7230/7235/7260/7262 · M28 × 1,5 | **M28-Adapter und passende Stiftverlängerung prüfen** Die aufgeführten Herz-Ausführungen benötigen laut tado° einen M28 × 1,5-Adapter. Die korrekte Stiftverlängerung ist Teil der Prüfung. „Herz Mini“ oder die Marke allein identifizieren das Ventil nicht.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 5 |
+Danfoss RA · 23-mm-Klemme mit Kerben | **RA-Adapter prüfen; RAV und RAVL sind andere Anschlüsse** Nur für den identifizierten RA-Anschluss. Eine ähnlich aussehende Klemme ist kein Nachweis. Montageanleitung und Lieferumfang der konkreten Packung abgleichen.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 3 |
+Oventrop Uni L / Uni DH · M30 × 1,0 | **Separaten M30 × 1,0-Adapter einplanen** Diese Gewindesteigung ist nicht M30 × 1,5. Laut Herstellerhilfe ist der benötigte Adapter nicht im tado°-Lieferumfang enthalten. Exakte Ausführung vor Bestellung abgleichen.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 7 |
+Oventrop Uni LV · 30,5-mm-Klemme | **Uni LV ist kein Uni L: andere Adapterfamilie** Die Herstellerliste führt Uni LV mit einer 30,5-mm-Klemme und einem separat zu beschaffenden Adapter. Nicht den M30 × 1,0-Adapter für Uni L übernehmen.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 6 |
+Manuelles Ventil oder RTL-Begrenzer | **Kein passender Anwendungsfall für diesen Thermostatkopf** Die tado°-Unterlagen schließen manuelle Ventile und Rücklauftemperaturbegrenzer aus. Ein Kopfwechsel ist keine Umrüstung des Ventils; Fachbetrieb und Zuständigkeit klären.
+| Herstellerangabe; Bildabgleich in der Ventilliste, Seite 1 |
+
+### Ventil noch unbekannt?
+
+- Modellbezeichnung auf dem bisherigen Kopf, Unterlagen und vorhandene Kennzeichnungen vergleichen. Bei Unsicherheit Fotos nach Herstelleranleitung für dessen Support oder den Fachbetrieb vorbereiten; hier ist kein Upload nötig.
+- Gewinde, Klemmanschluss und genaue Variante zusammen prüfen. Uni L und Uni LV oder RA, RAV und RAVL sind nicht austauschbare Bezeichnungen.
+- Den wasserführenden Ventilkörper nicht lösen. Bei Leckage, festsitzenden Teilen oder unklarer Zuständigkeit stoppen und einen Fachbetrieb beziehungsweise die Hausverwaltung einbeziehen.
+
+tado°: vollständige Herstellerübersicht öffnen · Separate Hilfe für tado° X
+
+Stand der Prüfung: 31. Oktober 2026. Die verlinkte Ventilliste trägt Version 2.0, September 2021 und wird weiterhin von der Herstellerhilfe verlinkt. Die Liste ist indikativ und unvollständig. Neuere Modellunterlagen und Herstellerbestätigung gehen vor. Keine eigenen Montage- oder Produkttests; die Herstellerlinks sind keine Affiliate-Links.
+
+### Passt technisch – lohnt sich der Wechsel?
+Kompatibilität belegt noch keine Heizkostenersparnis. Prüfe zuerst deinen Zeitplan. Rechne danach Köpfe, notwendige Adapter, Zentrale, Batterien und verpflichtende Dienste zusammen. Für Deutschland und Österreich EUR, für die Schweiz CHF verwenden; keine Währungsumrechnung und keine bestätigte lokale Lieferbarkeit.
+Gesamtkosten und eigene Sparannahme prüfen ↓
 
 ## Mit eigenen Werten rechnen
 Alle Vorgaben sind frei gewählte Beispiele, keine aktuellen Tarife, Produktmessungen oder Sparversprechen. Für Deutschland und Österreich EUR, für die Schweiz CHF wählen. Alle Geldbeträge müssen dieselbe Währung verwenden; keine Wechselkursumrechnung.
@@ -32,8 +74,10 @@ Die Ersparnis ist eine Annahme, kein Messwert. Setze bei der Kostenbasis nur den
 Programmierbare Thermostatköpfe bei Amazon.de suchen →
 
 ## Häufige Fragen
-Sind 20 oder 30 Prozent Ersparnis garantiert?Nein. Ausgangsverhalten, Gebäude, Regelung und Kostenverteilung bestimmen den Effekt. Der Rechner behandelt die Ersparnis ausdrücklich als eigene Annahme.
-Funktioniert jeder smarte Kopf an jedem Heizkörper?Nein. Ventilanschluss, Adapter, System und Herstellerfreigabe müssen zusammenpassen. Nicht am wasserführenden Ventil improvisieren.
+**Sind 20 oder 30 Prozent Ersparnis garantiert?**
+Nein. Ausgangsverhalten, Gebäude, Regelung und Kostenverteilung bestimmen den Effekt. Der Rechner behandelt die Ersparnis ausdrücklich als eigene Annahme.
+**Funktioniert jeder smarte Kopf an jedem Heizkörper?**
+Nein. Ventilanschluss, Adapter, System und Herstellerfreigabe müssen zusammenpassen. Nicht am wasserführenden Ventil improvisieren.
 
 ## Quellen und Grenzen
 Die folgenden Quellen wurden am 4. Oktober 2026 geprüft. Rechenbeispiele sind eigene Szenarien, keine Markt- oder Messdaten.

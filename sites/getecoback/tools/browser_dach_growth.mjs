@@ -29,11 +29,27 @@ try{
    return route.continue();
   });
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  for(const [path,anchor] of [['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/wohnen.html','#dach']]){
+  for(const [path,anchor] of [['/','.hero-btns'],['/guide/luftentfeuchter-keller.html','#kalter-keller'],['/guide/luftentfeuchter-ratgeber.html','#einsatzort-waehlen'],['/wohnen.html','#dach']]){
    await page.goto(base+path+'?__probe=1');
    assert(await page.locator(anchor).isVisible(),path+' authored section lost');
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://getecoback.com'+path);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,path+' overflows at '+width);
+   if(path==='/'){
+    const html=await page.content(), season=html.indexOf('<!--EB_SEASON-->'), winter=html.indexOf('<!--EB_WINTER_LINK-->');
+    assert(season>=0 && winter>season,'German task routes precede the winter guide entry');
+    for(const marker of ['EB_COUNTRIES','EB_UK_PATH','EB_AU_COOLING'])assert(html.indexOf('<!--'+marker+'-->')>winter,marker+' must not displace German winter discovery');
+    assert(await page.locator('.hero-btns a[href="/wohnen.html"]').isVisible(),'Homepage winter task entry is visible');
+   }
+   if(path==='/wohnen.html'){
+    const routes=page.locator('.need-cards a');
+    assert.equal(await routes.count(),4,'Four German winter tasks must be discoverable without JavaScript');
+    for(const href of ['/guide/luftfeuchtigkeit-richtig-messen.html','/waeschetrockner-oder-luftentfeuchter.html','/guide/heizdecke-stromverbrauch.html','/guide/smarte-heizkoerperthermostate-lohnen-sich.html']){
+     assert(await page.locator('.need-cards a[href="'+href+'"]').isVisible(),href+' is missing from the visible task routes');
+    }
+    assert.equal(await page.locator('#regelung [data-country-shop]').count(),0,'Unknown valve fit must not lead directly to shopping');
+    const region=await page.locator('#dach').innerText();
+    for(const term of ['Deutschland','Österreich','Schweiz','EUR','CHF','keinen Wechselkurs'])assert(region.includes(term),'DACH context missing: '+term);
+   }
    if(path.includes('keller.html')){
     assert.equal(await page.locator('.dach-table table').count(),2);
     assert.equal(await page.locator('#checkliste').count(),1);
@@ -45,7 +61,7 @@ try{
      assert.equal(await tool.locator('[data-choice-action=shop]:visible').count(),0);
     }
    }
-   if(width===390&&js){await mkdir('/tmp/eco-dach-qa',{recursive:true});await page.screenshot({path:'/tmp/eco-dach-qa/'+path.split('/').pop()+'.png',fullPage:true});}
+   if(width===390&&js){await mkdir('/tmp/eco-dach-qa',{recursive:true});await page.screenshot({path:'/tmp/eco-dach-qa/'+(path.split('/').pop()||'index.html')+'.png',fullPage:true});}
    checks++;
   }
   assert.deepEqual(errors,[]);await context.close();

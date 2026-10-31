@@ -7,10 +7,10 @@
       "country": "Deutschland",
       "path": "/wohnen.html",
       "merchant": "amazon.de",
-      "title": "Wohnen in Deutschland: Feuchte, Wäsche & Wärme | EcoBack",
-      "description": "Raumklima und Energiekosten im Alltag: Luftfeuchte messen, Wäsche in der Wohnung trocknen und Wärme halten. Mit Checklisten vor dem Gerätekauf.",
-      "heading": "Feuchte, Wäsche und Heizkosten im Herbst und Winter",
-      "intro": "Beschlagene Fenster, ein feuchter Keller oder ein kalter Arbeitsplatz? Wähle dein Problem, prüfe den vorhandenen Raum und vergleiche erst danach Geräte und Betriebskosten.",
+      "title": "Winter zu Hause: Feuchte, Wärme & Thermostate | EcoBack",
+      "description": "Vier Wege für den Winter: Feuchte einordnen, Wäsche trocknen, persönliche Wärme berechnen und Thermostat-Anschlüsse prüfen. Mit Hinweisen für DE, AT und CH.",
+      "heading": "Was fehlt dir zu Hause: trockene Wäsche, Wärme oder die passende Regelung?",
+      "intro": "Wähle eine konkrete Aufgabe. Die Hilfen funktionieren ohne Konto und starten mit Beispielen oder Auswahlfragen. Für eigene Kosten brauchst du erst im nächsten Schritt deinen Tarif; Hinweise für Österreich und die Schweiz stehen unten.",
       "eyebrow": "Deutschland · Wohnen & Energie",
       "edition": "Kostenlose Ratgeber · EUR · Redaktion geprüft",
       "skip": "Zum Inhalt",
@@ -51,7 +51,7 @@
           ],
           "related": [
             [
-              "Luftfeuchtigkeit richtig messen: der neue Leitfaden",
+              "Feuchte messen und den Verlauf einordnen",
               "/guide/luftfeuchtigkeit-richtig-messen.html"
             ],
             [
@@ -81,6 +81,10 @@
           ],
           "related": [
             [
+              "Trockner oder Entfeuchter: deinen Wäschefall finden",
+              "/waeschetrockner-oder-luftentfeuchter.html"
+            ],
+            [
               "Wäsche trocknen in der Wohnung",
               "/guide/waesche-trocknen-wohnung.html"
             ],
@@ -94,14 +98,23 @@
         },
         {
           "id": "waerme",
-          "title": "Wärme halten & Verbrauch prüfen",
-          "summary": "Für Mietwohnungen und einzelne kalte Arbeitsplätze. Trenne den Wunsch nach einem wärmeren ganzen Raum vom Wunsch nach persönlicher Wärme am Schreibtisch.",
+          "title": "Persönlich warm bleiben",
+          "summary": "Dir ist am Schreibtisch oder auf dem Sofa kalt, der ganze Raum muss aber nicht zusätzlich elektrisch beheizt werden? Vergleiche Aufgaben, Laufzeit und Verbrauch; gleiche Wattzahlen bedeuten nicht gleichen Komfort.",
           "checks": [
+            "Eine Wärmedecke wärmt eine Person. Sie ersetzt weder erforderliches Raumheizen noch Lüften; Hinweise zur sicheren Verwendung stehen in der Modellanleitung.",
             "Vor einem Heizgerät Steckdose, Aufstellabstände und Herstellerhinweise prüfen.",
             "Bei Zugluft zuerst feststellen, wo sie entsteht; notwendige Lüftungsöffnungen nicht verschließen.",
             "Vor einem Strommessgerät die zulässige Last mit dem zu messenden Gerät abgleichen."
           ],
           "related": [
+            [
+              "Heizdecke: Beispiele und eigene Stromkosten",
+              "/guide/heizdecke-stromverbrauch.html"
+            ],
+            [
+              "Homeoffice: Person oder Raum wärmen?",
+              "/guide/homeoffice-warm-bleiben.html"
+            ],
             [
               "Heizkosten senken als Mieter",
               "/guide/heizkosten-senken-als-mieter.html"
@@ -117,6 +130,27 @@
           ],
           "query": "Strommessgeraet Steckdose",
           "shop_label": "Strommessgeräte auf Amazon.de vergleichen"
+        },
+        {
+          "id": "regelung",
+          "title": "Passt der neue Thermostatkopf?",
+          "summary": "Ein smarter Kopf hilft nicht, wenn Anschluss oder Regelung nicht passen. Prüfe zuerst Ventil und genaue Thermostat-Familie; erst danach Anschaffung, laufende Kosten und eine mögliche Ersparnis.",
+          "checks": [
+            "Wassergeführten Heizkörper mit Thermostatventil von anderen Heizsystemen unterscheiden.",
+            "Exakte Modellfamilie und Ventilanschluss anhand der Herstellerunterlagen prüfen; ein ähnliches Gewinde bestätigt noch keine Passform.",
+            "Ist der Anschluss unbekannt, zuerst identifizieren lassen. Keinen Adapter auf Verdacht kaufen."
+          ],
+          "related": [
+            [
+              "Thermostat-Kompatibilität vor dem Kauf prüfen",
+              "/guide/smarte-heizkoerperthermostate-lohnen-sich.html"
+            ],
+            [
+              "Zeitplan und eigene Sparannahmen durchrechnen",
+              "/guide/smarte-heizkoerperthermostate-lohnen-sich.html#rechner"
+            ]
+          ],
+          "commerce": false
         }
       ],
       "guide": {
@@ -199,10 +233,10 @@
         "label": "Wähle dein Thema",
         "placeholder": "Bitte auswählen"
       },
-      "modified": "2026-10-30",
+      "modified": "2026-10-31",
       "regional": {
         "title": "Du liest aus Österreich oder der Schweiz?",
-        "text": "Die technischen Checklisten helfen beim Vergleichen. Deutsche Shoplinks und Euro-Beispiele bestätigen aber keine lokale Lieferbarkeit oder passende Modellvariante. Verwende deinen eigenen Tarif und prüfe die Bedingungen am Lieferort.",
+        "text": "Die physikalischen Rechenwege sind auch in Österreich und der Schweiz nutzbar. Die Einkaufswege sind davon getrennt: Ein Link zu Amazon.de bestätigt weder Lieferung an deine Adresse noch lokale Modell- oder Anschluss-Eignung. In Kostenrechnern alle Beträge in einer Währung verwenden; eine Währungsauswahl rechnet keinen Wechselkurs um.",
         "links": [
           [
             "Österreich: Energieberatung NÖ zum richtigen Lüften",
@@ -216,8 +250,23 @@
             "Keller-Kaufcheck für Deutschland, Österreich und die Schweiz",
             "/guide/luftentfeuchter-keller.html#dach-kauf"
           ]
+        ],
+        "markets": [
+          {
+            "name": "Deutschland",
+            "text": "Kosten in EUR mit deinem vertraglichen Arbeitspreis pro kWh rechnen. Gekennzeichnete Amazon.de-Links sind Affiliate-Links; aktuelle Preise, Modell und Lieferbarkeit beim Händler prüfen."
+          },
+          {
+            "name": "Österreich",
+            "text": "Ebenfalls EUR verwenden, aber deinen österreichischen Tarif einsetzen. Bei deutschen Shoplinks Versand nach Österreich, Rückgabe, genaue Variante und Herstellerfreigabe prüfen; keine bestätigte lokale Händlerempfehlung."
+          },
+          {
+            "name": "Schweiz",
+            "text": "CHF und deinen schweizerischen Tarif verwenden. Vor einem grenzüberschreitenden Kauf schweizerische Steckerausführung, Modellfreigabe, Versand, Einfuhrkosten und Rückgabe klären; keine bestätigte lokale Händlerempfehlung."
+          }
         ]
-      }
+      },
+      "visible_routes": true
     },
     {
       "market": "NL",

@@ -51,50 +51,34 @@ DE_SEASONS = {
         ],
     },
     "herbst": {
-        "title": "Luftentfeuchter gegen Schimmel & clever heizen | EcoBack",
-        "desc": "Feuchte Wohnung im Herbst? Luftentfeuchter gegen Schimmel, Klimaanlage richtig einlagern und stromsparend heizen — Rechner und ehrliche Empfehlungen.",
-        "h1": "Feuchte Wohnung im Herbst? Schimmel stoppen, clever heizen",
-        "sub": "EcoBack ist dein Raumklima- und Energie-Ratgeber für das ganze Jahr. Jetzt im Herbst: Wäsche trocknet drinnen, Fenster beschlagen — die richtige Zeit für Luftentfeuchter, Geräte-Einlagerung und den Heiz-Check vor dem Winter.",
-        "badge": "🍂 Herbst · Schimmel vorbeugen & Heiz-Check",
-        # Targets picked from D1, not by hand — same correction the season bridge
-        # got on 2026-08-27, applied to the component that fix did not touch.
-        # The previous six slots were hand-chosen and, measured over 28 days,
-        # carried 0 affiliate clicks between them: luftentfeuchter-gegen-schimmel
-        # has never recorded a single row, keller-lueften-sommer likewise,
-        # ueberwintern 11 pv / 0 aff, heizluefter-stromverbrauch 1 pv / 0 aff.
-        # Two further slots pointed at Balkonspeicher, i.e. the energy section the
-        # owner degraded on 2026-08-26 — the autumn hero is the wrong place to
-        # re-promote it. Meanwhile the pages that actually earn in this cluster
-        # were absent: luftentfeuchter-40-qm (4 pv / 3 aff — the best autumn
-        # converter on the site), stinkt-schimmel (15 pv / 2 aff — the most-read
-        # autumn page), mit-heizfunktion (5 pv / 1 aff, and it carries summer AC
-        # owners into the heating season).
-        # Two slots go to pages published 2026-08-26 that answer the largest
-        # verified demand in trends-rising.json ("schimmel im keller entfernen"
-        # v=108.750, "sparsamer heizlüfter" v=32.000). They have no traffic yet
-        # because they are days old; a homepage link is the internal equity that
-        # gets them crawled and ranked. That is the point of the slot, not a
-        # reward for traffic they do not have.
+        "title": "Winter vorbereiten: Feuchte, Wärme & Thermostate | EcoBack",
+        "desc": "Wäsche drinnen trocknen, Heizdecken-Kosten verstehen und Thermostat-Anschlüsse prüfen: kostenlose Entscheidungshilfen für den Herbst und Winter.",
+        "h1": "Trockene Wäsche, persönliche Wärme, passende Thermostate",
+        "sub": "Starte bei deiner Aufgabe: Feuchte einordnen, Wäsche trocknen, am Schreibtisch warm bleiben oder den Heizkörper besser regeln. Kostenlose Beispiele und Auswahlhilfen — erst danach Geräte vergleichen. Mit Hinweisen für Deutschland, Österreich und die Schweiz.",
+        "badge": "🍂 Herbst · Den Winter vorbereiten",
+        # Authored task routes: no ranking, sales-volume or savings claim.
         "teaser": [
-            ("💧", "Luftentfeuchter für 40 m²: wie viel Liter/Tag?", "/guide/luftentfeuchter-40-qm.html"),
-            ("🦠", "Schimmel im Keller entfernen", "/guide/schimmel-im-keller-entfernen.html"),
-            ("🌬️", "Klimaanlage stinkt? Schimmel-Geruch loswerden", "/guide/mobile-klimaanlage-stinkt-schimmel.html"),
-            ("🔥", "Heizlüfter stromsparend: welcher lohnt sich?", "/guide/heizluefter-stromsparend.html"),
-            ("♨️", "Klimaanlage mit Heizfunktion: lohnt sich das?", "/guide/klimaanlage-mit-heizfunktion.html"),
-            ("🛒", "Alles für Luftqualität", "/kategorie/luftqualitaet.html"),
+            ("💧", "Feuchte messen und einordnen", "/guide/luftfeuchtigkeit-richtig-messen.html"),
+            ("👕", "Trockner oder Entfeuchter für meine Wäsche?", "/waeschetrockner-oder-luftentfeuchter.html"),
+            ("🧣", "Heizdecke: Was kostet persönliche Wärme?", "/guide/heizdecke-stromverbrauch.html"),
+            ("🔧", "Passt der neue Thermostatkopf?", "/guide/smarte-heizkoerperthermostate-lohnen-sich.html"),
+            ("⚡", "Heizlüfter: Laufzeit und Stromkosten", "/guide/heizluefter-stromverbrauch.html"),
+            ("🧭", "Alle Winteraufgaben", "/winter-energiesparen.html"),
         ],
     },
     "winter": {
-        "title": "Effizient heizen 2026/27: Rechner & Empfehlungen | EcoBack",
-        "desc": "Warm durch den Winter ohne Strom-Schock: Infrarotheizung, stromsparende Heizlüfter und Heizkosten-Rechner — ehrliche Empfehlungen statt Werbeversprechen.",
-        "h1": "Warm durch den Winter — ohne Strom-Schock",
-        "sub": "EcoBack ist dein Raumklima- und Energie-Ratgeber für das ganze Jahr. Jetzt im Winter: Welche Zusatzheizung lohnt sich wirklich, was kostet sie pro Stunde — und wo verheizt du unnötig Geld? Rechner und ehrliche Antworten.",
-        "badge": "❄️ Winter · Heizkosten im Griff",
+        "title": "Winter zu Hause: Feuchte, Wärme & Thermostate | EcoBack",
+        "desc": "Wäsche trocknen, persönliche Wärme berechnen und Thermostat-Anschlüsse prüfen: kostenlose Winterhilfen statt pauschaler Sparversprechen.",
+        "h1": "Dein Winter zu Hause: erst das Problem, dann das Gerät",
+        "sub": "Bleibt die Wäsche feucht, ist dir am Schreibtisch kalt oder passt der neue Thermostatkopf nicht? Finde den nächsten sinnvollen Schritt mit Beispielen, Rechenhilfen und Herstellerquellen. Für Deutschland, mit Tarif- und Kaufhinweisen für Österreich und die Schweiz.",
+        "badge": "❄️ Winter · Messen, wärmen, passend regeln",
         "teaser": [
-            ("🔥", "Infrarotheizung: Für wen lohnt sie sich?", "/guide/infrarotheizung-ratgeber.html"),
-            ("🧮", "Watt-Rechner für Infrarotheizungen", "/guide/infrarotheizung-watt-rechner.html"),
-            ("⚡", "Stromkosten-Rechner", "/guide/stromkosten-rechner.html"),
-            ("🛒", "Alles zum Heizen", "/kategorie/heizen.html"),
+            ("💧", "Lüften im Winter: Feuchte und kalte Flächen", "/guide/richtig-lueften-im-winter.html"),
+            ("👕", "Trockner oder Entfeuchter für meine Wäsche?", "/waeschetrockner-oder-luftentfeuchter.html"),
+            ("🧣", "Heizdecke: Was kostet persönliche Wärme?", "/guide/heizdecke-stromverbrauch.html"),
+            ("🔧", "Passt der neue Thermostatkopf?", "/guide/smarte-heizkoerperthermostate-lohnen-sich.html"),
+            ("⚡", "Heizlüfter: Laufzeit und Stromkosten", "/guide/heizluefter-stromverbrauch.html"),
+            ("🧭", "Alle Winteraufgaben", "/winter-energiesparen.html"),
         ],
     },
     "fruehjahr": {
@@ -246,12 +230,12 @@ def rotate_de(season):
     # September to February build_home_order moves both sections down, so the
     # buttons point at the season's own block and category instead.
     cold = season in ("herbst", "winter")
-    offers = ('<a class="btn-primary" href="#eb-herbst">Empfehlungen für die kalte Jahreszeit ↓</a>' if cold
+    offers = ('<a class="btn-primary" href="/wohnen.html">Meine Winteraufgabe finden →</a>' if cold
               else '<a class="btn-primary" href="#deals">Top-Angebote ansehen ↓</a>')
-    guide = ({"herbst": '<a class="btn-ghost" href="/kategorie/luftqualitaet.html">Ratgeber Feuchte &amp; Schimmel</a>',
-              "winter": '<a class="btn-ghost" href="/kategorie/heizen.html">Ratgeber Heizen</a>'}.get(season)
+    guide = ({"herbst": '<a class="btn-ghost" href="/winter-energiesparen.html">Alle Winterhilfen</a>',
+              "winter": '<a class="btn-ghost" href="/winter-energiesparen.html">Alle Winterhilfen</a>'}.get(season)
              or '<a class="btn-ghost" href="#guide">Kaufberatung</a>')
-    html = swap(html, r'<a class="btn-primary" href="#(?:deals|eb-herbst)">[^<]*</a>', lambda m: offers, "hero offers button")
+    html = swap(html, r'<a class="btn-primary" href="(?:#deals|#eb-herbst|/wohnen\.html)">[^<]*</a>', lambda m: offers, "hero offers button")
     html = swap(html, r'(<div class="hero-btns">.*?)<a class="btn-ghost" href="[^"]*">[^<]*</a>',
                 lambda m: m.group(1) + guide, "hero guide button")
     # The hero sign-up promised a heat alarm with no word that nothing is sent

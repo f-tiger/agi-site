@@ -1,76 +1,84 @@
-# Heizdecke Stromverbrauch: Was kostet eine Nacht? (2026)
+# Heizdecke: Stromkosten für Sofa und Homeoffice berechnen
 
-> Was eine Heizdecke wirklich kostet: 2–5 Cent pro Stunde, rund 0,24 € pro Nacht — und warum sie mit Nachtabsenkung zum Sparhebel wird. Zahlen nachrechenbar.
+> Heizdecken-Stromkosten ohne Pflichtangaben: Beispiele für Sofa und Homeoffice, eigener Tarif in EUR oder CHF, Abschaltzeit und sichere Auswahl prüfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizdecke-stromverbrauch.html
 
-**Kurz gesagt:** Eine Heizdecke braucht 60–150 Watt — **2 bis 5 Cent pro Stunde**, rund **0,24 € pro Nacht** (100 W, 8 h, 0,30 €/kWh). Zum Sparhebel wird sie, weil sie die Person statt des Raums wärmt: Raumtemperatur nachts 2–3 °C absenken spart ein Vielfaches des Deckenstroms. Nur nicht unter ~16 °C — sonst kondensiert Feuchte an den Wänden.
+Fachlich überarbeitet und Quellen geprüft: 31. Oktober 2026 · EcoBack Redaktion
 
-Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Wir testen nicht selbst; alle Zahlen sind Rechnungen, die du mit deinem eigenen Strompreis nachvollziehen kannst.
+**Kurz gesagt:** 110 W für zwei Stunden ergeben 0,22 kWh. Bei einem frei gewählten Preis von 0,35 €/kWh sind das rund 0,08 €. Eine Heizdecke wärmt eine Person; Raumheizung, Lüften und Feuchteschutz bleiben eigene Aufgaben.
 
-## Die Zahlen, zum Nachrechnen
+Für kalte Füße am Schreibtisch oder einen Abend auf dem Sofa zählt zuerst die passende Anwendung. Probiere vorhandene Decken, Kleidung und einen weniger zugigen Arbeitsplatz, bevor du ein neues Gerät kaufst. Der Rechner zeigt Gerätestromkosten, keine versprochene Ersparnis gegenüber deiner Heizung.
 
-Heizdecken liegen fast alle zwischen **60 und 150 Watt** — eine Größenordnung unter allem, was sonst elektrisch heizt. Daraus folgt bei 0,30 €/kWh:
+## Deine Wärme-Pause: Kosten sofort sehen
 
-Betrieb | Rechnung | Kosten |
+Du musst nichts eingeben. Wähle eine Dauer; alle Beispiele rechnen mit **110 W durchgehend und 0,35 €/kWh**. Das ist weder ein aktueller Tarif noch eine Messung.
 
-1 Stunde, mittlere Stufe (100 W) | 0,1 kWh × 0,30 € | **3 Cent** |
+Kurze Pause · 30 Minuten
+Sofa · 2 Stunden
+Homeoffice-Block · 3 Stunden
 
-1 Nacht (8 h, 100 W) | 0,8 kWh × 0,30 € | **0,24 €** |
+Statische Beispiele bei 110 W und 0,35 €/kWh – auch ohne JavaScript lesbarDauer | Energie | Gerundete Stromkosten |
+30 Minuten | 55 Wh / 0,055 kWh | 0,02 € |
+2 Stunden | 220 Wh / 0,22 kWh | 0,08 € |
+3 Stunden | 330 Wh / 0,33 kWh | 0,12 € |
 
-1 Monat (30 Nächte) | 24 kWh × 0,30 € | **7,20 €** |
+Rechenbeispiel · 220 Wh = 0,22 kWh pro Nutzung · 0,08 €. Durchgehende Nennleistung; keine Verbrauchsmessung.
 
-Ganzer Winter (150 Nächte) | 120 kWh × 0,30 € | **36 €** |
+**Die Grenze:** Gerechnet wird Watt × Stunden ÷ 1.000 × Arbeitspreis × Nutzungstage. Regelung und Abschaltung können den tatsächlichen Verbrauch verringern; das ist hier nicht als feste Ersparnis eingerechnet. Ein längerer Zeitraum ist nur zulässig, wenn die Anleitung des eigenen Geräts dies erlaubt. Standby, Kaufpreis und Raumheizung fehlen.
 
-Das ist die Obergrenze: Fast alle Decken takten per Thermostat und laufen nicht durchgehend auf voller Leistung. Dein eigener Arbeitspreis steht auf der Stromrechnung — die Formel ist Watt ÷ 1.000 × Stunden × Preis, dieselbe wie in unserem [Stromkosten-Rechner](https://getecoback.com/guide/stromkosten-rechner.html).
+Ergebnis für Reddit, X oder eine Nachricht kopieren
+Du teilst selbst. Der Text enthält deine Rechenannahmen und Grenzen, keine Anmeldung oder automatisch veröffentlichten Beiträge. Eingaben bleiben in diesem Browser.
 
-## Warum die Decke ein Sparhebel ist — nicht ein Verbraucher
+Die Tabelle und Auswahlhilfe bleiben ohne JavaScript nutzbar. Für eigene Berechnung und Kopierhilfe JavaScript aktivieren.
 
-Für sich genommen ist die Heizdecke ein weiterer Stromverbraucher. Interessant wird sie durch das, was sie ersetzt: Sie wärmt den Menschen statt den Raum.
+## Ein konkretes Herstellerbeispiel statt pauschaler Wattzahlen
 
-Wer abends auf dem Sofa oder nachts im Bett direkt gewärmt wird, kann die Raumtemperatur um 2–3 °C absenken. Als Faustregel spart **jedes Grad rund 6 % Heizenergie** — bei einer Gasrechnung von 1.200 € im Jahr sind zwei Grad Nachtabsenkung eine Größenordnung von 100 € und mehr, gegen etwa 36 € Deckenstrom im ganzen Winter. Die genaue Zahl hängt an Gebäude und Verhalten; die Richtung ist eindeutig.
+Im Beurer-Katalog 2025, Seiten 62–63 sind für die dort aufgeführte HD-75-Variante mit Art.-Nr. 424.00 **100–110 W** und eine Abschaltung nach etwa drei Stunden angegeben. Deshalb verwenden wir 110 W als obere Nennleistung dieses Rechenbeispiels. Die aktuelle Produktseite zur HD 75 Taupe nennt ebenfalls drei Stunden bis zur Sicherheitsabschaltung. Das ist keine Messung der gewählten Heizstufe und keine Freigabe für andere Modelle.
 
-**Eine Grenze hat der Hebel:** Räume nicht dauerhaft unter etwa 16 °C fallen lassen. Kalte Wände kondensieren die Feuchte aus der Raumluft — dann tauschst du Heizkosten gegen [beschlagene Fenster](https://getecoback.com/guide/fenster-beschlagen-innen.html) und im schlimmsten Fall Schimmel. Ein Hygrometer zeigt, ob du im sicheren Bereich bist.
+Ein Zwei-Stunden-Beispiel passt rechnerisch in dieses Zeitfenster. Drei Stunden liegen an der angegebenen Abschaltzeit. Acht Stunden ohne Unterbrechung rechnen wir nicht als Standardnacht. Die Abschaltung nicht überbrücken; Anleitung, genaue Artikelnummer und Eignung für die Person gehen vor.
 
-## Worauf beim Kauf achten
+## Sofa, Schreibtisch oder Bett: nicht dasselbe Produkt
 
-- **Abschaltautomatik** — schaltet nach 1–3 Stunden selbst ab. Für alle, die einschlafen wollen, das wichtigste Merkmal.
-- **Waschbarkeit** — Bezug abnehmbar und maschinenwaschbar, sonst wird die Decke nach einem Winter unangenehm.
-- **Getrennte Zonen / Timer** — bei Decken für zwei Personen zwei Regler; ein Timer ersetzt die Abschaltautomatik nicht, ergänzt sie aber.
-- **Heizkissen als kleine Alternative** — für Nacken oder Rücken reicht oft ein 20-€-Kissen mit 40–60 Watt.
+- **Auf dem Sofa:** Eine Wärmezudecke nur so verwenden, wie die Anleitung es vorsieht. Nicht beschädigt, nass oder entgegen der Anleitung gefaltet betreiben.
+- **Am Schreibtisch:** Erst Zugluft, Sitzposition und kalten Boden prüfen. Ein Fußwärmer ist eine andere Bauart mit eigener Leistung und Abschaltzeit. Das 110-W-Beispiel ist kein Fußwärmer-Test. [Homeoffice-Schritte im Zusammenhang ansehen](https://getecoback.com/guide/homeoffice-warm-bleiben.html).
+- **Im Bett:** Wärmezudecke und Wärmeunterbett nicht verwechseln. Eine Abschaltautomatik allein erlaubt weder Schlafbetrieb noch die Nutzung unter dem Körper. Nur die ausdrücklichen Anwendungsvorgaben des konkreten Geräts verwenden.
+- **Ohne Neukauf:** Eine vorhandene ungeheizte Decke verursacht keinen zusätzlichen Gerätestrom. Bei ausgefallener Heizung oder dauerhaft kalten, feuchten Räumen die Ursache lösen.
 
-Wir testen nicht selbst; die Karten unten führen zur Kategorie-Suche auf Amazon — vergleiche dort aktuelle Bewertungen und achte auf die genannten Merkmale.
+## Warum daraus keine pauschale Heizkostenersparnis folgt
 
-## Einordnung: alle elektrischen Wärmequellen im Vergleich
+Eine warme Person bedeutet nicht automatisch ausreichend warme Wandoberflächen. Die Verbraucherzentrale erläutert den Zusammenhang zwischen Heizen, Lüften und Schimmelrisiko. Ihre Orientierung von mindestens 16–18 °C in Wohn- und Schlafräumen während der Heizperiode ist keine universelle Schimmelfrei-Garantie; bei schlechtem Bauzustand können höhere Temperaturen nötig sein. Gebäudeteile, Feuchte und Luftaustausch entscheiden mit.
 
-Gerät | Leistung | Kosten/Stunde | wärmt |
+Wir rechnen deshalb weder einen festen Eurobetrag für eingesparte Raumheizung noch einen pauschalen Prozentvorteil aus. Beobachte Raumtemperatur, Feuchte und kalte Oberflächen. [Winter-Lüftung und Taupunkt prüfen](https://getecoback.com/guide/richtig-lueften-im-winter.html) · [Tatsächliche kWh über eine vollständige Nutzung messen](https://getecoback.com/strommess-protokoll.html).
 
-Heizdecke | 60–150 W | **2–5 ct** | eine Person |
+## Vor einem Kauf: die vier offenen Punkte
 
-Heizkissen | 40–60 W | 1–2 ct | Nacken/Rücken |
+- Exakte Bauart und Artikelnummer: Zudecke, Unterbett, Heizkissen oder Fußwärmer?
+- Anleitung: erlaubte Körperposition, Betrieb beim Schlafen, Abschaltung, Reinigung und Eignung bei eingeschränktem Wärmeempfinden prüfen.
+- Typenschild und vollständige Messung: Nennleistung ist kein Verbrauch einer mittleren Stufe.
+- Lieferland, Stecker, Rückgabe und Gesamtpreis: in Österreich und besonders der Schweiz separat beim Händler prüfen; die Länderwahl im Rechner bestätigt keine Lieferbarkeit.
 
-[Infrarotheizung](https://getecoback.com/guide/infrarotheizung-ratgeber.html) | 300–1.200 W | 9–36 ct | eine Zone |
+**Optional weitervergleichen · Werbung / Affiliate-Links**Die folgenden bestehenden Kategorie-Suchen führen zu Amazon.de (Deutschland). EcoBack kann an qualifizierten Käufen verdienen. Keine eigene Produktprüfung, keine bestätigte Passform oder Lieferzusage nach Österreich oder in die Schweiz. Die Suche kann andere Varianten als das Herstellerbeispiel enthalten.
 
-[Heizlüfter](https://getecoback.com/guide/heizluefter-stromverbrauch.html) | 1.500–2.000 W | 45–60 ct | einen Raum, schnell |
-
-Je näher die Wärme am Körper, desto billiger die Stunde. Wer mit dynamischem Stromtarif heizt, legt die teuren Geräte zusätzlich in die [billigen Börsenstunden](https://getecoback.com/guide/strompreis-radar.html).
+Wärmezudecken: Anleitung und Abschaltzeit vergleichen →
+Heizkissen: Bauart und Anwendung prüfen →
+Wärmeunterbetten: ausdrücklich erlaubte Nutzung prüfen →
 
 ## Häufige Fragen
 
-**Was kostet eine Heizdecke pro Nacht an Strom?**Bei 100 Watt und 8 Stunden sind es 0,8 kWh, also rund 0,24 € pro Nacht (0,30 €/kWh Rechenbasis). Auf höchster Stufe mit 150 Watt etwa 0,36 €. Die meisten Decken takten mit Thermostat, real liegt es darunter. Rechne mit deinem eigenen Arbeitspreis: Watt ÷ 1000 × Stunden × Preis.
+### Was kostet eine Heizdecke für zwei Stunden?
+Bei angenommenen 110 W durchgehender Leistung und 0,35 EUR/kWh ergeben zwei Stunden 0,22 kWh und 0,077 EUR, gerundet 0,08 EUR. Das ist ein Rechenbeispiel, kein gemessener Verbrauch oder aktueller Durchschnittstarif.
 
-**Kann ich mit Heizdecke die Heizung nachts runterdrehen?**Genau das ist der eigentliche Sparhebel: Die Decke wärmt dich für Cent-Beträge, die Raumtemperatur darf 2–3 °C tiefer. Als Faustregel spart jedes Grad Absenkung rund 6 % Heizenergie. Aber nicht unter etwa 16 °C gehen — zu kalte Räume kondensieren Feuchte an den Wänden, und dann tauschst du Heizkosten gegen ein Schimmelproblem.
+### Kann ich acht Stunden über Nacht rechnen?
+Eine Rechnung ist keine Betriebserlaubnis. Zulässige Nutzung und Abschaltzeit stehen in der Anleitung des konkreten Geräts. Beim Herstellerbeispiel Beurer HD 75 schaltet die Decke nach etwa drei Stunden ab. Acht Stunden ohne Unterbrechung wären dafür kein passendes Standardszenario.
 
-**Ist es sicher, mit eingeschalteter Heizdecke zu schlafen?**Nur mit einem Modell, dessen Anleitung das ausdrücklich erlaubt und das eine Abschaltautomatik hat — die meisten aktuellen Decken schalten nach 1–3 Stunden selbst ab, was zum Einschlafen völlig reicht. Decke nicht knicken oder einklemmen, nicht für Kleinkinder oder Personen ohne Hitzeempfinden. Im Zweifel: vorheizen, zum Schlafen ausschalten.
+### Ersetzt eine Heizdecke die Raumheizung?
+Nein. Sie kann eine Person wärmen, aber nicht ausreichend die Raumluft und kalte Bauteile. Ob weniger Raumheizung möglich ist, hängt unter anderem von Gebäude, Feuchtigkeit und Nutzung ab. Eine feste Heizkostenersparnis lässt sich daraus nicht ableiten.
 
-**Heizdecke oder Heizlüfter — was ist günstiger?**Für eine Person im Bett oder auf dem Sofa ist es keine knappe Entscheidung: Die Decke braucht 60–150 Watt, ein Heizlüfter 1.500–2.000 Watt für denselben gefühlten Effekt — Faktor 10 bis 20. Der Heizlüfter hat seinen Platz, wenn ein ganzer Raum kurz warm werden muss, etwa das Bad am Morgen.
+### Gelten die Beispiele für Deutschland, Österreich und die Schweiz?
+Der Rechenweg gilt in allen drei Ländern. Deutschland und Österreich werden in EUR, die Schweiz in CHF angezeigt. 0,35 pro kWh ist in jeder Währung nur eine frei gewählte Rechenannahme, kein Landesdurchschnitt und keine Währungsumrechnung. Lieferbarkeit, Stecker und Rückgabe sind separat zu prüfen.
 
-**Weitere Ratgeber**
-[Heizlüfter: Stromverbrauch & Kosten →](https://getecoback.com/guide/heizluefter-stromverbrauch.html)
-[Heizkosten-Vergleich: Rechner →](https://getecoback.com/guide/heizkosten-vergleich-rechner.html)
-[Strom sparen im Haushalt: die 14 Maßnahmen →](https://getecoback.com/guide/strom-sparen-haushalt.html)
-[Fenster beschlagen von innen: was tun →](https://getecoback.com/guide/fenster-beschlagen-innen.html)
-[Luftbefeuchter: Stromverbrauch & Bauarten →](https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html)
+[Kosten kurzzeitiger Raumwärme berechnen](https://getecoback.com/guide/heizluefter-stromverbrauch.html) · [Winter-Aufgaben im Überblick](https://getecoback.com/winter-energiesparen.html)
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json
