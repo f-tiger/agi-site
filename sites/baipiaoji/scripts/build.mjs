@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {kimiTaskPanel} from './depth-pages.mjs';
 import {buildDevBuying} from './dev-buying-pages.mjs';
 import {buildManju,manjuSearch,manjuHome,manjuEvidenceSummary} from './manju-pages.mjs';
 import {buildAiVideo,aiVideoSearch,aiVideoHome} from './ai-video-pages.mjs';
@@ -1137,6 +1138,7 @@ function toolPage(tool) {
     <p class="answer">${esc(answer)}</p>
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
+    ${LOCALE.code==='zh'&&tool.slug==='kimi'?kimiTaskPanel():''}
     ${saveToolEntry(tool)}
     <p class="coverage">${tool.limits ? `<a href="#free-tier-limits">${LOCALE.code === 'zh' ? '查看完整额度与限制' : 'Read the full allowance and conditions'}</a> · ` : ''}<a href="${BASE}/c/${esc(tool.category)}">${LOCALE.code === 'zh' ? '对比同类工具的额度与限制' : 'Compare limits across this category'} →</a> · <a href="#sources">${LOCALE.code === 'zh' ? '查看来源与内容日期' : 'Check sources and content dates'}</a></p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${tool.category==='video'?'\n    '+videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
@@ -7690,7 +7692,7 @@ ${el.groups.map((g) => `  <section class="limits-table">
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
-for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['site-shell.css','site-shell.js','account.css','account.js','depth.js','depth.css']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 buildReleaseCheckAssets(root,dist);
 buildSkillDiscovery(root,dist);
@@ -8049,6 +8051,7 @@ writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipi
 
 ## BPJ first-party AI workflow tools
 - Hub: https://baipiaoji.com/en/studio/ai/
+- Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop
 - Catalog: https://baipiaoji.com/en/ai-tools.json
 - Free MCP: https://baipiaoji.com/api/ai-mcp
@@ -8207,7 +8210,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 ## Coding access and API relays
 
 Chinese topic landing pages: /manju/genre-urban, /manju/genre-fantasy, /manju/genre-historical, /manju/genre-romance, /manju/genre-family, /manju/genre-apocalypse, /manju/genre-period, /manju/genre-rural (each has a .md text version). Official-link and metric FAQ: /manju/guide and /manju/guide.md . These pages support discovery, not guarantees of search ranking or AI citation.
-Chinese AI films and manju discovery: ${site.base_url}/manju/ . Editorial public-source catalogue, not streaming or full-view reviews. Link types distinguish official collections, articles/previews and platform search. Local watchlists do not sync with accounts. No active sponsorship or referral commission. Sources and dates: /manju/catalog.json and /manju/catalog.md ; catalogue-change RSS: /manju/feed.xml . Historical, period-specific play-increment and peak-heat snapshots: /manju/rankings ; free topic recommendation tool: /manju/topics ; official external video entries: /manju/previews . Evidence and original editorial topic briefs: /manju/insights.json and /manju/insights.md . Featured works have stable /manju/{id} pages and matching .md and .json resources linked from /manju/catalog.json. Each includes dated official heat evidence, viewing entries and related works; absent plot facts are stated explicitly. Latest reviewed first-party snapshot: ${manjuEvidenceSummary()}. Snapshot composite heat is not plays, monthly peak or monthly increment. September 2026 official full-month data has not been verified. August DataEye report excerpts remain separately dated; no live-popularity claim. Do not add heat values to plays or infer revenue/audience from either.
+Chinese AI films and manju discovery: ${site.base_url}/manju/ . Editorial public-source catalogue, not streaming or full-view reviews. Link types distinguish official collections, articles/previews and platform search. Local watchlists and self-reported want/watching/watched records do not sync with accounts. Continue from /manju/#watch-progress; exported records are not proof of playback. No active sponsorship or referral commission. Sources and dates: /manju/catalog.json and /manju/catalog.md ; catalogue-change RSS: /manju/feed.xml . Historical, period-specific play-increment and peak-heat snapshots: /manju/rankings ; free topic recommendation tool: /manju/topics ; official external video entries: /manju/previews . Evidence and original editorial topic briefs: /manju/insights.json and /manju/insights.md . Featured works have stable /manju/{id} pages and matching .md and .json resources linked from /manju/catalog.json. Each includes dated official heat evidence, viewing entries and related works; absent plot facts are stated explicitly. Latest reviewed first-party snapshot: ${manjuEvidenceSummary()}. Snapshot composite heat is not plays, monthly peak or monthly increment. September 2026 official full-month data has not been verified. August DataEye report excerpts remain separately dated; no live-popularity claim. Do not add heat values to plays or infer revenue/audience from either.
 
 English AI film discovery: ${site.base_url}/en/ai-video/ . A separate English-language catalogue for viewers and creators; not a translation of the Hongguo rankings. Festival selections, publisher showcases and editorial film collections retain their original sources, source years and metadata review dates. Plot summaries and source notes are labelled separately. Awards, selections and any platform engagement metrics are distinct evidence; none establishes a combined US/European popularity ranking. The catalogue does not host films or establish playback availability, regional audience totals, licensing rights or full-view reviews. Public sources, editorial summaries and labelled collection notes: /en/ai-video/catalog.json and /en/ai-video/catalog.md . Search and filters stay in the browser; external viewing entries open their labelled sources.
 
@@ -8264,6 +8267,7 @@ Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also
 
 ## BPJ first-party AI workflow tools
 - Hub: https://baipiaoji.com/en/studio/ai/
+- Kimi task steps: https://baipiaoji.com/tools/kimi#kimi-task . Free local self-check steps and prompt templates; no AI execution or document upload to BPJ. Account sync saves the tool only, not these steps.
 - Task Loop: https://baipiaoji.com/en/studio/task-loop
 - Catalog: https://baipiaoji.com/en/ai-tools.json
 - Free MCP: https://baipiaoji.com/api/ai-mcp

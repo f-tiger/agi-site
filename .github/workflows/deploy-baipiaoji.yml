@@ -384,6 +384,7 @@ jobs:
           python3 scripts/test-manju-fetch.py
           node scripts/test-manju-discover.mjs
           node scripts/test-manju.mjs
+          node --test scripts/test-depth.mjs
           node --test scripts/test-video-fit-core.mjs
           node scripts/test-video-fit.mjs
           node --test scripts/test-ai-video-core.mjs
@@ -532,6 +533,7 @@ jobs:
           node sites/baipiaoji/scripts/test-video-fit-browser.mjs
           node sites/baipiaoji/scripts/test-ai-video-browser.mjs
           node sites/baipiaoji/scripts/test-manju-consumer-browser.mjs
+          node sites/baipiaoji/scripts/test-depth-browser.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'
