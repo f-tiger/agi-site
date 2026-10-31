@@ -2276,7 +2276,7 @@ function categoryPage(key, label) {
     <p class="coverage"><a href="${BASE}/video-quota-planner.html"><b>${LOCALE.code === 'zh' ? '新：13 家给多少、换多少、能不能商用，一页对照 →' : 'New: what 13 vendors grant, what it buys, and whether you may publish — one board →'}</b></a></p>` : ''}${key === 'video' && PIPES ? `
     <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' ? efficiencyEntry(BASE,LOCALE.code === 'zh') + pilotEntry(BASE,LOCALE.code === 'zh','coding') : ''}${key === 'coding' && CODQ ? `
     <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '检查已有订阅：额度、未知项与下一步核查清单 →' : 'Review your subscriptions: allowances, unknowns and a next-step checklist →'}</b></a></p>
-    <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：19 家扣的是补全、请求还是 Credits？一页对照 →' : 'New: do these 19 meter completions, requests or credits? One board →'}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
+    <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? `新：${CODQ.entries.filter(e => bySlug.has(e.slug)).length} 家扣的是补全、请求还是 Credits？一页对照 →` : `New: do these ${CODQ.entries.filter(e => bySlug.has(e.slug)).length} meter completions, requests or credits? One board →`}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
     <p class="coverage"><a href="${BASE}/chat-limits-board.html"><b>${LOCALE.code === 'zh' ? '新：「每天能聊几条」问错了——10 家里 8 家不公布条数，该问墙在哪 →' : 'New: "how many messages a day" is the wrong question — 8 of 10 publish no count →'}</b></a></p>` : ''}${key === 'image' && IMGQ ? `
     <p class="coverage"><a href="${BASE}/image-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：17 家每天到底能出几张图？官方折算逐条核实 →' : 'New: how many images a day across 17 tools, with each conversion verified →'}</b></a></p>` : ''}${key === 'office' && OFFQ ? `
     <p class="coverage"><a href="${BASE}/office-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：办公类真正拦住你的不是用量——是能不能把做完的东西带走 →' : 'New: in office tools the wall is usually not usage — it is whether you can take your work out →'}</b></a></p>` : ''}${key === 'design' && DSNQ ? `
@@ -6045,10 +6045,10 @@ if (CODQ) {
     return bits.join(zh ? '；' : '; ');
   };
   const floorOf = (r) => (zh ? r.free_floor_zh : r.free_floor_en) || '';
-  const h1 = zh ? '编程助手免费额度对照板：19 家扣的到底是什么' : 'AI coding assistant free tiers: what each one actually meters';
+  const h1 = zh ? `编程助手免费额度对照板：${rows.length} 家扣的到底是什么` : 'AI coding assistant free tiers: what each one actually meters';
   const answer = zh
-    ? `选编程助手时真正决定体验的不是「谁给得多」，而是「扣的是什么、撞墙之后怎样」。19 家逐条核实到官方来源：${rows.filter((r) => r.kind === 'byo_model').length} 家开源工具压根没有额度概念（成本全在模型侧，接站内已核实的免费 API 可做到 0 元）、${rows.filter((r) => r.kind === 'unstated').length} 家官方明示有限制却不公布数字（「不知道」也如实写）、其余按月/按日/试用分列。两条最容易被攻略漏掉的机制：Lovable 每天发 5 个但每月封顶 30（等于每月只有前 6 天有得用），Gemini CLI 的「每天 1,000 次」是模型请求不是对话轮次。`
-    : `What decides your experience with a coding assistant is not who grants the most but what gets metered and what happens at the wall. All 19 verified against official sources: ${rows.filter((r) => r.kind === 'byo_model').length} are open-source tools with no quota at all (the cost sits on the model side, and pairing them with a verified free API here can keep it at zero), ${rows.filter((r) => r.kind === 'unstated').length} state a limit exists but publish no figure (we say so rather than guess), and the rest are split by monthly, daily and trial grants. Two mechanics most guides miss: Lovable grants 5 credits a day but caps the month at 30 — so only the first six days of each month give you anything — and Gemini CLI's "1,000 a day" counts model requests, not conversation turns.`;
+    ? `选编程助手时真正决定体验的不是「谁给得多」，而是「扣的是什么、撞墙之后怎样」。${rows.length} 家逐条列出来源与原核实日期：${rows.filter((r) => r.kind === 'byo_model').length} 家开源工具压根没有额度概念（成本全在模型侧，接站内已核实的免费 API 可做到 0 元）、${rows.filter((r) => r.kind === 'unstated').length} 家官方明示有限制却不公布数字（「不知道」也如实写）、其余按月/按日/试用分列。两条最容易被攻略漏掉的机制：Lovable 每天发 5 个但每月封顶 30（等于每月只有前 6 天有得用），Gemini CLI 的「每天 1,000 次」是模型请求不是对话轮次。`
+    : `What decides your experience with a coding assistant is not who grants the most but what gets metered and what happens at the wall. ${rows.length} tools with sources and recorded check dates: ${rows.filter((r) => r.kind === 'byo_model').length} are open-source tools with no quota at all (the cost sits on the model side, and pairing them with a verified free API here can keep it at zero), ${rows.filter((r) => r.kind === 'unstated').length} state a limit exists but publish no figure (we say so rather than guess), and the rest are split by monthly, daily and trial grants. Two mechanics most guides miss: Lovable grants 5 credits a day but caps the month at 30 — so only the first six days of each month give you anything — and Gemini CLI's "1,000 a day" counts model requests, not conversation turns.`;
   const body = `${railOf()}
 <main class="stage">
   <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/c/coding.html">${esc(CATS.coding || 'coding')}</a><i>/</i><span>${zh ? '额度对照板' : 'Quota board'}</span></nav>
@@ -6116,7 +6116,7 @@ if (CODQ) {
 })();
 </script>`;
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'coding-quota-board.html'), layout({
-    title: zh ? `编程助手免费额度对照板：19 家扣补全、扣请求还是不扣，一页看全 - ${NAME}` : `AI coding assistant free tiers: what 19 tools meter and where the wall is - ${NAME}`,
+    title: zh ? `编程助手免费额度对照板：${rows.length} 家扣补全、扣请求还是不扣，一页看全 - ${NAME}` : `AI coding assistant free tiers: what ${rows.length} tools meter and where the wall is - ${NAME}`,
     description: answer,
     path: '/coding-quota-board.html',
     wide: true,
