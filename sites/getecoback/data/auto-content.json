@@ -141,6 +141,66 @@
       },
       "published": "2026-10-30"
     },
+    "/guide/trotec-ttk-26-e-betriebskosten.html": {
+      "modified": "2026-10-31",
+      "product": {
+        "brand": "Trotec",
+        "checked_at": "2026-10-31T09:41:59.858794+00:00",
+        "country": "DE",
+        "facts": [
+          {
+            "context": "",
+            "key": "tank_l",
+            "label": "Wasserbehälter",
+            "unit": "L",
+            "value": 1.8
+          },
+          {
+            "context": "Herstellerangabe; keine gemessene mittlere Nutzung",
+            "key": "power_watts",
+            "label": "Leistungsaufnahme",
+            "unit": "W",
+            "value": 200.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_max_c",
+            "label": "Betriebstemperatur höchstens",
+            "unit": "°C",
+            "value": 32.0
+          },
+          {
+            "context": "",
+            "key": "operating_temperature_min_c",
+            "label": "Betriebstemperatur mindestens",
+            "unit": "°C",
+            "value": 5.0
+          },
+          {
+            "context": "30 °C / 80 % r.F.",
+            "key": "extraction_l_per_day",
+            "label": "Entfeuchtung unter Prüfbedingungen",
+            "unit": "L/24h",
+            "value": 8.56
+          }
+        ],
+        "language": "de",
+        "market": {
+          "currency": "EUR",
+          "plug": null
+        },
+        "model": "TTK 26 E",
+        "name": "Luftentfeuchter TTK 26 E",
+        "power_watts": 200.0,
+        "product_url": "https://de.trotec.com/shop/luftentfeuchter-ttk-26-e.html",
+        "source_hash": "8e9a2cd80b8e3313b3cfcaeddb10115bd575456d677c2d6737a984f6094f7dad",
+        "source_id": "trotec-de:f5ad2823ca5e",
+        "source_urls": [
+          "https://de.trotec.com/shop/luftentfeuchter-ttk-26-e.html"
+        ]
+      },
+      "published": "2026-10-31"
+    },
     "/guide/trotec-ttk-27-e-betriebskosten.html": {
       "modified": "2026-10-25",
       "product": {
