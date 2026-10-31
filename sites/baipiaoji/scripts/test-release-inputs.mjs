@@ -48,6 +48,14 @@ test('audited unrelated descendant passes using fresh remote main, preserving HE
     'sites/agiscorecard/public/new.html':'external static page',
     'sites/baipiaoji/docs/PRD-listing-pack-2026-10-31.md':'audited note',
     'sites/baipiaoji/docs/coding-access-relays-2026-10-31.md':'audited note',
+    'data/marketing/tds-daily-plan.json':'{"release":"external TDS"}',
+    'data/autopilot/demand-digest.md':'independent fleet record',
+    'data/fleet-evolution/latest.json':'{}',
+    'data/fleet-evolution/latest.md':'independent fleet record',
+    'data/fleet-evolution/pain-radar-check.json':'{}',
+    'data/user-pain-radar.json':'{}',
+    'docs/jarvis-radar-trial-2026-10-31.md':'independent fleet record',
+    'sites/agiscorecard/tools/tianya/browser-test.mjs':'// Independent AGI browser test\n',
   });
   assert.equal(git(f.checkout,'rev-parse','origin/main'),f.built);
   const result=run(f);assert.equal(result.status,0,result.stderr);assert.match(result.stdout,new RegExp(`checked_main=${tip}`));assert.match(result.stdout,/sites\/getecoback\/site\/new.html/);unchanged(f);
@@ -58,6 +66,10 @@ for(const path of ['sites/baipiaoji/source.mjs','sites/baipiaoji/docs/unknown.md
 }
 
 test('mixed allowed and protected changes fail closed',t=>{const f=fixture(t);advance(f,{'sites/getecoback/docs/guide.md':'allowed','sites/baipiaoji/source.mjs':'protected'});assert.notEqual(run(f).status,0);unchanged(f);});
+
+for(const path of ['data/marketing/campaigns.json','data/fleet-evolution/unknown.json','sites/baipiaoji/data/fleet-evolution.json','tools/fleet/check_pain_consumers.py','sites/agiscorecard/tools/tianya/server.mjs','sites/agiscorecard/tools/tianya/other-browser-test.mjs']){
+  test(`audited single-file exceptions do not admit adjacent inputs: ${path}`,t=>{const f=fixture(t);advance(f,{[path]:'changed\n'});const result=run(f);assert.notEqual(result.status,0);assert.match(result.stderr,/protected or unknown/);unchanged(f);});
+}
 
 test('renaming allowed content across a protected boundary is rejected',t=>{
   const f=fixture(t);git(f.writer,'mv','sites/getecoback/docs/guide.md','sites/baipiaoji/guide.md');git(f.writer,'commit','-m','Cross-boundary rename');git(f.writer,'push','origin','main');

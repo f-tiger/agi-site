@@ -1,16 +1,26 @@
 #!/usr/bin/env node
 // BPJ-only release freshness check. The shared guard remains exact for all other
 // sites. A newer main can be accepted only when every changed path was audited
-// as external content, or is one of the exact non-input release notes below.
+// as external content, or is one of the exact non-input records below.
 // Do not add broad site, '*-assets', root-data, tools or workflow exceptions.
 import {spawnSync} from 'node:child_process';
 import {realpathSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 
 const SHA=/^[0-9a-f]{40}$/;
-const NOTES=new Set([
+const AUDITED_RECORDS=new Set([
   'sites/baipiaoji/docs/PRD-listing-pack-2026-10-31.md',
   'sites/baipiaoji/docs/coding-access-relays-2026-10-31.md',
+  'data/marketing/tds-daily-plan.json',
+  'data/autopilot/demand-digest.md',
+  'data/fleet-evolution/latest.json',
+  'data/fleet-evolution/latest.md',
+  'data/fleet-evolution/pain-radar-check.json',
+  'data/user-pain-radar.json',
+  'docs/jarvis-radar-trial-2026-10-31.md',
+  // AGI-only browser test: BPJ uses explicit test lists, never imports this
+  // file and does not perform whole-repository test discovery.
+  'sites/agiscorecard/tools/tianya/browser-test.mjs',
 ]);
 const CONTENT_PREFIXES=[
   'sites/thedollscout/docs/',
@@ -25,10 +35,11 @@ const CONTENT_PREFIXES=[
 
 export function allowedReleasePath(path){
   if(typeof path!=='string'||!path||/[\u0000-\u001f\u007f\\]/.test(path)||path.split('/').some(part=>!part||part==='.'||part==='..'))return false;
-  // Shared/release infrastructure is always protected, even under an otherwise
-  // allowed prefix. AGI tools import server and client code used by BPJ gates.
+  if(AUDITED_RECORDS.has(path))return true;
+  // All other shared/release infrastructure is protected, even under an
+  // allowed content prefix. AGI tools include inputs used by BPJ account gates.
   if(path.split('/').some(part=>['tools','functions','.github'].includes(part)))return false;
-  if(NOTES.has(path)||path==='sites/thedollscout/CLAUDE.md')return true;
+  if(path==='sites/thedollscout/CLAUDE.md')return true;
   if(CONTENT_PREFIXES.some(prefix=>path.startsWith(prefix)))return true;
   // Exact static extensions only: jarvis-assets/*.mjs, foresight-assets/*.mjs
   // and site-nav/*.mjs remain protected along with all unknown code/config.
