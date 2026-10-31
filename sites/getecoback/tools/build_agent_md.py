@@ -149,10 +149,14 @@ def to_markdown(src_html, path_url, lang):
         else:
             head += [f"Live data on this page (hourly, rendered in the browser, not included in "
                      f"this Markdown view): {eps}", ""]
+    disclosure = DISCLOSURE[lang]
+    if path_url == '/en/filter-finder.html':
+        disclosure = ('Source: manufacturer documentation, not a physical fit or performance test. '
+                      'The HTML finder contains disclosed affiliate searches; this text view contains none.')
     tail = ["", "---",
             f"Maschinenlesbare Übersicht: {BASE}/for-agents.html · Sizing-Datensatz (CC BY 4.0): {BASE}/sizing-data.json",
             f"MCP-Server für Assistenten: {BASE}/mcp",
-            DISCLOSURE[lang]]
+            disclosure]
     # The extra newline is the paragraph break between the header block and
     # the body. It was missing since the mirrors were first built: the head
     # list ends with "" so join() yields one trailing newline, and the body is
@@ -239,7 +243,7 @@ def build_dataset():
 
 def main():
     n_md, n_link, bad = 0, 0, []
-    for sub, lang in (("guide", "de"), (os.path.join("en", "guide"), "en"),
+    for sub, lang in (("guide", "de"), (os.path.join("en", "guide"), "en"), ("en", "en"),
                       (os.path.join("it", "guide"), "it"), ("nl", "nl"), ("au", "en-AU"), ("", "de")):
         d = os.path.join(SITE, sub)
         if not os.path.isdir(d):
@@ -248,6 +252,8 @@ def main():
             if not fn.endswith(".html"):
                 continue
             if not sub and fn != 'waeschetrockner-oder-luftentfeuchter.html':
+                continue
+            if sub == 'en' and fn != 'filter-finder.html':
                 continue
             page_path = os.path.join(d, fn)
             s = open(page_path, encoding="utf-8").read()

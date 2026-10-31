@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {sourceState, exactMatches, modelNames, narrowModels, affiliateSearch, measurementAllowed} from '../site/assets/filter-finder-core.mjs';
+const NOW=new Date('2026-10-31T15:00:00Z');
+const record={id:'test-only',brand:'Levoit',name:'Example Original Filter',part_number:'',merchant_sku:'INTERNAL-DO-NOT-USE',models:['Example-P'],checked_at:'2026-10-31',status:'verified'};
+test('only exact selected models can expose an affiliate URL',()=>{assert.equal(exactMatches([record],'Example').length,0);assert.equal(affiliateSearch(record,'Example',NOW),null);assert.equal(exactMatches([record],'Example-P').length,1);});
+test('search narrows suggestions without establishing compatibility',()=>{assert.deepEqual(narrowModels(['Example-P','Other'],'example'),['Example-P']);assert.equal(exactMatches([record],'example-p').length,0);});
+test('valid source records are active through day 30 and fail closed on day 31',()=>{assert.equal(sourceState({...record,checked_at:'2026-10-01'},NOW).active,true);assert.equal(sourceState({...record,checked_at:'2026-09-30'},NOW).active,false);assert.equal(affiliateSearch({...record,checked_at:'2026-09-30'},'Example-P',NOW),null);});
+test('future, malformed and impossible check dates do not allow purchase searches',()=>{for(const checked_at of ['2026-11-01','','2026-02-31','2026-10-01T00:00:00Z'])assert.equal(sourceState({...record,checked_at},NOW).active,false);});
+test('conflicting and unavailable source records are not described as incompatible',()=>{for(const status of ['conflict','unavailable','unexpected']){const result=sourceState({...record,status},NOW);assert.equal(result.active,false);assert(!result.label.toLowerCase().includes('incompatible'));assert.equal(affiliateSearch({...record,status},'Example-P',NOW),null);}});
+test('US affiliate URL includes exact model and original name, never internal merchant SKU',()=>{const url=new URL(affiliateSearch(record,'Example-P',NOW));assert.equal(url.hostname,'www.amazon.com');assert.equal(url.searchParams.get('tag'),'ecoback0d-20');assert(url.searchParams.get('k').includes('Example-P'));assert(url.searchParams.get('k').includes('Example Original Filter'));assert(!url.href.includes('INTERNAL'));});
+test('model labels are deduplicated without collapsing suffix variants',()=>{assert.deepEqual(modelNames([{models:['Example','Example-P']},{models:['Example-P']}]),['Example','Example-P']);});
+
+test('measurement excludes automated, DNT, GPC and explicit QA/probe visits',()=>{for(const options of [{webdriver:true},{doNotTrack:'1'},{doNotTrack:'yes'},{globalPrivacyControl:true},{search:'?__qa=1'},{search:'?__probe'}])assert.equal(measurementAllowed(options),false);assert.equal(measurementAllowed({search:'?ordinary=1'}),true);});

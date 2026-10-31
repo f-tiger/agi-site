@@ -142,6 +142,12 @@ def main():
     lines += ["", "## Guides (English)", ""]
     for url, t, d in en:
         lines.append(f"- [{t}]({url}): {d}")
+    finder = os.path.join(ROOT, "en", "filter-finder.html")
+    if os.path.isfile(finder):
+        title, description = meta(finder)
+        lines += ["", "## US air purifier replacement filters", "",
+                  f"- [{title}]({BASE}/en/filter-finder.html): {description}",
+                  "  Exact US model names and dated manufacturer sources; no inference between model variants."]
     if it:
         lines += ["", "## Guide (Italiano)", ""]
         for url, t, d in it:
@@ -209,6 +215,10 @@ def main():
     for lang in ("de", "en", "it"):
         t = energy[lang]
         full += [f"## {t['title']}", f"URL: {BASE}/{t['path']}", "", body_text(os.path.join(ROOT, t["path"])), "", "---", ""]
+        n += 1
+    if os.path.isfile(finder):
+        title, _ = meta(finder)
+        full += [f"## {title}", f"URL: {BASE}/en/filter-finder.html", "", body_text(finder), "", "---", ""]
         n += 1
     open(os.path.join(ROOT, "llms-full.txt"), "w", encoding="utf-8").write("\n".join(full))
     size = os.path.getsize(os.path.join(ROOT, "llms-full.txt"))

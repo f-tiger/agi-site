@@ -14,6 +14,11 @@ for prefix in ['', 'en/', 'it/']:
 block=f'<!--EB_TOOL_EXPERIENCE--><link rel="stylesheet" href="/assets/tool-experience.css?v={version}"><script type="module" src="/assets/tool-experience.mjs?v={version}"></script><!--/EB_TOOL_EXPERIENCE-->'
 for name in sorted(paths):
  p=SITE/name;t=p.read_text();t=re.sub(r'\n*<!--EB_TOOL_EXPERIENCE-->.*?<!--/EB_TOOL_EXPERIENCE-->\s*','\n',t,flags=re.S)
+ # This exact-model directory has no numerical scenario or calculation inputs.
+ # Keep its selection first; generic calculator sharing makes false assumptions.
+ if name=='en/filter-finder.html':
+  p.write_text(t)
+  continue
  if 'noindex' in t[:4000]:continue
  if 'name="twitter:card"' not in t:
   card='summary_large_image' if 'property="og:image"' in t else 'summary'

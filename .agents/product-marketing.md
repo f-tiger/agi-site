@@ -1,12 +1,18 @@
 # Product marketing context
 
-**Document version: v17** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v18** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
 Owner's latest staged goals are USD 1,000, USD 5,000 and USD 10,000 in monthly revenue (2026-10-03 conversation). These supersede the historical euro milestones; deadlines and gross/net accounting treatment remain unspecified. Record gross customer payments, refunds, settled receipts and delivery/acquisition costs separately; revenue is not profit or MRR. Manual selling/delivery and automation are both acceptable to the owner. Eco has historical owner-reported affiliate commissions; do not re-label them as a new service sale or assume they have settled. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Current revenue directions — owner steering 2026-10-04
+
+### Automated niche sites — current task, owner steering 2026-10-31
+
+The owner clarified that the requested new direction must follow agi-site's ECO/BPJ automated acquisition and monetization model. For this task, manual procurement services, paid manual audits and internal validation dashboards do not satisfy the requested product. ECO means getecoback.com and BPJ means baipiaoji.com. The existing historical allowance for manual services is not the scope of this task.
+
+Selected first implementation: an English US-model Levoit replacement-filter finder under the existing approved ECO domain. Buyer: an owner replacing a filter for a specific device. Free value: exact manufacturer-backed model mapping and dated sources. Monetization: disclosed Amazon.com searches using the existing US affiliate tag; ordinary official-source links remain available. No inventory, marketplace checkout, new affiliate application, paid model dependency or recurring expense is introduced. Source checks and deployment use the existing daily release. Conflicting, unavailable or stale evidence disables buying actions. Search discovery, tool completion, affiliate clicks and independently verified commission remain separate; this release establishes the functional path, not new revenue or proven demand.
 
 The owner stopped the CRM service direction and selected two existing-product tracks: AI-tool selection/content/affiliate revenue, and SunWatch investment research/monitoring/paid information. These supersede the service-acquisition hypothesis below; CRM samples and old prospecting records remain historical, not current growth priorities. Do not turn an isolated community question into another service offering or build a duplicate directory.
 
@@ -102,6 +108,7 @@ Distribution uses the relevant bilingual tools directory, shared navigation's To
 The owner explicitly authorized expansion and deployment after selecting broader household tasks, including pools, garden robots and 3D-printed household repair. First release: free German/English constraint checks, downloadable local checklists and a bounded original drawer-divider STL generator. Existing confirmed DE/US Amazon category links are shown only after relevant comparison outcomes, with disclosure; no model certification, paid files, new subscription or checkout. All household inputs stay local. Family fit and repeat-task value remain hypotheses; downloads, shopping intent and merchant revenue are measured separately. This supersedes the earlier 3D-printer-accessory rejection only for the newly requested household repair/template direction. See `sites/getecoback/docs/family-workshop-release-2026-10-29.md`.
 
 ## Changelog
+- v18 (2026-10-31): Applied the owner’s automated-site requirement to the current niche-site task and selected ECO’s source-backed US replacement-filter affiliate product. Preserves concurrent fleet product updates.
 - v15 (2026-10-29): Added the owner-authorized Eco household expansion, bounded free deliverables and commercialization/measurement limits.
 
 - v14 (2026-10-12): Applied the whole-fleet registration goal, separated actual account benefits from shared identity, and defined source-preserving completion and honest registration measurements.

@@ -84,6 +84,11 @@ jobs:
       # Fail-open: no baseline = no new-URL submissions this run, never a flood.
       - name: Snapshot the live sitemap (baseline for the IndexNow delta)
         run: curl -sf --max-time 20 -A "getecoback-ci" https://getecoback.com/sitemap.xml -o /tmp/prev_sitemap.xml || echo "::warning::live sitemap not reachable — new-URL detection is off for this run"
+      - name: Record existing membership readiness before a content-only release
+        if: env.OUTCOME_READ_ONLY_RELEASE == 'true'
+        run: |
+          node --test tools/test_membership_release.mjs
+          node tools/check_membership_release.mjs snapshot "$RUNNER_TEMP/eco-membership-before.json"
       # Existing daily/manual release owns the full content transaction. This
       # is independent of the paused Growth Loop and adds no scheduled trigger.
       - name: Test automatic content persistence and concurrent-main rejection
@@ -231,6 +236,14 @@ jobs:
           python3 tools/build_auto_discovery.py
           python3 tools/build_family_workshop.py
           node --test tools/test_family_workshop.mjs
+          # Read-only compatibility gate for a fixed manufacturer whitelist.
+          # Recheck on each release so an older snapshot cannot restore a CTA
+          # removed by the previous daily run. No new cron or paid API.
+          python3 tools/test_filter_finder_sources.py
+          python3 tools/refresh_filter_finder.py
+          python3 tools/build_filter_finder.py
+          node --test tools/test_filter_finder.mjs
+          python3 tools/link_filter_finder.py
           python3 tools/build_onpage.py
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
@@ -493,6 +506,7 @@ jobs:
           node sites/getecoback/tools/verify-public-engagement-live.mjs
           node tools/fleet-account/verify-live.mjs eco
           node sites/getecoback/tools/verify-family-workshop-live.mjs
+          node sites/getecoback/tools/verify-filter-finder-live.mjs
 
       - name: Verify independent membership after deployment
         if: env.OUTCOME_READ_ONLY_RELEASE != 'true'
@@ -509,14 +523,7 @@ jobs:
 
       - name: Verify existing membership readiness without configuration or order scans
         if: env.OUTCOME_READ_ONLY_RELEASE == 'true'
-        run: |
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          const response=await fetch('https://getecoback.com/api/member',{headers:{'User-Agent':'fleet-outcome-readonly-probe/1.0'},signal:AbortSignal.timeout(25000)});
-          assert.equal(response.status,200);const data=await response.json();
-          assert.equal(data.ok,true);assert.equal(data.ready,true);assert.equal(data.site,'eco');
-          console.log('Existing ECO membership readiness verified by GET; no configuration, order scan or payment test.');
-          JS
+        run: node tools/check_membership_release.mjs verify "$RUNNER_TEMP/eco-membership-before.json"
 
       - name: Verify every published workbench tool
         if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}

@@ -32,6 +32,7 @@ NOINDEX_RE = re.compile(r'<meta[^>]+name="robots"[^>]+noindex', re.I)
 EXTRA = {"/nl/wonen.html", "/wohnen.html", "/guide/heizluefter-stromverbrauch.html", "/guide/fensterabdichtung-klimaanlage.html", "/en/guide/window-seal-portable-ac.html", "/guide/strompreis-radar.html", "/waeschetrockner-oder-luftentfeuchter.html", "/en/guide/dehumidifier-drying-clothes-cost.html"}  # Live data or a primary calculator rendered from a reusable EB block.
 SKIP_PREFIX = ("/widgets/", "/workbench", "/member")
 EXTRA.update({"/guide/tineco-saugt-nicht-mehr.html", "/guide/thermovorhang-ratgeber.html", "/en/guide/12l-vs-20l-dehumidifier-uk.html"})
+EXTRA.add("/en/filter-finder.html")
 
 FAMILIES = [
     ("family", "Pool, Garten & Reparieren", "🛠", r"familienwerkstatt|home-workshop"),
