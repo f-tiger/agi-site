@@ -221,6 +221,58 @@
   "actions": [
     {
       "site": "baipiaoji",
+      "kind": "pain_point_verification",
+      "priority": 76,
+      "reason": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
+      "mode": "queue",
+      "evidence": {
+        "pain_id": "bpj-coding-quota-20261031",
+        "scope": [
+          "sites/baipiaoji/"
+        ],
+        "acceptance": [
+          "保留来源日期、单位与周期；未知值不能写成零或无限。",
+          "同一帖子重复缓存只计一个来源；免费意图不当作付费需求。",
+          "先复现现有路径缺口，再决定最小改动；沿用现有完成/导出计量。"
+        ],
+        "source_refs": [
+          "BPJ-Q1",
+          "BPJ-Q2"
+        ],
+        "gate_reasons": [
+          "fewer than two distinct current original sources"
+        ],
+        "verified_sources": 0
+      }
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "pain_point_verification",
+      "priority": 72,
+      "reason": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
+      "mode": "queue",
+      "evidence": {
+        "pain_id": "agi-claim-context-20261031",
+        "scope": [
+          "sites/agiscorecard/tools/jarvis/",
+          "sites/agiscorecard/jarvis-assets/"
+        ],
+        "acceptance": [
+          "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
+          "用冻结的合成任务比较改前改后；不读取客户任务正文。",
+          "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
+        ],
+        "source_refs": [
+          "AGI-C1"
+        ],
+        "gate_reasons": [
+          "fewer than two distinct current original sources"
+        ],
+        "verified_sources": 1
+      }
+    },
+    {
+      "site": "baipiaoji",
       "kind": "membership_conversion",
       "priority": 64,
       "reason": "ready membership has qualified referred traffic but no paid members",
@@ -364,5 +416,121 @@
     "no_payment_or_membership_mutation": true,
     "missing_is_unknown": true,
     "site_deploys_only_when_manifest_or_site_content_changes": true
-  }
+  },
+  "user_pain_radar": [
+    {
+      "id": "bpj-coding-quota-20261031",
+      "site": "baipiaoji",
+      "status": "queued",
+      "decision": "verify",
+      "title": "编程任务对应的额度、重置周期与续费选择",
+      "pain": "已复核两条原始讨论正文：编程任务的工具分配和配额消耗可预测性存在困惑；显示的相对时间不足以确认绝对发布日期。",
+      "task": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
+      "scope": [
+        "sites/baipiaoji/"
+      ],
+      "acceptance": [
+        "保留来源日期、单位与周期；未知值不能写成零或无限。",
+        "同一帖子重复缓存只计一个来源；免费意图不当作付费需求。",
+        "先复现现有路径缺口，再决定最小改动；沿用现有完成/导出计量。"
+      ],
+      "priority": 76,
+      "verified_sources": 0,
+      "source_refs": [
+        "BPJ-Q1",
+        "BPJ-Q2"
+      ],
+      "gate_reasons": [
+        "fewer than two distinct current original sources"
+      ],
+      "next_review": "2026-11-07",
+      "commercial_hypothesis": "帮助正在续费或迁移的开发者完成具体工具决策；本轮没有 BPJ 付款证据。",
+      "counter_evidence": "原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。"
+    },
+    {
+      "id": "agi-claim-context-20261031",
+      "site": "agiscorecard",
+      "status": "queued",
+      "decision": "verify",
+      "title": "AI 结论缺少业务背景与来源支撑",
+      "pain": "公开讨论反映 AI 对缺少上下文的问题给出肯定解释；与 Jarvis 的来源检查有相邻适配，尚未证明是本站用户需求。",
+      "task": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
+      "scope": [
+        "sites/agiscorecard/tools/jarvis/",
+        "sites/agiscorecard/jarvis-assets/"
+      ],
+      "acceptance": [
+        "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
+        "用冻结的合成任务比较改前改后；不读取客户任务正文。",
+        "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
+      ],
+      "priority": 72,
+      "verified_sources": 1,
+      "source_refs": [
+        "AGI-C1"
+      ],
+      "gate_reasons": [
+        "fewer than two distinct current original sources"
+      ],
+      "next_review": "2026-11-07",
+      "commercial_hypothesis": "提高已有研究任务的可复核性与复用价值；付费意愿未知。",
+      "counter_evidence": "来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。"
+    },
+    {
+      "id": "bpj-trial-terms-20261031",
+      "site": "baipiaoji",
+      "status": "queued",
+      "decision": "verify",
+      "title": "试用、取消与续费条件核对",
+      "pain": "订阅前的试用能力和退出条件不清楚；目前仅有日期未知的缓存线索。",
+      "task": "核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。",
+      "scope": [
+        "sites/baipiaoji/"
+      ],
+      "acceptance": [
+        "只使用厂商当日官方条款；区分免费层、试用与退款。",
+        "不得承诺没有官方保证的退款或精确剩余额度。",
+        "保留现有匿名选型入口，不新增付费墙或支付方案。"
+      ],
+      "priority": 70,
+      "verified_sources": 0,
+      "source_refs": [
+        "BPJ-T1"
+      ],
+      "gate_reasons": [
+        "fewer than two distinct current original sources"
+      ],
+      "next_review": "2026-11-07",
+      "commercial_hypothesis": "缩短已有 AI 工具选型流程；联盟资格和收入另行核验。",
+      "counter_evidence": "可能只需要链接官方帮助页，不需要新工具。"
+    },
+    {
+      "id": "agency-reporting-generic-20261031",
+      "site": "agiscorecard",
+      "status": "rejected",
+      "decision": "hold",
+      "title": "通用 AI 客户报告生成暂不扩建",
+      "pain": "报告整理费时，但通用生成、摘要与定时发送已有成熟替代。",
+      "task": "仅保存反证；不建立新的代理商报告站或改变现有导师定位。",
+      "scope": [
+        "sites/agiscorecard/"
+      ],
+      "acceptance": [
+        "重新投入需同类买家重复缺口、明确现有替代失效与可交付结果。"
+      ],
+      "priority": 30,
+      "verified_sources": 2,
+      "source_refs": [
+        "AGENCY-R1",
+        "AGENCY-R2"
+      ],
+      "gate_reasons": [
+        "status is rejected"
+      ],
+      "next_review": "2026-11-14",
+      "commercial_hypothesis": "报告收尾与核对仍是假设，本轮不售卖。",
+      "counter_evidence": "Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。"
+    }
+  ],
+  "user_pain_radar_checked_at": "2026-10-31T15:59:32.882880+00:00"
 }

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-31T15:59:32.882880+00:00",
+  "evaluation_date": "2026-10-31",
+  "execution": "read-only repository pipeline smoke; not hosted Jarvis execution",
+  "radar_sha256": "4223453b4c988d37eed6ee1ae2b7361efbbe01c470cd9dfd94aaa56632a3f999",
+  "rows": 4,
+  "selected_actions": [
+    {
+      "site": "baipiaoji",
+      "kind": "pain_point_verification",
+      "priority": 76,
+      "reason": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
+      "mode": "queue",
+      "evidence": {
+        "pain_id": "bpj-coding-quota-20261031",
+        "scope": [
+          "sites/baipiaoji/"
+        ],
+        "acceptance": [
+          "保留来源日期、单位与周期；未知值不能写成零或无限。",
+          "同一帖子重复缓存只计一个来源；免费意图不当作付费需求。",
+          "先复现现有路径缺口，再决定最小改动；沿用现有完成/导出计量。"
+        ],
+        "source_refs": [
+          "BPJ-Q1",
+          "BPJ-Q2"
+        ],
+        "gate_reasons": [
+          "fewer than two distinct current original sources"
+        ],
+        "verified_sources": 0
+      }
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "pain_point_verification",
+      "priority": 72,
+      "reason": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
+      "mode": "queue",
+      "evidence": {
+        "pain_id": "agi-claim-context-20261031",
+        "scope": [
+          "sites/agiscorecard/tools/jarvis/",
+          "sites/agiscorecard/jarvis-assets/"
+        ],
+        "acceptance": [
+          "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
+          "用冻结的合成任务比较改前改后；不读取客户任务正文。",
+          "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
+        ],
+        "source_refs": [
+          "AGI-C1"
+        ],
+        "gate_reasons": [
+          "fewer than two distinct current original sources"
+        ],
+        "verified_sources": 1
+      }
+    }
+  ],
+  "extension_actions": 0,
+  "consumers": {
+    "digest": "passed",
+    "evolution": "passed",
+    "site_manifests": "preview passed; not published"
+  },
+  "unrelated_snapshot_as_of_preserved": "2026-10-31",
+  "network_measurements": false,
+  "indexnow": false,
+  "membership_operations": false
+}

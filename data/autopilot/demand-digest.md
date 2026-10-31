@@ -2,6 +2,28 @@
 
 零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。
 
+## 用户痛点雷达 → Jarvis 站点扩展
+
+研究复核记录；不是实时 Reddit 抓取，也不是独立客户或付费验证。原始社区材料保留在私有工作记录。
+每站最多一个待执行项；核验不足只派复核，已完成/进行中/阻塞/否决的任务不重复派发。
+
+- **baipiaoji · 编程任务对应的额度、重置周期与续费选择** [verify]
+  - ID: bpj-coding-quota-20261031；原帖与日期门通过来源数: 0；复盘: 2026-11-07
+  - 下一步: 核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。
+  - 门槛/反证: fewer than two distinct current original sources；原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。
+- **agiscorecard · AI 结论缺少业务背景与来源支撑** [verify]
+  - ID: agi-claim-context-20261031；原帖与日期门通过来源数: 1；复盘: 2026-11-07
+  - 下一步: 用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。
+  - 门槛/反证: fewer than two distinct current original sources；来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。
+- **baipiaoji · 试用、取消与续费条件核对** [verify]
+  - ID: bpj-trial-terms-20261031；原帖与日期门通过来源数: 0；复盘: 2026-11-07
+  - 下一步: 核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。
+  - 门槛/反证: fewer than two distinct current original sources；可能只需要链接官方帮助页，不需要新工具。
+- **agiscorecard · 通用 AI 客户报告生成暂不扩建** [hold]
+  - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 2；复盘: 2026-11-14
+  - 下一步: 仅保存反证；不建立新的代理商报告站或改变现有导师定位。
+  - 门槛/反证: status is rejected；Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。
+
 ## 源状态(抓不到就写出来,不复用旧数据)
 - softwarerecs: ok, 1 条
 - bluesky_wish: **不可用** — "is there an app that" HTTP 403; "is there a tool that" HTTP 403; "i wish there was an app" HTTP 403

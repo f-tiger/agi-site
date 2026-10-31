@@ -14,8 +14,8 @@
       "status": "queued",
       "priority": 76,
       "title": "编程任务对应的额度、重置周期与续费选择",
-      "pain": "开发者难以把 Claude、Cursor、Codex 的计划额度与自己的编程任务对应；缓存线索尚待原帖复核。",
-      "task": "核验同类原帖及官方额度，检查现有编程选型路径；只补能复现的决策缺口。",
+      "pain": "已复核两条原始讨论正文：编程任务的工具分配和配额消耗可预测性存在困惑；显示的相对时间不足以确认绝对发布日期。",
+      "task": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
       "scope": [
         "sites/baipiaoji/"
       ],
@@ -27,20 +27,29 @@
       "sources": [
         {
           "id": "BPJ-Q1",
-          "original_verified": false,
+          "original_verified": true,
           "published_at": null,
           "reviewed_at": "2026-10-31"
         },
         {
           "id": "BPJ-Q2",
-          "original_verified": false,
+          "original_verified": true,
           "published_at": null,
           "reviewed_at": "2026-10-31"
         }
       ],
       "commercial_hypothesis": "帮助正在续费或迁移的开发者完成具体工具决策；本轮没有 BPJ 付款证据。",
-      "counter_evidence": "厂商已有套餐说明；缓存可能过期；选型不等于性能评测或购买。",
-      "next_review": "2026-11-07"
+      "counter_evidence": "原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。",
+      "next_review": "2026-11-07",
+      "verification": {
+        "checked_at": "2026-10-31T15:59:02Z",
+        "execution": "manual-session-fallback",
+        "source_bodies_reviewed": 2,
+        "absolute_publication_dates_verified": false,
+        "site_fit": "existing selection workflow matches; exact data gap under review",
+        "outcome": "keep verification queue; do not authorize extension",
+        "note": "Hosted run_now returned NOT_FOUND before invocation; no new scheduled-agent run was created."
+      }
     },
     {
       "id": "bpj-trial-terms-20261031",
