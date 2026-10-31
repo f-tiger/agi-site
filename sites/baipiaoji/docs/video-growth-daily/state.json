@@ -363,7 +363,8 @@
       "secondRound": "Independent final four-document review passed: source files match persisted commit, UTC/GA4/GSC boundaries, old payment failure and prior history preserved, local-only watch actions, skipped lifecycle distinction, no real-use claims, unchanged English and weekly experiment.",
       "rootSelfCheck": "Existing reach-export offline selftest passed; JSON, exact four-document scope, relative links, bounded history, preserved English/primary/weekly objects and temporary-path/identifier checks passed. No site build required for documentation."
     },
-    "nextAction": "Resolve the located viewer-export handoff with its existing executor before further implementation; preserve current creator experiment. Existing tutorial continuous mobile playback/listening and an authorized usable distribution channel remain necessary. Weekly creator review Nov3, Oct27–Nov2."
+    "nextAction": "Resolve the located viewer-export handoff with its existing executor before further implementation; preserve current creator experiment. Existing tutorial continuous mobile playback/listening and an authorized usable distribution channel remain necessary. Weekly creator review Nov3, Oct27–Nov2.",
+    "recordedInPullRequest": "https://github.com/f-tiger/agi-site/pull/212"
   },
   "recentActions": [
     {
@@ -464,7 +465,8 @@
       "relatedImplementationCommit": "4920071d86935ae327814c5ecfae3d9620b2c254",
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41159958514",
       "evidence": "iteration-2026-10-31.md",
-      "deploymentRequired": false
+      "deploymentRequired": false,
+      "recordedInPullRequest": 212
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
