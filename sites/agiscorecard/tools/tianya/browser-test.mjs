@@ -14,6 +14,7 @@ fs.mkdirSync(out,{recursive:true});
 // browser protocol and emits synthetic acknowledgements only when this test
 // instructs it to. Real storage/entitlements are covered by member-test.mjs.
 const memberFixture=`<!doctype html><html><head><meta charset="utf-8"><title>Isolated member protocol fixture</title></head><body><h1>Member fixture</h1><script>
+window.__memberFixtureStarted=true;
 window.addEventListener('message',event=>{
  if(event.origin!==location.origin)return;
  if(event.data?.kind==='workbench-save'&&event.source===window.opener){window.received=event.data;window.tool=event.source;}
@@ -53,15 +54,30 @@ const field=(page,name)=>page.locator('#ty-form [name="'+name+'"]');
 const sendReply=async(page,popup,payload)=>{
  const count=await page.evaluate(()=>window.__fixtureSavedMessages||0);
  await popup.evaluate(data=>window.opener.postMessage(data,location.origin),payload);
- await page.waitForFunction(old=>(window.__fixtureSavedMessages||0)>old,count);
+ await page.waitForFunction(old=>(window.__fixtureSavedMessages||0)>old,count,{polling:100});
 };
 const cloudPopup=async page=>{
- const pending=page.waitForEvent('popup');await page.locator('#cloud-save').click();
- const popup=await pending;await popup.waitForFunction(()=>window.received?.kind==='workbench-save');
+ let popup;const pending=page.waitForEvent('popup').then(opened=>(popup=opened));
+ pending.catch(()=>{});
+ try{
+  // The popup and its exact protocol are awaited below. A separate implicit
+  // navigation barrier can hang in headless-shell even after this click fires.
+  await page.locator('#cloud-save').click({noWaitAfter:true});
+  popup=await pending;
+  await popup.waitForFunction(()=>window.received?.kind==='workbench-save',undefined,{polling:100});
+ }
+ catch(error){
+  // Keep diagnostics restricted to protocol metadata from synthetic records.
+  // Do not print the draft, access keys or browser storage.
+  const inspect=target=>target.evaluate(()=>({path:location.pathname,readyState:document.readyState,visibility:document.visibilityState,hasOpener:!!window.opener,fixtureStarted:!!window.__memberFixtureStarted,receivedKind:window.received?.kind||null,status:document.getElementById('ty-status')?.textContent||null,events:window.__fixtureProtocolEvents||[]})).catch(failure=>({inspectionError:failure.message}));
+  console.error('Tianya popup handshake diagnostics:',JSON.stringify({browser:browser?.version(),tool:await inspect(page),popup:popup?await inspect(popup):{notCreated:true}}));
+  throw error;
+ }
  return popup;
 };
 try{
- browser=await chromium.launch({headless:true,...(fs.existsSync('/usr/bin/chromium')?{executablePath:'/usr/bin/chromium'}:{})});
+ const executablePath=process.env.TIANYA_CHROMIUM_EXECUTABLE||(fs.existsSync('/usr/bin/chromium')?'/usr/bin/chromium':undefined);
+ browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
  for(const lang of ['en','zh']){
   const prefix=lang==='zh'?'/zh':'',context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true});
   const errors=[],external=[],uploads=[];
@@ -73,7 +89,8 @@ try{
   });
   await context.addInitScript(()=>{
    const open=window.open;window.open=function(...args){const popup=open.apply(this,args);window.__fixtureLastPopup=popup;return popup;};
-   window.addEventListener('message',event=>{if(event.data?.kind==='workbench-saved')window.__fixtureSavedMessages=(window.__fixtureSavedMessages||0)+1;});
+   window.__fixtureProtocolEvents=[];
+   window.addEventListener('message',event=>{if(event.data?.kind==='workbench-saved')window.__fixtureSavedMessages=(window.__fixtureSavedMessages||0)+1;if(typeof event.data?.kind==='string'&&event.data.kind.startsWith('workbench-'))window.__fixtureProtocolEvents.push({kind:event.data.kind,origin:event.origin,fromOpener:event.source===window.opener,fromPopup:event.source===window.__fixtureLastPopup});});
   });
   const page=await context.newPage();
   await page.goto(base+prefix+'/tianya?__qa=1');
@@ -188,7 +205,7 @@ try{
   const restorePending=popup.waitForEvent('popup');
   await popup.evaluate(url=>{window.open(url,'_blank');},base+prefix+'/tianya?restore=1&__qa=1');
   const restored=await restorePending;
-  await popup.waitForFunction(()=>window.restoreReady===true);
+  await popup.waitForFunction(()=>window.restoreReady===true,undefined,{polling:100});
   await restored.waitForFunction(()=>document.getElementById('save-local')?.onclick);
   const restoreMessage={kind:'workbench-restore',data:exported,context:cloud};
   await restored.evaluate(data=>window.dispatchEvent(new MessageEvent('message',{data,origin:'https://wrong-origin.example',source:window.opener})),restoreMessage);
@@ -196,7 +213,7 @@ try{
   await restored.evaluate(data=>window.dispatchEvent(new MessageEvent('message',{data,origin:location.origin,source:window})),restoreMessage);
   assert.equal(await field(restored,'title').inputValue(),'');
   await popup.evaluate(data=>window.restoreTool.postMessage(data,location.origin),restoreMessage);
-  await restored.waitForFunction(title=>document.querySelector('#ty-form [name="title"]').value===title,exported.values.title);
+  await restored.waitForFunction(title=>document.querySelector('#ty-form [name="title"]').value===title,exported.values.title,{polling:100});
   assert.deepEqual(await download(restored),exported);
   assert.equal(await localCopy(restored),null,'cloud restoration does not silently persist data locally');
   const restoredPopup=await cloudPopup(restored);
