@@ -79,6 +79,15 @@ permissions passed after a scoped retry. Final GA4 coverage passed for 3709
 public pages with 14 explicit exclusions; public-engagement installation passed.
 Chinese mobile screenshots were visually checked. Browser requests were
 intercepted locally. This does not establish Google backend event receipt or
-real customer purchases. Live release results remain pending.
+real customer purchases. Live release results are recorded below.
 
 Publication coordination: the original relay run 41216467843 passed all local and browser gates but stopped before upload because another site changed main. A subsequent already-running read-only release also became stale after commit f93627dc; its upload was still pending, so it was cancelled before deployment. The next fresh current-main publication retains the exact main guard and all checks; no historical workflow is rerun.
+
+
+## Published result
+
+The free-page deployment job in run [41219402291](https://github.com/f-tiger/agi-site/actions/runs/41219402291) succeeded from source `09c8a1dfe383e875fa4822eee0555a4682ae7cdb`. Cloudflare completed deployment at 2026-10-31 16:30:35 UTC: https://7711d951.aiyangmao.pages.dev. The source includes this relay expansion and the independently developed BPJ release-input isolation checks; the original global guard was not bypassed in the earlier attempts.
+
+Both public directory locales, JSON and Markdown passed live validation in CI and a separate read-only check. All 13 records (eight relays) and their source labels/links are present. Live analytics verification covered 75 public routes with the current asset version; this is not evidence of Google backend event receipt. IndexNow returned HTTP 200 at 16:31:06 UTC for 16 changed canonical URLs across the combined BPJ release, including both directory pages; receipt does not prove indexing.
+
+The overall workflow is red because its separate existing membership-payment readiness job reports NOT READY and keeps checkout closed. The free-directory deployment and live checks succeeded independently. This expansion creates no paid offering and performed no purchase or refund tests. Earlier runs were superseded or stopped before upload as main changed; this completed deployment is the release receipt.
