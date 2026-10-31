@@ -56,6 +56,14 @@ def to_markdown(src_html, path_url, lang):
     desc = H.unescape(m.group(1)).strip() if m else ""
     m = re.search(r"<article[^>]*>(.*?)</article>", src_html, re.S)
     body = m.group(1) if m else ""
+    if not m and path_url == '/waeschetrockner-oder-luftentfeuchter.html':
+        main = re.search(r'<main\b[^>]*>(.*?)</main>', src_html, re.S)
+        if main:
+            body = re.sub(r'<header\b.*?</header>', '', main.group(1), flags=re.S)
+    heater = re.search(r'<!--EB_HEATCOST-->(.*?)<!--/EB_HEATCOST-->', src_html, re.S)
+    if heater:
+        # Keep the examples and limitations; remove forms below as usual.
+        body += re.sub(r'<button\b[^>]*>(.*?)</button>', r'<p>\1</p>', heater.group(1), flags=re.S)
     # Preserve the sourced performance explanation from the decision guide,
     # while keeping its form, hidden shopping results and affiliate URLs out.
     buyer = re.search(r'<!--EB_BUYER-->(.*?)<!--/EB_BUYER-->', src_html, re.S)
@@ -67,9 +75,14 @@ def to_markdown(src_html, path_url, lang):
             body += f'<h2>{heading}</h2>' + evidence.group(1) + (source.group(0) if source else '')
     laundry = re.search(r'<!--EB_LAUNDRY-->(.*?)<!--/EB_LAUNDRY-->', src_html, re.S)
     if laundry:
-        protocol = re.search(r'<details><summary>Measure one load fairly: checklist</summary>(.*?)</details>', laundry.group(1), re.S)
+        protocol = re.search(r'<details><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)
         if protocol:
-            body += '<h2>Reproducible laundry cost comparison</h2><p>Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.</p>' + protocol.group(1)
+            if lang == 'de':
+                decisions = re.search(r'<div class="lc-evidence" id="waesche-entscheidung">(.*?)</div>', laundry.group(1), re.S)
+                body += re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', decisions.group(1), flags=re.S) if decisions else ''
+                body += '<h2>Eine Ladung fair vergleichen</h2><p>kWh für den ganzen Durchgang × Arbeitspreis. Vorbelegte Zahlen sind Rechenbeispiele, keine Produktmessungen. Gleiche Wäschemenge und gleicher Trocknungsgrad sind Voraussetzung. PNG und CSV werden lokal erstellt; Eingaben werden nicht hochgeladen.</p>' + protocol.group(1)
+            else:
+                body += '<h2>Reproducible laundry cost comparison</h2><p>Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.</p>' + protocol.group(1)
     product = re.search(r'<!--EB_PRODUCT_DECISIONS-->(.*?)<!--/EB_PRODUCT_DECISIONS-->', src_html, re.S)
     if product:
         # Preserve sourced methodology/category checks, not script config or shopping UI.
@@ -227,18 +240,20 @@ def build_dataset():
 def main():
     n_md, n_link, bad = 0, 0, []
     for sub, lang in (("guide", "de"), (os.path.join("en", "guide"), "en"),
-                      (os.path.join("it", "guide"), "it"), ("nl", "nl"), ("au", "en-AU")):
+                      (os.path.join("it", "guide"), "it"), ("nl", "nl"), ("au", "en-AU"), ("", "de")):
         d = os.path.join(SITE, sub)
         if not os.path.isdir(d):
             continue
         for fn in sorted(os.listdir(d)):
             if not fn.endswith(".html"):
                 continue
+            if not sub and fn != 'waeschetrockner-oder-luftentfeuchter.html':
+                continue
             page_path = os.path.join(d, fn)
             s = open(page_path, encoding="utf-8").read()
             if 'name="robots" content="noindex' in s:
                 continue
-            rel = "/" + sub.replace(os.sep, "/") + "/" + fn
+            rel = "/" + (sub.replace(os.sep, "/") + "/" if sub else "") + fn
             md_rel = rel[:-5] + ".md"
             md = to_markdown(s, rel, lang)
             low = md.lower()

@@ -4,7 +4,9 @@
 The scheduled caller supplies no prompts or editable publication paths. Official
 source adapters discover products; this executor validates independent facts,
 deduplicates existing editorial work, then renders a deterministic guide. The
-default CLI is read-only. Failed or unchanged collections never refresh dates.
+default CLI is read-only. New model pages require fresh, market-matched model-query
+evidence; catalogue/category coverage alone stays a candidate. Existing factual corrections
+do not require renewed demand. Failed or unchanged collections never refresh dates.
 """
 from __future__ import annotations
 
@@ -45,6 +47,9 @@ ROUTE_RE = re.compile(r"^/(?:guide/[a-z0-9]+(?:-[a-z0-9]+)*-betriebskosten|en/gu
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 SOURCE_HASH_RE = re.compile(r"^[0-9a-f]{64}$")
 VARIANT_WORDS = {"white", "black", "grey", "gray", "weiss", "weiß", "schwarz", "silber", "silver", "wifi", "wlan", "wi-fi", "edition", "bundle", "set"}
+# Product qualifiers immediately after a model indicate a different variant;
+# notably the catalogue distinguishes HEPA from HEPA Plus.
+MODEL_SUFFIX_RE = re.compile(r"^\s+(?:plus|pro|max|hepa)\b")
 
 
 class GateError(ValueError):
@@ -240,9 +245,12 @@ def matching_trend(product, signals):
             continue
         query = normalise(signal["query"])
         brand, model = normalise(product.get("brand", "")), normalise(product.get("model", ""))
-        compact = query.replace(" ", "")
         match = None
-        if brand and model and brand in query and model.replace(" ", "") in compact:
+        # Preserve compact model spelling without matching a partial model code
+        # such as TTK 53 E inside TTK 53 EX or TTK 530 E.
+        model_pattern = r"\b" + r"\s*".join(re.escape(token) for token in model.split()) + r"\b"
+        exact_model = model and any(not MODEL_SUFFIX_RE.match(query[m.end():]) for m in re.finditer(model_pattern, query))
+        if brand and exact_model and re.search(r"\b" + re.escape(brand) + r"\b", query):
             match = (3, "exact_model")
         elif brand and re.search(r"\b" + re.escape(brand) + r"\b", query):
             match = (2, "brand_only_not_model_popularity")
@@ -478,6 +486,15 @@ def execute(site_root, collection, now, *, apply=False, renderer=None, before_sh
                 if conflict:
                     diagnostic["decisions"].append({"source_id": label, "status": "existing_editorial_model", "route": conflict})
                     continue
+                # Verified specifications establish facts, not demand. New URLs
+                # need a fresh same-market model signal. Brand/category growth
+                # is an opportunity for existing guides, not every model URL.
+                # Do not block corrections to already published factual content.
+                demand = matching_trend(product, signals)[2]
+                if not existing_routes and (not demand or demand["match_scope"] != "exact_model"):
+                    diagnostic["decisions"].append({"source_id": label, "status": "awaiting_model_demand_evidence", "route": route,
+                                                   "trend_evidence": demand, "next_action": "review_existing_guide" if demand else "await_demand_evidence"})
+                    continue
                 selected = (product, route, content_hash, target)
                 break
             except (GateError, KeyError, TypeError, ValueError) as error:
@@ -495,7 +512,7 @@ def execute(site_root, collection, now, *, apply=False, renderer=None, before_sh
         diagnostic["status"] = "generated_pending_validation" if apply else "eligible_read_only"
         diagnostic["selected"] = {"source_id": product["source_id"], "route": route, "action": "update" if old_entry else "new", "content_hash": content_hash}
         match = matching_trend(product, signals)[2]
-        diagnostic["selected"]["selection_reason"] = "fresh_related_query_priority_with_verified_product_facts" if match else "official_catalogue_specification_coverage_gap"
+        diagnostic["selected"]["selection_reason"] = "existing_page_verified_fact_update" if old_entry else "fresh_related_query_priority_with_verified_product_facts"
         diagnostic["selected"]["trend_evidence"] = match
         if not apply:
             return publication, diagnostic

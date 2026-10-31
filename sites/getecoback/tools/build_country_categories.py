@@ -39,6 +39,7 @@ def shell(c, page, content, hub=False):
     path = c['path'] if hub else c['guide']['path']
     title, description, heading, intro = (page[k] for k in ('title', 'description', 'heading', 'intro'))
     url = BASE + path
+    modified = page.get('modified', DATE)
     nav = ''.join(f'<a href="{x["path"]}" lang="{x["lang"]}" data-country-action="country"' +
                   (' aria-current="page"' if x['market'] == c['market'] and hub else '') +
                   f'>{esc(x["country"])}</a>' for x in DATA['countries'])
@@ -49,7 +50,7 @@ def shell(c, page, content, hub=False):
         alternates += f'<link rel="alternate" hreflang="x-default" href="{BASE}/wohnen.html">\n'
     schema = {'@context': 'https://schema.org', '@type': 'CollectionPage' if hub else 'Article',
               'name': title, 'headline': heading, 'description': description, 'url': url,
-              'inLanguage': c['lang'], 'datePublished': DATE, 'dateModified': c.get('modified', DATE) if hub else DATE,
+              'inLanguage': c['lang'], 'datePublished': DATE, 'dateModified': modified,
               'author': {'@type': 'Organization', 'name': 'EcoBack', 'url': BASE + '/ueber-uns.html'}}
     crumbs = f'<a href="{c["path"]}">{esc(c["country"])}</a> / {esc(c["guide_label"])}' if not hub else esc(c['eyebrow'])
     sources = ''.join(f'<li><a href="{esc(s[1])}">{esc(s[0])}</a></li>' for s in c['sources'])
@@ -68,7 +69,7 @@ def shell(c, page, content, hub=False):
 <a class="skip" href="#main">{esc(c['skip'])}</a>
 <header class="site-header"><a class="wordmark" href="/">EcoBack<span>home & energy</span></a><nav aria-label="{esc(c['country_label'])}">{nav}</nav></header>
 <main id="main"><article>
-<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p><p class="edition">{esc(c['edition'])} · <time datetime="{c.get('modified', DATE) if hub else DATE}">{c.get('modified', DATE) if hub else DATE}</time></p></header>
+<header class="intro"><p class="eyebrow">{crumbs}</p><h1>{esc(heading)}</h1><p class="lede">{esc(intro)}</p><p class="edition">{esc(c['edition'])} · <time datetime="{modified}">{modified}</time></p></header>
 {content}
 <section class="sources" id="sources"><h2>{esc(c['sources_label'])}</h2><p>{esc(c['method'])}</p><ul>{sources}</ul></section>
 </article></main>
@@ -84,6 +85,12 @@ def hub_body(c):
     for t in c['categories']:
         chooser += f'<option value="{t["id"]}" data-path="{esc(t["related"][0][1])}" data-summary="{esc(t["summary"])}" data-label="{esc(t["related"][0][0])}">{esc(t["title"])}</option>'
     chooser += '</select><div aria-live="polite" data-country-result><p></p><a data-country-action="need_result" hidden></a></div></section>'
+    # Explicit per-market rollout: crawlable choices work without JavaScript.
+    if c.get('visible_routes'):
+        cards = '<nav class="need-cards" aria-label="' + esc(choose['title']) + '">'
+        for t in c['categories']:
+            cards += f'<a href="{esc(t["related"][0][1])}" data-country-action="scenario_open"><strong>{esc(t["title"])}</strong><span>{esc(t["summary"])}</span><span>{esc(t["related"][0][0])} →</span></a>'
+        chooser = cards + '</nav>' + chooser
     jump = '<nav class="topics" aria-label="' + esc(c['topics_label']) + '">' + ''.join(
         internal('#' + t['id'], t['title'], 'category') for t in c['categories']) + '</nav>'
     for n, t in enumerate(c['categories'], 1):
@@ -104,6 +111,13 @@ def hub_body(c):
 def guide_body(c):
     g = c['guide']
     body = f'<aside class="decision-note"><strong>{esc(g["answer_title"])}</strong><p>{esc(g["answer"])}</p></aside>'
+    if g.get('scenarios'):
+        scenarios = g['scenarios']
+        body += f'<section class="decision-note laundry-routes" id="{esc(scenarios["id"])}"><h2>{esc(scenarios["title"])}</h2><p>{esc(scenarios["intro"])}</p>'
+        for item in scenarios['items']:
+            body += f'<details data-country-scenario="{esc(item["id"])}"><summary><strong>{esc(item["title"])}</strong></summary>\n'
+            body += ''.join(f'<p>{esc(p)}</p>' for p in item['paragraphs']) + '</details>'
+        body += f'<p>{esc(scenarios["note"])} <a href="{esc(scenarios["link"])}">{esc(scenarios["link_label"])} →</a></p></section>'
     for s in g['sections']:
         body += f'<section class="guide-section" id="{s["id"]}"><h2>{esc(s["title"])}</h2>'
         body += ''.join(f'<p>{esc(p)}</p>' for p in s.get('paragraphs', []))

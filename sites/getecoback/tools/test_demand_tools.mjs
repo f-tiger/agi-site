@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sealFit,heaterCost} from '../site/assets/demand-tools.mjs';
+import {sealFit,heaterCost,heaterExample} from '../site/assets/demand-tools.mjs';
 const base={width:60,height:140,window:'casement',material:'fabric',market:'none'};
 test('perimeter boundaries, explicit shop and exact accessory length survive the handoff',()=>{
  assert.deepEqual(sealFit(base),{perimeter:400,size:400,route:'fabric',href:null});
@@ -24,4 +24,13 @@ test('heater costs use the entered tariff, period and duty without invented savi
  assert.equal(heaterCost({...args,tariff:.3}).total,72);
  for(const change of [{watts:0},{hours:0},{tariff:0},{duty:0}])assert.equal(heaterCost({...args,...change}).total,0);
  for(const change of [{hours:25},{days:1.5},{duty:101},{tariff:-1},{watts:''}])assert.throws(()=>heaterCost({...args,...change}),RangeError);
+});
+test('short heating scenarios retain fractional hours and explicit full-load assumptions',()=>{
+ const short=heaterExample('20min');
+ assert.equal(short.hours,1/3);assert.equal(short.duty,100);assert.equal(short.days,1);
+ assert.ok(Math.abs(heaterCost(short).total-4/15)<1e-12);
+ assert.equal(heaterCost(heaterExample('2h')).total,1.6);
+ assert.equal(heaterCost(heaterExample('4h')).total,3.2);
+ assert.equal(heaterCost({...heaterExample('2h'),tariff:.3}).total,1.2);
+ assert.throws(()=>heaterExample('unknown'),RangeError);
 });

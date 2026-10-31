@@ -9,7 +9,7 @@ Nederland · Wonen & energie
 # Een fijner huis begint bij de juiste vraag.
 
 Vochtige ramen, was die binnen moet drogen of twijfel over ventilatie? Begin bij de oorzaak en vergelijk daarna pas apparaten. Deze gids helpt je kiezen wat bij jouw woning en dagelijkse gebruik past.
-Gratis gidsen · EUR · Redactioneel gecontroleerd · 2026-10-01
+Gratis gidsen · EUR · Redactioneel gecontroleerd · 2026-10-31
 
 ## Waar wil je thuis mee beginnen?
 Kies je onderwerpMaak een keuzeVentilatie & metenWas binnen drogenCondens & ontvochtigen
@@ -36,7 +36,7 @@ CO₂-meters bekijken op Amazon.nl ↗
 
 ## Was binnen drogen
 
-Voor woningen zonder aparte droogruimte. Breng de beschikbare plek, wasfrequentie en afvoer van vocht in kaart voordat je een droogrek of apparaat kiest.
+Geen droger en weinig ruimte? Kies direct advies voor een droogrek in de weg, langzaam drogende kleding of vocht dat ook zonder was blijft.
 
 ### Controleer vóór aankoop
 
@@ -44,7 +44,7 @@ Voor woningen zonder aparte droogruimte. Breng de beschikbare plek, wasfrequenti
 - Noteer hoe vaak je droogt en hoeveel was er tegelijk staat.
 - Vergelijk bij een apparaat geluid, stroomverbruik en watertank of afvoermogelijkheid voor jouw opstelling.
 
-- [Was en vocht: maak een plan voor jouw kamer](https://getecoback.com/nl/ventilatie-of-luchtontvochtiger.html#was)
+- [Was drogen in een klein appartement: kies je situatie](https://getecoback.com/nl/ventilatie-of-luchtontvochtiger.html#was-keuze)
 Gewone winkellink naar een zoekresultaat; geen affiliate-link of geteste productaanbeveling.
 Droogrekken bekijken op Amazon.nl ↗
 
@@ -67,6 +67,7 @@ Luchtontvochtigers bekijken op Amazon.nl ↗
 ## Bronnen en werkwijze
 Redactionele uitleg op basis van de onderstaande bronnen. We hebben geen eigen apparaattests uitgevoerd. De checklist is onze praktische vergelijkhulp, geen diagnose van je woning.
 
+- Milieu Centraal: woning ventileren
 - Milieu Centraal: natuurlijke ventilatie
 - Milieu Centraal: beter en energiezuiniger ventileren
 - Consumentenbond: koopadvies luchtontvochtigers
