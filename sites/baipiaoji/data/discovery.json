@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "Arsaze – Cursor for video editing (Tab-complete and agent edits)",
+      "url": "https://www.arsaze.com",
+      "host": "arsaze.com",
+      "src": "https://news.ycombinator.com/item?id=50300618",
+      "points": 60,
+      "comments": 0,
+      "found": "2026-10-31",
+      "status": "candidate"
+    },
+    {
       "name": "ADRs for AI – Deliberation records for human–AI work, versioned in Git",
       "url": "https://adrs.systems",
       "host": "adrs.systems",
@@ -389,37 +399,7 @@
       "comments": 33,
       "found": "2026-09-17",
       "status": "candidate"
-    },
-    {
-      "name": "Panel – A research workspace where the agent can build its own panes",
-      "url": "https://github.com/greentfrapp/panel",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49712621",
-      "points": 48,
-      "comments": 19,
-      "found": "2026-09-16",
-      "status": "candidate"
-    },
-    {
-      "name": "Ordewell – turn one goal into an ordered plan of coding-agent tasks",
-      "url": "https://github.com/ordewell/ordewell",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49712276",
-      "points": 50,
-      "comments": 30,
-      "found": "2026-09-16",
-      "status": "candidate"
-    },
-    {
-      "name": "Redis City – Explore how Redis works in an interactive 3D model",
-      "url": "https://poltora.dev/redis",
-      "host": "poltora.dev",
-      "src": "https://news.ycombinator.com/item?id=49676425",
-      "points": 165,
-      "comments": 25,
-      "found": "2026-09-16",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-30"
+  "updated": "2026-10-31"
 }

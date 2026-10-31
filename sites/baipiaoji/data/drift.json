@@ -1,10 +1,56 @@
 {
-  "generated": "2026-10-30",
+  "generated": "2026-10-31",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 15,
+  "fetched_ok": 105,
+  "fetched_fail": 22,
+  "pending": 14,
   "items": [
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-10-31",
+      "first_seen": "2026-10-30",
+      "added": [
+        "365days",
+        "365天"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "tongyi",
+      "url": "https://help.aliyun.com/zh/model-studio/new-free-quota",
+      "confirmed": "2026-10-31",
+      "first_seen": "2026-10-30",
+      "added": [
+        "0.6b",
+        "1.7b",
+        "10b",
+        "110b",
+        "122b",
+        "14b",
+        "17b",
+        "1image",
+        "1m",
+        "22b",
+        "235b",
+        "27b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "gemini",
+      "url": "https://support.google.com",
+      "confirmed": "2026-10-31",
+      "first_seen": "2026-10-30",
+      "added": [],
+      "removed": [
+        "1.5s",
+        "4.5s"
+      ],
+      "checked_then": "2026-08-13"
+    },
     {
       "slug": "lovable",
       "url": "https://docs.lovable.dev",
@@ -64,19 +110,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-29",
-      "first_seen": "2026-10-28",
-      "added": [
-        "50mb",
-        "5seconds",
-        "5秒"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "bailian",
       "url": "https://aliyun.com",
       "confirmed": "2026-10-29",
@@ -98,18 +131,6 @@
       "removed": [
         "18,gb"
       ],
-      "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "gemini",
-      "url": "https://support.google.com",
-      "confirmed": "2026-10-29",
-      "first_seen": "2026-10-28",
-      "added": [
-        "1.5s",
-        "4.5s"
-      ],
-      "removed": [],
       "checked_then": "2026-08-13"
     },
     {

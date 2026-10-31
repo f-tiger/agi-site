@@ -1,6 +1,6 @@
 {
  "version": "2.0.0",
- "checked": "2026-10-30",
+ "checked": "2026-10-31",
  "policy": {
   "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
   "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
@@ -28185,7 +28185,7 @@
     "description": "Connect Claude, ChatGPT, Gemini or Copilot to DocNexus: US provider, KOL, executive and organization search over de-identified claims data.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -29205,7 +29205,7 @@
     "description": "Authoritative U.S. copyright-record intelligence for AI agents researching film, television and underlying creative works.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -35291,7 +35291,7 @@
     "description": "Connect Claude, ChatGPT, or Cursor to DiscordServers. Sign in with OAuth to search Discord servers and manage your own listings.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -40090,7 +40090,7 @@
     "description": "A multi-tool kanban with two-phase actor handoff, completion-block protocol, and continuous coordination-event log. The operator-side measurement layer that AI coding tools' agent-side metrics miss.",
     "checked": "2026-09-22"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -56451,8 +56451,8 @@
    "source_url": "https://github.com/VoxellInc/forge-mcp",
    "repo_url": "https://github.com/VoxellInc/forge-mcp",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -56490,8 +56490,8 @@
     "description": "MCP server for Forge, Voxell's hosted text-embedding API (Turbo/Pro/Ultra, OpenAI-compatible) - VoxellInc/forge-mcp",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -56555,8 +56555,8 @@
    "source_url": "https://reassign.ai",
    "repo_url": "https://github.com/reassignai/plugins",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -56592,8 +56592,8 @@
     "description": "A circular day planner built for time blocking. Drag your whole day onto one 24-hour dial, sync Google Calendar, or let AI plan your day. 7-day free trial, no card.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -56705,8 +56705,8 @@
    "source_url": "https://screenbrowser.com/for-agents/",
    "repo_url": "https://github.com/screenbrowser/skill",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -56742,8 +56742,8 @@
     "description": "Screen Browser is an MCP server with a skill for Claude Code, Codex, Cursor or any MCP client. Your agent writes the walkthrough from the source code; Screen Browser records your deployed app and returns the narrated video.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -56805,8 +56805,8 @@
    "source_url": "https://recordist.app/developers/mcp",
    "repo_url": "https://github.com/recordist-app/gateway",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -56844,8 +56844,8 @@
     "description": "Fed up with the bot in the room? So were we. Recordist takes the notes from your own computer and asks before every recording. We're opening it in small waves; ask for a place and you're in the draw for a year of Pro.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -56907,8 +56907,8 @@
    "source_url": "https://yungle.co/developers",
    "repo_url": "https://github.com/heindewilde/yungle-clients",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -56946,8 +56946,8 @@
     "description": "Send file transfers, build client collections and sync contacts from your own code. A JSON API with a command-line client and an MCP server; transfers work on the free plan.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -57009,8 +57009,8 @@
    "source_url": "https://zensation.ai/en/open-source",
    "repo_url": "https://github.com/zensation-ai/zenbrain",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -57048,8 +57048,8 @@
     "description": "ZenBrain: an open-source AI memory system in production use. 9 neuroscience algorithms, zero dependencies, TypeScript, Apache 2.0.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -57313,8 +57313,8 @@
    "source_url": "https://parallelsandbox.com/en/",
    "repo_url": "https://github.com/parallel-sandbox/parallelsandbox-mcp",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -57352,8 +57352,8 @@
     "description": "Give Claude Code, Codex or any MCP agent a box: a Linux machine with Docker, a browser on a virtual display, screenshots and recordings, driven through MCP tools. No AI inside; a person can take over the live screen at any time.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -57402,7 +57402,7 @@
     "description": "RewindMap has a free, public MCP server and open data endpoints. AI assistants can ask which states existed in any year, look up an empire's border history, and search dated battles, eruptions and earthquakes.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -57767,8 +57767,8 @@
    "source_url": "https://radicadouno.co/mcp",
    "repo_url": "https://github.com/odela-pixel/radicadouno-mcp",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -57804,8 +57804,8 @@
     "description": "Conecta Claude o tu agente de IA al registro mercantil y la contratación pública de Colombia. Pruébalo sin clave; cada dato con su fuente oficial.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -57817,8 +57817,8 @@
    "source_url": "https://svglab.app/mcp-server",
    "repo_url": "https://github.com/ottoman9/svglab-mcp",
    "first_seen": "2026-09-27",
-   "last_verified": "2026-09-27",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -57854,8 +57854,8 @@
     "description": "The SVG Lab (svglab.app) MCP server lets Claude, ChatGPT, Codex, Cursor and OpenCode design finished screens, icons, illustrations and charts in your SVG Lab account. Remote MCP, no tab needed. Included in the Plus and Max plans.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
-   "repo_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -57954,10 +57954,10 @@
     "description": "Connect Warmerly to ChatGPT or Claude. Find leads, build and launch campaigns, check mailbox health and reply to prospects by asking. Every plan, including Free.",
     "checked": "2026-09-27"
    },
-   "source_checked": "2026-09-27",
+   "source_checked": "2026-10-31",
    "repo_checked": "2026-09-27",
    "source_http": 200,
-   "repo_http": 200
+   "repo_http": 404
   },
   {
    "slug": "policyforge-mcp",
@@ -58019,8 +58019,8 @@
    "source_url": "https://asianrecs.com/claude",
    "repo_url": "https://github.com/raymond-raymond/asianrecs-claude",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58056,8 +58056,8 @@
     "description": "Ask Claude where to eat in San Francisco and New York, ranked by how Asian diners rate each place.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58069,8 +58069,8 @@
    "source_url": "https://github.com/citestamp/mcp",
    "repo_url": "https://github.com/citestamp/mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58106,8 +58106,8 @@
     "description": "Hosted MCP server for CiteStamp: five read-only tools over a CC0 citation graph. What supports, refutes, or cites a paper, and which references do not resolve or are marked retracted. No key required. Endpoint: https://mcp.citestamp.com/mcp - citestamp/mcp",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58219,8 +58219,8 @@
    "source_url": "https://api.liquidagent.ai/",
    "repo_url": "https://github.com/LiquidAgent/liquidagentx402",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58256,8 +58256,8 @@
     "description": "Buy tokenized US stocks and ETFs on-chain. Invest in NVIDIA, Apple, Meta and Alphabet from $1, build and rebalance your own stock basket. No brokerage, no token, no oracle.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58321,8 +58321,8 @@
    "source_url": "https://cooperemail.com",
    "repo_url": "https://github.com/cooper-email/cooper-email",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58358,8 +58358,8 @@
     "description": "Give every agent its own inbox, and a database it can search. One request creates a key and an address. Inbound arrives as a signed webhook. Custom domains start on Starter.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58371,8 +58371,8 @@
    "source_url": "https://github.com/dinglebear-ai/unraid",
    "repo_url": "https://github.com/dinglebear-ai/unraid",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -58410,8 +58410,8 @@
     "description": "Query, monitor, and manage Unraid servers via GraphQL API through MCP tools. Supports system info, Docker, VMs, array/parity, notifications, plugins, rclone, and live telemetry. - dinglebear-ai/unraid",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58629,8 +58629,8 @@
    "source_url": "https://clawfight.ai/platforms",
    "repo_url": "https://github.com/clawfight/mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58666,8 +58666,8 @@
     "description": "Every way to field a Clawfight fighter, cheapest first — including lanes that need no AI subscription — with the setup that actually works for ChatGPT, Claude Code, Codex, Cline and Goose.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58679,8 +58679,8 @@
    "source_url": "https://aicdapi.com/help/mcp-setup",
    "repo_url": "https://github.com/cairn-labs-dev/aicdapi-docs",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58716,8 +58716,8 @@
     "description": "Set up a Streamable HTTP connection and follow the current access rules.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58766,7 +58766,7 @@
     "description": "Create 15–60-second faceless Shorts with licensed stock footage, AI script, voice, and captions. Review the script before rendering. 16:9 YouTube options: 5, 8, or 12 minutes. Start with 60 free credits.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": 404
@@ -58829,8 +58829,8 @@
    "source_url": "https://www.crossingkeyintelligence.com",
    "repo_url": "https://github.com/crossingkey-holdings/crossingkey-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58866,8 +58866,8 @@
     "description": "CrossingKey Intelligence: practical AI, operating systems, local-first tools, and digital resources for people building things that need to hold together.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58879,8 +58879,8 @@
    "source_url": "https://aviansuite.com",
    "repo_url": "https://github.com/kyle-visner/stellarjay",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -58916,8 +58916,8 @@
     "description": "AvianSuite is the company brain AI agents can safely write to. Every change is kept, attributed and reversible, so agents can do real work without risking your data.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58929,8 +58929,8 @@
    "source_url": "https://gtm-api.com/linkedin-mcp-server/",
    "repo_url": "https://github.com/gtm-api/linkedin-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -58968,8 +58968,8 @@
     "description": "A LinkedIn MCP server lets an AI agent search, connect, message and enrich on LinkedIn. The agent-native one is gtm-api.com: add one key to Claude, Cursor or ChatGPT. Across 20,000+ accounts on gtm-api.com, under 1% have ever been restricted.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -58981,8 +58981,8 @@
    "source_url": "https://ai-rete-rag.com",
    "repo_url": "https://github.com/zaharajabeen13-create/ai-rete-rag-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "MCP server, local or remote",
    "zh_transport": "MCP 服务器（本地或远程）",
    "capabilities": [
@@ -59020,8 +59020,8 @@
     "description": "ai·rete·rag pairs a Rete rule engine with retrieval-augmented generation: rules decide the what, auditable and repeatable; retrieval explains the why, grounded in your own documents.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59033,8 +59033,8 @@
    "source_url": "https://mcp.furringline.com/docs",
    "repo_url": "https://github.com/nueyprap/furringline-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59070,8 +59070,8 @@
     "description": "",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59133,8 +59133,8 @@
    "source_url": "https://boothcheck.com/connect",
    "repo_url": "https://github.com/Keenan-ux/boothcheck-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59170,8 +59170,8 @@
     "description": "Add boothcheck to Claude, ChatGPT, Cursor, or any client that speaks MCP. One click for Cursor and VS Code, one command for Claude Code, and step by step for the rest. The free tools need no account.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59337,8 +59337,8 @@
    "source_url": "https://growingupvideo.com",
    "repo_url": "https://github.com/GrowingUpVideo/growingupvideo-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59374,8 +59374,8 @@
     "description": "Upload photos of someone at different ages and get a cinematic AI growing up video (timelapse) in minutes. From $4.90. Perfect for weddings and birthdays.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59437,8 +59437,8 @@
    "source_url": "https://www.eresourcescheduler.com",
    "repo_url": "https://github.com/enbraun-org/eRS-MCP",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59474,8 +59474,8 @@
     "description": "Resource management software that shows real-time availability across teams and projects. Schedule resources, track workloads, and commit with confidence.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59487,8 +59487,8 @@
    "source_url": "https://ludo.ai",
    "repo_url": "https://github.com/Ludo-AI/ludo-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59524,8 +59524,8 @@
     "description": "Production-ready game assets - sprites, icons, UI, textures, music, 3D, and video - generated by AI, ready to drop into your engine. The asset pipeline devs build with.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59637,8 +59637,8 @@
    "source_url": "https://humanuscrit.com/agents/",
    "repo_url": "https://github.com/maxcarriere/humanuscrit",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59674,8 +59674,8 @@
     "description": "Éditeur indépendant français : littérature d’anticipation, textes coécrits avec l’intelligence artificielle. Premier roman : System Down.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59791,8 +59791,8 @@
    "source_url": "https://hunchsheet.app/connectors",
    "repo_url": "https://github.com/Eddy1919/hunch-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59828,8 +59828,8 @@
     "description": "Connect Claude, Claude Code, ChatGPT, Gemini CLI, Cursor or VS Code to Hunch over MCP: hunch_ask, hunch_pick, hunch_score, hunch_multi and hunch_balance, one credit per answered text.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59841,8 +59841,8 @@
    "source_url": "https://arkrel.com",
    "repo_url": "https://github.com/arkrel/arkrel-integrations",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -59878,8 +59878,8 @@
     "description": "Documents in. Verified data out. Extraction that never silently drops a page, a row or a mismatched total.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -59891,8 +59891,8 @@
    "source_url": "https://wikidata-google-knowledge-mcp-1be269.gitlab.io/",
    "repo_url": "https://gitlab.com/revanalex/wikidata-google-knowledge-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -59930,8 +59930,8 @@
     "description": "Open-source MCP server and CLI for bounded Wikidata search, selected facts, optional Google Knowledge Graph cross-checks and deterministic entity resolution.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -60130,10 +60130,10 @@
     "description": "Connect ESPN, Yahoo, or Sleeper fantasy leagues to ChatGPT or Claude with Flaim. Ask about your real roster, matchup, standings, waiver wire, recent moves, and league history without screenshots.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
    "repo_checked": "2026-09-29",
    "source_http": 200,
-   "repo_http": 200
+   "repo_http": 404
   },
   {
    "slug": "securessmtp-securessmtp",
@@ -60193,8 +60193,8 @@
    "source_url": "https://claudeforcompliance.com/mcp/",
    "repo_url": "https://github.com/earl-hash/c4c-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -60230,8 +60230,8 @@
     "description": "An MCP server that puts verbatim mortgage regulatory text into your AI conversation: HUD 4000.1, the Fannie Selling and Servicing Guides, Freddie, Ginnie, VA and USDA. Install steps for Claude, ChatGPT, Claude Code, Cursor and VS Code.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -60293,8 +60293,8 @@
    "source_url": "https://irkumo.com",
    "repo_url": "https://github.com/ozumin-dev/irkumo-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Local MCP server (stdio)",
    "zh_transport": "本地 MCP 服务器（stdio）",
    "capabilities": [
@@ -60332,8 +60332,8 @@
     "description": "上場企業のIRページURLと決算短信一覧URLを証券コード･社名･別名で引けるAPI｡",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -60547,8 +60547,8 @@
    "source_url": "https://www.apmzoom.com",
    "repo_url": "https://github.com/apmleokeo-gif/apmzoom-mcp",
    "first_seen": "2026-09-29",
-   "last_verified": "2026-09-29",
-   "status": "new",
+   "last_verified": "2026-10-31",
+   "status": "verified",
    "transport": "Remote MCP server (HTTP)",
    "zh_transport": "远程 MCP 服务器（HTTP）",
    "capabilities": [
@@ -60584,8 +60584,8 @@
     "description": "Official platform of Korea's apM Group. apMZoomAI connects thousands of Dongdaemun fashion wholesalers with global buyers — AI sourcing, 8 languages, one-tap ordering & live reconciliation.",
     "checked": "2026-09-29"
    },
-   "source_checked": "2026-09-29",
-   "repo_checked": "2026-09-29",
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
    "source_http": 200,
    "repo_http": 200
   },
@@ -131967,6 +131967,2661 @@
     "checked": "2026-10-30"
    },
    "source_checked": "2026-10-30",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcheckoutapi-agent-checkout",
+   "name": "Agent Checkout",
+   "category": "mcp",
+   "description": "AI shopping gateway for product search, inventory, carts, and merchant-hosted checkout.",
+   "source_url": "https://agentcheckoutapi.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentcheckoutapi/agent-checkout",
+    "version": "0.2.0",
+    "updated": "2026-08-31",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcollect-ar-analyst",
+   "name": "AgentCollect",
+   "category": "mcp",
+   "description": "Ask your accounts-receivable portfolio anything. Read-only, scoped to your account.",
+   "source_url": "https://www.agentcollect.com/docs/mcp",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentcollect/ar-analyst",
+    "version": "1.0.0",
+    "updated": "2026-09-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcompanyindex-directory",
+   "name": "Agent Company Index",
+   "category": "mcp",
+   "description": "Curated index of B2B offerings for AI agents: fit, non-fit, limits, sourced claims.",
+   "source_url": "https://agentcompanyindex.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentcompanyindex/directory",
+    "version": "1.0.0",
+    "updated": "2026-09-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcreditdata-agent-credit-bureau",
+   "name": "Agent Credit Bureau",
+   "category": "mcp",
+   "description": "Economic evidence for AI agents. Paid x402 reports in Base USDC; no credit score.",
+   "source_url": "https://agentcreditdata.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentcreditdata/agent-credit-bureau",
+    "version": "0.2.0",
+    "updated": "2026-09-27",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentdistributionservices-agent-distribution",
+   "name": "Agent Distribution",
+   "category": "mcp",
+   "description": "Free distribution preflight: channel candidates and permissions. No paid orders or publishing.",
+   "source_url": "https://agentdistributionservices.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentdistributionservices/agent-distribution",
+    "version": "0.1.0",
+    "updated": "2026-09-28",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentery-agentery",
+   "name": "agentery",
+   "category": "mcp",
+   "description": "Price benchmarks, alternatives & daily price history across 17,000+ AI agents and MCP servers.",
+   "source_url": "https://agentery.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentery/agentery",
+    "version": "1.8.0",
+    "updated": "2026-09-05",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentfenster-agentfenster",
+   "name": "agentfenster",
+   "category": "mcp",
+   "description": "Windows GUI automation on a hidden second desktop, driven from Claude Code over MCP.",
+   "source_url": "https://agentfenster.com/mcp",
+   "repo_url": "https://github.com/clemensjl/agentfenster-mcp",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Local MCP server (stdio)",
+   "zh_transport": "本地 MCP 服务器（stdio）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-stdio",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentfenster/agentfenster",
+    "version": "0.1.0",
+    "updated": "2026-08-08",
+    "packages": [
+     "pypi"
+    ],
+    "remotes": false
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenthelpnetwork-agent-help-network",
+   "name": "Agent Help Network",
+   "category": "mcp",
+   "description": "Public host evidence for blocked web tasks: provider status, lookup activity, unverified reports.",
+   "source_url": "https://agenthelpnetwork.com/en/",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agenthelpnetwork/agent-help-network",
+    "version": "0.1.0",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentic-endpoints-agentic-endpoints",
+   "name": "Agentic Endpoints",
+   "category": "mcp",
+   "description": "Pay-per-call tools for autonomous agents, settled in USDC on Base via x402.",
+   "source_url": "https://agentic-endpoints.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentic-endpoints/agentic-endpoints",
+    "version": "1.0.0",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenticcontrolplane-acp-mcp-server",
+   "name": "acp-mcp-server",
+   "category": "mcp",
+   "description": "See, price, and control every tool call your AI agents make: policy checks, cost, and audit tools.",
+   "source_url": "https://agenticcontrolplane.com",
+   "repo_url": "https://github.com/davidcrowe/acp-mcp-server",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agenticcontrolplane/acp-mcp-server",
+    "version": "0.3.0",
+    "updated": "2026-07-28",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agentickeychain-agentic-keychain",
+   "name": "Agentic Keychain",
+   "category": "mcp",
+   "description": "Agent Skill ROI Registry & Benchmarking. It sells skills for log triage and repository mapping.",
+   "source_url": "https://agentickeychain.com/",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentickeychain/agentic-keychain",
+    "version": "0.2.0",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenticsuperhero-agent-exchange",
+   "name": "Agent Exchange",
+   "category": "mcp",
+   "description": "Where AI agents help AI agents: search past answers, ask questions, and chat in topic rooms.",
+   "source_url": "https://agenticsuperhero.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agenticsuperhero/agent-exchange",
+    "version": "1.1.0",
+    "updated": "2026-09-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentictotem-web-extractor",
+   "name": "AgenticTotem Web Extractor",
+   "category": "mcp",
+   "description": "AI web extraction: send URLs + a JSON Schema, get clean structured data. Pay-per-use via x402.",
+   "source_url": "https://agentictotem.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentictotem/web-extractor",
+    "version": "1.0.5",
+    "updated": "2026-03-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentio-brand-connector",
+   "name": "Agentio",
+   "category": "mcp",
+   "description": "Ask about your Agentio campaigns, Creator deals, and performance on YouTube and Meta. Read-only.",
+   "source_url": "https://www.agentio.com/connector",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentio/brand-connector",
+    "version": "1.0.1",
+    "updated": "2026-08-11",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentlefs-agentlefs",
+   "name": "agentleFS",
+   "category": "mcp",
+   "description": "Agent permissions for the files your team shares",
+   "source_url": "https://agentlefs.com/docs/connect?ref=official-registry",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentlefs/agentlefs",
+    "version": "0.3.1",
+    "updated": "2026-09-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentlinkops-agentlinkops",
+   "name": "AgentLinkOps",
+   "category": "mcp",
+   "description": "Backlink monitoring with dated fetch evidence; checks and change events continue after the chat.",
+   "source_url": "https://docs.agentlinkops.com/quickstart",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentlinkops/agentlinkops",
+    "version": "0.5.2-registry.1",
+    "updated": "2026-09-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentonair-podcasts",
+   "name": "AgentOnAir",
+   "category": "mcp",
+   "description": "Search and play AI-hosted podcasts; preview launching your agent's own show.",
+   "source_url": "https://agentonair.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentonair/podcasts",
+    "version": "1.0.0",
+    "updated": "2026-09-28",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentoolrank-agent-tools",
+   "name": "AgentoolRank",
+   "category": "mcp",
+   "description": "Search, compare and list 460+ open-source AI agent tools ranked by live GitHub activity.",
+   "source_url": "https://agentoolrank.com/agents",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentoolrank/agent-tools",
+    "version": "1.0.1",
+    "updated": "2026-09-30",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentrevenuenetwork-agent-revenue-network",
+   "name": "Agent Revenue Network",
+   "category": "mcp",
+   "description": "Deterministic JSON, routing and verification tools for AI agents, paid via x402 USDC on Base.",
+   "source_url": "https://www.agentrevenuenetwork.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentrevenuenetwork/agent-revenue-network",
+    "version": "1.2.3",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentrux-agentrux",
+   "name": "AgenTrux",
+   "category": "mcp",
+   "description": "Authenticated event topics for agent-to-agent messaging with per-agent credentials and audit logs.",
+   "source_url": "https://docs.agentrux.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentrux/agentrux",
+    "version": "1.0.0",
+    "updated": "2026-09-09",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agents-agents-parley",
+   "name": "parley",
+   "category": "mcp",
+   "description": "An exclusive club for agents, built by agents. Every board route as a tool; rules public first.",
+   "source_url": "https://agents-agents-agents.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agents-agents-agents/parley",
+    "version": "1.0.0",
+    "updated": "2026-09-21",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agents-wiki-agents-wiki",
+   "name": "Agents Wiki",
+   "category": "mcp",
+   "description": "Knowledge base for AI agents: search, read, tasks; write, correct, report outcomes via /mcp/write.",
+   "source_url": "https://agents-wiki.com/connect",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agents-wiki/agents-wiki",
+    "version": "0.8.0",
+    "updated": "2026-09-25",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentsgetpaidmore-agents-get-paid-kit",
+   "name": "Agents Get Paid Kit — x402 MCP + Unlock ($49)",
+   "category": "mcp",
+   "description": "Call get_quote, then buy_kit (49 USDC Base x402). Humans keep #pay.",
+   "source_url": "https://agentsgetpaidmore.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agentsgetpaidmore/agents-get-paid-kit",
+    "version": "0.1.2",
+    "updated": "2026-08-27",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenttoolworks-invoiceforge",
+   "name": "InvoiceForge",
+   "category": "mcp",
+   "description": "Generate, validate and read EN 16931 and Peppol BIS 3.0 e-invoices, in UBL and CII.",
+   "source_url": "https://agenttoolworks.com/servers/invoiceforge",
+   "repo_url": "https://github.com/agenttoolworks/mcp-servers",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agenttoolworks/invoiceforge",
+    "version": "1.0.0",
+    "updated": "2026-09-30",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenttrafficlab-atl",
+   "name": "Agent Traffic Lab",
+   "category": "mcp",
+   "description": "Execute supported agent tasks through verified providers with fallback and durable outcomes.",
+   "source_url": "https://agenttrafficlab.com",
+   "repo_url": "https://github.com/wenhua6666668-oss/agent-traffic-lab-mcp",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agenttrafficlab/atl",
+    "version": "0.1.6",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aggors-merchant-evidence",
+   "name": "Aggors Merchant Evidence",
+   "category": "mcp",
+   "description": "Read-only observable merchant evidence for people and agents, without scores or safety verdicts.",
+   "source_url": "https://aggors.com/merchant-evidence-api",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aggors/merchant-evidence",
+    "version": "1.0.0",
+    "updated": "2026-08-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aggreigator-pro",
+   "name": "AggREIgator Pro",
+   "category": "mcp",
+   "description": "Manage AggREIgator buy-boxes and compliant real-estate deal workflows",
+   "source_url": "https://aggreigator.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aggreigator/pro",
+    "version": "1.0.0",
+    "updated": "2026-08-12",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agiscorecard-agi-scorecard",
+   "name": "agi-scorecard",
+   "category": "mcp",
+   "description": "8 graded AGI-2027 predictions, the 0-100 Thesis Tracker, and a public market-call ledger. Free.",
+   "source_url": "https://agiscorecard.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agiscorecard/agi-scorecard",
+    "version": "1.0.0",
+    "updated": "2026-08-15",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agntpad-agntpad",
+   "name": "agntpad",
+   "category": "mcp",
+   "description": "Read, search, and publish files in your organization's Spaces using Microsoft work sign-in.",
+   "source_url": "https://agntpad.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agntpad/agntpad",
+    "version": "0.1.0",
+    "updated": "2026-09-13",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agoraverify-agora-omega",
+   "name": "AGORA Omega",
+   "category": "mcp",
+   "description": "Pay-per-call checks for AI agents: sanctions, MiCA, French KYB, AI Act. USDC via x402.",
+   "source_url": "https://agoraverify.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agoraverify/agora-omega",
+    "version": "1.1.0",
+    "updated": "2026-10-02",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agorean-agorean",
+   "name": "Agorean",
+   "category": "mcp",
+   "description": "Where AI agents buy and sell from each other, paid wallet to wallet in USDC on Base.",
+   "source_url": "https://agorean.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.agorean/agorean",
+    "version": "0.2.0",
+    "updated": "2026-09-30",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aguassb-artemisia",
+   "name": "Artemisia · Aguas SB",
+   "category": "mcp",
+   "description": "Orientación sobre agua de pozo, vertidos y reutilización, con lo publicado por Aguas SB.",
+   "source_url": "https://aguassb.com/artemisia/",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aguassb/artemisia",
+    "version": "0.4.1",
+    "updated": "2026-09-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-agents-make-money-here-mcp",
+   "name": "AI Agents Make Money Here",
+   "category": "mcp",
+   "description": "Earn 1 USDC on the internet: pay 10 USDC on Base, get 1 USDC back plus a signed receipt of earnings.",
+   "source_url": "https://ai-agents-make-money-here.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-agents-make-money-here/mcp",
+    "version": "1.0.0",
+    "updated": "2026-09-15",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-agents-pitstop-pitstop",
+   "name": "AI Agents Pitstop",
+   "category": "mcp",
+   "description": "Human approvals, autonomy limits and a chained audit log for the AI agents of service firms.",
+   "source_url": "https://ai-agents-pitstop.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-agents-pitstop/pitstop",
+    "version": "5.0.0",
+    "updated": "2026-10-02",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-erd-ai-erd",
+   "name": "AI-ERD",
+   "category": "mcp",
+   "description": "AI-powered ERD design tool. Create and manage database schemas using DBML with real-time canvas.",
+   "source_url": "https://ai-erd.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-erd/ai-erd",
+    "version": "1.0.0",
+    "updated": "2025-12-29",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-for-av-ai-for-av",
+   "name": "ai-for-av",
+   "zh_name": "AV女優判定AI",
+   "category": "mcp",
+   "description": "MCP server listed in the official MCP registry; the publisher did not provide an English description.",
+   "source_url": "https://ai-for-av.com/ai-assistant",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "日本の成人向け作品 (18歳以上) の出演者・作品検索。画像からの出演者判定はサイトで発行する認証コードが必要。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-for-av/ai-for-av",
+    "version": "1.0.0",
+    "updated": "2026-09-24",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-gist-aigist",
+   "name": "Aigist",
+   "category": "mcp",
+   "description": "Publish & manage shareable HTML/Markdown pages from your LLM, with access control.",
+   "source_url": "https://github.com/marshallino16/aigist-mcp",
+   "repo_url": "https://github.com/marshallino16/aigist-mcp",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "public repository is the official page",
+   "zh_evidence_level": "公开仓库即官方页面",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "repo-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-gist/aigist",
+    "version": "1.0.0",
+    "updated": "2026-07-08",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ai-law-tracker-ai-law-tracker",
+   "name": "AI Law Tracker",
+   "category": "mcp",
+   "description": "Audited AI-regulation data: laws, bills, news and obligations across US, EU and 62 jurisdictions",
+   "source_url": "https://ai-law-tracker.com/developers",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-law-tracker/ai-law-tracker",
+    "version": "1.0.1",
+    "updated": "2026-08-06",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-maxx-public-passports",
+   "name": "AI MAXX Public Passports",
+   "category": "mcp",
+   "description": "Instant Malta visit facts and AI consultation: activities, dining, venues, photos and routes.",
+   "source_url": "https://www.ai-maxx.com/connect/",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-maxx.www/public-passports",
+    "version": "1.2.0",
+    "updated": "2026-10-01",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-semantica-semantica-ai",
+   "name": "Semantica AI — AI Search Visibility",
+   "category": "mcp",
+   "description": "Monitor brand visibility, citations, competitors, sentiment, and GEO performance in AI search.",
+   "source_url": "https://ai-semantica.com/mcp",
+   "repo_url": "https://github.com/SemanticaAI/semantica",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-semantica/semantica-ai",
+    "version": "0.1.0",
+    "updated": "2026-08-13",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "ai-translators-ai-translators",
+   "name": "AI-Translators",
+   "category": "mcp",
+   "description": "Transcribe, subtitle and dub videos into 100+ languages, and translate text.",
+   "source_url": "https://www.ai-translators.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.ai-translators.www/ai-translators",
+    "version": "1.0.0",
+    "updated": "2026-09-19",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiactradar-ai-act-radar",
+   "name": "AI Act Radar",
+   "category": "mcp",
+   "description": "EU AI Act obligations and updates from ten official sources, incl. the national layer.",
+   "source_url": "https://aiactradar.com",
+   "repo_url": "https://github.com/ligea-gmbh/aiactradar-examples",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aiactradar/ai-act-radar",
+    "version": "0.1.0",
+    "updated": "2026-08-04",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiakiv-memory",
+   "name": "AiAkiv Memory",
+   "category": "mcp",
+   "description": "Shared long-term memory for AI agents: save and recall context as a searchable knowledge graph.",
+   "source_url": "https://www.aiakiv.com",
+   "repo_url": "https://github.com/AiAkiv/aiakiv-plugins",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aiakiv/memory",
+    "version": "1.0.0",
+    "updated": "2026-07-27",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aialtfinder-aialtfinder",
+   "name": "AI Alt Finder",
+   "category": "mcp",
+   "description": "Alternatives to well-known AI tools, with revenue verified through Stripe, never invented.",
+   "source_url": "https://aialtfinder.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aialtfinder/aialtfinder",
+    "version": "1.0.0",
+    "updated": "2026-08-20",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aianyone-ai-anyone",
+   "name": "AI Anyone",
+   "category": "mcp",
+   "description": "Talk to thousands of real people, or put two of them in a room and watch them argue.",
+   "source_url": "https://aianyone.com/mcp",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aianyone/ai-anyone",
+    "version": "1.2.0",
+    "updated": "2026-09-19",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aicryptosniper-ai-crypto-sniper-mcp",
+   "name": "AI Crypto Sniper MCP",
+   "category": "mcp",
+   "description": "AI-assisted Solana trading bot with 331 MCP tools across Meme, Spot, Perpetuals, and Mirror modes.",
+   "source_url": "https://aicryptosniper.com/mcp/",
+   "repo_url": "https://github.com/solara-sniper-bot/AI-Crypto-Sniper-MCP",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Local MCP server (stdio)",
+   "zh_transport": "本地 MCP 服务器（stdio）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-stdio",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aicryptosniper/ai-crypto-sniper-mcp",
+    "version": "5.0.0",
+    "updated": "2026-09-17",
+    "packages": [
+     "pypi"
+    ],
+    "remotes": false
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "aidailybrew-aidailybrew",
+   "name": "AI Daily Brew",
+   "category": "mcp",
+   "description": "A wall of people building with AI: who is building what, and where to reach them.",
+   "source_url": "https://aidailybrew.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aidailybrew/aidailybrew",
+    "version": "1.0.0",
+    "updated": "2026-09-21",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aidemos-catalogue",
+   "name": "FutureSmart AI Demos",
+   "category": "mcp",
+   "description": "Search evidence-backed AI-tool reviews, rankings, use cases, comparisons & toolkits (read-only).",
+   "source_url": "https://aidemos.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aidemos/catalogue",
+    "version": "2.0.0",
+    "updated": "2026-07-23",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aidevboard-jobs",
+   "name": "AI Dev Jobs",
+   "category": "mcp",
+   "description": "MCP for 8,700+ current AI jobs. 13 tools: search, match, salaries, companies, commerce quotes.",
+   "source_url": "https://aidevboard.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aidevboard/jobs",
+    "version": "1.6.2",
+    "updated": "2026-05-08",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiesphere-jobs",
+   "name": "AiESphere",
+   "category": "mcp",
+   "description": "Search jobs, tailor your resume, write cover letters, and file applications for you.",
+   "source_url": "https://aiesphere.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aiesphere/jobs",
+    "version": "1.0.0",
+    "updated": "2026-08-14",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aifordatabase-aifordatabase",
+   "name": "AI for Database",
+   "category": "mcp",
+   "description": "Ask your databases questions in plain English, run read-only SQL and set up data alerts.",
+   "source_url": "https://www.aifordatabase.com/ai-connector",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aifordatabase/aifordatabase",
+    "version": "1.0.0",
+    "updated": "2026-09-30",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": null,
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aihomedesign-mcp",
+   "name": "AI HomeDesign MCP",
+   "category": "mcp",
+   "description": "MCP server to virtually stage, redesign, enhance and declutter real-estate photos.",
+   "source_url": "https://aihomedesign.com/mcp",
+   "repo_url": "https://github.com/AIHomeDesign/aihomedesign-mcp",
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage and public repository",
+   "zh_evidence_level": "官方主页与公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-and-repo"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aihomedesign/aihomedesign-mcp",
+    "version": "1.0.0",
+    "updated": "2026-07-09",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
+   "repo_checked": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiimplementationcost-site",
+   "name": "site",
+   "category": "mcp",
+   "description": "AI Implementation Cost: the site's own MCP server — calculator, enquiry (enquiry = a human...",
+   "source_url": "https://aiimplementationcost.com",
+   "repo_url": null,
+   "first_seen": "2026-10-31",
+   "last_verified": "2026-10-31",
+   "status": "new",
+   "transport": "Remote MCP server (HTTP)",
+   "zh_transport": "远程 MCP 服务器（HTTP）",
+   "capabilities": [
+    "MCP server"
+   ],
+   "zh_capabilities": [
+    "MCP 服务器"
+   ],
+   "pricing_note": "Pricing not stated on the checked page",
+   "zh_pricing_note": "核验页面未标明价格",
+   "evidence_level": "official homepage; no public repository",
+   "zh_evidence_level": "官方主页；无公开仓库",
+   "zh_description": "官方 MCP 注册表收录的 MCP 服务器；描述以发布者的英文原文为准。",
+   "zh_category": "MCP 服务器、客户端与注册表",
+   "keys": {
+    "transport": "mcp-remote",
+    "capabilities": [
+     "mcp-server"
+    ],
+    "pricing": "unstated",
+    "evidence": "official-only"
+   },
+   "origin": "mcp-registry",
+   "registry": {
+    "name": "com.aiimplementationcost/site",
+    "version": "1.0.1",
+    "updated": "2026-10-03",
+    "packages": [],
+    "remotes": true
+   },
+   "official": {
+    "title": "",
+    "description": "",
+    "checked": "2026-10-31"
+   },
+   "source_checked": "2026-10-31",
    "repo_checked": null,
    "source_http": 200,
    "repo_http": null

@@ -1,19 +1,19 @@
 {
- "generated": "2026-10-30",
+ "generated": "2026-10-31",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "fish-audio",
-  "github-models",
-  "immersive-translate",
-  "liblib",
-  "metaso",
-  "ms-copilot",
-  "google-ai-studio",
-  "groq"
+  "bing-image",
+  "caiyun",
+  "playground-ai",
+  "processon",
+  "scispace",
+  "wenxin",
+  "canva",
+  "cohere"
  ],
- "cursor": "groq",
+ "cursor": "cohere",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -203,28 +203,31 @@
    "slug": "canva",
    "name": "Canva 可画",
    "cat": "image",
-   "reach": 0,
-   "probed": "2026-10-19",
+   "reach": 2,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "blocked",
    "tried": [
     {
      "url": "https://www.canva.cn/pricing",
-     "status": 403,
+     "status": 0,
      "bytes": 0,
-     "tokens": 0
+     "tokens": 0,
+     "error": "ETIMEDOUT"
     },
     {
      "url": "https://www.canva.cn/price",
-     "status": 403,
+     "status": 0,
      "bytes": 0,
-     "tokens": 0
+     "tokens": 0,
+     "error": "ETIMEDOUT"
     },
     {
      "url": "https://www.canva.cn/plans",
-     "status": 403,
+     "status": 0,
      "bytes": 0,
-     "tokens": 0
+     "tokens": 0,
+     "error": "ETIMEDOUT"
     }
    ],
    "best": null
@@ -902,7 +905,7 @@
    "name": "Bing 图像创作",
    "cat": "image",
    "reach": 3,
-   "probed": "2026-10-18",
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -931,8 +934,8 @@
    "slug": "caiyun",
    "name": "彩云小译",
    "cat": "writing",
-   "reach": 2,
-   "probed": "2026-10-18",
+   "reach": 3,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1082,21 +1085,21 @@
    "slug": "cohere",
    "name": "Cohere",
    "cat": "api",
-   "reach": 0,
-   "probed": "2026-10-20",
+   "reach": 2,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://cohere.com/pricing",
      "status": 200,
-     "bytes": 577507,
-     "tokens": 45
+     "bytes": 577197,
+     "tokens": 41
     }
    ],
    "best": {
     "url": "https://cohere.com/pricing",
-    "tokens": 45,
+    "tokens": 41,
     "excerpt": "will be billed on a pay-as-you-go basis. Your bill will be issued at the end of every calendar month or when you reach $250 in outstanding balances. The endpoint I’m using is billed by token. What is a token? Language models understand “tokens” rather than characters or bytes. The number of tokens per word depends on the complexity of the text. Simple text may approach 1 token per word on average, while complex texts may use less common words that require 3-4 tokens per word on average. For more details on tokens, refer to this page . Where do I find pricing for our legacy models? For existing customers: Command pricing is $1.00/1M tokens for input and $2.00/1M tokens for output Command-ligh"
    }
   },
@@ -2357,15 +2360,15 @@
    "slug": "playground-ai",
    "name": "Playground AI",
    "cat": "image",
-   "reach": 0,
-   "probed": "2026-10-26",
+   "reach": 3,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://playgroundai.com/design/pricing",
      "status": 200,
-     "bytes": 170923,
+     "bytes": 170932,
      "tokens": 8
     }
    ],
@@ -2401,8 +2404,8 @@
    "slug": "processon",
    "name": "ProcessOn",
    "cat": "office",
-   "reach": 0,
-   "probed": "2026-10-14",
+   "reach": 3,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2593,15 +2596,15 @@
    "slug": "scispace",
    "name": "SciSpace",
    "cat": "study",
-   "reach": 0,
-   "probed": "2026-10-14",
+   "reach": 3,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://typeset.io/pricing",
      "status": 200,
-     "bytes": 136928,
+     "bytes": 142788,
      "tokens": 0
     },
     {
@@ -3005,27 +3008,27 @@
    "slug": "wenxin",
    "name": "文心一言（百度）",
    "cat": "chat",
-   "reach": 5,
-   "probed": "2026-10-17",
+   "reach": 3,
+   "probed": "2026-10-31",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://yiyan.baidu.com/pricing",
      "status": 200,
-     "bytes": 11143,
+     "bytes": 11152,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/price",
      "status": 200,
-     "bytes": 11131,
+     "bytes": 11114,
      "tokens": 0
     },
     {
      "url": "https://yiyan.baidu.com/plans",
      "status": 200,
-     "bytes": 11167,
+     "bytes": 11184,
      "tokens": 0
     }
    ],

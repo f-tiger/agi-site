@@ -1,24 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 0,
+  "queryIndex": 6,
   "page": 2,
   "pending": [
-   {
-    "repo": "youssofal/MTPLX",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "PurpleDoubleD/locally-uncensored",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "ddalcu/mlx-serve",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "AtomicBot-ai/Atomic-Chat",
     "topic": "agents",
@@ -130,11 +115,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "PaddlePaddle/PaddleX",
-    "topic": "audio",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "flyteorg/flyte",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -158,11 +138,6 @@
     "repo": "YishenTu/claudian",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "RunanywhereAI/runanywhere-sdks",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
     "repo": "xorbitsai/inference",
@@ -237,11 +212,6 @@
    {
     "repo": "GiovanniPasq/agentic-rag-for-dummies",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "RUC-NLPIR/FlashRAG",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -462,11 +432,6 @@
    {
     "repo": "s1dashu/ip-as-logo-skill",
     "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "mcmonkeyprojects/SwarmUI",
-    "topic": "image",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -700,11 +665,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "ModelTC/LightX2V",
-    "topic": "video",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "NVlabs/LongLive",
     "topic": "video",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -855,11 +815,6 @@
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
-    "repo": "ClickHouse/ClickHouse",
-    "topic": "everyday",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
     "repo": "gogs/gogs",
     "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
@@ -908,11 +863,6 @@
     "repo": "gethomepage/homepage",
     "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "bhimrazy/receipt-ocr",
-    "topic": "documents",
-    "foundAt": "2026-10-06T06:50:25.349Z"
    },
    {
     "repo": "Mesh-LLM/mesh-llm",
@@ -1830,11 +1780,6 @@
     "foundAt": "2026-10-11T06:21:02.155Z"
    },
    {
-    "repo": "The-FinAI/PIXIU",
-    "topic": "ai",
-    "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
     "repo": "crmne/ruby_llm",
     "topic": "agents",
     "foundAt": "2026-10-11T06:21:02.155Z"
@@ -2372,11 +2317,6 @@
    {
     "repo": "Yzw202011/OmniSpace",
     "topic": "knowledge",
-    "foundAt": "2026-10-20T05:13:44.274Z"
-   },
-   {
-    "repo": "Chevey339/kelivo",
-    "topic": "chat",
     "foundAt": "2026-10-20T05:13:44.274Z"
    },
    {
@@ -2918,6 +2858,151 @@
     "repo": "QuantumNous/new-api",
     "topic": "everyday",
     "foundAt": "2026-10-30T06:22:11.133Z"
+   },
+   {
+    "repo": "Open-Less/openless",
+    "topic": "audio",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "vmoranv/jshookmcp",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "existence-master/Sentient",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "CatVinci-Studio/Textus",
+    "topic": "ai",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "pbek/QOwnNotes",
+    "topic": "ai",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "liuda30201/AI-Coding",
+    "topic": "coding",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "NVIDIA/raft",
+    "topic": "ai",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "DemonDamon/AgenticX",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "ginlix-ai/LangAlpha",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "sou350121/VLA-Handbook",
+    "topic": "ai",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "ROCm/FastFlowLM",
+    "topic": "ai",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "ZaxbyHub/opencode-swarm",
+    "topic": "coding",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "code-yeongyu/senpi",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "GoDiao/dreamcoder",
+    "topic": "coding",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "NirDiamant/agents-towards-production",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "ANative-Lab/EvoAgentX",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "NirDiamant/GenAI_Agents",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "NirDiamant/Agent_Memory_Techniques",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "NirDiamant/Controllable-RAG-Agent",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "yfedoseev/pdf_oxide",
+    "topic": "knowledge",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "apocas/restai",
+    "topic": "knowledge",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "askimo-ai/askimo",
+    "topic": "coding",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "pixeltable/pixeltable",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "doobidoo/mcp-memory-service",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "Agenta-AI/agenta",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "ForceInjection/AI-fundamentals",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "rddmwmddr/android-ad-cleaner",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "Paca-AI/paca",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
+   },
+   {
+    "repo": "lsdefine/GenericAgent",
+    "topic": "agents",
+    "foundAt": "2026-10-31T06:14:25.984Z"
    }
   ],
   "checked": {
@@ -3028,11 +3113,17 @@
    "gh-run-llama-liteparse-29b690": "2026-10-29T06:24:02.425Z",
    "gh-h2oai-h2o-llmstudio-c9773f": "2026-10-29T06:24:02.425Z",
    "gh-lissy93-dashy-b79661": "2026-10-29T06:24:02.425Z",
-   "gh-ymcui-chinese-llama-alpaca-00d7df": "2026-10-29T06:24:02.425Z"
+   "gh-ymcui-chinese-llama-alpaca-00d7df": "2026-10-29T06:24:02.425Z",
+   "gh-the-vibe-company-quivr-1020fc": "2026-10-31T06:14:25.984Z",
+   "gh-codewhale-hq-codewhale-3d1577": "2026-10-31T06:14:25.984Z",
+   "gh-getagentseal-codeburn-b51305": "2026-10-31T06:14:25.984Z",
+   "gh-espnet-espnet-49a67d": "2026-10-31T06:14:25.984Z",
+   "gh-noahgsolomon-brainrot-js-065efb": "2026-10-31T06:14:25.984Z",
+   "gh-datalab-to-chandra-cab512": "2026-10-31T06:14:25.984Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.pipeworx-io/catnap:0.2.0",
+  "cursor": "io.github.pipeworx-io/retractions:0.2.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4156,7 +4247,47 @@
    "loppee-loppee": "2026-10-30T06:22:11.133Z",
    "marketmayhem-mcp": "2026-10-30T06:22:11.133Z",
    "meetclair-clair": "2026-10-30T06:22:11.133Z",
-   "openworklabs-openwork": "2026-10-30T06:22:11.133Z"
+   "openworklabs-openwork": "2026-10-30T06:22:11.133Z",
+   "parallelsandbox-parallelsandbox": "2026-10-31T06:14:25.984Z",
+   "radicadouno-mcp": "2026-10-31T06:14:25.984Z",
+   "reassign-reassign": "2026-10-31T06:14:25.984Z",
+   "recordist-gateway": "2026-10-31T06:14:25.984Z",
+   "rewindmap-rewindmap": "2026-10-31T06:14:25.984Z",
+   "screenbrowser-screenbrowser": "2026-10-31T06:14:25.984Z",
+   "svglab-svglab": "2026-10-31T06:14:25.984Z",
+   "voxell-forge": "2026-10-31T06:14:25.984Z",
+   "warmerly-warmerly": "2026-10-31T06:14:25.984Z",
+   "yungle-yungle": "2026-10-31T06:14:25.984Z",
+   "zensation-zenbrain": "2026-10-31T06:14:25.984Z",
+   "ai-rete-rag-mcp": "2026-10-31T06:14:25.984Z",
+   "aicdapi-records": "2026-10-31T06:14:25.984Z",
+   "apmzoom-dongdaemun": "2026-10-31T06:14:25.984Z",
+   "arkrel-arkrel": "2026-10-31T06:14:25.984Z",
+   "asianrecs-asianrecs": "2026-10-31T06:14:25.984Z",
+   "aviansuite-stellar-jay": "2026-10-31T06:14:25.984Z",
+   "boothcheck-boothcheck": "2026-10-31T06:14:25.984Z",
+   "citestamp-citestamp": "2026-10-31T06:14:25.984Z",
+   "claudeforcompliance-mortgage-regs": "2026-10-31T06:14:25.984Z",
+   "clawfight-mcp": "2026-10-31T06:14:25.984Z",
+   "cloud-eresourcescheduler-eresource-scheduler": "2026-10-31T06:14:25.984Z",
+   "cooperemail-cooper-email": "2026-10-31T06:14:25.984Z",
+   "crossingkeyintelligence-crossingkey-mcp": "2026-10-31T06:14:25.984Z",
+   "davisvillelabs-filmrights-filmrightsproof": "2026-10-31T06:14:25.984Z",
+   "devplane-site": "2026-10-31T06:14:25.984Z",
+   "dinglebear-unraid-mcp": "2026-10-31T06:14:25.984Z",
+   "discordservers-search": "2026-10-31T06:14:25.984Z",
+   "docnexus-mcp-docnexus": "2026-10-31T06:14:25.984Z",
+   "dondego-wikidata-google-knowledge-mcp": "2026-10-31T06:14:25.984Z",
+   "flaim-mcp": "2026-10-31T06:14:25.984Z",
+   "furringline-mcp-furringline": "2026-10-31T06:14:25.984Z",
+   "ghostviralai-ghostviral": "2026-10-31T06:14:25.984Z",
+   "growingupvideo-growingupvideo": "2026-10-31T06:14:25.984Z",
+   "gtm-api-linkedin-mcp": "2026-10-31T06:14:25.984Z",
+   "humanuscrit-happ": "2026-10-31T06:14:25.984Z",
+   "hunchsheet-hunch": "2026-10-31T06:14:25.984Z",
+   "irkumo-mcp": "2026-10-31T06:14:25.984Z",
+   "liquidagent-api-liquid-agent": "2026-10-31T06:14:25.984Z",
+   "ludo-game-assets": "2026-10-31T06:14:25.984Z"
   }
  }
 }

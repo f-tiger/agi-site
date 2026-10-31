@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-30",
+ "checked": "2026-10-31",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3420,6 +3420,69 @@
    "source_http": null,
    "repo_http": null,
    "reason": "unsafe-url"
+  },
+  "agentpmt-agentpmt": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "agentsconsultants-api-docqa": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "agentsprice-agentsprice": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 503,
+   "repo_http": null,
+   "reason": "source HTTP 503"
+  },
+  "ai-rook-agents-trading-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "ai2fin-tax-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "aibooma-agent-registry": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "aigramx-aigramx": {
+   "attempts": 1,
+   "first_attempt": "2026-10-31",
+   "last_attempt": "2026-10-31",
+   "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
   }
  },
  "admitted": [
@@ -17824,6 +17887,324 @@
   {
    "slug": "agentcdn-arv",
    "date": "2026-10-30",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcheckoutapi-agent-checkout",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcollect-ar-analyst",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcompanyindex-directory",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentcreditdata-agent-credit-bureau",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentdistributionservices-agent-distribution",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentery-agentery",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentfenster-agentfenster",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenthelpnetwork-agent-help-network",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentic-endpoints-agentic-endpoints",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenticcontrolplane-acp-mcp-server",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agentickeychain-agentic-keychain",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenticsuperhero-agent-exchange",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentictotem-web-extractor",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentio-brand-connector",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentlefs-agentlefs",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentlinkops-agentlinkops",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentonair-podcasts",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentoolrank-agent-tools",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentrevenuenetwork-agent-revenue-network",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentrux-agentrux",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agents-agents-parley",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agents-wiki-agents-wiki",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agentsgetpaidmore-agents-get-paid-kit",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agenttoolworks-invoiceforge",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "agenttrafficlab-atl",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aggors-merchant-evidence",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aggreigator-pro",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agiscorecard-agi-scorecard",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agntpad-agntpad",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agoraverify-agora-omega",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "agorean-agorean",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aguassb-artemisia",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-agents-make-money-here-mcp",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-agents-pitstop-pitstop",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-erd-ai-erd",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-for-av-ai-for-av",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-gist-aigist",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ai-law-tracker-ai-law-tracker",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-maxx-public-passports",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ai-semantica-semantica-ai",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "ai-translators-ai-translators",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiactradar-ai-act-radar",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiakiv-memory",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aialtfinder-aialtfinder",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aianyone-ai-anyone",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aicryptosniper-ai-crypto-sniper-mcp",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "aidailybrew-aidailybrew",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aidemos-catalogue",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aidevboard-jobs",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiesphere-jobs",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aifordatabase-aifordatabase",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aihomedesign-mcp",
+   "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiimplementationcost-site",
+   "date": "2026-10-31",
    "source_http": 200,
    "repo_http": null
   }
