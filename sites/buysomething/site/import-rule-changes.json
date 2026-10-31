@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-30",
+ "generated": "2026-10-31",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-07-02",
+ "since": "2026-07-03",
  "queries": [
   "section 301",
   "section 232",
@@ -19,8 +19,40 @@
  "out_of_scope": "Case-specific trade-remedy paperwork is deliberately excluded: Commerce/ITA antidumping and countervailing notices, International Trade Commission investigation and scheduling notices, and Foreign-Trade Zones Board notices. They run to dozens a week and bind one product in one case; this radar is for the rules that apply across shipments. Check the ITC and ITA dockets directly if your product is under a case.",
  "failed_queries": [],
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
- "count": 18,
+ "count": 19,
  "changes": [
+  {
+   "document_number": "2026-22386",
+   "date": "2026-11-02",
+   "type": "Presidential Document",
+   "title": "Delegation of Authority Under Section 8335 of the National Defense Authorization Act for Fiscal Year 2026",
+   "abstract": "",
+   "agencies": [
+    "Executive Office of the President"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/11/02/2026-22386/delegation-of-authority-under-section-8335-of-the-national-defense-authorization-act-for-fiscal-year",
+   "matched": [
+    "section 301"
+   ],
+   "matched_in": "full_text_only"
+  },
+  {
+   "document_number": "2026-22385",
+   "date": "2026-11-02",
+   "type": "Presidential Document",
+   "title": "Adjusting Imports of Robotics, Industrial Machinery, and Their Parts and Components Into the United States",
+   "abstract": "",
+   "agencies": [
+    "Executive Office of the President"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/11/02/2026-22385/adjusting-imports-of-robotics-industrial-machinery-and-their-parts-and-components-into-the-united",
+   "matched": [
+    "harmonized tariff schedule",
+    "section 232",
+    "section 301"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-22292",
    "date": "2026-10-30",
@@ -277,21 +309,6 @@
    "url": "https://www.federalregister.gov/documents/2026/09/02/2026-17926/heightened-import-disclosures-for-supply-chain-visibility",
    "matched": [
     "de minimis exemption"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-16979",
-   "date": "2026-08-19",
-   "type": "Presidential Document",
-   "title": "Adjusting Imports of Unmanned Aircraft Systems and Unmanned Aircraft Systems Components Into the United States",
-   "abstract": "",
-   "agencies": [
-    "Executive Office of the President"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/08/19/2026-16979/adjusting-imports-of-unmanned-aircraft-systems-and-unmanned-aircraft-systems-components-into-the",
-   "matched": [
-    "section 232"
    ],
    "matched_in": "full_text_only"
   },

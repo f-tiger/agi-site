@@ -1,7 +1,7 @@
 {
- "generated": "2026-10-30",
+ "generated": "2026-10-31",
  "window_days": 365,
- "since": "2025-10-30",
+ "since": "2025-10-31",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -264,9 +264,16 @@
    "stale": false
   },
   "cable-powerbank": {
-   "n": 6,
-   "latest": "2026-09-24",
+   "n": 7,
+   "latest": "2026-10-29",
    "items": [
+    {
+     "id": 11044,
+     "date": "2026-10-29",
+     "title": "HAIARA Power Banks Recalled Due to Risk of Serious Injury or Death from Fire and Burn Hazards; Sold on Amazon.com by Mitrytech",
+     "hazard": "The power bank’s lithium battery can explode and ignite, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2027/HAIARA-Power-Banks-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fire-and-Burn-Hazards-Sold-on-Amazon-com-by-Mitrytech"
+    },
     {
      "id": 11000,
      "date": "2026-09-24",
@@ -294,13 +301,6 @@
      "title": "Shenzhen Baihang Recalls VEEKTOMX Mini Power Banks, Due to Fire and Burn Hazards; Sold on Amazon",
      "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
      "url": "https://www.cpsc.gov/Recalls/2026/Shenzhen-Baihang-Recalls-VEEKTOMX-Mini-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-on-Amazon"
-    },
-    {
-     "id": 10516,
-     "date": "2025-12-05",
-     "title": "INIU Recalls Power Banks Due to Fire and Burn Hazards; Sold on Amazon",
-     "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
-     "url": "https://www.cpsc.gov/Recalls/2026/INIU-Recalls-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-on-Amazon"
     }
    ],
    "keywords": [
@@ -418,17 +418,9 @@
    "stale": false
   },
   "pruning-set": {
-   "n": 1,
-   "latest": "2025-10-30",
-   "items": [
-    {
-     "id": 10464,
-     "date": "2025-10-30",
-     "title": "Milwaukee Tool Recalls M18 FUEL 14\" and 12\" Top Handle Chainsaws Due to Laceration Hazard",
-     "hazard": "The recalled chainsaw's chain brake may not activate, posing a laceration hazard.",
-     "url": "https://www.cpsc.gov/Recalls/2026/Milwaukee-Tool-Recalls-M18-FUEL-14-and-12-Top-Handle-Chainsaws-Due-to-Laceration-Hazard"
-    }
-   ],
+   "n": 0,
+   "latest": null,
+   "items": [],
    "keywords": [
     "pruning",
     "chainsaw",
