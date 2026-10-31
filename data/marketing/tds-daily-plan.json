@@ -193,7 +193,7 @@
       "task": "落实已核实的SMISKI搜索意图错位、心愿卡入口断点和空表单示例；同步三语发现面",
       "deliverable": "现有入口的准确说明、直接下一步和独立示例；复用既有工具",
       "gate": "测试、浏览器验收、准确部署SHA、GA4、SEO/GEO及适用IndexNow",
-      "status": "implemented_and_locally_verified_release_verification_required"
+      "status": "deployed_and_live_verified"
     },
     {
       "day": 21,
@@ -375,7 +375,7 @@
       "Series, tracker and meetup guide link to the existing wanted-card tool",
       "Static labeled example before the empty wanted-card form; no sample conversion events"
     ],
-    "status": "implemented_and_locally_verified_release_verification_required",
+    "status": "deployed_and_live_verified",
     "measurement_window": {
       "start": "2026-11-01",
       "end_inclusive": "2026-11-07",
@@ -408,6 +408,19 @@
       "https://www.reddit.com/r/SonnyAngel/",
       "https://www.reddit.com/r/Labubuswap/"
     ],
-    "privacy": "Account exports, counts, identities and private automation state stay outside this public plan."
+    "privacy": "Account exports, counts, identities and private automation state stay outside this public plan.",
+    "release": {
+      "commit": "c405ef13635a7267fa55619fdd649b5c91977ea4",
+      "pull_request": "https://github.com/f-tiger/agi-site/pull/214",
+      "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41208223556",
+      "verified_at": "2026-10-31",
+      "checks": [
+        "Repository browser check and deployment succeeded",
+        "Exact production build stamp and changed EN/DE/ZH content verified",
+        "296 public pages covered by GA4 configuration; backend ingestion was not tested",
+        "IndexNow accepted 97 changed public URLs with HTTP 200; indexing remains unknown"
+      ],
+      "scheduling": "Existing native schedule unchanged. This plan does not create or enable a separate automation."
+    }
   }
 }
