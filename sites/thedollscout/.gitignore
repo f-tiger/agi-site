@@ -11,3 +11,7 @@ package-lock.json
 # Document Scout now has an explicit pinned PDF build, introduced 2026-09-25.
 !scripts/documents/package.json
 !scripts/documents/package-lock.json
+
+# Pinned official MCP SDK used only for client verification.
+!mcp/package.json
+!mcp/package-lock.json

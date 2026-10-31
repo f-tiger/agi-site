@@ -1,13 +1,20 @@
+import {matchesInputSchema} from '../lib/mcp-input-schema.mjs';
+import {searchCollectionSeries,prepareCollectionChecklist} from '../collector-assets/collection-task-core.mjs';
 import {compareBlindBoxBudget,estimateCollectionProgress} from '../collector-assets/planning-core.mjs';
 /* Public, read-only collecting MCP. Evidence is loaded from published site data;
    display planning imports the browser calculator's actual core. Probability
    returns its explicit independent-draw assumption. No affiliate links,
-   user collections, accounts, uploads or paid actions are exposed here. */
+   automatic local-collection access, accounts, uploads or paid actions are exposed here.
+   Explicitly supplied figure lists are processed statelessly; never persisted in telemetry. */
 
 import {SERVER,PROTOCOL_VERSION,TOOLS,RESOURCES} from '../collector-assets/mcp-contract.mjs';
 import '../js/collector-core.js';
 import {styleProbability} from '../collector-assets/style-odds-core.mjs';
 import {recordMcpSuccess} from '../lib/collector-measurement.js';
+
+// Both 100-name lists can contain 120 characters per name, including escaped
+// Unicode in JSON. Bound the transport in bytes without narrowing that contract.
+export const MAX_MCP_REQUEST_BYTES = 256 * 1024;
 
 async function load(env, request, path) {
   const res = await env.ASSETS.fetch(new URL(path, request.url));
@@ -16,6 +23,8 @@ async function load(env, request, path) {
 }
 
 async function callTool(name, args, ctx) {
+  if(name==='search_collection_series')return searchCollectionSeries(await ctx.load('/collector-assets/series-catalog.json'),args);
+  if(name==='prepare_collection_checklist')return prepareCollectionChecklist(await ctx.load('/collector-assets/series-catalog.json'),args);
   if(name==='compare_blind_box_budget')return {...compareBlindBoxBudget(args),source:'https://thedollscout.com/collecting/budget'};
   if(name==='estimate_collection_progress')return {...estimateCollectionProgress(args),source:'https://thedollscout.com/collecting/duplicates'};
   if(name==='calculate_style_probability')return {...styleProbability(args),source:'https://thedollscout.com/brands/labubu#style-probability'};
@@ -157,10 +166,10 @@ export async function onRequest(context) {
     return new Response("Method not allowed", { status: 405, headers: CORS });
   }
 
-  if(Number(request.headers.get('content-length')||0)>16384)return new Response('Request too large',{status:413,headers:CORS});
+  if(Number(request.headers.get('content-length')||0)>MAX_MCP_REQUEST_BYTES)return new Response('Request too large',{status:413,headers:CORS});
   let body;
   try {
-    const text=await request.text();if(text.length>16384)return new Response('Request too large',{status:413,headers:CORS});body=JSON.parse(text);
+    const text=await request.text();if(new TextEncoder().encode(text).byteLength>MAX_MCP_REQUEST_BYTES)return new Response('Request too large',{status:413,headers:CORS});body=JSON.parse(text);
   } catch {
     return Response.json(rpcError(null, -32700, "Parse error"), { headers: CORS });
   }
@@ -191,18 +200,8 @@ export async function onRequest(context) {
     if (method === "tools/call") {
       const tool=TOOLS.find(t=>t.name===params?.name);
       if(!tool)return Response.json(rpcError(id,-32602,'Unknown tool'),{headers:CORS});
-      const args=params?.arguments??{}; const schema=tool.inputSchema;
-      let invalid=!args||typeof args!=='object'||Array.isArray(args);
-      if(!invalid){
-        invalid=(schema.required||[]).some(k=>!(k in args))||Object.keys(args).some(k=>!(k in schema.properties));
-        for(const [k,v]of Object.entries(args)){
-          const spec=schema.properties[k];if(!spec)continue;
-          if(spec.type==='integer'&&!Number.isInteger(v)||spec.type!=='integer'&&typeof v!==spec.type)invalid=true;
-          if(spec.enum&&!spec.enum.includes(v)||spec.maxLength&&v.length>spec.maxLength)invalid=true;
-          if(typeof v==='number'&&(!Number.isFinite(v)||spec.minimum!==undefined&&v<spec.minimum||spec.exclusiveMinimum!==undefined&&v<=spec.exclusiveMinimum||spec.maximum!==undefined&&v>spec.maximum))invalid=true;
-        }
-      }
-      if(invalid)return Response.json(rpc(id,{isError:true,content:[{type:'text',text:'Invalid arguments. Use the types, required fields and bounds published by tools/list.'}]}),{headers:CORS});
+      const args=params?.arguments??{};
+      if(!matchesInputSchema(args,tool.inputSchema))return Response.json(rpc(id,{isError:true,content:[{type:'text',text:'Invalid arguments. Use the types, required fields and bounds published by tools/list.'}]}),{headers:CORS});
       const result = await callTool(tool.name,args,ctx);
       const response = Response.json(
         rpc(id, {

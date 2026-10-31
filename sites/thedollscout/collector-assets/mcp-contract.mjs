@@ -1,5 +1,5 @@
 // Shared public contract for the endpoint, human guide and discovery manifests.
-export const SERVER = {name:'dollscout',version:'2.4.0'};
+export const SERVER = {name:'dollscout',version:'2.5.0'};
 export const PROTOCOL_VERSION = '2025-06-18';
 export const REGISTRY_NAME = 'io.github.f-tiger/dollscout-collecting';
 export const TOOLS = [
@@ -61,11 +61,17 @@ TOOLS.push(
  {name:'compare_blind_box_budget',description:'Compare a capped independent blind-box budget with a user-supplied all-in confirmed-figure quote. Returns success and failure chances, maximum spend and expected spend when stopping at the first target. One currency, costs rounded to cents; not a purchase recommendation or price lookup.',inputSchema:{type:'object',properties:{budget:{type:'number',minimum:0,maximum:1000000},boxCost:{type:'number',minimum:0.01,maximum:1000000},fixedCost:{type:'number',minimum:0,maximum:1000000},confirmedCost:{type:'number',minimum:0,maximum:1000000},probabilityPercent:{type:'number',minimum:0,maximum:100}},required:['budget','boxCost','fixedCost','confirmedCost','probabilityPercent']}},
  {name:'estimate_collection_progress',description:'Estimate new distinct regular styles, repeated regular draws and secret draws from independent boxes. Assumes equally likely regular styles after combined secret probability is removed. Owned means distinct regular styles from this exact series. Not sealed-case allocation or completion probability.',inputSchema:{type:'object',properties:{regularStyles:{type:'integer',minimum:1,maximum:1000},ownedStyles:{type:'integer',minimum:0,maximum:1000},boxes:{type:'integer',minimum:0,maximum:100000},secretPercent:{type:'number',minimum:0,maximum:100}},required:['regularStyles','ownedStyles','boxes','secretPercent']}}
 );
+const figureNames={type:'array',maxItems:100,items:{type:'string',minLength:1,maxLength:120},description:'Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers.'};
+TOOLS.push(
+ {name:'search_collection_series',description:'Search the source-linked SMISKI and Sonny Angel catalog by series or figure name. Returns candidate series IDs, verified named styles, source URLs and per-series check dates directly. Catalog coverage can omit secret or discontinued figures; choose the exact series before comparing a collection.',inputSchema:{type:'object',properties:{query:{type:'string',minLength:1,maxLength:120},brand:{type:'string',enum:['smiski','sonny-angel']},limit:{type:'integer',minimum:1,maximum:10,default:5},language},required:['query'],additionalProperties:false}},
+ {name:'prepare_collection_checklist',description:'Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.',inputSchema:{type:'object',properties:{seriesId:{type:'string',minLength:1,maxLength:100},owned:figureNames,wanted:{...figureNames,description:'Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically.'},language},required:['seriesId','owned'],additionalProperties:false}}
+);
 for(const t of TOOLS){t.annotations={readOnlyHint:true,destructiveHint:false,idempotentHint:true,openWorldHint:false};t.inputSchema.additionalProperties=false;}
 const odds=TOOLS.find(t=>t.name==='secret_pull_probability').inputSchema.properties;
 odds.oddsN={...odds.oddsN,type:'integer',minimum:2,maximum:100000};odds.boxes={...odds.boxes,type:'integer',minimum:1,maximum:100000};
 TOOLS.find(t=>t.name==='define_labubu_term').inputSchema.properties.term.maxLength=120;
 export const RESOURCES=[
+ {uri:'https://thedollscout.com/collector-assets/series-catalog.json',name:'Verified named collection series with source dates',mimeType:'application/json'},
  {uri:'https://thedollscout.com/collector-assets/learning-guides.json',name:'Practical collecting guides with sources',mimeType:'application/json'},
  {uri:'https://thedollscout.com/collector-assets/tool-capabilities.json',name:'Collector tool catalog',mimeType:'application/json'},
  {uri:'https://thedollscout.com/collector-assets/brand-guides.json',name:'Published collecting guides',mimeType:'application/json'},
