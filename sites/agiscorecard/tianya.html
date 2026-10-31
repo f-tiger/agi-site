@@ -29,10 +29,10 @@
   <div class="ty-workspace">
    <form id="ty-form" class="ty-form" novalidate>
     <input type="hidden" name="kind" value="startup">
-    <label class="ty-field" for="ty-title"><span>Project title</span><input id="ty-title" name="title" type="text" maxlength="120" autocomplete="off"></label>
+    <label class="ty-field" for="ty-title"><span>Project title</span><input id="ty-title" name="title" type="text" maxlength="100" autocomplete="off"></label>
     <label class="ty-field" for="ty-reviewDate"><span>Review date</span><input id="ty-reviewDate" name="reviewDate" type="date" autocomplete="off"></label>
-    <label class="ty-field ty-full" for="ty-hypothesis"><span>What do you expect to happen?</span><textarea id="ty-hypothesis" name="hypothesis" maxlength="1600" rows="3"></textarea><small>Name a result you can check, not a broad hope.</small></label>
-    <label class="ty-field ty-full" for="ty-counter"><span>What would change your mind or make you stop?</span><textarea id="ty-counter" name="counter" maxlength="1600" rows="3"></textarea></label>
+    <label class="ty-field ty-full" for="ty-hypothesis"><span>What do you expect to happen?</span><textarea id="ty-hypothesis" name="hypothesis" maxlength="1200" rows="3"></textarea><small>Name a result you can check, not a broad hope.</small></label>
+    <label class="ty-field ty-full" for="ty-counter"><span>What would change your mind or make you stop?</span><textarea id="ty-counter" name="counter" maxlength="800" rows="3"></textarea></label>
     <fieldset id="startup-fields"><legend>Delivery and pricing inputs</legend><label class="ty-field" for="ty-tasks"><span>Tasks in the same test batch</span><input id="ty-tasks" name="tasks" type="number" min="1" step="1" inputmode="decimal" autocomplete="off"></label>
 <label class="ty-field" for="ty-baseMinutes"><span>Manual minutes per task, including rework</span><input id="ty-baseMinutes" name="baseMinutes" type="number" min="0" step="any" inputmode="decimal" autocomplete="off"></label>
 <label class="ty-field" for="ty-trialMinutes"><span>Assisted minutes per task, including review</span><input id="ty-trialMinutes" name="trialMinutes" type="number" min="0" step="any" inputmode="decimal" autocomplete="off"></label>

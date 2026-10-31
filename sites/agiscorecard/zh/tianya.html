@@ -29,10 +29,10 @@
   <div class="ty-workspace">
    <form id="ty-form" class="ty-form" novalidate>
     <input type="hidden" name="kind" value="startup">
-    <label class="ty-field" for="ty-title"><span>项目名称</span><input id="ty-title" name="title" type="text" maxlength="120" autocomplete="off"></label>
+    <label class="ty-field" for="ty-title"><span>项目名称</span><input id="ty-title" name="title" type="text" maxlength="100" autocomplete="off"></label>
     <label class="ty-field" for="ty-reviewDate"><span>复查日期</span><input id="ty-reviewDate" name="reviewDate" type="date" autocomplete="off"></label>
-    <label class="ty-field ty-full" for="ty-hypothesis"><span>你预期会发生什么？</span><textarea id="ty-hypothesis" name="hypothesis" maxlength="1600" rows="3"></textarea><small>写一个能检查的结果，避免只有宽泛愿望。</small></label>
-    <label class="ty-field ty-full" for="ty-counter"><span>出现什么结果，就应修改判断或停止？</span><textarea id="ty-counter" name="counter" maxlength="1600" rows="3"></textarea></label>
+    <label class="ty-field ty-full" for="ty-hypothesis"><span>你预期会发生什么？</span><textarea id="ty-hypothesis" name="hypothesis" maxlength="1200" rows="3"></textarea><small>写一个能检查的结果，避免只有宽泛愿望。</small></label>
+    <label class="ty-field ty-full" for="ty-counter"><span>出现什么结果，就应修改判断或停止？</span><textarea id="ty-counter" name="counter" maxlength="800" rows="3"></textarea></label>
     <fieldset id="startup-fields"><legend>交付与报价数据</legend><label class="ty-field" for="ty-tasks"><span>本轮同一批任务数</span><input id="ty-tasks" name="tasks" type="number" min="1" step="1" inputmode="decimal" autocomplete="off"></label>
 <label class="ty-field" for="ty-baseMinutes"><span>人工平均分钟／任务，含返工</span><input id="ty-baseMinutes" name="baseMinutes" type="number" min="0" step="any" inputmode="decimal" autocomplete="off"></label>
 <label class="ty-field" for="ty-trialMinutes"><span>工具辅助平均分钟／任务，含复核返工</span><input id="ty-trialMinutes" name="trialMinutes" type="number" min="0" step="any" inputmode="decimal" autocomplete="off"></label>

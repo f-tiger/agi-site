@@ -67,10 +67,10 @@ for(const lang of ['en','zh']){
   <div class="ty-workspace">
    <form id="ty-form" class="ty-form" novalidate>
     <input type="hidden" name="kind" value="startup">
-    ${textField('title',t('Project title','项目名称'),{maxlength:120})}
+    ${textField('title',t('Project title','项目名称'),{maxlength:100})}
     ${textField('reviewDate',t('Review date','复查日期'),{type:'date'})}
-    ${textField('hypothesis',t('What do you expect to happen?','你预期会发生什么？'),{textarea:true,hint:t('Name a result you can check, not a broad hope.','写一个能检查的结果，避免只有宽泛愿望。')})}
-    ${textField('counter',t('What would change your mind or make you stop?','出现什么结果，就应修改判断或停止？'),{textarea:true})}
+    ${textField('hypothesis',t('What do you expect to happen?','你预期会发生什么？'),{textarea:true,maxlength:1200,hint:t('Name a result you can check, not a broad hope.','写一个能检查的结果，避免只有宽泛愿望。')})}
+    ${textField('counter',t('What would change your mind or make you stop?','出现什么结果，就应修改判断或停止？'),{textarea:true,maxlength:800})}
     <fieldset id="startup-fields"><legend>${t('Delivery and pricing inputs','交付与报价数据')}</legend>${startupFields}</fieldset>
     <fieldset id="invest-fields" hidden><legend>${t('Paper-position assumptions','模拟仓位假设')}</legend><p class="ty-note ty-full">${t('Prices are your assumptions, not live quotes. The exit trigger is not a guaranteed fill; a gap or slippage can exceed the planned loss.','价格由你假设，不是实时行情。退出触发价不是保证成交价；跳空或滑点可能使损失超过计划。')}</p>${investFields}</fieldset>
     ${textField('outcome',t('Review notes (optional)','复查记录（可稍后补充）'),{textarea:true,maxlength:1600,hint:t('Your observations, up to 1,600 characters. A note does not establish an independently verified result.','记录你自己的观察，最多 1600 字；填写记录不等于结果已独立核验。')})}

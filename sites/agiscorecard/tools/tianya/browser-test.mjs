@@ -78,6 +78,8 @@ try{
   const page=await context.newPage();
   await page.goto(base+prefix+'/tianya?__qa=1');
   await page.waitForFunction(()=>document.getElementById('save-local')?.onclick);
+  const ids=await page.locator('[id]').evaluateAll(nodes=>nodes.map(node=>node.id));assert.equal(new Set(ids).size,ids.length,'all ids are unique');
+  for(const [name,max]of Object.entries({title:100,hypothesis:1200,counter:800,outcome:1600}))assert.equal(await field(page,name).getAttribute('maxlength'),String(max),'UI limit must match normalized record: '+name);
   assert.equal(await field(page,'kind').inputValue(),'startup');
   assert.equal(await field(page,'tasks').inputValue(),'');
   assert.equal(await localCopy(page),null);
