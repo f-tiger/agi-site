@@ -59,6 +59,8 @@ if (typeof document !== 'undefined') for (const root of document.querySelectorAl
   };
   root.querySelector('[data-valve-controls]').hidden = false;
   root.querySelector('[data-valve-share-row]').hidden = false;
+  // Keep the reference readable without JS; reveal it on demand once the chooser works.
+  root.querySelector('details').open = false;
   render(); applyHash(); window.addEventListener('hashchange', applyHash);
   root.dataset.ready = 'true';
 }

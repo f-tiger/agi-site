@@ -1,1 +1,14 @@
 .valve-check{margin:1.75rem 0;padding:clamp(1rem,3vw,1.75rem);border:1px solid #b6cbc0;border-radius:1rem;background:#f7fbf8;color:#173b2b}.valve-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0}.valve-controls[hidden],[data-valve-share-row][hidden]{display:none}.valve-controls label{font-weight:650;min-width:0}.valve-controls select{display:block;width:100%;max-width:100%;min-height:48px;margin-top:.45rem;padding:.65rem;border:1px solid #6b8f7d;border-radius:.5rem;background:#fff;color:#173b2b;font:inherit}.valve-result{margin:1rem 0;padding:1rem;border-left:4px solid #37674d;background:#fff;border-radius:.35rem;overflow-wrap:anywhere}.valve-result h3{margin-top:0}.valve-result[data-status=stop]{border-left-color:#a33e29}.valve-check button{min-height:44px;padding:.65rem 1rem;background:#173b2b;color:#fff;border:1px solid #173b2b;border-radius:.45rem;font:inherit;cursor:pointer}.valve-check summary{cursor:pointer;font-weight:650;padding:.6rem 0}.valve-check caption{text-align:left;padding:.6rem 0;font-weight:600}.valve-check th{min-width:8rem}.valve-check select:focus-visible,.valve-check button:focus-visible,.valve-check a:focus-visible,.valve-check summary:focus-visible{outline:3px solid #b87709;outline-offset:3px}[data-valve-share-status]{display:block;margin-top:.4rem;overflow-wrap:anywhere}@media(max-width:620px){.valve-controls{grid-template-columns:1fr}.valve-check{padding:1rem}.valve-check .winter-table{max-width:100%;overflow-x:auto}}
+@media(max-width:620px){
+ .valve-check .winter-table{overflow:visible}
+ .valve-check table,.valve-check caption,.valve-check tbody,.valve-check tbody tr,.valve-check tbody th,.valve-check tbody td{display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box}
+ .valve-check thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}
+ .valve-check tbody tr{margin:.85rem 0;border:1px solid #b6cbc0;border-radius:.5rem;overflow:hidden;background:#fff}
+ .valve-check tbody th,.valve-check tbody td{border:0;padding:.8rem;overflow-wrap:anywhere}
+ .valve-check tbody th{background:#e5ecdf;font-size:1rem}
+ .valve-check tbody td+td{border-top:1px solid #d6e0d9}
+ .valve-check tbody td::before{display:block;margin-bottom:.35rem;font-size:.78rem;font-weight:700;color:#50625c}
+ .valve-check tbody td:nth-child(2)::before{content:"Nächster Prüfschritt"}
+ .valve-check tbody td:nth-child(3)::before{content:"Quelle / Abbildung"}
+ .valve-check tbody td p{margin:.45rem 0 0}
+}

@@ -26,6 +26,7 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   await page.goto(origin+routePath);await page.locator('[data-valve-check][data-ready=true]').waitFor();
   assert.equal((await page.evaluate(()=>window.fixedEvents)).filter(x=>x.name.startsWith('eco_valve')).length,0);checks++;
   const result=page.locator('[data-valve-result]');
+  const reference=page.locator('[data-valve-check] details');assert.equal(await reference.getAttribute('open'),null);checks++;
   await page.selectOption('[name=valve-model]','tado-v3');await page.selectOption('[name=valve-connection]','herz-m28');
   assert.match(await result.innerText(),/Stiftverlängerung/);checks++;
   await page.selectOption('[name=valve-connection]','oventrop-uni-l');assert.match(await result.innerText(),/nicht im tado°-Lieferumfang/);checks++;
@@ -46,12 +47,13 @@ const root=path.resolve(__dirname,'../site'),origin='https://getecoback.com',rou
   assert.equal(await page.evaluate(()=>window.fixedEvents.filter(x=>x.name.startsWith('eco_valve')).length),count);checks++;
   // Existing amortisation remains functional and separate from compatibility.
   await page.locator('[data-winter-tool="thermostat"] button[type=submit]').click();assert.match(await page.locator('[data-winter-tool] [data-result]').innerText(),/7,5/);checks++;
-  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;}
+  await reference.locator('summary').click();assert.notEqual(await reference.getAttribute('open'),null);checks++;
+  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;if(width<620){assert(await page.locator('[data-valve-check] tbody th,[data-valve-check] tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks++;}}
   assert.deepEqual(errors,[]);checks++;await ctx.close();
   const sharedContext=await context({viewport:{width:390,height:844}}),sharedPage=await sharedContext.newPage();await sharedPage.goto(share);await sharedPage.locator('[data-valve-check][data-ready=true]').waitFor();
   assert.equal(await sharedPage.inputValue('[name=valve-connection]'),'heimeier-m30');assert.equal(await sharedPage.evaluate(()=>window.fixedEvents.filter(x=>x.name.startsWith('eco_valve')).length),0);checks+=2;await sharedContext.close();
   const nojs=await context({javaScriptEnabled:false,viewport:{width:320,height:844}}),fallback=await nojs.newPage();await fallback.goto(origin+routePath);
-  assert.equal(await fallback.locator('[data-valve-controls]').isVisible(),false);assert.equal(await fallback.locator('[data-winter-tool=thermostat] form').isVisible(),false);checks++;assert.equal(await fallback.locator('[data-valve-check] table tbody tr').count(),6);assert.match(await fallback.locator('[data-valve-check]').innerText(),/Keine eigenen Montage/);assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks+=4;await nojs.close();
+  assert.notEqual(await fallback.locator('[data-valve-check] details').getAttribute('open'),null);assert(await fallback.locator('[data-valve-check] tbody th,[data-valve-check] tbody td').evaluateAll(cells=>cells.every(cell=>{const r=cell.getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth;})));checks+=2;assert.equal(await fallback.locator('[data-valve-controls]').isVisible(),false);assert.equal(await fallback.locator('[data-winter-tool=thermostat] form').isVisible(),false);checks++;assert.equal(await fallback.locator('[data-valve-check] table tbody tr').count(),6);assert.match(await fallback.locator('[data-valve-check]').innerText(),/Keine eigenen Montage/);assert(await fallback.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks+=4;await nojs.close();
   console.log(`PASS thermostat fit: ${checks} browser checks; sourced branches, preserved payback, no-input selectors, copy success/failure, opt-out, no payloads, no-JS, 320/390/1280px.`);
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exit(1);});
