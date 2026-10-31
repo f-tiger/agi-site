@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款；eco-watch=仅 Eco 原有会员维护；inspect=只读勘察'
+        description: '运行模式：watch=正常轮询；ads-only=仅广告；receipts-only=广告与会员验款；eco-watch=仅 Eco 原有会员维护；agi-watch=仅 AGI 原有会员维护；inspect=只读勘察'
         type: choice
-        options: [watch, ads-only, receipts-only, eco-watch, inspect]
+        options: [watch, ads-only, receipts-only, eco-watch, agi-watch, inspect]
         default: watch
 
 concurrency:
@@ -113,6 +113,21 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tools/member-studio/ops.mjs watch eco
 
+
+      # One-site recovery for an expired AGI health observation. The unchanged
+      # watcher verifies the chain and existing orders, applies existing retention
+      # and only then refreshes health. It creates no order or transfer, and does
+      # not run another site, advertisements, Jarvis or an additional schedule.
+      - name: Recover AGI membership only (manual, current main)
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.mode == 'agi-watch'
+        timeout-minutes: 5
+        working-directory: ${{ github.workspace }}
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node tools/member-studio/ops.mjs watch agi
+          node sites/agiscorecard/tools/member-release-health.mjs
 
       - name: Check each independent site membership
         if: always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'watch')
