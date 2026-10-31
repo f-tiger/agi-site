@@ -78,7 +78,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/tianya','zh/tianya-research','zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/tianya','zh/tianya-research','zh/ai-futures','zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -143,6 +143,17 @@ def main():
                 full += ['## Tianya Echo — scope and evidence', '', 'URL: '+url, '', readable, '']
             if slug == 'zh/tianya-research':
                 md += '\nSnapshot: 2026-10-05. All 60 curated claims remain strictly unknown. Migration is not a forecast refresh.\nEvidence: https://agiscorecard.com/tianya-research/analysis.json\nFrozen ledger: https://agiscorecard.com/tianya-research/practice-ledger.json\n'
+        if slug in ('ai-futures','zh/ai-futures'):
+            md = md.replace('Machine-readable verdicts: https://agiscorecard.com/data.json (CC BY 4.0)', 'Dated company sources: https://agiscorecard.com/futures-assets/snapshot.json\nConditional model baseline: https://agiscorecard.com/futures-assets/forecast.json (not calibrated probabilities)')
+            source_html = open(fpath, encoding='utf-8').read()
+            body = re.search(r'<main\b[^>]*>(.*?)</main>', source_html, re.S)
+            if body:
+                # Keep the static method and source links; never invent client-side results.
+                visible = re.sub(r'<(script|style)\b[^>]*>.*?</\1>', '', body.group(1), flags=re.S|re.I)
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', visible, flags=re.S)
+                readable = text_of(linked)
+                md += '\n## Conditional AI future simulation\n\n' + readable + '\n'
+                full += ['## Conditional AI future simulation', '', 'URL: '+url, '', readable, '']
         if slug == 'earn' or slug.startswith('earn/'):
             source_html = open(fpath, encoding='utf-8').read()
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)

@@ -1,0 +1,686 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-06",
+  "purpose": "AI→RSI→SI 动态研究网站的一次性人工核实证据快照；不是实时行情或概率校准数据集。",
+  "definitions": {
+    "AI": "可在既定任务中提供智能能力的系统；产品发布和单项基准可作为能力证据。",
+    "RSI": "递归自我改进：AI 改进 AI 研发，并产生可重复、跨代、净研发效率增益的反馈过程；本项目采用可检验操作性定义。",
+    "SI": "超级智能：跨广泛认知领域持续显著超越最强人类团队；不存在已被本快照证实的通用标准或达到日期。"
+  },
+  "criticalCorrections": [
+    "xAI 已被 SpaceX 收购；截至本快照 SpaceX 已有 SEC 文件确认 SPCX 上市。",
+    "Anthropic 已宣布提交秘密 IPO 草案；IPO 筹备不能当作上市完成。",
+    "OpenAI PBC 的 public benefit 不代表 publicly traded；未核实到独立公开交易代码。",
+    "个人超智能、科研代理和算法优化的产品命名不构成 RSI/SI 已实现的证据。"
+  ],
+  "sources": [
+    {
+      "id": "openai-sol-20260929",
+      "company": "OpenAI",
+      "title": "Introducing GPT-6.1 Sol",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
+      "publishedAt": "2026-09-29",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "OpenAI 公布 GPT-6.1 Sol，并宣布其通过 API、ChatGPT Work 和 Codex 提供。",
+        "官方标准 API 定价为每百万输入 token 2 美元、输出 10 美元、缓存输入 0.10 美元。"
+      ],
+      "caveat": "性能、成本和准确率比较属于厂商评测；不代表任意业务的生产效果，也不证明 RSI。",
+      "signals": [
+        "agent_cost",
+        "coding",
+        "computer_use"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "openai-structure-20251028",
+      "company": "OpenAI",
+      "title": "Our structure",
+      "url": "https://openai.com/our-structure/",
+      "publishedAt": "2025-10-28",
+      "evidenceType": "official_corporate_structure",
+      "facts": [
+        "OpenAI Foundation 控制 OpenAI Group PBC。",
+        "页面股权数字明确以 2025 年重组交割时为口径，不能作为 2026 年实时持股比例。"
+      ],
+      "caveat": "PBC 是公共利益公司法律形式，不等于公开上市；本来源不能证明有可公开交易的 OpenAI 股票。",
+      "signals": [
+        "governance",
+        "capital"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "openai-astra-20260903",
+      "company": "OpenAI",
+      "title": "GPT-6 Astra: A new generation of intelligence",
+      "url": "https://openai.com/index/gpt-6-astra/",
+      "publishedAt": "2026-09-03",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "OpenAI 公布 GPT-6 Astra，说明其在软件工程、计算机使用和科学任务方面的评测表现。",
+        "官方报告 Terminal-Bench Science 0.1 得分 68.1%；这是一项特定科学工作流基准。"
+      ],
+      "caveat": "基准结果由厂商公布；基准饱和、人类水平某个测试和通用超智能不能等同。",
+      "signals": [
+        "scientific_work",
+        "autonomy",
+        "benchmark"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "anthropic-sonnet-20260928",
+      "company": "Anthropic",
+      "title": "Introducing Claude Sonnet 5.5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "publishedAt": "2026-09-28",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "Anthropic 公布 Sonnet 5.5，定位为日常任务、修复代码及制作文档。",
+        "标准输入/输出价格与 Sonnet 5 相同；其每任务成本降低与更少 token 用量有关。"
+      ],
+      "caveat": "30%+ 速度提升和最高 30% 每任务成本下降是厂商测试，不能直接推算客户利润或生产率。",
+      "signals": [
+        "agent_cost",
+        "coding",
+        "adoption"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "anthropic-fable-20260901",
+      "company": "Anthropic",
+      "title": "Introducing Claude Fable 5.1 and Claude Mythos 5.1",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "publishedAt": "2026-09-01",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "官方说明 Fable 5.1 与 Mythos 5.1 为相同基础模型但采取不同保障措施。",
+        "Fable 5.1 普遍可用，Mythos 5.1 仅通过受信任访问计划提供；企业保障功能部分仍计划分阶段推出。"
+      ],
+      "caveat": "不能把未来部署计划当成已经开放的产品，或把受限科学/网络能力当作已验证通用 RSI。",
+      "signals": [
+        "scientific_work",
+        "safety",
+        "cybersecurity"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "anthropic-ipo-20260601",
+      "company": "Anthropic",
+      "title": "Anthropic confidentially submits draft S-1 to the SEC",
+      "url": "https://www.anthropic.com/news/confidential-draft-s1-sec",
+      "publishedAt": "2026-06-01",
+      "evidenceType": "official_corporate_announcement",
+      "facts": [
+        "Anthropic 宣布向 SEC 秘密提交拟 IPO 的 S-1 草案。",
+        "当时发行股数与价格未确定，是否发行取决于市场条件等。"
+      ],
+      "caveat": "提交草案不等于完成 IPO；截至本次检索未以公司/交易所公告核实其已开始交易，网站不得凭空生成股票代码。",
+      "signals": [
+        "capital",
+        "listing"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "meta-muse-20260908",
+      "company": "Meta",
+      "title": "Introducing Muse: The World’s First Personal AI Agent Built for Everyone",
+      "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "publishedAt": "2026-09-08",
+      "updatedAt": "2026-09-30",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "Meta 宣布 Muse 在美国逐步上线，运行于专属虚拟机并可持续执行任务。",
+        "官方描述权限控制、审计记录及发送邮件/购买前确认机制。"
+      ],
+      "caveat": "“世界首个”“个人超智能”是厂商命名和愿景；上线地区、功能和人工批准要求限制了可实际替代的任务。",
+      "signals": [
+        "distribution",
+        "agent_adoption",
+        "security"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "meta-q2-20260729",
+      "company": "Meta",
+      "title": "Meta Reports Second Quarter 2026 Results",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/",
+      "publishedAt": "2026-07-29",
+      "evidenceType": "official_financial_results",
+      "facts": [
+        "官方公告标注 Nasdaq: META。",
+        "Q2 2026 收入同比增长 28%，营业利润同比下降 8%，展示增长与成本压力可并存。"
+      ],
+      "caveat": "财报为季度口径；收入不是纯 AI 收入。投资判断还需当前估值、现金流、资本支出和最新公告。",
+      "signals": [
+        "cashflow",
+        "distribution",
+        "cost_pressure"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "xai-spacex-20260202",
+      "company": "SpaceX / xAI",
+      "title": "xAI joins SpaceX",
+      "url": "https://x.ai/news/xai-joins-spacex",
+      "publishedAt": "2026-02-02",
+      "evidenceType": "official_corporate_announcement",
+      "facts": [
+        "xAI 官方公告称 SpaceX 已收购 xAI。"
+      ],
+      "caveat": "需要区分 SpaceX 母公司、xAI 子公司与 Grok 产品；不能把收购自动等同于技术协同已实现。",
+      "signals": [
+        "capital",
+        "integration"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "spacex-q2-20260804",
+      "company": "SpaceX / xAI",
+      "title": "Space Exploration Technologies Corp. Form 10-Q for quarter ended June 30, 2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026052535/spcx-20260630.htm",
+      "publishedAt": "2026-08-04",
+      "periodEnd": "2026-06-30",
+      "evidenceType": "regulatory_filing",
+      "facts": [
+        "SEC 10-Q 封面列明 SPCX 在 Nasdaq 与 Nasdaq Texas 注册。",
+        "文件确认 xAI 自 2026-02-02 起为全资子公司，并说明已完成 IPO。",
+        "Q2 AI 分部收入 25.61 亿美元，营业亏损 12.57 亿美元，资本开支 158.28 亿美元。"
+      ],
+      "caveat": "AI 分部不可直接视为 Grok 纯模型收入；股价包含航天与连接业务，费用、关联交易及资本开支会影响股东回报。",
+      "signals": [
+        "compute",
+        "capital",
+        "cash_burn",
+        "listing"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "google-alphaevolve-20260709",
+      "company": "Google DeepMind / Alphabet",
+      "title": "We're rolling out AlphaEvolve widely to solve Google Cloud customers' hardest problems",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/alphaevolve-on-cloud/",
+      "publishedAt": "2026-07-09",
+      "evidenceType": "official_product_release",
+      "facts": [
+        "Google 宣布 Gemini 驱动的代码优化代理 AlphaEvolve 面向 Google Cloud 客户普遍可用。",
+        "用户提供基线算法与目标，系统搜索改进并输出人类可读代码。"
+      ],
+      "caveat": "这是有人工指定目标和评估条件的算法优化；不能推断模型能无限自主改进自身，或推断无约束 RSI 已出现。",
+      "signals": [
+        "algorithmic_efficiency",
+        "research_automation"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "alphabet-q2-20260722",
+      "company": "Google DeepMind / Alphabet",
+      "title": "Alphabet Announces Second Quarter 2026 Results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "publishedAt": "2026-07-22",
+      "evidenceType": "regulatory_filing",
+      "facts": [
+        "官方 SEC 附件标明 Alphabet 股票为 Nasdaq: GOOG、GOOGL。",
+        "Google Cloud Q2 收入增长 82%；集团报告了显著未实现股权投资收益。"
+      ],
+      "caveat": "Google DeepMind 不是独立上市股票；未实现投资收益不是经营现金流，云增长也不是纯模型收入。",
+      "signals": [
+        "distribution",
+        "cloud",
+        "cashflow"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "ilo-jobs-20250520",
+      "company": "ILO / NASK",
+      "title": "Generative AI and Jobs: A Refined Global Index of Occupational Exposure",
+      "url": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure",
+      "publishedAt": "2025-05-20",
+      "evidenceType": "primary_research",
+      "facts": [
+        "ILO/NASK 估计全球约四分之一劳动者的职业有某种程度的生成式 AI 暴露。",
+        "报告明确区分任务受影响与实际失业；许多岗位更可能转型。"
+      ],
+      "caveat": "2025 年暴露模型，不是 2026 实测失业率或失业预测；不同地区、性别、职业差异明显。",
+      "signals": [
+        "labor_exposure",
+        "inequality"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "metr-productivity-20260224",
+      "company": "METR",
+      "title": "We are Changing our Developer Productivity Experiment Design",
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "publishedAt": "2026-02-24",
+      "evidenceType": "primary_research",
+      "facts": [
+        "METR 指出后续开发者生产率实验受到参与者与任务选择偏差影响。",
+        "研究者认为 2026 初工具可能比 2025 初更有帮助，但现有样本不能可靠量化加速幅度。"
+      ],
+      "caveat": "不能把 2025 年特定开发者样本的减速结果泛化为所有 AI；也不能把主观加速感受当成可靠测量。",
+      "signals": [
+        "productivity_validation",
+        "adoption"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "alibaba-q1fy27-20260820",
+      "company": "Alibaba",
+      "title": "Alibaba Group Announces June Quarter 2026 Results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1577552/000110465926099220/tm2623667d1_ex99-1.htm",
+      "publishedAt": "2026-08-20",
+      "periodEnd": "2026-06-30",
+      "evidenceType": "regulatory_filing",
+      "facts": [
+        "官方结果列明 NYSE: BABA，HKEX: 9988（港元柜台）、89988（人民币柜台）。",
+        "管理层报告云外部收入增长及 AI 相关产品需求。"
+      ],
+      "caveat": "不同柜台/ADS 的交易单位和汇率需区分；AI 增长不是集团全部收入或利润，价格竞争和投入会影响回报。",
+      "signals": [
+        "china_cloud",
+        "commercialization"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    },
+    {
+      "id": "smic-q1-20260514",
+      "company": "SMIC",
+      "title": "SMIC Reports Unaudited Results for the Three Months Ended March 31, 2026",
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0514/2026051400908.pdf",
+      "publishedAt": "2026-05-14",
+      "periodEnd": "2026-03-31",
+      "evidenceType": "exchange_filing",
+      "facts": [
+        "港交所公告确认公司交易代码 SEHK: 00981、SSE STAR Market: 688981。",
+        "业务为半导体晶圆代工，适合观察制造链资本开支与产能利用率。"
+      ],
+      "caveat": "此处只用该文件核实身份/代码；不是最新季度财务估值。不能据此断言其为任何特定美国 AI 公司的供应商。",
+      "signals": [
+        "china_semiconductor",
+        "capacity"
+      ],
+      "observedAt": "2026-10-06",
+      "status": "retrieved",
+      "language": "zh-CN",
+      "independentlyValidatedPerformance": false
+    }
+  ],
+  "companies": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "sourceIds": [
+        "openai-sol-20260929",
+        "openai-astra-20260903",
+        "openai-structure-20251028"
+      ],
+      "listing": {
+        "status": "no_verified_public_ticker",
+        "label": "未核实公开上市代码",
+        "ticker": null,
+        "confidence": "limited_primary_listing_evidence"
+      },
+      "drivers": [
+        "专业任务与代码代理、模型成本下降、产品/API 分发"
+      ],
+      "bottlenecks": [
+        "推理成本、长任务可靠性、算力融资与治理约束"
+      ],
+      "watch": [
+        "任务成功率与实际成本",
+        "外部生产工作流评测",
+        "续费与毛利",
+        "企业部署后的安全事件"
+      ],
+      "interpretation": "竞争驱动和瓶颈为研究推断；不是财务预测。"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "sourceIds": [
+        "anthropic-sonnet-20260928",
+        "anthropic-fable-20260901",
+        "anthropic-ipo-20260601"
+      ],
+      "listing": {
+        "status": "proposed_ipo_not_verified_trading",
+        "label": "已宣布拟 IPO，未核实开始交易",
+        "ticker": null,
+        "confidence": "official_announcement"
+      },
+      "drivers": [
+        "代码与知识工作、企业安全控制、科学工具"
+      ],
+      "bottlenecks": [
+        "算力依赖、受限功能访问、商用成本和融资"
+      ],
+      "watch": [
+        "客户实际生产率",
+        "云供应承诺",
+        "IPO 官方里程碑",
+        "安全保障与产品覆盖"
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "sourceIds": [
+        "meta-muse-20260908",
+        "meta-q2-20260729"
+      ],
+      "listing": {
+        "status": "listed",
+        "label": "Nasdaq: META",
+        "ticker": "META",
+        "confidence": "official_results"
+      },
+      "drivers": [
+        "社交产品分发、个人代理、广告与商业入口"
+      ],
+      "bottlenecks": [
+        "隐私与许可、代理可靠性、资本开支及费用"
+      ],
+      "watch": [
+        "代理付费与留存",
+        "广告回报变化",
+        "营业利润与现金流",
+        "可执行任务的真实边界"
+      ]
+    },
+    {
+      "id": "spacexai",
+      "name": "SpaceX / xAI",
+      "sourceIds": [
+        "xai-spacex-20260202",
+        "spacex-q2-20260804"
+      ],
+      "listing": {
+        "status": "listed_parent_subsidiary",
+        "label": "母公司 Nasdaq: SPCX；xAI 为全资子公司",
+        "ticker": "SPCX",
+        "confidence": "regulatory_filing"
+      },
+      "drivers": [
+        "Grok、计算基础设施、资本与连接业务资源"
+      ],
+      "bottlenecks": [
+        "AI 分部亏损、资本密集度、关联交易、整合及监管"
+      ],
+      "watch": [
+        "AI 分部收入/营业亏损",
+        "资本开支融资成本",
+        "客户构成",
+        "AI 与其他业务协同是否实证"
+      ],
+      "interpretation": "太空算力的规模化经济性属于待验证假说，不能作为现有盈利能力。"
+    },
+    {
+      "id": "deepmind",
+      "name": "Google DeepMind / Alphabet",
+      "sourceIds": [
+        "google-alphaevolve-20260709",
+        "alphabet-q2-20260722"
+      ],
+      "listing": {
+        "status": "listed_parent",
+        "label": "母公司 Nasdaq: GOOG / GOOGL",
+        "ticker": "GOOGL",
+        "confidence": "regulatory_filing"
+      },
+      "drivers": [
+        "模型、云、科研工具及既有产品分发"
+      ],
+      "bottlenecks": [
+        "新入口对原有收入结构影响、资本开支回收、竞争与监管"
+      ],
+      "watch": [
+        "云营业利润",
+        "科研成果外部复现",
+        "AI 产品单位经济性",
+        "经营利润与投资公允价值收益的区分"
+      ]
+    }
+  ],
+  "investmentThemes": [
+    {
+      "id": "us_platform",
+      "market": "US",
+      "title": "AI 分发与企业云",
+      "examples": [
+        {
+          "name": "Alphabet",
+          "ticker": "GOOGL / GOOG"
+        },
+        {
+          "name": "Meta",
+          "ticker": "META"
+        }
+      ],
+      "sourceIds": [
+        "meta-q2-20260729",
+        "alphabet-q2-20260722"
+      ],
+      "opportunity": "推断：若付费需求和单位经济性改善，分发、云与广告基础可转化为经营收益。",
+      "confirm": "看付费转化、经营现金流、资本开支后自由现金流及估值。",
+      "invalidate": "投入增长超过收入兑现；旧利润被低价新产品替代；估值已充分反映增长。"
+    },
+    {
+      "id": "us_spacex",
+      "market": "US",
+      "title": "AI 与航天、连接业务组合",
+      "examples": [
+        {
+          "name": "SpaceX",
+          "ticker": "SPCX"
+        }
+      ],
+      "sourceIds": [
+        "spacex-q2-20260804"
+      ],
+      "opportunity": "推断：多业务客户与基础设施可能提供协同，但需要分部数据证实。",
+      "confirm": "AI 亏损收窄、客户质量提高、资本开支产出改善。",
+      "invalidate": "融资摊薄、固定资产过度投入、整合失败、治理或监管事件。"
+    },
+    {
+      "id": "hk_cloud",
+      "market": "HK",
+      "title": "中国云与企业 AI 服务",
+      "examples": [
+        {
+          "name": "Alibaba",
+          "ticker": "9988.HK"
+        }
+      ],
+      "sourceIds": [
+        "alibaba-q1fy27-20260820"
+      ],
+      "opportunity": "推断：企业 AI 需求增长可能支持云业务扩大。",
+      "confirm": "外部客户付费留存、毛利和现金流、集团资本分配。",
+      "invalidate": "价格战、需求转化差、资本投入回收慢；汇率与跨境监管。"
+    },
+    {
+      "id": "cn_foundry",
+      "market": "CN / HK",
+      "title": "半导体制造与供应链本地化",
+      "examples": [
+        {
+          "name": "SMIC",
+          "ticker": "688981.SH / 0981.HK"
+        }
+      ],
+      "sourceIds": [
+        "smic-q1-20260514"
+      ],
+      "opportunity": "推断：算力与本地供应需求可能增加制造需求；不代表与所列 AI 公司有直接供应关系。",
+      "confirm": "用最新财报核实产能利用率、ASP、现金流、客户与资本开支。",
+      "invalidate": "技术设备限制、折旧压力、周期过剩及 A/H 估值差。"
+    },
+    {
+      "id": "bottleneck_watchlist",
+      "market": "US / HK / CN",
+      "title": "算力瓶颈配套：电力、冷却、互连、存储",
+      "examples": [],
+      "sourceIds": [
+        "spacex-q2-20260804"
+      ],
+      "opportunity": "研究假说：持续计算需求可能增加基础设施订单；在效率突破时价值也可能从训练转向推理或应用。",
+      "confirm": "逐家公司核实真实订单、交付、定价权、资产负债表；本快照未核实具体标的。",
+      "invalidate": "重复订单、供应过剩、技术替代、能源许可、债务成本；产业增长不等于股价上涨。"
+    }
+  ],
+  "socialScenarios": [
+    {
+      "topic": "就业与收入分配",
+      "sourceIds": [
+        "ilo-jobs-20250520",
+        "metr-productivity-20260224"
+      ],
+      "inference": "任务重组先于完整岗位替代；初级知识工作、文书和重复信息处理压力可能较大。",
+      "opportunities": [
+        "工作流整合",
+        "质量验证",
+        "再培训",
+        "人机责任设计"
+      ],
+      "risks": [
+        "工资分化",
+        "入门岗位减少",
+        "技能更新不均"
+      ],
+      "indicators": [
+        "任务级工时",
+        "就业/招聘结构",
+        "工资分布",
+        "员工实测生产率"
+      ]
+    },
+    {
+      "topic": "科学与医疗",
+      "sourceIds": [
+        "google-alphaevolve-20260709",
+        "anthropic-fable-20260901",
+        "openai-astra-20260903"
+      ],
+      "inference": "搜索、代码和实验设计加速可能提高研发吞吐，但实验、临床和制造环节仍限制收益兑现。",
+      "opportunities": [
+        "实验验证",
+        "科研工具",
+        "专业数据与合规服务"
+      ],
+      "risks": [
+        "不可复现成果",
+        "双重用途",
+        "生物安全与责任"
+      ],
+      "indicators": [
+        "外部复现",
+        "现实实验命中率",
+        "研发周期",
+        "监管批准"
+      ]
+    },
+    {
+      "topic": "治理与权力集中",
+      "sourceIds": [
+        "openai-structure-20251028",
+        "meta-muse-20260908",
+        "spacex-q2-20260804"
+      ],
+      "inference": "资本、算力与分发资源集中可能扩大平台议价权；可审计的个人代理亦可能降低个人创业门槛。",
+      "opportunities": [
+        "审计与评估",
+        "身份权限",
+        "中小企业服务"
+      ],
+      "risks": [
+        "隐私",
+        "垄断与信息操纵",
+        "网络安全",
+        "公共决策依赖"
+      ],
+      "indicators": [
+        "市场集中度",
+        "访问门槛",
+        "安全事件",
+        "监管与标准"
+      ]
+    }
+  ],
+  "forecastingCaveats": [
+    "本证据表不是训练集：16 条精选公告不足以训练可校准的深度神经网络时间预测。",
+    "建议算法对能力、成本、计算供给、采用、治理约束建情景模型；RSI/SI 日期概率必须标为情景假设，先验与权重应可查看。",
+    "若使用 MLP/LSTM，只能在有足量、同口径、按时间划分的历史样本并通过样本外回测后称作经验预测。合成数据训练应明确显示“演示模型”。",
+    "新闻数量不是能力增速；重复新闻、发布日期缺失、厂商自评、冲突公告应有质量控制，不能无审查改变高风险结论。",
+    "不应把模型概率当成投资收益率或个股价格目标；无实时价格与估值输入时不生成买卖评级。"
+  ],
+  "freshness": {
+    "observedAt": "2026-10-06",
+    "automated": false,
+    "marketQuotesIncluded": false,
+    "refreshRecommendations": [
+      "优先抓官方新闻、研究/模型卡、公司 IR、SEC/HKEX 公告。",
+      "分别保留 publishedAt、retrievedAt、periodEnd、evidenceType、原文 URL 与摘要哈希。",
+      "失败抓取显示上次成功时间与过期状态，不把网站重新加载时间当作信息更新。",
+      "历史快照不覆盖；概率重算记录输入版本、参数、算法版本与种子。"
+    ]
+  }
+}

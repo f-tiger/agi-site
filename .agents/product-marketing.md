@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v16** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v17** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -88,6 +88,14 @@ No new paid features for the three discovery probes until repeated task evidence
 ## AGI Future Guide — owner steering 2026-10-03
 
 Owner rejected founder-only positioning and approved need-led segmentation, leading-site benchmarking and commercial user journeys. New bilingual Future Guide serves work/learning first, with understand/earn/family/forecast entry points. Segment needs and willingness to pay remain hypotheses. Free: source-linked interviews, editorial interpretation, private local judgments, action records and export. Optional paid value: the existing AGI cloud membership stores this same notebook with version history; 9 USDT/30 days plus matching decimal and network fees, unchanged quotas, no auto-renewal or extra AI. No paid video archive, personal-report subscription or autonomous Jarvis forecast is offered. Jarvis currently labels its guidance as editorial. Read `docs/agi-future-guide-design-2026-10-03.md`.
+
+## AGI future simulator — owner steering 2026-10-31
+
+The owner requests the existing AI→RSI→SI simulation to adopt AGI's design and go live on the canonical AGI site, with registration and revenue as outcomes. Routes `/ai-futures` and `/zh/ai-futures` serve readers comparing assumptions about research automation, society and investment exposure. This is a buyer/job hypothesis, not verified demand. Keep the numerical tool separate from Future Guide's interview evidence and from measured AGI capability scores. Conditional simulation frequencies and a neural surrogate of simulated data are not calibrated future probabilities or stock-return forecasts.
+
+Free: inspect sources, change assumptions, run scenarios, save locally and export without registration. Free registration has existing, bounded Jarvis research and moderated-discussion value; it does not grant cloud storage or silently link an AGI paid membership key. Paid: the same existing AGI membership can keep simulator records and versions, using independent product `ai-futures`, 9 USDT/30 days plus matching decimal and network fees, unchanged quotas and no extra AI allowance. The member page checks live readiness and requires explicit Save; opening it is neither purchase nor upload. No new price, account system, payment method or recurring job is introduced.
+
+Distribution uses the relevant bilingual tools directory, shared navigation's Tools group and Future Guide's related research link. Existing daily deployment refreshes allowlisted company sources, with dated cached content on failure. Measure own-assumption runs, exports/local saves, research and cloud intent separately from actual registered accounts, verified product-attributed orders and delivered records. Do not count default demonstrations or QA as customer completion; never send simulation values or notes to analytics. No external promotion, paid ads or manufactured account/payment events. Observe comparable UTC windows for two weeks; low reach is inconclusive. Investigate repeated use and payment friction before expanding paid scope. See `docs/agi-futures-release-2026-10-31.md`.
 
 ## Eco household expansion — owner steering 2026-10-29
 
@@ -186,3 +194,5 @@ Positioning: turn one judgment into a testable next step. The historical snapsho
 Owned distribution: bilingual AI-tools hubs, search/agent-readable pages and the existing research site's migration entry. No outside outreach, ad spend or new scheduler. Track fixed demo/own calculation, local-save/export and account/member-entry intents without input text. Account creation, actual member saves and source-attributed settled receipts remain separate server outcomes. Visits/actions are not independent people; membership page opens are not purchases. Revenue and profit remain unverified until actual receipts and costs are reconciled. Main counter-case: JSON is sufficient, separate keys and crypto payment add friction. Diagnose repeat use and checkout friction before adding features.
 
 Version note v16: adds the owner-authorized AGI Tianya migration and its real free/paid boundaries; retains earlier product directions and historical evidence.
+
+Version note v17: adds the AGI AI futures simulator and its registration/revenue measurement boundaries, preserving the concurrent Tianya launch.
