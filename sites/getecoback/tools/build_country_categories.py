@@ -5,6 +5,7 @@ Local-market editorial pages deliberately own their commerce and tracking:
 only the verified DE store is affiliated; NL/AU are ordinary merchant links.
 No georedirect, generated product rankings, imported ASINs or price claims.
 """
+import hashlib
 import html
 import json
 import re
@@ -54,6 +55,8 @@ def shell(c, page, content, hub=False):
               'author': {'@type': 'Organization', 'name': 'EcoBack', 'url': BASE + '/ueber-uns.html'}}
     crumbs = f'<a href="{c["path"]}">{esc(c["country"])}</a> / {esc(c["guide_label"])}' if not hub else esc(c['eyebrow'])
     sources = ''.join(f'<li><a href="{esc(s[1])}">{esc(s[0])}</a></li>' for s in c['sources'])
+    css_version = hashlib.sha256((SITE / 'assets/country-categories.css').read_bytes()).hexdigest()[:12]
+    js_version = hashlib.sha256((SITE / 'assets/country-categories.js').read_bytes()).hexdigest()[:12]
     return f'''<!doctype html>
 <html lang="{c['lang']}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,9 +65,9 @@ def shell(c, page, content, hub=False):
 {alternates}<meta property="og:type" content="{'website' if hub else 'article'}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary"><link rel="icon" href="/favicon.svg">
-<link rel="stylesheet" href="/assets/country-categories.css">
+<link rel="stylesheet" href="/assets/country-categories.css?v={css_version}">
 <script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>
-<script defer src="/assets/country-categories.js"></script>
+<script defer src="/assets/country-categories.js?v={js_version}"></script>
 </head><body data-country-market="{c['market']}">
 <a class="skip" href="#main">{esc(c['skip'])}</a>
 <header class="site-header"><a class="wordmark" href="/">EcoBack<span>home & energy</span></a><nav aria-label="{esc(c['country_label'])}">{nav}</nav></header>
@@ -87,24 +90,29 @@ def hub_body(c):
     chooser += '</select><div aria-live="polite" data-country-result><p></p><a data-country-action="need_result" hidden></a></div></section>'
     # Explicit per-market rollout: crawlable choices work without JavaScript.
     if c.get('visible_routes'):
-        cards = '<nav class="need-cards" aria-label="' + esc(choose['title']) + '">'
+        cards = '<nav class="need-cards' + (' need-cards--four' if len(c['categories']) == 4 else '') + '" aria-label="' + esc(choose['title']) + '">'
         for t in c['categories']:
             cards += f'<a href="{esc(t["related"][0][1])}" data-country-action="scenario_open"><strong>{esc(t["title"])}</strong><span>{esc(t["summary"])}</span><span>{esc(t["related"][0][0])} →</span></a>'
-        chooser = cards + '</nav>' + chooser
+        # The German four-task entry already answers the chooser's question.
+        # Keep a single decision surface; existing NL/AU interaction stays intact.
+        chooser = cards + '</nav>' + ('' if c['market'] == 'DE' else chooser)
     jump = '<nav class="topics" aria-label="' + esc(c['topics_label']) + '">' + ''.join(
         internal('#' + t['id'], t['title'], 'category') for t in c['categories']) + '</nav>'
     for n, t in enumerate(c['categories'], 1):
         checks = ''.join('<li>' + esc(s) + '</li>' for s in t['checks'])
         links = ''.join('<li>' + internal(p, label) + '</li>' for label, p in t['related'])
+        commerce = (f'<div class="commerce"><p class="disclosure">{esc(c["shop_disclosure"])}</p>{merchant(c, t["query"], t["shop_label"])}</div>'
+                    if t.get('commerce', True) else '')
         sections.append(f'''<section class="category" id="{t['id']}">
 <div class="category-title"><span class="number">0{n}</span><h2>{esc(t['title'])}</h2></div>
 <div class="category-detail"><p>{esc(t['summary'])}</p><h3>{esc(c['check_label'])}</h3><ul>{checks}</ul>
-<ul class="reading">{links}</ul><div class="commerce"><p class="disclosure">{esc(c['shop_disclosure'])}</p>{merchant(c, t['query'], t['shop_label'])}</div></div></section>''')
+<ul class="reading">{links}</ul>{commerce}</div></section>''')
     regional = ''
     if c.get('regional'):
         r = c['regional']
         links = ''.join('<li>' + internal(p, label) + '</li>' for label, p in r['links'])
-        regional = f'<section class="guide-section" id="dach"><h2>{esc(r["title"])}</h2><p>{esc(r["text"])}</p><ul>{links}</ul></section>'
+        markets = ''.join(f'<h3>{esc(m["name"])}</h3><p>{esc(m["text"])}</p>' for m in r.get('markets', []))
+        regional = f'<section class="guide-section" id="dach"><h2>{esc(r["title"])}</h2><p>{esc(r["text"])}</p>{markets}<ul>{links}</ul></section>'
     return chooser + jump + f'<aside class="decision-note"><strong>{esc(c["note_title"])}</strong><p>{esc(c["note"])}</p></aside>' + ''.join(sections) + regional
 
 
@@ -185,7 +193,8 @@ def main():
         write_page(c['path'], shell(c, c, hub_body(c), True))
         write_page(c['guide']['path'], shell(c, c['guide'], guide_body(c)))
     discovery()
-    print('country categories: 3 country hubs, 9 category sections, 3 local guides, 7 discovery surfaces')
+    count = sum(len(c['categories']) for c in DATA['countries'])
+    print(f'country categories: 3 country hubs, {count} category sections, 3 local guides, 7 discovery surfaces')
 
 
 if __name__ == '__main__':

@@ -30,12 +30,18 @@ const origin='https://getecoback.com', root=path.resolve('site');
    if(!layout.fits)await page.screenshot({path:path.join(dir,`overflow-${engine}-${c.market}-${width}-${url===c.path?'hub':'guide'}.png`),fullPage:true});
    assert(layout.fits,`${url} overflow at ${width}: ${JSON.stringify(layout.overflow)}`);
    if(url===c.path){
-    for(const cat of c.categories){
-     await page.locator('#country-need').selectOption(cat.id);
-     const link=page.locator('[data-country-action="need_result"]');
-     assert(await link.isVisible());assert.equal(await link.getAttribute('href'),cat.related[0][1]);
+    if(c.market==='DE'){
+     assert.equal(await page.locator('#country-need').count(),0,'DE routes should not ask the same question twice');
+     assert.equal(await page.locator('.need-cards a').count(),c.categories.length);
+     for(const cat of c.categories)assert(await page.locator('.need-cards a[href="'+cat.related[0][1]+'"]').isVisible());
+    }else{
+     for(const cat of c.categories){
+      await page.locator('#country-need').selectOption(cat.id);
+      const link=page.locator('[data-country-action="need_result"]');
+      assert(await link.isVisible());assert.equal(await link.getAttribute('href'),cat.related[0][1]);
+     }
+     await page.locator('#country-need').selectOption('');assert.equal(await page.locator('[data-country-action="need_result"]').isVisible(),false);
     }
-    await page.locator('#country-need').selectOption('');assert.equal(await page.locator('[data-country-action="need_result"]').isVisible(),false);
    }else{
     const before=await page.evaluate(()=>window.__events.length);
     await page.locator('.checklist input').first().check();

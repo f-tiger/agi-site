@@ -60,6 +60,14 @@ def to_markdown(src_html, path_url, lang):
         main = re.search(r'<main\b[^>]*>(.*?)</main>', src_html, re.S)
         if main:
             body = re.sub(r'<header\b.*?</header>', '', main.group(1), flags=re.S)
+    if path_url == '/guide/smarte-heizkoerperthermostate-lohnen-sich.html':
+        # The sourced no-JS table carries the evidence. Interactive selectors
+        # would otherwise become a concatenated list of unrelated valve names.
+        body = re.sub(r'<div\b[^>]*data-valve-controls[^>]*>.*?</div>', '', body, flags=re.S)
+        body = re.sub(r'<p\b[^>]*data-valve-share-row[^>]*>.*?</p>', '', body, flags=re.S)
+        body = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', body, flags=re.S)
+        body = re.sub(r'</strong><p>', '</strong><p> ', body)
+        body = re.sub(r'</caption>', '</caption>\n', body)
     heater = re.search(r'<!--EB_HEATCOST-->(.*?)<!--/EB_HEATCOST-->', src_html, re.S)
     if heater:
         # Keep the examples and limitations; remove forms below as usual.

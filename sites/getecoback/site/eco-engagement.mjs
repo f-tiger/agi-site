@@ -14,6 +14,32 @@ export function engagementClock() {
   };
 }
 
+// Fixed navigation actions, never a household answer, completed tool or sale.
+export function countryScenarioEvent(pathname, detail) {
+  if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  const actions = {
+    '/wohnen.html': 'eco_country_scenario_open',
+    '/nl/wonen.html': 'eco_country_scenario_open',
+    '/nl/ventilatie-of-luchtontvochtiger.html': 'eco_country_scenario_read'
+  };
+  return Object.hasOwn(actions, pathname) && detail.name === actions[pathname] ? detail.name : null;
+}
+
+// Eco-only additions: an exact public route and a fixed action, never values,
+// selected products, household answers or a share URL. Each is once per page.
+export function ecoPublicBusinessEvent(pathname, detail) {
+  if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  const country = countryScenarioEvent(pathname, detail);
+  if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
+  const routes = {
+    '/guide/heizdecke-stromverbrauch.html': {tool_id:'eco-personal-warmth', names:['eco_warmth_example','eco_warmth_calculate','eco_warmth_share']},
+    '/guide/smarte-heizkoerperthermostate-lohnen-sich.html': {tool_id:'eco-valve-fit', names:['eco_valve_result','eco_valve_official','eco_valve_share']},
+    '/guide/richtig-lueften-im-winter.html': {tool_id:'eco-wall-moisture', names:['eco_dewpoint_example','eco_dewpoint_check']}
+  };
+  if (!Object.hasOwn(routes, pathname) || !routes[pathname].names.includes(detail.name)) return null;
+  return {name:detail.name, tool_id:routes[pathname].tool_id};
+}
+
 export function installPublicEngagement() {
   const host = 'getecoback.com', id = 'G-E2V0Q9SJ9V';
   const query = new URLSearchParams(location.search);
@@ -35,6 +61,16 @@ export function installPublicEngagement() {
     try { if (localStorage.getItem('fleet_ga4_choice_v1') === 'denied') return false; } catch {}
     return !!frame?.isConnected && !frame.contentWindow['ga-disable-' + id];
   };
+  const actionsSent = new Set();
+  window.addEventListener('fleet:business', event => {
+    const action = ecoPublicBusinessEvent(page.pathname, event.detail);
+    if (!action || !permitted() || actionsSent.has(action.name)) return;
+    actionsSent.add(action.name);
+    // No replay of actions before the existing analytics frame was enabled.
+    (function () { frame.contentWindow.dataLayer.push(arguments); })('event', action.name, {
+      ...fields, tool_id:action.tool_id, transport_type:'beacon'
+    });
+  });
   const stop = () => { clearInterval(timer); timer = undefined; frame = undefined; clock.reset(); };
   const active = () => document.visibilityState === 'visible' && document.hasFocus();
   const sample = value => {

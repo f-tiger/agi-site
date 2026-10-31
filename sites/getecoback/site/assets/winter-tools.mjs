@@ -22,5 +22,8 @@ for(const root of document.querySelectorAll('[data-winter-tool]')){
   }catch(e){error.textContent=language==='de'?e.message:words[language].error;}
  });
  download.addEventListener('click',()=>{if(!latest)return;const u=URL.createObjectURL(new Blob([latest.text],{type:'text/plain;charset=utf-8'})),a=document.createElement('a');a.href=u;a.download='ecoback-winter-rechnung.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);if(latest.own)event('tool_export');});
+ // Thermostat inputs are progressively enabled only after submit is intercepted.
+ // Without JavaScript its static method remains readable and no values can GET-leak.
+ if(kind==='thermostat')form.hidden=false;
  root.dataset.ready='true';
 }

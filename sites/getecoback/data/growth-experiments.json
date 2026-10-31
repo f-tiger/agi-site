@@ -80,6 +80,59 @@
       "revenue": "Unknown until authorized merchant reports provide commission status, refunds, currency and attribution window. No hypothetical EPC.",
       "rollback": "Revert this scoped change if page, calculation, privacy or publishing regression appears. Preserve truthful source corrections; do not restart the paused Growth Loop.",
       "due_note": "Reminder only. Compute day 14 and day 28 after the first full Asia/Shanghai day following verified deployment; analytics processing delay applies."
+    },
+    {
+      "id": "eco-dach-winter-depth-20261031",
+      "site": "getecoback",
+      "status": "release_ready",
+      "due": "2026-11-29",
+      "goal": "Improve useful winter decisions and qualified merchant hand-offs on existing German-language URLs. No revenue claim without readable matched merchant reports.",
+      "rounds": [
+        {
+          "round": 1,
+          "goal": "Prioritise decision gaps over page count",
+          "evidence": "DE GA4 2026-10-24 through 10-30: 20 sessions / 16 engaged versus 21 / 12 in prior7d; small sample. Existing cold-room and laundry tools already cover generic choices. Public October forum questions about desk warmth and valve adapters are qualitative signals, not demand volume.",
+          "acceptance": "Deepen existing personal-warmth, thermostat-fit and winter-entry URLs; do not create country/model doorway pages."
+        },
+        {
+          "round": 2,
+          "goal": "Challenge cost and compatibility claims",
+          "evidence": "A rated wattage is not measured draw; automatic shut-off varies by exact model; identical valve thread is not proof of fit across thermostat families; EUR estimates and Amazon.de eligibility do not establish Swiss suitability.",
+          "acceptance": "Separate examples from edited calculations, preserve no-purchase/unknown-fit outcomes, retain official exact-generation references and explicit DE/AT/CH assumptions."
+        },
+        {
+          "round": 3,
+          "goal": "Release reviewable, measurable buying paths",
+          "evidence": "Scoped GA4 bridge did not admit winter wall-moisture taupunkt_check; that does not prove absence from first-party records. Existing weekly traffic cannot support a useful three-market A/B revenue test.",
+          "acceptance": "Math, compatibility, mobile/no-JS, opt-out, metadata and Markdown checks pass. Verify deployed assets and applicable IndexNow receipt. Observe real traffic for full14d before judging utility."
+        }
+      ],
+      "built_pages": [
+        "/",
+        "/wohnen.html",
+        "/guide/heizdecke-stromverbrauch.html",
+        "/guide/smarte-heizkoerperthermostate-lohnen-sich.html",
+        "/guide/richtig-lueften-im-winter.html"
+      ],
+      "metric": "Country-specific landing sessions and engaged_sessions; eco_country_scenario_open, eco_warmth_example/calculate/share, eco_valve_result/official/share, eco_dewpoint_example/check and affiliate_click separately. Each scoped event is deduplicated once per page, not a unique user, session, compatible installation, buyer or order. Do not compute a click-session rate until same-scope clicked sessions are available.",
+      "layout": "Single product rollout with an observational before/after comparison, not randomized A/B. DE, AT, CH and sources remain separate. Event coverage changed: new events cannot be compared to historical zeros.",
+      "start_rule": "Record exact production verification, current asset hashes and GA4 property timezone Asia/Shanghai. Start at the first complete property day after verified deployment; allow source latency. Prior EU experiment has overlapping German routes/discovery: annotate overlap, no isolated causal claim.",
+      "observation": "Observe14 complete days; review28. Consent exclusions, QA filters, Google processing delay and small samples constrain inference. Search Console impressions/clicks are a separate acquisition stage and use their own source timezone.",
+      "win": "Continue only with repeated relevant arrivals plus deliberate tool use or official/merchant hand-offs. Operating signals are not proof of growth or revenue. Actual net commissions require matched authorized merchant evidence.",
+      "lose": "Low impressions: investigate discovery/indexing. Impressions without arrivals: inspect query/title intent. Relevant arrivals without use: revise entry/tool usefulness. Use without merchant clicks: investigate fit and no-purchase outcomes. Clicks without readable orders: sales outcome remains unknown. Do not expand model/country URL counts to manufacture an update.",
+      "ab_followup": "Do not launch an underpowered multi-country test now. Once the stable event baseline supports a pre-specified sample-size calculation, test one DE entry-copy variable with a fixed assignment and unchanged tool/factual content. Primary outcome: same-scope sessions with a deliberate tool decision; affiliate sessions secondary, verified net commission separately. Pre-register baseline, detectable effect, sample size and stopping rule;14 days alone is not a significance threshold.",
+      "publication_acceptance": [
+        "Existing canonical URLs and reciprocal hreflang where real translations exist; do not invent regional alternates.",
+        "Crawlable home/hub/tool links, useful factual HTML and Markdown mirrors with formulas and official sources; no unsupported product ratings or tested claims.",
+        "Disclosed optional affiliate links; explicit store/delivery/currency limits; no automatic marketplace rewrite.",
+        "Existing GA4 property and opt-out/QA/DNT/GPC/private-page exclusions; fixed action names only, no raw input or shared URL analytics.",
+        "Run existing IndexNow cadence for authored URL changes; receipt is not proof of indexing. No per-push extra submitter."
+      ],
+      "revenue": "Unknown: no successful read of authorized fulfilled-commission/order/refund report. Key-event zero is not zero revenue; no invented sales, commission or EPC.",
+      "rollback": "Revert scoped behavioral regressions; keep factual corrections. No Growth Loop restart, new spend, outreach, social publishing, membership/payment configuration, storage/PV or Growatt restoration.",
+      "due_note": "Reminder only; calculate day14/day28 from actual verified deployment rather than this JSON date.",
+      "threshold": "First observe14 complete days; fewer than100 relevant landing sessions per market over28d is insufficient reach, not a failed offer. At sufficient reach, at least10 deliberate tool interactions and5 official/merchant hand-offs supports further investigation, not statistical or revenue proof. Keep actions separate and never add them as unique buyers. Two full14d windows with repeated useful paths precede further model/country expansion.",
+      "source": "sites/getecoback/site/assets/thermostat-fit-data.json; sites/getecoback/tools/personal_warmth.py; existing sourced cold-room/laundry guides"
     }
   ]
 }

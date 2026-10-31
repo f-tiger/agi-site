@@ -6,6 +6,7 @@ sources on these pages. Automatic category shelves must not contradict them.
 import re
 from moisture_decision import PATHS as MOISTURE_PATHS
 from build_winter_guides import PAGES as WINTER_PAGES
+from personal_warmth import inject as inject_personal_warmth
 
 WINDOW_DE = {'klimaanlage-kippfenster', 'klimaanlage-dachfenster', 'klimaanlage-zubehoer-guenstig', 'fensterabdichtung-klimaanlage'}
 WINDOW_EN = {'portable-ac-tilt-and-turn-windows', 'portable-ac-skylight-roof-window', 'window-seal-portable-ac'}
@@ -29,6 +30,8 @@ def heater_block():
 
 
 def inject(html, slug, en=False):
+    if slug == 'heizdecke-stromverbrauch' and not en:
+        return inject_personal_warmth(html)
     if slug in WINTER_PAGES or slug == 'winter-energiesparen':
         return strip(html, ['USSWITCH','USMARKET','USTOP','USSHELF','POPUP','MODELS','TOPPICK','QUICKPICK','SIZER','STICKY','EXPLAINER','PROFILE','HEATNOW','HEATENERGY','CLIMATE','RADAR'])
     if slug not in PROTECTED: return html
