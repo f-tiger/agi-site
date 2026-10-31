@@ -80,3 +80,5 @@ public pages with 14 explicit exclusions; public-engagement installation passed.
 Chinese mobile screenshots were visually checked. Browser requests were
 intercepted locally. This does not establish Google backend event receipt or
 real customer purchases. Live release results remain pending.
+
+Publication coordination: the original relay run 41216467843 passed all local and browser gates but stopped before upload because another site changed main. A subsequent already-running read-only release also became stale after commit f93627dc; its upload was still pending, so it was cancelled before deployment. The next fresh current-main publication retains the exact main guard and all checks; no historical workflow is rerun.
