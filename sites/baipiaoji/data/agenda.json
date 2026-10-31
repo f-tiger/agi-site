@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-28",
+  "generated": "2026-10-31",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 43,
+    "candidate": 40,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -26,33 +26,9 @@
   },
   "items": [
     {
-      "id": "drift:google-ai-studio",
-      "type": "source_drift",
-      "title": "来源页变动：Google AI Studio（2026-10-28 确认）",
-      "why": "官方来源页的数字令牌变了——新增 1,000美元 / 1000万 / 100万 / 100美元；消失 $1,000 / $100 / $100,000 / $20,000。本站条目仍是 2026-09-29 的版本",
-      "action": "打开 https://ai.google.dev/gemini-api/docs/rate-limits 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "google-ai-studio",
-        "https://ai.google.dev/gemini-api/docs/rate-limits"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:immersive-translate",
-      "type": "source_drift",
-      "title": "来源页变动：沉浸式翻译（2026-10-27 确认）",
-      "why": "官方来源页的数字令牌变了——新增 209b；消失 6441b / 76b。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://immersivetranslate.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "immersive-translate",
-        "https://immersivetranslate.com"
-      ],
-      "score": 75
-    },
-    {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：www.perplexity.ai×11、chatgpt.com×1、copilot.microsoft.com×1",
+      "title": "AI 助手引流出现：www.perplexity.ai×12、chatgpt.com×1、copilot.microsoft.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -60,6 +36,7 @@
         "/tools/tusiart",
         "/tools/ms-copilot",
         "/c/image",
+        "/en/",
         "/en/c/image",
         "/en/tools/bing-image",
         "/mcp"
@@ -67,50 +44,74 @@
       "score": 70
     },
     {
-      "id": "drift:elicit",
-      "type": "source_drift",
-      "title": "来源页变动：Elicit（2026-10-28 确认）",
-      "why": "官方来源页的数字令牌变了——新增 18.438m / 22.375m / 27.458m / 8.904m；消失 21.883m / 22.849m / 22.9m。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://elicit.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "elicit",
-        "https://elicit.com"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:civitai",
-      "type": "source_drift",
-      "title": "来源页变动：Civitai（2026-10-28 确认）",
-      "why": "官方来源页的数字令牌变了——新增 3min；消失 2min。本站条目仍是 2026-08-06 的版本",
-      "action": "打开 https://education.civitai.com/guide-to-licensing-options-on-civitai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "civitai",
-        "https://education.civitai.com/guide-to-licensing-options-on-civitai"
-      ],
-      "score": 65
-    },
-    {
-      "id": "drift:windsurf",
-      "type": "source_drift",
-      "title": "来源页变动：Windsurf（2026-10-28 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 26b。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://windsurf.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "windsurf",
-        "https://windsurf.com"
-      ],
-      "score": 65
-    },
-    {
       "id": "drift:gaoding",
       "type": "source_drift",
-      "title": "来源页变动：稿定 AI（2026-10-27 确认）",
-      "why": "官方来源页的数字令牌变了——新增 2字 / 30seconds；消失 0026prompt / 2min / 400credits / 5min。本站条目仍是 2026-08-04 的版本",
+      "title": "来源页变动：稿定 AI（2026-10-31 确认）",
+      "why": "官方来源页的数字令牌变了——新增 365days / 365天；消失 无。本站条目仍是 2026-08-04 的版本",
       "action": "打开 https://gaoding.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
         "gaoding",
         "https://gaoding.com"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:tongyi",
+      "type": "source_drift",
+      "title": "来源页变动：通义千问（2026-10-31 确认）",
+      "why": "官方来源页的数字令牌变了——新增 0.6b / 1.7b / 10b / 110b；消失 无。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://help.aliyun.com/zh/model-studio/new-free-quota 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "tongyi",
+        "https://help.aliyun.com/zh/model-studio/new-free-quota"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:gemini",
+      "type": "source_drift",
+      "title": "来源页变动：Google Gemini（2026-10-31 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 1.5s / 4.5s。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://support.google.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "gemini",
+        "https://support.google.com"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:lovable",
+      "type": "source_drift",
+      "title": "来源页变动：Lovable（2026-10-30 确认）",
+      "why": "官方来源页的数字令牌变了——新增 0026s / 89b；消失 无。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://docs.lovable.dev 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "lovable",
+        "https://docs.lovable.dev"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:continue",
+      "type": "source_drift",
+      "title": "来源页变动：Continue（2026-10-30 确认）",
+      "why": "官方来源页的数字令牌变了——新增 36.4k；消失 36.3k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/continuedev/continue 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "continue",
+        "https://github.com/continuedev/continue"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:zhipu-glm",
+      "type": "source_drift",
+      "title": "来源页变动：智谱开放平台（2026-10-30 确认）",
+      "why": "官方来源页的数字令牌变了——新增 28b；消失 无。本站条目仍是 2026-08-01 的版本",
+      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "zhipu-glm",
+        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
       ],
       "score": 65
     },
@@ -153,7 +154,7 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 112 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 122 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
@@ -164,7 +165,7 @@
     {
       "id": "paidgap:exa",
       "type": "paid_gap",
-      "title": "补付费档：Exa（工具页 28 天带来源真人 36 次，无付费档）",
+      "title": "补付费档：Exa（工具页 28 天带来源真人 41 次，无付费档）",
       "why": "有需求、无判定页：is-exa-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
