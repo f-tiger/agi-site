@@ -11,7 +11,7 @@ try{
  for(const width of [390,1440]){await p.setViewportSize({width,height:900});let baseline;for(const route of routes){await p.goto('https://agiscorecard.com'+route+'?__qa=1');await p.locator('#agi-nav .agi-menu>summary').waitFor();await p.waitForFunction(()=>document.querySelector('#agi-site-menu summary').hasAttribute('aria-expanded'));
   const h=await p.locator('#agi-nav').evaluate(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{height:r.height,x:r.x,width:r.width,color:s.color,font:s.fontFamily,bg:s.backgroundColor};});
   baseline??=h;assert.deepEqual(h,baseline,route+' consistent header at '+width);
-  await p.locator('#agi-site-menu summary').click();assert.equal(await p.locator('#agi-site-menu').getAttribute('open'),'');assert.equal(await p.locator('#agi-menu-panel a').count(),19);
+  await p.locator('#agi-site-menu summary').click();assert.equal(await p.locator('#agi-site-menu').getAttribute('open'),'');assert.equal(await p.locator('#agi-menu-panel a').count(),21);
   assert.equal(await p.locator('#agi-menu-panel a[data-nav-destination=tools]').isVisible(),true);assert.equal(await p.locator('#agi-menu-panel a[data-nav-destination=invest]').isVisible(),true);
   assert.ok(await p.locator('#agi-nav').evaluate(e=>[...e.querySelectorAll('a,summary')].filter(a=>a.getClientRects().length).every(a=>{const r=a.getBoundingClientRect();return r.left>=-1&&r.right<=innerWidth+1;})),route+' navigation fits '+width);
   await p.keyboard.press('Escape');assert.equal(await p.locator('#agi-site-menu').getAttribute('open'),null);assert.equal(await p.locator('#agi-site-menu summary').evaluate(e=>document.activeElement===e),true);
@@ -26,5 +26,5 @@ try{
  await p.goto('https://agiscorecard.com/zh/ai-tools?__qa=1#tools');await p.waitForFunction(()=>document.getElementById('language').hash==='#tools');assert.equal(await p.locator('#language').getAttribute('href'),'/ai-tools#tools');
  await p.goto('https://agiscorecard.com/zh/mentor?embed=1&__qa=1');assert.equal(await p.locator('#agi-nav').isVisible(),false);
  await p.goto('https://agiscorecard.com/zh/discuss/account?__qa=1');assert.equal(await p.locator('#login-key').count(),1);
- console.log(JSON.stringify({navigationPages:checked,widths:[320,360,390,650,768,1024,1440],menuDestinations:19,passed:true}));
+ console.log(JSON.stringify({navigationPages:checked,widths:[320,360,390,650,768,1024,1440],menuDestinations:21,passed:true}));
 }finally{await browser.close();}
