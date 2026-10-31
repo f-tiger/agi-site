@@ -2,11 +2,17 @@ import {TOOLS} from '../collector-assets/mcp-contract.mjs';
 
 // These labels are fixed public capabilities, never caller-supplied dimensions.
 export const MCP_TOOLS = new Set(TOOLS.map(tool => tool.name));
-export const MCP_TOOL_RELEASES = Object.freeze({search_collection_series:'2026-10-31',prepare_collection_checklist:'2026-10-31'});
+export const MCP_TOOL_RELEASES = Object.freeze({search_collection_series:'2026-10-31',prepare_collection_checklist:'2026-10-31',prepare_swap_event_card:'2026-10-31'});
+// Compatibility marker for the original 2.5 collection tools; individual releases govern coverage.
 export const MCP_TOOL_FIRST_FULL_DAY = '2026-11-01';
+export const EVENT_KIT_EVENTS = new Set(['collector_event_prepare','collector_event_card','collector_event_share','collector_event_text','collector_event_recipient','collector_event_reuse','collector_event_print']);
+export const EVENT_KIT_RELEASES = Object.freeze(Object.fromEntries([...EVENT_KIT_EVENTS].map(name=>[name,'2026-10-31'])));
+export function firstFullUTCDate(released) {
+  const day=new Date(released+'T00:00:00Z');day.setUTCDate(day.getUTCDate()+1);return day.toISOString().slice(0,10);
+}
 export const MCP_EVENT = 'collector_mcp_call';
 export const MCP_RESULTS = new Set(['result', 'no_result']);
-export const COLLECTOR_EVENTS = new Set(['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','display_plan_export','display_plan_example','collection_save', 'collection_export', 'collection_import', 'collector_series_save', 'collector_series_export', 'collector_mcp_copy']);
+export const COLLECTOR_EVENTS = new Set([...EVENT_KIT_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','display_plan_export','display_plan_example','collection_save', 'collection_export', 'collection_import', 'collector_series_save', 'collector_series_export', 'collector_mcp_copy']);
 const QA_PARAMS = ['ci', '__ci', '__probe', 'qa', '__qa'];
 const QA_HEADERS = ['x-probe', 'x-ci', 'x-qa', 'x-tds-test'];
 const QA_AGENT = /headless|playwright|puppeteer|self[-_ ]?check|release[-_ ]?check|(?:^|[^a-z])(?:ci|qa|test|probe)(?:[^a-z]|$)|mcp[-_ ]?(?:inspector|checker|validator)|(?:glama|smithery).*(?:check|inspect|health|test)/i;
@@ -31,6 +37,7 @@ export function measurableRequest(request, {mcp = false} = {}) {
 }
 
 export function collectorEventAllowed(event, path) {
+  if (EVENT_KIT_EVENTS.has(event)) return /^\/(?:de\/|zh\/)?collecting\/event-kit$/.test(path);
   if (['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported'].includes(event)) return /^\/(?:de\/|zh\/)?collecting\/wish-card$/.test(path);
   if (['display_plan_export','display_plan_example'].includes(event)) return /^\/(?:de\/)?display-calculator$/.test(path);
   if (['collection_save', 'collection_export', 'collection_import'].includes(event)) return /^\/(?:de\/|zh\/)?collection-tracker$/.test(path);

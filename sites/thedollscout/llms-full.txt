@@ -308,6 +308,12 @@ Independent collectible-toy guides and free collection tools. MCP tools directly
   Text: https://thedollscout.com/collector-assets/text/de/collecting/wish-card.txt
 - [制作求购或交换心愿卡](https://thedollscout.com/zh/collecting/wish-card) (zh): 把想要的具体款式和条件说清楚。预览卡片，再带到你自己的社区帖子，让有货的人回应。
   Text: https://thedollscout.com/collector-assets/text/zh/collecting/wish-card.txt
+- [A shareable plan for your next collectible meetup](https://thedollscout.com/collecting/event-kit) (en): Make an activity template for your group, or a personal card of the figures you want and explicitly offer. Share one link; each recipient can start their own card.
+  Text: https://thedollscout.com/collector-assets/text/en/collecting/event-kit.txt
+- [Ein teilbarer Plan für das nächste Sammlertreffen](https://thedollscout.com/de/collecting/event-kit) (de): Eine Aktivitätsvorlage für Ihre Gruppe oder eine persönliche Karte mit ausdrücklich gewünschten und angebotenen Figuren erstellen. Empfänger können über denselben Link ihre eigene Karte beginnen.
+  Text: https://thedollscout.com/collector-assets/text/de/collecting/event-kit.txt
+- [为下一场收藏活动，做好可分享的准备](https://thedollscout.com/zh/collecting/event-kit) (zh): 为社群制作活动模板，或列出自己明确想要、愿意交换的款式。分享一个链接，接收者就能开始制作自己的卡。
+  Text: https://thedollscout.com/collector-assets/text/zh/collecting/event-kit.txt
 
 ## MCP and assistant discovery
 
@@ -349,6 +355,8 @@ Saved on this browser. No account or cloud sync. Export a backup before changing
 Each checklist links to its official source. We do not verify live stock, prices or authenticity. Other brands have planning guides rather than complete series catalogs.
 
 Use these collection tools with your AI assistant: https://thedollscout.com/for-agents
+
+A shareable plan for your next collectible meetup: https://thedollscout.com/collecting/event-kit
 
 Sonny Angel Snack Series — https://thedollscout.com/series/sonny-angel-snack-series
 
@@ -1096,6 +1104,8 @@ Jede Checkliste verlinkt ihre offizielle Quelle. Keine geprüften Live-Bestände
 
 Sammlung mit dem KI-Assistenten prüfen: https://thedollscout.com/de/for-agents
 
+Ein teilbarer Plan für das nächste Sammlertreffen: https://thedollscout.com/de/collecting/event-kit
+
 Sonny Angel Snack Series — https://thedollscout.com/de/series/sonny-angel-snack-series
 
 Sonny Angel Vegetable Series — https://thedollscout.com/de/series/sonny-angel-vegetable-series
@@ -1841,6 +1851,8 @@ Content updated: 2026-10-31
 每份清单都链接到官方资料。本站不提供已核实的实时库存、售价或鉴定服务。其他品牌目前提供规划指南，而非完整系列图鉴。
 
 让 AI 助手直接核对收藏清单: https://thedollscout.com/zh/for-agents
+
+为下一场收藏活动，做好可分享的准备: https://thedollscout.com/zh/collecting/event-kit
 
 Sonny Angel Snack Series — https://thedollscout.com/zh/series/sonny-angel-snack-series
 
@@ -2610,9 +2622,13 @@ https://thedollscout.com/brands/molly
 # Free collector tools
 
 https://thedollscout.com/collector-tools
-Content updated: 2026-10-11
+Content updated: 2026-10-31
 
 A calculator for the next decision: probability, budget, collection progress or display space.
+
+A shareable plan for your next collectible meetup
+Make an activity template for your group, or a personal card of the figures you want and explicitly offer. Share one link; each recipient can start their own card.
+https://thedollscout.com/collecting/event-kit
 
 Make a wanted or trade card
 Tell other collectors exactly what you are looking for. Preview a card, then take it to your own community post.
@@ -2919,9 +2935,13 @@ https://thedollscout.com/de/brands/molly
 # Kostenlose Sammlerwerkzeuge
 
 https://thedollscout.com/de/collector-tools
-Content updated: 2026-10-11
+Content updated: 2026-10-31
 
 Ein Rechner für die nächste Entscheidung: Chance, Budget, Sammlungsfortschritt oder Ausstellungsplatz.
+
+Ein teilbarer Plan für das nächste Sammlertreffen
+Eine Aktivitätsvorlage für Ihre Gruppe oder eine persönliche Karte mit ausdrücklich gewünschten und angebotenen Figuren erstellen. Empfänger können über denselben Link ihre eigene Karte beginnen.
+https://thedollscout.com/de/collecting/event-kit
 
 Such- oder Tauschkarte erstellen
 Anderen genau zeigen, welche Figur Sie suchen. Karte prüfen und im eigenen Community-Beitrag teilen.
@@ -3228,9 +3248,13 @@ https://thedollscout.com/zh/brands/molly
 # 免费收藏工具
 
 https://thedollscout.com/zh/collector-tools
-Content updated: 2026-10-11
+Content updated: 2026-10-31
 
 为下一步决定准备的计算器：概率、预算、收藏进度与展示空间。
+
+为下一场收藏活动，做好可分享的准备
+为社群制作活动模板，或列出自己明确想要、愿意交换的款式。分享一个链接，接收者就能开始制作自己的卡。
+https://thedollscout.com/zh/collecting/event-kit
 
 制作求购或交换心愿卡
 把想要的具体款式和条件说清楚。预览卡片，再带到你自己的社区帖子，让有货的人回应。
@@ -3572,7 +3596,7 @@ calculate_style_probability: Calculate independent-box chances for one regular s
 {"type":"object","properties":{"target":{"type":"string","enum":["regular","secret","printed"]},"boxes":{"type":"integer","minimum":1,"maximum":100000},"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"secretOddsN":{"type":"integer","minimum":2,"maximum":100000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["target","boxes"],"additionalProperties":false}
 
 find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
-{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress","events"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
 
 get_collecting_guide: Read a published guide for one of eight collectible brands with official source links, review date and limitations. Not current stock, resale valuation or authentication.
 {"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel","smiski","hirono","dimoo","molly"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
@@ -3592,9 +3616,14 @@ search_collection_series: Search the source-linked SMISKI and Sonny Angel catalo
 prepare_collection_checklist: Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.
 {"type":"object","properties":{"seriesId":{"type":"string","minLength":1,"maxLength":100},"owned":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers."},"wanted":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["seriesId","owned"],"additionalProperties":false}
 
+prepare_swap_event_card: Prepare a user-supplied collector event template or personal preparation card, with explicit wanted/offered names, source matches, Markdown and a reviewable share link. Supports participant swaps, store-only swaps or display-only rules. Does not verify the organizer, event, ownership, matches or trades. The link contains readable user-supplied data: anyone holding it can read, edit or forward it. Review before sharing; expired cards are read-only. No browser storage access or automatic publication.
+{"type":"object","properties":{"kind":{"type":"string","enum":["event","card"]},"eventName":{"type":"string","minLength":1,"maxLength":80},"eventDate":{"type":"string","minLength":10,"maxLength":10,"description":"Calendar date YYYY-MM-DD as supplied for the event; no attendance or timing verification."},"exchangeMode":{"type":"string","enum":["peer","store","display"]},"rulesUrl":{"type":"string","maxLength":500,"description":"Optional user-supplied HTTPS rules link; not fetched or verified."},"note":{"type":"string","maxLength":240},"wanted":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Explicit names only, preferably Series title / figure name. Unknown names remain unresolved; no inferred trade intent."},"offered":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only items explicitly offered; prohibited in display-only mode. Repeated names do not establish quantities."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["kind","eventName","eventDate","exchangeMode"],"additionalProperties":false}
+
 The assistant sends the names you choose to the TDS MCP server to prepare the result. TDS does not save those arguments or include them in its usage telemetry; successful calls may record only a fixed tool name and result category. Your assistant provider has its own data handling. MCP cannot read or update your browser collection, private files, account or membership. Browser tracking and backups remain separate.
 
 Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.
+
+https://thedollscout.com/collecting/event-kit
 
 https://thedollscout.com/collector-assets/series-catalog.json
 
@@ -3677,7 +3706,7 @@ calculate_style_probability: Calculate independent-box chances for one regular s
 {"type":"object","properties":{"target":{"type":"string","enum":["regular","secret","printed"]},"boxes":{"type":"integer","minimum":1,"maximum":100000},"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"secretOddsN":{"type":"integer","minimum":2,"maximum":100000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["target","boxes"],"additionalProperties":false}
 
 find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
-{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress","events"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
 
 get_collecting_guide: Read a published guide for one of eight collectible brands with official source links, review date and limitations. Not current stock, resale valuation or authentication.
 {"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel","smiski","hirono","dimoo","molly"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
@@ -3697,9 +3726,14 @@ search_collection_series: Search the source-linked SMISKI and Sonny Angel catalo
 prepare_collection_checklist: Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.
 {"type":"object","properties":{"seriesId":{"type":"string","minLength":1,"maxLength":100},"owned":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers."},"wanted":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["seriesId","owned"],"additionalProperties":false}
 
+prepare_swap_event_card: Prepare a user-supplied collector event template or personal preparation card, with explicit wanted/offered names, source matches, Markdown and a reviewable share link. Supports participant swaps, store-only swaps or display-only rules. Does not verify the organizer, event, ownership, matches or trades. The link contains readable user-supplied data: anyone holding it can read, edit or forward it. Review before sharing; expired cards are read-only. No browser storage access or automatic publication.
+{"type":"object","properties":{"kind":{"type":"string","enum":["event","card"]},"eventName":{"type":"string","minLength":1,"maxLength":80},"eventDate":{"type":"string","minLength":10,"maxLength":10,"description":"Calendar date YYYY-MM-DD as supplied for the event; no attendance or timing verification."},"exchangeMode":{"type":"string","enum":["peer","store","display"]},"rulesUrl":{"type":"string","maxLength":500,"description":"Optional user-supplied HTTPS rules link; not fetched or verified."},"note":{"type":"string","maxLength":240},"wanted":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Explicit names only, preferably Series title / figure name. Unknown names remain unresolved; no inferred trade intent."},"offered":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only items explicitly offered; prohibited in display-only mode. Repeated names do not establish quantities."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["kind","eventName","eventDate","exchangeMode"],"additionalProperties":false}
+
 Der Assistent sendet die von Ihnen gewählten Namen zur Verarbeitung an den TDS-MCP-Server. TDS speichert diese Argumente nicht und nimmt sie nicht in die Nutzungsstatistik auf; erfolgreiche Aufrufe können nur nach festem Werkzeugnamen und Ergebniskategorie gezählt werden. Ihr Assistentenanbieter verarbeitet Daten nach eigenen Regeln. MCP kann weder die Browsersammlung noch private Dateien, Konten oder Mitgliedschaften lesen oder ändern. Browserverwaltung und Sicherungen bleiben getrennt.
 
 Öffentliche Seiten, Klartext und MCP-Katalog helfen kompatiblen Diensten, die Werkzeuge zu finden. Suchaufnahme, Empfehlung und Erlaubnis zum Werkzeugaufruf sind getrennte Schritte und werden hier nicht garantiert.
+
+https://thedollscout.com/de/collecting/event-kit
 
 https://thedollscout.com/collector-assets/series-catalog.json
 
@@ -3782,7 +3816,7 @@ calculate_style_probability: Calculate independent-box chances for one regular s
 {"type":"object","properties":{"target":{"type":"string","enum":["regular","secret","printed"]},"boxes":{"type":"integer","minimum":1,"maximum":100000},"regularStyles":{"type":"integer","minimum":1,"maximum":1000},"secretOddsN":{"type":"integer","minimum":2,"maximum":100000},"probabilityPercent":{"type":"number","minimum":0,"maximum":100}},"required":["target","boxes"],"additionalProperties":false}
 
 find_collector_tools: Find TDS collecting tools and guides by task. Returns canonical links, supported languages, inputs and which functions MCP can actually call. Browser-only collection records are never read.
-{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
+{"type":"object","properties":{"task":{"type":"string","enum":["all","odds","display","collection","guides","budget","progress","events"],"default":"all"},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"additionalProperties":false}
 
 get_collecting_guide: Read a published guide for one of eight collectible brands with official source links, review date and limitations. Not current stock, resale valuation or authentication.
 {"type":"object","properties":{"brand":{"type":"string","enum":["labubu","skullpanda","jellycat","sonny-angel","smiski","hirono","dimoo","molly"]},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["brand"],"additionalProperties":false}
@@ -3802,9 +3836,14 @@ search_collection_series: Search the source-linked SMISKI and Sonny Angel catalo
 prepare_collection_checklist: Compare user-supplied distinct owned names with one verified series. Returns owned, not-marked-owned, explicit wanted names, unmatched inputs and a copyable Markdown checklist. Does not assume missing means wanted, infer quantities or trade intent, certify a complete set, or access browser storage. Use exact names from search_collection_series. Supplied lists are processed remotely but not saved by the tool.
 {"type":"object","properties":{"seriesId":{"type":"string","minLength":1,"maxLength":100},"owned":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Exact figure names from the selected series. Distinct styles only; repeated input names do not establish owned quantities or trade offers."},"wanted":{"type":"array","maxItems":100,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only figures the user explicitly wants. Omit or pass [] when not specified; unowned figures are never added automatically."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["seriesId","owned"],"additionalProperties":false}
 
+prepare_swap_event_card: Prepare a user-supplied collector event template or personal preparation card, with explicit wanted/offered names, source matches, Markdown and a reviewable share link. Supports participant swaps, store-only swaps or display-only rules. Does not verify the organizer, event, ownership, matches or trades. The link contains readable user-supplied data: anyone holding it can read, edit or forward it. Review before sharing; expired cards are read-only. No browser storage access or automatic publication.
+{"type":"object","properties":{"kind":{"type":"string","enum":["event","card"]},"eventName":{"type":"string","minLength":1,"maxLength":80},"eventDate":{"type":"string","minLength":10,"maxLength":10,"description":"Calendar date YYYY-MM-DD as supplied for the event; no attendance or timing verification."},"exchangeMode":{"type":"string","enum":["peer","store","display"]},"rulesUrl":{"type":"string","maxLength":500,"description":"Optional user-supplied HTTPS rules link; not fetched or verified."},"note":{"type":"string","maxLength":240},"wanted":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Explicit names only, preferably Series title / figure name. Unknown names remain unresolved; no inferred trade intent."},"offered":{"type":"array","maxItems":8,"items":{"type":"string","minLength":1,"maxLength":120},"description":"Only items explicitly offered; prohibited in display-only mode. Repeated names do not establish quantities."},"language":{"type":"string","enum":["en","de","zh"],"default":"en","description":"Interface language; some browser-only tools are available only in EN/DE."}},"required":["kind","eventName","eventDate","exchangeMode"],"additionalProperties":false}
+
 助手会把你选择提供的款式名称发送给 TDS MCP 服务以计算结果。TDS 不保存这些输入参数，也不将其写入使用统计；成功调用仅可能按固定工具名和结果类别计数。助手提供方有自己的数据处理方式。MCP 无法读取或修改你的浏览器收藏、私人文件、账户或会员信息；浏览器收藏与备份仍单独管理。
 
 公开网页、纯文本和 MCP 目录帮助兼容服务找到工具。搜索收录、主动推荐与获得工具调用权限是不同环节，本页不会保证任何助手自动推荐或启用服务。
+
+https://thedollscout.com/zh/collecting/event-kit
 
 https://thedollscout.com/collector-assets/series-catalog.json
 
@@ -7277,3 +7316,123 @@ Content updated: 2026-10-31
 https://www.reddit.com/r/smiskis/comments/1v8hks1/what_would_make_the_blind_box_tracker_app_better/
 
 https://www.reddit.com/r/SonnyAngel/comments/1srzg6e/tracking_your_babies/
+
+
+# A shareable plan for your next collectible meetup
+
+https://thedollscout.com/collecting/event-kit
+Content updated: 2026-10-31
+
+Make an activity template for your group, or a personal card of the figures you want and explicitly offer. Share one link; each recipient can start their own card.
+
+Set the activity rules
+
+Choose your own figures
+
+Review and share
+
+Activity information is supplied by the person who made this card. TDS has not verified the organizer, event or rules.
+
+Activity details
+
+Only enter what you explicitly want or would offer. Up to 8 names per list, one per line. Missing or duplicate figures are not selected automatically.
+
+Search by series or figure. You can also type names directly below; unknown names stay unresolved.
+
+Only published catalog names are checked. Secrets, variants and other releases may be missing.
+
+No account is needed. This tool does not save drafts or change your collection. The share link contains the activity and chosen figure names as readable data, not an encrypted or revocable secret. Anyone with it can read, change or forward it. Do not include private contact details.
+
+A preparation card is not a registration, match, reply, ownership proof or completed trade. Arrange any response in the place where the link was shared, and confirm the organizer’s current rules.
+
+An organizer prepares an activity template with its own rules. No participant’s collection is included.
+
+Each participant opens that link and chooses their own wanted and offered names.
+
+Review the result, then share it where the activity allows. Recipients can create a separate card without copying your choices.
+
+You may link to this free tool from your own activity information and distribute your reviewed template. Keep the rules specific to your event. This does not create a TDS or brand partnership.
+
+Read the meetup preparation guide: https://thedollscout.com/collecting/trading-meetup-checklist
+
+Use the same task through MCP: https://thedollscout.com/for-agents
+
+
+# Ein teilbarer Plan für das nächste Sammlertreffen
+
+https://thedollscout.com/de/collecting/event-kit
+Content updated: 2026-10-31
+
+Eine Aktivitätsvorlage für Ihre Gruppe oder eine persönliche Karte mit ausdrücklich gewünschten und angebotenen Figuren erstellen. Empfänger können über denselben Link ihre eigene Karte beginnen.
+
+Aktivitätsregeln festlegen
+
+Eigene Figuren auswählen
+
+Prüfen und teilen
+
+Die Angaben stammen von der Person, die diese Karte erstellt hat. TDS hat Veranstalter, Aktivität und Regeln nicht verifiziert.
+
+Angaben zur Aktivität
+
+Nur ausdrücklich gewünschte oder angebotene Figuren eintragen. Bis zu 8 Namen pro Liste, einer je Zeile. Fehlende oder doppelte Figuren werden nicht automatisch ausgewählt.
+
+Nach Serie oder Figur suchen. Namen können auch unten eingegeben werden; unbekannte Namen bleiben ungeklärt.
+
+Nur veröffentlichte Katalognamen werden abgeglichen. Secrets, Varianten und weitere Veröffentlichungen können fehlen.
+
+Kein Konto erforderlich. Das Werkzeug speichert keine Entwürfe und ändert Ihre Sammlung nicht. Der Link enthält Aktivitätsangaben und ausgewählte Figurennamen als lesbare Daten, nicht als verschlüsseltes oder widerrufbares Geheimnis. Jeder mit dem Link kann sie lesen, ändern und weitergeben. Keine privaten Kontaktdaten eintragen.
+
+Eine Vorbereitungskarte ist keine Anmeldung, Vermittlung, Antwort, Besitzbestätigung oder abgeschlossener Tausch. Antworten dort vereinbaren, wo der Link geteilt wurde, und die aktuellen Veranstalterregeln prüfen.
+
+Ein Veranstalter erstellt eine Aktivitätsvorlage mit eigenen Regeln. Keine Teilnehmersammlung ist enthalten.
+
+Jeder Teilnehmer öffnet den Link und wählt seine eigenen Wünsche und Angebote.
+
+Ergebnis prüfen und dort teilen, wo die Aktivität es erlaubt. Empfänger können eine eigene Karte ohne Übernahme Ihrer Auswahl erstellen.
+
+Sie dürfen dieses kostenlose Werkzeug in Ihren Aktivitätsinformationen verlinken und Ihre geprüfte Vorlage verteilen. Regeln müssen zu Ihrer Aktivität passen. Dadurch entsteht keine Partnerschaft mit TDS oder einer Marke.
+
+Vorbereitungsratgeber für Treffen lesen: https://thedollscout.com/de/collecting/trading-meetup-checklist
+
+Dieselbe Aufgabe über MCP verwenden: https://thedollscout.com/de/for-agents
+
+
+# 为下一场收藏活动，做好可分享的准备
+
+https://thedollscout.com/zh/collecting/event-kit
+Content updated: 2026-10-31
+
+为社群制作活动模板，或列出自己明确想要、愿意交换的款式。分享一个链接，接收者就能开始制作自己的卡。
+
+写清活动规则
+
+选择自己的款式
+
+检查后分享
+
+活动信息由制卡者填写。TDS 没有核验组织者身份、活动或规则。
+
+活动信息
+
+只填写自己明确想要或愿意交换的款式。每栏最多 8 个名字，每行一个；缺款或重复款不会被自动选中。
+
+按系列或款名搜索，也可直接在下方填写。无法识别的名称会保留待核对。
+
+仅核对已发布目录中的名称，可能没有包含隐藏款、其他版本或发行记录。
+
+无需账户。本工具不保存草稿，也不修改已有收藏。分享链接以可读取的形式包含活动信息和所选款式，它不是加密或可撤回的私密链接；拿到链接的人都能读取、修改或转发。请勿填写私人联系方式。
+
+准备卡不代表报名、匹配、回应、持有证明或交易完成。请在原分享渠道沟通，并再次核对组织者当前规则。
+
+组织者填写自己的活动规则并生成模板，不包含参与者的收藏。
+
+参与者打开模板，明确选择自己的想要和愿意交换款式。
+
+检查结果后，在活动允许的渠道分享。接收者可以开始新卡，不会继承你的个人选择。
+
+你可以在自己的活动说明中链接本免费工具，并分发检查过的活动模板。请保留你们活动实际采用的规则。这不代表与 TDS 或品牌建立了合作。
+
+阅读活动准备指南: https://thedollscout.com/zh/collecting/trading-meetup-checklist
+
+通过 MCP 完成同一任务: https://thedollscout.com/zh/for-agents

@@ -6,7 +6,8 @@ import vm from 'node:vm';
 import {onRequest as mcp} from '../../functions/mcp.js';
 import {onRequestPost as beacon} from '../../functions/api/ev.js';
 import {onRequestGet as growth, COLLECTOR_QUERY, collectorWindow, aggregateCollector, usesDateRangeIndex, collectorQueryWithPlan} from '../../functions/api/collector-growth.js';
-import {recordMcpSuccess} from '../../lib/collector-measurement.js';
+import {recordMcpSuccess,EVENT_KIT_EVENTS,firstFullUTCDate} from '../../lib/collector-measurement.js';
+import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 
 function recorder({fail=false}={}) {
   const rows=[], pending=[];
@@ -218,4 +219,53 @@ test('collection MCP tasks have their own complete-day coverage and exclude the 
  const partial=collectorWindow(new Date('2026-11-01T23:59:00Z'));assert.equal(partial.mcp_tool_coverage.search_collection_series.measuredWindow,null);
  const first=collectorWindow(new Date('2026-11-02T00:00:00Z'));assert.equal(first.mcp_tool_coverage.search_collection_series.coveredDays,1);assert.deepEqual(first.mcp_tool_coverage.search_collection_series.measuredWindow,{start:'2026-11-01',end_exclusive:'2026-11-02'});
  const rows=['2026-10-30','2026-10-31','2026-11-01'].map(d=>({d,ev:'collector_mcp_call',path:'/mcp/prepare_collection_checklist',result:'result',n:2}));assert.deepEqual(aggregateCollector(rows).mcp,[{date:'2026-11-01',tool:'prepare_collection_checklist',result:'result',n:2}]);
+});
+
+
+test('Event-kit actions require exact public routes and fixed payloads, with QA and privacy exclusions',async()=>{
+ for(const prefix of ['/','/de/','/zh/'])for(const name of EVENT_KIT_EVENTS){
+  const path=prefix+'collecting/event-kit',r=recorder();await event(r,path,name);
+  assert.equal(r.rows.length,1);assert.equal(r.rows[0][1],path);assert.equal(r.rows[0][5],name);
+  assert.deepEqual(businessEvent('thedollscout.com',path,{name}),{name,tool_id:'event-kit'});
+  for(const badPath of [path+'?event=PRIVATE',path+'#event=PRIVATE','/members',prefix+'collecting/wish-card']){
+   const bad=recorder();await event(bad,badPath,name);assert.equal(bad.rows.length,0,badPath);
+   assert.equal(businessEvent('thedollscout.com',badPath,{name}),null);
+  }
+  for(const extra of [{eventName:'PRIVATE'},{eventId:'PRIVATE'},{fragment:'PRIVATE'},{wanted:['PRIVATE']}]){
+   const bad=recorder();await event(bad,path,name,{extra});assert.equal(bad.rows.length,0);
+   assert.equal(businessEvent('thedollscout.com',path,{name,...extra}),null);
+  }
+ }
+ for(const options of exclusions){const r=recorder();await event(r,'/collecting/event-kit','collector_event_card',options);assert.equal(r.rows.length,0);}
+ assert.equal(businessEvent('baipiaoji.com','/collecting/event-kit',{name:'collector_event_card'}),null);
+});
+
+test('Event-kit browser and MCP coverage exclude release day without changing prior collection windows',()=>{
+ assert.equal(firstFullUTCDate('2026-12-31'),'2027-01-01');
+ const pending=collectorWindow(new Date('2026-11-01T23:59:00Z'));
+ for(const name of EVENT_KIT_EVENTS){assert.equal(pending.event_coverage[name].coveredDays,0);assert.equal(pending.event_coverage[name].measuredWindow,null);}
+ assert.equal(pending.mcp_tool_coverage.prepare_swap_event_card.coveredDays,0);
+ const first=collectorWindow(new Date('2026-11-02T00:00:00Z'));
+ for(const name of EVENT_KIT_EVENTS)assert.deepEqual(first.event_coverage[name].measuredWindow,{start:'2026-11-01',end_exclusive:'2026-11-02'});
+ assert.deepEqual(first.mcp_tool_coverage.prepare_swap_event_card,first.mcp_tool_coverage.prepare_collection_checklist);
+ const rows=['2026-10-30','2026-10-31','2026-11-01'].flatMap(d=>[
+  {d,ev:'collector_event_card',path:'/collecting/event-kit',result:'PRIVATE',n:2},
+  {d,ev:'collector_mcp_call',path:'/mcp/prepare_swap_event_card',result:'result',n:2}
+ ]);
+ const totals=aggregateCollector(rows);
+ assert.deepEqual(totals.browser,[{date:'2026-11-01',event:'collector_event_card',path:'/collecting/event-kit',n:2}]);
+ assert.deepEqual(totals.mcp,[{date:'2026-11-01',tool:'prepare_swap_event_card',result:'result',n:2}]);
+ assert.doesNotMatch(JSON.stringify(totals),/PRIVATE/);
+});
+
+
+test('Event MCP telemetry never stores the activity, share fragment or lists and excludes QA',async()=>{
+ const catalog=JSON.parse(await fs.readFile(new URL('../../collector-assets/series-catalog.json',import.meta.url),'utf8'));
+ for(const options of [{},{headers:{'x-probe':'event-tool-test'}},{headers:{'sec-gpc':'1'}}]){
+  const r=recorder();r.env.ASSETS={fetch:async()=>Response.json(catalog)};
+  const answer=await rpc(r,'tools/call',{name:'prepare_swap_event_card',arguments:{kind:'card',eventName:'PRIVATE activity name',eventDate:'2099-01-01',exchangeMode:'peer',wanted:['Smiski Dali'],offered:['PRIVATE unknown offer']}},options);
+  assert.equal(answer.result.isError,false);assert.match(answer.result.structuredContent.shareUrl,/#event=/);
+  assert.equal(r.rows.length,options.headers?0:1);assert.doesNotMatch(JSON.stringify(r.rows),/PRIVATE|2099|Smiski|#event=/);
+  if(r.rows.length)assert.deepEqual(r.rows[0].slice(1),['/mcp/prepare_swap_event_card','','','result','collector_mcp_call']);
+ }
 });

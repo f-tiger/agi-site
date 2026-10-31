@@ -1,4 +1,5 @@
 import {matchesInputSchema} from '../lib/mcp-input-schema.mjs';
+import {prepareEventCard} from '../collector-assets/event-kit-core.mjs';
 import {searchCollectionSeries,prepareCollectionChecklist} from '../collector-assets/collection-task-core.mjs';
 import {compareBlindBoxBudget,estimateCollectionProgress} from '../collector-assets/planning-core.mjs';
 /* Public, read-only collecting MCP. Evidence is loaded from published site data;
@@ -23,6 +24,7 @@ async function load(env, request, path) {
 }
 
 async function callTool(name, args, ctx) {
+  if(name==='prepare_swap_event_card')return prepareEventCard(await ctx.load('/collector-assets/series-catalog.json'),args,{today:new Date().toISOString().slice(0,10)});
   if(name==='search_collection_series')return searchCollectionSeries(await ctx.load('/collector-assets/series-catalog.json'),args);
   if(name==='prepare_collection_checklist')return prepareCollectionChecklist(await ctx.load('/collector-assets/series-catalog.json'),args);
   if(name==='compare_blind_box_budget')return {...compareBlindBoxBudget(args),source:'https://thedollscout.com/collecting/budget'};

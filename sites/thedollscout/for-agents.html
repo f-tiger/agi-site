@@ -20,7 +20,7 @@ claude mcp get tds</pre><p>In Claude Code, open /mcp to check the server and its
     ],
     &quot;language&quot;: &quot;en&quot;
   }
-}</pre><h2>Example result from the current named catalog</h2><h3>Marked owned (2)</h3><ul><li>Smiski Dali</li><li>Smiski Pearl Earring</li></ul><h3>Not marked owned (4)</h3><ul><li>Smiski The Source</li><li>Smiski Fuzin&amp;Raijin</li><li>Smiski Bacchus</li><li>Smiski Vela’zquez</li></ul><h3>Explicit wishlist (1)</h3><ul><li>Smiski Bacchus</li></ul><p><a href="https://smiski.com/e/products/museumseries/" rel="noopener">Official series source</a> · Source checked: <time datetime="2026-10-30">2026-10-30</time></p><p>This compares the named figures verified in TDS, not every item ever released. Secret figures or variants may be absent. It cannot certify a complete set, ownership, authenticity, stock or value. Repeated name inputs are not duplicate-figure quantities or trade offers.</p><p class="small">Example only. Reading this page does not call a tool, save a collection or count as a completed collection task.</p></section><section class="agent-catalog"><h2>What your assistant can use</h2><p>These names and descriptions are the exact public tool contract.</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
+}</pre><h2>Example result from the current named catalog</h2><h3>Marked owned (2)</h3><ul><li>Smiski Dali</li><li>Smiski Pearl Earring</li></ul><h3>Not marked owned (4)</h3><ul><li>Smiski The Source</li><li>Smiski Fuzin&amp;Raijin</li><li>Smiski Bacchus</li><li>Smiski Vela’zquez</li></ul><h3>Explicit wishlist (1)</h3><ul><li>Smiski Bacchus</li></ul><p><a href="https://smiski.com/e/products/museumseries/" rel="noopener">Official series source</a> · Source checked: <time datetime="2026-10-30">2026-10-30</time></p><p>This compares the named figures verified in TDS, not every item ever released. Secret figures or variants may be absent. It cannot certify a complete set, ownership, authenticity, stock or value. Repeated name inputs are not duplicate-figure quantities or trade offers.</p><p class="small">Example only. Reading this page does not call a tool, save a collection or count as a completed collection task.</p></section><section class="agent-catalog"><h2>Prepare for a collector meetup</h2><p>Call prepare_swap_event_card with your event rules and explicit wanted/offered names to get a reviewable preparation card and share link. Event details are user supplied; TDS does not verify organizers, register attendance or match trades.</p><a class="button primary" href="/collecting/event-kit">Open the event tool</a></section><section class="agent-catalog"><h2>What your assistant can use</h2><p>These names and descriptions are the exact public tool contract.</p><details><summary><code>labubu_rarity_odds</code></summary><p lang="en">Commonly reported secret/chase odds for Labubu / The Monsters blind-box series, by series format (6-figure, 12-figure, collabs, glow variants), with per-row sources. The box-printed odds for a specific series outrank every row returned here, and the result says so.</p><pre lang="en">{
   &quot;type&quot;: &quot;object&quot;,
   &quot;properties&quot;: {},
   &quot;additionalProperties&quot;: false
@@ -111,7 +111,8 @@ claude mcp get tds</pre><p>In Claude Code, open /mcp to check the server and its
         &quot;collection&quot;,
         &quot;guides&quot;,
         &quot;budget&quot;,
-        &quot;progress&quot;
+        &quot;progress&quot;,
+        &quot;events&quot;
       ],
       &quot;default&quot;: &quot;all&quot;
     },
@@ -358,6 +359,82 @@ claude mcp get tds</pre><p>In Claude Code, open /mcp to check the server and its
   &quot;required&quot;: [
     &quot;seriesId&quot;,
     &quot;owned&quot;
+  ],
+  &quot;additionalProperties&quot;: false
+}</pre></details><details><summary><code>prepare_swap_event_card</code></summary><p lang="en">Prepare a user-supplied collector event template or personal preparation card, with explicit wanted/offered names, source matches, Markdown and a reviewable share link. Supports participant swaps, store-only swaps or display-only rules. Does not verify the organizer, event, ownership, matches or trades. The link contains readable user-supplied data: anyone holding it can read, edit or forward it. Review before sharing; expired cards are read-only. No browser storage access or automatic publication.</p><pre lang="en">{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;kind&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;event&quot;,
+        &quot;card&quot;
+      ]
+    },
+    &quot;eventName&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 1,
+      &quot;maxLength&quot;: 80
+    },
+    &quot;eventDate&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;minLength&quot;: 10,
+      &quot;maxLength&quot;: 10,
+      &quot;description&quot;: &quot;Calendar date YYYY-MM-DD as supplied for the event; no attendance or timing verification.&quot;
+    },
+    &quot;exchangeMode&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;peer&quot;,
+        &quot;store&quot;,
+        &quot;display&quot;
+      ]
+    },
+    &quot;rulesUrl&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;maxLength&quot;: 500,
+      &quot;description&quot;: &quot;Optional user-supplied HTTPS rules link; not fetched or verified.&quot;
+    },
+    &quot;note&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;maxLength&quot;: 240
+    },
+    &quot;wanted&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 8,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Explicit names only, preferably Series title / figure name. Unknown names remain unresolved; no inferred trade intent.&quot;
+    },
+    &quot;offered&quot;: {
+      &quot;type&quot;: &quot;array&quot;,
+      &quot;maxItems&quot;: 8,
+      &quot;items&quot;: {
+        &quot;type&quot;: &quot;string&quot;,
+        &quot;minLength&quot;: 1,
+        &quot;maxLength&quot;: 120
+      },
+      &quot;description&quot;: &quot;Only items explicitly offered; prohibited in display-only mode. Repeated names do not establish quantities.&quot;
+    },
+    &quot;language&quot;: {
+      &quot;type&quot;: &quot;string&quot;,
+      &quot;enum&quot;: [
+        &quot;en&quot;,
+        &quot;de&quot;,
+        &quot;zh&quot;
+      ],
+      &quot;default&quot;: &quot;en&quot;,
+      &quot;description&quot;: &quot;Interface language; some browser-only tools are available only in EN/DE.&quot;
+    }
+  },
+  &quot;required&quot;: [
+    &quot;kind&quot;,
+    &quot;eventName&quot;,
+    &quot;eventDate&quot;,
+    &quot;exchangeMode&quot;
   ],
   &quot;additionalProperties&quot;: false
 }</pre></details></section><section class="agent-limits"><h2>You choose what to send</h2><p>The assistant sends the names you choose to the TDS MCP server to prepare the result. TDS does not save those arguments or include them in its usage telemetry; successful calls may record only a fixed tool name and result category. Your assistant provider has its own data handling. MCP cannot read or update your browser collection, private files, account or membership. Browser tracking and backups remain separate.</p><h2>Public discovery files</h2><ul><li><a href="/collector-assets/tool-capabilities.json">Collector tool catalog · JSON</a></li><li><a href="/collector-assets/brand-guides.json">Brand guides · JSON</a></li><li><a href="/collector-assets/series-catalog.json">Daily series checklists · JSON</a></li><li><a href="/collector-assets/learning-guides.json">Collecting field guide · JSON</a></li><li><a href="/.well-known/mcp.json">MCP discovery · JSON</a></li><li><a href="/mcp/server.json">MCP Registry manifest · JSON</a></li><li><a href="/document-assets/tool-capabilities.json">Digital tools · JSON</a></li><li><a href="/llms.txt">Site index · text</a></li></ul><h2>Discovery is an entry point</h2><p>Public pages, text mirrors and the MCP catalog help compatible services discover the tools. Search inclusion, a recommendation and permission to call a tool are separate; none is guaranteed by this page.</p></section></main><footer class="wrap collect-footer"><p>Independent of POP MART, Jellycat and Dreams / Sonny Angel. Brand names identify the products discussed. Some existing buying guides contain clearly labeled affiliate links.</p><nav><a href="/">Home</a><a href="/legal/privacy">Privacy</a><a href="/legal/affiliate-disclosure">Affiliate disclosure</a><a href="/collector-assets/text/en/for-agents.txt">Plain text</a><a href="/for-agents">Connect an AI assistant</a><a href="/editorial">How TDS builds its guides</a><a href="/collector-tools">All tools</a><a href="/document-tools">TDS digital tools</a><a href="https://baipiaoji.com/en/studio/toolkit">Browse the BPJ toolkit</a><a href="/data/">Data &amp; MCP</a></nav></footer><script src="/js/collector-core.js?v=2026-10-30.3" defer></script><script type="module" src="/collector-assets/collecting.mjs?v=2026-10-30.3"></script><script type="module" src="/collector-assets/workspace.mjs?v=2026-10-30.3"></script></body></html>

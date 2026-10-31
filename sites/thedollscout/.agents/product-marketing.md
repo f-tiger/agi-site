@@ -1,3 +1,11 @@
+## 2026-10-31 event workflow implementation
+
+The current experiment targets organizers who already host collector meetups. The product now implements an organizer template, explicit wanted/offered preparation card, and a read-only share recipient flow that starts a new card with empty personal lists. Browser and MCP share the same core; production release 2.6.0 is pending verification. Ordinary participants need no MCP setup.
+
+Owned entry points ship with this release. Two retailer invitations are prepared privately but unsent; no partnership or external adoption is claimed. The next learning gate is one independently confirmed distributing organizer, ten participants completing real tasks, and later-event organizer reuse. These are exploratory gates, not forecasts. The existing daily report now checks measurement health and suggests the next review focus; it does not autonomously contact people or turn anonymous actions into users.
+
+Free preparation remains available without an account. No paid offer, subscription, marketplace, attendance registration or automated matching is introduced. Revenue and repeat use require separate real evidence. Current plan: `data/marketing/tds-daily-plan.json` at repository root.
+
 # TDS product and commercial context — version 5.0
 
 **Document version:** v5

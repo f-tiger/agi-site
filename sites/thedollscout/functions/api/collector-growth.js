@@ -1,5 +1,5 @@
 import {cachedAggregate} from '../../lib/aggregate-cache.js';
-import {COLLECTOR_EVENTS, collectorEventAllowed, MCP_EVENT, MCP_RESULTS, MCP_TOOLS, MCP_TOOL_RELEASES, MCP_TOOL_FIRST_FULL_DAY} from '../../lib/collector-measurement.js';
+import {COLLECTOR_EVENTS, collectorEventAllowed, MCP_EVENT, MCP_RESULTS, MCP_TOOLS, MCP_TOOL_RELEASES, EVENT_KIT_RELEASES, firstFullUTCDate} from '../../lib/collector-measurement.js';
 import {databaseFailure} from './doc-events.js';
 
 // Release marker, not a rolling date or a date inferred from the first visitor.
@@ -70,10 +70,12 @@ export function collectorWindow(now = new Date()) {
   const start = new Date(end+'T00:00:00Z');start.setUTCDate(start.getUTCDate()-28);
   const expected = start.toISOString().slice(0,10), measured = expected > FIRST_FULL_UTC_DAY ? expected : FIRST_FULL_UTC_DAY;
   const days = Math.max(0, Math.round((Date.parse(end)-Date.parse(measured))/86400000));
-  const toolStart=expected>MCP_TOOL_FIRST_FULL_DAY?expected:MCP_TOOL_FIRST_FULL_DAY;
-  const toolDays=Math.max(0,Math.round((Date.parse(end)-Date.parse(toolStart))/86400000));
-  const toolCoverage=Object.fromEntries(Object.entries(MCP_TOOL_RELEASES).map(([tool,released])=>[tool,{released,first_full_utc_day:MCP_TOOL_FIRST_FULL_DAY,measuredWindow:toolDays?{start:toolStart,end_exclusive:end}:null,coveredDays:toolDays}]));
-  return {mcp_tool_coverage:toolCoverage,event_releases:{collector_wish_generate:'2026-10-30',collector_wish_export:'2026-10-30',collector_wish_response_reported:'2026-10-30',collector_wish_fulfilled_reported:'2026-10-30',display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display-plan events start 2026-10-29. Wish-card events start 2026-10-30, with first complete UTC day 2026-10-31. Collection MCP tasks start 2026-10-31, with first complete UTC day 2026-11-01. Earlier absence is unmeasured; the overall window is not coverage for every event or tool.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
+  const coverageFor=released=>{const first=firstFullUTCDate(released),measuredStart=expected>first?expected:first;
+    const coveredDays=Math.max(0,Math.round((Date.parse(end)-Date.parse(measuredStart))/86400000));
+    return {released,first_full_utc_day:first,measuredWindow:coveredDays?{start:measuredStart,end_exclusive:end}:null,coveredDays};};
+  const toolCoverage=Object.fromEntries(Object.entries(MCP_TOOL_RELEASES).map(([tool,released])=>[tool,coverageFor(released)]));
+  const eventCoverage=Object.fromEntries(Object.entries(EVENT_KIT_RELEASES).map(([event,released])=>[event,coverageFor(released)]));
+  return {mcp_tool_coverage:toolCoverage,event_coverage:eventCoverage,event_releases:{...EVENT_KIT_RELEASES,collector_wish_generate:'2026-10-30',collector_wish_export:'2026-10-30',collector_wish_response_reported:'2026-10-30',collector_wish_fulfilled_reported:'2026-10-30',display_plan_export:'2026-10-29',display_plan_example:'2026-10-29'},event_coverage_note:'Display-plan events start 2026-10-29. Wish-card events start 2026-10-30, with first complete UTC day 2026-10-31. Collection MCP tasks and event-kit actions start 2026-10-31, with first complete UTC day 2026-11-01. Each tool/event coverage is reported separately. Earlier absence is unmeasured; the overall window is not coverage for every event or tool.',first_full_utc_day:FIRST_FULL_UTC_DAY,expected28dWindow:{start:expected,end_exclusive:end},
     measuredWindow:days ? {start:measured,end_exclusive:end} : null,coveredDays:days,full28Days:days===28,
     coverage:days ? 'measured_complete_utc_days' : 'pending_first_complete_day'};
 }
@@ -83,8 +85,8 @@ export function aggregateCollector(rows) {
   for (const row of rows) {
     const n = Number(row.n);
     if (!Number.isSafeInteger(n) || n < 0 || !/^\d{4}-\d{2}-\d{2}$/.test(row.d)) throw Error('Invalid aggregate');
-    if (COLLECTOR_EVENTS.has(row.ev) && collectorEventAllowed(row.ev,row.path)) browser.push({date:row.d,event:row.ev,path:row.path,n});
-    if (row.ev === MCP_EVENT && row.path.startsWith('/mcp/') && MCP_TOOLS.has(row.path.slice(5)) && MCP_RESULTS.has(row.result) && (!Object.hasOwn(MCP_TOOL_RELEASES,row.path.slice(5)) || row.d>=MCP_TOOL_FIRST_FULL_DAY)) mcp.push({date:row.d,tool:row.path.slice(5),result:row.result,n});
+    if (COLLECTOR_EVENTS.has(row.ev) && collectorEventAllowed(row.ev,row.path) && (!Object.hasOwn(EVENT_KIT_RELEASES,row.ev) || row.d>=firstFullUTCDate(EVENT_KIT_RELEASES[row.ev]))) browser.push({date:row.d,event:row.ev,path:row.path,n});
+    if (row.ev === MCP_EVENT && row.path.startsWith('/mcp/') && MCP_TOOLS.has(row.path.slice(5)) && MCP_RESULTS.has(row.result) && (!Object.hasOwn(MCP_TOOL_RELEASES,row.path.slice(5)) || row.d>=firstFullUTCDate(MCP_TOOL_RELEASES[row.path.slice(5)]))) mcp.push({date:row.d,tool:row.path.slice(5),result:row.result,n});
   }
   browser.sort((a,b)=>a.date.localeCompare(b.date)||a.path.localeCompare(b.path)||a.event.localeCompare(b.event));
   mcp.sort((a,b)=>a.date.localeCompare(b.date)||a.tool.localeCompare(b.tool)||a.result.localeCompare(b.result));
@@ -104,7 +106,7 @@ export async function onRequestGet(ctx) {
       if (!query) return json({ok:false,error:'missing_date_index',reason:'schema',counts:null},503);
       const base = {ok:true,...window,generated:new Date().toISOString(),cache_seconds:300,
         unit:'anonymous_events_not_users',
-        notes:'Wish response/fulfilled events are user-reported local status changes, not verified responses, matches, sales or unique requests. Card export is not proof of publication. Browser actions are deduplicated per event per page load. Export records a generated download action, not a verified saved file or share. MCP counts validated successful tools/call responses; no_result is separate. No user, session, citation, attribution or revenue measurement. QA and declared privacy opt-outs are excluded; open requests and user agents can be spoofed. Historical periods and the partial release day are excluded. Zero means no stored eligible events in a successfully queried measured window; silent write failures and unreported outages cannot be reconstructed.'};
+        notes:'Event-kit preparation, card creation, successful copy, recipient opening, own-card start and print request are separate anonymous actions, not organizer adoption, attendance, matches, verified sharing, unique participants or repeat users. Wish response/fulfilled events are user-reported local status changes, not verified responses, matches, sales or unique requests. Card export is not proof of publication. Browser actions are deduplicated per event per page load. Export records a generated download action, not a verified saved file or share. MCP counts validated successful tools/call responses; no_result is separate. No user, session, citation, attribution or revenue measurement. QA and declared privacy opt-outs are excluded; open requests and user agents can be spoofed. Historical periods and the partial release day are excluded. Zero means no stored eligible events in a successfully queried measured window; silent write failures and unreported outages cannot be reconstructed.'};
       if (!window.coveredDays) return json({...base,counts:null,browser:[],mcp:[],query_rows_read:0});
       const result = await read(query,bounds),rows=resultRows(result);
       if (rows.length > 10000) return json({ok:false,error:'aggregate_capacity',counts:null},503);

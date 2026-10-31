@@ -1,6 +1,6 @@
 # TDS MCP: complete a collection task
 
-MCP contract: **2.5.0**. Verify that `search_collection_series` and `prepare_collection_checklist` appear in the connected server's tool list before using this workflow. A repository version alone does not establish production availability; release receipts are tracked separately.
+MCP contract: **2.6.0**. Verify that `search_collection_series` and `prepare_collection_checklist` appear in the connected server's tool list before using this workflow. A repository version alone does not establish production availability; release receipts are tracked separately.
 
 TDS lets an MCP-compatible assistant find a source-linked SMISKI or Sonny Angel series and compare names the collector supplies. The result includes owned, not-marked-owned, explicitly wanted and unmatched names, plus copyable Markdown. Existing probability, budget and display tools remain available.
 
@@ -66,6 +66,16 @@ The response also includes `styles`, `counts`, `source`, `checked`, `modified`, 
 **Four names are not marked owned out of six catalogued names. That does not mean four purchases remain to complete the official set.** Secret figures or variants may be missing. An unmarked name becomes wanted only when the user explicitly supplies it in `wanted`; omitting `wanted` produces an empty wishlist. Unrecognized names stay in the unmatched fields. Matching normalizes whitespace, Unicode composition and case; it does not guess spelling or translated aliases. Repeated inputs are deduplicated, not counted as duplicate possessions or trade offers. The result does not verify ownership, authenticity, stock, price or value.
 
 `language` supports `en`, `de` and `zh` for result labels and explanations; source figure names stay unchanged. Search only covers the published named-series catalog, not every brand covered elsewhere on the site.
+
+## Event preparation and recipient reuse
+
+`prepare_swap_event_card` returns an event template (`kind: "event"`) or a participant preparation card (`kind: "card"`). Supply `eventName`, a real calendar `eventDate` (`YYYY-MM-DD`), and `exchangeMode` (`peer`, `store`, or `display`). Optional `rulesUrl` must be HTTPS; `note` is an event-wide rules summary. Personal cards require at least one explicitly selected `wanted` or `offered` name; use full `Series title / figure name` labels when a figure name is ambiguous. Each list supports eight names. Display-only mode rejects exchange offers.
+
+The returned `shareUrl` opens a read-only snapshot at [/collecting/event-kit](https://thedollscout.com/collecting/event-kit). Recipients can choose **Make my own card**: this copies the event fields and clears the original person's lists. Event details are user supplied and unverified. This tool does not register attendance, match collectors, contact anyone or arrange transactions.
+
+Review before sharing. The URL contains readable, editable data; anyone holding it can read, modify and forward it. Do not include contact details. Previously shared copies cannot be revoked. The tool does not persist arguments or write them to usage telemetry. Date checks use the current UTC date, not an exact local event end time; confirm timing and rules with the organizer. Expired results remain readable but do not return a share URL.
+
+The official SDK verifier also runs the event-template and personal-card calls, decodes the actual share link and checks that recipient reuse clears both item lists. All verification requests are marked as QA, not adoption.
 
 ## Data handling
 
