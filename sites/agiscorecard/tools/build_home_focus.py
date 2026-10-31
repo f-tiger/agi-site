@@ -59,6 +59,16 @@ def poll(zh):
 <noscript><p>{'请启用 JavaScript 参与投票。' if zh else 'Enable JavaScript to take part.'}</p></noscript>
 </section>'''
 
+def capital_radar(zh):
+    title='沿着资本，观察 AI 的下一步。' if zh else 'Follow the capital. Watch what comes next.'
+    description='融资与创业线索、时序变化、经过回测的预测。注册 AGI 免费账号后进入你的资本观察台。' if zh else 'Funding and startup signals, time series, and forecasts tested against a baseline. Free AGI registration required; dashboard in Chinese.'
+    topics=[('agents','AI Agent','AI agents'),('models','基础模型','Foundation models'),('robotics','机器人','Robotics'),('infrastructure','基础设施','Infrastructure')]
+    links=''.join(action('/capital-radar?sector='+key,cn if zh else en,'capital_'+key) for key,cn,en in topics)
+    return f'''<section class="home-capital" aria-labelledby="home-capital-title" data-capital-radar-entry>
+<div class="home-capital-copy"><p class="home-capital-label">{'硅谷 AI 资本雷达' if zh else 'Silicon Valley AI capital radar'}</p><h2 id="home-capital-title">{title}</h2><p>{description}</p><nav class="home-capital-sectors" aria-label="{'选择关注赛道' if zh else 'Choose a sector'}">{links}</nav></div>
+<div class="home-capital-entry">{action('/capital-radar','进入资本雷达' if zh else 'Open capital radar','capital_open','focus-primary')}{action('/capital-radar-about','了解来源与预测方法' if zh else 'Sources and forecasting method','capital_method')}<small>{'每条回到来源；历史不足，不发布预测。' if zh else 'Trace each signal. No forecast without enough history.'}</small></div>
+</section>'''
+
 def hero(d, zh):
     score=d['thesisTracker']['score']; date=d['thesisTracker']['asOf']; base='/zh' if zh else ''
     snapshot=json.loads((ROOT/'foresight-assets/home.json').read_text()); content=snapshot['locales']['zh' if zh else 'en']
@@ -68,6 +78,7 @@ def hero(d, zh):
 <div class="home-opening"><div><h1 id="focus-title">{headline}</h1><p class="home-lead">{intro}</p></div><a class="focus-primary" href="{base}/future-guide" data-home-action="library">{'探索视频与观点' if zh else 'Explore videos & ideas'} ↗</a></div>
 <div class="home-stats" id="home-stats">{content['stats']}</div>
 <div class="home-hero-grid"><div id="home-feature">{content['feature']}</div><aside class="home-outlook" aria-label="{'AGI 倒计时与投票' if zh else 'AGI countdown and poll'}">{countdown(zh)}{poll(zh)}</aside></div>
+{capital_radar(zh)}
 <div id="home-feed">{content['feed']}</div>
 <section class="home-next"><div><h2>{'看完之后，继续追问。' if zh else 'Turn a good question into a next step.'}</h2><p>{'收藏观点、核对证据，或让贾维斯围绕你的问题继续研究。' if zh else 'Save a perspective, inspect the evidence, or give Jarvis a question to investigate.'}</p></div><nav><a href="{base}/future-guide#notebook" data-home-action="notebook">{'我的收藏与行动' if zh else 'My saved views & actions'}</a><a href="{base}/jarvis" data-home-action="jarvis">{'让贾维斯继续研究' if zh else 'Research with Jarvis'}</a></nav></section>
 <div class="home-evidence"><div><h2>{'用证据检验未来。' if zh else 'Check the future against the evidence.'}</h2><p>{'追踪《态势感知》的 8 项预测，了解哪些已兑现、哪些仍有待观察。' if zh else 'Track 8 predictions from Situational Awareness: what has held up, and what remains open.'}</p><div class="focus-actions">{action(base+'/progress-index','查看预测证据' if zh else 'Inspect the evidence','hero_evidence','focus-secondary')}{action('#grade-game','给出我的判断' if zh else 'Make my assessment','hero_grade','focus-secondary')}</div></div><aside class="focus-reading"><p>{'AGI-2027 命题追踪指数' if zh else 'AGI-2027 Thesis Tracker'}</p><div class="focus-score">{score}<span>/100</span></div><p>{'判定综合分数，不是 AGI 发生概率。' if zh else 'A composite of verdicts, not an AGI probability.'}</p><p class="focus-date">{'台账日期' if zh else 'Ledger dated'} <time datetime="{date}">{date}</time></p></aside></div>

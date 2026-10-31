@@ -209,6 +209,11 @@ jobs:
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
 
+      - name: Verify Capital Radar registration, private storage and forecast discipline
+        run: |
+          node sites/agiscorecard/tools/capital-radar/test.mjs
+          python3 tools/capital-radar/test_radar.py
+
       - name: Validate hreflang
         working-directory: sites/agiscorecard
         run: python3 tools/check_hreflang.py
@@ -282,6 +287,7 @@ jobs:
           node tools/member-studio/browser-test.mjs
           node sites/agiscorecard/tools/community/browser-test.mjs
           node sites/agiscorecard/tools/portfolio/browser-test.mjs
+          node sites/agiscorecard/tools/capital-radar/browser-test.mjs
           node sites/agiscorecard/tools/infrastructure/browser-test.mjs
           node sites/agiscorecard/tools/mentor/browser-test.mjs
           node sites/agiscorecard/tools/jarvis/browser-test.mjs
@@ -338,6 +344,9 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/agiscorecard
           command: deploy
+
+      - name: Verify Capital Radar live privacy boundary and homepage entry
+        run: node sites/agiscorecard/tools/capital-radar/verify-live.mjs
 
       # Push readiness must not process orders, delete expired data or refresh health.
       # Existing readiness is not a fresh chain probe, payment or watch-key check.

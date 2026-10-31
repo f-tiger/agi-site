@@ -1,0 +1,51 @@
+name: AGI capital radar
+
+# User-requested continuous financing/startup monitoring. No source/data commits,
+# no public artifacts, no paid APIs. ~1 minute/day on this public repository.
+on:
+  schedule:
+    - cron: '35 6 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Collect and evaluate without saving or sending Telegram'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agi-capital-radar
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - name: Validate collector and forecasting safety
+        run: |
+          python3 -m unittest discover -s tools/capital-radar -p 'test_*.py'
+          node tools/capital-radar/test-contract.mjs
+      - name: Collect, evaluate, persist privately and notify owner
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TRADER_TG_TOKEN: ${{ secrets.TRADER_TG_TOKEN }}
+          TRADER_TG_CHAT: ${{ secrets.TRADER_TG_CHAT }}
+          RADAR_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$RADAR_DRY_RUN" = 'true' ]; then
+            node tools/capital-radar/run.mjs --dry-run
+          else
+            node tools/capital-radar/run.mjs
+          fi

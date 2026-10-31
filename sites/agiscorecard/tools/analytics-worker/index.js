@@ -1,4 +1,5 @@
 import {agiMemberRequest} from '../../../../tools/fleet-account/agi-bridge.mjs';
+import {capitalRadarRoute} from '../capital-radar/server.mjs';
 import {withFleetAccount} from '../../../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../../tools/fleet-analytics/edge.mjs';
 import {portfolioData,portfolioRoute} from '../portfolio/api.mjs';
@@ -253,6 +254,7 @@ const srcBucket = (host, self) => {
 
 const fleetWrappedWorker = {
   async fetch(request, env, ctx) {
+    const capitalRadarResponse=await capitalRadarRoute(request,env);if(capitalRadarResponse)return capitalRadarResponse;
     const jarvisResponse=await jarvisRoute(request,env,ctx);if(jarvisResponse)return jarvisResponse;
     const portfolioResponse=await portfolioRoute(request,env);if(portfolioResponse)return portfolioResponse;
     const mentorResponse=await mentorRoute(request,env);if(mentorResponse)return mentorResponse;
