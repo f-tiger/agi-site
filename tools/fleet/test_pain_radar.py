@@ -65,6 +65,14 @@ class Gates(unittest.TestCase):
         self.assertEqual(len(radar.actions(evaluate(d))), 1)
         second["status"] = "working"
         self.assertEqual(radar.actions(evaluate(d)), [])
+    def test_malformed_working_record_preserves_site_lock(self):
+        d = fixture()
+        broken = copy.deepcopy(d["items"][0])
+        broken.update(id="invalid-working", status="working", scope=["invalid/"])
+        d["items"].append(broken)
+        self.assertEqual(radar.actions(evaluate(d)), [])
+    def test_digest_uses_the_full_evolution_radar_allowlist(self):
+        self.assertEqual(demand_digest.PAIN_SITES, evolution.SITE_DIRS)
     def test_unknown_fields_are_not_projected(self):
         d = fixture(); d["items"][0]["secret"] = "sensitive-sentinel"
         d["items"][0]["sources"][0]["raw_body"] = "private-sentinel"

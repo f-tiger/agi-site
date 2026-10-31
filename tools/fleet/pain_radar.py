@@ -45,6 +45,10 @@ def evaluate(data, today, sites):
         return []
     # Duplicate task identities fail closed, rather than arbitrarily selecting one.
     ids = [r.get("id") for r in items if isinstance(r, dict) and isinstance(r.get("id"), str)]
+    # A malformed working record must not silently release the same-site lock.
+    working_sites = {r["site"] for r in items if isinstance(r, dict)
+                     and r.get("status") == "working" and isinstance(r.get("site"), str)
+                     and r["site"] in sites}
     rows = []
     for r in items:
         if not isinstance(r, dict):
@@ -91,6 +95,9 @@ def evaluate(data, today, sites):
             reasons.append("site/customer fit remains unverified")
         else:
             decision = "extend"
+        if status == "queued" and site in working_sites:
+            decision = "hold"
+            reasons.append("existing working record owns this site; reconcile it first")
         priority = r.get("priority")
         priority = max(0, min(85, priority)) if type(priority) is int else 50
         rows.append({

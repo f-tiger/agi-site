@@ -13,6 +13,7 @@
 import datetime as dt, glob, json, os, sys
 
 import pain_radar
+from evolution import SITE_DIRS as PAIN_SITES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data/autopilot/demand-digest.md")
@@ -239,7 +240,7 @@ def main():
            "零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。", ""]
 
     out.append(pain_radar.markdown(pain_radar.evaluate(
-        pain_radar.load(os.path.join(ROOT, "data/user-pain-radar.json")), today, SITES)))
+        pain_radar.load(os.path.join(ROOT, "data/user-pain-radar.json")), today, PAIN_SITES)))
 
     # 跨站源状态
     out.append("## 源状态(抓不到就写出来,不复用旧数据)")
