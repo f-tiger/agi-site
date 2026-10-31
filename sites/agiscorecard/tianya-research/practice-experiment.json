@@ -1,0 +1,40 @@
+{
+  "version": "practice-experiment-template-1",
+  "status": "not_started",
+  "realResults": [],
+  "experimentId": null,
+  "owner": null,
+  "payerOrInternalSponsor": null,
+  "taskDefinition": null,
+  "exclusions": null,
+  "startDate": null,
+  "endDate": null,
+  "qualityRubric": null,
+  "majorErrorDefinition": null,
+  "baselineMethod": null,
+  "trialMethod": null,
+  "plannedTaskCount": 50,
+  "proposedCashCapCNY": 3000,
+  "proposedPersonHourCap": 30,
+  "budgetCommitted": false,
+  "criteria": [
+    "可行性样本建议 50 个连续进入的真实任务，两种方法处理同一任务集；固定验收标准，隐去处理方法并随机验收顺序。不能只挑成功案例。50 不是经功效分析确定的样本量，也不证明普遍有效。",
+    "每个合格结果的持续总成本下降至少 20%，质量合格率不低于人工基线，重大错误为 0；失败、复核、返工和模型费用全部计入。20% 是建议经营门槛，不是算法学出的最优阈值。",
+    "外部产品须有 1 个独立客户真实付费，收入扣除全部交付成本后为正；内部降本须有负责人验收，释放工时确被重新分配或现金支出实际减少。口头意向与理论省时不算实现收益。",
+    "第 30 天未通过成本、质量与商业/内部使用门槛，停止扩大。保留未通过结果；如要改客户、任务或价格，另开试验。通过只允许下一轮小幅扩大，不能推断规模化盈利。"
+  ],
+  "thresholdNote": "建议试验上限，尚未授权支出；按你的资源可另定。现金与工时任一耗尽即停。任何改动都在试验前记入新版本。",
+  "paymentReceivedCNY": null,
+  "refundsCNY": null,
+  "fullDeliveryCostCNY": null,
+  "realizedCapacityOrCashEvidence": null,
+  "decisions": [],
+  "fieldGuide": {
+    "taskRecord": "同一 task_id 记录人工与工具辅助两种处理。全部连续任务纳入，失败不能删除。",
+    "timing": "total_minutes 包含操作、监督、复核、返工；记录员标记真实实测时间。",
+    "money": "extra_cost_cny 是工具及其他持续成本；一次接入成本另记。按实际单据记录，不填示例。",
+    "quality": "合格标准与重大错误定义在开始前固定，reviewer_blinded 表示验收人员是否不知道处理方法。",
+    "privacy": "用任务编号及可核查的受控证据位置，不必在共享记录中复制客户原文。",
+    "decision": "保留失败、停止、预算耗尽和未付款；修改方案另开 experimentId。"
+  }
+}

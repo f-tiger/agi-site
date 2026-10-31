@@ -78,7 +78,7 @@ def main():
     for u in locs:
         slug = u.replace('https://agiscorecard.com/', '')
         if not slug: slug = 'index'
-        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
+        if '/' in slug and not slug.startswith(('earn/','future-guide/','zh/future-guide/')) and slug not in ('zh/tianya','zh/tianya-research','zh/invest','zh/jarvis','zh/future-guide','zh/progress-index','zh/ai-and-your-job','zh/will-agi-arrive-2027','zh/did-open-source-ai-fade'):          # selected published collections and evidence translations only.
             continue
         fname = slug if slug.endswith('.html') else slug + '.html'
         fpath = os.path.join(ROOT, fname)
@@ -132,6 +132,17 @@ def main():
                 readable = text_of(linked)
                 md += '\n## Source-linked future guide\n\n' + readable + '\n'
                 full += ['## Source-linked future guide', '', 'URL: '+url, '', readable, '']
+        if slug in ('tianya','zh/tianya','zh/tianya-research'):
+            source_html = open(fpath, encoding='utf-8').read()
+            pattern = r'<aside class="research-context"[^>]*>(.*?)</aside>' if slug == 'zh/tianya-research' else r'<main\b[^>]*>(.*?)</main>'
+            body = re.search(pattern, source_html, re.S)
+            if body:
+                linked = re.sub(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', lambda m: m[2]+' ('+m[1]+')', body.group(1), flags=re.S)
+                readable = text_of(linked)
+                md += '\n## Tianya Echo — scope and evidence\n\n' + readable + '\n'
+                full += ['## Tianya Echo — scope and evidence', '', 'URL: '+url, '', readable, '']
+            if slug == 'zh/tianya-research':
+                md += '\nSnapshot: 2026-10-05. All 60 curated claims remain strictly unknown. Migration is not a forecast refresh.\nEvidence: https://agiscorecard.com/tianya-research/analysis.json\nFrozen ledger: https://agiscorecard.com/tianya-research/practice-ledger.json\n'
         if slug == 'earn' or slug.startswith('earn/'):
             source_html = open(fpath, encoding='utf-8').read()
             body = re.search(r'<main id="main">(.*?)</main>', source_html, re.S)

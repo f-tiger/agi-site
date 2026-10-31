@@ -119,6 +119,13 @@ jobs:
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
           (cd sites/agiscorecard && python3 tools/add_breadcrumbs.py --apply)
 
+      - name: Build Tianya validation and preserve the dated research archive
+        run: |
+          node sites/agiscorecard/tools/tianya/build.mjs
+          node sites/agiscorecard/tools/tianya/migrate-research.mjs --check
+          node --test sites/agiscorecard/tools/tianya/test.mjs
+          node sites/agiscorecard/tools/tianya/member-test.mjs
+
       - name: Build and validate need-led future guide
         run: |
           python3 sites/agiscorecard/tools/foresight/test_refresh.py
@@ -247,6 +254,7 @@ jobs:
           node sites/agiscorecard/tools/browser_home_focus.mjs
           node sites/agiscorecard/tools/foresight/home-rotation.browser.mjs
           node sites/agiscorecard/tools/browser_evidence.mjs
+          node sites/agiscorecard/tools/tianya/browser-test.mjs
           node sites/agiscorecard/tools/foresight/browser-test.mjs
           node sites/agiscorecard/tools/foresight/planner.browser.mjs
           node tools/revenue-studio/browser-test.mjs
@@ -316,6 +324,9 @@ jobs:
 
       # Push readiness must not process orders, delete expired data or refresh health.
       # Existing readiness is not a fresh chain probe, payment or watch-key check.
+      - name: Verify Tianya public pages and assets
+        run: node sites/agiscorecard/tools/tianya/verify.mjs
+
       - name: Verify non-destructive membership readiness after push
         if: github.event_name == 'push'
         working-directory: ${{ github.workspace }}

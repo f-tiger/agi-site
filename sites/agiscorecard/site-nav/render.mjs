@@ -14,7 +14,7 @@ export function sectionFor(pathname){
  if(route.startsWith('/future-guide'))return 'videos';
  if(route==='/jarvis')return 'jarvis';
  if(/^\/(invest|portfolio-tracker|ai-infrastructure|ai-stock-exposure)/.test(route))return 'invest';
- if(/^\/(ai-tools|workbench|mentor|earn|create|agents|agi-test|matrix-odds|future-bet|ai-job-risk-check)/.test(route))return 'tools';
+ if(/^\/(ai-tools|workbench|mentor|earn|create|agents|agi-test|matrix-odds|tianya|future-bet|ai-job-risk-check)/.test(route))return 'tools';
  if(route.startsWith('/discuss'))return 'discuss';
  if(route.startsWith('/members'))return 'members';
  if(route==='/search')return 'search';

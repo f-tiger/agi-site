@@ -39,6 +39,7 @@ export const externalProducts=[
 {id:'portfolio-tracker',name:'Portfolio Tracker & Review',site:'agi',urls:{zh:'https://agiscorecard.com/zh/portfolio-tracker',en:'https://agiscorecard.com/portfolio-tracker'}},
 
 {id:'future-guide',name:'AI Future Guide',site:'agi',urls:{zh:'https://agiscorecard.com/zh/future-guide',en:'https://agiscorecard.com/future-guide'}},
+{id:'tianya-validation',name:'Tianya validation',site:'agi',urls:{en:'https://agiscorecard.com/tianya',zh:'https://agiscorecard.com/zh/tianya'}},
 {id:'bpj-proposal-deck',name:'BPJ ProposalDeck',site:'bpj',urls:{zh:'https://baipiaoji.com/studio/proposal-deck',en:'https://baipiaoji.com/en/studio/proposal-deck'}},
 {id:'work-mentor',name:'Ecommerce Reporting Coach',site:'agi',urls:{zh:'https://agiscorecard.com/zh/mentor',en:'https://agiscorecard.com/mentor'}},
 {id:'ai-infrastructure',name:'AI Infrastructure Research',site:'agi',urls:{zh:'https://agiscorecard.com/zh/ai-infrastructure',en:'https://agiscorecard.com/ai-infrastructure'}},

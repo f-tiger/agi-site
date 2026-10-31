@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">AGI 天涯回声：创业与投资判断验证工作台</title>
+  <desc id="description">白色与 AGI 蓝的原创分享图。一侧介绍天涯回声，另一侧以示例记录连接来源、判断、行动与复查，不展示收益、用户数或预测命中率。</desc>
+  <rect width="1200" height="630" fill="#fff"/>
+  <path d="M64 111H1136M64 529H1136" stroke="#dddfe5"/>
+  <g font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,Arial,sans-serif">
+    <text x="64" y="80" fill="#002fa7" font-size="30" font-weight="750">AGI</text>
+    <path d="M139 55V84" stroke="#dddfe5"/>
+    <text x="161" y="78" fill="#586174" font-size="19">Tianya Echo</text>
+    <text x="64" y="207" fill="#182033" font-size="58" font-weight="750">天涯回声</text>
+    <text x="64" y="271" fill="#182033" font-size="36" font-weight="650">把判断变成下一步</text>
+    <text x="66" y="325" fill="#586174" font-size="20">创业成本、投资情景与证据复查</text>
+    <rect x="64" y="379" width="238" height="56" rx="7" fill="#002fa7"/>
+    <text x="183" y="414" text-anchor="middle" fill="#fff" font-size="19" font-weight="600">开始验证一个想法</text>
+    <rect x="646" y="153" width="490" height="330" rx="10" fill="#f7f7f8" stroke="#dddfe5"/>
+    <path d="M657 153H1125" stroke="#002fa7" stroke-width="3"/>
+    <text x="678" y="193" fill="#182033" font-size="20" font-weight="650">我的验证记录</text>
+    <text x="1104" y="192" text-anchor="end" fill="#586174" font-size="14">示例</text>
+    <path d="M678 215H1104M694 247V429" stroke="#dddfe5"/>
+    <g fill="#fff" stroke="#002fa7" stroke-width="2">
+      <circle cx="694" cy="248" r="7"/>
+      <circle cx="694" cy="307" r="7"/>
+      <circle cx="694" cy="366" r="7"/>
+      <circle cx="694" cy="425" r="7"/>
+    </g>
+    <g fill="#002fa7" font-size="14" font-weight="550">
+      <text x="721" y="253">依据</text>
+      <text x="721" y="312">判断</text>
+      <text x="721" y="371">行动</text>
+      <text x="721" y="430">复查</text>
+    </g>
+    <g fill="#182033" font-size="18">
+      <text x="790" y="254">可追溯的来源</text>
+      <text x="790" y="313">写下条件与反例</text>
+      <text x="790" y="372">比较成本与情景</text>
+      <text x="790" y="431">按实际结果更新</text>
+    </g>
+    <text x="64" y="571" fill="#586174" font-size="17">记录判断，保留反证。</text>
+    <text x="1136" y="571" text-anchor="end" fill="#002fa7" font-size="16">AGI 验证工作台</text>
+  </g>
+</svg>

@@ -83,6 +83,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
   if(host==='baipiaoji.com' && /^\/manju(?:\/[a-z0-9-]*)?\/?$/.test(pathname) && ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy'].some(a=>name==='manju_'+a)) return {name,tool_id:'manju',repeat:true};
   if (name.startsWith('legacy:')) return legacyEvent(host, pathname, name.slice(7));
   const route = String(pathname).replace(/^\/(?:en|de|zh|it)\//, '/').replace(/\.html$/, '');
+  if (host === 'agiscorecard.com' && route === '/tianya' && /^(?:tianya_(?:calculate|local_save|export)_(?:demo|own)|tianya_(?:member_open|register_open|research_open|restore|import))$/.test(name)) return {name,tool_id:'tianya-validation',repeat:true};
   if(host==='agiscorecard.com'&&['/matrix-odds','/zh/matrix-odds'].includes(pathname)&&name==='matrix_calculate')return {name,tool_id:'matrix-odds'};
   // BPJ video production is distinct from manju discovery and AI-work browsing.
   // Demos never become own exports, and cloud intent is never a payment event.

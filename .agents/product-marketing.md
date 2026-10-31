@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v15** — **Last updated: 2026-10-29**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v16** — **Last updated: 2026-10-31**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -173,3 +173,16 @@ Measurement: GSC 2026-09-01–28 gives AGI 1/143, BPJ 1/704, ECO 0/77, TDS 5/328
 Owner language: “普通人根本不了解 github 的工具 … github 离普通人太远”. Audience hypothesis: nontechnical office workers, students and creators with a concrete file/media/organization job. The free product translates a task into a usable official entry, setup steps, device fit and cost boundaries. Expanded to 80 curated projects, including 68 AI-related additions, following the owner’s explicit request. Applications, frameworks and model repositories are distinct; category/type/device/setup filters and full-catalogue search keep the collection usable. Dated stars are not live trends or hands-on safety certification. AI emphasis covers local chat, knowledge, agents, coding, media, OCR and model inference.
 
 Buyer candidates are commercial maintainers or hosting providers using the existing vendor/sponsorship funnel, separate from organic recommendations. A scoped USD29/application/device onboarding service is a closed hypothesis requiring real requests, fulfillment/support/refund scope and positive delivery margin before sale. Free-source access is never presented as BPJ-owned software or a paid download. Marketing entry: “从 GitHub 找好工具，先看它能帮你做什么。” Owned homepage, contextual Agents links, search, feature map, bilingual JSON and llms distribution. Guide opens and official link opens are actions, not users, installations or revenue. PRD: sites/baipiaoji/docs/PRD-github-tools-2026-10-02.md.
+
+
+## Tianya Echo joins AGI — owner steering 2026-10-31
+
+Goal: registered users and revenue on the existing AGI domain. Audience hypothesis: Chinese and English readers turning technology/investment narratives into a bounded startup trial or paper-investment plan. This is a focused continuation of the existing Tianya research site, not a new domain or forecast subscription.
+
+Free: complete source-linked research archive, pilot-cost/profit calculator, paper-position scenario, counter-case and review notes, explicit browser save, JSON export/import. A free Fleet account supports the existing AGI community/Jarvis identity; it does not grant cloud storage. Optional paid value: the same record saved with existing AGI membership and version history, 9 USDT/30 days plus matching decimal and network fees, separate backed-up member key, unchanged quotas and no auto-renewal/extra AI. Product attribution: tianya-validation.
+
+Positioning: turn one judgment into a testable next step. The historical snapshot remains 2026-10-05; all 60 curated claims are strictly unknown. Do not sell foreknowledge, guaranteed returns, refreshed models or unverified customer outcomes. Examples are fictional; user inputs and review notes are self-reported.
+
+Owned distribution: bilingual AI-tools hubs, search/agent-readable pages and the existing research site's migration entry. No outside outreach, ad spend or new scheduler. Track fixed demo/own calculation, local-save/export and account/member-entry intents without input text. Account creation, actual member saves and source-attributed settled receipts remain separate server outcomes. Visits/actions are not independent people; membership page opens are not purchases. Revenue and profit remain unverified until actual receipts and costs are reconciled. Main counter-case: JSON is sufficient, separate keys and crypto payment add friction. Diagnose repeat use and checkout friction before adding features.
+
+Version note v16: adds the owner-authorized AGI Tianya migration and its real free/paid boundaries; retains earlier product directions and historical evidence.

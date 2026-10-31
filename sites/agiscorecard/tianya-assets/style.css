@@ -1,0 +1,295 @@
+/* Tianya Echo uses AGI's existing light palette. All component rules stay scoped. */
+.ty-page {
+  --ty-bg: #fff;
+  --ty-soft: #f7f7f8;
+  --ty-soft-strong: #eeeef1;
+  --ty-line: #dddfe5;
+  --ty-blue: #002fa7;
+  --ty-ink: #182033;
+  --ty-muted: #586174;
+  --ty-error: #a12a22;
+  margin: 0;
+  color: var(--ty-ink);
+  background: var(--ty-bg);
+  font-family: 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+}
+.ty-page main, main.ty-page {
+  width: min(1200px, calc(100% - 64px));
+  min-width: 0;
+  margin-inline: auto;
+  padding-bottom: 36px;
+}
+.ty-page main *, main.ty-page *, .ty-footer, .ty-footer * { box-sizing: border-box; }
+.ty-page main :is(h1,h2,h3,h4,p,ul,ol,dl), main.ty-page :is(h1,h2,h3,h4,p,ul,ol,dl) { margin-top: 0; }
+.ty-page main :is(h1,h2,h3,h4), main.ty-page :is(h1,h2,h3,h4) { color: var(--ty-ink); text-wrap: balance; }
+.ty-page main h2, main.ty-page h2 { margin-bottom: 14px; font-size: clamp(24px, 2.25vw, 30px); line-height: 1.45; font-weight: 700; }
+.ty-page main h3, main.ty-page h3 { margin-bottom: 12px; font-size: 20px; line-height: 1.55; font-weight: 650; }
+.ty-page main p, main.ty-page p { margin-bottom: 16px; }
+.ty-page main a, main.ty-page a, .ty-footer a { color: var(--ty-blue); text-underline-offset: 4px; overflow-wrap: anywhere; }
+.ty-page main a:hover, main.ty-page a:hover, .ty-footer a:hover { text-decoration-thickness: 2px; }
+.ty-page main :is(button,input,select,textarea), main.ty-page :is(button,input,select,textarea) { font: inherit; }
+.ty-page main :is(button,a,input,select,textarea,summary), main.ty-page :is(button,a,input,select,textarea,summary) { touch-action: manipulation; }
+.ty-page main :is(button,a,input,select,textarea,summary):focus-visible,
+main.ty-page :is(button,a,input,select,textarea,summary):focus-visible,
+.ty-footer a:focus-visible { outline: 3px solid var(--ty-blue); outline-offset: 4px; }
+.ty-page main :is(section,article,[id]), main.ty-page :is(section,article,[id]) { scroll-margin-top: 28px; }
+.ty-page main :is(img,svg), main.ty-page :is(img,svg) { max-width: 100%; height: auto; }
+.ty-page main :is(pre,code), main.ty-page :is(pre,code) { white-space: pre-wrap; overflow-wrap: anywhere; }
+.ty-page main :is(ul,ol), main.ty-page :is(ul,ol) { padding-left: 1.35em; }
+.ty-page main li + li, main.ty-page li + li { margin-top: 8px; }
+
+.ty-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(36px, 5vw, 76px);
+  align-items: center;
+  padding-block: 64px 52px;
+}
+.ty-hero > *, .ty-workspace > *, .ty-offer > * { min-width: 0; }
+.ty-intro h1 {
+  max-width: 13em;
+  margin: 10px 0 23px;
+  font-size: clamp(34px, 4vw, 49px);
+  line-height: 1.38;
+  font-weight: 750;
+  letter-spacing: -.035em;
+}
+.ty-intro > p { max-width: 34em; color: var(--ty-muted); font-size: 17px; line-height: 1.95; }
+.ty-intro .ty-note { margin-top: 14px; font-size: 13px; }
+.ty-kicker, .ty-product-name { margin: 0 0 12px; color: var(--ty-blue); font-size: 14px; font-weight: 650; }
+.ty-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin-top: 23px; }
+.ty-actions :is(button,a), .ty-save :is(button,a), .ty-form > button, .ty-offer :is(button,a.primary,a.secondary),
+.ty-result :is(button,a.primary,a.secondary) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  max-width: 100%;
+  padding: 10px 18px;
+  border: 1px solid var(--ty-line);
+  border-radius: 7px;
+  color: var(--ty-ink);
+  background: var(--ty-bg);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.55;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.ty-actions :is(button,a):hover, .ty-save :is(button,a):hover, .ty-form > button:hover,
+.ty-offer :is(button,a.primary,a.secondary):hover, .ty-result :is(button,a.primary,a.secondary):hover { border-color: var(--ty-blue); color: var(--ty-blue); background: var(--ty-soft); }
+.ty-page main .primary, main.ty-page .primary { color: #fff; border-color: var(--ty-blue); background: var(--ty-blue); }
+.ty-page main .primary:hover, main.ty-page .primary:hover { color: #fff; border-color: #002787; background: #002787; }
+.ty-page main .secondary, main.ty-page .secondary { color: var(--ty-ink); border-color: var(--ty-line); background: var(--ty-bg); }
+.ty-page main :is(button,input,select,textarea):disabled, main.ty-page :is(button,input,select,textarea):disabled { cursor: not-allowed; opacity: .58; }
+.ty-page main a[aria-disabled="true"], main.ty-page a[aria-disabled="true"] { opacity: .58; cursor: not-allowed; }
+
+/* A compact record makes provenance and an unfinished decision visible. */
+.ty-preview { padding: 25px 28px; border: 1px solid var(--ty-line); border-top: 3px solid var(--ty-blue); border-radius: 9px; background: var(--ty-soft); }
+.ty-preview > :is(h2,h3) { margin-bottom: 18px; font-size: 18px; }
+.ty-preview > p { font-size: 14px; color: var(--ty-muted); }
+.ty-preview .ty-row { display: grid; grid-template-columns: 70px minmax(0,1fr); gap: 16px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--ty-line); font-size: 14px; }
+.ty-preview .ty-row:last-of-type { border-bottom: 0; }
+.ty-preview .ty-row > :first-child { color: var(--ty-muted); font-weight: 500; }
+.ty-preview .ty-row p { margin: 0; }
+.ty-preview .ty-row small { display: block; margin-top: 5px; color: var(--ty-muted); font-size: 12px; }
+.ty-preview dl { margin: 0; }
+.ty-preview dl > div { padding: 14px 0; border-bottom: 1px solid var(--ty-line); }
+.ty-preview dt { margin-bottom: 5px; color: var(--ty-muted); font-size: 12px; }
+.ty-preview dd { margin: 0; font-size: 15px; }
+.ty-preview .ty-note { margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--ty-line); }
+
+.ty-paths { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 16px 0 22px; }
+.ty-paths button {
+  min-width: 0;
+  min-height: 76px;
+  margin: 0;
+  padding: 17px 20px;
+  border: 1px solid var(--ty-line);
+  border-radius: 8px;
+  color: var(--ty-ink);
+  background: var(--ty-bg);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.ty-paths button :is(strong,span,small) { display: block; }
+.ty-paths button :is(span,small) { margin-top: 4px; color: var(--ty-muted); font-size: 13px; font-weight: 400; }
+.ty-paths button:hover { border-color: var(--ty-blue); }
+.ty-paths button[aria-pressed="true"] { border-color: var(--ty-blue); color: var(--ty-blue); background: var(--ty-soft); box-shadow: inset 3px 0 0 var(--ty-blue); }
+
+.ty-workspace {
+  display: grid;
+  grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr);
+  gap: 26px 32px;
+  margin: 0 0 48px;
+  padding: 30px;
+  border: 1px solid var(--ty-line);
+  border-radius: 10px;
+  background: var(--ty-bg);
+  align-items: start;
+}
+.ty-workspace > :is(h2,h3,p,.ty-paths,.ty-save,.ty-status,.ty-note,.ty-summary,.ty-workspace-head) { grid-column: 1/-1; }
+.ty-workspace > :is(h2,h3,p) { margin-bottom: 0; }
+.ty-workspace-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; }
+.ty-workspace-head > * { margin-bottom: 0; }
+.ty-form { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 16px; min-width: 0; margin: 0; }
+.ty-form > :is(h2,h3,p,fieldset,.ty-actions,.ty-note,.ty-status,.ty-row,.ty-save,button) { grid-column: 1/-1; }
+.ty-form fieldset { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 16px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.ty-form legend { margin-bottom: 15px; padding: 0; color: var(--ty-ink); font-size: 17px; font-weight: 650; }
+.ty-field { display: flex; flex-direction: column; justify-content: start; gap: 7px; min-width: 0; font-size: 14px; font-weight: 550; line-height: 1.65; }
+.ty-field :is(input,select,textarea) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid #bac0cd;
+  border-radius: 6px;
+  color: var(--ty-ink);
+  background-color: var(--ty-bg);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+.ty-field :is(input,textarea)::placeholder { color: #687286; opacity: 1; }
+.ty-field select { text-overflow: ellipsis; }
+.ty-field textarea { min-height: 114px; resize: vertical; line-height: 1.75; }
+.ty-field input:is([type="checkbox"],[type="radio"]) { display: inline-block; width: 19px; min-height: 19px; height: 19px; margin: 2px 8px 0 0; padding: 0; accent-color: var(--ty-blue); }
+.ty-field:has(input:is([type="checkbox"],[type="radio"])) { flex-direction: row; align-items: start; }
+.ty-field :is(small,.ty-note) { margin: 0; color: var(--ty-muted); font-size: 12px; font-weight: 400; line-height: 1.65; }
+.ty-form :is(.ty-full,.ty-wide,.full,.wide), .ty-field:has(textarea) { grid-column: 1/-1; }
+.ty-field [aria-invalid="true"] { border-color: var(--ty-error); }
+.ty-result { min-width: 0; padding: 24px; border: 1px solid var(--ty-line); border-radius: 8px; background: var(--ty-soft); overflow-wrap: anywhere; }
+.ty-result :is(h2,h3) { font-size: 20px; }
+.ty-result p { font-size: 14px; line-height: 1.85; }
+.ty-result > :last-child { margin-bottom: 0; }
+.ty-result dl { margin: 0 0 18px; font-variant-numeric: tabular-nums; }
+.ty-result dl > div { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px 20px; padding: 12px 0; border-bottom: 1px solid var(--ty-line); }
+.ty-result dt { color: var(--ty-muted); font-size: 13px; }
+.ty-result dd { min-width: 0; margin: 0; font-size: 15px; font-weight: 650; text-align: right; }
+.ty-result pre { margin: 16px 0; padding: 14px; border: 1px solid var(--ty-line); border-radius: 5px; background: #fff; font-size: 12px; }
+.ty-summary { display: grid; grid-template-columns: repeat(auto-fit,minmax(135px,1fr)); gap: 16px; margin: 22px 0; padding: 20px 0; border-top: 1px solid var(--ty-line); border-bottom: 1px solid var(--ty-line); font-variant-numeric: tabular-nums; }
+.ty-summary > * { min-width: 0; }
+.ty-summary strong { display: block; margin-bottom: 5px; color: var(--ty-ink); font-size: clamp(21px,2.2vw,28px); font-weight: 650; line-height: 1.4; overflow-wrap: anywhere; }
+.ty-summary :is(span,small,dt) { display: block; color: var(--ty-muted); font-size: 12px; }
+.ty-summary p { margin-bottom: 0; font-size: 13px; color: var(--ty-muted); }
+.ty-save { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 10px; padding-top: 22px; border-top: 1px solid var(--ty-line); }
+.ty-save > :is(p,.ty-note) { flex: 1 1 260px; margin: 0; }
+.ty-save .ty-status { flex-basis: 100%; }
+.ty-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 20px; min-width: 0; }
+.ty-row > * { min-width: 0; }
+
+.ty-evidence { min-width: 0; margin-block: 48px; padding-top: 28px; border-top: 1px solid var(--ty-line); overflow-x: auto; }
+.ty-evidence > p { max-width: 72ch; color: var(--ty-muted); font-size: 15px; }
+.ty-evidence :is(.ty-table-wrap,.ty-table-scroll,.table-scroll,.table-wrap) { width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; }
+.ty-evidence table { width: 100%; min-width: 620px; margin-top: 20px; border-collapse: collapse; font-size: 13px; text-align: left; }
+.ty-evidence caption { margin-bottom: 12px; color: var(--ty-muted); font-size: 13px; text-align: left; }
+.ty-evidence :is(th,td) { padding: 14px 15px; border-bottom: 1px solid var(--ty-line); vertical-align: top; line-height: 1.75; overflow-wrap: anywhere; }
+.ty-evidence th { color: var(--ty-muted); background: var(--ty-soft); font-size: 12px; font-weight: 600; }
+.ty-evidence :is(th,td):first-child { padding-left: 12px; }
+.ty-evidence td :is(p,small) { margin: 4px 0; }
+.ty-evidence td small { color: var(--ty-muted); font-size: 12px; }
+.ty-evidence .ty-row { padding: 18px 0; border-top: 1px solid var(--ty-line); }
+.ty-source { padding: 18px 0; border-bottom: 1px solid var(--ty-line); overflow-wrap: anywhere; }
+.ty-source h3 { margin-bottom: 6px; font-size: 16px; }
+.ty-source p { margin: 6px 0; color: var(--ty-muted); font-size: 13px; }
+
+.ty-offer { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; margin: 48px 0; }
+.ty-offer > :is(h2,p,.ty-note,.ty-status,.ty-offer-head) { grid-column: 1/-1; margin-bottom: 0; }
+.ty-offer > :is(article,section,.ty-offer-card) { display: flex; flex-direction: column; align-items: start; padding: 28px; border: 1px solid var(--ty-line); border-radius: 9px; background: var(--ty-bg); }
+.ty-offer > :is(article,section,.ty-offer-card):last-of-type { border-color: var(--ty-blue); }
+.ty-offer h3 { font-size: 21px; }
+.ty-offer :is(p,li) { color: var(--ty-muted); font-size: 14px; line-height: 1.85; }
+.ty-offer ul { flex: 1; margin-bottom: 24px; }
+.ty-price { margin: 10px 0 14px; color: var(--ty-ink); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.4; }
+.ty-price small { margin-left: 6px; color: var(--ty-muted); font-size: 13px; font-weight: 400; }
+.ty-faq { margin: 48px 0; }
+.ty-faq details { border-bottom: 1px solid var(--ty-line); }
+.ty-faq details:first-of-type { border-top: 1px solid var(--ty-line); }
+.ty-faq summary { min-height: 56px; padding: 17px 0; color: var(--ty-ink); font-size: 15px; font-weight: 600; line-height: 1.7; cursor: pointer; }
+.ty-faq summary::marker { color: var(--ty-blue); }
+.ty-faq details[open] > summary { color: var(--ty-blue); }
+.ty-faq details > :not(summary) { max-width: 76ch; margin-bottom: 20px; color: var(--ty-muted); font-size: 14px; line-height: 1.9; }
+.ty-footer { --ty-blue:#002fa7; --ty-line:#dddfe5; --ty-muted:#586174; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 15px 28px; width: min(1200px,calc(100% - 64px)); margin: 0 auto; padding: 26px 0 32px; border-top: 1px solid var(--ty-line); color: var(--ty-muted); font-family: 'Noto Sans SC','PingFang SC',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size: 12px; line-height: 1.8; }
+.ty-page main .ty-footer, main.ty-page .ty-footer { width: 100%; margin-top: 48px; }
+.ty-footer :is(p,nav) { margin: 0; }
+.ty-footer nav { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.ty-footer a { display: inline-flex; align-items: center; min-height: 36px; }
+.ty-note { color: var(--ty-muted); font-size: 13px; font-weight: 400; line-height: 1.85; overflow-wrap: anywhere; }
+.ty-status { min-height: 1.6em; margin: 12px 0 0; color: var(--ty-muted); font-size: 13px; font-weight: 500; line-height: 1.75; overflow-wrap: anywhere; }
+.ty-error, .ty-status.ty-error { color: var(--ty-error); }
+.ty-success, .ty-status.ty-success { color: var(--ty-blue); }
+.ty-empty { padding: 23px; border: 1px dashed #bac0cd; border-radius: 7px; color: var(--ty-muted); background: var(--ty-soft); font-size: 14px; line-height: 1.9; }
+.ty-empty > :last-child { margin-bottom: 0; }
+.ty-page :is(.ty-intro,.ty-preview,.ty-result,.ty-field,.ty-offer,.ty-faq,.ty-footer) { overflow-wrap: anywhere; }
+/* The browser's hidden state must win over grids, flexboxes and live regions. */
+.ty-page [hidden], .ty-footer[hidden], .ty-footer [hidden] { display: none !important; }
+
+@media (max-width: 960px) {
+  .ty-hero { gap: 30px; padding-block: 46px 38px; }
+  .ty-intro h1 { font-size: 39px; }
+  .ty-preview { padding: 22px; }
+  .ty-workspace { gap: 24px; padding: 24px; }
+  .ty-form { grid-template-columns: minmax(0,1fr); }
+  .ty-form fieldset { grid-template-columns: minmax(0,1fr); }
+  .ty-result { padding: 20px; }
+}
+@media (max-width: 760px) {
+  .ty-page main, main.ty-page { width: calc(100% - 40px); padding-bottom: 16px; }
+  .ty-hero { grid-template-columns: minmax(0,1fr); gap: 28px; padding-block: 34px 34px; }
+  .ty-intro h1 { max-width: 16em; margin-block: 8px 18px; font-size: clamp(32px,5.8vw,40px); letter-spacing: -.025em; }
+  .ty-intro > p { max-width: none; font-size: 16px; line-height: 1.9; }
+  .ty-actions { margin-top: 20px; }
+  .ty-preview { padding: 20px 22px; }
+  .ty-workspace { grid-template-columns: minmax(0,1fr); gap: 22px; margin-bottom: 36px; padding: 23px; }
+  .ty-form, .ty-form fieldset { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .ty-offer { gap: 16px; margin-block: 36px; }
+  .ty-offer > :is(article,section,.ty-offer-card) { padding: 23px; }
+  .ty-evidence, .ty-faq { margin-block: 36px; }
+  .ty-footer { width: calc(100% - 40px); flex-direction: column; gap: 12px; padding-top: 22px; }
+}
+@media (max-width: 540px) {
+  .ty-page main, main.ty-page { width: calc(100% - 32px); }
+  .ty-intro h1 { font-size: 32px; line-height: 1.4; }
+  .ty-intro .ty-actions > * { flex: 1 1 145px; padding-inline: 12px; }
+  .ty-preview { padding: 18px; }
+  .ty-preview .ty-row { grid-template-columns: 54px minmax(0,1fr); gap: 12px; padding-block: 14px; font-size: 13px; }
+  .ty-paths { gap: 9px; margin-top: 14px; }
+  .ty-paths button { min-height: 88px; padding: 13px 12px; font-size: 15px; }
+  .ty-paths button :is(span,small) { font-size: 12px; line-height: 1.7; }
+  .ty-workspace { padding: 20px 16px; gap: 20px; border-radius: 8px; }
+  .ty-form, .ty-form fieldset { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .ty-result { padding: 18px 16px; }
+  .ty-result dl > div { grid-template-columns: minmax(0,1fr); gap: 4px; }
+  .ty-result dd { text-align: left; }
+  .ty-summary { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 12px; margin-block: 18px; padding-block: 17px; }
+  .ty-summary strong { font-size: 23px; }
+  .ty-save { align-items: stretch; gap: 10px; }
+  .ty-save :is(button,a) { flex: 1 1 145px; padding-inline: 12px; }
+  .ty-save > :is(p,.ty-note) { flex-basis: 100%; }
+  .ty-offer { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .ty-offer > :is(article,section,.ty-offer-card) { padding: 23px 21px; }
+  .ty-evidence :is(th,td) { padding: 12px; }
+  .ty-faq summary { padding-block: 16px; font-size: 14px; }
+  .ty-footer { width: calc(100% - 32px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ty-page main *, main.ty-page * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+@media (forced-colors: active) {
+  .ty-paths button[aria-pressed="true"] { border-width: 3px; box-shadow: none; }
+  .ty-page main :is(button,a.primary,a.secondary):focus-visible, main.ty-page :is(button,a.primary,a.secondary):focus-visible { outline-color: Highlight; }
+}
