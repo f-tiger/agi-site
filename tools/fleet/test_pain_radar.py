@@ -80,15 +80,19 @@ class Gates(unittest.TestCase):
         row = evaluate(d)[0]
         self.assertEqual(row["priority"], 85)
         self.assertEqual(row["decision"], "verify")
-    def test_production_ledger_is_research_not_payment_or_crawl(self):
+    def test_production_ledger_schema_allows_evidence_and_lifecycle_updates(self):
         d = radar.load(Path(__file__).resolve().parents[2] / "data/user-pain-radar.json")
+        self.assertEqual(d.get("schema_version"), 1)
+        self.assertIsInstance(d.get("items"), list)
         rows = radar.evaluate(d, TODAY, evolution.SITE_DIRS)
-        self.assertEqual(len(rows), 4)
-        self.assertFalse(any(r["decision"] == "extend" for r in rows))
-        self.assertEqual(len(radar.actions(rows)), 2)
-        for row in rows:
-            self.assertTrue(row["acceptance"])
-            self.assertTrue(row["counter_evidence"])
+        self.assertEqual(len(rows), len(d["items"]))
+        for item in d["items"]:
+            self.assertTrue(item.get("counter_evidence"))
+            self.assertIsInstance(item.get("sources"), list)
+            for source in item["sources"]:
+                self.assertEqual(set(source), {"id", "original_verified", "published_at", "reviewed_at"})
+        # The live ledger may grow, reach extension gates, or complete its tasks.
+        # Lifecycle and source behavior are asserted against synthetic fixtures.
     def test_existing_evolution_and_digest_consume_same_feed(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp); data = root / "data"; data.mkdir()
