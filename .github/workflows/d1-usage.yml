@@ -58,7 +58,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           WORKERS_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
         run: |
-          node --test tools/fleet/workers_usage.test.mjs
+          node --test tools/fleet/workers_usage.test.mjs tools/fleet/workers_inspection.test.mjs
           node tools/fleet/workers_usage.mjs
       - uses: actions/upload-artifact@v4
         if: inputs.dataset == 'workers'
