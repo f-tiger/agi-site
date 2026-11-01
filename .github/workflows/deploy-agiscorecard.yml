@@ -12,6 +12,7 @@ on:
       - "tools/fleet/worker-budget-routing*"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
+      - "tools/fleet/mcp-liveness-optout*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
       - "sites/baipiaoji/lib/**"
@@ -314,6 +315,10 @@ jobs:
         run: |
           node tools/member-studio/ops.mjs preflight
           node tools/member-studio/ops.mjs configure agi
+
+      - name: Verify exact MCP monitor opt-out scope
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet/mcp-liveness-optout.test.mjs
 
       - name: Verify fleet account security
         working-directory: ${{ github.workspace }}

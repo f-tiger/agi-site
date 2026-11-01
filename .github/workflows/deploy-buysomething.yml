@@ -7,7 +7,7 @@ name: Deploy buysomething
 on:
   push:
     branches: [main]
-    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', 'tools/fleet/mcp-liveness-optout*', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
   schedule:
     - cron: "20 5 * * *"
   workflow_dispatch:
@@ -133,6 +133,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+
+      - name: Verify exact MCP monitor opt-out scope
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet/mcp-liveness-optout.test.mjs
 
       - name: Verify fleet account security
         working-directory: ${{ github.workspace }}

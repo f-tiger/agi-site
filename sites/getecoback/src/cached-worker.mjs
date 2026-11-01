@@ -1,3 +1,4 @@
+import {withMonitorOptOut} from '../../../tools/fleet/mcp-liveness-optout.mjs';
 import {withFleetAccount} from '../../../tools/fleet-account/edge.mjs';
 import worker from './worker.js';
 import {createPulseCache} from './pulse-cache.mjs';
@@ -9,4 +10,4 @@ const fleetWrappedWorker = {
   }
 };
 
-export default withFleetAccount(fleetWrappedWorker);
+export default withMonitorOptOut(withFleetAccount(fleetWrappedWorker));
