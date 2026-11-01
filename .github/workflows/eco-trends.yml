@@ -1,4 +1,4 @@
-name: getecoback DE and GB trend evidence (daily)
+name: getecoback DE, GB, NL and AU trend evidence (daily)
 
 # Keep the existing daily collection time. This workflow does not start a
 # growth loop or publish pages. A manual evidence-only run validates source
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       evidence_only:
-        description: Collect dated DE/GB evidence without changing committed snapshots
+        description: Collect dated country-specific evidence without changing committed snapshots
         type: boolean
         default: false
 
@@ -64,8 +64,10 @@ jobs:
       # Evidence is run-specific: do not commit noisy reports or customer data.
       - name: Validate bounded opportunity collection
         working-directory: .
-        run: python3 -m unittest discover -s tools -p test_eco_evolution.py
-      - name: Collect DE and GB evidence and existing-page opportunities
+        run: |
+          python3 -m unittest discover -s tools -p test_eco_evolution.py
+          python3 -m unittest discover -s tools -p test_eco_demand_model.py
+      - name: Collect DE, GB, NL and AU evidence and existing-page opportunities
         working-directory: .
         run: python3 tools/eco_evolution.py --output-dir "$RUNNER_TEMP/eco-evolution"
       - name: Keep dated source receipts and candidate report

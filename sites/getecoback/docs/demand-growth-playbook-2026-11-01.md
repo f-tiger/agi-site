@@ -40,3 +40,5 @@ The first complete DACH observation window previously planned for Nov 2–15 is 
 - https://www.co2online.de/energie-sparen/heizenergie-sparen/lueften-lueftungsanlagen-fenster/richtig-lueften/
 - https://www.topten.ch/private/products/dehumidifiers
 - https://www.meaco.com/
+
+Country-specific follow-through, model boundaries, UI growth stages and experiment acceptance: [market-brain-growth-2026-11-01.md](market-brain-growth-2026-11-01.md).

@@ -9,10 +9,17 @@ const path=require('node:path');
  try{
   for(let i=0;i<30;i++){try{await fetch(base);break;}catch{await new Promise(r=>setTimeout(r,100));}}
   browser=await chromium.launch({headless:true});
+  const createContext=browser.newContext.bind(browser);
+  browser.newContext=async options=>{
+   const context=await createContext({...options,userAgent:'getecoback-ci'});
+   context.setDefaultTimeout(15000);
+   await context.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin||r.request().method()!=='GET')return r.abort();if(u.pathname.startsWith('/api/'))return r.fulfill({body:'{}'});return r.continue();});
+   return context;
+  };
   const cases=[['/','de','kalte Füße'],['/en/','en','dry clothes'],['/nl/wonen.html','nl','vocht'],['/au/home-comfort.html','en-AU','fan'],['/fr/calculateur.html','fr','électricité'],['/es/calculadora.html','es','tarifas'],['/it/','it','freddo'],['/zh/agents/cbam-supplier-data.html','zh-CN','CBAM']];
   for(const width of [320,390,1280]){
    const c=await browser.newContext({viewport:{width,height:900},userAgent:'getecoback-ci'});
-   await c.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin)return r.abort();if(u.pathname.startsWith('/api/'))return r.fulfill({body:'{}'});return r.continue();});
+   await c.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==new URL(base).origin||r.request().method()!=='GET')return r.abort();if(u.pathname.startsWith('/api/'))return r.fulfill({body:'{}'});return r.continue();});
    const page=await c.newPage();
    for(const [route,lang,q] of cases){
     await page.goto(base+route+'?__ci=1');
@@ -32,6 +39,16 @@ const path=require('node:path');
     assert.equal(await page.evaluate(()=>document.activeElement.id),'eb-search-toggle');checks+=8;
    }
    await c.close();
+  }
+  // The live fleet account tools can wrap the search into a new desktop row.
+  // Test that composition as well as the static-build layout, including no JS.
+  for(const javaScriptEnabled of [true,false]){
+   const wrapped=await browser.newContext({javaScriptEnabled,viewport:{width:1280,height:900},userAgent:'getecoback-ci'});
+   const page=await wrapped.newPage();await page.goto(base+'/?__ci=1');
+   await page.evaluate(css=>{const style=document.createElement('style');style.textContent=css;document.head.append(style);},'.eb-nav-in{display:flex!important;flex-wrap:wrap!important}.eb-nav-in>.eb-links{flex-basis:100%!important}');
+   await page.locator('#eb-search-toggle').click();
+   assert(await page.locator('#eb-search-panel').evaluate(e=>{const b=e.getBoundingClientRect();return b.left>=0&&b.right<=innerWidth+1;}),'wrapped fleet header must keep the full panel visible');
+   await wrapped.close();checks++;
   }
   const c=await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
   const page=await c.newPage();await page.goto(base+'/?__ci=1');await page.locator('#eb-search-toggle').click();

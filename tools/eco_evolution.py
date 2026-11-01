@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded, keyless DE/GB opportunity collection; never a content publisher.
+"""Bounded, keyless country-specific opportunity collection; never a content publisher.
 
 Public Google RSS and the existing dated DE related-query snapshot are data,
 not instructions. Run receipts and candidates belong in a workflow artifact,
@@ -19,10 +19,13 @@ from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from html import unescape
 from pathlib import Path
+from eco_demand_model import DemandModel
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "sites/getecoback/site"
 CATALOG = ROOT / "data/evolution/getecoback-catalog.json"
+MARKETS = ROOT / "data/evolution/getecoback-markets.json"
+RSS_COUNTRIES = ("DE", "GB", "NL", "AU")
 RISING = ROOT / "sites/getecoback/data/trends-rising.json"
 MAX_BYTES = 1024 * 1024
 INJECTION = re.compile(r"ignore.{0,40}(previous|instruction)|system\s*prompt|developer\s*message|"
@@ -31,7 +34,7 @@ INJECTION = re.compile(r"ignore.{0,40}(previous|instruction)|system\s*prompt|dev
 RETIRED = re.compile(r"balkonkraft|photovolta|\bsolar|stromspeicher|energiespeicher|"
                      r"power\s?station|battery storage|energy storage|growatt|ecoflow|"
                      r"solarbank|anker solix|batteriespeicher", re.I)
-NICHE = re.compile(r"tineco|saugwisch|staubsaug|thermovorhang|zugluft|abdichten|"
+NICHE = re.compile(r"ventilatie|luchtontvocht|vocht|condens|bedroom|cooling|aircon|air condition|tineco|saugwisch|staubsaug|thermovorhang|zugluft|abdichten|"
                    r"entfeucht|dehumid|meaco|arete|heiz|heating|heater|radiator|"
                    r"wäsche|waesche|laundry|drying clothes|dry clothes|heated airer|"
                    r"schimmel|mould|damp|humidity|luftfeucht", re.I)
@@ -89,7 +92,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def read_rss(country):
-    if country not in ("DE", "GB"):
+    if country not in RSS_COUNTRIES:
         raise ValueError("unsupported_country")
     url = f"https://trends.google.com/trending/rss?geo={country}"
     req = urllib.request.Request(url, headers={"User-Agent": "EcoBackTrendAudit/1.0 (+https://getecoback.com)"})
@@ -211,7 +214,7 @@ def inventory(site, catalog=None):
     reviewed_countries = {task["target"]: task["country"] for task in (catalog or {}).get("tasks", [])}
     for path in Path(site).rglob("*.html"):
         route = "/" + path.relative_to(site).as_posix()
-        if not (route.startswith("/guide/") or route.startswith("/en/guide/")):
+        if not (route.startswith("/guide/") or route.startswith("/en/guide/") or route in reviewed_countries):
             continue
         parser = TitleParser(); parser.feed(path.read_text(encoding="utf-8"))
         title = " ".join(parser.text)
@@ -251,6 +254,7 @@ def matches_task_scope(task, query):
 
 def classify(signals, catalog, pages, now):
     candidates, discarded, seen = [], [], set()
+    model = DemandModel(catalog["tasks"])
     # A stale or autocomplete copy must not suppress a later fresh observation.
     def signal_priority(signal):
         age = age_days(signal.get("observed_at"), now)
@@ -300,6 +304,16 @@ def classify(signals, catalog, pages, now):
         elif task:
             candidate["reason"] = "mapped_page_missing_do_not_create_duplicate"
         else:
+            approximate = model.match(text, country)
+            if approximate and approximate['task']['target'] in pages:
+                proposed = approximate['task']
+                candidate.update(target=proposed['target'], target_title=pages[proposed['target']]['title'],
+                                 task_id=proposed['id'], status='research_existing',
+                                 reason='approximate_country_intent_match_requires_review',
+                                 model={'method': approximate['method'], 'retrieval_score': approximate['score'],
+                                        'score_is_purchase_probability': False})
+                candidates.append(candidate)
+                continue
             words = {w for w in norm(text).split() if len(w) >= 5 and w not in STOP}
             matches = []
             for route, page in pages.items():
@@ -409,7 +423,7 @@ def main():
     if args.output_dir.resolve().is_relative_to(args.site_root.resolve()):
         parser.error("Receipts must stay outside the public site")
     now = utc(); receipts, signals = [], []
-    for country in ("DE", "GB"):
+    for country in RSS_COUNTRIES:
         if args.offline:
             receipts.append({"id": f"google-rss-{country}", "country": country, "status": "not_fetched",
                              "attempted_at": None, "captured_at": None, "reason": "offline_check"})
@@ -423,6 +437,8 @@ def main():
     audits = audit_targets(args.site_root, targets)
     report = {"schema_version": 1, "site": "getecoback", "generated_at": now.isoformat(),
               "status": "complete" if all(r["status"] == "ok" for r in receipts) else "partial",
+              "country_requirements": json.loads(MARKETS.read_text())['markets'],
+              "demand_model": {"method": "country_tfidf_v1", "fitted_on": "reviewed task aliases", "conversion_training_data": "unavailable", "approximate_matches": "research_only"},
               "candidates": queue, "discarded": discarded, "audit_targets": targets, "technical_audit": audits,
               "technical_handoff": {"mode": "audit_existing_pages_only", "allowed_checks": ["metadata", "internal_links", "structured_data", "source_checks"],
                                      "recipient": "existing daily deploy quality gates", "publish_authority": False},
@@ -430,7 +446,7 @@ def main():
                               "Related-query growth is relative and uses the source three-month window",
                               "Autocomplete is vocabulary only; no trend, growth, bestseller or revenue claim",
                               "No new page, product link, social post, schedule or affiliate request is generated",
-                              "DE and GB only; Austrian and Swiss demand is not inferred from DE signals"]}
+                              "RSS collection covers DE, GB, NL and AU; other countries remain separate research hypotheses, never inherited demand"]}
     args.output_dir.mkdir(parents=True, exist_ok=True)
     (args.output_dir / "receipts.json").write_text(json.dumps({"generated_at": now.isoformat(), "sources": receipts}, ensure_ascii=False, indent=2) + "\n")
     (args.output_dir / "opportunities.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")

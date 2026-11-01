@@ -10,7 +10,7 @@ the 站点互相学习 directive):
      `Accept: text/markdown` content negotiation, which nothing can link to or
      discover. Conversion mirrors the worker's htmlToMarkdown contract:
      injected commerce/chrome stripped, internal links kept as Markdown links,
-     EXTERNAL LINKS DEMOTED TO PLAIN TEXT — the Amazon-links-never-in-AI-
+     REVIEWED REFERENCE HOST LINKS PRESERVED; COMMERCE LINKS DEMOTED — the Amazon-links-never-in-AI-
      surfaces red line is enforced structurally AND by the hard gate below.
   2. A <link rel="alternate" type="text/markdown"> tag injected idempotently
      into each page head (after canonical), so the .md twin is discoverable.
@@ -29,6 +29,7 @@ import os
 import re
 import sys
 import datetime
+from agent_sources import citation_url
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -120,9 +121,12 @@ def to_markdown(src_html, path_url, lang):
         href, text = mm.group(1), re.sub(r"<[^>]+>", "", mm.group(2)).strip()
         if not text:
             return ""
-        # Internal links survive as Markdown links; anything external becomes
-        # plain text so this surface never carries an outbound link without
-        # its page context (worker htmlToMarkdown contract).
+        # Keep original references on exact allowed hosts. Never add a source
+        # that the HTML does not cite, or carry commerce into the text view.
+        rel = re.search(r"\brel=[\"']([^\"']*)[\"']", mm.group(0).split('>', 1)[0], re.I)
+        source = citation_url(H.unescape(href), rel.group(1) if rel else '')
+        if source:
+            return f"[{text}]({source})"
         if re.match(r"^/(?!/)", href):
             return f"[{text}]({BASE}{href})"
         if href.startswith("#"):
