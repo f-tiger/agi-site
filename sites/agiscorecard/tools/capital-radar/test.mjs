@@ -14,7 +14,7 @@ const member=async(url,options)=>{
  assert.deepEqual(JSON.parse(options.body),{action:'session',host:'agiscorecard.com'});
  assert.equal(options.headers.Authorization,'Bearer '+'x'.repeat(43));return Response.json({ok:true,user:{id:'synthetic-member'}});
 };
-function fixture(t){const db=database();t.after(()=>db.sqlite.close());return {EVENTS:db,MEMBER_WATCH_SECRET:'local-test-only',CAPITAL_RADAR_RELAY_KEY:relayKey,ASSETS:{fetch:async r=>{assert.equal(new URL(r.url).pathname,'/capital-radar/account');return new Response('<html>private shell</html>',{headers:{'Content-Type':'text/html',ETag:'old','Cache-Control':'public'}});}}};}
+function fixture(t){t.mock.method(Date,'now',()=>Date.parse('2026-11-01T00:00:00Z'));const db=database();t.after(()=>db.sqlite.close());return {EVENTS:db,MEMBER_WATCH_SECRET:'local-test-only',CAPITAL_RADAR_RELAY_KEY:relayKey,ASSETS:{fetch:async r=>{assert.equal(new URL(r.url).pathname,'/capital-radar/account');return new Response('<html>private shell</html>',{headers:{'Content-Type':'text/html',ETag:'old','Cache-Control':'public'}});}}};}
 
 test('anonymous and client claims cannot fetch any private page alias or API',async()=>{
  const noHub=()=>{throw Error('should not introspect without a session');};
@@ -154,7 +154,7 @@ test('72-hour expiry does not pretend delivery or block a newer signal, and late
  assert.equal((await (await relay(e)).json()).alert.id,fresh.id);
  response=await capitalRadarRoute(req('/api/capital-radar',{cookie}),e,member);view=(await response.json()).snapshot;
  assert.equal(view.notifications.deliveryStatus,'pending');assert.ok(view.notifications.lastSentAt);
- assert.equal((await relay(e,{id:fresh.id,messageId:302,deliveredAt:new Date().toISOString()})).status,200);
+ assert.equal((await relay(e,{id:fresh.id,messageId:302,deliveredAt:new Date(Date.now()).toISOString()})).status,200);
  response=await capitalRadarRoute(req('/api/capital-radar',{cookie}),e,member);view=(await response.json()).snapshot;assert.equal(view.notifications.deliveryStatus,'sent');
  const actualReceipt=view.notifications.lastSentAt,now=Date.now(),third=outbox('Later unconfirmed signal',new Date(now).toISOString());
  assert.equal((await save(e,snapshot({generatedAt:third.createdAt,internal:{notificationOutbox:third}}))).status,200);
