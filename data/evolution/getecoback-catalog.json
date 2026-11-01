@@ -168,6 +168,57 @@
       "primary_guidance": {
         "status": "missing"
       }
+    },
+    {
+      "id": "nl-ventilation",
+      "country": "NL",
+      "target": "/nl/ventilatie-of-luchtontvochtiger.html",
+      "intent": "Diagnose ventilation versus moisture removal",
+      "aliases": [
+        "ventilatie luchtontvochtiger",
+        "vocht slaapkamer",
+        "condens ramen"
+      ],
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
+    },
+    {
+      "id": "au-bedroom-cooling",
+      "country": "AU",
+      "target": "/au/cool-bedroom-at-night.html",
+      "intent": "Compare safe night cooling under actual climate and dwelling constraints",
+      "aliases": [
+        "bedroom cooling night",
+        "bedroom hot sleep",
+        "cool room night"
+      ],
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
+    },
+    {
+      "id": "au-window-kit",
+      "country": "AU",
+      "target": "/au/portable-air-conditioner-window-kit.html",
+      "intent": "Check actual window and portable AC kit before buying",
+      "aliases": [
+        "portable air conditioner window kit",
+        "rental window exhaust",
+        "sliding window aircon"
+      ],
+      "local_pain": {
+        "status": "missing"
+      },
+      "primary_guidance": {
+        "status": "missing"
+      }
     }
   ]
 }
