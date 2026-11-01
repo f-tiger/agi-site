@@ -1,3 +1,4 @@
+import { crawlerMeasurement } from '../../../../tools/fleet/pages-content-policy.mjs';
 import {readDepthSignals} from '../../lib/depth-signals.mjs';
 import {readAiSoloSignals} from '../../lib/ai-solo-events.mjs';
 import {readHomepageSignals} from '../../lib/homepage-signals.js';
@@ -125,6 +126,7 @@ export async function computeReach(env, days) {
       generated: new Date().toISOString(),
       window_days: days, since, until: today,
       definition: "ev='' AND ref != '' — client-reported external-referrer page-view events; not verified humans, unique visitors, search-engine clicks or conversions. Direct/no-referrer visits and /__ self-test paths excluded. Historical rows can contain automated visits or repeated loads; no row-level data.",
+      crawler_measurement: crawlerMeasurement,
       measurement_note: 'Legacy humans_referred is an event count, not a person count. The since/until dates include the current partial UTC day. GSC uses a different reporting time zone and settled-date window; do not divide these counts to claim channel conversion rates.',
       humans_referred: (total[0] && total[0].n) || 0,
       paths, referrers, ai_referrals: aiRefs,

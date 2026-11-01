@@ -11,7 +11,7 @@ on:
     paths:
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
-      - "tools/fleet/pages-static-routes*"
+      - "tools/fleet/pages-*"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -221,12 +221,14 @@ jobs:
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist --write
           python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist
 
-      - name: Bypass Pages Functions for verified public static assets
+      - name: Compile public content and preserve dynamic/private boundaries
         working-directory: ${{ github.workspace }}
         run: |
           node tools/fleet/pages-static-routes.test.mjs
-          node tools/fleet/pages-static-routes.mjs tds sites/thedollscout/dist
-          node tools/fleet/pages-static-routes.mjs tds sites/thedollscout/dist --check
+          node tools/fleet/pages-content-routing.test.mjs
+          node tools/fleet/pages-content-routing.mjs tds sites/thedollscout/dist
+          node tools/fleet/pages-content-routing.mjs tds sites/thedollscout/dist --check
+          python3 tools/fleet-analytics/coverage.py --site tds --out sites/thedollscout/dist
 
       - name: Persist verified daily source snapshot and generated pages
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -273,7 +275,7 @@ jobs:
 
       - name: Verify public asset bypass and private page protection
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet/pages-static-routes.mjs tds --live
+        run: node tools/fleet/pages-content-routing.mjs tds --live
 
       - name: Verify callable assistant tools and discovery files
         if: env.OUTCOME_READONLY_RELEASE != 'true'
