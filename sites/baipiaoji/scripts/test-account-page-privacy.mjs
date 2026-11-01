@@ -3,7 +3,7 @@ import {ACCOUNT_SCRIPT_POLICY, protectAccountPage} from '../lib/account-page-pri
 import {onRequest} from '../functions/_middleware.js';
 
 const html = () => new Response('<!doctype html><h1>Account</h1>', {headers:{'Content-Type':'text/html', 'Content-Security-Policy':"frame-ancestors 'none'"}});
-for (const path of ['/account','/account/','/account.html','/en/account','/en/account/','/en/account.html']) {
+for (const path of ['/account','/account/','/account.html','/en/account','/en/account/','/en/account.html','/%61ccount','/en/%61ccount','/%2561ccount']) {
   const response = await onRequest({request:new Request('https://baipiaoji.com'+path+'?save=grok'),next:async()=>html(),env:{}});
   assert.equal(response.headers.get('Cache-Control'),'no-store');
   assert(response.headers.get('Content-Security-Policy').includes(ACCOUNT_SCRIPT_POLICY));

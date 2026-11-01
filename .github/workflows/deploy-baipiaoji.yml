@@ -19,7 +19,7 @@ on:
     paths:
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
-      - "tools/fleet/pages-static-routes*"
+      - "tools/fleet/pages-*"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -529,12 +529,14 @@ jobs:
           node sites/baipiaoji/scripts/install-public-engagement.mjs
           node sites/baipiaoji/scripts/test-ai-video.mjs
 
-      - name: Bypass Pages Functions for verified public static assets
+      - name: Compile public content and preserve dynamic/private boundaries
         working-directory: ${{ github.workspace }}
         run: |
           node tools/fleet/pages-static-routes.test.mjs
-          node tools/fleet/pages-static-routes.mjs bpj sites/baipiaoji/dist
-          node tools/fleet/pages-static-routes.mjs bpj sites/baipiaoji/dist --check
+          node tools/fleet/pages-content-routing.test.mjs
+          node tools/fleet/pages-content-routing.mjs bpj sites/baipiaoji/dist
+          node tools/fleet/pages-content-routing.mjs bpj sites/baipiaoji/dist --check
+          python3 tools/fleet-analytics/coverage.py --site bpj --out sites/baipiaoji/dist
 
       - name: Verify homepage consent and Manju search measurement
         if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
@@ -578,7 +580,7 @@ jobs:
 
       - name: Verify public asset bypass and private page protection
         working-directory: ${{ github.workspace }}
-        run: node tools/fleet/pages-static-routes.mjs bpj --live
+        run: node tools/fleet/pages-content-routing.mjs bpj --live
 
       - name: Verify published coding access directory
         run: |

@@ -57,9 +57,12 @@ export async function inspectWorkers({account,candidates,windows,fetcher=fetch})
     const result=[],w=windows.at(-2);
     for(const zone of zones.filter(z=>['agiscorecard.com','baipiaoji.com','getecoback.com','thedollscout.com'].includes(z.name))){
       try{
-        const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:100,orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"}){count dimensions{${selected.join(' ')}}}}}}`;
+        // A 100-row sample hides long-tail public documents and HEAD requests.
+        // Keep this bounded and encrypted, and disclose any remaining truncation.
+        const limit=1000;
+        const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"}){count dimensions{${selected.join(' ')}}}}}}`;
         const d=await request('graphql',{query,variables:{z:zone.id,s:w.start,e:w.end}}),rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
-        result.push({zone:zone.name,...w,request_source:'eyeball',top_rows_only:true,rows:rows?.map(r=>({count:r.count,dimensions:{...r.dimensions,clientRequestPath:aggregatePath(r.dimensions?.clientRequestPath)}}))??null});
+        result.push({zone:zone.name,...w,request_source:'eyeball',row_limit:limit,top_rows_only:rows?.length===limit,truncated:rows?.length===limit,rows:rows?.map(r=>({count:r.count,dimensions:{...r.dimensions,clientRequestPath:aggregatePath(r.dimensions?.clientRequestPath)}}))??null});
       }catch(e){result.push({zone:zone.name,error:String(e.message)});}
     }
     out.zoneSummary=[];out.mcpClients=[];out.errorHours=[];

@@ -27,10 +27,14 @@ rsync -a \
   --exclude '.github' \
   --exclude '.claude' \
   --exclude '.agents' \
+  --exclude '.wrangler' \
   --exclude 'dist' \
   --exclude 'node_modules' \
   --exclude 'scripts' \
   --exclude 'content' \
+  --exclude '/functions' \
+  --exclude '/lib' \
+  --exclude '/migrations' \
   --exclude '*.md' \
   --exclude '.gitignore' \
   --exclude 'wrangler.toml' \

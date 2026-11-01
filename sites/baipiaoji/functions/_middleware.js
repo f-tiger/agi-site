@@ -83,7 +83,11 @@ const CANONICAL_MD = new Set(['/limits.md', '/pricing.md']);
 
 async function handleRequest(ctx) {
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
-  let res = protectAccountPage(await ctx.next(), ctx.request);
+  // Pages resolves percent-encoded static filenames before serving them.
+  // Apply the account policy to the same decoded path, including aliases.
+  const privacyURL = new URL(ctx.request.url);
+  try { for(let i=0;i<2;i++){const p=decodeURIComponent(privacyURL.pathname);if(p===privacyURL.pathname)break;privacyURL.pathname=p;} } catch { /* retain the decodable path */ }
+  let res = protectAccountPage(await ctx.next(), {url:privacyURL.href});
   try {
     const url = new URL(ctx.request.url);
     if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;
