@@ -42,7 +42,7 @@
       "counter_evidence": "原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。",
       "next_review": "2026-11-07",
       "verification": {
-        "checked_at": "2026-11-01T00:00:00Z",
+        "checked_at": "2026-11-01T00:40:19Z",
         "execution": "hosted-development-task",
         "source_bodies_reviewed": 2,
         "absolute_publication_dates_verified": false,
@@ -52,10 +52,10 @@
         "note": "The two community sources still have unknown absolute publication dates and are not counted as two current buyers or payment evidence. Current official product documentation reproduces the site information gap but is not treated as a new user-demand source."
       },
       "execution": {
-        "started_at": "2026-11-01T00:00:00Z",
+        "started_at": "2026-11-01T00:40:19Z",
         "base_sha": "63d06c6971e4d1b419787413eccc6da4a01b7451",
         "branch": "codex/bpj-cursor-plan-split-20261101",
-        "pull_request": null,
+        "pull_request": 223,
         "release_hold": "Keep draft until bilingual facts, limits-edit guard, build, browser checks, current-main guard, deployment and live URLs are verified."
       }
     },
