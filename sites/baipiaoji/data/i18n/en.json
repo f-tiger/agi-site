@@ -3126,7 +3126,7 @@
       "limits": {
         "quota": "The free tier for Google-account sign-in: 1,000 model requests a day, up to 60 requests a minute on Flash, defaulting to Gemini Flash. The docs are explicit about two things people misread: those 1,000 requests are a blend of Pro and Flash and **do not mean 1,000 Gemini 2.5 Pro requests a day**, and **a single prompt can trigger dozens of model requests** — so \"1,000\" is not 1,000 conversations.",
         "wall": "Once the allowance is gone you are rate-limited (the flood of \"Free tier limits have been reached\" reports in the official issue tracker is exactly this). Authenticating with an API key puts you on a different quota scheme entirely — the two cannot be converted into each other. Higher ceilings require a paid Gemini Code Assist plan or the metered Gemini API.",
-        "source": "Gemini CLI official repo quota docs and the Gemini API rate-limits page (github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md, ai.google.dev/gemini-api/docs/rate-limits, verified via search-index quotes)",
+        "source": "Gemini CLI official repo quota docs (github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md) and the Gemini API rate-limits page (ai.google.dev/gemini-api/docs/rate-limits); verified via search-index quotes",
         "checked": "2026-08-05",
         "cycle": "daily"
       }
