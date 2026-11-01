@@ -102,3 +102,32 @@ made the new relay fail before collection. Removed that dependency entirely.
 A scoped `CAPITAL_RADAR_RELAY_KEY` is configured on both existing Workers using
 existing deployment credentials; no Telegram token or recipient is copied.
 Monitoring reads/writes remain available when the relay is unconfigured.
+
+## Verified production result — 2026-11-01
+
+- Dedicated relay configuration: Actions 41318364321 succeeded, using existing
+  deployment credentials and preserving all pre-existing Worker secret bindings.
+- AGI release: Actions 41318944713 succeeded on validated main
+  `719930a08e14cecc037fd1cb858cbb958fa769a7`. Private page aliases, anonymous
+  API denial, homepage entries and sitemap separation passed live verification.
+  Earlier builds were correctly cancelled/rejected when concurrent main updates
+  invalidated their source SHA; no freshness guard was bypassed.
+- Actual collection: Actions 41319452253 succeeded. TechCrunch and Crunchbase
+  available, VentureBeat HTTP 429; zero new mentions this run. Existing observations
+  were retained. Forecast remains insufficient_history. Initial state notice queued.
+- SunWatch delivery: Actions 41319561155 succeeded. Telegram accepted the first
+  Capital Radar notification at **2026-11-01T15:07:45.943Z** (23:07:45 Beijing).
+  `sent_this_check=1`, repeated run `repeat_sent=0`; the exact alert acknowledgement
+  was persisted upstream. Message ID and recipient are intentionally omitted.
+- The owner's failure screenshot was traced to ServiceNow's own RSS adding an
+  official Workflow article URL. SunWatch commit `2f962eb` permits only that
+  issuer's precise HTTPS host/path and preserves baselines and source checks.
+  Production verified all twelve issuer sources healthy; public refresh sent zero
+  messages. The complete SunWatch verification workflow finished successfully.
+
+The prior statement asking the owner to configure Telegram secrets in AGI was
+incorrect: the existing SunWatch bot/recipient is reused. No new bot or user-side
+Telegram configuration was needed. This release fixes the Capital Radar path;
+no claim is made that the independent legacy `/api/owner-alerts` database lookup
+was repaired. Real user Google sign-in and predictive accuracy remain separate
+from the authentication boundary and notification checks performed here.
