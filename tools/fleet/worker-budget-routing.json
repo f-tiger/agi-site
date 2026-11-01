@@ -174,7 +174,8 @@
         "/onboarding.mjs",
         "/social.png",
         "/styles.css"
-      ]
+      ],
+      "analytics_worker_first": true
     },
     "agent-delivery-lab": {
       "assets": "dist",

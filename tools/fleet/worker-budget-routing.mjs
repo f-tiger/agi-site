@@ -20,7 +20,8 @@ const labHeaders={
 };
 const safeExtensions=new Set(['.js','.mjs','.css','.png','.jpg','.jpeg','.svg','.webp','.avif','.gif','.ico','.woff','.woff2','.ttf','.vtt','.srt','.json']);
 const listFiles=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?listFiles(resolve(dir,e.name)):[resolve(dir,e.name)]);
-export function rulesFor(site){const spec=policy.sites[site];assert(spec,'Unknown single-host Worker '+site);return ['/*',...[...policy.common,...spec.paths].map(p=>'!'+p)];}
+export const analyticsBypassFor=site=>policy.sites[site].analytics_worker_first?[]:policy.common;
+export function rulesFor(site){const spec=policy.sites[site];assert(spec,'Unknown single-host Worker '+site);return ['/*',...[...analyticsBypassFor(site),...spec.paths].map(p=>'!'+p)];}
 export function assetFiles(site,assetRoot){
  const spec=policy.sites[site],paths=[];
  for(const p of spec.paths){
@@ -37,9 +38,9 @@ export function headerBlock(site,files){
  const add=(path,headers)=>rules.set(path,{...(rules.get(path)||{}),...headers});
  // Keep the analytics frame itself behind its existing Worker handler. The
  // asset layer must retain identical protection for bypassed modules/styles.
- add('/analytics-assets/*',analyticsHeaders);
+ if(analyticsBypassFor(site).length)add('/analytics-assets/*',analyticsHeaders);
  // Never use /* for this marker: ASSETS.fetch also serves Worker-owned HTML.
- for(const path of [...policy.common,...policy.sites[site].paths])add(path,{'X-Fleet-Delivery':'static-worker-v1'});
+ for(const path of [...analyticsBypassFor(site),...policy.sites[site].paths])add(path,{'X-Fleet-Delivery':'static-worker-v1'});
  if(site==='agiscorecard')for(const path of ['/share/*','/badge/*'])add(path,{'Cache-Control':'public, max-age=604800'});
  if(site==='getecoback')for(const path of files){const ext=extname(path),cache=/\.(svg|ico|png|jpe?g|webp|gif|woff2?)$/.test(path)?'public, max-age=31536000, immutable':['.js','.css'].includes(ext)?'public, max-age=86400':'public, max-age=3600';add(path,{'Cache-Control':cache});}
  if(site==='buysomething')for(const path of files)add(path,{'Cache-Control':'public, max-age=86400'});

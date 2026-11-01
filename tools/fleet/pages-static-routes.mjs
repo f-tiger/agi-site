@@ -13,10 +13,42 @@ const DIRECTORIES={
  tds:[...COMMON,'css','js','img','document-assets','collector-assets'],
 };
 const ASSET=/\.(?:css|m?js|png|jpe?g|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|mp4|webm|mp3|wasm|bin)$/i;
+const DIRECTORY_ASSET=/\.(?:css|m?js|png|jpe?g|gif|svg|webp|avif|ico|woff2?|ttf|otf|eot|mp4|webm|mp3|wasm|bin|zip|pdf|bcmap|pfb)$/i;
 const DOCUMENT=/\.(?:html?|xhtml)$/i;
 const ROOT_ASSET=/^\/(?:en\/|de\/|zh\/|th\/)?[^/]+$/;
 const RESERVED=/^\/(?:api|auth|functions|members|account|private)(?:\/|$)/i;
 const HEADER_NAMES=['cache-control','x-robots-tag','x-content-type-options','referrer-policy','content-security-policy','x-frame-options'];
+// These are public catalog/sample/license files from the reviewed generators,
+// not an extension-wide exemption for future JSON, text or Markdown documents.
+const REVIEWED_MARKDOWN=['/studio-assets/vendor/README.md','/studio-assets/vendor/pdf-lib-LICENSE.md'];
+const COMMON_DATA=[
+ '/workbench-assets/manifest.json','/workbench-assets/vendor/sqljs-LICENSE.txt','/member-assets/products.json',
+ ...['en','de','zh','it'].map(lang=>'/workbench-assets/locales/'+lang+'.json'),
+];
+const workbenchData=(products,languages)=>products.flatMap(product=>[
+ '/workbench-assets/samples/'+product+'.json',
+ ...languages.map(lang=>'/workbench-assets/widgets/'+lang+'/'+product+'.txt'),
+]);
+const REVIEWED_DATA={
+ bpj:new Set([...COMMON_DATA,...REVIEWED_MARKDOWN,
+  ...workbenchData(['launchdesk','quotawatch-pro','creatorops'],['en','zh']),
+  '/assets/tok/LICENSE','/studio-assets/vendor/manifest.json',
+  '/studio-assets/vendor/fflate-LICENSE.txt','/studio-assets/vendor/pptxgenjs-LICENSE.txt',
+ ]),
+ tds:new Set([...COMMON_DATA,...workbenchData(['dropcalendar','collectorledger','displayfit'],['en','de']),
+  ...['resource-library','tool-capabilities','manifest','ai-evaluation','sample-results'].map(name=>'/document-assets/'+name+'.json'),
+  ...['tds-file-check-kit','llms-full','verify-format','delivery-format','llms'].map(name=>'/document-assets/'+name+'.txt'),
+  '/document-assets/vendor/LICENSE.txt','/document-assets/vendor/cmaps/LICENSE',
+  ...['PDFJS_JBIG2','JBIG2','QCMS','OPENJPEG','PDFJS_OPENJPEG','PDFJS_QCMS'].map(name=>'/document-assets/vendor/wasm/LICENSE_'+name),
+  ...['LIBERATION','FOXIT'].map(name=>'/document-assets/vendor/standard_fonts/LICENSE_'+name),
+  ...['learning-guides','videos','tool-capabilities','brand-guides','series-catalog','manifest'].map(name=>'/collector-assets/'+name+'.json'),
+ ]),
+};
+function reviewedDirectoryAsset(site,path){
+ return DIRECTORY_ASSET.test(path)||REVIEWED_DATA[site].has(path)||
+  // These two generator-owned trees intentionally publish article text.
+  (site==='tds'&&/^\/(?:document|collector)-assets\/text\/(?:en|de|zh)\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.txt$/.test(path));
+}
 
 function files(root,dir=root){
  return readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
@@ -40,6 +72,8 @@ export function createRoutes(site,paths){
     if(!analyticsFiles.has(p.slice(prefix.length)))throw Error('Unreviewed analytics asset: '+p);
    }else if(DOCUMENT.test(p)||p.endsWith('/')||/(?:^|\/)\.[^/]+/.test(p)){
     throw Error('A document or hidden file entered a static-only directory: '+p);
+   }else if(!reviewedDirectoryAsset(site,p)){
+    throw Error('Unreviewed data/document entered a static-only directory: '+p);
    }
   }
   exclude.push(prefix+'*');
@@ -64,6 +98,9 @@ export function renderHeaders(original,routes){
   lines.push(rule,'  X-Fleet-Delivery: static-pages-v1');
   if(rule==='/analytics-assets/*')for(const name of HEADER_NAMES)lines.push('  '+name+': '+policy.get(name));
  }
+ // BPJ previously applied this policy to every noncanonical Markdown file in
+ // middleware. Preserve it for the only two reviewed Markdown bypasses.
+ for(const path of REVIEWED_MARKDOWN)if(!invokesFunction(routes,path))lines.push(path,'  X-Robots-Tag: noindex');
  lines.push('# /'+marker,'');
  const rendered=clean+'\n'+lines.join('\n');
  const count=rendered.split('\n').filter(line=>/^\S/.test(line)&&!line.startsWith('#')).length;

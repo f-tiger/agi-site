@@ -22,6 +22,18 @@ test('A new HTML document cannot silently enter a bypass directory; analytics fi
  assert.throws(()=>createRoutes('bpj',Array.from({length:100},(_,i)=>`/file-${i}.js`)),/limit exceeded/);
  assert.throws(()=>createRoutes('bpj',['/'+('x'.repeat(100))+'.js']),/longer/);
 });
+test('Public data exceptions are explicit; new documents cannot inherit a directory bypass',()=>{
+ for(const path of ['/studio-assets/customer.md','/studio-assets/customer.json','/member-assets/customer.json','/workbench-assets/private.txt','/assets/unreviewed']){
+  assert.throws(()=>createRoutes('bpj',[path]),/Unreviewed data\/document/,path);
+ }
+ assert.throws(()=>createRoutes('tds',['/collector-assets/text/en/customer.json']),/Unreviewed/);
+ const bpj=createRoutes('bpj',['/member-assets/products.json','/workbench-assets/locales/zh.json','/workbench-assets/samples/launchdesk.json','/workbench-assets/widgets/zh/launchdesk.txt','/assets/tok/LICENSE','/studio-assets/vendor/README.md','/studio-assets/vendor/pdf-lib-LICENSE.md']);
+ for(const path of ['/member-assets/products.json','/assets/tok/LICENSE','/studio-assets/vendor/README.md'])assert.equal(invokesFunction(bpj,path),false);
+ const headers=renderHeaders('',bpj);
+ for(const path of ['/studio-assets/vendor/README.md','/studio-assets/vendor/pdf-lib-LICENSE.md'])assert.ok(headers.includes(path+'\n  X-Robots-Tag: noindex'));
+ const tds=createRoutes('tds',['/document-assets/resource-library.json','/document-assets/text/en/open-source/audacity.txt','/document-assets/vendor/cmaps/LICENSE','/document-assets/vendor/cmaps/Adobe-Japan1-UCS2.bcmap','/collector-assets/series-catalog.json','/collector-assets/text/de/collecting/wish-card.txt']);
+ for(const path of ['/document-assets/resource-library.json','/collector-assets/text/de/collecting/wish-card.txt'])assert.equal(invokesFunction(tds,path),false);
+});
 test('Static analytics responses preserve every edge privacy header without duplicate generated policies',()=>{
  const routes=createRoutes('bpj',['/analytics-assets/frame.html','/analytics-assets/frame-loader.mjs','/style.css']);
  const input='/account\n  Cache-Control: no-store\n# FLEET-GA4-HEADERS\n/analytics-assets/frame.html\n  Cache-Control: public, max-age=0, must-revalidate, no-transform\n# /FLEET-GA4-HEADERS\n';
