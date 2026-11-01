@@ -812,19 +812,19 @@
     "hot": true,
     "last_verified": "2026-10-31",
     "limits": {
-      "quota": "Hobby 免费档存在且无需绑卡。官方定价页 2026-09-25 与 2026-09-28 两次抓取，Hobby 栏都只列三项：无需绑卡、有限的 Agent 请求（Limited Agent requests）、可用 Composer——**仍不公布具体数字**。08-03 核实时写到的 Chat 与 Tab 补全（Auto 模型）这次没有出现在免费档清单里，页面也没有说它们被取消，本站只照录当日原文。网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，现已过时，不予采信。",
-      "wall": "触及隐性限额后 Agent 受限，升级 Individual 档解锁（页面同一栏可切换 Pro、Pro+、Ultra，静态文本当日只显示 Pro 的 $20/月）；官方 FAQ：每档都含一份模型用量，用完后可开 on-demand 按量续用、事后结算；实际余量以账户设置页显示为准。",
-      "source": "Cursor 官方定价页 https://cursor.com/pricing（2026-09-28 直接抓取复核，Hobby 三项与 09-25 逐字相同；免费档仍不公布具体数额，旧数字已过时）",
-      "checked": "2026-09-28",
+      "quota": "先看你是哪类账户。**当前新用户进入 The X Subscription**：Free $0/月，官方只写有限 AI 用量、有限 Agent 请求和有限 Chat 请求，仍不公布具体次数；Plus $8/月仅支持 Grok 模型。**旧 Cursor 订阅不会自动失效**：Hobby、Start、Pro、Pro+、Ultra 及旧 Teams 继续按原价格和功能运行，除非用户主动更改或取消；切换到 X Subscription 是可选且不可逆。2026-09-25/09-28 旧定价页曾把 Hobby 写成无需绑卡、有限 Agent 请求、可用 Composer，也没有具体数字；旧传言“2,000 补全 + 50 次请求”不再适用于当前方案。",
+      "wall": "X Subscription 的 Cursor/Grok 共用额度池按周刷新；达到额度后可等待刷新、升级，或用预付 top-up 继续，Auto Top-up 默认关闭。Premium 及以上的第三方模型从首次请求起按 API 标价另扣预付余额，不包含在月费内。旧订阅则按账单月重置 Cursor Models / Other Models 两个池，超额后可启用月末后付的 on-demand；旧个人档需主动开启，旧 Teams 默认开启。先在 grok.com/dashboard（X）或 cursor.com 的 Spending（旧订阅）确认账户类型、下次重置和额外付费开关。",
+      "source": "Cursor 官方定价页 https://cursor.com/pricing、旧订阅说明 https://cursor.com/docs/account/pricing/legacy-cursor-plans、额度说明 https://cursor.com/help/models-and-usage/usage-limits 与超额计费说明 https://cursor.com/help/account-and-billing/overages（2026-11-01 直接复核）",
+      "checked": "2026-11-01",
       "paid": {
-        "tiers": "Hobby 免费；Pro $20/月；Pro Plus（页面也写作 Pro+）$60/月；Ultra $200/月；Teams 分两种席位：Standard $40/人/月、Premium $120/人/月（Premium 的 Agent 额度为 Standard 的 5 倍）；Enterprise 定制。另有面向印度开发者的 Start 档（官方文档未列价格，只含 Cursor Models 池）。以上价格均见官方定价页结构化数据与 models-and-pricing 文档（2026-09-28 直抓）",
-        "unit_cost": "官方文档 2026-09-28：Pro / Pro Plus / Ultra 含两个用量池——①Cursor Models 池（Grok 4.7/4.6/4.5 与 Composer 2.5，官方称用量「显著更多」）②Other Models 池（第三方模型按该模型 API 原价扣减）；两池均按账单月重置。Teams/Enterprise 对第三方模型另收 Cursor Token Rate $0.25/百万 token，叠加在 API 价之上（含池内、on-demand 与 BYOK），自家模型（Grok、Composer）免收。**官方页面不再写各档池子的美元金额**，本站此前记的约 $20/$70/$400 见 prev",
-        "quota_included": "partial——订阅含美元用量池，池尽后需开启 on-demand 按量付费（同 API 价另计）或升级，重度用户实付常超订阅费（套娃预警）",
-        "rollover": "两个用量池都随账单周期每月重置，未用完不结转（官方文档 2026-09-28）",
-        "effective": "2025-06 计费改制（500次快速请求制→美元用量池制）；价格核实于 2026-08-15；2026-09-28 复核：计费结构改为 Cursor Models / Other Models 双池，Teams 拆出 Premium 席位",
-        "prev": "改制前 Pro $20/月=500 次快速高级请求；2025-06-16~07-04 定价争议期官方曾道歉并退款；2026-08-15 本站记录的池子金额「Pro 约$20、Pro+ 约$70、Ultra 约$400（按 API 价计）」来自 vantage.sh 等非官方交叉核实，2026-09-28 官方文档已不再给出金额，保留在此仅作历史",
-        "source": "https://cursor.com/pricing 与 https://cursor.com/docs/models-and-pricing（官方，2026-09-28 均直接抓取）",
-        "checked": "2026-09-28"
+        "tiers": "当前 The X Subscription：Free $0/月；Plus $8/月（仅 Grok 模型）；Premium $30/月（Plus 的 4 倍用量、可用第三方模型但另计费）；Super $100/月（15 倍 Plus）；Ultra $200/月（50 倍 Plus）；Teams $30+/人/月；Enterprise 定制。旧订阅继续有效：Hobby 免费；Start（仅印度）₹649/月含税；Pro $20/月；Pro+ $60/月；Ultra $200/月；Teams Standard $40/人/月；Teams Premium $120/人/月。官方“可比档”不是相同产品，切换为可选且永久，不应把新价格批量覆盖给旧用户。",
+        "unit_cost": "X Subscription 的付费档含一个按周刷新的 Cursor 模型池，与 Grok 共用；Premium 及以上的 Claude/GPT 等第三方模型不含在月费内，从预付余额按 API 标价计费。池尽后可手动 top-up，或选择开启 Auto Top-up；设置月度额外用量上限，但官方提示限额执行并非瞬时。旧 Pro/Pro+/Ultra/Teams 含 Cursor Models 与 Other Models 两个按月池；超额 on-demand 按 API 价月末后付，旧个人档需主动开启，旧 Teams 默认开启。旧 Teams/Enterprise 的部分第三方请求仍可能另有 Cursor Token Rate $0.25/百万 token。",
+        "quota_included": "按账户分开判断：X Subscription 月费含每周 Cursor 模型池，第三方模型不含在 Premium 及以上月费里；旧 Pro/Pro+/Ultra/Teams 月费含两个每月池。实际余量、下次重置和预付/on-demand 状态以对应账户面板为准。",
+        "rollover": "两类方案的订阅内额度都不结转：X Subscription 每周刷新，旧订阅随账单周期每月重置。X 的已购买预付余额不随每周池重置，官方当前写明每次 top-up 可用至耗尽或购买后 365 天到期。",
+        "effective": "2026-11-01 复核：新客户使用 The X Subscription；旧 Cursor 方案保持原状，直至用户更改或取消。X 方案与旧方案的额度周期、第三方模型和额外用量计费必须分开判断。",
+        "prev": "历史：2025-06 前 Pro $20/月曾是 500 次快速高级请求；2025-06-16 至 07-04 定价争议后官方道歉并退款。2026-08-15 本站记录的约 $20/$70/$400 池金额来自非官方交叉核实，后续官方页面未给出该数值；2026-09-28 官方旧方案文档记录了 Cursor Models / Other Models 双池及旧 Teams Premium 席位。上述均为旧订阅历史，不能用于覆盖当前 X Subscription。",
+        "source": "https://cursor.com/pricing、https://cursor.com/docs/account/pricing/legacy-cursor-plans、https://cursor.com/help/models-and-usage/usage-limits、https://cursor.com/help/account-and-billing/overages、https://cursor.com/help/account-and-billing/billing（官方，2026-11-01 直接复核）",
+        "checked": "2026-11-01"
       }
     }
   },
