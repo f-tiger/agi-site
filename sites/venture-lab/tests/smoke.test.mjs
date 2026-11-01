@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {sharedAssets} from '../asset-routing.mjs';
 
 test('read-only deployment smoke verifies assets and metadata without business or aggregate requests',async t=>{
  const previous=process.env.FLEET_READ_ONLY_PROBE;process.env.FLEET_READ_ONLY_PROBE='1';
@@ -12,7 +13,9 @@ test('read-only deployment smoke verifies assets and metadata without business o
   if(parsed.pathname==='/api/config')return Response.json({site:parsed.hostname.split('.')[0],sales_enabled:false,measurement:true});
   if(parsed.pathname==='/missing-page')return new Response('Not found',{status:404});
   if(parsed.pathname.endsWith('/SHA256SUMS'))return new Response(hash+'  archive.tar.gz');
-  return new Response(asset,{headers:{'Content-Type':parsed.pathname.endsWith('.wasm')?'application/wasm':'application/octet-stream'}});
+  const headers={'Content-Type':parsed.pathname.endsWith('.wasm')?'application/wasm':'application/octet-stream'};
+  if(sharedAssets.includes(parsed.pathname.slice(1)))Object.assign(headers,{'X-Fleet-Asset-Delivery':'static','X-Content-Type-Options':'nosniff','Cache-Control':'public, max-age=300'});
+  return new Response(asset,{headers});
  });
  await import('../scripts/smoke.mjs');assert.equal(paths.filter(path=>path==='/api/config').length,4);assert.ok(paths.includes('/vendor/sql-wasm.wasm'));
 });
