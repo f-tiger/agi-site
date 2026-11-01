@@ -52,15 +52,29 @@ export async function inspectWorkers({account,candidates,windows,fetcher=fetch})
   await capture('zoneTraffic',async()=>{
     const zones=await request('zones?per_page=50');
     const dimensions=(out.schema?.http?.fields||[]).map(x=>x.name);
-    const selected=['clientRequestHTTPHost','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus'].filter(x=>dimensions.includes(x));
+    const selected=['clientRequestHTTPHost','clientRequestPath','clientRequestHTTPMethodName','edgeResponseStatus','requestSource'].filter(x=>dimensions.includes(x));
     if(!selected.includes('clientRequestPath')) return {error:'Request-path dimension unavailable'};
     const result=[],w=windows.at(-2);
     for(const zone of zones.filter(z=>['agiscorecard.com','baipiaoji.com','getecoback.com','thedollscout.com'].includes(z.name))){
       try{
-        const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:100,orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e}){count dimensions{${selected.join(' ')}}}}}}`;
+        const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:100,orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"}){count dimensions{${selected.join(' ')}}}}}}`;
         const d=await request('graphql',{query,variables:{z:zone.id,s:w.start,e:w.end}}),rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
-        result.push({zone:zone.name,...w,top_rows_only:true,rows:rows?.map(r=>({count:r.count,dimensions:{...r.dimensions,clientRequestPath:aggregatePath(r.dimensions?.clientRequestPath)}}))??null});
+        result.push({zone:zone.name,...w,request_source:'eyeball',top_rows_only:true,rows:rows?.map(r=>({count:r.count,dimensions:{...r.dimensions,clientRequestPath:aggregatePath(r.dimensions?.clientRequestPath)}}))??null});
       }catch(e){result.push({zone:zone.name,error:String(e.message)});}
+    }
+    out.zoneSummary=[];out.mcpClients=[];out.errorHours=[];
+    for(const zone of zones.filter(z=>['agiscorecard.com','baipiaoji.com','getecoback.com','thedollscout.com'].includes(z.name))){
+      for(const [key,dims,extra,limit] of [
+        ['zoneSummary',['clientRequestHTTPHost','clientRequestHTTPMethodName','edgeResponseContentTypeName','edgeResponseStatus'],'',1000],
+        ['mcpClients',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',200],
+        ['errorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000]
+      ]){
+        try{
+          const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"${extra}}){count dimensions{${dims.join(' ')}}}}}}`;
+          const d=await request('graphql',{query,variables:{z:zone.id,s:w.start,e:w.end}}),rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
+          out[key].push({zone:zone.name,...w,request_source:'eyeball',truncated:rows?.length===limit,rows:rows??null});
+        }catch(e){out[key].push({zone:zone.name,error:String(e.message)});}
+      }
     }
     return result;
   });
