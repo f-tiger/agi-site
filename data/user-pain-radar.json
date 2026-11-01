@@ -11,7 +11,7 @@
     {
       "id": "bpj-coding-quota-20261031",
       "site": "baipiaoji",
-      "status": "working",
+      "status": "done",
       "priority": 76,
       "title": "编程任务对应的额度、重置周期与续费选择",
       "pain": "已复核两条原始讨论正文：编程任务的工具分配和配额消耗可预测性存在困惑；显示的相对时间不足以确认绝对发布日期。",
@@ -49,14 +49,33 @@
         "site_fit": "verified: the existing Cursor detail and upgrade paths still present legacy plans as current, while the official current and legacy documentation now separates the X Subscription from still-working legacy subscriptions",
         "site_fit_verified": true,
         "outcome": "authorize a bounded correction inside the existing Cursor decision path; do not create a new selector",
-        "note": "The two community sources still have unknown absolute publication dates and are not counted as two current buyers or payment evidence. Current official product documentation reproduces the site information gap but is not treated as a new user-demand source."
+        "note": "The two community sources still have unknown absolute publication dates and are not counted as two current buyers or payment evidence. Current official product documentation reproduces the site information gap but is not treated as a new user-demand source.",
+        "live_checked_at": "2026-11-01T01:04:17Z",
+        "release": {
+          "result": "passed",
+          "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41258876081",
+          "deployed_at": "2026-11-01T01:03:29Z",
+          "live_urls": [
+            "https://baipiaoji.com/tools/cursor",
+            "https://baipiaoji.com/en/tools/cursor",
+            "https://baipiaoji.com/upgrade/cursor",
+            "https://baipiaoji.com/en/upgrade/cursor"
+          ],
+          "acceptance": "Current-main guard, focused bilingual data/render checks, production browser checks, GA4 coverage, canonical/SEO/i18n build checks and Cloudflare deployment passed.",
+          "limitations": "Local browser binary download was unavailable; the production CI browser gate passed. The broad unrelated vendor-link crawl was not completed. Customer completion, registration, payment and revenue effects remain unknown."
+        }
       },
       "execution": {
         "started_at": "2026-11-01T00:40:19Z",
         "base_sha": "63d06c6971e4d1b419787413eccc6da4a01b7451",
         "branch": "codex/bpj-cursor-plan-split-20261101",
         "pull_request": 223,
-        "release_hold": "Keep draft until bilingual facts, limits-edit guard, build, browser checks, current-main guard, deployment and live URLs are verified."
+        "release_hold": null,
+        "completed_at": "2026-11-01T01:04:17Z",
+        "commit": "dde7e94292a1d1a505a44375e42137e8f0142b89",
+        "merge_commit": "dde7e94292a1d1a505a44375e42137e8f0142b89",
+        "workflow_run_id": 41258876081,
+        "outcome": "released and live-verified"
       }
     },
     {
