@@ -4,6 +4,7 @@ on:
   push:
     branches: [main, codex/localebatch-launch-2026-09-18]
     paths:
+      - "tools/fleet/worker-budget-routing*"
       - "tools/fleet-reporting/cache.mjs"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
@@ -76,6 +77,13 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
         run: bash .github/scripts/deploy-main-guard.sh check
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=localebatch --write
+          node tools/fleet/worker-budget-routing.mjs --site=localebatch
+          node --test tools/fleet/worker-budget-routing.test.mjs
 
       - name: Deploy to Cloudflare
         if: github.ref == 'refs/heads/main'

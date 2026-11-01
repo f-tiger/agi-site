@@ -7,7 +7,7 @@ name: Deploy learn
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/learn/**", ".github/workflows/deploy-learn.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/learn/**", ".github/workflows/deploy-learn.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "5 8 * * *"
@@ -84,6 +84,13 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ github.workspace }}
         run: bash .github/scripts/deploy-main-guard.sh check
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=learn --write
+          node tools/fleet/worker-budget-routing.mjs --site=learn
+          node --test tools/fleet/worker-budget-routing.test.mjs
 
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3

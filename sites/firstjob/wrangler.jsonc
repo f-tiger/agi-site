@@ -1,4 +1,5 @@
 {
+  // Reviewed public assets bypass compute; HTML, APIs, auth and private paths stay Worker-first.
   // 第一份工作 · firstjob.agiscorecard.com — 2026-09-15 建站(owner /goal「持续做新站点…调研再做」;
   // 方向候选 #2 毕业生就业,调研 docs/research-2026-09-15.md)。
   // 舰队标准形态:静态资产 + worker(白名单事件 + 服务端 page_view + /api/pulse)。
@@ -6,7 +7,20 @@
   "name": "firstjob",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": [
+      "/*",
+      "!/analytics-assets/consent.mjs",
+      "!/analytics-assets/collector.mjs",
+      "!/analytics-assets/consent.css",
+      "!/analytics-assets/frame-loader.mjs",
+      "!/analytics-assets/business.mjs",
+      "!/analytics-assets/legacy.mjs",
+      "!/analytics-assets/campaign.mjs",
+      "!/analytics-assets/engagement.mjs",
+      "!/analytics-assets/registry.mjs",
+      "!/app.js",
+      "!/style.css"
+] },
   "routes": [{ "pattern": "firstjob.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }],
   // 部署版本 id 做 Cache API 键的一部分(2026-09-26 D1 读预算):每次部署自然失效,不必手动清缓存。

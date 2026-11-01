@@ -19,6 +19,7 @@ on:
     paths:
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
+      - "tools/fleet/pages-static-routes*"
       - ".github/scripts/deploy-main-guard*"
       - "tools/revenue-studio/**"
       - "tools/member-studio/**"
@@ -528,6 +529,13 @@ jobs:
           node sites/baipiaoji/scripts/install-public-engagement.mjs
           node sites/baipiaoji/scripts/test-ai-video.mjs
 
+      - name: Bypass Pages Functions for verified public static assets
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/pages-static-routes.test.mjs
+          node tools/fleet/pages-static-routes.mjs bpj sites/baipiaoji/dist
+          node tools/fleet/pages-static-routes.mjs bpj sites/baipiaoji/dist --check
+
       - name: Verify homepage consent and Manju search measurement
         if: github.event_name == 'push' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
         working-directory: ${{ github.workspace }}
@@ -567,6 +575,10 @@ jobs:
           node sites/baipiaoji/scripts/verify-public-engagement-live.mjs
           node sites/baipiaoji/scripts/verify-video-search-live.mjs
           node tools/fleet-account/verify-live.mjs bpj
+
+      - name: Verify public asset bypass and private page protection
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet/pages-static-routes.mjs bpj --live
 
       - name: Verify published coding access directory
         run: |

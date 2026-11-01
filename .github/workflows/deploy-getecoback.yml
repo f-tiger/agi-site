@@ -14,6 +14,7 @@ on:
     branches:
       - main
     paths:
+      - "tools/fleet/worker-budget-routing*"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
       - "tools/revenue-studio/**"
@@ -481,6 +482,13 @@ jobs:
       - name: Guard — main must still match the validated build
         working-directory: ${{ github.workspace }}
         run: bash .github/scripts/deploy-main-guard.sh check
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=getecoback --write
+          node tools/fleet/worker-budget-routing.mjs --site=getecoback
+          node --test tools/fleet/worker-budget-routing.test.mjs
 
       - name: Deploy to Cloudflare Workers
         id: deploy

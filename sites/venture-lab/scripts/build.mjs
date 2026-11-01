@@ -1,3 +1,4 @@
+import {sharedAssets,assetHeaders} from '../asset-routing.mjs';
 import {readFile,writeFile,mkdir,cp,rm} from 'node:fs/promises';
 const specs=JSON.parse(await readFile('experiments.json','utf8'));
 await rm('dist',{recursive:true,force:true});await mkdir('dist');
@@ -18,3 +19,13 @@ await cp("../../agents/filinglens-mcp/src/engine.mjs","dist/filinglens/filing-en
 await mkdir("dist/filinglens/downloads");
 for(const f of ["filinglens-mcp-0.1.0.tar.gz","SHA256SUMS"])await cp("../../agents/filinglens-mcp/release/"+f,"dist/filinglens/downloads/"+f);
 await cp("../../agents/filinglens-mcp/THIRD-PARTY-NOTICES.txt","dist/filinglens/filinglens-NOTICES.txt");
+
+// Promote only allowlisted byte-identical assets. Per-host HTML/app/project files
+// must keep the Worker host allowlist; a mismatch blocks deployment.
+for(const file of sharedAssets){
+ const variants=await Promise.all(Object.keys(specs).map(id=>readFile('dist/'+id+'/'+file)));
+ if(variants.some(bytes=>!bytes.equals(variants[0])))throw Error('Shared asset differs across hosts: '+file);
+ await mkdir('dist/'+file.split('/').slice(0,-1).join('/'),{recursive:true});
+ await writeFile('dist/'+file,variants[0]);
+}
+await writeFile('dist/_headers',assetHeaders());

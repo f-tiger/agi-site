@@ -622,9 +622,11 @@ server-side. Do not add those to `pageviews` totals.
 **Root wrangler config: owner authorised it 2026-08-05** ("不要依赖我，自动化完成", after the
 risk was raised and restated). `wrangler.jsonc` now lives at the repo root and IS the deploy
 config. Two settings there are load-bearing — do not "tidy" them away:
-- `assets.run_worker_first: true` — Workers serve static assets BEFORE the script by default
-  (the opposite of Pages). Without it the HTMLRewriter beacon never runs and the collector
-  deploys healthy but records nothing.
+- `assets.run_worker_first` retains `/*` as the default (2026-11-01 quota repair).
+  Only reviewed public static files/directories in `tools/fleet/worker-budget-routing.json`
+  bypass the script. HTML, private/account routes, Markdown and measured JSON still reach
+  the Worker, preserving HTMLRewriter and measurement. Never replace this with blanket
+  assets-first routing. The final deployment gate restores required asset response headers.
 - `.assetsignore` — Workers do NOT auto-exclude `.git` the way Pages did. Removing it would
   publish the entire repo history as static assets.
 Still true: any FURTHER change to deploy config is a hard-to-reverse, outward-facing action —

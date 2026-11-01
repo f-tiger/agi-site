@@ -1,10 +1,22 @@
 {
+  // Reviewed public assets bypass compute; HTML, APIs, auth and private paths stay Worker-first.
   // The AI Gold Rush Ledger — 2026-08-29, owner-directed new sub-site on the
   // agiscorecard umbrella (same pattern as source./play./invest.).
   "name": "goldrush",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": [
+      "/*",
+      "!/analytics-assets/consent.mjs",
+      "!/analytics-assets/collector.mjs",
+      "!/analytics-assets/consent.css",
+      "!/analytics-assets/frame-loader.mjs",
+      "!/analytics-assets/business.mjs",
+      "!/analytics-assets/legacy.mjs",
+      "!/analytics-assets/campaign.mjs",
+      "!/analytics-assets/engagement.mjs",
+      "!/analytics-assets/registry.mjs"
+] },
   "routes": [{ "pattern": "goldrush.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "goldrush-events", "database_id": "77a0a152-6345-450e-83eb-6f26f246c0b8" }],
   // 部署版本 id 做 Cache API 键的一部分(2026-09-26 D1 读预算):每次部署自然失效,不必手动清缓存。

@@ -1,3 +1,4 @@
+import {activeRefresh} from './active-refresh.mjs';
 import {prepareNoteDownload} from './research-export.mjs';
 import {assets,makeBaseline,readBaseline,compareBaseline,reviewValue,reviewMarkdown,reviewFields} from './research-core.mjs';
 import {mineResearchProof,verifyResearchProof,decodeProof,proofShareUrl} from './proof-core.mjs';
@@ -18,7 +19,7 @@ $('save-watch').addEventListener('click',()=>{try{saved=makeBaseline(data().quot
 $('compare-watch').addEventListener('click',()=>compare(true));
 $('clear-watch').addEventListener('click',()=>{try{localStorage.removeItem(key);saved=null;picked.clear();filter();compare();}catch{$('watch-output').textContent='Browser storage could not be changed.';}});
 let busy=false;async function refresh(){if(busy||document.hidden)return;busy=true;$('research-refresh-status').textContent='Checking sources…';try{const r=await fetch('/api/research?format=html',{signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error();$('market-live').innerHTML=await r.text();filter();compare();$('research-refresh-status').textContent='Source check complete. Read each price status.';}catch{$('research-refresh-status').textContent='Refresh failed. The displayed data may be stale; check its timestamps.';$('market-live').querySelectorAll('.source-state').forEach(x=>{x.dataset.sourceState='stale';x.textContent='Refresh failed. Retained snapshot; verify timestamps.';});const node=$('research-data');if(node){const d=data();d.quotes?.forEach(q=>q.status='stale');node.dataset.snapshot=JSON.stringify(d);}}finally{busy=false;}}
-$('refresh-source').addEventListener('click',refresh);setInterval(refresh,60000);filter();compare();
+const updates=activeRefresh(refresh);$('refresh-source').addEventListener('click',()=>updates.manual());filter();compare();
 const form=$('research-note-form');const value=()=>reviewValue(Object.fromEntries(reviewFields.map(k=>[k,form.elements[k].value])));
 try{const raw=localStorage.getItem(noteKey);if(raw&&raw.length<14000){const record=JSON.parse(raw),age=Date.now()-Date.parse(record.savedAt);if(age>=0&&age<=30*86400000){const v=reviewValue(record.value);reviewFields.forEach(k=>form.elements[k].value=v[k]);$('review-status').textContent='Loaded your note saved '+record.savedAt+'. Review date: '+v.reviewDate+'.';}else localStorage.removeItem(noteKey);}}catch{}
 form.addEventListener('submit',e=>{e.preventDefault();try{localStorage.setItem(noteKey,JSON.stringify({savedAt:new Date().toISOString(),value:value()}));$('review-status').textContent='Saved in this browser for up to 30 days. No note was uploaded.';send('review_save');}catch(e){$('review-status').textContent=/QuotaExceeded|Security/.test(e.name)?'Browser storage is unavailable. Use Export to keep your note.':e.message;}});
