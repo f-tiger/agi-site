@@ -9,9 +9,9 @@ import {crawlerMeasurement} from './pages-content-policy.mjs';
 import {accountRoute} from '../fleet-account/edge.mjs';
 
 test('BPJ public content and misses bypass compute; dynamic, private, Markdown and encoded requests do not',()=>{
- const paths=['/index.html','/404.html','/tools/kimi.html','/tools/kimi.md','/account.html','/en/account.html','/members.html','/en/studio/quote-builder.html','/en/private/receipt.html','/analytics-assets/frame.html','/style.css'];
+ const paths=['/index.html','/404.html','/tools/kimi.html','/tools/kimi.md','/account.html','/account.js','/account-fleet.js','/account.css','/en/account.html','/members.html','/en/studio/quote-builder.html','/en/private/receipt.html','/analytics-assets/frame.html','/style.css'];
  const routes=contentRoutes('bpj',paths);
- for(const p of ['/','/index.html','/tools/kimi','/tools/kimi.html','/en/c/coding','/style.css','/missing-vulnerability-scan','/analytics-assets/frame'])assert.equal(invokesContentFunction(routes,p),false,p);
+ for(const p of ['/','/index.html','/tools/kimi','/tools/kimi.html','/en/c/coding','/style.css','/account.js','/account-fleet.js','/account.css','/missing-vulnerability-scan','/analytics-assets/frame'])assert.equal(invokesContentFunction(routes,p),false,p);
  for(const p of ['/api/mcp','/api/account','/api/unknown','/auth/account','/auth/status','/account','/account.html','/en/account/','/members','/en/studio/quote-builder','/en/private/receipt','/tools/kimi.md','/limits.md','/%61ccount','/tools/%2e%2e/account'])assert.equal(invokesContentFunction(routes,p),true,p);
  assert.throws(()=>contentRoutes('bpj',[...paths,'/api/account.json']),/shadow/);
  assert.throws(()=>contentRoutes('bpj',[...paths,'/auth/private.html']),/shadow/);

@@ -25,7 +25,9 @@ export function contentRoutes(site,paths){
   // Public documents and misses are static. API, encoded requests, Markdown
   // noindex policy and every generated private/embedded HTML shape retain middleware.
   const guarded=paths.filter(p=>p.endsWith('.html')&&!p.startsWith('/analytics-assets/')&&!publicReturnPath(p)).map(p=>canonicalPath(p)+'*');
-  routes={version:1,description:CONTENT_VERSION,include:[...new Set(['/api','/api/*','/auth','/auth/*','/private*','/admin*','/account*','/en/account*','/*%*','/*.md',...guarded])].sort(),exclude:[]};
+  // Preserve reviewed exact public asset exemptions such as /account.js:
+  // protecting /account* must not reintroduce compute for its constant UI files.
+  routes={version:1,description:CONTENT_VERSION,include:[...new Set(['/api','/api/*','/auth','/auth/*','/private*','/admin*','/account*','/en/account*','/*%*','/*.md',...guarded])].sort(),exclude:base.exclude.filter(p=>!p.includes('*'))};
  }else{
   // Public HTML retains host canonicalization, account header and retirement handling.
   routes={...base,description:CONTENT_VERSION,exclude:[...new Set([...base.exclude,...authAssets])]};
