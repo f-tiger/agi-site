@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "provenance": "Editorial research ledger; original community evidence remains in the private working record. This is not a live Reddit crawl.",
   "limits": {
     "review_max_age_days": 14,
@@ -11,7 +11,7 @@
     {
       "id": "bpj-coding-quota-20261031",
       "site": "baipiaoji",
-      "status": "queued",
+      "status": "working",
       "priority": 76,
       "title": "编程任务对应的额度、重置周期与续费选择",
       "pain": "已复核两条原始讨论正文：编程任务的工具分配和配额消耗可预测性存在困惑；显示的相对时间不足以确认绝对发布日期。",
@@ -42,13 +42,21 @@
       "counter_evidence": "原帖回复有相反体验；现有 BPJ 选型器已覆盖多数决策。官方方案可能区分新旧订阅，不能把旧套餐一律判错或批量覆盖。",
       "next_review": "2026-11-07",
       "verification": {
-        "checked_at": "2026-10-31T15:59:02Z",
-        "execution": "manual-session-fallback",
+        "checked_at": "2026-11-01T00:40:19Z",
+        "execution": "hosted-development-task",
         "source_bodies_reviewed": 2,
         "absolute_publication_dates_verified": false,
-        "site_fit": "existing selection workflow matches; exact data gap under review",
-        "outcome": "keep verification queue; do not authorize extension",
-        "note": "Hosted run_now returned NOT_FOUND before invocation; no new scheduled-agent run was created."
+        "site_fit": "verified: the existing Cursor detail and upgrade paths still present legacy plans as current, while the official current and legacy documentation now separates the X Subscription from still-working legacy subscriptions",
+        "site_fit_verified": true,
+        "outcome": "authorize a bounded correction inside the existing Cursor decision path; do not create a new selector",
+        "note": "The two community sources still have unknown absolute publication dates and are not counted as two current buyers or payment evidence. Current official product documentation reproduces the site information gap but is not treated as a new user-demand source."
+      },
+      "execution": {
+        "started_at": "2026-11-01T00:40:19Z",
+        "base_sha": "63d06c6971e4d1b419787413eccc6da4a01b7451",
+        "branch": "codex/bpj-cursor-plan-split-20261101",
+        "pull_request": 223,
+        "release_hold": "Keep draft until bilingual facts, limits-edit guard, build, browser checks, current-main guard, deployment and live URLs are verified."
       }
     },
     {

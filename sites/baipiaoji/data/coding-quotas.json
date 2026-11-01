@@ -75,8 +75,8 @@
       "caveat_en": "The product line was folded in: the Doubao MarsCode assistant became the \"Trae plugin\" in 2025, its site now routes to Trae and accounts are shared (per ByteDance's official notice); it no longer evolves separately, so the Trae row governs the allowance" },
 
     { "slug": "cursor", "kind": "unstated", "meter": "mixed",
-      "caveat_zh": "Hobby 免费档存在且无需绑卡；2026-09-25 官方定价页的免费档只列「有限的 Agent 请求」与「可用 Composer」，仍不公布数字（08-03 写到的 Chat 与 Tab 补全这次没出现在免费档清单里，页面也没说取消）；流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时不予采信。余量以账户设置页显示为准",
-      "caveat_en": "The Hobby free tier exists and needs no card; on 2026-09-25 the official pricing page lists only \"Limited Agent requests\" and \"Access to Composer\" for it, still with no figures (Chat and Tab completion, recorded on 08-03, are absent from the free list this time; the page does not say they were removed); the circulating \"2,000 completions + 50 requests\" comes from an older pricing structure and is rejected as stale. Your account settings page is the live source of truth" },
+      "caveat_zh": "2026-11-01 复核：新用户的 The X Subscription Free 为 $0/月，只写有限 AI、Agent 与 Chat 用量，仍不公布次数；X 方案按周刷新。Hobby、Pro 等旧订阅继续按原价和功能运行，除非用户更改或取消，并按账单月重置。两类账户不能混算，实际余量与下次重置以对应账户面板为准",
+      "caveat_en": "Reviewed 2026-11-01: The X Subscription Free is $0/month for new users and states limited AI, Agent, and Chat usage without a request count; its pool refreshes weekly. Legacy subscriptions such as Hobby and Pro keep their existing price and features until changed or cancelled and reset with the billing month. Do not combine the account types; use the matching dashboard for remaining usage and the next reset" },
 
     { "slug": "codex", "kind": "unstated", "meter": "messages",
       "caveat_zh": "ChatGPT Free 含 Codex（桌面端、GPT-6 Luna 标准速度、官方标注逐步开放），但官方用量表只列 Plus 及以上、没有 Free 这一列，免费档数额未公布、本站不估；各档用量按每 5 小时的本地消息估算区间给出，不是固定上限，另可能有每周上限",
