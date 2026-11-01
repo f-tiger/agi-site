@@ -66,16 +66,20 @@ export async function inspectWorkers({account,candidates,windows,fetcher=fetch})
       }catch(e){result.push({zone:zone.name,error:String(e.message)});}
     }
     out.zoneSummary=[];out.mcpClients=[];out.errorHours=[];
+    out.currentPaths=[];out.currentMcpHours=[];out.currentErrorHours=[];
     for(const zone of zones.filter(z=>['agiscorecard.com','baipiaoji.com','getecoback.com','thedollscout.com'].includes(z.name))){
-      for(const [key,dims,extra,limit] of [
+      for(const [key,dims,extra,limit,window=w] of [
         ['zoneSummary',['clientRequestHTTPHost','clientRequestHTTPMethodName','edgeResponseContentTypeName','edgeResponseStatus'],'',1000],
         ['mcpClients',['clientRequestHTTPHost','clientRequestPath','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',200],
-        ['errorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000]
+        ['errorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000],
+        ['currentPaths',selected,'',1000,windows.at(-1)],
+        ['currentMcpHours',['clientRequestHTTPHost','clientRequestPath','datetimeHour','userAgent','edgeResponseStatus'],',clientRequestPath_in:["/mcp","/mcp/","/mcp/v1","/mcp.html","/api/mcp","/api/ai-mcp","/api/startup-mcp","/api/video-mcp"]',1000,windows.at(-1)],
+        ['currentErrorHours',['clientRequestHTTPHost','datetimeHour','edgeResponseStatus'],',edgeResponseStatus_geq:500',1000,windows.at(-1)]
       ]){
         try{
           const query=`query($z:string,$s:Time,$e:Time){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:${limit},orderBy:[count_DESC],filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"${extra}}){count dimensions{${dims.join(' ')}}}}}}`;
-          const d=await request('graphql',{query,variables:{z:zone.id,s:w.start,e:w.end}}),rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
-          out[key].push({zone:zone.name,...w,request_source:'eyeball',truncated:rows?.length===limit,rows:rows??null});
+          const d=await request('graphql',{query,variables:{z:zone.id,s:window.start,e:window.end}}),rows=d?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups;
+          out[key].push({zone:zone.name,...window,request_source:'eyeball',row_limit:limit,truncated:rows?.length===limit,rows:rows?.map(r=>({...r,dimensions:{...r.dimensions,...(r.dimensions?.clientRequestPath ? {clientRequestPath:aggregatePath(r.dimensions.clientRequestPath)} : {})}}))??null});
         }catch(e){out[key].push({zone:zone.name,error:String(e.message)});}
       }
     }
