@@ -19,7 +19,7 @@
 // 或者有人往黑名单里加了会吃掉内容页的规则，部署就红。挂在 push 路径（零外部副作用）。
 //
 // 运行：node scripts/test-middleware-paths.mjs
-import { isContentPath, botOf } from '../functions/_middleware.js';
+import { isContentPath, botOf, onRequest } from '../functions/_middleware.js';
 
 let bad = 0;
 const ck = (cond, msg) => { if (!cond) { console.error(`❌ ${msg}`); bad++; } };
@@ -109,6 +109,26 @@ const CN_HUMANS = [
   + 'Chrome/140.0.0.0 Mobile Safari/537.36 MicroMessenger/8.0.50.2701(0x28003237)',
 ];
 for (const ua of CN_HUMANS) ck(botOf(ua) === '', `中国真人浏览器不能被当成爬虫：${ua.slice(-40)}`);
+
+// Pages decodes static filenames, and crawlers use both GET and HEAD. Mirror
+// indexing must not depend on encoding/method; HEAD must never create a crawl.
+const mirrors = ['/mcp.md','/mcp%2emd','/mcp.%6dd','/mcp.%256dd','/en/mcp.md'];
+for (const method of ['GET','HEAD']) for (const path of mirrors) {
+  let writes = 0;
+  const response = await onRequest({
+    request:new Request('https://baipiaoji.com'+path,{method,headers:{'User-Agent':method === 'HEAD' ? 'GPTBot' : 'FleetReadOnlyFixture'}}),
+    env:{HITS:{prepare(){writes++;throw Error('Unexpected D1 access');}}},
+    next:async()=>new Response(method === 'HEAD' ? null : 'Mirror fixture',{headers:{'Content-Type':'text/markdown','X-Fixture':'preserved'}}),
+  });
+  ck(response.headers.get('X-Robots-Tag') === 'noindex', `${method} mirror policy: ${path}`);
+  ck(response.headers.get('X-Fixture') === 'preserved', `${method} retains existing response headers: ${path}`);
+  ck(await response.text() === (method === 'HEAD' ? '' : 'Mirror fixture'), `${method} retains response body: ${path}`);
+  ck(writes === 0, `${method} fixture must not write crawl rows: ${path}`);
+}
+for (const method of ['GET','HEAD']) for (const path of ['/limits.md','/pricing.md','/%6cimits.md','/pricing%2emd','/tools/kimi','/mcp.html']) {
+  const response = await onRequest({request:new Request('https://baipiaoji.com'+path,{method}),env:{},next:async()=>new Response(null)});
+  ck(response.headers.get('X-Robots-Tag') === null, `${method} canonical/public policy unchanged: ${path}`);
+}
 
 if (bad) { console.error(`\ntest-middleware-paths: ${bad} 项失败`); process.exit(1); }
 console.log(`✅ test-middleware-paths 通过（内容页 ${CONTENT.length} 条 / 排除 ${SKIP.length} 条 / `

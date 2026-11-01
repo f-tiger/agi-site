@@ -85,17 +85,19 @@ const CANONICAL_MD = new Set(['/limits.md', '/pricing.md']);
 async function handleRequest(ctx) {
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   // Pages resolves percent-encoded static filenames before serving them.
-  // Apply the account policy to the same decoded path, including aliases.
+  // Apply account and Markdown mirror policies to that same resolved path.
   const privacyURL = new URL(ctx.request.url);
   try { for(let i=0;i<2;i++){const p=decodeURIComponent(privacyURL.pathname);if(p===privacyURL.pathname)break;privacyURL.pathname=p;} } catch { /* retain the decodable path */ }
   let res = protectAccountPage(await ctx.next(), {url:privacyURL.href});
   try {
     const url = new URL(ctx.request.url);
-    if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;
-    if (/\.md$/i.test(url.pathname) && !CANONICAL_MD.has(url.pathname)) {
+    // HEAD carries the same indexing policy as GET. Encoded aliases resolve
+    // to the same mirror; canonical data files retain their existing policy.
+    if (['GET','HEAD'].includes(ctx.request.method) && /\.md$/i.test(privacyURL.pathname) && !CANONICAL_MD.has(privacyURL.pathname)) {
       res = new Response(res.body, res);
       res.headers.set('X-Robots-Tag', 'noindex');
     }
+    if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;
     // 我方探针（scripts/ai-crawler-probe.mjs）每天伪装九家 UA 敲三个路径，
     // 记进去就等于每天给自己造几十条假抓取——而这张表存在的意义正是回答
     // 「AI 爬虫到底来没来」。自证数据必须挡在门外。
