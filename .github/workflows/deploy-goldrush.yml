@@ -9,7 +9,7 @@ name: Deploy goldrush
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/goldrush/**", ".github/workflows/deploy-goldrush.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/goldrush/**", ".github/workflows/deploy-goldrush.yml"]
   workflow_dispatch: {}
   # 每日兜底部署(2026-09-11)。原注释说「无 schedule(进化循环搭舰队既有每日会话,
   # 零新增 Actions 成本)」——而 2026-09-11 审计发现:本站没有生成器、没有数据输入、
@@ -78,6 +78,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site goldrush --write
           python3 tools/fleet-analytics/coverage.py --site goldrush
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=goldrush --write
+          node tools/fleet/worker-budget-routing.mjs --site=goldrush
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

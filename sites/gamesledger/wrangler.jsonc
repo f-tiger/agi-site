@@ -1,10 +1,22 @@
 {
+  // Reviewed public assets bypass compute; HTML, APIs, auth and private paths stay Worker-first.
   // Games Ledger(第五站,工作名)。静态资产 Worker,与 agi 同模式。
   // 域名决定(owner 2026-08-22):不买新域,挂 games.agiscorecard.com(同 invest./compass. 子域模式)。
   "name": "gamesledger",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": [
+      "/*",
+      "!/analytics-assets/consent.mjs",
+      "!/analytics-assets/collector.mjs",
+      "!/analytics-assets/consent.css",
+      "!/analytics-assets/frame-loader.mjs",
+      "!/analytics-assets/business.mjs",
+      "!/analytics-assets/legacy.mjs",
+      "!/analytics-assets/campaign.mjs",
+      "!/analytics-assets/engagement.mjs",
+      "!/analytics-assets/registry.mjs"
+] },
   "routes": [{ "pattern": "games.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "gamesledger-events", "database_id": "2bebbaef-aa46-4b75-89ca-77920ad4f863" }],
   // 部署版本 id 做 Cache API 键的一部分(2026-09-26 D1 读预算):每次部署自然失效,不必手动清缓存。

@@ -14,6 +14,7 @@ on:
     branches:
       - main
     paths:
+      - "tools/fleet/worker-budget-routing*"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
       - "tools/revenue-studio/**"
@@ -477,6 +478,13 @@ jobs:
         id: auto_commit
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: python3 tools/commit_auto_content.py --receipt "$RUNNER_TEMP/eco-auto-content/publication.json"
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=getecoback --write
+          node tools/fleet/worker-budget-routing.mjs --site=getecoback
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — main must still match the validated build
         working-directory: ${{ github.workspace }}

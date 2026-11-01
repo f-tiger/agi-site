@@ -1,11 +1,25 @@
 {
+  // Reviewed public assets bypass compute; HTML, APIs, auth and private paths stay Worker-first.
   // 三十五后 · 35.agiscorecard.com — 2026-09-14 owner 指令建站:
   // 「要做一个给失业中年人用的平台,让他们可以发挥价值」+「应该成为 agi 时代,ai 冲击的最好承载子站点」。
   // 舰队标准形态(同 goldrush/gamesledger):静态资产 + worker(API + 服务端 page_view)。
   "name": "after35",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": [
+      "/*",
+      "!/analytics-assets/consent.mjs",
+      "!/analytics-assets/collector.mjs",
+      "!/analytics-assets/consent.css",
+      "!/analytics-assets/frame-loader.mjs",
+      "!/analytics-assets/business.mjs",
+      "!/analytics-assets/legacy.mjs",
+      "!/analytics-assets/campaign.mjs",
+      "!/analytics-assets/engagement.mjs",
+      "!/analytics-assets/registry.mjs",
+      "!/app.js",
+      "!/style.css"
+] },
   "routes": [{ "pattern": "35.agiscorecard.com", "custom_domain": true }],
   // v5 AI 撮合(2026-09-14):Workers AI 内建绑定,不需要任何外部密钥;用 bge-m3 多语向量做语义匹配。
   // 免费额度 10,000 Neurons/天;向量只在发卡时算一次并存进 D1(emb 列),匹配时只做余弦。

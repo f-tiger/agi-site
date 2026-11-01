@@ -7,7 +7,7 @@ name: Deploy after35
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/after35/**", ".github/workflows/deploy-after35.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/after35/**", ".github/workflows/deploy-after35.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "50 7 * * *"
@@ -79,6 +79,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site after35 --write
           python3 tools/fleet-analytics/coverage.py --site after35
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=after35 --write
+          node tools/fleet/worker-budget-routing.mjs --site=after35
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

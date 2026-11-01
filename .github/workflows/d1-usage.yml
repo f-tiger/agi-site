@@ -7,6 +7,13 @@ name: D1 usage report
 on:
   workflow_dispatch:
     inputs:
+      dataset:
+        description: 'd1 or workers (workers output is encrypted)'
+        required: false
+        default: 'd1'
+      report_public_key:
+        description: 'Base64 RSA public key, required for workers diagnosis'
+        required: false
       days:
         description: 'Days of history (1-14)'
         required: false
@@ -34,6 +41,7 @@ jobs:
       - name: Redaction selftest
         run: node tools/fleet/d1_usage.mjs --selftest
       - name: Rows read by database, hour and query
+        if: inputs.dataset != 'workers'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
@@ -41,3 +49,21 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           D1_USAGE_DAYS: ${{ github.event.inputs.days || '8' }}
         run: node tools/fleet/d1_usage.mjs
+      - name: Workers request aggregates (read-only, encrypted)
+        if: inputs.dataset == 'workers'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WORKERS_REPORT_PUBLIC_KEY: ${{ inputs.report_public_key }}
+        run: |
+          node --test tools/fleet/workers_usage.test.mjs tools/fleet/workers_inspection.test.mjs
+          node tools/fleet/workers_usage.mjs
+      - uses: actions/upload-artifact@v4
+        if: inputs.dataset == 'workers'
+        with:
+          name: workers-usage-encrypted
+          path: /tmp/workers-usage.enc.json
+          retention-days: 1
+          if-no-files-found: error

@@ -9,6 +9,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/fleet/worker-budget-routing*"
       - "tools/fleet-analytics/**"
       - "tools/fleet-account/**"
       - "tools/revenue-studio/**"
@@ -329,6 +330,13 @@ jobs:
           python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard --write
           python3 tools/fleet-analytics/coverage.py --site agi --out sites/agiscorecard
           node tools/fleet-analytics/browser-test.mjs --site agi --out sites/agiscorecard
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=agiscorecard --write
+          node tools/fleet/worker-budget-routing.mjs --site=agiscorecard
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — main must still match the validated build
         working-directory: ${{ github.workspace }}

@@ -6,7 +6,7 @@ name: Deploy gridlings
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
   workflow_dispatch: {}
   # 每日兜底部署(2026-09-11)。谜题确实每天换,但只换在读者的浏览器里
   # (app.js 的 utcToday 读已提交的 JSON)。服务端可见的那一面——sitemap 的 45 条
@@ -122,6 +122,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site gridlings --write
           python3 tools/fleet-analytics/coverage.py --site gridlings
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=gridlings --write
+          node tools/fleet/worker-budget-routing.mjs --site=gridlings
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

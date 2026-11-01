@@ -1,3 +1,4 @@
+import {sharedAssets,staticSecurity} from './asset-routing.mjs';
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {withAggregateCache} from '../../tools/fleet-reporting/cache.mjs';
 import {isAnalyticsPath,analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
@@ -11,9 +12,9 @@ import {sites,hubHost} from './public/catalog.mjs';
 import {profiles,selectProfiles,CHECKED_AT} from './public/profiles.mjs';
 import {release} from './release.generated.mjs';
 const hosts=new Map([[hubHost,'hub'],...sites.map(s=>[s.host,s.id])]);
-const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','research-ui.mjs','research-export.mjs','research-core.mjs','proof-core.mjs','finance-core.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
+const shared=new Set(sharedAssets);
 const pages=new Set(['/','/index.html','/zh/','/zh/index.html','/zh/guide.html','/zh/privacy.html','/zh/market.html','/zh/robots.txt','/zh/sitemap.xml','/zh/llms.txt','/guide.html','/privacy.html','/robots.txt','/sitemap.xml','/llms.txt','/examples/input.json','/examples/report.json','/share.png','/zh/share.png','/llms-full.txt','/for-agents.html','/agents.html','/zh/agents.html','/.well-known/mcp.json']);
-const security={'Content-Security-Policy':"default-src 'none'; script-src 'self'; frame-src 'self'; style-src 'self'; img-src 'self' https://*.agiscorecard.com; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Strict-Transport-Security':'max-age=31536000; includeSubDomains'};
+const security=staticSecurity;
 const json=(v,status=200,headers={})=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers}});
 async function setup(db){await db.prepare('CREATE TABLE IF NOT EXISTS web3_studio_feedback (id TEXT PRIMARY KEY,site TEXT NOT NULL,frequency TEXT NOT NULL,usefulness TEXT NOT NULL,interest TEXT NOT NULL,own_completed INTEGER NOT NULL,qa INTEGER NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)').run();await db.prepare("DELETE FROM web3_studio_feedback WHERE created_at < datetime('now','-35 days')").run();}
 export function feedbackShape(v){if(!v||typeof v!=='object'||Array.isArray(v))return false;const fields=['id','frequency','usefulness','interest','ownCompleted','qa'];return Object.keys(v).length===fields.length&&fields.every(k=>Object.hasOwn(v,k))&&typeof v.id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v.id)&&['zero','once','repeat'].includes(v.frequency)&&['sample','helped','blocked','alternative'].includes(v.usefulness)&&['no','free','discuss'].includes(v.interest)&&typeof v.ownCompleted==='boolean'&&typeof v.qa==='boolean';}

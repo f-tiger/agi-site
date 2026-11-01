@@ -8,7 +8,7 @@ name: Deploy codeword
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/codeword/**", ".github/workflows/deploy-codeword.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/codeword/**", ".github/workflows/deploy-codeword.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "50 8 * * *"
@@ -87,6 +87,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site codeword --write
           python3 tools/fleet-analytics/coverage.py --site codeword
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=codeword --write
+          node tools/fleet/worker-budget-routing.mjs --site=codeword
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

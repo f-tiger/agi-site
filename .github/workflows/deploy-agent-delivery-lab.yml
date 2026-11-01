@@ -2,7 +2,7 @@ name: Validate and deploy Agent Delivery Lab
 on:
   push:
     branches: [main, 'codex/agent-delivery-*']
-    paths: ['tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -50,6 +50,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site agent-delivery-lab --write
           python3 tools/fleet-analytics/coverage.py --site agent-delivery-lab
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=agent-delivery-lab --write
+          node tools/fleet/worker-budget-routing.mjs --site=agent-delivery-lab
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

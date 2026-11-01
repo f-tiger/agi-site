@@ -81,7 +81,7 @@ export function botOf(ua) {
 // limits.md / pricing.md 没有 HTML 孪生、本身就是正典数据文件,不在此列。
 const CANONICAL_MD = new Set(['/limits.md', '/pricing.md']);
 
-export async function onRequest(ctx) {
+async function handleRequest(ctx) {
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
   let res = protectAccountPage(await ctx.next(), ctx.request);
   try {
@@ -112,4 +112,14 @@ export async function onRequest(ctx) {
     if (ctx.waitUntil) ctx.waitUntil(p);
   } catch (e) { /* 统计永远不能影响页面 */ }
   return res;
+}
+
+// Public asset responses carry static-pages-v1 from the generated _headers.
+// Override it whenever this middleware actually ran so live checks can prove
+// the Pages routing boundary, including HTML responses from ctx.next().
+export async function onRequest(ctx) {
+  const response=await handleRequest(ctx);
+  const result=new Response(response.body,response);
+  result.headers.set('X-Fleet-Delivery','pages-function');
+  return result;
 }

@@ -1,3 +1,4 @@
+import {sharedAssets} from '../asset-routing.mjs';
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import {createHash,randomUUID} from 'node:crypto';
@@ -29,10 +30,12 @@ await Promise.all(hosts.map(async s=>{
  const files=manifest[s.host];
  for(const [path,file] of Object.entries(files)){
   const r=await request(s.host,path);assert.equal(r.status,200,s.host+path);
-  assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.match(r.headers.get('content-security-policy')||'',/frame-ancestors 'none'/);
+  assert.equal(r.headers.get('x-content-type-options'),'nosniff');
+  if(sharedAssets.includes(path.slice(1))){assert.equal(r.headers.get('x-fleet-asset-delivery'),'static','Asset bypass marker: '+s.host+path);assert.match(r.headers.get('cache-control')||'',/max-age=300/);}assert.match(r.headers.get('content-security-policy')||'',/frame-ancestors 'none'/);
   const bytes=Buffer.from(await r.arrayBuffer());const local=await readFile('dist/'+file);
   const stable=b=>['/market.html','/briefs.html','/zh/market.html'].includes(path)?Buffer.from(b.toString().replace(/<!-- LIVE:(market|briefs):start -->[\s\S]*?<!-- LIVE:\1:end -->/g,'<!-- LIVE -->')):b;
   assert.equal(hash(stable(bytes)),hash(stable(file.endsWith('.html')&&!/noindex/i.test(r.headers.get('X-Robots-Tag')||'')?await expectedHTML(local,'https://'+s.host+path,r.headers):local)),'Deployed content differs: '+s.host+path);
+  if(file.endsWith('.html'))assert.equal(r.headers.get('x-fleet-asset-delivery'),null,'Host HTML must keep Worker routing');
   if(file.endsWith('.mjs'))assert.match(r.headers.get('content-type')||'',/(?:java|ecma)script/i,'Module MIME: '+file);
  }
  const redirect=await request(s.host,'/index.html');assert.equal(redirect.status,308);assert.equal(redirect.headers.get('location'),'https://'+s.host+'/');

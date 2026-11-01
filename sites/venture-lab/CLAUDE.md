@@ -46,3 +46,13 @@
 - sitemap `<lastmod>` / JSON-LD `dateModified` / 可见「Updated」行由 `tools/discovery/lastmod-<site>.json` 驱动
   (内容哈希,`tools/fleet/lastmod.py`);CI 是 check 模式,内容变了要 `LASTMOD_MODE=update python3 tools/discovery/build.py`
   并提交清单。三站 `/guide` 的 description 改为真描述(此前照抄标题);`/agent` 标题缩短;发现页标题超 60 字符不加品牌后缀。
+
+## 2026-11-01 Workers 请求额度修复
+
+HTML、API、账号与按主机映射的文件继续先进入 Worker。仅 `asset-routing.mjs`
+声明的精确公共文件通过 `run_worker_first` 负规则直接由静态资产层提供；禁止改成
+全局 assets-first 或通配扩展名旁路，避免暴露其他主机目录和私有路由。构建写入
+`dist/_headers` 保留安全头、300 秒缓存及 `X-Fleet-Asset-Delivery: static`，部署冒烟
+核验此标记；新增旁路必须同时验证文件与路由边界。
+构建仅把四主机字节完全一致的共享模块、样式和字体复制到公共根路径；任何不一致
+直接阻止构建。各站 app/project、HTML、示例与下载路径继续按主机隔离。

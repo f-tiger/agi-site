@@ -7,7 +7,7 @@ name: Deploy fanzha
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/fanzha/**", ".github/workflows/deploy-fanzha.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/fanzha/**", ".github/workflows/deploy-fanzha.yml"]
   workflow_dispatch: {}
   schedule:
     - cron: "20 8 * * *"
@@ -79,6 +79,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site fanzha --write
           python3 tools/fleet-analytics/coverage.py --site fanzha
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=fanzha --write
+          node tools/fleet/worker-budget-routing.mjs --site=fanzha
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

@@ -49,7 +49,7 @@ function botOf(ua) {
   return '';
 }
 
-export async function onRequest(ctx) {
+async function handleRequest(ctx) {
   const canonicalRedirect=canonicalHostRedirect(ctx.request);if(canonicalRedirect)return canonicalRedirect;
   const account=await accountRoute(ctx.request,ctx.env);if(account)return account;
   if(isAnalyticsPath(new URL(ctx.request.url).pathname))return protectAnalyticsResponse(await ctx.next(),ctx.request.method);
@@ -87,4 +87,13 @@ export async function onRequest(ctx) {
     );
   } catch (e) { /* never let logging surface as a page error */ }
   return res;
+}
+
+// The final Pages build sets static-pages-v1 only on bypassed public assets.
+// Mark the actual middleware path for bounded post-deploy verification.
+export async function onRequest(ctx) {
+  const response=await handleRequest(ctx);
+  const result=new Response(response.body,response);
+  result.headers.set('X-Fleet-Delivery','pages-function');
+  return result;
 }

@@ -1,10 +1,25 @@
 {
+  // Reviewed public assets bypass compute; HTML, APIs, auth and private paths stay Worker-first.
   // SourceRadar(buysomething)——2026-08-22 并入舰队 monorepo,域名 owner 指定走
   // agiscorecard 伞域子域(同 invest./compass./games. 模式)。
   "name": "buysomething",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": [
+      "/*",
+      "!/analytics-assets/consent.mjs",
+      "!/analytics-assets/collector.mjs",
+      "!/analytics-assets/consent.css",
+      "!/analytics-assets/frame-loader.mjs",
+      "!/analytics-assets/business.mjs",
+      "!/analytics-assets/legacy.mjs",
+      "!/analytics-assets/campaign.mjs",
+      "!/analytics-assets/engagement.mjs",
+      "!/analytics-assets/registry.mjs",
+      "!/app.js",
+      "!/styles.css",
+      "!/data.js"
+] },
   "routes": [{ "pattern": "source.agiscorecard.com", "custom_domain": true }],
   // 2026-09-26:cachedJson 用部署版本做 Cache API 键的一部分(D1 读预算事故)。
   "version_metadata": { "binding": "CF_VERSION_METADATA" },

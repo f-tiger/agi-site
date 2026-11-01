@@ -7,7 +7,7 @@ name: Deploy buysomething
 on:
   push:
     branches: [main]
-    paths: ['tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
+    paths: ["tools/fleet/worker-budget-routing*", 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', "sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
   schedule:
     - cron: "20 5 * * *"
   workflow_dispatch:
@@ -143,6 +143,13 @@ jobs:
         run: |
           python3 tools/fleet-analytics/coverage.py --site buysomething --write
           python3 tools/fleet-analytics/coverage.py --site buysomething
+
+      - name: Validate public asset routing and preserve response headers
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/fleet/worker-budget-routing.mjs --site=buysomething --write
+          node tools/fleet/worker-budget-routing.mjs --site=buysomething
+          node tools/fleet/worker-budget-routing.test.mjs
 
       - name: Guard — refuse deployment if main changed during the build
         if: github.ref == 'refs/heads/main'

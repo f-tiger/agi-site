@@ -5,7 +5,16 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": true,
+    "run_worker_first": [
+      "/*",
+      "!/acquisition.mjs",
+      "!/core.mjs",
+      "!/styles.css",
+      "!/onboarding.mjs",
+      "!/ui.mjs",
+      "!/fonts/manrope-latin-wght-normal.woff2",
+      "!/fonts/LICENSE"
+    ],
     "html_handling": "none",
     "not_found_handling": "none"
   },

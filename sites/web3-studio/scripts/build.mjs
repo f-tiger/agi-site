@@ -1,3 +1,4 @@
+import {assetHeaders} from '../asset-routing.mjs';
 import {mkdir,rm,cp,writeFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
@@ -40,4 +41,4 @@ await writeFile('dist/zh/robots.txt',`User-agent: *\nAllow: /zh/\nSitemap: https
 // Honest <lastmod> + dateModified per page from a content-hash manifest (tools/fleet/lastmod.py); CI runs in
 // check mode, so content changed without `LASTMOD_MODE=update npm run build` fails the build on purpose.
 execFileSync('python3',[fileURLToPath(new URL('../../../tools/fleet/lastmod.py',import.meta.url)),'--root','dist','--manifest','lastmod.json','--sitemap','dist/sitemap.xml','--sitemap','dist/zh/sitemap.xml',...sites.flatMap(s=>['--sitemap','dist/'+s.id+'/sitemap.xml','--host-dir',s.host+'='+s.id])],{stdio:'inherit'});
-execFileSync('python3',['scripts/bundle.py']);await writeManifest();console.log(`Built ${sites.length} tools + hub; revision ${revision}.`);
+execFileSync('python3',['scripts/bundle.py']);await writeFile('dist/_headers',assetHeaders());await writeManifest();console.log(`Built ${sites.length} tools + hub; revision ${revision}.`);
