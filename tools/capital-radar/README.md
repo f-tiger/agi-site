@@ -70,7 +70,7 @@ The collector writes a private `internal.notificationOutbox` with `id`, `message
 hex characters of SHA256(message). The private API stores the outbox idempotently
 in a separate D1 queue. SunWatch's existing automation reads only that protected
 owner queue, sends through the already connected owner channel, then acknowledges
-the exact message ID. The shared relay credential stays at the service boundary;
+the exact message ID. The dedicated `CAPITAL_RADAR_RELAY_KEY` stays at the service boundary;
 it is not a bot credential and does not grant public access to the dashboard.
 
 The first relay message confirms the actual current state, including retained
@@ -119,3 +119,14 @@ The dashboard and member API are private/noindex and excluded from third-party
 analytics. Their private records must not appear in sitemaps, public JSON,
 IndexNow submissions, crawler mirrors, Git history, or public test artifacts.
 Public homepage entry measurement remains separate from registered usage.
+
+### Existing bot connection setup
+
+The manual `agi-capital-radar-relay-setup.yml` workflow configures the same
+scoped `CAPITAL_RADAR_RELAY_KEY` on the existing AGI and SunWatch Workers, using
+existing deployment credentials. It never reads or copies bot secrets or the
+recipient. Ordinary scheduled runs do not mutate credentials. The legacy AGI
+`owner_identity` lookup was found failing in production; this integration no
+longer depends on it. Missing relay configuration does not prevent storing or
+viewing monitoring data. SunWatch fixed-action verification continues to use its
+existing `ROADMAP_VERIFY_KEY` operator credential.

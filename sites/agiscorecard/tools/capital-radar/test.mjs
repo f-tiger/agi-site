@@ -14,7 +14,7 @@ const member=async(url,options)=>{
  assert.deepEqual(JSON.parse(options.body),{action:'session',host:'agiscorecard.com'});
  assert.equal(options.headers.Authorization,'Bearer '+'x'.repeat(43));return Response.json({ok:true,user:{id:'synthetic-member'}});
 };
-function fixture(t){const db=database();db.sqlite.exec("CREATE TABLE owner_identity(k TEXT PRIMARY KEY,v TEXT NOT NULL)");db.sqlite.prepare("INSERT INTO owner_identity VALUES('alert_key',?)").run(relayKey);t.after(()=>db.sqlite.close());return {EVENTS:db,MEMBER_WATCH_SECRET:'local-test-only',ASSETS:{fetch:async r=>{assert.equal(new URL(r.url).pathname,'/capital-radar/account');return new Response('<html>private shell</html>',{headers:{'Content-Type':'text/html',ETag:'old','Cache-Control':'public'}});}}};}
+function fixture(t){const db=database();t.after(()=>db.sqlite.close());return {EVENTS:db,MEMBER_WATCH_SECRET:'local-test-only',CAPITAL_RADAR_RELAY_KEY:relayKey,ASSETS:{fetch:async r=>{assert.equal(new URL(r.url).pathname,'/capital-radar/account');return new Response('<html>private shell</html>',{headers:{'Content-Type':'text/html',ETag:'old','Cache-Control':'public'}});}}};}
 
 test('anonymous and client claims cannot fetch any private page alias or API',async()=>{
  const noHub=()=>{throw Error('should not introspect without a session');};
@@ -133,7 +133,7 @@ test('enqueue database failure rolls back snapshot and never pretends successful
  const response=await save(e,snapshot({generatedAt:'2026-10-31T12:00:00Z',internal:{notificationOutbox:outbox('Will rollback')}}));assert.equal(response.status,503);
  assert.equal(e.EVENTS.sqlite.prepare('SELECT generated_at FROM capital_radar_snapshot').get().generated_at,'2026-10-30T12:00:00.000Z');
  assert.equal(e.EVENTS.sqlite.prepare('SELECT COUNT(*) n FROM capital_radar_alerts').get().n,0);
- e.EVENTS.sqlite.exec('DROP TABLE owner_identity');
+ e.EVENTS.prepare=()=>{throw Error('synthetic D1 unavailable');};
  assert.equal((await relay(e)).status,503);
  const memberResponse=await capitalRadarRoute(req('/api/capital-radar',{cookie}),e,member);assert.equal(memberResponse.status,503);
 });
@@ -169,4 +169,22 @@ test('pre-release queue schema gains expiry without losing existing rows',async(
  e.EVENTS.sqlite.prepare('INSERT INTO capital_radar_alerts(id,message,created_at) VALUES(?,?,?)').run(old.id,old.message,old.createdAt);
  assert.deepEqual(await (await relay(e)).json(),{ok:true,alert:null});
  const row=e.EVENTS.sqlite.prepare('SELECT * FROM capital_radar_alerts').get();assert.equal(row.id,old.id);assert.ok(row.expired_at);assert.equal(row.delivered_at,null);
+});
+
+test('missing historical identity archive or relay configuration cannot block monitoring reads and collection',async(t)=>{
+ const e=fixture(t);delete e.CAPITAL_RADAR_RELAY_KEY;
+ assert.equal(e.EVENTS.sqlite.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='owner_identity'").get().n,0);
+ let response=await capitalRadarRoute(req('/api/capital-radar/runner',{Authorization:'Bearer '+runner(e.MEMBER_WATCH_SECRET)}),e);
+ assert.deepEqual(await response.json(),{ok:true,snapshot:null});
+ const message=outbox('Durable until relay is configured');
+ assert.equal((await save(e,snapshot({internal:{notificationOutbox:message}}))).status,200);
+ response=await capitalRadarRoute(req('/api/capital-radar/runner',{Authorization:'Bearer '+runner(e.MEMBER_WATCH_SECRET)}),e);
+ let view=(await response.json()).snapshot;assert.equal(view.items.length,1);assert.equal(view.notifications.configured,false);assert.equal(view.notifications.deliveryStatus,'pending');
+ assert.equal((await relay(e)).status,401);
+ response=await capitalRadarRoute(req('/api/capital-radar',{cookie}),e,member);view=(await response.json()).snapshot;assert.equal(view.items.length,1);assert.equal(view.internal,undefined);assert.equal(view.notifications.configured,false);
+ e.CAPITAL_RADAR_RELAY_KEY=relayKey;
+ assert.equal((await (await relay(e)).json()).alert.id,message.id);
+ response=await capitalRadarRoute(req('/api/capital-radar/runner',{Authorization:'Bearer '+runner(e.MEMBER_WATCH_SECRET)}),e);
+ view=(await response.json()).snapshot;assert.equal(view.notifications.configured,true);assert.equal(view.internal.notificationOutbox.status,'pending');
+ assert.equal(e.EVENTS.sqlite.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='owner_identity'").get().n,0);
 });

@@ -48,7 +48,7 @@ The runner derives a scoped credential from the existing AGI membership secret
 via the existing deployment helper. It uses `/api/capital-radar/runner` to read
 and save state. Owner correction on 2026-11-01: the existing SunWatch bot already
 owns delivery. The collector now writes a fixed private outbox; SunWatch reads
-`/api/capital-radar/alerts` with its existing owner integration credential. The
+`/api/capital-radar/alerts` with a dedicated scoped service credential. The
 bot token and owner recipient stay in SunWatch. AGI requires no Telegram secrets.
 The existing serialized sender persists a genuine Telegram receipt before
 acknowledging that exact alert ID; a failed acknowledgement retries without
@@ -95,3 +95,10 @@ method pages keep their canonical, structured data and discovery routes.
 
 Live deployment and receipt verification are recorded separately below after
 execution; local passing tests alone do not establish message delivery.
+
+Live integration exposed an existing legacy failure: an intentionally invalid
+credential on `/api/owner-alerts` returned database error, and the shared lookup
+made the new relay fail before collection. Removed that dependency entirely.
+A scoped `CAPITAL_RADAR_RELAY_KEY` is configured on both existing Workers using
+existing deployment credentials; no Telegram token or recipient is copied.
+Monitoring reads/writes remain available when the relay is unconfigured.

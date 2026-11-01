@@ -63,7 +63,9 @@ async function session(request,fetcher){
  if(r.status===401)return false;if(!r.ok)throw Error('unavailable');
  const body=await r.json();if(!body.ok||!text(body.user?.id,100)||!body.user.id)throw Error('unavailable');return true;
 }
-async function alertKey(db){const row=await db.prepare("SELECT v FROM owner_identity WHERE k='alert_key'").first();return typeof row?.v==='string'&&row.v.length>0?row.v:null;}
+// Dedicated Worker secret shared only with the SunWatch relay. The historical
+// owner identity archive is unrelated to monitoring and must not gate reads.
+function alertKey(env){const value=env.CAPITAL_RADAR_RELAY_KEY;return typeof value==='string'&&value.length>0?value:null;}
 async function ensureAlerts(db){
  await db.prepare(ALERT_TABLE).run();
  // Upgrade a partially initialized pre-release ledger without discarding it.
@@ -77,13 +79,14 @@ async function expireAlerts(db){
  const now=Date.now();
  await db.prepare('UPDATE capital_radar_alerts SET expired_at=? WHERE delivered_at IS NULL AND expired_at IS NULL AND created_at<?').bind(new Date(now).toISOString(),new Date(now-72*3600000).toISOString()).run();
 }
-async function read(db){
+async function read(env){
+ const db=env.EVENTS;
  await db.prepare(TABLE).run();await ensureAlerts(db);await expireAlerts(db);
  const row=await db.prepare('SELECT payload FROM capital_radar_snapshot WHERE id=1').first();
  if(!row)return null;
  const snapshot=JSON.parse(row.payload);
- const [key,pending,last,latest]=await Promise.all([
-  alertKey(db),
+ const key=alertKey(env);
+ const [pending,last,latest]=await Promise.all([
   db.prepare('SELECT id FROM capital_radar_alerts WHERE delivered_at IS NULL AND expired_at IS NULL ORDER BY created_at,id LIMIT 1').first(),
   db.prepare('SELECT delivered_at FROM capital_radar_alerts WHERE delivered_at IS NOT NULL ORDER BY delivered_at DESC,id DESC LIMIT 1').first(),
   db.prepare('SELECT delivered_at,expired_at FROM capital_radar_alerts ORDER BY created_at DESC,id DESC LIMIT 1').first()
@@ -111,9 +114,9 @@ async function outboxOf(snapshot){
 async function alertRoute(request,env){
  const given=/^Bearer ([^\s]{1,512})$/.exec(request.headers.get('Authorization')||'')?.[1];
  if(!given)return json({ok:false,error:'unauthorized'},401);
- if(!env.EVENTS)throw Error('unavailable');
- const expected=await alertKey(env.EVENTS);
+ const expected=alertKey(env);
  if(!expected||await hash(given)!==await hash(expected))return json({ok:false,error:'unauthorized'},401);
+ if(!env.EVENTS)throw Error('unavailable');
  if(!['GET','POST'].includes(request.method))return json({ok:false,error:'method_not_allowed'},405,{Allow:'GET, POST'});
  const db=env.EVENTS;await ensureAlerts(db);await expireAlerts(db);
  if(request.method==='GET'){
@@ -161,7 +164,7 @@ export async function capitalRadarRoute(request,env,fetcher=fetch){
    if(!env.MEMBER_WATCH_SECRET||!env.EVENTS)throw Error('unavailable');
    const expected=await hash(env.MEMBER_WATCH_SECRET+':capital-radar-runner:v1');
    if(await hash(bearer)!==await hash(expected))return json({ok:false,error:'unauthorized'},401);
-   if(request.method==='GET')return json({ok:true,snapshot:await read(env.EVENTS)});
+   if(request.method==='GET')return json({ok:true,snapshot:await read(env)});
    if(!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type')||''))return json({ok:false,error:'invalid_request'},400);
    const raw=await boundedText(request.body,{maxBytes:MAX_BYTES,timeoutMs:10000,tooLarge:'too_large',timeout:'request_timeout',invalid:'invalid_request'});
    let body;try{body=JSON.parse(raw);}catch{return json({ok:false,error:'invalid_request'},400);}
@@ -188,7 +191,7 @@ export async function capitalRadarRoute(request,env,fetcher=fetch){
    return new Response(request.method==='HEAD'?null:asset.body,{status:asset.status,headers:secured});
   }
   if(!env.EVENTS)throw Error('unavailable');
-  const response=json({ok:true,snapshot:memberSnapshot(await read(env.EVENTS))});
+  const response=json({ok:true,snapshot:memberSnapshot(await read(env))});
   return request.method==='HEAD'?new Response(null,{status:response.status,headers:response.headers}):response;
  }catch(e){
   const status={invalid_snapshot:400,invalid_outbox:400,invalid_request:400,too_large:413,request_timeout:408}[e.message]||503;

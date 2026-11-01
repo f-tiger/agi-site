@@ -34,6 +34,7 @@ jobs:
         run: |
           python3 -m unittest discover -s tools/capital-radar -p 'test_*.py'
           node tools/capital-radar/test-contract.mjs
+          node tools/capital-radar/test-configure-relay.mjs
       - name: Collect, evaluate and queue private SunWatch signals
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
