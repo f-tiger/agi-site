@@ -3,8 +3,8 @@
 Registered AGI fleet accounts can use `https://agiscorecard.com/capital-radar`.
 The existing host-bound account session protects the HTML and JSON at the Worker,
 including direct asset aliases. This feature grants no paid membership and does
-not subscribe visitors to marketing. The owner alone receives the automation's
-Telegram digest.
+not subscribe visitors to marketing. Owner notifications use the existing
+SunWatch Telegram channel; registered visitors are not added to its recipients.
 
 ## What the data means
 
@@ -30,7 +30,8 @@ day is excluded from training because it imports a feed archive.
 runner. GitHub schedules can be delayed. It reads/writes the private D1 snapshot
 through `/api/capital-radar/runner`; data is never committed to this public repo
 or uploaded as a public Actions artifact. The runner stores coverage, seen IDs,
-and notification claims privately; the registered-user API strips internals.
+and pending notification messages privately; the registered-user API strips
+internals. Collection and notification delivery are separate operations.
 
 A complete daily observation requires a successful fetch from all three feeds.
 Missing days break training continuity; they never become measured zeroes. The
@@ -50,26 +51,51 @@ loosens its own gate. An error range based on the past 90th-percentile absolute
 error widens by square root of horizon. It is not a calibrated probability, a
 funding forecast, an investment-return forecast, or a proven predictive edge.
 
-## Runtime credentials and Telegram
+## Runtime credentials and SunWatch delivery
 
 Use existing `CLOUDFLARE_API_TOKEN` and optional `ADS_WATCH_SECRET` in Actions.
 `run.mjs` derives the same AGI membership subkey as the deployment helper, then
 scopes it with SHA256 and `:capital-radar-runner:v1`. The parent Cloudflare key
 is removed from the collector environment and is never sent to the website.
 
-Telegram uses the complete `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` pair. If that
-pair is absent, the complete existing owner-private `TRADER_TG_TOKEN` +
-`TRADER_TG_CHAT` pair is used. Pairs are never mixed. No credentials, recipient
-identifiers, request bodies, or source headlines are printed in public logs.
+The collector does **not** send Telegram requests or need Telegram secrets.
+Existing bot credentials and the owner's recipient stay in the SunWatch Worker
+in `f-tiger/sunPredition`. The collection workflow has no Telegram secret
+bindings, and its Node launcher removes unrelated notification secrets from the
+child environment if a local caller happened to supply them. Public logs contain
+only bounded counts and fixed status codes, never notification bodies or secrets.
 
-At most one digest per UTC day reports new mentions and/or a changed available
-forecast, with sources and the protected site link. A private send claim is
-persisted before sending, then Telegram's successful API response is recorded.
-Timeout/ambiguous failure becomes `delivery_unknown`, makes the run fail, and
-is not automatically resent that day; this favors avoiding duplicate messages
-over exactly-once delivery claims. A missing credential pair is visibly
-`not_configured`: data still saves, then the job fails to surface the gap.
-The dashboard distinguishes configuration from an actual `lastSentAt` receipt.
+The collector writes a private `internal.notificationOutbox` with `id`, `message`,
+`status: pending`, and `createdAt` alongside its snapshot. The ID is the first 24
+hex characters of SHA256(message). The private API stores the outbox idempotently
+in a separate D1 queue. SunWatch's existing automation reads only that protected
+owner queue, sends through the already connected owner channel, then acknowledges
+the exact message ID. The shared relay credential stays at the service boundary;
+it is not a bot credential and does not grant public access to the dashboard.
+
+The first relay message confirms the actual current state, including retained
+article count, source availability and prediction readiness. Retained articles
+are explicitly not labelled newly discovered. Subsequent messages require a core
+signal: a newly observed Bay Area financing candidate; the first ready forecast;
+a change in the seven-day forecast total of both at least 25% and at least five
+mentions relative to the last notified forecast; or a selected-method change.
+Ordinary AI articles and model-version/timestamp churn remain silent.
+
+The collector creates at most one message per UTC day, accounting for an existing
+receipt that day. An unacknowledged message is preserved unchanged through new
+collection runs, source failures and new forecasts. New Bay Area financing
+candidates discovered meanwhile are deferred until the pending message is
+acknowledged and the daily cap allows another. The admin GET marks an outbox
+`sent` only for the same ID's confirmed receipt; the collector then clears that
+acknowledged outbox. The forecast-change comparison baseline advances only after
+that matching acknowledgement, never on queue creation. Pending messages expire
+after 72 hours in the backend: an `expired` receipt clears the stale outbox and
+does not count as sent or advance the forecast baseline. Source records and
+private training state continue updating
+while delivery retries remain pending. SunWatch owns durable retries and receipts;
+there is no exactly-once guarantee across a Telegram success and a subsequent
+storage failure. The dashboard distinguishes relay configuration, pending state
+and an actual `lastSentAt` receipt. It never treats a queued message as delivered.
 
 ## Verification and manual operation
 
@@ -81,12 +107,13 @@ node tools/capital-radar/run.mjs --dry-run
 
 Dry run reads public feeds and optionally existing private state, but writes no
 data and sends no Telegram messages. The manual workflow input defaults to dry
-run. Set `dry_run=false` to perform the authorized collection/save/notification
-cycle. Failures print only fixed diagnostic codes; inspect the private dashboard
+run. Set `dry_run=false` to perform the authorized collection/save/queue cycle;
+this does not itself call Telegram. Failures print only fixed diagnostic codes;
+inspect the private dashboard
 for source health. Initial network verification observed all three feeds respond
 successfully; this is not a guarantee of future publisher availability. The
-workflow must be deployed and run before claiming an active schedule, populated
-production database, or delivered Telegram notification.
+relay change must be deployed at both services and exercised before claiming
+SunWatch delivery. A successful collector run proves persistence, not delivery.
 
 The dashboard and member API are private/noindex and excluded from third-party
 analytics. Their private records must not appear in sitemaps, public JSON,
