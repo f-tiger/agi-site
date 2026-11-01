@@ -49,6 +49,62 @@ function sourceTimestamp(value) {
     && Number.isFinite(Date.parse(value)) ? value : null;
 }
 
+function calendarDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value ? value : null;
+}
+
+// This is a projection of the already-read API result, not another query.
+// Keep viewer actions separate from creator v2 counts and Kimi plan actions.
+function viewerDepthSnapshot(api) {
+  const raw = api.depth_signals;
+  const generated = sourceTimestamp(api.generated);
+  const start = calendarDate(raw?.start), end = calendarDate(raw?.end_exclusive);
+  const measurementStart = calendarDate(raw?.measurement_start);
+  const firstComplete = calendarDate(raw?.first_complete_utc_day);
+  const sourceDay = calendarDate(generated?.slice(0, 10));
+  const requestedStart = calendarDate(api.since);
+  const metadataValid = !!(sourceDay && requestedStart && start && end && measurementStart && firstComplete
+    && raw?.date_basis === 'UTC' && start >= requestedStart && start >= measurementStart
+    && start <= end && firstComplete >= measurementStart && end <= sourceDay && end === api.until);
+  const completeStart = metadataValid ? (start > firstComplete ? start : firstComplete) : null;
+  const snapshot = {
+    schema_version: 1,
+    source: 'depth_signals',
+    source_generated_at: generated,
+    measurement_start: measurementStart,
+    first_complete_utc_day: firstComplete,
+    window: { start, end_exclusive: end, timezone: raw?.date_basis === 'UTC' ? 'UTC' : null },
+    complete_window: metadataValid && completeStart < end ? { start: completeStart, end_exclusive: end, timezone: 'UTC' } : null,
+    ok: false, partial: true, reason: null, rows: null,
+    definition: 'Viewer-only fixed watch_save/watch_resume/watch_export counts from the existing depth query. Rows are sparse complete UTC measurement days; the launch partial day is excluded. A null complete_window means no validated complete measurement day is available. An empty row list is not zero-filled usage; missing or invalid source rows are null. Save is a local self-report, resume is a link click, and export is download initiation, not playback, people, verified reuse or revenue. Creator v2 and Kimi plan actions are separate.',
+  };
+  if (raw == null) snapshot.reason = 'not_reported';
+  else if (raw.ok === false || raw.partial === true) snapshot.reason = 'source_unavailable';
+  else if (raw.ok !== true || !Array.isArray(raw.rows)) snapshot.reason = 'invalid_shape';
+  else if (!metadataValid) snapshot.reason = 'invalid_metadata';
+  else {
+    const actions = new Set(['watch_save', 'watch_resume', 'watch_export']);
+    const seen = new Set(), rows = [];
+    for (const row of raw.rows) {
+      if (!row || typeof row !== 'object' || Array.isArray(row)) { snapshot.reason = 'invalid_rows'; break; }
+      if (!actions.has(row.action)) continue;
+      const day = calendarDate(row.date), key = `${day}/${row.action}`;
+      if (!day || day < start || day >= end || !Number.isSafeInteger(row.count) || row.count < 0 || seen.has(key)) {
+        snapshot.reason = 'invalid_rows'; break;
+      }
+      seen.add(key);
+      if (day >= completeStart) rows.push({ date: day, action: row.action, count: row.count });
+    }
+    if (!snapshot.reason) {
+      rows.sort((a, b) => a.date.localeCompare(b.date) || a.action.localeCompare(b.action));
+      Object.assign(snapshot, { ok: true, partial: false, rows });
+    }
+  }
+  return snapshot;
+}
+
 function manjuSnapshot(api) {
   const raw = api.manju_signals;
   const object = value => value && typeof value === 'object' && !Array.isArray(value);
@@ -72,6 +128,8 @@ function manjuSnapshot(api) {
     partial: !ok || !knownVersion || !inquiries || [...Object.values(actions || {}), ...Object.values(inquiries || {})].includes(null),
     reason: raw == null ? 'not_reported' : raw.ok === false ? 'source_unavailable' : !ok ? 'invalid_shape' : !knownVersion ? 'unknown_measurement_version' : null,
     actions, inquiries,
+    viewer_depth: viewerDepthSnapshot(api),
+    search_definition: 'search_empty is a local-catalog miss, emitted after input changes or submit, before remote discovery. search_submit counts explicit form submission. discover_found/empty/error/limited/cached are separate remote states, not a joined funnel; do not divide search_empty by search_submit as a failure rate.',
     definition: 'Fixed action and inquiry counts, not unique users, qualified customers, retention or revenue. Legacy view includes non-title pages and is not a tool-exposure denominator. video_view is a visible initialized tool page; video_start is its first trusted substantive non-example edit. Each video_report status is counted at most once per page after such editing; statuses may overlap, not distinct tasks, sufficient input, usefulness or successful publication. New events only cover time after deployment, even when the source supports v2. video_complete retains non-example report rendering including incomplete input; video_export combines download initiation and successful copy. official_open is an official-entry click, not a play or commission. Missing reads or fields are null; rolling-window differences are not daily additions. Known QA exclusions do not prove human traffic.',
   };
 }
@@ -163,8 +221,56 @@ if (SELFTEST) {
   const incomplete=summarise({...fixture,manju_signals:{ok:true,actions:{view:0,video_complete:'2',video_export:-1,open:1.5,source:Number.MAX_SAFE_INTEGER+1},inquiries:null}}).manju_signals;
   assert(incomplete.ok && incomplete.partial && incomplete.actions.view===0 && incomplete.actions.video_complete===null && incomplete.actions.video_export===null && incomplete.actions.open===null && incomplete.actions.source===null && incomplete.inquiries===null, '无效计数和缺少的单项必须保留未知');
   const privateMarker='PRIVATE_FIXTURE_MARKER';
-  const extra=summarise({...fixture,manju_signals:{...fixture.manju_signals,customer:privateMarker,definition:privateMarker,actions:{...fixture.manju_signals.actions,[privateMarker]:99},inquiries:{...fixture.manju_signals.inquiries,[privateMarker]:99}}}).manju_signals;
+  const extra=summarise({...fixture,manju_signals:{...fixture.manju_signals,customer:privateMarker,definition:privateMarker,search_definition:privateMarker,actions:{...fixture.manju_signals.actions,[privateMarker]:99},inquiries:{...fixture.manju_signals.inquiries,[privateMarker]:99}}}).manju_signals;
   assert(!JSON.stringify(extra).includes(privateMarker), '不复制任意私有字段、自由文本或未登记计数键');
+
+  // Exercise the actual API producer with an in-memory D1 response, never a
+  // production request. The launch date was not a complete measurement day.
+  const { readDepthSignals } = await import('../lib/depth-signals.mjs');
+  const db = { prepare: () => ({ bind: () => ({ all: async () => ({ results: [
+    { d: '2026-10-31', path: '/depth/watch_save', n: 4 },
+    { d: '2026-11-01', path: '/depth/watch_resume', n: 2 },
+    { d: '2026-11-01', path: '/depth/plan_save', n: 9 },
+  ] }) }) }) };
+  const viewerApi = { ...fixture, generated: '2026-11-02T06:00:00.000Z', since: '2026-10-05', until: '2026-11-02',
+    depth_signals: await readDepthSignals(db, '2026-10-05', '2026-11-02') };
+  const viewer = summarise(viewerApi).manju_signals.viewer_depth;
+  assert(viewer?.ok && !viewer.partial, '现有每日导出必须保留 API 的观众完整日聚合');
+  assert(JSON.stringify(viewer.rows)===JSON.stringify([{date:'2026-11-01',action:'watch_resume',count:2}]), '排除上线部分日和 Kimi，观众稀疏行不补零');
+  assert(viewer.source_generated_at===viewerApi.generated && viewer.window.start==='2026-10-31' && viewer.window.end_exclusive==='2026-11-02' && viewer.window.timezone==='UTC', '保留实际来源时间和原始 UTC 半开窗口');
+  assert(viewer.complete_window.start==='2026-11-01' && viewer.first_complete_utc_day==='2026-11-01', '完整计量窗口不能从上线部分日开始');
+  const viewOf = (raw, api={}) => summarise({...viewerApi,...api,depth_signals:raw}).manju_signals.viewer_depth;
+  const early = viewOf({...viewerApi.depth_signals,end_exclusive:'2026-11-01',rows:[]},{generated:'2026-11-01T02:00:00Z',until:'2026-11-01'});
+  assert(early.ok && early.complete_window===null && early.rows.length===0, '尚无完整计量日须明确，不是零使用');
+  const empty = viewOf({...viewerApi.depth_signals,rows:[]});
+  assert(empty.ok && empty.complete_window!==null && empty.rows.length===0, '成功稀疏空结果不制造每日零行');
+  const zero = viewOf({...viewerApi.depth_signals,rows:[{date:'2026-11-01',action:'watch_export',count:0}]});
+  assert(zero.ok && zero.rows[0].count===0, '仅保留来源明确提供的合法零');
+  for (const raw of [null,undefined,{...viewerApi.depth_signals,ok:false},{...viewerApi.depth_signals,partial:true},
+    {...viewerApi.depth_signals,rows:null},{...viewerApi.depth_signals,date_basis:'PRIVATE_ZONE'},
+    {...viewerApi.depth_signals,start:'2026-02-30'}, {...viewerApi.depth_signals,end_exclusive:'2026-11-03'},
+    {...viewerApi.depth_signals,first_complete_utc_day:'2026-10-30'}]) {
+    const invalid=viewOf(raw);
+    assert(!invalid.ok && invalid.partial && invalid.rows===null, '失败或无效来源元数据必须未知，不能沿用行或借导出时间');
+  }
+  for (const row of [
+    {date:'2026-11-02',action:'watch_save',count:2}, {date:'2026-10-30',action:'watch_save',count:2},
+    {date:'2026-02-30',action:'watch_save',count:2}, {date:'2026-11-01',action:'watch_save',count:'2'},
+    {date:'2026-11-01',action:'watch_save',count:-1}, {date:'2026-11-01',action:'watch_save',count:1.5},
+    {date:'2026-11-01',action:'watch_save',count:Number.MAX_SAFE_INTEGER+1}, null,
+  ]) {
+    const invalid=viewOf({...viewerApi.depth_signals,rows:[row]});
+    assert(!invalid.ok && invalid.rows===null, '坏行、未结束日期或不安全计数不得被当作完整数据');
+  }
+  const duplicate={date:'2026-11-01',action:'watch_save',count:2};
+  assert(viewOf({...viewerApi.depth_signals,rows:[duplicate,duplicate]}).rows===null, '重复日/动作不得累加或默默去重');
+  assert(viewOf(viewerApi.depth_signals,{generated:null}).rows===null, '来源时间缺失不能用当前时间补造');
+  const safe = viewOf({...viewerApi.depth_signals,definition:privateMarker,customer:privateMarker,
+    rows:[{...duplicate,customer:privateMarker},{date:privateMarker,action:privateMarker,count:99}]});
+  assert(safe.ok && safe.rows.length===1 && !JSON.stringify(safe).includes(privateMarker), '只复制固定观众行键，不透传未知动作或个人字段');
+  const viewReplay=summarise(viewerApi,'2026-11-03T08:00:00Z').manju_signals.viewer_depth;
+  assert(JSON.stringify(viewReplay)===JSON.stringify(viewer), '重新导出不能刷新观众来源时间或改变窗口');
+  assert(typeof s.manju_signals.search_definition==='string' && s.manju_signals.search_definition.includes('local-catalog miss') && !JSON.stringify(extra).includes(privateMarker), '每日快照保留固定搜索口径，不拷来源自由文本');
   console.log('✅ reach-export selftest 通过（映射与合并计数正确）');
   process.exit(0);
 }
@@ -187,6 +293,8 @@ try {
   const out = summarise(api);
   writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');
   console.log(`✅ reach.json 已写:${out.humans_referred} 次带外部引荐页面事件（非独立人数）;请求窗口 ${out.window_days} 天，含当前 UTC 部分日;来源 ${out.source_generated_at || '未知'};导出 ${out.exported_at};帧选 ${out.manju_signals.ok ? (out.manju_signals.partial ? 'partial' : 'ok') : 'unknown'}`);
+  const viewer = out.manju_signals.viewer_depth;
+  console.log(`观众完整日快照: ${viewer.ok ? (viewer.complete_window ? '来源有效，保留稀疏行' : '尚无完整计量日，不表示零使用') : 'unknown'};来源 ${viewer.source_generated_at || '未知'}`);
 } catch (e) {
   const had = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')).generated : '（无旧文件）';
   console.log(`::warning::reach 取数失败（${String(e.message || e).slice(0, 120)}）——沿用旧 reach.json ${had};本轮增长算法读到的是陈旧数据,不是「没有流量」`);
