@@ -33,6 +33,16 @@ const path=require('node:path');
    }
    await c.close();
   }
+  // The live fleet account tools can wrap the search into a new desktop row.
+  // Test that composition as well as the static-build layout, including no JS.
+  for(const javaScriptEnabled of [true,false]){
+   const wrapped=await browser.newContext({javaScriptEnabled,viewport:{width:1280,height:900},userAgent:'getecoback-ci'});
+   const page=await wrapped.newPage();await page.goto(base+'/?__ci=1');
+   await page.addStyleTag({content:'.eb-nav-in{display:flex!important;flex-wrap:wrap!important}.eb-nav-in>.eb-links{flex-basis:100%!important}'});
+   await page.locator('#eb-search-toggle').click();
+   assert(await page.locator('#eb-search-panel').evaluate(e=>{const b=e.getBoundingClientRect();return b.left>=0&&b.right<=innerWidth+1;}),'wrapped fleet header must keep the full panel visible');
+   await wrapped.close();checks++;
+  }
   const c=await browser.newContext({javaScriptEnabled:false,viewport:{width:320,height:900}});
   const page=await c.newPage();await page.goto(base+'/?__ci=1');await page.locator('#eb-search-toggle').click();
   assert(await page.locator('[data-eco-task]').first().isVisible());assert(await page.locator('#eb-search-form').isHidden());
