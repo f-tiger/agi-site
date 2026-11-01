@@ -16,7 +16,7 @@ if(typeof document!=='undefined'){
   const query=document.getElementById('eb-search-query'),results=document.getElementById('eb-search-results'),status=document.getElementById('eb-search-status'),toggle=document.getElementById('eb-search-toggle'),form=document.getElementById('eb-search-form');
   let pending,timer,sequence=0;
   const emit=name=>window.dispatchEvent(new CustomEvent('fleet:business',{detail:{name}}));
-  const close=focus=>{root.open=false;if(focus)toggle.focus();};
+  const close=focus=>{root.open=false;toggle.setAttribute('aria-expanded','false');if(focus)toggle.focus();};
   async function search(){
    const id=++sequence,term=query.value.trim();results.replaceChildren();
    if(term.length<2){status.textContent=t.searchHint;return;}
@@ -33,6 +33,7 @@ if(typeof document!=='undefined'){
     status.textContent=results.children.length?t.searchFound.replace('{n}',results.children.length):t.searchEmpty;
    }catch{pending=undefined;if(id===sequence)status.textContent=t.searchError;}
   }
+  toggle.addEventListener('click',e=>{e.preventDefault();root.open=!root.open;toggle.setAttribute('aria-expanded',String(root.open));if(root.open)query.focus();});
   root.addEventListener('toggle',()=>{toggle.setAttribute('aria-expanded',String(root.open));if(root.open){query.focus();emit('eco_discovery_open');}});
   form.addEventListener('submit',e=>{e.preventDefault();clearTimeout(timer);search();});
   query.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(search,150);});
