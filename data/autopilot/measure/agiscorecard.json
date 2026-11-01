@@ -3,8 +3,16 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 20,
+    "n": 21,
     "q": "tool:portfolio_returns"
+   },
+   {
+    "n": 9,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 9,
+    "q": "tool:invest_positions"
    },
    {
     "n": 8,
@@ -15,28 +23,20 @@
     "q": "tool:thesis_tracker"
    },
    {
-    "n": 8,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 8,
-    "q": "tool:invest_positions"
-   },
-   {
     "n": 6,
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-10-31",
+ "fetched": "2026-11-01",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,

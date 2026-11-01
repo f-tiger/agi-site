@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-10-31",
+ "generated": "2026-11-01",
  "pages": {
   "about.html": {
    "changed": "2026-07-10",
@@ -57,6 +57,11 @@
    "h": "986a03c5eebb2101",
    "origin": "bootstrap"
   },
+  "ai-futures.html": {
+   "changed": "2026-10-31",
+   "h": "bc3be347191e8fe6",
+   "origin": "bootstrap"
+  },
   "ai-infrastructure.html": {
    "changed": "2026-09-30",
    "h": "f059f6399736987c",
@@ -83,8 +88,8 @@
    "origin": "observed"
   },
   "ai-tools.html": {
-   "changed": "2026-10-09",
-   "h": "a5fa8d3c8edb98b0",
+   "changed": "2026-11-01",
+   "h": "b227852333aebbbb",
    "origin": "observed"
   },
   "ai-trading-ledger.html": {
@@ -167,14 +172,19 @@
    "h": "54a8a3a3b6ee6f4f",
    "origin": "bootstrap"
   },
+  "capital-radar-about.html": {
+   "changed": "2026-10-31",
+   "h": "7003fb8b52d45c69",
+   "origin": "bootstrap"
+  },
   "changelog.html": {
    "changed": "2026-10-09",
    "h": "d8aa3cebdb02ce72",
    "origin": "observed"
   },
   "cn.html": {
-   "changed": "2026-10-09",
-   "h": "1f4dc03eefeb819c",
+   "changed": "2026-11-01",
+   "h": "56260cfadd0d8c59",
    "origin": "observed"
   },
   "create.html": {
@@ -463,9 +473,9 @@
    "origin": "bootstrap"
   },
   "future-guide.html": {
-   "changed": "2026-10-09",
-   "h": "672ae0e19c3fd876",
-   "origin": "bootstrap"
+   "changed": "2026-11-01",
+   "h": "91965a6e1866e4e2",
+   "origin": "observed"
   },
   "future-guide/agent-coordination.html": {
    "changed": "2026-10-03",
@@ -648,8 +658,8 @@
    "origin": "bootstrap"
   },
   "index.html": {
-   "changed": "2026-10-09",
-   "h": "bab20ae6a6a7fd0a",
+   "changed": "2026-11-01",
+   "h": "cd377c5363493218",
    "origin": "observed"
   },
   "intelligence-explosion-2027.html": {
@@ -1017,6 +1027,11 @@
    "h": "fd85fa6d8776d203",
    "origin": "bootstrap"
   },
+  "tianya.html": {
+   "changed": "2026-10-31",
+   "h": "c8e5ecd97c0d9486",
+   "origin": "bootstrap"
+  },
   "two-year-scorecard.html": {
    "changed": "2026-07-12",
    "h": "8cb136daaf8d8e55",
@@ -1217,6 +1232,11 @@
    "h": "688ffac8da8ce71c",
    "origin": "observed"
   },
+  "zh/ai-futures.html": {
+   "changed": "2026-10-31",
+   "h": "6b1959d56df67d4d",
+   "origin": "bootstrap"
+  },
   "zh/ai-infrastructure.html": {
    "changed": "2026-09-30",
    "h": "12ae988723413bae",
@@ -1238,8 +1258,8 @@
    "origin": "observed"
   },
   "zh/ai-tools.html": {
-   "changed": "2026-10-09",
-   "h": "ee3fe86caf973950",
+   "changed": "2026-11-01",
+   "h": "f2bb9f70088ca37f",
    "origin": "observed"
   },
   "zh/ai-vs-human-intelligence.html": {
@@ -1353,9 +1373,9 @@
    "origin": "bootstrap"
   },
   "zh/future-guide.html": {
-   "changed": "2026-10-09",
-   "h": "756d44f56aaceda0",
-   "origin": "bootstrap"
+   "changed": "2026-11-01",
+   "h": "fff241f6ea1d7a12",
+   "origin": "observed"
   },
   "zh/future-guide/agent-coordination.html": {
    "changed": "2026-10-03",
@@ -1606,6 +1626,16 @@
    "changed": "2026-10-09",
    "h": "3f02b50fa6699109",
    "origin": "observed"
+  },
+  "zh/tianya-research.html": {
+   "changed": "2026-10-31",
+   "h": "043e853f2940bc41",
+   "origin": "bootstrap"
+  },
+  "zh/tianya.html": {
+   "changed": "2026-10-31",
+   "h": "87f99377d1ad49e8",
+   "origin": "bootstrap"
   },
   "zh/us-china-ai-arms-race.html": {
    "changed": "2026-10-09",

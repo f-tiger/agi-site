@@ -8,85 +8,66 @@
    "q": "könighaus infrarotheizung thermostat",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 113450
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.737,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit spiritus entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 74650
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.7,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel aus silikonfugen entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 57950
+   "stand": "2026-10-31",
+   "v": 110550
   },
   {
    "heat": null,
    "kind": "value",
    "match": 1.0,
-   "page": "guide/infrarotheizung-garage.html",
-   "q": "infrarotheizung garage",
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "heizlüfter oder infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 35350
+   "stand": "2026-10-31",
+   "v": 59800
+  },
+  {
+   "heat": {
+    "n7": 2,
+    "p7": 4
+   },
+   "kind": "value",
+   "match": 0.75,
+   "page": "index.html",
+   "q": "infrarotheizung schreibtisch",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-31",
+   "v": 40800
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.737,
+   "page": "guide/infrarotheizung-gegen-schimmel.html",
+   "q": "infrarotheizung vor und nachteile",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-31",
+   "v": 38450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.8,
+   "page": "guide/stromkosten-rechner.html",
+   "q": "infrarotheizung werkstatt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-31",
+   "v": 34800
   },
   {
    "heat": null,
    "kind": "value",
    "match": 0.775,
-   "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
-   "q": "stand infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 34500
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-wand-kommt-wieder.html",
-   "q": "schimmel entferner wand",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 33600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
    "page": "guide/infrarotheizung-badezimmer.html",
-   "q": "infrarotheizung auf rollen",
+   "q": "elektrische heizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 32550
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.96,
-   "page": "guide/infrarotheizung-ratgeber.html",
-   "q": "infrarotheizung 600 watt mit thermostat",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 32150
+   "stand": "2026-10-31",
+   "v": 28600
   },
   {
    "heat": null,
@@ -102,55 +83,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel an silikon entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 4350
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel am fensterrahmen entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3750
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel an fensterdichtung entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3700
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel an der wand entfernen hausmittel",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3450
-  },
-  {
-   "heat": {
-    "n7": 5,
-    "p7": 1
-   },
-   "kind": "value",
    "match": 0.967,
-   "page": "index.html",
+   "page": "guide/klimaanlage-mit-heizfunktion.html",
    "q": "heizen mit klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
@@ -209,7 +143,7 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "guide/luftentfeuchter-10-qm.html",
    "q": "pattex luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
@@ -220,46 +154,36 @@
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "byecold infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 49950
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "papermoon infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 48250
+   "stand": "2026-10-31",
+   "v": 44050
   },
   {
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "steinfeld infrarotheizung",
+   "q": "infrarot wandheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 37500
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "konvektorheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 33350
+   "stand": "2026-10-31",
+   "v": 31550
   },
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "könighaus infrarotheizung 1200 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-10-31",
+   "v": 30550
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/luftentfeuchter-10-qm.html",
    "q": "pingi luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
@@ -487,15 +411,10 @@
    "v": 50
   }
  ],
- "generated": "2026-10-31",
+ "generated": "2026-11-01",
  "geo": "DE",
- "heat_source": "measured 2026-10-31 (16 pages); no notes",
+ "heat_source": "measured 2026-11-01 (19 pages); no notes",
  "hot_pages": [
-  {
-   "n7": 5,
-   "p7": 1,
-   "page": "/"
-  },
   {
    "n7": 4,
    "p7": 2,
@@ -503,8 +422,13 @@
   },
   {
    "n7": 4,
-   "p7": 5,
+   "p7": 4,
    "page": "/guide/luftentfeuchter-keller.html"
+  },
+  {
+   "n7": 4,
+   "p7": 4,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 3,
@@ -523,23 +447,38 @@
   },
   {
    "n7": 3,
-   "p7": 4,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
+   "p7": 1,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
+  },
+  {
+   "n7": 3,
+   "p7": 3,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
    "p7": 0,
-   "page": "/guide/strompreis-radar.html"
+   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
   },
   {
-   "n7": 3,
+   "n7": 2,
    "p7": 4,
-   "page": "/guide/was-bedeutet-btu.html"
+   "page": "/"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/en/guide/portable-ac-hose-extension.html"
   },
   {
    "n7": 2,
    "p7": 1,
    "page": "/en/guide/portable-ac-leaking-water.html"
+  },
+  {
+   "n7": 2,
+   "p7": 1,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 2,
@@ -550,39 +489,20 @@
    "n7": 2,
    "p7": 3,
    "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/guide/mobile-klimaanlage-zu-laut.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "radiator",
   "meacodry arete one 12l",
-  "kalkfarbe",
   "sky scanner",
   "notlandung",
   "steckdosenleiste",
   "weltweite zeitumstellung 2027",
   "constantin schreiber axel springer",
-  "isopropanol kaufen",
   "unfall italien bus wohnmobil",
   "daikin perfera",
   "balenciaga city bag",
-  "isopropanol",
   "dreame r20"
  ],
  "site": "getecoback",

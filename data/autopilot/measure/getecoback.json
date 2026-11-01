@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 10,
-    "p7": 12
+    "n7": 12,
+    "p7": 7
    },
    "btu_calc": {
     "n7": 0,
@@ -18,16 +18,16 @@
     "p7": 0
    },
    "buyer_view": {
-    "n7": 4,
-    "p7": 2
+    "n7": 3,
+    "p7": 3
    },
    "cold_now": {
-    "n7": 10,
-    "p7": 8
+    "n7": 15,
+    "p7": 1
    },
    "feuchte_now": {
-    "n7": 11,
-    "p7": 10
+    "n7": 12,
+    "p7": 9
    },
    "heizkosten_calc": {
     "n7": 0,
@@ -38,36 +38,36 @@
     "p7": 3
    },
    "page_view": {
-    "n7": 70,
-    "p7": 92
+    "n7": 74,
+    "p7": 89
    },
    "popup_click": {
     "n7": 1,
-    "p7": 2
+    "p7": 1
    },
    "popup_close": {
-    "n7": 8,
+    "n7": 10,
     "p7": 11
    },
    "popup_view": {
     "n7": 16,
-    "p7": 26
+    "p7": 27
    },
    "seal_fit": {
     "n7": 0,
     "p7": 1
    },
    "strom_now": {
-    "n7": 12,
-    "p7": 15
+    "n7": 14,
+    "p7": 14
    },
    "stromkosten_calc": {
     "n7": 1,
     "p7": 1
    },
    "strompreis_api": {
-    "n7": 3,
-    "p7": 0
+    "n7": 2,
+    "p7": 1
    },
    "video_play": {
     "n7": 2,
@@ -76,14 +76,18 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-10-31",
+ "fetched": "2026-11-01",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 5,
-   "p7": 1
+   "n7": 2,
+   "p7": 4
+  },
+  "/en/guide/portable-ac-hose-extension.html": {
+   "n7": 2,
+   "p7": 0
   },
   "/en/guide/portable-ac-leaking-water.html": {
    "n7": 2,
@@ -92,6 +96,10 @@
   "/guide/heizluefter-stromsparend.html": {
    "n7": 4,
    "p7": 2
+  },
+  "/guide/heizluefter-stromverbrauch.html": {
+   "n7": 2,
+   "p7": 1
   },
   "/guide/klimaanlage-40-qm.html": {
    "n7": 2,
@@ -109,20 +117,16 @@
    "n7": 2,
    "p7": 3
   },
-  "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 2,
-   "p7": 2
-  },
   "/guide/luftentfeuchter-keller.html": {
    "n7": 4,
-   "p7": 5
+   "p7": 4
   },
   "/guide/luftentfeuchter-ratgeber.html": {
    "n7": 3,
    "p7": 0
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 1
   },
   "/guide/mobile-klimaanlage-zu-laut.html": {
@@ -130,18 +134,26 @@
    "p7": 1
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "n7": 3,
+   "n7": 4,
    "p7": 4
   },
   "/guide/strompreis-radar.html": {
-   "n7": 3,
-   "p7": 0
+   "n7": 2,
+   "p7": 1
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 3,
-   "p7": 4
+   "p7": 3
+  },
+  "/guide/wohnmobil-feuchtigkeit-winter.html": {
+   "n7": 3,
+   "p7": 0
   },
   "/tools.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/wohnen.html": {
    "n7": 2,
    "p7": 0
   }
