@@ -2,7 +2,7 @@ name: Validate and deploy Web3 Workbench
 on:
   push:
     branches: [main, 'codex/web3-*']
-    paths: ['tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', '.github/scripts/deploy-main-guard*', 'sites/web3-studio/**', '.github/workflows/deploy-web3-studio.yml']
+    paths: ['tools/fleet-reporting/cache.mjs', 'tools/fleet-analytics/**', 'tools/fleet-account/**', 'tools/fleet/mcp-liveness-optout*', '.github/scripts/deploy-main-guard*', 'sites/web3-studio/**', '.github/workflows/deploy-web3-studio.yml']
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -49,6 +49,10 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/prepare.mjs
+      - name: Verify exact MCP monitor opt-out scope
+        working-directory: ${{ github.workspace }}
+        run: node tools/fleet/mcp-liveness-optout.test.mjs
+
       - name: Verify fleet account security
         working-directory: ${{ github.workspace }}
         run: node tools/fleet-account/test.mjs

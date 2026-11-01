@@ -1,3 +1,4 @@
+import {withMonitorOptOut} from '../../tools/fleet/mcp-liveness-optout.mjs';
 import {sharedAssets,staticSecurity} from './asset-routing.mjs';
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {withAggregateCache} from '../../tools/fleet-reporting/cache.mjs';
@@ -90,4 +91,4 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
 const fleetWrappedWorker = {async fetch(request,env){const u=new URL(request.url);if(hosts.has(u.hostname)&&isAnalyticsPath(u.pathname))return analyticsResponse(request,env);let response;try{response=await handle(request,env);}catch{response=json({error:'Service temporarily unavailable'},503);}const headers=new Headers(response.headers);for(const[k,v]of Object.entries(security))headers.set(k,v);if(!['/api/growth','/api/stats'].includes(u.pathname))headers.set('Cache-Control',(request.url.includes('/api/')||['/mcp','/market.html','/briefs.html','/updates.xml'].includes(new URL(request.url).pathname))?'no-store':'public, max-age=0, must-revalidate');return new Response(request.method==='HEAD'?null:response.body,{status:response.status,headers});}};
 
 
-export default withFleetAccount(fleetWrappedWorker);
+export default withMonitorOptOut(withFleetAccount(fleetWrappedWorker));

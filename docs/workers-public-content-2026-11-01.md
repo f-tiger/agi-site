@@ -57,3 +57,19 @@ submission or new recurring job. TDS domain redirects cannot be moved into
 References: [Pages routing](https://developers.cloudflare.com/pages/functions/routing/),
 [Pages redirects](https://developers.cloudflare.com/pages/configuration/redirects/),
 [Workers limits](https://developers.cloudflare.com/workers/platform/limits/).
+
+## Named liveness monitor opt-out
+
+[Glimind's operator policy](https://glimind.com/opt-out), read on 2026-11-01,
+supports a `403` response with `X-Sentinel-OptOut: 1` as a permanent request to
+stop probing. The new early response matches only its exact observed
+`SentinelOracle/0.1` User-Agent on explicitly listed fleet MCP endpoints. It is
+uncached and varies by User-Agent. Normal MCP clients and public discovery are
+unchanged; the response requires no body parsing, database or outbound requests.
+MCP Pulse is maintained in the separate `f-tiger/sellSomething` repository.
+
+This response still invokes the Worker. Savings require the external monitor to
+honor the opt-out and stop future requests, so do not count deployment as measured
+savings. This is distinct from the unapplied zone firewall proposal in PR #225.
+[mcpbeat's policy](https://mcpbeat.com/bot/) says a bare 403 does not stop its
+checks; it is not included in this opt-out. No external messages are sent.

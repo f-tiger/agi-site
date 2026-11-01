@@ -1,3 +1,4 @@
+import {monitorOptOut} from '../../../tools/fleet/mcp-liveness-optout.mjs';
 import {isAnalyticsPath,protectAnalyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {protectAccountPage} from '../lib/account-page-privacy.js';
 // 服务端爬虫可见性：页面级打点此前 100% 依赖客户端 JS beacon（build.mjs 的 sendBeacon），
@@ -122,7 +123,7 @@ async function handleRequest(ctx) {
 // Override it whenever this middleware actually ran so live checks can prove
 // the Pages routing boundary, including HTML responses from ctx.next().
 export async function onRequest(ctx) {
-  const response=await handleRequest(ctx);
+  const response=monitorOptOut(ctx.request)||await handleRequest(ctx);
   const result=new Response(response.body,response);
   result.headers.set('X-Fleet-Delivery','pages-function');
   return result;

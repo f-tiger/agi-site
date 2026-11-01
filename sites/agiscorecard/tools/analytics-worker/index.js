@@ -1,3 +1,4 @@
+import {withMonitorOptOut} from '../../../../tools/fleet/mcp-liveness-optout.mjs';
 import {agiMemberRequest} from '../../../../tools/fleet-account/agi-bridge.mjs';
 import {capitalRadarRoute} from '../capital-radar/server.mjs';
 import {withFleetAccount} from '../../../../tools/fleet-account/edge.mjs';
@@ -1340,4 +1341,4 @@ export function markdownCanonical(pathname) {
   return pathname === '/index.md' ? '/' : pathname.slice(0,-3);
 }
 
-export default withFleetAccount(fleetWrappedWorker,agiMemberRequest);
+export default withMonitorOptOut(withFleetAccount(fleetWrappedWorker,agiMemberRequest));

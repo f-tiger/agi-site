@@ -1,3 +1,4 @@
+import {withMonitorOptOut} from '../../tools/fleet/mcp-liveness-optout.mjs';
 import {withFleetAccount} from '../../tools/fleet-account/edge.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../tools/fleet-analytics/edge.mjs';
 import { handleMcp } from "./mcp.js";
@@ -419,4 +420,4 @@ const fleetWrappedWorker = {
   }
 };
 
-export default withFleetAccount(fleetWrappedWorker);
+export default withMonitorOptOut(withFleetAccount(fleetWrappedWorker));
