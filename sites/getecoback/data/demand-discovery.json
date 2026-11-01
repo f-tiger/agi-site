@@ -1,0 +1,192 @@
+{
+  "de": {
+    "heading": "Wobei brauchst du Hilfe?",
+    "tasks": [
+      {
+        "label": "Feuchte und beschlagene Fenster",
+        "url": "/guide/richtig-lueften-im-winter.html",
+        "aliases": "fenster nass kondenswasser feuchtigkeit lueften"
+      },
+      {
+        "label": "Wäsche in der Wohnung trocknen",
+        "url": "/waeschetrockner-oder-luftentfeuchter.html",
+        "aliases": "waesche trocken trocknen entfeuchter trockner"
+      },
+      {
+        "label": "Am Schreibtisch warm bleiben",
+        "url": "/guide/homeoffice-warm-bleiben.html",
+        "aliases": "kalte fuesse frieren homeoffice waerme"
+      },
+      {
+        "label": "Thermostat passt nicht?",
+        "url": "/guide/smarte-heizkoerperthermostate-lohnen-sich.html",
+        "aliases": "ventil adapter anschluss thermostat"
+      },
+      {
+        "label": "Stromkosten verstehen",
+        "url": "/guide/stromkosten-rechner.html",
+        "aliases": "verbrauch watt kwh strompreis kosten"
+      },
+      {
+        "label": "Ein Zimmer im Sommer kühlen",
+        "url": "/rechner.html",
+        "aliases": "hitze sommer kuehlen klimaanlage"
+      }
+    ]
+  },
+  "en": {
+    "heading": "What do you need help with?",
+    "tasks": [
+      {
+        "label": "Dry clothes indoors",
+        "url": "/en/guide/heated-airer-vs-dehumidifier.html",
+        "aliases": "laundry washing dry drying clothes"
+      },
+      {
+        "label": "Condensation or damp?",
+        "url": "/en/guide/rising-damp-penetrating-damp-or-condensation.html",
+        "aliases": "wet windows damp mould mold condensation"
+      },
+      {
+        "label": "Keep warm at your desk",
+        "url": "/en/guide/keep-warm-working-from-home.html",
+        "aliases": "cold feet warm desk home office"
+      },
+      {
+        "label": "Check radiator valve fit",
+        "url": "/en/guide/smart-radiator-valves-worth-it.html",
+        "aliases": "radiator valve adapter thermostat"
+      },
+      {
+        "label": "Compare electricity tariffs",
+        "url": "/en/energy-tariff-workbench.html",
+        "aliases": "electricity bill tariff cost"
+      },
+      {
+        "label": "Find a replacement filter",
+        "url": "/en/filter-finder.html",
+        "aliases": "replacement filter model"
+      }
+    ]
+  },
+  "nl": {
+    "heading": "Waarmee kunnen we helpen?",
+    "tasks": [
+      {
+        "label": "Vocht: ventileren of ontvochtigen?",
+        "url": "/nl/ventilatie-of-luchtontvochtiger.html",
+        "aliases": "vocht condens schimmel ventileren ontvochtiger"
+      },
+      {
+        "label": "Kies een oplossing voor thuis",
+        "url": "/nl/wonen.html",
+        "aliases": "was drogen wonen huis"
+      }
+    ]
+  },
+  "en-AU": {
+    "heading": "What do you need help with?",
+    "tasks": [
+      {
+        "label": "Cool a bedroom at night",
+        "url": "/au/cool-bedroom-at-night.html",
+        "aliases": "hot bedroom sleep night cooling"
+      },
+      {
+        "label": "Check portable AC window fit",
+        "url": "/au/portable-air-conditioner-window-kit.html",
+        "aliases": "rental window kit air conditioner"
+      },
+      {
+        "label": "Compare fan running costs",
+        "url": "/au/fan-running-cost.html",
+        "aliases": "fan electricity cost"
+      },
+      {
+        "label": "Shade a rental window",
+        "url": "/au/rental-window-shade.html",
+        "aliases": "rental shade sun heat"
+      }
+    ]
+  },
+  "fr": {
+    "heading": "De quoi avez-vous besoin ?",
+    "tasks": [
+      {
+        "label": "Choisir une solution pour la maison",
+        "url": "/fr/calculateur.html",
+        "aliases": "maison chaleur energie calculateur"
+      },
+      {
+        "label": "Comparer les offres d’électricité",
+        "url": "/fr/comparateur-electricite.html",
+        "aliases": "facture electricite tarif prix"
+      },
+      {
+        "label": "Partager un calculateur",
+        "url": "/fr/creator-kit.html",
+        "aliases": "partager integrer outil"
+      }
+    ]
+  },
+  "es": {
+    "heading": "¿Qué necesitas resolver?",
+    "tasks": [
+      {
+        "label": "Elegir una solución para casa",
+        "url": "/es/calculadora.html",
+        "aliases": "casa calor energia calculadora"
+      },
+      {
+        "label": "Comparar tarifas de luz",
+        "url": "/es/comparar-tarifas-luz.html",
+        "aliases": "factura electricidad tarifa precio"
+      },
+      {
+        "label": "Compartir una calculadora",
+        "url": "/es/creator-kit.html",
+        "aliases": "compartir integrar herramienta"
+      }
+    ]
+  },
+  "it": {
+    "heading": "Di cosa hai bisogno?",
+    "tasks": [
+      {
+        "label": "Stare al caldo mentre lavori",
+        "url": "/it/guide/stare-caldi-lavoro-da-casa.html",
+        "aliases": "freddo piedi lavoro casa caldo"
+      },
+      {
+        "label": "Controllare le valvole del termosifone",
+        "url": "/it/guide/valvole-termostatiche-smart-convengono.html",
+        "aliases": "termosifone valvola adattatore"
+      },
+      {
+        "label": "Confrontare le tariffe elettriche",
+        "url": "/it/confronto-tariffe-luce.html",
+        "aliases": "bolletta elettricita tariffa costo"
+      },
+      {
+        "label": "Scegliere una soluzione per casa",
+        "url": "/it/calcolatore.html",
+        "aliases": "casa caldo energia calcolatore"
+      }
+    ]
+  },
+  "zh-CN": {
+    "heading": "你需要解决什么问题？",
+    "tasks": [
+      {
+        "label": "核查 CBAM 供应商资料",
+        "url": "/zh/agents/cbam-supplier-data.html",
+        "aliases": "CBAM 碳关税 供应商 排放"
+      },
+      {
+        "label": "检查 EUDR 地理证据",
+        "url": "/zh/agents/eudr-geolocation-evidence.html",
+        "aliases": "EUDR 森林 地理 坐标"
+      }
+    ]
+  }
+}

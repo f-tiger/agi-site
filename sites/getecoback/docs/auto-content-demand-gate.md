@@ -33,3 +33,7 @@ The transaction tests use explicitly mocked validated demand; the demand-gate
 tests read synthetic snapshots in temporary directories through the real
 validator. No tests fetch live sources, generate production pages, click
 merchant redirects or send live analytics.
+
+## Demand discovery and operating method
+
+Follow [the site-wide demand growth playbook](demand-growth-playbook-2026-11-01.md) for need-first answers, condition-matched comparisons, exact locale routes and measurement. The final deployment layer regenerates the public canonical search index and checks reviewed no-input task links after all page generators. Search terms are not an authorized raw keyword feed.

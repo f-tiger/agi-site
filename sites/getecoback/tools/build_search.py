@@ -1,63 +1,50 @@
 #!/usr/bin/env python3
-"""Build the static site-search index.
+"""Index all public canonical pages; searches stay in the visitor's browser."""
+from pathlib import Path
+import json
+from build_language_nav import Head, local
+ROOT=Path(__file__).resolve().parents[1]
+SITE=ROOT/'site'
+PRIVATE={'auth','api','account','account.html','members','members.html','widgets','analytics-assets','member-assets'}
+class Metadata(Head):
+ def __init__(self,text):
+  self.title='';self.description='';self.intitle=False
+  super().__init__(text)
+ def handle_starttag(self,tag,attrs):
+  super().handle_starttag(tag,attrs);a=dict(attrs)
+  if self.inhead and tag=='title':self.intitle=True
+  if self.inhead and tag=='meta' and a.get('name','').lower()=='description':self.description=a.get('content','')
+ def handle_endtag(self,tag):
+  if tag=='title':self.intitle=False
+  super().handle_endtag(tag)
+ def handle_data(self,text):
+  if self.intitle:self.title+=text
 
-140 static pages need no search backend: the index is title + description per
-indexable page, built here from the same files the sitemap trusts, and matched
-in the visitor's browser. The search box exists for the reader — but the reason
-it feeds /api/ev is the site's automation loop: every query is zero-cost keyword
-research from the site's own audience, and a query with zero hits is an unmet
-need surfaced verbatim. The daily routine reads those from D1 as its topic
-queue (SQL in docs/analytics-first-party-d1.md).
-"""
-import glob, json, os, re, html as H
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
-
-SKIP = {"404.html", "radar-bestaetigt.html"}
-
-
-def field(h, pattern):
-    m = re.search(pattern, h, re.S)
-    return re.sub(r"\s+", " ", H.unescape(m.group(1))).strip() if m else ""
-
+def public_pages():
+ for path in sorted(SITE.rglob('*.html')):
+  h=Metadata(path.read_text());route=local(h.canonical)
+  if not route or h.noindex or PRIVATE.intersection(route.split('/')):continue
+  if path!=SITE/(route.lstrip('/')+('index.html' if route.endswith('/') else '')):continue
+  lang='en-AU' if route.startswith('/au/') else {'en-GB':'en','de-DE':'de','zh':'zh-CN'}.get(h.lang,h.lang)
+  yield path,route,lang,h
 
 def collect():
-    out = []
-    pats = ["*.html", "guide/*.html", "en/*.html", "en/guide/*.html", "fr/*.html", "es/*.html", "it/*.html", "it/guide/*.html", "nl/*.html", "au/*.html", "kategorie/*.html", "agents/*.html", "en/agents/*.html", "zh/agents/*.html"]
-    for pat in pats:
-        for path in sorted(glob.glob(os.path.join(SITE, pat))):
-            rel = os.path.relpath(path, SITE).replace(os.sep, "/")
-            if os.path.basename(rel) in SKIP or rel.startswith("widgets/"):
-                continue
-            h = open(path, encoding="utf-8").read()
-            if 'name="robots" content="noindex' in h:
-                continue
-            title = field(h, r"<title>(.*?)</title>")
-            desc = field(h, r'<meta name="description" content="(.*?)"')
-            if 'id="home-fit-config"' in h:
-                match = re.search(r'<script id="home-fit-config" type="application/json">(.*?)</script>', h, re.S)
-                fit = json.loads(match.group(1))['text']
-                desc = ' · '.join(fit[k] for k in ['robot', 'laundry', 'ac', 'floor']) + '. ' + desc
-            if not title:
-                continue
-            url = "/" + rel
-            if url.endswith("/index.html"):
-                url = url[: -len("index.html")]
-            out.append({"u": url, "t": title, "d": desc[:160],
-                        "l": "nl" if rel.startswith("nl/") else "en-AU" if rel.startswith("au/") else "zh-CN" if rel.startswith("zh/") else "en" if rel.startswith("en/") else "fr" if rel.startswith("fr/") else "es" if rel.startswith("es/") else "it" if rel.startswith("it/") else "de"})
-    return out
-
+ tasks=json.loads((ROOT/'data/demand-discovery.json').read_text())
+ aliases={(l,t['url']):t['label']+' '+t['aliases'] for l,g in tasks.items() for t in g['tasks']}
+ out=[]
+ for path,route,lang,h in public_pages():
+  if not h.title.strip():raise ValueError(f'Missing title: {route}')
+  desc=' '.join(h.description.split())
+  text=path.read_text()
+  if 'id="home-fit-config"' in text:
+   import re
+   match=re.search(r'<script id="home-fit-config" type="application/json">(.*?)</script>',text,re.S)
+   fit=json.loads(match[1])['text'];desc=' · '.join(fit[k] for k in ['robot','laundry','ac','floor'])+'. '+desc
+  out.append({'u':route,'t':' '.join(h.title.split()),'d':desc[:320],'l':lang,'a':aliases.get((lang,route),'')})
+ return out
 
 def main():
-    entries = collect()
-    path = os.path.join(SITE, "search-index.json")
-    payload = json.dumps(entries, ensure_ascii=False, separators=(",", ":"))
-    old = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-    if payload != old:
-        open(path, "w", encoding="utf-8").write(payload)
-    print(f"search-index.json: {len(entries)} pages, {len(payload)//1024} KB")
-
-
-if __name__ == "__main__":
-    main()
+ entries=collect();payload=json.dumps(entries,ensure_ascii=False,separators=(',',':'));p=SITE/'search-index.json'
+ if not p.exists() or p.read_text()!=payload:p.write_text(payload)
+ print(f'search-index.json: {len(entries)} public canonical pages; search terms stay local')
+if __name__=='__main__':main()

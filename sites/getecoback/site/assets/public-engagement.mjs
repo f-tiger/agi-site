@@ -29,6 +29,10 @@ export function countryScenarioEvent(pathname, detail) {
 // selected products, household answers or a share URL. Each is once per page.
 export function ecoPublicBusinessEvent(pathname, detail) {
   if (!detail || typeof detail !== 'object' || !Object.hasOwn(detail,'name') || Object.keys(detail).length !== 1 || typeof detail.name !== 'string') return null;
+  if (/^\/(?:[a-z0-9-]+\/)*(?:[a-z0-9-]+\.html)?$/.test(pathname) &&
+      !pathname.split('/').some(p => /^(?:auth|api|account|members|widgets|analytics-assets|member-assets)(?:\.html)?$/.test(p)) &&
+      ['eco_discovery_open','eco_discovery_task','eco_discovery_result'].includes(detail.name))
+    return {name:detail.name, tool_id:'eco-discovery'};
   const country = countryScenarioEvent(pathname, detail);
   if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
   const routes = {
