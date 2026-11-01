@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-10-31T06:15:50.857Z",
+  "lastRun": "2026-11-01T06:48:07.712Z",
   "status": "degraded",
-  "checkedSources": 6,
+  "checkedSources": 8,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -43,37 +43,31 @@
       "caseId": "audiopen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
-      "lastChecked": "2026-10-18T05:07:41.388Z"
+      "lastChecked": "2026-11-01T06:48:07.712Z"
     },
     {
       "caseId": "audiopen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.audiopen.ai/",
-      "lastChecked": "2026-10-18T05:07:41.388Z"
+      "lastChecked": "2026-11-01T06:48:07.712Z"
     },
     {
       "caseId": "my-askai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
-      "lastChecked": "2026-10-18T05:07:41.388Z"
+      "lastChecked": "2026-11-01T06:48:07.712Z"
     },
     {
       "caseId": "castmagic",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
-      "lastChecked": "2026-10-19T05:15:16.527Z"
+      "lastChecked": "2026-11-01T06:48:07.712Z"
     },
     {
       "caseId": "formula-bot",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
-      "lastChecked": "2026-10-19T05:15:16.527Z"
-    },
-    {
-      "caseId": "formula-bot",
-      "reason": "source-unreachable",
-      "sourceUrl": "https://n8n.io/case-studies/formula-bot/",
-      "lastChecked": "2026-10-19T05:15:16.527Z"
+      "lastChecked": "2026-11-01T06:48:07.712Z"
     },
     {
       "caseId": "jenni-ai",
@@ -441,7 +435,7 @@
     "audiopen|https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap": {
       "caseId": "audiopen",
       "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
-      "lastAttempt": "2026-10-18T05:07:41.388Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -449,7 +443,7 @@
     "audiopen|https://www.audiopen.ai/": {
       "caseId": "audiopen",
       "sourceUrl": "https://www.audiopen.ai/",
-      "lastAttempt": "2026-10-18T05:07:41.388Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -457,7 +451,7 @@
     "my-askai|https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE": {
       "caseId": "my-askai",
       "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
-      "lastAttempt": "2026-10-18T05:07:41.388Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -465,10 +459,10 @@
     "my-askai|https://kaeda.co/cases/my-askai": {
       "caseId": "my-askai",
       "sourceUrl": "https://kaeda.co/cases/my-askai",
-      "lastAttempt": "2026-10-18T05:07:41.388Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-18T05:07:41.388Z",
+      "lastSuccess": "2026-11-01T06:48:07.712Z",
       "lastHash": "3866d55b782ddb4889bba79039ccf49d6369d261f325a6d3f7340704fe096e1e",
       "hash": "b2687d849406c4f5d4c02e3d55f51bdc516abdf3959734dc7173624df6b1208a",
       "simhash": "94b633233eec839d",
@@ -478,7 +472,7 @@
     "castmagic|https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic": {
       "caseId": "castmagic",
       "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -486,10 +480,10 @@
     "docsbot|https://docsbot.ai/about": {
       "caseId": "docsbot",
       "sourceUrl": "https://docsbot.ai/about",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-19T05:15:16.527Z",
+      "lastSuccess": "2026-11-01T06:48:07.712Z",
       "lastHash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
       "hash": "2fa521664baeae2223b7eee6803a41e54e192382e6926a794ebc04c3fdd7a3e7",
       "simhash": "b2f4825e3cfe25af",
@@ -499,7 +493,7 @@
     "formula-bot|https://www.starterstory.com/stories/excelformulabot": {
       "caseId": "formula-bot",
       "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -507,10 +501,15 @@
     "formula-bot|https://n8n.io/case-studies/formula-bot/": {
       "caseId": "formula-bot",
       "sourceUrl": "https://n8n.io/case-studies/formula-bot/",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
-      "status": "unreachable",
-      "http": null,
-      "consecutiveChange": 0
+      "lastAttempt": "2026-11-01T06:48:07.712Z",
+      "status": "baseline",
+      "http": 200,
+      "consecutiveChange": 0,
+      "lastSuccess": "2026-11-01T06:48:07.712Z",
+      "lastHash": "055a6a8f2e346dc3f1beb0304b64a2559449c5073605dd8276fa31db1057277a",
+      "hash": "055a6a8f2e346dc3f1beb0304b64a2559449c5073605dd8276fa31db1057277a",
+      "simhash": "3d56915f8cdcf79d",
+      "words": 1326
     },
     "jenni-ai|https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0": {
       "caseId": "jenni-ai",
@@ -1160,31 +1159,31 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 6,
+  "cursor": 11,
   "errors": [
     {
-      "caseId": "interior-ai",
-      "sourceUrl": "https://levels.io/new-420k-mo-revenue-record-lex-fridman",
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
       "reason": "body-limit"
     },
     {
-      "caseId": "typingmind",
-      "sourceUrl": "https://news.tonydinh.com/p/500k-milestone-my-reflections-after",
+      "caseId": "audiopen",
+      "sourceUrl": "https://www.audiopen.ai/",
       "reason": "body-limit"
     },
     {
-      "caseId": "typingmind",
-      "sourceUrl": "https://news.tonydinh.com/p/jun-2023-how-i-work-with-employees",
+      "caseId": "my-askai",
+      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
       "reason": "body-limit"
     },
     {
-      "caseId": "pdf-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/damengchen_pdfai-crossed-60k-in-revenue-in-november-activity-7136059894838820864-53OW",
+      "caseId": "castmagic",
+      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
       "reason": "body-limit"
     },
     {
-      "caseId": "sitegpt",
-      "sourceUrl": "https://www.linkedin.com/posts/pbteja1998_we-just-crossed-500k-in-lifetime-revenue-activity-7397602042841686016-1OWJ",
+      "caseId": "formula-bot",
+      "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
       "reason": "body-limit"
     }
   ]

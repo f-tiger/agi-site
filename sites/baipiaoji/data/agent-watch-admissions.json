@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-31",
+ "checked": "2026-11-01",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3480,6 +3480,24 @@
    "first_attempt": "2026-10-31",
    "last_attempt": "2026-10-31",
    "attemptedAt": "2026-10-31T06:14:25.984Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "aimetadatacleaner-metadata-cleaner": {
+   "attempts": 1,
+   "first_attempt": "2026-11-01",
+   "last_attempt": "2026-11-01",
+   "attemptedAt": "2026-11-01T06:46:25.416Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "aisurfhut-surf-hut": {
+   "attempts": 1,
+   "first_attempt": "2026-11-01",
+   "last_attempt": "2026-11-01",
+   "attemptedAt": "2026-11-01T06:46:25.416Z",
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
@@ -18205,6 +18223,354 @@
   {
    "slug": "aiimplementationcost-site",
    "date": "2026-10-31",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiinterviewagents-interviews",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aimeistro-music",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aineedhelpfromotherai-reasoning-commons",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ainetcafe-ai-netcafe",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiod-automatic-discount-discounts",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aioproductos-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aioproductos-mcp-studio",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aiproperty-phuket-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiqbee-brain",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "airblockfz-coin-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-commodity-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-dubai-property-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-fx-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-inflation-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-seoul-apt-signal",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-stock-signal-kr",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airblockfz-stock-signal-us",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airesumemaster-resume-builder",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airfreightprice-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airlinestarlinktracker-starlink-tracker",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "airolloutframework-ai-rollout-framework",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "airportloungelist-mcp-lounges",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "airsidelabs-aviation-tools",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aishorty-shorty",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiskills402-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aistackscore-aistackscore",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aitwire-authority",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aitwire-tenant",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiurion-agentic-3d-printing",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aivshire-site",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aiwebsitepipeline-indexnow-toolkit",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "akiflow-akiflow",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alamavar-taskrail-taskrail",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "alchemy-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alderflux-msgmesh",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alderinvoices-invoice-generator",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aleeth-authority-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "alexandrecaramaschi-public-content",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alexpolonsky-profile",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "algeriacertify-verification-talent",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "algo-trade-analytics-research",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alleskralle-jobs",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "allgoodinsp-mcp-server",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "allpdfmagic-allpdfmagic",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "allratestoday-central-bank-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "allsvgicons-icons",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alltimetables-european-transport",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "allyotter-lite",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "almirall-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "almured-marketplace",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "aloudable-podlex",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alpha402x-research",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alphaassay-mcp",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alphanume-datasets",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alpinedataworks-adw-intelligence-server",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alternativasia-alternativasia",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "alternomy-calculators",
+   "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "altesim-esim",
+   "date": "2026-11-01",
    "source_http": 200,
    "repo_http": null
   }

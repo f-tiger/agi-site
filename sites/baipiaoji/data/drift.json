@@ -1,10 +1,78 @@
 {
-  "generated": "2026-10-31",
+  "generated": "2026-11-01",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 105,
-  "fetched_fail": 22,
-  "pending": 14,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 12,
   "items": [
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "added": [
+        "07b",
+        "298357b",
+        "3b",
+        "4b",
+        "95639b"
+      ],
+      "removed": [
+        "$24",
+        "$25",
+        "$30",
+        "$31",
+        "0b",
+        "209b",
+        "31b",
+        "8b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "bolt",
+      "url": "https://support.bolt.new",
+      "confirmed": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "added": [
+        "000k",
+        "0026s",
+        "0b",
+        "100%",
+        "36b",
+        "38b",
+        "4b",
+        "74734b"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "krea",
+      "url": "https://krea.ai/pricing",
+      "confirmed": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "added": [],
+      "removed": [
+        "1,125images",
+        "4,500images",
+        "9,000images"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "windsurf",
+      "url": "https://windsurf.com",
+      "confirmed": "2026-11-01",
+      "first_seen": "2026-10-31",
+      "added": [
+        "1mo"
+      ],
+      "removed": [
+        "6k"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "gaoding",
       "url": "https://gaoding.com",
@@ -99,17 +167,6 @@
       "checked_then": "2026-09-29"
     },
     {
-      "slug": "windsurf",
-      "url": "https://windsurf.com",
-      "confirmed": "2026-10-30",
-      "first_seen": "2026-10-29",
-      "added": [
-        "6k"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "bailian",
       "url": "https://aliyun.com",
       "confirmed": "2026-10-29",
@@ -166,20 +223,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-10-27",
-      "first_seen": "2026-10-26",
-      "added": [
-        "209b"
-      ],
-      "removed": [
-        "6441b",
-        "76b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "v0",
       "url": "https://v0.app",
       "confirmed": "2026-10-27",
@@ -208,35 +251,6 @@
       "removed": [
         "1image",
         "2image"
-      ],
-      "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "krea",
-      "url": "https://krea.ai/pricing",
-      "confirmed": "2026-10-25",
-      "first_seen": "2026-10-24",
-      "added": [
-        "$5.25/mo",
-        "$5/mo",
-        "$9",
-        "1,125images",
-        "1,285images",
-        "1,500images",
-        "102images",
-        "112images",
-        "164images",
-        "168images",
-        "2,500images",
-        "2.5videos"
-      ],
-      "removed": [
-        "0images",
-        "1video",
-        "2.0videos",
-        "4images",
-        "8images",
-        "8video"
       ],
       "checked_then": "2026-08-06"
     },
@@ -382,28 +396,6 @@
         "66k"
       ],
       "checked_then": "2026-09-21"
-    },
-    {
-      "slug": "cursor",
-      "url": "https://cursor.com/pricing",
-      "confirmed": "2026-10-15",
-      "first_seen": "2026-10-14",
-      "added": [
-        "$0/月",
-        "$100/月",
-        "$200/月",
-        "$30",
-        "$30/月",
-        "$8/月",
-        "24小时",
-        "3%",
-        "6.00%"
-      ],
-      "removed": [
-        "$20/mo",
-        "$40/user"
-      ],
-      "checked_then": "2026-09-28"
     },
     {
       "slug": "deepinfra",

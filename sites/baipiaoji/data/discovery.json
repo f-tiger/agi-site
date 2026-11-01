@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "A language model that lives in a boot sector",
+      "url": "https://github.com/kerlenton/bootgpt",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50315782",
+      "points": 74,
+      "comments": 3,
+      "found": "2026-11-01",
+      "status": "candidate"
+    },
+    {
       "name": "Arsaze – Cursor for video editing (Tab-complete and agent edits)",
       "url": "https://www.arsaze.com",
       "host": "arsaze.com",
@@ -379,27 +389,7 @@
       "comments": 114,
       "found": "2026-09-18",
       "status": "candidate"
-    },
-    {
-      "name": "How Stale Is Your AI? Release age and training cutoff for 20 models",
-      "url": "https://stale.jock.pl/",
-      "host": "stale.jock.pl",
-      "src": "https://news.ycombinator.com/item?id=49726343",
-      "points": 70,
-      "comments": 44,
-      "found": "2026-09-17",
-      "status": "candidate"
-    },
-    {
-      "name": "Pizza Bot – An inbox for AI agents that work in the background",
-      "url": "https://github.com/pizza-bot-app/pizza-bot",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49713894",
-      "points": 56,
-      "comments": 33,
-      "found": "2026-09-17",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-10-31"
+  "updated": "2026-11-01"
 }
