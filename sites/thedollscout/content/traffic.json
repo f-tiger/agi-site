@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-30"
+    "until": "2026-10-31"
   },
   "days": {
     "2026-07-26": {
@@ -5493,6 +5493,74 @@
         "DE": 183,
         "CN": 106,
         "RU": 106
+      }
+    },
+    "2026-10-31": {
+      "date": "2026-10-31",
+      "requests": 15092,
+      "pageViews": 6528,
+      "uniques": 771,
+      "byIpType": {
+        "unknown": 9050,
+        "noRecord": 5706,
+        "searchEngine": 312,
+        "allowlist": 24
+      },
+      "byBrowser": {
+        "Unknown": 5164,
+        "Curl": 900,
+        "Chrome": 229,
+        "MobileSafari": 131,
+        "BingBot": 39,
+        "GoogleBot": 24,
+        "YandexBot": 20,
+        "ChromeMobile": 7,
+        "Firefox": 6,
+        "Edge": 3,
+        "Safari": 2,
+        "ChromeMobileWebview": 2,
+        "Chromium": 1
+      },
+      "byContentType": {
+        "html": 7215,
+        "txt": 2983,
+        "json": 1676,
+        "js": 76,
+        "empty": 957,
+        "css": 427,
+        "xml": 96,
+        "unknown": 82,
+        "pdf": 63,
+        "png": 31,
+        "svg": 31,
+        "zip": 10
+      },
+      "byStatus": {
+        "200": 13327,
+        "202": 305,
+        "204": 51,
+        "301": 439,
+        "303": 19,
+        "304": 15,
+        "308": 95,
+        "401": 15,
+        "403": 9,
+        "404": 633,
+        "405": 81,
+        "410": 94,
+        "499": 7,
+        "500": 1,
+        "503": 1
+      },
+      "topCountries": {
+        "US": 10375,
+        "BE": 1401,
+        "SG": 707,
+        "PL": 534,
+        "CN": 521,
+        "HK": 411,
+        "FI": 393,
+        "DE": 213
       }
     }
   }
