@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import {ACCOUNT_SCRIPT_POLICY, protectAccountPage} from '../lib/account-page-privacy.js';
 import {onRequest} from '../functions/_middleware.js';
 
-const html = () => new Response('<!doctype html><h1>Account</h1>', {headers:{'Content-Type':'text/html', 'Content-Security-Policy':"frame-ancestors 'none'"}});
-for (const path of ['/account','/account/','/account.html','/en/account','/en/account/','/en/account.html','/%61ccount','/en/%61ccount','/%2561ccount']) {
-  const response = await onRequest({request:new Request('https://baipiaoji.com'+path+'?save=grok'),next:async()=>html(),env:{}});
+const html = (method = 'GET') => new Response(method === 'HEAD' ? null : '<!doctype html><h1>Account</h1>', {headers:{'Content-Type':'text/html', 'Content-Security-Policy':"frame-ancestors 'none'"}});
+for (const method of ['GET','HEAD']) for (const path of ['/account','/account/','/account.html','/en/account','/en/account/','/en/account.html','/%61ccount','/en/%61ccount','/%2561ccount']) {
+  const response = await onRequest({request:new Request('https://baipiaoji.com'+path+'?save=grok',{method}),next:async()=>html(method),env:{}});
   assert.equal(response.headers.get('Cache-Control'),'no-store');
+  assert.equal(response.headers.get('X-Robots-Tag'),'noindex, nofollow');
   assert(response.headers.get('Content-Security-Policy').includes(ACCOUNT_SCRIPT_POLICY));
   assert(response.headers.get('Content-Security-Policy').includes("frame-ancestors 'none'"));
-  assert.equal(await response.text(),'<!doctype html><h1>Account</h1>');
+  assert.equal(await response.text(),method === 'HEAD' ? '' : '<!doctype html><h1>Account</h1>');
 }
 for (const path of ['/','/tools/kimi','/account.js','/api/account','/accounting','/en/account-fleet.js']) {
   const response=html();assert.equal(protectAccountPage(response,new Request('https://baipiaoji.com'+path)),response);
