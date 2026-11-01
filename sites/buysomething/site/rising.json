@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-31",
+ "fetched": "2026-11-01",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -196,54 +196,94 @@
   "leg compression boots": {
    "rising": [
     {
-     "q": "best leg compression sleeves",
-     "v": 75450
-    },
-    {
-     "q": "costco compression boots",
-     "v": 200
-    },
-    {
      "q": "costco",
-     "v": 200
+     "v": 250
     },
     {
-     "q": "therabody leg compression",
-     "v": 180
+     "q": "best leg compression sleeves",
+     "v": 250
     },
     {
      "q": "compression boots for legs",
-     "v": 160
-    },
-    {
-     "q": "therabody compression boots",
-     "v": 160
-    },
-    {
-     "q": "therabody leg boots",
-     "v": 150
+     "v": 190
     },
     {
      "q": "therabody",
+     "v": 150
+    },
+    {
+     "q": "therabody leg compression",
+     "v": 140
+    },
+    {
+     "q": "therabody compression boots",
      "v": 140
     },
     {
      "q": "best leg compression boots",
-     "v": 70
+     "v": 90
+    },
+    {
+     "q": "best compression boots",
+     "v": 90
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-31"
+   "fetched": "2026-11-01"
   },
   "solar camping lights": {
+   "auto": [
+    "solar camping lights",
+    "solar camping lights string",
+    "solar camping lights amazon",
+    "solar camping lights nz",
+    "solar camping lights kmart",
+    "solar camping lights south africa",
+    "solar camping lights bcf",
+    "solar camping lights - bunnings",
+    "solar camping lights anaconda",
+    "solar camping lights nearby"
+   ],
    "rising": [
     {
-     "q": "solar powered camping lights",
-     "v": 50
+     "q": "solar camping lights string",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights amazon",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights nz",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights kmart",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights south africa",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights bcf",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights - bunnings",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights anaconda",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights nearby",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-02"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-01"
   },
   "camping moon chair": {
    "auto": [
