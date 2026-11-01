@@ -286,7 +286,9 @@
       "verifiedAt": "2026-11-01T02:41:44.567900Z",
       "actualSnapshotVerified": false,
       "nextCheckDate": "2026-11-02",
-      "nextAction": "Read the next original schedule artifact for manju_signals.viewer_depth. Confirm source timestamp and window, no Kimi/partial launch day, unknown on source failure. First full UTC measurement day Nov1 is only available after it ends. Do not dispatch, recrawl or rewrite historical reach.json to manufacture acceptance."
+      "nextAction": "Read the next original schedule artifact for manju_signals.viewer_depth. Confirm source timestamp and window, no Kimi/partial launch day, unknown on source failure. First full UTC measurement day Nov1 is only available after it ends. Do not dispatch, recrawl or rewrite historical reach.json to manufacture acceptance.",
+      "pullRequest": 229,
+      "implementationCommit": "30135565a11f37ada37f01fa28e47d3efdff32a8"
     }
   ],
   "currentBlockers": [
@@ -357,7 +359,9 @@
       "secondRound": "Independent final code and five-file review passed: producer-backed regression, strict viewer-only projection, source/calendar/partial-day boundaries, privacy, unknown-on-failure, preserved experiment/history and no actual snapshot claim. Existing non-read-only dispatch capability clarified without changing workflows.",
       "rootSelfCheck": "Producer-backed regression failed before implementation and passed after. Exporter selftest, existing depth contract, syntax/diff, five-file scope, JSON/relative links, source/private boundaries, and preserved primary/English/weekly/history checks passed."
     },
-    "nextAction": "Read next original scheduled export and close only with actual persisted viewer_depth shape/source dates. Nov2 full-day check, Nov3 original creator weekly review. Existing tutorial acceptance and authorized distribution remain blocked."
+    "nextAction": "Read next original scheduled export and close only with actual persisted viewer_depth shape/source dates. Nov2 full-day check, Nov3 original creator weekly review. Existing tutorial acceptance and authorized distribution remain blocked.",
+    "recordedInPullRequest": "https://github.com/f-tiger/agi-site/pull/229",
+    "relatedImplementationCommit": "30135565a11f37ada37f01fa28e47d3efdff32a8"
   },
   "recentActions": [
     {
@@ -468,7 +472,9 @@
       "evidence": "iteration-2026-11-01.md",
       "implementationPath": "sites/baipiaoji/scripts/reach-export.mjs",
       "actualSnapshotVerified": false,
-      "deploymentRequired": false
+      "deploymentRequired": false,
+      "recordedInPullRequest": 229,
+      "relatedImplementationCommit": "30135565a11f37ada37f01fa28e47d3efdff32a8"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
@@ -686,7 +692,9 @@
         "exporterSource": "sites/baipiaoji/scripts/reach-export.mjs:113",
         "evidence": "API emits depth_signals; summarise() retains manju_signals only and omits depth_signals. manjuSnapshot() also omits source search_definition. The Oct30 cache predates the feature and cannot diagnose its usage."
       },
-      "evidence": "Existing exporter now projects fixed viewer actions into manju_signals.viewer_depth and supplies fixed search semantics. Offline regression passed; actual original-schedule snapshot remains unverified."
+      "evidence": "Existing exporter now projects fixed viewer actions into manju_signals.viewer_depth and supplies fixed search semantics. Offline regression passed; actual original-schedule snapshot remains unverified.",
+      "pullRequest": 229,
+      "implementationCommit": "30135565a11f37ada37f01fa28e47d3efdff32a8"
     },
     "meaning": "Existing product release and source receipts reused. This change is a scheduled exporter implementation, not a new public-page deployment or actual data receipt; read-only readiness is not payment verification.",
     "newNov1Schedule": "not_observed_at_review_not_diagnosed_as_failure"
