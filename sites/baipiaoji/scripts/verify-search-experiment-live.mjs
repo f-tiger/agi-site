@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {setTimeout as delay} from 'node:timers/promises';
 import {searchExperiment as plan} from './search-experiment.mjs';
+import {assertCountTree} from './conversion-stage-counts.mjs';
 const base='https://baipiaoji.com';
 async function get(path) {
   const url=new URL(path,base);url.searchParams.set('__probe','1');
@@ -23,7 +24,8 @@ assert.equal(s?.ok,true,'All conversion stages must be readable');
 assert.equal(s.window.date_basis,'UTC');
 assert.equal((Date.parse(s.window.end_exclusive)-Date.parse(s.window.start))/86400000,s.window.complete_days);
 assert.ok(s.window.end_exclusive<=new Date().toISOString().slice(0,10));
-for(const n of [...Object.values(s.events),...Object.values(s.accounts)])assert.ok(Number.isInteger(n)&&n>=0);
+assertCountTree(s.events, 'conversion_stages.events');
+assertCountTree(s.accounts, 'conversion_stages.accounts');
 assert.ok(s.accounts.new_accounts_currently_email_verified<=s.accounts.created);
 console.log('PASS live: English homepage, two snippets, two controls, canonical URLs and complete-day conversion stages.');
 assert.ok(Number.isInteger(s.accounts.total_non_test));
