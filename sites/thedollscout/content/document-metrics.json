@@ -2,16 +2,15 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-01T12:54:43.725Z",
+  "generated": "2026-11-02T15:11:01.672Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
-    "doc_video_load_shotcut": 1,
-    "doc_view": 4,
+    "doc_view": 3,
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 62
+    "doc_ci": 47
   },
   "daily": [
     {
@@ -33,16 +32,6 @@
       "d": "2026-10-16",
       "ev": "doc_view",
       "n": 1
-    },
-    {
-      "d": "2026-10-05",
-      "ev": "doc_video_load_shotcut",
-      "n": 1
-    },
-    {
-      "d": "2026-10-05",
-      "ev": "doc_view",
-      "n": 1
     }
   ],
   "pages": [
@@ -53,30 +42,26 @@
     {
       "path": "/ai-text-summarizer",
       "n": 1
-    },
-    {
-      "path": "/zh/videos/shotcut",
-      "n": 1
     }
   ],
   "referrers": [
     {
-      "ref": "",
+      "ref": "www.google.com",
       "n": 2
     },
     {
-      "ref": "www.google.com",
-      "n": 2
+      "ref": "",
+      "n": 1
     }
   ],
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 120
+      "n": 134
     },
     {
       "path": "/llms.txt",
-      "n": 57
+      "n": 48
     },
     {
       "path": "/",
@@ -147,6 +132,10 @@
       "n": 6
     },
     {
+      "path": "/de/delivery-evidence",
+      "n": 5
+    },
+    {
       "path": "/document-assets/text/en/learn/pdf-reading-order.txt",
       "n": 5
     },
@@ -157,10 +146,6 @@
     {
       "path": "/llms-full.txt",
       "n": 5
-    },
-    {
-      "path": "/de/delivery-evidence",
-      "n": 4
     },
     {
       "path": "/delivery-evidence",
@@ -406,11 +391,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 90
+      "n": 102
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 87
+      "n": 88
     },
     {
       "claimed_agent": "Applebot",
@@ -422,7 +407,7 @@
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 50
+      "n": 49
     },
     {
       "claimed_agent": "Googlebot",
@@ -430,39 +415,38 @@
     },
     {
       "claimed_agent": "Bingbot",
-      "n": 12
-    },
-    {
-      "claimed_agent": "ChatGPT-User",
       "n": 10
     },
     {
-      "claimed_agent": "OAI-SearchBot",
+      "claimed_agent": "ChatGPT-User",
       "n": 9
     },
     {
+      "claimed_agent": "OAI-SearchBot",
+      "n": 8
+    },
+    {
       "claimed_agent": "Claude-User",
-      "n": 6
+      "n": 5
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 6
+      "n": 5
     },
     {
       "claimed_agent": "PerplexityBot",
-      "n": 6
+      "n": 5
     },
     {
       "claimed_agent": "YandexBot",
-      "n": 2
+      "n": 3
     }
   ],
   "source_events": [
     {
       "source": "direct_or_unknown",
       "events": {
-        "doc_video_load_shotcut": 1,
-        "doc_view": 2
+        "doc_view": 1
       }
     },
     {
@@ -489,7 +473,7 @@
     "text": 0,
     "compare": 0
   },
-  "resource_views": 3,
+  "resource_views": 2,
   "resource_actions": {
     "doc_library_open_source": 0,
     "doc_library_videos": 0,
@@ -518,7 +502,7 @@
     "doc_video_load_audacity": 0,
     "doc_video_watch_audacity": 0,
     "doc_video_tool_audacity": 0,
-    "doc_video_load_shotcut": 1,
+    "doc_video_load_shotcut": 0,
     "doc_video_watch_shotcut": 0,
     "doc_video_tool_shotcut": 0,
     "doc_gear_mic": 0,
@@ -529,5 +513,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 1,
-  "query_rows_read": 2858
+  "query_rows_read": 2842
 }
