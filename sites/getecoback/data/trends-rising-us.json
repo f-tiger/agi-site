@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-01",
+ "fetched": "2026-11-02",
  "geo": "US",
  "seeds": {
   "portable air conditioner": {
@@ -49,50 +49,58 @@
    "fetched": "2026-11-01"
   },
   "dehumidifier": {
+   "auto": [
+    "dehumidifier",
+    "dehumidifier for basement",
+    "dehumidifier for home",
+    "dehumidifier for house",
+    "dehumidifier for bathroom",
+    "dehumidifier home depot",
+    "dehumidifier with pump",
+    "dehumidifier near me",
+    "dehumidifier for bedroom",
+    "dehumidifier for crawl space"
+   ],
    "rising": [
     {
-     "q": "can you drink the water from a dehumidifier",
-     "v": 300
+     "q": "dehumidifier for basement",
+     "v": "new"
     },
     {
-     "q": "does a dehumidifier cool the air",
-     "v": 200
+     "q": "dehumidifier for home",
+     "v": "new"
     },
     {
-     "q": "homedepot dehumidifier",
-     "v": 130
+     "q": "dehumidifier for house",
+     "v": "new"
     },
     {
-     "q": "can you drink water from a dehumidifier",
-     "v": 130
+     "q": "dehumidifier for bathroom",
+     "v": "new"
     },
     {
-     "q": "does a dehumidifier help with mold",
-     "v": 120
+     "q": "dehumidifier home depot",
+     "v": "new"
     },
     {
-     "q": "does dehumidifier help with mold",
-     "v": 110
+     "q": "dehumidifier with pump",
+     "v": "new"
     },
     {
-     "q": "walmart dehumidifier in store",
-     "v": 110
+     "q": "dehumidifier near me",
+     "v": "new"
     },
     {
-     "q": "what does a humidifier do",
-     "v": 100
+     "q": "dehumidifier for bedroom",
+     "v": "new"
     },
     {
-     "q": "does a dehumidifier use a lot of electricity",
-     "v": 90
-    },
-    {
-     "q": "waykar dehumidifier reviews",
-     "v": 90
+     "q": "dehumidifier for crawl space",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-22"
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-02"
   }
  }
 }

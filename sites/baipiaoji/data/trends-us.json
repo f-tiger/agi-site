@@ -1,55 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-11-01",
+ "fetched": "2026-11-02",
  "geo": "US",
  "matched": [],
  "top": [
   {
-   "title": "projected top 25",
-   "traffic": "1000+"
-  },
-  {
-   "title": "villanova basketball",
-   "traffic": "200+"
-  },
-  {
-   "title": "patrick kane",
+   "title": "radar",
    "traffic": "100+"
   },
   {
-   "title": "guy ritchie",
+   "title": "national weather service",
    "traffic": "200+"
   },
   {
-   "title": "when is black friday",
+   "title": "nate silver",
+   "traffic": "500+"
+  },
+  {
+   "title": "cincinnati weather",
    "traffic": "100+"
   },
   {
-   "title": "southern california floods",
+   "title": "florida governor race",
+   "traffic": "100+"
+  },
+  {
+   "title": "hubert hurkacz",
    "traffic": "200+"
   },
   {
-   "title": "klara and the sun",
+   "title": "ignacio buse",
    "traffic": "200+"
   },
   {
-   "title": "feeding our future",
+   "title": "eminem",
+   "traffic": "200+"
+  },
+  {
+   "title": "nc lottery",
    "traffic": "1000+"
   },
   {
-   "title": "technology news",
-   "traffic": "1000+"
-  },
-  {
-   "title": "latest news",
-   "traffic": "1000+"
+   "title": "nifty 50",
+   "traffic": "100+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-18",
-   "matched": []
-  },
   {
    "d": "2026-10-19",
    "matched": []
@@ -108,6 +104,10 @@
   },
   {
    "d": "2026-11-01",
+   "matched": []
+  },
+  {
+   "d": "2026-11-02",
    "matched": []
   }
  ]
