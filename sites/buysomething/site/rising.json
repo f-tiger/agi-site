@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-01",
+ "fetched": "2026-11-02",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -244,46 +244,9 @@
     "solar camping lights anaconda",
     "solar camping lights nearby"
    ],
-   "rising": [
-    {
-     "q": "solar camping lights string",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights amazon",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights nz",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights kmart",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights south africa",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights bcf",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights - bunnings",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights anaconda",
-     "v": "new"
-    },
-    {
-     "q": "solar camping lights nearby",
-     "v": "new"
-    }
-   ],
+   "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-01"
+   "fetched": "2026-11-02"
   },
   "camping moon chair": {
    "auto": [
@@ -294,13 +257,18 @@
     "camping moon chair home bargains",
     "camping moon chair go outdoors",
     "camping moon chair nz",
-    "camping moon chairs uk",
     "camping moon chair kids",
-    "camping moon chair review"
+    "camping moon chairs uk",
+    "camping moon chair kmart"
    ],
-   "rising": [],
+   "rising": [
+    {
+     "q": "camping moon chair kmart",
+     "v": "new"
+    }
+   ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-03"
+   "fetched": "2026-11-02"
   },
   "portable blender": {
    "rising": [
