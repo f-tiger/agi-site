@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "provenance": "Editorial research ledger; original community evidence remains in the private working record. This is not a live Reddit crawl.",
   "limits": {
     "review_max_age_days": 14,
@@ -109,7 +109,7 @@
     {
       "id": "agi-claim-context-20261031",
       "site": "agiscorecard",
-      "status": "queued",
+      "status": "working",
       "priority": 72,
       "title": "AI 结论缺少业务背景与来源支撑",
       "pain": "公开讨论反映 AI 对缺少上下文的问题给出肯定解释；与 Jarvis 的来源检查有相邻适配，尚未证明是本站用户需求。",
@@ -133,7 +133,29 @@
       ],
       "commercial_hypothesis": "提高已有研究任务的可复核性与复用价值；付费意愿未知。",
       "counter_evidence": "来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。",
-      "next_review": "2026-11-07"
+      "next_review": "2026-11-07",
+      "verification": {
+        "checked_at": "2026-11-02T00:57:00Z",
+        "execution": "hosted-development-task",
+        "source_bodies_reviewed": 1,
+        "site_fit": "verified engineering defect: Jarvis ordinary-source ranking serializes entire records, so source IDs, URLs, dates and other metadata can create false relevance matches; a frozen synthetic check passes 3 of 12 cases before correction",
+        "site_fit_verified": true,
+        "outcome": "authorize a bounded deterministic relevance correction in the existing Jarvis path; the source gate still blocks treating this as a confirmed pain-point extension",
+        "note": "The one community source is adjacent agency context, not repeat demand, a buyer or payment evidence. This work corrects an independently reproduced product defect and does not claim model-quality improvement.",
+        "experiment": {
+          "baseline": "3/12 frozen synthetic relevance cases",
+          "candidate": "12/12 frozen synthetic relevance cases; representative English and Chinese catalog queries retained the intended record",
+          "regression": "137 Jarvis unit, security, membership, screening and handoff checks passed locally; release-safety, radar, hreflang and breadcrumb checks passed",
+          "pending": "The local browser binary was unavailable, so production browser and full generated-site checks remain release gates in CI."
+        }
+      },
+      "execution": {
+        "started_at": "2026-11-02T00:57:00Z",
+        "base_sha": "725dcb279e005dbbd7ef76a6f2c23cf78a2d02cd",
+        "branch": "codex/agi-field-scoped-relevance-20261102",
+        "pull_request": 235,
+        "release_hold": "implementation and release remain held until frozen relevance checks and existing Jarvis release gates pass"
+      }
     },
     {
       "id": "agency-reporting-generic-20261031",

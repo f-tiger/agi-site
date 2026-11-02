@@ -195,3 +195,11 @@ See [bounded experiment and release record](agi-jarvis-progress-export-2026-10-1
 核对 Cloudflare 的[结束原因契约](https://developers.cloudflare.com/workers/runtime-apis/bindings/ai-search/)、[含 length 终止的返回示例](https://developers.cloudflare.com/ai/models/unbiased/pareto/)和[结束原因修复记录](https://developers.cloudflare.com/workers-ai/changelog/)，以及 Anthropic 的[最终结果评测指南](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)。推论：已有结束标记应控制完成判定，而不只存日志。反证：用满 token 不一定截断，正常 stop 也不保证相关或正确，所以不靠字数猜测，更不使用额外模型裁判代替明确标记。
 
 冻结十二个双语响应契约：旧代码六个 length 终止仍被标为完成，修复后全过；保留用量、来源、额度与暂停/删除保护。确定性规则无需新增推理，小模型/现有 8B/强模型在这项控制判断上没有实测优势。本轮另有且仅有一次真实任务，1,087 token、提交至读到结果 12,778ms；算术正确但建议偏题，整体质量失败。它返回 stop，不能冒称被此修复解决。清理最终回执未确认，不重试创建。完整证据、两轮自检与接续边界见 [v24 记录](agi-jarvis-completion-gate-2026-10-17.md)。
+
+## 2026-11-02：证据排序只读取内容字段
+
+新增核对 Elasticsearch 官方 [`multi_match` 文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html)：结构化检索可以限制查询字段，并用字段 boost 让标题高于正文。这支持把 Jarvis 的普通来源排序限制在 `title`、`description` 与本机已选记忆的 `text`，而不是序列化整条记录。实现采用确定性权重：标题命中权重 3，说明或记忆正文权重 1；纯数字、来源 ID、URL、日期、类型、星标和更新时间不能决定相关性。该步骤新增 0 次模型调用，不改变模型、上下文长度、额度、任务存储或私有访问边界。
+
+反证来自精确词法检索本身：它不能理解同义词，严格门槛也可能漏掉只有一个宽泛正文词的真实相关来源。因此本轮没有把确定性排序写成语义理解或模型质量提升；保留单个明确英文标题词、至少两个正文词以及至少两个中文字符的召回路径，并用现有中英文目录查询检查召回。更强模型或嵌入检索可能改善语义召回，但会增加调用、延迟和新的评测面；在没有冻结人工相关性标签前不采用。
+
+可证伪实验冻结 12 个合成案例：八类元数据命中和一个只有 `AI` 的宽泛正文命中必须为空，明确标题、双词说明和三词记忆正文必须命中。旧实现通过 3/12；候选必须达到 12/12，并让 `dependable AI coworkers` 与“可靠 AI 同事”仍召回现有 `agents-take-time` 目录记录。该结果只验证字段边界和合成召回，不证明真实用户需求、模型答案正确、任务完成、复用、注册或收入。
