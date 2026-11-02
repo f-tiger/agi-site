@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {jarvisRoute} from './server.mjs';import {execute,tick} from './engine.mjs';import {ensure} from './store.mjs';import {runTool,boundedJSON} from './sources.mjs';
+import {jarvisRoute} from './server.mjs';import {execute,tick} from './engine.mjs';import {ensure} from './store.mjs';import {runTool,boundedJSON,catalog} from './sources.mjs';
 import {inputOf,calculate,planOf,reportOf,rank,safeURL,followupDraft,blockerDraft,correctionDraft,findingCorrectionDraft,citedSources,markdown,progressCue,resumeActionCue,composerDraftRecord,composerDraftOf,COMPOSER_DRAFT_MAX_AGE_MS,taskFocusRecord,taskFocusOf,TASK_FOCUS_MAX_AGE_MS} from '../../jarvis-assets/core.mjs';import {database} from './test-support.mjs';import {limit,now,hash} from '../create/store.mjs';import {evidencePlan} from './plan.mjs';import {modelOutput} from './model.mjs';import {businessEvent} from '../../../../tools/fleet-analytics/business.mjs';
 const key='1'.repeat(64),other='2'.repeat(64),origin='https://agiscorecard.com';
 const body=(extra={})=>({action:'create',goal:'Help me research AI agents and convert 3 hours to minutes',lang:'en',cadence:'once',web:false,publicQuery:'AI agents',consent:true,memory:[],nonce:crypto.randomUUID().replaceAll('-',''),...extra});
@@ -49,6 +49,21 @@ test('frozen 12-case task focus set reopens only a returned task in the same wor
 test('arithmetic is parsed without eval and rejects code, infinity and excessive nesting',()=>{assert.equal(calculate('(100-20)*3/2').value,120);assert.equal(calculate('20%*100').value,20);for(const s of ['process.exit()','1/0','2**300','1;fetch(1)','('.repeat(17)+'1'+')'.repeat(17),'1 2','..2','1e999'])assert.throws(()=>calculate(s));});
 test('model cannot add tools or forge citations',()=>{for(const a of [{tool:'shell',query:'ls'},{tool:'github_search',query:'secret'}])assert.throws(()=>planOf(JSON.stringify({approach:'a',actions:[a]}),false));assert.throws(()=>reportOf(JSON.stringify({summary:'Some result',findings:[{text:'False source',sourceIds:['invented']}],nextActions:[{action:'a',doneWhen:'b'}],uncertainties:['unknown']}),[],'en'));});
 test('link and retrieval handling rejects executable links and preserves no-match',()=>{for(const s of ['javascript:alert(1)','http://example.com','https://127.0.0.1/','https://localhost/','https://u:p@example.com','https://[::1]/'])assert.equal(safeURL(s),null);assert.equal(safeURL('https://github.com/a/b'),'https://github.com/a/b');assert.deepEqual(rank('unfindabletoken',[{title:'AI research'}]),[]);});
+test('frozen evidence relevance set ignores metadata and keeps content matches',()=>{
+ const row=(extra={})=>({id:'source',title:'Unrelated record',description:'No matching subject',url:'https://example.com/source',publishedAt:'2026-10-03',checkedAt:'2026-11-02',sourceURL:'https://publisher.example/interview',kind:'editorial_view',stars:42,updatedAt:'2026-11-01',...extra});
+ const cases=[
+  ['source',[row()],[]],['example',[row()],[]],['2026',[row()],[]],['20261102',[row({checkedAt:'20261102'})],[]],
+  ['publisher',[row()],[]],['editorial',[row()],[]],['42',[row()],[]],['20261101',[row({updatedAt:'20261101'})],[]],
+  ['compare AI deployment evidence',[row({description:'AI'})],[]],
+  ['dependable agent',[row({title:'Dependable agent for review'})],['source']],
+  ['deployment evidence',[row({description:'Deployment evidence was inspected.'})],['source']],
+  ['resume interrupted task',[{id:'0',text:'Resume an interrupted task from its checkpoint.'}],['0']]
+ ];
+ assert.equal(cases.length,12);
+ for(const [query,rows,ids] of cases)assert.deepEqual(rank(query,rows).map(item=>item.id),ids,query);
+ const en=rank('dependable AI coworkers',catalog('en')).map(item=>item.id),zh=rank('可靠 AI 同事',catalog('zh')).map(item=>item.id);
+ assert.ok(en.includes('view-agents-take-time'));assert.ok(zh.includes('view-agents-take-time'));
+});
 test('claim inspection maps only cited source metadata and portable export labels its limit',()=>{const sources=[{id:'s1',title:'Primary <source>',description:'Observed **fact**',url:'https://example.com/a'},{id:'s2',title:'Uncited',description:'No'}],finding={text:'A claim',sourceIds:['s1','s1','missing']};assert.deepEqual(citedSources(finding,sources),[sources[0]]);const output=markdown({input:{goal:'Inspect evidence'},status:'completed',runs:1,result:{checkedAt:'2026-10-07',report:{summary:'Draft',findings:[finding],nextActions:[],uncertainties:[]},sources}});assert.match(output,/Cited source metadata \(not proof of support\)/);assert.match(output,/Primary &lt;source&gt;/);assert.doesNotMatch(output,/Uncited — No/);});
 test('frozen export cases preserve only current self-reported progress without changing the task',()=>{
  const states=[['tried','tried','已尝试'],['done','completed','已完成'],['blocked','blocked','受阻'],['PRIVATE <img>','not marked','未标记'],['__proto__','not marked','未标记'],[null,'not marked','未标记']];

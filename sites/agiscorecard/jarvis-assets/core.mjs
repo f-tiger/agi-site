@@ -1,5 +1,5 @@
 import {normalizeContext,contextReceipt} from './handoff.mjs';
-export const VERSION='jarvis-20261017-24';
+export const VERSION='jarvis-20261102-25';
 export const MODEL='@cf/meta/llama-3.1-8b-instruct-fast';
 export const MAX_RUNS=7;
 export const COMPOSER_DRAFT_MAX_AGE_MS=2*60*60*1000;
@@ -98,7 +98,15 @@ export function citedSources(finding,sources){
  return [...new Set(Array.isArray(finding?.sourceIds)?finding.sourceIds:[])].map(id=>byId.get(id)).filter(Boolean);
 }
 export function tokens(s){return [...new Set((String(s).toLowerCase().match(/[a-z0-9]{2,}|[\u4e00-\u9fff]/gu)||[]).filter(x=>!['the','and','with','for','this','that','what','how','can','want','find','my'].includes(x)))].slice(0,100);}
-export function rank(query,rows,max=6){const words=tokens(query);return rows.map(r=>{const haystack=JSON.stringify(r).toLowerCase();return {r,score:words.reduce((s,w)=>s+(haystack.includes(w)?1:0),0)};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,max).map(x=>x.r);}
+export function rank(query,rows,max=6){
+ const words=tokens(query).filter(word=>!/^[0-9]+$/.test(word));
+ return rows.map((r,index)=>{
+  const title=typeof r?.title==='string'?r.title.toLowerCase():'',body=[r?.description,r?.text].filter(value=>typeof value==='string').join(' ').toLowerCase();
+  const titleWords=words.filter(word=>title.includes(word)),bodyWords=words.filter(word=>body.includes(word)),matched=new Set([...titleWords,...bodyWords]);
+  const strongTitle=titleWords.some(word=>/^[a-z][a-z0-9-]{2,}$/i.test(word));
+  return {r,index,matched:matched.size,score:titleWords.length*3+bodyWords.length,strongTitle};
+ }).filter(x=>x.matched>=2||x.strongTitle).sort((a,b)=>b.score-a.score||b.matched-a.matched||a.index-b.index).slice(0,max).map(x=>x.r);
+}
 export function relevantMemory(goal,entries){return rank(goal,entries.map((text,i)=>({text,id:String(i)})),3).map(m=>m.text.slice(0,300));}
 const draftText=(value,max)=>{const clean=String(value??'').replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/gu,' ').replace(/\s+/gu,' ').trim();if(clean.length<=max)return clean;let clipped='';for(const char of clean){if(clipped.length+char.length>max-1)break;clipped+=char;}return clipped+'…';};
 export function followupDraft(goal,nextAction,doneWhen,lang='en'){

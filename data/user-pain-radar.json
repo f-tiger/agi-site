@@ -141,7 +141,13 @@
         "site_fit": "verified engineering defect: Jarvis ordinary-source ranking serializes entire records, so source IDs, URLs, dates and other metadata can create false relevance matches; a frozen synthetic check passes 3 of 12 cases before correction",
         "site_fit_verified": true,
         "outcome": "authorize a bounded deterministic relevance correction in the existing Jarvis path; the source gate still blocks treating this as a confirmed pain-point extension",
-        "note": "The one community source is adjacent agency context, not repeat demand, a buyer or payment evidence. This work corrects an independently reproduced product defect and does not claim model-quality improvement."
+        "note": "The one community source is adjacent agency context, not repeat demand, a buyer or payment evidence. This work corrects an independently reproduced product defect and does not claim model-quality improvement.",
+        "experiment": {
+          "baseline": "3/12 frozen synthetic relevance cases",
+          "candidate": "12/12 frozen synthetic relevance cases; representative English and Chinese catalog queries retained the intended record",
+          "regression": "137 Jarvis unit, security, membership, screening and handoff checks passed locally; release-safety, radar, hreflang and breadcrumb checks passed",
+          "pending": "The local browser binary was unavailable, so production browser and full generated-site checks remain release gates in CI."
+        }
       },
       "execution": {
         "started_at": "2026-11-02T00:57:00Z",
