@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-01",
+  "as_of": "2026-11-02",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 9,
+    "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-31T08:49:51.537Z",
-    "health": "2026-10-31T14:07:22Z",
-    "ai_referrals": "2026-10-31T14:07:49Z",
-    "opportunities": "2026-10-31",
-    "autopilot_receipt": "2026-11-01"
+    "membership": "2026-11-01T09:40:28.747Z",
+    "health": "2026-11-01T14:38:08Z",
+    "ai_referrals": "2026-11-01T14:38:34Z",
+    "opportunities": "2026-11-01",
+    "autopilot_receipt": "2026-11-02"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-31T08:49:51.537Z",
+    "generated": "2026-11-01T09:40:28.747Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -131,7 +131,7 @@
       "theme": "looking for a tool for browsing contents of unmounted cold storage",
       "site": null,
       "state": "scout",
-      "score": 4.1,
+      "score": 4.17,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -191,15 +191,6 @@
       "supply": 0
     },
     {
-      "theme": "feature request manager",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "do u think there should be a auto recovery tool for agents",
       "site": null,
       "state": "scout",
@@ -242,8 +233,8 @@
     {
       "id": "agi-claim-context-20261031",
       "site": "agiscorecard",
-      "status": "queued",
-      "decision": "verify",
+      "status": "done",
+      "decision": "hold",
       "title": "AI 结论缺少业务背景与来源支撑",
       "pain": "公开讨论反映 AI 对缺少上下文的问题给出肯定解释；与 Jarvis 的来源检查有相邻适配，尚未证明是本站用户需求。",
       "task": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
@@ -262,7 +253,7 @@
         "AGI-C1"
       ],
       "gate_reasons": [
-        "fewer than two distinct current original sources"
+        "status is done"
       ],
       "next_review": "2026-11-07",
       "commercial_hypothesis": "提高已有研究任务的可复核性与复用价值；付费意愿未知。",
@@ -326,32 +317,6 @@
   ],
   "actions": [
     {
-      "site": "agiscorecard",
-      "kind": "pain_point_verification",
-      "priority": 72,
-      "reason": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
-      "mode": "queue",
-      "evidence": {
-        "pain_id": "agi-claim-context-20261031",
-        "scope": [
-          "sites/agiscorecard/tools/jarvis/",
-          "sites/agiscorecard/jarvis-assets/"
-        ],
-        "acceptance": [
-          "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
-          "用冻结的合成任务比较改前改后；不读取客户任务正文。",
-          "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
-        ],
-        "source_refs": [
-          "AGI-C1"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 1
-      }
-    },
-    {
       "site": "baipiaoji",
       "kind": "pain_point_verification",
       "priority": 70,
@@ -382,7 +347,7 @@
       "priority": 64,
       "reason": "ready membership has qualified referred traffic but no paid members",
       "evidence": {
-        "referred_humans_28d": 619,
+        "referred_humans_28d": 625,
         "paid_members": 0
       },
       "mode": "queue"
@@ -405,9 +370,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 2,
-        "query": "costco compression boots",
-        "value": 200
+        "count": 1,
+        "query": "costco",
+        "value": 250
       },
       "mode": "queue"
     },
@@ -417,9 +382,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 27,
-        "query": "pattex luftentfeuchter",
-        "value": 53050
+        "count": 29,
+        "query": "infrarotheizung wandmontage",
+        "value": 88250
       },
       "mode": "queue"
     },
@@ -429,9 +394,21 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 16,
+        "count": 21,
         "query": "cat mode labubu",
         "value": 61150
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/workbench/workflowcost",
+        "n7": 57,
+        "p7": 27
       },
       "mode": "queue"
     },
@@ -441,9 +418,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/heizluefter-stromsparend.html",
-        "n7": 4,
-        "p7": 2
+        "page": "/guide/mobile-klimaanlage-ueberwintern.html",
+        "n7": 6,
+        "p7": 0
       },
       "mode": "queue"
     },
@@ -464,7 +441,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 511,
+        "human_pv_28d": 540,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -475,7 +452,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 240,
+        "human_pv_28d": 281,
         "ai_ref_28d": 0
       },
       "mode": "queue"

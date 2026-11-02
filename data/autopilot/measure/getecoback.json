@@ -2,8 +2,8 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 12,
-    "p7": 7
+    "n7": 11,
+    "p7": 6
    },
    "btu_calc": {
     "n7": 0,
@@ -14,60 +14,56 @@
     "p7": 0
    },
    "buyer_result": {
-    "n7": 1,
+    "n7": 2,
     "p7": 0
    },
    "buyer_view": {
-    "n7": 3,
+    "n7": 4,
     "p7": 3
    },
    "cold_now": {
-    "n7": 15,
+    "n7": 16,
     "p7": 1
    },
    "feuchte_now": {
-    "n7": 12,
-    "p7": 9
-   },
-   "heizkosten_calc": {
-    "n7": 0,
-    "p7": 1
+    "n7": 13,
+    "p7": 7
    },
    "laundry_view": {
     "n7": 0,
-    "p7": 3
+    "p7": 2
    },
    "page_view": {
-    "n7": 74,
-    "p7": 89
+    "n7": 77,
+    "p7": 79
    },
    "popup_click": {
     "n7": 1,
     "p7": 1
    },
    "popup_close": {
-    "n7": 10,
-    "p7": 11
+    "n7": 12,
+    "p7": 12
    },
    "popup_view": {
-    "n7": 16,
-    "p7": 27
+    "n7": 20,
+    "p7": 26
    },
    "seal_fit": {
     "n7": 0,
     "p7": 1
    },
    "strom_now": {
-    "n7": 14,
-    "p7": 14
+    "n7": 15,
+    "p7": 12
    },
    "stromkosten_calc": {
     "n7": 1,
     "p7": 1
    },
    "strompreis_api": {
-    "n7": 2,
-    "p7": 1
+    "n7": 0,
+    "p7": 3
    },
    "video_play": {
     "n7": 2,
@@ -76,7 +72,7 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-01",
+ "fetched": "2026-11-02",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
@@ -93,6 +89,10 @@
    "n7": 2,
    "p7": 1
   },
+  "/guide/heizluefter-schaltet-sich-aus.html": {
+   "n7": 3,
+   "p7": 1
+  },
   "/guide/heizluefter-stromsparend.html": {
    "n7": 4,
    "p7": 2
@@ -101,33 +101,29 @@
    "n7": 2,
    "p7": 1
   },
-  "/guide/klimaanlage-40-qm.html": {
+  "/guide/infrarotheizung-garage.html": {
    "n7": 2,
-   "p7": 2
-  },
-  "/guide/klimaanlage-dachfenster.html": {
-   "n7": 3,
    "p7": 0
   },
-  "/guide/klimaanlage-kippfenster.html": {
-   "n7": 3,
-   "p7": 2
-  },
-  "/guide/klimaanlage-wann-kaufen.html": {
+  "/guide/klimaanlage-40-qm.html": {
    "n7": 2,
-   "p7": 3
+   "p7": 0
+  },
+  "/guide/klimaanlage-dachfenster.html": {
+   "n7": 2,
+   "p7": 1
   },
   "/guide/luftentfeuchter-keller.html": {
    "n7": 4,
-   "p7": 4
+   "p7": 3
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 3,
+   "n7": 4,
    "p7": 0
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 3,
-   "p7": 1
+   "n7": 6,
+   "p7": 0
   },
   "/guide/mobile-klimaanlage-zu-laut.html": {
    "n7": 2,
@@ -135,11 +131,7 @@
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
    "n7": 4,
-   "p7": 4
-  },
-  "/guide/strompreis-radar.html": {
-   "n7": 2,
-   "p7": 1
+   "p7": 2
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 3,
@@ -147,10 +139,6 @@
   },
   "/guide/wohnmobil-feuchtigkeit-winter.html": {
    "n7": 3,
-   "p7": 0
-  },
-  "/tools.html": {
-   "n7": 2,
    "p7": 0
   },
   "/wohnen.html": {

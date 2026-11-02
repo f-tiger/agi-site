@@ -15,9 +15,9 @@
     "demand": {
       "has_underserved": false,
       "has_gaps": true,
-      "has_hot_pages": false,
+      "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": null
+      "top_hot_page": "/workbench/workflowcost"
     },
     "health": {
       "http": "200",
@@ -26,31 +26,6 @@
   },
   "actions": [
     {
-      "kind": "pain_point_verification",
-      "priority": 72,
-      "reason": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
-      "evidence": {
-        "pain_id": "agi-claim-context-20261031",
-        "scope": [
-          "sites/agiscorecard/tools/jarvis/",
-          "sites/agiscorecard/jarvis-assets/"
-        ],
-        "acceptance": [
-          "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
-          "用冻结的合成任务比较改前改后；不读取客户任务正文。",
-          "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
-        ],
-        "source_refs": [
-          "AGI-C1"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 1
-      },
-      "mode": "queue"
-    },
-    {
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
@@ -58,6 +33,17 @@
         "count_band": "1-9",
         "query": "ai stocks down",
         "value_band": "1-9"
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/workbench/workflowcost",
+        "n7_band": "10-99",
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }

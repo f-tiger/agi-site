@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/guide/heizluefter-stromsparend.html"
+      "top_hot_page": "/guide/mobile-klimaanlage-ueberwintern.html"
     },
     "health": {
       "http": "200",
@@ -31,7 +31,7 @@
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
         "count_band": "10-99",
-        "query": "pattex luftentfeuchter",
+        "query": "infrarotheizung wandmontage",
         "value_band": "100+"
       },
       "mode": "queue"
@@ -41,9 +41,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/heizluefter-stromsparend.html",
+        "page": "/guide/mobile-klimaanlage-ueberwintern.html",
         "n7_band": "1-9",
-        "p7_band": "1-9"
+        "p7_band": "0"
       },
       "mode": "queue"
     },
