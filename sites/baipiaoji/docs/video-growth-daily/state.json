@@ -10,7 +10,9 @@
     "problemId": "bpj-release-watch-mode-contract",
     "evidence": "iteration-2026-11-02.md",
     "deploymentRequired": false,
-    "actualPipelineRecoveryVerified": false
+    "actualPipelineRecoveryVerified": false,
+    "recordedInPullRequest": 237,
+    "implementationCommit": "9f3ae23b906cde066982abebc2d008249bea1e2e"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-10-29T02:36:16.956848Z",
@@ -184,7 +186,9 @@
       "actualPipelineRecoveryVerified": false,
       "deploymentRequired": false,
       "nextCheckDate": "2026-11-03",
-      "nextAction": "Read the next existing original schedule through this test and downstream build/deploy gates. Do not close from local tests or dispatch again; if another gate fails, record its actual step separately. No production workflow, watcher, payment or other-site changes."
+      "nextAction": "Read the next existing original schedule through this test and downstream build/deploy gates. Do not close from local tests or dispatch again; if another gate fails, record its actual step separately. No production workflow, watcher, payment or other-site changes.",
+      "recordedInPullRequest": 237,
+      "implementationCommit": "9f3ae23b906cde066982abebc2d008249bea1e2e"
     },
     {
       "id": "bpj-manju-source-identity-refresh",
@@ -425,7 +429,9 @@
       "secondRound": "Independent final code and five-file review passed after correcting stale currentBlockers/lastAction. Reviewer independently ran guard/mutation assertions; full fixture execution belongs to root. Persisted/deployed identities, complete-day unknowns, privacy, bounded history and Nov3 review verified.",
       "rootSelfCheck": "Full zero-network fixture passed after narrowly approved local subprocess permission; syntax, source projection, JSON/links, scope/privacy, preserved experiment/weekly/history and diff checks passed. No full site build/browser run."
     },
-    "nextAction": "Read the next existing original schedule through repaired test and downstream release gates, and inspect eligible full-day viewer evidence. Nov3 creator weekly review remains due; existing tutorial manual acceptance and authorized distribution remain blocked."
+    "nextAction": "Read the next existing original schedule through repaired test and downstream release gates, and inspect eligible full-day viewer evidence. Nov3 creator weekly review remains due; existing tutorial manual acceptance and authorized distribution remain blocked.",
+    "recordedInPullRequest": 237,
+    "implementationCommit": "9f3ae23b906cde066982abebc2d008249bea1e2e"
   },
   "recentActions": [
     {
@@ -554,7 +560,9 @@
         "actualSnapshotVerified": true,
         "persistedByCommit": "23888e48260a8c621dad264111c1da66726e1d58",
         "completeDayEvidenceVerified": false
-      }
+      },
+      "recordedInPullRequest": 237,
+      "implementationCommit": "9f3ae23b906cde066982abebc2d008249bea1e2e"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",

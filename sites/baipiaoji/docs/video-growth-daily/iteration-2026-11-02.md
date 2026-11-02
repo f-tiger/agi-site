@@ -2,6 +2,8 @@
 
 本轮通过已连接 GitHub 恢复 main `f83261403215980b32c4b0397e4d28c70071865c` 的七份规则/状态文件、相关 PR、部署工作流和已有产物。监测时间为 **11 月 2 日 UTC**，源生成时间另列。没有同目标开放 PR 或活动发布；PR #232 是另一项 BPJ 英文数据修复，其说明也记录了同一测试阻断，不覆盖或代为合并该 PR。
 
+实现与状态提交见 [PR #237](https://github.com/f-tiger/agi-site/pull/237)；测试实现提交为 [`9f3ae23`](https://github.com/f-tiger/agi-site/commit/9f3ae23b906cde066982abebc2d008249bea1e2e)。
+
 ## 本轮最小动作与验收边界
 
 原日任务 [41281927694](https://github.com/f-tiger/agi-site/actions/runs/41281927694) 于 **11 月 1 日 06:42:52Z** 启动，reach 导出、红果两榜采集、数据提交及版本固定成功。随后在 **06:48:55.5894121Z** 的 `Checkout and delivery integration (SQLite, no network)` 失败，**构建和部署跳过**。实际断言是 BPJ 测试仍期望旧的维护模式列表，不能因步骤名称含 checkout 就归因为会员权限或付款故障。
