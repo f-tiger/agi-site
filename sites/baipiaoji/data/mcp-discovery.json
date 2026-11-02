@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-01",
+ "checked": "2026-11-02",
  "server": {
   "name": "io.github.f-tiger/verified-ai-free-tiers",
   "version": "1.13.0",
@@ -51,7 +51,7 @@
    "id": "smithery",
    "name": "Smithery",
    "url": "https://smithery.ai/search?q=baipiaoji",
-   "http": 200,
+   "http": 404,
    "found": false,
    "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
   },
