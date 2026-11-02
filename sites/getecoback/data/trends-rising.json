@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-01",
+ "fetched": "2026-11-02",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -214,32 +214,36 @@
   "kaffeevollautomat": {
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 15750
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 12100
     },
     {
-     "q": "krups kaffeevollautomat intensity milk",
-     "v": 13100
+     "q": "philips series 5500 kaffeevollautomat ep5547/90",
+     "v": 10650
     },
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
-     "v": 9700
-    },
-    {
-     "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-     "v": 7450
+     "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
+     "v": 7900
     },
     {
      "q": "wmf perfection 840l kaffeevollautomat",
-     "v": 6600
+     "v": 6750
     },
     {
      "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-     "v": 4800
+     "v": 5350
     },
     {
-     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-     "v": 550
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 800
+    },
+    {
+     "q": "philips kaffeevollautomat ep5443/70 5400 series",
+     "v": 350
+    },
+    {
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 300
     },
     {
      "q": "de'longhi kaffeevollautomat",
@@ -248,65 +252,61 @@
     {
      "q": "philips lattego",
      "v": 50
-    },
-    {
-     "q": "philips kaffeevollautomat lattego",
-     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-11-01",
+   "fetched": "2026-11-02",
    "polluted": false,
-   "last_attempt_at": "2026-11-01T11:26:49.725441+00:00",
+   "last_attempt_at": "2026-11-02T12:45:30.282650+00:00",
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
    "rising": [
     {
      "q": "sky scanner",
-     "v": 17950
+     "v": 1000
+    },
+    {
+     "q": "dripl akku staubsauger",
+     "v": 600
     },
     {
      "q": "levoit akku staubsauger lvac 200 max",
-     "v": 800
+     "v": 400
     },
     {
-     "q": "dyson cool ventilator",
-     "v": 160
+     "q": "dyson purifier cool pc1",
+     "v": 190
     },
     {
      "q": "grundig akku staubsauger",
-     "v": 130
-    },
-    {
-     "q": "balenciaga city bag",
-     "v": 110
-    },
-    {
-     "q": "würth akku staubsauger",
-     "v": 100
-    },
-    {
-     "q": "dyson staubsauger ohne beutel",
-     "v": 100
-    },
-    {
-     "q": "levoit akku staubsauger",
-     "v": 90
-    },
-    {
-     "q": "ventilator dyson",
-     "v": 80
+     "v": 140
     },
     {
      "q": "dreame r20",
-     "v": 80
+     "v": 120
+    },
+    {
+     "q": "balenciaga rodeo bag",
+     "v": 110
+    },
+    {
+     "q": "neuer dyson staubsauger",
+     "v": 110
+    },
+    {
+     "q": "levoit akku staubsauger",
+     "v": 100
+    },
+    {
+     "q": "würth akku staubsauger",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-10-25",
+   "fetched": "2026-11-02",
    "polluted": false,
-   "last_attempt_at": "2026-10-25T09:17:27.338605+00:00",
+   "last_attempt_at": "2026-11-02T12:46:32.634418+00:00",
    "last_attempt_status": "ok"
   },
   "matratze": {
