@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
@@ -25,30 +25,50 @@
    "fetched": "2026-11-02"
   },
   "deumidificatore": {
-   "auto": [
-    "deumidificatore",
-    "deumidificatore portatile",
-    "deumidificatore casa",
-    "deumidificatore dyson",
-    "deumidificatore in inglese",
-    "deumidificatore condizionatore",
-    "deumidificatore a parete",
-    "deumidificatore o condizionatore",
-    "deumidificatore unieuro",
-    "deumidificatore industriale"
-   ],
    "rising": [
     {
-     "q": "deumidificatore unieuro",
-     "v": "new"
+     "q": "deumidificatore per asciugare i panni",
+     "v": 35950
     },
     {
-     "q": "deumidificatore industriale",
-     "v": "new"
+     "q": "umidificatore ambiente",
+     "v": 19200
+    },
+    {
+     "q": "deumidificatore chicco",
+     "v": 13500
+    },
+    {
+     "q": "consuma di piu aria condizionata o deumidificatore",
+     "v": 7700
+    },
+    {
+     "q": "deumidificatore portatile migliore",
+     "v": 2200
+    },
+    {
+     "q": "umidificatore termosifone",
+     "v": 1750
+    },
+    {
+     "q": "deumidificatore ikea",
+     "v": 600
+    },
+    {
+     "q": "deumidificatore asciugabiancheria",
+     "v": 500
+    },
+    {
+     "q": "deumidificatore per termosifoni",
+     "v": 500
+    },
+    {
+     "q": "ariasana deumidificatore",
+     "v": 450
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-10-23"
+   "source": "related-queries",
+   "fetched": "2026-11-03"
   }
  }
 }
