@@ -81,7 +81,7 @@
     {
       "id": "bpj-trial-terms-20261031",
       "site": "baipiaoji",
-      "status": "working",
+      "status": "done",
       "priority": 70,
       "title": "试用、取消与续费条件核对",
       "pain": "订阅前的试用能力和退出条件不清楚；目前仅有日期未知的缓存线索。",
@@ -105,6 +105,7 @@
       "commercial_hypothesis": "缩短已有 AI 工具选型流程；联盟资格和收入另行核验。",
       "counter_evidence": "可能只需要链接官方帮助页，不需要新工具。",
       "next_review": "2026-11-07",
+      "next_observation_date": "2026-11-10",
       "verification": {
         "checked_at": "2026-11-03T00:18:00Z",
         "execution": "hosted-development-task",
@@ -119,7 +120,7 @@
           "baseline": "Claude was marked pending; the card said the source returned 403 and told users to verify refunds themselves.",
           "candidate": "The existing bilingual card now distinguishes Free access from a standing Pro trial, states default renewal and cancellation timing, preserves regional/channel-specific refund limits, and links four dated first-party references.",
           "regression": "Bilingual build, focused coding-access data/render/privacy checks, 16 pain-radar tests, evolution invariants, 36 release-input guard tests, nine GA4 coverage tests and generated-site GA4 coverage passed.",
-          "pending": "The local Playwright browser binary is unavailable; the existing CI browser, full site, current-main, deployment and live gates remain required. Customer completion, registration, payment and revenue effects are unknown."
+          "pending": "The production CI browser, full site, current-main, Cloudflare deployment and live gates passed. The local Playwright browser binary remained unavailable. Customer completion, registration, payment and revenue effects are unknown."
         },
         "official_sources_reviewed": [
           "https://claude.com/pricing",
@@ -127,14 +128,31 @@
           "https://support.claude.com/en/articles/8325609-how-do-i-sign-up-for-the-pro-plan",
           "https://support.claude.com/en/articles/8325617-cancel-your-pro-max-or-ultra-subscription",
           "https://support.claude.com/en/articles/12386328-request-a-refund-for-a-paid-claude-plan"
-        ]
+        ],
+        "live_checked_at": "2026-11-03T00:35:29Z",
+        "release": {
+          "result": "passed",
+          "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
+          "deployed_at": null,
+          "live_urls": [
+            "https://baipiaoji.com/coding-access/",
+            "https://baipiaoji.com/en/coding-access/"
+          ],
+          "acceptance": "Focused bilingual data/render/privacy checks, 16 pain-radar tests, evolution invariants, 36 current-main release-input guard tests, nine GA4 coverage tests and generated-site GA4 coverage passed locally. Production CI then passed the full build, real-browser gates, GA4 consent and fixed-action checks, current-main guard, Cloudflare deployment, published coding-access check and changed-only IndexNow step; both live language routes were inspected after deployment.",
+          "limitations": "The workflow connector confirmed a successful deployment but did not expose a deployment completion timestamp, so deployed_at remains unknown. BPJ-T1 remains an unread supplier cache with unknown publication date and is not confirmed demand, a buyer or payment evidence. No purchase, cancellation or refund was executed. The unrelated broad vendor-link crawl was not completed. Customer completion, reuse, registration, payment and revenue effects remain unknown."
+        }
       },
       "execution": {
         "started_at": "2026-11-03T00:18:00Z",
         "base_sha": "a7c109574dba5e5447bed7b2c7c51c6dd59a40a6",
         "branch": "codex/bpj-claude-terms-20261103",
         "pull_request": 239,
-        "release_hold": null
+        "release_hold": null,
+        "completed_at": "2026-11-03T00:35:29Z",
+        "commit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+        "merge_commit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+        "workflow_run_id": 41552530896,
+        "outcome": "released and live-verified"
       }
     },
     {
