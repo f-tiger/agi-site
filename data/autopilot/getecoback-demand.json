@@ -1,48 +1,32 @@
 {
  "covered": [
   {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/infrarotheizung-garage.html",
-   "q": "könighaus infrarotheizung thermostat",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 113450
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.737,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit spiritus entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 74650
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.7,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel aus silikonfugen entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 57950
-  },
-  {
-   "heat": null,
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung garage",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 35350
+   "stand": "2026-11-01",
+   "v": 37700
+  },
+  {
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
+   "kind": "value",
+   "match": 0.917,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "infrarotheizung als bild",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 35500
   },
   {
    "heat": null,
@@ -52,41 +36,8 @@
    "q": "stand infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 34500
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-wand-kommt-wieder.html",
-   "q": "schimmel entferner wand",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 33600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/infrarotheizung-badezimmer.html",
-   "q": "infrarotheizung auf rollen",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 32550
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.96,
-   "page": "guide/infrarotheizung-ratgeber.html",
-   "q": "infrarotheizung 600 watt mit thermostat",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 32150
+   "stand": "2026-11-01",
+   "v": 32400
   },
   {
    "heat": null,
@@ -102,55 +53,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel an silikon entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 4350
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel am fensterrahmen entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3750
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.667,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel an fensterdichtung entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3700
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/schimmel-am-fenster.html",
-   "q": "schimmel an der wand entfernen hausmittel",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-10-30",
-   "v": 3450
-  },
-  {
-   "heat": {
-    "n7": 5,
-    "p7": 1
-   },
-   "kind": "value",
    "match": 0.967,
-   "page": "index.html",
+   "page": "guide/klimaanlage-mit-heizfunktion.html",
    "q": "heizen mit klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
@@ -209,7 +113,17 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung wandmontage",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 88250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/luftentfeuchter-10-qm.html",
    "q": "pattex luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
@@ -223,28 +137,18 @@
    "q": "byecold infrarotheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 49950
+   "stand": "2026-11-01",
+   "v": 41400
   },
   {
    "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "papermoon infrarotheizung",
+   "q": "infrarotheizung wintergarten",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 48250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "steinfeld infrarotheizung",
-   "seed": "infrarotheizung",
-   "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 37500
+   "stand": "2026-11-01",
+   "v": 39700
   },
   {
    "kind": "value",
@@ -253,13 +157,33 @@
    "q": "konvektorheizung",
    "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-10-23",
-   "v": 33350
+   "stand": "2026-11-01",
+   "v": 38500
   },
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung outdoor",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 34500
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "könighaus infrarotheizung 1200 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 32300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/luftentfeuchter-10-qm.html",
    "q": "pingi luftentfeuchter",
    "seed": "luftentfeuchter",
    "source": "related-queries",
@@ -268,33 +192,23 @@
   },
   {
    "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 15750
+  },
+  {
+   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "krups kaffeevollautomat intensity milk",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 14100
-  },
-  {
-   "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
-   "q": "philips series 5500 kaffeevollautomat ep5547/90",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 10250
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 10150
+   "stand": "2026-11-01",
+   "v": 13100
   },
   {
    "kind": "value",
@@ -303,38 +217,8 @@
    "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 9800
-  },
-  {
-   "kind": "value",
-   "match": 0.18,
-   "page": "guide/bei-hitze-schlafen.html",
-   "q": "siemens eq.6 plus s700 te657m03de kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 9250
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "wmf perfection 840l kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 8650
-  },
-  {
-   "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
-   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 7550
+   "stand": "2026-11-01",
+   "v": 9700
   },
   {
    "kind": "value",
@@ -343,8 +227,28 @@
    "q": "de'longhi kaffeevollautomat ecam 21.118.b",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 6650
+   "stand": "2026-11-01",
+   "v": 7450
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "wmf perfection 840l kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 6600
+  },
+  {
+   "kind": "value",
+   "match": 0.15,
+   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "q": "philips ep2230/10 series 2200 kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 4800
   },
   {
    "kind": "value",
@@ -355,6 +259,16 @@
    "source": "related-queries",
    "stand": "2026-10-25",
    "v": 800
+  },
+  {
+   "kind": "value",
+   "match": 0.18,
+   "page": "guide/bei-hitze-schlafen.html",
+   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-11-01",
+   "v": 550
   },
   {
    "kind": "value",
@@ -423,8 +337,8 @@
    "q": "de'longhi kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-24",
-   "v": 150
+   "stand": "2026-11-01",
+   "v": 140
   },
   {
    "kind": "value",
@@ -478,23 +392,23 @@
   },
   {
    "kind": "value",
-   "match": 0.475,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini kaffeevollautomat",
+   "match": 0.0,
+   "page": null,
+   "q": "philips kaffeevollautomat lattego",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-10-24",
+   "stand": "2026-11-01",
    "v": 50
   }
  ],
- "generated": "2026-10-31",
+ "generated": "2026-11-02",
  "geo": "DE",
- "heat_source": "measured 2026-10-31 (16 pages); no notes",
+ "heat_source": "measured 2026-11-02 (17 pages); no notes",
  "hot_pages": [
   {
-   "n7": 5,
-   "p7": 1,
-   "page": "/"
+   "n7": 6,
+   "p7": 0,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
    "n7": 4,
@@ -503,38 +417,43 @@
   },
   {
    "n7": 4,
-   "p7": 5,
+   "p7": 3,
    "page": "/guide/luftentfeuchter-keller.html"
   },
   {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/klimaanlage-dachfenster.html"
-  },
-  {
-   "n7": 3,
-   "p7": 2,
-   "page": "/guide/klimaanlage-kippfenster.html"
-  },
-  {
-   "n7": 3,
+   "n7": 4,
    "p7": 0,
    "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
-   "n7": 3,
-   "p7": 4,
+   "n7": 4,
+   "p7": 2,
    "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/guide/strompreis-radar.html"
+   "p7": 1,
+   "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 3,
-   "p7": 4,
+   "p7": 3,
    "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 3,
+   "p7": 0,
+   "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
+  },
+  {
+   "n7": 2,
+   "p7": 4,
+   "page": "/"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/en/guide/portable-ac-hose-extension.html"
   },
   {
    "n7": 2,
@@ -543,47 +462,40 @@
   },
   {
    "n7": 2,
-   "p7": 2,
+   "p7": 1,
+   "page": "/guide/heizluefter-stromverbrauch.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/infrarotheizung-garage.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
    "page": "/guide/klimaanlage-40-qm.html"
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/guide/klimaanlage-wann-kaufen.html"
-  },
-  {
-   "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 2,
    "p7": 1,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 2,
-   "p7": 1,
-   "page": "/guide/mobile-klimaanlage-zu-laut.html"
+   "page": "/guide/klimaanlage-dachfenster.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "radiator",
+  "ölradiator",
   "meacodry arete one 12l",
-  "kalkfarbe",
   "sky scanner",
   "notlandung",
   "steckdosenleiste",
   "weltweite zeitumstellung 2027",
   "constantin schreiber axel springer",
-  "isopropanol kaufen",
   "unfall italien bus wohnmobil",
   "daikin perfera",
   "balenciaga city bag",
-  "isopropanol",
-  "dreame r20"
+  "dreame r20",
+  "philips lattego"
  ],
  "site": "getecoback",
  "source_notes": [],

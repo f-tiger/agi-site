@@ -4,6 +4,9 @@ on:
     paths:
       - 'sites/getecoback/**'
       - 'tools/eco_evolution.py'
+      - 'tools/eco_demand_model.py'
+      - 'tools/test_eco_demand_model.py'
+      - 'data/evolution/getecoback-markets.json'
       - 'tools/test_eco_evolution.py'
       - 'data/evolution/getecoback-catalog.json'
       - '.github/workflows/eco-trends.yml'
@@ -55,6 +58,8 @@ jobs:
           python3 tools/test_sitemap_pending_publication.py
           node --test tools/test_auto_product.mjs
           python3 -m unittest discover -s ../../tools -p test_eco_evolution.py
+          python3 -m unittest discover -s ../../tools -p test_eco_demand_model.py
+          node --test tools/test_agent_sources.mjs
           node --test ../../tools/fleet-analytics/business.test.mjs
           python3 tools/test_affiliate_growth.py
           python3 tools/build_energy_workbench.py
@@ -125,6 +130,9 @@ jobs:
           python3 tools/build_tool_experience.py
           python3 tools/build_language_nav.py
           python3 tools/test_language_nav.py
+          python3 tools/build_demand_discovery.py
+          python3 tools/test_demand_discovery.py
+          node --test tools/test_demand_search.mjs
           python3 ../../tools/fleet-analytics/coverage.py --site eco --out site --write
           node --test tools/test-public-engagement.mjs
           node tools/install-public-engagement.mjs --write
@@ -149,6 +157,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_country_categories.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" node tools/browser_demand_discovery.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buyer_decision.cjs

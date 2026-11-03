@@ -13,6 +13,13 @@ try{
  await page.goto('https://agiscorecard.com/capital-radar');await page.getByText('首次采集尚未完成。',{exact:false}).waitFor();assert.equal(await page.locator('#chart svg').count(),0);assert.match(await page.locator('#forecast-copy').innerText(),/56/);assert.equal(await page.locator('script[src*="analytics"]').count(),0);
  await page.screenshot({path:'/tmp/capital-radar-dashboard-empty.png',fullPage:true});
  response={ok:true,snapshot:fixture};await page.getByRole('button',{name:'刷新看板'}).click();await page.locator('#chart svg').waitFor();assert.equal(await page.locator('.signal-row').count(),2);assert.match(await page.locator('#forecast-copy').innerText(),/28/);
+ for(const [deliveryStatus,expected,lastSentAt] of [
+  ['pending','核心信号已进入 SunWatch 待发送队列；尚未确认送达。',null],
+  ['waiting','SunWatch 通知配置就绪，等待核心信号。',null],
+  ['unknown','发送结果未确认，尚不能判断是否送达。',null],
+  ['sent','SunWatch 通知配置已就绪；尚无成功发送回执。',null],
+  ['sent','SunWatch 已取得最近一条核心信号的 Telegram 发送回执。',new Date().toISOString()]
+ ]){response={ok:true,snapshot:{...fixture,notifications:{configured:true,deliveryStatus,lastSentAt}}};await page.getByRole('button',{name:'刷新看板'}).click();await page.getByText(expected,{exact:true}).waitFor();assert.equal(await page.locator('#notification-status').innerText(),expected);}
  await page.locator('#sector').selectOption('robotics');assert.equal(await page.locator('.signal-row').count(),1);assert.match(await page.locator('.signal-row').innerText(),/地域待核实/);await page.locator('#search').fill('nothing');assert.equal(await page.locator('.signal-row').count(),0);await page.locator('#search').fill('');await page.locator('#sector').selectOption('all');
  await page.screenshot({path:'/tmp/capital-radar-dashboard.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:'/tmp/capital-radar-dashboard-mobile.png',fullPage:true});
@@ -21,5 +28,5 @@ try{
  assert.equal(await page.evaluate(()=>localStorage.length),0);assert.equal(await page.evaluate(()=>sessionStorage.length),0);
  await page.goto('https://agiscorecard.com/capital-radar-about?__qa=1');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);assert.equal(await page.locator('[data-fleet-account-entry]').count(),1);await page.screenshot({path:'/tmp/capital-radar-about-mobile.png',fullPage:true});
  await page.setViewportSize({width:1360,height:1000});await page.screenshot({path:'/tmp/capital-radar-about.png',fullPage:true});
- assert.deepEqual(unexpected,[]);assert.deepEqual(errors,[]);console.log('Capital radar browser fixtures: empty, ready, chart, filters, failed refresh, expired session, mobile and privacy passed. No production data or notifications used.');
+ assert.deepEqual(unexpected,[]);assert.deepEqual(errors,[]);console.log('Capital radar browser fixtures: empty, ready, chart, SunWatch pending/waiting/unknown/receipt, filters, failed refresh, expired session, mobile and privacy passed. No production data or notifications used.');
 }finally{await browser.close();}

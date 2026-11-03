@@ -1,6 +1,6 @@
 # 硅谷 AI 融资与创业监控｜资本雷达 · AGI 记分牌
 
-注册 AGI 账号后，追踪硅谷 AI 融资与创业报道、核对来源与地域、查看时序变化和模型回测。了解采集范围、预测限制与 Telegram 核心摘要。
+注册 AGI 账号后查看 AI 融资与创业线索、时序趋势和回测。经现有 SunWatch 发送 Telegram 核心信号：初始化状态、新湾区融资候选、首次可用预测或显著变化；不逐条广播，送达以实际回执为准。
 
 ---
 Canonical page: https://agiscorecard.com/capital-radar-about

@@ -1,7 +1,7 @@
 import {workURL,validateWorkEvidence} from './manju-work-urls.mjs';
 import {buildWorkPages} from './manju-work-pages.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
-import {refresh} from './manju-sync.mjs';import {validateManju} from './manju-catalog.mjs';import '../assets/manju-search.js';
+import {refresh,syncFailureDiagnostic,syncFailureStatus} from './manju-sync.mjs';import {validateManju} from './manju-catalog.mjs';import '../assets/manju-search.js';
 const read=n=>JSON.parse(readFileSync(new URL('../data/'+n,import.meta.url))),catalog=read('manju.json'),insights=read('manju-insights.json');
 const payload={checkedAt:insights.reviewedAt,checkedAtTime:insights.reviewedAt+'T08:00:00Z',cohorts:insights.cohorts.filter(c=>c.metric==='snapshot_heat').map(c=>({kind:c.id.includes('comic')?'comic-drama':'ai-drama',observedAt:insights.reports.find(r=>r.id===c.reportId).observedAt,records:c.records,sourcePages:c.sourcePages}))};
 test('refresh is idempotent, retains catalogue and refreshes source provenance',()=>{const a=refresh(catalog,insights,payload),b=refresh(a.catalog,a.insights,payload);assert.equal(b.added,0);assert.equal(a.catalog.items.length,b.catalog.items.length);assert.equal(validateManju(b.catalog).records,b.catalog.items.length);});
@@ -43,6 +43,56 @@ test('different official IDs sharing a normalized title fail without changing pr
  incoming.title=catalog.items.find(x=>x.evidence?.sourceKind==='hongguo-ranking'&&x.id!==renamedId).title;
  assert.throws(()=>refresh(catalog,insights,collision),/Conflicting official title identity/);
 });
+// The failed Nov2 source payload was not retained. These are explicitly
+// synthetic collisions built from the saved catalogue, not a source replay.
+function conflictFrom(c,p){
+ let error;try{refresh(c,insights,p);}catch(caught){error=caught;}
+ assert.match(error?.message||'',/Conflicting official title identity/);return error;
+}
+test('real conflict errors project bounded IDs and dates without exposing titles or error fields',()=>{
+ const p=structuredClone(payload),cohort=p.cohorts.find(c=>c.records.some(r=>r.url===renamedURL)),row=cohort.records.find(r=>r.url===renamedURL);
+ row.url='https://hongguoduanju.com/detail?series_id=987654310';row.title=' '+row.title+'！';
+ const before=JSON.stringify([catalog,insights,p]),error=conflictFrom(catalog,p);
+ const expected={code:'official-title-identity-conflict',incomingWorkId:'hg-987654310',conflictingCatalogId:renamedId,cohortKind:cohort.kind,sourceDate:cohort.observedAt};
+ assert.deepEqual(syncFailureDiagnostic(error),expected);
+ Object.assign(error,{diagnostic:{title:'private source title'},cause:{media:'https://private.test/video'},incomingWorkId:'forged',title:'untrusted title'});
+ assert.deepEqual(syncFailureDiagnostic(error),expected);
+ const returned=syncFailureDiagnostic(error);returned.sourceDate='1900-01-01';assert.deepEqual(syncFailureDiagnostic(error),expected);
+ const attempt={version:1,attemptedAt:'2026-11-03T00:00:00Z',schedule:'synthetic fixture',status:'failed'},previous={lastSuccessAt:'2026-11-01T06:47:56.186123+00:00',diagnostic:{title:'stale'},customer:'excluded'};
+ const status=syncFailureStatus(attempt,previous,error);
+ assert.deepEqual(status,{...attempt,lastSuccessAt:previous.lastSuccessAt,error:'采集或数据校验失败；保留上次有效内容。详见 Actions 日志。',diagnostic:expected});
+ assert.equal(JSON.stringify([catalog,insights,p]),before);
+ assert.ok(JSON.stringify(status).length<600);assert.ok(!JSON.stringify(status).includes(row.title));
+ const failedAgain=syncFailureStatus(attempt,status,new Error('arbitrary source text'));
+ assert.equal(failedAgain.lastSuccessAt,previous.lastSuccessAt);assert.equal('diagnostic' in failedAgain,false);
+ assert.equal(syncFailureStatus(attempt,{},new Error()).lastSuccessAt,null);
+});
+test('known official and nonofficial title owners are distinguished from the incoming work',()=>{
+ for(const other of [catalog.items.find(x=>x.evidence?.sourceKind==='hongguo-ranking'&&x.id!==renamedId),catalog.items.find(x=>x.evidence?.sourceKind!=='hongguo-ranking')]){
+  const p=structuredClone(payload),cohort=p.cohorts.find(c=>c.records.some(r=>r.url===renamedURL));
+  cohort.records.find(r=>r.url===renamedURL).title=other.title;
+  const error=conflictFrom(catalog,p),diagnostic=syncFailureDiagnostic(error);
+  assert.equal(diagnostic.incomingWorkId,renamedId);assert.equal(diagnostic.conflictingCatalogId,other.id);assert.equal(diagnostic.cohortKind,cohort.kind);assert.equal(diagnostic.sourceDate,cohort.observedAt);
+ }
+});
+test('forged errors and invalid diagnostic primitives stay unknown while conflicts remain rejected',()=>{
+ const fake={code:'official-title-identity-conflict',incomingWorkId:renamedId,conflictingCatalogId:'hg-123456789',cohortKind:'ai-drama',sourceDate:'2026-11-01'};
+ for(const error of [null,'source error',new Error('Conflicting official title identity: '+renamedId),fake,Object.assign(new Error(),{diagnostic:fake}),Object.create(null)])assert.equal(syncFailureDiagnostic(error),null);
+ for(const mutate of [
+  (c,p,row)=>{row.url='https://hongguoduanju.com/detail?series_id=123456789012345678901';},
+  (c,p,row,cohort)=>{cohort.observedAt='2099-02-29';},
+  (c,p,row,cohort)=>{cohort.observedAt='2099-13-01';},
+  (c,p,row)=>{c.items.find(x=>x.id===renamedId).id='bad\nprivate value';},
+  (c,p,row)=>{c.items.find(x=>x.id===renamedId).id='x'.repeat(101);},
+ ]){
+  const c=structuredClone(catalog),p=structuredClone(payload),cohort=p.cohorts.find(x=>x.records.some(r=>r.url===renamedURL)),row=cohort.records.find(r=>r.url===renamedURL);
+  row.url='https://hongguoduanju.com/detail?series_id=987654310';mutate(c,p,row,cohort);
+  const before=JSON.stringify([c,insights,p]),error=conflictFrom(c,p);
+  assert.equal(syncFailureDiagnostic(error),null);assert.equal(JSON.stringify([c,insights,p]),before);
+  const status=syncFailureStatus({attemptedAt:'2026-11-03T00:00:00Z',schedule:'synthetic fixture'},{lastSuccessAt:'2026-11-01T06:47:56.186123+00:00'},error);
+  assert.equal(status.status,'failed');assert.equal(status.lastSuccessAt,'2026-11-01T06:47:56.186123+00:00');assert.equal('diagnostic' in status,false);
+ }
+});
 test('a new official ID appearing under two synthetic board titles is added only once',()=>{
  const p=structuredClone(payload),url='https://hongguoduanju.com/detail?series_id=987654320';
  for(const c of p.cohorts){c.records[0].url=url;c.records[0].title=c.kind==='ai-drama'?'合成新身份AI榜名':'合成新身份漫剧榜名';}
@@ -58,6 +108,7 @@ test('a different ID cannot reuse an earlier board title after the first work ch
  const before=JSON.stringify([catalog,insights,p]);
  assert.throws(()=>refresh(catalog,insights,p),/Conflicting official title identity/);
  assert.throws(()=>refresh(catalog,insights,p),/Conflicting official title identity/);
+ assert.deepEqual(syncFailureDiagnostic(conflictFrom(catalog,p)),{code:'official-title-identity-conflict',incomingWorkId:'hg-987654311',conflictingCatalogId:renamedId,cohortKind:'comic-drama',sourceDate:comic.observedAt});
  assert.equal(JSON.stringify([catalog,insights,p]),before);
 });
 test('duplicate IDs inside one board and excluded renamed titles cannot hide behind a merge',()=>{

@@ -1,10 +1,38 @@
 {
-  "generated": "2026-11-01",
+  "generated": "2026-11-02",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 107,
   "fetched_fail": 20,
   "pending": 12,
   "items": [
+    {
+      "slug": "kiro",
+      "url": "https://kiro.dev/pricing/",
+      "confirmed": "2026-11-02",
+      "first_seen": "2026-11-01",
+      "added": [
+        "$10.67",
+        "$10.67,",
+        "16days"
+      ],
+      "removed": [
+        "$10.",
+        "30days"
+      ],
+      "checked_then": "2026-09-25"
+    },
+    {
+      "slug": "lovable",
+      "url": "https://docs.lovable.dev",
+      "confirmed": "2026-11-02",
+      "first_seen": "2026-11-01",
+      "added": [
+        "1b",
+        "64b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "immersive-translate",
       "url": "https://immersivetranslate.com",
@@ -118,18 +146,6 @@
         "4.5s"
       ],
       "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "lovable",
-      "url": "https://docs.lovable.dev",
-      "confirmed": "2026-10-30",
-      "first_seen": "2026-10-29",
-      "added": [
-        "0026s",
-        "89b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "continue",

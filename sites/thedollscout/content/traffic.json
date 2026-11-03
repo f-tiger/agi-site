@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-10-31",
+  "updated": "2026-11-02",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-10-30"
+    "until": "2026-11-01"
   },
   "days": {
     "2026-07-26": {
@@ -5493,6 +5493,143 @@
         "DE": 183,
         "CN": 106,
         "RU": 106
+      }
+    },
+    "2026-10-31": {
+      "date": "2026-10-31",
+      "requests": 15092,
+      "pageViews": 6528,
+      "uniques": 771,
+      "byIpType": {
+        "unknown": 9050,
+        "noRecord": 5706,
+        "searchEngine": 312,
+        "allowlist": 24
+      },
+      "byBrowser": {
+        "Unknown": 5164,
+        "Curl": 900,
+        "Chrome": 229,
+        "MobileSafari": 131,
+        "BingBot": 39,
+        "GoogleBot": 24,
+        "YandexBot": 20,
+        "ChromeMobile": 7,
+        "Firefox": 6,
+        "Edge": 3,
+        "Safari": 2,
+        "ChromeMobileWebview": 2,
+        "Chromium": 1
+      },
+      "byContentType": {
+        "html": 7215,
+        "txt": 2983,
+        "json": 1676,
+        "js": 76,
+        "empty": 957,
+        "css": 427,
+        "xml": 96,
+        "unknown": 82,
+        "pdf": 63,
+        "png": 31,
+        "svg": 31,
+        "zip": 10
+      },
+      "byStatus": {
+        "200": 13327,
+        "202": 305,
+        "204": 51,
+        "301": 439,
+        "303": 19,
+        "304": 15,
+        "308": 95,
+        "401": 15,
+        "403": 9,
+        "404": 633,
+        "405": 81,
+        "410": 94,
+        "499": 7,
+        "500": 1,
+        "503": 1
+      },
+      "topCountries": {
+        "US": 10375,
+        "BE": 1401,
+        "SG": 707,
+        "PL": 534,
+        "CN": 521,
+        "HK": 411,
+        "FI": 393,
+        "DE": 213
+      }
+    },
+    "2026-11-01": {
+      "date": "2026-11-01",
+      "requests": 12559,
+      "pageViews": 3252,
+      "uniques": 959,
+      "byIpType": {
+        "noRecord": 8132,
+        "unknown": 4088,
+        "searchEngine": 307,
+        "allowlist": 32
+      },
+      "byBrowser": {
+        "Unknown": 2216,
+        "Curl": 450,
+        "Chrome": 321,
+        "BingBot": 79,
+        "MobileSafari": 71,
+        "YandexBot": 37,
+        "Firefox": 22,
+        "GoogleBot": 21,
+        "Edge": 13,
+        "Safari": 11,
+        "ChromeMobile": 5,
+        "Opera": 3,
+        "FirefoxMobile": 2,
+        "Chromium": 1
+      },
+      "byContentType": {
+        "html": 5363,
+        "js": 19,
+        "txt": 1869,
+        "json": 1491,
+        "empty": 1263,
+        "css": 476,
+        "xml": 71,
+        "unknown": 46,
+        "pdf": 33,
+        "svg": 19,
+        "png": 16,
+        "zip": 5,
+        "jpeg": 1,
+        "webp": 1
+      },
+      "byStatus": {
+        "200": 9093,
+        "202": 318,
+        "204": 87,
+        "301": 744,
+        "303": 17,
+        "304": 11,
+        "308": 60,
+        "401": 3,
+        "403": 22,
+        "404": 1934,
+        "405": 196,
+        "410": 66,
+        "499": 8
+      },
+      "topCountries": {
+        "US": 6063,
+        "NL": 1213,
+        "SG": 1006,
+        "HK": 887,
+        "CN": 792,
+        "BE": 577,
+        "PL": 556,
+        "FI": 393
       }
     }
   }

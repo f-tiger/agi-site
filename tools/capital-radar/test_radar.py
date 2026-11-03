@@ -108,63 +108,126 @@ class ForecastTests(unittest.TestCase):
 
 class DeliveryTests(unittest.TestCase):
     def setUp(self):
-        # Avoid publishing mocked "sent" summaries as if they were live receipts.
         printed = patch("builtins.print")
         printed.start()
         self.addCleanup(printed.stop)
 
+    def snapshot(self):
+        return radar.collect(None, NOW, lambda url: feed() if "techcrunch" in url else b"<rss/>")[0]
+
+    def initialized(self):
+        snap = self.snapshot()
+        snap["internal"]["notificationPolicy"] = {"version": "sunwatch-v1", "initialized": True, "pendingBayIds": []}
+        return snap
+
     def test_dry_run_never_writes_or_sends(self):
-        with patch.dict(os.environ, {}, clear=True), patch.object(radar, "request", return_value=b"<rss/>"), patch.object(radar, "api") as api, patch.object(radar, "send_telegram") as send:
-            with patch.object(radar, "SOURCES", ()):
-                # Empty sources remains a valid offline dry run and no remote state.
-                radar.run(True)
+        with patch.dict(os.environ, {}, clear=True), patch.object(radar, "collect", return_value=(self.snapshot(), [])), patch.object(radar, "api") as api, patch.object(radar, "request") as network:
+            radar.run(True)
             api.assert_not_called()
-            send.assert_not_called()
+            network.assert_not_called()
 
-    def test_claim_before_send_and_no_same_day_resend(self):
-        snap, ids = radar.collect(None, NOW, lambda url: feed() if "techcrunch" in url else b"<rss/>")
-        snap["notifications"]["configured"] = True
-        snap["notifications"]["lastDigestDate"] = dt.datetime.now(dt.timezone.utc).date().isoformat()
-        with patch.dict(os.environ, {"CAPITAL_RADAR_RUNNER_TOKEN": "fixture"}), patch.object(radar, "collect", return_value=(snap, ids)), patch.object(radar, "api", return_value={"ok": True, "snapshot": snap}) as api, patch.object(radar, "send_telegram") as send:
-            radar.run()
-            send.assert_not_called()
-            self.assertEqual(api.call_args_list[-1].args[0], "PUT")
+    def test_initial_confirmation_does_not_relabel_retained_articles_as_new(self):
+        snap = self.snapshot()
+        self.assertTrue(radar.prepare_notification(snap, []))
+        box = snap["internal"]["notificationOutbox"]
+        self.assertIn("当前保留 1 条", box["message"])
+        self.assertIn("不表示这些报道刚刚发生或刚刚新增", box["message"])
+        self.assertEqual(box["status"], "pending")
+        self.assertEqual(box["id"], radar.hashlib.sha256(box["message"].encode()).hexdigest()[:24])
+        self.assertNotIn("lastSentAt", snap["notifications"])
 
-    def test_delivery_claim_and_receipt_order(self):
-        snap, ids = radar.collect(None, NOW, lambda url: feed() if "techcrunch" in url else b"<rss/>")
-        snap["notifications"]["configured"] = True
-        calls = []
-        def api(method, token, state=None):
-            calls.append((method, state["notifications"]["deliveryStatus"] if state else None))
-            return {"ok": True, "snapshot": None}
-        def send(message):
-            calls.append(("SEND", None))
-            return 1
-        with patch.dict(os.environ, {"CAPITAL_RADAR_RUNNER_TOKEN": "fixture"}), patch.object(radar, "collect", return_value=(snap, ids)), patch.object(radar, "api", side_effect=api), patch.object(radar, "send_telegram", side_effect=send):
-            radar.run()
-        self.assertEqual(calls, [("GET", None), ("PUT", "sending"), ("SEND", None), ("PUT", "sent")])
+    def test_pending_message_survives_new_signals_until_same_id_ack(self):
+        snap = self.snapshot()
+        radar.prepare_notification(snap, [])
+        pending = copy.deepcopy(snap["internal"]["notificationOutbox"])
+        snap["generatedAt"] = "2026-11-02T12:00:00Z"
+        item = copy.deepcopy(snap["items"][0]); item["id"] = "b" * 24
+        snap["items"].append(item)
+        self.assertFalse(radar.prepare_notification(snap, [item["id"]]))
+        self.assertEqual(snap["internal"]["notificationOutbox"], pending)
+        self.assertEqual(snap["internal"]["notificationPolicy"]["pendingBayIds"], [item["id"]])
+        snap["internal"]["notificationOutbox"]["status"] = "sent"
+        snap["notifications"]["lastSentAt"] = "2026-11-01T10:00:00Z"
+        self.assertTrue(radar.prepare_notification(snap, []))
+        self.assertNotEqual(snap["internal"]["notificationOutbox"]["id"], pending["id"])
+        self.assertIn("融资候选报道 1 条", snap["internal"]["notificationOutbox"]["message"])
 
-    def test_unknown_delivery_saved_and_not_automatically_resent(self):
-        snap, ids = radar.collect(None, NOW, lambda url: feed() if "techcrunch" in url else b"<rss/>")
-        snap["notifications"]["configured"] = True
+    def test_daily_cap_preserves_deferred_core_signal(self):
+        snap = self.initialized()
+        snap["notifications"]["lastSentAt"] = snap["generatedAt"]
+        ident = snap["items"][0]["id"]
+        self.assertFalse(radar.prepare_notification(snap, [ident]))
+        self.assertEqual(snap["internal"]["notificationPolicy"]["pendingBayIds"], [ident])
+        snap["generatedAt"] = "2026-11-01T12:00:00Z"
+        self.assertTrue(radar.prepare_notification(snap, []))
+        self.assertFalse(radar.prepare_notification(snap, []))
+
+    def test_ordinary_news_and_unchanged_state_are_silent(self):
+        snap = self.initialized()
+        item = snap["items"][0]
+        item["geography"] = "unconfirmed"
+        self.assertFalse(radar.prepare_notification(snap, [item["id"]]))
+        item["geography"], item["kind"] = "sf-bay-area", "startup"
+        self.assertFalse(radar.prepare_notification(snap, [item["id"]]))
+        self.assertFalse(radar.prepare_notification(snap, []))
+        self.assertIsNone(snap["internal"]["notificationOutbox"])
+
+    def test_forecast_first_ready_thresholds_and_method_change(self):
+        def example(total, previous=None, method="baseline"):
+            snap = self.initialized()
+            snap["forecast"] = {"status": "ready", "method": method, "points": [{"estimate": total / 7}] * 7}
+            if previous is not None:
+                snap["internal"]["notificationPolicy"]["lastForecast"] = {"total": previous, "method": "baseline"}
+            return snap
+        self.assertTrue(radar.prepare_notification(example(20), []))
+        self.assertFalse(radar.prepare_notification(example(20, 20), []))
+        self.assertFalse(radar.prepare_notification(example(24, 20), []))
+        self.assertFalse(radar.prepare_notification(example(124, 100), []))
+        self.assertTrue(radar.prepare_notification(example(125, 100), []))
+        self.assertTrue(radar.prepare_notification(example(75, 100), []))
+        self.assertTrue(radar.prepare_notification(example(20, 20, "lag7-mlp-v1"), []))
+
+    def test_forecast_baseline_advances_only_after_ack_not_expiry(self):
+        snap = self.initialized()
+        snap["forecast"] = {"status": "ready", "method": "baseline", "points": [{"estimate": 3}] * 7}
+        radar.prepare_notification(snap, [])
+        self.assertNotIn("lastForecast", snap["internal"]["notificationPolicy"])
+        failed = copy.deepcopy(snap)
+        failed["internal"]["notificationOutbox"]["status"] = "expired"
+        radar.prepare_notification(failed, [])
+        self.assertNotIn("lastForecast", failed["internal"]["notificationPolicy"])
+        self.assertIsNone(failed["internal"]["notificationOutbox"])
+        snap["internal"]["notificationOutbox"]["status"] = "sent"
+        radar.prepare_notification(snap, [])
+        self.assertEqual(snap["internal"]["notificationPolicy"]["lastForecast"]["total"], 21)
+        self.assertIsNone(snap["internal"]["notificationOutbox"])
+
+    def test_runner_saves_without_telegram_credentials_or_direct_send(self):
+        snap = self.snapshot()
         writes = []
         def api(method, token, state=None):
             if method == "PUT":
                 writes.append(copy.deepcopy(state))
-            return {"ok": True, "snapshot": snap}
-        with patch.dict(os.environ, {"CAPITAL_RADAR_RUNNER_TOKEN": "fixture"}), patch.object(radar, "collect", return_value=(snap, ids)), patch.object(radar, "api", side_effect=api), patch.object(radar, "send_telegram", side_effect=radar.SafeError("network_error")) as send:
-            with self.assertRaisesRegex(radar.SafeError, "telegram_delivery_unknown"):
-                radar.run()
-            self.assertEqual(writes[-1]["notifications"]["deliveryStatus"], "delivery_unknown")
+            return {"ok": True, "snapshot": None}
+        with patch.dict(os.environ, {"CAPITAL_RADAR_RUNNER_TOKEN": "fixture"}, clear=True), patch.object(radar, "collect", return_value=(snap, [])), patch.object(radar, "api", side_effect=api), patch.object(radar, "request") as network:
             radar.run()
-            self.assertEqual(send.call_count, 1)
+            network.assert_not_called()
+        self.assertEqual(len(writes), 1)
+        self.assertEqual(writes[0]["internal"]["notificationOutbox"]["status"], "pending")
+        self.assertNotIn("lastSentAt", writes[0]["notifications"])
 
-    def test_forecast_change_notifies_even_without_new_articles(self):
-        snap, _ = radar.collect(None, NOW, lambda url: b"<rss/>")
-        snap["forecast"] = {"status": "ready", "points": [{"estimate": 2}] * 7}
-        snap["model"] = {"version": "new"}
-        self.assertIn("14.0", radar.digest(snap, [], {"version": "old"}))
-        self.assertIsNone(radar.digest(snap, [], {"version": "new"}))
+    def test_source_failure_still_saves_existing_pending_then_fails(self):
+        previous = self.snapshot()
+        radar.prepare_notification(previous, [])
+        def failed(url):
+            raise radar.SafeError("network_error")
+        snap, ids = radar.collect(previous, NOW + dt.timedelta(days=1), failed)
+        expected = copy.deepcopy(previous["internal"]["notificationOutbox"])
+        with patch.dict(os.environ, {"CAPITAL_RADAR_RUNNER_TOKEN": "fixture"}, clear=True), patch.object(radar, "collect", return_value=(snap, ids)), patch.object(radar, "api", return_value={"ok": True, "snapshot": previous}) as api:
+            with self.assertRaisesRegex(radar.SafeError, "all_sources_failed"):
+                radar.run()
+            self.assertEqual(api.call_args_list[-1].args[0], "PUT")
+            self.assertEqual(api.call_args_list[-1].args[2]["internal"]["notificationOutbox"], expected)
 
 
 if __name__ == "__main__":

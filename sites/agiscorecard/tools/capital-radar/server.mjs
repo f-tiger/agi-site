@@ -7,6 +7,7 @@ const ORIGIN='https://agiscorecard.com';
 const PUBLISHERS=new Set(['techcrunch.com','news.crunchbase.com','venturebeat.com']);
 const MAX_BYTES=1500000;
 const TABLE='CREATE TABLE IF NOT EXISTS capital_radar_snapshot(id INTEGER PRIMARY KEY CHECK(id=1), generated_at TEXT NOT NULL, payload TEXT NOT NULL)';
+const ALERT_TABLE='CREATE TABLE IF NOT EXISTS capital_radar_alerts(id TEXT PRIMARY KEY CHECK(length(id)=24),message TEXT NOT NULL,created_at TEXT NOT NULL,delivered_at TEXT,telegram_message_id INTEGER,expired_at TEXT)';
 const headers={
  'Cache-Control':'private, no-store','CDN-Cache-Control':'no-store','Cloudflare-CDN-Cache-Control':'no-store',
  'X-Robots-Tag':'noindex, nofollow, noarchive','Vary':'Cookie','Referrer-Policy':'no-referrer',
@@ -52,7 +53,7 @@ export function memberSnapshot(s){
   history:s.history.map(i=>pick(i,['date','count','complete'])),
   forecast:pick(s.forecast,['status','minimumDays','observedDays','target','horizonDays','points','method','intervalNote']),
   model:pick(s.model,['status','version','trainingEnd','baselineMAE','candidateMAE','validationPoints','promotionThreshold']),
-  notifications:pick(s.notifications,['configured','lastSentAt','lastDigestDate','deliveryStatus'])
+  notifications:pick(s.notifications,['configured','channel','lastSentAt','lastDigestDate','deliveryStatus'])
  };
 }
 
@@ -62,7 +63,80 @@ async function session(request,fetcher){
  if(r.status===401)return false;if(!r.ok)throw Error('unavailable');
  const body=await r.json();if(!body.ok||!text(body.user?.id,100)||!body.user.id)throw Error('unavailable');return true;
 }
-async function read(db){await db.prepare(TABLE).run();const row=await db.prepare('SELECT payload FROM capital_radar_snapshot WHERE id=1').first();return row?JSON.parse(row.payload):null;}
+// Dedicated Worker secret shared only with the SunWatch relay. The historical
+// owner identity archive is unrelated to monitoring and must not gate reads.
+function alertKey(env){const value=env.CAPITAL_RADAR_RELAY_KEY;return typeof value==='string'&&value.length>0?value:null;}
+async function ensureAlerts(db){
+ await db.prepare(ALERT_TABLE).run();
+ // Upgrade a partially initialized pre-release ledger without discarding it.
+ const columns=await db.prepare('PRAGMA table_info(capital_radar_alerts)').all();
+ if(!columns.results.some(column=>column.name==='expired_at')){
+  try{await db.prepare('ALTER TABLE capital_radar_alerts ADD COLUMN expired_at TEXT').run();}
+  catch(e){const current=await db.prepare('PRAGMA table_info(capital_radar_alerts)').all();if(!current.results.some(column=>column.name==='expired_at'))throw e;}
+ }
+}
+async function expireAlerts(db){
+ const now=Date.now();
+ await db.prepare('UPDATE capital_radar_alerts SET expired_at=? WHERE delivered_at IS NULL AND expired_at IS NULL AND created_at<?').bind(new Date(now).toISOString(),new Date(now-72*3600000).toISOString()).run();
+}
+async function read(env){
+ const db=env.EVENTS;
+ await db.prepare(TABLE).run();await ensureAlerts(db);await expireAlerts(db);
+ const row=await db.prepare('SELECT payload FROM capital_radar_snapshot WHERE id=1').first();
+ if(!row)return null;
+ const snapshot=JSON.parse(row.payload);
+ const key=alertKey(env);
+ const [pending,last,latest]=await Promise.all([
+  db.prepare('SELECT id FROM capital_radar_alerts WHERE delivered_at IS NULL AND expired_at IS NULL ORDER BY created_at,id LIMIT 1').first(),
+  db.prepare('SELECT delivered_at FROM capital_radar_alerts WHERE delivered_at IS NOT NULL ORDER BY delivered_at DESC,id DESC LIMIT 1').first(),
+  db.prepare('SELECT delivered_at,expired_at FROM capital_radar_alerts ORDER BY created_at DESC,id DESC LIMIT 1').first()
+ ]);
+ // Delivery truth lives in its own ledger, never in a replaceable collector blob.
+ snapshot.notifications={configured:!!key,channel:'sunwatch',deliveryStatus:pending?'pending':latest?.expired_at&&!latest.delivered_at?'expired':last?'sent':key?'waiting':'not_configured',...(last?{lastSentAt:last.delivered_at}:{})};
+ const outbox=snapshot.internal?.notificationOutbox;
+ if(object(outbox)&&/^[a-f0-9]{24}$/.test(outbox.id||'')){
+  const receipt=await db.prepare('SELECT delivered_at,expired_at FROM capital_radar_alerts WHERE id=?').bind(outbox.id).first();
+  if(receipt?.delivered_at)outbox.status='sent';
+  else if(receipt?.expired_at)outbox.status='expired';
+ }
+ return snapshot;
+}
+async function outboxOf(snapshot){
+ const outbox=snapshot.internal?.notificationOutbox;
+ if(outbox===null||outbox===undefined)return null;
+ if(!object(outbox)||!['pending','sent','expired','sending','delivery_unknown'].includes(outbox.status))throw Error('invalid_outbox');
+ // Old direct-sender checkpoints and reflected receipts do not create messages.
+ if(outbox.status!=='pending')return null;
+ if(!/^[a-f0-9]{24}$/.test(outbox.id||'')||!text(outbox.message,4000)||!outbox.message.trim()||!iso(outbox.createdAt)||Date.parse(outbox.createdAt)>Date.now()+300000||Date.parse(outbox.createdAt)>Date.parse(snapshot.generatedAt)+300000)throw Error('invalid_outbox');
+ if(outbox.id!==(await hash(outbox.message)).slice(0,24))throw Error('invalid_outbox');
+ return outbox;
+}
+async function alertRoute(request,env){
+ const given=/^Bearer ([^\s]{1,512})$/.exec(request.headers.get('Authorization')||'')?.[1];
+ if(!given)return json({ok:false,error:'unauthorized'},401);
+ const expected=alertKey(env);
+ if(!expected||await hash(given)!==await hash(expected))return json({ok:false,error:'unauthorized'},401);
+ if(!env.EVENTS)throw Error('unavailable');
+ if(!['GET','POST'].includes(request.method))return json({ok:false,error:'method_not_allowed'},405,{Allow:'GET, POST'});
+ const db=env.EVENTS;await ensureAlerts(db);await expireAlerts(db);
+ if(request.method==='GET'){
+  const row=await db.prepare('SELECT id,message,created_at FROM capital_radar_alerts WHERE delivered_at IS NULL AND expired_at IS NULL ORDER BY created_at,id LIMIT 1').first();
+  return json({ok:true,alert:row?{id:row.id,message:row.message,createdAt:row.created_at}:null});
+ }
+ if(!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type')||''))return json({ok:false,error:'invalid_request'},400);
+ const raw=await boundedText(request.body,{maxBytes:2048,timeoutMs:5000,tooLarge:'too_large',timeout:'request_timeout',invalid:'invalid_request'});
+ let receipt;try{receipt=JSON.parse(raw);}catch{return json({ok:false,error:'invalid_request'},400);}
+ if(!object(receipt)||!/^[a-f0-9]{24}$/.test(receipt.id||'')||!Number.isSafeInteger(receipt.messageId)||receipt.messageId<1||!iso(receipt.deliveredAt)||Date.parse(receipt.deliveredAt)>Date.now()+300000)return json({ok:false,error:'invalid_receipt'},400);
+ const existing=await db.prepare('SELECT created_at,delivered_at,telegram_message_id FROM capital_radar_alerts WHERE id=?').bind(receipt.id).first();
+ if(!existing)return json({ok:false,error:'unknown_alert'},404);
+ if(Date.parse(receipt.deliveredAt)<Date.parse(existing.created_at)-300000)return json({ok:false,error:'invalid_receipt'},400);
+ // The first confirmed message wins. Repeat acknowledgments never overwrite it.
+ await db.prepare('UPDATE capital_radar_alerts SET delivered_at=?,telegram_message_id=? WHERE id=? AND delivered_at IS NULL').bind(new Date(receipt.deliveredAt).toISOString(),receipt.messageId,receipt.id).run();
+ const confirmed=await db.prepare('SELECT delivered_at,telegram_message_id FROM capital_radar_alerts WHERE id=?').bind(receipt.id).first();
+ if(!confirmed?.delivered_at)throw Error('unavailable');
+ if(confirmed.telegram_message_id!==receipt.messageId)return json({ok:false,error:'receipt_conflict'},409);
+ return json({ok:true,id:receipt.id,deliveredAt:confirmed.delivered_at});
+}
 
 export async function capitalRadarRoute(request,env,fetcher=fetch){
  const url=new URL(request.url);let path=url.pathname;
@@ -74,30 +148,34 @@ export async function capitalRadarRoute(request,env,fetcher=fetch){
  const page=/^\/capital-radar(?:\.html|\/(?:account(?:\.html)?\/?)?)?$/i.test(path);
  const api=path==='/api/capital-radar';
  const runner=path==='/api/capital-radar/runner';
+ const alerts=path==='/api/capital-radar/alerts';
  const reserved=/^\/capital-radar(?:[./]|$)/i.test(path)||/^\/api\/capital-radar(?:[./]|$)/i.test(path);
- if(!page&&!api&&!runner&&!reserved)return null;
+ if(!page&&!api&&!runner&&!alerts&&!reserved)return null;
  // Never serve member data from workers.dev, alternate hosts, or asset aliases.
  if(url.origin!==ORIGIN)return json({ok:false,error:'not_found'},404);
- if(!page&&!api&&!runner)return json({ok:false,error:'not_found'},404);
+ if(!page&&!api&&!runner&&!alerts)return json({ok:false,error:'not_found'},404);
  const allowed=runner?['GET','PUT']:['GET','HEAD'];
- if(!allowed.includes(request.method))return json({ok:false,error:'method_not_allowed'},405,{Allow:allowed.join(', ')});
+ if(!alerts&&!allowed.includes(request.method))return json({ok:false,error:'method_not_allowed'},405,{Allow:allowed.join(', ')});
  try{
+  if(alerts)return await alertRoute(request,env);
   if(runner){
    const bearer=/^Bearer ([a-f0-9]{64})$/.exec(request.headers.get('Authorization')||'')?.[1];
    if(!bearer)return json({ok:false,error:'unauthorized'},401);
    if(!env.MEMBER_WATCH_SECRET||!env.EVENTS)throw Error('unavailable');
    const expected=await hash(env.MEMBER_WATCH_SECRET+':capital-radar-runner:v1');
    if(await hash(bearer)!==await hash(expected))return json({ok:false,error:'unauthorized'},401);
-   if(request.method==='GET')return json({ok:true,snapshot:await read(env.EVENTS)});
+   if(request.method==='GET')return json({ok:true,snapshot:await read(env)});
    if(!/^application\/json(?:;|$)/i.test(request.headers.get('Content-Type')||''))return json({ok:false,error:'invalid_request'},400);
    const raw=await boundedText(request.body,{maxBytes:MAX_BYTES,timeoutMs:10000,tooLarge:'too_large',timeout:'request_timeout',invalid:'invalid_request'});
    let body;try{body=JSON.parse(raw);}catch{return json({ok:false,error:'invalid_request'},400);}
-   const snapshot=validateSnapshot(body?.snapshot),payload=JSON.stringify(snapshot);
+   const snapshot=validateSnapshot(body?.snapshot),outbox=await outboxOf(snapshot),payload=JSON.stringify(snapshot);
    // A numeric instant makes stale-write protection independent of ISO offset
    // spelling. Equality permits recording the delivery receipt after a run.
    const instant=new Date(snapshot.generatedAt).toISOString();
-   await env.EVENTS.prepare(TABLE).run();
-   const result=await env.EVENTS.prepare('INSERT INTO capital_radar_snapshot(id,generated_at,payload) VALUES(1,?,?) ON CONFLICT(id) DO UPDATE SET generated_at=excluded.generated_at,payload=excluded.payload WHERE excluded.generated_at>=capital_radar_snapshot.generated_at').bind(instant,payload).run();
+   await env.EVENTS.prepare(TABLE).run();await ensureAlerts(env.EVENTS);
+   const statements=[env.EVENTS.prepare('INSERT INTO capital_radar_snapshot(id,generated_at,payload) VALUES(1,?,?) ON CONFLICT(id) DO UPDATE SET generated_at=excluded.generated_at,payload=excluded.payload WHERE excluded.generated_at>=capital_radar_snapshot.generated_at').bind(instant,payload)];
+   if(outbox)statements.push(env.EVENTS.prepare('INSERT INTO capital_radar_alerts(id,message,created_at) SELECT ?,?,? FROM capital_radar_snapshot WHERE id=1 AND generated_at=? AND payload=? ON CONFLICT(id) DO NOTHING').bind(outbox.id,outbox.message,new Date(outbox.createdAt).toISOString(),instant,payload));
+   const [result]=await env.EVENTS.batch(statements);
    if(!result.meta?.changes)return json({ok:false,error:'stale_snapshot'},409);
    return json({ok:true,generatedAt:snapshot.generatedAt});
   }
@@ -113,10 +191,10 @@ export async function capitalRadarRoute(request,env,fetcher=fetch){
    return new Response(request.method==='HEAD'?null:asset.body,{status:asset.status,headers:secured});
   }
   if(!env.EVENTS)throw Error('unavailable');
-  const response=json({ok:true,snapshot:memberSnapshot(await read(env.EVENTS))});
+  const response=json({ok:true,snapshot:memberSnapshot(await read(env))});
   return request.method==='HEAD'?new Response(null,{status:response.status,headers:response.headers}):response;
  }catch(e){
-  const status={invalid_snapshot:400,invalid_request:400,too_large:413,request_timeout:408}[e.message]||503;
+  const status={invalid_snapshot:400,invalid_outbox:400,invalid_request:400,too_large:413,request_timeout:408}[e.message]||503;
   return json({ok:false,error:status===503?'unavailable':e.message},status);
  }
 }

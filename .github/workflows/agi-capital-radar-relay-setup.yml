@@ -1,0 +1,25 @@
+name: Configure Capital Radar SunWatch relay
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: capital-radar-relay-setup
+  cancel-in-progress: false
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Validate scope and preservation of existing credentials
+        run: node tools/capital-radar/test-configure-relay.mjs
+      - name: Configure only the dedicated service connection
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node tools/capital-radar/configure-relay.mjs

@@ -1,7 +1,7 @@
 {
-  "lastRun": "2026-11-01T06:48:07.712Z",
+  "lastRun": "2026-11-02T06:46:39.808Z",
   "status": "degraded",
-  "checkedSources": 8,
+  "checkedSources": 5,
   "queue": [
     {
       "caseId": "photo-ai",
@@ -73,31 +73,31 @@
       "caseId": "jenni-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
-      "lastChecked": "2026-10-19T05:15:16.527Z"
+      "lastChecked": "2026-11-02T06:46:39.808Z"
     },
     {
       "caseId": "customgpt",
       "reason": "source-unreachable",
       "sourceUrl": "https://customgpt.ai/customers/",
-      "lastChecked": "2026-10-19T05:15:16.527Z"
+      "lastChecked": "2026-11-02T06:46:39.808Z"
     },
     {
       "caseId": "julius-ai",
       "reason": "source-unreachable",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastChecked": "2026-10-20T05:17:09.409Z"
+      "lastChecked": "2026-11-02T06:46:39.808Z"
     },
     {
       "caseId": "chatbase",
       "reason": "source-unreachable",
       "sourceUrl": "https://supabase.com/customers/chatbase",
-      "lastChecked": "2026-10-20T05:17:09.409Z"
+      "lastChecked": "2026-11-02T06:46:39.808Z"
     },
     {
       "caseId": "bolt",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
-      "lastChecked": "2026-10-20T05:17:09.409Z"
+      "lastChecked": "2026-11-02T06:46:39.808Z"
     },
     {
       "caseId": "cursor",
@@ -514,7 +514,7 @@
     "jenni-ai|https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0": {
       "caseId": "jenni-ai",
       "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
+      "lastAttempt": "2026-11-02T06:46:39.808Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -522,7 +522,7 @@
     "customgpt|https://customgpt.ai/customers/": {
       "caseId": "customgpt",
       "sourceUrl": "https://customgpt.ai/customers/",
-      "lastAttempt": "2026-10-19T05:15:16.527Z",
+      "lastAttempt": "2026-11-02T06:46:39.808Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -530,7 +530,7 @@
     "julius-ai|https://julius.ai/home/ai-powered-business-intelligence": {
       "caseId": "julius-ai",
       "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "lastAttempt": "2026-10-20T05:17:09.409Z",
+      "lastAttempt": "2026-11-02T06:46:39.808Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -538,7 +538,7 @@
     "chatbase|https://supabase.com/customers/chatbase": {
       "caseId": "chatbase",
       "sourceUrl": "https://supabase.com/customers/chatbase",
-      "lastAttempt": "2026-10-20T05:17:09.409Z",
+      "lastAttempt": "2026-11-02T06:46:39.808Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -546,7 +546,7 @@
     "bolt|https://www.lennysnewsletter.com/p/inside-bolt-eric-simons": {
       "caseId": "bolt",
       "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
-      "lastAttempt": "2026-10-20T05:17:09.409Z",
+      "lastAttempt": "2026-11-02T06:46:39.808Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,31 +1159,31 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 11,
+  "cursor": 16,
   "errors": [
     {
-      "caseId": "audiopen",
-      "sourceUrl": "https://www.indiehackers.com/post/tech/building-an-ai-tool-in-a-half-day-hackathon-and-hitting-20k-mo-BCloDTDRfjuip0pDghap",
+      "caseId": "jenni-ai",
+      "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
       "reason": "body-limit"
     },
     {
-      "caseId": "audiopen",
-      "sourceUrl": "https://www.audiopen.ai/",
+      "caseId": "customgpt",
+      "sourceUrl": "https://customgpt.ai/customers/",
       "reason": "body-limit"
     },
     {
-      "caseId": "my-askai",
-      "sourceUrl": "https://www.indiehackers.com/post/tech/bootstrapping-to-40k-mrr-after-his-vc-backed-startup-failed-LF1CwRs1vL3oVLcuoIoE",
+      "caseId": "julius-ai",
+      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
       "reason": "body-limit"
     },
     {
-      "caseId": "castmagic",
-      "sourceUrl": "https://www.linkedin.com/posts/blainebolus_kicking-off-24-with-a-big-milestone-1m-activity-7148357869464154112-U4ic",
+      "caseId": "chatbase",
+      "sourceUrl": "https://supabase.com/customers/chatbase",
       "reason": "body-limit"
     },
     {
-      "caseId": "formula-bot",
-      "sourceUrl": "https://www.starterstory.com/stories/excelformulabot",
+      "caseId": "bolt",
+      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
       "reason": "body-limit"
     }
   ]

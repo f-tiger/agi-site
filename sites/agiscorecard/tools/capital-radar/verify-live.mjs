@@ -12,7 +12,7 @@ for(const path of ['/capital-radar','/capital-radar.html','/capital-radar/','/ca
  assert.match(r.headers.get('x-robots-tag')||'',/noindex/);
  assert.equal(await r.text(),'');
 }
-for(const path of ['/api/capital-radar','/api/capital-radar/runner']){
+for(const path of ['/api/capital-radar','/api/capital-radar/runner','/api/capital-radar/alerts']){
  const r=await get(path);assert.equal(r.status,401,path+' anonymous API');
  assert.match(r.headers.get('cache-control')||'',/no-store/);
  const body=await r.json();assert.equal(body.ok,false);assert.equal(body.snapshot,undefined);

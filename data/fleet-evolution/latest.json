@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-02",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 10,
+    "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-10-30T08:56:59.674Z",
-    "health": "2026-10-30T14:43:51Z",
-    "ai_referrals": "2026-10-30T14:44:21Z",
-    "opportunities": "2026-10-30",
-    "autopilot_receipt": "2026-10-31"
+    "membership": "2026-11-01T09:40:28.747Z",
+    "health": "2026-11-01T14:38:08Z",
+    "ai_referrals": "2026-11-01T14:38:34Z",
+    "opportunities": "2026-11-01",
+    "autopilot_receipt": "2026-11-02"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-10-30T08:56:59.674Z",
+    "generated": "2026-11-01T09:40:28.747Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -131,7 +131,7 @@
       "theme": "looking for a tool for browsing contents of unmounted cold storage",
       "site": null,
       "state": "scout",
-      "score": 3.92,
+      "score": 4.17,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -146,19 +146,10 @@
       "supply": 0
     },
     {
-      "theme": "when can we trust ai in coding and avoid the happy path issue",
-      "site": null,
-      "state": "scout",
-      "score": 2.39,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "are knuth s stanford pages down",
       "site": null,
       "state": "scout",
-      "score": 2.32,
+      "score": 2.36,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -173,19 +164,19 @@
       "supply": 0
     },
     {
-      "theme": "did crates io stop processing new crate publishes",
+      "theme": "alternative to tldraw draw fast",
       "site": null,
       "state": "scout",
-      "score": 2.12,
+      "score": 2.13,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "alternative to tldraw draw fast",
+      "theme": "did crates io stop processing new crate publishes",
       "site": null,
       "state": "scout",
-      "score": 2.09,
+      "score": 2.12,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -200,15 +191,6 @@
       "supply": 0
     },
     {
-      "theme": "feature request manager",
-      "site": null,
-      "state": "scout",
-      "score": 2.05,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "do u think there should be a auto recovery tool for agents",
       "site": null,
       "state": "scout",
@@ -218,211 +200,12 @@
       "supply": 0
     }
   ],
-  "actions": [
-    {
-      "site": "baipiaoji",
-      "kind": "pain_point_verification",
-      "priority": 76,
-      "reason": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
-      "mode": "queue",
-      "evidence": {
-        "pain_id": "bpj-coding-quota-20261031",
-        "scope": [
-          "sites/baipiaoji/"
-        ],
-        "acceptance": [
-          "保留来源日期、单位与周期；未知值不能写成零或无限。",
-          "同一帖子重复缓存只计一个来源；免费意图不当作付费需求。",
-          "先复现现有路径缺口，再决定最小改动；沿用现有完成/导出计量。"
-        ],
-        "source_refs": [
-          "BPJ-Q1",
-          "BPJ-Q2"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 0
-      }
-    },
-    {
-      "site": "agiscorecard",
-      "kind": "pain_point_verification",
-      "priority": 72,
-      "reason": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
-      "mode": "queue",
-      "evidence": {
-        "pain_id": "agi-claim-context-20261031",
-        "scope": [
-          "sites/agiscorecard/tools/jarvis/",
-          "sites/agiscorecard/jarvis-assets/"
-        ],
-        "acceptance": [
-          "保留业务前提、来源日期和未知项；引用格式通过不等于结论被证明。",
-          "用冻结的合成任务比较改前改后；不读取客户任务正文。",
-          "不改变电商周报导师的单一受众，不增加模型额度或收费承诺。"
-        ],
-        "source_refs": [
-          "AGI-C1"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 1
-      }
-    },
-    {
-      "site": "baipiaoji",
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
-      "evidence": {
-        "referred_humans_28d": 618,
-        "paid_members": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "agiscorecard",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 3,
-        "query": "ai stocks down",
-        "value": 1
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "getecoback",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 28,
-        "query": "pattex luftentfeuchter",
-        "value": 53050
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 4,
-        "query": "sonny angel advent calendar 2026",
-        "value": 1550
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "getecoback",
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/",
-        "n7": 5,
-        "p7": 1
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "goldrush",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 493,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 254,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    }
-  ],
-  "site_manifests": {
-    "agiscorecard": {
-      "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 1
-    },
-    "baipiaoji": {
-      "path": "sites/baipiaoji/data/fleet-evolution.json",
-      "action_count": 1
-    },
-    "getecoback": {
-      "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 2
-    },
-    "thedollscout": {
-      "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 2
-    },
-    "buysomething": {
-      "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "goldrush": {
-      "path": "sites/goldrush/data/fleet-evolution.json",
-      "action_count": 1
-    },
-    "gridlings": {
-      "path": "sites/gridlings/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "gamesledger": {
-      "path": "sites/gamesledger/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "after35": {
-      "path": "sites/after35/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "learn": {
-      "path": "sites/learn/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "fanzha": {
-      "path": "sites/fanzha/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "firstjob": {
-      "path": "sites/firstjob/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "codeword": {
-      "path": "sites/codeword/data/fleet-evolution.json",
-      "action_count": 0
-    },
-    "powerbill": {
-      "path": "sites/powerbill/data/fleet-evolution.json",
-      "action_count": 0
-    }
-  },
-  "rules": {
-    "no_editorial_autowrite": true,
-    "no_payment_or_membership_mutation": true,
-    "missing_is_unknown": true,
-    "site_deploys_only_when_manifest_or_site_content_changes": true
-  },
   "user_pain_radar": [
     {
       "id": "bpj-coding-quota-20261031",
       "site": "baipiaoji",
-      "status": "queued",
-      "decision": "verify",
+      "status": "done",
+      "decision": "hold",
       "title": "编程任务对应的额度、重置周期与续费选择",
       "pain": "已复核两条原始讨论正文：编程任务的工具分配和配额消耗可预测性存在困惑；显示的相对时间不足以确认绝对发布日期。",
       "task": "核对现有选型页的新旧订阅分组、额度单位与重置规则；先确认官方方案适用人群，再补具体事实缺口。",
@@ -441,7 +224,7 @@
         "BPJ-Q2"
       ],
       "gate_reasons": [
-        "fewer than two distinct current original sources"
+        "status is done"
       ],
       "next_review": "2026-11-07",
       "commercial_hypothesis": "帮助正在续费或迁移的开发者完成具体工具决策；本轮没有 BPJ 付款证据。",
@@ -450,8 +233,8 @@
     {
       "id": "agi-claim-context-20261031",
       "site": "agiscorecard",
-      "status": "queued",
-      "decision": "verify",
+      "status": "done",
+      "decision": "hold",
       "title": "AI 结论缺少业务背景与来源支撑",
       "pain": "公开讨论反映 AI 对缺少上下文的问题给出肯定解释；与 Jarvis 的来源检查有相邻适配，尚未证明是本站用户需求。",
       "task": "用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。",
@@ -470,7 +253,7 @@
         "AGI-C1"
       ],
       "gate_reasons": [
-        "fewer than two distinct current original sources"
+        "status is done"
       ],
       "next_review": "2026-11-07",
       "commercial_hypothesis": "提高已有研究任务的可复核性与复用价值；付费意愿未知。",
@@ -532,5 +315,211 @@
       "counter_evidence": "Swydo、AgencyAnalytics 与 Whatagraph 已覆盖通用 AI 报告；存在满意用户反证。"
     }
   ],
-  "user_pain_radar_checked_at": "2026-10-31T15:59:32.882880+00:00"
+  "actions": [
+    {
+      "site": "baipiaoji",
+      "kind": "pain_point_verification",
+      "priority": 70,
+      "reason": "核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。",
+      "mode": "queue",
+      "evidence": {
+        "pain_id": "bpj-trial-terms-20261031",
+        "scope": [
+          "sites/baipiaoji/"
+        ],
+        "acceptance": [
+          "只使用厂商当日官方条款；区分免费层、试用与退款。",
+          "不得承诺没有官方保证的退款或精确剩余额度。",
+          "保留现有匿名选型入口，不新增付费墙或支付方案。"
+        ],
+        "source_refs": [
+          "BPJ-T1"
+        ],
+        "gate_reasons": [
+          "fewer than two distinct current original sources"
+        ],
+        "verified_sources": 0
+      }
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
+      "evidence": {
+        "referred_humans_28d": 625,
+        "paid_members": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 4,
+        "query": "ai stocks down",
+        "value": 1
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "buysomething",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 1,
+        "query": "costco",
+        "value": 250
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 29,
+        "query": "infrarotheizung wandmontage",
+        "value": 88250
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 21,
+        "query": "cat mode labubu",
+        "value": 61150
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/workbench/workflowcost",
+        "n7": 57,
+        "p7": 27
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/guide/mobile-klimaanlage-ueberwintern.html",
+        "n7": 6,
+        "p7": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 430,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "goldrush",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 540,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 281,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    }
+  ],
+  "site_manifests": {
+    "agiscorecard": {
+      "path": "sites/agiscorecard/data/fleet-evolution.json",
+      "action_count": 2
+    },
+    "baipiaoji": {
+      "path": "sites/baipiaoji/data/fleet-evolution.json",
+      "action_count": 2
+    },
+    "getecoback": {
+      "path": "sites/getecoback/data/fleet-evolution.json",
+      "action_count": 3
+    },
+    "thedollscout": {
+      "path": "sites/thedollscout/data/fleet-evolution.json",
+      "action_count": 2
+    },
+    "buysomething": {
+      "path": "sites/buysomething/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "goldrush": {
+      "path": "sites/goldrush/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "gridlings": {
+      "path": "sites/gridlings/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "gamesledger": {
+      "path": "sites/gamesledger/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "after35": {
+      "path": "sites/after35/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "learn": {
+      "path": "sites/learn/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "fanzha": {
+      "path": "sites/fanzha/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "firstjob": {
+      "path": "sites/firstjob/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "codeword": {
+      "path": "sites/codeword/data/fleet-evolution.json",
+      "action_count": 0
+    },
+    "powerbill": {
+      "path": "sites/powerbill/data/fleet-evolution.json",
+      "action_count": 0
+    }
+  },
+  "rules": {
+    "no_editorial_autowrite": true,
+    "no_payment_or_membership_mutation": true,
+    "missing_is_unknown": true,
+    "site_deploys_only_when_manifest_or_site_content_changes": true
+  }
 }

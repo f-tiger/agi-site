@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-01",
+ "checked": "2026-11-02",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3498,6 +3498,51 @@
    "first_attempt": "2026-11-01",
    "last_attempt": "2026-11-01",
    "attemptedAt": "2026-11-01T06:46:25.416Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "amalgament-public-query": {
+   "attempts": 1,
+   "first_attempt": "2026-11-02",
+   "last_attempt": "2026-11-02",
+   "attemptedAt": "2026-11-02T06:44:24.564Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "anthid-anthid": {
+   "attempts": 1,
+   "first_attempt": "2026-11-02",
+   "last_attempt": "2026-11-02",
+   "attemptedAt": "2026-11-02T06:44:24.564Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "api402x-apix402": {
+   "attempts": 1,
+   "first_attempt": "2026-11-02",
+   "last_attempt": "2026-11-02",
+   "attemptedAt": "2026-11-02T06:44:24.564Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "timeout"
+  },
+  "apiscreenshot-screenshot": {
+   "attempts": 1,
+   "first_attempt": "2026-11-02",
+   "last_attempt": "2026-11-02",
+   "attemptedAt": "2026-11-02T06:44:24.564Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "app-dex-appdex": {
+   "attempts": 1,
+   "first_attempt": "2026-11-02",
+   "last_attempt": "2026-11-02",
+   "attemptedAt": "2026-11-02T06:44:24.564Z",
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
@@ -18571,6 +18616,336 @@
   {
    "slug": "altesim-esim",
    "date": "2026-11-01",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "altoviz-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "americantradesindex-american-trades-index",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "americassuretybonds-surety-bonds",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "amortlane-site",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "amplerun-gpu-rentals",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anahana-content-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ancestral-fire-ancestralfire",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anchoredip-anchoredip",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "andrewsfreebies-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "angelmoncada-consulting",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "angelsforagents-funding",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "anglero-speaker",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anglinglines-angling-lines",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "animgen-animgen",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anotepad-notes",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "anots-directory",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "answeringservicecompare-site",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "answeringservicepicker-site",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "answeringservicequotes-site",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anteproof-anteproof",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anvilcrm-crm",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anygett-anygett",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anymailmcp-mail",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anywayr-anywayr",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "anywhereroles-jobs",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "api-ninjas-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "api2cart-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apiacre-api-acre",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apideck-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "apidefects-errata",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apievangelist-api-evangelist",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "apished-apished",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-checksum-validator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-current-datetime-tool",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-date-math-calculator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-hash-digest-tool",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-pesel-nip-regon-validator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-random-number-generator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-regex-email-url-validator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-rpn-calculator",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-text-tools",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apished-token-counter",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "apiverve-mcp-server",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "apogeoapi-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "appealgo-appealgo",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appealgo-parking-guides",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appendix-appendix",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "appfigures-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "apple-rag-mcp-server",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "applivery-docs-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "applyall-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "appmanai-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "appraisily-mcp",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "apprendre-les-echecs-24h-catalogue-echecs-fr",
+   "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appsflyer-mcp",
+   "date": "2026-11-02",
    "source_http": 200,
    "repo_http": null
   }

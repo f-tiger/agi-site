@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "provenance": "Editorial research ledger; original community evidence remains in the private working record. This is not a live Reddit crawl.",
   "limits": {
     "review_max_age_days": 14,
@@ -81,7 +81,7 @@
     {
       "id": "bpj-trial-terms-20261031",
       "site": "baipiaoji",
-      "status": "queued",
+      "status": "done",
       "priority": 70,
       "title": "试用、取消与续费条件核对",
       "pain": "订阅前的试用能力和退出条件不清楚；目前仅有日期未知的缓存线索。",
@@ -104,12 +104,61 @@
       ],
       "commercial_hypothesis": "缩短已有 AI 工具选型流程；联盟资格和收入另行核验。",
       "counter_evidence": "可能只需要链接官方帮助页，不需要新工具。",
-      "next_review": "2026-11-07"
+      "next_review": "2026-11-07",
+      "next_observation_date": "2026-11-10",
+      "verification": {
+        "checked_at": "2026-11-03T00:18:00Z",
+        "execution": "hosted-development-task",
+        "source_bodies_reviewed": 0,
+        "absolute_publication_dates_verified": false,
+        "site_fit": "verified engineering information defect: the existing Claude entry still says the official source returned 403 and leaves refund terms unverified, while current first-party Claude pricing and help pages now publish the free-plan, cancellation and refund boundaries",
+        "site_fit_verified": true,
+        "outcome": "authorize a bounded factual correction inside the existing bilingual coding-access path; do not create a new trial tool or treat the cached community lead as confirmed demand",
+        "note": "BPJ-T1 remains an unread supplier cache with unknown publication date and is not counted as current demand, a buyer or payment evidence. The official documentation independently reproduces a stale-information defect in the existing directory.",
+        "counter_evidence": "Claude already offers a free plan and official help pages, so a separate trial selector would duplicate the provider and BPJ's existing directory. Refund eligibility varies by law and purchase channel; the site must not promise a universal refund.",
+        "experiment": {
+          "baseline": "Claude was marked pending; the card said the source returned 403 and told users to verify refunds themselves.",
+          "candidate": "The existing bilingual card now distinguishes Free access from a standing Pro trial, states default renewal and cancellation timing, preserves regional/channel-specific refund limits, and links four dated first-party references.",
+          "regression": "Bilingual build, focused coding-access data/render/privacy checks, 16 pain-radar tests, evolution invariants, 36 release-input guard tests, nine GA4 coverage tests and generated-site GA4 coverage passed.",
+          "pending": "The production CI browser, full site, current-main, Cloudflare deployment and live gates passed. The local Playwright browser binary remained unavailable. Customer completion, registration, payment and revenue effects are unknown."
+        },
+        "official_sources_reviewed": [
+          "https://claude.com/pricing",
+          "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan",
+          "https://support.claude.com/en/articles/8325609-how-do-i-sign-up-for-the-pro-plan",
+          "https://support.claude.com/en/articles/8325617-cancel-your-pro-max-or-ultra-subscription",
+          "https://support.claude.com/en/articles/12386328-request-a-refund-for-a-paid-claude-plan"
+        ],
+        "live_checked_at": "2026-11-03T00:35:29Z",
+        "release": {
+          "result": "passed",
+          "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
+          "deployed_at": null,
+          "live_urls": [
+            "https://baipiaoji.com/coding-access/",
+            "https://baipiaoji.com/en/coding-access/"
+          ],
+          "acceptance": "Focused bilingual data/render/privacy checks, 16 pain-radar tests, evolution invariants, 36 current-main release-input guard tests, nine GA4 coverage tests and generated-site GA4 coverage passed locally. Production CI then passed the full build, real-browser gates, GA4 consent and fixed-action checks, current-main guard, Cloudflare deployment, published coding-access check and changed-only IndexNow step; both live language routes were inspected after deployment.",
+          "limitations": "The workflow connector confirmed a successful deployment but did not expose a deployment completion timestamp, so deployed_at remains unknown. BPJ-T1 remains an unread supplier cache with unknown publication date and is not confirmed demand, a buyer or payment evidence. No purchase, cancellation or refund was executed. The unrelated broad vendor-link crawl was not completed. Customer completion, reuse, registration, payment and revenue effects remain unknown."
+        }
+      },
+      "execution": {
+        "started_at": "2026-11-03T00:18:00Z",
+        "base_sha": "a7c109574dba5e5447bed7b2c7c51c6dd59a40a6",
+        "branch": "codex/bpj-claude-terms-20261103",
+        "pull_request": 239,
+        "release_hold": null,
+        "completed_at": "2026-11-03T00:35:29Z",
+        "commit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+        "merge_commit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+        "workflow_run_id": 41552530896,
+        "outcome": "released and live-verified"
+      }
     },
     {
       "id": "agi-claim-context-20261031",
       "site": "agiscorecard",
-      "status": "queued",
+      "status": "done",
       "priority": 72,
       "title": "AI 结论缺少业务背景与来源支撑",
       "pain": "公开讨论反映 AI 对缺少上下文的问题给出肯定解释；与 Jarvis 的来源检查有相邻适配，尚未证明是本站用户需求。",
@@ -133,7 +182,46 @@
       ],
       "commercial_hypothesis": "提高已有研究任务的可复核性与复用价值；付费意愿未知。",
       "counter_evidence": "来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。",
-      "next_review": "2026-11-07"
+      "next_review": "2026-11-07",
+      "verification": {
+        "checked_at": "2026-11-02T00:57:00Z",
+        "execution": "hosted-development-task",
+        "source_bodies_reviewed": 1,
+        "site_fit": "verified engineering defect: Jarvis ordinary-source ranking serializes entire records, so source IDs, URLs, dates and other metadata can create false relevance matches; a frozen synthetic check passes 3 of 12 cases before correction",
+        "site_fit_verified": true,
+        "outcome": "authorize a bounded deterministic relevance correction in the existing Jarvis path; the source gate still blocks treating this as a confirmed pain-point extension",
+        "note": "The one community source is adjacent agency context, not repeat demand, a buyer or payment evidence. This work corrects an independently reproduced product defect and does not claim model-quality improvement.",
+        "experiment": {
+          "baseline": "3/12 frozen synthetic relevance cases",
+          "candidate": "12/12 frozen synthetic relevance cases; representative English and Chinese catalog queries retained the intended record",
+          "regression": "137 Jarvis unit, security, membership, screening and handoff checks passed locally; release-safety, radar, hreflang and breadcrumb checks passed",
+          "pending": "The local browser binary was unavailable, so production browser and full generated-site checks remain release gates in CI."
+        },
+        "live_checked_at": "2026-11-02T01:23:00Z",
+        "release": {
+          "result": "passed",
+          "workflow_run": "https://github.com/f-tiger/agi-site/actions/runs/41371661924",
+          "deployed_at": "2026-11-02T01:22:26Z",
+          "live_urls": [
+            "https://agiscorecard.com/jarvis",
+            "https://agiscorecard.com/zh/jarvis"
+          ],
+          "acceptance": "Frozen relevance improved from 3/12 to 12/12; pull-request evidence-contract and browser gates passed; the full current-main build, Jarvis privacy/membership lifecycle, GA4 coverage, SEO/GEO/i18n, all-site browser matrix, Cloudflare deployment and live smoke passed. Both live pages expose jarvis-20261102-25.",
+          "limitations": "This deterministic correction does not understand synonyms or prove model-answer quality. One adjacent community source is not confirmed site demand. Customer completion, reuse, registration, payment and revenue effects remain unknown; no live AI task was created for this release."
+        }
+      },
+      "execution": {
+        "started_at": "2026-11-02T00:57:00Z",
+        "base_sha": "725dcb279e005dbbd7ef76a6f2c23cf78a2d02cd",
+        "branch": "codex/agi-field-scoped-relevance-20261102",
+        "pull_request": 235,
+        "release_hold": null,
+        "completed_at": "2026-11-02T01:23:00Z",
+        "commit": "6404ff67883b9df867b7d48ac33680c2d992c604",
+        "merge_commit": "6404ff67883b9df867b7d48ac33680c2d992c604",
+        "workflow_run_id": 41371661924,
+        "outcome": "released and live-verified"
+      }
     },
     {
       "id": "agency-reporting-generic-20261031",

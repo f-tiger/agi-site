@@ -3,15 +3,15 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 20,
+    "n": 23,
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 8,
+    "n": 9,
     "q": "tool:verdicts"
    },
    {
-    "n": 8,
+    "n": 9,
     "q": "tool:thesis_tracker"
    },
    {
@@ -27,20 +27,33 @@
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-10-31",
+ "fetched": "2026-11-02",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
- "pages": {},
+ "pages": {
+  "/workbench/workflowcost": {
+   "n7": 57,
+   "p7": 27
+  },
+  "/zh/future-guide/distribution-opportunity": {
+   "n7": 56,
+   "p7": 26
+  },
+  "/zh/workbench/evidencebrief": {
+   "n7": 47,
+   "p7": 21
+  }
+ },
  "site": "agiscorecard",
  "source": "https://agiscorecard.com/api/trends"
 }

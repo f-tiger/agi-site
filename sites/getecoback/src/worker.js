@@ -1,3 +1,4 @@
+import {citationUrl} from './agent-sources.mjs';
 import {isAnalyticsPath, analyticsResponse} from '../../../tools/fleet-analytics/edge.mjs';
 import {DISTRIBUTION_EVENTS,validDistribution,distributionGrowth} from './distribution-growth.mjs';
 import {LAUNDRY_EVENTS,validLaundryEvent} from './laundry-events.mjs';
@@ -249,16 +250,9 @@ function cacheControlFor(pathname) {
   return "public, max-age=3600";
 }
 
-// Cloudflare sells "Markdown for Agents" as a Pro-plan toggle: serve the same
-// page as Markdown when the client negotiates for it. On this domain AI
-// crawlers outnumber human visitors several times over, and a crawler that
-// gets clean Markdown quotes the text instead of guessing at it — so the
-// feature is worth having. The Worker can do it without the plan, reusing the
-// converter the MCP read tool already relies on. Editorial links survive as
-// Markdown links (they point at our own guides); the injected commerce and
-// interactive layers are stripped, exactly as in ratgeber_lesen, so no
-// affiliate link is laundered through a surface that carries no page around it.
-function htmlToMarkdown(html, path) {
+// Readable evidence for explicit Markdown clients. Citations remain linked to
+// original references; accessibility is not a guarantee of AI citation/ranking.
+export function htmlToMarkdown(html, path) {
   const titleM = html.match(/<title>([\s\S]*?)<\/title>/i);
   const descM = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i);
   const artM = html.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
@@ -277,8 +271,9 @@ function htmlToMarkdown(html, path) {
     .replace(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m, href, t) => {
       const text = t.replace(/<[^>]+>/g, "").trim();
       if (!text) return "";
-      // Keep our own pages as links; anything external becomes plain text so a
-      // stripped-down surface never ships an outbound link without its context.
+      const rel=m.split('>',1)[0].match(/\brel=["']([^"']*)["']/i)?.[1]||'';
+      const source=citationUrl(href.replace(/&amp;/g,'&'),rel);
+      if(source)return `[${text}](${source})`;
       return /^\/(?!\/)/.test(href) ? `[${text}](https://getecoback.com${href})` : text;
     })
     .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, (m, tag, t) => `**${t.replace(/<[^>]+>/g, "").trim()}**`)
@@ -322,7 +317,20 @@ async function serveMarkdown(request, env, pathname, assetPath) {
   try { html = await res.text(); } catch (e) { return null; }
   if (!html) return null;
   let md = "";
-  try { md = htmlToMarkdown(html, pathname); } catch (e) { return null; }
+  // The build mirror preserves sourced decision tables outside <article>.
+  // Reuse it for content negotiation instead of dropping those facts at edge.
+  if (assetPath.endsWith('.html')) {
+    try {
+      const u=new URL(request.url);u.pathname=assetPath.replace(/\.html$/,'.md');u.search='';
+      const mirror=await env.ASSETS.fetch(new Request(u.toString()));
+      const type=mirror.headers.get('content-type')||'';
+      if(mirror.ok && /text\/(markdown|plain)/i.test(type)) {
+        const text=await mirror.text();
+        if(text.startsWith('# ') && text.includes('https://getecoback.com'+pathname))md=text;
+      }
+    } catch { /* Missing optional mirrors fall back to the HTML converter. */ }
+  }
+  if(!md)try { md = htmlToMarkdown(html, pathname); } catch (e) { return null; }
   if (!md) return null;
   try {
     const ua = request.headers.get("user-agent") || "";
@@ -802,7 +810,9 @@ async function handleEvent(request, env, ctx) {
 }
 
 // Live "most read" ranking from the site's own first-party funnel, so the
-// homepage's popular block reorders itself with real demand instead of a list
+// German homepage's popular block uses observed German human-class reads, not
+// purchases or a conversion prediction. Automated/unknown traffic is excluded.
+// It reorders itself with observed reading instead of a list
 // hardcoded at build time. Aggregate only — paths and counts, nothing personal.
 // Same defensive contract as /api/heat: every step guarded, failure degrades to
 // an empty list (never an empty body), failures are never cached.
@@ -818,6 +828,7 @@ async function handleTop(request, env, ctx) {
       const rs = await env.EVENTS.prepare(
         "SELECT page, COUNT(*) AS n FROM ev WHERE name='page_view' " +
         "AND day >= date('now','-28 day') AND page LIKE '/guide/%' " +
+        "AND ua_class='human' AND country='DE' " +
         "AND page NOT LIKE '/__ci%' GROUP BY page ORDER BY n DESC LIMIT 8"
       ).all();
       const pages = (rs.results || [])

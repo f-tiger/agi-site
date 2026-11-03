@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 2,
   "pending": [
-   {
-    "repo": "najmuzzaman-mohammad/gawkbot",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "razzant/ouroboros",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "AstrBotDevs/AstrBot",
     "topic": "agents",
@@ -80,11 +70,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "Alisa0808/vox-director",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "869413421/ai-moive-studio",
     "topic": "agents",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -132,11 +117,6 @@
    {
     "repo": "Human-Agent-Society/reef",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "mizorewww/laya-mlx",
-    "topic": "local",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -197,11 +177,6 @@
    {
     "repo": "GiovanniPasq/agentic-rag-for-dummies",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "qdrant/fastembed",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -415,11 +390,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "CookSleep/gpt_image_playground",
-    "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "HanaokaYuzu/Gemini-API",
     "topic": "image",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -442,11 +412,6 @@
    {
     "repo": "elegantapp/pwa-asset-generator",
     "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "alphacep/vosk-api",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -777,11 +742,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "reactive-resume/reactive-resume",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1445,11 +1405,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "dengxibo/sumatrapdf-plus",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "SteveTheKiller/KillerPDF",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1743,11 +1698,6 @@
     "repo": "ax-llm/ax",
     "topic": "agents",
     "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
-    "repo": "p-e-w/heretic",
-    "topic": "ai",
-    "foundAt": "2026-10-12T06:28:11.186Z"
    },
    {
     "repo": "SillyTavern/SillyTavern",
@@ -2275,11 +2225,6 @@
     "foundAt": "2026-10-20T05:13:44.274Z"
    },
    {
-    "repo": "Ch1rpy2613/Mirrai",
-    "topic": "chat",
-    "foundAt": "2026-10-20T05:13:44.274Z"
-   },
-   {
     "repo": "zjunlp/LightMem",
     "topic": "agents",
     "foundAt": "2026-10-20T05:13:44.274Z"
@@ -2307,11 +2252,6 @@
    {
     "repo": "openvinotoolkit/openvino_notebooks",
     "topic": "local",
-    "foundAt": "2026-10-21T05:15:35.227Z"
-   },
-   {
-    "repo": "FlashML-org/FreeVideo",
-    "topic": "video",
     "foundAt": "2026-10-21T05:15:35.227Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "nextlevelbuilder/goclaw",
     "topic": "agents",
     "foundAt": "2026-11-01T06:46:25.416Z"
+   },
+   {
+    "repo": "OpenNMT/CTranslate2",
+    "topic": "local",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "uxlfoundation/oneDNN",
+    "topic": "local",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "anush008/fastembed-rs",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "intelligencedev/manifold",
+    "topic": "agents",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "weaviate/recipes",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "Bessouat40/RAGLight",
+    "topic": "agents",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "philippgille/chromem-go",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "onyx-dot-app/EnterpriseRAG-Bench",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "weiwill88/Local_Pdf_Chat_RAG",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "NovaSearch-Team/RAG-Retrieval",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "OpenBMB/VisRAG",
+    "topic": "knowledge",
+    "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "openagents-org/openagents",
+    "topic": "agents",
+    "foundAt": "2026-11-02T06:44:24.564Z"
    }
   ],
   "checked": {
@@ -3043,11 +3043,11 @@
    "gh-ayghri-i-have-adhd-32d438": "2026-10-27T05:31:45.486Z",
    "gh-headroomlabs-ai-headroom-822d9b": "2026-10-27T05:31:45.486Z",
    "gh-asgeirtj-system-prompts-leaks-a7e33a": "2026-11-01T06:46:25.416Z",
-   "gh-run-llama-llama-index-48562c": "2026-10-14T05:19:33.308Z",
-   "gh-career-ops-hq-career-ops-f53f43": "2026-10-14T05:19:33.308Z",
-   "gh-oraios-serena-ccb57e": "2026-10-14T05:19:33.308Z",
-   "gh-wuyoscar-gpt-image2-skill-c50c0d": "2026-10-14T05:19:33.308Z",
-   "gh-2noise-chattts-f20a36": "2026-10-14T05:19:33.308Z",
+   "gh-run-llama-llama-index-48562c": "2026-11-02T06:44:24.564Z",
+   "gh-career-ops-hq-career-ops-f53f43": "2026-11-02T06:44:24.564Z",
+   "gh-oraios-serena-ccb57e": "2026-11-02T06:44:24.564Z",
+   "gh-wuyoscar-gpt-image2-skill-c50c0d": "2026-11-02T06:44:24.564Z",
+   "gh-2noise-chattts-f20a36": "2026-11-02T06:44:24.564Z",
    "gh-vinta-pangu-js-1f4323": "2026-10-14T08:05:15.418Z",
    "gh-rasahq-rasa-73f2ba": "2026-10-14T08:05:15.418Z",
    "gh-pku-yuangroup-helios-9cfb67": "2026-10-14T08:05:15.418Z",
@@ -3124,11 +3124,12 @@
    "gh-aidotnet-opendeepwiki-d6ab22": "2026-11-01T06:46:25.416Z",
    "gh-plotly-dash-01ccb3": "2026-11-01T06:46:25.416Z",
    "gh-nvidia-megatron-lm-f65276": "2026-11-01T06:46:25.416Z",
-   "gh-librechat-ai-docs-fcce81": "2026-11-01T06:46:25.416Z"
+   "gh-librechat-ai-docs-fcce81": "2026-11-01T06:46:25.416Z",
+   "gh-vectifyai-pageindex-9d47af": "2026-11-02T06:44:24.564Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.retracn/automationnation-mcp:1.1.1",
+  "cursor": "io.github.sadri-dridi/fathom-m:1.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4332,7 +4333,47 @@
    "analyticslegends-sap-analytics": "2026-11-01T06:46:25.416Z",
    "asrmemory-asr": "2026-11-01T06:46:25.416Z",
    "atako-mcp": "2026-11-01T06:46:25.416Z",
-   "au-assetize-maximo": "2026-11-01T06:46:25.416Z"
+   "au-assetize-maximo": "2026-11-01T06:46:25.416Z",
+   "audiala-mcp": "2026-11-02T06:44:24.564Z",
+   "audioeye-testing-sdk-mcp": "2026-11-02T06:44:24.564Z",
+   "autonomad-travel": "2026-11-02T06:44:24.564Z",
+   "bamf-bamf": "2026-11-02T06:44:24.564Z",
+   "bangermail-banger": "2026-11-02T06:44:24.564Z",
+   "bcited-bcited": "2026-11-02T06:44:24.564Z",
+   "be-lexgo-jobs": "2026-11-02T06:44:24.564Z",
+   "beyondfolder-directories": "2026-11-02T06:44:24.564Z",
+   "bithuman-docs": "2026-11-02T06:44:24.564Z",
+   "br-ia-cnpj-mcp": "2026-11-02T06:44:24.564Z",
+   "ca-ccpcrate-ccpcrate": "2026-11-02T06:44:24.564Z",
+   "ca-honkio-mcp": "2026-11-02T06:44:24.564Z",
+   "ca-movahedi-privacy": "2026-11-02T06:44:24.564Z",
+   "canonicai-answers": "2026-11-02T06:44:24.564Z",
+   "captureoneai-web-perception": "2026-11-02T06:44:24.564Z",
+   "cat-churchofai-aigora": "2026-11-02T06:44:24.564Z",
+   "causely-causely": "2026-11-02T06:44:24.564Z",
+   "cc-basile-basile": "2026-11-02T06:44:24.564Z",
+   "cc-heatpulse-heatpulse": "2026-11-02T06:44:24.564Z",
+   "cerebrium-docs": "2026-11-02T06:44:24.564Z",
+   "ch-stratta-mcp": "2026-11-02T06:44:24.564Z",
+   "chibitek-mochii": "2026-11-02T06:44:24.564Z",
+   "chibitek-nexus": "2026-11-02T06:44:24.564Z",
+   "citybook-citybook": "2026-11-02T06:44:24.564Z",
+   "coingraph-coingraph": "2026-11-02T06:44:24.564Z",
+   "cralo-mcp": "2026-11-02T06:44:24.564Z",
+   "crayonz-mcp": "2026-11-02T06:44:24.564Z",
+   "creatica-backgrounds": "2026-11-02T06:44:24.564Z",
+   "dataengineerprofessional-guide-registry": "2026-11-02T06:44:24.564Z",
+   "doublespeed-mcp": "2026-11-02T06:44:24.564Z",
+   "dxpert-uns-tools": "2026-11-02T06:44:24.564Z",
+   "dynt-api-dynt": "2026-11-02T06:44:24.564Z",
+   "easykanb-easykanban": "2026-11-02T06:44:24.564Z",
+   "feedback1-mcp": "2026-11-02T06:44:24.564Z",
+   "file2markdown-file2markdown": "2026-11-02T06:44:24.564Z",
+   "forkmate-forkmate": "2026-11-02T06:44:24.564Z",
+   "gency-lite": "2026-11-02T06:44:24.564Z",
+   "geometry-mcp": "2026-11-02T06:44:24.564Z",
+   "giljo-hq": "2026-11-02T06:44:24.564Z",
+   "gridar-gridar": "2026-11-02T06:44:24.564Z"
   }
  }
 }

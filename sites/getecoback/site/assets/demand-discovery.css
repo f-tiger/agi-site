@@ -1,0 +1,16 @@
+.eco-discovery{position:relative;order:3;width:100%;flex-basis:100%;margin:0;font:14px/1.5 system-ui,sans-serif;text-align:left;max-width:100%;color:inherit}
+.eco-discovery>summary{width:max-content;max-width:100%;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;min-height:44px;padding:8px 10px!important;border:1px solid currentColor!important;border-radius:8px;box-sizing:border-box;color:inherit!important;background:transparent!important;font:inherit!important}
+.eco-discovery>summary::-webkit-details-marker{display:none}
+.eco-discovery-panel{position:absolute;left:0;right:auto;top:calc(100% + 8px);width:min(380px,calc(100vw - 40px));box-sizing:border-box;max-height:70vh;overflow:auto;padding:16px;border:1px solid #cfe0ea;border-radius:12px;background:#fff;color:#1a2733;box-shadow:0 10px 30px #0a2d4640;z-index:400}
+.eco-discovery #eb-search-query{width:100%;min-height:44px;box-sizing:border-box;padding:10px;border:1px solid #8298a8;border-radius:8px;font:16px/1.5 system-ui,sans-serif;background:#fff;color:#1a2733}
+.eco-discovery label{display:block;color:#1a2733;margin:0 0 8px}
+.eco-discovery #eb-search-results{list-style:none;padding:0;margin:8px 0;max-height:none;overflow:visible}
+.eco-discovery #eb-search-status{font:13px/1.5 system-ui,sans-serif;color:#526473;margin:8px 0}
+.eco-discovery a{display:block!important;min-height:44px;box-sizing:border-box;padding:10px!important;white-space:normal!important;color:#0a4d7a!important;font:14px/1.5 system-ui,sans-serif!important;text-decoration:underline!important;border-radius:6px;overflow-wrap:anywhere}
+.eco-discovery a:hover{background:#edf5fa}.eco-discovery a span{display:block;color:#526473;font-size:13px}
+.eco-needs-heading{font-weight:700;margin:12px 0 4px;padding-top:12px;border-top:1px solid #dce7ee;color:#1a2733}
+.eco-discovery :focus-visible{outline:3px solid #e39a22;outline-offset:2px}.eco-discovery [hidden]{display:none!important}
+@media(max-width:560px){.eb-nav-in>.eco-discovery{grid-column:1/-1!important;grid-row:3!important;justify-self:stretch!important;background:transparent!important}.eco-discovery-panel{position:fixed;top:auto;left:20px;right:20px;width:auto;max-height:60vh}.eco-discovery>summary{font-size:13px!important}}
+@media print{.eco-discovery{display:none!important}}
+
+.eco-demand-hub{padding:20px;margin:20px 0;background:#eef7fb;border:1px solid #c9dfe9;border-radius:12px;color:#1a2733}.eco-demand-hub h2{margin-top:0}.eco-demand-hub a{display:inline-block;padding:12px;margin:4px;border:1px solid #b8d0de;border-radius:8px;background:white;color:#0a4d7a;line-height:1.5}
