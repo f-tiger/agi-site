@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "seeds": {
   "electric spin scrubber": {
    "rising": [
@@ -261,56 +261,63 @@
     "camping moon chairs uk",
     "camping moon chair kmart"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-11-03"
+  },
+  "portable blender": {
+   "auto": [
+    "portable blender",
+    "portable blender for smoothies",
+    "portable blender bottle",
+    "portable blender cup",
+    "portable blender walmart",
+    "portable blender ninja",
+    "portable blender for travel",
+    "portable blender near me",
+    "portable blender amazon",
+    "portable blender for protein shakes"
+   ],
    "rising": [
     {
-     "q": "camping moon chair kmart",
+     "q": "portable blender for smoothies",
+     "v": "new"
+    },
+    {
+     "q": "portable blender bottle",
+     "v": "new"
+    },
+    {
+     "q": "portable blender cup",
+     "v": "new"
+    },
+    {
+     "q": "portable blender walmart",
+     "v": "new"
+    },
+    {
+     "q": "portable blender ninja",
+     "v": "new"
+    },
+    {
+     "q": "portable blender for travel",
+     "v": "new"
+    },
+    {
+     "q": "portable blender near me",
+     "v": "new"
+    },
+    {
+     "q": "portable blender amazon",
+     "v": "new"
+    },
+    {
+     "q": "portable blender for protein shakes",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-11-02"
-  },
-  "portable blender": {
-   "rising": [
-    {
-     "q": "aldi ambiano portable blender",
-     "v": 2510250
-    },
-    {
-     "q": "ambiano portable blender",
-     "v": 141200
-    },
-    {
-     "q": "vitamix portable cold foam blender",
-     "v": 3750
-    },
-    {
-     "q": "best portable power stations",
-     "v": 1450
-    },
-    {
-     "q": "morphy richards portable blender",
-     "v": 750
-    },
-    {
-     "q": "zhenmi portable blender",
-     "v": 600
-    },
-    {
-     "q": "instacuppa portable blender",
-     "v": 550
-    },
-    {
-     "q": "cwc portable blender",
-     "v": 550
-    },
-    {
-     "q": "best portable blender",
-     "v": 80
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-10-04"
+   "fetched": "2026-11-03"
   },
   "vegetable chopper": {
    "rising": [
