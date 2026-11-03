@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-02T06:46:39.808Z",
+  "lastRun": "2026-11-03T07:13:59.586Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -103,25 +103,25 @@
       "caseId": "cursor",
       "reason": "source-unreachable",
       "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "lastChecked": "2026-10-20T05:17:09.409Z"
+      "lastChecked": "2026-11-03T07:13:59.586Z"
     },
     {
       "caseId": "lovable",
       "reason": "source-unreachable",
       "sourceUrl": "https://lovable.dev/blog/agent",
-      "lastChecked": "2026-10-20T05:17:09.409Z"
+      "lastChecked": "2026-11-03T07:13:59.586Z"
     },
     {
       "caseId": "gamma",
       "reason": "source-unreachable",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastChecked": "2026-10-21T05:18:56.289Z"
+      "lastChecked": "2026-11-03T07:13:59.586Z"
     },
     {
       "caseId": "elevenlabs",
       "reason": "source-unreachable",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastChecked": "2026-10-21T05:18:56.289Z"
+      "lastChecked": "2026-11-03T07:13:59.586Z"
     },
     {
       "caseId": "synthesia",
@@ -554,7 +554,7 @@
     "cursor|https://cursor.com/en-US/blog/series-c": {
       "caseId": "cursor",
       "sourceUrl": "https://cursor.com/en-US/blog/series-c",
-      "lastAttempt": "2026-10-20T05:17:09.409Z",
+      "lastAttempt": "2026-11-03T07:13:59.586Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -562,7 +562,7 @@
     "lovable|https://lovable.dev/blog/agent": {
       "caseId": "lovable",
       "sourceUrl": "https://lovable.dev/blog/agent",
-      "lastAttempt": "2026-10-20T05:17:09.409Z",
+      "lastAttempt": "2026-11-03T07:13:59.586Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -570,10 +570,10 @@
     "replit|https://replit.com/news/funding-announcement-series-c": {
       "caseId": "replit",
       "sourceUrl": "https://replit.com/news/funding-announcement-series-c",
-      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "lastAttempt": "2026-11-03T07:13:59.586Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-21T05:18:56.289Z",
+      "lastSuccess": "2026-11-03T07:13:59.586Z",
       "lastHash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
       "hash": "ac4e4fbbdd6c3407925a72dcb3ad64d4757c84b2c294a0bfaddb3a252171baf0",
       "simhash": "9252241e9f62870b",
@@ -583,7 +583,7 @@
     "gamma|https://gamma.app/insights/how-we-built-a-usd100m-business-differently": {
       "caseId": "gamma",
       "sourceUrl": "https://gamma.app/insights/how-we-built-a-usd100m-business-differently",
-      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "lastAttempt": "2026-11-03T07:13:59.586Z",
       "status": "unreachable",
       "http": 403,
       "consecutiveChange": 0
@@ -591,7 +591,7 @@
     "elevenlabs|https://elevenlabs.io/blog/500m-arr-and-new-investors": {
       "caseId": "elevenlabs",
       "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
-      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "lastAttempt": "2026-11-03T07:13:59.586Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,31 +1159,21 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 16,
+  "cursor": 21,
   "errors": [
     {
-      "caseId": "jenni-ai",
-      "sourceUrl": "https://www.linkedin.com/posts/davidjpark96_we-had-10-years-of-failure-before-any-semblance-activity-7205340923675746304-xIK0",
+      "caseId": "cursor",
+      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
       "reason": "body-limit"
     },
     {
-      "caseId": "customgpt",
-      "sourceUrl": "https://customgpt.ai/customers/",
+      "caseId": "lovable",
+      "sourceUrl": "https://lovable.dev/blog/agent",
       "reason": "body-limit"
     },
     {
-      "caseId": "julius-ai",
-      "sourceUrl": "https://julius.ai/home/ai-powered-business-intelligence",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "chatbase",
-      "sourceUrl": "https://supabase.com/customers/chatbase",
-      "reason": "body-limit"
-    },
-    {
-      "caseId": "bolt",
-      "sourceUrl": "https://www.lennysnewsletter.com/p/inside-bolt-eric-simons",
+      "caseId": "elevenlabs",
+      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
       "reason": "body-limit"
     }
   ]

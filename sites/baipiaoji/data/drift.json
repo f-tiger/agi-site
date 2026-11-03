@@ -1,10 +1,46 @@
 {
-  "generated": "2026-11-02",
+  "generated": "2026-11-03",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 12,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
+  "pending": 16,
   "items": [
+    {
+      "slug": "deepl",
+      "url": "https://www.deepl.com/pricing",
+      "confirmed": "2026-11-03",
+      "first_seen": "2026-11-02",
+      "added": [
+        "0m",
+        "1b",
+        "1m",
+        "2b",
+        "2k",
+        "3m",
+        "4m",
+        "5k",
+        "60b",
+        "60k",
+        "6b",
+        "6m"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-03",
+      "first_seen": "2026-11-02",
+      "added": [
+        "349b",
+        "4550b"
+      ],
+      "removed": [
+        "95639b"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "kiro",
       "url": "https://kiro.dev/pricing/",
@@ -31,30 +67,6 @@
         "64b"
       ],
       "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-01",
-      "first_seen": "2026-10-31",
-      "added": [
-        "07b",
-        "298357b",
-        "3b",
-        "4b",
-        "95639b"
-      ],
-      "removed": [
-        "$24",
-        "$25",
-        "$30",
-        "$31",
-        "0b",
-        "209b",
-        "31b",
-        "8b"
-      ],
       "checked_then": "2026-08-03"
     },
     {
@@ -310,17 +322,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-02"
-    },
-    {
-      "slug": "deepl",
-      "url": "https://www.deepl.com/pricing",
-      "confirmed": "2026-10-22",
-      "first_seen": "2026-10-21",
-      "added": [
-        "9b"
-      ],
-      "removed": [],
-      "checked_then": "2026-09-21"
     },
     {
       "slug": "dify",

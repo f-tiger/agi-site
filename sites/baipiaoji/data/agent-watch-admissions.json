@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-02",
+ "checked": "2026-11-03",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3546,6 +3546,42 @@
    "source_http": null,
    "repo_http": null,
    "reason": "timeout"
+  },
+  "arcself-arc-security": {
+   "attempts": 1,
+   "first_attempt": "2026-11-03",
+   "last_attempt": "2026-11-03",
+   "attemptedAt": "2026-11-03T07:12:58.127Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "asgolfclothing-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-03",
+   "last_attempt": "2026-11-03",
+   "attemptedAt": "2026-11-03T07:12:58.127Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "assimilatethis-bob-research-tools": {
+   "attempts": 1,
+   "first_attempt": "2026-11-03",
+   "last_attempt": "2026-11-03",
+   "attemptedAt": "2026-11-03T07:12:58.127Z",
+   "source_http": 406,
+   "repo_http": null,
+   "reason": "source HTTP 406"
+  },
+  "atom-premium-domains": {
+   "attempts": 1,
+   "first_attempt": "2026-11-03",
+   "last_attempt": "2026-11-03",
+   "attemptedAt": "2026-11-03T07:12:58.127Z",
+   "source_http": 403,
+   "repo_http": 200,
+   "reason": "source HTTP 403"
   }
  },
  "admitted": [
@@ -18946,6 +18982,342 @@
   {
    "slug": "appsflyer-mcp",
    "date": "2026-11-02",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appskyline-appskyline",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appstorepack-appstorepack",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "appwizzy-projects",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aradia-sovereign-hardware",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arc-relay-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arcadedb-mcp-server",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arcalune-music",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arcandledger-tax-tools",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "arcaneforecasting-world-sense",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arcanika-tarot",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arcasos-rentals",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "archerionlabs-speedread",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "arcjet-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arena-predictions-arena",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "argorant-argorant",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "arison8-smolabot",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arizonaroofreplacementcost-site",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arizonasolarcostcalculator-site",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "artifyde-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "artyfile-music-licensing",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "arzbin-market-data",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "ashareapi-ashare-data-api",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asharehub-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asia-pulse-asia-pulse",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ask-ai-data-connector-ask-ai",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ask10ais-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "askairank-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "askedthrice-askedthrice",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "askmatchbox-matchbox",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "askmyenvoy-meeting-scheduling-coordination",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "askrentai-askrentai",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asoatlas-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "asoskill-aso-skill",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "assetfy-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "assetzaar-marketplace",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asternym-asternym",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asteroidxrpl-asteroid-xrpl-hub",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "astranl-counterparty-nl",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "astranl-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "astraverify-domain-trust",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "astravue-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "astryke-hub",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "asyntai-support-agent",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atlas-red-mind-map",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atlasemoji-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atlasipholdingsllc-atlas-data-exchange",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atmita-atmita",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atproto-mcp-taproot",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attendmeet-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attestroom-site",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attestvio-site",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attestwire-en16931",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attractiontickets-mcp-products",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "attribloom-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "attrove-mcp",
+   "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "atxgraniteking-countertops",
+   "date": "2026-11-03",
    "source_http": 200,
    "repo_http": null
   }

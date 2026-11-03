@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 18,
-  "page": 2,
+  "queryIndex": 0,
+  "page": 3,
   "pending": [
-   {
-    "repo": "AstrBotDevs/AstrBot",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "agentscope-ai/agentscope",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "78/xiaozhi-esp32",
     "topic": "agents",
@@ -105,11 +95,6 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "rowboatlabs/rowboat",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "YishenTu/claudian",
     "topic": "coding",
     "foundAt": "2026-10-03T05:42:28.511Z"
@@ -117,11 +102,6 @@
    {
     "repo": "Human-Agent-Society/reef",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "kvcache-ai/Mooncake",
-    "topic": "local",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -177,11 +157,6 @@
    {
     "repo": "GiovanniPasq/agentic-rag-for-dummies",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "swirlai/swirl-search",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -390,11 +365,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "HanaokaYuzu/Gemini-API",
-    "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "yanliudesign/mono-color-skill",
     "topic": "agents",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -412,11 +382,6 @@
    {
     "repo": "elegantapp/pwa-asset-generator",
     "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "kmario23/deep-learning-drizzle",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -742,11 +707,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "ToolJet/ToolJet",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1405,11 +1365,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "SteveTheKiller/KillerPDF",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "Achno/gowall",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1698,11 +1653,6 @@
     "repo": "ax-llm/ax",
     "topic": "agents",
     "foundAt": "2026-10-11T06:21:02.155Z"
-   },
-   {
-    "repo": "SillyTavern/SillyTavern",
-    "topic": "ai",
-    "foundAt": "2026-10-12T06:28:11.186Z"
    },
    {
     "repo": "mukul975/Anthropic-Cybersecurity-Skills",
@@ -2230,11 +2180,6 @@
     "foundAt": "2026-10-20T05:13:44.274Z"
    },
    {
-    "repo": "Cog-Creators/Red-DiscordBot",
-    "topic": "chat",
-    "foundAt": "2026-10-20T05:13:44.274Z"
-   },
-   {
     "repo": "trymirai/uzu",
     "topic": "local",
     "foundAt": "2026-10-21T05:15:35.227Z"
@@ -2337,11 +2282,6 @@
    {
     "repo": "NiuTrans/NLPBook",
     "topic": "ai",
-    "foundAt": "2026-10-22T05:18:29.886Z"
-   },
-   {
-    "repo": "EvolvingLMMs-Lab/lmms-engine",
-    "topic": "video",
     "foundAt": "2026-10-22T05:18:29.886Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "openagents-org/openagents",
     "topic": "agents",
     "foundAt": "2026-11-02T06:44:24.564Z"
+   },
+   {
+    "repo": "algorithmicsuperintelligence/optillm",
+    "topic": "agents",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "Mirrowel/LLM-API-Key-Proxy",
+    "topic": "ai",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "wuwenjie1992/StarryDivineSky",
+    "topic": "ai",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "urchade/GLiNER",
+    "topic": "ai",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "AIoT-MLSys-Lab/Efficient-LLMs-Survey",
+    "topic": "ai",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "Eigenwise/atomic-agents",
+    "topic": "ai",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "miuuyy/Octopus-SI-OS",
+    "topic": "coding",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "bytebase/dbhub",
+    "topic": "coding",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "smg-project/smg",
+    "topic": "agents",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "containers/kubernetes-mcp-server",
+    "topic": "agents",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "razzant/claudexor",
+    "topic": "coding",
+    "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "lemonade-sdk/lemonade",
+    "topic": "agents",
+    "foundAt": "2026-11-03T07:12:58.127Z"
    }
   ],
   "checked": {
@@ -3125,11 +3125,17 @@
    "gh-plotly-dash-01ccb3": "2026-11-01T06:46:25.416Z",
    "gh-nvidia-megatron-lm-f65276": "2026-11-01T06:46:25.416Z",
    "gh-librechat-ai-docs-fcce81": "2026-11-01T06:46:25.416Z",
-   "gh-vectifyai-pageindex-9d47af": "2026-11-02T06:44:24.564Z"
+   "gh-vectifyai-pageindex-9d47af": "2026-11-02T06:44:24.564Z",
+   "gh-copilotkit-copilotkit-99dc65": "2026-11-03T07:12:58.127Z",
+   "gh-jnmetacode-superpowers-zh-f10e03": "2026-11-03T07:12:58.127Z",
+   "gh-minimax-ai-minimax-mcp-30cb57": "2026-11-03T07:12:58.127Z",
+   "gh-netease-youdao-emotivoice-bd2c11": "2026-11-03T07:12:58.127Z",
+   "gh-daybreak-u-chineseocr-lite-b80ae1": "2026-11-03T07:12:58.127Z",
+   "gh-oumi-ai-oumi-8b84e4": "2026-11-03T07:12:58.127Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.sadri-dridi/fathom-m:1.0.0",
+  "cursor": "io.github.sadri-dridi/tz-america-halifax:1.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4373,7 +4379,47 @@
    "gency-lite": "2026-11-02T06:44:24.564Z",
    "geometry-mcp": "2026-11-02T06:44:24.564Z",
    "giljo-hq": "2026-11-02T06:44:24.564Z",
-   "gridar-gridar": "2026-11-02T06:44:24.564Z"
+   "gridar-gridar": "2026-11-02T06:44:24.564Z",
+   "igoyal-public-context": "2026-11-03T07:12:58.127Z",
+   "immopix-mcp": "2026-11-03T07:12:58.127Z",
+   "joinlayer-mcp": "2026-11-03T07:12:58.127Z",
+   "kanonik-kanonik": "2026-11-03T07:12:58.127Z",
+   "levelfour-mcp": "2026-11-03T07:12:58.127Z",
+   "mailsocket-mcp": "2026-11-03T07:12:58.127Z",
+   "manilo-manilo": "2026-11-03T07:12:58.127Z",
+   "markettrace-agent-feed": "2026-11-03T07:12:58.127Z",
+   "mcpcap-mcpcap": "2026-11-03T07:12:58.127Z",
+   "mcpjunction-directory": "2026-11-03T07:12:58.127Z",
+   "motiblog-mcp": "2026-11-03T07:12:58.127Z",
+   "nauro-nauro": "2026-11-03T07:12:58.127Z",
+   "needtofind-needtofind": "2026-11-03T07:12:58.127Z",
+   "neocapital-neo": "2026-11-03T07:12:58.127Z",
+   "oceantoken-mcp": "2026-11-03T07:12:58.127Z",
+   "offendersearch-offendersearch": "2026-11-03T07:12:58.127Z",
+   "pigeonrelay-pigeonrelay": "2026-11-03T07:12:58.127Z",
+   "pixeldojo-mcp": "2026-11-03T07:12:58.127Z",
+   "posteverywhere-mcp": "2026-11-03T07:12:58.127Z",
+   "qcdatabase-mcp": "2026-11-03T07:12:58.127Z",
+   "rcll-fleet-memory": "2026-11-03T07:12:58.127Z",
+   "satohub-kit": "2026-11-03T07:12:58.127Z",
+   "sealgate-gateway": "2026-11-03T07:12:58.127Z",
+   "sendar-mcp": "2026-11-03T07:12:58.127Z",
+   "skylit-mcp": "2026-11-03T07:12:58.127Z",
+   "smry-r-smry-product": "2026-11-03T07:12:58.127Z",
+   "taskfolk-mcp": "2026-11-03T07:12:58.127Z",
+   "telofy-telofy": "2026-11-03T07:12:58.127Z",
+   "theona-linkedin-content-planner": "2026-11-03T07:12:58.127Z",
+   "vercel-flightsweeper-webmcp-public": "2026-11-03T07:12:58.127Z",
+   "zihin-mcp-server": "2026-11-03T07:12:58.127Z",
+   "agentroam-agentroam": "2026-11-03T07:12:58.127Z",
+   "al-square-fiskalizimi": "2026-11-03T07:12:58.127Z",
+   "atlier-project-desk": "2026-11-03T07:12:58.127Z",
+   "authoryze-authoryze": "2026-11-03T07:12:58.127Z",
+   "awraiter-telegram": "2026-11-03T07:12:58.127Z",
+   "bridgeapp-bridgeapp": "2026-11-03T07:12:58.127Z",
+   "calaf-calaf": "2026-11-03T07:12:58.127Z",
+   "decimal-registry": "2026-11-03T07:12:58.127Z",
+   "dxpert-mcp": "2026-11-03T07:12:58.127Z"
   }
  }
 }
