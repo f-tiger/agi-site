@@ -7,6 +7,25 @@ import {normalizeTitle,isExcludedTitle,validateManju,importFacts} from './manju-
 import {validateInsights} from './manju-insights.mjs';
 const dir=new URL('../data/',import.meta.url),read=name=>JSON.parse(readFileSync(new URL(name,dir),'utf8'));
 const categoryTags=[['仙侠','cultivation'],['修真','cultivation'],['末世','apocalypse'],['悬疑','suspense'],['怪谈','suspense'],['科幻','scifi'],['玄幻','fantasy'],['奇幻','fantasy'],['古装','historical'],['古代','historical'],['恋爱','romance'],['甜宠','romance'],['萌宝','family'],['家庭','family'],['种田','rural'],['乡村','rural'],['都市','urban'],['年代','period'],['武侠','martial'],['搞笑','comedy']];
+// Keep only fixed collision metadata from errors created here. Never persist an
+// arbitrary error/cause, source title, media URL or payload in the public status.
+const conflictDiagnostics=new WeakMap();
+function titleConflict(incomingWorkId,conflictingCatalogId,cohortKind,sourceDate){
+ const error=Error('Conflicting official title identity: '+incomingWorkId);
+ conflictDiagnostics.set(error,{incomingWorkId,conflictingCatalogId,cohortKind,sourceDate});
+ return error;
+}
+export function syncFailureDiagnostic(error){
+ const d=conflictDiagnostics.get(error);
+ if(!d||typeof d.incomingWorkId!=='string'||!/^hg-\d{1,20}$/.test(d.incomingWorkId)||typeof d.conflictingCatalogId!=='string'||d.conflictingCatalogId.length>100||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(d.conflictingCatalogId)||!['ai-drama','comic-drama'].includes(d.cohortKind)||typeof d.sourceDate!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(d.sourceDate))return null;
+ const date=Date.parse(d.sourceDate+'T00:00:00Z');
+ if(!Number.isFinite(date)||new Date(date).toISOString().slice(0,10)!==d.sourceDate)return null;
+ return {code:'official-title-identity-conflict',incomingWorkId:d.incomingWorkId,conflictingCatalogId:d.conflictingCatalogId,cohortKind:d.cohortKind,sourceDate:d.sourceDate};
+}
+export function syncFailureStatus(attempt,previous,error){
+ const diagnostic=syncFailureDiagnostic(error);
+ return {version:1,attemptedAt:attempt.attemptedAt,schedule:attempt.schedule,status:'failed',lastSuccessAt:previous.lastSuccessAt||null,error:'采集或数据校验失败；保留上次有效内容。详见 Actions 日志。',...(diagnostic?{diagnostic}:{})};
+}
 export function refresh(catalog,insights,payload){
  const next=structuredClone(catalog),data=structuredClone(insights),seen=new Map(next.items.map(x=>[normalizeTitle(x.title),x])),byId=new Map(next.items.filter(x=>x.evidence?.sourceKind==='hongguo-ranking').map(x=>[x.id,x]));
  if(payload.cohorts.length!==2||new Set(payload.cohorts.map(c=>c.kind)).size!==2)throw Error('Missing cohorts');
@@ -34,7 +53,7 @@ export function refresh(catalog,insights,payload){
    const identity=officialWorkId(r.url);
    if(!identity||typeof r.title!=='string'||!r.title.trim()||r.title.length>100||isExcludedTitle(r.title))throw Error('Invalid official work identity/title');
    const key=normalizeTitle(r.title),named=seen.get(key),identified=byId.get(identity),existing=identified||named;
-   if(identified&&named&&identified!==named||named?.evidence?.sourceKind==='hongguo-ranking'&&named.id!==identity)throw Error('Conflicting official title identity: '+identity);
+   if(identified&&named&&identified!==named||named?.evidence?.sourceKind==='hongguo-ranking'&&named.id!==identity)throw titleConflict(identity,named.id,kind,incoming.observedAt);
    // Keep every title encountered in this batch reserved to its identity. A later
    // alias must not free an earlier name for a different work in the same batch.
    if(existing){if(existing.evidence?.sourceKind==='hongguo-ranking'){existing.title=r.title;existing.seriesTitle=r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,'');seen.set(key,existing);existing.checkedAt=payload.checkedAt;existing.lastSeenAt=incoming.observedAt;existing.thumbnail=r.thumbnail;existing.source=r.thumbnail.source;existing.sourceDate=incoming.observedAt;existing.evidence.reportedTags=r.tags;existing.evidence.sourceHash=incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256;existing.tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));existing.category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama';existing.genre=next.taxonomy.genres.find(g=>g.id===existing.category).label;existing.caption=r.tags.join(' · ');existing.synopsis='红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。';}continue;}
@@ -61,6 +80,6 @@ if(process.argv[1]===fileURLToPath(import.meta.url)){
   // Validate both complete candidates before replacing either persisted dataset.
   atomic('manju.json',result.catalog);atomic('manju-insights.json',result.insights);
   status={...status,status:'ok',completedAt:new Date().toISOString(),lastSuccessAt:payload.checkedAtTime,sourceDates:payload.cohorts.map(c=>({kind:c.kind,date:c.observedAt})),records:result.catalog.items.length,discoveryImport,added:result.added,changes:result.changes,sourceFingerprint:createHash('sha256').update(JSON.stringify(payload.cohorts)).digest('hex')};
- }catch(error){let previous={};try{previous=read('manju-sync-status.json');}catch{}status={...status,lastSuccessAt:previous.lastSuccessAt||null,error:'采集或数据校验失败；保留上次有效内容。详见 Actions 日志。'};console.error(String(error.message).slice(0,1500));process.exitCode=1;}
+ }catch(error){let previous={};try{previous=read('manju-sync-status.json');}catch{}status=syncFailureStatus(status,previous,error);console.error(String(error.message).slice(0,1500));process.exitCode=1;}
  atomic('manju-sync-status.json',status);console.log(JSON.stringify(status));
 }
