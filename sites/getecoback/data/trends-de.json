@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wetterkarte",
+   "traffic": "500+"
+  }
+ ],
  "top": [
   {
-   "title": "spiel 77",
+   "title": "geran-5",
    "traffic": "200+"
   },
   {
-   "title": "weltweite zeitänderung ab 2027",
+   "title": "tennessee",
    "traffic": "2000+"
   },
   {
-   "title": "formel 1 mexiko strafen",
-   "traffic": "200+"
-  },
-  {
-   "title": "wow forever",
-   "traffic": "1000+"
-  },
-  {
-   "title": "jung papier gmbh",
-   "traffic": "200+"
-  },
-  {
-   "title": "weltreise",
+   "title": "wetterkarte",
    "traffic": "500+"
   },
   {
-   "title": "deutsche fußballnationalmannschaft",
-   "traffic": "2000+"
+   "title": "callum turner",
+   "traffic": "500+"
   },
   {
-   "title": "dave bautista",
+   "title": "stefan kretzschmar",
+   "traffic": "1000+"
+  },
+  {
+   "title": "falschfahrer",
+   "traffic": "1000+"
+  },
+  {
+   "title": "melissa heitmann",
    "traffic": "200+"
   },
   {
-   "title": "rhodos",
-   "traffic": "2000+"
+   "title": "bären",
+   "traffic": "200+"
   },
   {
-   "title": "sternzeichen horoskop heute",
-   "traffic": "1000+"
+   "title": "automobilwoche",
+   "traffic": "500+"
+  },
+  {
+   "title": "andrew yogan",
+   "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-19",
-   "matched": []
-  },
   {
    "d": "2026-10-20",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-11-02",
    "matched": []
+  },
+  {
+   "d": "2026-11-03",
+   "matched": [
+    "wetterkarte"
+   ]
   }
  ]
 }

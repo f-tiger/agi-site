@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -261,84 +261,56 @@
    "last_attempt_status": "ok"
   },
   "akku staubsauger": {
-   "rising": [
-    {
-     "q": "sky scanner",
-     "v": 1000
-    },
-    {
-     "q": "dripl akku staubsauger",
-     "v": 600
-    },
-    {
-     "q": "levoit akku staubsauger lvac 200 max",
-     "v": 400
-    },
-    {
-     "q": "dyson purifier cool pc1",
-     "v": 190
-    },
-    {
-     "q": "grundig akku staubsauger",
-     "v": 140
-    },
-    {
-     "q": "dreame r20",
-     "v": 120
-    },
-    {
-     "q": "balenciaga rodeo bag",
-     "v": 110
-    },
-    {
-     "q": "neuer dyson staubsauger",
-     "v": 110
-    },
-    {
-     "q": "levoit akku staubsauger",
-     "v": 100
-    },
-    {
-     "q": "würth akku staubsauger",
-     "v": 70
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-11-02",
-   "polluted": false,
-   "last_attempt_at": "2026-11-02T12:46:32.634418+00:00",
-   "last_attempt_status": "ok"
-  },
-  "matratze": {
    "auto": [
-    "matratze",
-    "matratzen concord",
-    "matratze 140x200",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratze 160x200",
-    "matratzen",
-    "matratze 120x200",
-    "matratzenschoner",
-    "matratzen topper"
+    "akku staubsauger",
+    "akku staubsauger test",
+    "akku staubsauger test 2026",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger dyson",
+    "akku staubsauger tierhaare",
+    "akku staubsauger makita",
+    "akku staubsauger mediamarkt"
    ],
    "new_vocabulary": [
-    "matratzen concord",
-    "matratze 140x200",
-    "matratze 90x200",
-    "matratze 180x200",
-    "matratze 160x200",
-    "matratzen",
-    "matratze 120x200",
-    "matratzenschoner",
-    "matratzen topper"
+    "akku staubsauger test",
+    "akku staubsauger test 2026",
+    "akku staubsauger bosch",
+    "akku staubsauger mit wischfunktion",
+    "akku staubsauger stiftung warentest",
+    "akku staubsauger dyson",
+    "akku staubsauger tierhaare",
+    "akku staubsauger makita",
+    "akku staubsauger mediamarkt"
    ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-26T10:24:57.687791+00:00",
+   "last_attempt_at": "2026-11-03T12:13:13.464531+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-10-26"
+   "fetched": "2026-11-03"
+  },
+  "matratze": {
+   "auto": [
+    "matratzen concord",
+    "matratze",
+    "matratze 140x200",
+    "matratze 90x200",
+    "matratze 180x200",
+    "matratzen",
+    "matratze 160x200",
+    "matratze 120x200",
+    "matratzenschoner",
+    "matratzen topper"
+   ],
+   "new_vocabulary": [],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-03T12:16:13.713762+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-03"
   },
   "saugwischer": {
    "auto": [
