@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-02T09:55:44.204Z",
+  "asOf": "2026-11-03T09:59:36.770Z",
   "ok": true,
   "checks": [
     {
@@ -15,19 +15,7 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "route.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "disclosures.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,19 +23,11 @@
       "ok": true
     },
     {
-      "name": "permit.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "incentives.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +35,27 @@
       "ok": true
     },
     {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-02T09:55:44.496Z",
+      "retrievedAt": "2026-11-03T09:59:37.563Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 78063.657722697,
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "price": 76937.574441,
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2290.093251624747,
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "price": 2264.1742298000004,
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9995416572032446,
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
-          "deviationBps": -4.583427967553844
+          "price": 0.9996779807000001,
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "deviationBps": -3.22019299999865
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9989707888778742,
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
-          "deviationBps": -10.292111221258393
+          "price": 0.9984,
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "deviationBps": -16.00000000000046
         }
       ],
       "source": {
@@ -110,25 +110,34 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-02T09:55:44.462Z",
+      "retrievedAt": "2026-11-03T09:59:37.075Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-02T09:55:44.442Z"
+          "checkedAt": "2026-11-03T09:59:37.020Z"
         },
         {
           "id": "x402",
           "status": "unavailable",
-          "checkedAt": "2026-11-02T09:55:44.457Z"
+          "checkedAt": "2026-11-03T09:59:37.075Z"
         },
         {
           "id": "ezkl",
           "status": "unavailable",
-          "checkedAt": "2026-11-02T09:55:44.457Z"
+          "checkedAt": "2026-11-03T09:59:37.069Z"
         }
       ],
       "items": [
+        {
+          "title": "Designing for sovereignty: Ethereum for digital public infrastructure",
+          "url": "https://blog.ethereum.org/en/2026/11/03/digital-pub-infra",
+          "publishedAt": "2026-11-03T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
         {
           "title": "Glamsterdam on Hoodi Postponed",
           "url": "https://blog.ethereum.org/en/2026/10/22/glamsterdam-hoodi-delay",
@@ -164,148 +173,139 @@
           "sourceId": "ethereum",
           "kind": "rss",
           "task": "protocol-change"
-        },
-        {
-          "title": "Glamsterdam Testnet Announcement",
-          "url": "https://blog.ethereum.org/en/2026/09/17/glamsterdam-testnet-announcement",
-          "publishedAt": "2026-09-28T00:00:00.000Z",
-          "source": "Ethereum Foundation",
-          "sourceId": "ethereum",
-          "kind": "rss",
-          "task": "protocol-change"
         }
       ]
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-02T09:55:44.676Z",
+      "retrievedAt": "2026-11-03T09:59:38.120Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -0.07460176792724038,
-            "from": "2026-11-01T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -1.5970242427582049,
+            "from": "2026-11-02T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -2.6117201506508203,
-            "from": "2026-10-26T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -3.5284117719683317,
+            "from": "2026-10-27T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": 0.6703621479723143,
-            "from": "2026-11-01T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -1.3826004778882628,
+            "from": "2026-11-02T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -1.4254973350212308,
-            "from": "2026-10-26T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -1.9876384714665685,
+            "from": "2026-10-27T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -0.046431326737916834,
-            "from": "2026-11-01T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": 0.016410860566051788,
+            "from": "2026-11-02T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -0.010039382546545017,
-            "from": "2026-10-26T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": 0.03537472018801946,
+            "from": "2026-10-27T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:54:56.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -0.056547807461238,
-            "from": "2026-11-01T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -0.057099649967995436,
+            "from": "2026-11-02T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -0.02371453903976528,
-            "from": "2026-10-26T09:00:00.000Z",
-            "to": "2026-11-02T09:54:56.000Z"
+            "percent": -0.02665668674348698,
+            "from": "2026-10-27T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:41:59.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -3.7105223938195486,
-            "from": "2026-11-01T08:56:54.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -3.439859593736283,
+            "from": "2026-11-02T08:56:55.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -8.689163508904718,
-            "from": "2026-10-26T09:00:00.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -10.292636371237919,
+            "from": "2026-10-27T09:00:00.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:41:59.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -1.1798661336229643,
-            "from": "2026-11-01T08:56:54.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -4.5748932282048465,
+            "from": "2026-11-02T08:56:55.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -9.128954372657983,
-            "from": "2026-10-26T08:57:01.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -10.822932569709154,
+            "from": "2026-10-27T08:57:04.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:41:59.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -2.5164611200104825,
-            "from": "2026-11-01T08:56:54.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -3.0068094786132593,
+            "from": "2026-11-02T08:56:55.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -9.305422266571405,
-            "from": "2026-10-26T08:57:01.000Z",
-            "to": "2026-11-02T09:41:59.000Z"
+            "percent": -11.03057560571844,
+            "from": "2026-10-27T08:57:04.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-02T09:52:54.000Z",
+          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
           "day": {
-            "percent": -2.70736009982796,
-            "from": "2026-11-01T08:52:53.000Z",
-            "to": "2026-11-02T09:52:54.000Z"
+            "percent": -2.219308576818668,
+            "from": "2026-11-02T08:52:58.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           },
           "week": {
-            "percent": -8.389229747922045,
-            "from": "2026-10-26T08:52:55.000Z",
-            "to": "2026-11-02T09:52:54.000Z"
+            "percent": -13.378030042954137,
+            "from": "2026-10-27T08:53:02.000Z",
+            "to": "2026-11-03T09:59:35.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-02T09:55:44.000Z",
+    "asOf": "2026-11-03T09:59:38.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -314,7 +314,15 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [],
+  "changes": [
+    {
+      "url": "https://blog.ethereum.org/en/2026/11/03/digital-pub-infra",
+      "title": "Designing for sovereignty: Ethereum for digital public infrastructure",
+      "task": "protocol-change",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    }
+  ],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
