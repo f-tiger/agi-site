@@ -10,7 +10,9 @@
     "problemId": "bpj-manju-source-identity-refresh",
     "evidence": "review-and-sync-2026-11-03.md",
     "deploymentRequired": false,
-    "actualSourceRecoveryVerified": false
+    "actualSourceRecoveryVerified": false,
+    "recordedInPullRequest": 241,
+    "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -46,7 +48,8 @@
       "verifiedRevenue": "unverified_no_framepick_payment_or_commission_agreement",
       "distribution": "no_verified_real_distribution_in_review_window"
     },
-    "analyticsBoundary": "One scoped BPJ GA4 read returned a provider-wide account-plan pause, not rows; corresponding GSC read not repeated after that explicit global block. Source generation and current-week metrics unknown. Latest-day processing delay cannot be assessed. Existing rolling D1 snapshot is not this fixed creator week. Actual attempted path contains filter was not a strict prefix; it returned no data. A future read must first validate strict path scope."
+    "analyticsBoundary": "One scoped BPJ GA4 read returned a provider-wide account-plan pause, not rows; corresponding GSC read not repeated after that explicit global block. Source generation and current-week metrics unknown. Latest-day processing delay cannot be assessed. Existing rolling D1 snapshot is not this fixed creator week. Actual attempted path contains filter was not a strict prefix; it returned no data. A future read must first validate strict path scope.",
+    "recordedInPullRequest": 241
   },
   "reviewTimezone": "Asia/Shanghai",
   "reviewAnchorDate": "2026-10-13",
@@ -237,9 +240,8 @@
       "failedAt": "2026-11-02T06:46:35.5949684Z",
       "lastSuccessfulSourceAt": "2026-11-01T06:47:56.186123+00:00",
       "nextAction": "Retain failed source and last valid Nov1 catalogue. Add only bounded conflict diagnosis for the next original schedule; do not remove identity guard, merge different official IDs, reconstruct unknown source titles or recrawl. On Nov4 inspect the next actual original artifact; recurrence is not guaranteed and source recovery requires a successful real refresh.",
-      "implementationCommit": "32c64c12bf6c33dd1156a7b4993fde2ea9040804",
-      "mergeCommit": "09aede6ce76a0b1078a14ce786c04bc27673b228",
-      "pullRequest": 195,
+      "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21",
+      "pullRequest": 241,
       "deployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
       "verifiedAt": "2026-11-03T02:55:20.885140Z",
@@ -267,7 +269,9 @@
         "knownIncomingOfficialId": "hg-7683455900727659545",
         "missingEvidence": "Rejected source payload, incoming title and conflicting existing/batch identity were not retained. No exact source reproduction claimed.",
         "scope": "Fixed validated identity/board/date fields only, no raw title, media, error object, new query or schedule.",
-        "validation": "18 offline cases passed; actual producer conflict to failure-status helper, private-field exclusion and original guard preserved"
+        "validation": "18 offline cases passed; actual producer conflict to failure-status helper, private-field exclusion and original guard preserved",
+        "pullRequest": 241,
+        "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
       }
     },
     {
@@ -493,7 +497,9 @@
       "secondRound": "Independent code and six-file document review passed; reviewer separately ran all 18 offline cases. Corrected attempted Windsor contains-filter description, retained actual original request and no-data result. Privacy, source/measurement boundaries, bounded history and Nov10 review verified.",
       "selfCheck": "Implementation author ran 18 offline cases, syntax and diff checks. Independent reviewer separately executed all 18 cases and inspected code. Root checks actual source metadata, six-file scope, JSON/relative links, privacy, experiment/history and remote delivery; no full site build/browser/deploy for schedule-only diagnostics."
     },
-    "nextAction": "Read next actual original source receipt on Nov4 without recrawl; do not assume conflict recurs. Keep existing tutorial/channel acceptance as distribution blocker. Next creator window Nov3-Nov9, review Nov10 even if data remain insufficient."
+    "nextAction": "Read next actual original source receipt on Nov4 without recrawl; do not assume conflict recurs. Keep existing tutorial/channel acceptance as distribution blocker. Next creator window Nov3-Nov9, review Nov10 even if data remain insufficient.",
+    "recordedInPullRequest": 241,
+    "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
   },
   "recentActions": [
     {
@@ -644,7 +650,9 @@
         "window": "2026-10-27/2026-11-02",
         "status": "insufficient_evidence_distribution_and_analytics_blocked",
         "nextReviewDate": "2026-11-10"
-      }
+      },
+      "recordedInPullRequest": 241,
+      "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",

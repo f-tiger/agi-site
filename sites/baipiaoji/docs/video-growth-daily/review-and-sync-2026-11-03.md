@@ -2,6 +2,8 @@
 
 本轮从已连接 GitHub 恢复当前 main `bca93d372e0abd9d1520810e58896903a87b1435` 的七份规则/状态材料、开放 PR、工作流和已有产物。规则及营销材料与上轮一致；没有同目标开放 PR 或活动发布。PR #232 为另一项英文数据修改，本轮不覆盖。执行与监测时间为 **2026 年 11 月 3 日 UTC**，来源时间另列。
 
+本轮诊断与周复盘见 [PR #241](https://github.com/f-tiger/agi-site/pull/241)，实现提交 [6a70a25](https://github.com/f-tiger/agi-site/commit/6a70a256231353b769452f0cae4ccc45afc05e21)。
+
 ## 已实际核验的进展
 
 昨日 PR #237 的维护模式测试已在[原 11 月 2 日任务](https://github.com/f-tiger/agi-site/actions/runs/41401468549) **06:47:25.8412529Z** 和[后续发布](https://github.com/f-tiger/agi-site/actions/runs/41552530896) **11 月 3 日 00:24:51.6448726Z** 两次真实通过，关闭 `bpj-release-watch-mode-contract`。原任务整体失败不改变这项具体测试的通过事实；新来源故障另行处理，不重复昨日补丁。
