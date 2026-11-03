@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-02T10:00:01Z",
+  "checkedAt": "2026-11-03T10:06:16Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-02T10:00:01Z",
-      "lastSuccessAt": "2026-11-02T10:00:01Z",
+      "checkedAt": "2026-11-03T10:06:16Z",
+      "lastSuccessAt": "2026-11-03T10:06:16Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-02T10:00:01Z",
-      "lastSuccessAt": "2026-11-02T10:00:01Z",
+      "checkedAt": "2026-11-03T10:06:16Z",
+      "lastSuccessAt": "2026-11-03T10:06:16Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-02T10:00:01Z",
-      "lastSuccessAt": "2026-11-02T10:00:01Z",
+      "checkedAt": "2026-11-03T10:06:16Z",
+      "lastSuccessAt": "2026-11-03T10:06:16Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-02T10:00:01Z",
+      "checkedAt": "2026-11-03T10:06:16Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,83 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-02T10:00:01Z",
-      "lastSuccessAt": "2026-11-02T10:00:01Z",
+      "checkedAt": "2026-11-03T10:06:16Z",
+      "lastSuccessAt": "2026-11-03T10:06:16Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "bca108e4c77bd86b238b884f",
+      "company": "OpenAI",
+      "title": "Rewarding defenders with bigger bug bounties",
+      "url": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties",
+      "publishedAt": "2026-11-02T18:00:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "0d297090385ad5a7245151aa",
+      "company": "OpenAI",
+      "title": "Preparing our next security sprint to harden OpenAI",
+      "url": "https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai",
+      "publishedAt": "2026-11-02T18:00:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "277870ffc8d71544c0465c13",
+      "company": "OpenAI",
+      "title": "Scaling Git at OpenAI",
+      "url": "https://openai.com/index/scaling-git-at-openai",
+      "publishedAt": "2026-11-02T15:30:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "5d33ed0c66ace544e65f6063",
+      "company": "OpenAI",
+      "title": "Introducing the Grid Protectors Program",
+      "url": "https://openai.com/index/grid-protectors-program",
+      "publishedAt": "2026-11-02T15:00:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "4094d4340f9e66f9e2fcbdf5",
+      "company": "OpenAI",
+      "title": "Qodo builds context into AI code review with Codex",
+      "url": "https://openai.com/index/qodo-codex-plugin",
+      "publishedAt": "2026-11-02T00:00:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "945f879ef3a469b4aebe760c",
+      "company": "OpenAI",
+      "title": "OpenAI appoints Dan Driscoll as Senior Counselor for National Security Modernization",
+      "url": "https://openai.com/index/dan-driscoll-joins-openai",
+      "publishedAt": "2026-11-02T00:00:00Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "59623d61a7aaaf734c519660",
+      "company": "Google DeepMind",
+      "title": "Speeding up planning decisions with AI",
+      "url": "https://deepmind.google/blog/speeding-up-planning-decisions-with-ai",
+      "publishedAt": "2026-10-30T14:18:30Z",
+      "discoveredAt": "2026-11-03T10:06:16Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "84abd1857de5dfd951d90dcf",
       "company": "OpenAI",
