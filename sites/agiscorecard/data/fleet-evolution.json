@@ -3,7 +3,7 @@
   "site": "agiscorecard",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -17,7 +17,7 @@
       "has_gaps": true,
       "has_hot_pages": true,
       "top_underserved_page": null,
-      "top_hot_page": "/workbench/workflowcost"
+      "top_hot_page": "/zh/future-guide"
     },
     "health": {
       "http": "200",
@@ -25,6 +25,13 @@
     }
   },
   "actions": [
+    {
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {},
+      "mode": "alert"
+    },
     {
       "kind": "content_gap",
       "priority": 55,
@@ -41,8 +48,8 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/workbench/workflowcost",
-        "n7_band": "10-99",
+        "page": "/zh/future-guide",
+        "n7_band": "100+",
         "p7_band": "10-99"
       },
       "mode": "queue"

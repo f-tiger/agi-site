@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-02",
+  "as_of": "2026-11-03",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 4,
+    "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 8,
+    "opportunities": 10,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-01T09:40:28.747Z",
-    "health": "2026-11-01T14:38:08Z",
-    "ai_referrals": "2026-11-01T14:38:34Z",
-    "opportunities": "2026-11-01",
-    "autopilot_receipt": "2026-11-02"
+    "membership": "2026-11-02T09:56:01.880Z",
+    "health": "2026-11-02T17:37:12Z",
+    "ai_referrals": "2026-11-02T17:37:42Z",
+    "opportunities": "2026-11-02",
+    "autopilot_receipt": "2026-11-03"
   },
   "input_ages_days": {
     "membership": 1,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-01T09:40:28.747Z",
+    "generated": "2026-11-02T09:56:01.880Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": true,
+    "ok": false,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -149,7 +149,7 @@
       "theme": "are knuth s stanford pages down",
       "site": null,
       "state": "scout",
-      "score": 2.36,
+      "score": 2.38,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -164,6 +164,15 @@
       "supply": 0
     },
     {
+      "theme": "sell a developer problem that llm s can t solve",
+      "site": null,
+      "state": "scout",
+      "score": 2.17,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
       "theme": "alternative to tldraw draw fast",
       "site": null,
       "state": "scout",
@@ -173,7 +182,7 @@
       "supply": 0
     },
     {
-      "theme": "did crates io stop processing new crate publishes",
+      "theme": "ublock origin for the iot devices in my house",
       "site": null,
       "state": "scout",
       "score": 2.12,
@@ -195,6 +204,15 @@
       "site": null,
       "state": "scout",
       "score": 2.02,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "can the whatsapp business calling api initiate calls using a canadian business p",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -262,8 +280,8 @@
     {
       "id": "bpj-trial-terms-20261031",
       "site": "baipiaoji",
-      "status": "queued",
-      "decision": "verify",
+      "status": "done",
+      "decision": "hold",
       "title": "试用、取消与续费条件核对",
       "pain": "订阅前的试用能力和退出条件不清楚；目前仅有日期未知的缓存线索。",
       "task": "核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。",
@@ -281,7 +299,7 @@
         "BPJ-T1"
       ],
       "gate_reasons": [
-        "fewer than two distinct current original sources"
+        "status is done"
       ],
       "next_review": "2026-11-07",
       "commercial_hypothesis": "缩短已有 AI 工具选型流程；联盟资格和收入另行核验。",
@@ -317,40 +335,48 @@
   ],
   "actions": [
     {
-      "site": "baipiaoji",
-      "kind": "pain_point_verification",
-      "priority": 70,
-      "reason": "核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。",
-      "mode": "queue",
+      "site": "agiscorecard",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
       "evidence": {
-        "pain_id": "bpj-trial-terms-20261031",
-        "scope": [
-          "sites/baipiaoji/"
-        ],
-        "acceptance": [
-          "只使用厂商当日官方条款；区分免费层、试用与退款。",
-          "不得承诺没有官方保证的退款或精确剩余额度。",
-          "保留现有匿名选型入口，不新增付费墙或支付方案。"
-        ],
-        "source_refs": [
-          "BPJ-T1"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 0
-      }
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
     },
     {
       "site": "baipiaoji",
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
       "evidence": {
-        "referred_humans_28d": 625,
-        "paid_members": 0
+        "public_ok": true,
+        "ready": false
       },
-      "mode": "queue"
+      "mode": "alert"
+    },
+    {
+      "site": "getecoback",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
     },
     {
       "site": "agiscorecard",
@@ -382,7 +408,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 29,
+        "count": 28,
         "query": "infrarotheizung wandmontage",
         "value": 88250
       },
@@ -406,9 +432,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/workbench/workflowcost",
-        "n7": 57,
-        "p7": 27
+        "page": "/zh/future-guide",
+        "n7": 237,
+        "p7": 90
       },
       "mode": "queue"
     },
@@ -419,19 +445,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/guide/mobile-klimaanlage-ueberwintern.html",
-        "n7": 6,
-        "p7": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "getecoback",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 430,
-        "ai_ref_28d": 0
+        "n7": 5,
+        "p7": 1
       },
       "mode": "queue"
     },
@@ -441,7 +456,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 540,
+        "human_pv_28d": 582,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -452,7 +467,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 281,
+        "human_pv_28d": 282,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -461,11 +476,11 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
@@ -473,7 +488,7 @@
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 3
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",

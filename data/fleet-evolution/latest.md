@@ -1,38 +1,39 @@
-# Fleet evolution report — 2026-11-02
+# Fleet evolution report — 2026-11-03
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 4 · paid members: 0 · active members: 0
-- Opportunity candidates: 8 · stale inputs: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
+- Opportunity candidates: 10 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
-| 70 | baipiaoji | pain_point_verification | queue | pain_id=bpj-trial-terms-20261031; scope=['sites/baipiaoji/']; acceptance=['只使用厂商当日官方条款；区分免费层、试用与退款。', '不得承诺没有官方保证的退款或精确剩余额度。', '保留现有匿名选型入口，不新增付费墙或支付方案。']; source_refs=['BPJ-T1']; gate_reasons=['fewer than two distinct current original sources']; verified_sources=0 |
-| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=625; paid_members=0 |
+| 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
+| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
+| 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
+| 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
 | 55 | agiscorecard | content_gap | queue | count=4; query=ai stocks down; value=1 |
 | 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
-| 55 | getecoback | content_gap | queue | count=29; query=infrarotheizung wandmontage; value=88250 |
+| 55 | getecoback | content_gap | queue | count=28; query=infrarotheizung wandmontage; value=88250 |
 | 55 | thedollscout | content_gap | queue | count=21; query=cat mode labubu; value=61150 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/workbench/workflowcost; n7=57; p7=27 |
-| 52 | getecoback | improve_hot_page | queue | page=/guide/mobile-klimaanlage-ueberwintern.html; n7=6; p7=0 |
-| 48 | getecoback | ai_discovery | queue | human_pv_28d=430; ai_ref_28d=0 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=540; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=281; ai_ref_28d=0 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/zh/future-guide; n7=237; p7=90 |
+| 52 | getecoback | improve_hot_page | queue | page=/guide/mobile-klimaanlage-ueberwintern.html; n7=5; p7=1 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=582; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=282; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-01T09:40:28.747Z | 1 |
-| health | 2026-11-01T14:38:08Z | 1 |
-| ai_referrals | 2026-11-01T14:38:34Z | 1 |
-| opportunities | 2026-11-01 | 1 |
-| autopilot_receipt | 2026-11-02 | 0 |
+| membership | 2026-11-02T09:56:01.880Z | 1 |
+| health | 2026-11-02T17:37:12Z | 1 |
+| ai_referrals | 2026-11-02T17:37:42Z | 1 |
+| opportunities | 2026-11-02 | 1 |
+| autopilot_receipt | 2026-11-03 | 0 |
 
 ## Autonomous boundary
 
@@ -54,10 +55,10 @@ Deterministic, aggregate-only report. Missing data remains unknown; no editorial
   - ID: agi-claim-context-20261031；原帖与日期门通过来源数: 1；复盘: 2026-11-07
   - 下一步: 用合成任务复核现有 Jarvis 的证据与不确定性输出；先确认是否存在可复现缺口。
   - 门槛/反证: status is done；来源为代理商报告语境，与 AGI 使用者适配需要单独验证；一个帖子不是普遍需求。
-- **baipiaoji · 试用、取消与续费条件核对** [verify]
+- **baipiaoji · 试用、取消与续费条件核对** [hold]
   - ID: bpj-trial-terms-20261031；原帖与日期门通过来源数: 0；复盘: 2026-11-07
   - 下一步: 核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。
-  - 门槛/反证: fewer than two distinct current original sources；可能只需要链接官方帮助页，不需要新工具。
+  - 门槛/反证: status is done；可能只需要链接官方帮助页，不需要新工具。
 - **agiscorecard · 通用 AI 客户报告生成暂不扩建** [hold]
   - ID: agency-reporting-generic-20261031；原帖与日期门通过来源数: 2；复盘: 2026-11-14
   - 下一步: 仅保存反证；不建立新的代理商报告站或改变现有导师定位。

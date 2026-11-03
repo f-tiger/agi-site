@@ -3,13 +3,13 @@
   "site": "getecoback",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
     "traffic": {
       "human_pv_band": "100+",
-      "ai_ref_band": "0",
+      "ai_ref_band": "1-9",
       "reach_humans_referred_band": null
     },
     "demand": {
@@ -25,6 +25,13 @@
     }
   },
   "actions": [
+    {
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {},
+      "mode": "alert"
+    },
     {
       "kind": "content_gap",
       "priority": 55,
@@ -43,17 +50,7 @@
       "evidence": {
         "page": "/guide/mobile-klimaanlage-ueberwintern.html",
         "n7_band": "1-9",
-        "p7_band": "0"
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d_band": "100+",
-        "ai_ref_28d_band": "0"
+        "p7_band": "1-9"
       },
       "mode": "queue"
     }

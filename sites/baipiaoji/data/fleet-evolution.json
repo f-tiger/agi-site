@@ -3,7 +3,7 @@
   "site": "baipiaoji",
   "signals": {
     "membership": {
-      "ready": true,
+      "ready": false,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -26,38 +26,11 @@
   },
   "actions": [
     {
-      "kind": "pain_point_verification",
-      "priority": 70,
-      "reason": "核验官方试用、退款和取消规则，与现有 BPJ 数据字段比对后决定是否补齐。",
-      "evidence": {
-        "pain_id": "bpj-trial-terms-20261031",
-        "scope": [
-          "sites/baipiaoji/"
-        ],
-        "acceptance": [
-          "只使用厂商当日官方条款；区分免费层、试用与退款。",
-          "不得承诺没有官方保证的退款或精确剩余额度。",
-          "保留现有匿名选型入口，不新增付费墙或支付方案。"
-        ],
-        "source_refs": [
-          "BPJ-T1"
-        ],
-        "gate_reasons": [
-          "fewer than two distinct current original sources"
-        ],
-        "verified_sources": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
-      "evidence": {
-        "referred_humans_28d_band": "100+",
-        "paid_members_band": "0"
-      },
-      "mode": "queue"
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {},
+      "mode": "alert"
     }
   ],
   "autonomous_changes": [

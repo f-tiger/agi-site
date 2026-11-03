@@ -7,11 +7,11 @@
     "q": "tool:portfolio_returns"
    },
    {
-    "n": 9,
+    "n": 8,
     "q": "tool:verdicts"
    },
    {
-    "n": 9,
+    "n": 8,
     "q": "tool:thesis_tracker"
    },
    {
@@ -27,23 +27,23 @@
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 2,
+    "n": 3,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-11-02",
+ "fetched": "2026-11-03",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/workbench/workflowcost": {
-   "n7": 57,
-   "p7": 27
+  "/zh/future-guide": {
+   "n7": 237,
+   "p7": 90
   },
   "/zh/future-guide/distribution-opportunity": {
    "n7": 56,
@@ -51,7 +51,7 @@
   },
   "/zh/workbench/evidencebrief": {
    "n7": 47,
-   "p7": 21
+   "p7": 22
   }
  },
  "site": "agiscorecard",
