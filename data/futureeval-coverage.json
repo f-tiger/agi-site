@@ -1,14 +1,50 @@
 {
- "generated": "2026-11-02T17:37:45+00:00",
+ "generated": "2026-11-03T15:40:20+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 1,
+ "sampled": 5,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
+  {
+   "post_id": 46323,
+   "title": "Which party will win the most votes in Spain's November 29, 2026 general election?",
+   "hosts": [
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
+  {
+   "post_id": 46322,
+   "title": "What share of the vote will Vox win in Spain's November 29, 2026 general election?",
+   "hosts": [
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
+  {
+   "post_id": 46316,
+   "title": "Will US and Iranian negotiators meet in person in November or December 2026?",
+   "hosts": [
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
+  {
+   "post_id": 46273,
+   "title": "Will Safe Superintelligence (SSI) release an AI model to the public in 2026?",
+   "hosts": [
+    "www.metaculus.com"
+   ],
+   "covered_by": null,
+   "tournament": "33121"
+  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
