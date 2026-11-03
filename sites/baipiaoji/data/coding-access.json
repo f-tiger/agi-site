@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-31",
+  "updated": "2026-11-03",
   "scope": "Source-linked discovery, not a transaction service, popularity ranking or safety endorsement. Public discussions, promotions and provider claims are separately labeled. Reviewed means public documentation was read, not a purchase or installation test.",
   "items": [
     {
@@ -43,29 +43,67 @@
         "claude-code"
       ],
       "operator": "Anthropic",
-      "url": "https://www.anthropic.com/pricing",
-      "source": "https://www.anthropic.com/supported-countries",
-      "status": "pending",
-      "checkedAt": null,
+      "url": "https://claude.com/pricing",
+      "source": "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan",
+      "status": "reviewed",
+      "checkedAt": "2026-11-03",
       "summary": {
-        "zh": "核对 Claude 订阅中的 Claude Code 权益，或选择 Anthropic API 按量付费。",
-        "en": "Check Claude Code access in a Claude subscription, or use the separately billed Anthropic API."
+        "zh": "Claude 免费版可在支持地区免订阅使用；Pro、Max 与 Ultra 是自动续费的付费订阅，Claude Code 包含在这些个人付费档中。",
+        "en": "Claude Free can be used without a paid subscription in supported regions. Pro, Max and Ultra are auto-renewing paid plans that include Claude Code."
       },
       "billing": {
-        "zh": "订阅与 API 余额不能当作同一份权益；价格与限额请看官方实时页面。",
-        "en": "Subscription access and API balance are different products. Check official current pricing."
+        "zh": "先用免费版验证普通任务；官方没有常设个人 Pro 试用。个人付费档默认按月或按年自动续费，Pro 不含 Claude API 用量，API 另行计费。",
+        "en": "Use the Free plan to test ordinary tasks first; there is no standing individual Pro trial. Individual paid plans renew monthly or annually by default. Pro does not include Claude API usage, which is billed separately."
       },
       "caution": {
-        "zh": "本轮官方页抓取返回 403；未完成当前价格或中国大陆可用性核验。",
-        "en": "The source returned HTTP 403 in this review; current prices and mainland availability remain unverified."
+        "zh": "仅支持地区可注册免费版或购买个人付费档。若不续费，应在下一账单日至少 24 小时前，从最初购买的平台取消；取消在当前账期结束生效，已付权益可用到期末。",
+        "en": "Free and paid individual plans require a supported region. To avoid renewal, cancel on the original purchase platform at least 24 hours before the next billing date. Cancellation takes effect at the end of the current billing period."
       },
       "ownership": {
-        "zh": "自有账号；退款条款待自行核对。",
-        "en": "Your own account; verify the current refund policy."
+        "zh": "使用自己的 Claude 账号。除服务条款明确允许或法律要求外，付款通常不退款；EEA/英国购买后 14 天内可能按已使用部分比例退款。iOS 退款由 Apple 审核，申请退款也不会自动取消订阅。",
+        "en": "Use your own Claude account. Payments are generally non-refundable except where the terms or law require otherwise; EEA/UK purchases may qualify within 14 days with usage prorated. Apple reviews iOS refunds, and a refund request does not cancel renewal."
       },
-      "lastAttempt": "2026-10-04",
+      "lastAttempt": "2026-11-03",
       "handsOnTested": false,
-      "affiliate": false
+      "affiliate": false,
+      "references": [
+        {
+          "url": "https://support.claude.com/en/articles/8325609-how-do-i-sign-up-for-the-pro-plan",
+          "kind": "terms",
+          "observedAt": "2026-11-03",
+          "label": {
+            "zh": "自动续费、免费版与支持地区",
+            "en": "Auto-renewal, Free plan and supported regions"
+          }
+        },
+        {
+          "url": "https://support.claude.com/en/articles/8325617-cancel-your-pro-max-or-ultra-subscription",
+          "kind": "terms",
+          "observedAt": "2026-11-03",
+          "label": {
+            "zh": "取消时间与购买渠道",
+            "en": "Cancellation timing and purchase channel"
+          }
+        },
+        {
+          "url": "https://support.claude.com/en/articles/12386328-request-a-refund-for-a-paid-claude-plan",
+          "kind": "terms",
+          "observedAt": "2026-11-03",
+          "label": {
+            "zh": "退款资格与渠道差异",
+            "en": "Refund eligibility and channel differences"
+          }
+        },
+        {
+          "url": "https://claude.com/pricing",
+          "kind": "pricing",
+          "observedAt": "2026-11-03",
+          "label": {
+            "zh": "当前个人方案与 Claude Code 权益",
+            "en": "Current individual plans and Claude Code access"
+          }
+        }
+      ]
     },
     {
       "id": "deepseek",

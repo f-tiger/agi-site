@@ -1,5 +1,11 @@
 import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {ACCESS} from './coding-access-pages.mjs';import {onRequestPost} from '../functions/api/hit.js';
 assert.equal(new Set(ACCESS.items.map(x=>x.id)).size,ACCESS.items.length);
+const claude=ACCESS.items.find(x=>x.id==='claude');
+assert.equal(claude.status,'reviewed');assert.equal(claude.checkedAt,'2026-11-03');
+assert.ok(claude.billing.zh.includes('没有常设个人 Pro 试用'));assert.ok(claude.billing.en.includes('no standing individual Pro trial'));
+assert.ok(claude.caution.zh.includes('至少 24 小时前'));assert.ok(claude.caution.en.includes('at least 24 hours'));
+assert.ok(claude.ownership.zh.includes('通常不退款'));assert.ok(claude.ownership.en.includes('generally non-refundable'));
+assert.deepEqual(new Set(claude.references.map(x=>x.kind)),new Set(['terms','pricing']));
 for(const x of ACCESS.items){
  assert.equal(x.handsOnTested,false);assert.equal(x.affiliate,false);assert.equal(!!x.checkedAt,x.status==='reviewed');
  for(const k of ['summary','billing','caution','ownership',...(x.discovery?['discovery']:[])])for(const l of ['zh','en'])assert.ok(x[k][l].length>12);

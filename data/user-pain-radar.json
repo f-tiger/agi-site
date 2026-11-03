@@ -106,7 +106,7 @@
       "counter_evidence": "可能只需要链接官方帮助页，不需要新工具。",
       "next_review": "2026-11-07",
       "verification": {
-        "checked_at": "2026-11-03T00:42:00Z",
+        "checked_at": "2026-11-03T00:18:00Z",
         "execution": "hosted-development-task",
         "source_bodies_reviewed": 0,
         "absolute_publication_dates_verified": false,
@@ -116,16 +116,24 @@
         "note": "BPJ-T1 remains an unread supplier cache with unknown publication date and is not counted as current demand, a buyer or payment evidence. The official documentation independently reproduces a stale-information defect in the existing directory.",
         "counter_evidence": "Claude already offers a free plan and official help pages, so a separate trial selector would duplicate the provider and BPJ's existing directory. Refund eligibility varies by law and purchase channel; the site must not promise a universal refund.",
         "experiment": {
-          "baseline": "Claude is marked pending; the card says the source returned 403 and tells users to verify refunds themselves.",
-          "candidate": "pending: make the existing bilingual card source-linked and explicit about free access, cancellation timing, channel-specific management and non-refundable-by-default payments.",
-          "pending": "focused data/render/browser and release checks"
-        }
+          "baseline": "Claude was marked pending; the card said the source returned 403 and told users to verify refunds themselves.",
+          "candidate": "The existing bilingual card now distinguishes Free access from a standing Pro trial, states default renewal and cancellation timing, preserves regional/channel-specific refund limits, and links four dated first-party references.",
+          "regression": "Bilingual build, focused coding-access data/render/privacy checks, 16 pain-radar tests, evolution invariants, 36 release-input guard tests, nine GA4 coverage tests and generated-site GA4 coverage passed.",
+          "pending": "The local Playwright browser binary is unavailable; the existing CI browser, full site, current-main, deployment and live gates remain required. Customer completion, registration, payment and revenue effects are unknown."
+        },
+        "official_sources_reviewed": [
+          "https://claude.com/pricing",
+          "https://support.claude.com/en/articles/8325606-what-is-the-pro-plan",
+          "https://support.claude.com/en/articles/8325609-how-do-i-sign-up-for-the-pro-plan",
+          "https://support.claude.com/en/articles/8325617-cancel-your-pro-max-or-ultra-subscription",
+          "https://support.claude.com/en/articles/12386328-request-a-refund-for-a-paid-claude-plan"
+        ]
       },
       "execution": {
-        "started_at": "2026-11-03T00:42:00Z",
+        "started_at": "2026-11-03T00:18:00Z",
         "base_sha": "a7c109574dba5e5447bed7b2c7c51c6dd59a40a6",
         "branch": "codex/bpj-claude-terms-20261103",
-        "pull_request": null,
+        "pull_request": 239,
         "release_hold": null
       }
     },
