@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-03T13:52:22.739Z",
+  "generated": "2026-11-04T14:00:10.106Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -57,15 +57,11 @@
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 144
+      "n": 159
     },
     {
       "path": "/llms.txt",
-      "n": 39
-    },
-    {
-      "path": "/",
-      "n": 10
+      "n": 29
     },
     {
       "path": "/document-assets/text/en/videos/shotcut.txt",
@@ -73,10 +69,6 @@
     },
     {
       "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/compare-pdf-text.txt",
       "n": 6
     },
     {
@@ -96,10 +88,6 @@
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/open-source/audacity.txt",
-      "n": 6
-    },
-    {
       "path": "/document-assets/text/en/open-source/obs.txt",
       "n": 6
     },
@@ -108,31 +96,23 @@
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/open-source/upscayl.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/pdf-batch-audit.txt",
-      "n": 6
-    },
-    {
       "path": "/document-assets/text/en/verify-file.txt",
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/videos.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/videos/audacity.txt",
-      "n": 6
+      "path": "/",
+      "n": 5
     },
     {
       "path": "/de/delivery-evidence",
+      "n": 5
+    },
+    {
+      "path": "/delivery-evidence",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/compare-pdf-text.txt",
       "n": 5
     },
     {
@@ -140,15 +120,35 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/pdf-to-text.txt",
+      "path": "/document-assets/text/en/open-source/audacity.txt",
       "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/open-source/upscayl.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/pdf-accessibility-checker.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/pdf-batch-audit.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/videos.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/videos/audacity.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/pdf-to-text.txt",
+      "n": 4
     },
     {
       "path": "/llms-full.txt",
-      "n": 5
-    },
-    {
-      "path": "/delivery-evidence",
       "n": 4
     },
     {
@@ -375,11 +375,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 112
+      "n": 126
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 88
+      "n": 80
     },
     {
       "claimed_agent": "Applebot",
@@ -391,35 +391,35 @@
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 47
+      "n": 46
     },
     {
       "claimed_agent": "Googlebot",
-      "n": 20
+      "n": 15
     },
     {
       "claimed_agent": "ChatGPT-User",
-      "n": 8
-    },
-    {
-      "claimed_agent": "OAI-SearchBot",
       "n": 7
     },
     {
-      "claimed_agent": "Bingbot",
+      "claimed_agent": "OAI-SearchBot",
       "n": 4
+    },
+    {
+      "claimed_agent": "Bingbot",
+      "n": 3
     },
     {
       "claimed_agent": "Claude-User",
-      "n": 4
+      "n": 3
     },
     {
       "claimed_agent": "Perplexity-User",
-      "n": 4
+      "n": 3
     },
     {
       "claimed_agent": "PerplexityBot",
-      "n": 4
+      "n": 3
     },
     {
       "claimed_agent": "YandexBot",
@@ -497,5 +497,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 1,
-  "query_rows_read": 2813
+  "query_rows_read": 2789
 }
