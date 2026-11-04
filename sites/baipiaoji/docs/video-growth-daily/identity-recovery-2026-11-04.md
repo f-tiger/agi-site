@@ -2,6 +2,8 @@
 
 本轮复用已连接 GitHub 当前 main `6edd0002d4c2cbe592b095466230fa14a3eaae8b`、原日任务日志和已保存产物。监测记录时间为 **2026-11-04T02:54:32Z**，不是来源生成时间；以下操作时间为 UTC，红果榜单自身日期未附时区。当前阶段是 **identity_contract_locally_verified_release_pending**：身份处理补丁及本地完整门禁已通过，提交合并和实际部署回执仍待补齐；不能称真实来源已恢复。
 
+本轮实现见 [PR #243](https://github.com/f-tiger/agi-site/pull/243)，初始实现提交 [`b2fe40c`](https://github.com/f-tiger/agi-site/commit/b2fe40cd58c8226adc1e348607dd60f5d19b4074)。这两者不代表已部署；真实发布回执另列。
+
 ## 实际诊断已落盘，来源仍失败
 
 [原 11 月 3 日 schedule 41594470993](https://github.com/f-tiger/agi-site/actions/runs/41594470993) 于 **07:13:33.423Z** 尝试采集，**07:13:55.2015997Z** 的生产失败路径输出了 PR #241 新增的固定诊断：

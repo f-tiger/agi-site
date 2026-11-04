@@ -248,8 +248,8 @@
       "failedAt": "2026-11-03T07:13:55.2015997Z",
       "lastSuccessfulSourceAt": "2026-11-01T06:47:56.186123+00:00",
       "nextAction": "Perform one current-main-guarded readonly push release, inspect actual live and IndexNow results; then verify source recovery only from the next original schedule. No recrawl. Weekly review Nov10 unchanged.",
-      "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21",
-      "pullRequest": 241,
+      "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074",
+      "pullRequest": 243,
       "deployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
       "verifiedAt": "2026-11-04T02:54:32Z",
@@ -549,8 +549,8 @@
       "rootSelfCheck": "Executed all 26 existing local workflow gate groups, including runtime, build, full browser, final GA4/engagement/private routing; inspected mobile ranking screenshot and unchanged source-cache bytes. Actual release pending."
     },
     "nextAction": "Perform one current-main-guarded readonly push release, inspect actual live and IndexNow results; then verify source recovery only from the next original schedule. No recrawl. Weekly review Nov10 unchanged.",
-    "implementationCommit": null,
-    "recordedInPullRequest": null,
+    "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074",
+    "recordedInPullRequest": 243,
     "localValidationCompletedAt": "2026-11-04T03:13:44.956784+00:00",
     "localValidation": {
       "status": "passed",
@@ -1017,7 +1017,9 @@
       },
       "dispatchCount": 0,
       "sourceCrawls": 0,
-      "publicReachRequests": 0
+      "publicReachRequests": 0,
+      "pullRequest": 243,
+      "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074"
     }
   }
 }
