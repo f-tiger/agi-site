@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-11-03",
+ "fetched": "2026-11-04",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "wetterkarte",
-   "traffic": "500+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "geran-5",
+   "title": "colton herta",
    "traffic": "200+"
   },
   {
-   "title": "tennessee",
-   "traffic": "2000+"
-  },
-  {
-   "title": "wetterkarte",
-   "traffic": "500+"
-  },
-  {
-   "title": "callum turner",
-   "traffic": "500+"
-  },
-  {
-   "title": "stefan kretzschmar",
-   "traffic": "1000+"
-  },
-  {
-   "title": "falschfahrer",
-   "traffic": "1000+"
-  },
-  {
-   "title": "melissa heitmann",
+   "title": "politico",
    "traffic": "200+"
   },
   {
-   "title": "bären",
+   "title": "münchen",
+   "traffic": "20000+"
+  },
+  {
+   "title": "metacritic",
    "traffic": "200+"
   },
   {
-   "title": "automobilwoche",
+   "title": "sarah kuttner",
+   "traffic": "200+"
+  },
+  {
+   "title": "marc-andré ter stegen",
+   "traffic": "200+"
+  },
+  {
+   "title": "störungen telekom mail",
+   "traffic": "10000+"
+  },
+  {
+   "title": "nicola peltz",
    "traffic": "500+"
   },
   {
-   "title": "andrew yogan",
+   "title": "dasha burns",
+   "traffic": "500+"
+  },
+  {
+   "title": "das neue traumpaar",
    "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-10-20",
-   "matched": []
-  },
   {
    "d": "2026-10-21",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "wetterkarte"
    ]
+  },
+  {
+   "d": "2026-11-04",
+   "matched": []
   }
  ]
 }

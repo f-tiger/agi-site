@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-03",
+ "fetched": "2026-11-04",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -308,40 +308,30 @@
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-03T12:16:13.713762+00:00",
+   "last_attempt_at": "2026-11-04T12:25:36.832623+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-03"
+   "fetched": "2026-11-04"
   },
   "saugwischer": {
    "auto": [
     "saugwischer",
     "saugwischer test",
-    "saugwischer testsieger",
     "saugwischer testsieger stiftung warentest",
+    "saugwischer testsieger",
     "saugwischer vorwerk",
+    "saugwischer akku",
     "saugwischer roboter",
     "saugwischer akku testsieger",
-    "saugwischer akku",
     "saugwischer kärcher",
     "saugwischer roborock"
    ],
-   "new_vocabulary": [
-    "saugwischer test",
-    "saugwischer testsieger",
-    "saugwischer testsieger stiftung warentest",
-    "saugwischer vorwerk",
-    "saugwischer roboter",
-    "saugwischer akku testsieger",
-    "saugwischer akku",
-    "saugwischer kärcher",
-    "saugwischer roborock"
-   ],
+   "new_vocabulary": [],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-27T09:59:37.121082+00:00",
+   "last_attempt_at": "2026-11-04T12:28:37.095872+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-10-27"
+   "fetched": "2026-11-04"
   }
  }
 }
