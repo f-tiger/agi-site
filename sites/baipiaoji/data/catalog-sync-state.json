@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 0,
+  "queryIndex": 6,
   "page": 3,
   "pending": [
-   {
-    "repo": "78/xiaozhi-esp32",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "simstudioai/sim",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "yamadashy/repomix",
     "topic": "agents",
@@ -95,18 +85,8 @@
     "foundAt": "2026-10-03T05:42:28.511Z"
    },
    {
-    "repo": "YishenTu/claudian",
-    "topic": "coding",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
     "repo": "Human-Agent-Society/reef",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "Trusted-AI/adversarial-robustness-toolbox",
-    "topic": "local",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -157,11 +137,6 @@
    {
     "repo": "GiovanniPasq/agentic-rag-for-dummies",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "illuin-tech/colpali",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -370,11 +345,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "Tencent-Hunyuan/HunyuanImage-3.0",
-    "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "kane50613/takumi",
     "topic": "image",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -382,11 +352,6 @@
    {
     "repo": "elegantapp/pwa-asset-generator",
     "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "PaddlePaddle/PaddleSpeech",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -707,11 +672,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "appsmithorg/appsmith",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1365,11 +1325,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "Achno/gowall",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "thanhkeke97/RSTGameTranslation",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1657,11 +1612,6 @@
    {
     "repo": "mukul975/Anthropic-Cybersecurity-Skills",
     "topic": "coding",
-    "foundAt": "2026-10-12T06:28:11.186Z"
-   },
-   {
-    "repo": "datawhalechina/self-llm",
-    "topic": "ai",
     "foundAt": "2026-10-12T06:28:11.186Z"
    },
    {
@@ -2355,11 +2305,6 @@
     "foundAt": "2026-10-24T04:59:36.505Z"
    },
    {
-    "repo": "cskefu/cskefu",
-    "topic": "chat",
-    "foundAt": "2026-10-24T04:59:36.505Z"
-   },
-   {
     "repo": "hahahumble/speechgpt",
     "topic": "chat",
     "foundAt": "2026-10-24T04:59:36.505Z"
@@ -2642,11 +2587,6 @@
    {
     "repo": "cheaper-inference/OmniRoute",
     "topic": "coding",
-    "foundAt": "2026-10-30T06:22:11.133Z"
-   },
-   {
-    "repo": "kaomei/stickman-video-director",
-    "topic": "video",
     "foundAt": "2026-10-30T06:22:11.133Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "lemonade-sdk/lemonade",
     "topic": "agents",
     "foundAt": "2026-11-03T07:12:58.127Z"
+   },
+   {
+    "repo": "xerrors/Yuxi",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "adbar/trafilatura",
+    "topic": "knowledge",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "dataease/SQLBot",
+    "topic": "knowledge",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "genkit-ai/genkit",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "cactus-compute/cactus",
+    "topic": "knowledge",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "ModelEngine-Group/nexent",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "ageerle/ruoyi-ai",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "frankbria/ralph-claude-code",
+    "topic": "coding",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "loks666/get_jobs",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "shengjidaguai-china/goutoujunshi",
+    "topic": "coding",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "SWE-agent/mini-swe-agent",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "EvoMap/evolver",
+    "topic": "agents",
+    "foundAt": "2026-11-04T06:57:52.613Z"
    }
   ],
   "checked": {
@@ -3048,8 +3048,8 @@
    "gh-oraios-serena-ccb57e": "2026-11-02T06:44:24.564Z",
    "gh-wuyoscar-gpt-image2-skill-c50c0d": "2026-11-02T06:44:24.564Z",
    "gh-2noise-chattts-f20a36": "2026-11-02T06:44:24.564Z",
-   "gh-vinta-pangu-js-1f4323": "2026-10-14T08:05:15.418Z",
-   "gh-rasahq-rasa-73f2ba": "2026-10-14T08:05:15.418Z",
+   "gh-vinta-pangu-js-1f4323": "2026-11-04T06:57:52.613Z",
+   "gh-rasahq-rasa-73f2ba": "2026-11-04T06:57:52.613Z",
    "gh-pku-yuangroup-helios-9cfb67": "2026-10-14T08:05:15.418Z",
    "gh-naptha-tesseract-js-2298e8": "2026-10-14T08:05:15.418Z",
    "gh-files-community-files-986e61": "2026-10-14T08:05:15.418Z",
@@ -3131,11 +3131,15 @@
    "gh-minimax-ai-minimax-mcp-30cb57": "2026-11-03T07:12:58.127Z",
    "gh-netease-youdao-emotivoice-bd2c11": "2026-11-03T07:12:58.127Z",
    "gh-daybreak-u-chineseocr-lite-b80ae1": "2026-11-03T07:12:58.127Z",
-   "gh-oumi-ai-oumi-8b84e4": "2026-11-03T07:12:58.127Z"
+   "gh-oumi-ai-oumi-8b84e4": "2026-11-03T07:12:58.127Z",
+   "gh-nerogar-onetrainer-9726a9": "2026-11-04T06:57:52.613Z",
+   "gh-super-productivity-super-productivity-371c0c": "2026-11-04T06:57:52.613Z",
+   "gh-greydgl-pentestgpt-f06b63": "2026-11-04T06:57:52.613Z",
+   "gh-slackapi-java-slack-sdk-7a5d89": "2026-11-04T06:57:52.613Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.sadri-dridi/tz-america-halifax:1.0.0",
+  "cursor": "io.github.shawmena-dotcom/sec-insider-tracker:1.0.3",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -4419,7 +4423,47 @@
    "bridgeapp-bridgeapp": "2026-11-03T07:12:58.127Z",
    "calaf-calaf": "2026-11-03T07:12:58.127Z",
    "decimal-registry": "2026-11-03T07:12:58.127Z",
-   "dxpert-mcp": "2026-11-03T07:12:58.127Z"
+   "dxpert-mcp": "2026-11-03T07:12:58.127Z",
+   "eonik-mcp": "2026-11-04T06:57:52.613Z",
+   "financegenius-financegenius": "2026-11-04T06:57:52.613Z",
+   "frtracker-regulatory-research": "2026-11-04T06:57:52.613Z",
+   "futbolatlas-futbol-atlas": "2026-11-04T06:57:52.613Z",
+   "getfacade-mcp": "2026-11-04T06:57:52.613Z",
+   "inxy-seo-audit": "2026-11-04T06:57:52.613Z",
+   "khwan-mcp": "2026-11-04T06:57:52.613Z",
+   "latticenet-latticenet": "2026-11-04T06:57:52.613Z",
+   "lazyads-mcp": "2026-11-04T06:57:52.613Z",
+   "mainbook-bank-statement-converter": "2026-11-04T06:57:52.613Z",
+   "mangii-manga": "2026-11-04T06:57:52.613Z",
+   "mermail-mcp": "2026-11-04T06:57:52.613Z",
+   "midplane-midplane": "2026-11-04T06:57:52.613Z",
+   "nanocorp-invoke-human-tasks": "2026-11-04T06:57:52.613Z",
+   "nomadpoint-nomadpoint": "2026-11-04T06:57:52.613Z",
+   "popdot-mcp": "2026-11-04T06:57:52.613Z",
+   "qualityclouds-norma": "2026-11-04T06:57:52.613Z",
+   "ridedesk-bookings": "2026-11-04T06:57:52.613Z",
+   "robosystems-robosystems": "2026-11-04T06:57:52.613Z",
+   "safe4-safe4": "2026-11-04T06:57:52.613Z",
+   "spiderbrain-spiderbrain": "2026-11-04T06:57:52.613Z",
+   "sprkly-sprkly": "2026-11-04T06:57:52.613Z",
+   "taskforcehq-taskforce": "2026-11-04T06:57:52.613Z",
+   "thesingulariti-graviti": "2026-11-04T06:57:52.613Z",
+   "trendsapi-app-store": "2026-11-04T06:57:52.613Z",
+   "trendsapi-news-sentiment": "2026-11-04T06:57:52.613Z",
+   "trendsapi-news-volume": "2026-11-04T06:57:52.613Z",
+   "trendsapi-social-media": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-amazon": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-app-store": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-google-trends": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-news-sentiment": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-news-volume": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-npm": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-reddit": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-social-media": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-steam": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-tiktok": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-wikipedia": "2026-11-04T06:57:52.613Z",
+   "trendsmcp-youtube": "2026-11-04T06:57:52.613Z"
   }
  }
 }

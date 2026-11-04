@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-03T07:13:59.586Z",
+  "lastRun": "2026-11-04T06:58:40.954Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -127,19 +127,19 @@
       "caseId": "synthesia",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastChecked": "2026-10-21T05:18:56.289Z"
+      "lastChecked": "2026-11-04T06:58:40.954Z"
     },
     {
       "caseId": "heygen",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastChecked": "2026-10-22T05:19:56.945Z"
+      "lastChecked": "2026-11-04T06:58:40.954Z"
     },
     {
       "caseId": "glean",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastChecked": "2026-10-22T05:19:56.945Z"
+      "lastChecked": "2026-11-04T06:58:40.954Z"
     },
     {
       "caseId": "harvey",
@@ -599,20 +599,20 @@
     "midjourney|https://www.cbinsights.com/research/midjourney-revenue-valuation/": {
       "caseId": "midjourney",
       "sourceUrl": "https://www.cbinsights.com/research/midjourney-revenue-valuation/",
-      "lastAttempt": "2026-10-21T05:18:56.289Z",
-      "status": "available",
+      "lastAttempt": "2026-11-04T06:58:40.954Z",
+      "status": "change-pending",
       "http": 200,
-      "lastSuccess": "2026-10-21T05:18:56.289Z",
-      "lastHash": "35132f706a6383dd01ff921be6ae491a7289411f28dfc45f558f0206c17ade1b",
+      "lastSuccess": "2026-11-04T06:58:40.954Z",
+      "lastHash": "c616a8f5472821f196acc96d0d14ff7997eb9c3ae9c87add95998f1fac89960d",
       "hash": "a3a469a1a583d0748bd575b1a16e6b0cdba7fad50caf1056adb53efeaca8e70e",
       "simhash": "a6082704b4c1a81e",
       "words": 387,
-      "consecutiveChange": 0
+      "consecutiveChange": 1
     },
     "synthesia|https://www.synthesia.io/post/100-million-revenue-adobe-investment": {
       "caseId": "synthesia",
       "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
-      "lastAttempt": "2026-10-21T05:18:56.289Z",
+      "lastAttempt": "2026-11-04T06:58:40.954Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -620,7 +620,7 @@
     "heygen|https://www.heygen.com/blog/heygen-surpasses-200m-arr": {
       "caseId": "heygen",
       "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
-      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "lastAttempt": "2026-11-04T06:58:40.954Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -628,10 +628,10 @@
     "photoroom|https://help.photoroom.com/en/articles/9626719-what-is-photoroom": {
       "caseId": "photoroom",
       "sourceUrl": "https://help.photoroom.com/en/articles/9626719-what-is-photoroom",
-      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "lastAttempt": "2026-11-04T06:58:40.954Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-22T05:19:56.945Z",
+      "lastSuccess": "2026-11-04T06:58:40.954Z",
       "lastHash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "hash": "66e98277f2a2fe7ff23bbfb09f2d37283f3fdba2da8a5c3daa015ed39770a823",
       "simhash": "2ad22595e494c99c",
@@ -641,7 +641,7 @@
     "glean|https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months": {
       "caseId": "glean",
       "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
-      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "lastAttempt": "2026-11-04T06:58:40.954Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,21 +1159,21 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 21,
+  "cursor": 26,
   "errors": [
     {
-      "caseId": "cursor",
-      "sourceUrl": "https://cursor.com/en-US/blog/series-c",
+      "caseId": "synthesia",
+      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
       "reason": "body-limit"
     },
     {
-      "caseId": "lovable",
-      "sourceUrl": "https://lovable.dev/blog/agent",
+      "caseId": "heygen",
+      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
       "reason": "body-limit"
     },
     {
-      "caseId": "elevenlabs",
-      "sourceUrl": "https://elevenlabs.io/blog/500m-arr-and-new-investors",
+      "caseId": "glean",
+      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
       "reason": "body-limit"
     }
   ]

@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-03",
+ "generated": "2026-11-04",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "doubao-aixue",
-  "duckduckgo-ai",
-  "elevenlabs",
-  "felo",
-  "figma",
-  "framer",
-  "gamma",
-  "gaoding"
+  "gemini",
+  "gemini-cli",
+  "gezhe",
+  "gptzero",
+  "grammarly",
+  "heygen",
+  "huggingface",
+  "ideogram"
  ],
- "cursor": "gaoding",
+ "cursor": "ideogram",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -1560,7 +1560,7 @@
    "name": "Google Gemini",
    "cat": "chat",
    "reach": 0,
-   "probed": "2026-10-22",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1590,27 +1590,27 @@
    "name": "Gemini CLI",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-22",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
      "status": 200,
-     "bytes": 295442,
+     "bytes": 257795,
      "tokens": 0
     },
     {
      "url": "https://github.com/pricing",
      "status": 200,
      "bytes": 600000,
-     "tokens": 51
+     "tokens": 17
     }
    ],
    "best": {
     "url": "https://github.com/pricing",
-    "tokens": 51,
-    "excerpt": "es on team Switch plans Select a plan to review its features Free Team Enterprise Features Free Team Enterprise Pricing $ 0 USD per month $ 0 USD per month forever $ 4 USD per user/month $ 4 USD per user/month for the first 12 months * $ 21 USD per user/month $ 21 USD per user/month for the first 12 months * How to get started Join for free Continue with Team Start a free trial Contact Sales Code management Public repositories Unlimited Unlimited Unlimited Host open source projects in public GitHub repositories, accessible via web or command line. Public repositories are accessible to anyone at GitHub.com. Uh oh! There was an error while loading. Please reload this page . Unlimited Unlimited"
+    "tokens": 17,
+    "excerpt": "ize your Dependabot alerts with automated triage rules. Enterprise AI-powered development, governed at enterprise scale $ 21 USD per user / month Start a free trial Contact Sales GitHub Enterprise now includes access to GitHub Copilot. Learn more Everything from Team, plus: GitHub Copilot access Agent governance Data residency Enterprise Managed Users User provisioning through SCIM Enterprise Account to centrally manage multiple organizations Environment protection rules Repository rules Audit Log API SOC1, SOC2, type 2 reports annually FedRAMP Tailored Authority to Operate (ATO) SAML single sign-on Advanced auditing GitHub Connect 50,000 CI/CD minutes/month 50GB of Packages storage Exclusiv"
    }
   },
   "gezhe": {
@@ -1618,7 +1618,7 @@
    "name": "歌者 PPT",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-22",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1648,14 +1648,14 @@
    "name": "GPTZero",
    "cat": "safety",
    "reach": 0,
-   "probed": "2026-10-22",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://gptzero.me/pricing",
      "status": 200,
-     "bytes": 240288,
+     "bytes": 241483,
      "tokens": 6
     }
    ],
@@ -1670,7 +1670,7 @@
    "name": "Grammarly",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-10-22",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1692,7 +1692,7 @@
    "name": "HeyGen",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1714,14 +1714,14 @@
    "name": "Hugging Face",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://huggingface.co/docs/inference-providers/pricing",
      "status": 200,
-     "bytes": 151461,
+     "bytes": 151653,
      "tokens": 4
     }
    ],
@@ -1736,7 +1736,7 @@
    "name": "Ideogram",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-04",
    "env": "runner",
    "state": "blocked",
    "tried": [

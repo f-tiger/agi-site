@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-03",
+ "checked": "2026-11-04",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3582,6 +3582,24 @@
    "source_http": 403,
    "repo_http": 200,
    "reason": "source HTTP 403"
+  },
+  "aurelianflo-core": {
+   "attempts": 1,
+   "first_attempt": "2026-11-04",
+   "last_attempt": "2026-11-04",
+   "attemptedAt": "2026-11-04T06:57:52.613Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "axiomide-axiom": {
+   "attempts": 1,
+   "first_attempt": "2026-11-04",
+   "last_attempt": "2026-11-04",
+   "attemptedAt": "2026-11-04T06:57:52.613Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
   }
  },
  "admitted": [
@@ -19318,6 +19336,354 @@
   {
    "slug": "atxgraniteking-countertops",
    "date": "2026-11-03",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "audioscrape-audio-intelligence",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "augurn-knarb-makes",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auravms-auravms",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auriniaxo-hostel",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auspiceoracle-bazi",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "auth0-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "auto-reader-ocr",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "automatedclientacquisition-aca",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "automatedvideoapp-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "automox-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "autoridaddigital-geo",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "autoview-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "autrady-strategy-audits",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "avahit-catalog",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "avalara-atc",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "avaza-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "avecindar-rental-search",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "aventurator-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "averray-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "avokata-avokata",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "awardflightdaily-award-flight-daily",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "awardsecrets-award-availability",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "awardtravelfinder-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "awesomeindie-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "axiomatic-ai-prover",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "axiomseal-axiomseal",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "axiorank-axiorank",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "ayurak-aribot-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "azurade-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "azurecarbon-kodiak",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "b0tl1nk-directory",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "b20check-b20check",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "babyagecalculator-baby-age",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "backgroundcheckquotes-site",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "backquant-backquant",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "backresto-partner-api",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "backtest360-backtest360",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bagsthatpay-site",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "balladic-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "banditdb-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bankcodelookup-site",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "banking-mcp-banking",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bankruptcyobserver-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bankstatementsheet-bank-statement-sheet-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "barakahprofits-halal-screen",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "barisasa-earlywire-wire",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "barterbanner-barterbanner",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "barvinca-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "base167-base167",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basedash-mcp",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "basenull-agent-check",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basenull-agent-talk",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basenull-exec-brief",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basenull-okr",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basenull-polls",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "basischarts-basis",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "batesio-site",
+   "date": "2026-11-04",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bavlio-bavlio",
+   "date": "2026-11-04",
    "source_http": 200,
    "repo_http": null
   }
