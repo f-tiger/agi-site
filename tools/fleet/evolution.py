@@ -162,6 +162,10 @@ def membership_by_site(snapshot: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
     membership = read_json(EVOLUTION / "membership.json", {}) or {}
+    # Readiness is intentionally short-lived in the Workers (four hours). A
+    # previous-day aggregate can still be useful for historical counters, but
+    # it cannot prove that checkout is ready or broken now.
+    membership_readiness_current = age_days(membership.get("generated"), today) == 0
     membership_rows = membership_by_site(membership)
     health = read_json(DATA / "fleet-health.json", {}) or {}
     health_rows = {
@@ -230,7 +234,9 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
 
         if site in MEMBER_SITE:
             public = member.get("public", {}) if isinstance(member, dict) else {}
-            if not public.get("ok") or not public.get("ready"):
+            if not membership_readiness_current:
+                site_actions.append(safe_action("membership_observability", 68, "membership readiness snapshot is not current", {"snapshot_date": input_dates.get("membership")}, "observe"))
+            elif not public.get("ok") or not public.get("ready"):
                 site_actions.append(safe_action("membership_health", 92, "membership API is not ready", {"public_ok": public.get("ok"), "ready": public.get("ready")}, "alert"))
             elif paid is None or active is None:
                 site_actions.append(safe_action("membership_observability", 68, "membership aggregate counters are unavailable", {"admin_ok": admin.get("ok")}, "observe"))
@@ -275,7 +281,7 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
             "schema_version": 1,
             "site": site,
             "signals": {
-                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if isinstance(member, dict) else None, "has_paid_members": positive_flag(paid), "has_active_members": positive_flag(active)},
+                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if membership_readiness_current and isinstance(member, dict) else None, "has_paid_members": positive_flag(paid), "has_active_members": positive_flag(active)},
                 "traffic": {"human_pv_band": band(traffic.get("human_pv")), "ai_ref_band": band(traffic.get("ai_ref")), "reach_humans_referred_band": band(traffic.get("reach_humans_referred"))},
                 "demand": {"has_underserved": bool(underserved), "has_gaps": bool(gaps), "has_hot_pages": bool(hot_pages), "top_underserved_page": (underserved[0] or {}).get("page") if underserved and isinstance(underserved[0], dict) else None, "top_hot_page": (hot_pages[0] or {}).get("page") if hot_pages and isinstance(hot_pages[0], dict) else None},
                 "health": {"http": health_row.get("http"), "stale_deploy": integer(health_row.get("days_since_deploy"), -1) < 0 or integer(health_row.get("days_since_deploy"), -1) >= 7},
@@ -288,7 +294,7 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
     fleet = {
         "sites": len(SITE_DIRS),
         "healthy": sum(1 for row in health_rows.values() if str(row.get("http")) == "200"),
-        "membership_ready": sum(1 for row in membership_rows.values() if (row.get("public", {}) or {}).get("ready")),
+        "membership_ready": sum(1 for row in membership_rows.values() if (row.get("public", {}) or {}).get("ready")) if membership_readiness_current else None,
         "paid_members": member_count((membership.get("totals", {}) or {}).get("paid_members")) if membership.get("counters_complete") is True and "membership" not in stale else None,
         "active_members": member_count((membership.get("totals", {}) or {}).get("active_members")) if membership.get("counters_complete") is True and "membership" not in stale else None,
         "opportunities": len(opportunity_rows),
@@ -323,7 +329,8 @@ def render_markdown(latest: dict[str, Any]) -> str:
     fleet = latest["fleet"]
     paid = fleet["paid_members"] if fleet["paid_members"] is not None else "unknown"
     active = fleet["active_members"] if fleet["active_members"] is not None else "unknown"
-    lines = [f"# Fleet evolution report — {latest['as_of']}", "", "Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.", "", "## Fleet counters", "", f"- Sites: {fleet['sites']} (healthy probes: {fleet['healthy']})", f"- Membership ready: {fleet['membership_ready']} · paid members: {paid} · active members: {active}", f"- Opportunity candidates: {fleet['opportunities']} · stale inputs: {fleet['stale_inputs']}", "", "## Priority actions", "", "| Priority | Site | Action | Mode | Evidence |", "|---:|---|---|---|---|"]
+    ready = fleet["membership_ready"] if fleet["membership_ready"] is not None else "unknown"
+    lines = [f"# Fleet evolution report — {latest['as_of']}", "", "Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.", "", "## Fleet counters", "", f"- Sites: {fleet['sites']} (healthy probes: {fleet['healthy']})", f"- Membership ready: {ready} · paid members: {paid} · active members: {active}", f"- Opportunity candidates: {fleet['opportunities']} · stale inputs: {fleet['stale_inputs']}", "", "## Priority actions", "", "| Priority | Site | Action | Mode | Evidence |", "|---:|---|---|---|---|"]
     for row in latest["actions"][:20]:
         evidence = "; ".join(f"{k}={v}" for k, v in row.get("evidence", {}).items() if v is not None)
         lines.append(f"| {row['priority']} | {row['site']} | {row['kind']} | {row['mode']} | {evidence or 'unknown'} |")

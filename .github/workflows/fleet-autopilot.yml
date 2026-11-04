@@ -37,9 +37,17 @@ concurrency:
 
 jobs:
   autopilot:
+    # The membership snapshot is a volatile health input (its live readiness
+    # expires after four hours). Run its independent collector first, then read
+    # the current main tip. The collector may fail without blocking the rest of
+    # the fleet loop; evolution will report the old snapshot as unknown.
+    needs: membership-report
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       # One clock reading for the whole run. Two steps computing "today"
       # independently disagree across a midnight boundary, and this job stamps
