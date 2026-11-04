@@ -252,26 +252,6 @@
   },
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "dripl akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 600
-  },
-  {
-   "kind": "value",
-   "match": 0.283,
-   "page": "kategorie/heizen.html",
-   "q": "levoit akku staubsauger lvac 200 max",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 400
-  },
-  {
-   "kind": "value",
    "match": 0.15,
    "page": "en/guide/best-portable-air-conditioner-italy.html",
    "q": "philips kaffeevollautomat ep5443/70 5400 series",
@@ -349,70 +329,25 @@
    "source": "related-queries",
    "stand": "2026-11-02",
    "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "grundig akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 140
-  },
-  {
-   "kind": "value",
-   "match": 0.25,
-   "page": "geraete-austausch-rechner.html",
-   "q": "neuer dyson staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 110
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "levoit akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 100
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/akku-heizluefter.html",
-   "q": "würth akku staubsauger",
-   "seed": "akku staubsauger",
-   "source": "related-queries",
-   "stand": "2026-11-02",
-   "v": 70
   }
  ],
- "generated": "2026-11-03",
+ "generated": "2026-11-04",
  "geo": "DE",
- "heat_source": "measured 2026-11-03 (16 pages); no notes",
+ "heat_source": "measured 2026-11-04 (15 pages); no notes",
  "hot_pages": [
+  {
+   "n7": 6,
+   "p7": 3,
+   "page": "/"
+  },
   {
    "n7": 5,
    "p7": 1,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
-   "n7": 4,
-   "p7": 3,
-   "page": "/guide/luftentfeuchter-keller.html"
-  },
-  {
-   "n7": 4,
-   "p7": 0,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
-  },
-  {
    "n7": 3,
-   "p7": 1,
+   "p7": 0,
    "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
@@ -427,13 +362,13 @@
   },
   {
    "n7": 3,
-   "p7": 3,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
+   "p7": 1,
+   "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 3,
    "p7": 2,
-   "page": "/guide/was-bedeutet-btu.html"
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 3,
@@ -442,13 +377,13 @@
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/"
+   "p7": 0,
+   "page": "/en/guide/portable-ac-hose-extension.html"
   },
   {
    "n7": 2,
    "p7": 0,
-   "page": "/en/guide/portable-ac-hose-extension.html"
+   "page": "/guide/akku-heizluefter.html"
   },
   {
    "n7": 2,
@@ -462,13 +397,18 @@
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/klimaanlage-40-qm.html"
+   "p7": 1,
+   "page": "/guide/mobile-klimaanlage-zu-laut.html"
   },
   {
    "n7": 2,
-   "p7": 1,
-   "page": "/guide/mobile-klimaanlage-zu-laut.html"
+   "p7": 2,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/wohnen.html"
   }
  ],
  "how_to_read": "Research candidates only; token matching is not an editorial or market decision. Relative growth is not search volume, and autocomplete is vocabulary evidence only. Underserved requires an observed zero in the matching measurement window; missing page measurements are unknown, and zero arrivals do not establish a title or internal-link cause. First-party evidence contains only aggregate zero-hit record counts, never raw search terms. Freshness, country, independent evidence and the reviewed page catalog must pass tools/eco_evolution.py before prioritising an existing page. This research queue does not publish. The separate getecoback scheduled deployment runs tools/auto_content.py to discover official product specifications, validate evidence and publish at most one substantive guide change per UTC day.",
@@ -480,12 +420,8 @@
   "steckdosenleiste",
   "weltweite zeitumstellung 2027",
   "constantin schreiber axel springer",
-  "sky scanner",
   "unfall italien bus wohnmobil",
-  "dyson purifier cool pc1",
   "daikin perfera",
-  "dreame r20",
-  "balenciaga rodeo bag",
   "philips lattego"
  ],
  "site": "getecoback",

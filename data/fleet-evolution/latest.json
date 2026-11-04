@@ -1,25 +1,25 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-03",
+  "as_of": "2026-11-04",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 0,
+    "membership_ready": 1,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 10,
+    "opportunities": 9,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-02T09:56:01.880Z",
-    "health": "2026-11-02T17:37:12Z",
-    "ai_referrals": "2026-11-02T17:37:42Z",
-    "opportunities": "2026-11-02",
-    "autopilot_receipt": "2026-11-03"
+    "membership": "2026-11-04T09:48:43.867Z",
+    "health": "2026-11-03T15:39:37Z",
+    "ai_referrals": "2026-11-03T15:40:18Z",
+    "opportunities": "2026-11-03",
+    "autopilot_receipt": "2026-11-04"
   },
   "input_ages_days": {
-    "membership": 1,
+    "membership": 0,
     "health": 1,
     "ai_referrals": 1,
     "opportunities": 1,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-02T09:56:01.880Z",
+    "generated": "2026-11-04T09:48:43.867Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -137,19 +137,10 @@
       "supply": 0
     },
     {
-      "theme": "can we do something about this impending ai dystopia",
-      "site": null,
-      "state": "scout",
-      "score": 2.89,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "are knuth s stanford pages down",
       "site": null,
       "state": "scout",
-      "score": 2.38,
+      "score": 2.45,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -159,6 +150,15 @@
       "site": null,
       "state": "scout",
       "score": 2.24,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "ublock origin for the iot devices in my house",
+      "site": null,
+      "state": "scout",
+      "score": 2.22,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -177,15 +177,6 @@
       "site": null,
       "state": "scout",
       "score": 2.13,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "ublock origin for the iot devices in my house",
-      "site": null,
-      "state": "scout",
-      "score": 2.12,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -346,17 +337,6 @@
       "mode": "alert"
     },
     {
-      "site": "baipiaoji",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
       "site": "getecoback",
       "kind": "membership_health",
       "priority": 92,
@@ -377,6 +357,17 @@
         "ready": false
       },
       "mode": "alert"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
+      "evidence": {
+        "referred_humans_28d": 600,
+        "paid_members": 0
+      },
+      "mode": "queue"
     },
     {
       "site": "agiscorecard",
@@ -408,7 +399,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 28,
+        "count": 22,
         "query": "infrarotheizung wandmontage",
         "value": 88250
       },
@@ -432,9 +423,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/zh/future-guide",
-        "n7": 237,
-        "p7": 90
+        "page": "/ai-futures",
+        "n7": 65,
+        "p7": 0
       },
       "mode": "queue"
     },
@@ -444,9 +435,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/guide/mobile-klimaanlage-ueberwintern.html",
-        "n7": 5,
-        "p7": 1
+        "page": "/",
+        "n7": 6,
+        "p7": 3
       },
       "mode": "queue"
     },
@@ -456,7 +447,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 582,
+        "human_pv_28d": 591,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -467,7 +458,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 282,
+        "human_pv_28d": 276,
         "ai_ref_28d": 0
       },
       "mode": "queue"

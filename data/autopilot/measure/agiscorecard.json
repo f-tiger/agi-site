@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 23,
+    "n": 24,
     "q": "tool:portfolio_returns"
    },
    {
@@ -27,31 +27,23 @@
     "q": "tool:agi_consensus BrickBlueBot/0.1 (+https"
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    },
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
    }
   ]
  },
- "fetched": "2026-11-03",
+ "fetched": "2026-11-04",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/zh/future-guide": {
-   "n7": 237,
-   "p7": 90
-  },
-  "/zh/future-guide/distribution-opportunity": {
-   "n7": 56,
-   "p7": 26
-  },
-  "/zh/workbench/evidencebrief": {
-   "n7": 47,
-   "p7": 22
+  "/ai-futures": {
+   "n7": 65,
+   "p7": 0
   }
  },
  "site": "agiscorecard",
