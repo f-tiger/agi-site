@@ -88,10 +88,64 @@ def test_site_decisions_do_not_treat_missing_or_stale_counts_as_zero() -> None:
                 assert signal["has_active_members"] is (False if expected_conversion else None)
 
 
+def test_previous_day_readiness_is_unknown_not_a_live_failure() -> None:
+    today = dt.date(2026, 11, 3)
+    with tempfile.TemporaryDirectory() as tmp:
+        data = Path(tmp)
+        directory = data / "fleet-evolution"
+        directory.mkdir()
+        snapshot = {"generated": "2026-11-02T09:56:01Z", "counters_complete": True,
+                    "totals": {"paid_members": 0, "active_members": 0},
+                    "sites": [{"site": "agi", "public": {"ok": True, "ready": False},
+                               "admin": {"ok": True, "paid_members": 0, "active_members": 0}}]}
+        (directory / "membership.json").write_text(json.dumps(snapshot))
+        with patch.multiple(evolution, DATA=data, EVOLUTION=directory,
+                            SITE_DIRS={"agiscorecard": "sites/agiscorecard"}), \
+                patch.object(evolution, "load_traffic", return_value={}):
+            report, _ = evolution.build(today)
+        actions = report["latest"]["actions"]
+        assert not any(row["kind"] == "membership_health" for row in actions)
+        assert any(row["kind"] == "membership_observability" for row in actions)
+        assert report["latest"]["fleet"]["membership_ready"] is None
+        assert report["manifests"]["agiscorecard"]["signals"]["membership"]["ready"] is None
+        assert "Membership ready: unknown" in report["markdown"]
+
+
+def test_current_readiness_still_raises_a_real_health_alert() -> None:
+    today = dt.date(2026, 11, 3)
+    with tempfile.TemporaryDirectory() as tmp:
+        data = Path(tmp)
+        directory = data / "fleet-evolution"
+        directory.mkdir()
+        snapshot = {"generated": "2026-11-03T09:56:01Z", "counters_complete": True,
+                    "totals": {"paid_members": 0, "active_members": 0},
+                    "sites": [{"site": "agi", "public": {"ok": True, "ready": False},
+                               "admin": {"ok": True, "paid_members": 0, "active_members": 0}}]}
+        (directory / "membership.json").write_text(json.dumps(snapshot))
+        with patch.multiple(evolution, DATA=data, EVOLUTION=directory,
+                            SITE_DIRS={"agiscorecard": "sites/agiscorecard"}), \
+                patch.object(evolution, "load_traffic", return_value={}):
+            report, _ = evolution.build(today)
+        assert any(row["kind"] == "membership_health" for row in report["latest"]["actions"])
+        assert report["latest"]["fleet"]["membership_ready"] == 0
+        assert report["manifests"]["agiscorecard"]["signals"]["membership"]["ready"] is False
+
+
+def test_workflow_waits_for_membership_and_checks_out_current_main() -> None:
+    workflow = (evolution.ROOT / ".github/workflows/fleet-autopilot.yml").read_text(encoding="utf-8")
+    autopilot = workflow.split("  autopilot:\n", 1)[1].split("  web3-audit:\n", 1)[0]
+    assert "needs: membership-report" in autopilot
+    assert "if: ${{ !cancelled() }}" in autopilot
+    assert "- uses: actions/checkout@v4\n        with:\n          ref: main" in autopilot
+
+
 if __name__ == "__main__":
     test_missing_is_unknown()
     test_action_is_bounded_and_redacted()
     test_write_if_changed()
     test_membership_totals_require_current_complete_evidence()
     test_site_decisions_do_not_treat_missing_or_stale_counts_as_zero()
+    test_previous_day_readiness_is_unknown_not_a_live_failure()
+    test_current_readiness_still_raises_a_real_health_alert()
+    test_workflow_waits_for_membership_and_checks_out_current_main()
     print("evolution invariants: ok")
