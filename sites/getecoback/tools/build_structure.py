@@ -4779,6 +4779,8 @@ def main():
             # shopping overlays bypass it and may advertise an unrelated device.
             for marker in ('EB_TOPPICK', 'EB_MODELS', 'EB_STICKY', 'EB_PROFILE', 'EB_USMARKET', 'EB_POPUP', 'EB_USSWITCH'):
                 new = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->', '', new, flags=re.S)
+        from moisture_check import inject as inject_moisture_check
+        new = inject_moisture_check(new, os.path.basename(path)[:-5])
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1

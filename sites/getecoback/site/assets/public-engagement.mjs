@@ -33,6 +33,7 @@ export function ecoPublicBusinessEvent(pathname, detail) {
       !pathname.split('/').some(p => /^(?:auth|api|account|members|widgets|analytics-assets|member-assets)(?:\.html)?$/.test(p)) &&
       ['eco_discovery_open','eco_discovery_task','eco_discovery_result'].includes(detail.name))
     return {name:detail.name, tool_id:'eco-discovery'};
+  if (['/guide/luftfeuchtigkeit-senken.html','/guide/richtig-lueften-im-winter.html'].includes(pathname) && ['eco_moisture_example','eco_moisture_check','eco_moisture_save','eco_moisture_export'].includes(detail.name)) return {name:detail.name,tool_id:'eco-moisture-check'};
   const country = countryScenarioEvent(pathname, detail);
   if (country) return {name:country, tool_id:pathname === '/wohnen.html' ? 'eco-country-de' : 'eco-country-nl'};
   const routes = {

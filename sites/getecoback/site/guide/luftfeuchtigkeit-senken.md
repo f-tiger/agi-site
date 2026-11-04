@@ -8,6 +8,24 @@ Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdow
 
 **Kurz:** Zu feucht ist ein Raum **über 60 Prozent** — aber die Zahl, die Schimmel wachsen lässt, ist die **an der kältesten Wand**, und die liegt bei 20 °C und 50 Prozent im Raum an einer 14 °C kalten Wand schon bei **73 Prozent**. Senken geht über drei Hebel, und die Reihenfolge ist nicht beliebig: **erst weniger Wasser erzeugen** (kostet nichts), **dann lüften** (im Winter wirksam, im Sommer oft das Gegenteil), **dann entfeuchten** (wenn die ersten beiden nicht reichen). Heizen hilft den Wänden — führt aber kein Wasser ab.
 
+## Erst messen: Hilft Lüften gerade gegen Feuchte?
+Vier Messwerte statt einer vorschnellen Kaufempfehlung. Nutze möglichst gleichzeitig gemessene Innen- und Außenwerte. Keine Werte zur Hand? Erst messen – keine Schätzung als persönliche Empfehlung.
+Fiktives Beispiel ausprobieren
+
+###
+
+Wenn die Feuchte wieder steigt: Temperatur und Feuchte nach dem Wiederaufwärmen erneut messen. Kochen, Duschen, Wäsche und die Nutzung des Raums getrennt notieren. Ein Anstieg allein beweist weder einen Bauschaden noch falsches Lüften.
+Eigene Messung auf diesem Gerät speichern
+Meine Messreihe: vorher und nachher vergleichenBis zu 30 Messungen bleiben ausschließlich in diesem Browser. Kein Konto, keine Cloud-Synchronisierung. Auf gemeinsam genutzten Geräten anschließend löschen. Nicht ohne Raum- und Nutzungskontext vergleichen.
+
+Messreihe als CSV herunterladen Lokale Messreihe löschen
+
+### Wann ein Gerät überhaupt infrage kommt
+Bleibt erhöhte Feuchte trotz geeigneter Maßnahmen bestehen, zuerst die Ursache klären. Vergleiche danach Einsatztemperatur, Geräusch, Entwässerung und Strombedarf; die Raumfläche allein reicht nicht. [Kauf oder Nichtkauf prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) · [Betriebskosten berechnen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
+Rechenweg und GrenzenMagnus-Näherung über Wasser: eₛ(T) = 6,112 × exp(17,62 × T / (243,12 + T)); Außenluft bei Innentemperatur: 100 × eₛ(T außen) × rF außen / 100 / eₛ(T innen). Gleicher Luftdruck angenommen. Unter 0 °C ist die Näherung gegenüber Eis ungenauer. Ein Abstand von mehr als fünf Prozentpunkten ist eine vorsichtige Entscheidungsregel, keine Sicherheitsgrenze. Luftwechsel, Feuchtenachschub, Wandtemperaturen und Sensorfehler werden nicht modelliert. Das Ergebnis diagnostiziert keinen Schimmel und garantiert weder Trocknung noch Heizkostenersparnis.
+Fachlicher Hintergrund: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) (geprüft am 04.11.2026). Raumwerte werden nicht an die Statistik übertragen; gezählt werden nur feste Aktionen, sofern Statistik erlaubt ist.
+Ohne JavaScript: Temperatur und Feuchte innen und außen notieren, Feuchtequellen prüfen und den verlinkten Lüftungsratgeber nutzen. Aus einem einzelnen Prozentwert folgt kein Gerätekauf.
+
 ## Wie feucht ist zu feucht? Die Zahlen
 
 Das Hygrometer in Raummitte gibt dir eine Zahl. Sie ist die richtige Zahl für dein Wohlbefinden und die falsche für die Wand. Relative Feuchte hängt von der Temperatur ab: Dieselbe Luft, an einer kalten Oberfläche abgekühlt, hat dort eine höhere relative Feuchte — und Schimmel wächst an Oberflächen. Die Tabelle rechnet das für einen Raum mit 20 °C durch (Magnus-Formel, dieselbe wie in unserem [Taupunkt-Rechner](https://getecoback.com/guide/richtig-lueften-im-winter.html)):

@@ -409,6 +409,7 @@ async function serveAsset(request, env, pathname, ctx) {
 const EV_NAMES = new Set([
   ...DISTRIBUTION_EVENTS,
   ...BUYER_EVENTS,
+  "eco_moisture_example", "eco_moisture_check", "eco_moisture_save", "eco_moisture_export",
   ...LAUNDRY_EVENTS,
   "crawl",
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
@@ -776,6 +777,10 @@ async function handleEvent(request, env, ctx) {
 
   if(DISTRIBUTION_EVENTS.includes(name)) {
     if(!validDistribution(body))return json({ok:false,error:'invalid_distribution'},400,cors);
+    if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
+  }
+  if(name.startsWith('eco_moisture_')) {
+    if(!['/guide/luftfeuchtigkeit-senken.html','/guide/richtig-lueften-im-winter.html'].includes(body.p)||!body.m||Array.isArray(body.m)||typeof body.m!=='object'||Object.keys(body.m).length) return json({ok:false,error:'invalid_moisture_event'},400,cors);
     if(request.headers.get('dnt')==='1'||request.headers.get('sec-gpc')==='1'||evUaClass(request.headers.get('user-agent')||'')!=='human')return json({ok:true,skipped:true},200,cors);
   }
   if(BUYER_EVENTS.includes(name)) {

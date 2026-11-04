@@ -10,6 +10,24 @@ Im Sommer ist die Kippstellung praktisch: Sie ist der Weg, über den die meisten
 
 **Kurze Antwort:** Das Fenster im Winter nicht dauerhaft kippen. Ein gekipptes Fenster tauscht die Luft nur langsam aus, kühlt aber Rahmen und Laibung über Stunden aus — und die kalte Fläche ist die Stelle, an der Schimmel anfängt, nicht die Raummitte. Stattdessen **zweimal täglich 5–10 Minuten ganz öffnen**, wenn möglich zwei Fenster gleichzeitig. Kalte Luft ist trockene Luft: Kurzes Stoßlüften nimmt Feuchtigkeit mit, und der Raum ist schnell wieder warm.
 
+## Erst messen: Hilft Lüften gerade gegen Feuchte?
+Vier Messwerte statt einer vorschnellen Kaufempfehlung. Nutze möglichst gleichzeitig gemessene Innen- und Außenwerte. Keine Werte zur Hand? Erst messen – keine Schätzung als persönliche Empfehlung.
+Fiktives Beispiel ausprobieren
+
+###
+
+Wenn die Feuchte wieder steigt: Temperatur und Feuchte nach dem Wiederaufwärmen erneut messen. Kochen, Duschen, Wäsche und die Nutzung des Raums getrennt notieren. Ein Anstieg allein beweist weder einen Bauschaden noch falsches Lüften.
+Eigene Messung auf diesem Gerät speichern
+Meine Messreihe: vorher und nachher vergleichenBis zu 30 Messungen bleiben ausschließlich in diesem Browser. Kein Konto, keine Cloud-Synchronisierung. Auf gemeinsam genutzten Geräten anschließend löschen. Nicht ohne Raum- und Nutzungskontext vergleichen.
+
+Messreihe als CSV herunterladen Lokale Messreihe löschen
+
+### Wann ein Gerät überhaupt infrage kommt
+Bleibt erhöhte Feuchte trotz geeigneter Maßnahmen bestehen, zuerst die Ursache klären. Vergleiche danach Einsatztemperatur, Geräusch, Entwässerung und Strombedarf; die Raumfläche allein reicht nicht. [Kauf oder Nichtkauf prüfen](https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice) · [Betriebskosten berechnen](https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html).
+Rechenweg und GrenzenMagnus-Näherung über Wasser: eₛ(T) = 6,112 × exp(17,62 × T / (243,12 + T)); Außenluft bei Innentemperatur: 100 × eₛ(T außen) × rF außen / 100 / eₛ(T innen). Gleicher Luftdruck angenommen. Unter 0 °C ist die Näherung gegenüber Eis ungenauer. Ein Abstand von mehr als fünf Prozentpunkten ist eine vorsichtige Entscheidungsregel, keine Sicherheitsgrenze. Luftwechsel, Feuchtenachschub, Wandtemperaturen und Sensorfehler werden nicht modelliert. Das Ergebnis diagnostiziert keinen Schimmel und garantiert weder Trocknung noch Heizkostenersparnis.
+Fachlicher Hintergrund: [Verbraucherzentrale: Heizen und Lüften](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) (geprüft am 04.11.2026). Raumwerte werden nicht an die Statistik übertragen; gezählt werden nur feste Aktionen, sofern Statistik erlaubt ist.
+Ohne JavaScript: Temperatur und Feuchte innen und außen notieren, Feuchtequellen prüfen und den verlinkten Lüftungsratgeber nutzen. Aus einem einzelnen Prozentwert folgt kein Gerätekauf.
+
 ## Entscheidend ist die kalte Ecke, nicht der Raum
 
 Das Hygrometer im Regal misst die Luft in der Raummitte. Dort wächst kein Schimmel. Er wächst an der kältesten Fläche im Raum: an der Fensterlaibung, am Sturz, in der Außenwandecke, hinter dem Kleiderschrank.
