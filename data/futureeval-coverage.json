@@ -1,17 +1,17 @@
 {
- "generated": "2026-11-03T15:40:20+00:00",
+ "generated": "2026-11-04T15:53:28+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 5,
+ "sampled": 3,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 46323,
-   "title": "Which party will win the most votes in Spain's November 29, 2026 general election?",
+   "post_id": 46324,
+   "title": "What will voter turnout be in Spain's November 29, 2026 general election?",
    "hosts": [
     "www.metaculus.com"
    ],
@@ -19,27 +19,10 @@
    "tournament": "33121"
   },
   {
-   "post_id": 46322,
-   "title": "What share of the vote will Vox win in Spain's November 29, 2026 general election?",
+   "post_id": 46274,
+   "title": "What will Grand Theft Auto VI's PS5 Metascore be on December 20, 2026?",
    "hosts": [
-    "www.metaculus.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
-  {
-   "post_id": 46316,
-   "title": "Will US and Iranian negotiators meet in person in November or December 2026?",
-   "hosts": [
-    "www.metaculus.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
-  {
-   "post_id": 46273,
-   "title": "Will Safe Superintelligence (SSI) release an AI model to the public in 2026?",
-   "hosts": [
+    "www.metacritic.com",
     "www.metaculus.com"
    ],
    "covered_by": null,
