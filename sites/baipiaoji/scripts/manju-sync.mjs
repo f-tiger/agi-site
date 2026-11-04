@@ -27,7 +27,7 @@ export function syncFailureStatus(attempt,previous,error){
  return {version:1,attemptedAt:attempt.attemptedAt,schedule:attempt.schedule,status:'failed',lastSuccessAt:previous.lastSuccessAt||null,error:'采集或数据校验失败；保留上次有效内容。详见 Actions 日志。',...(diagnostic?{diagnostic}:{})};
 }
 export function refresh(catalog,insights,payload){
- const next=structuredClone(catalog),data=structuredClone(insights),seen=new Map(next.items.map(x=>[normalizeTitle(x.title),x])),byId=new Map(next.items.filter(x=>x.evidence?.sourceKind==='hongguo-ranking').map(x=>[x.id,x]));
+ const next=structuredClone(catalog),data=structuredClone(insights),nonofficial=new Map(next.items.filter(x=>x.evidence?.sourceKind!=='hongguo-ranking').map(x=>[normalizeTitle(x.title),x])),byId=new Map(next.items.filter(x=>x.evidence?.sourceKind==='hongguo-ranking').map(x=>[x.id,x]));
  if(payload.cohorts.length!==2||new Set(payload.cohorts.map(c=>c.kind)).size!==2)throw Error('Missing cohorts');
  const previous=new Map(data.cohorts.filter(c=>c.metric==='snapshot_heat').map(c=>[c.id.includes('comic-drama')?'comic-drama':'ai-drama',c]));
  let added=0;const changes=[];
@@ -52,16 +52,16 @@ export function refresh(catalog,insights,payload){
   for(const r of old.records){
    const identity=officialWorkId(r.url);
    if(!identity||typeof r.title!=='string'||!r.title.trim()||r.title.length>100||isExcludedTitle(r.title))throw Error('Invalid official work identity/title');
-   const key=normalizeTitle(r.title),named=seen.get(key),identified=byId.get(identity),existing=identified||named;
-   if(identified&&named&&identified!==named||named?.evidence?.sourceKind==='hongguo-ranking'&&named.id!==identity)throw titleConflict(identity,named.id,kind,incoming.observedAt);
-   // Keep every title encountered in this batch reserved to its identity. A later
-   // alias must not free an earlier name for a different work in the same batch.
-   if(existing){if(existing.evidence?.sourceKind==='hongguo-ranking'){existing.title=r.title;existing.seriesTitle=r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,'');seen.set(key,existing);existing.checkedAt=payload.checkedAt;existing.lastSeenAt=incoming.observedAt;existing.thumbnail=r.thumbnail;existing.source=r.thumbnail.source;existing.sourceDate=incoming.observedAt;existing.evidence.reportedTags=r.tags;existing.evidence.sourceHash=incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256;existing.tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));existing.category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama';existing.genre=next.taxonomy.genres.find(g=>g.id===existing.category).label;existing.caption=r.tags.join(' · ');existing.synopsis='红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。';}continue;}
+   const key=normalizeTitle(r.title),named=nonofficial.get(key),identified=byId.get(identity),existing=identified||named;
+   // Never merge two official IDs by name. Nonofficial title associations remain
+   // conservative across both incoming boards and their retained dated evidence.
+   if(named){const targets=new Set([...payload.cohorts.flatMap(c=>c.records).filter(row=>normalizeTitle(row.title)===key).map(row=>row.url),...(named.searchEvidence||[]).map(e=>e.url)]);if(identified||targets.size!==1)throw titleConflict(identity,named.id,kind,incoming.observedAt);}
+   if(existing){if(existing.evidence?.sourceKind==='hongguo-ranking'){existing.title=r.title;existing.seriesTitle=r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,'');existing.checkedAt=payload.checkedAt;existing.lastSeenAt=incoming.observedAt;existing.thumbnail=r.thumbnail;existing.source=r.thumbnail.source;existing.sourceDate=incoming.observedAt;existing.evidence.reportedTags=r.tags;existing.evidence.sourceHash=incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256;existing.tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));existing.category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama';existing.genre=next.taxonomy.genres.find(g=>g.id===existing.category).label;existing.caption=r.tags.join(' · ');existing.synopsis='红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。';}continue;}
    const category=categoryTags.find(([t])=>r.tags.includes(t))?.[1]||'drama',genre=next.taxonomy.genres.find(g=>g.id===category)?.label;
    if(!genre)throw Error('Unknown taxonomy');
    const tags=r.tags.filter(t=>next.taxonomy.tags.includes(t));
    const x={id:identity,title:r.title,genre,format:label+'（红果分类）',year:'年份未核实',platform:'红果',linkType:'collection',destination:r.url,cta:'到红果查看',synopsis:'红果榜单分类：'+r.tags.join('、')+'。暂缺经核实的剧情介绍。',angle:'按官方分类发现作品，播放和更新情况以原站为准。',aiEvidence:'收录于红果'+label+'榜；平台分类不代表本站独立核验 AI 制作流程。',source:r.thumbnail.source,publisher:'红果官方公开榜单',sourceDate:incoming.observedAt,status:'自动核对公开榜单元数据；未核验播放、集数、完结或素材授权。',caption:r.tags.join(' · '),checkedAt:payload.checkedAt,firstSeenAt:payload.checkedAt,lastSeenAt:incoming.observedAt,watched:false,sponsored:false,affiliate:false,channel:'stories',category,tags,recordType:'discovery',aiStatus:'platform-classified',seriesTitle:r.title.replace(/第[一二三四五六七八九十百零\d]+季$/u,''),thumbnail:r.thumbnail,evidence:{sourceKind:'hongguo-ranking',reportedTags:r.tags,sourceHash:incoming.sourcePages.find(p=>p.url===r.thumbnail.source)?.sha256}};
-   next.items.push(x);seen.set(key,x);byId.set(identity,x);added++;
+   next.items.push(x);byId.set(identity,x);added++;
   }
  }
  next.updatedAt=payload.checkedAt;data.reviewedAt=payload.checkedAt;

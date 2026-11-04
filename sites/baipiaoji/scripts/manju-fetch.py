@@ -57,6 +57,12 @@ def parse_page(raw, url, today):
         rows.append(dict(title=title,sourceRank=rank,value=round(float(heat[1])*10000),displayValue=heat[1]+'万',url=BASE+link,tags=tags,thumbnail=dict(url=thumb,source=url,checkedAt=today.isoformat(),attribution='红果公开榜单封面',mode='remote')))
     return date.isoformat(), rows
 
+def validate_snapshot(dates, rows):
+    # Source records are keyed by the exact official detail URL. Equal titles
+    # may be different source IDs; they do not prove distinct works or IPs.
+    if len(dates)!=1 or [r['sourceRank'] for r in rows]!=list(range(1,101)) or len({r['url'] for r in rows})!=100 or any(not re.fullmatch(re.escape(BASE)+r'/detail\?series_id=\d+',r['url']) for r in rows):
+        raise ValueError('Incomplete or inconsistent snapshot')
+
 def main():
     today=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).date()
     robots=fetch(BASE+'/robots.txt').decode('utf-8')
@@ -71,7 +77,7 @@ def main():
             time.sleep(1)
             raw=fetch(url); date, batch=parse_page(raw,url,today)
             rows.extend(batch);dates.add(date);pages.append(dict(url=url,sha256=hashlib.sha256(raw).hexdigest(),count=len(batch)))
-        if len(dates)!=1 or [r['sourceRank'] for r in rows]!=list(range(1,101)) or len({r['url'] for r in rows})!=100 or len({r['title'] for r in rows})!=100: raise ValueError('Incomplete or inconsistent snapshot')
+        validate_snapshot(dates, rows)
         result.append(dict(kind=kind,observedAt=dates.pop(),records=rows,sourcePages=pages))
     print(json.dumps(dict(checkedAt=today.isoformat(),checkedAtTime=datetime.datetime.now(datetime.timezone.utc).isoformat(),cohorts=result),ensure_ascii=False))
 if __name__=='__main__': main()

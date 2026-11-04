@@ -51,11 +51,34 @@ const index=JSON.parse(await get('search-index.json'));for(const path of discove
 validateWorkEvidence(MANJU);
 const promoted=MANJU.items.filter(x=>x.recordType==='discovery'&&x.searchEvidence?.length);assert.ok(promoted.length>=40);
 const workSitemap=await get('sitemap.xml');
-// Discovery evidence qualifies a detail page, not a place in a cited ranking.
-const rankedTitles=new Set(INSIGHTS.cohorts.flatMap(c=>c.records.map(x=>x.title)));
-const escapeAttribute=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-for(const x of MANJU.items.filter(x=>hasWorkPage(x)&&rankedTitles.has(x.title)))assert.ok(ranking.includes('href="'+workURL(x)+'"'),'Ranked work must link to its evidence page: '+x.id);
-for(const x of (live?[promoted[0],promoted.at(-1)]:promoted)){const url=workURL(x),h=await get('manju/'+x.id+'.html'),md=await get('manju/'+x.id+'.md'),json=JSON.parse(await get('manju/'+x.id+'.json'));assert.ok(h.includes('rel="canonical" href="'+url+'"'));assert.equal((h.match(/<h1[ >]/g)||[]).length,1);assert.ok(h.includes('href="'+url+'.md"'));assert.ok(h.includes('FAQPage'));assert.ok(!h.includes('VideoObject')&&!h.includes('AggregateRating'));assert.ok(h.includes('热度不是播放量'));assert.equal(json.url,url);assert.equal(json.observations.length,x.searchEvidence.length);for(const e of x.searchEvidence){assert.ok(h.includes(e.url));assert.ok(md.includes(e.source));assert.ok(md.includes(e.observedAt));}assert.ok(home.includes('href="'+url+'"'));if(rankedTitles.has(x.title))assert.ok(ranking.includes('href="'+url+'"'),'Ranked work link missing: '+x.id);else assert.ok(!ranking.includes('data-rank-title="'+escapeAttribute(x.title.toLowerCase())+'"'),'Discovery-only work must not become a ranked row: '+x.id);assert.ok(index.some(r=>r.u===url));assert.ok(workSitemap.includes(url));}
+// Independent gate oracle: an official row cites its exact source identity. A
+// historical name alone cannot add a second, same-named retained ID to the board.
+// Deliberately do not reuse the renderer's resolver to generate expectations.
+function expectedCitedIDs(items,cohorts){
+ const norm=s=>s.normalize('NFKC').replace(/[\s\p{P}\p{S}]/gu,'').toLowerCase(),rows=cohorts.flatMap(c=>c.records),current=cohorts.filter(c=>c.metric==='snapshot_heat').flatMap(c=>c.records),cited=new Set();
+ for(const item of items){
+  const official=item.evidence?.sourceKind==='hongguo-ranking',title=norm(item.title),names=items.filter(x=>norm(x.title)===title),namedRows=current.filter(r=>norm(r.title)===title);
+  const exactURL=official&&item.destination==='https://hongguoduanju.com/detail?series_id='+item.id.slice(3);
+  if(exactURL&&rows.some(r=>r.url===item.destination)){cited.add(item.id);continue;}
+  if(names.length!==1)continue;
+  const targets=new Set([...namedRows.map(r=>r.url),...(official?[item.destination]:(item.searchEvidence||[]).map(e=>e.url))]);
+  if(targets.size>1)continue;
+  if(!official&&namedRows.length&&namedRows.every(r=>/^https:\/\/hongguoduanju\.com\/detail\?series_id=\d+$/.test(r.url))){cited.add(item.id);continue;}
+  if(rows.some(r=>!r.url&&norm(r.title)===title))cited.add(item.id);
+ }
+ return cited;
+}
+{
+ const old={id:'hg-101',title:'合成同名来源',destination:'https://hongguoduanju.com/detail?series_id=101',evidence:{sourceKind:'hongguo-ranking'}},active={...old,id:'hg-102',destination:'https://hongguoduanju.com/detail?series_id=102'},snapshot={metric:'snapshot_heat',records:[{title:active.title,url:active.destination}]},history={metric:'peak_heat',records:[{title:old.title}]};
+ assert.deepEqual([...expectedCitedIDs([old,active],[snapshot,history])],[active.id],'A retained same-title ID must not inherit the current row or ambiguous history');
+ assert.deepEqual([...expectedCitedIDs([old,active],[{...snapshot,records:[{title:'合成更名',url:active.destination}]}])],[active.id],'Current source identity survives renaming');
+ assert.deepEqual([...expectedCitedIDs([old],[history])],[old.id],'Unambiguous historical title remains eligible');
+ const directory={id:'mj-test',title:old.title,searchEvidence:[{url:old.destination}]};
+ assert.deepEqual([...expectedCitedIDs([directory],[snapshot,history])],[],'Conflicting current and retained nonofficial targets must not acquire a cited identity');
+}
+const rankedIDs=expectedCitedIDs(MANJU.items,INSIGHTS.cohorts);
+for(const x of MANJU.items.filter(x=>hasWorkPage(x)&&rankedIDs.has(x.id)))assert.ok(ranking.includes('href="'+workURL(x)+'"'),'Ranked work must link to its evidence page: '+x.id);
+for(const x of (live?[promoted[0],promoted.at(-1)]:promoted)){const url=workURL(x),h=await get('manju/'+x.id+'.html'),md=await get('manju/'+x.id+'.md'),json=JSON.parse(await get('manju/'+x.id+'.json'));assert.ok(h.includes('rel="canonical" href="'+url+'"'));assert.equal((h.match(/<h1[ >]/g)||[]).length,1);assert.ok(h.includes('href="'+url+'.md"'));assert.ok(h.includes('FAQPage'));assert.ok(!h.includes('VideoObject')&&!h.includes('AggregateRating'));assert.ok(h.includes('热度不是播放量'));assert.equal(json.url,url);assert.equal(json.observations.length,x.searchEvidence.length);for(const e of x.searchEvidence){assert.ok(h.includes(e.url));assert.ok(md.includes(e.source));assert.ok(md.includes(e.observedAt));}assert.ok(home.includes('href="'+url+'"'));if(rankedIDs.has(x.id))assert.ok(ranking.includes('href="'+url+'"'),'Ranked work link missing: '+x.id);else {assert.ok(!ranking.includes('href="'+url+'"'),'Discovery-only identity must not acquire a ranked link: '+x.id);assert.ok(!ranking.includes('data-depth-work="'+x.id+'"'),'Discovery-only identity must not acquire a ranked depth marker: '+x.id);}assert.ok(index.some(r=>r.u===url));assert.ok(workSitemap.includes(url));}
 const indexedOfficial=index.find(r=>r.u.includes('/manju/rankings#rank-'));assert.ok(indexedOfficial);assert.ok(ranking.includes('id="'+new URL(indexedOfficial.u).hash.slice(1)+'"'));
 const good={kind:'cooperate',name:'__ci Manju validation',url:base+'/manju/',email:'test@example.test',note:'Automated validation only; never a customer lead.',consent:true};
 if(live){const r=await fetch(base+'/api/manju-inquiry?qa=1',{method:'POST',headers:{origin:base,'content-type':'application/json','user-agent':'bpj-ci-selfcheck'},body:JSON.stringify(good)});assert.equal(r.status,200);assert.deepEqual(await r.json(),{ok:true,code:'validated',persisted:false,schemaReady:true});}
