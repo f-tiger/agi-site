@@ -30,10 +30,11 @@ export function importFacts(facts,catalog){
  return {items,rejected};
 }
 export function validateManju(catalog){
- const seen=new Set(),ids=new Set();
+ const seen=new Map(),ids=new Set();
  for(const x of catalog.items){
   const key=normalizeTitle(x.title);
-  if(seen.has(key)||ids.has(x.id))throw Error('Duplicate manju identity: '+x.id);seen.add(key);ids.add(x.id);
+  const named=seen.get(key),official=x.evidence?.sourceKind==='hongguo-ranking';
+  if(ids.has(x.id)||named&&(!official||named.evidence?.sourceKind!=='hongguo-ranking'))throw Error('Duplicate manju identity: '+x.id);seen.set(key,x);ids.add(x.id);
   if(isExcludedTitle(x.title))throw Error('Excluded manju: '+x.title);
   if(!/^https:\/\//.test(x.source)||!/^\d{4}-\d{2}-\d{2}$/.test(x.checkedAt))throw Error('Missing source/date: '+x.id);
   if(x.evidence?.sourceKind==='hongguo-ranking'){

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "bpj-manju-video-growth",
-  "updatedAt": "2026-11-03T02:55:20.885140Z",
-  "stage": "weekly_review_completed_bounded_diagnostic_implemented_source_recovery_pending",
+  "updatedAt": "2026-11-04T03:13:44.956784+00:00",
+  "stage": "identity_contract_locally_verified_release_pending",
   "lastCompletedIteration": {
     "date": "2026-11-03",
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -65,11 +65,11 @@
   "observedSources": [
     {
       "path": "sites/baipiaoji/data/manju-sync-status.json",
-      "reviewedAt": "2026-11-03T02:55:20.885140Z",
-      "sourceCommit": "bca93d372e0abd9d1520810e58896903a87b1435",
-      "persistedByCommit": "a691b5a3910cd49357ee8c4bd142fe3903d1bdf5",
+      "reviewedAt": "2026-11-04T02:54:32Z",
+      "sourceCommit": "6edd0002d4c2cbe592b095466230fa14a3eaae8b",
+      "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
       "status": "source_refresh_failed_previous_valid_catalogue_retained_and_deployed",
-      "attemptedAt": "2026-11-02T06:45:31.397Z",
+      "attemptedAt": "2026-11-03T07:13:33.423Z",
       "completedAt": null,
       "lastSuccessAt": "2026-11-01T06:47:56.186123+00:00",
       "sourceBoardDates": [
@@ -78,49 +78,57 @@
       ],
       "recordsIncludingSeasons": 1275,
       "sourceTimezone": "UTC for attempt/completion/success timestamps; official date timezone not supplied",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
-      "deployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-      "missingOrDelay": "Nov2 refresh rejected an official-title identity conflict and retained Nov1 catalogue. New failed payload was not persisted. Latest Nov3 successful push release skipped refresh; it deploys the retained 1275 records, not a new Nov3 ranking.",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "deployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "missingOrDelay": "Nov3 refresh rejected two distinct official IDs sharing a normalized title; bounded diagnosis persisted, original rejected payload not retained. Nov1 catalogue remains the last valid source. Existing Nov3 schedule deployed retained data before its final chain gate failed; this is not source recovery.",
       "lastVerifiedDeployment": {
-        "sourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-        "run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-        "deployedAt": "2026-11-03T00:31:59.4008126Z",
+        "sourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+        "run": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+        "deployedAt": "2026-11-03T07:16:39.0806073Z",
         "sourceBoardDate": "2026-11-01",
-        "recordsIncludingSeasons": 1275
+        "recordsIncludingSeasons": 1275,
+        "workflowConclusion": "failure"
       },
-      "sourceFailureObservedAt": "2026-11-02T06:46:35.5949684Z",
-      "lastValidDataCommit": "23888e48260a8c621dad264111c1da66726e1d58"
+      "sourceFailureObservedAt": "2026-11-03T07:13:55.2015997Z",
+      "lastValidDataCommit": "23888e48260a8c621dad264111c1da66726e1d58",
+      "diagnostic": {
+        "code": "official-title-identity-conflict",
+        "incomingWorkId": "hg-7683455900727659545",
+        "conflictingCatalogId": "hg-7693111859401985049",
+        "cohortKind": "ai-drama",
+        "sourceDate": "2026-11-03"
+      }
     },
     {
       "path": "sites/baipiaoji/data/reach.json",
-      "reviewedAt": "2026-11-03T02:55:20.885140Z",
-      "sourceCommit": "bca93d372e0abd9d1520810e58896903a87b1435",
-      "sourceGeneratedAt": "2026-11-02T06:43:46.833Z",
-      "exportedAt": "2026-11-02T06:43:46.906Z",
-      "status": "creator_v2_and_first_complete_viewer_window_persisted",
+      "reviewedAt": "2026-11-04T02:54:32Z",
+      "sourceCommit": "6edd0002d4c2cbe592b095466230fa14a3eaae8b",
+      "sourceGeneratedAt": "2026-11-03T07:12:27.777Z",
+      "exportedAt": "2026-11-03T07:12:27.836Z",
+      "status": "creator_v2_and_complete_viewer_window_persisted",
       "measurementVersion": "manju-video-actions-v2",
       "window": {
         "requestedDays": 28,
-        "since": "2026-10-05",
-        "until": "2026-11-02",
+        "since": "2026-10-06",
+        "until": "2026-11-03",
         "timezone": "UTC",
         "includesCurrentPartialDay": true
       },
-      "note": "Creator v2 contains exposure and no recorded substantive-edit/report states; counts remain events, not people or useful tasks. Viewer complete_window now covers Nov1 UTC with no returned fixed-action rows; full-day snapshot presence is not actual viewer use.",
-      "missingOrDelay": "Creator rolling window includes partial Nov2 and cannot answer the fixed Oct27-Nov2 Asia/Shanghai weekly review. Viewer one-day UTC window is separate and sparse. No zero-fill, funnel or rolling-difference daily additions. No direct reach request.",
-      "persistedByCommit": "a691b5a3910cd49357ee8c4bd142fe3903d1bdf5",
+      "note": "Creator v2 has exposure receipts and no recorded substantive-edit/report states; counts are events, not people or useful tasks. Viewer complete_window spans [Nov1,Nov3) UTC with no returned fixed-action rows; snapshot presence is not actual viewer use.",
+      "missingOrDelay": "Creator rolling window includes partial Nov3 and is not the fixed Nov3-Nov9 Asia/Shanghai experiment window. Viewer complete UTC window is separate and sparse. No zero-fill, funnel or rolling-difference daily additions. No direct reach request.",
+      "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
       "viewerDepth": {
-        "sourceGeneratedAt": "2026-11-02T06:43:46.833Z",
+        "sourceGeneratedAt": "2026-11-03T07:12:27.777Z",
         "measurementStart": "2026-10-31",
         "firstCompleteUtcDay": "2026-11-01",
         "window": {
           "start": "2026-10-31",
-          "endExclusive": "2026-11-02",
+          "endExclusive": "2026-11-03",
           "timezone": "UTC"
         },
         "completeWindow": {
           "start": "2026-11-01",
-          "endExclusive": "2026-11-02",
+          "endExclusive": "2026-11-03",
           "timezone": "UTC"
         },
         "status": "ok_complete_window_present_no_fixed_action_rows_returned",
@@ -128,7 +136,7 @@
         "completeWindowSnapshotVerified": true,
         "actualViewerUseVerified": false
       },
-      "deployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754"
+      "deployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de"
     },
     {
       "url": "https://baipiaoji.com/api/reach?days=28",
@@ -145,7 +153,7 @@
         "includesCurrentPartialDay": true
       },
       "missingOrDelay": "New event support began at this release; this response does not establish historical coverage, GA4 receipt or real tasks.",
-      "note": "Last direct API observation retained with original timestamps. This round reused the Nov2 original-schedule snapshot; direct reach requests: 0."
+      "note": "Last direct API observation retained with original timestamps. This round reused the Nov3 original-schedule snapshot; direct reach requests: 0."
     },
     {
       "source": "Connected Windsor / BPJ GA4 /manju paths",
@@ -160,8 +168,8 @@
       },
       "status": "viewer_events_returned_no_tool_page_or_tool_action_rows",
       "missingOrDelay": "Two completed 7-day windows analyzed separately. No video-fit or manju_video_* rows returned; no zero-fill or inference of product failure. Underlying processing/generation time not supplied. First week begins partway through v2 launch day.",
-      "lastReusedAt": "2026-11-03T02:55:20.885140Z",
-      "reuseMeaning": "Last valid Oct29 source report retained; does not establish current-week data. The due Nov3 review records the new connector block separately.",
+      "lastReusedAt": "2026-11-04T02:54:32Z",
+      "reuseMeaning": "Last valid Oct29 source report retained unchanged; current-week metrics remain unknown. Nov3 provider-wide read pause retained with its original observation timestamp; no Windsor retry on Nov4.",
       "currentWindowAttempt": {
         "observedAt": "2026-11-03T02:53:04Z",
         "requestStartedAt": null,
@@ -190,8 +198,8 @@
       "status": "no_rows_returned",
       "missingOrDelay": "No source/fetch timestamps or rows returned. Clicks/impressions remain unknown; possible lag/low-volume omission not diagnosed. Observation timestamp is not a source generation time.",
       "observedAt": "2026-10-29T02:27:00Z",
-      "lastReusedAt": "2026-11-03T02:55:20.885140Z",
-      "reuseMeaning": "Last valid Oct29 source report retained; does not establish current-week data. The due Nov3 review records the new connector block separately.",
+      "lastReusedAt": "2026-11-04T02:54:32Z",
+      "reuseMeaning": "Last valid Oct29 source report retained unchanged; current-week metrics remain unknown. Nov3 provider-wide read pause retained with its original observation timestamp; no Windsor retry on Nov4.",
       "currentWindowAttempt": {
         "observedAt": "2026-11-03T02:53:04Z",
         "requestStartedAt": null,
@@ -234,27 +242,28 @@
       "id": "bpj-manju-source-identity-refresh",
       "priority": "P0",
       "scope": "existing_original_daily_catalogue_refresh",
-      "status": "reopened_source_conflict_diagnostic_offline_verified_original_receipt_pending",
-      "evidence": "review-and-sync-2026-11-03.md",
-      "failureRun": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
-      "failedAt": "2026-11-02T06:46:35.5949684Z",
+      "status": "identity_contract_locally_verified_release_and_real_source_pending",
+      "evidence": "identity-recovery-2026-11-04.md",
+      "failureRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "failedAt": "2026-11-03T07:13:55.2015997Z",
       "lastSuccessfulSourceAt": "2026-11-01T06:47:56.186123+00:00",
-      "nextAction": "Retain failed source and last valid Nov1 catalogue. Add only bounded conflict diagnosis for the next original schedule; do not remove identity guard, merge different official IDs, reconstruct unknown source titles or recrawl. On Nov4 inspect the next actual original artifact; recurrence is not guaranteed and source recovery requires a successful real refresh.",
-      "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21",
-      "pullRequest": 241,
-      "deployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
-      "verifiedAt": "2026-11-03T02:55:20.885140Z",
-      "persistedByCommit": "a691b5a3910cd49357ee8c4bd142fe3903d1bdf5",
+      "nextAction": "Perform one current-main-guarded readonly push release, inspect actual live and IndexNow results; then verify source recovery only from the next original schedule. No recrawl. Weekly review Nov10 unchanged.",
+      "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074",
+      "pullRequest": 243,
+      "deployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "verifiedAt": "2026-11-04T02:54:32Z",
+      "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
       "latestSourceVerification": {
-        "run": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
+        "run": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
         "sourceSteps": "failure",
         "workflowConclusion": "failure",
-        "laterRelease": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-        "meaning": "Latest push release succeeded while skipping source refresh. This does not resolve the Nov2 collection failure."
+        "builtSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+        "deployedAt": "2026-11-03T07:16:39.0806073Z",
+        "meaning": "Bounded diagnostic is now present in actual failure log and persisted built status file. Existing schedule deployed retained Nov1 catalogue, then failed final manju gate. Source recovery remains unverified."
       },
       "actualSourceRecoveryVerified": false,
-      "nextCheckDate": "2026-11-04",
+      "nextCheckDate": "2026-11-05",
       "historicalRecovery": {
         "pullRequest": 195,
         "implementationCommit": "32c64c12bf6c33dd1156a7b4993fde2ea9040804",
@@ -264,14 +273,50 @@
       },
       "diagnostic": {
         "implementationPath": "sites/baipiaoji/scripts/manju-sync.mjs",
-        "status": "implemented_offline_verified_actual_receipt_pending",
-        "actualReceiptVerified": false,
+        "status": "verified_closed_actual_original_receipt_persisted",
+        "actualReceiptVerified": true,
         "knownIncomingOfficialId": "hg-7683455900727659545",
-        "missingEvidence": "Rejected source payload, incoming title and conflicting existing/batch identity were not retained. No exact source reproduction claimed.",
+        "missingEvidence": "Original rejected payload and incoming title were not persisted; fixed actual identities/cohort/date are known. Synthetic fixtures are not full source-payload replay.",
         "scope": "Fixed validated identity/board/date fields only, no raw title, media, error object, new query or schedule.",
         "validation": "18 offline cases passed; actual producer conflict to failure-status helper, private-field exclusion and original guard preserved",
         "pullRequest": 241,
-        "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
+        "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21",
+        "verifiedAt": "2026-11-04T02:54:32Z",
+        "actualReceiptAt": "2026-11-03T07:13:55.2015997Z",
+        "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+        "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+        "knownConflictingCatalogId": "hg-7693111859401985049",
+        "cohortKind": "ai-drama",
+        "sourceDate": "2026-11-03"
+      },
+      "currentRepair": {
+        "status": "implementation_under_validation",
+        "evidence": "identity-recovery-2026-11-04.md",
+        "sourceMainCommit": "6edd0002d4c2cbe592b095466230fa14a3eaae8b",
+        "scope": "Strict distinct official IDs may share a title while remaining separate official source records; distinct IDs do not establish distinct works or IP and may reflect republication. Exact-ID consumers avoid title-based identity confusion; ambiguous nonofficial or mixed-identity cases stay rejected. No retained source-data edit, recrawl or new cron.",
+        "syntheticFixtureBoundary": "Synthetic inputs built from existing cached catalogue, not actual rejected Nov3 payload replay.",
+        "localTests": "pending_final_validation",
+        "fullBuild": "pending",
+        "independentCodeReview": "pending_final_review",
+        "deployment": "pending_authorized_gated_release",
+        "implementationCommit": null,
+        "pullRequest": null,
+        "actualSourceRecoveryVerified": false
+      },
+      "localValidation": {
+        "status": "passed",
+        "workflowStageGroups": 26,
+        "nodeLocal": "24.19.0",
+        "nodeCI": "22 (actual run pending)",
+        "coreIdentityCases": 23,
+        "producerCases": 5,
+        "consumerLinkCases": 7,
+        "build": "passed",
+        "canonicalAndDist": "passed",
+        "browser": "passed",
+        "ga4CoverageAndFinalRouting": "passed",
+        "meaning": "Local and fixture acceptance, not actual source recovery, backend GA4 receipt, real use or publication.",
+        "environmentNotes": "Localhost/Chromium IPC required scoped sandbox permission. Quote test initially resolved a different ambient Playwright; reused locked 1.58.2 and resumed at failed command. Prior passed browser commands retained; no gate skipped."
       }
     },
     {
@@ -293,18 +338,18 @@
       "id": "bpj-release-readiness",
       "priority": "P0",
       "scope": "free_video_release_dependency_only",
-      "status": "verified_free_release_and_in_release_readiness_passed_payment_untested",
-      "evidence": "review-and-sync-2026-11-03.md",
-      "latestDeployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-      "nextAction": "Latest existing release and its in-release readiness/protected-endpoint gate passed. Separate membership job skipped, actual payment untested. Do not create accounts, payments or repeat release for this video iteration.",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-      "verifiedAt": "2026-11-03T02:55:20.885140Z",
+      "status": "latest_actual_deployment_with_in_release_readiness_passed_overall_source_gate_failed",
+      "evidence": "identity-recovery-2026-11-04.md",
+      "latestDeployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "nextAction": "Existing Nov3 schedule deployed and its in-release readiness/protected-endpoint gate passed, but workflow failed on manju source refresh. Separate membership job skipped; actual payment untested. Preserve earlier whole-success receipt and do not infer readiness failure from unrelated source failure.",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "verifiedAt": "2026-11-04T02:54:32Z",
       "isolationCommit": "7672d592c33618fc42f8d7e8b00467da1a59e8ba",
       "paymentReadiness": {
         "status": "latest_existing_release_readiness_passed_actual_payment_unverified",
-        "job": "https://github.com/f-tiger/agi-site/actions/runs/41552530896/job/125643395717",
-        "sourceObservedAt": "2026-11-03T00:33:58.5879777Z",
-        "meaning": "Non-read-only existing release readiness/protected gate passed; independent membership job skipped. No actual payment or paid grant created."
+        "job": "https://github.com/f-tiger/agi-site/actions/runs/41594470993/job/125778482307",
+        "sourceObservedAt": "2026-11-03T07:17:55.8811772Z",
+        "meaning": "Existing in-release readiness/protected gate passed; independent membership job skipped. Overall workflow failed on source refresh, not this gate. No actual payment or paid grant created."
       },
       "historicalBlockedRelease": {
         "meaning": "Historical Oct29 03:02 blocked release and its preceding successful observation; not the latest recovered free-product release.",
@@ -343,21 +388,21 @@
       "id": "video-measurement-semantics",
       "priority": "P1",
       "status": "persisted_exposure_receipt_verified_real_task_unverified",
-      "evidence": "review-and-sync-2026-11-03.md",
+      "evidence": "identity-recovery-2026-11-04.md",
       "nextAction": "Continue unchanged creator v2 measurement. Current-week GA4/GSC unavailable due provider-wide read pause; cached rolling D1 is not the weekly experiment window. No genuine tasks inferred from frontend or count receipts.",
       "implementationCommit": "7f78e3866aa605eb1eea7fbfeee0ca3353d9542d",
       "pullRequest": 172,
       "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/38761729752",
-      "verifiedAt": "2026-11-03T02:55:20.885140Z",
-      "latestDeployedSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+      "verifiedAt": "2026-11-04T02:54:32Z",
+      "latestDeployedSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
       "acceptance": {
         "browserReleaseGate": "verified_closed",
         "publicSourceContract": "verified",
         "backendToolActions": "partial_persisted_tool_exposure_receipt_only",
         "genuineUsefulTasks": "unverified"
       },
-      "latestAcceptanceRun": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-      "acceptanceScope": "Nov3 video browser and read-only public SEO/static gates passed in existing release; GA4 tags/assets are not backend task receipt."
+      "latestAcceptanceRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "acceptanceScope": "Original Nov3 read-only live SEO/static and GA4 route checks passed; homepage-consent/Manju-search browser step skipped. Preserve earlier browser acceptance separately. GA4 tags/assets are not backend task receipt."
     },
     {
       "id": "fixed-channel-attribution",
@@ -411,17 +456,17 @@
   "currentBlockers": [
     {
       "id": "bpj-manju-source-identity-refresh",
-      "status": "source_conflict_unresolved_diagnostic_offline_verified",
-      "description": "Nov2 source failed official-title identity guard; rejected payload missing. Latest Nov3 release retains Nov1 catalogue. Bounded diagnostic implemented and offline verified; actual diagnostic/source recovery awaits the next original run. No admission weakening.",
-      "evidence": "review-and-sync-2026-11-03.md",
-      "nextCheckDate": "2026-11-04",
-      "lastReviewedAt": "2026-11-03T02:55:20.885140Z"
+      "status": "identity_contract_locally_verified_release_and_real_source_pending",
+      "description": "Actual Nov3 diagnostic received. Exact official identity repair and local gates passed; deployment pending and actual source refresh still unverified. Last valid Nov1 source retained.",
+      "evidence": "identity-recovery-2026-11-04.md",
+      "nextCheckDate": "2026-11-05",
+      "lastReviewedAt": "2026-11-04T02:54:32Z"
     },
     {
       "id": "tool-denominator",
       "status": "exposure_receipt_present_real_task_evidence_insufficient",
-      "description": "Nov2 cached creator source has exposure but no recorded substantive edits/report states; genuine tasks/help/reuse remain unverified. Viewer full UTC Nov1 window is now present with no returned fixed-action rows, not proof of zero people. Current-week GA4/GSC unavailable; old report cannot fill this week.",
-      "lastReviewedAt": "2026-11-03T02:55:20.885140Z"
+      "description": "Nov3 cached creator source has exposure receipts but no recorded substantive edits/report states; genuine tasks/help/reuse remain unverified. Viewer complete window [Nov1,Nov3) UTC is present with no returned fixed-action rows, not proof of zero people. Current-week GA4/GSC unknown; Nov3 provider pause retained without retry.",
+      "lastReviewedAt": "2026-11-04T02:54:32Z"
     },
     {
       "id": "external-distribution",
@@ -445,61 +490,83 @@
       "description": "Scoped BPJ GA4 request returned a connector-wide account-plan limit pause; no data returned. Corresponding GSC request not repeated after global block. Keep current-week metrics unknown and old valid timestamps; no paid upgrade/account disconnection/identity change.",
       "lastObservedAt": "2026-11-03T02:53:04Z",
       "nextCheckDate": "2026-11-10",
-      "unblockCondition": "Existing provider read access restored through authorized account administration; do not retry within this iteration."
+      "unblockCondition": "Existing provider read access restored through authorized account administration; no retry on Nov4. Preserve last actual pause observation and valid source timestamps.",
+      "lastReusedAt": "2026-11-04T02:54:32Z"
     }
   ],
   "lastAction": {
     "problemId": "bpj-manju-source-identity-refresh",
-    "status": "weekly_review_completed_diagnostic_offline_verified_source_recovery_unverified",
-    "verification": "review-and-sync-2026-11-03.md",
-    "sourceMainCommit": "bca93d372e0abd9d1520810e58896903a87b1435",
-    "completedAt": "2026-11-03T02:55:20.885140Z",
-    "scope": "Bounded source-conflict diagnosis in existing scheduled refresh; retain rejection and last good data. Close prior release-test issue and complete due fixed-week review. No product page, registration, other-site or marketing expansion.",
-    "implementationPath": "sites/baipiaoji/scripts/manju-sync.mjs",
+    "status": "identity_contract_locally_verified_release_pending",
+    "verification": "identity-recovery-2026-11-04.md",
+    "sourceMainCommit": "6edd0002d4c2cbe592b095466230fa14a3eaae8b",
+    "observedAt": "2026-11-04T02:54:32Z",
+    "completedAt": null,
+    "scope": "Keep strict distinct official IDs with the same title as separate official source records, without claiming distinct works or IP, and require exact-ID consumers; retain ambiguous nonofficial rejection. Close only actual diagnostic receipt subproblem; source recovery remains open.",
     "actualSourceRecoveryVerified": false,
-    "actualDiagnosticReceiptVerified": false,
+    "actualDiagnosticReceiptVerified": true,
     "verifiedExistingRelease": {
-      "run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-      "builtSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-      "checkedMain": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-      "finalGuardAt": "2026-11-03T00:31:41.0690836Z",
-      "deployedAt": "2026-11-03T00:31:59.4008126Z",
-      "workflowConclusion": "success",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+      "builtSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "checkedMain": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "finalGuardAt": "2026-11-03T07:16:13.9466638Z",
+      "deployedAt": "2026-11-03T07:16:39.0806073Z",
+      "workflowConclusion": "failure",
+      "failureMeaning": "Final chain gate rejected manju source outcome=failure after deployment; retained Nov1 data only.",
       "sourceBoardDate": "2026-11-01",
       "recordsIncludingSeasons": 1275,
-      "videoFitLiveAt": "2026-11-03T00:32:49.1857759Z",
+      "videoFitLiveAt": "2026-11-03T07:17:17.2795862Z",
+      "viewerLiveAt": "2026-11-03T07:17:16.7441735Z",
       "ga4BackendReceipt": "not-tested",
+      "ga4RouteCheckAt": "2026-11-03T07:16:43.4343107Z",
       "indexNow": {
-        "status": "received_http200",
-        "firstBatchAt": "2026-11-03T00:33:53.7596367Z",
-        "lastBatchAt": "2026-11-03T00:33:57.4185635Z",
-        "total": 305,
-        "meaning": "Existing release sitewide changed URLs; not this task submission, indexing, citations or visits."
+        "status": "received_http200_existing_scheduled_run",
+        "firstBatchAt": "2026-11-03T07:18:18.9436909Z",
+        "lastBatchAt": "2026-11-03T07:18:23.0140588Z",
+        "total": 316,
+        "meaning": "Existing schedule canonical URLs received before final gate failure; not this task submission, indexing, citations or visits."
       },
       "membershipReadiness": "in_release_gate_passed_independent_job_skipped_payment_untested"
     },
     "thisIteration": {
-      "deploymentRequired": false,
-      "deploymentReason": "Only original-schedule diagnostic code/tests and task records; no page/build/runtime input changed. Next original schedule executes current main.",
+      "deploymentRequired": true,
+      "deploymentReason": "Consumer/build identity binding changed; all local workflow gate groups passed. One marked push release retains cache and skips source refresh and production lifecycle/event writes.",
+      "deploymentStatus": "authorized_pending_current_main_gated_release",
       "deploymentCount": 0,
       "indexNowSubmissions": 0,
       "dispatchCount": 0,
       "sourceCrawls": 0,
       "publicReachRequests": 0,
-      "newAnalyticsRequests": 1,
-      "newAnalyticsRequestsMeaning": "One narrowly scoped GA4 read returned provider error and no data; GSC not attempted after explicit connector-wide pause. Metadata discovery excluded.",
+      "newAnalyticsRequests": 0,
       "externalMessages": 0
     },
     "review": {
       "optimizationRounds": 3,
       "independentAdversarialRounds": 2,
-      "firstRound": "Independent checks separated old test recovery, new source conflict, complete-window presence vs use, and due weekly review vs missing analytics. Bounded diagnostics accepted only without weakening source guards.",
-      "secondRound": "Independent code and six-file document review passed; reviewer separately ran all 18 offline cases. Corrected attempted Windsor contains-filter description, retained actual original request and no-data result. Privacy, source/measurement boundaries, bounded history and Nov10 review verified.",
-      "selfCheck": "Implementation author ran 18 offline cases, syntax and diff checks. Independent reviewer separately executed all 18 cases and inspected code. Root checks actual source metadata, six-file scope, JSON/relative links, privacy, experiment/history and remote delivery; no full site build/browser/deploy for schedule-only diagnostics."
+      "firstRound": "Independent source/identity and consumer-path challenge; exact IDs across the whole consumer path required.",
+      "secondRound": "Independent final code/test-contract and pre-release document review passed. Retained/current nonofficial ambiguity and future same-title fixture assumptions corrected.",
+      "independentExecution": "Reviewer ran five producer cases and selected identity/renderer regressions; separately compared all current 1275 cached metric associations. Final test-only followup inspected independently.",
+      "implementationSelfCheck": "Author full 23 automation cases, 5 producer cases, 7 consumer-link cases, final manju local and diff checks passed.",
+      "rootSelfCheck": "Executed all 26 existing local workflow gate groups, including runtime, build, full browser, final GA4/engagement/private routing; inspected mobile ranking screenshot and unchanged source-cache bytes. Actual release pending."
     },
-    "nextAction": "Read next actual original source receipt on Nov4 without recrawl; do not assume conflict recurs. Keep existing tutorial/channel acceptance as distribution blocker. Next creator window Nov3-Nov9, review Nov10 even if data remain insufficient.",
-    "recordedInPullRequest": 241,
-    "implementationCommit": "6a70a256231353b769452f0cae4ccc45afc05e21"
+    "nextAction": "Perform one current-main-guarded readonly push release, inspect actual live and IndexNow results; then verify source recovery only from the next original schedule. No recrawl. Weekly review Nov10 unchanged.",
+    "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074",
+    "recordedInPullRequest": 243,
+    "localValidationCompletedAt": "2026-11-04T03:13:44.956784+00:00",
+    "localValidation": {
+      "status": "passed",
+      "workflowStageGroups": 26,
+      "nodeLocal": "24.19.0",
+      "nodeCI": "22 (actual run pending)",
+      "coreIdentityCases": 23,
+      "producerCases": 5,
+      "consumerLinkCases": 7,
+      "build": "passed",
+      "canonicalAndDist": "passed",
+      "browser": "passed",
+      "ga4CoverageAndFinalRouting": "passed",
+      "meaning": "Local and fixture acceptance, not actual source recovery, backend GA4 receipt, real use or publication.",
+      "environmentNotes": "Localhost/Chromium IPC required scoped sandbox permission. Quote test initially resolved a different ambient Playwright; reused locked 1.58.2 and resumed at failed command. Prior passed browser commands retained; no gate skipped."
+    }
   },
   "recentActions": [
     {
@@ -835,16 +902,16 @@
     }
   },
   "operationalChecks": {
-    "observedAt": "2026-11-03T02:55:20.885140Z",
-    "run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
-    "sourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
-    "freeProductRelease": "success_existing_release_verified",
-    "workflowConclusion": "success",
+    "observedAt": "2026-11-04T02:54:32Z",
+    "run": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
+    "sourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+    "freeProductRelease": "deployed_existing_run_overall_failed_source_refresh_gate",
+    "workflowConclusion": "failure",
     "membershipPaymentReadiness": "in_release_gate_passed_independent_job_skipped_payment_untested",
-    "sourceRecovery": "nov2_refresh_failed_nov1_catalogue_retained",
+    "sourceRecovery": "nov3_refresh_failed_nov1_catalogue_retained_diagnostic_verified",
     "sourceObservedAt": "2026-11-01T06:47:56.186123+00:00",
-    "nextOriginalScheduleReviewDate": "2026-11-04",
-    "lastPublicLiveSuccessAt": "2026-11-03T00:32:49.1857759Z",
+    "nextOriginalScheduleReviewDate": "2026-11-05",
+    "lastPublicLiveSuccessAt": "2026-11-03T07:17:17.2795862Z",
     "directPublicCheck": {
       "lastAttemptRecordedAt": "2026-10-29T15:38:42.892473+00:00",
       "status": "http403_current_live_access_unknown",
@@ -855,8 +922,8 @@
       "problemId": "viewer-depth-daily-export-handoff",
       "status": "verified_closed_projection_and_complete_window_snapshot",
       "scope": "Fixed viewer projection persistence verified. Full-day behavior and independent creator experiment remain unverified; no author acknowledgement or production action claimed.",
-      "nextAction": "Field persistence and first complete UTC window verified in the actual Nov2 export. No fixed viewer-action rows returned; no inference of zero people, playback or verified reuse. Reuse next original artifact without rerun.",
-      "nextCheckDate": "2026-11-04",
+      "nextAction": "Reuse next original artifact without rerun. Fixed viewer projection and complete-window persistence remain closed; empty rows do not prove zero people, playback or reuse.",
+      "nextCheckDate": "2026-11-05",
       "firstCompleteUtcDay": "2026-11-01",
       "separateExperimentReviewDate": "2026-11-15",
       "implementationPath": "sites/baipiaoji/scripts/reach-export.mjs",
@@ -870,36 +937,89 @@
         "exporterSource": "sites/baipiaoji/scripts/reach-export.mjs:113",
         "evidence": "API emits depth_signals; summarise() retains manju_signals only and omits depth_signals. manjuSnapshot() also omits source search_definition. The Oct30 cache predates the feature and cannot diagnose its usage."
       },
-      "evidence": "Actual Nov2 source includes complete_window [Nov1,Nov2) UTC and rows=[]; fixed-field persistence and full-window shape verified, actual viewer use unverified.",
+      "evidence": "Actual Nov3 source includes complete_window [Nov1,Nov3) UTC and sparse rows=[]; projection persistence verified, actual viewer use unverified.",
       "pullRequest": 229,
       "implementationCommit": "30135565a11f37ada37f01fa28e47d3efdff32a8",
       "completeDayEvidenceVerified": true,
-      "sourceGeneratedAt": "2026-11-02T06:43:46.833Z",
-      "persistedByCommit": "a691b5a3910cd49357ee8c4bd142fe3903d1bdf5",
-      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
+      "sourceGeneratedAt": "2026-11-03T07:12:27.777Z",
+      "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
       "completeWindowSnapshotVerified": true,
       "actualViewerUseVerified": false
     },
-    "meaning": "Existing successful publication, failed original source refresh, new complete-window export and this diagnostic implementation are separate. No new release, production probe or IndexNow this iteration.",
+    "meaning": "Latest actual deployment, overall failed original source refresh, preserved last whole-success release and current unvalidated patch are separate. No new production probes, source crawl, release or IndexNow yet in this iteration.",
     "latestOriginalSchedule": {
-      "run": "https://github.com/f-tiger/agi-site/actions/runs/41401468549",
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/41594470993",
       "status": "completed",
       "conclusion": "failure",
       "sourceRefresh": "failure",
       "reachExport": "success",
       "dataPersistence": "success",
-      "persistedByCommit": "a691b5a3910cd49357ee8c4bd142fe3903d1bdf5",
-      "failedStep": "Refresh official manju rankings; later historical search-count shape assertion",
-      "failureMeaning": "Official title identity conflict; raw rejected payload missing. Later search assertion passed in the subsequent release. Old maintenance-mode test passed.",
-      "buildAndDeploy": "deployed_before_postdeploy_failure",
+      "persistedByCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "failedStep": "Official manju refresh exited 1; final chain gate reported manju outcome=failure",
+      "failureMeaning": "Actual bounded distinct-official-ID title-conflict diagnostic persisted. Original payload missing. Old mode-contract and later search-conversion checks passed.",
+      "buildAndDeploy": "deployed_before_final_chain_gate_failure",
+      "actualBuiltCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "checkedMainCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
+      "deployedAt": "2026-11-03T07:16:39.0806073Z",
       "repairProblemId": "bpj-manju-source-identity-refresh"
     },
     "review": {
       "optimizationRounds": 3,
       "independentAdversarialRoundsCompleted": 2,
-      "finalIndependentReview": "pass_final_code_and_document_review",
-      "selfCheck": "Author tests and independent test execution separately recorded; root source/document checks. Actual scheduled diagnosis remains unverified."
+      "finalIndependentReview": "passed_code_test_contract_and_prerelease_documents",
+      "selfCheck": "Executed all 26 existing local workflow gate groups, including runtime, build, full browser, final GA4/engagement/private routing; inspected mobile ranking screenshot and unchanged source-cache bytes. Actual release pending."
     },
-    "newNov3Schedule": "not_observed_at_review_not_diagnosed_as_failure"
+    "lastWholeSuccessfulRelease": {
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/41552530896",
+      "builtSourceCommit": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+      "checkedMain": "60d40930bf83ea62a70d9a5c6f8464f5f6471754",
+      "finalGuardAt": "2026-11-03T00:31:41.0690836Z",
+      "deployedAt": "2026-11-03T00:31:59.4008126Z",
+      "workflowConclusion": "success",
+      "sourceBoardDate": "2026-11-01",
+      "recordsIncludingSeasons": 1275,
+      "videoFitLiveAt": "2026-11-03T00:32:49.1857759Z",
+      "ga4BackendReceipt": "not-tested",
+      "indexNow": {
+        "status": "received_http200",
+        "firstBatchAt": "2026-11-03T00:33:53.7596367Z",
+        "lastBatchAt": "2026-11-03T00:33:57.4185635Z",
+        "total": 305,
+        "meaning": "Existing release sitewide changed URLs; not this task submission, indexing, citations or visits."
+      },
+      "membershipReadiness": "in_release_gate_passed_independent_job_skipped_payment_untested"
+    },
+    "cancelledPush": {
+      "run": "https://github.com/f-tiger/agi-site/actions/runs/41594606474",
+      "conclusion": "cancelled",
+      "jobsReturned": 0,
+      "sourceCommit": "13576d7e6f77d3f4dc077502143de9fd3130dd8e",
+      "cancellationCause": "unknown_no_reason_in_available_metadata",
+      "meaning": "Trigger actor is not cancellation actor. Source is parent of actual built daily commit; inclusion does not explain cancellation. No cancellation or duplicate dispatch by this task."
+    },
+    "currentIterationRelease": {
+      "status": "pending",
+      "localValidation": {
+        "status": "passed",
+        "workflowStageGroups": 26,
+        "nodeLocal": "24.19.0",
+        "nodeCI": "22 (actual run pending)",
+        "coreIdentityCases": 23,
+        "producerCases": 5,
+        "consumerLinkCases": 7,
+        "build": "passed",
+        "canonicalAndDist": "passed",
+        "browser": "passed",
+        "ga4CoverageAndFinalRouting": "passed",
+        "meaning": "Local and fixture acceptance, not actual source recovery, backend GA4 receipt, real use or publication.",
+        "environmentNotes": "Localhost/Chromium IPC required scoped sandbox permission. Quote test initially resolved a different ambient Playwright; reused locked 1.58.2 and resumed at failed command. Prior passed browser commands retained; no gate skipped."
+      },
+      "dispatchCount": 0,
+      "sourceCrawls": 0,
+      "publicReachRequests": 0,
+      "pullRequest": 243,
+      "implementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074"
+    }
   }
 }
