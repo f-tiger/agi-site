@@ -65,6 +65,7 @@ CAT_OF = {
     "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
+    "meacodry-arete-one-test": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
     "fenster-beschlagen-aussen": "luftqualitaet",
@@ -959,7 +960,9 @@ def device_of(slug):
         return "storage"
     if "ventilator" in s:
         return "fan"
-    if ("luftentfeuchter" in s or "dehumidifier" in s
+    # MeacoDry model slugs name a dehumidifier without a generic device token.
+    # Keep cooling shelves and BTU tools off these product guides.
+    if (s.startswith("meacodry-") or "luftentfeuchter" in s or "dehumidifier" in s
             or "waesche-trocknen" in s or s.startswith("keller-")
             or "beschlagen" in s or "taupunkt" in s
             # The RV winter-damp page is a humidity page whose slug carries none of
@@ -2151,7 +2154,9 @@ def inject_toppick(html, slug, en=False):
         "<!--EB_MODELS-->" in html or any(n in html for n in CANON_NAMES))
     if not eligible:
         return html
-    block = toppick_block(device_of(slug), en, slug)
+    # This curated review has authored alternatives instead of an EB_MODELS grid.
+    more = {"more_href": "#alternativen"} if slug == "meacodry-arete-one-test" else {}
+    block = toppick_block(device_of(slug), en, slug, **more)
     m = re.search(r'<article[^>]*>', html)
     if m:
         return html[:m.end()] + block + html[m.end():]
@@ -3420,7 +3425,7 @@ def us_term(slug):
     # section cell, monetised at ~0%), so the bridge now runs there as well and
     # must not map a Luftentfeuchter page to air conditioners.
     if any(k in s for k in ("dehumidif", "damp", "musty", "mold", "mould", "drying-clothes", "humid",
-                            "luftentfeuchter", "waesche-trocknen", "schimmel", "taupunkt", "beschlagen", "keller")):
+                            "luftentfeuchter", "meacodry", "waesche-trocknen", "schimmel", "taupunkt", "beschlagen", "keller")):
         return "dehumidifier", "dehumidifiers"
     if "fan" in s or "ventilator" in s:
         return "tower fan", "tower fans"
