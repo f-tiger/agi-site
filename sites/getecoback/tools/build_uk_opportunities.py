@@ -10,6 +10,25 @@ COMPARE='en/guide/12l-vs-20l-dehumidifier-uk.html'
 def meaco_care():
  return '''<section id="meaco-care" aria-labelledby="meaco-care-heading"><p class="winter-kicker">Keep the appliance you have · UK filter care</p><h2 id="meaco-care-heading">Does this Meaco filter fit, and do you need it?</h2><p>Choose from the labels on your appliance. No account, measurements or typing needed. This check covers the official Arete One/Two 10L/12L H13 filter listing only; other sizes remain unverified.</p><form hidden><label>Model generation<select name="generation"><option value="unknown">Not checked yet</option><option value="one">Arete One</option><option value="two">Arete Two</option><option value="other">Another family / not sure</option></select></label><label>Capacity on the label<select name="size"><option value="unknown">Not checked yet</option><option value="10">10L</option><option value="12">12L</option><option value="20">20L</option><option value="25">25L</option><option value="other">Another size / not sure</option></select></label><label>Your purpose<select name="purpose"><option value="unknown">Help me decide</option><option value="dry">Dehumidifying only</option><option value="air">Additional air filtration</option></select></label><button type="submit">Show care guidance</button></form><noscript><p>The model and maintenance guidance below works without JavaScript. Interactive selection and copying require JavaScript.</p></noscript><div data-care-result hidden tabindex="-1" aria-live="polite"><h3 data-care-title></h3><p data-care-text></p><p data-care-cost-link hidden><a href="#meaco-care-cost">See the dated cost example and its limits</a>.</p><button type="button" data-care-copy disabled>Copy this guidance</button><p data-care-status role="status"></p><label data-care-copy-box hidden>Guidance to copy<textarea data-care-fallback readonly aria-label="Guidance to copy"></textarea></label></div><h3>Model match and a no-purchase option</h3><p>The <a href="https://www.meaco.com/products/meacodryarete10l-12lhepafilter">official Meaco 10L/12L H13 filter page</a>, read on <time datetime="2026-10-17">17 October 2026</time>, lists Arete One 10L, Arete One 12L, Arete Two 10L and Arete Two 12L. This is not verification for 20L, 25L, Platinum or a similar-looking filter.</p><p>For this verified family, Meaco says the additional HEPA filter does not have to be fitted all the time. For dehumidifying alone it is optional. Keep and maintain the standard dust filter as directed in your model manual. The manufacturer says adding HEPA slightly reduces water extraction efficiency and increases noise. This page does not assess medical needs or promise health benefits.</p><p>Do not wash, cut or improvise a HEPA filter. The standard dust filter and the replaceable HEPA filter are different parts; follow the exact model manual for cleaning and replacement.</p><h3 id="meaco-care-cost">Annual consumption is not the same as buying whole packs</h3><p>The official listing showed <strong>£29.99 for three filters</strong> when read on 17 October 2026. It showed unavailable stock at that reading; that is a dated observation, not a current stock promise. Check the exact item, current stock, delivery charges and return conditions with the seller before buying. This is an ordinary manufacturer source, not an affiliate buying link.</p><p>The manufacturer gives roughly three months as a replacement reference, depending on conditions. It is not a guaranteed filter lifespan. The example below uses four filters in a year and starts with no filters in hand; any filter included with your appliance is excluded.</p><div class="care-table"><table><caption>Illustration at the dated pack price; not a quote or a replacement schedule</caption><thead><tr><th scope="col">What is counted</th><th scope="col">Example</th></tr></thead><tbody><tr><th scope="row">Annual filters consumed</th><td>4 filters</td></tr><tr><th scope="row">Annual consumption cost</th><td>4 × (£29.99 ÷ 3) = £39.99, rounded</td></tr><tr><th scope="row">Whole packs bought from zero stock</th><td>2 packs × £29.99 = £59.98</td></tr><tr><th scope="row">Filters left after that year</th><td>6 bought − 4 used = 2</td></tr></tbody></table></div><p class="care-note">Unused filters are inventory, not money lost or a cash saving. Delivery, future prices, disposal, electricity and any included filter are excluded. Follow your manual and filter condition instead of treating this example as a personal replacement schedule.</p></section>'''
 def link(path,text):return f'<a href="/{path}">{text}</a>'
+def localize_laundry_copy(html):
+ """Keep this UK route's static examples aligned with its fictional GBP default.
+
+ Run after generic chrome/buyer injection; other markets remain unchanged.
+ These are new illustrative GBP amounts, not converted prices or live tariffs.
+ """
+ replacements={
+  'placeholder="Ratgeber durchsuchen …"':'placeholder="Search guides …"',
+  'aria-label="Suche"':'aria-label="Search guides"',
+  '€0.30/kWh':'GBP 0.35/kWh (35p/kWh)',
+  'The €0.30 used above':'The fictional GBP 0.35/kWh used above',
+  '<td>6.0 ct</td><td>€0.36</td><td>€4.32</td>':'<td>7.0p</td><td>GBP 0.42</td><td>GBP 5.04</td>',
+  '<td>9.0 ct</td><td>€0.54</td><td>€6.48</td>':'<td>10.5p</td><td>GBP 0.63</td><td>GBP 7.56</td>',
+  '<td>15.0 ct</td><td>€0.90</td><td>€10.80</td>':'<td>17.5p</td><td>GBP 1.05</td><td>GBP 12.60</td>',
+  'EUR 0.70 at EUR 0.35/kWh':'GBP 0.70 at GBP 0.35/kWh',
+  '€0.35/kWh = €0.45':'GBP 0.35/kWh = GBP 0.45 (rounded)',
+ }
+ for old,new in replacements.items():html=html.replace(old,new)
+ return html
 def main():
  cap=json.loads((ROOT/'data/ofgem-cap.json').read_text());rate=cap['electricity_p_per_kwh']
  routes=[('dehumidifier-drying-clothes-cost','Compare the cost of drying the same laundry load'),('heated-airer-vs-dehumidifier','Heated airer or dehumidifier: where does the moisture go?'),('desiccant-vs-compressor-dehumidifier','Cold room: desiccant or compressor?'),('rising-damp-penetrating-damp-or-condensation','Damp patches: investigate the cause before buying'),('keep-warm-working-from-home','Personal warmth versus heating a room'),('draughty-windows-rented-home','Draughty rental windows: reversible checks')]
@@ -26,6 +45,7 @@ def main():
  for path in ['index.html','en/index.html']+['en/guide/'+s+'.html' for s,_ in routes]+['en/guide/desiccant-vs-compressor-dehumidifier.html']:
   file=SITE/path;s=file.read_text();s=re.sub(r'<!--EB_UK_PATH-->.*?<!--/EB_UK_PATH-->','',s,flags=re.S)
   if path=='en/guide/dehumidifier-drying-clothes-cost.html':
+   s=localize_laundry_copy(s)
    # These generic promotions select a German store independently of the
    # buyer module's explicit market choice. No verified UK affiliate route yet.
    for marker in ['EB_STICKY','EB_PROFILE']:
@@ -36,3 +56,4 @@ def main():
   file.write_text(s[:marker.end()]+block+s[marker.end():])
  print('Built 2 UK decision pages and linked existing tools and homepages.')
 if __name__=='__main__':main()
+
