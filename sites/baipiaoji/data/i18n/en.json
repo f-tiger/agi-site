@@ -3121,13 +3121,13 @@
     "gemini-cli": {
       "name": "Gemini CLI",
       "tagline": "Google's official open-source terminal AI agent — sign in and go",
-      "free": "Signing in with a Google account gets you the free tier: 1,000 model requests a day and up to 60 requests a minute on Flash, no card required.",
+      "free": "Personal Google-account sign-in offers up to 1,000 model requests per user per day. A prompt may use multiple requests; API-key quotas are separate.",
       "how": "Install via npm and sign in with a Google account; API-key auth is also supported (different quota rules apply).",
       "limits": {
-        "quota": "The free tier for Google-account sign-in: 1,000 model requests a day, up to 60 requests a minute on Flash, defaulting to Gemini Flash. The docs are explicit about two things people misread: those 1,000 requests are a blend of Pro and Flash and **do not mean 1,000 Gemini 2.5 Pro requests a day**, and **a single prompt can trigger dozens of model requests** — so \"1,000\" is not 1,000 conversations.",
-        "wall": "Once the allowance is gone you are rate-limited (the flood of \"Free tier limits have been reached\" reports in the official issue tracker is exactly this). Authenticating with an API key puts you on a different quota scheme entirely — the two cannot be converted into each other. Higher ceilings require a paid Gemini Code Assist plan or the metered Gemini API.",
-        "source": "Gemini CLI official repo quota docs (github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md) and the Gemini API rate-limits page (ai.google.dev/gemini-api/docs/rate-limits); verified via search-index quotes",
-        "checked": "2026-08-05",
+        "quota": "Signing in with a personal Google account on the free Code Assist tier allows up to 1,000 model requests per user per day. Requests across model versions/families are aggregated and shared with Code Assist agent mode. One prompt can trigger multiple model requests: this is not 1,000 conversations or 1,000 Pro requests. The CLI determines which models it uses. Current quota docs also describe per-minute and peak-availability limits without a single numeric minute limit here; the old 60/minute figure and default-Flash wording are not current guarantees.",
+        "wall": "At the daily maximum, no further requests to any model can be made through Gemini CLI or agent mode until the quota resets. API-key authentication uses a separate model/tier quota and billing scheme; the Google-sign-in allowance cannot be directly converted to it. Personal Google AI Pro and Ultra offer higher CLI limits. Organization Code Assist licenses and metered Gemini API/Vertex AI access are different purchase routes: check your account and authentication method first. Paid access is not unlimited access.",
+        "source": "Directly reviewed Gemini CLI quota docs (github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md), shared Code Assist agent-mode/CLI quotas (docs.cloud.google.com/gemini/docs/quotas) and official plans (geminicli.com/plans/). API-key quotas are separate (ai.google.dev/gemini-api/docs/rate-limits).",
+        "checked": "2026-11-05",
         "cycle": "daily"
       }
     },
