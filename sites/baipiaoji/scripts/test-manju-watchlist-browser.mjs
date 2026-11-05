@@ -3,7 +3,7 @@ import {watchlistFixture} from './manju-watchlist-fixture.mjs';
 import {onRequest} from '../functions/api/manju-watchlist.js';
 const {chromium}=createRequire(process.env.MANJU_PLAYWRIGHT_PACKAGE||new URL('../../../tools/revenue-studio/package.json',import.meta.url))('playwright');
 const dist=fileURLToPath(new URL('../dist/',import.meta.url)),h=await watchlistFixture(),a=await h.account('browser_a'),b=await h.account('browser_b');
-const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH||'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage']});
+const browser=await chromium.launch({headless:true,executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH||process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage']});
 async function setup(user=null){
  const context=await browser.newContext({viewport:{width:1280,height:900}}),mode={user,calls:0,pause:null,fail:false},errors=[];
  await context.route('**/*',async route=>{

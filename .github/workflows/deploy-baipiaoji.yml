@@ -390,6 +390,7 @@ jobs:
           python3 scripts/test-manju-fetch.py
           node scripts/test-manju-discover.mjs
           node scripts/test-manju.mjs
+          node scripts/test-manju-watchlist.mjs
           node --test scripts/test-depth.mjs
           node --test scripts/test-video-fit-core.mjs
           node scripts/test-video-fit.mjs
@@ -560,6 +561,7 @@ jobs:
           node sites/baipiaoji/scripts/test-ai-video-browser.mjs
           node sites/baipiaoji/scripts/test-manju-consumer-browser.mjs
           node sites/baipiaoji/scripts/test-depth-browser.mjs
+          node sites/baipiaoji/scripts/test-manju-watchlist-browser.mjs
 
       - name: Check existing public account configuration before maintenance
         if: env.BPJ_RECEIPTS_RECOVERY == 'true' || env.OUTCOME_READ_ONLY_RELEASE == 'true'
