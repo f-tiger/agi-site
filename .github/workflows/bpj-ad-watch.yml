@@ -13,7 +13,12 @@ name: bpj ad watch
 
 on:
   schedule:
-    - cron: '7 */2 * * *'
+    # 2026-11-05: observed runs on Nov 3-4 arrived 5-10 hours apart even
+    # though this is a two-hour schedule, leaving the four-hour membership
+    # health receipts stale. GitHub documents that schedules near the start of
+    # an hour can be delayed or dropped under load. Move the unchanged 12/day
+    # trigger away from that window; do not add a cron or relax health expiry.
+    - cron: '37 */2 * * *'
   workflow_dispatch:
     inputs:
       mode:
