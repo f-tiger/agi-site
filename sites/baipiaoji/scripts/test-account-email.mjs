@@ -20,7 +20,7 @@ async function setup(){
  async batch(queries){sql.exec('BEGIN');try{const result=queries.map(q=>q.execute());sql.exec('COMMIT');return result;}catch(error){sql.exec('ROLLBACK');throw error;}}};
  const env={HITS,RESEND_API_KEY:'re_test_only_do_not_send',ACCOUNT_MAIL_FROM:'BPJ <accounts@example.test>'};await ensureAccountEmail(env);
  globalThis.fetch=async(url,options)=>{
-  assert.equal(url,'https://api.resend.com/emails');assert.equal(options.method,'POST');assert.equal(options.redirect,'error');assert.equal(options.headers.Authorization,'Bearer re_test_only_do_not_send');
+  assert.equal(url,'https://api.resend.com/emails');assert.equal(options.method,'POST');assert.equal(new Request(url,options).redirect,'manual');assert.equal(options.headers.Authorization,'Bearer re_test_only_do_not_send');
   const payload=JSON.parse(options.body),match=payload.text.match(/https:\/\/baipiaoji\.com\/(?:en\/)?account#email-action=(verify|reset)&token=([A-Za-z0-9_-]{43})/);assert(match);
   assert.equal(payload.to.length,1);assert(payload.to[0].endsWith('@example.test'));assert.equal(payload.from,env.ACCOUNT_MAIL_FROM);assert.match(payload.text,/事务邮件/);assert.match(payload.text,/transactional account-security/);assert.match(payload.subject,/\//);
   const mail={...payload,action:match[1],token:match[2],url:match[0],key:options.headers['Idempotency-Key']};assert(!mail.key.includes(mail.token));mails.push(mail);
@@ -90,6 +90,18 @@ test('failed resend invalidates old and pending tokens; retry uses a fresh token
 
 test('network errors and malformed provider success fail closed without token leakage',async()=>{
  for(const transport of [()=>{throw Error('provider secret detail');},()=>Response.json({ok:true})]){const h=await setup(),a=await h.account('alice');h.setTransport(transport);const result=await h.call({action:'request_verify',account_id:a.id},{cookie:a.cookie});assert.equal(result.status,503);assert(!result.text.includes(h.mails[0].token));assert(!result.text.includes('secret'));assert.equal(h.sql.prepare('SELECT COUNT(*) n FROM free_account_email_tokens').get().n,0);h.close();}
+});
+
+test('provider redirects are rejected without following or activating a token',async()=>{
+ for(const status of [301,302,303,307,308]){
+  const h=await setup(),a=await h.account('alice');
+  h.setTransport(()=>new Response(null,{status,headers:{Location:'https://other.example/collect'}}));
+  const result=await h.call({action:'request_verify',account_id:a.id},{cookie:a.cookie});
+  assert.equal(result.status,503);assert.equal(result.body.error,'email_delivery_failed');
+  assert.equal(h.mails.length,1,'Never follow a provider redirect');
+  assert.equal(h.sql.prepare('SELECT COUNT(*) n FROM free_account_email_tokens').get().n,0);
+  assert(!result.text.includes(h.mails[0].token));h.close();
+ }
 });
 
 test('overlapping sends leave only the latest token usable',async()=>{

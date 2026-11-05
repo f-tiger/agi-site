@@ -5,7 +5,7 @@
 - New users register with an email, a unique display name and a password (12–128 characters). Display names support Chinese/ASCII letters, digits, `_` and `-`, 3–32 characters. NFKC and case variants collide. Email addresses are normalized for uniqueness and are private account data.
 - Email/password login supports Gmail, Outlook, QQ, 163 and other valid mailbox domains. Merely supplying an address does not verify it.
 - Legacy username accounts retain their IDs, favorites and paid links. Sign in through the legacy form and bind an email after proving the current password.
-- Google sign-in uses GIS, verified server-side RSA signatures, fixed Google JWKS, audience/issuer/time/nonce checks and one-use browser-bound proofs. A new Google user completes the display-name/backup-password form. Subsequent Google sign-ins use the immutable Google subject.
+- Google sign-in uses GIS, verified server-side RSA signatures, fixed Google JWKS, audience/issuer/time/nonce checks and one-use browser-bound proofs. A new Google user completes the display-name/backup-password form. When the display-name field is empty, the browser suggests a random name without using the email or Google profile; it can be edited before submitting. Existing input is preserved, the server still checks uniqueness, and no account is submitted automatically. Subsequent Google sign-ins use the immutable Google subject.
 - An existing matching email never auto-merges accounts. Sign in with the existing password, then explicitly confirm linking. Google only establishes current mailbox authority for Gmail or a hosted domain claim; other addresses remain unverified.
 - Only verified email can receive password-reset mail. Reset revokes sessions and rotates the recovery code. A recovery code remains the backup if email is not available.
 
@@ -76,3 +76,29 @@ Browser regression tests reproduce the duplicate POST before the fix, then check
 concurrent and late duplicates, preserved onboarding, and explicit fresh retries
 in both languages. This establishes a reproducible defect matching the reported
 message; a screenshot alone cannot exclude cookie expiry or browser restrictions.
+
+## Mail runtime and Google onboarding repair — 2026-11-05
+
+Account-email used the same unsupported Workers `redirect: 'error'` option
+previously found in Google public-key fetching. It now uses `manual` and rejects
+all non-success responses. A redirected request cannot forward the provider
+credential or email contents, and no pending verification/reset token is
+activated after a failed send. The native workerd/D1 fixture is part of the
+existing account runtime CI gate; it uses synthetic addresses and blocks all
+external network requests. It is not evidence of production mail delivery.
+
+Google onboarding now supplies an editable, random display-name suggestion only
+when the field is empty. Password strength, recovery-code acknowledgement,
+explicit registration consent, collision checks, existing-account linking and
+fleet return authorization stay intact. This removes a naming decision without
+changing the authentication model. There is no promise of post-registration
+renaming. All account pages remain private/noindex and excluded from analytics,
+sitemaps and IndexNow. Existing public page discovery and measurement remain.
+
+Validation: 20 local SQLite mail scenarios, seven native workerd mail transport
+cases, 17 provider browser groups in English/Chinese, ten account race scenarios
+and 14 Google security suites passed locally. Browser checks cover generated
+suggestions, editable values surviving retry, existing pending Google proof and
+no automatic registration. No production account, order or email was created.
+Production provider availability and actual receipt must still be reported
+separately; a deploy cannot supply missing mail credentials.

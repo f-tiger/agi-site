@@ -55,7 +55,9 @@ export async function sendAccountEmail(env,user,action,lang){
  try{
   const content=mailContent(action,token,lang);
   const response=await fetch(MAIL_ENDPOINT,{
-   method:'POST',redirect:'error',signal:AbortSignal.timeout(10000),
+   // Workers supports manual/follow, not redirect:error. Reject redirects below
+   // so the provider credential and security message never follow another URL.
+   method:'POST',redirect:'manual',signal:AbortSignal.timeout(10000),
    headers:{'Authorization':`Bearer ${env.RESEND_API_KEY.trim()}`,'Content-Type':'application/json','Idempotency-Key':`bpj-account-${action}-${digest}`},
    body:JSON.stringify({from:env.ACCOUNT_MAIL_FROM.trim(),to:[user.email],...content}),
   });

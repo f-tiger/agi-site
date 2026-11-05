@@ -108,12 +108,16 @@ try{
   assert.equal(f.posts('credential').length,1,'A successful exchange must not resubmit its consumed nonce');
   assert.match(await f.page.locator('#account-status').textContent(),/Google 身份已确认|Google identity confirmed/);
   assert.equal(await f.page.locator('#register-email').inputValue(),USER.email);
+  const suggested=await f.page.locator('#register-username').inputValue();assert.match(suggested,/^member_[a-f0-9]{16}$/);assert(!suggested.includes(USER.email.split('@')[0]));
+  assert.equal(f.posts('register').length,0,'Google proof never submits a registration automatically');
+  await f.page.locator('#register-username').fill('My_Chosen_Name');
   assert.equal(await f.page.locator('#account-google-button').isVisible(),false);
   await f.page.locator('#account-google-retry').click();
   await f.page.waitForFunction(()=>window.__gisOptions.callback!==window.__savedCallback);
   assert.equal(await f.page.locator('#account-google-button').isVisible(),true);
   await f.page.evaluate(()=>window.__gisOptions.callback({credential:'fresh-proof'}));
   assert.equal(f.posts('credential').length,2,'Explicit retry obtains and consumes a fresh nonce');
+  assert.equal(await f.page.locator('#register-username').inputValue(),'My_Chosen_Name','Retry must preserve the chosen display name');
   assert.match(await f.page.locator('#account-status').textContent(),/Google 身份已确认|Google identity confirmed/);
   await f.context.close();groups++;
  }
@@ -143,6 +147,7 @@ try{
   const f=await fixture({google:{onboarding:{state:'onboarding',email:USER.email}}});await f.open();
   await f.page.waitForFunction(()=>document.getElementById('register-email').readOnly);
   assert.equal(await f.page.locator('#register-email').inputValue(),USER.email);assert.equal(f.posts('start').length,0,'Reload must not invalidate an onboarding proof');
+  assert.match(await f.page.locator('#register-username').inputValue(),/^member_[a-f0-9]{16}$/);
   await f.page.evaluate(async()=>{window.dispatchEvent(new Event('focus'));await window.bpjAccount.refresh();});
  assert.equal(f.posts('start').length,0);await f.context.close();groups++;
  }
