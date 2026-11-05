@@ -1,29 +1,21 @@
 {
- "generated": "2026-11-04T15:53:28+00:00",
+ "generated": "2026-11-05T15:58:50+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 3,
+ "sampled": 2,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
   {
-   "post_id": 46324,
-   "title": "What will voter turnout be in Spain's November 29, 2026 general election?",
+   "post_id": 46334,
+   "title": "Will a Préfecture de Police curfew be in effect anywhere in Paris on the night of New Year's Eve 2026?",
    "hosts": [
-    "www.metaculus.com"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
-  {
-   "post_id": 46274,
-   "title": "What will Grand Theft Auto VI's PS5 Metascore be on December 20, 2026?",
-   "hosts": [
-    "www.metacritic.com",
-    "www.metaculus.com"
+    "www.emploi-collectivites.fr",
+    "www.metaculus.com",
+    "www.prefecturedepolice.interieur.gouv.fr"
    ],
    "covered_by": null,
    "tournament": "33121"
