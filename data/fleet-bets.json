@@ -2480,7 +2480,18 @@
    "win": "Retain corrected paths; expand only after current attributable merchant evidence reaches USD10. No causal claim from aggregate cohort counts.",
    "lose": "Below 100 views or incomplete source coverage => insufficient; >=100 views and <5 clicks => inspect fit and destination; 5–9 clicks => insufficient for expansion. Do not add more cards or infer zero revenue from missing statements.",
    "source": "docs/eco-revenue-path-2026-11-05.md:7",
-   "status": "open"
+   "status": "open",
+   "interventions": [
+    {
+     "date": "2026-11-05",
+     "scope": "Meaco intent and overwintering storage bridge; PR249"
+    },
+    {
+     "date": "2026-11-05",
+     "scope": "Existing dehumidifier guide answer/metadata/FAQ consistency; same observation window, no separate causal claim"
+    }
+   ],
+   "checkpoint": "2026-11-12: review complete-day exposure and source coverage; no new humidity page/discovery expansion before evidence unless correcting a concrete defect"
   }
  ]
 }
