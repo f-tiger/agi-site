@@ -470,6 +470,8 @@ jobs:
           node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
           node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/test-receipts.mjs
+          node tools/member-studio/test-receipts-runner.mjs
           node sites/baipiaoji/scripts/test-video-business.mjs --dist
 
       # 2026-09-25: the paid save path (hand login, handoff nonce, revision follow-up, second account, new key, rotation) is only visible

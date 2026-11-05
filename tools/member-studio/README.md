@@ -37,3 +37,37 @@ The isolation suite uses four actual in-memory SQLite databases and mocked chain
 Before changing rights, the authenticated production audit on 2026-09-19 at 16:14:51 UTC reported paid_orders=0, paid_members=0, active_members=0 and unexpired_pending=0. Run: https://github.com/f-tiger/agi-site/actions/runs/35454290932. No customer account details were exported. The deployment preflight refuses an old shared system with outstanding paid or unexpired pending orders; once the independent API is deployed it no longer applies the legacy gate.
 
 API configuration references: https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/secrets/methods/update/ and https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/edit/ .
+
+
+## Receipts-only recovery (2026-11-05)
+
+A delayed GitHub schedule can leave the existing four-hour health check stale.
+Use the existing `bpj-ad-watch.yml` manual mode `fleet-receipts-only` after all
+four deployments have passed. It runs BPJ's existing receipt recovery and the
+three sibling sites' dedicated `/api/member-recovery` endpoints. Each site
+retains its own operator secret, database, payment amounts and entitlements.
+The sibling step still runs if BPJ recovery fails, and reports partial failure.
+
+This is a bounded maintenance write: chain/head/log probes and existing pending
+receipt verification precede the health timestamp. Valid existing payments can
+grant their already-purchased entitlement. It creates no order, initiates no
+transfer, deletes no customer records, performs no retention cleanup, sends no
+notifications and runs no efficiency or Jarvis inference. Posted timestamps and
+claimed paid states are ignored. Failures do not refresh health; the four-hour
+threshold, sales configuration and normal scheduled retention are unchanged.
+
+The distinct route is required for safe deployment order. An old deployment
+returns an error; the runner never falls back to `/api/member-watch`, because an
+old watcher could ignore a new mode flag and execute retention. Redirects are
+rejected. The runner validates the recovery mode/site and then checks the public
+readiness response. `ready=true` is operational readiness, not a real customer
+payment or conversion result.
+
+Public/private boundary: these authenticated maintenance endpoints return only
+fixed aggregate status, use no-store/noindex and do not add a public page,
+analytics event, sitemap entry or IndexNow submission. Existing public GA4,
+SEO/GEO and deployment checks remain unchanged.
+
+Tests: `node tools/member-studio/test-receipts.mjs` and
+`node tools/member-studio/test-receipts-runner.mjs`, plus existing BPJ receipt,
+membership and site-isolation suites. All chain receipts in tests are fixtures.

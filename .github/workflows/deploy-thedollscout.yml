@@ -186,6 +186,8 @@ jobs:
           node tools/revenue-studio/build.mjs --site tds --out sites/thedollscout/dist
           node tools/revenue-studio/verify.mjs --site tds --out sites/thedollscout/dist
           node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/test-receipts.mjs
+          node tools/member-studio/test-receipts-runner.mjs
           node tools/member-studio/verify.mjs --site tds --out sites/thedollscout/dist
 
       - name: Finalize digital tools and collector homepage after shared workbench

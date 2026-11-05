@@ -424,6 +424,8 @@ jobs:
           node --test sites/getecoback/tools/test_demand_search.mjs
           node tools/revenue-studio/verify.mjs --site eco --out sites/getecoback/site
           node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/test-receipts.mjs
+          node tools/member-studio/test-receipts-runner.mjs
           node tools/member-studio/test-failure.mjs
           node tools/member-studio/verify.mjs --site eco --out sites/getecoback/site
 

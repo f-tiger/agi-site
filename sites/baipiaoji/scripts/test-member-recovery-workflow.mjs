@@ -122,7 +122,7 @@ assert.match(deploy,/cancel-in-progress: false/);
 // Explicit maintenance modes must remain isolated from each other and
 // the wider scheduled job. No watcher is executed by these truth tables.
 const maintenanceSites={eco:'Eco',agi:'AGI',tds:'TDS'};
-const watchModes=['watch','ads-only','receipts-only',...Object.keys(maintenanceSites).map(site=>site+'-watch'),'inspect'];
+const watchModes=['watch','ads-only','receipts-only','fleet-receipts-only',...Object.keys(maintenanceSites).map(site=>site+'-watch'),'inspect'];
 function watchStep(source,name){
  assert.equal(source.split('      - name: '+name+'\n').length-1,1,'Each maintenance step must be unique: '+name);
  const start=source.indexOf('      - name: '+name+'\n');assert.ok(start>=0,name);
@@ -133,7 +133,7 @@ function checkIsolationGuards(source,site){
  const target=watchStep(source,'Recover '+label+' membership only (manual, current main)');
  assert.match(target,/^        timeout-minutes: 5$/m);
  assert.match(target,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
- const names=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Match on-chain payments to pending ad slots',...Object.entries(maintenanceSites).filter(([other])=>other!==site).map(([,name])=>'Recover '+name+' membership only (manual, current main)'),'Check each independent site membership','Continue bounded Jarvis missions'];
+ const names=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Recover ads and membership receipts only (manual)','Recover sibling membership receipts only (manual)','Match on-chain payments to pending ad slots',...Object.entries(maintenanceSites).filter(([other])=>other!==site).map(([,name])=>'Recover '+name+' membership only (manual, current main)'),'Check each independent site membership','Continue bounded Jarvis missions'];
  const guard=block=>{const match=block.match(/^        if: (.+)$/m);assert.ok(match);return match[1];};
  for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of [...watchModes,'unknown']){
   const context={event,ref,mode};
@@ -166,6 +166,30 @@ for(const mutated of [
  watch.replace("inputs.mode == 'watch'","inputs.mode == 'tds-watch'"),
  watch.replace("inputs.mode == 'tds-watch'","inputs.mode == 'watch'"),
 ])assert.throws(()=>checkIsolationGuards(mutated,'tds'),assert.AssertionError,'TDS admission/isolation regression must fail');
+function checkFleetReceiptsIsolation(source){
+ const bpj=watchStep(source,'Recover ads and membership receipts only (manual)');
+ const siblings=watchStep(source,'Recover sibling membership receipts only (manual)');
+ const guard=block=>block.match(/^        if: (.+)$/m)?.[1];
+ assert.match(bpj,/^        run: node scripts\/ad-watch-v2\.mjs --if-configured --member-receipts-only$/m);
+ assert.match(siblings,/^        run: node tools\/member-studio\/ops\.mjs receipts-all$/m);
+ assert.match(siblings,/^        timeout-minutes: 5$/m);
+ assert.match(siblings,/^        working-directory: \$\{\{ github.workspace \}\}$/m);
+ const excluded=['Inspect incoming tokens (manual, read-only)','Recover ad payment watcher only (manual)','Match on-chain payments to pending ad slots',...Object.values(maintenanceSites).map(name=>'Recover '+name+' membership only (manual, current main)'),'Check each independent site membership','Continue bounded Jarvis missions'];
+ for(const event of ['push','schedule','workflow_dispatch'])for(const ref of ['refs/heads/main','refs/heads/feature','refs/tags/test'])for(const mode of [...watchModes,'unknown']){
+  const context={event,ref,mode};
+  const fleet=event==='workflow_dispatch'&&ref==='refs/heads/main'&&mode==='fleet-receipts-only';
+  assert.equal(allows(guard(bpj),context),fleet||(event==='workflow_dispatch'&&mode==='receipts-only'),'BPJ receipt admission '+JSON.stringify(context));
+  assert.equal(allows(guard(siblings),context),fleet,'Sibling receipt admission '+JSON.stringify(context));
+  if(event==='workflow_dispatch'&&mode==='fleet-receipts-only')for(const name of excluded)assert.equal(allows(guard(watchStep(source,name)),context),false,'Fleet receipts must not run '+name);
+ }
+}
+checkFleetReceiptsIsolation(watch);
+for(const mutated of [
+ watch.replace("(github.ref == 'refs/heads/main' && inputs.mode == 'fleet-receipts-only')","inputs.mode == 'fleet-receipts-only'"),
+ watch.replace(" && github.ref == 'refs/heads/main' && inputs.mode == 'fleet-receipts-only'"," && inputs.mode == 'fleet-receipts-only'"),
+ watch.replace('node tools/member-studio/ops.mjs receipts-all','node tools/member-studio/ops.mjs watch-all'),
+ watch.replace("inputs.mode == 'watch'","inputs.mode == 'fleet-receipts-only'"),
+])assert.throws(()=>checkFleetReceiptsIsolation(mutated),assert.AssertionError,'Fleet receipts isolation regression must fail');
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Build site','Build and validate practical tool workbench','Verify fleet account security','Complete and verify GA4 coverage after all page generators','Deploy to Cloudflare Pages','Verify live GA4 coverage and analytics asset version','Check startup MCP registry version'])assert.doesNotMatch(step(name),/^\s+if:/m,name+' must remain mandatory');
 const readOnlySkipped=['Check legacy membership obligations before isolation','Verify homepage click breakdown and labels','Verify live AI tools and free MCP','Verify search experiment and conversion stages on live site','Verify Web3 watcher and selling after deployment','Verify membership checkout and protected routes','Read membership migration totals (no account data)','Self-test agent API','Self-test watch endpoint','Self-test earning-pack registration wall','Self-test reach endpoint'];
 for(const name of readOnlySkipped)for(const readOnly of [false,true])assert.equal(allows(guardOf(name),{readOnly}),!readOnly,name);

@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';import path from 'node:path';
 import {watchSecret,walletMatchesOwner} from '../../sites/baipiaoji/scripts/ad-runner-config.mjs';
 import {sites} from '../revenue-studio/catalog.mjs';
 export function memberSecret(site,env){if(!Object.hasOwn(sites,site))throw Error('Unknown site');return site==='bpj'?watchSecret(env):createHmac('sha256',watchSecret(env)).update('independent-membership:'+site+':v1').digest('hex');}
-async function requestJSON(url,options={}){const r=await fetch(url,{...options,signal:AbortSignal.timeout(120000)});let d;try{d=await r.json();}catch{throw Error('Non-JSON response (HTTP '+r.status+')');}if(!r.ok||d.ok===false){const stage=/^(schema|chain_probe|orders_read|orders_scan|cleanup|health_write|support_read)$/.test(d.stage)?d.stage:'unknown';const reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured|database_schema|database_limit|database_error|runtime_type_error|rpc_timeout|internal_error)$/.test(d.reason)?d.reason:'unspecified';throw Error('Request failed (HTTP '+r.status+'; '+stage+'; '+reason+')');}return d;}
+async function requestJSON(url,options={}){const r=await fetch(url,{...options,redirect:'manual',signal:AbortSignal.timeout(120000)});let d;try{d=await r.json();}catch{throw Error('Non-JSON response (HTTP '+r.status+')');}if(!r.ok||d.ok===false){const stage=/^(configuration|schema|chain_probe|log_probe|orders_read|orders_scan|cleanup|health_write|support_read|readiness)$/.test(d.stage)?d.stage:'unknown';const reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured|database_schema|database_limit|database_error|runtime_type_error|rpc_timeout|internal_error)$/.test(d.reason)?d.reason:'unspecified';throw Error('Request failed (HTTP '+r.status+'; '+stage+'; '+reason+')');}return d;}
 async function post(site,endpoint,body,env){return requestJSON(sites[site].origin+'/api/'+endpoint,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+memberSecret(site,env)},body:JSON.stringify(body)});}
 export async function preflight(env){const cfg=await requestJSON(sites.bpj.origin+'/api/member');if(cfg.site==='bpj')return;const d=await post('bpj','member-admin',{action:'stats'},env);console.log(JSON.stringify({legacy_paid_orders:d.paid_orders,legacy_unexpired_pending:d.unexpired_pending}));if(d.paid_orders!==0||d.unexpired_pending!==0)throw Error('Existing legacy obligations require migration before isolation');}
 export async function configureSite(site,env,request=fetch){
@@ -24,11 +24,24 @@ export async function configureSite(site,env,request=fetch){
  console.log(site+': independent membership secrets configured; existing bindings preserved');
 }
 export async function watchSite(site,env){let processed=0;for(let i=0;i<7;i++){const d=await post(site,'member-watch',{},env);processed+=d.processed||0;if(!d.processed)break;}console.log(JSON.stringify({site,membership_processed:processed}));}
+export async function recoverSiteReceipts(site,env){
+ if(!['agi','eco','tds'].includes(site))throw Error('Use the existing BPJ receipt recovery runner');
+ let processed=0;
+ for(let i=0;i<7;i++){
+  const d=await post(site,'member-recovery',{},env);
+  if(d.ok!==true||d.mode!=='receipts-only'||d.site!==site||d.ready!==true||!Number.isSafeInteger(d.processed)||d.processed<0)throw Error('Receipts-only recovery did not establish readiness');
+  processed+=d.processed;if(!d.processed)break;
+ }
+ const status=await requestJSON(sites[site].origin+'/api/member');
+ if(status.ok!==true||status.site!==site||status.ready!==true)throw Error('Public membership readiness is not confirmed');
+ console.log(JSON.stringify({site,membership_processed:processed,membership_ready:true,membership_mode:'receipts-only'}));
+}
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const [mode,site]=process.argv.slice(2),env=process.env;
  if(mode==='preflight')await preflight(env);
  else if(mode==='configure')await configureSite(site,env);
  else if(mode==='watch')await watchSite(site,env);
+ else if(mode==='receipts-all'){const results=await Promise.allSettled(['agi','eco','tds'].map(s=>recoverSiteReceipts(s,env)));for(let i=0;i<results.length;i++)if(results[i].status==='rejected')console.error(['agi','eco','tds'][i]+': receipts-only recovery failed');if(results.some(r=>r.status==='rejected'))process.exitCode=1;}
  else if(mode==='watch-all'){const results=await Promise.allSettled(['agi','eco','tds'].map(s=>watchSite(s,env)));for(let i=0;i<results.length;i++)if(results[i].status==='rejected')console.error(['agi','eco','tds'][i]+': membership watcher failed');if(results.some(r=>r.status==='rejected'))process.exitCode=1;}
- else throw Error('Choose preflight, configure SITE, watch SITE or watch-all');
+ else throw Error('Choose preflight, configure SITE, watch SITE, watch-all or receipts-all');
 }
