@@ -19,6 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Reuse the existing daily health schedule. Counts, snapshots and merchant
+      # evidence must never enter public logs, summaries or workflow artifacts.
+      - name: Check ECO measurement freshness without publishing traffic or revenue
+        working-directory: .
+        run: |
+          python3 tools/affiliate-growth/monitor.py --fetch --health-only --out "$RUNNER_TEMP/eco-revenue-health"
+
       - name: Check key pages return 200 and contain affiliate tag
         run: |
           set -e

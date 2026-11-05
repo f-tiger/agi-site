@@ -1,0 +1,72 @@
+{
+  "goal": "ECO confirmed net affiliate commissions of USD 100 per rolling 30 complete report dates; USD 1 and 10 are intermediate gates, not MRR",
+  "created": "2026-11-05",
+  "budget": "zero incremental paid services or advertising; record operator hours separately",
+  "focus": "German humidity/laundry/cold-cellar buying decisions; maintain existing cooling winners; US replacement filters remain a bounded secondary experiment",
+  "blockers": [
+    "Latest merchant statements from other conversations are not accessible in this workspace; do not overwrite old evidence or infer zero",
+    "Known DE and US tags are shared across fleet sites; a new genuinely ECO-exclusive tracking ID or merchant-supported site attribution is needed for ECO-only milestones",
+    "GA4/Search Console reads paused by Windsor account limit; GSC Wizard subscription unavailable",
+    "Traffic endpoint has no country-by-cohort or person-level conversion denominator",
+    "Merchant payout/tax readiness is historical and needs fresh verification; revenue is separate from withdrawal",
+    "External distribution copy is prepared only; no outreach or social publishing has been sent"
+  ],
+  "experiments": [
+    {
+      "id": "eco-100-evidence",
+      "title": "$1：确认可归因佣金",
+      "status": "monitor implemented; merchant evidence pending",
+      "action": "Recover latest DE/US reports; preserve report dates, currency, shipped/confirmed commission, reversals and payout separately. Obtain a real ECO-exclusive tag before changing links; never invent a tracking ID. Use the private ledger and reconcile shared account totals separately.",
+      "review": "2026-11-07 (operations checkpoint, not revenue promise)",
+      "gate": "Current 30-day ECO-attributable confirmed net commission >= $1 with dated FX and evidence. Missing evidence stays unknown; no fake orders/self purchases."
+    },
+    {
+      "id": "eco-100-de-demand",
+      "title": "$10：验证德国湿度购买路径",
+      "status": "existing pages live; focused distribution pack prepared",
+      "action": "Use existing cellar, laundry and dehumidifier-guide pages. Preserve the no-purchase outcome for building damage. Review exact model, market, merchant link and sources. Run one bounded distribution task per day through already authorized owned placements; prepare native-language posts for separately authorized channels. Do not rebuild recently shipped tools or launch new countries.",
+      "review": "2026-11-19 (14 complete days after this plan)",
+      "gate": "Operational exposure floor: 100 recorded humidity page views and 10 related click events in a complete 14-day window, interpreted as events only. If below exposure floor, fix distribution; if >=100 views but <5 clicks, inspect task/offer fit. Merchant-confirmed $10 is the revenue gate; traffic goals do not substitute for it."
+    },
+    {
+      "id": "eco-100-scale",
+      "title": "$100：复制已验证入口",
+      "status": "conditional on current merchant evidence and $10 gate",
+      "action": "Allocate most effort to the market/cluster with confirmed commission evidence; maintain the cooling pages already receiving clicks. Scale at most one genuinely useful page per existing daily cadence after source and demand gates. Track EPC using merchant clicks only, plus work hours and direct costs. Do not spend on ads before current net EPC is established.",
+      "review": "2026-12-05, then monthly",
+      "gate": "Current 30-day attributable net commission >=$100; repeat in a second non-overlapping 30-day window before calling it repeatable. If 100 merchant-reported clicks mature with zero shipped commission, check scope, eligibility, model and reporting delay before expanding. $100 is a target, not a guaranteed date."
+    }
+  ],
+  "daily_review": [
+    "Read cached traffic source health; do not add overlapping snapshots",
+    "Compare last 7 complete UTC dates with previous 7; retain absolute counts and known gaps",
+    "Separate search, AI, direct and same-site referrers; do not call self-referrals new acquisition",
+    "Refresh private merchant statement when available; preserve shared-scope and currency limitations",
+    "Choose one distribution or buying-path repair; record minutes, cash cost, URL and result"
+  ],
+  "weekly_review": [
+    "Reconcile merchant statement, net reversals, payout and source dates",
+    "Review exposure before concluding demand failed; do not run underpowered A/B tests",
+    "Keep, adjust or stop each experiment using its predeclared gate"
+  ],
+  "distribution_drafts": [
+    {
+      "status": "draft_not_sent",
+      "language": "de",
+      "url": "https://getecoback.com/guide/luftentfeuchter-keller.html",
+      "copy": "Ein Entfeuchter repariert keinen undichten Keller. Vor dem Kauf helfen Raumtemperatur, Feuchteursache und Ablaufmöglichkeit mehr als die größte Literzahl. Unsere kostenlose Entscheidungshilfe zeigt, welche Bedingungen du zuerst prüfen solltest. Transparenz: Ich arbeite an EcoBack; die Seite enthält gekennzeichnete Affiliate-Links."
+    },
+    {
+      "status": "draft_not_sent",
+      "language": "de",
+      "url": "https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html",
+      "copy": "Wäsche trocknen: Vergleiche denselben Trocknungsauftrag statt nur die Wattzahl. Unser kostenloser Rechner macht Annahmen und Kosten sichtbar; Beispielwerte sind keine gemessenen Einsparungen. Ich arbeite an EcoBack; mögliche Kauflinks sind als Werbung gekennzeichnet."
+    },
+    {
+      "status": "draft_not_sent",
+      "language": "de",
+      "url": "https://getecoback.com/guide/luftfeuchtigkeit-senken.html",
+      "copy": "Hilft Lüften gerade gegen Feuchte? Unser kostenloser Check vergleicht Innen- und Außenmesswerte. Messwerte bleiben lokal im Browser. Das ersetzt keine Gebäudediagnose und empfiehlt nicht automatisch einen Kauf. Ich arbeite an EcoBack; weiterführende Produktvergleiche können Affiliate-Links enthalten."
+    }
+  ]
+}

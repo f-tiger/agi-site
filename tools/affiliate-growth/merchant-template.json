@@ -1,0 +1,46 @@
+{
+  "note": "Blank normalization template. Copy OUTSIDE Git. Replace dates from actual merchant reports. Never invent tags or copy these placeholders to live links. Shared fleet tags cannot pass ECO-only milestones. Net commission includes reversals; cash is separate. This template itself is not evidence.",
+  "reports": [
+    {
+      "period_start": null,
+      "period_end": null,
+      "market": "DE",
+      "currency": "EUR",
+      "source": null,
+      "evidence_ref": null,
+      "scope_evidence_ref": null,
+      "store_id": null,
+      "tracking_id": null,
+      "tracking_scope": "unknown",
+      "site_host": "getecoback.com",
+      "timezone": "Europe/Berlin",
+      "statement_status": "unknown",
+      "merchant_clicks": null,
+      "ordered_items": null,
+      "shipped_items": null,
+      "net_commission": null,
+      "cash_received": null,
+      "fx_to_usd": {"rate": null, "date": null, "source": null}
+    },
+    {
+      "period_start": null,
+      "period_end": null,
+      "market": "US",
+      "currency": "USD",
+      "source": null,
+      "evidence_ref": null,
+      "scope_evidence_ref": null,
+      "store_id": null,
+      "tracking_id": null,
+      "tracking_scope": "unknown",
+      "site_host": "getecoback.com",
+      "timezone": null,
+      "statement_status": "unknown",
+      "merchant_clicks": null,
+      "ordered_items": null,
+      "shipped_items": null,
+      "net_commission": null,
+      "cash_received": null
+    }
+  ]
+}
