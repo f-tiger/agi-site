@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-03T10:06:16Z",
+  "checkedAt": "2026-11-05T09:51:43Z",
   "sources": [
     {
       "id": "openai",
       "company": "OpenAI",
       "url": "https://openai.com/news/rss.xml",
-      "checkedAt": "2026-11-03T10:06:16Z",
-      "lastSuccessAt": "2026-11-03T10:06:16Z",
+      "checkedAt": "2026-11-05T09:51:43Z",
+      "lastSuccessAt": "2026-11-05T09:51:43Z",
       "ok": true,
       "error": null
     },
@@ -14,8 +14,8 @@
       "id": "anthropic",
       "company": "Anthropic",
       "url": "https://www.anthropic.com/news",
-      "checkedAt": "2026-11-03T10:06:16Z",
-      "lastSuccessAt": "2026-11-03T10:06:16Z",
+      "checkedAt": "2026-11-05T09:51:43Z",
+      "lastSuccessAt": "2026-11-05T09:51:43Z",
       "ok": true,
       "error": null
     },
@@ -23,8 +23,8 @@
       "id": "meta",
       "company": "Meta",
       "url": "https://about.fb.com/news/feed/",
-      "checkedAt": "2026-11-03T10:06:16Z",
-      "lastSuccessAt": "2026-11-03T10:06:16Z",
+      "checkedAt": "2026-11-05T09:51:43Z",
+      "lastSuccessAt": "2026-11-05T09:51:43Z",
       "ok": true,
       "error": null
     },
@@ -32,7 +32,7 @@
       "id": "xai",
       "company": "xAI / SpaceX",
       "url": "https://x.ai/news",
-      "checkedAt": "2026-11-03T10:06:16Z",
+      "checkedAt": "2026-11-05T09:51:43Z",
       "lastSuccessAt": "2026-10-31T16:20:44Z",
       "ok": false,
       "error": "http_403"
@@ -41,13 +41,113 @@
       "id": "deepmind",
       "company": "Google DeepMind",
       "url": "https://deepmind.google/blog/rss.xml",
-      "checkedAt": "2026-11-03T10:06:16Z",
-      "lastSuccessAt": "2026-11-03T10:06:16Z",
+      "checkedAt": "2026-11-05T09:51:43Z",
+      "lastSuccessAt": "2026-11-05T09:51:43Z",
       "ok": true,
       "error": null
     }
   ],
   "items": [
+    {
+      "id": "1be4fdd8e6ca80f0ec012771",
+      "company": "OpenAI",
+      "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+      "url": "https://openai.com/index/openai-to-acquire-pierre",
+      "publishedAt": "2026-11-04T14:30:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fbaa86a829ad59fd10c58d01",
+      "company": "OpenAI",
+      "title": "A thousand fewer paths to root",
+      "url": "https://openai.com/index/a-thousand-fewer-paths-to-root",
+      "publishedAt": "2026-11-04T08:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "a3433e936d2c04bfa7722c64",
+      "company": "OpenAI",
+      "title": "Daybreak Red is now available in AWS GovCloud (US-East)",
+      "url": "https://openai.com/index/daybreak-red-aws-govcloud",
+      "publishedAt": "2026-11-04T07:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "295354ff422b0d4db922748e",
+      "company": "OpenAI",
+      "title": "Introducing Images 2.6",
+      "url": "https://openai.com/index/introducing-images-2-6",
+      "publishedAt": "2026-11-04T00:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "981785a01550309d0739d8f0",
+      "company": "OpenAI",
+      "title": "DevRev delivers autonomous self-service with GPT-6.1 Sol",
+      "url": "https://openai.com/index/devrev-enterprise-self-service",
+      "publishedAt": "2026-11-04T00:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "23c4f130369cb97228de4151",
+      "company": "Google DeepMind",
+      "title": "Agentic cheminformatics with Google Antigravity",
+      "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity",
+      "publishedAt": "2026-11-03T17:01:49Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "25493a43cba550c7fe81484a",
+      "company": "OpenAI",
+      "title": "Accelerating engineering for the physical world",
+      "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+      "publishedAt": "2026-11-03T12:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "fc87a45dcfbf03d417250555",
+      "company": "OpenAI",
+      "title": "Heimstaden is changing residential real estate management with AI",
+      "url": "https://openai.com/index/heimstaden",
+      "publishedAt": "2026-11-03T08:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "34e7d62615202d0de65fe802",
+      "company": "OpenAI",
+      "title": "How Cisco defends at machine speed with OpenAI",
+      "url": "https://openai.com/index/cisco-cyber",
+      "publishedAt": "2026-11-03T08:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
+    {
+      "id": "019edb616369c3322f4c44a5",
+      "company": "OpenAI",
+      "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer",
+      "url": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer",
+      "publishedAt": "2026-11-03T00:00:00Z",
+      "discoveredAt": "2026-11-05T09:51:43Z",
+      "signal": "neutral",
+      "reviewStatus": "automatic"
+    },
     {
       "id": "bca108e4c77bd86b238b884f",
       "company": "OpenAI",
@@ -349,6 +449,16 @@
       "reviewStatus": "automatic"
     },
     {
+      "id": "35e334c198740f7416638922",
+      "company": "OpenAI",
+      "title": "Introducing GPT-6.1 Terra",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+      "publishedAt": "2026-10-26T18:00:00Z",
+      "discoveredAt": "2026-10-31T15:44:42Z",
+      "signal": "capability",
+      "reviewStatus": "automatic"
+    },
+    {
       "id": "8eb6001a836a6e50b8fb133e",
       "company": "OpenAI",
       "title": "Working with academic communities to build scientific understanding",
@@ -396,16 +506,6 @@
       "publishedAt": "2026-10-26T07:00:00Z",
       "discoveredAt": "2026-10-31T15:44:42Z",
       "signal": "neutral",
-      "reviewStatus": "automatic"
-    },
-    {
-      "id": "35e334c198740f7416638922",
-      "company": "OpenAI",
-      "title": "Introducing GPT-6.1 Terra",
-      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
-      "publishedAt": "2026-10-26T00:00:00Z",
-      "discoveredAt": "2026-10-31T15:44:42Z",
-      "signal": "capability",
       "reviewStatus": "automatic"
     },
     {
