@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-04",
+ "generated": "2026-11-05",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "gemini",
-  "gemini-cli",
-  "gezhe",
-  "gptzero",
-  "grammarly",
-  "heygen",
-  "huggingface",
-  "ideogram"
+  "ima",
+  "jsdesign",
+  "krea",
+  "languagetool",
+  "leonardo",
+  "lovable",
+  "luma",
+  "marscode"
  ],
- "cursor": "ideogram",
+ "cursor": "marscode",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -1765,8 +1765,8 @@
    "slug": "ima",
    "name": "腾讯 ima",
    "cat": "office",
-   "reach": 3,
-   "probed": "2026-10-18",
+   "reach": 0,
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1796,7 +1796,7 @@
    "name": "即时设计",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -1830,7 +1830,7 @@
    "name": "Krea AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1844,7 +1844,7 @@
    "best": {
     "url": "https://krea.ai/pricing",
     "tokens": 42,
-    "excerpt": "mparisons across different areas of our platform. Compare plans Select plans to compare 3 plans max Basic Pro Max Basic $5.25 /mo Pro $21 /mo Max $63 /mo svg]:-rotate-45 focus-visible:border-action focus-visible:ring-action text-primary-900 min-h-0 items-center gap-4 rounded-md py-0 text-base leading-6 font-medium shadow-none transition-opacity hover:no-underline focus-visible:ring-[3px] dark:text-white [&amp;[data-state=open]_.comparison-mobile-accordion-chevron]:rotate-180\" id=\"bits-s32\" aria-expanded=\"false\" aria-disabled=\"false\" data-state=\"closed\" data-orientation=\"vertical\" data-accordion-trigger=\"\" tabindex=\"0\"> Features &amp; License Access to Krea 3 svg]:pointer-events-none [&amp;>s"
+    "excerpt": "mparisons across different areas of our platform. Compare plans Select plans to compare 3 plans max Basic Pro Max Basic $5.25 /mo Pro $21 /mo Max $63 /mo svg]:-rotate-45 focus-visible:border-action focus-visible:ring-action text-primary-900 min-h-0 items-center gap-4 rounded-md py-0 text-base leading-6 font-medium shadow-none transition-opacity hover:no-underline focus-visible:ring-[3px] dark:text-white [&amp;[data-state=open]_.comparison-mobile-accordion-chevron]:rotate-180\" id=\"bits-s22\" aria-expanded=\"false\" aria-disabled=\"false\" data-state=\"closed\" data-orientation=\"vertical\" data-accordion-trigger=\"\" tabindex=\"0\"> Features &amp; License Access to Krea 3 svg]:pointer-events-none [&amp;>s"
    }
   },
   "languagetool": {
@@ -1852,14 +1852,14 @@
    "name": "LanguageTool",
    "cat": "writing",
    "reach": 0,
-   "probed": "2026-10-23",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://languagetool.org/pricing",
      "status": 200,
-     "bytes": 514617,
+     "bytes": 512762,
      "tokens": 6
     }
    ],
@@ -1874,7 +1874,7 @@
    "name": "Leonardo AI",
    "cat": "image",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -1904,14 +1904,14 @@
    "name": "Lovable",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://lovable.dev/pricing",
      "status": 200,
-     "bytes": 185630,
+     "bytes": 190622,
      "tokens": 1
     },
     {
@@ -1938,7 +1938,7 @@
    "name": "Luma Dream Machine",
    "cat": "video",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -1960,7 +1960,7 @@
    "name": "MarsCode（字节）",
    "cat": "coding",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-05",
    "env": "runner",
    "state": "empty",
    "tried": [

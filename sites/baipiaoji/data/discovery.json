@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Uncracked City, detective game where you question LLM suspects that lie",
+      "url": "https://uncracked.city",
+      "host": "uncracked.city",
+      "src": "https://news.ycombinator.com/item?id=50358352",
+      "points": 124,
+      "comments": 66,
+      "found": "2026-11-05",
+      "status": "candidate"
+    },
+    {
+      "name": "Interactive notes on RLHF, attention, LoRA and LLM evals",
+      "url": "https://concepts.laxmena.com/",
+      "host": "concepts.laxmena.com",
+      "src": "https://news.ycombinator.com/item?id=50353468",
+      "points": 41,
+      "comments": 4,
+      "found": "2026-11-05",
+      "status": "candidate"
+    },
+    {
       "name": "A language model that lives in a boot sector",
       "url": "https://github.com/kerlenton/bootgpt",
       "host": "github.com",
@@ -371,5 +391,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-11-04"
+  "updated": "2026-11-05"
 }

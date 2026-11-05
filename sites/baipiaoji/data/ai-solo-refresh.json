@@ -1,5 +1,5 @@
 {
-  "lastRun": "2026-11-04T06:58:40.954Z",
+  "lastRun": "2026-11-05T07:20:29.079Z",
   "status": "degraded",
   "checkedSources": 5,
   "queue": [
@@ -145,25 +145,25 @@
       "caseId": "harvey",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastChecked": "2026-10-22T05:19:56.945Z"
+      "lastChecked": "2026-11-05T07:20:29.079Z"
     },
     {
       "caseId": "fireflies",
       "reason": "source-unreachable",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastChecked": "2026-10-22T05:19:56.945Z"
+      "lastChecked": "2026-11-05T07:20:29.079Z"
     },
     {
       "caseId": "cydoc",
       "reason": "source-unreachable",
       "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "lastChecked": "2026-10-23T05:19:42.134Z"
+      "lastChecked": "2026-11-05T07:20:29.079Z"
     },
     {
       "caseId": "kite",
       "reason": "source-unreachable",
       "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
-      "lastChecked": "2026-10-23T05:19:42.134Z"
+      "lastChecked": "2026-11-05T07:20:29.079Z"
     },
     {
       "caseId": "coqui",
@@ -649,7 +649,7 @@
     "harvey|https://www.harvey.ai/blog/harveys-three-year-anniversary": {
       "caseId": "harvey",
       "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
-      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "lastAttempt": "2026-11-05T07:20:29.079Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -657,7 +657,7 @@
     "fireflies|https://fireflies.ai/blog/fireflies-1-billion-valuation": {
       "caseId": "fireflies",
       "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
-      "lastAttempt": "2026-10-22T05:19:56.945Z",
+      "lastAttempt": "2026-11-05T07:20:29.079Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -665,7 +665,7 @@
     "cydoc|https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/": {
       "caseId": "cydoc",
       "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
-      "lastAttempt": "2026-10-23T05:19:42.134Z",
+      "lastAttempt": "2026-11-05T07:20:29.079Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -673,10 +673,10 @@
     "content-goblin|https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/": {
       "caseId": "content-goblin",
       "sourceUrl": "https://johnathanward.com/im-shutting-down-content-goblin-a-post-mortem/",
-      "lastAttempt": "2026-10-23T05:19:42.134Z",
+      "lastAttempt": "2026-11-05T07:20:29.079Z",
       "status": "available",
       "http": 200,
-      "lastSuccess": "2026-10-23T05:19:42.134Z",
+      "lastSuccess": "2026-11-05T07:20:29.079Z",
       "lastHash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
       "hash": "c74482f2252ebac0f4a1abe3512df8f43ebb58ab4aac19987fcf21436c026c06",
       "simhash": "64fa8c1c8f9ee6af",
@@ -686,7 +686,7 @@
     "kite|https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387": {
       "caseId": "kite",
       "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
-      "lastAttempt": "2026-10-23T05:19:42.134Z",
+      "lastAttempt": "2026-11-05T07:20:29.079Z",
       "status": "unreachable",
       "http": null,
       "consecutiveChange": 0
@@ -1159,21 +1159,26 @@
       "consecutiveChange": 0
     }
   },
-  "cursor": 26,
+  "cursor": 31,
   "errors": [
     {
-      "caseId": "synthesia",
-      "sourceUrl": "https://www.synthesia.io/post/100-million-revenue-adobe-investment",
+      "caseId": "harvey",
+      "sourceUrl": "https://www.harvey.ai/blog/harveys-three-year-anniversary",
       "reason": "body-limit"
     },
     {
-      "caseId": "heygen",
-      "sourceUrl": "https://www.heygen.com/blog/heygen-surpasses-200m-arr",
+      "caseId": "fireflies",
+      "sourceUrl": "https://fireflies.ai/blog/fireflies-1-billion-valuation",
       "reason": "body-limit"
     },
     {
-      "caseId": "glean",
-      "sourceUrl": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months",
+      "caseId": "cydoc",
+      "sourceUrl": "https://glassboxmedicine.com/2026/02/21/why-i-shut-down-my-bootstrapped-health-ai-startup-after-7-years-a-founders-postmortem/",
+      "reason": "unsafe-source"
+    },
+    {
+      "caseId": "kite",
+      "sourceUrl": "https://www.devclass.com/development/2022/11/21/kite-ai-coding-pulled-down-to-earth-because-our-500k-developers-would-not-pay-to-use-it-now-open-source/1631387",
       "reason": "body-limit"
     }
   ]

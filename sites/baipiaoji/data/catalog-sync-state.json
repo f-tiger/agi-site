@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 6,
+  "queryIndex": 12,
   "page": 3,
   "pending": [
-   {
-    "repo": "yamadashy/repomix",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "coze-dev/coze-studio",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "elizaOS/eliza",
     "topic": "agents",
@@ -90,16 +80,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "vllm-project/semantic-router",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "gpustack/gpustack",
-    "topic": "local",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "deepset-ai/haystack",
     "topic": "agents",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -125,11 +105,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "vitali87/code-graph-rag",
-    "topic": "coding",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "Marker-Inc-Korea/AutoRAG",
     "topic": "agents",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -142,11 +117,6 @@
    {
     "repo": "genieincodebottle/generative-ai",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "vearch/vearch",
-    "topic": "knowledge",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -345,18 +315,8 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "kane50613/takumi",
-    "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "elegantapp/pwa-asset-generator",
     "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "speechbrain/speechbrain",
-    "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -672,11 +632,6 @@
    {
     "repo": "microsoft/WindowsAgentArena",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "photoprism/photoprism",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1325,11 +1280,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "thanhkeke97/RSTGameTranslation",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "Nexus-JPF/note-companion",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1738,11 +1688,6 @@
     "repo": "emlearn/emlearn",
     "topic": "local",
     "foundAt": "2026-10-14T05:19:33.308Z"
-   },
-   {
-    "repo": "ianarawjo/ChainForge",
-    "topic": "ai",
-    "foundAt": "2026-10-14T08:05:15.418Z"
    },
    {
     "repo": "zjunlp/EasyEdit",
@@ -2302,11 +2247,6 @@
    {
     "repo": "sgaofen/humanizer-local-model",
     "topic": "local",
-    "foundAt": "2026-10-24T04:59:36.505Z"
-   },
-   {
-    "repo": "hahahumble/speechgpt",
-    "topic": "chat",
     "foundAt": "2026-10-24T04:59:36.505Z"
    },
    {
@@ -3003,6 +2943,66 @@
     "repo": "EvoMap/evolver",
     "topic": "agents",
     "foundAt": "2026-11-04T06:57:52.613Z"
+   },
+   {
+    "repo": "jaylfc/taOS",
+    "topic": "agents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "modelflare-ai/AnyModelBot",
+    "topic": "agents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "HUANGCHIHHUNGLeo/claude-real-video",
+    "topic": "coding",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "githubharald/SimpleHTR",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "scambier/obsidian-omnisearch",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "sirfz/tesserocr",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "manisandro/gImageReader",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "amebalabs/TRex",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "jingsongliujing/OnnxOCR",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "kmonkeyhead/MORT",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "kha-white/mokuro",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "kotaro-kinoshita/yomitoku",
+    "topic": "documents",
+    "foundAt": "2026-11-05T07:19:29.391Z"
    }
   ],
   "checked": {
@@ -3050,10 +3050,10 @@
    "gh-2noise-chattts-f20a36": "2026-11-02T06:44:24.564Z",
    "gh-vinta-pangu-js-1f4323": "2026-11-04T06:57:52.613Z",
    "gh-rasahq-rasa-73f2ba": "2026-11-04T06:57:52.613Z",
-   "gh-pku-yuangroup-helios-9cfb67": "2026-10-14T08:05:15.418Z",
-   "gh-naptha-tesseract-js-2298e8": "2026-10-14T08:05:15.418Z",
-   "gh-files-community-files-986e61": "2026-10-14T08:05:15.418Z",
-   "gh-google-langextract-13c14e": "2026-10-14T08:05:15.418Z",
+   "gh-pku-yuangroup-helios-9cfb67": "2026-11-05T07:19:29.391Z",
+   "gh-naptha-tesseract-js-2298e8": "2026-11-05T07:19:29.391Z",
+   "gh-files-community-files-986e61": "2026-11-05T07:19:29.391Z",
+   "gh-google-langextract-13c14e": "2026-11-05T07:19:29.391Z",
    "gh-mem0ai-mem0-4eaa28": "2026-10-16T04:57:03.412Z",
    "gh-bojieli-ai-agent-book-6ca4c8": "2026-10-16T04:57:03.412Z",
    "gh-zhulinsen-daily-stock-analysis-9bbdee": "2026-10-16T04:57:03.412Z",
@@ -3135,49 +3135,51 @@
    "gh-nerogar-onetrainer-9726a9": "2026-11-04T06:57:52.613Z",
    "gh-super-productivity-super-productivity-371c0c": "2026-11-04T06:57:52.613Z",
    "gh-greydgl-pentestgpt-f06b63": "2026-11-04T06:57:52.613Z",
-   "gh-slackapi-java-slack-sdk-7a5d89": "2026-11-04T06:57:52.613Z"
+   "gh-slackapi-java-slack-sdk-7a5d89": "2026-11-04T06:57:52.613Z",
+   "gh-patchy631-ai-engineering-hub-bdca72": "2026-11-05T07:19:29.391Z",
+   "gh-esengine-deepseek-reasonix-774164": "2026-11-05T07:19:29.391Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.shawmena-dotcom/sec-insider-tracker:1.0.3",
+  "cursor": "io.github.teransarathchandra/jira-delivery-mcp:2.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
   "checked": {
-   "1102tools-acquisition-gov-mcp": "2026-10-02T15:26:40.958Z",
-   "1325-mcp": "2026-10-02T15:26:40.958Z",
-   "3dassets-catalogue": "2026-10-02T15:26:40.958Z",
-   "3dneweraai-newera": "2026-10-02T15:26:40.958Z",
-   "402cron-402cron": "2026-10-02T15:26:40.958Z",
-   "4bl1ty-mcp": "2026-10-02T15:26:40.958Z",
-   "5ire": "2026-10-02T15:26:40.958Z",
-   "808bits-fips-cmvp": "2026-10-02T15:26:40.958Z",
-   "a2a-protocol": "2026-10-02T15:26:40.958Z",
-   "a2awire-benchmark-accurate-financial-record-reconcile-2026-09-22-af293a80": "2026-10-02T15:26:40.958Z",
-   "abmeter-abmeter": "2026-10-02T15:26:40.958Z",
-   "acornreply-server": "2026-10-02T15:26:40.958Z",
-   "activepieces": "2026-10-02T15:26:40.958Z",
-   "ad-getle-leads": "2026-10-02T15:26:40.958Z",
-   "adako-ads": "2026-10-02T15:26:40.958Z",
-   "adrianczuczka-mason": "2026-10-02T15:26:40.958Z",
-   "adrianhomelab-leadgen-onrc": "2026-10-02T15:26:40.958Z",
-   "adrkit-mcp": "2026-10-02T15:26:40.958Z",
-   "adtest-mcp": "2026-10-02T15:26:40.958Z",
-   "ae-datadubai-dubai-real-estate": "2026-10-02T15:26:40.958Z",
-   "ag-bureau-search": "2026-10-02T15:26:40.958Z",
-   "ag-ui": "2026-10-02T15:26:40.958Z",
-   "agency-swarm": "2026-10-02T15:26:40.958Z",
-   "agencyai-agency-ai": "2026-10-02T15:26:40.958Z",
-   "agent-bev-bev-door": "2026-10-02T15:26:40.958Z",
-   "agent-lightning": "2026-10-02T15:26:40.958Z",
-   "agent-protocol": "2026-10-02T15:26:40.958Z",
-   "agent-s": "2026-10-02T15:26:40.958Z",
-   "agent-zero": "2026-10-02T15:26:40.958Z",
-   "agentbit-mcp": "2026-10-02T15:26:40.958Z",
-   "agentboxd-mcp": "2026-10-02T15:26:40.958Z",
-   "agentbuilt-agentbuilt": "2026-10-02T15:26:40.958Z",
-   "agentemaillist-free-transactional-email-smtp-relay": "2026-10-02T15:26:40.958Z",
-   "agentfilings-mcp": "2026-10-02T15:26:40.958Z",
+   "1102tools-acquisition-gov-mcp": "2026-11-05T07:19:29.391Z",
+   "1325-mcp": "2026-11-05T07:19:29.391Z",
+   "3dassets-catalogue": "2026-11-05T07:19:29.391Z",
+   "3dneweraai-newera": "2026-11-05T07:19:29.391Z",
+   "402cron-402cron": "2026-11-05T07:19:29.391Z",
+   "4bl1ty-mcp": "2026-11-05T07:19:29.391Z",
+   "5ire": "2026-11-05T07:19:29.391Z",
+   "808bits-fips-cmvp": "2026-11-05T07:19:29.391Z",
+   "a2a-protocol": "2026-11-05T07:19:29.391Z",
+   "a2awire-benchmark-accurate-financial-record-reconcile-2026-09-22-af293a80": "2026-11-05T07:19:29.391Z",
+   "abmeter-abmeter": "2026-11-05T07:19:29.391Z",
+   "acornreply-server": "2026-11-05T07:19:29.391Z",
+   "activepieces": "2026-11-05T07:19:29.391Z",
+   "ad-getle-leads": "2026-11-05T07:19:29.391Z",
+   "adako-ads": "2026-11-05T07:19:29.391Z",
+   "adrianczuczka-mason": "2026-11-05T07:19:29.391Z",
+   "adrianhomelab-leadgen-onrc": "2026-11-05T07:19:29.391Z",
+   "adrkit-mcp": "2026-11-05T07:19:29.391Z",
+   "adtest-mcp": "2026-11-05T07:19:29.391Z",
+   "ae-datadubai-dubai-real-estate": "2026-11-05T07:19:29.391Z",
+   "ag-bureau-search": "2026-11-05T07:19:29.391Z",
+   "ag-ui": "2026-11-05T07:19:29.391Z",
+   "agency-swarm": "2026-11-05T07:19:29.391Z",
+   "agencyai-agency-ai": "2026-11-05T07:19:29.391Z",
+   "agent-bev-bev-door": "2026-11-05T07:19:29.391Z",
+   "agent-lightning": "2026-11-05T07:19:29.391Z",
+   "agent-protocol": "2026-11-05T07:19:29.391Z",
+   "agent-s": "2026-11-05T07:19:29.391Z",
+   "agent-zero": "2026-11-05T07:19:29.391Z",
+   "agentbit-mcp": "2026-11-05T07:19:29.391Z",
+   "agentboxd-mcp": "2026-11-05T07:19:29.391Z",
+   "agentbuilt-agentbuilt": "2026-11-05T07:19:29.391Z",
+   "agentemaillist-free-transactional-email-smtp-relay": "2026-11-05T07:19:29.391Z",
+   "agentfilings-mcp": "2026-11-05T07:19:29.391Z",
    "agentforce": "2026-10-02T15:26:40.958Z",
    "agentgateway": "2026-10-02T15:26:40.958Z",
    "agentgpt": "2026-10-02T15:26:40.958Z",
@@ -4463,7 +4465,13 @@
    "trendsmcp-steam": "2026-11-04T06:57:52.613Z",
    "trendsmcp-tiktok": "2026-11-04T06:57:52.613Z",
    "trendsmcp-wikipedia": "2026-11-04T06:57:52.613Z",
-   "trendsmcp-youtube": "2026-11-04T06:57:52.613Z"
+   "trendsmcp-youtube": "2026-11-04T06:57:52.613Z",
+   "turingtap-turingtap": "2026-11-05T07:19:29.391Z",
+   "velvt-velvt": "2026-11-05T07:19:29.391Z",
+   "wavespeed-mcp": "2026-11-05T07:19:29.391Z",
+   "wpconvert-mcp": "2026-11-05T07:19:29.391Z",
+   "yetty-yetty": "2026-11-05T07:19:29.391Z",
+   "youtube-transcript-youtube-transcript": "2026-11-05T07:19:29.391Z"
   }
  }
 }

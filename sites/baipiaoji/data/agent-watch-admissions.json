@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-04",
+ "checked": "2026-11-05",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3600,6 +3600,51 @@
    "source_http": null,
    "repo_http": null,
    "reason": "network-or-response-error"
+  },
+  "biodnd-agent-fin": {
+   "attempts": 1,
+   "first_attempt": "2026-11-05",
+   "last_attempt": "2026-11-05",
+   "attemptedAt": "2026-11-05T07:19:29.391Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "bitmovin-mcp-analytics-analytics-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-05",
+   "last_attempt": "2026-11-05",
+   "attemptedAt": "2026-11-05T07:19:29.391Z",
+   "source_http": 403,
+   "repo_http": null,
+   "reason": "source HTTP 403"
+  },
+  "bitsweave-bitsweave": {
+   "attempts": 1,
+   "first_attempt": "2026-11-05",
+   "last_attempt": "2026-11-05",
+   "attemptedAt": "2026-11-05T07:19:29.391Z",
+   "source_http": 530,
+   "repo_http": null,
+   "reason": "source HTTP 530"
+  },
+  "bizgigz-agent-marketplace": {
+   "attempts": 1,
+   "first_attempt": "2026-11-05",
+   "last_attempt": "2026-11-05",
+   "attemptedAt": "2026-11-05T07:19:29.391Z",
+   "source_http": null,
+   "repo_http": null,
+   "reason": "network-or-response-error"
+  },
+  "bjjsquare-bjjsquare": {
+   "attempts": 1,
+   "first_attempt": "2026-11-05",
+   "last_attempt": "2026-11-05",
+   "attemptedAt": "2026-11-05T07:19:29.391Z",
+   "source_http": 429,
+   "repo_http": null,
+   "reason": "source HTTP 429"
   }
  },
  "admitted": [
@@ -19686,6 +19731,336 @@
    "date": "2026-11-04",
    "source_http": 200,
    "repo_http": null
+  },
+  {
+   "slug": "bazous-bazous",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beachvalencia-booking",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beacio-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "beamtrace-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beaubitw-services",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beauticslab-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bedrocknews-news",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beeimg-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beforevibe-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beleeg-beleeg",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beleeg-public",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "belindoc-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bellwethermetrics-bellwether-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "benawf-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "benriscore-api",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "bereviewable-reviewable-artifacts",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bernuvia-marketplace",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "besewbizzy-shop",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "besot-catalogue",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bespree-resumes",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bestcarfinder-dealer-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bestekitools-bestekitools",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bestsanityagency-evidence",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "besttimetobookhotels-booking-timing",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "beycome-listing",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "beyondpayday-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "biaedge-immigration-research",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bids44-marketplace",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bidskim-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bidsparq-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bigballsdata-sports-data",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bigdata-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bikefuchs-bikefuchs",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bilanceapp-bilance",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bilgai-bilg",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "billingengine-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "billingserv-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "binaryandthread-store",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "binstockly-site",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "birdieduel-scorecard-import",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "birdsift-birdsift",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "birkinbagstock-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bisibility-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bitcoincreditstack-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bitcoinsllm-autotrade",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bitculator-market-data",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bitly-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bitsbound-contract-analysis",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bitterclip-bitterclip",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bitvoya-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "biz-planner-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bizworthcalculator-site",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bkkstaff-bkk-staff",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blackduck-mcp-server",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackflagalert-mcp",
+   "date": "2026-11-05",
+   "source_http": 200,
+   "repo_http": 200
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

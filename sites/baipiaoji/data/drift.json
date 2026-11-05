@@ -1,10 +1,85 @@
 {
-  "generated": "2026-11-04",
+  "generated": "2026-11-05",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 103,
-  "fetched_fail": 24,
-  "pending": 16,
+  "fetched_ok": 107,
+  "fetched_fail": 20,
+  "pending": 17,
   "items": [
+    {
+      "slug": "anythingllm",
+      "url": "https://anythingllm.com",
+      "confirmed": "2026-11-05",
+      "first_seen": "2026-11-04",
+      "added": [
+        "29months",
+        "38months"
+      ],
+      "removed": [
+        "28months",
+        "37months"
+      ],
+      "checked_then": "2026-09-21"
+    },
+    {
+      "slug": "framer",
+      "url": "https://framer.com/pricing",
+      "confirmed": "2026-11-05",
+      "first_seen": "2026-11-04",
+      "added": [],
+      "removed": [
+        "100gb"
+      ],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-11-05",
+      "first_seen": "2026-11-04",
+      "added": [
+        "10.32m",
+        "11.946m",
+        "13.569m",
+        "19.921m",
+        "21.669m",
+        "24.803m",
+        "26.77m",
+        "32.448m",
+        "32.664m",
+        "7.874m",
+        "8.325m"
+      ],
+      "removed": [
+        "135%",
+        "18k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "ragflow",
+      "url": "https://ragflow.io/docs/faq",
+      "confirmed": "2026-11-05",
+      "first_seen": "2026-11-04",
+      "added": [
+        "30m",
+        "30minutes"
+      ],
+      "removed": [
+        "30seconds"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "siliconflow",
+      "url": "https://siliconflow.cn",
+      "confirmed": "2026-11-05",
+      "first_seen": "2026-11-04",
+      "added": [
+        "4k"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "exa",
       "url": "https://exa.ai/pricing",
@@ -283,25 +358,6 @@
       "checked_then": "2026-08-13"
     },
     {
-      "slug": "elicit",
-      "url": "https://elicit.com",
-      "confirmed": "2026-10-28",
-      "first_seen": "2026-10-27",
-      "added": [
-        "18.438m",
-        "22.375m",
-        "27.458m",
-        "8.904m",
-        "9.956m"
-      ],
-      "removed": [
-        "21.883m",
-        "22.849m",
-        "22.9m"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "civitai",
       "url": "https://education.civitai.com/guide-to-licensing-options-on-civitai",
       "confirmed": "2026-10-28",
@@ -344,25 +400,6 @@
         "1image",
         "2image"
       ],
-      "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "framer",
-      "url": "https://framer.com/pricing",
-      "confirmed": "2026-10-24",
-      "first_seen": "2026-10-23",
-      "added": [
-        "$30",
-        "10,000credits",
-        "100,000credits",
-        "100gb",
-        "20,000credits",
-        "3,000credits",
-        "30,000credits",
-        "5,000credits",
-        "50,000credits"
-      ],
-      "removed": [],
       "checked_then": "2026-08-06"
     },
     {
@@ -451,19 +488,6 @@
         "12.50credits"
       ],
       "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "anythingllm",
-      "url": "https://anythingllm.com",
-      "confirmed": "2026-10-15",
-      "first_seen": "2026-10-14",
-      "added": [
-        "67k"
-      ],
-      "removed": [
-        "66k"
-      ],
-      "checked_then": "2026-09-21"
     },
     {
       "slug": "deepinfra",
@@ -582,25 +606,6 @@
       "checked_then": "2026-08-04"
     },
     {
-      "slug": "ragflow",
-      "url": "https://ragflow.io/docs/faq",
-      "confirmed": "2026-10-01",
-      "first_seen": "2026-09-29",
-      "added": [
-        "1%",
-        "100k",
-        "30seconds"
-      ],
-      "removed": [
-        "0%",
-        "0.27.2image",
-        "11hours",
-        "1gb",
-        "6047b"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "fastgpt",
       "url": "https://fastgpt.cn/price",
       "confirmed": "2026-09-26",
@@ -669,17 +674,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "siliconflow",
-      "url": "https://siliconflow.cn",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "29b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     }
   ]
 }
