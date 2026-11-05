@@ -21,6 +21,7 @@ on:
       - 'tools/fleet-analytics/campaign.mjs'
       - 'data/marketing/campaigns.json'
       - 'sites/gridlings/worker.js'
+      - '.github/workflows/bpj-ad-watch.yml'
       - '.github/workflows/fleet-autopilot.yml'
       - '.github/workflows/check-autopilot.yml'
 permissions:
