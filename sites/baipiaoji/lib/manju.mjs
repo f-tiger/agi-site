@@ -1,9 +1,9 @@
-export const MANJU_MEASUREMENT_VERSION = 'manju-video-actions-v2';
+export const MANJU_MEASUREMENT_VERSION = 'manju-cloud-actions-v3';
 export const VIDEO_TASK_ACTIONS = ['video_view','video_start','video_report_needs_info','video_report_revise','video_report_test'];
-export const MANJU_ACTIONS = ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy',...VIDEO_TASK_ACTIONS];
+export const MANJU_ACTIONS = ['view','filter','empty','open','source','save','unsave','share','export','feed','inquiry_start','inquiry_ok','inquiry_error','return','preview_open','rank_sort','topic_complete','topic_empty','topic_export','search_start','search_submit','search_results','search_empty','suggest_view','suggest_select','recommend_select','discover_start','discover_found','discover_empty','discover_error','discover_limited','discover_cached','video_file_ready','video_file_error','video_complete','video_example','video_export','video_compare','official_open','platform_search','intro_open','share_native','share_copy','cloud_save','cloud_restore','cloud_delete',...VIDEO_TASK_ACTIONS];
 export function parseManjuEvent(path, ids) {
   const m = /^\/manju\/([a-z_]+)\/([a-z0-9-]+)$/.exec(path);
-  return !!m && MANJU_ACTIONS.includes(m[1]) && (VIDEO_TASK_ACTIONS.includes(m[1]) ? m[2]==='catalog' : ['catalog', ...ids].includes(m[2]));
+  return !!m && MANJU_ACTIONS.includes(m[1]) && ((VIDEO_TASK_ACTIONS.includes(m[1])||m[1].startsWith('cloud_')) ? m[2]==='catalog' : ['catalog', ...ids].includes(m[2]));
 }
 export async function readManjuSignals(db,since) {
   try {

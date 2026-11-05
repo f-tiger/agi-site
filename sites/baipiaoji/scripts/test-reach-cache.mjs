@@ -128,7 +128,7 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   const second = await call();
   ok(first.status === 200 && afterFirst >= 7, `第一次请求读 D1（${afterFirst} 条 hits 查询）`);
   const manju=(await first.clone().json()).manju_signals;
-  ok(manju.measurement_version==='manju-video-actions-v2' && manju.actions.video_view===0 && manju.actions.video_report_revise===0, 'reach 返回固定新口径及已知零，不借用旧缓存');
+  ok(manju.measurement_version==='manju-cloud-actions-v3' && manju.actions.video_view===0 && manju.actions.video_report_revise===0, 'reach 返回固定新口径及已知零，不借用旧缓存');
   ok(second.headers.get('x-bpj-reach-cache') === 'hit' && reads === afterFirst, '第二次请求一条 hits 查询都不发');
   ok(accountsAfterFirst === 2 && accountReads === accountsAfterFirst, '账户总量和UTC日明细一起缓存，命中不重读账户表');
   const j = await second.json();

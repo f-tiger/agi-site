@@ -22,7 +22,7 @@ export function buildDiscovery({publish,page,write,catalog,insights,external,plo
   ['红果热度能当播放量吗？','不能。红果公开榜单以观看、互动等综合热度排序，完整计算窗口未公开。快照热度、月峰值和抖音月播放增量分别展示，不相加，也不据此推算人数或收入。'],
   ['为什么 9 月和 10 月数据不能直接比较？',`当前核实的是 ${insights.reviewedAt} 检查的红果官方榜单快照，9 月完整官方月榜尚未核实。8 月保留的是 DataEye 报告摘录。来源、指标和周期不同，不能计算同比或环比增长。`],
   ['如何引用帧选的榜单和题材计数？','写明原始来源、平台、观察日期、指标与样本范围，并附本站页面和原始来源链接。题材计数含分季、多标签有交叉，不是市场份额。可查看带出处的 JSON 和 Markdown 摘要；资料公开不等于获得作品素材转载许可。'],
-  ['收藏会同步到账号吗？','收藏保存在当前浏览器，可导出文本或主动分享片单。BPJ 账户不会同步漫剧收藏；目录 RSS 通知资料更新，不是剧集追更。']
+  ['收藏会同步到账号吗？','收藏默认保存在当前浏览器，可免费导出文本或主动分享。登录 BPJ 免费账户后，可在片单区手动保存最多 200 部收藏并在其他设备恢复，不会自动上传；观看进度仍在本机。目录 RSS 通知资料更新，不是剧集追更。']
  ];
  const breadcrumb=(title,path)=>({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'帧选',item:root},{'@type':'ListItem',position:2,name:title,item:root+path}]});
  for(const g of GENRES){const rows=catalog.items.filter(x=>x.category===g.id);if(rows.length<10)throw Error('Insufficient genre material: '+g.id);const title=g.angle,path='genre-'+g.id,topics=insights.topics.filter(t=>t.category===g.id),tags=[...new Set(rows.flatMap(x=>x.tags))].slice(0,8),checked=rows.map(x=>x.checkedAt).sort().at(-1);
