@@ -139,6 +139,15 @@ def test_workflow_waits_for_membership_and_checks_out_current_main() -> None:
     assert "- uses: actions/checkout@v4\n        with:\n          ref: main" in autopilot
 
 
+def test_membership_maintenance_uses_one_off_peak_schedule() -> None:
+    workflow = (evolution.ROOT / ".github/workflows/bpj-ad-watch.yml").read_text(encoding="utf-8")
+    assert workflow.count("cron:") == 1
+    assert "cron: '37 */2 * * *'" in workflow
+    assert "cron: '7 */2 * * *'" not in workflow
+    assert "Continue bounded Jarvis missions" in workflow
+    assert "node sites/agiscorecard/tools/jarvis/ops.mjs run" in workflow
+
+
 if __name__ == "__main__":
     test_missing_is_unknown()
     test_action_is_bounded_and_redacted()
@@ -148,4 +157,5 @@ if __name__ == "__main__":
     test_previous_day_readiness_is_unknown_not_a_live_failure()
     test_current_readiness_still_raises_a_real_health_alert()
     test_workflow_waits_for_membership_and_checks_out_current_main()
+    test_membership_maintenance_uses_one_off_peak_schedule()
     print("evolution invariants: ok")
