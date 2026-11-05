@@ -2,7 +2,7 @@
   "ok": true,
   "since": "2026-09-25",
   "days": 28,
-  "generated": "2026-11-04T14:00:10.106Z",
+  "generated": "2026-11-05T14:21:24.090Z",
   "cache_seconds": 300,
   "unit": "Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed. Public aggregates may be cached for 5 minutes.",
   "events": {
@@ -10,7 +10,7 @@
     "doc_video_load_upscayl": 1
   },
   "excluded": {
-    "doc_ci": 46
+    "doc_ci": 47
   },
   "daily": [
     {
@@ -57,46 +57,18 @@
   "crawler_fetches": [
     {
       "path": "/document-sitemap.xml",
-      "n": 159
+      "n": 172
     },
     {
       "path": "/llms.txt",
-      "n": 29
-    },
-    {
-      "path": "/document-assets/text/en/videos/shotcut.txt",
-      "n": 7
+      "n": 22
     },
     {
       "path": "/document-assets/text/de/learn/pdf-reading-order.txt",
       "n": 6
     },
     {
-      "path": "/document-assets/text/en/delivery-evidence.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/learn/pdf-accessibility-checklist.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/open-source.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/open-source/obs.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/open-source/shotcut.txt",
-      "n": 6
-    },
-    {
-      "path": "/document-assets/text/en/verify-file.txt",
+      "path": "/document-assets/text/en/videos/shotcut.txt",
       "n": 6
     },
     {
@@ -116,11 +88,31 @@
       "n": 5
     },
     {
-      "path": "/document-assets/text/en/learn/pdf-reading-order.txt",
+      "path": "/document-assets/text/en/delivery-evidence.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/learn/pdf-accessibility-checklist.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/open-source.txt",
       "n": 5
     },
     {
       "path": "/document-assets/text/en/open-source/audacity.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/open-source/obs.txt",
+      "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/open-source/shotcut.txt",
       "n": 5
     },
     {
@@ -136,12 +128,20 @@
       "n": 5
     },
     {
+      "path": "/document-assets/text/en/verify-file.txt",
+      "n": 5
+    },
+    {
       "path": "/document-assets/text/en/videos.txt",
       "n": 5
     },
     {
       "path": "/document-assets/text/en/videos/audacity.txt",
       "n": 5
+    },
+    {
+      "path": "/document-assets/text/en/learn/pdf-reading-order.txt",
+      "n": 4
     },
     {
       "path": "/document-assets/text/en/pdf-to-text.txt",
@@ -375,11 +375,11 @@
   "crawler_agents": [
     {
       "claimed_agent": "ClaudeBot",
-      "n": 126
+      "n": 138
     },
     {
       "claimed_agent": "Amazonbot",
-      "n": 80
+      "n": 72
     },
     {
       "claimed_agent": "Applebot",
@@ -391,7 +391,7 @@
     },
     {
       "claimed_agent": "GPTBot",
-      "n": 46
+      "n": 45
     },
     {
       "claimed_agent": "Googlebot",
@@ -399,31 +399,31 @@
     },
     {
       "claimed_agent": "ChatGPT-User",
-      "n": 7
+      "n": 6
     },
     {
       "claimed_agent": "OAI-SearchBot",
-      "n": 4
-    },
-    {
-      "claimed_agent": "Bingbot",
-      "n": 3
-    },
-    {
-      "claimed_agent": "Claude-User",
-      "n": 3
-    },
-    {
-      "claimed_agent": "Perplexity-User",
-      "n": 3
-    },
-    {
-      "claimed_agent": "PerplexityBot",
       "n": 3
     },
     {
       "claimed_agent": "YandexBot",
       "n": 3
+    },
+    {
+      "claimed_agent": "Bingbot",
+      "n": 2
+    },
+    {
+      "claimed_agent": "Claude-User",
+      "n": 2
+    },
+    {
+      "claimed_agent": "Perplexity-User",
+      "n": 2
+    },
+    {
+      "claimed_agent": "PerplexityBot",
+      "n": 2
     }
   ],
   "source_events": [
@@ -497,5 +497,5 @@
   "homepage_scope": "Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include historical document homepages and the current /document-tools directory; collector page views use a separate event stream. Legacy tool_views includes homepage views; dedicated_tool_views does not.",
   "attribution_scope": "Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.",
   "tool_views": 1,
-  "query_rows_read": 2789
+  "query_rows_read": 2744
 }
