@@ -29,6 +29,6 @@ export function initWorkspace(doc,core,storage){
 }
 if(typeof document!=='undefined'){
  const refresh=initWorkspace(document,globalThis.DSCollector,()=>localStorage);
- if(refresh)window.addEventListener('storage',refresh);
+ if(refresh){window.addEventListener('storage',refresh);window.addEventListener('tds:collection-restored',refresh);}
  for(const button of document.querySelectorAll('[data-checklist-print]')){button.hidden=false;button.addEventListener('click',()=>window.print());}
 }

@@ -148,6 +148,7 @@ export function businessEvent(host, pathname, detail, allowed = {}) {
     if(route==='/for-agents'&&name==='collector_mcp_copy')return {name,tool_id:'collector-mcp'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_export')return {name:'collector_checklist_export',tool_id:'series-checklist'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_save')return {name:'collector_checklist_save',tool_id:'series-checklist'};
+    if(['/','/series','/collection-tracker'].includes(route)&&['collection_cloud_save','collection_cloud_restore','collection_cloud_delete'].includes(name))return {name,tool_id:'collection-tracker'};
     if(route==='/collection-tracker'&&['collection_save','collection_export','collection_import'].includes(name))return {name,tool_id:'collection-tracker'};
     if(route==='/display-calculator'&&['display_calc','display_plan_export','display_plan_example'].includes(name))return {name,tool_id:'display-calculator'};
     if(/^\/series\/(?:smiski|sonny-angel)-[a-z0-9-]+$/.test(route)&&name==='collector_series_calc')return {name:'collector_series_complete',tool_id:'series-style-probability'};

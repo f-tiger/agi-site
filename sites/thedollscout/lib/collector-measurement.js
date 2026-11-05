@@ -12,7 +12,7 @@ export function firstFullUTCDate(released) {
 }
 export const MCP_EVENT = 'collector_mcp_call';
 export const MCP_RESULTS = new Set(['result', 'no_result']);
-export const COLLECTOR_EVENTS = new Set([...EVENT_KIT_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','display_plan_export','display_plan_example','collection_save', 'collection_export', 'collection_import', 'collector_series_save', 'collector_series_export', 'collector_mcp_copy']);
+export const COLLECTOR_EVENTS = new Set(['collection_cloud_save','collection_cloud_restore','collection_cloud_delete',...EVENT_KIT_EVENTS,'collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported','display_plan_export','display_plan_example','collection_save', 'collection_export', 'collection_import', 'collector_series_save', 'collector_series_export', 'collector_mcp_copy']);
 const QA_PARAMS = ['ci', '__ci', '__probe', 'qa', '__qa'];
 const QA_HEADERS = ['x-probe', 'x-ci', 'x-qa', 'x-tds-test'];
 const QA_AGENT = /headless|playwright|puppeteer|self[-_ ]?check|release[-_ ]?check|(?:^|[^a-z])(?:ci|qa|test|probe)(?:[^a-z]|$)|mcp[-_ ]?(?:inspector|checker|validator)|(?:glama|smithery).*(?:check|inspect|health|test)/i;
@@ -37,6 +37,7 @@ export function measurableRequest(request, {mcp = false} = {}) {
 }
 
 export function collectorEventAllowed(event, path) {
+  if(['collection_cloud_save','collection_cloud_restore','collection_cloud_delete'].includes(event))return /^\/(?:de\/|zh\/)?(?:collection-tracker|series)?$/.test(path);
   if (EVENT_KIT_EVENTS.has(event)) return /^\/(?:de\/|zh\/)?collecting\/event-kit$/.test(path);
   if (['collector_wish_generate','collector_wish_export','collector_wish_response_reported','collector_wish_fulfilled_reported'].includes(event)) return /^\/(?:de\/|zh\/)?collecting\/wish-card$/.test(path);
   if (['display_plan_export','display_plan_example'].includes(event)) return /^\/(?:de\/)?display-calculator$/.test(path);

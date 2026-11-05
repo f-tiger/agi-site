@@ -116,6 +116,7 @@
     window.addEventListener('storage',event=>{
       if(event.key===key||event.key===null) refresh();
     });
+    window.addEventListener('tds:collection-restored',()=>refresh());
     window.addEventListener('focus',()=>refresh());
     window.addEventListener('pageshow',()=>refresh());
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});

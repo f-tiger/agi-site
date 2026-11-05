@@ -22,7 +22,7 @@ test('assistant discovery describes persistent browser checklists without granti
   assert.match(checklist.limitations,/shared with the collection tracker across site languages and tabs/);
   assert.match(checklist.limitations,/JSON backups/);
   assert.match(checklist.limitations,/clearing browser data/);
-  assert.match(checklist.limitations,/No cloud sync/);
+  assert.match(checklist.limitations,/No automatic cloud sync/);
   assert.match(checklist.limitations,/MCP cannot read or edit/);
   assert.doesNotMatch(checklist.limitations,/current tab only|resets on navigation/i);
   assert.equal(checklist.execution,'browser-only');
