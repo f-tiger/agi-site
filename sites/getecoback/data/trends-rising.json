@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-04",
+ "fetched": "2026-11-05",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -132,53 +132,35 @@
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
-   "rising": [
-    {
-     "q": "pattex luftentfeuchter",
-     "v": 53050
-    },
-    {
-     "q": "meacodry arete one 12l",
-     "v": 28750
-    },
-    {
-     "q": "pingi luftentfeuchter",
-     "v": 20700
-    },
-    {
-     "q": "luftentfeuchter kissen auto",
-     "v": 13850
-    },
-    {
-     "q": "notlandung",
-     "v": 11800
-    },
-    {
-     "q": "steckdosenleiste",
-     "v": 8600
-    },
-    {
-     "q": "weltweite zeitumstellung 2027",
-     "v": 8000
-    },
-    {
-     "q": "auto luftentfeuchter",
-     "v": 140
-    },
-    {
-     "q": "luftentfeuchter auto",
-     "v": 130
-    },
-    {
-     "q": "nachfüllpack luftentfeuchter",
-     "v": 110
-    }
+   "auto": [
+    "luftentfeuchter",
+    "luftentfeuchter keller",
+    "luftentfeuchter test",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter granulat",
+    "luftentfeuchter auto",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter badezimmer",
+    "luftentfeuchter keller testsieger"
    ],
-   "source": "related-queries",
-   "fetched": "2026-10-28",
-   "polluted": false,
-   "last_attempt_at": "2026-10-28T10:45:57.567320+00:00",
-   "last_attempt_status": "ok"
+   "new_vocabulary": [
+    "luftentfeuchter keller",
+    "luftentfeuchter test",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter granulat",
+    "luftentfeuchter auto",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter badezimmer",
+    "luftentfeuchter keller testsieger"
+   ],
+   "rising": [],
+   "source": "autocomplete-vocabulary",
+   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
+   "last_attempt_at": "2026-11-05T12:43:50.436290+00:00",
+   "last_attempt_status": "failed",
+   "fetched": "2026-11-05"
   },
   "heizlüfter": {
    "auto": [
@@ -316,22 +298,24 @@
    "auto": [
     "saugwischer",
     "saugwischer test",
-    "saugwischer testsieger stiftung warentest",
     "saugwischer testsieger",
+    "saugwischer testsieger stiftung warentest",
     "saugwischer vorwerk",
     "saugwischer akku",
-    "saugwischer roboter",
     "saugwischer akku testsieger",
+    "saugwischer roboter",
     "saugwischer kärcher",
-    "saugwischer roborock"
+    "saugwischer mit selbstreinigung"
    ],
-   "new_vocabulary": [],
+   "new_vocabulary": [
+    "saugwischer mit selbstreinigung"
+   ],
    "rising": [],
    "source": "autocomplete-vocabulary",
    "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-04T12:28:37.095872+00:00",
+   "last_attempt_at": "2026-11-05T12:40:50.312186+00:00",
    "last_attempt_status": "failed",
-   "fetched": "2026-11-04"
+   "fetched": "2026-11-05"
   }
  }
 }
