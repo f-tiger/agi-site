@@ -70,5 +70,57 @@ class CalculatorIsolation(unittest.TestCase):
         self.assertLess(result.index('<!--/EB_BUYER-->'),result.index('<!--EB_LAUNDRY-->'))
         self.assertEqual(inject(result,'dehumidifier-drying-clothes-cost',True),result)
 
+
+class ModelIntent(unittest.TestCase):
+    def test_meacodry_guide_is_discovered_as_humidity_not_cooling(self):
+        from build_structure import cat_of, device_of, us_term, usmarket_html
+        slug = 'meacodry-arete-one-test'
+        self.assertEqual(device_of(slug), 'dehum')
+        self.assertEqual(cat_of(slug), 'luftqualitaet')
+        self.assertEqual(us_term(slug)[0], 'dehumidifier')
+        us = usmarket_html(slug)
+        self.assertIn('Midea+Cube+50-Pint', us)
+        self.assertNotRegex(us, r'Midea.Duo|Whynter|portable.air.conditioner')
+        # The adjacent Meaco fan and actual portable-AC intent must stay distinct.
+        self.assertEqual(device_of('meacofan-1056-ventilator-test'), 'fan')
+        self.assertEqual(device_of('mobile-klimaanlage-vergleich'), 'ac')
+
+    def test_rebuilding_meacodry_replaces_stale_cooling_purchase_surfaces(self):
+        from build_structure import (device_of, inject_models, inject_toppick,
+                                     inject_popup, inject_sizer, inject_climate,
+                                     inject_heatenergy)
+        from build_asin_links import rewrite
+        slug = 'meacodry-arete-one-test'
+        original = '<article><h1>Existing review</h1><p>Preserve the source.</p><h2 id="alternativen">Conditions</h2></article></body>'
+        # Simulate the previous misclassification, then migrate it using the
+        # producing functions. This catches stale markers as well as new pages.
+        from build_structure import models_block, toppick_block, popup_block
+        stale = original.replace('<h2 ', models_block('ac') + '<h2 ', 1)
+        stale = stale.replace('<article>', '<article>' + toppick_block('ac'), 1)
+        stale = stale.replace('</body>', popup_block('ac') + '</body>')
+        stale = stale.replace('</body>', '<!--EB_CLIMATE-->Cooling days<!--/EB_CLIMATE--><!--EB_HEATENERGY-->Cooling costs<!--/EB_HEATENERGY--><!--EB_SIZER-->BTU<!--/EB_SIZER--></body>')
+        def rebuild(source):
+            for inject in (inject_models, inject_sizer, inject_toppick,
+                           inject_climate, inject_heatenergy, inject_popup):
+                source = inject(source, slug)
+            return rewrite(source)[0]
+        rendered = rebuild(stale)
+        self.assertEqual(rebuild(rendered), rendered)
+        self.assertIn('Preserve the source.', rendered)
+        self.assertIn('href="#alternativen"', rendered)
+        self.assertNotIn('href="#eb-models"', rendered)
+        for marker in ('EB_MODELS', 'EB_TOPPICK', 'EB_POPUP'):
+            block = re.search(r'<!--' + marker + r'-->(.*?)<!--/' + marker + r'-->', rendered, re.S)[1]
+            self.assertIn('MeacoDry Arete One 20L', block)
+            self.assertIn('amazon.de/dp/B07KJX6RDK?tag=getecoback-21', block)
+            self.assertIn('MeacoDry+Arete+One+20L', block)
+            self.assertNotRegex(block, r'PAC N90|MPPH-09CRN7|ChillFlex|data-eb-pu="calc"')
+        self.assertNotIn('<!--EB_SIZER-->', rendered)
+        self.assertNotIn('<!--EB_CLIMATE-->', rendered)
+        self.assertNotIn('<!--EB_HEATENERGY-->', rendered)
+        self.assertNotIn('window.ebReadRoom&&window.ebReadRoom()', rendered)
+        # A cooling page must still expose its useful calculator route.
+        self.assertIn('data-eb-pu="calc"', popup_block(device_of('mobile-klimaanlage-vergleich')))
+
 if __name__=='__main__':
     unittest.main()

@@ -4,7 +4,7 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/meacodry-arete-one-test.html
 
-Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
 
 Der MeacoDry Arete One 20L ist das Gerät, das wir auf diesem Portal in der 20-Liter-Klasse als erste Wahl nennen — Grund genug, ihm zur Entfeuchter-Saison eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests, Messungen und das Hersteller-Datenblatt zum Arete One sagen, und ordnet die Zahlen für konkrete Räume ein.
 

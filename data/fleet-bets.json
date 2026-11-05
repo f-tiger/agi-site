@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-10-05",
+ "updated": "2026-11-05",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -2469,6 +2469,17 @@
    "win": "完善已验证任务的案例对照与现有工具/内容/账户价值；支付与交付核验后才记录收入，不默认新SKU或复活撤回服务",
    "lose": "发现不足=insufficient先修分发；样本足够且完成/导出不足=优化约束、案例匹配与执行价值；没有重复需求不开发收费云计划；不得把免费咨询无付款判为商业失败",
    "source": "sites/baipiaoji/docs/PRD-ai-solo-2026-10-05.md:118",
+   "status": "open"
+  },
+  {
+   "id": "eco-humidity-intent-repair-1119",
+   "site": "getecoback",
+   "due": "2026-11-19",
+   "metric": "Complete 14 UTC dates 2026-11-05 through 2026-11-18: private scorecard humidity-cohort page-view and affiliate-click events; merchant evidence reconciled separately",
+   "threshold": ">=100 page-view events and >=10 affiliate-click events is an operational exposure gate only; USD10 attributable confirmed net commission is the commercial scaling gate",
+   "win": "Retain corrected paths; expand only after current attributable merchant evidence reaches USD10. No causal claim from aggregate cohort counts.",
+   "lose": "Below 100 views or incomplete source coverage => insufficient; >=100 views and <5 clicks => inspect fit and destination; 5–9 clicks => insufficient for expansion. Do not add more cards or infer zero revenue from missing statements.",
+   "source": "docs/eco-revenue-path-2026-11-05.md:7",
    "status": "open"
   }
  ]
