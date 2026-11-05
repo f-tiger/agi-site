@@ -15,7 +15,9 @@
     "repairPullRequest": 243,
     "repairMergeCommit": "714f891d4e03c9b850597f6688dfb6304e0f680f",
     "persistedByCommit": "be99533b4ab17cc3eb21d21b0908a5eac16b7ec7",
-    "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41788657363"
+    "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41788657363",
+    "recordedInPullRequest": 246,
+    "receiptCommit": "ad86e84d81971d5706f64b815a05bb17ea4c3c36"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -428,7 +430,9 @@
         "builtSourceCommit": "27edad72c2a3f54c79251ee9371f7327b35328de",
         "deployedAt": "2026-11-03T07:16:39.0806073Z",
         "meaning": "Bounded diagnostic is now present in actual failure log and persisted built status file. Existing schedule deployed retained Nov1 catalogue, then failed final manju gate. Source recovery remains unverified."
-      }
+      },
+      "closureRecordedInPullRequest": 246,
+      "closureReceiptCommit": "ad86e84d81971d5706f64b815a05bb17ea4c3c36"
     },
     {
       "id": "bpj-catalogue-count-release",
@@ -725,7 +729,9 @@
     "repairImplementationCommit": "b2fe40cd58c8226adc1e348607dd60f5d19b4074",
     "repairMergeCommit": "714f891d4e03c9b850597f6688dfb6304e0f680f",
     "commitBase": "906e702bd442c609ed09c4833ab15355778b44bd",
-    "concurrencyCheck": "Main advanced by two unrelated agiscorecard data commits after initial inspection; isolated checkout fast-forwarded without overlapping edits. No same-target open PR or active workflow observed before this documentation commit."
+    "concurrencyCheck": "Main advanced by two unrelated agiscorecard data commits after initial inspection; isolated checkout fast-forwarded without overlapping edits. No same-target open PR or active workflow observed before this documentation commit.",
+    "recordedInPullRequest": 246,
+    "receiptCommit": "ad86e84d81971d5706f64b815a05bb17ea4c3c36"
   },
   "recentActions": [
     {
@@ -905,7 +911,9 @@
       "deployedAt": "2026-11-04T07:01:56.1626869Z",
       "action": "Documentation-only closure using actual original schedule; no new deployment or IndexNow.",
       "nextOriginalScheduleReviewDate": "2026-11-06",
-      "nextWeeklyReviewDate": "2026-11-10"
+      "nextWeeklyReviewDate": "2026-11-10",
+      "recordedInPullRequest": 246,
+      "receiptCommit": "ad86e84d81971d5706f64b815a05bb17ea4c3c36"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
