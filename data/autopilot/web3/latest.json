@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-03T09:59:36.770Z",
+  "asOf": "2026-11-05T09:48:44.580Z",
   "ok": true,
   "checks": [
     {
@@ -15,19 +15,11 @@
       "ok": true
     },
     {
-      "name": "disclosures.agiscorecard.com",
+      "name": "route.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
+      "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,19 +27,11 @@
       "ok": true
     },
     {
-      "name": "route.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "proof.agiscorecard.com",
+      "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
@@ -55,7 +39,23 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-11-03T09:59:37.563Z",
+      "retrievedAt": "2026-11-05T09:48:45.521Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 76937.574441,
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "price": 80285.96019,
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2264.1742298000004,
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "price": 2413.3493172,
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9996779807000001,
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
-          "deviationBps": -3.22019299999865
+          "price": 0.9998492574,
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
+          "deviationBps": -1.5074260000003115
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9984,
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
-          "deviationBps": -16.00000000000046
+          "price": 0.99906,
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
+          "deviationBps": -9.400000000000519
         }
       ],
       "source": {
@@ -110,25 +110,70 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-11-03T09:59:37.075Z",
+      "retrievedAt": "2026-11-05T09:48:45.352Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-11-03T09:59:37.020Z"
+          "checkedAt": "2026-11-05T09:48:44.961Z"
         },
         {
           "id": "x402",
-          "status": "unavailable",
-          "checkedAt": "2026-11-03T09:59:37.075Z"
+          "status": "ok",
+          "checkedAt": "2026-11-05T09:48:44.961Z"
         },
         {
           "id": "ezkl",
-          "status": "unavailable",
-          "checkedAt": "2026-11-03T09:59:37.069Z"
+          "status": "ok",
+          "checkedAt": "2026-11-05T09:48:44.961Z"
         }
       ],
       "items": [
+        {
+          "title": "fix(next): skip bazaar import when the extension is already registered (#3976)",
+          "url": "https://github.com/x402-foundation/x402/commit/b9cbd85614bd55de2af1e7ff27d710ba94cf2c8f",
+          "publishedAt": "2026-11-05T07:12:02.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(python): preserve abort-hook message in V2 facilitator errors (#4098)",
+          "url": "https://github.com/x402-foundation/x402/commit/38fabd03842846463f57d283527ca8a09588a956",
+          "publishedAt": "2026-11-05T04:42:00.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Update docs/advanced-concepts/lifecycle-hooks.mdx (#4144)",
+          "url": "https://github.com/x402-foundation/x402/commit/7604b1adc8836a32c1c5b34b68066369a4f3ea5b",
+          "publishedAt": "2026-11-05T04:40:09.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(core): forward facilitator abort hook message (#4099)",
+          "url": "https://github.com/x402-foundation/x402/commit/cfbfe65f0d1dbf70be6fd1eea392ca07544796a8",
+          "publishedAt": "2026-11-05T04:38:40.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Python MCP lifecycle hooks docs update (#4143)",
+          "url": "https://github.com/x402-foundation/x402/commit/49e9618074a689c2b37ce6820b1b9ea83be645ec",
+          "publishedAt": "2026-11-05T04:32:47.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
         {
           "title": "Designing for sovereignty: Ethereum for digital public infrastructure",
           "url": "https://blog.ethereum.org/en/2026/11/03/digital-pub-infra",
@@ -178,134 +223,126 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-11-03T09:59:38.120Z",
+      "retrievedAt": "2026-11-05T09:48:46.217Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -1.5970242427582049,
-            "from": "2026-11-02T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 2.4098718328878554,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -3.5284117719683317,
-            "from": "2026-10-27T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.38466836814681216,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -1.3826004778882628,
-            "from": "2026-11-02T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 4.020152157133938,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -1.9876384714665685,
-            "from": "2026-10-27T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 4.1643685904989125,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": 0.016410860566051788,
-            "from": "2026-11-02T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.04424501088684529,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": 0.03537472018801946,
-            "from": "2026-10-27T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.045827829606581716,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -0.057099649967995436,
-            "from": "2026-11-02T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.017054351735312778,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -0.02665668674348698,
-            "from": "2026-10-27T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.011903119243217297,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -3.439859593736283,
-            "from": "2026-11-02T08:56:55.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 2.7625297860755627,
+            "from": "2026-11-04T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -10.292636371237919,
-            "from": "2026-10-27T09:00:00.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": -4.774044480509209,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -4.5748932282048465,
-            "from": "2026-11-02T08:56:55.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 5.6839815562671925,
+            "from": "2026-11-04T08:57:03.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -10.822932569709154,
-            "from": "2026-10-27T08:57:04.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": 0.36107765642141576,
+            "from": "2026-10-29T08:56:56.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
+          "sourceUpdatedAt": "2026-11-05T09:48:30.000Z",
           "day": {
-            "percent": -3.0068094786132593,
-            "from": "2026-11-02T08:56:55.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": -0.3590186601671541,
+            "from": "2026-11-04T08:57:03.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           },
           "week": {
-            "percent": -11.03057560571844,
-            "from": "2026-10-27T08:57:04.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
+            "percent": -11.068522955538885,
+            "from": "2026-10-29T09:00:00.000Z",
+            "to": "2026-11-05T09:48:30.000Z"
           }
         },
         {
           "symbol": "AKT",
-          "status": "fresh",
-          "sourceUpdatedAt": "2026-11-03T09:59:35.000Z",
-          "day": {
-            "percent": -2.219308576818668,
-            "from": "2026-11-02T08:52:58.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
-          },
-          "week": {
-            "percent": -13.378030042954137,
-            "from": "2026-10-27T08:53:02.000Z",
-            "to": "2026-11-03T09:59:35.000Z"
-          }
+          "status": "stale",
+          "sourceUpdatedAt": "2026-11-05T09:22:52.000Z",
+          "day": null,
+          "week": null
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-11-03T09:59:38.000Z",
+    "asOf": "2026-11-05T09:48:46.000Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated by event ID. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -316,9 +353,37 @@
   },
   "changes": [
     {
-      "url": "https://blog.ethereum.org/en/2026/11/03/digital-pub-infra",
-      "title": "Designing for sovereignty: Ethereum for digital public infrastructure",
-      "task": "protocol-change",
+      "url": "https://github.com/x402-foundation/x402/commit/b9cbd85614bd55de2af1e7ff27d710ba94cf2c8f",
+      "title": "fix(next): skip bazaar import when the extension is already registered (#3976)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/38fabd03842846463f57d283527ca8a09588a956",
+      "title": "fix(python): preserve abort-hook message in V2 facilitator errors (#4098)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/7604b1adc8836a32c1c5b34b68066369a4f3ea5b",
+      "title": "Update docs/advanced-concepts/lifecycle-hooks.mdx (#4144)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/cfbfe65f0d1dbf70be6fd1eea392ca07544796a8",
+      "title": "fix(core): forward facilitator abort hook message (#4099)",
+      "task": "stablecoin",
+      "kind": "new_since_previous_check",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/49e9618074a689c2b37ce6820b1b9ea83be645ec",
+      "title": "Python MCP lifecycle hooks docs update (#4143)",
+      "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     }
