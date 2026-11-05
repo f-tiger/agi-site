@@ -1,12 +1,14 @@
 # ECO: repair purchase intent before scaling distribution
 
-The MeacoDry Arete One guide was classified as cooling and could show portable-air-conditioner recommendations. The overwintering guide's existing storage-room paragraph did not connect its humidity concern to measurement and cold-cellar guidance. This release corrects those two existing paths, using the current merchant links and visual system.
+The MeacoDry Arete One guide was classified as cooling and could show portable-air-conditioner recommendations. The overwintering guide's existing storage-room paragraph did not connect its humidity concern to measurement and cold-cellar guidance. The main dehumidifier buying guide also gave blanket capacity and cold-room rules that contradicted its existing manufacturer evidence. The scoped changes correct these existing paths, using the current merchant links and visual system.
 
 The intended reader is researching a dehumidifier or checking whether an existing portable AC can be stored in a damp room. The free value is a sourced decision, including measurement, a different storage location or no purchase. Affiliate commission arises only from qualifying merchant transactions; there is no new paid service or checkout.
 
 ## Operating experiment: eco-humidity-intent-repair-1119
 
-Review on 2026-11-19 using the 14 complete UTC dates 2026-11-05 through 2026-11-18. The existing private scorecard's humidity cohort is the exposure scope; this is not a two-page causal test. Check source completeness before reading the counts. No user-level funnel or dedicated storage-bridge activation is inferred from aggregate events.
+Review on 2026-11-19 using the 14 complete UTC dates 2026-11-05 through 2026-11-18. The existing private scorecard's humidity cohort is the exposure scope; this is not a causal test. Check source completeness before reading the counts. No user-level funnel or dedicated storage-bridge activation is inferred from aggregate events.
+
+The November5 second intervention changes the existing `/guide/luftentfeuchter-ratgeber.html` primary answer, search metadata and FAQ to address 10L/20L selection at measured conditions. It removes unconditional floor-area sizing, automatic upsizing and a universal 15°C technology cutoff, while retaining the existing decision tool and merchant destinations. The narrower buying question is an editorial hypothesis, not an observed keyword-volume claim. The current Trends fallback and older demand-digest rows do not establish fresh demand. Include both interventions in this observation window; do not attribute cohort changes solely to either release. November12 is an interim review of complete dates and source coverage, with no new page or discovery expansion before reviewing evidence unless a concrete defect requires correction.
 
 - Exposure floor: 100 recorded humidity page-view events and 10 related affiliate-click events. These are operational thresholds, not users, statistical significance or income.
 - Below 100 views, or with missing source coverage: settle as insufficient evidence and improve a relevant existing owned entry before expanding content.
@@ -31,6 +33,7 @@ Use the existing daily health workflow and private revenue scorecard. The experi
 
 - Correct Meaco intent in the owning structure generator; preserve real cooling pages and existing market/tag contracts. Do not invent a Meaco ASIN or infer model-variant compatibility.
 - Update the single authored `EB_SEASONBRIDGE` on `/guide/mobile-klimaanlage-ueberwintern.html` with measurement and conditional cold-cellar links. Keep the generic seasonal bridge retired.
+- Keep the main buying guide's short answer, article, product-specific shelf copy and visible/structured FAQ consistent with the existing condition-sensitive manufacturer evidence. Preserve the decision tool's measurement, no-purchase and cause-first outcomes.
 - Regenerate affected HTML and agent-readable mirrors; run meaningful intent regressions, purchase/link/meta checks, final analytics coverage and mobile/desktop/no-JavaScript checks.
 - Complete independent review, GitHub checks, the existing serialized main deployment, live analytics verification and the changed-URL IndexNow receipt check. Submission does not prove indexing; QA visits are not acquisition or revenue.
 

@@ -1310,8 +1310,8 @@ CONTEXT_MODELS = {
  ],
  "luftentfeuchter-ratgeber": [
    ("Pro Breeze Luftentfeuchter 20 L", "20-Liter-Klasse vergleichen", "Liter/Tag, Leistungsaufnahme und Einsatztemperatur am konkreten Modell prüfen. Nicht selbst getestet; die Nennleistung ist kein Versprechen für einen kalten Keller.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
-   ("Comfee MDDF-20DEN7", "Der Keller-Favorit", "In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.", "Preis vor Ort prüfen", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
-   ("Hygrometer", "Erst messen", "Ob und wie stark du entfeuchten musst, entscheidet der Messwert — über 60 % wird es kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Comfee MDDF-20DEN7", "Modelldaten vergleichen", "Entzugsleistung bei passender Temperatur und Feuchte, Strombedarf sowie Tank- oder Schlauchablauf vor dem Kauf prüfen. Nicht selbst getestet.", "Preis vor Ort prüfen", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
+   ("Hygrometer", "Erst messen", "Temperatur und relative Feuchte wiederholt messen. Der Verlauf und die Feuchteursache entscheiden, ob ein Gerät nötig ist.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
  ],
  "luftentfeuchter-gegen-schimmel": [
    ("Luftentfeuchter mit Hygrostat", "Das eigentliche Werkzeug", "Hält die Luftfeuchte automatisch unter der Schimmelschwelle — genau das, was dieser Ratgeber erklärt.", "Preis vor Ort prüfen", "luftentfeuchter+mit+hygrostat", "dehum"),
