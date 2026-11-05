@@ -200,7 +200,9 @@ assert.ok(deploy.indexOf('- name: Check existing public account configuration be
 const verify=step('Verify Web3 watcher and selling after deployment');assert.match(verify,/if \[ "\$BPJ_RECEIPTS_RECOVERY" = "true" \]; then\s+node scripts\/ad-watch-v2.mjs --if-configured --member-receipts-only\s+else\s+node scripts\/ad-watch-v2.mjs --if-configured --members\s+fi/);assert.match(verify,/REQUIRE_WEB3_CONFIGURED:.*env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true'/);
 checkGuard(guardOf('Publish and verify startup MCP registry entry'),{needsPublish:true});
 assert.match(registry,/!contains\(github.event.head_commit.message, '\[member-receipts-recovery\]'\)/);assert.match(registry,/!contains\(github.event.workflow_run.head_commit.message, '\[member-receipts-recovery\]'\)/);
-assert.match(watch,/cron: '7 \*\/2 \* \* \*'/);
+// PR244 moved the existing two-hour trigger off peak; preserve one schedule.
+assert.match(watch,/cron: '37 \*\/2 \* \* \*'/);
+assert.equal((watch.match(/^    - cron:/gm)||[]).length,1,'Keep the single existing maintenance schedule');
 assert.deepEqual(watch.match(/options: \[([^\]]+)\]/)?.[1].split(',').map(mode=>mode.trim()),watchModes,'Only explicitly audited modes are accepted');
 assert.equal((watch.match(/inputs.mode == 'receipts-only'/g)||[]).length,1);assert.equal((watch.match(/inputs.mode == 'ads-only'/g)||[]).length,1);
 assert.equal((watch.match(/github.event_name != 'workflow_dispatch' \|\| inputs.mode == 'watch'/g)||[]).length,3);
