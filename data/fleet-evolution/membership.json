@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated": "2026-11-04T09:48:43.867Z",
+  "generated": "2026-11-05T09:49:04.800Z",
   "source": "same-origin /api/member and /api/member-admin stats",
   "privacy": "aggregate counters only; no member, order, support, token or wallet data",
   "ok": false,
@@ -11,7 +11,7 @@
       "origin": "https://baipiaoji.com",
       "public": {
         "ok": true,
-        "ready": true,
+        "ready": false,
         "site": "bpj",
         "auto_renew": false,
         "plan_price_units": 9000000,
