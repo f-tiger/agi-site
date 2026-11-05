@@ -1,10 +1,7 @@
 {
  "covered": [
   {
-   "heat": {
-    "n7": 2,
-    "p7": 0
-   },
+   "heat": null,
    "kind": "value",
    "match": 1.0,
    "page": "guide/infrarotheizung-garage.html",
@@ -15,10 +12,7 @@
    "v": 37700
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 0
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
@@ -331,13 +325,13 @@
    "v": 140
   }
  ],
- "generated": "2026-11-04",
+ "generated": "2026-11-05",
  "geo": "DE",
- "heat_source": "measured 2026-11-04 (15 pages); no notes",
+ "heat_source": "measured 2026-11-05 (14 pages); no notes",
  "hot_pages": [
   {
-   "n7": 6,
-   "p7": 3,
+   "n7": 7,
+   "p7": 4,
    "page": "/"
   },
   {
@@ -347,12 +341,12 @@
   },
   {
    "n7": 3,
-   "p7": 0,
+   "p7": 1,
    "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
    "n7": 3,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
@@ -367,18 +361,8 @@
   },
   {
    "n7": 3,
-   "p7": 2,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
-  },
-  {
-   "n7": 3,
    "p7": 0,
    "page": "/guide/wohnmobil-feuchtigkeit-winter.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/en/guide/portable-ac-hose-extension.html"
   },
   {
    "n7": 2,
@@ -387,23 +371,28 @@
   },
   {
    "n7": 2,
-   "p7": 1,
+   "p7": 2,
    "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 2,
-   "p7": 0,
-   "page": "/guide/infrarotheizung-garage.html"
+   "p7": 2,
+   "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
    "n7": 2,
-   "p7": 1,
+   "p7": 0,
    "page": "/guide/mobile-klimaanlage-zu-laut.html"
   },
   {
    "n7": 2,
-   "p7": 2,
+   "p7": 3,
    "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/hitze-radar.html"
   },
   {
    "n7": 2,

@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-04",
+  "as_of": "2026-11-05",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 1,
+    "membership_ready": 0,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 9,
+    "opportunities": 8,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-04T09:48:43.867Z",
-    "health": "2026-11-03T15:39:37Z",
-    "ai_referrals": "2026-11-03T15:40:18Z",
-    "opportunities": "2026-11-03",
-    "autopilot_receipt": "2026-11-04"
+    "membership": "2026-11-05T09:49:04.800Z",
+    "health": "2026-11-04T15:52:55Z",
+    "ai_referrals": "2026-11-04T15:53:26Z",
+    "opportunities": "2026-11-04",
+    "autopilot_receipt": "2026-11-05"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-04T09:48:43.867Z",
+    "generated": "2026-11-05T09:49:04.800Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": false,
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": true,
+          "ready": false,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -131,7 +131,7 @@
       "theme": "looking for a tool for browsing contents of unmounted cold storage",
       "site": null,
       "state": "scout",
-      "score": 4.17,
+      "score": 4.19,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -182,19 +182,10 @@
       "supply": 0
     },
     {
-      "theme": "i m surprised claude doesn t cite well",
+      "theme": "what do you call holy grail mania risk",
       "site": null,
       "state": "scout",
-      "score": 2.07,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "do u think there should be a auto recovery tool for agents",
-      "site": null,
-      "state": "scout",
-      "score": 2.02,
+      "score": 2.09,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -203,10 +194,10 @@
       "theme": "can the whatsapp business calling api initiate calls using a canadian business p",
       "site": null,
       "state": "scout",
-      "score": 2.0,
+      "score": 1.0,
       "days_seen": 1,
       "demand": 0,
-      "supply": 0
+      "supply": 1
     }
   ],
   "user_pain_radar": [
@@ -337,6 +328,17 @@
       "mode": "alert"
     },
     {
+      "site": "baipiaoji",
+      "kind": "membership_health",
+      "priority": 92,
+      "reason": "membership API is not ready",
+      "evidence": {
+        "public_ok": true,
+        "ready": false
+      },
+      "mode": "alert"
+    },
+    {
       "site": "getecoback",
       "kind": "membership_health",
       "priority": 92,
@@ -359,17 +361,6 @@
       "mode": "alert"
     },
     {
-      "site": "baipiaoji",
-      "kind": "membership_conversion",
-      "priority": 64,
-      "reason": "ready membership has qualified referred traffic but no paid members",
-      "evidence": {
-        "referred_humans_28d": 600,
-        "paid_members": 0
-      },
-      "mode": "queue"
-    },
-    {
       "site": "agiscorecard",
       "kind": "content_gap",
       "priority": 55,
@@ -387,7 +378,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 1,
+        "count": 2,
         "query": "costco",
         "value": 250
       },
@@ -424,7 +415,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7": 65,
+        "n7": 76,
         "p7": 0
       },
       "mode": "queue"
@@ -436,8 +427,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 6,
-        "p7": 3
+        "n7": 7,
+        "p7": 4
       },
       "mode": "queue"
     },
@@ -447,7 +438,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 591,
+        "human_pv_28d": 609,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -458,7 +449,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 276,
+        "human_pv_28d": 292,
         "ai_ref_28d": 0
       },
       "mode": "queue"

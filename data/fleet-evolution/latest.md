@@ -1,39 +1,39 @@
-# Fleet evolution report — 2026-11-04
+# Fleet evolution report — 2026-11-05
 
 Deterministic, aggregate-only report. Missing data remains unknown; no editorial text, payments or membership rights are changed by this job.
 
 ## Fleet counters
 
 - Sites: 14 (healthy probes: 31)
-- Membership ready: 1 · paid members: 0 · active members: 0
-- Opportunity candidates: 9 · stale inputs: 0
+- Membership ready: 0 · paid members: 0 · active members: 0
+- Opportunity candidates: 8 · stale inputs: 0
 
 ## Priority actions
 
 | Priority | Site | Action | Mode | Evidence |
 |---:|---|---|---|---|
 | 92 | agiscorecard | membership_health | alert | public_ok=True; ready=False |
+| 92 | baipiaoji | membership_health | alert | public_ok=True; ready=False |
 | 92 | getecoback | membership_health | alert | public_ok=True; ready=False |
 | 92 | thedollscout | membership_health | alert | public_ok=True; ready=False |
-| 64 | baipiaoji | membership_conversion | queue | referred_humans_28d=600; paid_members=0 |
 | 55 | agiscorecard | content_gap | queue | count=4; query=ai stocks down; value=1 |
-| 55 | buysomething | content_gap | queue | count=1; query=costco; value=250 |
+| 55 | buysomething | content_gap | queue | count=2; query=costco; value=250 |
 | 55 | getecoback | content_gap | queue | count=22; query=infrarotheizung wandmontage; value=88250 |
 | 55 | thedollscout | content_gap | queue | count=21; query=cat mode labubu; value=61150 |
-| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=65; p7=0 |
-| 52 | getecoback | improve_hot_page | queue | page=/; n7=6; p7=3 |
-| 48 | goldrush | ai_discovery | queue | human_pv_28d=591; ai_ref_28d=0 |
-| 48 | thedollscout | ai_discovery | queue | human_pv_28d=276; ai_ref_28d=0 |
+| 52 | agiscorecard | improve_hot_page | queue | page=/ai-futures; n7=76; p7=0 |
+| 52 | getecoback | improve_hot_page | queue | page=/; n7=7; p7=4 |
+| 48 | goldrush | ai_discovery | queue | human_pv_28d=609; ai_ref_28d=0 |
+| 48 | thedollscout | ai_discovery | queue | human_pv_28d=292; ai_ref_28d=0 |
 
 ## Input freshness
 
 | Input | Date | Age (days) |
 |---|---|---:|
-| membership | 2026-11-04T09:48:43.867Z | 0 |
-| health | 2026-11-03T15:39:37Z | 1 |
-| ai_referrals | 2026-11-03T15:40:18Z | 1 |
-| opportunities | 2026-11-03 | 1 |
-| autopilot_receipt | 2026-11-04 | 0 |
+| membership | 2026-11-05T09:49:04.800Z | 0 |
+| health | 2026-11-04T15:52:55Z | 1 |
+| ai_referrals | 2026-11-04T15:53:26Z | 1 |
+| opportunities | 2026-11-04 | 1 |
+| autopilot_receipt | 2026-11-05 | 0 |
 
 ## Autonomous boundary
 

@@ -3,7 +3,7 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 24,
+    "n": 25,
     "q": "tool:portfolio_returns"
    },
    {
@@ -33,17 +33,33 @@
    {
     "n": 2,
     "q": "tool:agi_consensus rokmcp-collector/0.2 (+h"
+   },
+   {
+    "n": 1,
+    "q": "neuralink"
+   },
+   {
+    "n": 1,
+    "q": "google"
    }
   ]
  },
- "fetched": "2026-11-04",
+ "fetched": "2026-11-05",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/ai-futures": {
-   "n7": 65,
+   "n7": 76,
    "p7": 0
+  },
+  "/tianya": {
+   "n7": 49,
+   "p7": 0
+  },
+  "/zh/how-close-is-agi": {
+   "n7": 40,
+   "p7": 18
   }
  },
  "site": "agiscorecard",
