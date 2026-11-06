@@ -216,6 +216,52 @@ class AmazonReportsTests(unittest.TestCase):
             self.assertLessEqual(set(output), {"status", "error"})
             self.assertIsNone(status["net_commission"])
 
+    def test_git_worktree_output_is_blocked_before_network_or_write(self):
+        for marker_kind in ("git_head", "git_file"):
+            with self.subTest(marker_kind=marker_kind), tempfile.TemporaryDirectory() as folder:
+                repo = Path(folder) / "repo"
+                repo.mkdir()
+                marker = repo / ".git"
+                if marker_kind == "git_head":
+                    marker.mkdir()
+                    (marker / "HEAD").write_text("ref: refs/heads/main\n")
+                else:
+                    marker.write_text("gitdir: /fixture/private/worktree-metadata\n")
+                destination = repo / "nested" / "private-reports"
+                client = mock.Mock()
+                code, output = self.invoke_run(client, destination, "--health-only")
+                self.assertEqual(code, 2)
+                self.assertEqual(output, {
+                    "status": "blocked", "error": "output_inside_git_worktree",
+                })
+                client.list_reports.assert_not_called()
+                self.assertFalse(destination.exists())
+
+    def test_symlink_output_resolving_inside_git_worktree_is_blocked(self):
+        with tempfile.TemporaryDirectory() as folder:
+            repo = Path(folder) / "repo"
+            (repo / ".git").mkdir(parents=True)
+            (repo / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
+            alias = Path(folder) / "apparently-private"
+            alias.symlink_to(repo, target_is_directory=True)
+            client = mock.Mock()
+            code, output = self.invoke_run(client, alias / "private-reports", "--health-only")
+            self.assertEqual(code, 2)
+            self.assertEqual(output["error"], "output_inside_git_worktree")
+            client.list_reports.assert_not_called()
+            self.assertFalse((repo / "private-reports").exists())
+
+    def test_empty_platform_git_placeholder_allows_private_output(self):
+        with tempfile.TemporaryDirectory() as folder:
+            parent = Path(folder)
+            (parent / ".git").mkdir()
+            destination = parent / "private-reports"
+            client = app.Client(env(), FakeOpener(token_response(), {"reports": []}))
+            code, output = self.invoke_run(client, destination, "--health-only")
+            self.assertEqual(code, 0)
+            self.assertEqual(output, {"status": "no_reports_available"})
+            self.assertTrue((destination / "status.json").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()
