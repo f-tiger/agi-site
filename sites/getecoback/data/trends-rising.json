@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -132,66 +132,102 @@
    "last_attempt_status": "ok"
   },
   "luftentfeuchter": {
-   "auto": [
-    "luftentfeuchter",
-    "luftentfeuchter keller",
-    "luftentfeuchter test",
-    "luftentfeuchter elektrisch",
-    "luftentfeuchter granulat",
-    "luftentfeuchter auto",
-    "luftentfeuchter wohnung",
-    "luftentfeuchter ohne strom",
-    "luftentfeuchter badezimmer",
-    "luftentfeuchter keller testsieger"
+   "rising": [
+    {
+     "q": "avreno",
+     "v": 31050
+    },
+    {
+     "q": "vivosun luftentfeuchter",
+     "v": 28600
+    },
+    {
+     "q": "luftentfeuchter keller ohne strom",
+     "v": 20500
+    },
+    {
+     "q": "meacodry arete two 25l",
+     "v": 14500
+    },
+    {
+     "q": "comfee mddf-16den7 wf luftentfeuchter",
+     "v": 13550
+    },
+    {
+     "q": "meacodry arete two 12l",
+     "v": 9500
+    },
+    {
+     "q": "luftentfeuchter kissen auto",
+     "v": 8250
+    },
+    {
+     "q": "auto luftentfeuchter",
+     "v": 200
+    },
+    {
+     "q": "luftentfeuchter nachfüllpack",
+     "v": 80
+    },
+    {
+     "q": "mini luftentfeuchter",
+     "v": 80
+    }
    ],
-   "new_vocabulary": [
-    "luftentfeuchter keller",
-    "luftentfeuchter test",
-    "luftentfeuchter elektrisch",
-    "luftentfeuchter granulat",
-    "luftentfeuchter auto",
-    "luftentfeuchter wohnung",
-    "luftentfeuchter ohne strom",
-    "luftentfeuchter badezimmer",
-    "luftentfeuchter keller testsieger"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-11-05T12:43:50.436290+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-11-05"
+   "source": "related-queries",
+   "fetched": "2026-11-06",
+   "polluted": false,
+   "last_attempt_at": "2026-11-06T12:21:05.434768+00:00",
+   "last_attempt_status": "ok"
   },
   "heizlüfter": {
-   "auto": [
-    "heizlüfter",
-    "heizlüfter test",
-    "heizlüfter bad",
-    "heizlüfter camping",
-    "heizlüfter media markt",
-    "heizlüfter mit akku",
-    "heizlüfter energiesparend",
-    "heizlüfter test stiftung warentest",
-    "heizlüfter kaufen",
-    "heizlüfter obi"
+   "rising": [
+    {
+     "q": "akku heizung",
+     "v": 65900
+    },
+    {
+     "q": "frostwächter",
+     "v": 55450
+    },
+    {
+     "q": "dreo atom 316",
+     "v": 44100
+    },
+    {
+     "q": "heizlüfter fürs bad",
+     "v": 43400
+    },
+    {
+     "q": "leiser heizlüfter",
+     "v": 42050
+    },
+    {
+     "q": "infrarot heizung",
+     "v": 32750
+    },
+    {
+     "q": "heizlüfter 3kw",
+     "v": 32000
+    },
+    {
+     "q": "ewt heizlüfter",
+     "v": 31400
+    },
+    {
+     "q": "akku heizlüfter makita",
+     "v": 28450
+    },
+    {
+     "q": "heizgebläse",
+     "v": 27900
+    }
    ],
-   "new_vocabulary": [
-    "heizlüfter test",
-    "heizlüfter bad",
-    "heizlüfter camping",
-    "heizlüfter media markt",
-    "heizlüfter mit akku",
-    "heizlüfter energiesparend",
-    "heizlüfter test stiftung warentest",
-    "heizlüfter kaufen",
-    "heizlüfter obi"
-   ],
-   "rising": [],
-   "source": "autocomplete-vocabulary",
-   "signal_limit": "vocabulary_only_not_growth_or_search_volume",
-   "last_attempt_at": "2026-10-29T11:03:04.378503+00:00",
-   "last_attempt_status": "failed",
-   "fetched": "2026-10-29"
+   "source": "related-queries",
+   "fetched": "2026-11-06",
+   "polluted": false,
+   "last_attempt_at": "2026-11-06T12:22:06.145699+00:00",
+   "last_attempt_status": "ok"
   },
   "kaffeevollautomat": {
    "rising": [
