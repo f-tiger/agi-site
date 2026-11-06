@@ -1,3 +1,4 @@
+// MIME recovery: refresh the release hash so old incorrectly typed cache entries are not reused.
 const {installPublicEngagement} = await import('./engagement.mjs' + new URL(import.meta.url).search);
 // One optional Google channel for every public template; first-party callbacks remain independent.
 // The Google tag runs in an empty frame, not alongside user forms or file inputs.

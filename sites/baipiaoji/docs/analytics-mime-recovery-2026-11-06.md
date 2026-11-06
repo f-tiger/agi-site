@@ -23,3 +23,9 @@ This release publishes BPJ only through the existing read-only product flow.
 Other sites receive no additional deployment from this maintenance action.
 Historical missing events are not reconstructed. Asset execution and intercepted
 collection attempts are technical checks, not real users or GA4 backend receipt.
+
+After the header correction, the versioned stylesheet could still return cached
+plain-text metadata while its unversioned URL returned CSS. Refresh the existing
+content-based analytics release hash and validate MIME types on the exact
+versioned URLs checked by the asset verifier. No event behavior changes. Tests
+also reject matching asset bytes with missing or plain-text MIME metadata.

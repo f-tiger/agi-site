@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {verifyPublishedAsset} from './verify-asset.mjs';
 
 const options = {host:'reconcile.agiscorecard.com', name:'collector.mjs', version:'cb1ffcbde0c2', expected:'new public module\n'};
-const response = (text, cacheControl='public, max-age=0, must-revalidate, no-transform') => ({text, headers:new Headers({'cache-control':cacheControl})});
+const response = (text, cacheControl='public, max-age=0, must-revalidate, no-transform', mime='application/javascript') => ({text, headers:new Headers({'cache-control':cacheControl,'content-type':mime})});
 
 test('An old HTTP 200 asset may converge, using the exact same host and fixed version URL', async () => {
  const calls=[],waits=[];
@@ -29,13 +29,21 @@ test('Matching frame bytes cannot pass without the no-transform directive', asyn
  for(const cacheControl of ['public, max-age=0','public, no-transform-incorrect']) {
   let reads=0;
   await assert.rejects(verifyPublishedAsset({...options,name:'frame.html',
-   read:async ()=>{reads++;return response(options.expected,cacheControl);},wait:async()=>{},
+   read:async ()=>{reads++;return response(options.expected,cacheControl,'text/html');},wait:async()=>{},
   }),/Analytics frame must exclude injected third-party beacons/);
   assert.equal(reads,7);
  }
  let reads=0;
- await verifyPublishedAsset({...options,name:'frame.html',read:async()=>{reads++;return response(options.expected);},wait:async()=>assert.fail('Correct assets must not wait')});
+ await verifyPublishedAsset({...options,name:'frame.html',read:async()=>{reads++;return response(options.expected,undefined,'text/html');},wait:async()=>assert.fail('Correct assets must not wait')});
  assert.equal(reads,1);
+});
+
+test('Matching versioned asset bytes fail when cached MIME metadata is plain text or absent',async()=>{
+ for(const name of ['collector.mjs','consent.css','frame.html'])for(const mime of ['text/plain','']){
+  let reads=0;
+  await assert.rejects(verifyPublishedAsset({...options,name,read:async()=>{reads++;return response(options.expected,undefined,mime);},wait:async()=>{}}),/Analytics asset MIME type is not executable/);
+  assert.equal(reads,7);
+ }
 });
 
 test('An exhausted HTTP read failure stays an error rather than restarting a second retry loop', async () => {
