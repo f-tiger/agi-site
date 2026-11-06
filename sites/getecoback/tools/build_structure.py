@@ -847,14 +847,14 @@ DEVICE_MODELS = {
    # with a verified amazon.de product page. Its listing there has no featured
    # offer (see MODEL_ASIN), and the first three cards also feed the top strip
    # and the sticky bar, i.e. the page's first buy button.
-   ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "Monoblock-Testsieger der Stiftung Warentest, Silent-Modus, Kältemittel R290.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+   ("De'Longhi PAC N90 ECO Silent", "Mit Silent-Modus", "Monoblock mit Silent-Modus und Kältemittel R290; Geräuschdaten samt Messgröße und Betriebsstufe prüfen.", "Preis vor Ort prüfen", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
    ("Comfee MPPH-09CRN7", "Preis-Leistung", "Günstig für kleine Schlaf- & Arbeitszimmer — dafür deutlich hörbar.", "€€ · ca. 250–320 €", "Comfee+MPPH-09CRN7", "ac"),
-   ("AEG ChillFlex Pro", "Leise & gut ausgestattet", "Angenehm fürs Schlafzimmer, solide Ausstattung.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
-   ("Klarstein Kraftwerk Smart 12K", "Für große Räume", "In öffentlichen Vergleichen die stärkste Kühlleistung der Runde.", "Preis vor Ort prüfen", "Klarstein+Kraftwerk+Smart+12K", "ac"),
-   ("De'Longhi Pinguino PAC EX105", "Allrounder", "Starke Kühlung, oft in der Testsieger-Linie.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
+   ("AEG ChillFlex Pro", "Modellvariante prüfen", "Modellnummer, Leistung und Geräuschangaben der konkreten Variante vergleichen.", "€€€ · ca. 350–500 €", "AEG+ChillFlex+Pro", "ac"),
+   ("Klarstein Kraftwerk Smart 12K", "12K-Variante prüfen", "Kühlleistung mit Raumgröße, Dachlage und Sonneneinstrahlung abgleichen.", "Preis vor Ort prüfen", "Klarstein+Kraftwerk+Smart+12K", "ac"),
+   ("De'Longhi Pinguino PAC EX105", "Pinguino-Modell prüfen", "Pinguino-Monoblock: genaue Modellvariante, Leistung und Abluftführung prüfen.", "Preis vor Ort prüfen", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
    ("Bosch Cool 5000", "Einfach aufgestellt", "Plug-and-Play — schnell startklar, unkomplizierte Bedienung.", "Preis vor Ort prüfen", "Bosch+Cool+5000+Klimager%C3%A4t", "ac"),
    ("Suntec Impuls 2.0+", "Leicht & mobil", "Leichtgewicht — lässt sich gut zwischen Räumen umstellen.", "Preis vor Ort prüfen", "Suntec+Impuls+2.0%2B", "ac"),
-   ("Midea PortaSplit", "Split ohne Bohren", "Quick-Connect-Split: leise und effizient, ohne Kernbohrung.", "€€€€ · Preis vor Ort prüfen", "Midea+PortaSplit", "mobileac"),
+   ("Midea PortaSplit", "Mobiles Splitgerät", "Mit Außeneinheit und Kältemittelleitung; Außenplatz, Durchführung und Befestigung prüfen.", "€€€€ · Preis vor Ort prüfen", "Midea+PortaSplit", "mobileac"),
  ],
  "fan": [
    ("Rowenta VU5690 Eole Infinite", "Kraftvoll", "Starker Turmventilator mit viel Luftstrom.", "€€ · ca. 70–100 €", "Rowenta+VU5690", "fan"),
@@ -880,7 +880,7 @@ DEVICE_MODELS = {
    # above is the category's largest demand term this week (49.800) — its zero
    # clicks over 60 days are an out-of-season zero, not a bad pick, which is why
    # nothing was retired from this shelf.
-   ("MeacoDry Arete One 25L", "Dieselbe Reihe, größerer Raum", "Gleiche Baureihe wie oben, eine Stufe größer — eigener Nachfragebegriff in unserer Trends-Abfrage (Stand 11.09.). Nicht selbst getestet.", "Preis vor Ort prüfen", "MeacoDry+Arete+One+25L", "dehum"),
+   ("MeacoDry Arete One 25L", "25L-Kapazitätsvariante", "Kapazitätsvariante derselben Baureihe; Leistung bei vergleichbarer Temperatur und Luftfeuchte prüfen. Nicht selbst getestet.", "Preis vor Ort prüfen", "MeacoDry+Arete+One+25L", "dehum"),
    ("Für den Keller", "Dauerbetrieb", "Modelle mit Ablaufschlauch für Dauerbetrieb.", "je nach Raumgröße", "luftentfeuchter+keller+ablaufschlauch", "dehum"),
  ],
  "purifier": [
@@ -2072,19 +2072,19 @@ def qm_toppick(slug):
     if qm <= 15:
         return [
             ("Comfee MPPH-09CRN7", "Passend & günstig", "", "", "Comfee+MPPH-09CRN7", "ac"),
-            ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi PAC N90 ECO Silent", "Mit Silent-Modus", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("AEG ChillFlex Pro", "Fürs Schlafzimmer", "", "", "AEG+ChillFlex+Pro", "ac"),
         ]
     if qm <= 25:
         return [
-            ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi PAC N90 ECO Silent", "Mit Silent-Modus", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("Comfee MPPH-09CRN7", "Preis-Leistung", "", "", "Comfee+MPPH-09CRN7", "ac"),
             ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     if qm <= 30:
         return [
             ("Klarstein Kraftwerk Smart 12K", "Mehr Reserve", "", "", "Klarstein+Kraftwerk+Smart+12K", "ac"),
-            ("De'Longhi PAC N90 ECO Silent", "Am leisesten", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
+            ("De'Longhi PAC N90 ECO Silent", "Mit Silent-Modus", "", "", "De%27Longhi+PAC+N90+ECO+Silent", "ac"),
             ("De'Longhi Pinguino PAC EX105", "Allrounder", "", "", "De%27Longhi+Pinguino+PAC+EX105", "ac"),
         ]
     # 40 m² and up: monoblocks below ~12k BTU are undersized — the honest chips
@@ -3795,7 +3795,7 @@ DEVICE_TILES = [
      '<path d="M62 34 C82 34 84 26 100 26" stroke="#cd7f3a" stroke-width="5" fill="none" stroke-linecap="round"/>'
      '<g fill="#2ea6c9"><path class="eb-drip" d="M12 46 l-7 -3 l7 -3 z"/><path class="eb-drip" d="M12 62 l-7 -3 l7 -3 z"/></g>'
      '</svg>'),
-    ("Entfeuchten", "Luftentfeuchter — unter 60 % rF hat Schimmel keine Basis",
+    ("Entfeuchten", "Luftentfeuchter — erst Feuchte, Temperatur und Ursache prüfen",
      "/guide/luftentfeuchter-ratgeber.html",
      '<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Luftentfeuchter">'
      '<rect x="38" y="20" width="44" height="58" rx="8" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
@@ -4135,12 +4135,12 @@ EX_DEHUM = ('<svg class="eb-ex" viewBox="0 0 300 150" xmlns="http://www.w3.org/2
             '</svg>')
 
 EXPLAINER = {
- "ac": (EX_AC, "So funktioniert's", "Mobile Klimaanlage",
+ "ac": (EX_AC, "So funktioniert's", "Monoblock-Klimaanlage",
         "Sie saugt warme Raumluft an, kühlt sie ab und gibt sie zurück — die Abwärme geht über den Fensterschlauch nach draußen. Echte Kühlung, kein bloßer Umluft-Effekt."),
  "fan": (EX_FAN, "So funktioniert's", "Ventilator",
          "Ein Ventilator senkt nicht die Raumtemperatur, sondern beschleunigt die Verdunstung auf der Haut — der Luftstrom lässt dich spürbar kühler fühlen."),
  "dehum": (EX_DEHUM, "So funktioniert's", "Luftentfeuchter",
-           "Er entzieht der Luft Feuchtigkeit und sammelt sie im Tank — trockenere Luft fühlt sich kühler an und beugt Schimmel vor."),
+           "Er entzieht der Luft Feuchtigkeit und sammelt sie im Tank. Die Wirkung hängt von Temperatur, Luftfeuchte und Gerät ab; Feuchteursachen und kalte Oberflächen müssen gesondert geprüft werden."),
 }
 EXPLAINER_EN = {
  "ac": (EX_AC, "How it works", "Portable air conditioner",

@@ -7,6 +7,8 @@ tools/metaculus-bot/.env
 tools/metaculus-bot/.venv/
 sites/gridlings/dist-store/
 node_modules/
+# Taste's complete asset library is installed locally from a reviewed, pinned commit.
+.claude/skills/design-taste-frontend/
 # TDS browser dependencies and assembled release are rebuilt from the lockfile.
 sites/thedollscout/document-assets/vendor/
 sites/thedollscout/dist/

@@ -85,16 +85,28 @@ def build(lang,t):
  body=f'''<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(t['title'])}</title><meta name="description" content="{E(t['desc'])}"><link rel="canonical" href="{url}"><link rel="alternate" hreflang="{('de' if en else 'en')}" href="{other}"><link rel="alternate" hreflang="{lang}" href="{url}"><link rel="alternate" hreflang="x-default" href="https://getecoback.com/familienwerkstatt.html"><meta property="og:title" content="{E(t['title'])}"><meta property="og:description" content="{E(t['desc'])}"><meta property="og:type" content="website"><meta property="og:url" content="{url}"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/family-workshop.css?v={version}"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head><body><nav class="fw-nav" aria-label="EcoBack"><a class="fw-brand" href="/">EcoBack</a><a href="{'/en/' if en else '/'}">{E(t['home'])}</a><a href="/tools.html">{E(t['tools'])}</a><a href="/{t['other']}" lang="{'de' if en else 'en'}">{E(t['language'])}</a></nav><main class="fw-wrap" id="main"><header class="fw-hero"><div><h1>{E(t['h1'])}</h1><p>{E(t['intro'])}</p><p class="fw-note">{E(t['start'])}</p></div><aside class="fw-map" aria-label="{'Decisions' if en else 'Entscheidungen'}"><p>◉ {E(t['lanes'][0])}</p><p>⌁ {E(t['lanes'][1])}</p><p>▱ {E(t['lanes'][2])}</p></aside></header><nav class="fw-lanes" aria-label="{'Choose a task' if en else 'Aufgabe wählen'}">{lanes}</nav>{''.join(sections)}<section class="fw-about"><h2>{E(t['about'])}</h2><p>{E(t['aboutText'])}</p><p class="fw-note">{E(t['privacy'])}</p><p class="fw-note">{E(t['checked'])}</p><a href="/tools.html">{E(t['learn'])}</a></section></main><footer><a href="/impressum.html">{E(t['legal'])}</a><a href="/datenschutz.html">{E(t['data'])}</a></footer><script id="family-workshop-config" type="application/json">{json.dumps(config,ensure_ascii=False).replace('<',chr(92)+'u003c')}</script><noscript><p class="fw-wrap">{'Enable JavaScript for the checks and STL download. Manufacturer guidance above remains available.' if en else 'Für Checks und STL-Download JavaScript aktivieren. Die Herstellerquellen oben bleiben zugänglich.'}</p></noscript><script type="module" src="/assets/family-workshop.mjs?v={version}"></script></body></html>'''
  (SITE/t['path']).parent.mkdir(parents=True,exist_ok=True);(SITE/t['path']).write_text(body.replace('><','>\n<'))
 
+def inject_quick(text,t):
+ """Keep the homepage shortcuts readable on the hero without changing their layout."""
+ text=re.sub(r'<!--EB_FAMILY_QUICK-->.*?<!--/EB_FAMILY_QUICK-->','',text,flags=re.S)
+ quick='<!--EB_FAMILY_QUICK--><p class="eb-family-quick">'+ ' | '.join(f'<a href="/{t["path"]}#{mode}">{E(t["lanes"][i])}</a>' for i,mode in enumerate(SOURCES))+'</p><!--/EB_FAMILY_QUICK-->'
+ text=text.replace('</h1>','</h1>'+quick,1)
+ style='''<style id="eb-family-quick-style">
+header.hero .eb-family-quick a{color:inherit;text-decoration:underline;text-decoration-thickness:.1em;text-underline-offset:.18em}
+header.hero .eb-family-quick a:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
+</style>'''
+ text=re.sub(r'<style id="eb-family-quick-style">.*?</style>\n?','',text,flags=re.S)
+ return text.replace('</head>',style+'\n</head>',1)
+
 def discovery():
  for path,lang in [('index.html','de'),('tools.html','de'),('rechner.html','de'),('wohnen.html','de'),('en/index.html','en'),('en/solution-calculator.html','en')]:
   target=SITE/path
   if not target.exists():continue
   t=DATA[lang];text=target.read_text();marker='EB_FAMILY_DISCOVERY'
   text=re.sub(rf'\s*<!--{marker}-->.*?<!--/{marker}-->\s*','\n',text,flags=re.S)
-  text=re.sub(r'<!--EB_FAMILY_QUICK-->.*?<!--/EB_FAMILY_QUICK-->','',text,flags=re.S)
   if path in ['index.html','en/index.html']:
-   quick='<!--EB_FAMILY_QUICK--><p>'+ ' | '.join(f'<a href="/{t["path"]}#{mode}">{E(t["lanes"][i])}</a>' for i,mode in enumerate(SOURCES))+'</p><!--/EB_FAMILY_QUICK-->'
-   text=text.replace('</h1>','</h1>'+quick,1)
+   text=inject_quick(text,t)
+  else:
+   text=re.sub(r'<!--EB_FAMILY_QUICK-->.*?<!--/EB_FAMILY_QUICK-->','',text,flags=re.S)
   links=''.join(f'<li><a href="/{t["path"]}#{mode}">{E(t["lanes"][i])}</a> — {E(t["blurbs"][i])}</li>' for i,mode in enumerate(SOURCES))
   block=f'<section id="family-workshop-entry" style="max-width:980px;margin:24px auto;padding:24px;background:#e3f1f7;border-left:5px solid #075c83;color:#12334a"><h2>{E(t["about"])}</h2><p>{E(t["aboutText"])}</p><ul>{links}</ul></section>'
   anchor='</main>' if '</main>' in text else '</body>'

@@ -11,6 +11,7 @@
 | `featured-snippet-optimizer` | 同上 | Apache-2.0 | 2026-09-17 | 无 |
 | `semantic-gap-analysis` | 同上 | Apache-2.0 | 2026-09-17 | 无 |
 | `eeat-audit` | 同上 | Apache-2.0 | 2026-09-17 | 无 |
+| `design-taste-frontend` 2.5.0 | [Leonxlnx/taste-skill@9b4bf93](https://github.com/Leonxlnx/taste-skill/tree/9b4bf937a1f69348126959c15d2f99a73e65699b) | MIT；资源另附来源/许可 | 2026-11-06 | 上游整包原样本地安装，含 LICENSE；大型资源不入 Git。固定版本安装：`python3 tools/skills/install_taste.py`；适配规则见 `docs/taste-skill-eco.md` |
 
 Apache-2.0 要求保留版权声明并标注改动。以上四个均为**未改动的原样副本**;
 若将来本地修改,必须在「本地改动」列写明,否则违反许可证。
