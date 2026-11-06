@@ -2,6 +2,15 @@ import test from 'node:test';import assert from 'node:assert/strict';import {rea
 import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
 import {laundry} from '../site/assets/laundry-math.mjs';import {acquisition,laundryAction} from '../site/assets/laundry-check.mjs';import {LAUNDRY_PATHS,validLaundryEvent} from '../src/laundry-events.mjs';import {videoEntry} from '../src/video-entry.mjs';import worker from '../src/worker.js';
+
+test('German TikTok photo campaign keeps social attribution bounded to its landing',()=>{
+ const target=videoEntry(new URL('https://getecoback.com/waesche-tiktok')).headers.get('location');
+ assert.equal(new URL(target).searchParams.get('utm_medium'),'social');
+ assert.deepEqual(acquisition(target),{source:'tiktok',evidence:'tag_only'});
+ assert.deepEqual(acquisition(target,'https://www.tiktok.com/'),{source:'tiktok',evidence:'referrer'});
+ assert.equal(acquisition(target,'https://tiktok.com.attacker.test/').evidence,'other');
+ for(const changed of [target.replace('eco-laundry-03','unknown'),target.replace('utm_source=tiktok','utm_source=youtube'),target.replace('/waeschetrockner-oder-luftentfeuchter.html','/en/guide/dehumidifier-drying-clothes-cost.html'),target.replace('utm_medium=social','utm_medium=paid')]) assert.deepEqual(acquisition(changed),{source:'onsite',evidence:'none'});
+});
 const x={dryer:1.5,dryerBasis:'cycle',method:'estimate',watts:250,hours:8,dehum:2,price:.35,loads:3,purchase:200,currency:'EUR',comparable:true};
 test('same dry load: low watts can lose, shorter runtime can win, labels normalize exactly',()=>{let r=laundry(x);assert.equal(r.dehum,2);assert.equal(r.winner,'dryer');assert.equal(r.breakEvenHours,6);assert.equal(r.payback,null);r=laundry({...x,hours:4});assert.equal(r.winner,'dehum');assert.ok(Math.abs(r.annualDifference-27.3)<1e-10);assert.ok(Math.abs(r.payback-200/27.3)<1e-10);assert.deepEqual(laundry({...x,dryer:150,dryerBasis:'hundred'}),laundry(x));assert.equal(laundry({...x,hours:6}).winner,'tie');});
 test('measured kWh takes precedence; unmatched drying never returns a winner or payback',()=>{const r=laundry({...x,method:'measured',dehum:.8,watts:NaN,hours:NaN});assert.equal(r.dehum,.8);assert.equal(r.breakEvenHours,null);for(const hours of [0,4,8]){const a=laundry({...x,hours,comparable:false});assert.equal(a.winner,'unconfirmed');assert.equal(a.payback,null);}assert.equal(laundry({...x,hours:4,loads:0}).payback,null);assert.equal(laundry({...x,price:0}).winner,'tie');for(const change of [{price:-1},{dryer:Infinity},{dryer:21},{currency:'JPY'},{method:'bad'},{hours:NaN}])assert.throws(()=>laundry({...x,...change}),RangeError);});

@@ -74,6 +74,8 @@ jobs:
           python3 tools/build_uk_opportunities.py
           python3 tools/build_tools_hub.py
           python3 tools/build_structure.py
+          python3 -m unittest discover -s tools -p test_heatpump_intent.py
+          python3 -m unittest discover -s tools -p test_humidity_evidence.py
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_laundry.mjs
           node --test ../../tools/affiliate-growth/test.mjs
@@ -115,6 +117,7 @@ jobs:
           python3 tools/build_sitemap.py
           python3 tools/build_llmstxt.py
           python3 tools/build_agent_md.py
+          python3 -m unittest discover -s tools -p test_llms_full.py
           python3 tools/check_auto_content_release.py
           python3 tools/check_upkeep_release.py
           python3 tools/check_winter_locales.py

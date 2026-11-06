@@ -177,6 +177,8 @@ jobs:
         run: |
           python3 tools/test_home_commercial.py
           python3 tools/build_structure.py
+          python3 -m unittest discover -s tools -p test_heatpump_intent.py
+          python3 -m unittest discover -s tools -p test_humidity_evidence.py
 
       # Deal-calendar band (2026-09-24). Date-driven: it renders only while an
       # announced Amazon event from data/deal-calendar.json is inside its window,
@@ -272,7 +274,9 @@ jobs:
         run: python3 tools/build_llmstxt.py
 
       - name: Build agent surfaces (.md mirrors + sizing dataset, affiliate-link gate)
-        run: python3 tools/build_agent_md.py
+        run: |
+          python3 tools/build_agent_md.py
+          python3 -m unittest discover -s tools -p test_llms_full.py
 
       - name: Rebuild site-search index (auto-sync new pages before deploy)
         run: |

@@ -9,8 +9,9 @@ export function laundryAction(name,m){
  return null;
 }
 export function acquisition(href,referrer=''){
- const u=new URL(href),source=u.searchParams.get('utm_source');
- if(u.searchParams.get('utm_campaign')!=='eco-laundry-03'||u.searchParams.get('utm_medium')!=='organic_video'||!['youtube','tiktok'].includes(source))return {source:'onsite',evidence:'none'};
+ const u=new URL(href),source=u.searchParams.get('utm_source'),medium=u.searchParams.get('utm_medium');
+ const supportedMedium=medium==='organic_video'||(medium==='social'&&source==='tiktok'&&u.pathname==='/waeschetrockner-oder-luftentfeuchter.html');
+ if(u.searchParams.get('utm_campaign')!=='eco-laundry-03'||!supportedMedium||!['youtube','tiktok'].includes(source))return {source:'onsite',evidence:'none'};
  let h='';try{h=new URL(referrer).hostname.toLowerCase();}catch{}
  const same=d=>h===d||h.endsWith('.'+d);
  return {source,evidence:(source==='youtube'&&(same('youtube.com')||same('youtu.be'))||source==='tiktok'&&same('tiktok.com'))?'referrer':h?'other':'tag_only'};

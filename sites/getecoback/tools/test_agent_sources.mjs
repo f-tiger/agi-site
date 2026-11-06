@@ -15,6 +15,16 @@ const cases=[
  ['https://www.meaco.com/pages/faqs','',true],
  ['https://www.meaco.com/products/dehumidifier','',false],
  ['https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier','',true],
+ ['https://www.midea.com/de/klimatisieren-heizen/portasplit/produktinfos.portasplit','',true],
+ ['https://www.midea.com/de/another-product','',false],
+ ['https://www.idar-oberstein.de/bauen-wohnen-wirtschaft/bauen-und-wohnen/klimaschutz/beratung/250826-ent-heizen-mit-klimaanlage-vzrlp.pdf','',true],
+ ['https://www.idar-oberstein.de/bauen-wohnen-wirtschaft/bauen-und-wohnen/klimaschutz/beratung/250826-ent-heizen-mit-klimaanlage-vzrlp.pdf?cid=aj4','',false],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf','',true],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/mobile-air-conditioner-mpph-09crn7/PH-Owners-Manual.pdf#page=20','',true],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf#page=12','',true],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf#page=0','',false],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf#page=12&url=https://evil.test','',false],
+ ['https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/another-manual.pdf#page=12','',false],
  ['https://www.umweltbundesamt.de/test','sponsored nofollow',false],
  ['https://www.umweltbundesamt.de.evil.test/page','',false],
  ['https://www.umweltbundesamt.de@evil.test/page','',false],
@@ -45,6 +55,18 @@ test('both Markdown converters keep linked references already in HTML and remove
   for(const [i,[href,,ok]] of cases.entries())assert.equal(md.includes(`[Ref ${i}](${href})`),ok,href);
   assert.ok(!/https?:\/\/[^\s]*amazon|https?:\/\/amzn\./i.test(md));
   assert.ok(md.includes('Measured conditions matter.'));
+ }
+});
+
+test('edge fallback retains every evidence reference in the three revised winter guides',()=>{
+ for(const slug of ['klimaanlage-mit-heizfunktion','mobile-klimaanlage-ueberwintern','luftentfeuchter-dauerbetrieb-stromkosten']){
+  const html=readFileSync(new URL(`../site/guide/${slug}.html`,import.meta.url),'utf8');
+  const article=html.match(/<article[^>]*>([\s\S]*?)<\/article>/)[1];
+  const references=[...article.matchAll(/href="(https?[^\"]+)"/g)].map(match=>match[1].replaceAll('&amp;','&'))
+   .filter(url=>!['amazon.','amzn.','youtube.com','getecoback.com'].some(host=>url.includes(host)));
+  assert.ok(references.length>0,slug);
+  const markdown=htmlToMarkdown(html,`/guide/${slug}.html`);
+  for(const reference of references)assert.ok(markdown.includes(`](${reference})`),`${slug}: ${reference}`);
  }
 });
 

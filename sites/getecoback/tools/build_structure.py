@@ -898,7 +898,7 @@ DEVICE_MODELS = {
    # sondern was 300 W leisten und was nicht — das kann diese Seite mit ihrer
    # eigenen veröffentlichten Rechnung beantworten.
    ("Heizlüfter 300 Watt", "Für die Person davor", "300 W sind für lokale Wärme gedacht, nicht zum Heizen eines ganzen Raums. Nicht selbst getestet; Leistung, Thermostat und Sicherheitshinweise am konkreten Modell prüfen.", "Preis vor Ort prüfen", "heizl%C3%BCfter+300+watt", "heater"),
-   ("Midea NTH20-17BR", "Schnell warm, nicht sparsam", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb. Zur zweitgrößten Anfrage der Woche, „energiesparender Heizlüfter“ (48.600): sparsam macht ihn nicht das Gerät, sondern die Abschaltung — 2.000 W kosten 2.000 W, solange sie laufen.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
+   ("Midea NTH20-17BR", "Elektrische Direktwärme", "Keramik-Heizlüfter, keine Wärmepumpe. Leistungsstufen und Abschaltung am konkreten Modell prüfen; Kosten ergeben sich aus Leistungsaufnahme, Laufzeit und Stromtarif. Nicht selbst getestet.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
  # Storage shelf taken down 2026-09-27 — owner: 「eco站点下架所有储能产品」.
@@ -941,7 +941,7 @@ DEVICE_MODELS_EN = {
  "heater": [
    ("Schmidbauer Hybrid Pro 600 W", "Small rooms", "Infrared plus convection with a stepless thermostat; the manufacturer names 6–12 m² as its range.", "€€ · check price locally", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
    ("Schmidbauer ISP T 700 W", "Bathroom-capable", "700 W and rated by the manufacturer for damp rooms — the answer to bathroom heating without running a fan heater for hours.", "€€ · check price locally", "Schmidbauer+ISP+T+700+Infrarotheizung", "heater"),
-   ("Midea NTH20-17BR", "Fast heat", "Ceramic fan heater with two stages (1,200 / 2,000 W) — for quick warm-ups, not for continuous heating.", "€ · check price locally", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
+   ("Midea NTH20-17BR", "Electric resistance heat", "Ceramic fan heater, not a heat pump. Check the exact model's power settings and shut-off controls; running costs depend on input power, runtime and your electricity tariff. Not tested by us.", "€ · check price locally", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
  ],
 }
 
@@ -1057,6 +1057,12 @@ CANON_NAMES = ["De'Longhi", "De%27Longhi", "Comfee", "AEG ChillFlex", "Midea Por
 # Also skip pages whose real product (car sunshade, cooling mat, myth-buster)
 # doesn't match any device set, so cards never look irrelevant.
 SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechner",
+               # Heat-pump suitability needs its own technical/installation
+               # decision. Resistance heaters and generic US ACs do not fit it.
+               "klimaanlage-mit-heizfunktion",
+               # Storage maintenance follows the exact manual; there is no
+               # verified replacement-filter or cleaner compatibility here.
+               "mobile-klimaanlage-ueberwintern",
                "hitze-check", "was-bedeutet-btu",
                # The product here is the seal, not an air conditioner — AC model
                # cards (and the AC popup) would sell past the reader's intent.
@@ -1237,11 +1243,6 @@ CONTEXT_MODELS = {
    ("Entkalker / Antikalk", "Der häufigste Wartungsfehler", "Kalk auf den Matten kostet Verdunstungsleistung — der Tank will regelmäßig entkalkt werden.", "Preis vor Ort prüfen", "antikalk+luftk%C3%BChler", "dehum"),
    ("Ersatz-Filtermatte", "Wenn es muffelt", "Die Matte ist Verschleißteil; riecht sie nach dem Trocknen weiter, hilft nur Tausch.", "Preis vor Ort prüfen", "filtermatte+zuschnitt+luftk%C3%BChler", "purifier"),
    ("Kühlakkus für den Tank", "Für ein paar Grad mehr", "Viele Geräte liefern Akkus mit; Nachkaufen bringt spürbar kältere Ausblasluft.", "Preis vor Ort prüfen", "k%C3%BChlakku+luftk%C3%BChler", "cooler"),
- ],
- "mobile-klimaanlage-ueberwintern": [
-   ("Abdeckhaube", "Schritt 6: staubfrei lagern", "Staub im Lüfterrad ist der Grund, warum das Gerät im Mai muffelt.", "10–15 €", "abdeckhaube+klimager%C3%A4t", "shade"),
-   ("Ersatz-Filter", "Sauber einlagern", "Mit frischem Filter einlagern heißt: im Frühjahr einschalten statt erst putzen.", "Preis vor Ort prüfen", "klimaanlage+ersatzfilter+universal", "purifier"),
-   ("Reinigungs-Schaum für den Verdampfer", "Vor dem Einlagern", "Feuchter Verdampfer + Monate Stillstand = Schimmelgeruch im Frühjahr.", "Preis vor Ort prüfen", "klimaanlagen+reiniger+schaum+verdampfer", "ac"),
  ],
  # Category-strategy round 2026-08-25 (owner: research fees/conversion, pick
  # categories, then build). Decision memo: docs/amazon-category-strategy-2026-08.md.
@@ -1503,8 +1504,6 @@ CONTEXT_SUB = {
                                       "Nicht selbst getestet. Symbolbilder."),
  "bester-luftkuehler": ("Verschleiß- und Pflegeteile für den Luftkühler, den du schon hast — das ist der "
                         "Grund, warum die Leistung nachlässt. Nicht selbst getestet. Symbolbilder."),
- "mobile-klimaanlage-ueberwintern": ("Passend zu den sechs Schritten oben: sauber, trocken, staubfrei "
-                                     "einlagern. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-granulat-oder-elektrisch": ("Der laufende Posten bei Granulat sind die Nachfüllpacks — "
                                               "deshalb stehen sie hier vorn. Nicht selbst getestet. Symbolbilder."),
  "waesche-trocknen-wohnung": ("Gegen die Feuchte, die beim Trocknen in der Wohnung bleibt. Nicht selbst "
@@ -1998,6 +1997,17 @@ def shelf_skipped(slug, ctx):
     would start selling portable ACs. A CONTEXT set still wins: the Growatt
     page keeps its two measuring plugs and the mounting page its mounts."""
     return (slug in SKIP_MODELS or device_of(slug) == "storage") and not ctx
+
+
+def strip_decision_promotions(html, slug):
+    """These two guides need technical fit/maintenance before any product choice."""
+    if slug not in {"klimaanlage-mit-heizfunktion", "mobile-klimaanlage-ueberwintern"}:
+        return html
+    for marker in ("EB_MODELS", "EB_TOPPICK", "EB_POPUP", "EB_STICKY", "EB_PROFILE",
+                   "EB_QUICKPICK", "EB_SIZER", "EB_USMARKET", "EB_USTOP",
+                   "EB_USSHELF", "EB_USUNITS", "EB_USSWITCH", "EB_INLINE", "EB_HEATENERGY"):
+        html = re.sub(r'<!--' + marker + r'-->.*?<!--/' + marker + r'-->\n?', '', html, flags=re.S)
+    return html
 
 
 def inject_models(html, slug, en=False):
@@ -4621,6 +4631,7 @@ def main():
             new = inject_popup(new, slug)
         new = strip_legacy_market_switch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=False)
+        new = strip_decision_promotions(new, os.path.basename(path)[:-5])
         if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html'):
             # These guides qualify a specific maintenance/fit decision. Generic
             # shopping overlays bypass it and may advertise an unrelated device.

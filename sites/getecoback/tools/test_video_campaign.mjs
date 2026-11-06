@@ -63,3 +63,24 @@ test('Worker cache keys keep the two experiment reports separate',async()=>{
   assert.equal(reads,2);
  }finally{globalThis.caches=prior}
 });
+
+test('German laundry video routes reach the German tool without changing the English campaign',async()=>{
+ const {videoEntry}=await import('../src/video-entry.mjs');
+ for(const source of ['youtube','tiktok']) for(const method of ['GET','HEAD']) {
+  const response=videoEntry(new URL(`https://getecoback.com/waesche-${source}?next=https://evil.test&email=private&__ci=1`),method);
+  assert.equal(response.status,302);
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  assert.equal(response.headers.get('x-robots-tag'),'noindex');
+  const target=new URL(response.headers.get('location'));
+  assert.equal(target.origin,'https://getecoback.com');
+  assert.equal(target.pathname,'/waeschetrockner-oder-luftentfeuchter.html');
+  assert.equal(target.hash,'#laundry-check');
+  assert.deepEqual(Object.fromEntries(target.searchParams),{utm_source:source,utm_medium:source==='tiktok'?'social':'organic_video',utm_campaign:'eco-laundry-03',utm_content:'de_label100_20261106',__probe:'1'});
+  const old=new URL(videoEntry(new URL(`https://getecoback.com/dry-${source}`)).headers.get('location'));
+  assert.equal(old.pathname,'/en/guide/dehumidifier-drying-clothes-cost.html');
+  assert.equal(old.searchParams.get('utm_content'),'low_watts_v1');
+  assert.equal(old.searchParams.get('utm_campaign'),'eco-laundry-03');
+ }
+ assert.equal(videoEntry(new URL('https://getecoback.com/waesche-youtube'),'POST'),null);
+ assert.equal(videoEntry(new URL('https://getecoback.com/waesche-untrusted')),null);
+});

@@ -6,37 +6,104 @@ AI 搜索层：给 ChatGPT/Perplexity/Claude 等一个免渲染、可直接解�
 是被 AI 引擎引用的最大可提取面）。幂等，随构建同步。
 """
 import os, re, html, datetime, sys, json
+from pathlib import Path
+from urllib.parse import urljoin
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_season import season_of
+from build_agent_md import to_markdown, DISCLOSURE
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "site")
 BASE = "https://getecoback.com"
 
 
+ENERGY_PATHS = {row['path'] for row in json.loads(
+    (Path(__file__).resolve().parents[1] / 'data/energy-workbench.json').read_text()).values()}
+NOINDEX = re.compile(r'<meta\b[^>]*name=["\']robots["\'][^>]*content=["\'][^"\']*noindex', re.I)
+URL_RE = re.compile(r'https?://[^\s<>\])]+')
+
+
+def assert_no_commerce(text, route):
+    if re.search(r'https?://[^\s)]*(?:amazon\.|amzn\.)|tag=getecoback-21|ecoback0d-20', text, re.I):
+        raise ValueError(f'{route}: affiliate link in agent text')
+
+
+def checked_mirror(path, source, route):
+    """Dedicated locale/tool generators already emit their own Markdown.
+
+    Reuse it only when its identity, references, dates and prose are supported
+    by current HTML. This prevents a stale checkout mirror from silently
+    replacing newly generated content; no mtime or deploy-date freshness claim.
+    """
+    mirror = path.with_suffix('.md')
+    if not mirror.is_file():
+        raise ValueError(f'{route}: required Markdown mirror is missing; run its page generator first')
+    text = mirror.read_text(encoding='utf-8')
+    if BASE + route not in text or not text.startswith('# '):
+        raise ValueError(f'{route}: mirror identity does not match current HTML')
+    assert_no_commerce(text, route)
+    urls = {urljoin(BASE + route, html.unescape(href))
+            for href in re.findall(r'\bhref=["\']([^"\']+)', source, re.I)}
+    urls.add(BASE + route)
+    # Dedicated tools render some source lists/checklist explanations from
+    # embedded JSON. Validate against that current payload as well, without
+    # executing scripts, fetching references or accepting arbitrary JS strings.
+    configured = []
+    def collect(value):
+        if isinstance(value, str):
+            configured.append(value)
+            if value.startswith(('https://', 'http://')):
+                urls.add(value)
+        elif isinstance(value, list):
+            for item in value:
+                collect(item)
+        elif isinstance(value, dict):
+            for item in value.values():
+                collect(item)
+    for payload in re.findall(r'<script\b[^>]*type=["\']application/json["\'][^>]*>(.*?)</script>', source, re.S | re.I):
+        collect(json.loads(payload))
+    for url in URL_RE.findall(text):
+        if html.unescape(url) not in urls:
+            raise ValueError(f'{route}: mirror citation absent from current HTML: {url}')
+    def normalize(value):
+        return re.sub(r'[^\w]+', '', html.unescape(value)).casefold()
+    visible = re.sub(r'<(?:script|style)\b[^>]*>.*?</(?:script|style)>', '', source, flags=re.S | re.I)
+    metadata = ' '.join(re.findall(r'<meta\b[^>]*content=["\']([^"\']+)', source, re.I))
+    visible = normalize(re.sub(r'<[^>]+>', ' ', visible) + metadata + ' '.join(configured))
+    for line in text.splitlines():
+        if not line.strip() or line.startswith(('<!--', 'Canonical')):
+            continue
+        # Bare URL/list labels identify links; their destinations were checked
+        # above. Linked prose and all ordinary sentences still need a match.
+        if URL_RE.search(line) and '](' not in line:
+            continue
+        plain = re.sub(r'\[([^\]]+)\]\([^)]*\)', r'\1', line)
+        fragment = normalize(plain)
+        if fragment and fragment not in visible:
+            raise ValueError(f'{route}: stale mirror text absent from current HTML: {plain[:100]}')
+    return text
+
+
 def body_text(path):
-    """Extract readable article text: strip scripts/styles/injected chrome, keep
-    heading structure as markdown-ish lines. Deterministic → idempotent output."""
-    s = open(path, encoding="utf-8").read()
-    m = re.search(r"<article[^>]*>(.*?)</article>", s, re.S)
-    body = m.group(1) if m else re.search(r"<body[^>]*>(.*)</body>", s, re.S).group(1)
-    # drop injected/interactive layers wholesale — index the editorial content only
-    for pat in (r"<!--EB_MODELS-->.*?<!--/EB_MODELS-->", r"<!--EB_EXPLAINER-->.*?<!--/EB_EXPLAINER-->",
-                r"<!--EB_VIDEO-->.*?<!--/EB_VIDEO-->", r"<!--EB_RADAR-->.*?<!--/EB_RADAR-->",
-                r"<!--EB_TOC-->.*?<!--/EB_TOC-->", r"<!--EB_STICKY-->.*?<!--/EB_STICKY-->",
-                r"<script\b.*?</script>", r"<style\b.*?</style>", r"<form\b.*?</form>"):
-        body = re.sub(pat, " ", body, flags=re.S)
-    body = re.sub(r"<h2[^>]*>(.*?)</h2>", lambda m: "\n\n## " + m.group(1) + "\n", body, flags=re.S)
-    body = re.sub(r"<h3[^>]*>(.*?)</h3>", lambda m: "\n\n### " + m.group(1) + "\n", body, flags=re.S)
-    body = re.sub(r"<li[^>]*>", "\n- ", body)
-    body = re.sub(r"</(p|div|tr|table|ul|ol|section|blockquote)>", "\n", body)
-    body = re.sub(r"</t[dh]>", " | ", body)
-    body = re.sub(r"<[^>]+>", "", body)
-    body = html.unescape(body)
-    body = re.sub(r"[ \t]+", " ", body)
-    body = re.sub(r" ?\n ?", "\n", body)
-    body = re.sub(r"\n{3,}", "\n\n", body)
-    return body.strip()
+    """Use the same cited, commerce-free document as the per-page agent view."""
+    path = Path(path)
+    source = path.read_text(encoding='utf-8')
+    if NOINDEX.search(source):
+        return ''
+    relative = path.resolve().relative_to(Path(ROOT).resolve()).as_posix()
+    route = '/' + relative
+    if relative in ENERGY_PATHS or relative.startswith(('fr/', 'es/', 'zh/agents/', 'en/agents/')):
+        return checked_mirror(path, source, route)
+    language = re.search(r'<html\b[^>]*lang=["\']([^"\']+)', source, re.I)
+    lang = language.group(1) if language else ''
+    # These English sections already use the English disclosure in the
+    # per-page builder. Retain their country-specific text and canonical URL.
+    lang = {'en-GB': 'en', 'en-US': 'en'}.get(lang, lang)
+    if lang not in DISCLOSURE:
+        raise ValueError(f'{route}: unsupported agent language {lang!r}; do not invent a translation')
+    result = to_markdown(source, route, lang)
+    assert_no_commerce(result, route)
+    return result
 
 
 def meta(path):
@@ -54,6 +121,8 @@ def pages(subdir):
         return out
     for fn in sorted(os.listdir(d)):
         if fn.endswith(".html"):
+            if NOINDEX.search(Path(d, fn).read_text(encoding='utf-8')):
+                continue
             t, desc = meta(os.path.join(d, fn))
             out.append((f"{BASE}/{subdir}/{fn}", t, desc))
     return out
@@ -212,15 +281,15 @@ def main():
             txt = body_text(fn)
             if not txt:
                 continue
-            full += [f"## {t}", f"URL: {url}", "", txt, "", "---", ""]
+            full += [txt.rstrip(), "", "---", ""]
             n += 1
     for lang in ("de", "en", "it"):
         t = energy[lang]
-        full += [f"## {t['title']}", f"URL: {BASE}/{t['path']}", "", body_text(os.path.join(ROOT, t["path"])), "", "---", ""]
+        full += [body_text(os.path.join(ROOT, t["path"])).rstrip(), "", "---", ""]
         n += 1
     if os.path.isfile(finder):
         title, _ = meta(finder)
-        full += [f"## {title}", f"URL: {BASE}/en/filter-finder.html", "", body_text(finder), "", "---", ""]
+        full += [body_text(finder).rstrip(), "", "---", ""]
         n += 1
     open(os.path.join(ROOT, "llms-full.txt"), "w", encoding="utf-8").write("\n".join(full))
     size = os.path.getsize(os.path.join(ROOT, "llms-full.txt"))
