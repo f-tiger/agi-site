@@ -16,7 +16,9 @@
     "actualSourceRecoveryVerified": false,
     "verificationRun": "https://github.com/f-tiger/agi-site/actions/runs/41986012271",
     "existingReleaseVerificationRun": "https://github.com/f-tiger/agi-site/actions/runs/42056149385",
-    "persistedByCommit": "39359daef6a4d29a4974cb7fc16d5de0fef17cc1"
+    "persistedByCommit": "39359daef6a4d29a4974cb7fc16d5de0fef17cc1",
+    "recordedInPullRequest": 253,
+    "receiptCommit": "110ffd08a31e127f9a1fe0574220f4d2598fbfbc"
   },
   "lastWeeklyReview": {
     "completedAt": "2026-11-03T02:55:20.885140Z",
@@ -299,7 +301,9 @@
       "nextCheckDate": "2026-11-07",
       "nextAction": "On Nov7 inspect only the next original scheduled source/status and fixed daily receipts. Do not recrawl, dispatch, weaken the 20-card/100-rank guards or repeat PR248. If source remains failed without original response evidence, retain this one location and move to existing work. Tutorial manual playback/listening and an actually usable authorized channel remain the distribution priority; review Nov3-Nov9 Asia/Shanghai on Nov10.",
       "fallbackProblemId": "viewer-depth-daily-export-handoff",
-      "boundary": "Do not reopen closed Nov3 identity conflict without evidence. Retain strict completeness/source/rank checks. No new crawl or payload-replay claim; later readonly publication is not source recovery."
+      "boundary": "Do not reopen closed Nov3 identity conflict without evidence. Retain strict completeness/source/rank checks. No new crawl or payload-replay claim; later readonly publication is not source recovery.",
+      "recordedInPullRequest": 253,
+      "diagnosticReceiptCommit": "110ffd08a31e127f9a1fe0574220f4d2598fbfbc"
     },
     {
       "id": "bpj-manju-source-identity-refresh",
@@ -649,7 +653,9 @@
       "actionKinds": [
         "watch_save",
         "watch_resume"
-      ]
+      ],
+      "latestReceiptPullRequest": 253,
+      "latestReceiptCommit": "110ffd08a31e127f9a1fe0574220f4d2598fbfbc"
     }
   ],
   "currentBlockers": [
@@ -731,7 +737,9 @@
       "rootSelfCheck": "Zero-network cache validation passed: v2/ok/nonpartial, half-open complete UTC window, fixed action allowlist, nonnegative integer counts and unique date/action keys. Prior be99533b snapshot rows were empty. JSON, relative links, exact four-doc scope, private path exclusions, 14 history cap and unchanged weekly/creator/English/source policy passed. No new build/browser/source query.",
       "independentReleaseReceiptAudit": "Actual failed original schedule and final successful readonly release independently audited; three completed job logs fetched once each; persisted and built failed status verified."
     },
-    "nextAction": "On Nov7 inspect only the next original scheduled source/status and fixed daily receipts. Do not recrawl, dispatch, weaken the 20-card/100-rank guards or repeat PR248. If source remains failed without original response evidence, retain this one location and move to existing work. Tutorial manual playback/listening and an actually usable authorized channel remain the distribution priority; review Nov3-Nov9 Asia/Shanghai on Nov10."
+    "nextAction": "On Nov7 inspect only the next original scheduled source/status and fixed daily receipts. Do not recrawl, dispatch, weaken the 20-card/100-rank guards or repeat PR248. If source remains failed without original response evidence, retain this one location and move to existing work. Tutorial manual playback/listening and an actually usable authorized channel remain the distribution priority; review Nov3-Nov9 Asia/Shanghai on Nov10.",
+    "recordedInPullRequest": 253,
+    "receiptCommit": "110ffd08a31e127f9a1fe0574220f4d2598fbfbc"
   },
   "recentActions": [
     {
@@ -921,7 +929,9 @@
       "sourceBoardDate": "2026-11-04",
       "action": "New source shape rejection located without repeat crawl or guessed fix; existing fixed daily action receipt verified; documentation only.",
       "nextOriginalScheduleReviewDate": "2026-11-07",
-      "nextWeeklyReviewDate": "2026-11-10"
+      "nextWeeklyReviewDate": "2026-11-10",
+      "recordedInPullRequest": 253,
+      "receiptCommit": "110ffd08a31e127f9a1fe0574220f4d2598fbfbc"
     }
   ],
   "historyPolicy": "Keep at most 14 compact completed-action receipts; use linked commits for older public implementation history. Private analytics and customer data stay outside this file.",
