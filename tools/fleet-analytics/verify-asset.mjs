@@ -9,6 +9,9 @@ export async function verifyPublishedAsset({host, name, version, expected, read,
   const live = await read(host, path);
   try {
    assert.equal(live.text, expected, host + '/' + name);
+   const mime=(live.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+   const valid=name.endsWith('.mjs')?['application/javascript','text/javascript'].includes(mime):name.endsWith('.css')?mime==='text/css':name.endsWith('.html')?mime==='text/html':false;
+   assert(valid,'Analytics asset MIME type is not executable: '+host+'/'+name+' '+mime);
    if (name === 'frame.html') {
     const directives = (live.headers.get('cache-control') || '').split(',').map(value => value.trim().toLowerCase());
     assert(directives.includes('no-transform'), 'Analytics frame must exclude injected third-party beacons');
