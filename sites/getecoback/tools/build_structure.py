@@ -15,6 +15,7 @@ English pages under /en/ and the standalone 404 are left untouched.
 Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 """
 import os, re, glob, json, urllib.parse, html as htmllib
+from html.parser import HTMLParser
 from laundry_decision import inject as inject_laundry
 from moisture_decision import inject as inject_moisture_decision, creator_entry
 from demand_tools import inject as inject_demand, seal_block
@@ -2123,13 +2124,15 @@ def toppick_block(device, en=False, slug=None, entries=None, more_href="#eb-mode
     # own Werbekennzeichnung. That is the stricter reading anyway: the label
     # belongs at the ad, not 600 px further down the page.
     ad = AD_LABEL[en]
+    more_link = (f'<a href="{more_href}" style="font-size:12.5px;color:#0f6ba8;font-weight:700;text-decoration:none;">{more}</a>'
+                 if more_href else "")
     return ('<!--EB_TOPPICK--><section id="eb-toppick" style="max-width:1000px;margin:0 auto 4px;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #e4ebf0;border-radius:12px;padding:12px 15px;">'
             '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
             '<strong style="font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#5b6b78;">'
             f'{head}</strong>'
             f'<span style="font-size:11px;color:#8a99a6;">{ad}</span></div>{pills}'
-            f'<a href="{more_href}" style="font-size:12.5px;color:#0f6ba8;font-weight:700;text-decoration:none;">{more}</a>'
+            f'{more_link}'
             '</div></section>\n'
             '<script>(function(){var s=document.currentScript.previousElementSibling;if(!s)return;'
             's.querySelectorAll("[data-eb-tp]").forEach(function(a){a.addEventListener("click",function(){'
@@ -2151,9 +2154,22 @@ def inject_toppick(html, slug, en=False):
         "<!--EB_MODELS-->" in html or any(n in html for n in CANON_NAMES))
     if not eligible:
         return html
-    # This curated review has authored alternatives instead of an EB_MODELS grid.
-    more = {"more_href": "#alternativen"} if slug == "meacodry-arete-one-test" else {}
-    block = toppick_block(device_of(slug), en, slug, **more)
+    # Curated copy may qualify for this strip without a model grid. Only offer
+    # a page jump when its actual target exists, not just a marker or mention.
+    # The Meaco review keeps its authored alternatives instead of an EB_MODELS grid.
+    more_href = "#alternativen" if slug == "meacodry-arete-one-test" else "#eb-models"
+
+    class Target(HTMLParser):
+        found = False
+
+        def handle_starttag(self, tag, attrs):
+            if ("id", more_href[1:]) in attrs:
+                self.found = True
+
+    target = Target()
+    target.feed(html)
+    block = toppick_block(device_of(slug), en, slug,
+                          more_href=more_href if target.found else None)
     m = re.search(r'<article[^>]*>', html)
     if m:
         return html[:m.end()] + block + html[m.end():]
