@@ -25,7 +25,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.775,
+   "match": 0.75,
    "page": "guide/heizung-tauschen-oder-warten-gmodg.html",
    "q": "stand infrarotheizung",
    "seed": "infrarotheizung",
@@ -36,18 +36,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.633,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter kissen auto",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 13850
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.967,
+   "match": 1.0,
    "page": "guide/klimaanlage-mit-heizfunktion.html",
    "q": "heizen mit klimaanlage",
    "seed": "klimaanlage",
@@ -65,39 +54,6 @@
    "source": "related-queries",
    "stand": "2026-10-30",
    "v": 180
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "auto luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 140
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
-   "q": "luftentfeuchter auto",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 130
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.775,
-   "page": "guide/schimmel-kleiderschrank.html",
-   "q": "nachfüllpack luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 110
   }
  ],
  "first_party_demand": {
@@ -113,16 +69,6 @@
    "source": "related-queries",
    "stand": "2026-11-01",
    "v": 88250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "guide/luftentfeuchter-10-qm.html",
-   "q": "pattex luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 53050
   },
   {
    "kind": "value",
@@ -176,16 +122,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "guide/luftentfeuchter-10-qm.html",
-   "q": "pingi luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-10-28",
-   "v": 20700
-  },
-  {
-   "kind": "value",
    "match": 0.18,
    "page": "guide/bei-hitze-schlafen.html",
    "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
@@ -196,8 +132,8 @@
   },
   {
    "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "match": 0.0,
+   "page": null,
    "q": "philips series 5500 kaffeevollautomat ep5547/90",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -226,8 +162,8 @@
   },
   {
    "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "match": 0.0,
+   "page": null,
    "q": "philips ep2230/10 series 2200 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -246,8 +182,8 @@
   },
   {
    "kind": "value",
-   "match": 0.15,
-   "page": "en/guide/best-portable-air-conditioner-italy.html",
+   "match": 0.0,
+   "page": null,
    "q": "philips kaffeevollautomat ep5443/70 5400 series",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
@@ -325,12 +261,12 @@
    "v": 140
   }
  ],
- "generated": "2026-11-05",
+ "generated": "2026-11-06",
  "geo": "DE",
- "heat_source": "measured 2026-11-05 (14 pages); no notes",
+ "heat_source": "measured 2026-11-06 (16 pages); no notes",
  "hot_pages": [
   {
-   "n7": 7,
+   "n7": 8,
    "p7": 4,
    "page": "/"
   },
@@ -346,8 +282,8 @@
   },
   {
    "n7": 3,
-   "p7": 0,
-   "page": "/guide/heizluefter-schaltet-sich-aus.html"
+   "p7": 2,
+   "page": "/guide/heizluefter-stromverbrauch.html"
   },
   {
    "n7": 3,
@@ -356,8 +292,13 @@
   },
   {
    "n7": 3,
-   "p7": 1,
-   "page": "/guide/luftentfeuchter-ratgeber.html"
+   "p7": 2,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 3,
+   "p7": 2,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 3,
@@ -371,23 +312,23 @@
   },
   {
    "n7": 2,
-   "p7": 2,
-   "page": "/guide/heizluefter-stromverbrauch.html"
+   "p7": 1,
+   "page": "/guide/heizluefter-schaltet-sich-aus.html"
   },
   {
    "n7": 2,
-   "p7": 2,
-   "page": "/guide/klimaanlage-wohnmobil.html"
+   "p7": 0,
+   "page": "/guide/klimaanlage-50-qm.html"
+  },
+  {
+   "n7": 2,
+   "p7": 3,
+   "page": "/guide/luftentfeuchter-ratgeber.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/mobile-klimaanlage-zu-laut.html"
-  },
-  {
-   "n7": 2,
-   "p7": 3,
-   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
@@ -404,10 +345,6 @@
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "ölradiator",
-  "meacodry arete one 12l",
-  "notlandung",
-  "steckdosenleiste",
-  "weltweite zeitumstellung 2027",
   "constantin schreiber axel springer",
   "unfall italien bus wohnmobil",
   "daikin perfera",

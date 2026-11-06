@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-05",
+  "as_of": "2026-11-06",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
     "healthy": 31,
-    "membership_ready": 0,
+    "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 8,
+    "opportunities": 7,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-11-05T09:49:04.800Z",
-    "health": "2026-11-04T15:52:55Z",
-    "ai_referrals": "2026-11-04T15:53:26Z",
-    "opportunities": "2026-11-04",
-    "autopilot_receipt": "2026-11-05"
+    "membership": "2026-11-06T09:49:03.472Z",
+    "health": "2026-11-05T15:58:12Z",
+    "ai_referrals": "2026-11-05T15:58:48Z",
+    "opportunities": "2026-11-05",
+    "autopilot_receipt": "2026-11-06"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,10 +28,10 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-11-05T09:49:04.800Z",
+    "generated": "2026-11-06T09:49:03.472Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
-    "ok": false,
+    "ok": true,
     "counters_complete": true,
     "sites": [
       {
@@ -39,7 +39,7 @@
         "origin": "https://baipiaoji.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "bpj",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -60,7 +60,7 @@
         "origin": "https://agiscorecard.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "agi",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -81,7 +81,7 @@
         "origin": "https://getecoback.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "eco",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -102,7 +102,7 @@
         "origin": "https://thedollscout.com",
         "public": {
           "ok": true,
-          "ready": false,
+          "ready": true,
           "site": "tds",
           "auto_renew": false,
           "plan_price_units": 9000000,
@@ -173,15 +173,6 @@
       "supply": 0
     },
     {
-      "theme": "alternative to tldraw draw fast",
-      "site": null,
-      "state": "scout",
-      "score": 2.13,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
       "theme": "what do you call holy grail mania risk",
       "site": null,
       "state": "scout",
@@ -194,10 +185,10 @@
       "theme": "can the whatsapp business calling api initiate calls using a canadian business p",
       "site": null,
       "state": "scout",
-      "score": 1.0,
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
-      "supply": 1
+      "supply": 0
     }
   ],
   "user_pain_radar": [
@@ -317,48 +308,15 @@
   ],
   "actions": [
     {
-      "site": "agiscorecard",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
       "site": "baipiaoji",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
       "evidence": {
-        "public_ok": true,
-        "ready": false
+        "referred_humans_28d": 594,
+        "paid_members": 0
       },
-      "mode": "alert"
-    },
-    {
-      "site": "getecoback",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
-    },
-    {
-      "site": "thedollscout",
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {
-        "public_ok": true,
-        "ready": false
-      },
-      "mode": "alert"
+      "mode": "queue"
     },
     {
       "site": "agiscorecard",
@@ -378,7 +336,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 2,
+        "count": 1,
         "query": "costco",
         "value": 250
       },
@@ -390,7 +348,7 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 22,
+        "count": 20,
         "query": "infrarotheizung wandmontage",
         "value": 88250
       },
@@ -415,7 +373,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/ai-futures",
-        "n7": 76,
+        "n7": 91,
         "p7": 0
       },
       "mode": "queue"
@@ -427,7 +385,7 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/",
-        "n7": 7,
+        "n7": 8,
         "p7": 4
       },
       "mode": "queue"
@@ -438,7 +396,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 609,
+        "human_pv_28d": 617,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -449,7 +407,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 292,
+        "human_pv_28d": 293,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -458,7 +416,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
@@ -466,11 +424,11 @@
     },
     "getecoback": {
       "path": "sites/getecoback/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "thedollscout": {
       "path": "sites/thedollscout/data/fleet-evolution.json",
-      "action_count": 3
+      "action_count": 2
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",

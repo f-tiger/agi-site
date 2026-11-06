@@ -3,7 +3,7 @@
   "site": "baipiaoji",
   "signals": {
     "membership": {
-      "ready": false,
+      "ready": true,
       "has_paid_members": false,
       "has_active_members": false
     },
@@ -26,11 +26,14 @@
   },
   "actions": [
     {
-      "kind": "membership_health",
-      "priority": 92,
-      "reason": "membership API is not ready",
-      "evidence": {},
-      "mode": "alert"
+      "kind": "membership_conversion",
+      "priority": 64,
+      "reason": "ready membership has qualified referred traffic but no paid members",
+      "evidence": {
+        "referred_humans_28d_band": "100+",
+        "paid_members_band": "0"
+      },
+      "mode": "queue"
     }
   ],
   "autonomous_changes": [

@@ -2,7 +2,7 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 9,
+    "n7": 12,
     "p7": 11
    },
    "buyer_next": {
@@ -15,35 +15,35 @@
    },
    "buyer_view": {
     "n7": 2,
-    "p7": 5
+    "p7": 4
    },
    "cold_now": {
-    "n7": 13,
-    "p7": 4
+    "n7": 11,
+    "p7": 6
    },
    "feuchte_now": {
     "n7": 8,
-    "p7": 11
+    "p7": 12
    },
    "page_view": {
-    "n7": 69,
-    "p7": 74
+    "n7": 79,
+    "p7": 69
    },
    "popup_click": {
     "n7": 0,
     "p7": 1
    },
    "popup_close": {
-    "n7": 11,
-    "p7": 10
+    "n7": 12,
+    "p7": 8
    },
    "popup_view": {
-    "n7": 20,
-    "p7": 18
+    "n7": 25,
+    "p7": 14
    },
    "strom_now": {
-    "n7": 9,
-    "p7": 16
+    "n7": 10,
+    "p7": 14
    },
    "stromkosten_calc": {
     "n7": 0,
@@ -60,13 +60,13 @@
   },
   "zero_hit_records": 0
  },
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 7,
+   "n7": 8,
    "p7": 4
   },
   "/en/guide/portable-ac-leaking-water.html": {
@@ -78,24 +78,28 @@
    "p7": 0
   },
   "/guide/heizluefter-schaltet-sich-aus.html": {
-   "n7": 3,
-   "p7": 0
+   "n7": 2,
+   "p7": 1
   },
   "/guide/heizluefter-stromverbrauch.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 2
+  },
+  "/guide/klimaanlage-50-qm.html": {
+   "n7": 2,
+   "p7": 0
   },
   "/guide/klimaanlage-dachfenster.html": {
    "n7": 3,
    "p7": 2
   },
   "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 2
   },
   "/guide/luftentfeuchter-ratgeber.html": {
-   "n7": 3,
-   "p7": 1
+   "n7": 2,
+   "p7": 3
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
    "n7": 5,
@@ -106,8 +110,8 @@
    "p7": 0
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 2,
-   "p7": 3
+   "n7": 3,
+   "p7": 2
   },
   "/guide/wohnmobil-feuchtigkeit-winter.html": {
    "n7": 3,
@@ -118,6 +122,10 @@
    "p7": 0
   },
   "/wohnen.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/zh/agents/eudr-geolocation-evidence.html": {
    "n7": 2,
    "p7": 0
   }
