@@ -1,5 +1,6 @@
 // Zero-AI background verification. No wallet values or transaction records in logs.
 import {watchSecret} from './ad-runner-config.mjs';
+import {requestWatchJSON} from '../../../tools/member-studio/watch-request.mjs';
 const memberReceiptsOnly=process.argv.includes('--member-receipts-only');
 if(memberReceiptsOnly&&process.argv.includes('--members'))throw Error('Choose one membership watcher mode');
 if(process.argv.includes('--if-configured')){
@@ -50,19 +51,17 @@ if(process.argv.includes('--members')||memberReceiptsOnly){
  let membershipProcessed=0,openSupport=0;
  for(let batch=0;batch<7;batch++){
   // A separate endpoint cannot fall back to old retention behavior during rollout.
-  const r=await fetch('https://baipiaoji.com/api/'+(memberReceiptsOnly?'bpj-member-recovery':'member-watch'),{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
-  const j=await r.json();
-  if(!r.ok||!j.ok)throw Error('Membership watcher failed: HTTP '+r.status);
+  const j=await requestWatchJSON('https://baipiaoji.com/api/'+(memberReceiptsOnly?'bpj-member-recovery':'member-watch'),{method:'POST',headers:{Authorization:'Bearer '+secret}},{retryProbes:true});
+  if(j.ok!==true)throw Error('Membership watcher returned no success confirmation');
   if(memberReceiptsOnly&&(j.mode!=='receipts-only'||j.ready!==true))throw Error('Membership receipts-only recovery did not establish readiness');
+  if(!Number.isSafeInteger(j.processed)||j.processed<0||!Number.isSafeInteger(j.support_open)||j.support_open<0)throw Error('Membership watcher returned an invalid result');
   membershipProcessed+=j.processed;openSupport=j.support_open;
   if(j.processed<1)break;
  }
  console.log(JSON.stringify({membership_processed:membershipProcessed,membership_support_open:openSupport}));
- if(memberReceiptsOnly){
-  const r=await fetch('https://baipiaoji.com/api/member?__ci=1',{signal:AbortSignal.timeout(30000),cache:'no-store'}),j=await r.json();
-  if(!r.ok||!j.ok||j.site!=='bpj'||j.ready!==true)throw Error('Public membership readiness check failed');
-  console.log(JSON.stringify({membership_ready:true,membership_mode:'receipts-only'}));
- }
+ const status=await requestWatchJSON('https://baipiaoji.com/api/member?__ci=1',{cache:'no-store'});
+ if(status.site!=='bpj'||status.ready!==true)throw Error('Public membership readiness check failed');
+ console.log(JSON.stringify({membership_ready:true,membership_mode:memberReceiptsOnly?'receipts-only':'watch'}));
  if(openSupport)console.log('::warning::Membership support requests await operator review; use the authenticated member-admin API.');
 }
 

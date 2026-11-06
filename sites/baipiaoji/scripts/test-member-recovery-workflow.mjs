@@ -191,7 +191,7 @@ for(const mutated of [
  watch.replace("inputs.mode == 'watch'","inputs.mode == 'fleet-receipts-only'"),
 ])assert.throws(()=>checkFleetReceiptsIsolation(mutated),assert.AssertionError,'Fleet receipts isolation regression must fail');
 for(const name of ['Verify free-account password hashing in actual Cloudflare runtime','Checkout and delivery integration (SQLite, no network)','Build site','Build and validate practical tool workbench','Verify fleet account security','Complete and verify GA4 coverage after all page generators','Deploy to Cloudflare Pages','Verify live GA4 coverage and analytics asset version','Check startup MCP registry version'])assert.doesNotMatch(step(name),/^\s+if:/m,name+' must remain mandatory');
-const readOnlySkipped=['Check legacy membership obligations before isolation','Verify homepage click breakdown and labels','Verify live AI tools and free MCP','Verify search experiment and conversion stages on live site','Verify Web3 watcher and selling after deployment','Verify membership checkout and protected routes','Read membership migration totals (no account data)','Self-test agent API','Self-test watch endpoint','Self-test earning-pack registration wall','Self-test reach endpoint'];
+const readOnlySkipped=['Check legacy membership obligations before isolation','Verify homepage click breakdown and labels','Verify live AI tools and free MCP','Verify search experiment and conversion stages on live site','Verify membership checkout and protected routes','Read membership migration totals (no account data)','Self-test agent API','Self-test watch endpoint','Self-test earning-pack registration wall','Self-test reach endpoint'];
 for(const name of readOnlySkipped)for(const readOnly of [false,true])assert.equal(allows(guardOf(name),{readOnly}),!readOnly,name);
 assert.match(step('Notify only changed canonical pages to IndexNow'),/indexnow\.mjs --changed-only/);
 assert.ok(deploy.indexOf('- name: Deploy to Cloudflare Pages')<deploy.indexOf('- name: Notify only changed canonical pages to IndexNow'));
@@ -221,7 +221,11 @@ assert.equal(allows(registryGuard(registry),{event:'push',message:'[outcome-read
 const binding=step('Preserve public account binding when reusing existing configuration');assert.match(binding,/withGoogleBinding/);assert.doesNotMatch(binding,/await configure|fetch\(/);
 assert.match(step('Check existing public account configuration before maintenance'),/--account-only/);
 assert.ok(deploy.indexOf('- name: Check existing public account configuration before maintenance')<deploy.indexOf('- name: Deploy to Cloudflare Pages'));
-const verify=step('Verify Web3 watcher and selling after deployment');assert.match(verify,/if \[ "\$BPJ_RECEIPTS_RECOVERY" = "true" \]; then\s+node scripts\/ad-watch-v2.mjs --if-configured --member-receipts-only\s+else\s+node scripts\/ad-watch-v2.mjs --if-configured --members\s+fi/);assert.match(verify,/REQUIRE_WEB3_CONFIGURED:.*env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true'/);
+const verify=step('Verify Web3 watcher and selling after deployment');
+assert.match(verify,/run: \|\s+node scripts\/ad-watch-v2\.mjs --if-configured --member-receipts-only/);
+assert.doesNotMatch(verify,/--members(?:\s|$)/);
+for(const recovery of [false,true])for(const readOnly of [false,true])assert.equal(allows(guardOf('Verify Web3 watcher and selling after deployment'),{recovery,readOnly}),recovery&&!readOnly,'Only explicit non-read-only receipts recovery runs the watcher');
+assert.match(verify,/REQUIRE_WEB3_CONFIGURED:.*env.BPJ_RECEIPTS_RECOVERY == 'true' && 'true'/);
 checkGuard(guardOf('Publish and verify startup MCP registry entry'),{needsPublish:true});
 assert.match(registry,/!contains\(github.event.head_commit.message, '\[member-receipts-recovery\]'\)/);assert.match(registry,/!contains\(github.event.workflow_run.head_commit.message, '\[member-receipts-recovery\]'\)/);
 // PR244 moved the existing two-hour trigger off peak; preserve one schedule.

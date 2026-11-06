@@ -67,6 +67,23 @@ for(const path of ['sites/baipiaoji/source.mjs','sites/baipiaoji/docs/unknown.md
 
 test('mixed allowed and protected changes fail closed',t=>{const f=fixture(t);advance(f,{'sites/getecoback/docs/guide.md':'allowed','sites/baipiaoji/source.mjs':'protected'});assert.notEqual(run(f).status,0);unchanged(f);});
 
+test('concurrent audited ECO release does not invalidate BPJ artifacts',t=>{
+  const f=fixture(t);
+  advance(f,{
+    '.github/workflows/check-eco-energy.yml':'# ECO-only checks\n',
+    '.github/workflows/deploy-getecoback.yml':'# ECO-only deployment\n',
+    'sites/getecoback/tools/test_country_exports.mjs':'// ECO-only export tests\n',
+    'sites/getecoback/tools/test_energy_tariffs.mjs':'// ECO-only tariff tests\n',
+  });
+  const result=run(f);assert.equal(result.status,0,result.stderr);unchanged(f);
+  advance(f,{'tools/member-studio/verify.mjs':'// shared release input\n'});
+  assert.notEqual(run(f).status,0,'A shared change in the same diff must still block');unchanged(f);
+});
+
+for(const path of ['.github/workflows/check-eco-other.yml','.github/workflows/deploy-thedollscout.yml','sites/getecoback/tools/test_country_other.mjs']){
+  test(`ECO exceptions do not admit adjacent entrypoints: ${path}`,t=>{const f=fixture(t);advance(f,{[path]:'changed\n'});assert.notEqual(run(f).status,0);unchanged(f);});
+}
+
 for(const path of ['data/marketing/campaigns.json','data/fleet-evolution/unknown.json','sites/baipiaoji/data/fleet-evolution.json','tools/fleet/check_pain_consumers.py','sites/agiscorecard/tools/tianya/server.mjs','sites/agiscorecard/tools/tianya/other-browser-test.mjs']){
   test(`audited single-file exceptions do not admit adjacent inputs: ${path}`,t=>{const f=fixture(t);advance(f,{[path]:'changed\n'});const result=run(f);assert.notEqual(result.status,0);assert.match(result.stderr,/protected or unknown/);unchanged(f);});
 }
