@@ -31,8 +31,22 @@ export function pageGroup(path='') {
   if (/(?:klima|kuehl|portable-ac|air-condition|pinguino|portasplit|abluft|fensterabdichtung|condizionator|climatizzator|ventilator|comfee|klarstein)/.test(path)) return 'cooling_other';
   return 'other_guides';
 }
+// Keep pageGroup/cohorts frozen for the existing experiment. V2 corrects only
+// reviewed task pages; brand names alone do not establish a product category.
+export const COHORTS_V2_VERSION = 'task-path-v2-2026-11-06';
+const humidityTaskPaths = new Set([
+  '/guide/meacodry-arete-one-test.html',
+  '/en/guide/meaco-meacodry-arete-one-10l-running-cost.html',
+  '/waeschetrockner-oder-luftentfeuchter.html',
+  '/nl/ventilatie-of-luchtontvochtiger.html',
+]);
+export function pageGroupV2(path='') {
+  if (humidityTaskPaths.has(path)
+      || /^\/guide\/trotec-ttk-(?:26|27|30|32|52|53|54|66|72|75|90|95|96|127)-e-betriebskosten\.html$/.test(path)) return 'humidity';
+  return pageGroup(path);
+}
 const count = ()=>({page_views:0,affiliate_clicks:0});
-const section = ()=>({...count(),cohorts:{},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
+const section = ()=>({...count(),cohorts:{},cohorts_v2:{},channels:{},destinations:{product:0,search:0,prime_trial:0,other:0},surfaces:{},models:{ex105:0,n90:0,other:0}});
 const dayAt = (end,offset)=>new Date(Date.parse(end+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
 const range = (start,end)=>({...section(),start,end_exclusive:end});
 function destination(link) {
@@ -50,6 +64,8 @@ function add(s,r,channel) {
   s[field]+=r.n;
   const group=pageGroup(r.page);
   (s.cohorts[group]??=count())[field]+=r.n;
+  const groupV2=pageGroupV2(r.page);
+  (s.cohorts_v2[groupV2]??=count())[field]+=r.n;
   (s.channels[channel]??=count())[field]+=r.n;
   if(field==='affiliate_clicks') {
     const [dest,model]=destination(r.link);
@@ -79,6 +95,7 @@ export async function affiliateAudit(db,classifyRef,now=new Date()) {
   }
   return {
     metric:'recorded_events_not_users_or_orders',timezone:'UTC',start,end_exclusive:end,
+    cohorts_v2_version:COHORTS_V2_VERSION,
     known_collection_gaps:GAPS.filter(x=>x.day>=start&&x.day<end),
     note:'Missing events are not reconstructed. Gaps are known incidents, not an exhaustive uptime audit. Clicks / page views is an event ratio, not buyer conversion. Cohorts are fixed path rules, not randomized controls. Channel belongs to each event referrer, not session acquisition.',
     daily,weeks,last_three_complete_days:recentThree,same_weekdays_previous_week:previousThree,

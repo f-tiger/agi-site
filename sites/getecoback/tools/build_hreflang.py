@@ -159,7 +159,10 @@ def main() -> int:
             if canon_m is None:
                 errors.append(f"{f.relative_to(ROOT)}: 找不到 canonical 行，无法定位插入点")
                 continue
-            insert_at = stripped.index("\n", canon_m.end()) + 1
+            # Generated pages may be a single line. Keep the existing line-based
+            # placement where possible, otherwise insert just after canonical.
+            newline_at = stripped.find("\n", canon_m.end())
+            insert_at = newline_at + 1 if newline_at >= 0 else canon_m.end()
             new_html = stripped[:insert_at] + block + stripped[insert_at:]
             if new_html != html:
                 f.write_text(new_html, encoding="utf-8")

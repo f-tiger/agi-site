@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Gate for the US product shelf (EB_USSHELF, 2026-09-15).
+"""Gate for explicitly chosen US recommendation surfaces.
 
-The shelf ships on English pages hidden, and JS reveals it only for North
-American readers. Every failure mode here is silent in a build log and obvious
+The shelf ships on English pages hidden, and JS reveals it only after the
+reader selects Amazon.com (United States). Every failure mode here is obvious
 to a reader:
 
   * the shelf rendered WITHOUT `hidden` — every European visitor is then shown
@@ -40,8 +40,8 @@ def main():
             continue
         n += 1
         slug0 = os.path.basename(f)[:-5]
-        if any(w in slug0 for w in B.US_SWAP_NEVER):
-            bad.append(f"{rel}: US surface on a European-location page (115 V goods, 230 V readers)")
+        if not B.us_market_allowed(slug0, h):
+            bad.append(f"{rel}: US surface bypasses a country/accessory task")
         if "<!--EB_USTOP-->" in h:
             tb = re.search(r"<!--EB_USTOP-->(.*?)<!--/EB_USTOP-->", h, re.S).group(1)
             if not re.search(r'id="eb-ustop"[^>]*\bhidden\b', tb):
@@ -54,13 +54,12 @@ def main():
                     bad.append(f"{rel}: US strip links to amazon.de: {u[:70]}")
                 if "amazon.com" in u and f"tag={US_TAG}" not in u:
                     bad.append(f"{rel}: US strip amazon.com link without the US tag")
-            # Count script COPIES, not identifier occurrences: the guard both
-            # reads and sets the flag, so "__ebUsSwap" appears twice inside one
-            # script. Counting the identifier made this gate fail on correct
-            # pages — the assertion was wrong, not the build.
-            copies = h.count("window.__ebUsSwap=1")
+            # One controller and one explicit choice; no location-derived swap.
+            copies = h.count("window.__ebMarketChoice=1")
             if copies != 1:
-                bad.append(f"{rel}: swap script appears {copies} times, expected 1")
+                bad.append(f"{rel}: market choice script appears {copies} times, expected 1")
+            if h.count('id="eb-market-choice"') != 1:
+                bad.append(f"{rel}: US recommendations lack one explicit market choice")
         if "<!--EB_USSHELF-->" not in h:
             continue
         if not rel.startswith("en" + os.sep):
@@ -104,8 +103,10 @@ def main():
         h = open(f, encoding="utf-8").read()
         has = 'id="eb-usunits"' in h
         m = ladder.match(slug)
-        if m and not has:
+        if m and '<!--EB_USTOP-->' in h and not has:
             bad.append(f"{rel}: square-metre ladder page with no sq-ft box for US readers")
+        if has and '<!--EB_USTOP-->' not in h:
+            bad.append(f"{rel}: orphan sq-ft box without a US market choice")
         if has and not m:
             bad.append(f"{rel}: sq-ft box on a page whose slug carries no room size")
         if has:
