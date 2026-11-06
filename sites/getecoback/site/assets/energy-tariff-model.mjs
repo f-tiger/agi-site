@@ -30,5 +30,6 @@ export function parseCSV(text,market){
  if(typeof text!=='string'||text.length>100000||!Object.hasOwn(MARKETS,market))throw Error('csv');
  const rows=text.replace(/^\uFEFF/,'').trim().split(/\r?\n/);if(rows.length<2||rows.length>367)throw Error('csv');
  const n=MARKETS[market].bands,sep=rows[0].includes(';')?';':',';if(rows[0]!==Array.from({length:n},(_,i)=>'kwh'+(i+1)).join(sep))throw Error('header');
- const totals=Array(n).fill(0);for(const row of rows.slice(1)){const parts=row.split(sep);if(parts.length!==n)throw Error('csv');parts.forEach((v,i)=>{v=v.trim();if(!/^\d+(?:[.,]\d+)?$/.test(v))throw Error('csv');totals[i]+=number(Number(v.replace(',','.')),1e6);});}return totals.map(v=>number(v,1e6));
+ // A one-band template has no delimiter; its comma belongs to the decimal value.
+ const totals=Array(n).fill(0);for(const row of rows.slice(1)){const parts=n===1?[row]:row.split(sep);if(parts.length!==n)throw Error('csv');parts.forEach((v,i)=>{v=v.trim();if(!/^\d+(?:[.,]\d+)?$/.test(v))throw Error('csv');totals[i]+=number(Number(v.replace(',','.')),1e6);});}return totals.map(v=>number(v,1e6));
 }
