@@ -11,7 +11,8 @@ class DemandTest(unittest.TestCase):
    en='/en/' in str(p);s=p.read_text()
    for marker in ['USSWITCH','USMARKET','USTOP','USSHELF','POPUP','DEALS']:
     self.assertNotIn('<!--EB_'+marker+'-->',s,str(p))
-   mutated=B.inject_usswitch(B.inject_usmarket(s,p.stem))
+   # Inject a legacy marker without retaining the removed production rewriter.
+   mutated=B.inject_usmarket(s,p.stem)+'<!--EB_USSWITCH--><script>oldRewrite()</script><!--/EB_USSWITCH-->'
    fixed=inject(mutated,p.stem,en)
    self.assertEqual(fixed,inject(fixed,p.stem,en),p.name)
    self.assertNotIn('<!--EB_USSWITCH-->',fixed)

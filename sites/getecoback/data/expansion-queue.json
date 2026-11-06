@@ -1,6 +1,6 @@
 {
  "note": "Legacy EcoBack research backlog, with no automatic executor. Gate: tools/check_expansion_queue.py. Actual automatic content expansion is handled by tools/auto_content.py in the existing daily deployment, using dynamic official-source discovery and data/auto-content-ledger.json; it does not consume or restock this queue.",
- "updated": "2026-10-04",
+ "updated": "2026-11-06",
  "items": [
   {
    "slug": "beheizter-waeschestaender",
@@ -161,11 +161,20 @@
     "verdict": "writable (angle)",
     "seen": "for 'luftfeuchtigkeit messen': stuttgarter-nachrichten, tfa-dostmann (maker), selbst.de, kaufland, velux, dein-heizungsbauer, two small humidity sites, brune (maker). No test media, but every one says 'middle of the room, away from windows' — none measures at the coldest wall, which is where this site's 60 % line applies"
    },
-   "cannibalization": "none: no page on the site explains checking the instrument its advice depends on",
+   "cannibalization": "2026-11-06: the measurement, placement and interpretation scope is covered by /guide/luftfeuchtigkeit-richtig-messen.html under eco-country-category-1031. The existing guide does not claim to deliver a salt calibration test. Historical assessment, now superseded: none: no page on the site explains checking the instrument its advice depends on",
    "monetisation": "hygrometer (Min/Max) — already the first card on fenster-beschlagen-innen, waesche-trocknen-wohnung, luftentfeuchter-keller",
-   "status": "queued",
+   "status": "withdrawn",
    "blocked_by": "",
-   "next_action": "SERP done 2026-09-27 on 'luftfeuchtigkeit messen' (writable with the coldest-wall angle). Remaining gap: cite the ~75 % saturated-salt figure from a primary or manufacturer source before the salt section goes in; if none is found, build without the salt test."
+   "next_action": "Do not build this duplicate measurement candidate. Deepen /guide/luftfeuchtigkeit-richtig-messen.html if evidence identifies a useful gap. A distinct calibration proposal requires a new primary-source and cannibalization review; the historical salt-test note is not publishing approval.",
+   "withdrawn": {
+    "date": "2026-11-06",
+    "by": "Codex, within the owner-authorized ECO consistency review",
+    "reason": "Retired as a duplicate candidate: data/growth-experiments.json already records eco-country-category-1031 as superseding this queue topic, and the measurement/placement guide exists. Preserve the historical research record; no claim that salt calibration was built or that new demand was measured.",
+    "superseded_by": "/guide/luftfeuchtigkeit-richtig-messen.html",
+    "experiment": "eco-country-category-1031",
+    "previous_status": "queued",
+    "previous_next_action": "SERP done 2026-09-27 on 'luftfeuchtigkeit messen' (writable with the coldest-wall angle). Remaining gap: cite the ~75 % saturated-salt figure from a primary or manufacturer source before the salt section goes in; if none is found, build without the salt test."
+   }
   },
   {
    "slug": "heizkoerper-entlueften",

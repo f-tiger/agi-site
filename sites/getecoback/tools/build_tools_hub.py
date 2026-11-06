@@ -19,13 +19,16 @@ Output: the <!--EB_TOOLS_INDEX--> block in site/tools.html — one section per f
 families ordered by the current season (heating and humidity first from September
 to February), cards sorted by title so the output is byte-stable. Card text comes
 from each page's own <h1> and meta description, so nothing here is written twice.
+Known product categories and markets reuse the existing source records.
 tools/check_tools_hub.py asserts hub == filesystem after every build.
 """
-import datetime, html, os, re, sys
+import datetime, html, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 HUB = os.path.join(SITE, "tools.html")
+AUTO_CONTENT = os.path.join(ROOT, "data", "auto-content.json")
+FILTER_FINDER = os.path.join(ROOT, "data", "filter-finder.json")
 OPEN, CLOSE = "<!--EB_TOOLS_INDEX-->", "<!--/EB_TOOLS_INDEX-->"
 EB_RE = re.compile(r"<!--(EB_[A-Z_]+)-->.*?<!--/\1-->", re.S)
 NOINDEX_RE = re.compile(r'<meta[^>]+name="robots"[^>]+noindex', re.I)
@@ -44,13 +47,13 @@ FAMILIES = [
     ("kuehlen", "❄️ Kühlen & Hitze", "❄️", r"btu|klima|hitze|heat|cool|fenster|panel|abdicht|/au/(fan-running-cost|portable-air-conditioner-running-cost)"),
     ("laender", "🌍 Länder-Vergleichsrechner (DE · EN · ES · FR · IT)", "🌍", r"^/(rechner\.html|en/solution-calculator\.html|es/calculadora\.html|fr/calculateur\.html|it/calcolatore\.html)$"),
     ("pro", "🧰 Pro-Werkzeuge & Agenten", "🧰", r"pro-werkzeuge|/agents/"),
-    ("english", "🇬🇧 English tools", "🇬🇧", r"^/en/"),
+    ("english", "🌐 English-language tools", "🌐", r"^/en/"),
 ]
 SEASON_ORDER = {
-    "herbst":    ["family", "feuchte", "heizen", "strom", "solar", "kuehlen", "laender", "pro", "english"],
-    "winter":    ["family", "heizen", "feuchte", "strom", "solar", "kuehlen", "laender", "pro", "english"],
-    "fruehjahr": ["family", "solar", "feuchte", "kuehlen", "strom", "heizen", "laender", "pro", "english"],
-    "sommer":    ["family", "kuehlen", "strom", "solar", "feuchte", "heizen", "laender", "pro", "english"],
+    "herbst":    ["feuchte", "heizen", "strom", "kuehlen", "laender", "english", "family", "pro", "solar"],
+    "winter":    ["heizen", "feuchte", "strom", "kuehlen", "laender", "english", "family", "pro", "solar"],
+    "fruehjahr": ["feuchte", "kuehlen", "strom", "heizen", "laender", "english", "family", "pro", "solar"],
+    "sommer":    ["kuehlen", "strom", "feuchte", "heizen", "laender", "english", "family", "pro", "solar"],
 }
 
 
@@ -92,9 +95,26 @@ def is_tool(url, authored):
     return False
 
 
+def tool_metadata():
+    """Reuse exact page/product records; neither a cost slug nor /en/ is a market."""
+    with open(AUTO_CONTENT, encoding="utf-8") as f:
+        pages = json.load(f)["pages"]
+    metadata = {}
+    for url, page in pages.items():
+        # This validated manufacturer fact identifies dehumidification, including
+        # model-only TTK slugs. Do not classify every future auto-product as one.
+        facts = page["product"].get("facts", [])
+        if any(fact.get("key") == "extraction_l_per_day" for fact in facts):
+            metadata[url] = {"family": "feuchte"}
+    with open(FILTER_FINDER, encoding="utf-8") as f:
+        metadata["/en/filter-finder.html"] = {"market": json.load(f)["market"]}
+    return metadata
+
+
 def discover():
-    """Return {url: {"title", "blurb", "family"}} for every tool page on disk."""
+    """Return title, blurb, family and known market for every tool page on disk."""
     tools = {}
+    metadata = tool_metadata()
     for dirpath, _dirs, files in os.walk(SITE):
         for fn in sorted(files):
             if not fn.endswith(".html"):
@@ -105,7 +125,8 @@ def discover():
                 continue
             if url.startswith(SKIP_PREFIX):
                 continue
-            h = open(path, encoding="utf-8").read()
+            with open(path, encoding="utf-8") as f:
+                h = f.read()
             if NOINDEX_RE.search(h):
                 continue
             authored = EB_RE.sub("", h)
@@ -115,11 +136,13 @@ def discover():
             title = text_of(h1.group(1)) if h1 else text_of(re.search(r"<title>(.*?)</title>", h, re.S).group(1)).split("|")[0].strip()
             desc = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', h)
             blurb = card_summary(desc.group(1)) if desc else ""
-            tools[url] = {"title": title, "blurb": blurb, "family": family_of(url)}
+            tools[url] = {"title": title, "blurb": blurb, "family": family_of(url, metadata)}
+            if metadata.get(url, {}).get("market"):
+                tools[url]["market"] = metadata[url]["market"]
     return tools
 
 
-def family_of(url):
+def family_of(url, metadata=None):
     slug = url.lower()
     # explicit groups first: the country calculators, the pro toolbox, then any English page
     for key, _h, _e, rx in FAMILIES:
@@ -127,6 +150,9 @@ def family_of(url):
             return key
     if slug.startswith("/en/"):
         return "english"
+    metadata = tool_metadata() if metadata is None else metadata
+    if metadata.get(url, {}).get("family"):
+        return metadata[url]["family"]
     for key, _h, _e, rx in FAMILIES:
         if key in ("laender", "pro", "english"):
             continue
@@ -147,8 +173,9 @@ def render(tools, month=None):
         heading, emoji = meta[key]
         out.append(f"  <h2>{heading}</h2>\n  <div class=\"tgrid\">")
         for title, url, v in items:
+            market = f'<span>Markt: {html.escape(v["market"], quote=False)} · </span>' if v.get("market") else ""
             out.append(f'    <a class="tcard" href="{url}"><span class="em">{emoji}</span><strong>{html.escape(title, quote=False)}</strong>'
-                       f'<span>{html.escape(v["blurb"], quote=False)}</span></a>')
+                       f'{market}<span>{html.escape(v["blurb"], quote=False)}</span></a>')
         out.append("  </div>")
     out.append(f'  <p style="margin-top:18px;font-size:13px;color:#7a8b98;">{len(tools)} Tools, automatisch aus den Seiten selbst gelistet — fehlt hier eines, ist das ein Fehler, kein Feature.</p>')
     out.append(CLOSE)
@@ -158,14 +185,16 @@ def render(tools, month=None):
 def main():
     if not os.path.exists(HUB):
         sys.exit("build_tools_hub: site/tools.html missing")
-    hub = open(HUB, encoding="utf-8").read()
+    with open(HUB, encoding="utf-8") as f:
+        hub = f.read()
     if OPEN not in hub or CLOSE not in hub:
         sys.exit("build_tools_hub: marker block missing in tools.html")
     tools = discover()
     block = render(tools)
     new = hub[: hub.index(OPEN)] + block + hub[hub.index(CLOSE) + len(CLOSE):]
     if new != hub:
-        open(HUB, "w", encoding="utf-8").write(new)
+        with open(HUB, "w", encoding="utf-8") as f:
+            f.write(new)
     fam = {}
     for v in tools.values():
         fam[v["family"]] = fam.get(v["family"], 0) + 1

@@ -169,7 +169,9 @@ jobs:
           python3 tools/build_uk_opportunities.py
 
       - name: Fill the tools hub from the pages that exist (idempotent)
-        run: python3 tools/build_tools_hub.py
+        run: |
+          python3 tools/test_tools_hub.py
+          python3 tools/build_tools_hub.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: |
@@ -216,6 +218,7 @@ jobs:
 
       - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
         run: |
+          python3 tools/test_build_hreflang.py
           python3 tools/build_country_categories.py
           python3 tools/link_winter_guides.py
           python3 tools/check_winter_guides.py
@@ -327,7 +330,7 @@ jobs:
       - name: Check no SERP title or description is truncated
         run: python3 tools/check_meta.py
 
-      - name: Check the US marketplace switch still covers the links we ship
+      - name: Check explicit market choice preserves country tasks and authored links
         run: python3 tools/check_usswitch.py
 
       - name: Check the crawler allowlist still matches real user agents
@@ -901,15 +904,8 @@ jobs:
           # Crawler/agent entry points that are rebuilt every deploy.
           check "https://getecoback.com/robots.txt" "Sitemap:"
           check "https://getecoback.com/llms.txt" "getecoback.com"
-          # US marketplace switch (2026-09-06). Its predecessor was live for four
-          # weeks matching none of the terms readers clicked and nothing noticed,
-          # so assert the shape of that accident on the live page: the block must
-          # be present on both sections, carry the US associates tag, and hold a
-          # rule for the term readers actually click most.
-          # /api/geo (2026-09-09): the US switch asks the edge which country the
-          # reader is in when the browser clock is ambiguous. It did not exist
-          # before this deploy, so this assertion is red against the previous
-          # build. It must be no-store — a cached country would be worse than none.
+          # The geo endpoint remains available to existing non-shopping clients.
+          # Shopping recommendations no longer infer a marketplace from it.
           check "https://getecoback.com/api/geo" '"c"'
           # Prove the server-side crawler log actually writes in production.
           # Uses a self-test agent, never a real crawler's, so the dataset the
@@ -922,7 +918,20 @@ jobs:
             *no-store*) echo "OK /api/geo is no-store" ;;
             *) echo "::error::/api/geo must be no-store, got: ${geo_cc:-<none>}"; fail=1 ;;
           esac
-          check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
+          check "https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html" 'id="eb-market-choice"'
+          check "https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html" 'id="eb-market-us-fallback"'
+          # A failed fetch must not count as proof that the old rewriter is absent.
+          for path in /guide/klimaanlage-wohnmobil.html /en/guide/portable-ac-vs-air-cooler.html /en/guide/portable-air-conditioner-france.html; do
+            if market_body=$(curl --fail -sL --retry 2 --max-time 20 "https://getecoback.com$path"); then
+              if echo "$market_body" | grep -q 'EB_USSWITCH'; then
+                echo "::error::$path still carries automatic marketplace rewriting"; fail=1
+              else
+                echo "OK $path has no automatic marketplace rewriting"
+              fi
+            else
+              echo "::error::Could not verify marketplace behavior on $path"; fail=1
+            fi
+          done
           # Winter-airing pair (2026-09-15). Both URLs are new, so a plain 200
           # here is already red against the previous build. The assertion that
           # matters is the classification, not the 200: these are humidity pages
@@ -988,7 +997,6 @@ jobs:
           else
             echo "OK Spain page carries no US surface"
           fi
-          check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
           # Winter exchange-price band (2026-09-15). eb-stromheat is absent from
           # the previous build, so this can fail. The disclaimer is asserted
           # separately because it is the part that makes the band safe: without

@@ -63,6 +63,8 @@ jobs:
           node --test tools/test_agent_sources.mjs
           node --test ../../tools/fleet-analytics/business.test.mjs
           python3 tools/test_affiliate_growth.py
+          python3 tools/test_tools_hub.py
+          python3 tools/test_build_hreflang.py
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           node --test tools/test_winter_math.mjs tools/test_au_cooling.mjs
@@ -102,6 +104,8 @@ jobs:
           python3 tools/build_tools_hub.py
           python3 tools/build_hreflang.py
           python3 tools/check_purchase_intent.py
+          python3 tools/check_usswitch.py
+          python3 tools/check_usshelf.py
           # Storage pages and their generator were removed by the owner on 09-27.
           # Match deployment: assert the takedown instead of recreating a guide.
           node tools/test_gone.mjs
@@ -155,6 +159,7 @@ jobs:
           trap 'kill "$preview_pid"' EXIT
           for i in 1 2 3 4 5; do curl -sf http://127.0.0.1:8765/stromtarif-werkstatt.html > /dev/null && break; sleep 1; done
           BUYING_BASELINE_SHA=270ed3253a1941a15e0dee45e53554dbadbca6b2 NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_buying_friction.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_market_choice.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_country_categories.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs

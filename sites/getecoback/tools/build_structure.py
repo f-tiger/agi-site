@@ -558,6 +558,7 @@ def sticky_bar(label, cta, en=False):
         "var c=document.getElementById('eb-sticky-cta');c.href=l[0].href;"
         "function sync(){var p=document.querySelector('#eb-ustop:not([hidden]) a[href*=\"amazon.\"],#eb-toppick:not([hidden]) a[href*=\"amazon.\"]');if(p)c.href=p.href;}"
         "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();"
+        "var marketTop=document.getElementById('eb-ustop');if(marketTop)new MutationObserver(sync).observe(marketTop,{attributes:true,attributeFilter:['hidden']});"
         "document.body.classList.add('eb-has-sticky');var off=false;"
         "document.getElementById('eb-sticky-x').addEventListener('click',function(){b.classList.remove('on');off=true;});"
         "c.addEventListener('click',function(){sync();if(window.gtag)gtag('event','affiliate_click',{link_url:c.href,source:'sticky'});});"
@@ -1786,37 +1787,36 @@ def models_block(device, en=False, slug=None):
             f'<div class="eb-shop-grid">{cards}</div></section><!--/EB_MODELS-->\n')
 
 
-# The English pages sell the wrong country's goods (2026-09-15, owner: expand
-# the German vertical into other countries and sell different goods there,
-# "especially the US side where the traffic is largest").
-#
-# Measured: over 28 days the United States is the second country on this site,
-# 124 human page views against Germany's 280, and the English troubleshooting
-# pages are where its search traffic actually lands (portable-ac-leaking-water
-# 8 of 10 views from search). Yet an American on those pages meets a grid of
-# De'Longhi, AEG, Klarstein and Schmidbauer — European machines. Since 09-06
-# the switch rewrites the LINK to a US category, so the card promises a named
-# model and delivers a category page. US converts at 6.5 % against Germany's
-# 15.4 %, and this is the most obvious reason why.
-#
-# US_MODELS already holds picks cross-verified against named US outlets, but
-# only inside the EB_USMARKET text bridge — never in the grid, which is what
-# actually converts (the German grid runs 37.8 clicks per 100 pages).
-#
-# So the grid itself changes country. Both grids ship; the European one is
-# visible by default, which is correct with no JS and for the EU majority, and
-# the same three-path geo gate as the switch reveals the US one. When it does,
-# the bridge is hidden too: its text says "the units below are the European
-# models", and that sentence becomes false the moment the swap happens.
-# Pages about cooling a room in a European country never swap, whatever the
-# reader's own country is. A US-market portable air conditioner is 115 V / 60 Hz
-# and simply does not run on a European 230 V / 50 Hz socket, so recommending
-# one to somebody furnishing a flat in Spain is not a marketing mismatch, it is
-# a machine that will not work. Caught by reading the built pages after the
-# strip shipped, not by the gates.
-US_SWAP_NEVER = ("italy", "spain", "france", "europe", "germany", "portugal", "greece")
+# Optional US recommendations are an explicit shopping-market choice. Existing
+# article/model links keep their original destination in every timezone. Country
+# tasks and accessory decisions must not gain an unrelated market or appliance.
+US_SWAP_NEVER = ("italy", "italian", "spain", "spanish", "france", "french", "europe",
+                 "germany", "german", "portugal", "greece", "austria", "switzerland",
+                 "swiss", "netherlands", "australia", "canada", "sweden", "norway",
+                 "denmark", "finland", "uk", "british")
 US_SHELF_TERM = {"ac": "portable air conditioner", "dehum": "dehumidifier", "heater": "space heater"}
 US_SHELF_SVG = {"ac": "ac", "dehum": "dehum", "heater": "heater"}
+
+
+def us_market_allowed(slug, html=""):
+    """A page's task market wins over the reader's language or location.
+
+    This controls optional US alternatives, never existing article links. UK
+    decision pages predate the country attribute, so retain their explicit
+    route/marker contract too. A country-bound tool owns its own market UI.
+    """
+    if any(re.search(r"(?:^|-)" + re.escape(w) + r"(?:-|$)", slug or "") for w in US_SWAP_NEVER):
+        return False
+    markets = re.findall(r'data-country-market\s*=\s*[\"\']([^\"\']+)', html, re.I)
+    if markets or '<!--EB_UK_PATH-->' in html or '<!--EB_UKCOST:' in html:
+        return False
+    if re.search(r'https://getecoback\.com/(?:it|fr|es)/', canonical(html)):
+        return False
+    if slug in POPUP_SKIP or shelf_skipped(slug, None):
+        return False
+    if us_term(slug or "")[0] not in US_MODELS:
+        return False
+    return not (context_entries(slug, en=True) or context_entries(slug, en=False))
 
 
 def us_shelf_block(device):
@@ -1848,36 +1848,26 @@ def us_shelf_block(device):
             + '<!--/EB_USSHELF-->\n')
 
 
-# Reuses the switch's gate verbatim in shape: America/* decides with no network,
-# Europe/* (the majority here) decides with no network, and only an ambiguous
-# clock asks the edge. Clicks in this grid report source "us-shelf" so the kill
-# line can be read without guessing which grid produced them.
+# No location lookup, persistence or choice telemetry. The existing US affiliate
+# click listener is bound once; choosing repeatedly cannot duplicate it. Hidden
+# attributes are the shared contract used by the popup and sticky recommendation.
 US_SHELF_JS = (
-    '<script>(function(){if(window.__ebUsSwap)return;window.__ebUsSwap=1;var tz="";'
-    'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
-    'var NA=["US","CA","MX","PR"];'
-    'var swap=function(){var shown=0;'
+    '<script>(function(){if(window.__ebMarketChoice)return;window.__ebMarketChoice=1;'
+    'function ready(){var choice=document.getElementById("eb-market-choice"),controls=document.getElementById("eb-market-controls");'
+    'if(!choice||!controls)return;'
     'var pairs=[["eb-models","eb-usshelf"],["eb-toppick","eb-ustop"]];'
     'for(var i=0;i<pairs.length;i++){'
-    'var eu=document.getElementById(pairs[i][0]),us=document.getElementById(pairs[i][1]);'
-    'if(!us)continue;if(eu)eu.hidden=true;us.hidden=false;shown++;'
+    'var us=document.getElementById(pairs[i][1]);if(!us)continue;'
     'us.addEventListener("click",function(e){'
     'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
     'if(window.gtag)gtag("event","affiliate_click",{source:this.id==="eb-ustop"?"us-toppick":"us-shelf",'
     'page:location.pathname,link_url:a.href});},true);}'
-    'var u=document.getElementById("eb-usunits");if(u)u.hidden=false;'
-    'if(shown){var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;}};'
-    # The script rides with the strip, which sits near the top of the document,
-    # so at execution time the shelf and the bridge further down are not parsed
-    # yet and getElementById returns null for them. Running immediately swapped
-    # the strip and silently left the European shelf and the bridge on screen —
-    # found in the browser, invisible to every static gate. Wait for the DOM.
-    'var ready=function(fn){if(document.readyState==="loading")'
-    'document.addEventListener("DOMContentLoaded",fn);else fn();};'
-    'if(tz.indexOf("America/")===0){ready(swap);}'
-    'else if(tz.indexOf("Europe/")===0){return;}'
-    'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
-    'if(d&&d.c&&NA.indexOf(d.c)>=0)ready(swap);}).catch(function(){});}catch(e){}}'
+    'function sync(){var useUS=choice.value==="us";'
+    'for(var i=0;i<pairs.length;i++){var de=document.getElementById(pairs[i][0]),us=document.getElementById(pairs[i][1]);'
+    'if(!us)continue;if(de)de.hidden=useUS;us.hidden=!useUS;}'
+    'var units=document.getElementById("eb-usunits");if(units)units.hidden=!useUS;}'
+    'choice.value="de";sync();choice.addEventListener("change",sync);controls.hidden=false;}'
+    'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",ready);else ready();'
     '})();</script>')
 
 
@@ -1912,7 +1902,7 @@ def us_toppick_block(device):
 
 
 def inject_us_toppick(html, slug):
-    if any(w in slug for w in US_SWAP_NEVER):
+    if not us_market_allowed(slug, html):
         return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', '', html, flags=re.S)
     if context_entries(slug, en=True) or "<!--EB_TOPPICK-->" not in html:
         return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', '', html, flags=re.S)
@@ -1937,8 +1927,8 @@ QM_SLUG_RE = re.compile(r"^(?:electric-heater|dehumidifier)-(\d+)-sqm$")
 
 
 def us_units_block(slug):
-    """Hidden by default; the US swap script reveals it for North American
-    readers. States only arithmetic (m² -> sq ft) and the conversion the reader
+    """Hidden by default; choosing the US market reveals this unit reference.
+    States only arithmetic (m² -> sq ft) and the conversion the reader
     needs to redo the euro costs on their own bill. The EIA figure is given as
     the range actually readable from the source table, which interleaves
     monthly, year-to-date and twelve-month sections under one header — naming a
@@ -1968,7 +1958,7 @@ def us_units_block(slug):
 
 
 def inject_us_units(html, slug):
-    blk = us_units_block(slug)
+    blk = us_units_block(slug) if us_market_allowed(slug, html) else ""
     if "<!--EB_USUNITS-->" in html:
         if not blk:
             return re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', '', html, flags=re.S)
@@ -1983,11 +1973,8 @@ def inject_us_units(html, slug):
 
 
 def inject_us_shelf(html, slug):
-    """English default-shelf pages only. A CONTEXT page sells parts for the
-    problem on that page (a drain hose, a spirit level) and those are already
-    switched to US search terms by EB_USSWITCH — swapping in whole appliances
-    there would answer a question the reader did not ask."""
-    if any(w in slug for w in US_SWAP_NEVER):
+    """Optional US grid; country tasks and accessory pages retain their scope."""
+    if not us_market_allowed(slug, html):
         return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
     if context_entries(slug, en=True):
         return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
@@ -2240,7 +2227,7 @@ def popup_rows(entries, us=False):
     return rows
 
 
-def popup_block(device, en=False, slug=None):
+def popup_block(device, en=False, slug=None, allow_us=True):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
     ctx = context_entries(slug, en)
     entries = (ctx or table.get(device) or table["ac"])[:3]
@@ -2248,7 +2235,7 @@ def popup_block(device, en=False, slug=None):
     # The US top strip and grid already use these named models. The floating
     # surfaces must follow the same visible market, including verified /dp/
     # links that the generic search-link rewriter intentionally cannot change.
-    us_picks = (US_MODELS.get(US_SHELF_TERM.get(device)) or [])[:3] if en and not ctx and not any(w in (slug or "") for w in US_SWAP_NEVER) else []
+    us_picks = (US_MODELS.get(US_SHELF_TERM.get(device)) or [])[:3] if en and allow_us and us_market_allowed(slug or "") else []
     if us_picks:
         us_entries = [(n, r, note, "Check the current price", "", device) for n, r, note in us_picks]
         rows = ('<div data-eb-popup-market="eu">' + rows + '</div>'
@@ -2345,7 +2332,7 @@ def inject_popup(html, slug, en=False):
                 and ("<!--EB_MODELS-->" in html or any(n in html for n in CANON_NAMES)))
     if not eligible:
         return re.sub(r'<!--EB_POPUP-->.*?<!--/EB_POPUP-->\n?', '', html, flags=re.S)
-    block = popup_block(device_of(slug), en, slug)
+    block = popup_block(device_of(slug), en, slug, allow_us=us_market_allowed(slug, html))
     if "<!--EB_POPUP-->" in html:
         return re.sub(r'<!--EB_POPUP-->.*?<!--/EB_POPUP-->\n?', lambda m: block, html, flags=re.S)
     if "<!--EB_TRACK-->" in html:
@@ -3195,140 +3182,13 @@ def inject_stromheat(html, slug):
     return html
 
 
-# US-visitor marketplace switch on EN pages (上量队列⑥ 2026-08-28; owner added
-# getecoback.com to the US Associates site list the same day, which un-gates
-# this). 28-day D1: 24 of 95 affiliate clicks came from US+GB and went to
-# amazon.de, where those visitors realistically do not order. This rewrites
-# ONLY category-level search links, via an exact-term allowlist — a German
-# category term searched on amazon.com returns empty/garbage, so each term maps
-# to its plain English category (no spec-qualifier translation: litres→pints
-# would be inventing a conversion). Named EU model links are deliberately NOT
-# rewritten: searching "De'Longhi Pinguino" on amazon.com is a dead result, and
-# those visitors are already served named US models by the EB_USMARKET bridge.
-# GB stays unfixed (no .co.uk tag — owner side).
-# Wrapped in DOMContentLoaded (2026-09-04): the block is injected above
-# EB_TRACK, i.e. before the closing </body> but also before any block that a later
-# injector appends below it — and querySelectorAll at parse time cannot see
-# anchors the parser has not reached yet, so those links were never switched.
+# Keep the existing verified US program; never infer a shopper's market.
 US_TAG = "ecoback0d-20"
 
-# US marketplace switch. Measured defect (2026-09-06): 15 of 107 affiliate
-# clicks in 28 days came from the United States and every one of them landed on
-# amazon.de, where the visitor cannot buy — amazon.de prices in euro and ships
-# within the EU. The switch already existed but carried a hand-written map of
-# eleven German terms (dehumidifier and infrared-heater sizes only). It covered
-# 22 of the 398 Amazon links in the English section, and not one of the terms US
-# readers actually clicked: "De'Longhi Pinguino PAC EX105" (6 clicks), "Comfee
-# MPPH-09CRN7" (4), Klarstein, Midea PortaSplit, Fensterabdichtung,
-# Kondensatpumpe, Luftkühler. A fixed list of product names cannot keep up with
-# 252 distinct search terms across the site, so classification moves to ordered
-# keyword rules — specific accessory rules first, broad category rules last.
-#
-# The rules map to CATEGORIES, never to a substitute model. A reader who clicked
-# a named European unit is sent to the US category, not to some other maker's box
-# relabelled as their choice; naming US models is the job of the EB_USMARKET
-# bridge above, where every pick is attributed to a named US outlet. Terms with
-# no US counterpart — balcony solar plants, battery storage, cut-to-size acrylic
-# — deliberately match nothing and keep their amazon.de link.
 
-US_SWITCH_RULES = [
-    ('fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit', 'portable ac window seal kit'),
-    ('abluftschlauch|isolierschlauch|abluft|schlauchadapter', 'portable ac exhaust hose'),
-    ('kondensatpumpe', 'condensate removal pump'),
-    ('kondensatschlauch|kondenswasserschlauch|kondenswasser|ablaufschlauch|mit schlauch|drain hose', 'dehumidifier drain hose'),
-    ('reiniger|verdampfer|schimmelentferner|coil cleaner', 'air conditioner coil cleaner'),
-    ('lamellenkamm|kühlrippen', 'air conditioner fin comb'),
-    ('ersatzfilter|filtermatte|hepa filter', 'replacement air filter'),
-    ('abdeckhaube', 'air conditioner cover'),
-    ('antivibrationsmatte|vibrationsd', 'anti vibration pad'),
-    ('kühlakku', 'cooler ice pack'),
-    ('antikalk|entkalker|zitronens', 'citric acid descaler'),
-    ('dachklimaanlage', 'rv rooftop air conditioner'),
-    ('thermomatte', 'rv windshield cover'),
-    ('granulat', 'moisture absorber'),
-    ('hygrometer|hygrostat', 'indoor hygrometer'),
-    ('thermometer', 'indoor outdoor thermometer'),
-    ('luftbefeuchter|verdunster', 'cool mist humidifier'),
-    ('luftreiniger|air purifier|ac2887', 'hepa air purifier'),
-    ('fenstersauger', 'window vacuum'),
-    ('dreame|bissel|saugwischer', 'wet dry vacuum'),
-    ('tineco', 'tineco filter'),
-    ('hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie', 'window insulation film'),
-    ('rollo|jalousie', 'blackout roller shade'),
-    ('thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang', 'thermal blackout curtain'),
-    ('türdichtung|zugluftstopper', 'door draft stopper'),
-    ('markise|sonnensegel|ampelschirm', 'patio shade sail'),
-    ('sonnenschutz.*(scheibe|auto)|auto sonnenschutz', 'car sun shade'),
-    ('sonnenschutz', 'sun shade'),
-    ('kühlmatte hund|kühlweste hund', 'dog cooling mat'),
-    ('trinkbrunnen katze', 'cat water fountain'),
-    ('wäscheständer|standtrockner|waeschest', 'clothes drying rack'),
-    ('heizdecke|heizkissen|wärmeunterbett|waermeunterbett', 'electric heated blanket'),
-    ('handtuchheizk', 'electric towel warmer'),
-    ('frostwächter', 'frost protection heater'),
-    ('heizstrahler|infrarot heiz|infrarotheizung|schmidbauer|spiegelheizung|bildheizung', 'infrared panel heater'),
-    ('heizlüfter|heizluefter|nth20', 'space heater'),
-    ('thermostat', 'plug in thermostat'),
-    ('energiekostenmess|strommessger|messfunktion|strommessung', 'electricity usage monitor'),
-    ('steckdose|steckdosenleiste|zeitschaltuhr', 'smart plug'),
-    ('wasserwaage', 'small spirit level'),
-    ('magnetband', 'self adhesive magnetic tape'),
-    ('klebeband', 'aluminum foil tape'),
-    ('fenstergriff|abus f', 'window security lock'),
-    ('adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier', 'dehumidifier'),
-    ('luftkühler|luftkuehler|air cooler', 'evaporative air cooler'),
-    ('turmventilator|tower fan', 'tower fan'),
-    ('standventilator', 'pedestal fan'),
-    ('12v|campingventilator', '12v fan'),
-    ('deckenventilator', 'ceiling fan'),
-    ('ventilator|meacofan|rowenta', 'room fan'),
-    ('split klimaanlage|splitklimaanlage|multisplit|mini.?split|klimaanlage wärmepumpe', 'ductless mini split heat pump'),
-    ('klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split', 'portable air conditioner'),
-]
-
-USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
-            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
-            'var NA=["US","CA","MX","PR","BR","AR","CL","CO","PE"];'
-            # Rendered from US_SWITCH_RULES rather than duplicated here; the gate
-            # reads the Python list, so a second copy would be a gate that lies.
-            'var R=' + json.dumps([[a, b] for a, b in US_SWITCH_RULES],
-                                  ensure_ascii=True, separators=(',', ':')) + ';'
-            'var sw=function(a){if(!a||!a.href||a.closest("#eb-moisture-choice")||a.href.indexOf("amazon.de/s?k=")<0)return;'
-            'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'
-            'for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){'
-            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";'
-            'a.setAttribute("data-eb-ussw","1");return;}}}catch(e){}};'
-            # Everything that touches the page happens here, so it runs once and only
-            # for a reader who can actually buy on amazon.com.
-            'var run=function(){'
-            'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
-            'var pass=function(){try{document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(sw);}catch(e){}};'
-            'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",pass);else pass();'
-            # Several components build their Amazon links after load (the sticky bar, the
-            # sizer, the window calculator), so the sweep cannot see them. Catch those at
-            # click time in the capture phase: this block sits above EB_TRACK, so its
-            # listener runs first and the tracker records the rewritten URL.
-            'document.addEventListener("click",function(e){'
-            'try{var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon.de/s?k="]\');if(a)sw(a);}catch(err){}},true);};'
-            # Cheapest path first. America/* decides alone, no network. Europe/* is 84 % of
-            # this site's traffic and is decided the same way, so it never pays for a
-            # request. Everything else — UTC, Etc/*, empty, an exotic zone — is the
-            # ambiguous case that was failing silently (a US reader on a UTC-reporting
-            # browser, 2026-09-08), and only those ask the edge which country they are in.
-            'if(tz.indexOf("America/")===0){run();}'
-            'else if(tz.indexOf("Europe/")===0){return;}'
-            'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
-            'if(d&&d.c&&NA.indexOf(d.c)>=0)run();}).catch(function(){});}catch(e){}}'
-            '})();</script><!--/EB_USSWITCH-->\n')
-
-
-def inject_usswitch(html):
-    """Idempotently add the US marketplace switch (DE + EN guide pages)."""
-    if "<!--EB_USSWITCH-->" in html:
-        return re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', lambda m: USSWITCH, html, flags=re.S)
-    if "<!--EB_TRACK-->" in html:
-        return html.replace("<!--EB_TRACK-->", USSWITCH + "<!--EB_TRACK-->", 1)
-    return html
+def strip_legacy_market_switch(html):
+    """Migrate cached/generated pages away from the silent href rewriter."""
+    return re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', '', html, flags=re.S)
 
 
 # Nothing on this site was ever forwardable. The one moment a Raumklima page is
@@ -3434,67 +3294,59 @@ def us_term(slug):
     return "portable air conditioner", "portable air conditioners"
 
 
-def usmarket_html(slug):
-    term, plural = us_term(slug)
-    url = f"https://www.amazon.com/s?k={term.replace(' ', '+')}&tag={US_TAG}"
+def usmarket_html(slug, en=True, html=""):
+    """Static, labelled US alternatives also work without JavaScript.
+
+    The details links are independent of the recommendation selector. Opening
+    them never changes the main CTA; only an explicit selector change does.
+    """
+    if not us_market_allowed(slug, html):
+        return ""
+    term, _plural = us_term(slug)
     picks = US_MODELS.get(term) or []
-    if picks:
-        # The rows are embedded inside a single-quoted JS string in the injected
-        # script; a bare apostrophe in any name/role/note terminates that string
-        # and silently kills the whole block (found 2026-08-28: "RTINGS' basement
-        # pick" blanked the bridge on every dehumidifier page, DE and EN).
-        # Escape programmatically — copy must never have to know about quoting.
-        j = lambda t: t.replace("\\", "\\\\").replace("'", "\\'")
-        rows = "".join(
-            '+\'<li style="margin:0 0 7px;"><a href="https://www.amazon.com/s?k='
-            + urllib.parse.quote_plus(name) + '&tag=' + US_TAG + '" target="_blank" '
-            'rel="sponsored noopener" style="font-weight:700;">' + j(name) + '</a> '
-            '<span style="color:#4a5a67;">— <em>' + j(role) + '</em>. ' + j(note) + '</span></li>\''
-            for name, role, note in picks)
-        body = (
-            '+\'<p style="margin:0 0 8px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
-            'The units recommended below are the European models — Amazon.de prices and ships within '
-            'the EU, so they are a poor fit for you. We have not tested any of these ourselves; '
-            'these are the models US reviewers keep picking:</p>\''
-            '+\'<ul style="margin:0 0 10px 18px;font-size:13.5px;line-height:1.5;">\''
-            + rows + '+\'</ul>\''
-            '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
-            'style="font-size:13.5px;font-weight:700;">See all ' + plural + ' on Amazon.com →</a>\'')
-    else:
-        body = (
-            '+\'<p style="margin:0 0 10px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
-            'The units recommended below are the European models — they are what the public tests we '
-            'summarise actually cover, and Amazon.de prices and ships within the EU, so they are a poor '
-            'fit for you. We have not tested the US market, so we point you at the category rather than '
-            'name a model we cannot vouch for.</p>\''
-            '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
-            'style="display:inline-block;background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;'
-            'border-radius:8px;text-decoration:none;font-size:14px;">Browse ' + plural + ' on Amazon.com →</a>\'')
-    return (
-        '<!--EB_USMARKET--><div id="eb-usmarket"></div>'
-        '<script>(function(){'
-        'var el=document.getElementById("eb-usmarket");if(!el)return;'
-        'var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
-        'if(tz.indexOf("America/")!==0)return;'
-        'el.innerHTML=\'<div style="max-width:1000px;margin:10px auto 0;padding:0 20px;">\''
-        '+\'<div style="background:#fff8ed;border:1px solid #f3ddc0;border-radius:12px;padding:14px 16px;">\''
-        '+\'<div style="font-size:11px;font-weight:800;color:#7a6f4e;letter-spacing:.3px;margin-bottom:6px;">'
-        'Ad · affiliate link — same price for you</div>\''
-        '+\'<strong style="display:block;font-size:15px;margin-bottom:4px;">Looks like you are in North America</strong>\''
-        + body +
-        '+\'</div></div>\';'
-        '})();</script><!--/EB_USMARKET-->\n')
+    if not picks:
+        return ""
+    rows = "".join(
+        '<li><a href="https://www.amazon.com/s?k=' + urllib.parse.quote_plus(name)
+        + '&amp;tag=' + US_TAG + '" target="_blank" rel="sponsored noopener">'
+        + htmllib.escape(name) + '</a></li>' for name, _role, _note in picks)
+    label = "Shopping market for recommendations" if en else "Einkaufsmarkt für Empfehlungen"
+    de_label = "Amazon.de (Germany)" if en else "Amazon.de (Deutschland)"
+    us_label = "Amazon.com (United States)" if en else "Amazon.com (USA)"
+    note = ("Article links use Amazon.de (Germany) unless labelled otherwise. US alternatives are labelled separately; your location does not change these links."
+            if en else "Artikellinks führen zu Amazon.de (Deutschland), sofern nicht anders gekennzeichnet. US-Alternativen sind separat markiert; dein Standort ändert diese Links nicht.")
+    fit = ("US alternatives from public sources, not tested by us. Check the exact model, power supply, delivery and returns for where you will use it."
+           if en else "US-Alternativen aus öffentlichen Quellen, nicht selbst getestet. Genaues Modell, Stromversorgung, Lieferung und Rückgabe für deinen Einsatzort prüfen.")
+    return ('<!--EB_USMARKET--><aside id="eb-usmarket" style="max-width:1000px;margin:14px auto;padding:0 20px;">'
+            '<div style="background:#eef6fb;border:1px solid #cfe0ea;border-radius:12px;padding:14px 16px;">'
+            '<p style="margin:0 0 10px;font-size:13px;">' + note + '</p>'
+            '<div id="eb-market-controls" hidden><label for="eb-market-choice" style="display:block;font-weight:700;">' + label + '</label>'
+            '<select id="eb-market-choice" data-eb-market-choice style="max-width:100%;font-size:16px;padding:8px;margin:6px 0 12px;">'
+            '<option value="de" selected>' + de_label + '</option><option value="us">' + us_label + '</option></select></div>'
+            '<details id="eb-market-us-fallback"><summary style="cursor:pointer;font-weight:700;">' + us_label + ' — '
+            + ('view US alternatives' if en else 'US-Alternativen ansehen') + '</summary>'
+            '<p style="font-size:13px;margin:8px 0;">' + fit + '</p>'
+            '<p style="font-size:12px;">' + AD_LABEL[en] + '</p>'
+            '<ul style="margin:8px 0 0 20px;">' + rows + '</ul></details></div></aside><!--/EB_USMARKET-->\n')
 
 
 def inject_usmarket(html, slug):
-    """Idempotently add the North-America market notice. EN guide pages only."""
-    blk = usmarket_html(slug)
-    if "<!--EB_USMARKET-->" in html:
-        return re.sub(r'<!--EB_USMARKET-->.*?<!--/EB_USMARKET-->\n?', lambda m: blk, html, flags=re.S)
-    if "<!--EB_MODELS-->" in html:
-        return html.replace("<!--EB_MODELS-->", blk + "<!--EB_MODELS-->", 1)
-    if "<!--/EB_TRUST-->" in html:
-        return html.replace("<!--/EB_TRUST-->", "<!--/EB_TRUST-->\n" + blk, 1)
+    """Use the article's task scope; never its reader's location."""
+    en = bool(re.search(r'<html[^>]+lang=["\']en(?:-[^"\']+)?["\']', html, re.I))
+    blk = usmarket_html(slug, en=en, html=html)
+    # Reposition an old bridge so the choice precedes every recommendation.
+    html = re.sub(r'<!--EB_USMARKET-->.*?<!--/EB_USMARKET-->\n?', '', html, flags=re.S)
+    if not blk:
+        return html
+    if '<!--/EB_TRUST-->' in html:
+        # The crumb injector also owns this separator. Consume it before
+        # repositioning the market block so their combined rebuild is stable.
+        return re.sub(r'<!--/EB_TRUST-->\n?', lambda m: '<!--/EB_TRUST-->\n' + blk,
+                      html, count=1)
+    if '<!--EB_TOPPICK-->' in html:
+        return html.replace('<!--EB_TOPPICK-->', blk + '<!--EB_TOPPICK-->', 1)
+    if '<!--EB_MODELS-->' in html:
+        return html.replace('<!--EB_MODELS-->', blk + '<!--EB_MODELS-->', 1)
     return html
 
 
@@ -4731,7 +4583,6 @@ def main():
             url = canonical(new) or f"https://getecoback.com/guide/{slug}.html"
             new = inject_crumb_trust(new, cat_of(slug), title, url)
             new = inject_usmarket(new, slug)
-            new = inject_usswitch(new)
             new = inject_models(new, slug)
             new = inject_sizer(new, slug)
             new = inject_toppick(new, slug)
@@ -4768,16 +4619,7 @@ def main():
             new = inject_radar(new)
             new = inject_climate(new, slug)
             new = inject_popup(new, slug)
-        # The US switch is not part of the transaction layer, and sitting inside
-        # that guide-only block is what kept it off 127 amazon.de links for the
-        # twelve days after it shipped (2026-08-28 → 09-09): the English homepage
-        # (11 links, where North-American readers actually land), the German
-        # homepage (25) and the four category hubs (16). It exists so a reader in
-        # America is not handed a German storefront, which is true wherever an
-        # amazon.de search link appears — so the condition is the link, not the
-        # directory. Idempotent, and inert on pages without such a link.
-        if "amazon.de/s?k=" in new:
-            new = inject_usswitch(new)
+        new = strip_legacy_market_switch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=False)
         if os.path.basename(path) in ('tineco-saugt-nicht-mehr.html', 'thermovorhang-ratgeber.html'):
             # These guides qualify a specific maintenance/fit decision. Generic
@@ -4809,13 +4651,12 @@ def main():
             if device_of(slug) == "ac":
                 new = inject_heatnow_en(new)
             new = inject_usmarket(new, slug)
-            new = inject_usswitch(new)
             new = inject_models(new, slug, en=True)
+            new = inject_sizer(new, slug, en=True)
+            new = inject_toppick(new, slug, en=True)
             new = inject_us_toppick(new, slug)
             new = inject_us_shelf(new, slug)
             new = inject_us_units(new, slug)
-            new = inject_sizer(new, slug, en=True)
-            new = inject_toppick(new, slug, en=True)
             new = inject_explainer(new, slug, en=True)
             new = inject_sealfit(new, slug, en=True)
             new = inject_hosefit(new, slug, en=True)
@@ -4824,12 +4665,10 @@ def main():
             new = inject_sticky(new, EN_STICKY)
             new = inject_radar(new, radar=EN_RADAR)
             new = inject_popup(new, slug, en=True)
-        # Same reason as in the German loop: the switch follows the amazon.de
-        # link, not the /en/guide/ directory — the English homepage carries 11 of
-        # them and had none of it until 2026-09-09.
-        if "amazon.de/s?k=" in new:
-            new = inject_usswitch(new)
+        new = strip_legacy_market_switch(new)
         new = inject_demand(new, os.path.basename(path)[:-5], en=True)
+        if '<!--EB_USTOP-->' not in new:
+            new = re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', '', new, flags=re.S)
         if os.path.basename(path) == 'dehumidifier-drying-clothes-cost.html':
             # This route has UK buying checks, not a verified UK affiliate shop.
             # Generic profile/sticky promotions bypass the explicit market choice.

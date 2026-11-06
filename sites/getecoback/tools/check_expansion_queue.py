@@ -104,6 +104,17 @@ def _page_date(slug):
     return m.group(1) if m else None
 
 
+def superseded_topic_warning(queue, experiment):
+    topic = experiment.get("supersedes_queue_topic")
+    if not topic:
+        return None
+    for item in queue.get("items", []):
+        if item.get("slug") == topic and item.get("status") in WAITING:
+            return (f"public experiment {experiment['id']} supersedes {item['status']} topic {topic}; "
+                    "check cannibalization before building it")
+    return None
+
+
 def selftest():
     base = {"slug": "x", "working_title": "t", "cluster": "heizen", "evidence": ["e"],
             "serp": {"date": "2026-09-24", "verdict": "writable", "seen": "s"}, "cannibalization": "c",
@@ -141,6 +152,19 @@ def selftest():
     ok = any("twice" in e for e in errs)
     print(("ok   " if ok else "FAIL ") + "duplicate slug")
     bad += not ok
+    experiment = {"id": "superseding-bet", "supersedes_queue_topic": "x"}
+    for status in sorted(STATUSES):
+        warning = superseded_topic_warning({"items": [{**base, "status": status}]}, experiment)
+        ok = bool(warning) == (status in WAITING) and (not warning or f"{status} topic x" in warning)
+        print(("ok   " if ok else "FAIL ") + f"superseded topic with status {status}")
+        bad += not ok
+    for name, queue, bet in [
+        ("unrelated waiting topic", {"items": [{**base, "slug": "other", "status": "queued"}]}, experiment),
+        ("experiment without supersession", {"items": [{**base, "status": "queued"}]}, {"id": "b"}),
+    ]:
+        ok = superseded_topic_warning(queue, bet) is None
+        print(("ok   " if ok else "FAIL ") + name)
+        bad += not ok
     return 1 if bad else 0
 
 
@@ -163,8 +187,9 @@ def main():
             if b["id"] in bet_ids:
                 raise ValueError("Duplicate experiment id: " + b["id"])
             bet_ids.add(b["id"])
-            if b.get("supersedes_queue_topic"):
-                print("::warning::public experiment supersedes queued topic " + b["supersedes_queue_topic"] + "; check cannibalization before building it")
+            warning = superseded_topic_warning(queue, b)
+            if warning:
+                print("::warning::" + warning)
     errs, warns = check(queue, lambda s: os.path.exists(os.path.join(GUIDE, s + ".html")), _page_date, bet_ids)
     for w in warns:
         print(f"::warning::expansion queue: {w}")

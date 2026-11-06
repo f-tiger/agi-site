@@ -11,6 +11,7 @@ Checks
   2. every URL in the block is a discovered tool (no stale cards);
   3. no duplicate hrefs in the block;
   4. every internal href on the whole hub page (block or not) resolves to a file.
+  5. generated categories, market labels and seasonal order are current.
 --selftest feeds the checker a hub with one missing and one stale card and expects both to be named.
 """
 import os, re, sys
@@ -47,11 +48,19 @@ def problems(hub, tools, exists):
     return out
 
 
+def generated_problems(hub, tools, month=None):
+    if block_of(hub) != block_of(B.render(tools, month)):
+        return ["tool cards, categories or seasonal order are stale — run tools/build_tools_hub.py"]
+    return []
+
+
 def main():
-    hub = open(B.HUB, encoding="utf-8").read()
+    with open(B.HUB, encoding="utf-8") as f:
+        hub = f.read()
     tools = B.discover()
     exists = lambda u: os.path.exists(os.path.join(B.SITE, u.lstrip("/")))
     bad = problems(hub, tools, exists)
+    bad.extend(generated_problems(hub, tools))
     if bad:
         print("::error::tools hub does not match the filesystem:")
         for b in bad:

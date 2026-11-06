@@ -18,8 +18,9 @@ const cases=[
 ];
 (async()=>{
  const results=[],dir=process.env.QA_DIR||'/tmp/eco-energy-qa';await fs.mkdir(dir,{recursive:true});
- for(const [engine,type] of [['chromium',chromium],['webkit',webkit]]){
-  const browser=await type.launch();
+ const engines=[['chromium',chromium],['webkit',webkit]].filter(([name])=>!process.env.BROWSER_ENGINES||process.env.BROWSER_ENGINES.split(',').includes(name));
+ for(const [engine,type] of engines){
+  const browser=await type.launch(engine==='chromium'&&process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}:{});
   try{for(const revision of baseline?[preShelf,baseline,'current']:['current'])for(const width of [320,390])for(const [url,tz,cooling] of cases){
    if(revision===preShelf&&!url.includes('best-portable-air-conditioner-for-bedroom'))continue;
    const context=await browser.newContext({viewport:{width,height:844},timezoneId:tz,isMobile:true,hasTouch:true});
@@ -73,6 +74,14 @@ const cases=[
     results.push({engine,revision,width,url,tz,cooling,consentShown,decisionRoute:true,picks:[],calc:false});
     await context.close();continue;
    }
+   // Current pages change their buying surfaces only after an explicit choice.
+   // Historical fixtures retain their original timezone-driven expectations.
+   let selectedMarket='de';
+   if(revision==='current'&&await page.locator('#eb-ustop').count()){
+    await page.locator('#eb-market-choice').waitFor({state:'visible'});
+    selectedMarket=tz.startsWith('America/')?'com':'de';
+    await page.locator('#eb-market-choice').selectOption(selectedMarket==='com'?'us':'de');
+   }
    await page.evaluate(()=>window.scrollTo({top:650,behavior:'instant'}));await page.clock.runFor(100);
    const sticky=page.locator('#eb-sticky-cta');
    const stickyUrl=await sticky.getAttribute('href');
@@ -97,7 +106,7 @@ const cases=[
      savedCooling:visible(document.getElementById('eb-pu-room')),
      stickyVisible:visible(document.getElementById('eb-sticky'))};
    });
-   const market=tz.startsWith('America/')?'com':'de';
+   const market=revision==='current'?selectedMarket:(tz.startsWith('America/')?'com':'de');
    const record={engine,revision,width,url,tz,cooling,consentShown,stickyUrl,...metrics};results.push(record);
    await fs.writeFile(dir+'/buying-friction.json',JSON.stringify(results,null,2));
    if(engine==='chromium'&&width===390&&tz==='Europe/Berlin'&&url.includes('luftentfeuchter-25'))
@@ -133,5 +142,5 @@ const cases=[
  const old=results.filter(r=>r.revision!=='current');
  console.log('BUYING_TIMELINE='+JSON.stringify(results.filter(r=>r.engine==='chromium'&&r.width===390&&r.url.includes('best-portable-air-conditioner-for-bedroom')).map(r=>({revision:r.revision,sticky:r.stickyUrl,popup:r.picks}))));
  console.log('BUYING_BASELINE='+JSON.stringify({cases:old.length,overflow:old.filter(r=>r.popupOverflow>1).length,nonCoolingBtu:old.filter(r=>r.calc&&!r.cooling).length,usWrongSticky:old.filter(r=>r.tz.startsWith('America/')&&new URL(r.stickyUrl).hostname!=='www.amazon.com').length,usMixedPopup:old.filter(r=>r.tz.startsWith('America/')&&r.picks.some(p=>new URL(p.href).hostname!=='www.amazon.com')).length}));
- console.log(`PASS: ${results.filter(r=>r.revision==='current').length} mobile delayed-purchase scenarios; two engines, two widths, DE/US, correct markets, no BTU detours or popup overflow, one beacon per click. No production requests.`);
+ console.log(`PASS: ${results.filter(r=>r.revision==='current').length} mobile delayed-purchase scenarios; ${engines.length} engine(s), two widths, explicit DE/US choice, correct markets, no BTU detours or popup overflow, one beacon per click. No production requests.`);
 })().catch(e=>{console.error(e);process.exit(1);});
