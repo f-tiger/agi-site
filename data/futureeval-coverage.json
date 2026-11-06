@@ -1,25 +1,14 @@
 {
- "generated": "2026-11-05T15:58:50+00:00",
+ "generated": "2026-11-06T15:30:39+00:00",
  "definition": "share of sampled open FutureEval/MiniBench questions whose resolution text names a host the fleet archives on a schedule (tools/fleet/archived_sources.txt); unknown = not covered",
  "tournaments": [
   "33121"
  ],
- "sampled": 2,
+ "sampled": 1,
  "covered": 0,
  "coverage_share": 0.0,
  "stale": false,
  "sample": [
-  {
-   "post_id": 46334,
-   "title": "Will a Préfecture de Police curfew be in effect anywhere in Paris on the night of New Year's Eve 2026?",
-   "hosts": [
-    "www.emploi-collectivites.fr",
-    "www.metaculus.com",
-    "www.prefecturedepolice.interieur.gouv.fr"
-   ],
-   "covered_by": null,
-   "tournament": "33121"
-  },
   {
    "post_id": 45615,
    "title": "Announcing Fall 2026 FutureEval Bot Tournament",
