@@ -1,60 +1,32 @@
 {
- "fetched": "2026-11-05",
+ "fetched": "2026-11-06",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "auto": [
     "deepseek",
-    "deepseek ai",
     "deepseek api",
-    "deepseek v4.1 flash",
+    "deepseek ai",
     "deepseek harness desktop",
-    "deepseek v4.1 flash 1017",
     "deepseek v4 flash",
+    "deepseek v4.1 flash",
+    "deepseek super agent",
     "deepseek v4",
     "deepseek chat",
-    "deepseek login"
+    "deepseek harness github"
    ],
    "rising": [
     {
-     "q": "deepseek ai",
+     "q": "deepseek super agent",
      "v": "new"
     },
     {
-     "q": "deepseek api",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4.1 flash",
-     "v": "new"
-    },
-    {
-     "q": "deepseek harness desktop",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4.1 flash 1017",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4 flash",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4",
-     "v": "new"
-    },
-    {
-     "q": "deepseek chat",
-     "v": "new"
-    },
-    {
-     "q": "deepseek login",
+     "q": "deepseek harness github",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-26"
+   "fetched": "2026-11-06"
   },
   "midjourney": {
    "rising": [
@@ -302,51 +274,19 @@
     "cursory definition",
     "cursor download",
     "cursor library",
-    "cursor ide",
+    "cursor careers",
     "cursor pricing",
-    "cursor vs claude code",
-    "cursor cli"
+    "cursor ide",
+    "cursor vs claude code"
    ],
    "rising": [
     {
-     "q": "cursor ai",
-     "v": "new"
-    },
-    {
-     "q": "cursory",
-     "v": "new"
-    },
-    {
-     "q": "cursory definition",
-     "v": "new"
-    },
-    {
-     "q": "cursor download",
-     "v": "new"
-    },
-    {
-     "q": "cursor library",
-     "v": "new"
-    },
-    {
-     "q": "cursor ide",
-     "v": "new"
-    },
-    {
-     "q": "cursor pricing",
-     "v": "new"
-    },
-    {
-     "q": "cursor vs claude code",
-     "v": "new"
-    },
-    {
-     "q": "cursor cli",
+     "q": "cursor careers",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-10-26"
+   "fetched": "2026-11-06"
   },
   "claude code": {
    "rising": [
