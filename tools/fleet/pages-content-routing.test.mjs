@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {contentRoutes,invokesContentFunction,contentHeaders,buildContent,checkFunctions} from './pages-content-routing.mjs';
+import {contentRoutes,invokesContentFunction,contentHeaders,buildContent,checkFunctions,verifyContentLive} from './pages-content-routing.mjs';
+import {protectAnalyticsResponse} from '../fleet-analytics/edge.mjs';
 import {RETIRED_PREFIXES} from '../../sites/thedollscout/functions/retired-paths.mjs';
 import {crawlerMeasurement} from './pages-content-policy.mjs';
 import {accountRoute} from '../fleet-account/edge.mjs';
@@ -34,8 +35,22 @@ test('new Function endpoints cannot be omitted from route review',()=>{
 });
 test('global static marker is unique; analytics and private original policies survive idempotent generation',()=>{
  const original='/account\n  Cache-Control: no-store\n# FLEET-PAGES-STATIC\n/style.css\n  X-Fleet-Delivery: static-pages-v1\n# /FLEET-PAGES-STATIC\n';
- for(const site of ['bpj','tds']){const value=contentHeaders(original,site);assert.equal((value.match(/X-Fleet-Delivery:/g)||[]).length,1);assert(!value.includes('static-pages-v1'));assert(value.includes('/account\n  Cache-Control: no-store'));assert(value.includes('no-transform'));assert.equal(contentHeaders(value,site),value);}
+ for(const site of ['bpj','tds']){const value=contentHeaders(original,site);assert.equal((value.match(/X-Fleet-Delivery:/g)||[]).length,1);assert(!value.includes('static-pages-v1'));assert(value.includes('/account\n  Cache-Control: no-store'));assert(value.includes('no-transform'));assert.doesNotMatch(value,/content-type:/i,'A wildcard security policy must not replace asset MIME types');assert.equal(contentHeaders(value,site),value);}
  assert(crawlerMeasurement.coverage.includes('partial'));assert(crawlerMeasurement.interpretation.includes('not evidence'));
+});
+test('live delivery rejects HTTP 200 scripts, styles and frames with non-executable MIME types',async()=>{
+ const fetcher=bad=>async input=>{
+  const path=new URL(input).pathname,analytics=path.startsWith('/analytics-assets/');
+  const headers=analytics?new Headers(protectAnalyticsResponse(new Response(null)).headers):new Headers();
+  const guarded=decodeURIComponent(path)==='/account'||path.endsWith('.md');
+  headers.set('X-Fleet-Delivery',guarded?'pages-function':'static-pages-v2');
+  if(decodeURIComponent(path)==='/account')headers.set('Cache-Control','no-store');
+  if(path.endsWith('.md'))headers.set('X-Robots-Tag','noindex');
+  if(analytics)headers.set('Content-Type',path===bad?'text/plain':path.endsWith('.mjs')?'application/javascript':path.endsWith('.css')?'text/css':'text/html');
+  return new Response(null,{headers});
+ };
+ for(const bad of ['/analytics-assets/consent.mjs','/analytics-assets/consent.css','/analytics-assets/frame'])await assert.rejects(verifyContentLive('bpj',fetcher(bad)),/Analytics MIME type drift/);
+ await verifyContentLive('bpj',fetcher(null));
 });
 test('final build check detects drift, explicit 404 is required, private source shadows fail',async()=>{
  const root=mkdtempSync(join(tmpdir(),'content-output-'));try{

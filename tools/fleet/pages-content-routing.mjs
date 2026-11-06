@@ -61,7 +61,9 @@ export function contentHeaders(original,site){
   .replace(/\n?# FLEET-GA4-HEADERS\n[\s\S]*?# \/FLEET-GA4-HEADERS\n?/g,'\n').trimEnd();
  const lines=['','# FLEET-PAGES-CONTENT','/*','  X-Fleet-Delivery: static-pages-v2'];
  lines.push('/analytics-assets/*');
- for(const [k,v]of protectAnalyticsResponse(new Response('')).headers)lines.push('  '+k+': '+v);
+ // A string Response adds text/plain automatically. Copy security policy from
+ // a bodyless response so the wildcard cannot overwrite each asset's MIME type.
+ for(const [k,v]of protectAnalyticsResponse(new Response(null)).headers)lines.push('  '+k+': '+v);
  if(site==='tds')for(const p of authAssets){
   lines.push(p);for(const[k,v]of Object.entries(privateHeaders))lines.push('  '+k+': '+(k==='Cache-Control'?'public, max-age=300':v));
  }
@@ -91,7 +93,7 @@ export async function buildContent(site,out,check=false){
 }
 export async function verifyContentLive(site,fetcher=fetch){
  const host=site==='bpj'?'baipiaoji.com':'thedollscout.com';
- const checks=[['/',site==='bpj'?'static-pages-v2':'pages-function',200],['/analytics-assets/consent.mjs','static-pages-v2',200],['/analytics-assets/frame','static-pages-v2',200],
+ const checks=[['/',site==='bpj'?'static-pages-v2':'pages-function',200],['/analytics-assets/consent.mjs','static-pages-v2',200],['/analytics-assets/consent.css','static-pages-v2',200],['/analytics-assets/frame','static-pages-v2',200],
   [site==='bpj'?'/tools/kimi':'/auth/nav.js','static-pages-v2',200],
   [site==='bpj'?'/account':'/members','pages-function',200],
   ...(site==='tds'?[['/auth/account','pages-function',200],['/picks','pages-function',410],['/DE/%2570icks','pages-function',410]]:[['/mcp.md','pages-function',200],['/%61ccount','pages-function',200]])];
@@ -99,7 +101,12 @@ export async function verifyContentLive(site,fetcher=fetch){
   if(r.status!==status||r.headers.get('x-fleet-delivery')!==delivery)throw Error(`${host}${path}: expected ${status} ${delivery}, got ${r.status} ${r.headers.get('x-fleet-delivery')}`);
   if(path==='/account'||path==='/members'||path==='/auth/account'||path==='/%61ccount'){if(r.headers.get('cache-control')!=='no-store')throw Error('Private cache policy lost');}
   if(path.endsWith('.md')&&!r.headers.get('x-robots-tag')?.includes('noindex'))throw Error('Markdown noindex lost');
-  if(path==='/analytics-assets/frame')for(const[k,v]of protectAnalyticsResponse(new Response('')).headers)if(r.headers.get(k)!==v)throw Error('Analytics header drift: '+k);
+  if(path.startsWith('/analytics-assets/')){
+   const mime=(r.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+   const valid=path.endsWith('.mjs')?['application/javascript','text/javascript'].includes(mime):path.endsWith('.css')?mime==='text/css':mime==='text/html';
+   if(!valid)throw Error('Analytics MIME type drift: '+path+' '+mime);
+  }
+  if(path==='/analytics-assets/frame')for(const[k,v]of protectAnalyticsResponse(new Response(null)).headers)if(r.headers.get(k)!==v)throw Error('Analytics header drift: '+k);
   await r.body?.cancel();
  }
  if(site==='tds'){
