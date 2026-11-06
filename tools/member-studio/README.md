@@ -71,3 +71,19 @@ SEO/GEO and deployment checks remain unchanged.
 Tests: `node tools/member-studio/test-receipts.mjs` and
 `node tools/member-studio/test-receipts-runner.mjs`, plus existing BPJ receipt,
 membership and site-isolation suites. All chain receipts in tests are fixtures.
+
+## Maintenance diagnosis and retries (2026-11-06)
+
+Normal and receipts-only runners verify the site's public `ok`, `site` and
+`ready` response after maintenance. Completing a watcher request alone does not
+prove new purchases are ready. Errors report only the fixed HTTP/stage/reason
+vocabulary; response bodies, SQL, customer records and credentials are excluded.
+Sibling failures remain independent and identify their site in the job log.
+
+Only explicitly diagnosed transient RPC errors in `chain_probe` or `log_probe`
+receive at most two retries (5 and 10 seconds), within the original 120-second
+request budget. These stages precede order processing and health writes. Auth,
+configuration, database, wrong-chain, token-precision and unknown transport
+failures are not retried. No schedule, four-hour freshness rule, order, payment,
+entitlement or retention logic changes. Run
+`node tools/member-studio/test-watch-request.mjs` for the runner regression suite.
