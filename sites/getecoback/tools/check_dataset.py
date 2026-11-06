@@ -26,6 +26,7 @@ copied snippet honour it.
 Run: python3 tools/check_dataset.py
 """
 import csv
+import html
 import json
 import os
 import re
@@ -84,7 +85,7 @@ def main():
             bad.append("sizing-data.csv is advertised in the Dataset node but does not exist")
         else:
             rows = list(csv.reader(open(CSV, encoding="utf-8")))
-            # The two *_note keys are prose, not values, so they are not CSV
+            # The *_note keys are prose, not values, so they are not CSV
             # rows; heating_w_per_m2_insulated is a list and becomes one row.
             # Count the non-prose rules rather than hard-coding a number.
             numeric = [k for k, v in (d.get("rules") or {}).items() if not isinstance(v, str)]
@@ -121,13 +122,54 @@ def main():
     # ── 2. no drift between the page and the dataset ───────────────────────
     text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", page))
     rules = d.get("rules", {})
-    for key in ("cooling_btu_per_m2", "mould_threshold_rh_percent", "monoblock_ceiling_btu"):
+    for key in ("cooling_btu_per_m2", "humidity_review_rh_percent", "monoblock_ceiling_btu"):
         if key in rules and str(rules[key]) not in text:
             bad.append(f"daten.html: rule {key}={rules[key]} from the dataset does not appear on the page")
     rows = sum(len(v) for v in (d.get("ladders") or {}).values())
     shown = len(re.findall(r"<tr>", page)) - 1  # minus the rules table header row
     if rows and shown < rows:
         bad.append(f"daten.html: dataset has {rows} ladder rows but the page renders about {shown} table rows")
+
+    # Version 2 retires the unsupported area-to-litres mapping and the fixed
+    # mould threshold. Verify meaning and cross-format values, not just row
+    # counts: a stale CSV or PropertyValue otherwise passes every gate above.
+    if d.get("schema_version") != 2:
+        bad.append("sizing-data.json: expected humidity contract version 2")
+    if "mould_threshold_rh_percent" in rules or "humidity_review_rh_percent" not in rules:
+        bad.append("sizing-data.json: humidity review signal must replace the mould-threshold rule")
+    if not rules.get("humidity_review_note") or rules.get("humidity_review_note") not in html.unescape(text):
+        bad.append("daten.html: humidity review limitations are missing or differ from the dataset")
+    if ds:
+        variables = {v.get("name"): v for v in ds.get("variableMeasured", [])}
+        humidity = variables.get("humidity_review_rh_percent", {})
+        if ("mould_threshold_rh_percent" in variables
+                or humidity.get("value") != rules.get("humidity_review_rh_percent")
+                or humidity.get("description") != rules.get("humidity_review_note")
+                or ds.get("version") != str(d.get("schema_version"))):
+            bad.append("daten.html: Dataset humidity meaning/value/version differs from JSON")
+    if os.path.exists(CSV):
+        csv_rows = list(csv.DictReader(open(CSV, encoding="utf-8")))
+        humidity_rows = [r for r in csv_rows if r.get("key") == "humidity_review_rh_percent"]
+        if (any(r.get("key") == "mould_threshold_rh_percent" for r in csv_rows)
+                or len(humidity_rows) != 1
+                or humidity_rows[0].get("value") != str(rules.get("humidity_review_rh_percent"))
+                or "keine Schimmelgrenze" not in humidity_rows[0].get("unit", "")):
+            bad.append("sizing-data.csv: humidity review signal is stale or lacks its limitation")
+        dehum_rows = [r for r in csv_rows if r.get("section") == "dehumidifier_l_per_day"]
+        expected = d.get("ladders", {}).get("dehumidifier_l_per_day", [])
+        if len(dehum_rows) != len(expected):
+            bad.append("sizing-data.csv: humidity guide rows differ from JSON")
+        for source, row in zip(expected, dehum_rows):
+            value = source.get("liters_per_day", "")
+            if not isinstance(value, str) or not value or re.search(r"\d", value):
+                bad.append("sizing-data.json: floor area must not imply a numeric extraction capacity")
+            if (row.get("m2") != str(source.get("m2"))
+                    or row.get("value") != value or row.get("unit")
+                    or row.get("guide") != source.get("guide")
+                    or row.get("room") != source.get("room")):
+                bad.append("sizing-data.csv: humidity guidance differs from JSON or claims a capacity unit")
+            if isinstance(value, str) and value not in html.unescape(text):
+                bad.append("daten.html: humidity guidance differs from JSON")
 
     # ── 3. embeds must produce a link in the host page ─────────────────────
     if os.path.exists(WIDGETS):

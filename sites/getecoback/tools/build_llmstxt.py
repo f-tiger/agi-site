@@ -85,7 +85,7 @@ def main():
         "> in Wohnungen ohne feste Installation — das ganze Jahr: Kühlen (tragbare Klimaanlagen,",
         "> Fensterabdichtung für Kippfenster/Dachfenster, Luftkühler, Ventilatoren), Luftqualität",
         "> (Luftentfeuchter, Schimmel, Taupunkt, Luftreiniger), Heizen (Infrarotheizung, Heizlüfter,",
-        "> Heizkosten) und Stromkosten. Rechner für BTU, Entfeuchtungsleistung, Heizleistung und",
+        "> Heizkosten) und Stromkosten. Feuchte-Entscheidungshilfen und Rechner für BTU, Heizleistung und",
         "> Taupunkt mit offengelegten Formeln. Finanziert über Amazon-Affiliate-Links;",
         "> Empfehlungen fassen öffentliche Tests zusammen (kein eigenes Labor).",
         "",
@@ -102,9 +102,11 @@ def main():
         "## Für KI-Agenten (MCP & offene APIs)",
         "",
         f"- MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): {BASE}/mcp",
-        "  Tools: geraet_wahl (welches Gerät löst mein Problem), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,",
+        "  Neun Tools: geraet_wahl (nächster Schritt; bei Feuchte erst messen, Ursachen klären und Bedingungen prüfen), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,",
         "  taupunkt_lueften sowie ratgeber_suche + ratgeber_lesen (Volltextsuche und Volltext-Abruf aller Ratgeber).",
-        "  Formeln identisch mit den Rechnern dieser Website; jede Antwort enthält Quell-URL und Affiliate-Disclosure.",
+        "  Veröffentlichte Formeln und Entscheidungsregeln mit Annahmen und Grenzen; Antworten enthalten Quell-URLs und Finanzierungshinweis.",
+        "  geraet_wahl: problem=feucht_schimmel; optionale Kategorien purpose=room|laundry|damage, humidity=unknown|normal|high, temperature=unknown|warm|cold. Fehlende Messangaben führen zuerst zum Messen, nicht zur Liter-Empfehlung.",
+        f"  Entscheidungshilfe im Browser: {BASE}/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice — MCP-Argumente werden dagegen auf dem Server verarbeitet.",
         "  Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).",
         f"  Doku & Client-Konfiguration: {BASE}/mcp.html — Discovery: {BASE}/.well-known/mcp.json",
         "- Markdown statt HTML: Jeder Ratgeber hat einen direkt verlinkbaren Markdown-Zwilling unter",
@@ -118,8 +120,8 @@ def main():
         f"{BASE}/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), "
         f"{BASE}/api/top (meistgelesene Ratgeber), {BASE}/api/trend (Wochentrends), "
         f"{BASE}/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).",
-        f"- Original-Datensatz (CC BY 4.0): {BASE}/sizing-data.json — BTU-/Liter-/Watt-Größenleitern"
-        " nach Raumgröße, identisch mit Rechnern und Ratgebern, mit dateModified.",
+        f"- Original-Datensatz (CC BY 4.0): {BASE}/sizing-data.json — BTU-/Watt-Faustregeln"
+        " mit Annahmen und dateModified. Keine Entfeuchter-Literzahl aus Fläche allein; wiederholt über 60 % RH ist ein Prüfsignal, keine Schimmelsicherheitsgrenze.",
         f"- Überblick aller Maschinen-Schnittstellen: {BASE}/for-agents.html",
         "",
     ]

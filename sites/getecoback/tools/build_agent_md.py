@@ -201,16 +201,24 @@ def build_dataset():
     heat = json.load(open(os.path.join(ROOT, "tools", "content_heizung_qm.json"), encoding="utf-8"))
     data = {
         "name": "EcoBack Raumklima-Dimensionierungsdaten",
-        "description": ("Faustregeln und Größenleitern für mobile Klimageräte (BTU), "
-                        "Luftentfeuchter (Liter/Tag) und elektrische Heizpaneele (Watt) "
-                        "nach Raumgröße — identisch mit den Rechnern und Ratgebern auf getecoback.com."),
+        "description": ("Faustregeln für mobile Klimageräte (BTU) und elektrische Heizpaneele (Watt), "
+                        "ergänzt um Prüfhinweise für Luftfeuchte und Entfeuchter. "
+                        "Keine Entfeuchter-Kapazität aus der Grundfläche und keine feste Schimmelgrenze."),
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "attribution": "EcoBack (getecoback.com)",
-        "dateModified": "2026-10-02",
+        "dateModified": "2026-11-06",
+        "schema_version": 2,
+        "migration_note": ("Version 2 ersetzt mould_threshold_rh_percent durch humidity_review_rh_percent: "
+                           "ein Prüfsignal, keine Schimmelgrenze. Die bisherigen dehumidifier_l_per_day-Zeilen "
+                           "und liters_per_day-Textfelder bleiben erhalten, enthalten aber keine aus der "
+                           "Grundfläche abgeleiteten Kapazitäten mehr."),
         "rules": {
             "cooling_btu_per_m2": 340,
             "heating_w_per_m2_insulated": [60, 100],
-            "mould_threshold_rh_percent": 60,
+            "humidity_review_rh_percent": 60,
+            "humidity_review_note": ("Wiederholt über 60 % relative Raumluftfeuchte ist ein Anlass zum Messen "
+                                     "und zur Ursachenprüfung, keine feste Schimmelgrenze. An kalten Oberflächen "
+                                     "kann die relative Feuchte höher sein; Werte darunter garantieren keinen Schutz."),
             "cost_basis_eur_per_kwh": 0.30,
             "dehumidifier_rating_note": ("Liter/Tag nur zusammen mit der angegebenen Prüftemperatur und Feuchte vergleichen. "
                                           "Die Grundfläche allein bestimmt keine passende Kapazität; kein pauschaler Umrechnungsfaktor."),
@@ -234,7 +242,7 @@ def build_dataset():
                               (25, "10.000–12.000"), (30, "12.000–13.000"), (40, "14.000+ / Split"))
             ],
             "dehumidifier_l_per_day": [
-                {"m2": e["qm"], "liters_per_day": e["liter"] if e["qm"] != 20 else "Nicht allein aus 20 m² ableitbar: Temperatur, Feuchte und Feuchtelast prüfen", "room": e["raumtyp"],
+                {"m2": e["qm"], "liters_per_day": "Nicht aus der Grundfläche ableitbar: Temperatur, Feuchte und Feuchtelast prüfen", "room": e["raumtyp"],
                  "guide": f"{BASE}/guide/luftentfeuchter-{e['qm']}-qm.html"}
                 for e in dehum["entries"]
             ],
@@ -263,7 +271,7 @@ def main():
         for fn in sorted(os.listdir(d)):
             if not fn.endswith(".html"):
                 continue
-            if not sub and fn != 'waeschetrockner-oder-luftentfeuchter.html':
+            if not sub and fn not in ('waeschetrockner-oder-luftentfeuchter.html', 'for-agents.html'):
                 continue
             if sub == 'en' and fn != 'filter-finder.html':
                 continue
@@ -273,7 +281,8 @@ def main():
                 continue
             rel = "/" + (sub.replace(os.sep, "/") + "/" if sub else "") + fn
             md_rel = rel[:-5] + ".md"
-            md = to_markdown(s, rel, lang)
+            page_lang = 'en' if not sub and fn == 'for-agents.html' else lang
+            md = to_markdown(s, rel, page_lang)
             low = md.lower()
             # Red line = no affiliate LINKS on the AI surface. Plain-text brand
             # mentions ("Preis auf Amazon.de ansehen") are page copy, not links.

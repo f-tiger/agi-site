@@ -9,9 +9,12 @@ name: Publish MCP server to the official registry
 # cascades. GitHub OIDC authenticates this repo's Actions as the io.github.f-tiger
 # namespace — no stored token, nothing for the owner to paste.
 on:
-  push:
+  # Publish only after the endpoint has been deployed. A simultaneous push
+  # previously allowed a new registry version to point at the old worker.
+  workflow_run:
+    workflows: ["Deploy getecoback.com"]
+    types: [completed]
     branches: [main]
-    paths: ["sites/getecoback/mcp/**", ".github/workflows/eco-publish-mcp.yml"]
   workflow_dispatch: {}
 
 permissions:
@@ -20,12 +23,40 @@ permissions:
 
 jobs:
   publish:
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository) }}
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: sites/getecoback
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Verify the deployed name and version before publishing
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          manifest = json.load(open('mcp/server.json'))
+          endpoint = manifest['remotes'][0]['url']
+          assert endpoint == 'https://getecoback.com/mcp/v1', 'Unexpected canonical endpoint'
+          body = json.dumps({'jsonrpc': '2.0', 'id': 1, 'method': 'initialize',
+                             'params': {'protocolVersion': '2025-03-26', 'capabilities': {},
+                                        'clientInfo': {'name': 'publish-check', 'version': '1'}}}).encode()
+          request = urllib.request.Request(endpoint, data=body,
+              headers={'Content-Type': 'application/json', 'User-Agent': 'getecoback-ci'})
+          with urllib.request.urlopen(request, timeout=20) as response:
+              info = json.load(response)['result']['serverInfo']
+          assert info['name'] == manifest['name'].split('/')[-1], 'Live MCP name differs from manifest'
+          assert info['version'] == manifest['version'], 'Live MCP version differs from manifest; refusing publication'
+          print('Live MCP name and version match:', info['name'], info['version'])
+          PY
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify real tool responses before advertising this release
+        run: node tools/mcp_smoke.mjs
 
       - name: Install mcp-publisher
         run: |
@@ -37,14 +68,6 @@ jobs:
           curl -sL "$url" -o pub.tgz
           tar -xzf pub.tgz
           ./mcp-publisher --version || { echo "::error::mcp-publisher binary not found in asset"; exit 1; }
-
-      - name: Verify the live endpoint before publishing a pointer to it
-        run: |
-          resp=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp" \
-            -H "Content-Type: application/json" \
-            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"publish-check","version":"0"}}}')
-          # 2026-09-25 线上已确认自报 canonical 名(hvac-btu-heat-klimaanlage 1.2.0),过渡期的旧名放行已收窄。
-          echo "$resp" | grep -q '"name":"hvac-btu-heat-klimaanlage"' || { echo "::error::live MCP endpoint not healthy — refusing to publish"; exit 1; }
 
       - name: Registry limits (checked here, before the registry rejects them)
         run: |
@@ -78,15 +101,6 @@ jobs:
               *) return 1 ;;
             esac
           }
-          # Superseded names. There is no way to deprecate or delete an entry:
-          # the registry keeps status in server-managed _meta and silently
-          # ignores the "status" field a publish sends, so the deprecations this
-          # step used to publish were a no-op that only refreshed the stale
-          # entries' timestamps. What a publish *can* change is the description,
-          # so each old name now carries a one-line "superseded by" notice —
-          # honest to a human browsing the registry, and the old URLs keep
-          # working for anyone who already installed them.
-          for f in mcp/superseded/*.json; do
-            [ -e "$f" ] && pub "$f"
-          done
+          # Historical names already carry their superseded notice. Their
+          # immutable old versions need no repeat publication on every deploy.
           pub mcp/server.json
