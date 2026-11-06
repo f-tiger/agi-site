@@ -38,6 +38,8 @@ jobs:
         working-directory: sites/getecoback
     steps:
       - uses: actions/checkout@v4
+      - name: Trust this checked-out workspace in the container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
