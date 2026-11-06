@@ -50,18 +50,51 @@ DISCLOSURE = {
 }
 
 
+def buyer_method_html(fragment):
+    """Keep the public method, never a product card's first details panel.
+
+    The old deployed shape has no marker. Its two exact summary labels are
+    the only legacy fallback; arbitrary unmarked details are not evidence.
+    New methods contain their own checked date and references.
+    """
+    panels = list(re.finditer(r'<details\b([^>]*)>(.*?)</details>', fragment, re.S))
+    marked = [panel for panel in panels
+              if re.search(r'(?:^|\s)data-choice-method(?:\s|=|$)', panel.group(1))]
+    if marked:
+        if len(marked) != 1:
+            raise ValueError('Buyer guide must have exactly one data-choice-method panel')
+        return marked[0].group(2)
+    legacy_labels = {'Warum „20 Liter“ nicht immer 20 Liter sind',
+                     'Why “20 litres” does not always mean 20 litres'}
+    legacy = []
+    for panel in panels:
+        summary = re.match(r'\s*<summary>(.*?)</summary>', panel.group(2), re.S)
+        if not panel.group(1).strip() and summary and H.unescape(summary.group(1)).strip() in legacy_labels:
+            legacy.append(panel)
+    if len(legacy) != 1:
+        return ''
+    source = re.search(r'<small>(?:Quellen geprüft|Sources checked).*?</small>', fragment, re.S)
+    return legacy[0].group(2) + (source.group(0) if source else '')
+
+
 def to_markdown(src_html, path_url, lang):
     m = re.search(r"<title>(.*?)</title>", src_html, re.S)
     title = H.unescape(m.group(1)).strip() if m else path_url
     m = re.search(r'name="description" content="([^"]*)"', src_html)
     desc = H.unescape(m.group(1)).strip() if m else ""
-    m = re.search(r"<article[^>]*>(.*?)</article>", src_html, re.S)
+    # Later builders can nest another EB block inside this component (the
+    # household link before its h2, for example). Remove the complete buyer
+    # boundary before selecting the editorial body, then append only its
+    # public method below. Generic EB cleanup must not unwrap hidden results.
+    buyer = re.search(r'<!--EB_BUYER-->(.*?)<!--/EB_BUYER-->', src_html, re.S)
+    editorial_html = re.sub(r'<!--EB_BUYER-->.*?<!--/EB_BUYER-->', '', src_html, flags=re.S)
+    m = re.search(r"<article[^>]*>(.*?)</article>", editorial_html, re.S)
     body = m.group(1) if m else ""
     if not m:
         # Some authored guides use <main> rather than <article>. Keep their
         # editorial body; never fall back to the whole page's navigation/UI.
         # The article branch above remains authoritative when both are present.
-        main = re.search(r'<main\b[^>]*>(.*?)</main>', src_html, re.S)
+        main = re.search(r'<main\b[^>]*>(.*?)</main>', editorial_html, re.S)
         if main:
             body = main.group(1)
             if path_url == '/waeschetrockner-oder-luftentfeuchter.html':
@@ -80,13 +113,13 @@ def to_markdown(src_html, path_url, lang):
         body += re.sub(r'<button\b[^>]*>(.*?)</button>', r'<p>\1</p>', heater.group(1), flags=re.S)
     # Preserve the sourced performance explanation from the decision guide,
     # while keeping its form, hidden shopping results and affiliate URLs out.
-    buyer = re.search(r'<!--EB_BUYER-->(.*?)<!--/EB_BUYER-->', src_html, re.S)
     if buyer:
-        evidence = re.search(r'<details>(.*?)</details>', buyer.group(1), re.S)
+        evidence = buyer_method_html(buyer.group(1))
         if evidence:
             heading = 'Herstellerdaten vor dem Kauf prüfen' if lang == 'de' else 'Check manufacturer data before buying'
-            source = re.search(r'<small>(?:Quellen geprüft|Sources checked).*?</small>', buyer.group(1), re.S)
-            body += f'<h2>{heading}</h2>' + evidence.group(1) + (source.group(0) if source else '')
+            evidence = re.sub(r'<summary>(.*?)</summary>', r'<p><strong>\1</strong></p>', evidence, flags=re.S)
+            evidence = evidence.replace('</caption>', '</caption>\n')
+            body += f'<h2>{heading}</h2>' + evidence
     laundry = re.search(r'<!--EB_LAUNDRY-->(.*?)<!--/EB_LAUNDRY-->', src_html, re.S)
     if laundry:
         protocol = re.search(r'<details><summary>(?:Measure one load fairly: checklist|Eine Ladung fair messen: Checkliste)</summary>(.*?)</details>', laundry.group(1), re.S)

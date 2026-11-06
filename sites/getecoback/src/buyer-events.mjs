@@ -11,6 +11,9 @@ export function validBuyerEvent(body){
  const choices=['measure','wait','cold','compare','laundry','cause'];
  if(body.n==='buyer_view')return m.choice==='none'&&m.action==='none';
  if(body.n==='buyer_result')return choices.includes(m.choice)&&m.action==='none';
+ // Evidence inspection is meaningful only after the two-candidate result.
+ // Keep the existing event schema: no model, measurements or user identifiers.
+ if(body.n==='buyer_next'&&m.action==='evidence')return ['compare','laundry'].includes(m.choice);
  if(body.n==='buyer_next')return [...choices,'none'].includes(m.choice)&&['guide','cost','shop','share'].includes(m.action)&&(m.choice!=='none'||m.action==='share');
  return false;
 }

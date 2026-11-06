@@ -37,3 +37,16 @@ test('six built guides retain disclosures, evidence and existing language bounda
   if(path.startsWith('/en/'))assert.ok(html.includes('value="other" selected'));
  }
 });
+test('evidence inspection is bounded to a shown candidate result and existing routes',async()=>{
+ const body={n:'buyer_next',p:BUYER_PATHS[0],m:{lang:'de',choice:'compare',action:'evidence'}};
+ for(const choice of ['compare','laundry'])assert.equal(validBuyerEvent({...body,m:{...body.m,choice}}),true);
+ for(const choice of ['none','measure','wait','cause','cold'])assert.equal(validBuyerEvent({...body,m:{...body.m,choice}}),false);
+ for(const m of [{...body.m,model:'meaco'},{...body.m,rh:65},{...body.m,action:'arbitrary'}])assert.equal(validBuyerEvent({...body,m}),false);
+ assert.equal(validBuyerEvent({...body,p:'/'}),false);
+ let writes=[];const env={EVENTS:{prepare:()=>({bind:(...args)=>({run:async()=>writes.push(args)})})}};
+ const send=(b,headers={})=>worker.fetch(new Request('https://getecoback.com/api/ev',{method:'POST',headers:{'user-agent':'Mozilla/5.0',...headers},body:JSON.stringify(b)}),env,{});
+ assert.equal((await send(body)).status,200);assert.equal(writes.length,1);
+ assert.equal((await send({...body,m:{...body.m,choice:'cause'}})).status,400);
+ for(const headers of [{'dnt':'1'},{'sec-gpc':'1'},{'user-agent':'getecoback-ci'}])await send(body,headers);
+ assert.equal(writes.length,1);
+});

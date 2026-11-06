@@ -34,7 +34,7 @@ On your own bill or in your supplier's app, as the unit rate per kWh. Together w
 
 ## The humidity rule that matters more than the cost
 
-Indoor drying adds moisture to room air. The Verbraucherzentrale guidance on heating and ventilation gives roughly 40–60% relative humidity as a general room range. Cooler walls can still be at risk even when the room reading looks acceptable.
+Indoor drying adds moisture to room air. The [Verbraucherzentrale guidance on heating and ventilation](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426) gives roughly 40–60% relative humidity as a general room range. Cooler walls can still be at risk even when the room reading looks acceptable.
 
 - Measure room humidity and temperature; a single reading does not diagnose a building.
 - Use a suitable room and appropriate ventilation. Follow the device instructions.
@@ -62,13 +62,17 @@ Indoor drying adds moisture to room air. The Verbraucherzentrale guidance on hea
 [Auf Deutsch: Wäsche in der Wohnung trocknen ohne Schimmel →](https://getecoback.com/guide/waesche-trocknen-wohnung.html)
 
 ## Check manufacturer data before buying
-Why “20 litres” does not always mean 20 litresExample: MeacoDry Arete One 20L. Manufacturer figures, not an EcoBack test. Different room conditions are not a controlled efficiency comparison.
-Condition | Water per day | Power |
-10 °C / 60 % RH | 3.4 L | 180 W |
-20 °C / 60 % RH | 8.5 L | 216 W |
+**How to compare the manufacturer data**
+Two examples from existing guides, not a whole-market comparison or an EcoBack product test. Compare extraction and running power at the same temperature and relative humidity (RH). Missing figures remain unknown; they do not establish a ranking.
+Manufacturer extraction and power figures; checked on 6 November 2026
+Condition | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+20 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 8.5 L/day · 216 W |
+10 °C / 60 % RH | Extraction and running power at these conditions are not verified here. | 3.4 L/day · 180 W |
 
+The model documents associate 20 L/day with 30°C / 80% RH. That is not a promise for a basement or a laundry load. The linked Comfee documents do not verify figures at the two conditions in this table. Connection ratings or rated input must not be substituted for this missing data.
+Model boundaries: Comfee MDDF-20DEN7 here is the variant without WF. MeacoDry Arete One 20L is neither Arete Two nor One 25L. The UK model page does not verify a German retailer’s equipment, plug, availability or returns. Match voltage, rating plate and manual to the actual offer. Neither candidate replaces investigating moisture sources or suitable ventilation.
 Example calculation: 216 W × 6 h ÷ 1,000 × €0.35/kWh = €0.45. This is not a measured laundry load or a savings promise.
-Sources checked on 1 October 2026: Meaco · Comfee manual · Verbraucherzentrale. No hands-on tests. Guidance, not a remote diagnosis.
+Sources checked on 6 November 2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee data sheet, page 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee operating instructions](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Manufacturer figures, not our own measurements. Guidance, not a remote diagnosis.
 
 ## Reproducible laundry cost comparison
 Whole-run kWh × unit price. Prefilled values are fictional scenarios, not product measurements. Confirm equal laundry mass and final dryness. The calculator on the HTML page exports PNG and CSV locally; inputs are not uploaded.
@@ -97,9 +101,9 @@ Times are editable examples, not product tests. Savings may be negative. Electri
 Formula: 52 × sessions/week × (manual − machine use − cleanup) ÷ 60.
 
 - Roborock — Saros 10R threshold limits
-- Roborock — required dock space
-- Meaco — laundry setup
-- Meaco — cold-room laundry considerations
+- [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
+- [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
+- [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
 - Midea — PortaSplit installation
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ

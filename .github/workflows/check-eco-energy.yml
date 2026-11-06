@@ -87,6 +87,9 @@ jobs:
           python3 tools/build_structure.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
+          python3 -m unittest discover -s tools -p test_buyer_comparison.py
+          python3 -m unittest discover -s tools -p test_buyer_geo.py
+          python3 -m unittest discover -s tools -p test_air_category_entry.py
           python3 -m unittest discover -s tools -p test_humidity_evidence.py
           node --test tools/test_buyer_decision.mjs
           node --test tools/test_laundry.mjs

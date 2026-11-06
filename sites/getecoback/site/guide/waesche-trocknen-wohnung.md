@@ -101,13 +101,17 @@ Beachte die Aufstellhinweise des Hygrometers und miss an vergleichbaren Stellen.
 [Was kostet der Betrieb an Strom? →](https://getecoback.com/guide/klimaanlage-stromkosten.html)
 
 ## Herstellerdaten vor dem Kauf prüfen
-Warum „20 Liter“ nicht immer 20 Liter sindBeispiel MeacoDry Arete One 20L. Herstellerdaten, kein EcoBack-Test. Verschiedene Raumbedingungen dürfen nicht als direkter Effizienzvergleich gelesen werden.
-Bedingung | Wasser pro Tag | Leistung |
-10 °C / 60 % RH | 3.4 L | 180 W |
-20 °C / 60 % RH | 8.5 L | 216 W |
+**So vergleichst du die Herstellerdaten**
+Zwei Beispiele aus vorhandenen Ratgebern, kein vollständiger Marktvergleich und kein EcoBack-Produkttest. Verglichen werden Wasserentzug und Betriebsleistung bei derselben Temperatur und relativen Feuchte (RH). Fehlende Angaben bleiben offen; daraus folgt keine Rangfolge.
+Herstellerangaben zu Wasserentzug und Leistung; geprüft am 06.11.2026
+Bedingung | Comfee MDDF-20DEN7 | MeacoDry Arete One 20L |
+20 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 8.5 L/Tag · 216 W |
+10 °C / 60 % RH | Entzug und Betriebsleistung unter dieser Bedingung nicht verifiziert. | 3.4 L/Tag · 180 W |
 
+Die genannten 20 L/Tag beziehen sich in den Modellunterlagen auf 30 °C / 80 % RH. Das ist keine Zusage für den Keller oder eine Wäscheladung. Für Comfee wurden in den verlinkten Unterlagen keine Werte für die beiden Tabellenbedingungen verifiziert. Anschlusswert oder Nennleistung dürfen diese Datenlücke nicht ersetzen.
+Modellgrenzen: Comfee MDDF-20DEN7 ist hier die Variante ohne WF. MeacoDry Arete One 20L ist weder Arete Two noch One 25L. Die UK-Modellseite bestätigt keine deutsche Händlerausstattung, Stecker, Lieferbarkeit oder Rückgabe. Netzspannung, Typenschild und Anleitung immer mit dem konkreten Angebot abgleichen. Beide Kandidaten ersetzen weder Ursachenklärung noch eine passende Lüftung.
 Rechenbeispiel: 216 W × 6 h ÷ 1.000 × 0,35 €/kWh = 0,45 €. Das ist weder eine gemessene Wäscheladung noch eine Einsparzusage.
-Quellen geprüft am 01.10.2026: Meaco · Comfee Handbuch · Verbraucherzentrale. Keine eigenen Produkttests. Angaben sind Orientierung, keine Ferndiagnose.
+Quellen geprüft am 06.11.2026: [Meaco One 20L](https://www.meaco.com/products/meacodry-arete-one-20l-dehumidifier-and-air-purifier) · [Comfee MDDF-20DEN7](https://www.feelcomfee.com/de/produkte/klimatisieren-heizen/mddf-20den7) · [Comfee-Datenblatt, Seite 2](https://www.feelcomfee.com/content/dam/comfee-aem/de/produkte/klimatisieren-heizen/mddf-20den7/comfee-MDDF-20DEN7-Datenblatt.pdf#page=2) · [Comfee-Bedienhinweise](https://www.feelcomfee.com/content/dam/comfee-aem/global/products/heating-cooling/dehumidifier-mddf-20den7/DF-Owners-Manual.pdf) · [Verbraucherzentrale](https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426). Herstellerangaben, keine eigenen Messungen. Orientierung, keine Ferndiagnose.
 
 ## Passt das Gerät wirklich zu deinem Zuhause?
 Prüfe Hindernisse, Einrichtung und Pflege vor dem Kauf. Wähle eine Situation; genaue Angaben sind nur nötig, wenn sie die Entscheidung ändern.
@@ -128,9 +132,9 @@ Zeiten sind frei änderbare Rechenbeispiele, keine Produkttests. Ersparnis kann 
 Rechenweg: 52 × Nutzungen/Woche × (manuell − Gerätenutzung − Pflege) ÷ 60.
 
 - Roborock — Saros 10R threshold limits
-- Roborock — required dock space
-- Meaco — laundry setup
-- Meaco — cold-room laundry considerations
+- [Roborock — required dock space](https://support.roborock.com/hc/en-us/articles/43407403865369-Where-should-I-position-Saros-10R)
+- [Meaco — laundry setup](https://blog.meaco.com/the-benefits-of-using-a-dehumidifier-to-dry-your-laundry/)
+- [Meaco — cold-room laundry considerations](https://blog.meaco.com/the-best-dehumidifiers-for-drying-clothes-and-gentle-laundry-drying/)
 - Midea — PortaSplit installation
 - Midea — PortaSplit installatie
 - Tineco — Switch S6 care FAQ

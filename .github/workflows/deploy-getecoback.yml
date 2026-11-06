@@ -179,6 +179,9 @@ jobs:
           python3 tools/build_structure.py
           python3 -m unittest discover -s tools -p test_heatpump_intent.py
           python3 -m unittest discover -s tools -p test_toppick_anchor.py
+          python3 -m unittest discover -s tools -p test_buyer_comparison.py
+          python3 -m unittest discover -s tools -p test_buyer_geo.py
+          python3 -m unittest discover -s tools -p test_air_category_entry.py
           python3 -m unittest discover -s tools -p test_humidity_evidence.py
 
       # Deal-calendar band (2026-09-24). Date-driven: it renders only while an
@@ -484,13 +487,34 @@ jobs:
 
       - name: Verify German buying paths on mobile and without JavaScript
         working-directory: ${{ github.workspace }}
+        timeout-minutes: 8
         run: |
-          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium
-          node sites/getecoback/tools/browser_demand_discovery.cjs
-          node sites/getecoback/tools/browser_dach_growth.mjs
-          node sites/getecoback/tools/browser_heater_examples.cjs
-          node sites/getecoback/tools/browser_personal_warmth.cjs
-          node sites/getecoback/tools/browser_thermostat_fit.cjs
+          set -euo pipefail
+          # Match the installed npm dependency to the image's bundled browsers.
+          # Avoid host apt downloads; retain the exact five browser checks.
+          playwright_version='1.58.2'
+          node - "$playwright_version" <<'NODE'
+          const lock = require('./tools/revenue-studio/package-lock.json');
+          for (const name of ['playwright', 'playwright-core']) {
+            const actual = lock.packages[`node_modules/${name}`]?.version;
+            if (actual !== process.argv[2]) {
+              throw new Error(`${name} lock version ${actual} does not match Playwright image ${process.argv[2]}`);
+            }
+          }
+          NODE
+          # Only the workspace is mounted, read-only. Browser profiles and
+          # screenshots stay in the container's writable /tmp; no host env is passed.
+          docker run --rm --ipc=host \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=$GITHUB_WORKSPACE,readonly" \
+            --workdir "$GITHUB_WORKSPACE" \
+            "mcr.microsoft.com/playwright:v${playwright_version}-noble" \
+            bash -euo pipefail -c '
+              node sites/getecoback/tools/browser_demand_discovery.cjs
+              node sites/getecoback/tools/browser_dach_growth.mjs
+              node sites/getecoback/tools/browser_heater_examples.cjs
+              node sites/getecoback/tools/browser_personal_warmth.cjs
+              node sites/getecoback/tools/browser_thermostat_fit.cjs
+            '
 
       - name: Verify automatic content, source references and discovery after all generators
         run: python3 tools/check_auto_content_release.py
