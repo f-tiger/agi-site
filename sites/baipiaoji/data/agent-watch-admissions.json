@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-05",
+ "checked": "2026-11-06",
  "rejected": {
   "beeai-framework": {
    "attempts": 4,
@@ -3645,6 +3645,87 @@
    "source_http": 429,
    "repo_http": null,
    "reason": "source HTTP 429"
+  },
+  "biodnd-agent-ip": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": 404,
+   "reason": "source HTTP 404"
+  },
+  "blacklabelbots-customer-tools": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blacklabelbots-operator-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blacklabelbots-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blacklabeltec-sign-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blacklabeltec-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blackwaterwindowcleaning-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blbestate-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
+  },
+  "blvigil-site-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-11-06",
+   "last_attempt": "2026-11-06",
+   "attemptedAt": "2026-11-06T07:21:25.135Z",
+   "source_http": 404,
+   "repo_http": null,
+   "reason": "source HTTP 404"
   }
  },
  "admitted": [
@@ -20061,6 +20142,312 @@
    "date": "2026-11-05",
    "source_http": 200,
    "repo_http": 200
+  },
+  {
+   "slug": "bizgigz-talent-ecosystem",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blacklabelbots-continuum-continuum",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blacklabelbots-continuum-site-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blackswancausallabs-dagstudio-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackswancausallabs-nhanes-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackswancausallabs-openfda-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackswancausallabs-robins-i-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackswancausallabs-target-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackwalltier-blackwall",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blackwalltier-blackwall-x402-guardrail",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blazesportsintel-college-baseball",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "blendduck-blendduck",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 404
+  },
+  {
+   "slug": "blinkcodes-catalog",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blitzreels-blitzreels",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blixtworks-tools",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blockvectra-docs",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "blockventurechaincapital-bvcc-agent-wallet",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bloomyesim-esim",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blotato-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bluecloudcyber-guestbook",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bluepillow-hotels",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "blueticked-blueticked",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bmikit-body-composition",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "boardrepo-boardrepo",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "boardwalkai-mcp-land-use",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "boatvaluecalculator-site",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bokendell-portfolio",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bolotstudio-store",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "boltena-erp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonebenders-bonebenders",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-booking-request",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-compliance-batch",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-content-provenance",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-knox-anchor",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-ofac-sdn-screening",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-registry-expansion",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-sstv-decoder",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bonissystems-trustai-verify",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bookingmaven-marketplace",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "boostedchat-travel",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "boostermage-mtg-prices",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "boosthis-boosthis",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bootsandbassline-catalogue",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bota-chat-bota",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bounceprotect-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "bouncewatch-signals",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "boxtoplay-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "bozfix-bozfix",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "braincloudservers-braincloud-mcp-helper",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": 200
+  },
+  {
+   "slug": "brainfeather-mcp",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
+  },
+  {
+   "slug": "brainiall-documents",
+   "date": "2026-11-06",
+   "source_http": 200,
+   "repo_http": null
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."

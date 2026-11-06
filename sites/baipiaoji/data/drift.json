@@ -1,10 +1,98 @@
 {
-  "generated": "2026-11-05",
+  "generated": "2026-11-06",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 107,
-  "fetched_fail": 20,
-  "pending": 17,
+  "fetched_ok": 106,
+  "fetched_fail": 21,
+  "pending": 15,
   "items": [
+    {
+      "slug": "kiro",
+      "url": "https://kiro.dev/pricing/",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [
+        "$20/seat",
+        "100%",
+        "500credits",
+        "80%"
+      ],
+      "removed": [],
+      "checked_then": "2026-09-25"
+    },
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [
+        "$12,000"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "gaoding",
+      "url": "https://gaoding.com",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [],
+      "removed": [
+        "0026video",
+        "100%",
+        "10m",
+        "10mb",
+        "10minutes",
+        "10个",
+        "10分钟",
+        "12hours",
+        "12m",
+        "12mb",
+        "12months",
+        "12个"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [
+        "148k"
+      ],
+      "removed": [
+        "160k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [
+        "79222b",
+        "8655b"
+      ],
+      "removed": [
+        "349b"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "lovable",
+      "url": "https://docs.lovable.dev",
+      "confirmed": "2026-11-06",
+      "first_seen": "2026-11-05",
+      "added": [],
+      "removed": [
+        "0026s",
+        "1b",
+        "64b",
+        "89b"
+      ],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "anythingllm",
       "url": "https://anythingllm.com",
@@ -79,32 +167,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "exa",
-      "url": "https://exa.ai/pricing",
-      "confirmed": "2026-11-04",
-      "first_seen": "2026-11-03",
-      "added": [
-        "$2"
-      ],
-      "removed": [
-        "$15"
-      ],
-      "checked_then": "2026-08-13"
-    },
-    {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-11-04",
-      "first_seen": "2026-11-03",
-      "added": [
-        "160k"
-      ],
-      "removed": [
-        "159k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "metaso",
@@ -191,48 +253,6 @@
       "checked_then": "2026-09-21"
     },
     {
-      "slug": "immersive-translate",
-      "url": "https://immersivetranslate.com",
-      "confirmed": "2026-11-03",
-      "first_seen": "2026-11-02",
-      "added": [
-        "349b",
-        "4550b"
-      ],
-      "removed": [
-        "95639b"
-      ],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "kiro",
-      "url": "https://kiro.dev/pricing/",
-      "confirmed": "2026-11-02",
-      "first_seen": "2026-11-01",
-      "added": [
-        "$10.67",
-        "$10.67,",
-        "16days"
-      ],
-      "removed": [
-        "$10.",
-        "30days"
-      ],
-      "checked_then": "2026-09-25"
-    },
-    {
-      "slug": "lovable",
-      "url": "https://docs.lovable.dev",
-      "confirmed": "2026-11-02",
-      "first_seen": "2026-11-01",
-      "added": [
-        "1b",
-        "64b"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
       "slug": "bolt",
       "url": "https://support.bolt.new",
       "confirmed": "2026-11-01",
@@ -262,18 +282,6 @@
         "9,000images"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "gaoding",
-      "url": "https://gaoding.com",
-      "confirmed": "2026-10-31",
-      "first_seen": "2026-10-30",
-      "added": [
-        "365days",
-        "365天"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "tongyi",
@@ -535,18 +543,6 @@
       ],
       "removed": [
         "$0.10,"
-      ],
-      "checked_then": "2026-08-05"
-    },
-    {
-      "slug": "gemini-cli",
-      "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
-      "confirmed": "2026-10-08",
-      "first_seen": "2026-10-07",
-      "added": [],
-      "removed": [
-        "107k",
-        "14.7k"
       ],
       "checked_then": "2026-08-05"
     },

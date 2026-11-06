@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-05",
+ "generated": "2026-11-06",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "ima",
-  "jsdesign",
-  "krea",
-  "languagetool",
-  "leonardo",
-  "lovable",
-  "luma",
-  "marscode"
+  "mistral",
+  "motiff",
+  "n8n",
+  "napkin",
+  "notebooklm",
+  "notion-ai",
+  "nvidia-nim",
+  "ollama"
  ],
- "cursor": "marscode",
+ "cursor": "ollama",
  "summary": {
   "ready": 42,
   "empty": 36,
@@ -2023,8 +2023,8 @@
    "slug": "mistral",
    "name": "Mistral AI",
    "cat": "api",
-   "reach": 3,
-   "probed": "2026-10-18",
+   "reach": 0,
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "blocked",
    "tried": [
@@ -2057,7 +2057,7 @@
    "name": "Motiff 妙多",
    "cat": "design",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -2079,14 +2079,14 @@
    "name": "n8n",
    "cat": "agent",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://n8n.io/pricing",
      "status": 200,
-     "bytes": 538621,
+     "bytes": 520947,
      "tokens": 8
     }
    ],
@@ -2101,14 +2101,14 @@
    "name": "Napkin AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.napkin.ai/pricing",
      "status": 200,
-     "bytes": 61546,
+     "bytes": 64064,
      "tokens": 7
     }
    ],
@@ -2123,7 +2123,7 @@
    "name": "NotebookLM（Google）",
    "cat": "search",
    "reach": 0,
-   "probed": "2026-10-24",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "empty",
    "tried": [
@@ -2157,14 +2157,14 @@
    "name": "Notion AI",
    "cat": "office",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://www.notion.so/pricing",
      "status": 200,
-     "bytes": 389882,
+     "bytes": 392881,
      "tokens": 18
     }
    ],
@@ -2179,26 +2179,26 @@
    "name": "NVIDIA NIM",
    "cat": "api",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://build.nvidia.com/pricing",
      "status": 200,
-     "bytes": 39201,
+     "bytes": 38512,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/price",
      "status": 200,
-     "bytes": 39193,
+     "bytes": 38504,
      "tokens": 0
     },
     {
      "url": "https://build.nvidia.com/plans",
      "status": 200,
-     "bytes": 39193,
+     "bytes": 38504,
      "tokens": 0
     }
    ],
@@ -2213,21 +2213,21 @@
    "name": "Ollama",
    "cat": "local",
    "reach": 0,
-   "probed": "2026-10-25",
+   "probed": "2026-11-06",
    "env": "runner",
    "state": "ready",
    "tried": [
     {
      "url": "https://ollama.com/pricing",
      "status": 200,
-     "bytes": 50940,
-     "tokens": 86
+     "bytes": 51902,
+     "tokens": 98
     }
    ],
    "best": {
     "url": "https://ollama.com/pricing",
-    "tokens": 86,
-    "excerpt": "h Access to larger pro models Run multiple models concurrently Fast mode (coming soon) Get Pro Everything in Pro, plus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything in Team, plus: Model access controls Limit team access to specific models Set cost budgets for users and API keys Private Slack"
+    "tokens": 98,
+    "excerpt": "lus: $300 of usage credits per month Early access to the newest models 10 concurrent requests Get Max Team Early access $500 / mo. For teams scaling with open models Everything in Pro, plus: Unlimited users $1,000 of usage credits per month, shared across the team Centralized billing and administration Priority support Shared projects, skills, and instructions (coming soon) Get Team Enterprise Custom For larger teams with volume usage pricing Everything in Team, plus: Model access controls Limit team access to specific models Set cost budgets for users and API keys Private Slack channel with dedicated support Custom security questionnaires Contact us Model pricing Pay as you go with usage cr"
    }
   },
   "opusclip": {

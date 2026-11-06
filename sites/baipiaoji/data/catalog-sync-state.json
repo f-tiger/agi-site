@@ -1,19 +1,9 @@
 {
  "version": 1,
  "github": {
-  "queryIndex": 12,
+  "queryIndex": 18,
   "page": 3,
   "pending": [
-   {
-    "repo": "elizaOS/eliza",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
-   {
-    "repo": "botpress/botpress",
-    "topic": "agents",
-    "foundAt": "2026-10-03T05:42:28.511Z"
-   },
    {
     "repo": "fathah/hermes-desktop",
     "topic": "agents",
@@ -117,11 +107,6 @@
    {
     "repo": "genieincodebottle/generative-ai",
     "topic": "agents",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "ruvnet/ruflo",
-    "topic": "coding",
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
@@ -315,16 +300,6 @@
     "foundAt": "2026-10-04T06:17:42.048Z"
    },
    {
-    "repo": "elegantapp/pwa-asset-generator",
-    "topic": "image",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "QuentinFuxa/WhisperLiveKit",
-    "topic": "audio",
-    "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
     "repo": "QwenAudio/SenseVoice",
     "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
@@ -383,11 +358,6 @@
     "repo": "HeyWillow/willow",
     "topic": "audio",
     "foundAt": "2026-10-04T06:17:42.048Z"
-   },
-   {
-    "repo": "ray-project/ray",
-    "topic": "local",
-    "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
     "repo": "camel-ai/camel",
@@ -487,11 +457,6 @@
    {
     "repo": "darkzOGx/youtube-automation-agent",
     "topic": "agents",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "aiptimizer/TurboOCR",
-    "topic": "knowledge",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -637,11 +602,6 @@
    {
     "repo": "TriliumNext/Trilium",
     "topic": "knowledge",
-    "foundAt": "2026-10-05T06:14:17.704Z"
-   },
-   {
-    "repo": "glanceapp/glance",
-    "topic": "everyday",
     "foundAt": "2026-10-05T06:14:17.704Z"
    },
    {
@@ -1280,11 +1240,6 @@
     "foundAt": "2026-10-09T06:38:33.001Z"
    },
    {
-    "repo": "Nexus-JPF/note-companion",
-    "topic": "documents",
-    "foundAt": "2026-10-09T06:38:33.001Z"
-   },
-   {
     "repo": "bpwhelan/GameSentenceMiner",
     "topic": "documents",
     "foundAt": "2026-10-09T06:38:33.001Z"
@@ -1688,11 +1643,6 @@
     "repo": "emlearn/emlearn",
     "topic": "local",
     "foundAt": "2026-10-14T05:19:33.308Z"
-   },
-   {
-    "repo": "zjunlp/EasyEdit",
-    "topic": "ai",
-    "foundAt": "2026-10-14T08:05:15.418Z"
    },
    {
     "repo": "Y-Research-SBU/QuantHarness",
@@ -2247,11 +2197,6 @@
    {
     "repo": "sgaofen/humanizer-local-model",
     "topic": "local",
-    "foundAt": "2026-10-24T04:59:36.505Z"
-   },
-   {
-    "repo": "Mobile-Artificial-Intelligence/maid",
-    "topic": "chat",
     "foundAt": "2026-10-24T04:59:36.505Z"
    },
    {
@@ -3003,6 +2948,61 @@
     "repo": "kotaro-kinoshita/yomitoku",
     "topic": "documents",
     "foundAt": "2026-11-05T07:19:29.391Z"
+   },
+   {
+    "repo": "fudan-generative-vision/Remory",
+    "topic": "local",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "corsairdev/corsair",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "oblien/openship",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "livekit/agents",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "millionco/react-doctor",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "apify/apify-mcp-server",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "thesysdev/openui",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "TencentCloud/CubeSandbox",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "humanlayer/humanlayer",
+    "topic": "coding",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "openchamber/openchamber",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
+   },
+   {
+    "repo": "Arize-ai/phoenix",
+    "topic": "agents",
+    "foundAt": "2026-11-06T07:21:25.135Z"
    }
   ],
   "checked": {
@@ -3137,11 +3137,17 @@
    "gh-greydgl-pentestgpt-f06b63": "2026-11-04T06:57:52.613Z",
    "gh-slackapi-java-slack-sdk-7a5d89": "2026-11-04T06:57:52.613Z",
    "gh-patchy631-ai-engineering-hub-bdca72": "2026-11-05T07:19:29.391Z",
-   "gh-esengine-deepseek-reasonix-774164": "2026-11-05T07:19:29.391Z"
+   "gh-esengine-deepseek-reasonix-774164": "2026-11-05T07:19:29.391Z",
+   "gh-gentleman-programming-gentle-ai-90c970": "2026-11-06T07:21:25.135Z",
+   "gh-foxhui-webai2api-22d1ad": "2026-11-06T07:21:25.135Z",
+   "gh-blaizzy-mlx-audio-3aae46": "2026-11-06T07:21:25.135Z",
+   "gh-pymupdf-pymupdf-90037f": "2026-11-06T07:21:25.135Z",
+   "gh-roboflow-maestro-63a247": "2026-11-06T07:21:25.135Z",
+   "gh-wavetermdev-waveterm-904946": "2026-11-06T07:21:25.135Z"
   }
  },
  "mcp": {
-  "cursor": "io.github.teransarathchandra/jira-delivery-mcp:2.0.0",
+  "cursor": "io.github.varvararatta/public_data_ukraine_mcp:1.0.0",
   "since": null,
   "watermark": null,
   "scanStarted": "2026-10-02T15:26:40.958Z",
@@ -3180,12 +3186,12 @@
    "agentbuilt-agentbuilt": "2026-11-05T07:19:29.391Z",
    "agentemaillist-free-transactional-email-smtp-relay": "2026-11-05T07:19:29.391Z",
    "agentfilings-mcp": "2026-11-05T07:19:29.391Z",
-   "agentforce": "2026-10-02T15:26:40.958Z",
-   "agentgateway": "2026-10-02T15:26:40.958Z",
-   "agentgpt": "2026-10-02T15:26:40.958Z",
-   "agenticbooks-books": "2026-10-02T15:26:40.958Z",
-   "agenticseek": "2026-10-02T15:26:40.958Z",
-   "agentixshop-agentix": "2026-10-02T15:26:40.958Z",
+   "agentforce": "2026-11-06T07:21:25.135Z",
+   "agentgateway": "2026-11-06T07:21:25.135Z",
+   "agentgpt": "2026-11-06T07:21:25.135Z",
+   "agenticbooks-books": "2026-11-06T07:21:25.135Z",
+   "agenticseek": "2026-11-06T07:21:25.135Z",
+   "agentixshop-agentix": "2026-11-06T07:21:25.135Z",
    "agentops": "2026-10-03T05:42:28.511Z",
    "agentscope": "2026-10-03T05:42:28.511Z",
    "agentsim-mcp": "2026-10-03T05:42:28.511Z",
@@ -4471,7 +4477,41 @@
    "wavespeed-mcp": "2026-11-05T07:19:29.391Z",
    "wpconvert-mcp": "2026-11-05T07:19:29.391Z",
    "yetty-yetty": "2026-11-05T07:19:29.391Z",
-   "youtube-transcript-youtube-transcript": "2026-11-05T07:19:29.391Z"
+   "youtube-transcript-youtube-transcript": "2026-11-05T07:19:29.391Z",
+   "2ools-mcp": "2026-11-06T07:21:25.135Z",
+   "agency-goji-goji": "2026-11-06T07:21:25.135Z",
+   "bitroad-bitroad": "2026-11-06T07:21:25.135Z",
+   "crawlio-browser": "2026-11-06T07:21:25.135Z",
+   "dablock-visibility-index": "2026-11-06T07:21:25.135Z",
+   "devglow-devglow": "2026-11-06T07:21:25.135Z",
+   "devglow-noglow": "2026-11-06T07:21:25.135Z",
+   "devglow-todoglow": "2026-11-06T07:21:25.135Z",
+   "dinglebear-cortex": "2026-11-06T07:21:25.135Z",
+   "dinglebear-rgotify": "2026-11-06T07:21:25.135Z",
+   "dinglebear-synapse": "2026-11-06T07:21:25.135Z",
+   "dinglebear-yarr": "2026-11-06T07:21:25.135Z",
+   "epinu-epinu": "2026-11-06T07:21:25.135Z",
+   "etincel-nonfiction": "2026-11-06T07:21:25.135Z",
+   "fojin-mcp": "2026-11-06T07:21:25.135Z",
+   "formatika-mcp": "2026-11-06T07:21:25.135Z",
+   "framethrower-framethrower": "2026-11-06T07:21:25.135Z",
+   "frankki-letters": "2026-11-06T07:21:25.135Z",
+   "govauctions-govauctions": "2026-11-06T07:21:25.135Z",
+   "hypernatural-hypernatural": "2026-11-06T07:21:25.135Z",
+   "idiolect-ai": "2026-11-06T07:21:25.135Z",
+   "kubit-mcp-server": "2026-11-06T07:21:25.135Z",
+   "lateos-soar-record-gateway": "2026-11-06T07:21:25.135Z",
+   "linkdeal-mcp": "2026-11-06T07:21:25.135Z",
+   "mentu-navigator": "2026-11-06T07:21:25.135Z",
+   "mirastacklabs-mirastack-redfish-mcp": "2026-11-06T07:21:25.135Z",
+   "modelrunner-mcp": "2026-11-06T07:21:25.135Z",
+   "muffed-muffed": "2026-11-06T07:21:25.135Z",
+   "omnisignal-omnisignal": "2026-11-06T07:21:25.135Z",
+   "orchis-nimrod": "2026-11-06T07:21:25.135Z",
+   "plcs-ai": "2026-11-06T07:21:25.135Z",
+   "portablecontext-pcd": "2026-11-06T07:21:25.135Z",
+   "pullpush-mcp": "2026-11-06T07:21:25.135Z",
+   "qlane-qlane": "2026-11-06T07:21:25.135Z"
   }
  }
 }

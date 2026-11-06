@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Stroq – a local audit of what your coding agent did and why",
+      "url": "https://github.com/AGGIB/Stroq",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=50380704",
+      "points": 82,
+      "comments": 30,
+      "found": "2026-11-06",
+      "status": "candidate"
+    },
+    {
+      "name": "A decent text-to-image model trained for ~$20K (Apache 2.0 Weights)",
+      "url": "https://www.linum.ai/field-notes/pjit-21k",
+      "host": "linum.ai",
+      "src": "https://news.ycombinator.com/item?id=50368208",
+      "points": 202,
+      "comments": 18,
+      "found": "2026-11-06",
+      "status": "candidate"
+    },
+    {
       "name": "Uncracked City, detective game where you question LLM suspects that lie",
       "url": "https://uncracked.city",
       "host": "uncracked.city",
@@ -359,37 +379,7 @@
       "comments": 28,
       "found": "2026-09-23",
       "status": "candidate"
-    },
-    {
-      "name": "Lossless-memory – a personal AI memory that never summarizes",
-      "url": "https://github.com/aru-labs/lossless-memory",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49786419",
-      "points": 59,
-      "comments": 21,
-      "found": "2026-09-22",
-      "status": "candidate"
-    },
-    {
-      "name": "Mini-AGI – Dynamic continual learning model trained on 8GB VRAM",
-      "url": "https://github.com/volotat/mini-AGI/",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49783133",
-      "points": 257,
-      "comments": 57,
-      "found": "2026-09-22",
-      "status": "candidate"
-    },
-    {
-      "name": "jevals – replacing LLM judges with typed Jev decisions",
-      "url": "https://github.com/openlayer-ai/jevals",
-      "host": "github.com",
-      "src": "https://news.ycombinator.com/item?id=49780849",
-      "points": 42,
-      "comments": 1,
-      "found": "2026-09-22",
-      "status": "candidate"
     }
   ],
-  "updated": "2026-11-05"
+  "updated": "2026-11-06"
 }
