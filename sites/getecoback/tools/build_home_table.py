@@ -74,7 +74,7 @@ def main():
         f'Die Zahlen, mit denen unsere Rechner arbeiten — '
         f'{rules["cooling_btu_per_m2"]} BTU/h je m² zum Kühlen, '
         f'{rules["heating_w_per_m2_insulated"][0]}–{rules["heating_w_per_m2_insulated"][1]} W je m² zum Heizen, '
-        f'Wiederholt über {rules["mould_threshold_rh_percent"]} % relative Luftfeuchte ist ein Prüfsignal, keine feste Schimmelgrenze. '
+        f'Wiederholt über {rules["humidity_review_rh_percent"]} % relative Luftfeuchte ist ein Prüfsignal, keine feste Schimmelgrenze. '
         f'Stand {d["dateModified"]}, frei nachnutzbar als '
         f'<a href="/daten.html">offener Datensatz</a>.</p>'
         f'<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;'

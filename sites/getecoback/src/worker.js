@@ -9,6 +9,9 @@ import {videoEntry} from './video-entry.mjs';
 import {affiliateMetrics} from './affiliate-metrics.mjs';
 import {affiliateAudit} from './affiliate-audit.mjs';
 import {affiliateMeta} from './affiliate-meta.mjs';
+// The browser module guards DOM setup with typeof document; its pure decision
+// function is also the MCP contract, so the two surfaces cannot route differently.
+import {decide as decideMoisture} from '../site/assets/moisture-decision.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -934,12 +937,15 @@ const MCP_TOOLS = [
   // honest physics the pages use, then hands over to the sizing tools/guides.
   {
     name: "geraet_wahl",
-    description: "Welches Gerät löst mein Raumklima-Problem? — Which device family solves a given indoor-climate problem (too hot, damp/mould, too cold, stale air), with the honest physics, the right size for the room and the matching guide. The decision layer above btu_empfehlung/heizleistung_watt.",
+    description: "Welches Gerät löst mein Raumklima-Problem? — Choose a next step for heat, damp/mould, cold or stale air. For damp rooms, measure first, investigate damage and compare cold-room or laundry conditions before buying; floor area alone cannot size a dehumidifier. Same decision rules as the website.",
     inputSchema: {
       type: "object",
       properties: {
         problem: { type: "string", enum: ["zu_heiss", "feucht_schimmel", "zu_kalt", "stickige_luft"], description: "Das Problem — the problem: zu_heiss = room too hot, feucht_schimmel = damp air / condensation / mould risk, zu_kalt = room too cold (no fixed heating), stickige_luft = stale air / odours" },
-        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). Default: 20" },
+        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). Default: 20. Used for heating/cooling only, never to infer dehumidifier litres/day." },
+        purpose: { type: "string", enum: ["room", "laundry", "damage"], description: "Nur bei feucht_schimmel: room = Raumluft, laundry = Wäsche trocknen, damage = nasse Wand, Leck oder sichtbarer Schimmel. Default: room. No remote diagnosis." },
+        humidity: { type: "string", enum: ["unknown", "normal", "high"], description: "Nur bei feucht_schimmel: unknown = ungemessen/unsicher (Default), normal = meist 40–60 % oder darunter, high = wiederholt über 60 %. Orientierung, keine Schimmelfrei-Garantie." },
+        temperature: { type: "string", enum: ["unknown", "warm", "cold"], description: "Nur bei feucht_schimmel: unknown = ungemessen (Default), warm = mindestens 15 °C, cold = unter 15 °C. 15 °C ist ein Vergleichssignal, keine allgemeine Betriebsgrenze." },
       },
       required: ["problem"],
     },
@@ -1085,12 +1091,38 @@ function mcpToolResult(text) {
   return { content: [{ type: "text", text }], isError: false };
 }
 
+const MOISTURE_CHOICES = {
+  purpose: ["room", "laundry", "damage"],
+  humidity: ["unknown", "normal", "high"],
+  temperature: ["unknown", "warm", "cold"],
+};
+
+function mcpMoistureOutcome(args) {
+  const choices = {};
+  for (const [key, values] of Object.entries(MOISTURE_CHOICES)) {
+    const value = Object.hasOwn(args, key) ? args[key] : values[0];
+    if (!values.includes(value)) throw new RangeError("Invalid moisture choice");
+    choices[key] = value;
+  }
+  return decideMoisture(choices);
+}
+
+const MOISTURE_NEXT_STEPS = {
+  measure: "Erst messen, dann entscheiden. Notiere an mehreren typischen Tagen Temperatur und relative Feuchte, auch vor und nach dem Lüften oder Wäschetrocknen. Nutze ein vorhandenes Hygrometer. Aus den bisherigen Angaben folgt noch kein Entfeuchterkauf.",
+  wait: "Vorerst keinen Entfeuchter ableiten. 40–60 % sind ein allgemeiner Wohnraum-Orientierungsbereich, keine Schimmelfrei-Garantie. Beobachte kalte Oberflächen und den Verlauf. Bei sehr trockener Luft nicht zusätzlich entfeuchten; prüfe Lüftung und Feuchtequellen.",
+  cause: "Die Feuchtequelle zuerst klären. Ein Entfeuchter beseitigt weder ein Leck noch bauliche Feuchte oder vorhandenen Schimmel. Dokumentiere das Problem und lasse die Ursache fachlich prüfen; informiere bei einer Mietwohnung den Vermieter. Ein Gerätekauf ersetzt diese Klärung nicht.\nUrsachen und Grenzen: https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html",
+  cold: "Kalte Räume: Leistung bei deiner Temperatur vergleichen. Unter 15 °C ist ein Vergleichssignal, keine feste Abschaltgrenze. Verdichtergeräte können noch arbeiten, aber weniger Wasser entziehen. Prüfe Herstellerdaten bei deiner Temperatur und Feuchte; vergleiche Adsorptionsgeräte auch nach Strombedarf. Ein kalter Keller rechtfertigt keine pauschale Kaufempfehlung.\nKellerbedingungen und Bauart: https://getecoback.com/guide/luftentfeuchter-keller.html",
+  laundry: "Zuerst Kosten pro gleich trockener Ladung vergleichen. Nutze gemessene kWh bis zum gleichen Trocknungsgrad und berücksichtige Kaufpreis, Platz und Zeit. Ein vorhandener Wärmepumpentrockner kann günstiger sein als ein zusätzlicher Kauf. Ein Entfeuchter kann sinnvoll sein, wenn zugleich Raumfeuchte abgeführt werden muss.\nKostenvergleich: https://getecoback.com/waeschetrockner-oder-luftentfeuchter.html#laundry-check",
+  compare: "Kandidaten gezielt prüfen. Wenn erhöhte Feuchte trotz passender Lüftung wiederkehrt und keine bauliche Ursache vorliegt, kannst du ein Gerät mit Hygrostat prüfen. Vergleiche Raumvolumen, Feuchtelast, Geräusch und Leistung bei der gemessenen Temperatur. Das ist keine automatische Größenfreigabe oder Produktempfehlung.",
+};
+
 async function mcpCallTool(name, args, env) {
   const a = args || {};
   if (name === "geraet_wahl") {
     const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
     const qp = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
-    // Same rules as the pages: 340 BTU/m² · dehum ladder (l/day) · 60–100 W/m².
+    // Heating/cooling retain their sizing rules; moisture uses the shared
+    // measurement-first decision, never a floor-area-to-litres ladder.
     let text;
     if (a.problem === "zu_heiss") {
       const btu = Math.round((qm * 340) / 500) * 500;
@@ -1099,12 +1131,14 @@ async function mcpCallTool(name, args, env) {
         `Geräteklasse & Modelle: https://getecoback.com/guide/klimaanlage-${qp}-qm.html\n` +
         `Feinrechnung (Decke, Personen, Sonne): Tool btu_empfehlung oder https://getecoback.com/guide/btu-rechner.html`;
     } else if (a.problem === "feucht_schimmel") {
-      const liter = qm <= 12 ? "10–12" : qm <= 17 ? "12–16" : qm <= 22 ? "16–20" : qm <= 27 ? "20" : qm <= 35 ? "20–25" : "25–30";
-      const dq = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
-      text = `Für "feuchte Luft / Kondens / Schimmelrisiko" ist der Kompressor-Luftentfeuchter mit Hygrostat die richtige Familie: unter ca. 60 % relativer Feuchte fehlt Schimmel die Grundlage.\n` +
-        `Faustregel für ${qm} m²: ${liter} Liter/Tag Entzugsleistung (Herstellerangaben sind Idealbedingungen, real ≈ die Hälfte).\n` +
-        `Geräteklasse & Modelle: https://getecoback.com/guide/luftentfeuchter-${dq}-qm.html\n` +
-        `Physik-Check für die eigene Wand: Tool taupunkt_lueften`;
+      let outcome;
+      try { outcome = mcpMoistureOutcome(a); } catch {
+        return { content: [{ type: "text", text: "Ungültige Auswahl: purpose muss room, laundry oder damage sein; humidity unknown, normal oder high; temperature unknown, warm oder cold. Fehlende Angaben bleiben unbekannt." }], isError: true };
+      }
+      text = MOISTURE_NEXT_STEPS[outcome] +
+        "\nRaumfläche allein bestimmt weder Liter/Tag noch die richtige Bauart. Nennleistung ist keine Alltagsgarantie; prüfe Herstellerdaten für die tatsächlichen Bedingungen." +
+        "\nEntscheidungshilfe und Quellen (der Link enthält keine Eingaben): https://getecoback.com/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice" +
+        "\nOrientierung, keine Ferndiagnose. Die Website zeigt vorhandene Vergleichskandidaten für Deutschland; prüfe Modell, Markt und Einsatzbedingungen selbst.";
     } else if (a.problem === "zu_kalt") {
       const wl = Math.round(qm * 60), wh = Math.round(qm * 100);
       text = `Für "Raum zu kalt ohne feste Heizung" sind Infrarot-/Elektropaneele mit Thermostat die installationsfreie Familie (Zusatz-/Übergangsheizung; als alleinige Winterheizung ist eine Wärmepumpe wirtschaftlicher — Strom-Direktheizung macht aus 1 kWh Strom genau 1 kWh Wärme).\n` +
@@ -1348,8 +1382,8 @@ async function handleMcp(request, env) {
       // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
       // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
       // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
-      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.0" },
-      instructions: "Raumklima-Tools von getecoback.com: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau (DE), Stromkosten. Formeln identisch mit den Rechnern der Website; Antworten enthalten Quell-URLs.",
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.3.1" },
+      instructions: "Raumklima-Tools von getecoback.com: Gerätewahl, BTU, Fensterabdichtung, Hitzevorschau (DE), Stromkosten, Heizleistung, Taupunkt und Ratgeber. Bei Feuchte nutzt geraet_wahl dieselben Entscheidungsregeln wie die Website: fehlende Messungen bleiben unbekannt, Schäden zuerst klären, Fläche allein bestimmt keine Liter/Tag. Antworten enthalten Quell-URLs, keine Affiliate-Kauflinks.",
     });
   }
   if (method === "notifications/initialized" || (typeof method === "string" && method.startsWith("notifications/"))) {
@@ -1381,7 +1415,7 @@ async function handleMcp(request, env) {
             "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), ?, '/mcp', '', ?, '', ?)"
           ).bind(
             known && !result.isError ? "mcp_call" : "mcp_probe",
-            // The arguments are what tells adoption from automation. A crawler
+            // The legacy arguments help distinguish adoption from automation. A crawler
             // sends the same canned values every run; a person's questions
             // vary. Without them, "someone called btu_empfehlung again" is
             // unreadable — which is exactly how a daily indexer got mistaken
@@ -1389,7 +1423,14 @@ async function handleMcp(request, env) {
             // text beyond the search query the caller typed themselves.
             JSON.stringify({
               tool: known ? name : "unknown",
-              args: JSON.stringify(args || {}).slice(0, 160),
+              // The moisture decision accepts household context. For this
+              // router keep only its fixed result, never answers, area, extra
+              // caller fields or arbitrary text. Other tools retain their
+              // existing audit format; coarse counts alone are not adoption.
+              ...(name === "geraet_wahl" ? {
+                outcome: result.isError ? "invalid" : args?.problem === "feucht_schimmel" ? mcpMoistureOutcome(args) :
+                  ["zu_heiss", "zu_kalt", "stickige_luft"].includes(args?.problem) ? args.problem : "unknown",
+              } : { args: JSON.stringify(args || {}).slice(0, 160) }),
               // 2026-09-05: a daily caller replaying the smoke's canned args
               // took two sessions to rule out as adoption because nothing
               // recorded who it was. The UA is not personal data; capped.

@@ -4,7 +4,7 @@
 
 Why this exists (2026-09-16). sizing-data.json has been live and CC BY 4.0
 licensed since 2026-08-31 — the site's own sizing rules (340 BTU/m², the 13.500
-BTU monoblock ceiling, the 60 % mould threshold, three room-size ladders). It is
+BTU monoblock ceiling, humidity review notes, room-size reference rows). It is
 served at /sizing-data.json, returns 200, and is linked from exactly ONE page
 (for-agents.html).
 
@@ -47,8 +47,8 @@ CSV_OUT = os.path.join(SITE, "sizing-data.csv")
 BASE = "https://getecoback.com"
 
 TITLE = "Raumklima-Dimensionierungsdaten als offener Datensatz"
-DESC = ("Die Faustregeln und Größenleitern von getecoback.com als offener Datensatz: "
-        "BTU je m², Watt je m², Liter pro Tag, Schimmel-Schwelle. CC BY 4.0, als JSON.")
+DESC = ("Offene Raumklima-Daten: BTU und Watt je m², Prüfhinweise für Luftfeuchte und Entfeuchter. "
+        "Keine Literempfehlung allein nach Fläche. CC BY 4.0, JSON und CSV.")
 
 STYLE = """  * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1a2733; line-height:1.65; background:#f7fafc; }
@@ -68,6 +68,7 @@ STYLE = """  * { box-sizing:border-box; margin:0; padding:0; }
   table.ds th { background:#eef4f8; font-weight:800; }
   .lic { background:#eefaf3; border:1px solid #cdeede; border-radius:10px; padding:14px 18px; margin:18px 0; font-size:14.5px; }
   .cite { background:#fff; border:1px solid #e4ebf0; border-radius:10px; padding:14px 18px; margin:14px 0; font-size:14px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; overflow-x:auto; }
+  article pre { max-width:100%; overflow-x:auto; }
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
   @media(max-width:560px){ table{display:block;overflow-x:auto;max-width:100%} }
 """
@@ -118,7 +119,7 @@ def build_csv(d):
     w.writerow(["section", "key", "m2", "value", "unit", "room", "guide"])
     rules = d["rules"]
     for key, unit in (("cooling_btu_per_m2", "BTU/h per m2"),
-                      ("mould_threshold_rh_percent", "% RH"),
+                      ("humidity_review_rh_percent", "% Raum-rF (Prüfsignal, keine Schimmelgrenze)"),
                       ("monoblock_ceiling_btu", "BTU/h"),
                       ("cost_basis_eur_per_kwh", "EUR/kWh")):
         w.writerow(["rule", key, "", rules[key], unit, "", ""])
@@ -128,7 +129,7 @@ def build_csv(d):
         w.writerow(["cooling_btu", "btu_class", row["m2"], row["btu_class"], "BTU/h", "", row["guide"]])
     for row in d["ladders"]["dehumidifier_l_per_day"]:
         w.writerow(["dehumidifier_l_per_day", "liters_per_day", row["m2"], row["liters_per_day"],
-                    "L/day", row["room"], row["guide"]])
+                    "", row["room"], row["guide"]])
     for row in d["ladders"]["heating_watt"]:
         w.writerow(["heating_watt", "watt", row["m2"], row["watt"], "W", row["room"], row["guide"]])
     payload = buf.getvalue()
@@ -156,6 +157,7 @@ def main():
         "license": d["license"],
         "isAccessibleForFree": True,
         "dateModified": d["dateModified"],
+        "version": str(d["schema_version"]),
         "inLanguage": "de",
         "creator": {"@type": "Organization", "@id": f"{BASE}/#org",
                     "name": "EcoBack", "url": BASE + "/"},
@@ -178,8 +180,9 @@ def main():
             {"@type": "PropertyValue", "name": "heating_w_per_m2_insulated",
              "value": " bis ".join(str(x) for x in rules["heating_w_per_m2_insulated"]),
              "unitText": "W je m²"},
-            {"@type": "PropertyValue", "name": "mould_threshold_rh_percent",
-             "value": rules["mould_threshold_rh_percent"], "unitText": "% relative Luftfeuchte"},
+            {"@type": "PropertyValue", "name": "humidity_review_rh_percent",
+             "value": rules["humidity_review_rh_percent"], "unitText": "% relative Raumluftfeuchte",
+             "description": rules["humidity_review_note"]},
             {"@type": "PropertyValue", "name": "monoblock_ceiling_btu",
              "value": rules["monoblock_ceiling_btu"], "unitText": "BTU/h"},
             {"@type": "PropertyValue", "name": "cost_basis_eur_per_kwh",
@@ -222,7 +225,7 @@ def main():
 <div class="wrap">
 <article>
 
-  <p>Jeder Rechner und jede Größenleiter auf dieser Website rechnet mit denselben Regeln. Sie stehen hier vollständig, mit Einheiten und Stand, und liegen zusätzlich als maschinenlesbare Datei bereit: <a href="/sizing-data.json">sizing-data.json</a>. Stand der Daten: {d['dateModified']}.</p>
+  <p>Hier stehen die Kühl- und Heiz-Faustregeln der Website sowie Prüfhinweise für Feuchte und Entfeuchter. Eine Raumfläche allein legt keine Entzugsleistung fest. Die Daten mit Einheiten und Grenzen liegen auch als <a href="/sizing-data.json">sizing-data.json</a> vor. Stand der Daten: {d['dateModified']}.</p>
 
   <div class="lic">
     <strong>Lizenz: <a href="{d['license']}" rel="license">CC BY 4.0</a>.</strong>
@@ -234,19 +237,21 @@ def main():
     <tr><th>Regel</th><th>Wert</th><th>Einheit</th></tr>
     <tr><td>Kühlleistung je Fläche</td><td>{rules['cooling_btu_per_m2']}</td><td>BTU/h je m²</td></tr>
     <tr><td>Heizleistung je Fläche (gedämmt)</td><td>{rules['heating_w_per_m2_insulated'][0]}–{rules['heating_w_per_m2_insulated'][1]}</td><td>W je m²</td></tr>
-    <tr><td>Schimmel-Schwelle</td><td>{rules['mould_threshold_rh_percent']}</td><td>% relative Luftfeuchte</td></tr>
+    <tr><td>Prüfsignal bei wiederholt höherer Raumluftfeuchte</td><td>{rules['humidity_review_rh_percent']}</td><td>% relative Raumluftfeuchte; keine Schimmelgrenze</td></tr>
     <tr><td>Obergrenze Monoblock</td><td>{rules['monoblock_ceiling_btu']}</td><td>BTU/h</td></tr>
     <tr><td>Strompreis-Annahme</td><td>{rules['cost_basis_eur_per_kwh']}</td><td>EUR je kWh</td></tr>
   </table>
 
   <p><strong>Zur Obergrenze:</strong> {rules['monoblock_ceiling_note']}</p>
+  <p><strong>Zur Luftfeuchte:</strong> {rules['humidity_review_note']}</p>
   <p><strong>Zu den Liter-Angaben:</strong> {rules['dehumidifier_rating_note']}</p>
 
   <h2>Leiter 1 — Kühlleistung nach Raumgröße</h2>
   {ladder_table(ladders['cooling_btu'], 'btu_class', 'Kühlleistung')}
 
-  <h2>Leiter 2 — Entfeuchtung nach Raumgröße</h2>
-  {ladder_table(ladders['dehumidifier_l_per_day'], 'liters_per_day', 'Liter pro Tag')}
+  <h2>Entfeuchter — Bedingungen vor der Kapazität prüfen</h2>
+  <p>Die folgenden Zeilen ordnen Ratgeber nach Raumfläche zu, nicht Liter pro Tag. Die <a href="/guide/luftentfeuchter-ratgeber.html#eb-moisture-choice">Entscheidungshilfe mit Hersteller-Quellen</a> führt von Messwerten zur nächsten Prüfung.</p>
+  {ladder_table(ladders['dehumidifier_l_per_day'], 'liters_per_day', 'Prüfhinweis statt Kapazitätswert')}
 
   <h2>Leiter 3 — Heizleistung nach Raumgröße</h2>
   {ladder_table(ladders['heating_watt'], 'watt', 'Watt')}
@@ -264,9 +269,10 @@ Stand {d['dateModified']}, &lt;a href="{d['license']}"&gt;CC BY 4.0&lt;/a&gt;&lt
     <li><a href="/sizing-data.csv"><code>{BASE}/sizing-data.csv</code></a> — CSV im Langformat ({csv_rows} Zeilen), direkt in Tabellen&shy;kalkulation und Pandas</li>
   </ul>
   <p>Beides ohne Schlüssel, ohne Anmeldung, ohne Abfrage&shy;begrenzung.</p>
+  <p><strong>Datenformat {d['schema_version']}:</strong> {d['migration_note']}</p>
 
   <h2>Woher die Zahlen kommen, und was sie nicht sind</h2>
-  <p>Es sind <strong>Faustregeln</strong>, keine Messwerte und keine Norm. Sie stammen aus den Ratgebern dieser Website und sind dort jeweils hergeleitet; die Rechner benutzen exakt dieselben Werte, damit Seite und Datei nie auseinanderlaufen können. Wer eine belastbare Auslegung für ein konkretes Gebäude braucht, rechnet nach Norm oder fragt einen Fachbetrieb — dafür sind Faustregeln nicht gedacht.</p>
+  <p>Es sind <strong>Faustregeln und Prüfhinweise</strong>, keine Messwerte und keine Norm. Die Kühl- und Heizwerte stammen aus den Ratgebern dieser Website. Für Entfeuchter müssen Herstellerwerte bei passender Temperatur und Feuchte verglichen werden; die Fläche allein reicht nicht. Wer eine belastbare Auslegung für ein konkretes Gebäude braucht, rechnet nach Norm oder fragt einen Fachbetrieb — dafür sind Faustregeln nicht gedacht.</p>
   <p>Wir testen keine Geräte selbst und geben keine Rechtsberatung. Wie wir arbeiten und womit wir Geld verdienen, steht auf <a href="/wie-wir-empfehlen.html">Wie wir empfehlen</a> und <a href="/ueber-uns.html">Über uns</a>.</p>
 
 </article>

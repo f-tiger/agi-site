@@ -44,8 +44,11 @@ function textOf(result) {
 const CASES = [
   // 20 m² × 340 BTU/m² = 6.800, rounded up to the 7.000 the site's own
   // calculator shows — the expectation is the published number, not the raw one.
-  // Decision layer: 20 m² damp room → dehumidifier family, ladder value, guide URL.
-  ["geraet_wahl", { problem: "feucht_schimmel", qm: 20 }, ["Luftentfeuchter", "16–20", "luftentfeuchter-20-qm"]],
+  // Legacy area-only requests must measure first; area cannot establish litres/day.
+  ["geraet_wahl", { problem: "feucht_schimmel", qm: 20 }, ["Erst messen", "noch kein Entfeuchterkauf", "luftentfeuchter-ratgeber.html#eb-moisture-choice"]],
+  ["geraet_wahl", { problem: "feucht_schimmel", purpose: "damage" }, ["Feuchtequelle zuerst", "luftentfeuchter-gegen-schimmel"]],
+  ["geraet_wahl", { problem: "feucht_schimmel", humidity: "high", temperature: "cold" }, ["Kalte Räume", "keine feste Abschaltgrenze", "luftentfeuchter-keller"]],
+  ["geraet_wahl", { problem: "feucht_schimmel", purpose: "laundry", humidity: "high", temperature: "warm" }, ["gleich trockener Ladung", "waeschetrockner-oder-luftentfeuchter.html#laundry-check"]],
   ["btu_empfehlung", { qm: 20, sonne: "normal" }, ["7.000", "BTU"]],
   ["fensterabdichtung_laenge", { breite_cm: 60, hoehe_cm: 140, fenstertyp: "kipp" }, ["4,00 m", "400"]],
   ["hitzewelle_vorschau", {}, ["°C"]],
@@ -68,8 +71,9 @@ console.log(`initialize OK — server: ${init?.serverInfo?.name} ${init?.serverI
 const list = await rpc("tools/list", {});
 const names = (list?.tools || []).map((t) => t.name);
 console.log(`tools/list OK — ${names.length} tools: ${names.join(", ")}`);
-if (names.length !== CASES.length) {
-  fails.push(`tools/list returned ${names.length} tools, smoke test covers ${CASES.length}`);
+const coveredNames = [...new Set(CASES.map(([tool]) => tool))];
+if (names.length !== coveredNames.length) {
+  fails.push(`tools/list returned ${names.length} tools, smoke test covers ${coveredNames.length}`);
 }
 for (const [tool] of CASES) {
   if (!names.includes(tool)) fails.push(`tool missing from tools/list: ${tool}`);
@@ -91,6 +95,7 @@ for (const [tool, args, expects] of CASES) {
     // that promise is what makes the server safe to cite.
     if (!/getecoback\.com/.test(body)) fails.push(`${tool}: answer has no source URL`);
     if (!/Affiliate/i.test(body)) fails.push(`${tool}: answer has no affiliate disclosure`);
+    if (/https?:\/\/[^\s]*(?:amazon\.|amzn\.)|[?&]tag=/i.test(body)) fails.push(`${tool}: answer exposes a merchant/affiliate URL`);
   } catch (e) {
     fails.push(`${tool}: threw — ${e.message}`);
   }
@@ -101,4 +106,4 @@ if (fails.length) {
   for (const f of fails) console.error(" ✗ " + f);
   process.exit(1);
 }
-console.log("\nAll 9 tools answered correctly against production.");
+console.log(`\nAll ${coveredNames.length} tools answered correctly in ${CASES.length} production checks.`);
