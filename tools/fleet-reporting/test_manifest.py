@@ -19,6 +19,11 @@ class ManifestTests(unittest.TestCase):
         hosts = {s["hostname"] for s in self.manifest["sites"]}
         self.assertTrue({"invest.agiscorecard.com", "mcppulse.agiscorecard.com", "lens.agiscorecard.com", "bestblindtoys.com"} <= hosts)
         self.assertNotIn("www.getecoback.com", hosts)
+        self.assertEqual(self.manifest['ga4_reader']['provider'], 'google_official_admin_and_data_api')
+        for host in ('agents.agiscorecard.com', 'index.agiscorecard.com', 'pay.agiscorecard.com', 'wallets.agiscorecard.com'):
+            row = next(s for s in self.manifest['sites'] if s['hostname'] == host)
+            self.assertEqual(row['ga4']['property_id'], '541489054')
+            self.assertEqual(row['ga4']['backend_receipt'], 'must_verify_each_report')
 
     def test_missing_canonical_host_and_duplicate_hostname_rejected(self):
         missing = copy.deepcopy(self.manifest)
